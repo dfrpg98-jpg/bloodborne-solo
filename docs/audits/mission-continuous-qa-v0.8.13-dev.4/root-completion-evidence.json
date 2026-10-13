@@ -1,0 +1,67 @@
+{
+  "method": "Root operator completion statements corroborated by recorded product DOM observations, downloaded saves, console file, and local CI report. This file is assembled for audit packaging; it is not an extra browser test count.",
+  "secondRunComplete": true,
+  "restoreRecheckPassed": true,
+  "normalHuntPreservation": {
+    "observedPreserved": [
+      "phase",
+      "HP",
+      "echoes",
+      "round",
+      "kills",
+      "hand card IDs",
+      "location",
+      "normal mode"
+    ],
+    "targetCleared": true,
+    "utilityCount": 0,
+    "evidence": "runs/recheck-dev4/normal-hunt-restored.json",
+    "limit": "Equality of recorded visible progress fields, not byte-for-byte preservation of a privately inspected normal save."
+  },
+  "console": {
+    "initial-dev3": {
+      "warnings": 0,
+      "errors": 0,
+      "source": "Root observed an empty actual-browser warning/error query; raw console result was not saved in the first-run folder."
+    },
+    "recheck-dev4": {
+      "warnings": 0,
+      "errors": 0,
+      "source": "runs/recheck-dev4/browser-console.json",
+      "rawResult": []
+    }
+  },
+  "postCompletionImport": {
+    "scope": "Only after the uninterrupted QA campaign had finished, imported that campaign's actual product export through the product file chooser.",
+    "duringContinuousRunsCheckpointImportCount": 0,
+    "targetCleared": true,
+    "costsPreserved": true,
+    "noReplayedNotice": true,
+    "evidence": "runs/recheck-dev4/BB011-after-file-import.json"
+  },
+  "firstFolderArtifactBuildOverrides": {
+    "BB011-after-normal-restore.json": "0.8.13-dev.4",
+    "BB011-after-normal-restore.jpg": "0.8.13-dev.4",
+    "live-install-dev4.json": "0.8.13-dev.4"
+  },
+  "driverErrorsSecond": [],
+  "targetedTests": {
+    "provenance": "reportedToolExecution: executing test agent's tool output relayed to root. No separate TAP artifact was saved for these two targeted runs.",
+    "beforeFix": {
+      "command": "node --test tests/hunt-replacement-ui-v0813.test.cjs",
+      "tests": 11,
+      "pass": 2,
+      "fail": 9,
+      "durationMs": 380.1993,
+      "failureMeaning": "Nine replacement paths retained a visible selected-target panel; two state-preservation tests already passed."
+    },
+    "afterFix": {
+      "command": "node --test tests/hunt-replacement-ui-v0813.test.cjs tests/qa-campaign-ui-v078.test.cjs tests/ui-selection-v086.test.cjs tests/direct-map-v081.test.cjs tests/map-context-v089.test.cjs tests/mission-feedback-ui.test.cjs",
+      "tests": 55,
+      "pass": 55,
+      "fail": 0,
+      "durationMs": 2524.3971
+    },
+    "counting": "The new 11-test regression file is included in the completed full CI pass count of 2575. These targeted runs are not added to the full CI count."
+  }
+}

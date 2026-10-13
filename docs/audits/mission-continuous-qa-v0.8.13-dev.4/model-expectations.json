@@ -1,0 +1,2861 @@
+{
+  "method": "MODEL ONLY. Expected notification and phase sequence used to plan browser execution; not added to actual browser check counts.",
+  "source": "local-qa-work/continuous-qa-chapters123/continuous-route-plan.json",
+  "plannedCommands": 260,
+  "plannedNotificationBatches": 26,
+  "plannedNotificationEvents": 32,
+  "steps": [
+    {
+      "step": 1,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-1-21"
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 2,
+      "command": {
+        "type": "EXPLORE",
+        "edge": "N"
+      },
+      "chapter": 1,
+      "phase": "tile_place",
+      "events": []
+    },
+    {
+      "step": 3,
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 0
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 4,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 1,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "1:new:mob:[\"사냥을 시작하다\",\"마당 등불의 야수 사냥 무리를 처치하세요.\",\"진행 중\",[5]]",
+          "kind": "new",
+          "title": "사냥을 시작하다",
+          "description": "마당 등불의 야수 사냥 무리를 처치하세요.",
+          "objectiveId": "mob"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "huntsman-mob-1",
+        "cardId": "card-3",
+        "slot": 0,
+        "itemIds": [],
+        "pullIds": [],
+        "rewardIds": []
+      },
+      "chapter": 1,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 6,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 1,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 7,
+      "command": {
+        "type": "ATTACK",
+        "cardId": "card-1",
+        "slot": 1,
+        "itemIds": [],
+        "pullIds": [],
+        "rewardIds": [],
+        "enemyId": "huntsman-mob-1"
+      },
+      "chapter": 1,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 8,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 1,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "1:completed:mob:7",
+          "kind": "completed",
+          "title": "사냥을 시작하다",
+          "description": "마당 등불의 야수 사냥 무리를 처치했습니다.",
+          "objectiveId": "mob",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 1개",
+            "마당 등불의 안개가 걷혔습니다."
+          ]
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "command": {
+        "type": "KEEP_FIREARM",
+        "firearmId": "ludwig-rifle"
+      },
+      "chapter": 1,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 10,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-1-11"
+      },
+      "chapter": 1,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 11,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-1-22"
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 12,
+      "command": {
+        "type": "STEP",
+        "node": "tile-14:center"
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 13,
+      "command": {
+        "type": "EXPLORE",
+        "edge": "S"
+      },
+      "chapter": 1,
+      "phase": "tile_place",
+      "events": []
+    },
+    {
+      "step": 14,
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 2
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 15,
+      "command": {
+        "type": "STEP",
+        "node": "tile-14:center"
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 16,
+      "command": {
+        "type": "STEP",
+        "node": "tile-14:left"
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 17,
+      "command": {
+        "type": "EXPLORE",
+        "edge": "W"
+      },
+      "chapter": 1,
+      "phase": "tile_place",
+      "events": []
+    },
+    {
+      "step": 18,
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 0
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 19,
+      "command": {
+        "type": "EXPLORE",
+        "edge": "W"
+      },
+      "chapter": 1,
+      "phase": "tile_place",
+      "events": []
+    },
+    {
+      "step": 20,
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 0
+      },
+      "chapter": 1,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 21,
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "scourge-beast-1",
+        "cardId": "card-7",
+        "slot": 0
+      },
+      "chapter": 1,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 22,
+      "command": {
+        "type": "FIREARM"
+      },
+      "chapter": 1,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 23,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 1,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 24,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-1-1"
+      },
+      "chapter": 1,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 25,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-1-23"
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 26,
+      "command": {
+        "type": "STEP",
+        "node": "tile-17:top"
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 27,
+      "command": {
+        "type": "EXPLORE",
+        "edge": "N"
+      },
+      "chapter": 1,
+      "phase": "tile_place",
+      "events": []
+    },
+    {
+      "step": 28,
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 0
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 29,
+      "command": {
+        "type": "STEP",
+        "node": "tile-17:top"
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 30,
+      "command": {
+        "type": "STEP",
+        "node": "tile-17:lower-left"
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 31,
+      "command": {
+        "type": "EXPLORE",
+        "edge": "W"
+      },
+      "chapter": 1,
+      "phase": "tile_place",
+      "events": []
+    },
+    {
+      "step": 32,
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 0
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 33,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 1,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "1:new:shelter:[\"피신처\",\"민가 생존자를 오에돈 예배당으로 호위하세요.\",\"진행 중\",[8]]",
+          "kind": "new",
+          "title": "피신처",
+          "description": "민가 생존자를 오에돈 예배당으로 호위하세요.",
+          "objectiveId": "shelter"
+        }
+      ]
+    },
+    {
+      "step": 34,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-1-24"
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 35,
+      "command": {
+        "type": "STEP",
+        "node": "tile-11:house"
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 36,
+      "command": {
+        "type": "MISSION_PICKUP"
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 37,
+      "command": {
+        "type": "STEP",
+        "node": "tile-11:street"
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 38,
+      "command": {
+        "type": "STEP",
+        "node": "tile-17:lower-left"
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 39,
+      "command": {
+        "type": "STEP",
+        "node": "tile-17:top"
+      },
+      "chapter": 1,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 40,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 1,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "1:updated:shelter:[\"피신처\",\"오에돈 예배당의 재앙의 야수를 처치하세요.\",\"진행 중\",[8,9]]",
+          "kind": "updated",
+          "title": "피신처",
+          "description": "오에돈 예배당의 재앙의 야수를 처치하세요.",
+          "objectiveId": "shelter"
+        }
+      ]
+    },
+    {
+      "step": 41,
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "scourge-beast-1",
+        "cardId": "card-11",
+        "slot": 1
+      },
+      "chapter": 1,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 42,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 1,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 43,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-1-2"
+      },
+      "chapter": 1,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 44,
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "scourge-beast-1",
+        "cardId": "card-12",
+        "slot": 2
+      },
+      "chapter": 1,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 45,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 1,
+      "phase": "mission_death",
+      "events": [
+        {
+          "key": "1:completed:shelter:11",
+          "kind": "completed",
+          "title": "무사히 밤을 넘기다",
+          "description": "오에돈 예배당의 재앙의 야수를 처치했습니다.",
+          "objectiveId": "shelter",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 2개",
+            "오에돈 예배당의 안개가 걷혔습니다."
+          ]
+        }
+      ]
+    },
+    {
+      "step": 46,
+      "command": {
+        "type": "MISSION_DEATH_TAKE"
+      },
+      "chapter": 1,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 47,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-1-3"
+      },
+      "chapter": 1,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 48,
+      "command": {
+        "type": "USE_REWARD",
+        "rewardId": "reward-13",
+        "node": "tile-14:center"
+      },
+      "chapter": 1,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "1:updated:main:[\"재앙의 근원\",\"중앙 등불의 재앙의 야수 우두머리를 처치하세요.\",\"진행 중\",[1,2]]",
+          "kind": "updated",
+          "title": "재앙의 근원",
+          "description": "중앙 등불의 재앙의 야수 우두머리를 처치하세요.",
+          "objectiveId": "main"
+        }
+      ]
+    },
+    {
+      "step": 49,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-1-12"
+      },
+      "chapter": 1,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 50,
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "scourge-beast-1",
+        "cardId": "card-9",
+        "slot": 0
+      },
+      "chapter": 1,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 51,
+      "command": {
+        "type": "FIREARM"
+      },
+      "chapter": 1,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 52,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 1,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 53,
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "scourge-beast-1",
+        "cardId": "card-8",
+        "slot": 1
+      },
+      "chapter": 1,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 54,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 1,
+      "phase": "stun",
+      "events": [
+        {
+          "key": "1:completed:main:4",
+          "kind": "completed",
+          "title": "목표 처치: 재앙의 야수 우두머리",
+          "description": "중앙 등불의 재앙의 야수 우두머리를 처치했습니다.",
+          "objectiveId": "main",
+          "effects": [
+            "중앙 등불의 안개가 걷혔습니다."
+          ]
+        },
+        {
+          "key": "1:chapter:main:won",
+          "kind": "chapter",
+          "title": "챕터 1 완수",
+          "description": "챕터 1의 사냥을 완수했습니다.",
+          "objectiveId": "main"
+        }
+      ]
+    },
+    {
+      "step": 55,
+      "command": {
+        "type": "KEEP_REWARD",
+        "rewardId": "reward-15"
+      },
+      "chapter": 1,
+      "phase": "stun",
+      "events": []
+    },
+    {
+      "step": 56,
+      "command": {
+        "type": "STUN_DISCARD",
+        "cardId": "card-6"
+      },
+      "chapter": 1,
+      "phase": "upgrade_pick",
+      "events": []
+    },
+    {
+      "step": 57,
+      "command": {
+        "type": "PICK_UPGRADE",
+        "index": 0
+      },
+      "chapter": 1,
+      "phase": "upgrade_pick",
+      "events": []
+    },
+    {
+      "step": 58,
+      "command": {
+        "type": "PICK_UPGRADE",
+        "index": 0
+      },
+      "chapter": 1,
+      "phase": "upgrade_pick",
+      "events": []
+    },
+    {
+      "step": 59,
+      "command": {
+        "type": "PICK_UPGRADE",
+        "index": 0
+      },
+      "chapter": 1,
+      "phase": "upgrade_replace",
+      "events": []
+    },
+    {
+      "step": 60,
+      "command": {
+        "type": "REPLACE_UPGRADE"
+      },
+      "chapter": 1,
+      "phase": "upgrade_replace",
+      "events": []
+    },
+    {
+      "step": 61,
+      "command": {
+        "type": "REPLACE_UPGRADE"
+      },
+      "chapter": 1,
+      "phase": "upgrade_replace",
+      "events": []
+    },
+    {
+      "step": 62,
+      "command": {
+        "type": "REPLACE_UPGRADE"
+      },
+      "chapter": 1,
+      "phase": "over",
+      "events": []
+    },
+    {
+      "step": 63,
+      "command": {
+        "type": "ENTER_BETWEEN_CHAPTERS"
+      },
+      "chapter": 1,
+      "phase": "between_chapters",
+      "events": []
+    },
+    {
+      "step": 64,
+      "command": {
+        "type": "START_NEXT_CHAPTER",
+        "startSpace": "center",
+        "face": 0
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:new:main:[\"재앙의 근원\",\"공동묘지에 시체 2개를 바치세요.\",\"진행 중\",[18]]",
+          "kind": "new",
+          "title": "재앙의 근원",
+          "description": "공동묘지에 시체 2개를 바치세요.",
+          "objectiveId": "main"
+        }
+      ]
+    },
+    {
+      "step": 65,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-2-21"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 66,
+      "command": {
+        "type": "STEP",
+        "node": "tile-13:bottom"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 67,
+      "command": {
+        "type": "STEP",
+        "node": "tile-13:middle"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 68,
+      "command": {
+        "type": "EXPLORE",
+        "edge": "W"
+      },
+      "chapter": 2,
+      "phase": "tile_place",
+      "events": []
+    },
+    {
+      "step": 69,
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 3
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 70,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:new:card-24:[\"이오세프카의 연구\",\"진료소에서 야수 사냥 무리 또는 야수 사냥 하인을 처치하세요.\",\"진행 중\",[24]]",
+          "kind": "new",
+          "title": "이오세프카의 연구",
+          "description": "진료소에서 야수 사냥 무리 또는 야수 사냥 하인을 처치하세요.",
+          "objectiveId": "card-24"
+        }
+      ]
+    },
+    {
+      "step": 71,
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "huntsmans-minion-1",
+        "cardId": "card-9",
+        "slot": 0
+      },
+      "chapter": 2,
+      "phase": "ability_choice",
+      "events": []
+    },
+    {
+      "step": 72,
+      "command": {
+        "type": "ABILITY_CHOICE",
+        "cardId": "card-10"
+      },
+      "chapter": 2,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 73,
+      "command": {
+        "type": "FIREARM"
+      },
+      "chapter": 2,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 74,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:updated:card-24:[\"이오세프카의 연구\",\"진료소에서 재앙의 야수를 처치하세요.\",\"진행 중\",[24,25]]",
+          "kind": "updated",
+          "title": "이오세프카의 연구",
+          "description": "진료소에서 재앙의 야수를 처치하세요.",
+          "objectiveId": "card-24"
+        },
+        {
+          "key": "2:new:card-27:[\"이오세프카의 진료소를 피신처 삼아\",\"소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.\",\"진행 중\",[27]]",
+          "kind": "new",
+          "title": "이오세프카의 진료소를 피신처 삼아",
+          "description": "소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.",
+          "objectiveId": "card-27"
+        }
+      ]
+    },
+    {
+      "step": 75,
+      "command": {
+        "type": "MISSION_LURE",
+        "itemId": "item-qa-2-1"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 76,
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "scourge-beast-1",
+        "cardId": "card-2",
+        "slot": 1
+      },
+      "chapter": 2,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 77,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:completed:card-24:26",
+          "kind": "completed",
+          "title": "이오세프카의 연구",
+          "description": "진료소의 재앙의 야수를 처치했습니다.",
+          "objectiveId": "card-24",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 1개"
+          ]
+        }
+      ]
+    },
+    {
+      "step": 78,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-2-2"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 79,
+      "command": {
+        "type": "MISSION_LURE",
+        "itemId": "item-qa-2-3"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 80,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-2-11"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 81,
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "scourge-beast-1",
+        "cardId": "card-8",
+        "slot": 0
+      },
+      "chapter": 2,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 82,
+      "command": {
+        "type": "FIREARM"
+      },
+      "chapter": 2,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 83,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 84,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-2-22"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 85,
+      "command": {
+        "type": "STEP",
+        "node": "tile-13:middle"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 86,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 87,
+      "command": {
+        "type": "INTERACT",
+        "cardId": "card-12",
+        "lootCount": 1
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 88,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-2-23"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 89,
+      "command": {
+        "type": "STEP",
+        "node": "tile-13:bottom"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 90,
+      "command": {
+        "type": "STEP",
+        "node": "tile-14:center"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 91,
+      "command": {
+        "type": "STEP",
+        "node": "tile-02:lower-left"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 92,
+      "command": {
+        "type": "STEP",
+        "node": "tile-02:right"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 93,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 94,
+      "command": {
+        "type": "INTERACT",
+        "cardId": "card-11",
+        "lootCount": 1
+      },
+      "chapter": 2,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 95,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 96,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-2-24"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 97,
+      "command": {
+        "type": "STEP",
+        "node": "tile-02:lower-left"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 98,
+      "command": {
+        "type": "STEP",
+        "node": "tile-14:center"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 99,
+      "command": {
+        "type": "STEP",
+        "node": "tile-13:bottom"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 100,
+      "command": {
+        "type": "STEP",
+        "node": "tile-13:middle"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 101,
+      "command": {
+        "type": "STEP",
+        "node": "tile-20:entry"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 102,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:completed:card-27:28",
+          "kind": "completed",
+          "title": "안전한 피신처: 이오세프카의 진료소",
+          "description": "필요한 생존자들을 이오세프카의 진료소로 인도했습니다.",
+          "objectiveId": "card-27",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 2개"
+          ]
+        }
+      ]
+    },
+    {
+      "step": 103,
+      "command": {
+        "type": "KEEP_REWARD",
+        "rewardId": "reward-21"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 104,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-2-4"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 105,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-2-25"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 106,
+      "command": {
+        "type": "STEP",
+        "node": "tile-13:middle"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 107,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 108,
+      "command": {
+        "type": "MISSION_CORPSES",
+        "count": 2
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:updated:main:[\"재앙의 근원\",\"성직자 야수를 2페이즈로 전환하세요.\",\"진행 중\",[18,19,20]]",
+          "kind": "updated",
+          "title": "재앙의 근원",
+          "description": "성직자 야수를 2페이즈로 전환하세요.",
+          "objectiveId": "main"
+        }
+      ]
+    },
+    {
+      "step": 109,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-2-12"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 110,
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "mission-main",
+        "cardId": "card-7",
+        "slot": 0
+      },
+      "chapter": 2,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 111,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:updated:main:[\"재앙의 근원\",\"피해를 입지 않는 성직자 야수를 지하묘지로 유인하세요.\",\"진행 중\",[18,19,20,21]]",
+          "kind": "updated",
+          "title": "재앙의 근원",
+          "description": "피해를 입지 않는 성직자 야수를 지하묘지로 유인하세요.",
+          "objectiveId": "main",
+          "effects": [
+            "공동묘지의 안개가 걷혔습니다."
+          ]
+        }
+      ]
+    },
+    {
+      "step": 112,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-2-5"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 113,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-2-26"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 114,
+      "command": {
+        "type": "STEP",
+        "node": "tile-13:bottom"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 115,
+      "command": {
+        "type": "STEP",
+        "node": "tile-14:center"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 116,
+      "command": {
+        "type": "STEP",
+        "node": "tile-14:right"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 117,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 118,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-2-27"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 119,
+      "command": {
+        "type": "EXPLORE",
+        "edge": "E"
+      },
+      "chapter": 2,
+      "phase": "tile_place",
+      "events": []
+    },
+    {
+      "step": 120,
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 1
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 121,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:new:bridge:[\"아슬아슬한 구조\",\"대교의 야수 사냥 하인을 처치하세요.\",\"진행 중\",[35]]",
+          "kind": "new",
+          "title": "아슬아슬한 구조",
+          "description": "대교의 야수 사냥 하인을 처치하세요.",
+          "objectiveId": "bridge"
+        }
+      ]
+    },
+    {
+      "step": 122,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-2-28"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 123,
+      "command": {
+        "type": "STEP",
+        "node": "tile-18:top"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 124,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 125,
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "huntsmans-minion-1",
+        "cardId": "card-3",
+        "slot": 1
+      },
+      "chapter": 2,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 126,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 127,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-2-6"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 128,
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "huntsmans-minion-1",
+        "cardId": "card-5",
+        "slot": 1
+      },
+      "chapter": 2,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 129,
+      "command": {
+        "type": "FIREARM"
+      },
+      "chapter": 2,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 130,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:updated:bridge:[\"아슬아슬한 구조\",\"대교의 생존자를 진료소 또는 예배당으로 호위하세요.\",\"진행 중\",[35,37]]",
+          "kind": "updated",
+          "title": "아슬아슬한 구조",
+          "description": "대교의 생존자를 진료소 또는 예배당으로 호위하세요.",
+          "objectiveId": "bridge",
+          "effects": [
+            "대교의 안개가 걷혔습니다."
+          ]
+        }
+      ]
+    },
+    {
+      "step": 131,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-2-29"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 132,
+      "command": {
+        "type": "MISSION_PICKUP"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 133,
+      "command": {
+        "type": "EXPLORE",
+        "edge": "E"
+      },
+      "chapter": 2,
+      "phase": "tile_place",
+      "events": []
+    },
+    {
+      "step": 134,
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 1
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 135,
+      "command": {
+        "type": "STEP",
+        "node": "tile-01:top"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 136,
+      "command": {
+        "type": "EXPLORE",
+        "edge": "E"
+      },
+      "chapter": 2,
+      "phase": "tile_place",
+      "events": []
+    },
+    {
+      "step": 137,
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 0
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 138,
+      "command": {
+        "type": "EXPLORE",
+        "edge": "E"
+      },
+      "chapter": 2,
+      "phase": "tile_place",
+      "events": []
+    },
+    {
+      "step": 139,
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 0
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 140,
+      "command": {
+        "type": "STEP",
+        "node": "tile-17:top"
+      },
+      "chapter": 2,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 141,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:completed:bridge:39",
+          "kind": "completed",
+          "title": "불길한 경고",
+          "description": "대교의 생존자를 오에돈 예배당으로 호위했습니다.",
+          "objectiveId": "bridge",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 3개"
+          ]
+        },
+        {
+          "key": "2:new:card-33:[\"오에돈 예배당을 피신처로 삼아\",\"진료소 피신처 완료로 이 임무를 완수할 수 없습니다.\",\"진행 중\",[33]]",
+          "kind": "new",
+          "title": "오에돈 예배당을 피신처로 삼아",
+          "description": "진료소 피신처 완료로 이 임무를 완수할 수 없습니다.",
+          "objectiveId": "card-33"
+        }
+      ]
+    },
+    {
+      "step": 142,
+      "command": {
+        "type": "KEEP_REWARD",
+        "rewardId": "reward-22"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 143,
+      "command": {
+        "type": "KEEP_FIREARM",
+        "firearmId": "repeating-pistol"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 144,
+      "command": {
+        "type": "USE_REWARD",
+        "rewardId": "reward-13",
+        "node": "tile-19:bottom"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 145,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-2-13"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 146,
+      "command": {
+        "type": "END_TURN"
+      },
+      "chapter": 2,
+      "phase": "refill",
+      "events": []
+    },
+    {
+      "step": 147,
+      "command": {
+        "type": "REFILL"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 148,
+      "command": {
+        "type": "END_TURN"
+      },
+      "chapter": 2,
+      "phase": "combat_choose",
+      "events": []
+    },
+    {
+      "step": 149,
+      "command": {
+        "type": "NO_ATTACK"
+      },
+      "chapter": 2,
+      "phase": "ability_choice",
+      "events": []
+    },
+    {
+      "step": 150,
+      "command": {
+        "type": "ABILITY_CHOICE",
+        "cardId": "card-1"
+      },
+      "chapter": 2,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 151,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 2,
+      "phase": "refill",
+      "events": []
+    },
+    {
+      "step": 152,
+      "command": {
+        "type": "REFILL"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 153,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-2-7"
+      },
+      "chapter": 2,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 154,
+      "command": {
+        "type": "END_TURN"
+      },
+      "chapter": 2,
+      "phase": "combat_choose",
+      "events": []
+    },
+    {
+      "step": 155,
+      "command": {
+        "type": "NO_ATTACK"
+      },
+      "chapter": 2,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 156,
+      "command": {
+        "type": "FIREARM"
+      },
+      "chapter": 2,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 157,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 2,
+      "phase": "upgrade_pick",
+      "events": [
+        {
+          "key": "2:completed:main:23",
+          "kind": "completed",
+          "title": "야수를 가두었다",
+          "description": "성직자 야수를 오에돈의 지하묘지로 유인했습니다.",
+          "objectiveId": "main"
+        },
+        {
+          "key": "2:chapter:main:won",
+          "kind": "chapter",
+          "title": "챕터 2 완수",
+          "description": "챕터 2의 사냥을 완수했습니다.",
+          "objectiveId": "main"
+        }
+      ]
+    },
+    {
+      "step": 158,
+      "command": {
+        "type": "KEEP_REWARD",
+        "rewardId": "reward-23"
+      },
+      "chapter": 2,
+      "phase": "upgrade_pick",
+      "events": []
+    },
+    {
+      "step": 159,
+      "command": {
+        "type": "PICK_UPGRADE",
+        "index": 0
+      },
+      "chapter": 2,
+      "phase": "upgrade_pick",
+      "events": []
+    },
+    {
+      "step": 160,
+      "command": {
+        "type": "PICK_UPGRADE",
+        "index": 0
+      },
+      "chapter": 2,
+      "phase": "upgrade_pick",
+      "events": []
+    },
+    {
+      "step": 161,
+      "command": {
+        "type": "PICK_UPGRADE",
+        "index": 0
+      },
+      "chapter": 2,
+      "phase": "upgrade_replace",
+      "events": []
+    },
+    {
+      "step": 162,
+      "command": {
+        "type": "REPLACE_UPGRADE"
+      },
+      "chapter": 2,
+      "phase": "upgrade_replace",
+      "events": []
+    },
+    {
+      "step": 163,
+      "command": {
+        "type": "REPLACE_UPGRADE"
+      },
+      "chapter": 2,
+      "phase": "upgrade_replace",
+      "events": []
+    },
+    {
+      "step": 164,
+      "command": {
+        "type": "REPLACE_UPGRADE"
+      },
+      "chapter": 2,
+      "phase": "over",
+      "events": []
+    },
+    {
+      "step": 165,
+      "command": {
+        "type": "ENTER_BETWEEN_CHAPTERS"
+      },
+      "chapter": 2,
+      "phase": "between_chapters",
+      "events": []
+    },
+    {
+      "step": 166,
+      "command": {
+        "type": "START_NEXT_CHAPTER",
+        "startSpace": "center",
+        "face": 0
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "3:new:main:[\"재앙의 근원\",\"이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수를 봉인해 두세요.\",\"진행 중\",[40]]",
+          "kind": "new",
+          "title": "재앙의 근원",
+          "description": "이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수를 봉인해 두세요.",
+          "objectiveId": "main"
+        }
+      ]
+    },
+    {
+      "step": 167,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-3-21"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 168,
+      "command": {
+        "type": "STEP",
+        "node": "tile-14:left"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 169,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 170,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-3-22"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 171,
+      "command": {
+        "type": "EXPLORE",
+        "edge": "W"
+      },
+      "chapter": 3,
+      "phase": "tile_place",
+      "events": []
+    },
+    {
+      "step": 172,
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 1
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 173,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "3:new:card-54:[\"무리를 정리하다\",\"재앙의 야수를 처치해 계몽 토큰을 제거하세요.\",\"진행 중\",[54]]",
+          "kind": "new",
+          "title": "무리를 정리하다",
+          "description": "재앙의 야수를 처치해 계몽 토큰을 제거하세요.",
+          "objectiveId": "card-54"
+        }
+      ]
+    },
+    {
+      "step": 174,
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "huntsman-mob-1",
+        "cardId": "card-5",
+        "slot": 0
+      },
+      "chapter": 3,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 175,
+      "command": {
+        "type": "FIREARM"
+      },
+      "chapter": 3,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 176,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 177,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-3-23"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 178,
+      "command": {
+        "type": "STEP",
+        "node": "tile-14:left"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 179,
+      "command": {
+        "type": "STEP",
+        "node": "tile-14:center"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 180,
+      "command": {
+        "type": "STEP",
+        "node": "tile-14:right"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 181,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 182,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-3-24"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 183,
+      "command": {
+        "type": "EXPLORE",
+        "edge": "E"
+      },
+      "chapter": 3,
+      "phase": "tile_place",
+      "events": []
+    },
+    {
+      "step": 184,
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 1
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 185,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 186,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-3-25"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 187,
+      "command": {
+        "type": "STEP",
+        "node": "tile-14:right"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 188,
+      "command": {
+        "type": "STEP",
+        "node": "tile-14:center"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 189,
+      "command": {
+        "type": "STEP",
+        "node": "tile-13:bottom"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 190,
+      "command": {
+        "type": "STEP",
+        "node": "tile-13:middle"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 191,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 192,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-3-26"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 193,
+      "command": {
+        "type": "EXPLORE",
+        "edge": "W"
+      },
+      "chapter": 3,
+      "phase": "tile_place",
+      "events": []
+    },
+    {
+      "step": 194,
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 3
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 195,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 3,
+      "phase": "mission_choice",
+      "events": [
+        {
+          "key": "3:new:truth:[\"진실이 드러나다\",\"이오세프카를 공격하거나 실험을 돕세요.\",\"진행 중\",[46]]",
+          "kind": "new",
+          "title": "진실이 드러나다",
+          "description": "이오세프카를 공격하거나 실험을 돕세요.",
+          "objectiveId": "truth"
+        }
+      ]
+    },
+    {
+      "step": 196,
+      "command": {
+        "type": "MISSION_CHOICE",
+        "choice": "attack-iosefka"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "3:updated:truth:[\"진실이 드러나다\",\"진료소의 이오세프카를 처치하세요.\",\"진행 중\",[46,47]]",
+          "kind": "updated",
+          "title": "진실이 드러나다",
+          "description": "진료소의 이오세프카를 처치하세요.",
+          "objectiveId": "truth"
+        }
+      ]
+    },
+    {
+      "step": 197,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-3-27"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 198,
+      "command": {
+        "type": "STEP",
+        "node": "tile-20:room"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 199,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 200,
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "mission-iosefka",
+        "cardId": "card-4",
+        "slot": 1
+      },
+      "chapter": 3,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 201,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "3:completed:truth:48",
+          "kind": "completed",
+          "title": "목표 처치: 이오세프카",
+          "description": "진료소의 이오세프카를 처치했습니다.",
+          "objectiveId": "truth",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 1개",
+            "이오세프카의 진료소의 안개가 걷혔습니다."
+          ]
+        }
+      ]
+    },
+    {
+      "step": 202,
+      "command": {
+        "type": "KEEP_REWARD",
+        "rewardId": "reward-27"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 203,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-3-28"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 204,
+      "command": {
+        "type": "STEP",
+        "node": "tile-20:entry"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 205,
+      "command": {
+        "type": "STEP",
+        "node": "tile-13:middle"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 206,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 207,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-3-29"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 208,
+      "command": {
+        "type": "EXPLORE",
+        "edge": "E"
+      },
+      "chapter": 3,
+      "phase": "tile_place",
+      "events": []
+    },
+    {
+      "step": 209,
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 0
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 210,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "3:new:card-57:[\"구원\",\"NPC와 같은 칸에서 사냥 무리/하수인을 처치하세요.\",\"진행 중\",[57]]",
+          "kind": "new",
+          "title": "구원",
+          "description": "NPC와 같은 칸에서 사냥 무리/하수인을 처치하세요.",
+          "objectiveId": "card-57"
+        }
+      ]
+    },
+    {
+      "step": 211,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-3-30"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 212,
+      "command": {
+        "type": "STEP",
+        "node": "tile-17:top"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 213,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 214,
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-2"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 215,
+      "command": {
+        "type": "EXPLORE",
+        "edge": "N"
+      },
+      "chapter": 3,
+      "phase": "tile_place",
+      "events": []
+    },
+    {
+      "step": 216,
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 0
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 217,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 218,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-3-11"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 219,
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-11"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 220,
+      "command": {
+        "type": "STEP",
+        "node": "tile-17:top"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 221,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 222,
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-9"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 223,
+      "command": {
+        "type": "MISSION_NPC_FOLLOW"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 224,
+      "command": {
+        "type": "STEP",
+        "node": "tile-08:bottom"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 225,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 226,
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "huntsman-mob-1",
+        "cardId": "card-8",
+        "slot": 0
+      },
+      "chapter": 3,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 227,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 228,
+      "command": {
+        "type": "END_TURN"
+      },
+      "chapter": 3,
+      "phase": "refill",
+      "events": []
+    },
+    {
+      "step": 229,
+      "command": {
+        "type": "REFILL"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 230,
+      "command": {
+        "type": "END_TURN"
+      },
+      "chapter": 3,
+      "phase": "refill",
+      "events": []
+    },
+    {
+      "step": 231,
+      "command": {
+        "type": "REFILL"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 232,
+      "command": {
+        "type": "END_TURN"
+      },
+      "chapter": 3,
+      "phase": "refill",
+      "events": []
+    },
+    {
+      "step": 233,
+      "command": {
+        "type": "REFILL"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 234,
+      "command": {
+        "type": "END_TURN"
+      },
+      "chapter": 3,
+      "phase": "refill",
+      "events": []
+    },
+    {
+      "step": 235,
+      "command": {
+        "type": "REFILL"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 236,
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "huntsman-mob-1",
+        "cardId": "card-7",
+        "slot": 1
+      },
+      "chapter": 3,
+      "phase": "combat_react",
+      "events": []
+    },
+    {
+      "step": 237,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "3:completed:card-57:58",
+          "kind": "completed",
+          "title": "사냥의 짜릿함",
+          "description": "구원 임무를 완수했습니다.",
+          "objectiveId": "card-57",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 2개",
+            "오에돈의 지하묘지의 안개가 걷혔습니다."
+          ]
+        },
+        {
+          "key": "3:updated:main:[\"재앙의 근원\",\"풀려난 성직자 야수를 최종 처치하세요.\",\"진행 중\",[40]]",
+          "kind": "updated",
+          "title": "재앙의 근원",
+          "description": "풀려난 성직자 야수를 최종 처치하세요.",
+          "objectiveId": "main"
+        }
+      ]
+    },
+    {
+      "step": 238,
+      "command": {
+        "type": "KEEP_REWARD",
+        "rewardId": "reward-28"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 239,
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-1"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 240,
+      "command": {
+        "type": "STEP",
+        "node": "tile-17:top"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 241,
+      "command": {
+        "type": "STEP",
+        "node": "tile-17:lower-left"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 242,
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-10"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 243,
+      "command": {
+        "type": "STEP",
+        "node": "tile-13:middle"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 244,
+      "command": {
+        "type": "STEP",
+        "node": "tile-13:bottom"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 245,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-3-12"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 246,
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-12"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 247,
+      "command": {
+        "type": "STEP",
+        "node": "tile-14:center"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 248,
+      "command": {
+        "type": "STEP",
+        "node": "tile-09:bottom"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 249,
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-3"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 250,
+      "command": {
+        "type": "STEP",
+        "node": "tile-09:upper-right"
+      },
+      "chapter": 3,
+      "phase": "move",
+      "events": []
+    },
+    {
+      "step": 251,
+      "command": {
+        "type": "STEP",
+        "node": "tile-19:bottom"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 252,
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "mission-main",
+        "cardId": "card-6",
+        "slot": 0
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 253,
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-3-13"
+      },
+      "chapter": 3,
+      "phase": "hunter",
+      "events": []
+    },
+    {
+      "step": 254,
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "mission-main",
+        "cardId": "card-7",
+        "slot": 0
+      },
+      "chapter": 3,
+      "phase": "upgrade_pick",
+      "events": [
+        {
+          "key": "3:completed:main:44",
+          "kind": "completed",
+          "title": "사냥 완수",
+          "description": "성직자 야수를 최종 처치했습니다.",
+          "objectiveId": "main"
+        },
+        {
+          "key": "3:chapter:main:won",
+          "kind": "chapter",
+          "title": "챕터 3 완수",
+          "description": "챕터 3의 사냥을 완수했습니다.",
+          "objectiveId": "main"
+        }
+      ]
+    },
+    {
+      "step": 255,
+      "command": {
+        "type": "PICK_UPGRADE",
+        "index": 0
+      },
+      "chapter": 3,
+      "phase": "upgrade_pick",
+      "events": []
+    },
+    {
+      "step": 256,
+      "command": {
+        "type": "PICK_UPGRADE",
+        "index": 0
+      },
+      "chapter": 3,
+      "phase": "upgrade_pick",
+      "events": []
+    },
+    {
+      "step": 257,
+      "command": {
+        "type": "PICK_UPGRADE",
+        "index": 0
+      },
+      "chapter": 3,
+      "phase": "upgrade_replace",
+      "events": []
+    },
+    {
+      "step": 258,
+      "command": {
+        "type": "REPLACE_UPGRADE"
+      },
+      "chapter": 3,
+      "phase": "upgrade_replace",
+      "events": []
+    },
+    {
+      "step": 259,
+      "command": {
+        "type": "REPLACE_UPGRADE"
+      },
+      "chapter": 3,
+      "phase": "upgrade_replace",
+      "events": []
+    },
+    {
+      "step": 260,
+      "command": {
+        "type": "REPLACE_UPGRADE"
+      },
+      "chapter": 3,
+      "phase": "over",
+      "events": []
+    }
+  ]
+}

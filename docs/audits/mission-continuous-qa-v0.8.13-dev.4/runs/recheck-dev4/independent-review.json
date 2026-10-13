@@ -1,0 +1,182 @@
+{
+  "reviewVersion": 2,
+  "reviewedBuild": "0.8.13-dev.4",
+  "reviewedAt": "2026-10-13T12:15:31.762Z",
+  "status": "passed",
+  "reviewer": "continuous_qa_risk_review",
+  "method": "Read-only independent artifact checks. Fresh accepted-command replay of the actual product export; recorded DOM and notice-acknowledgement observations compared to actual replay and offline planning. This reviewer does not operate the browser or mutate any game save.",
+  "sources": [
+    {
+      "name": "browser-actions.json",
+      "sha256": "d7cb9e5765557d4ea926bcb35fe8ffba451c741733ac282d3e8deaea9b99f8f6"
+    },
+    {
+      "name": "browser-notices.json",
+      "sha256": "af03f4668de9c33742afd487a0dd64a1e17062782c928896a7f36d260ac564b7"
+    },
+    {
+      "name": "actual-continuous-campaign-save.json",
+      "sha256": "91a8d82cb41292ea7b2034d6ce026e916b9b6a1632277806d808228ebdbc2e56"
+    },
+    {
+      "name": "recent-notice-escape-check.json",
+      "sha256": "689ea6f5e0bd8d63bff3b4cc27dcf3eeee20b4b545f0a2e6d6f8659cc7169b0b"
+    },
+    {
+      "name": "normal-hunt-restored.json",
+      "sha256": "ee8a1c5e7a2ecb86807d3f194d7378e3a11f060c5237b889f8e23a36a907ba8e"
+    },
+    {
+      "name": "browser-console.json",
+      "sha256": "bd5dc6d3e7e5451764464128eed25f7c6ab38c62c7d4b21927e0457c2206f2bb"
+    },
+    {
+      "name": "new-game-initialization.json",
+      "sha256": "0b53ab7566506768b65e71eebdf8388631c87bfc14fd758f7c1454758a1cdad4"
+    },
+    {
+      "name": "BB011-after-file-import.json",
+      "sha256": "71188b62a2e0272dc89241db1f01f548faeb0f659d31a20b0c8e197d00a50270"
+    }
+  ],
+  "planSource": {
+    "name": "../continuous-qa-chapters123/continuous-route-plan.json",
+    "sha256": "6d9c694866e2a9e264c446052c854ec29c70f772c4c12ba025e5dd04e23f5352",
+    "build": "0.8.13-dev.3"
+  },
+  "sourceModuleSha256": [
+    {
+      "name": "hunt-engine.js",
+      "sha256": "cd0a790a3af2b4190bea4f9a8baee8631d9e1adb6d90f115e349b193eddd7cf1"
+    },
+    {
+      "name": "mission-engine.js",
+      "sha256": "b9e001130e884969219167d087a62c5d9a417005171bdd01e6a0140014cb73ed"
+    },
+    {
+      "name": "hunt-mission-feedback.js",
+      "sha256": "d94e38c3e3f2487fad6b328fc6ce5af8df2ee80592048da675dbc347a74e0d06"
+    },
+    {
+      "name": "hunt-public-text.js",
+      "sha256": "407574f5191cb5599471ad3e64b700a57e72d27df286e912fe55a6d5d2d942fb"
+    },
+    {
+      "name": "hunt-app.js",
+      "sha256": "b79456afbf7ded191928395a6cbb095121687c7f82ce13f0aefa8a9c871337b4"
+    }
+  ],
+  "counts": {
+    "acceptedReplayCommands": 260,
+    "actionRecords": 260,
+    "actionRecordsWithDom": 260,
+    "manualWithoutDom": [],
+    "notificationBatches": 26,
+    "notificationEvents": 32,
+    "checks": {
+      "freshReplayExactFinalState": 1,
+      "contiguousActionRecordSteps": 1,
+      "domHandIds": 260,
+      "domSlotOccupancy": 260,
+      "domHp": 260,
+      "domEchoes": 260,
+      "domRound": 260,
+      "domChapter": 260,
+      "domError": 260,
+      "planHandIds": 260,
+      "planHp": 260,
+      "planPhase": 260,
+      "notificationExpectedArrays": 26,
+      "notificationPlanArrays": 26,
+      "acknowledgementStableFields": 234,
+      "noticeWasOpen": 26,
+      "noticeClosed": 26,
+      "noticeAfterError": 26,
+      "notificationBodyStrings": 78,
+      "allPostCommandNotificationBatches": 1,
+      "recentNoticeEscapeStableFields": 9,
+      "recentNoticeEscapeWasOpen": 1,
+      "recentNoticeEscapeClosed": 1,
+      "finalCampaignWin": 1,
+      "finalPhase": 1,
+      "finalNoPendingReward": 1,
+      "browserConsoleWarnErrors": 1,
+      "initialBriefingStableFields": 9,
+      "initialBriefingWasOpen": 1,
+      "initialBriefingClosed": 1,
+      "initialBriefingError": 1,
+      "newGameTargetClearBeforeBriefing": 1,
+      "newGameTargetClearAfterBriefing": 1,
+      "newGameDirectMovePresented": 1,
+      "normalRestoreTargetCleared": 1,
+      "normalRestoreTargetClearFlag": 1,
+      "normalRestoreNoContextUtilityWrapper": 1,
+      "normalRestorePhase": 1,
+      "normalRestoreHand": 1,
+      "normalRestoreHp": 1,
+      "normalRestoreEchoes": 1,
+      "normalRestoreRound": 1,
+      "normalRestoreKills": 1,
+      "normalRestoreLocation": 1,
+      "normalRestoreMode": 1,
+      "normalRestoreDirectMovePresented": 1,
+      "normalRestoreNoReplayedNotice": 1,
+      "normalRestoreError": 1,
+      "fileImportStaleTargetWasPresent": 1,
+      "fileImportTargetCleared": 1,
+      "fileImportStableGameplayFields": 9,
+      "fileImportTargetClearFlag": 1,
+      "fileImportCostsPreservedFlag": 1,
+      "fileImportNoReplayedNoticeFlag": 1,
+      "fileImportNoReplayedNotice": 1,
+      "fileImportError": 1
+    }
+  },
+  "failures": [],
+  "separateRestoreBoundaryReview": {
+    "bugId": "BB-011",
+    "checks": [
+      {
+        "name": "fresh QA setup clears map selection",
+        "source": "new-game-initialization.json",
+        "status": "passed"
+      },
+      {
+        "name": "normal-mode restoration clears target and preserves observed baseline",
+        "source": "normal-hunt-restored.json",
+        "status": "passed"
+      },
+      {
+        "name": "post-campaign file import clears target without game costs or old notices",
+        "source": "BB011-after-file-import.json",
+        "status": "passed"
+      }
+    ],
+    "status": "passed",
+    "timing": "The file import and final normal-mode restoration happened after the uninterrupted campaign finished. They are separate boundary checks, not checkpoint imports during the continuous route.",
+    "preservationLimit": "Normal-mode baseline preservation is an equality check of the recorded visible fields; it does not establish byte-for-byte equality of an unexported normal save."
+  },
+  "final": {
+    "phase": "over",
+    "result": "campaign-win",
+    "hp": 6,
+    "rewardChoices": []
+  },
+  "observationLimits": [
+    "Counts refer to evidence records and field comparisons, not a claim that every engine intermediate state had a separate UI observation.",
+    "Steps 36/37 and 132/133 each commit two engine commands from one escort confirmation. Their evidence is the combined post-action state. The earlier row is therefore compared to the following command state.",
+    "Initial manual action rows without DOM, if present, are steps 1 and 2. Their accepted commands are corroborated by the final product export.",
+    "The initial setup mission briefing is separate from post-command notification counts.",
+    "Recorded dialog text is checked for each expected title, description, and effect, rather than exact full HTML equality.",
+    "Fresh replay corroborates accepted commands and resulting state; UI continuity is separately documented by the root browser operator.",
+    "This is one uninterrupted QA route using the verification weapon and supplies. Mutually exclusive branches, normal gear balance, all reward equipment combinations, and all viewport sizes are outside this run.",
+    "The offline plan predates the UI-only restore selection fix. It is an engine expectation source, not browser verification of the later build.",
+    "Save or mode restoration boundary checks are reported separately under BB-011; they do not increase the campaign command or notification counts."
+  ],
+  "driverErrorsExcludedFromProductBugs": [
+    "An invalid navigation selector was corrected before execution.",
+    "A notice was requested at step 36 although no engine notification existed.",
+    "A no-argument REPLACE_UPGRADE initially matched multiple UI controls; the intended no-replacement control was selected."
+  ],
+  "productionFilesEditedByReviewer": []
+}

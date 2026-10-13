@@ -1,0 +1,50 @@
+{
+  "seed": 90,
+  "setup": {
+    "weaponId": "qa-test-weapon",
+    "face": 0,
+    "startingConsumable": null,
+    "firearmId": "hunter-pistol",
+    "startSpace": "center",
+    "qa": {
+      "version": 1,
+      "preset": "custom",
+      "startRewards": [],
+      "startConsumables": [
+        "qa-heal",
+        "qa-heal",
+        "qa-heal",
+        "qa-heal",
+        "qa-heal",
+        "qa-heal",
+        "qa-heal",
+        "qa-heal",
+        "qa-heal",
+        "qa-heal",
+        "qa-cards",
+        "qa-cards",
+        "qa-cards",
+        "qa-cards",
+        "qa-cards",
+        "qa-cards",
+        "qa-cards",
+        "qa-cards",
+        "qa-cards",
+        "qa-cards",
+        "qa-travel",
+        "qa-travel",
+        "qa-travel",
+        "qa-travel",
+        "qa-travel",
+        "qa-travel",
+        "qa-travel",
+        "qa-travel",
+        "qa-travel",
+        "qa-travel"
+      ]
+    },
+    "rulesVersion": 14,
+    "campaign": true
+  },
+  "scope": "QA weapon and supplies; no normal-equipment balance claim."
+}

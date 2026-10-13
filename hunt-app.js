@@ -666,6 +666,9 @@
   function resetStoryReading() {
     closeEscortPrompt();
     resetMissionFeedback();
+    // Map selections belong to the old hunt, even when node or figure IDs recur.
+    mapTarget = null;
+    selectedEnemy = null;
     enemyHistory.reset(state);
     presentationSession++; presentationActions = []; presentationOrigins.clear(); declaredWeaponVisual = null; needsCameraFollow = true;
     readStories.clear();

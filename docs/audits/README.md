@@ -18,3 +18,5 @@ GitHub Actions가 실제 실행한 최신 전체 결과는 Actions의 `game-regr
 - `release-readiness-2026-10-13.md`: 현재 개발본의 엄격 점검, 구체적인 재현 오류, 원문 대조와 미확정 범위.
 - `release-readiness-results.json`: 실제 완료된 로컬 검증 수와 증거 해시. 원격 CI 완료는 해당 PR/Actions 실행에서 별도로 확인합니다.
 - Unity 준비물의 생성·검증 결과는 `unity-port/Validation/*.json`과 Actions의 `unity-preparation-results` 아티팩트에서 확인합니다. 실제 Unity Editor나 전체 C# 게임이 실행됐다는 뜻이 아닙니다.
+
+- [mission-continuous-qa-v0.8.13-dev.4/results.json](mission-continuous-qa-v0.8.13-dev.4/results.json): 검증용 플레이모드에서 챕터1~3을 중간 저장 불러오기 없이 실제 브라우저로 연속 완주했습니다. 0.8.13-dev.3 첫 실행과 BB-011 수정 후0.8.13-dev.4 재실행은 각각260공개 명령, 명령 후 알림26묶음·32이벤트이며 초기 안내1회는 따로 기록합니다. 보상·기절 비용·강화·다음 챕터가 이어지는지 확인했습니다. 전체 플레이 저장은 로컬에만 보존하고 QA 설정·공개 명령·관찰·원본 JPEG와 해시를 기록했습니다. 반복 실행·모델 기대값·DOM 비교를 고유 테스트 수로 합산하지 않습니다.

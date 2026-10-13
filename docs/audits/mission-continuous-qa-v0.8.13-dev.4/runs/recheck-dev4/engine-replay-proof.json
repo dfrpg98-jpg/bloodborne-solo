@@ -1,0 +1,2609 @@
+{
+  "method": "Final actual-browser product export independently replays from fresh declared QA setup. Browser actions and acknowledgement evidence are documented separately.",
+  "browserEvidence": true,
+  "source": "local-only-product-export",
+  "version": "0.8.13-dev.4",
+  "seed": 90,
+  "setup": {
+    "weaponId": "qa-test-weapon",
+    "face": 0,
+    "startingConsumable": null,
+    "firearmId": "hunter-pistol",
+    "startSpace": "center",
+    "qa": {
+      "version": 1,
+      "preset": "custom",
+      "startRewards": [],
+      "startConsumables": [
+        "qa-heal",
+        "qa-heal",
+        "qa-heal",
+        "qa-heal",
+        "qa-heal",
+        "qa-heal",
+        "qa-heal",
+        "qa-heal",
+        "qa-heal",
+        "qa-heal",
+        "qa-cards",
+        "qa-cards",
+        "qa-cards",
+        "qa-cards",
+        "qa-cards",
+        "qa-cards",
+        "qa-cards",
+        "qa-cards",
+        "qa-cards",
+        "qa-cards",
+        "qa-travel",
+        "qa-travel",
+        "qa-travel",
+        "qa-travel",
+        "qa-travel",
+        "qa-travel",
+        "qa-travel",
+        "qa-travel",
+        "qa-travel",
+        "qa-travel"
+      ]
+    },
+    "rulesVersion": 14,
+    "campaign": true
+  },
+  "acceptedCommands": 260,
+  "consecutiveChapters": [
+    1,
+    2,
+    3
+  ],
+  "chapters": [
+    {
+      "chapter": 1,
+      "completed": [
+        7,
+        11,
+        4
+      ]
+    },
+    {
+      "chapter": 2,
+      "completed": [
+        26,
+        28,
+        39,
+        23
+      ]
+    },
+    {
+      "chapter": 3,
+      "completed": [
+        48,
+        58,
+        44
+      ]
+    }
+  ],
+  "notificationBatches": 26,
+  "notificationEvents": 32,
+  "eventTypes": {
+    "new": 11,
+    "completed": 10,
+    "updated": 8,
+    "chapter": 3
+  },
+  "events": [
+    {
+      "step": 4,
+      "chapter": 1,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "1:new:mob:[\"사냥을 시작하다\",\"마당 등불의 야수 사냥 무리를 처치하세요.\",\"진행 중\",[5]]",
+          "kind": "new",
+          "title": "사냥을 시작하다",
+          "description": "마당 등불의 야수 사냥 무리를 처치하세요.",
+          "objectiveId": "mob"
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "chapter": 1,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "1:completed:mob:7",
+          "kind": "completed",
+          "title": "사냥을 시작하다",
+          "description": "마당 등불의 야수 사냥 무리를 처치했습니다.",
+          "objectiveId": "mob",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 1개",
+            "마당 등불의 안개가 걷혔습니다."
+          ]
+        }
+      ]
+    },
+    {
+      "step": 33,
+      "chapter": 1,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "1:new:shelter:[\"피신처\",\"민가 생존자를 오에돈 예배당으로 호위하세요.\",\"진행 중\",[8]]",
+          "kind": "new",
+          "title": "피신처",
+          "description": "민가 생존자를 오에돈 예배당으로 호위하세요.",
+          "objectiveId": "shelter"
+        }
+      ]
+    },
+    {
+      "step": 40,
+      "chapter": 1,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "1:updated:shelter:[\"피신처\",\"오에돈 예배당의 재앙의 야수를 처치하세요.\",\"진행 중\",[8,9]]",
+          "kind": "updated",
+          "title": "피신처",
+          "description": "오에돈 예배당의 재앙의 야수를 처치하세요.",
+          "objectiveId": "shelter"
+        }
+      ]
+    },
+    {
+      "step": 45,
+      "chapter": 1,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "phase": "mission_death",
+      "events": [
+        {
+          "key": "1:completed:shelter:11",
+          "kind": "completed",
+          "title": "무사히 밤을 넘기다",
+          "description": "오에돈 예배당의 재앙의 야수를 처치했습니다.",
+          "objectiveId": "shelter",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 2개",
+            "오에돈 예배당의 안개가 걷혔습니다."
+          ]
+        }
+      ]
+    },
+    {
+      "step": 48,
+      "chapter": 1,
+      "command": {
+        "type": "USE_REWARD",
+        "rewardId": "reward-13",
+        "node": "tile-14:center"
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "1:updated:main:[\"재앙의 근원\",\"중앙 등불의 재앙의 야수 우두머리를 처치하세요.\",\"진행 중\",[1,2]]",
+          "kind": "updated",
+          "title": "재앙의 근원",
+          "description": "중앙 등불의 재앙의 야수 우두머리를 처치하세요.",
+          "objectiveId": "main"
+        }
+      ]
+    },
+    {
+      "step": 54,
+      "chapter": 1,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "phase": "stun",
+      "events": [
+        {
+          "key": "1:completed:main:4",
+          "kind": "completed",
+          "title": "목표 처치: 재앙의 야수 우두머리",
+          "description": "중앙 등불의 재앙의 야수 우두머리를 처치했습니다.",
+          "objectiveId": "main",
+          "effects": [
+            "중앙 등불의 안개가 걷혔습니다."
+          ]
+        },
+        {
+          "key": "1:chapter:main:won",
+          "kind": "chapter",
+          "title": "챕터 1 완수",
+          "description": "챕터 1의 사냥을 완수했습니다.",
+          "objectiveId": "main"
+        }
+      ]
+    },
+    {
+      "step": 64,
+      "chapter": 2,
+      "command": {
+        "type": "START_NEXT_CHAPTER",
+        "startSpace": "center",
+        "face": 0
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:new:main:[\"재앙의 근원\",\"공동묘지에 시체 2개를 바치세요.\",\"진행 중\",[18]]",
+          "kind": "new",
+          "title": "재앙의 근원",
+          "description": "공동묘지에 시체 2개를 바치세요.",
+          "objectiveId": "main"
+        }
+      ]
+    },
+    {
+      "step": 70,
+      "chapter": 2,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:new:card-24:[\"이오세프카의 연구\",\"진료소에서 야수 사냥 무리 또는 야수 사냥 하인을 처치하세요.\",\"진행 중\",[24]]",
+          "kind": "new",
+          "title": "이오세프카의 연구",
+          "description": "진료소에서 야수 사냥 무리 또는 야수 사냥 하인을 처치하세요.",
+          "objectiveId": "card-24"
+        }
+      ]
+    },
+    {
+      "step": 74,
+      "chapter": 2,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:updated:card-24:[\"이오세프카의 연구\",\"진료소에서 재앙의 야수를 처치하세요.\",\"진행 중\",[24,25]]",
+          "kind": "updated",
+          "title": "이오세프카의 연구",
+          "description": "진료소에서 재앙의 야수를 처치하세요.",
+          "objectiveId": "card-24"
+        },
+        {
+          "key": "2:new:card-27:[\"이오세프카의 진료소를 피신처 삼아\",\"소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.\",\"진행 중\",[27]]",
+          "kind": "new",
+          "title": "이오세프카의 진료소를 피신처 삼아",
+          "description": "소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.",
+          "objectiveId": "card-27"
+        }
+      ]
+    },
+    {
+      "step": 77,
+      "chapter": 2,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:completed:card-24:26",
+          "kind": "completed",
+          "title": "이오세프카의 연구",
+          "description": "진료소의 재앙의 야수를 처치했습니다.",
+          "objectiveId": "card-24",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 1개"
+          ]
+        }
+      ]
+    },
+    {
+      "step": 102,
+      "chapter": 2,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:completed:card-27:28",
+          "kind": "completed",
+          "title": "안전한 피신처: 이오세프카의 진료소",
+          "description": "필요한 생존자들을 이오세프카의 진료소로 인도했습니다.",
+          "objectiveId": "card-27",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 2개"
+          ]
+        }
+      ]
+    },
+    {
+      "step": 108,
+      "chapter": 2,
+      "command": {
+        "type": "MISSION_CORPSES",
+        "count": 2
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:updated:main:[\"재앙의 근원\",\"성직자 야수를 2페이즈로 전환하세요.\",\"진행 중\",[18,19,20]]",
+          "kind": "updated",
+          "title": "재앙의 근원",
+          "description": "성직자 야수를 2페이즈로 전환하세요.",
+          "objectiveId": "main"
+        }
+      ]
+    },
+    {
+      "step": 111,
+      "chapter": 2,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:updated:main:[\"재앙의 근원\",\"피해를 입지 않는 성직자 야수를 지하묘지로 유인하세요.\",\"진행 중\",[18,19,20,21]]",
+          "kind": "updated",
+          "title": "재앙의 근원",
+          "description": "피해를 입지 않는 성직자 야수를 지하묘지로 유인하세요.",
+          "objectiveId": "main",
+          "effects": [
+            "공동묘지의 안개가 걷혔습니다."
+          ]
+        }
+      ]
+    },
+    {
+      "step": 121,
+      "chapter": 2,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:new:bridge:[\"아슬아슬한 구조\",\"대교의 야수 사냥 하인을 처치하세요.\",\"진행 중\",[35]]",
+          "kind": "new",
+          "title": "아슬아슬한 구조",
+          "description": "대교의 야수 사냥 하인을 처치하세요.",
+          "objectiveId": "bridge"
+        }
+      ]
+    },
+    {
+      "step": 130,
+      "chapter": 2,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:updated:bridge:[\"아슬아슬한 구조\",\"대교의 생존자를 진료소 또는 예배당으로 호위하세요.\",\"진행 중\",[35,37]]",
+          "kind": "updated",
+          "title": "아슬아슬한 구조",
+          "description": "대교의 생존자를 진료소 또는 예배당으로 호위하세요.",
+          "objectiveId": "bridge",
+          "effects": [
+            "대교의 안개가 걷혔습니다."
+          ]
+        }
+      ]
+    },
+    {
+      "step": 141,
+      "chapter": 2,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "2:completed:bridge:39",
+          "kind": "completed",
+          "title": "불길한 경고",
+          "description": "대교의 생존자를 오에돈 예배당으로 호위했습니다.",
+          "objectiveId": "bridge",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 3개"
+          ]
+        },
+        {
+          "key": "2:new:card-33:[\"오에돈 예배당을 피신처로 삼아\",\"진료소 피신처 완료로 이 임무를 완수할 수 없습니다.\",\"진행 중\",[33]]",
+          "kind": "new",
+          "title": "오에돈 예배당을 피신처로 삼아",
+          "description": "진료소 피신처 완료로 이 임무를 완수할 수 없습니다.",
+          "objectiveId": "card-33"
+        }
+      ]
+    },
+    {
+      "step": 157,
+      "chapter": 2,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "phase": "upgrade_pick",
+      "events": [
+        {
+          "key": "2:completed:main:23",
+          "kind": "completed",
+          "title": "야수를 가두었다",
+          "description": "성직자 야수를 오에돈의 지하묘지로 유인했습니다.",
+          "objectiveId": "main"
+        },
+        {
+          "key": "2:chapter:main:won",
+          "kind": "chapter",
+          "title": "챕터 2 완수",
+          "description": "챕터 2의 사냥을 완수했습니다.",
+          "objectiveId": "main"
+        }
+      ]
+    },
+    {
+      "step": 166,
+      "chapter": 3,
+      "command": {
+        "type": "START_NEXT_CHAPTER",
+        "startSpace": "center",
+        "face": 0
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "3:new:main:[\"재앙의 근원\",\"이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수를 봉인해 두세요.\",\"진행 중\",[40]]",
+          "kind": "new",
+          "title": "재앙의 근원",
+          "description": "이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수를 봉인해 두세요.",
+          "objectiveId": "main"
+        }
+      ]
+    },
+    {
+      "step": 173,
+      "chapter": 3,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "3:new:card-54:[\"무리를 정리하다\",\"재앙의 야수를 처치해 계몽 토큰을 제거하세요.\",\"진행 중\",[54]]",
+          "kind": "new",
+          "title": "무리를 정리하다",
+          "description": "재앙의 야수를 처치해 계몽 토큰을 제거하세요.",
+          "objectiveId": "card-54"
+        }
+      ]
+    },
+    {
+      "step": 195,
+      "chapter": 3,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "phase": "mission_choice",
+      "events": [
+        {
+          "key": "3:new:truth:[\"진실이 드러나다\",\"이오세프카를 공격하거나 실험을 돕세요.\",\"진행 중\",[46]]",
+          "kind": "new",
+          "title": "진실이 드러나다",
+          "description": "이오세프카를 공격하거나 실험을 돕세요.",
+          "objectiveId": "truth"
+        }
+      ]
+    },
+    {
+      "step": 196,
+      "chapter": 3,
+      "command": {
+        "type": "MISSION_CHOICE",
+        "choice": "attack-iosefka"
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "3:updated:truth:[\"진실이 드러나다\",\"진료소의 이오세프카를 처치하세요.\",\"진행 중\",[46,47]]",
+          "kind": "updated",
+          "title": "진실이 드러나다",
+          "description": "진료소의 이오세프카를 처치하세요.",
+          "objectiveId": "truth"
+        }
+      ]
+    },
+    {
+      "step": 201,
+      "chapter": 3,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "3:completed:truth:48",
+          "kind": "completed",
+          "title": "목표 처치: 이오세프카",
+          "description": "진료소의 이오세프카를 처치했습니다.",
+          "objectiveId": "truth",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 1개",
+            "이오세프카의 진료소의 안개가 걷혔습니다."
+          ]
+        }
+      ]
+    },
+    {
+      "step": 210,
+      "chapter": 3,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "3:new:card-57:[\"구원\",\"NPC와 같은 칸에서 사냥 무리/하수인을 처치하세요.\",\"진행 중\",[57]]",
+          "kind": "new",
+          "title": "구원",
+          "description": "NPC와 같은 칸에서 사냥 무리/하수인을 처치하세요.",
+          "objectiveId": "card-57"
+        }
+      ]
+    },
+    {
+      "step": 237,
+      "chapter": 3,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "phase": "hunter",
+      "events": [
+        {
+          "key": "3:completed:card-57:58",
+          "kind": "completed",
+          "title": "사냥의 짜릿함",
+          "description": "구원 임무를 완수했습니다.",
+          "objectiveId": "card-57",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 2개",
+            "오에돈의 지하묘지의 안개가 걷혔습니다."
+          ]
+        },
+        {
+          "key": "3:updated:main:[\"재앙의 근원\",\"풀려난 성직자 야수를 최종 처치하세요.\",\"진행 중\",[40]]",
+          "kind": "updated",
+          "title": "재앙의 근원",
+          "description": "풀려난 성직자 야수를 최종 처치하세요.",
+          "objectiveId": "main"
+        }
+      ]
+    },
+    {
+      "step": 254,
+      "chapter": 3,
+      "command": {
+        "type": "ATTACK",
+        "cardId": "card-7",
+        "slot": 0,
+        "itemIds": [],
+        "pullIds": [],
+        "rewardIds": [],
+        "enemyId": "mission-main"
+      },
+      "phase": "upgrade_pick",
+      "events": [
+        {
+          "key": "3:completed:main:44",
+          "kind": "completed",
+          "title": "사냥 완수",
+          "description": "성직자 야수를 최종 처치했습니다.",
+          "objectiveId": "main"
+        },
+        {
+          "key": "3:chapter:main:won",
+          "kind": "chapter",
+          "title": "챕터 3 완수",
+          "description": "챕터 3의 사냥을 완수했습니다.",
+          "objectiveId": "main"
+        }
+      ]
+    }
+  ],
+  "semanticComparison": [
+    {
+      "step": 1,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 2,
+      "type": "EXPLORE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 3,
+      "type": "PLACE_TILE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 4,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 5,
+      "type": "ATTACK",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 6,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 7,
+      "type": "ATTACK",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 8,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 9,
+      "type": "KEEP_FIREARM",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 10,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 11,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 12,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 13,
+      "type": "EXPLORE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 14,
+      "type": "PLACE_TILE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 15,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 16,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 17,
+      "type": "EXPLORE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 18,
+      "type": "PLACE_TILE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 19,
+      "type": "EXPLORE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 20,
+      "type": "PLACE_TILE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 21,
+      "type": "ATTACK",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 22,
+      "type": "FIREARM",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 23,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 24,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 25,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 26,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 27,
+      "type": "EXPLORE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 28,
+      "type": "PLACE_TILE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 29,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 30,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 31,
+      "type": "EXPLORE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 32,
+      "type": "PLACE_TILE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 33,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 34,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 35,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 36,
+      "type": "MISSION_PICKUP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 37,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 38,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 39,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 40,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 41,
+      "type": "ATTACK",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 42,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 43,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 44,
+      "type": "ATTACK",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 45,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 46,
+      "type": "MISSION_DEATH_TAKE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 47,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 48,
+      "type": "USE_REWARD",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 49,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 50,
+      "type": "ATTACK",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 51,
+      "type": "FIREARM",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 52,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 53,
+      "type": "ATTACK",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 54,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 55,
+      "type": "KEEP_REWARD",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 56,
+      "type": "STUN_DISCARD",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 57,
+      "type": "PICK_UPGRADE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 58,
+      "type": "PICK_UPGRADE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 59,
+      "type": "PICK_UPGRADE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 60,
+      "type": "REPLACE_UPGRADE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 61,
+      "type": "REPLACE_UPGRADE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 62,
+      "type": "REPLACE_UPGRADE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 63,
+      "type": "ENTER_BETWEEN_CHAPTERS",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 64,
+      "type": "START_NEXT_CHAPTER",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 65,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 66,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 67,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 68,
+      "type": "EXPLORE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 69,
+      "type": "PLACE_TILE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 70,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 71,
+      "type": "ATTACK",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 72,
+      "type": "ABILITY_CHOICE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 73,
+      "type": "FIREARM",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 74,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 75,
+      "type": "MISSION_LURE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 76,
+      "type": "ATTACK",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 77,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 78,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 79,
+      "type": "MISSION_LURE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 80,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 81,
+      "type": "ATTACK",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 82,
+      "type": "FIREARM",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 83,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 84,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 85,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 86,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 87,
+      "type": "INTERACT",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 88,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 89,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 90,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 91,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 92,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 93,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 94,
+      "type": "INTERACT",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 95,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 96,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 97,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 98,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 99,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 100,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 101,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 102,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 103,
+      "type": "KEEP_REWARD",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 104,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 105,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 106,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 107,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 108,
+      "type": "MISSION_CORPSES",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 109,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 110,
+      "type": "ATTACK",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 111,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 112,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 113,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 114,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 115,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 116,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 117,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 118,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 119,
+      "type": "EXPLORE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 120,
+      "type": "PLACE_TILE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 121,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 122,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 123,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 124,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 125,
+      "type": "ATTACK",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 126,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 127,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 128,
+      "type": "ATTACK",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 129,
+      "type": "FIREARM",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 130,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 131,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 132,
+      "type": "MISSION_PICKUP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 133,
+      "type": "EXPLORE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 134,
+      "type": "PLACE_TILE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 135,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 136,
+      "type": "EXPLORE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 137,
+      "type": "PLACE_TILE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 138,
+      "type": "EXPLORE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 139,
+      "type": "PLACE_TILE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 140,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 141,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 142,
+      "type": "KEEP_REWARD",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 143,
+      "type": "KEEP_FIREARM",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 144,
+      "type": "USE_REWARD",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 145,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 146,
+      "type": "END_TURN",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 147,
+      "type": "REFILL",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 148,
+      "type": "END_TURN",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 149,
+      "type": "NO_ATTACK",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 150,
+      "type": "ABILITY_CHOICE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 151,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 152,
+      "type": "REFILL",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 153,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 154,
+      "type": "END_TURN",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 155,
+      "type": "NO_ATTACK",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 156,
+      "type": "FIREARM",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 157,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 158,
+      "type": "KEEP_REWARD",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 159,
+      "type": "PICK_UPGRADE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 160,
+      "type": "PICK_UPGRADE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 161,
+      "type": "PICK_UPGRADE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 162,
+      "type": "REPLACE_UPGRADE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 163,
+      "type": "REPLACE_UPGRADE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 164,
+      "type": "REPLACE_UPGRADE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 165,
+      "type": "ENTER_BETWEEN_CHAPTERS",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 166,
+      "type": "START_NEXT_CHAPTER",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 167,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 168,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 169,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 170,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 171,
+      "type": "EXPLORE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 172,
+      "type": "PLACE_TILE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 173,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 174,
+      "type": "ATTACK",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 175,
+      "type": "FIREARM",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 176,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 177,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 178,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 179,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 180,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 181,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 182,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 183,
+      "type": "EXPLORE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 184,
+      "type": "PLACE_TILE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 185,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 186,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 187,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 188,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 189,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 190,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 191,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 192,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 193,
+      "type": "EXPLORE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 194,
+      "type": "PLACE_TILE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 195,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 196,
+      "type": "MISSION_CHOICE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 197,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 198,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 199,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 200,
+      "type": "ATTACK",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 201,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 202,
+      "type": "KEEP_REWARD",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 203,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 204,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 205,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 206,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 207,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 208,
+      "type": "EXPLORE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 209,
+      "type": "PLACE_TILE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 210,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 211,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 212,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 213,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 214,
+      "type": "MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 215,
+      "type": "EXPLORE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 216,
+      "type": "PLACE_TILE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 217,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 218,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 219,
+      "type": "MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 220,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 221,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 222,
+      "type": "MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 223,
+      "type": "MISSION_NPC_FOLLOW",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 224,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 225,
+      "type": "STOP_MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 226,
+      "type": "ATTACK",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 227,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 228,
+      "type": "END_TURN",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 229,
+      "type": "REFILL",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 230,
+      "type": "END_TURN",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 231,
+      "type": "REFILL",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 232,
+      "type": "END_TURN",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 233,
+      "type": "REFILL",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 234,
+      "type": "END_TURN",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 235,
+      "type": "REFILL",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 236,
+      "type": "ATTACK",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 237,
+      "type": "RESOLVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 238,
+      "type": "KEEP_REWARD",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 239,
+      "type": "MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 240,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 241,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 242,
+      "type": "MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 243,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 244,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 245,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 246,
+      "type": "MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 247,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 248,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 249,
+      "type": "MOVE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 250,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 251,
+      "type": "STEP",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 252,
+      "type": "ATTACK",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 253,
+      "type": "USE_CONSUMABLE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 254,
+      "type": "ATTACK",
+      "exactArgumentShape": false,
+      "effectEquivalent": true
+    },
+    {
+      "step": 255,
+      "type": "PICK_UPGRADE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 256,
+      "type": "PICK_UPGRADE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 257,
+      "type": "PICK_UPGRADE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 258,
+      "type": "REPLACE_UPGRADE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 259,
+      "type": "REPLACE_UPGRADE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    },
+    {
+      "step": 260,
+      "type": "REPLACE_UPGRADE",
+      "exactArgumentShape": true,
+      "effectEquivalent": true
+    }
+  ],
+  "pendingFollowups": [
+    {
+      "step": 9,
+      "chapter": 1,
+      "command": {
+        "type": "KEEP_FIREARM",
+        "firearmId": "ludwig-rifle"
+      },
+      "beforePhase": "hunter",
+      "afterPhase": "hunter",
+      "rewardChoicesBefore": [
+        {
+          "firearmId": "ludwig-rifle",
+          "reason": "firearm"
+        }
+      ],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 46,
+      "chapter": 1,
+      "command": {
+        "type": "MISSION_DEATH_TAKE"
+      },
+      "beforePhase": "mission_death",
+      "afterPhase": "hunter",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 55,
+      "chapter": 1,
+      "command": {
+        "type": "KEEP_REWARD",
+        "rewardId": "reward-15"
+      },
+      "beforePhase": "stun",
+      "afterPhase": "stun",
+      "rewardChoicesBefore": [
+        {
+          "rewardId": "reward-15",
+          "reason": "slot"
+        }
+      ],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 56,
+      "chapter": 1,
+      "command": {
+        "type": "STUN_DISCARD",
+        "cardId": "card-6"
+      },
+      "beforePhase": "stun",
+      "afterPhase": "upgrade_pick",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 57,
+      "chapter": 1,
+      "command": {
+        "type": "PICK_UPGRADE",
+        "index": 0
+      },
+      "beforePhase": "upgrade_pick",
+      "afterPhase": "upgrade_pick",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 58,
+      "chapter": 1,
+      "command": {
+        "type": "PICK_UPGRADE",
+        "index": 0
+      },
+      "beforePhase": "upgrade_pick",
+      "afterPhase": "upgrade_pick",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 59,
+      "chapter": 1,
+      "command": {
+        "type": "PICK_UPGRADE",
+        "index": 0
+      },
+      "beforePhase": "upgrade_pick",
+      "afterPhase": "upgrade_replace",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 60,
+      "chapter": 1,
+      "command": {
+        "type": "REPLACE_UPGRADE"
+      },
+      "beforePhase": "upgrade_replace",
+      "afterPhase": "upgrade_replace",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 61,
+      "chapter": 1,
+      "command": {
+        "type": "REPLACE_UPGRADE"
+      },
+      "beforePhase": "upgrade_replace",
+      "afterPhase": "upgrade_replace",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 62,
+      "chapter": 1,
+      "command": {
+        "type": "REPLACE_UPGRADE"
+      },
+      "beforePhase": "upgrade_replace",
+      "afterPhase": "over",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 64,
+      "chapter": 2,
+      "command": {
+        "type": "START_NEXT_CHAPTER",
+        "startSpace": "center",
+        "face": 0
+      },
+      "beforePhase": "between_chapters",
+      "afterPhase": "hunter",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 103,
+      "chapter": 2,
+      "command": {
+        "type": "KEEP_REWARD",
+        "rewardId": "reward-21"
+      },
+      "beforePhase": "hunter",
+      "afterPhase": "hunter",
+      "rewardChoicesBefore": [
+        {
+          "rewardId": "reward-21",
+          "reason": "equip"
+        }
+      ],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 142,
+      "chapter": 2,
+      "command": {
+        "type": "KEEP_REWARD",
+        "rewardId": "reward-22"
+      },
+      "beforePhase": "hunter",
+      "afterPhase": "hunter",
+      "rewardChoicesBefore": [
+        {
+          "rewardId": "reward-22",
+          "reason": "equip"
+        },
+        {
+          "firearmId": "repeating-pistol",
+          "reason": "firearm"
+        }
+      ],
+      "rewardChoicesAfter": [
+        {
+          "firearmId": "repeating-pistol",
+          "reason": "firearm"
+        }
+      ]
+    },
+    {
+      "step": 143,
+      "chapter": 2,
+      "command": {
+        "type": "KEEP_FIREARM",
+        "firearmId": "repeating-pistol"
+      },
+      "beforePhase": "hunter",
+      "afterPhase": "hunter",
+      "rewardChoicesBefore": [
+        {
+          "firearmId": "repeating-pistol",
+          "reason": "firearm"
+        }
+      ],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 158,
+      "chapter": 2,
+      "command": {
+        "type": "KEEP_REWARD",
+        "rewardId": "reward-23"
+      },
+      "beforePhase": "upgrade_pick",
+      "afterPhase": "upgrade_pick",
+      "rewardChoicesBefore": [
+        {
+          "rewardId": "reward-23",
+          "reason": "equip"
+        }
+      ],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 159,
+      "chapter": 2,
+      "command": {
+        "type": "PICK_UPGRADE",
+        "index": 0
+      },
+      "beforePhase": "upgrade_pick",
+      "afterPhase": "upgrade_pick",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 160,
+      "chapter": 2,
+      "command": {
+        "type": "PICK_UPGRADE",
+        "index": 0
+      },
+      "beforePhase": "upgrade_pick",
+      "afterPhase": "upgrade_pick",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 161,
+      "chapter": 2,
+      "command": {
+        "type": "PICK_UPGRADE",
+        "index": 0
+      },
+      "beforePhase": "upgrade_pick",
+      "afterPhase": "upgrade_replace",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 162,
+      "chapter": 2,
+      "command": {
+        "type": "REPLACE_UPGRADE"
+      },
+      "beforePhase": "upgrade_replace",
+      "afterPhase": "upgrade_replace",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 163,
+      "chapter": 2,
+      "command": {
+        "type": "REPLACE_UPGRADE"
+      },
+      "beforePhase": "upgrade_replace",
+      "afterPhase": "upgrade_replace",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 164,
+      "chapter": 2,
+      "command": {
+        "type": "REPLACE_UPGRADE"
+      },
+      "beforePhase": "upgrade_replace",
+      "afterPhase": "over",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 166,
+      "chapter": 3,
+      "command": {
+        "type": "START_NEXT_CHAPTER",
+        "startSpace": "center",
+        "face": 0
+      },
+      "beforePhase": "between_chapters",
+      "afterPhase": "hunter",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 202,
+      "chapter": 3,
+      "command": {
+        "type": "KEEP_REWARD",
+        "rewardId": "reward-27"
+      },
+      "beforePhase": "hunter",
+      "afterPhase": "hunter",
+      "rewardChoicesBefore": [
+        {
+          "rewardId": "reward-27",
+          "reason": "equip"
+        }
+      ],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 238,
+      "chapter": 3,
+      "command": {
+        "type": "KEEP_REWARD",
+        "rewardId": "reward-28"
+      },
+      "beforePhase": "hunter",
+      "afterPhase": "hunter",
+      "rewardChoicesBefore": [
+        {
+          "rewardId": "reward-28",
+          "reason": "equip"
+        }
+      ],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 255,
+      "chapter": 3,
+      "command": {
+        "type": "PICK_UPGRADE",
+        "index": 0
+      },
+      "beforePhase": "upgrade_pick",
+      "afterPhase": "upgrade_pick",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 256,
+      "chapter": 3,
+      "command": {
+        "type": "PICK_UPGRADE",
+        "index": 0
+      },
+      "beforePhase": "upgrade_pick",
+      "afterPhase": "upgrade_pick",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 257,
+      "chapter": 3,
+      "command": {
+        "type": "PICK_UPGRADE",
+        "index": 0
+      },
+      "beforePhase": "upgrade_pick",
+      "afterPhase": "upgrade_replace",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 258,
+      "chapter": 3,
+      "command": {
+        "type": "REPLACE_UPGRADE"
+      },
+      "beforePhase": "upgrade_replace",
+      "afterPhase": "upgrade_replace",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 259,
+      "chapter": 3,
+      "command": {
+        "type": "REPLACE_UPGRADE"
+      },
+      "beforePhase": "upgrade_replace",
+      "afterPhase": "upgrade_replace",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    },
+    {
+      "step": 260,
+      "chapter": 3,
+      "command": {
+        "type": "REPLACE_UPGRADE"
+      },
+      "beforePhase": "upgrade_replace",
+      "afterPhase": "over",
+      "rewardChoicesBefore": [],
+      "rewardChoicesAfter": []
+    }
+  ],
+  "final": {
+    "phase": "over",
+    "result": "campaign-win",
+    "track": 5,
+    "round": 5,
+    "hp": 6,
+    "echoes": 0,
+    "inDream": true,
+    "rewardChoices": [],
+    "slots": [
+      null,
+      null,
+      null
+    ],
+    "missionWon": true
+  }
+}

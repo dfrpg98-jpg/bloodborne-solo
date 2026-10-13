@@ -1,0 +1,69 @@
+{
+  "version": "0.8.13-dev.4",
+  "checkedAt": "2026-10-13T12:16:35.1793728Z",
+  "backupFiles": [
+    "hunt-app.js",
+    "package.json",
+    "QA_GUIDE.txt"
+  ],
+  "newDocumentationFiles": [
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "files": [
+    {
+      "file": "hunt-app.js",
+      "sourceSha256": "b79456afbf7ded191928395a6cbb095121687c7f82ce13f0aefa8a9c871337b4",
+      "liveSha256": "b79456afbf7ded191928395a6cbb095121687c7f82ce13f0aefa8a9c871337b4",
+      "equal": true
+    },
+    {
+      "file": "hunt.html",
+      "sourceSha256": "b16883405154add0ebfb63000a03c024d449cbe363d14b605fae2b1bea8a7ebb",
+      "liveSha256": "b16883405154add0ebfb63000a03c024d449cbe363d14b605fae2b1bea8a7ebb",
+      "equal": true
+    },
+    {
+      "file": "hunt.css",
+      "sourceSha256": "a76ff16d8e316923b619bb2bc6808d769bc0d4bca34bd828e0162130b67e9da9",
+      "liveSha256": "a76ff16d8e316923b619bb2bc6808d769bc0d4bca34bd828e0162130b67e9da9",
+      "equal": true
+    },
+    {
+      "file": "hunt-public-text.js",
+      "sourceSha256": "407574f5191cb5599471ad3e64b700a57e72d27df286e912fe55a6d5d2d942fb",
+      "liveSha256": "407574f5191cb5599471ad3e64b700a57e72d27df286e912fe55a6d5d2d942fb",
+      "equal": true
+    },
+    {
+      "file": "hunt-mission-feedback.js",
+      "sourceSha256": "d94e38c3e3f2487fad6b328fc6ce5af8df2ee80592048da675dbc347a74e0d06",
+      "liveSha256": "d94e38c3e3f2487fad6b328fc6ce5af8df2ee80592048da675dbc347a74e0d06",
+      "equal": true
+    },
+    {
+      "file": "package.json",
+      "sourceSha256": "fb3c3972861c4d35f97c746759d68f3e9606583ecc293571fabbc886e3a391c3",
+      "liveSha256": "fb3c3972861c4d35f97c746759d68f3e9606583ecc293571fabbc886e3a391c3",
+      "equal": true
+    },
+    {
+      "file": "README.md",
+      "sourceSha256": "7b77ee76ebbf727e7cfcd4430ddd9f9e0973ceb03ba70dafc7673f9d1da1bdaa",
+      "liveSha256": "7b77ee76ebbf727e7cfcd4430ddd9f9e0973ceb03ba70dafc7673f9d1da1bdaa",
+      "equal": true
+    },
+    {
+      "file": "QA_GUIDE.txt",
+      "sourceSha256": "6107eb40ebf728a061105478aad2f96e36cd3553b28571b4181acf538c9b6fab",
+      "liveSha256": "6107eb40ebf728a061105478aad2f96e36cd3553b28571b4181acf538c9b6fab",
+      "equal": true
+    },
+    {
+      "file": "CHANGELOG.md",
+      "sourceSha256": "103a38e6bcc903af8432f9d99cdfc733230bd3880229718c2adac7f91b1e9a1d",
+      "liveSha256": "103a38e6bcc903af8432f9d99cdfc733230bd3880229718c2adac7f91b1e9a1d",
+      "equal": true
+    }
+  ]
+}

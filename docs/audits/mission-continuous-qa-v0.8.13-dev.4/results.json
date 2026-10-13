@@ -1,0 +1,1161 @@
+{
+  "auditVersion": 1,
+  "reviewedBuild": "0.8.13-dev.4",
+  "task": "검증용 플레이모드로 챕터 1부터 3까지 이어 플레이하며 임무 알림 뒤 이동·전투·보상 선택이 계속되는지 점검",
+  "method": "Two independent uninterrupted actual-browser QA campaigns. Private saves are retained locally; public commands and observations are committed. The first run establishes the dev.3 campaign flow and reproduces the restore-boundary bug. The second run checks the patched dev.4 flow.",
+  "sourceProductionHashes": {
+    "hunt-app.js": "b79456afbf7ded191928395a6cbb095121687c7f82ce13f0aefa8a9c871337b4",
+    "hunt-engine.js": "cd0a790a3af2b4190bea4f9a8baee8631d9e1adb6d90f115e349b193eddd7cf1",
+    "hunt-mission-feedback.js": "d94e38c3e3f2487fad6b328fc6ce5af8df2ee80592048da675dbc347a74e0d06",
+    "hunt-public-text.js": "407574f5191cb5599471ad3e64b700a57e72d27df286e912fe55a6d5d2d942fb",
+    "hunt.css": "a76ff16d8e316923b619bb2bc6808d769bc0d4bca34bd828e0162130b67e9da9",
+    "package.json": "fb3c3972861c4d35f97c746759d68f3e9606583ecc293571fabbc886e3a391c3"
+  },
+  "runs": [
+    {
+      "id": "initial-dev3",
+      "version": "0.8.13-dev.3",
+      "method": "Actual browser UI execution from one fresh QA game, chapters 1 through 3 without checkpoint imports or private state edits. The final product export was independently replayed.",
+      "commands": 260,
+      "recordedActionRows": 260,
+      "actionRowsWithDomObservation": 258,
+      "manualActionsWithoutPerActionDomSnapshot": [
+        1,
+        2
+      ],
+      "notificationBatches": 26,
+      "notificationEvents": 32,
+      "eventKinds": {
+        "new": 11,
+        "completed": 10,
+        "updated": 8,
+        "chapter": 3
+      },
+      "initialSetupBriefing": {
+        "count": 1,
+        "separateFromCommandNotifications": true,
+        "screenshot": "screenshots/initial-dev3/00-new-qa-mission.jpg",
+        "observation": "initial briefing screenshot and root browser observation"
+      },
+      "composedEscortCommands": [
+        {
+          "steps": [
+            36,
+            37
+          ],
+          "observation": "one confirmation commits pickup and movement; post-action DOM shared"
+        },
+        {
+          "steps": [
+            132,
+            133
+          ],
+          "observation": "one confirmation commits pickup and exploration; post-action DOM shared"
+        }
+      ],
+      "localOnlyProductExport": {
+        "sha256": "91a8d82cb41292ea7b2034d6ce026e916b9b6a1632277806d808228ebdbc2e56",
+        "bytes": 58069,
+        "committed": false
+      },
+      "fixtures": "fixtures/initial-dev3-commands.json",
+      "actions": "runs/initial-dev3/browser-actions.json",
+      "notices": "runs/initial-dev3/browser-notices.json",
+      "replay": "runs/initial-dev3/engine-replay-proof.json",
+      "final": {
+        "phase": "over",
+        "result": "campaign-win",
+        "track": 5,
+        "round": 5,
+        "hp": 6,
+        "echoes": 0,
+        "inDream": true,
+        "rewardChoices": [],
+        "slots": [
+          null,
+          null,
+          null
+        ],
+        "missionWon": true
+      },
+      "console": {
+        "warnings": 0,
+        "errors": 0,
+        "source": "Root observed an empty actual-browser warning/error query; raw console result was not saved in the first-run folder."
+      },
+      "driverErrorsExcludedFromProductBugs": [
+        "An initial navigation selector was corrected.",
+        "Step 36 was mistakenly requested as a notification even though it produced none.",
+        "The no-replacement upgrade selector was disambiguated before continuing."
+      ]
+    },
+    {
+      "id": "recheck-dev4",
+      "version": "0.8.13-dev.4",
+      "method": "Actual browser UI execution from one fresh QA game, chapters 1 through 3 without checkpoint imports or private state edits. The final product export was independently replayed.",
+      "commands": 260,
+      "recordedActionRows": 260,
+      "actionRowsWithDomObservation": 260,
+      "manualActionsWithoutPerActionDomSnapshot": [],
+      "notificationBatches": 26,
+      "notificationEvents": 32,
+      "eventKinds": {
+        "new": 11,
+        "completed": 10,
+        "updated": 8,
+        "chapter": 3
+      },
+      "initialSetupBriefing": {
+        "count": 1,
+        "separateFromCommandNotifications": true,
+        "screenshot": "screenshots/recheck-dev4/00-new-qa-mission.jpg",
+        "observation": "runs/recheck-dev4/new-game-initialization.json"
+      },
+      "composedEscortCommands": [
+        {
+          "steps": [
+            36,
+            37
+          ],
+          "observation": "one confirmation commits pickup and movement; post-action DOM shared"
+        },
+        {
+          "steps": [
+            132,
+            133
+          ],
+          "observation": "one confirmation commits pickup and exploration; post-action DOM shared"
+        }
+      ],
+      "localOnlyProductExport": {
+        "sha256": "91a8d82cb41292ea7b2034d6ce026e916b9b6a1632277806d808228ebdbc2e56",
+        "bytes": 58069,
+        "committed": false
+      },
+      "fixtures": "fixtures/recheck-dev4-commands.json",
+      "actions": "runs/recheck-dev4/browser-actions.json",
+      "notices": "runs/recheck-dev4/browser-notices.json",
+      "replay": "runs/recheck-dev4/engine-replay-proof.json",
+      "final": {
+        "phase": "over",
+        "result": "campaign-win",
+        "track": 5,
+        "round": 5,
+        "hp": 6,
+        "echoes": 0,
+        "inDream": true,
+        "rewardChoices": [],
+        "slots": [
+          null,
+          null,
+          null
+        ],
+        "missionWon": true
+      },
+      "console": {
+        "warnings": 0,
+        "errors": 0,
+        "source": "runs/recheck-dev4/browser-console.json",
+        "rawResult": []
+      },
+      "driverErrorsExcludedFromProductBugs": []
+    }
+  ],
+  "verifiedFollowups": [
+    {
+      "steps": [
+        45,
+        46
+      ],
+      "result": "Shelter completion acknowledgement retains required mission death consequence, then player action resumes."
+    },
+    {
+      "steps": [
+        54,
+        55,
+        56
+      ],
+      "result": "Chapter-one completion acknowledgement retains reward selection, then stun discard, then final dream upgrades."
+    },
+    {
+      "steps": [
+        141,
+        142,
+        143
+      ],
+      "result": "Completion acknowledgement retains two reward decisions in order, then player action resumes."
+    },
+    {
+      "steps": [
+        157,
+        158
+      ],
+      "result": "Chapter-two completion acknowledgement retains reward selection and final dream upgrades."
+    },
+    {
+      "steps": [
+        64,
+        166
+      ],
+      "result": "Natural chapter transition opens next objective and renews QA supplies through the actual chapter preparation UI."
+    },
+    {
+      "steps": [
+        201,
+        202
+      ],
+      "result": "Iosefka completion acknowledgement retains reward selection before further movement."
+    },
+    {
+      "steps": [
+        237,
+        238
+      ],
+      "result": "Salvation completion and main-objective release acknowledgement retains reward selection before boss movement and combat."
+    },
+    {
+      "steps": [
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260
+      ],
+      "result": "Final completion acknowledgement retains all three upgrade picks and three replacements; campaign-win follows."
+    }
+  ],
+  "bugs": [
+    {
+      "id": "BB-011",
+      "severity": "P2",
+      "issue": "https://github.com/dfrpg98-jpg/bloodborne-solo/issues/18",
+      "firstObservedBuild": "0.8.13-dev.3",
+      "fixedBuild": "0.8.13-dev.4",
+      "scope": "Game or save replacement boundary; separate from uninterrupted mission acknowledgement campaign flow.",
+      "example": "Finish the QA campaign while the boss is the selected map target, then choose normal hunt resume. The normal hunt has no enemies but retains the old selected-target panel and collapsed action presentation. Clearing the target restores normal presentation.",
+      "fix": "resetStoryReading also clears mapTarget and utilityActionsOpen when replacing the hunt.",
+      "rechecked": true,
+      "evidence": [
+        "runs/initial-dev3/BB011-before-proof.json",
+        "runs/initial-dev3/BB011-after-normal-restore.json",
+        "screenshots/initial-dev3/BB011-before-stale-selection.jpg",
+        "screenshots/initial-dev3/BB011-after-normal-restore.jpg",
+        "runs/recheck-dev4/BB011-after-file-import.json",
+        "runs/recheck-dev4/normal-hunt-restored.json"
+      ]
+    }
+  ],
+  "normalHuntPreservation": {
+    "observedPreserved": [
+      "phase",
+      "HP",
+      "echoes",
+      "round",
+      "kills",
+      "hand card IDs",
+      "location",
+      "normal mode"
+    ],
+    "targetCleared": true,
+    "utilityCount": 0,
+    "evidence": "runs/recheck-dev4/normal-hunt-restored.json",
+    "limit": "Equality of recorded visible progress fields, not byte-for-byte preservation of a privately inspected normal save."
+  },
+  "screenshots": [
+    {
+      "file": "screenshots/initial-dev3/00-new-qa-mission.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 47153,
+      "sha256": "ed76dbc5a52b2afa434f9a9cedd8818ba437c257497422704d3c91668cf1b6d0",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/BB011-after-normal-restore.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 151303,
+      "sha256": "dcc442edffb4dbde961a23b49158c35677d0a4a2364cf17d882b04ab52fb05ff",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/BB011-before-stale-selection.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 151508,
+      "sha256": "e45da7f2f613fa53c372e07a8aff06b9c7ca2f22d6e82578bdbf6c38c0e5bc83",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/chapter3-recent-notice-reopened.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 51164,
+      "sha256": "c15026c805a6d7e7f4f82bf69829f736f914ccaca17f203347defedc30c90bcd",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/final-campaign-win.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 174107,
+      "sha256": "1eb6c34ee1c1ef545f5ce847715e975e2e55d54641ddf89b115a89e4d0a182fc",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/normal-hunt-restored.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 73255,
+      "sha256": "2c8626d9e46e8ff45d1d63989d1acec78414c5e6d60a6971ebd230b896c2790f",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-102-chapter-2.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 53427,
+      "sha256": "8d1c47bb38867a4bd5d3cfa970d57601c53742326341d7c5488378ba1f8add0e",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-108-chapter-2.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 44335,
+      "sha256": "a07a8498467be95796b64b7ca0ab6202968edbabec621b99803462f99553eafd",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-111-chapter-2.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 47390,
+      "sha256": "74c5c737a52884c8bbd4b690913ba2b458beb3a68db9904cf1132af64117fb65",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-121-chapter-2.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 45532,
+      "sha256": "d400b368892b7ab28d9afa2d856d7b781d9b7cd66c09eadd528decdff338f3c7",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-130-chapter-2.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 52752,
+      "sha256": "fd801246fdbafa28fd8a0cd8d121169dbe2c64b897efb293da9b4674df3ac016",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-132-escort-confirm.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 45934,
+      "sha256": "c6509b33278e6b115f4c4f0156021375e2702dc6d086e5b2b5cc7f44af60ff72",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-141-chapter-2.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 57010,
+      "sha256": "348838a33e201506b95c02165da03e7d7ecd1d5af1e5745c890457d3226731ba",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-142-reward-resumed.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 169040,
+      "sha256": "305365ef0be7d8e4546854797dbcd5c83442faeddd1a29d6081979ac63bd9ca2",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-143-reward-resumed.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 192457,
+      "sha256": "3d27e26f1b1723ed5bddd725e1c96161284982653d8c849ee98f3cbec26f7b46",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-157-chapter-2.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 58660,
+      "sha256": "9e214a13c924591fab88806cfa0dff0b2602c701463aba4b552aae3bce70c6ff",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-158-chapter-transition.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 174771,
+      "sha256": "45a04fc3a7fd029db2e3dcd091342c5cc30ae193cb2a09e9a766f61a7ca84124",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-165-chapter-transition.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 193038,
+      "sha256": "05bb346866c6495bd7cbcd4d830e75c916b0c4d7d33e47d1ebe6980bf4d16697",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-166-chapter-3.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 51293,
+      "sha256": "cd2bf1feb2c42750a01d24eae4553ea698cb2d4a1273ac7dcd0f499fc4d28e51",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-166-chapter-transition.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 51293,
+      "sha256": "cd2bf1feb2c42750a01d24eae4553ea698cb2d4a1273ac7dcd0f499fc4d28e51",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-173-chapter-3.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 41089,
+      "sha256": "cd94dbb5df9a600e976d1ec831fa54fabdd3d4f99676340b1843facc447f34e3",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-195-chapter-3.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 49041,
+      "sha256": "b5aec78136504b502bdff89f8acb3825a3a19604463a2d8f5e564f5c4198f000",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-196-chapter-3.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 48293,
+      "sha256": "fc68c88c889bc507621fe65c68a2610e91e09b05c684f9a74f35334acaaa6539",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-201-chapter-3.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 46999,
+      "sha256": "75953e5e4ab6c7daa33583b8261dbd1b4207d1825e48b10121212228dd7c49ed",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-210-chapter-3.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 45472,
+      "sha256": "58c51db4205675ff241415dba1979df65215a895aa6e8a71eb2d47ea8d5ab826",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-237-chapter-3.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 53427,
+      "sha256": "53f47a578a4408060217194194ceb2abe3015c4fce57f30d5389f150b45d5f4a",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-254-chapter-3.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 56201,
+      "sha256": "e19acdba9879ad67715e2f0c950d291921a97b5d0e1a5564f4f7cbf504403b7c",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-33-chapter-1.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 47009,
+      "sha256": "bda3d602f369a83c6f8dfa91a9b647a2f8b35e91930e0987d54446ff87f13635",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-36-escort-confirm.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 46279,
+      "sha256": "20f163bd36a2d7c6414fbeddc538650826a1b3e190ee3450bacc81f1da463b22",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-4-chapter-1.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 47333,
+      "sha256": "18771467cfa000fdb321a694812303438be61f2fb52ca81660d000295315d3b7",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-40-chapter-1.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 47769,
+      "sha256": "9b5a0205e133cafe324bcd8454cdff71acf50b11aa07879477fadc44ca82eebd",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-45-chapter-1.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 51211,
+      "sha256": "12fadeeff26e634d6122ab435d1f82fbc59d2ad3e8b1d344893752ed98f5c0de",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-48-chapter-1.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 49289,
+      "sha256": "eece9d70926a73d56980ee0183762dd258cd9bedbf307697f2619d572377e10c",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-54-chapter-1.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 63031,
+      "sha256": "1a37910900488b62ef509485ce75962c1217217e2ebd4754bd5e223526a757c5",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-55-pending-resumed.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 197684,
+      "sha256": "2848e227814cf382556b421fc96d6d6a4923a972b50e8fe7322b0c2b656de700",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-56-pending-resumed.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 186647,
+      "sha256": "23ba7766f6305059c322001d8c9ae1200f0a79162fc2bb7667184bf7d80d57fb",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-64-chapter-2.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 49848,
+      "sha256": "23f486de917a062e40ef6af053e080a59a234c322936178e625a408acc6d708f",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-70-chapter-2.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 50718,
+      "sha256": "263cd303c5fc7307d380556c8c6b3b11be2ff06974b4efad5a7223104f508a6e",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-74-chapter-2.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 61820,
+      "sha256": "acfd2d074d549b5b6e85eeadd851d2f023edee375446b5297e8c554871fd069e",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-77-chapter-2.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 50235,
+      "sha256": "b38a6f56b6b0cdd4b914ab6cf4907d5ff72b5322358488cde5414bd4f754261e",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/initial-dev3/step-8-chapter-1.jpg",
+      "build": "0.8.13-dev.3",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 49511,
+      "sha256": "91daf2101350394e7ee843ccb17878e0602a2006aa927b9ba1b588ca7cc8c02a",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/00-new-qa-mission.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 39498,
+      "sha256": "55557d9a7961cfda18d633f5792c3673fd51b6467641d9e92b4e6e63d99de144",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/BB011-after-file-import.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 73211,
+      "sha256": "1175769d5ee9a0370f4a373a9f644e58f6a8d5d373c32c0018136c07902e6977",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/final-campaign-win.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 174105,
+      "sha256": "14a7d1044ebf433dc8e1ce3b5a5aa9e8dbaf4eddc332748a7fa9692e16a34bdc",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/normal-hunt-restored.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 149523,
+      "sha256": "4bce321c6a4d2343d4cb422555fac42d45f60f1de4a03b0c32029fe5f03ed033",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/recent-notice-reopened.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 203203,
+      "sha256": "43b984f1bd37954fbb5aa1167d1b34d08c5a08a5963e1677147f2cad5ed66b47",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-102-chapter-2.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 47446,
+      "sha256": "fa92f96103c7cb069d41d1f22ae7b44cc4e9541f4fe19723704def518dbf8da1",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-108-chapter-2.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 42667,
+      "sha256": "b390b74ed15733fffd70284c0715ee0e6721d77496f0c257e90db49cf054183e",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-111-chapter-2.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 47429,
+      "sha256": "b3684e16824abd0526b46740ad402807fbf20de89c69710caca12916a450050a",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-121-chapter-2.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 41841,
+      "sha256": "5381e7e58f71448989240f9c4db29607bd3c378f7204d5f2f15077fc30342606",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-130-chapter-2.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 47005,
+      "sha256": "773e85a2f9710186e2716d83d6ed1c26722e284f3e373aa4c81c33851539cbd2",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-132-escort-confirm.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 45882,
+      "sha256": "6114e7c12d1d59a6e0ef31370aadbed1fa7c5eae9d0595a020559d3a82c874ac",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-141-chapter-2.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 54261,
+      "sha256": "8c075bc966871d18378988eb465f0c0aee215058cbb1151ed8803124497d4da4",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-142-continuation.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 169031,
+      "sha256": "b7f3afa3284e3654ff3c492a020e31c553288b70aff3d81a6cd7255265d38b5f",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-143-continuation.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 192514,
+      "sha256": "bfe4df8e6474f8288fc60e60084fcf5d125be6228780a1924043983256dd9358",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-157-chapter-2.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 47982,
+      "sha256": "b2dc0c4a18a34f5254430b1df3fa018df1964ba59d5a35a989fa34795c1cba93",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-158-continuation.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 174788,
+      "sha256": "eaa7fbffbf955324fc8d2e7f31369ca5e4044bca9c8347370948ac2b95d66bb9",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-165-continuation.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 192859,
+      "sha256": "369b07866134969dc8e28e3562a62b4c88771debc451cfeb5eb785ffbd5717ed",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-166-chapter-3.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 45930,
+      "sha256": "0f6ea28f1c1511981ff589d4528834a1a9539d9b946989d1baaf9a28d07cabff",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-166-continuation.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 51298,
+      "sha256": "148758cf7bc9a1cce7b45b918a4281516388f28f490291fa3ed1d9b1955b088b",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-173-chapter-3.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 44665,
+      "sha256": "16068823e00a9817f9c4b80ab0c931d9a760a729e758f4702380692dc65a08a6",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-195-chapter-3.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 42769,
+      "sha256": "91532c50b82fc59f231114b18bcf80744452d8c83eb612255226cc4333e10a06",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-196-chapter-3.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 42712,
+      "sha256": "9b09779abf87b37c602c59b2a7a933e2e7383f22de38173925e1a20fcea2bd08",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-201-chapter-3.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 44726,
+      "sha256": "4c0f4efd15ebd6401bae2830b073f740506d7c967342016a52a2a0541b193235",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-210-chapter-3.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 39987,
+      "sha256": "5abb7a250f124bec8af0849cff1071480c0c0b753edf7e9837bc9628158f489f",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-237-chapter-3.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 53427,
+      "sha256": "53f47a578a4408060217194194ceb2abe3015c4fce57f30d5389f150b45d5f4a",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-254-chapter-3.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 45735,
+      "sha256": "afceee2315c9c64f37521d00603f6392beb47b01f6d4aa64a43f268e3f918af8",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-254-continuation.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 180302,
+      "sha256": "c8d026f60cac1398c955664f2367ec6c73afffa0876be643e5905a6252f36649",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-260-continuation.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 174085,
+      "sha256": "c82853ec3a6f936003ed935144f64f8727a7934c4c76935079e08db2f85ad454",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-33-chapter-1.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 40733,
+      "sha256": "9cf8a9dbec0c33aed0ffc9d31450abdb74355a67d77ca232291070b4fcfbad16",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-36-escort-confirm.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 46346,
+      "sha256": "038516298af96f5cf1cdba919da0402068b2134cc18914176d547c526ed99f9e",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-4-chapter-1.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 40096,
+      "sha256": "2edaad314c72331ee86b348cddaec31e9c83760926d40254294134c008597c01",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-40-chapter-1.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 38613,
+      "sha256": "debee9a278c55417adde83aec2eee262d3b00be34f68d0bb4523436f6e324bca",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-45-chapter-1.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 43578,
+      "sha256": "5531f85df890f64dd642098081b2cef1b77124efd452ac4a03cc3938ed210413",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-48-chapter-1.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 42752,
+      "sha256": "a357d277da5ac8712d1c3fe78ce7b82f8c69c2f9fc1431cc86d2e3a1d8d984e9",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-54-chapter-1.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 52067,
+      "sha256": "476c14fb49f0e3a9c3961071fcdbf83902c4e6db35eaac4842ade657eff50618",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-55-continuation.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 197680,
+      "sha256": "c586d1336db83f37a33d0f096b678fa9eaae02390a7c7ebfaa6212bf5178ab5b",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-56-continuation.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 186460,
+      "sha256": "08b26cd14080f93fcf5f63751063097086bcb330a7733b21576dea0025ee0280",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-64-chapter-2.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 46868,
+      "sha256": "28faf9fc1c4fc973d641e9c47e0dd392193ecb07192b437952c7405bd4d9d48b",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-70-chapter-2.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 44342,
+      "sha256": "312662bc5371504e24c256e7e2c1cc79201618a53f699e182cbd0b9a5366faea",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-74-chapter-2.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 54073,
+      "sha256": "0cb73a6543e6aeed8ec89dbf6c7c602e300ba414b66294900aeb56d069b8274f",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-77-chapter-2.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 43759,
+      "sha256": "9bdccfc3a5e6c9ddab33b6687af8b9f9468dd852fa26d793414d6a8880717343",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-8-chapter-1.jpg",
+      "build": "0.8.13-dev.4",
+      "mimeType": "image/jpeg",
+      "width": 1194,
+      "height": 1252,
+      "bytes": 41157,
+      "sha256": "537c4781b87bc9807687e399c88ace23eb8c172a03ad4a906cbf0ab6fc73aea6",
+      "sourceBytesUnchanged": true
+    }
+  ],
+  "countsNote": "260 commands / 26 command notification batches / 32 notification events are per run. The initial setup briefing is one additional separate display per run. Repeated routes, composed escort commands, DOM field assertions, screenshots, offline model rows and replay checks are not summed into a unique test-case count.",
+  "limitations": [
+    "One QA route, not every mutually exclusive mission branch.",
+    "QA weapon and supplies do not establish normal equipment balance.",
+    "Two composed escort confirmations show the combined post-action state, not separate intermediate browser states.",
+    "First-run steps 1 and 2 lack individual DOM snapshots; accepted commands are independently confirmed in the local product export.",
+    "Recorded dialog assertions compare required titles, descriptions and effects, not exact full rendered HTML.",
+    "No new claim about every short or narrow viewport, all gear/reward combinations, Unity Editor gameplay, or release readiness."
+  ],
+  "tests": {
+    "method": "Actual completed local CI command, not a remote GitHub Actions claim.",
+    "runtimeVersion": "0.8.13-dev.4",
+    "command": "node scripts/test-ci.cjs",
+    "report": "checks/ci.json",
+    "tap": "checks/ci.tap",
+    "pass": 2575,
+    "fail": 0,
+    "cancelled": 0,
+    "durationSeconds": 488.079,
+    "sourcePhotoTestsExcluded": [
+      "campaign covers all 67 ordered sources and 60 numbered cards with images",
+      "reference data preserves printed terminology with the confirmed enemy alias and six enemy sides",
+      "default v0.3 state remains without optional firearm fields and photo confirmation retains raw text",
+      "supplied component photos retain their exact bytes, hashes and card provenance"
+    ],
+    "originalReportSha256": "6f3844d4485a4fd90a3904c4cad1135f9dfacc1838254a8ed44ce227de3c498d",
+    "originalTapSha256": "3e7dde69fe444295c692654e8046030f954f41b644646a20df4e282ba4f830c8"
+  },
+  "reproductionCommand": "node docs/audits/mission-continuous-qa-v0.8.13-dev.4/scripts/replay-continuous-qa.cjs",
+  "deployment": {
+    "version": "0.8.13-dev.4",
+    "equalFileCount": 9,
+    "evidence": "runs/recheck-dev4/live-install-final.json",
+    "backupExistingFiles": [
+      "hunt-app.js",
+      "package.json",
+      "QA_GUIDE.txt"
+    ],
+    "newDocumentationFiles": [
+      "README.md",
+      "CHANGELOG.md"
+    ]
+  },
+  "targetedRegression": {
+    "provenance": "reportedToolExecution: executing test agent's tool output relayed to root. No separate TAP artifact was saved for these two targeted runs.",
+    "evidence": "root-completion-evidence.json",
+    "beforeFix": {
+      "tests": 11,
+      "pass": 2,
+      "fail": 9
+    },
+    "afterFix": {
+      "tests": 55,
+      "pass": 55,
+      "fail": 0
+    },
+    "counting": "The new 11-test regression file is included in the completed full CI pass count of 2575. These targeted runs are not added to the full CI count."
+  },
+  "independentReview": {
+    "firstRun": "runs/initial-dev3/independent-review.json",
+    "recheck": "runs/recheck-dev4/independent-review.json",
+    "recheckStatus": "passed"
+  }
+}
