@@ -17,7 +17,7 @@ function launch(state, extra = {}) {
   const ui = boot(state, E.missionView(state), E.rewardsView(state), { realInventory: true, storage: { [saveKey]: saved },
     engine: { create(...args) { calls.creates++; return E.create(...args); }, importSave: E.importSave, exportSave: E.exportSave,
       dispatch(...args) { calls.dispatches++; return E.dispatch(...args); }, missionView: E.missionView,
-      rewardsView: E.rewardsView, applyChapelRuling: value => value },
+      rewardsView: E.rewardsView, applyChapelRuling: value => value, applyCombatReactionRuling: value => value },
     window: { BBWeaponVisuals: V, BBCharacterAssets: { hunter: { path: 'assets/characters/hunter.png' } },
       BBWeaponCharacterAssets: { 'w-threaded-cane-a': { path: 'assets/characters/w-threaded-cane-a.png' } },
       BBHuntPresentation(options) { mounts.push(options);

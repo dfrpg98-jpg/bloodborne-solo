@@ -6,8 +6,9 @@ const commands = require("./fixtures/weapon-campaign-completion/beast-claw-0.jso
 const normalKey = "bloodborne-hunt-v07";
 const realEngine = { create: E.create, importSave: E.importSave, exportSave: E.exportSave, dispatch: E.dispatch,
   missionView: E.missionView, rewardsView: E.rewardsView, missionActions: E.missionActions,
-  interactionEnemies: E.interactionEnemies, provisionalView: E.provisionalView, applyChapelRuling: state => state };
-function initial() { return E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true }); }
+  interactionEnemies: E.interactionEnemies, provisionalView: E.provisionalView, applyChapelRuling: state => state,
+  applyCombatReactionRuling: state => state };
+function initial() { return E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 13 }); }
 function checkpoint(count) { let state = initial(); for (const command of commands.slice(0, count)) state = E.dispatch(state, command); return state; }
 function realBoot(state) { return boot(state, E.missionView(state), E.rewardsView(state), { realInventory: true,
   storage: { [normalKey]: E.exportSave(state) }, engine: realEngine }); }

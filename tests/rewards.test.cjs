@@ -255,7 +255,7 @@ test("integrated kill opens optional rapture choice and simultaneous hunter deat
   const id = R.grant(s, "rune-rapture");
   s = E.dispatch(s, { type: "ATTACK", enemyId: s.enemies[0].id, cardId: H(s).hand[0].id, slot: 0 });
   s = E.dispatch(s, { type: "RESOLVE" });
-  assert.equal(s.phase, "hunter");
+  assert.equal(s.phase, "kill_react");
   assert.equal(H(s).rewardKillWindow, true);
   assert.equal(item(s, id).ready, true);
   const count = H(s).hand.length;
@@ -263,6 +263,9 @@ test("integrated kill opens optional rapture choice and simultaneous hunter deat
   assert.equal(H(s).hand.length, count + 1);
   assert.equal(H(s).hp, 4);
   assert.equal(item(s, id).ready, false);
+
+  s = E.dispatch(s, { type: "PASS_KILL_REACTION" });
+  assert.equal(s.phase, "hunter");
 
   ({ E, s } = engineCombatFixture("strength", 3));
   const deadId = R.grant(s, "rune-rapture");

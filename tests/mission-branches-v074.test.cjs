@@ -35,7 +35,8 @@ function natural(commands,options={},setup={}){
  assert.deepEqual(E.importSave(E.exportSave(s)),s);
  return {s,revealed,checkpoints};
 }
-for(const rules of [{name:'released rules 11',options:{rulesVersion:11}},{name:'current campaign rules',options:{}}]){
+// These frozen traces retain their released11 and historical13 command timing.
+for(const rules of [{name:'released rules 11',options:{rulesVersion:11}},{name:'historical campaign rules13',options:{rulesVersion:13}}]){
  test(`${rules.name}: retained clinic sanctuary without research naturally opens card 51 after the chapter-two main victory`,()=>{
   const {s,revealed}=natural(fixtures.clinic51,rules.options,setups['v074-clinic51-natural-commands.json']);
   assert.deepEqual(s.mission.history[1].completed,[28,39,23]);

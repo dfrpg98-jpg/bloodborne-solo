@@ -88,7 +88,7 @@ test("a changed story key cannot expose an unrevealed story or any future outcom
 
 test("normal public play across all three chapters keeps revealed history readable and all photo URLs absent", () => {
   const commands = require("./fixtures/weapon-campaign-completion/beast-claw-0.json");
-  let state = E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true }), snapshots = 0;
+  let state = E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 13 }), snapshots = 0;
   const chapters = new Set(), kinds = new Set(), phases = new Set();
   let previousKey = "";
   for (const command of [{ type: "initial" }, ...commands]) {

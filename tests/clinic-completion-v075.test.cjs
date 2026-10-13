@@ -7,7 +7,9 @@ function replay(card,ui){
   assert.equal(t.startingConsumable,null);assert.equal(t.rulesVersion,12);
   const commands=require('./fixtures/'+r.commandsFile);
   assert.equal(commands.length,r.commandCount);
-  let s=E.create(t.seed,t.weaponId,t.face,null,t.firearmId,t.startSpace,{campaign:true});
+  // Frozen public traces are historical rules13 regressions. Current rules14
+  // natural campaigns are verified separately with explicit kill reactions.
+  let s=E.create(t.seed,t.weaponId,t.face,null,t.firearmId,t.startSpace,{campaign:true,rulesVersion:13});
   let entry=false,completed=false;let collected=0;
   const checkpoint=(before,next,index)=>{
     s=next;
@@ -43,7 +45,7 @@ function replay(card,ui){
     assert.equal(s.mission.heldSurvivors[s.activeHunterId]||0,0);assert.equal(E.missionView(s).insight,1);}
   return s;
 }
-test('natural card 51 finishes research and rewards from a normal chapter-one start',()=>replay(51,false));
-test('natural card 52 delivers two new survivors and grants the clinic sanctuary without a retained lock',()=>replay(52,false));
-test('actual controller completes all natural card 51 decisions and restarts every saved action',()=>replay(51,true));
-test('actual controller completes all natural card 52 decisions and restarts every saved action',()=>replay(52,true));
+test('historical rules13 natural card 51 finishes research and rewards from a normal chapter-one start',()=>replay(51,false));
+test('historical rules13 natural card 52 delivers two new survivors and grants the clinic sanctuary without a retained lock',()=>replay(52,false));
+test('historical rules13 actual controller completes all natural card 51 decisions and restarts every saved action',()=>replay(51,true));
+test('historical rules13 actual controller completes all natural card 52 decisions and restarts every saved action',()=>replay(52,true));

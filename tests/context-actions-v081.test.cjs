@@ -2,7 +2,7 @@
 const test = require("node:test"), assert = require("node:assert/strict");
 const E = require("../hunt-engine.js"), M = require("../chapter-engine.js"), C = require("../hunt-context.js");
 const commands = require("./fixtures/v077-chapel-escort-first-natural-commands.json");
-const normal = () => E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true });
+const normal = () => E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 13 });
 const run = (state, action) => (action.sequence || [action.command]).reduce((s, command) => E.dispatch(s, command), state);
 const timeline = [normal()];
 for (const command of commands) timeline.push(E.dispatch(timeline.at(-1), command));

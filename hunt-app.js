@@ -58,7 +58,10 @@
     return button(esc(uiText(label, "mission")), type, args, !!option.disabled, cls);
   };
   const missionView = () => E.missionView ? E.missionView(state) : null;
-  const applyLoadedRuling = (loaded) => E.applyChapelRuling ? E.applyChapelRuling(loaded) : loaded;
+  const applyLoadedRuling = (loaded) => {
+    const chapel = E.applyChapelRuling ? E.applyChapelRuling(loaded) : loaded;
+    return E.applyCombatReactionRuling ? E.applyCombatReactionRuling(chapel) : chapel;
+  };
   const isQa = () => !!state.setup?.qa;
   const saveKey = () => isQa() ? qaKey : key;
   const consumableDefinitions = () => E.consumableDefinitions ? E.consumableDefinitions(state) : D.consumables;
@@ -650,8 +653,10 @@
         const cards = (list) => list.map((c) => `<option value="${c.id}">${esc(E.card(c).name)} · ${esc(c.id)}</option>`).join("");
         actions = `<label>버릴 손패<select id="rewardDiscard-${r.id}">${cards(h.hand)}</select></label><label>가져올 버림 카드<select id="rewardTake-${r.id}">${cards(h.discard)}</select></label><button data-reward-use="${r.id}" data-reward-kind="rune-eye" ${r.usable && h.hand.length && h.discard.length && !pending ? "" : "disabled"}>선택한 카드 교환</button>`;
       } else if (r.kind === "rune-rapture" && r.equipped) {
-        actions = button("피의 기쁨 · 카드 1장, 치유 1", "USE_REWARD", { rewardId: r.id }, !r.usable || pending);
-        if (r.usable) actions = '<p class="muted">지금 사용하거나 다른 행동을 하면 이 처치의 사용 기회가 끝납니다.</p>' + actions;
+        actions = button("피의 기쁨 · 손패 1장 뽑기 · 체력 1 회복", "USE_REWARD", { rewardId: r.id }, !r.usable || pending);
+        if (r.usable) actions = `<p class="muted">${state.killReaction
+          ? '다른 처치 문자도 사용할 수 있습니다. 처치 효과 사용 마치기를 누르면 이 처치의 사용 기회가 끝납니다.'
+          : '지금 사용하거나 다른 행동을 하면 이 처치의 사용 기회가 끝납니다.'}</p>` + actions;
       } else if (r.equipped && ["iosefka-vial", "messengers-gift", "rune-formless", "old-hunter-bone", "arianna-blood", "call-beyond", "queen-flesh", "ring", "rune-communion", "rune-radiance"].includes(r.kind)) {
         actions = button(`${esc(r.name)} 사용`, "USE_REWARD", { rewardId: r.id }, !r.usable || pending);
       }
@@ -791,6 +796,7 @@
       firearm_react: "장총 · 진입한 적 대응",
       combat_choose: "적과 조우",
       combat_react: "전투 대응",
+      kill_react: "처치 효과 선택",
       combat_extra: "다단 가르기 · 두 번째 타격",
       ability_choice: "벽돌 후려갈기기",
       cheap_shot: "비열한 일격 사용 기회",
@@ -1049,6 +1055,9 @@
           ),
         )
         .join("");
+    } else if (p === "kill_react") {
+      help = "적 처치로 발동한 카릴 문자를 사용할 수 있습니다. 사용을 마치면 전투를 이어갑니다.";
+      html = (E.killReactionActions?.(state) || []).map((action) => commandButton(action, "primary")).join("");
     } else if (p === "refill") {
       help = "남은 손패를 원하는 만큼 버린 뒤 3장이 될 때까지 뽑습니다.";
       html =

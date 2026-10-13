@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bloodborne:unity-content:v1",
+  "type": "object",
+  "required": ["format", "schemaVersion", "sourceGameVersion", "sourceCommit", "currentRulesVersion", "supportedReplayRulesVersions", "visibility", "modules", "campaign", "weaponVisuals", "tileGeometry"],
+  "properties": {
+    "format": {"const": "bloodborne-unity-content"},
+    "schemaVersion": {"const": 1},
+    "sourceGameVersion": {"type": "string"},
+    "sourceCommit": {"type": ["string", "null"], "pattern": "^[a-f0-9]{40}$"},
+    "currentRulesVersion": {"type": "integer", "minimum": 7},
+    "supportedReplayRulesVersions": {"type": "array", "items": {"type": ["integer", "null"]}, "uniqueItems": true},
+    "visibility": {"const": "authoritative-private"},
+    "modules": {"type": "object", "additionalProperties": {"type": "object", "required": ["data", "executableMembersExcluded"], "properties": {"data": {"type": "object"}, "executableMembersExcluded": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": false}},
+    "campaign": {"type": "object"},
+    "weaponVisuals": {"type": "object"},
+    "tileGeometry": {"type": "object"}
+  },
+  "additionalProperties": false
+}

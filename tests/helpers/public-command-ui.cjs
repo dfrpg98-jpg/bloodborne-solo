@@ -11,6 +11,7 @@ function clickCommand(s,command,options={}){
       // rule context. Automatic adoption of the current chapel ruling has its
       // own real-startup tests; adding it here would change each checkpoint.
       applyChapelRuling:state=>state,
+      applyCombatReactionRuling:state=>state,
       missionView:E.missionView,rewardsView:E.rewardsView,missionActions:E.missionActions,
       interactionEnemies:E.interactionEnemies,provisionalView:E.provisionalView,
     }});

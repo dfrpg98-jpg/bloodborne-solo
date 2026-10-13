@@ -50,6 +50,7 @@ function contractUi(s) {
     storage:{'bloodborne-hunt-v07':E.exportSave(s)},engine:{
       importSave:()=>copy(s),exportSave:E.exportSave,dispatch:E.dispatch,
       applyChapelRuling:state=>state,
+      applyCombatReactionRuling:state=>state,
       missionView:E.missionView,rewardsView:E.rewardsView,missionActions:E.missionActions,
       interactionEnemies:E.interactionEnemies,provisionalView:E.provisionalView,
     }});
@@ -65,9 +66,9 @@ function clickContract(s,command) {
   assert.deepEqual(next,E.dispatch(s,command));E.assertState(next);return next;
 }
 
-test('rules13 is the new hunt default and chapter world preserves the explicit rules13 tag',()=>{
+test('rules14 is the new hunt default and chapter world preserves an explicit legacy rules13 tag',()=>{
   const s=E.create(90,'burial',1,null,'hunter-pistol','center',{campaign:true});
-  assert.equal(s.setup.rulesVersion,13);
+  assert.equal(s.setup.rulesVersion,14);
   const world=M.create(90,'center',3,{rulesVersion:13});M.assertState(world);
   assert.equal(world.rulesVersion,13);
 });

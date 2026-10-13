@@ -4,8 +4,9 @@ const E = require("../hunt-engine"), { boot } = require("./helpers/ui-harness.cj
 const normalKey = "bloodborne-hunt-v07", qaKey = "bloodborne-hunt-qa-v1", activeKey = "bloodborne-hunt-active-mode";
 const realEngine = { create: E.create, importSave: E.importSave, exportSave: E.exportSave, dispatch: E.dispatch,
   missionView: E.missionView, rewardsView: E.rewardsView, missionActions: E.missionActions,
-  interactionEnemies: E.interactionEnemies, provisionalView: E.provisionalView, applyChapelRuling: state => state };
-function normal() { return E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true }); }
+  interactionEnemies: E.interactionEnemies, provisionalView: E.provisionalView, applyChapelRuling: state => state,
+  applyCombatReactionRuling: state => state };
+function normal() { return E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 13 }); }
 function qa() { return E.create(90, "qa-test-weapon", 0, null, "hunter-pistol", "center", { campaign: true, qa: { preset: "fast" } }); }
 function realBoot(state, options = {}) {
   const key = state.setup.qa ? qaKey : normalKey;

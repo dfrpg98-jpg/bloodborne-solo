@@ -4,9 +4,10 @@ const E = require("../hunt-engine"), { boot } = require("./helpers/ui-harness.cj
 const commands = require("./fixtures/weapon-campaign-completion/beast-claw-0.json"), normalKey = "bloodborne-hunt-v07";
 const engine = { create: E.create, importSave: E.importSave, exportSave: E.exportSave, dispatch: E.dispatch,
   missionView: E.missionView, rewardsView: E.rewardsView, missionActions: E.missionActions,
-  interactionEnemies: E.interactionEnemies, provisionalView: E.provisionalView, applyChapelRuling: state => state };
+  interactionEnemies: E.interactionEnemies, provisionalView: E.provisionalView, applyChapelRuling: state => state,
+  applyCombatReactionRuling: state => state };
 const checkpoints = new Map();
-let fixture = E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true });
+let fixture = E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 13 });
 checkpoints.set(0, fixture);
 for (let i = 0; i < commands.length; i++) { fixture = E.dispatch(fixture, commands[i]); checkpoints.set(i + 1, fixture); }
 function launch(count = 0) {

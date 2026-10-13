@@ -98,7 +98,35 @@
     hunter(s).slots[index]={...take(s,id),faceDown:true};
   }
   const enqueueWeapon = (s,effect) => weaponFlow.enqueue(s,effect,weaponHelpers());
-  const drainWeapons = (s,after) => weaponFlow.drain(s,after,weaponHelpers());
+  function drainWeapons(s,after) {
+    if (offerKillReaction(s,{type:"kill_weapon_resume",after})) return true;
+    return weaponFlow.drain(s,after,weaponHelpers());
+  }
+  const immediateKillReactions = (s) => s.setup.rulesVersion >= 14 || s.combatReactionRuling === "immediate";
+  function killReactionActions(s) {
+    if (s.phase !== "kill_react") return [];
+    const out = [];
+    if (!s.rewardChoices.length) for (const r of rewards.view(s,rewardHelpers()).rewards) {
+      if (!r.usable) continue;
+      if (r.kind === "rune-rapture") out.push({label:`${r.name} · 손패 1장 뽑기 · 체력 1 회복`,command:{type:"USE_REWARD",rewardId:r.id}});
+      if (r.kind === "rune-beast") for (const e of r.controls?.targets || [])
+        out.push({label:`${r.name} · ${e.name}에게 피해 2`,command:{type:"USE_REWARD",rewardId:r.id,enemyId:e.enemyId}});
+    }
+    out.push({label:"처치 효과 사용 마치기 · 전투 계속",command:{type:"PASS_KILL_REACTION"},disabled:!!s.rewardChoices.length});
+    return out;
+  }
+  function offerKillReaction(s,after) {
+    const h = hunter(s), serial = h.rewardKillSerial || 0;
+    if (!immediateKillReactions(s) || s.killReaction || h.inDream || h.hp <= 0 || s.mission?.won ||
+        serial <= (h.rewardReactionSerial || 0)) return false;
+    const available = rewards.view(s,rewardHelpers()).rewards.some(r => r.usable &&
+      ["rune-rapture","rune-beast"].includes(r.kind));
+    if (!available) return false;
+    h.rewardReactionSerial = serial;
+    s.killReaction = {phase:s.phase,after};
+    s.phase = "kill_react";
+    return true;
+  }
   const weaponChoices = (s,selection={}) => weaponFlow.choices(s,selection,weaponHelpers());
   function onEnemyEntry(s,e,from,to) {
     return rewardSession(s) && rewards.onEnemyStep(s,e,from,to,rewardHelpers()) ||
@@ -365,7 +393,9 @@
     return a !== b && (missions.fogged(s, a) || missions.fogged(s, b));
   }
   function centralLampDestinations(s) {
-    return nodes(s).filter((n) => n.lamp || missions.fogged(s, n.tile));
+    const from = hunter(s).position;
+    return nodes(s).filter((n) => (n.lamp || missions.fogged(s, n.tile)) &&
+      (!missions.canEnter || missions.canEnter(s,from,n.id)));
   }
   function canTeleport(s, to) {
     const from = hunter(s).position, destination = node(s, to);
@@ -737,6 +767,10 @@
     if (!s.mission || s.setup.rulesVersion >= 13 || s.chapelRuling === "escort-first") return s;
     return dispatch(s, { type: "APPLY_CHAPEL_RULING" });
   }
+  function applyCombatReactionRuling(s) {
+    if (immediateKillReactions(s) || !(s.setup.rulesVersion >= 11) || s.provisional) return s;
+    return dispatch(s,{type:"APPLY_COMBAT_REACTION_RULING"});
+  }
   function enemyDef(s, e) {
     if(typeof e==="object" && e.extendedId) return extendedEnemies.definition(e.extendedId,{side:e.extendedSide,hunterCount:1,order:4});
     const kind = typeof e === "string" ? e : e.kind;
@@ -1076,6 +1110,7 @@
     h.slots = Array(slots(s).length).fill(null);
     delete s.weaponEffects;delete s.weaponAfter;
     delete s.weaponMoveReturn;
+    delete s.killReaction;
     s.combat = null;
     s.move = null;
     s.interaction = null;
@@ -1311,6 +1346,12 @@
   }
   function resume(s, a) {
     if (!a) return;
+    if (offerKillReaction(s,a)) return;
+    if (a.type === "kill_weapon_resume") {
+      if (!drainWeapons(s,a.after)) resume(s,a.after);
+      return;
+    }
+    if (a.type === "combat_end") { endCombat(s); return; }
     if (a.type === "weapon_continue") {weaponFlow.continueEffects(s,weaponHelpers());return;}
     if (a.type === "weapon_phase") {s.phase=a.phase;return;}
     if (a.type === "weapon_dodge_done") {
@@ -1985,6 +2026,7 @@
     else s.phase = "hunter";
   }
   function endCombat(s) {
+    if (offerKillReaction(s,{type:"combat_end"})) return;
     const origin = s.combat.origin;
     s.combat = null;
     finishCombatOrigin(s, origin);
@@ -2292,13 +2334,13 @@
       !a.hunterId || a.hunterId === s.activeHunterId,
       "현재 사냥꾼의 차례가 아닙니다.",
     );
-    need(s.phase !== "over" || a.type === "APPLY_CHAPEL_RULING" || s.result === "chapter-win" &&
+    need(s.phase !== "over" || ["APPLY_CHAPEL_RULING","APPLY_COMBAT_REACTION_RULING"].includes(a.type) || s.result === "chapter-win" &&
       (a.type==='ENTER_BETWEEN_CHAPTERS' || s.rewardChoices?.length &&
       ["EQUIP_REWARD", "KEEP_REWARD", "EQUIP_FIREARM", "KEEP_FIREARM"].includes(a.type)), "사냥이 끝났습니다. 새 사냥을 시작하세요.");
     const phase = (p) =>
       need(s.phase === p, "현재 단계에서는 사용할 수 없는 행동입니다.");
     // New rules apply reward choices and timing windows before any firearm or weapon command.
-    const policyAdoption = a.type === "APPLY_CHAPEL_RULING",
+    const policyAdoption = ["APPLY_CHAPEL_RULING","APPLY_COMBAT_REACTION_RULING"].includes(a.type),
       rewardFirst = s.setup.rulesVersion>=11 && rewardSession(s),
       rewardHandled = !policyAdoption && rewardFirst && rewards.dispatch(s,a,rewardHelpers());
     const firearmHandled = !policyAdoption && !rewardHandled && firearms.dispatch(s, a, firearmHelpers());
@@ -2307,6 +2349,21 @@
       !policyAdoption && !rewardFirst && rewardSession(s) && rewards.dispatch(s, a, rewardHelpers());
     const missionHandled = !policyAdoption && !handled && missions.dispatch(s, a, missionHelpers());
     if (!handled && !missionHandled) switch (a.type) {
+      case "APPLY_COMBAT_REACTION_RULING":
+        need(!immediateKillReactions(s) && s.setup.rulesVersion >= 11 && !s.provisional,
+          "규칙 11~13의 실제 구성품 저장에 현재 처치 반응 판정을 적용하세요.");
+        s.combatReactionRuling = "immediate";
+        break;
+      case "PASS_KILL_REACTION": {
+        phase("kill_react");
+        const reaction = s.killReaction;
+        delete s.killReaction;
+        h.rewardKillWindow = false; delete h.rewardBeastWindow;
+        h.rewardReactionSerial = h.rewardKillSerial || 0;
+        s.phase = reaction.phase;
+        resume(s,reaction.after);
+        break;
+      }
       case "APPLY_CHAPEL_RULING": {
         need(s.mission && !(s.setup.rulesVersion >= 13) && !s.chapelRuling,
           "이 저장에는 현재 예배당 판정이 이미 적용되었습니다.");
@@ -2705,12 +2762,14 @@
       const after=s.weaponMoveReturn;delete s.weaponMoveReturn;resume(s,after);
     }
     if(weaponRules.enabled(s) && s.weaponEffects?.length && !s.weaponAfter &&
-      !["weapon_choice","weapon_entry","firearm_react","reward_entry"].includes(s.phase))
-      drainWeapons(s,{type:s.combat ? "combat" : "weapon_phase",phase:s.phase});
+      (!["weapon_choice","weapon_entry","firearm_react","reward_entry","kill_react"].includes(s.phase) ||
+        s.phase === "kill_react" && a.type === "USE_REWARD"))
+      drainWeapons(s,{type:s.combat && !s.killReaction ? "combat" : "weapon_phase",phase:s.phase});
     if (s.mission?.deathPending && !s.combat && s.phase === "hunter") offerDeathReaction(s, { type: "mission_hunter" });
     flushMissionSpawns(s);
     if (s.mission?.won && !s.combat && !s.mission.deathAfter && s.phase === "hunter") beginChapterDream(s);
     if (s.provisional?.finished && !s.combat && s.phase === "hunter") { s.phase = "over"; s.result = "provisional-win"; }
+    if (s.phase !== "over") offerKillReaction(s,{type:"mission_phase",phase:s.phase});
     s.revision++;
     s.commands.push(clone(command));
     assertState(s);
@@ -2735,12 +2794,12 @@
     );
     need(options && typeof options.campaign === "boolean", "캠페인 시작 설정을 확인하세요.");
     const rulesVersion = Object.hasOwn(options, "rulesVersion")
-      ? options.rulesVersion : options.legacyReplay ? null : 13;
-    need(rulesVersion === null || [7, 8, 9, 10, 11, 12, 13].includes(rulesVersion),
+      ? options.rulesVersion : options.legacyReplay ? null : 14;
+    need(rulesVersion === null || [7, 8, 9, 10, 11, 12, 13, 14].includes(rulesVersion),
       "지원하는 규칙 버전을 선택하세요.");
     let qa;
     if(Object.hasOwn(options,"qa")) {
-      need(options.campaign && rulesVersion===13 && !options.provisional && !options.practiceTarget &&
+      need(options.campaign && rulesVersion>=13 && !options.provisional && !options.practiceTarget &&
         !Object.hasOwn(options,"practiceRewards") && startingConsumable===null,
         "검증 지급은 현재 규칙의 기나긴 사냥 검증 모드에서만 사용하세요.");
       qa=qaMode.normalize(options.qa,D,rewards.definitions);
@@ -2915,15 +2974,17 @@
       Number.isInteger(s.rng) && s.rng > 0 && s.rng <= 4294967295,
       "난수 오류.",
     );
-    need(s.setup.rulesVersion === undefined || [7, 8, 9, 10, 11, 12, 13].includes(s.setup.rulesVersion),
+    need(s.setup.rulesVersion === undefined || [7, 8, 9, 10, 11, 12, 13, 14].includes(s.setup.rulesVersion),
       "지원하지 않는 규칙 버전입니다.");
     if(s.setup.qa) {
-      need(s.setup.campaign===true && s.setup.rulesVersion===13 && !s.provisional && !s.setup.practiceTarget &&
+      need(s.setup.campaign===true && s.setup.rulesVersion>=13 && !s.provisional && !s.setup.practiceTarget &&
         !Object.hasOwn(s.setup,"practiceRewards") && s.setup.startingConsumable===null,"검증 모드 설정 오류.");
       need(canonical(qaMode.normalize(s.setup.qa,D,rewards.definitions))===canonical(s.setup.qa),"검증 지급 기록 오류.");
     }
     need(s.chapelRuling === undefined || s.chapelRuling === "escort-first" && s.mission &&
       !(s.setup.rulesVersion >= 13), "예배당 판정 기록 오류.");
+    need(s.combatReactionRuling === undefined || s.combatReactionRuling === "immediate" &&
+      s.setup.rulesVersion >= 11 && !(s.setup.rulesVersion >= 14) && !s.provisional,"처치 반응 판정 기록 오류.");
     need(
       s.activeHunterId === "hunter-1" && Object.keys(s.hunters).length === 1,
       "현재는 1인용입니다.",
@@ -3071,6 +3132,7 @@
         "combat_choose",
         "combat_react",
         "combat_extra",
+        "kill_react",
         "boss_react",
         "boss_move",
         "firearm_react",
@@ -3102,6 +3164,10 @@
       !s.interaction.exchanged && s.interaction.node === h.position &&
       h.position === "tile-07:top" && s.lootRemaining === 0,
       "예배당 교환 선택 상태 오류.");
+    if (s.killReaction) need(immediateKillReactions(s) && !h.inDream && h.hp > 0 &&
+      typeof s.killReaction.phase === "string" && s.killReaction.phase !== "kill_react" &&
+      s.killReaction.after && typeof s.killReaction.after.type === "string", "처치 반응 이어가기 상태 오류.");
+    if (s.phase === "kill_react") need(s.killReaction,"처치 반응 선택 상태 오류.");
     if (s.phase === "interaction_order")
       need(s.setup.rulesVersion >= 8 && !s.interaction?.applied &&
         interactionEnemies(s).length > 1 &&
@@ -3186,6 +3252,8 @@
     exportSave,
     importSave,
     applyChapelRuling,
+    applyCombatReactionRuling,
+    killReactionActions,
     hunter,
     slots,
     weapon,

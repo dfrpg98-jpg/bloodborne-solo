@@ -205,13 +205,22 @@
     need(!s.rewardChoices.length || equipmentChoice,
       "획득한 보상의 장착·공격 슬롯·보관 선택을 먼저 마치세요.");
     if (!types.has(a.type)) {
-      h.rewardKillWindow = false;
+      if (!s.killReaction) h.rewardKillWindow = false;
       h.rewardTransformWindow = false;
-      if(X.enabled(s)) {h.rewardTurnStartWindow=false;delete h.rewardBeastWindow;}
+      if(X.enabled(s)) {h.rewardTurnStartWindow=false;if (!s.killReaction) delete h.rewardBeastWindow;}
       return false;
     }
     if(a.type === "ENTRY_REWARD") return X.dispatchEntry(s,a,helpers);
-    if (a.type === "USE_REWARD") use(s, a, helpers);
+    if (a.type === "USE_REWARD") {
+      const killWindow=h.rewardKillWindow, beastWindow=h.rewardBeastWindow;
+      use(s, a, helpers);
+      // Every ready rune may respond to the same kill. Its own exhaustion
+      // prevents duplicate use; another rune does not consume its timing.
+      if (s.killReaction && h.hp > 0 && !h.inDream) {
+        h.rewardKillWindow ||= killWindow;
+        h.rewardBeastWindow ||= beastWindow;
+      }
+    }
     if (a.type === "EQUIP_REWARD") equipReward(s, a, helpers);
     if (a.type === "KEEP_REWARD") {
       const r = get(s, a.rewardId);
@@ -250,12 +259,12 @@
     // Equipment granted by the killing event must be resolved before normal actions.
     // Those mandatory choices do not consume the optional on-kill reaction window.
     const freshKill=X.enabled(s) && (h.rewardKillSerial || 0)!==killSerialBefore;
-    if (!equipmentChoice && !freshKill && !(a.type === "USE_REWARD" && get(s, a.rewardId)?.kind === "rune-rapture"))
+    if (!s.killReaction && !equipmentChoice && !freshKill && !(a.type === "USE_REWARD" && get(s, a.rewardId)?.kind === "rune-rapture"))
       h.rewardKillWindow = false;
     if(X.enabled(s) && !equipmentChoice) {
       if(!(a.type === "USE_REWARD" && get(s,a.rewardId)?.kind === "queen-flesh")) h.rewardTurnStartWindow=false;
       // A beast hit can kill another enemy and open a fresh on-kill window.
-      if(!freshKill && !(a.type === "USE_REWARD" && get(s,a.rewardId)?.kind === "rune-beast")) delete h.rewardBeastWindow;
+      if(!s.killReaction && !freshKill && !(a.type === "USE_REWARD" && get(s,a.rewardId)?.kind === "rune-beast")) delete h.rewardBeastWindow;
     }
     return true;
   }

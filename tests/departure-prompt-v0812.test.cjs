@@ -11,7 +11,8 @@ function house() {
 const cached=new Map();
 function natural(file,count,weapon='burial',face=1) {
   const key=`${file}/${count}/${weapon}/${face}`;
-  if(!cached.has(key)){let s=E.create(90,weapon,face,null,'hunter-pistol','center',{campaign:true});
+  // The stored command prefixes preserve their historical rules13 context.
+  if(!cached.has(key)){let s=E.create(90,weapon,face,null,'hunter-pistol','center',{campaign:true,rulesVersion:13});
     for(const c of require('./fixtures/'+file).slice(0,count))s=E.dispatch(s,c);
     assert.deepEqual(E.importSave(E.exportSave(s)),s);cached.set(key,s);}
   return clone(cached.get(key));

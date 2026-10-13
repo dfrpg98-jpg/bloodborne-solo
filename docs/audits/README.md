@@ -10,3 +10,7 @@
 - `departure-review-v0.8.12.json`: 동행 확인과 실제 임무 조건의 검토 기록.
 
 GitHub Actions가 실제 실행한 최신 전체 결과는 Actions의 `game-regression-results` 아티팩트에서 확인합니다. 참고사진의 실제 바이트를 읽는4개 검사는 CI에서 제외하고 로컬 전체 검사에서 확인합니다.
+
+- `release-readiness-2026-10-13.md`: 현재 개발본의 엄격 점검, 구체적인 재현 오류, 원문 대조와 미확정 범위.
+- `release-readiness-results.json`: 실제 완료된 로컬 검증 수와 증거 해시. 원격 CI 완료는 해당 PR/Actions 실행에서 별도로 확인합니다.
+- Unity 준비물의 생성·검증 결과는 `unity-port/Validation/*.json`과 Actions의 `unity-preparation-results` 아티팩트에서 확인합니다. 실제 Unity Editor나 전체 C# 게임이 실행됐다는 뜻이 아닙니다.

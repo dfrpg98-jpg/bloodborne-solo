@@ -34,3 +34,43 @@ jobs:
           path: test-results/
           if-no-files-found: error
           retention-days: 30
+
+  unity-preparation:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - uses: pnpm/action-setup@v6
+        with:
+          version: '11.25.0'
+          package_json_file: unity-port/package.json
+      - name: Install pinned schema validator
+        working-directory: unity-port
+        run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Export current rules and runtime assets
+        working-directory: unity-port
+        run: node tools/export.cjs ..
+      - name: Generate replay and numeric baselines
+        working-directory: unity-port
+        run: node tools/generate-fixtures.cjs ..
+      - name: Verify current campaigns, public boundary and C# primitives
+        working-directory: unity-port
+        run: |
+          node tools/check-current-campaigns.cjs ..
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node tools/validate.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Keep actual preparation reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: unity-preparation-results
+          path: unity-port/Validation/*.json
+          if-no-files-found: error
+          retention-days: 30

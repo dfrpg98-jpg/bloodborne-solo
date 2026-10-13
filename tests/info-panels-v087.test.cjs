@@ -6,9 +6,10 @@ const normalKey = "bloodborne-hunt-v07", qaKey = "bloodborne-hunt-qa-v1";
 const commands = require("./fixtures/weapon-campaign-completion/beast-claw-0.json");
 const engine = { create: E.create, importSave: E.importSave, exportSave: E.exportSave, dispatch: E.dispatch,
   missionView: E.missionView, rewardsView: E.rewardsView, missionActions: E.missionActions,
-  interactionEnemies: E.interactionEnemies, provisionalView: E.provisionalView, applyChapelRuling: state => state };
+  interactionEnemies: E.interactionEnemies, provisionalView: E.provisionalView, applyChapelRuling: state => state,
+  applyCombatReactionRuling: state => state };
 const checkpoints = new Map();
-let state = E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true });
+let state = E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 13 });
 checkpoints.set(0, state);
 for (let i = 0; i < 218; i++) {
   state = E.dispatch(state, commands[i]);
@@ -110,7 +111,7 @@ for (const [spec, file, count] of [
   ["female-patient-a", "v074-patient-natural-commands.json", 187],
   ["iosefka-hostile", "v074-attack-iosefka-natural-commands.json", 297],
 ]) test(`${spec} roster detail contains its actual public abilities without another enemy or future mission`, () => {
-  let state = E.create(90, "burial", 1, null, "hunter-pistol", "center", { campaign: true });
+  let state = E.create(90, "burial", 1, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 13 });
   for (const command of require("./fixtures/" + file).slice(0, count)) state = E.dispatch(state, command);
   const enemy = state.enemies.find(enemy => enemy.componentSpec === spec); assert(enemy);
   const f = launch(state), definition = E.enemyDef(state, enemy), opener = detail(f, enemy.id, true), text = f.ui.el("enemyDetailContent").textContent;

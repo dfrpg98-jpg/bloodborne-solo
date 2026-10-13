@@ -1,0 +1,12 @@
+ReferenceEngine/
+MigrationPrivate/
+Validation/
+UnityStarter/Assets/Bloodborne/Art/
+UnityStarter/Assets/Bloodborne/PublicData/
+UnityStarter/Library/
+UnityStarter/Temp/
+UnityStarter/Logs/
+UnityStarter/obj/
+UnityStarter/UserSettings/
+*.csproj
+*.sln
