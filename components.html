@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>사냥꾼 카드 목록</title>
+    <link rel="stylesheet" href="fonts/noto-sans-kr.css" />
+    <link rel="stylesheet" href="components.css" />
+  </head>
+  <body>
+    <header>
+      <a href="hunt.html">← 실제 지도에서 사냥</a
+      ><a href="campaign.html">기나긴 사냥 자료 →</a>
+    </header>
+    <main>
+      <p class="eyebrow">HUNTER'S INVENTORY / v0.5.0</p>
+      <h1>사냥을 준비하는 카드들</h1>
+      <p class="lead">
+        입력한 효과와 수량, 실제 플레이에 연결된 범위를 확인하세요.
+      </p>
+      <div id="totals" class="totals"></div>
+      <div class="notice">
+        기본 스탯 4종·소모품 16종을 플레이에 연결했습니다. 실제 업그레이드
+        20종은 실제 지도 전투 화면에서 사용하며, 보상 32종은 자료 등록
+        단계입니다. 초대장은 전체 수량에 포함되지만 현재 플레이 덱에서는
+        제외됩니다.
+      </div>
+      <section class="toolbar">
+        <label
+          >카드 검색<input
+            id="query"
+            type="search"
+            placeholder="이름, 효과, 발동 시점" /></label
+        ><label
+          >분류<select id="group">
+            <option value="all">전체</option>
+            <option value="basic">기본 스탯</option>
+            <option value="consumable">소모품</option>
+            <option value="upgrade">업그레이드</option>
+            <option value="reward">보상</option>
+          </select></label
+        ><label
+          >구현 상태<select id="runtime">
+            <option value="all">전체</option>
+            <option value="playable">플레이 가능</option>
+            <option value="reference">자료 등록</option>
+            <option value="questions">확인 필요</option>
+          </select></label
+        >
+      </section>
+      <p id="resultCount" role="status"></p>
+      <div id="cards" class="catalog-grid"></div>
+      <section class="questions">
+        <h2>사진 확인 완료</h2>
+        <div id="questions"></div>
+      </section>
+      <details class="rules">
+        <summary>수량과 적용 기준</summary>
+        <ul id="rules"></ul>
+        <p>
+          단순 오타는 표시 문구에서만 정리했습니다. 각 카드의 ‘입력 원문’에서
+          전달된 문구를 확인할 수 있습니다.
+        </p>
+        <a href="components/cards.json" download>전체 카드 데이터 내려받기</a>
+      </details>
+    </main>
+    <script src="components/cards.js"></script>
+    <script src="components.js"></script>
+  </body>
+</html>

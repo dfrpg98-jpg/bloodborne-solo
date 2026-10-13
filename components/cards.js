@@ -1,0 +1,1303 @@
+(function(root){const data={
+  "version": "0.5.0",
+  "sourceDate": "2026-10-11",
+  "cards": [
+    {
+      "id": "strength",
+      "name": "기본 근력",
+      "group": "basic",
+      "count": 3,
+      "timing": "공격·회피 슬롯에 놓을 때",
+      "rules": "+1피해",
+      "rawRules": "+1피해",
+      "source": "한국어 규칙서 8쪽 + 사용자 확인 (각 3장)",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "strength"
+    },
+    {
+      "id": "skill",
+      "name": "기본 기술",
+      "group": "basic",
+      "count": 3,
+      "timing": "공격·회피 슬롯에 놓을 때",
+      "rules": "방해",
+      "rawRules": "방해",
+      "source": "한국어 규칙서 8쪽 + 사용자 확인 (각 3장)",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "skill"
+    },
+    {
+      "id": "endurance",
+      "name": "기본 지구력",
+      "group": "basic",
+      "count": 3,
+      "timing": "공격·회피 슬롯에 놓을 때",
+      "rules": "회피, 이 슬롯을 비웁니다.",
+      "rawRules": "회피, 이 슬롯을 비웁니다.",
+      "source": "한국어 규칙서 8쪽 + 사용자 확인 (각 3장)",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "endurance"
+    },
+    {
+      "id": "vitality",
+      "name": "기본 활력",
+      "group": "basic",
+      "count": 3,
+      "timing": "공격·회피 슬롯에 놓을 때",
+      "rules": "카드 1장을 뽑습니다.",
+      "rawRules": "카드 1장을 뽑습니다.",
+      "source": "한국어 규칙서 8쪽 + 사용자 확인 (각 3장)",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "vitality"
+    },
+    {
+      "id": "antidote",
+      "name": "해독제",
+      "group": "consumable",
+      "count": 2,
+      "timing": "사냥꾼의 차례",
+      "rules": "카드를 1장 뽑습니다. 독을 1개 제거합니다.",
+      "rawRules": "카드를 1장 뽑습니다. 독을 1개 제거합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "effects": {
+        "draw": 1,
+        "removeStatus": "poison"
+      }
+    },
+    {
+      "id": "sedative",
+      "name": "진정제",
+      "group": "consumable",
+      "count": 2,
+      "timing": "사냥꾼의 차례",
+      "rules": "카드를 1장 뽑습니다. 발광을 1개 제거합니다.",
+      "rawRules": "카드를 1장 뽑습니다. 발광을 1개 제거합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "effects": {
+        "draw": 1,
+        "removeStatus": "frenzy"
+      }
+    },
+    {
+      "id": "bone-ash",
+      "name": "골수 가루",
+      "group": "consumable",
+      "count": 2,
+      "timing": "사냥꾼의 차례",
+      "rules": "보상카드1장을 준비합니다.",
+      "rawRules": "보상카드1장을 준비합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "pending",
+      "questions": [],
+      "effects": {
+        "readyReward": true
+      },
+      "runtimeNote": "보상 카드 소유·준비 상태의 실행은 아직 연결 전입니다. 소모하지 않습니다."
+    },
+    {
+      "id": "pungent-blood",
+      "name": "시큼한 혈주",
+      "group": "consumable",
+      "count": 2,
+      "timing": "사냥꾼의 차례",
+      "rules": "2칸 내에 있는, 보스가 아닌 적 하나를 활성화시키지 않습니다.",
+      "rawRules": "2칸 내에 있는, 보스가 아닌 적 하나를 활성화시키지 않습니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "effects": {
+        "target": "enemy",
+        "range": 2,
+        "skipActivation": true,
+        "nonBoss": true
+      }
+    },
+    {
+      "id": "hunters-bell",
+      "name": "사냥꾼의 종",
+      "group": "consumable",
+      "count": 2,
+      "timing": "사냥꾼의 차례",
+      "rules": "다른 사냥꾼 1명을 당신이 위치한 칸으로 순간이동시킵니다.",
+      "rawRules": "다른 사냥꾼 1명을 당신이 위차한 칸으로 순간이동시킵니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "multiplayer",
+      "questions": [],
+      "effects": {
+        "summonHunter": true
+      },
+      "runtimeNote": "1인용에서는 다른 사냥꾼이 없어 사용할 수 없습니다."
+    },
+    {
+      "id": "bold-mark",
+      "name": "사냥꾼이라는 뚜렷한 증거",
+      "group": "consumable",
+      "count": 2,
+      "timing": "사냥꾼의 차례",
+      "rules": "당신의 사냥꾼을 아무 등불칸으로 순간이동시킵니다.",
+      "rawRules": "당신의 사냥꾼을 아무 등불칸으로 순간이동시킵니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "effects": {
+        "target": "lamp",
+        "teleport": true
+      }
+    },
+    {
+      "id": "lead-elixir",
+      "name": "수은 비약",
+      "group": "consumable",
+      "count": 2,
+      "timing": "공격할 때",
+      "rules": "방어 1피해",
+      "rawRules": "방어 1피해",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "effects": {
+        "defense": 1
+      }
+    },
+    {
+      "id": "coldblood",
+      "name": "사혈 방울",
+      "group": "consumable",
+      "count": 2,
+      "timing": "사냥꾼의 차례",
+      "rules": "피의 유지 1개를 획득합니다.",
+      "rawRules": "피의 유지 1개를 획득합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "effects": {
+        "echoes": 1
+      }
+    },
+    {
+      "id": "beast-pellet",
+      "name": "야수 피의 환약",
+      "group": "consumable",
+      "count": 2,
+      "timing": "사냥꾼의 차례",
+      "rules": "공격 슬롯 1칸을 비웁니다.",
+      "rawRules": "공격 슬롯 1칸을 비웁니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "effects": {
+        "target": "slot",
+        "clearSlot": true
+      }
+    },
+    {
+      "id": "pebble",
+      "name": "돌멩이",
+      "group": "consumable",
+      "count": 2,
+      "timing": "사냥꾼의 차례",
+      "rules": "2칸 내에 있는 적 하나를 최대 2칸까지 이동시킵니다.",
+      "rawRules": "2칸 내에 있는 적 하나를 최대 2칸까지 이동시킵니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "effects": {
+        "target": "enemy-destination",
+        "range": 2,
+        "moveEnemy": 2
+      }
+    },
+    {
+      "id": "quicksilver-bullets",
+      "name": "수은탄",
+      "group": "consumable",
+      "count": 2,
+      "timing": "사냥꾼의 차례",
+      "rules": "화기를 준비합니다.",
+      "rawRules": "화기를 준비합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "effects": {
+        "readyFirearm": true
+      }
+    },
+    {
+      "id": "blue-elixir",
+      "name": "푸른 비약",
+      "group": "consumable",
+      "count": 2,
+      "timing": "사냥꾼의 차례",
+      "rules": "이동 2",
+      "rawRules": "이동 2",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "effects": {
+        "move": 2
+      }
+    },
+    {
+      "id": "molotov",
+      "name": "화염병",
+      "group": "consumable",
+      "count": 2,
+      "timing": "사냥꾼의 차례",
+      "rules": "당신이 위치한 칸에 있는 적 하나에게 2피해를 줍니다.",
+      "rawRules": "당신이 위치한 칸에 있는 적 하나에게 2피해를 줍니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "effects": {
+        "target": "enemy",
+        "range": 0,
+        "damage": 2
+      }
+    },
+    {
+      "id": "blood-vial",
+      "name": "수혈액",
+      "group": "consumable",
+      "count": 2,
+      "timing": "사냥꾼의 차례",
+      "rules": "치유2를 합니다.",
+      "rawRules": "치유2를 합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "effects": {
+        "heal": 2
+      }
+    },
+    {
+      "id": "bolt-paper",
+      "name": "번개 부싯깃",
+      "group": "consumable",
+      "count": 2,
+      "timing": "공격할 때",
+      "rules": "+1속도",
+      "rawRules": "+1속도",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "effects": {
+        "speed": 1
+      }
+    },
+    {
+      "id": "fire-paper",
+      "name": "발화 부싯깃",
+      "group": "consumable",
+      "count": 2,
+      "timing": "공격할 때",
+      "rules": "+1피해",
+      "rawRules": "+1피해",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "effects": {
+        "damage": 1
+      }
+    },
+    {
+      "id": "numbing-mist",
+      "name": "마비 안개",
+      "group": "consumable",
+      "count": 2,
+      "timing": "공격할 때",
+      "rules": "적의 공격은 모든 효과를 잃습니다.",
+      "rawRules": "적의 공격은 모든 효과를 잃습니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "effects": {
+        "removeEnemyAttackEffects": true
+      }
+    },
+    {
+      "id": "throwing-knife",
+      "name": "투척 나이프",
+      "group": "consumable",
+      "count": 2,
+      "timing": "사냥꾼의 차례",
+      "rules": "1칸 내에 있는 적 하나에게 1피해를 줍니다.",
+      "rawRules": "1칸 내에 있는 적 하나에게 1피해를 줍니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "effects": {
+        "target": "enemy",
+        "range": 1,
+        "damage": 1
+      }
+    },
+    {
+      "id": "cainhurst-invitation",
+      "name": "카인허스트 초대장",
+      "group": "consumable",
+      "count": 1,
+      "timing": "공개 지시",
+      "rules": "버려진 유산-카인허스트 초대장 카드를 공개합니다.",
+      "rawRules": "버려진 유산-카인허스트 초대장 카드를 공개합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "excluded",
+      "questions": [],
+      "effects": {
+        "revealCampaign": "forsaken-legacy/cainhurst-invitation"
+      },
+      "runtimeNote": "사용자 요청에 따라 현재 플레이 덱에서 제외합니다. 전체 구성품 수량 37장에는 포함됩니다."
+    },
+    {
+      "id": "leap",
+      "name": "도약",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "+1피해, 이 카드를 공격으로 사용하기 전에 이동 행동 1번을 할 수 있습니다.",
+      "rawRules": "+1피해, 이 카드를 공격으로 사용하기 전에 이동 행동 1번을 할 수 있습니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "strength",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "bloodlust",
+      "name": "피의 갈망",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "+1피해, (적을 처치할 떄)카드를 1장 뽑습니다. 치유 1를 합니다.",
+      "rawRules": "+1피해, (적을 처치할 떄)카드를 1장 뽑습니다. 치유 1를 합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "strength",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "regain",
+      "name": "리게인",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "+1피해, (공격 후)치유 2를 합니다.",
+      "rawRules": "+1피해, (공격 후)치유 2를 합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "strength",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "nimble",
+      "name": "날렵",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "+1피해, +1 속도",
+      "rawRules": "+1피해, +1 속도",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "strength",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "poised",
+      "name": "침착",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "+1피해, 방해,기절에 걸리지 않습니다.",
+      "rawRules": "+1피해, 방해,기절에 걸리지 않습니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "strength",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "agile",
+      "name": "기민",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "방해, +1 속도",
+      "rawRules": "방해, +1 속도",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "skill",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "steadfast",
+      "name": "꿋꿋함",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "방해, 카드를 1장 뽑습니다.",
+      "rawRules": "방해, 카드를 1장 뽑습니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "skill",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "cheap-shot",
+      "name": "비열한 일격",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "방해, (당신이 위치한 칸에 있는 적이 능력을 사용하면, 이 카드를 손에서 버립니다)해당 적에게 2피해를 줍니다.",
+      "rawRules": "방해, (당신이 위치한 칸에 있는 적이 능력을 사용하면, 이 카드를 손에서 버립니다)해당 적에게 2피해를 줍니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "skill",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "visceral",
+      "name": "내장공격",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "방해, +1 피해",
+      "rawRules": "방해, +1 피해",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "skill",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "adaptive",
+      "name": "적응력",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "방해, 회피, 이 슬롯을 비웁니다.",
+      "rawRules": "방해, 회피, 이 슬롯을 비웁니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "skill",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "swift-transform",
+      "name": "신속한 무기 변형",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "회피, 회피 또는 공격한 후, 무기를 무료로 변형할 수 있습니다.",
+      "rawRules": "회피, 회피 또는 공격한 후, 무기를 무료로 변형할 수 있습니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "endurance",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "sprint",
+      "name": "질주",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "회피, 이 슬롯을 비웁니다. (이동에 사용했을 때)3칸 이동합니다.",
+      "rawRules": "회피, 이 슬롯을 비웁니다. (이동에 사용했을 때)3칸 이동합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "endurance",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "tactical",
+      "name": "전술",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "회피, +1속도로 공격 또는 +1속도로 회피합니다. 이 슬롯을 비웁니다.",
+      "rawRules": "회피, +1속도로 공격 또는 +1속도로 회피합니다. 이 슬롯을 비웁니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "endurance",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "counterstrike",
+      "name": "반격",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "회피, (회피한 후)해당 적에게 2피해를 줍니다.",
+      "rawRules": "회피, (회피한 후)해당 적에게 2피해를 줍니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "endurance",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "energized",
+      "name": "활기",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "회피, 치유 1를 합니다. 이 슬롯 또는 다른 슬롯 1칸을 비웁니다.",
+      "rawRules": "회피, 치유 1를 합니다. 이 슬롯 또는 다른 슬롯 1칸을 비웁니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "endurance",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "defensive",
+      "name": "방어태세",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "방어 2피해",
+      "rawRules": "방어 2피해",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "vitality",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "rest",
+      "name": "한숨돌리기",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "(공격 외의 행동에 사용했을 때)치유 2를 합니다.",
+      "rawRules": "(공격 외의 행동에 사용했을 때)치유 2를 합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "vitality",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "quick",
+      "name": "쾌속",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "회피 · 카드 1장을 뽑습니다. 이 슬롯을 비웁니다.",
+      "rawRules": "(회피)카드 1장을 뽑습니다. 이 슬롯을 비웁니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST; 양면/키워드 사진 확인 · 2026-10-11 16:36 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "vitality",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "photos": [
+        {
+          "path": "components/images/01-image-1791703957627.jpg",
+          "sourceFilename": "01-image-1791703957627.jpg",
+          "sha256": "8553dce6d38ddd91fcbdf825795e4c4ec71c61726ad93bca18697b224abb1b36"
+        }
+      ],
+      "photoVerified": true,
+      "confirmedEffects": {
+        "dodge": true,
+        "draw": 1,
+        "clear": true
+      },
+      "verificationNote": "회피는 상자 안에 인쇄된 키워드입니다. “회피할 때”라는 조건 문구가 아닙니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "indomitable",
+      "name": "불굴",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "카드 1장을 뽑습니다. 발광, 독, 방해, 기절에 걸리지 않습니다.",
+      "rawRules": "카드 1장을 뽑습니다. 발광, 독, 방해, 기절에 걸리지 않습니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "vitality",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "tenacious",
+      "name": "끈기",
+      "group": "upgrade",
+      "count": 3,
+      "timing": "카드 문구에 따름",
+      "rules": "카드 2장을 뽑습니다. 그런 다음 카드 1장을 버립니다. 발광 1개 또는 독 1개를 버립니다.",
+      "rawRules": "카드 2장을 뽑습니다. 그런 다음 카드 1장을 버립니다. 발광 1개 또는 독 1개를 버립니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "playable",
+      "questions": [],
+      "stat": "vitality",
+      "runtimeNote": "실제 지도 전투(hunt.html)의 업그레이드 시장과 효과에 연결됨. 기존 훈련 화면은 별도의 테스트 카드를 사용합니다.",
+      "runtimeModes": [
+        "hunt"
+      ]
+    },
+    {
+      "id": "arianna-blood",
+      "name": "아리안나의 피",
+      "group": "reward",
+      "count": 1,
+      "timing": "사냥꾼의 차례",
+      "rules": "카드를 1장 뽑습니다. 치유 1를 합니다.",
+      "rawRules": "카드를 1장 뽑습니다. 치유 1를 합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "성당 거리의 작부 아리안나가 '나눠준 피'",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "music-box",
+      "name": "작은 오르골",
+      "group": "reward",
+      "count": 1,
+      "timing": "사용불가",
+      "rules": "사용불가",
+      "rawRules": "사용불가",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "야남의 소냐에게 받은 작은 오르골. 엄마, 아빠 생각이 나는 노래가 나온다고 한다. 뚜껑 안쪽에는 낡은 종이를 발라 놓았다. 어렴풋이 보이는 두 사람의 이름은 비올라와 게스코인인 것 같다.",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다.",
+      "activeUse": false
+    },
+    {
+      "id": "empty-shell",
+      "name": "정령의 빈 껍데기",
+      "group": "reward",
+      "count": 3,
+      "timing": "공격할 때",
+      "rules": "+1속도, +1피해",
+      "rawRules": "+1속도, +1피해",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "허물에는 점액질과 함께 신비의 힘도 아직 남아있어. 이것을 비비면 무기에 신비로운 힘이 깃든다.",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "augur",
+      "name": "이브리에타스의 전조",
+      "group": "reward",
+      "count": 1,
+      "timing": "사냥꾼의 차례",
+      "rules": "당신이 위치한 칸에 있는 적 하나에게 2피해를 주고, 그 적을 최대 2칸 멀리 이동시킵니다.",
+      "rawRules": "당신이 위치한 칸에 있는 적 하나에게 2피해를 주고, 그 적을 최대 2칸 멀리 이동시킵니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "버려진 위대한 자. 이브리에타스의 일부를 소환한다.",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "executioner-gloves",
+      "name": "사형 집행인의 장갑",
+      "group": "reward",
+      "count": 4,
+      "timing": "사냥꾼의 차례",
+      "rules": "2칸 이내에 있는 적 가운데 남은 체력이 2 이하인 적 하나를 처치합니다.",
+      "rawRules": "2칸 이내에 있는 적 가운데 남은 체력이 2 이하인 적 하나를 처치합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "먼 나라의 사형 집행인의 장갑",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "lantern",
+      "name": "랜턴",
+      "group": "reward",
+      "count": 2,
+      "timing": "사냥꾼의 차례",
+      "rules": "아무 등불칸 한 곳으로 순간이동합니다.",
+      "rawRules": "아무 등불칸 한 곳으로 순간이동합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "보조 사냥 도구로, 어둠 속에서 빛을 얻으며 양손의 무기를 사용할 수 있다.",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "old-hunter-bone",
+      "name": "고대 사냥꾼의 유골",
+      "group": "reward",
+      "count": 3,
+      "timing": "당신이 공격받을 때",
+      "rules": "해당 공격을 자동으로 회피합니다.",
+      "rawRules": "해당 공격을 자동으로 회피합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "그는 초기 사냥꾼의 독특한 기술인 \"가속\"을 사용했다고 전해진다.",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "bloodstone-shard",
+      "name": "혈석의 파편",
+      "group": "reward",
+      "count": 3,
+      "timing": "공격 슬롯에 놓음",
+      "rules": "공격 슬롯에 놓습니다. 무기를 변형할 때 다른 슬롯으로 옮길 수 있습니다. 이 카드가 놓인 슬롯으로 하는 공격을 +1피해를 줍니다.",
+      "rawRules": "공격 슬롯에 놓습니다. 무기를 변형할 때 다른 슬롯으로 옮길 수 있습니다. 이 카드가 놓인 슬롯으로 하는 공격을 +1피해를 줍니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST; 양면/키워드 사진 확인 · 2026-10-11 16:36 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "공방에서는 이러한 혈석을 이용하여 무기를 강화한다.",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다.",
+      "photos": [
+        {
+          "path": "components/images/08-image-1791704014897.jpg",
+          "sourceFilename": "08-image-1791704014897.jpg",
+          "sha256": "87e4ea5d2ca856c859528f463b5ad988b08f178efcbbcaeb56ec1032e1909785"
+        },
+        {
+          "path": "components/images/09-image-1791704020126.jpg",
+          "sourceFilename": "09-image-1791704020126.jpg",
+          "sha256": "52564351c43c33a8b02c7f92e4346ddec1e2cbdf5bf0d8f51e0c2edced872457"
+        }
+      ],
+      "photoVerified": true,
+      "verificationNote": "양면 사진에서 효과 문구를 확인했습니다. 그림 면에 추가 소진/준비 지시는 없습니다. 보상 실행과 지속·소진 예외는 구현 단계에서 공통 규칙과 대조합니다."
+    },
+    {
+      "id": "beast-roar",
+      "name": "야수의 포효",
+      "group": "reward",
+      "count": 3,
+      "timing": "사냥꾼의 차례",
+      "rules": "당신이 위치한 칸에 있는 모든 적을 최대 2칸 멀리 이동시킵니다.",
+      "rawRules": "당신이 위치한 칸에 있는 모든 적을 최대 2카느 멀리 이동시킵니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "불사의 검은 야수의 힘을 빌리는 촉매로, 위압적인 포효로 주변의 것들을 튕겨낸다.",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "adella-blood",
+      "name": "아데라의 피",
+      "group": "reward",
+      "count": 1,
+      "timing": "사냥꾼의 차례",
+      "rules": "치유 1를 합니다. 피의 유지 1개를 소비하면서 치유 +2를 합니다.",
+      "rawRules": "치유 1를 합니다. 피의 유지 1개를 소비하면서 치유 +2를 합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "치유 교단의 수녀 아데라가 '나눠준 피'",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "call-beyond",
+      "name": "공허로의 외침",
+      "group": "reward",
+      "count": 3,
+      "timing": "사냥꾼의 차례",
+      "rules": "당신이 위치한 칸에 있는 모든 적에게 2피해를 줍니다.",
+      "rawRules": "당신이 위치한 칸에 있는 모든 적에게 2피해를 줍니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "의식은 별의 폭발을 동반하여 \"성가대\"의 특별한 힘이 되었다.",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "hunter-torch",
+      "name": "야수 사냥의 횃불",
+      "group": "reward",
+      "count": 1,
+      "timing": "보스가 아닌 적 하나가 당신이 위치한 칸으로 이동해 들어올 때",
+      "rules": "그 적은 1칸 멀리서 멈추고 1피해를 받습니다.",
+      "rawRules": "그 적은 1칸 멀리서 멈추고 1피해를 받습니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "야수를 불태우고 병자를 태우기 위해 조정된 것",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "tiny-tonitrus",
+      "name": "작은 토니트루스",
+      "group": "reward",
+      "count": 2,
+      "timing": "사냥꾼의 차례",
+      "rules": "1칸 이내에 있는, 보스가 아닌 적 하나에게 2피해를 줍니다. 그 적은 활성화되지 않습니다.",
+      "rawRules": "1칸 이내에 있는, 보스가 아닌 적 하나에게 2피해를 줍니다. 그 적은 활성화되지 않습니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "지면에 박아넣어 검은 야수를 감싸는 푸른 번개를 인공적으로 재현한다.",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "messengers-gift",
+      "name": "사자의 선물",
+      "group": "reward",
+      "count": 1,
+      "timing": "사냥꾼의 차례",
+      "rules": "당신의 차례 후에, 보스가 아닌 적은 활성화되지 않습니다.",
+      "rawRules": "당신의 차례 후에, 보스가 아닌 적은 활성화되지 않습니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "검은 악몽의 안개가 사용자를 감싸면, 그는 사자의 모습으로 변모한다.",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "iosefka-vial",
+      "name": "이오셰프카의 수혈액",
+      "group": "reward",
+      "count": 3,
+      "timing": "사냥꾼의 차례",
+      "rules": "치유 2를 합니다.",
+      "rawRules": "치유 2를 합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "정제에 시간과 수고가 들기 때문에 흔하지는 않다. 아마도 여의가 만드는 것일 터이다.",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "bloodstone-chunk",
+      "name": "혈석의 덩어리",
+      "group": "reward",
+      "count": 1,
+      "timing": "공격 슬롯에 놓음",
+      "rules": "공격슬롯에 놓습니다. 무기를 변형할 때 다른 슬롯으로 옮길 수 있습니다. 이 카드가 놓인 슬롯으로 하는 공격은 +1속도를 획득하고 +1피해를 줍니다.",
+      "rawRules": "공격슬롯에 놓습니다. 무기를 변형할 때 다른 슬롯으로 옮길 수 있습니다. 이 카드가 놓인 슬롯으로 하는 공격은 +1속도를 획득하고 +1피해를 줍니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST; 양면/키워드 사진 확인 · 2026-10-11 16:36 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "공방에서는 이러한 혈석을 이용하여 무기를 강화한다.",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다.",
+      "photos": [
+        {
+          "path": "components/images/04-image-1791703981372.jpg",
+          "sourceFilename": "04-image-1791703981372.jpg",
+          "sha256": "94e51cae25f7699c64a383ca2f07c85919fe97df091749f2d9fe02825058ce2c"
+        },
+        {
+          "path": "components/images/05-image-1791703989672.jpg",
+          "sourceFilename": "05-image-1791703989672.jpg",
+          "sha256": "5146f2ef5af5e8dd123409a544a9117451d0f742fd4d3ba048f58e39bf6ed169"
+        }
+      ],
+      "photoVerified": true,
+      "verificationNote": "양면 사진에서 효과 문구를 확인했습니다. 그림 면에 추가 소진/준비 지시는 없습니다. 보상 실행과 지속·소진 예외는 구현 단계에서 공통 규칙과 대조합니다."
+    },
+    {
+      "id": "tear-gem",
+      "name": "눈물의 혈정석",
+      "group": "reward",
+      "count": 1,
+      "timing": "공격 슬롯에 놓음",
+      "rules": "공격 슬롯에 놓습니다. 무기를 변형할 때 다른 슬롯으로 옮길 수 있습니다.. 이 카드가 놓인 슬롯으로 하는 공격은 (공격할 때)치유 1를 합니다.",
+      "rawRules": "공격 슬롯에 놓습니다. 무기를 변형할 때 다른 슬롯으로 옮길 수 있습니다.. 이 카드가 놓인 슬롯으로 하는 공격은 (공격할 때)치유 1를 합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST; 양면/키워드 사진 확인 · 2026-10-11 16:36 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "순은으로 빛나는 인형의 눈물에서 생겨난 이것은 사냥꾼의 생명력을 지속 회복시키는 효과가 있다.",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다.",
+      "photos": [
+        {
+          "path": "components/images/06-image-1791703997949.jpg",
+          "sourceFilename": "06-image-1791703997949.jpg",
+          "sha256": "933912c6e15b1ee915e54b23d86c2dcf528bbd74227d9ca90cbed2f368e1f76c"
+        },
+        {
+          "path": "components/images/07-image-1791704005760.jpg",
+          "sourceFilename": "07-image-1791704005760.jpg",
+          "sha256": "81dfaf2cb0cab40252e8c8b48c887c7f1a54160a0cf32cbcfce50945dfe78977"
+        }
+      ],
+      "photoVerified": true,
+      "verificationNote": "양면 사진에서 효과 문구를 확인했습니다. 그림 면에 추가 소진/준비 지시는 없습니다. 보상 실행과 지속·소진 예외는 구현 단계에서 공통 규칙과 대조합니다."
+    },
+    {
+      "id": "queen-flesh",
+      "name": "여왕의 살점",
+      "group": "reward",
+      "count": 1,
+      "timing": "차례를 시작할 때",
+      "rules": "치유1를 합니다.",
+      "rawRules": "치유1를 합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST; 양면/키워드 사진 확인 · 2026-10-11 16:36 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "이 분홍색의 살점은 저주받은 것처럼 뜨겁다.",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다.",
+      "photos": [
+        {
+          "path": "components/images/02-image-1791703966408.jpg",
+          "sourceFilename": "02-image-1791703966408.jpg",
+          "sha256": "e7b93f70362fc6f248a3a78c02ca1c1de3de053295a46f5aba9b3275be7674e6"
+        },
+        {
+          "path": "components/images/03-image-1791703971338.jpg",
+          "sourceFilename": "03-image-1791703971338.jpg",
+          "sha256": "73a3cf608bb5f7095cc4614a8d4f14cbe22dba265a6439606573cd581f8384c5"
+        }
+      ],
+      "photoVerified": true,
+      "verificationNote": "양면 사진에서 효과 문구를 확인했습니다. 그림 면에 추가 소진/준비 지시는 없습니다. 보상 실행과 지속·소진 예외는 구현 단계에서 공통 규칙과 대조합니다."
+    },
+    {
+      "id": "ring",
+      "name": "결혼 반지",
+      "group": "reward",
+      "count": 1,
+      "timing": "사냥꾼의 차례",
+      "rules": "2칸 이내에 있는 모든 사냥꾼은 치유1를 합니다.",
+      "rawRules": "2칸 이내에 있는 모든 사냥꾼은 치유1를 합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "위대한 자라고 불리는, 인간이 아닌 무엇인가의 존재에게 특별한 의미를 갖는 결혼 반지",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "ritual-material",
+      "name": "의식용 재료",
+      "group": "reward",
+      "count": 10,
+      "timing": "사용불가",
+      "rules": "사용불가",
+      "rawRules": "사용불가",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "사망 직후 또는, 살아있는 인간에게서 뽑아낸 아름다운 눈알이다.",
+      "subtype": "unconfirmed",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다.",
+      "activeUse": false
+    },
+    {
+      "id": "rune-hunter",
+      "name": "카릴 문자:사냥",
+      "group": "reward",
+      "count": 3,
+      "timing": "공격할 때",
+      "rules": "이번 공격은 +1속도를 획득합니다. 이 공격이 끝난 후, 무료로 무기 변형을 할 수 있습니다.",
+      "rawRules": "이번 공격은 +1속도를 획득합니다. 이 공격이 끝난 후, 무료로 무기 변형을 할 수 있습니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "붉게 스며든 이것은 \"사냥\"이라는 의미가 주어져 사냥꾼을 사냥하는 자의 서약에 사용된다.",
+      "subtype": "rune",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "rune-clawmark",
+      "name": "카릴 문자:손톱자국",
+      "group": "reward",
+      "count": 2,
+      "timing": "공격할 때",
+      "rules": "스탯 카드의 효과를 다음과 같이 대체합니다. (+1피해, 방해)",
+      "rawRules": "스탯 카드의 효과를 다음과 같이 대체합니다. (+1피해, 방해)",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "\"손톱자국\"은 마치 야수와 같이 피의 온기에서 충동을 느낀다.",
+      "subtype": "rune",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "rune-writhe",
+      "name": "카릴 문자:오에돈의 꿈틀거림",
+      "group": "reward",
+      "count": 2,
+      "timing": "공격할 때",
+      "rules": "이번 공격은 방해를 얻고, 동일한 속도를 갖는 공격도 방해할 수 있습니다.",
+      "rawRules": "이번 공격은 방해를 얻고, 동일한 속도를 갖는 공격도 방해할 수 있습니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "\"꿈틀거림\"은 사냥꾼의 어두운 일면인 내장 공격을 뜻한다.",
+      "subtype": "rune",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "rune-moon",
+      "name": "카릴 문자:달",
+      "group": "reward",
+      "count": 1,
+      "timing": "당신이 처치당할 때",
+      "rules": "피의 유지 1개를 잃지 않습니다 (사냥꾼의 꿈에 들어갈 때 이 유지를 즉시 사용합니다).",
+      "rawRules": "피의 유지 1개를 잃지 않습니다 (사냥꾼의 꿈에 들어갈 때 이 유지를 즉시 사용합니다).",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "악몽 속에 살던 위대한 자들의 음성을 옮긴 것으로 \"달\"을 뜻한다.",
+      "subtype": "rune",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "rune-communion",
+      "name": "카릴 문자:성찬식",
+      "group": "reward",
+      "count": 2,
+      "timing": "사냥꾼의 차례",
+      "rules": "치유 2를 합니다.",
+      "rawRules": "치유 2를 합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "그것은 치유 교단, 또는 의료인들을 상징한다. 피의 치료란 \"성찬식\"을 탐구함에 다름이 없다.",
+      "subtype": "rune",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "rune-radiance",
+      "name": "카릴 문자:광휘",
+      "group": "reward",
+      "count": 1,
+      "timing": "챕터마다 한 번, 사냥꾼 차례에",
+      "rules": "손에 든 스탯 카드가 3장이 될 때까지 카드를 뽑습니다.",
+      "rawRules": "손에 든 스탯 카드가 3장이 될 때까지 카드를 뽑습니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "손실된 문자에서 하나를 선택하여, \"광휘\"라는 의미가 주어졌으며 로가리우스가 이끄는 처형단의 서약에 사용되었다.",
+      "subtype": "rune",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다.",
+      "limit": "once_per_chapter"
+    },
+    {
+      "id": "rune-corruption",
+      "name": "카릴 문자:타락",
+      "group": "reward",
+      "count": 1,
+      "timing": "챕터마다 한 번, 처치당하려 할 때",
+      "rules": "처치당하지 않습니다. 모든 피해를 치유합니다.",
+      "rawRules": "처치당하지 않습니다. 모든 피해를 치유합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "\"피\"라는 의미를 가진 카릴 문자 중 하나로, 이 \"타락\"에는 특히 서약의 의미가 있다.",
+      "subtype": "rune",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다.",
+      "limit": "once_per_chapter"
+    },
+    {
+      "id": "rune-guidance",
+      "name": "카릴 문자:인도",
+      "group": "reward",
+      "count": 3,
+      "timing": "사냥꾼의 차례",
+      "rules": "슬롯 1칸을 비웁니다. 이동 2",
+      "rawRules": "슬롯 1칸을 비웁니다. 이동 2",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "고대 사냥꾼 루드비히가 밝혀낸 카릴 문자. 그는 사냥이 한창인 때에도 어떤 공포도 느끼지 않게 되었다.",
+      "subtype": "rune",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "rune-eye",
+      "name": "카릴 문자:눈",
+      "group": "reward",
+      "count": 2,
+      "timing": "사냥꾼의 차례",
+      "rules": "당신의 손에서 카드 1장을 버리면서 당신의 버린 카드 더미에서 카드 1장을 되가져옵니다.",
+      "rawRules": "당신의 손에서 카드 1장을 버리면서 당신의 버린 카드 더미에서 카드 1장을 되가져옵니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "버림 받은 위대한 자들의 음성을 옮긴 것으로 \"눈\"을 뜻하며 더 많은 것을 발견한다.",
+      "subtype": "rune",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "rune-beast",
+      "name": "카릴 문자:야수",
+      "group": "reward",
+      "count": 2,
+      "timing": "적을 처치할 때",
+      "rules": "1칸 이내에 있는 다른 적 하나에게 2피해를 줍니다.",
+      "rawRules": "1칸 이내에 있는 다른 적 하나에게 2피해를 줍니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "\"야수\"는 초기 카릴 문자 중 하나로, 동시에 최초의 금지된 문자이다.",
+      "subtype": "rune",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "rune-rapture",
+      "name": "카릴 문자:피의 기쁨",
+      "group": "reward",
+      "count": 2,
+      "timing": "적을 처치할 때",
+      "rules": "카드 1장을 뽑습니다. 치유 1를 합니다.",
+      "rawRules": "카드 1장을 뽑습니다. 치유 1를 합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "인간이 아닌 자의 음성을 문자로 옮긴 카릴 문자. 피의 온기에서 희열을 느낀다.",
+      "subtype": "rune",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    },
+    {
+      "id": "rune-formless",
+      "name": "카릴 문자:형태 없는 오에돈",
+      "group": "reward",
+      "count": 1,
+      "timing": "사냥꾼의 차례",
+      "rules": "당신의 화기를 준비합니다.",
+      "rawRules": "당신의 화기를 준비합니다.",
+      "source": "사용자 전사문 · 2026-10-11 16:04 KST",
+      "runtime": "reference",
+      "questions": [],
+      "flavor": "위대한 자 오에돈은 형태 없이 목소리만 존재하고, 이 비밀문자는 그의 상징이다.",
+      "subtype": "rune",
+      "runtimeNote": "자료 등록 완료. 시나리오 획득·장비 제한·소진·회복과 개별 효과는 아직 플레이에 연결하지 않았습니다."
+    }
+  ],
+  "rules": [
+    "기본 덱: 근력·기술·지구력·활력 각 3장, 총 12장 (규칙서 8쪽).",
+    "소모품은 스탯 손패/덱과 별도로 보관하고 사용 후 소모품 버림 더미에 놓습니다. 덱이 다 떨어지면 버림 더미를 섞습니다 (17쪽).",
+    "사냥꾼 차례 소모품은 행동 전후에 사용합니다. 공격할 때 소모품은 공격 슬롯 선택과 함께 확정합니다 (17·26쪽).",
+    "시큼한 혈주의 활성화 억제는 해당 차례 직후 적 활성화까지 적용하고 다음 라운드에 해제하는 구현 해석입니다. 추격과 상호작용 반응 공격은 막지 않습니다.",
+    "마비 안개는 적 공격의 효과를 제거하며 속도·피해와 공격이 아닌 전용 능력을 제거하지 않습니다.",
+    "보상은 일반적으로 사용 후 소진되고 꿈에서 준비됩니다. 특수 사냥 도구 2장·카릴 문자 2장의 보유 제한이 있습니다 (17쪽). 지속 보상 양면 사진을 확보했으며, 개별 실행 규칙은 구현 단계에서 대조합니다.",
+    "의식용 재료·작은 오르골의 “사용불가”는 임의 사용을 막는 데이터입니다. 시나리오의 소유/제출 조건에 필요한 자료는 보존합니다.",
+    "카인허스트 초대장 1장은 사용자 요청으로 현재 플레이 덱에서 제외합니다. 전체 소모품 37장, 현재 덱 구성 36장입니다."
+  ],
+  "summary": {
+    "basic": {
+      "kinds": 4,
+      "copies": 12
+    },
+    "consumable": {
+      "kinds": 19,
+      "copies": 37
+    },
+    "upgrade": {
+      "kinds": 20,
+      "copies": 60
+    },
+    "reward": {
+      "kinds": 32,
+      "copies": 68
+    }
+  },
+  "resolvedQuestions": [
+    {
+      "id": "Q-QUICK",
+      "cards": [
+        "quick"
+      ],
+      "text": "쾌속의 “회피”는 회피 키워드인가요, “회피할 때” 발동 조건인가요? 카드 앞면 사진 또는 인쇄된 줄 구분을 확인해 주세요.",
+      "resolution": "요청한 사진 수신 및 문구 확인 완료. 추가 재촬영 요청 없음."
+    },
+    {
+      "id": "Q-PERSISTENT",
+      "cards": [
+        "bloodstone-shard",
+        "bloodstone-chunk",
+        "tear-gem",
+        "queen-flesh"
+      ],
+      "text": "혈석의 파편·혈석의 덩어리·눈물의 혈정석·여왕의 살점은 지속 적용/소진 및 보상 유형을 확인하기 위해 앞뒷면 사진이 필요합니다. 일반 보상 소진 규칙을 임의로 덮어쓰지 않습니다.",
+      "resolution": "요청한 사진 수신 및 문구 확인 완료. 추가 재촬영 요청 없음."
+    }
+  ],
+  "questions": []
+};if(typeof module!=="undefined"&&module.exports)module.exports=data;else root.BBComponents=data;})(typeof globalThis!=="undefined"?globalThis:this);

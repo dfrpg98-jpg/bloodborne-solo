@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>기나긴 사냥 · 카드 자료</title>
+    <link rel="stylesheet" href="fonts/noto-sans-kr.css" />
+    <link rel="stylesheet" href="campaign.css" />
+  </head>
+  <body>
+    <header>
+      <a href="hunt.html">← 실제 지도에서 사냥</a
+      ><a href="index.html">훈련 게임</a
+      ><a href="chapter.html">챕터 1 준비·탐험</a
+      ><a href="components.html">스탯·소모품·보상 목록</a
+      ><span>사냥의 기록 / 자료 검토판</span>
+    </header>
+    <main>
+      <p class="eyebrow">BLOODBORNE · THE LONG HUNT</p>
+      <h1>기나긴 사냥</h1>
+      <p class="lead">
+        도입부·챕터 안내 7장 · 번호 카드 60장 · 적 양면 6장 · 지도 타일 20장
+      </p>
+      <div class="notice">
+        사진과 규칙 문구를 정리한 개발 자료입니다. 실제 캠페인의 자동 진행은
+        아직 구현되지 않았습니다.
+      </div>
+      <section id="gate" class="gate">
+        <h2>시나리오 내용이 포함되어 있습니다</h2>
+        <p>카드를 열면 이야기, 선택의 결과와 보상을 볼 수 있습니다.</p>
+        <button id="openArchive">카드 자료 열기</button>
+      </section>
+      <div id="archive" hidden>
+        <div class="toolbar">
+          <label
+            >카드 찾기<input
+              id="search"
+              type="search"
+              placeholder="번호, 제목, 규칙 문구 또는 파일명"
+          /></label>
+          <label
+            >분류<select id="filter">
+              <option value="all">전체 93장</option>
+              <option value="preface">도입·챕터 안내</option>
+              <option value="numbered">번호 카드 1~60</option>
+              <option value="enemies">적 3종 · 양면</option>
+              <option value="tiles">지도 타일 20장</option>
+              <option value="questions">확인 필요</option>
+            </select></label
+          >
+          <span id="count" aria-live="polite"></span>
+        </div>
+        <div class="workspace">
+          <nav id="cardList" aria-label="카드 목록"></nav>
+          <article id="cardDetail" tabindex="-1" aria-live="polite"></article>
+        </div>
+      </div>
+      <details class="notes" id="setupAudit">
+        <summary>챕터별 적 배정 규칙 · 챕터 1 준비 구현</summary>
+        <p>
+          규칙서 10쪽과 25쪽: 매 챕터 준비 때 적 카드마다 사용할 면을 무작위로
+          정하고, 카드 3장을 섞어 사냥 보드 슬롯에 무작위로 놓습니다. 이전과
+          같은 결과가 나올 수도 있습니다.
+        </p>
+        <p>
+          슬롯은 지도에 인쇄된 출현 기호와 적 종류를 연결하며 적 활성화 순서도
+          정합니다 (9·15·16쪽). 같은 종류의 피규어 4개는 그 챕터의 같은 카드
+          면을 사용합니다.
+        </p>
+        <p>
+          지도 초기화(24쪽), 타일 공개, 전투마다 배정을 다시 뽑지 않습니다. 별도
+          시나리오 지시는 우선 적용합니다. 보스·NPC는 각자의 별도 규칙을
+          따릅니다.
+        </p>
+        <p>
+          <strong
+            ><a href="chapter.html">챕터 1 준비·탐험 검증판</a>에서 실제 적의
+            면·슬롯을 추첨하고 출현과 타일 배치를 처리합니다.</strong
+          >
+          훈련 게임은 기존 테스트 적을 사용합니다. 실제 적의 전투 효과와 챕터
+          임무는 아직 연결 전입니다.
+        </p>
+      </details>
+      <details class="notes">
+        <summary>판독 결과와 다음 개발에 필요한 자료</summary>
+        <p>
+          캠페인 67장, 적 카드 6장, 지도 사진 20장 모두 글자를 읽을 수 있습니다.
+          57번의 ‘야수 사냥 하수인’은 ‘야수 사냥 하인’과 같은 적으로 사용자
+          확인을 받았습니다. 판독·명칭 관련 미해결 질문은 없습니다.
+        </p>
+        <p>
+          사진의 줄바꿈과 일부 공백을 정리했고, 아이콘은 대괄호 안의 이름으로
+          기록했습니다. 공격 속도 아이콘은 1~3, 혈액방울은 피해로 표현했습니다.
+          전체 서사와 원래 인쇄 문구는 사진에서 확인할 수 있습니다.
+        </p>
+        <p>
+          카드 번호는 사용자가 알려 준 파일명 오름차순을 기준으로 연결했습니다.
+          챕터 3 안내는 임무, 준비 순으로 촬영되어 있습니다.
+        </p>
+        <p>
+          일반 적 3종의 피규어는 종류별 4개로 확인했습니다. 챕터 1~3 지정 지도,
+          기본 스탯·업그레이드·소모품·보상 32종은 받았습니다. 쾌속과 보상 4종의
+          사진을 확인했습니다. 추가 화기는 테스트용으로 단총 능력을 적용합니다.
+          후속 챕터의 보스·NPC 자료는 아직 필요합니다.
+        </p>
+        <a href="campaigns/long-hunt/data.json" download="long-hunt-ko.json"
+          >규칙 데이터 내려받기</a
+        >
+      </details>
+    </main>
+    <script src="campaigns/long-hunt/data.js"></script>
+    <script src="campaign.js"></script>
+  </body>
+</html>

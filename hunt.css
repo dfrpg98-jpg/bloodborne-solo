@@ -1,0 +1,269 @@
+.hunt-main {
+  max-width: 1600px;
+}
+.hunt-main > .panel {
+  padding: 24px;
+  margin: 22px 0;
+}
+.hunter-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 22px 0;
+}
+.hunter-strip > div {
+  background: #18262c;
+  border: 1px solid #425158;
+  border-radius: 8px;
+  padding: 20px;
+}
+.hunter-strip h2 {
+  margin: 0 0 10px;
+}
+.hunter-strip p {
+  margin: 7px 0;
+}
+.hunt-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(310px, 1fr);
+  gap: 22px;
+}
+.hunt-layout > .panel {
+  padding: 24px;
+  min-width: 0;
+}
+.hunt-main .panel-heading {
+  padding: 0;
+}
+.hunt-map .map-viewport {
+  height: 475px;
+}
+.hunt-decisions {
+  border-color: #a18d61;
+  align-self: start;
+}
+.hunt-decisions h2 {
+  margin-top: 8px;
+}
+.hunt-decisions #decisions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.hunt-decisions label {
+  display: block;
+}
+.hunt-decisions select {
+  width: 100%;
+  margin: 7px 0;
+}
+.hunt-decisions .combat-card {
+  border: 1px solid #775953;
+  padding: 15px;
+  margin: 15px 0;
+  background: #322827;
+}
+.hunt-loadout {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 22px;
+  margin: 22px 0;
+}
+.hunt-loadout > .panel {
+  padding: 24px;
+  min-width: 0;
+}
+.hunt-slots {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.hunt-slot {
+  min-height: 150px;
+  padding: 15px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+.hunt-slot.selected,
+.hunt-main .stat-card.selected {
+  border: 2px solid #e1c480;
+  background: #443c2d;
+}
+.hunt-slot.occupied {
+  border-color: #9e786d;
+}
+.hunt-slot b {
+  font-size: 17px;
+}
+.hunt-main .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+.hunt-main .stat-card {
+  width: auto;
+  min-height: 150px;
+  text-align: left;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.hunt-main .stat-card small {
+  font-size: 11px;
+  color: var(--muted);
+}
+.hunt-main .stat-card span {
+  font-size: 12px;
+  line-height: 1.7;
+}
+.hunt-enemy {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid #394b54;
+  padding: 10px 0;
+  font-size: 12px;
+}
+.hunt-enemy button {
+  padding: 7px 12px;
+}
+.hunt-enemy.selected {
+  color: var(--gold);
+}
+.hunt-assignments summary {
+  font-size: 18px;
+}
+.hunt-main .chapter-log {
+  max-height: 310px;
+  overflow: auto;
+}
+.hunt-main select,
+.hunt-main input,
+dialog select,
+dialog input {
+  max-width: 100%;
+}
+.hunt-main .choice-grid {
+  display: grid;
+  gap: 8px;
+}
+.hunt-main .choice-grid button {
+  text-align: left;
+  line-height: 1.7;
+}
+.hunt-main .choice-grid small {
+  display: block;
+  color: #bec8c7;
+}
+.hunt-main .checkrow {
+  display: block;
+  margin: 6px 0;
+}
+.hunt-main .checkrow input {
+  margin-right: 8px;
+}
+.hunt-main .ready {
+  color: #a9d2aa;
+}
+.hunt-main .spent {
+  color: #db9387;
+}
+.hunt-main .rotation-preview img {
+  max-width: 180px;
+}
+.hunt-main .map-viewport .space:disabled {
+  opacity: 1;
+  filter: none;
+}
+.hunt-main .chapter-map .space .token {
+  font-size: 9px;
+}
+.hunt-main .hunt-decisions #error:empty {
+  display: none;
+}
+@media (max-width: 1050px) {
+  .hunt-layout,
+  .hunt-loadout {
+    grid-template-columns: 1fr;
+  }
+  .hunt-decisions {
+    order: -1;
+  }
+  .hunt-map .map-viewport {
+    height: 410px;
+  }
+}
+@media (max-width: 620px) {
+  .hunter-strip {
+    grid-template-columns: 1fr;
+  }
+  .hunt-main .hunt-slots {
+    gap: 5px;
+  }
+  .hunt-main .hunt-slot {
+    font-size: 12px;
+    padding: 10px 5px;
+  }
+  .hunt-layout > .panel,
+  .hunt-loadout > .panel,
+  .hunt-main > .panel {
+    padding: 16px;
+  }
+  .hunt-main .chapter-enemies {
+    grid-template-columns: 1fr;
+  }
+  .hunt-main .hunt-enemy {
+    flex-wrap: wrap;
+  }
+  .hunt-main .hunt-slot b {
+    font-size: 14px;
+  }
+}
+
+.hunt-main #nearEnemies {
+  max-height: 230px;
+  overflow: auto;
+}
+
+[hidden] { display: none !important; }
+.mission-panel { border-color: #81724e; }
+.mission-objectives, .revealed-cards, .rewards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+.mission-objective, .revealed-card, .reward-card {
+  background: #18262c;
+  border: 1px solid #46545a;
+  border-radius: 6px;
+  padding: 16px;
+  min-width: 0;
+}
+.mission-objective { display: flex; flex-direction: column; gap: 8px; }
+.mission-objective.completed, .revealed-card.completed { border-color: #64825f; }
+.revealed-card h3, .reward-card h3 { margin: 6px 0 12px; }
+.revealed-card p, .reward-card p { font-size: 13px; line-height: 1.8; }
+.revealed-card img, .reward-card img { display: block; width: 100%; max-width: 360px; margin: 12px auto 0; }
+.mission-cards { border-top: 1px solid #46545a; margin-top: 18px; padding-top: 16px; }
+.mission-tokens { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.mission-token { border: 1px solid #84755e; background: #382f22; padding: 8px 12px; border-radius: 5px; font-size: 12px; }
+.mission-panel #missionFog { margin: 10px 0; }
+.hunt-main .chapter-map .fog-tile { outline: 3px solid #9fabc0; outline-offset: -2px; box-shadow: inset 0 0 18px #c5c8d840; }
+.hunt-main .chapter-map .map-mission-token { color: #e5ca8f; font-size: 9px; }
+.reward-card .actions { margin: 12px 0 0; }
+.reward-card select { width: 100%; padding: 9px; margin: 6px 0; }
+.reward-card .reward-state { color: #a9d2aa; }
+.reward-card .reward-state.spent { color: #db9387; }
+.reward-card label { display: block; margin: 8px 0; font-size: 12px; }
+.reward-pending { border: 1px solid #ac9265; background: #322d22; padding: 15px; border-radius: 5px; }
+.reward-pending .choice-grid { margin: 10px 0; }
+@media (max-width: 620px) {
+  .mission-objectives, .revealed-cards, .rewards-grid { grid-template-columns: 1fr; }
+  .mission-panel .panel-heading { align-items: flex-start; gap: 8px; flex-wrap: wrap; }
+  .mission-panel .actions button, .reward-card .actions button { flex: 1 1 100%; }
+}

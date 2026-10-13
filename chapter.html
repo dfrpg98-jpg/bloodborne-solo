@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>기나긴 사냥 · 챕터 1 준비와 탐험</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="chapter.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html"
+        ><span class="sigil">♜</span
+        ><span
+          ><small>BLOODBORNE · CHAPTER LAB</small
+          ><strong>사냥의 기록</strong></span
+        ></a
+      >
+      <nav class="top-actions">
+        <a class="button primary" href="hunt.html">실제 지도에서 사냥</a>
+        <span class="badge">SOLO / v0.5.0</span
+        ><a class="button" href="index.html">전투 훈련</a
+        ><a class="button" href="campaign.html" target="_blank">원본 자료 ↗</a
+        ><button id="exportMap">저장 내보내기</button
+        ><button id="importMap">불러오기</button
+        ><button id="newMap">새 챕터 준비</button
+        ><input
+          type="file"
+          id="mapFile"
+          accept=".json,application/json"
+          hidden
+        />
+      </nav>
+    </header>
+    <main class="chapter-main">
+      <div class="intro">
+        <div>
+          <p class="eyebrow">기나긴 사냥 · 챕터 1</p>
+          <h1>사냥터를 펼치다</h1>
+          <p>적의 배정부터 첫 출입구 너머까지.</p>
+        </div>
+        <span id="chapterSaveStatus" class="save-status" role="status"></span>
+      </div>
+      <div class="notice">
+        <strong>준비·탐험 검증판</strong
+        ><span
+          >실제 자료로 적의 면·출현 기호 배정, 타일 공개·회전·연결과 구성물
+          배치를 처리합니다. 이 화면의 이동은 지도 검증용으로 무료입니다. 스탯
+          카드 비용·추격·적 활성화·전투·타일 특수 효과·임무 효과·사냥 트랙은
+          아직 연결되지 않았습니다.</span
+        >
+      </div>
+      <section class="panel chapter-setup">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">사냥 보드 · 이번 챕터의 배정</p>
+            <h2>같은 적, 다른 밤</h2>
+          </div>
+          <span class="badge" id="setupSeed"></span>
+        </div>
+        <p class="muted">
+          왼쪽부터 활성화 순서 1 → 2 → 3. 같은 종류의 모든 피규어가 선택된 면을
+          공유합니다. A/B는 전달받은 사진 순서입니다.
+        </p>
+        <div id="chapterEnemies" class="chapter-enemies"></div>
+      </section>
+      <div class="chapter-layout">
+        <section class="panel map-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">실제 타일 · 연결된 칸으로 탐험</p>
+              <h2>야남의 길</h2>
+            </div>
+            <span id="tileCount" class="badge"></span>
+          </div>
+          <p class="muted">
+            밝은 칸을 누르면 한 칸 이동합니다. 사냥꾼이 선 칸의 출입구에서
+            ‘탐험’을 눌러 새 타일을 공개하세요. 넓어진 지도는 가로·세로로
+            스크롤할 수 있습니다.
+          </p>
+          <div
+            id="mapViewport"
+            class="map-viewport"
+            tabindex="0"
+            aria-label="탐험 지도"
+          >
+            <div id="chapterMap" class="chapter-map"></div>
+          </div>
+          <div class="map-legend">
+            <span>● 사냥꾼</span><span>✦ 등불</span><span>◇ 소모품 토큰</span
+            ><span>① ② ③ 적 슬롯</span><span>선: 인접 칸</span>
+          </div>
+          <p id="locationText"></p>
+          <div id="explorationActions" class="actions"></div>
+          <p id="chapterError" class="error" role="alert"></p>
+        </section>
+        <aside class="chapter-sidebar">
+          <section
+            id="placementPanel"
+            class="panel placement-panel"
+            aria-live="polite"
+          ></section>
+          <section class="panel">
+            <p class="eyebrow">CHAPTER 1</p>
+            <h2>준비된 구성</h2>
+            <p>
+              중앙 등불에서 시작<br />마당 등불 · 민가 · 오에돈 예배당 · 폐가<br />사용하지
+              않는 타일 중 무작위 2개
+            </p>
+            <p class="muted">
+              무작위 후보에는 명칭이 있는 타일도 포함됩니다. 공개 전에는 타일
+              순서를 표시하지 않습니다.
+            </p>
+            <details>
+              <summary>시작 임무 확인 · 1번 카드</summary>
+              <p>
+                계몽을 2장 이상 모은 후, 중앙 등불 타일에서 이동을 마치면 2번
+                카드를 공개합니다.
+              </p>
+              <p class="muted">
+                이 화면에서는 임무를 진행하거나 후속 카드를 자동 공개하지
+                않습니다.
+              </p>
+              <a href="campaigns/long-hunt/images/card-01.jpg" target="_blank"
+                >원본 카드 보기 ↗</a
+              >
+            </details>
+          </section>
+          <section class="panel">
+            <h2>초기화 확인</h2>
+            <p>
+              공개된 타일의 적과 소모품을 다시 배치합니다. 적의 면·출현 기호
+              배정과 두 덱의 상태는 유지합니다.
+            </p>
+            <button id="resetMap">지도 초기화 검증</button>
+            <p id="resetCount" class="muted"></p>
+          </section>
+        </aside>
+      </div>
+      <section class="panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">규칙서 20쪽 · 모든 적이 공유</p>
+            <h2>적 행동 덱</h2>
+          </div>
+          <span id="behaviorCount" class="badge"></span>
+        </div>
+        <p>
+          기본 공격 3장 · 특수 공격 2장 · 전용 능력 1장. 덱이 비면 다음 카드를
+          뽑을 때 버린 카드를 모아 섞습니다.
+        </p>
+        <div id="behaviorSummary" class="deck-kinds"></div>
+        <div class="behavior-controls">
+          <label
+            >행동을 확인할 적
+            <select id="behaviorEnemy"></select></label
+          ><button id="drawBehavior">다음 행동 카드 공개 · 덱 확인용</button>
+        </div>
+        <p class="muted">
+          선택한 적 종류가 바뀌어도 같은 덱을 사용합니다. 아래에는 해당 면의
+          원문 효과를 보여주며, 전투나 추가 카드 공개 효과는 실행하지 않습니다.
+        </p>
+        <div
+          id="behaviorResult"
+          class="behavior-result"
+          aria-live="polite"
+        ></div>
+        <p id="behaviorHistory" class="muted"></p>
+      </section>
+      <section class="panel">
+        <h2>탐험 기록</h2>
+        <div id="chapterLog" class="chapter-log" aria-live="polite"></div>
+      </section>
+    </main>
+    <dialog id="setupDialog">
+      <h2>새 챕터 1 준비</h2>
+      <p>
+        새 적 배정과 타일 더미를 만듭니다. 이전 진행을 보관하려면 먼저 저장을
+        내보내세요.
+      </p>
+      <label
+        >준비 시드
+        <input id="chapterSeed" type="number" min="0" max="4294967295" step="1"
+      /></label>
+      <p class="muted">
+        같은 시드는 같은 배정을 재현합니다. 새로운 시드에서도 같은 면이나 순서가
+        나올 수 있습니다.
+      </p>
+      <label
+        >중앙 등불 시작 칸
+        <select id="startSpace">
+          <option value="center">가운데 · 중앙 등불</option>
+          <option value="left">왼쪽 칸</option>
+          <option value="right">오른쪽 칸</option>
+        </select></label
+      >
+      <p id="setupError" class="error" role="alert"></p>
+      <div class="actions">
+        <button id="cancelSetup">돌아가기</button
+        ><button id="confirmSetup" class="primary">새 준비 확정</button>
+      </div>
+    </dialog>
+    <script src="campaigns/long-hunt/data.js"></script>
+    <script src="enemy-deck.js"></script>
+    <script src="chapter-engine.js"></script>
+    <script src="chapter-app.js"></script>
+  </body>
+</html>
