@@ -13,6 +13,11 @@ const supplies=[...Array(10).fill('qa-heal'),...Array(10).fill('qa-cards'),...Ar
 function initial(seed=140,weapon='burial',face=0){return E.create(seed,weapon,face,null,'hunter-pistol','center',
   {campaign:true,rulesVersion:14,qa:{preset:'custom',startRewards:[],startConsumables:supplies}});}
 function replay(s,commands){for(const c of commands)s=E.dispatch(s,c);assert.deepEqual(E.importSave(E.exportSave(s)),s);return s;}
+function naturalReplay(s,commands){for(const c of commands){
+  const using=()=>c.type==='USE_REWARD'&&E.killReactionActions(s).some(a=>!a.disabled&&a.command.type===c.type&&a.command.rewardId===c.rewardId&&a.command.enemyId===c.enemyId);
+  while(s.phase==='kill_react'&&!s.rewardChoices.length&&!using())s=E.dispatch(s,{type:'PASS_KILL_REACTION'});
+  s=E.dispatch(s,c);
+}assert.deepEqual(E.importSave(E.exportSave(s)),s);return s;}
 const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json',
   '.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.woff2':'font/woff2'};
 const server=http.createServer((req,res)=>{let p;try{p=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));}catch{res.writeHead(400).end();return;}
@@ -84,6 +89,14 @@ function chapelZero(){const commands=[{type:'USE_CONSUMABLE',itemId:'item-qa-1-2
   {type:'PLACE_TILE',rotation:1},{type:'STEP',node:'tile-03:room'},{type:'STEP',node:'tile-03:entry'}];
   return {before:replay(initial(7),commands),commands,step:{type:'STEP',node:'tile-17:top'}};
 }
+function firearmReward(){let s=E.create(90,'burial',1,null,'hunter-pistol','center',
+  {campaign:true,rulesVersion:14,qa:{preset:'custom',startRewards:[],startConsumables:[]}});
+  for(const c of require('../tests/fixtures/full-campaign-actual-v10-commands.json')){
+    const using=()=>c.type==='USE_REWARD'&&E.killReactionActions(s).some(a=>!a.disabled&&a.command.type===c.type&&a.command.rewardId===c.rewardId&&a.command.enemyId===c.enemyId);
+    while(s.phase==='kill_react'&&!s.rewardChoices.length&&!using())s=E.dispatch(s,{type:'PASS_KILL_REACTION'});
+    s=E.dispatch(s,c);if(s.rewardChoices.some(c=>c.firearmId))return s;
+  }throw Error('No natural firearm reward');
+}
 (async()=>{
   await new Promise(resolve=>server.listen(8787,'127.0.0.1',resolve));
   try{
@@ -118,6 +131,29 @@ function chapelZero(){const commands=[{type:'USE_CONSUMABLE',itemId:'item-qa-1-2
       await page.locator('[data-move-direction=E]').click();s=E.dispatch(s,{type:'STEP',node:'tile-14:right'});assert.deepEqual(await saved(),s);
       await page.locator('#movementControls [data-command=STOP_MOVE]').click();s=E.dispatch(s,{type:'STOP_MOVE'});assert.deepEqual(await saved(),s);await acknowledge();
       await clean();await screenshot('controller-after-move');
+    });
+    await attempt('naturally-earned-firearm-tooltip-and-equip',async()=>{
+      let s=firearmReward();await load(s);const choice=s.rewardChoices.find(c=>c.firearmId),gun=E.rewardsView(s).firearms.find(g=>g.id===choice.firearmId);
+      assert(gun.actual);const name=page.locator(`#decisions [data-firearm-info="${gun.id}"]`);await name.hover();await name.focus();
+      assert.match(await name.getAttribute('title'),/손패 2장/);const box=await name.locator('[role=tooltip]').boundingBox();assert(box.x>=0&&box.y>=0&&box.x+box.width<=1208&&box.y+box.height<=848);
+      assert.deepEqual(await saved(),s);await screenshot('earned-firearm-tooltip');s=await transition(s,{type:'EQUIP_FIREARM',firearmId:gun.id});
+      assert.equal(await page.locator('#firearm [data-firearm-info]').getAttribute('data-firearm-info'),gun.id);await screenshot('earned-firearm-equipped');
+    });
+    await attempt('controller-real-branch-choice',async()=>{
+      const s=naturalReplay(E.create(90,'beast-claw',0,null,'hunter-pistol','center',{campaign:true,rulesVersion:14,qa:{preset:'custom',startRewards:[],startConsumables:[]}}),
+        require('../tests/fixtures/weapon-campaign-completion/beast-claw-0.json').slice(0,32));
+      await load(s);const down=U.movement(s).directions.find(d=>d.edge==='S');assert.equal(down.options.filter(o=>o.enabled).length,2);
+      await page.locator('[data-move-direction=S]').click();assert.deepEqual(await saved(),s);await screenshot('controller-branch-choice');
+      await page.locator('[data-move-option="1"]').click();assert.deepEqual(await saved(),E.dispatch(s,down.options[1].command));await acknowledge();
+    });
+    await attempt('controller-real-escort-confirmation',async()=>{
+      let s=naturalReplay(E.create(90,'burial',1,null,'hunter-pistol','center',{campaign:true,rulesVersion:14,qa:{preset:'custom',startRewards:[],startConsumables:[]}}),
+        require('../tests/fixtures/v074-shelter-natural-commands.json').slice(0,75));
+      await load(s);await page.locator('[data-card="card-1"]').click();await page.locator('#movementControls [data-command=MOVE]').click();s=E.dispatch(s,{type:'MOVE',cardId:'card-1'});
+      assert.deepEqual(await saved(),s);const d=U.movement(s).directions.find(d=>d.options.some(o=>o.command.node==='tile-11:street'));assert(d);
+      await page.locator(`[data-move-direction="${d.edge}"]`).click();assert.equal(await page.locator('#escortDialog').evaluate(x=>x.open),true);
+      assert.deepEqual(await saved(),s);await screenshot('controller-escort-confirm');await page.locator('#escortAccept').click();
+      s=replay(s,[{type:'MISSION_PICKUP'},{type:'STEP',node:'tile-11:street'}]);assert.deepEqual(await saved(),s);await acknowledge();
     });
     await attempt('rotated-tile-and-combat-continuity',async()=>{
       let s=replay(initial(),[{type:'USE_CONSUMABLE',itemId:'item-qa-1-21'},{type:'EXPLORE',edge:'N'},{type:'PLACE_TILE',rotation:0}]);await load(s);
@@ -163,7 +199,7 @@ function chapelZero(){const commands=[{type:'USE_CONSUMABLE',itemId:'item-qa-1-2
     await attempt('chapel-one-to-zero-actual-pursuit-and-attack',async()=>{
       const checkpoint=chapelZero();await load(checkpoint.before);let s=await transition(checkpoint.before,checkpoint.step);
       assert.equal(E.hunter(s).position,'tile-17:top');const e=s.enemies.find(e=>e.id==='scourge-beast-1');assert.equal(e.node,'tile-17:top');
-      await page.locator(`[data-enemy="${e.id}"]`).click();assert.match(await page.locator('#mapContext').innerText(),/속도 1 → 0/);await screenshot('chapel-one-to-zero-detail');
+      await page.locator(`#chapterMap [data-enemy="${e.id}"]`).click();assert.match(await page.locator('#mapContext').innerText(),/속도 1 → 0/);await screenshot('chapel-one-to-zero-detail');
       const command={type:'ATTACK',cardId:E.hunter(s).hand[0].id,slot:0,enemyId:e.id};s=await transition(s,command);
       assert.equal(s.combat.action.speed,0);assert.equal(s.combat.action.name,'달려들어 뜯기');assert.match(await page.locator('#combatInfo').innerText(),/속도 1 → 0/);
       await screenshot('chapel-one-to-zero-combat');s=await transition(s,{type:'RESOLVE'});await acknowledge();await clean();await screenshot('chapel-one-to-zero-after-resolve');
