@@ -160,11 +160,6 @@
 .hunt-main #weaponFace { font-size: 10px; color: #bcc8c8; letter-spacing: 0; }
 .hunt-main #weaponAbility { margin: 4px 0 6px; font-size: 10px; line-height: 1.45; color: #c6d0d0; }
 .hunt-main .weapon-rules { flex: 0 0 auto; font-size: 10px; margin: 4px 0 6px; line-height: 1.4; }
-.hunt-main .weapon-rules summary { color: #c6d0d0; cursor: pointer; }
-.hunt-main .weapon-rules[open] { position: absolute; left: -1px; right: -1px; bottom: calc(100% + 5px); margin: 0; padding: 12px 14px; max-height: min(280px, 45dvh); overflow: auto; scrollbar-width: thin; border: 1px solid #b39a69; border-radius: 6px; background: #152128; box-shadow: 0 12px 40px #000b; z-index: 30; font-size: 12px; }
-.hunt-main .weapon-rules[open] summary { font-size: 12px; font-weight: 600; color: #e7cb91; }
-.hunt-main .weapon-rules[open] summary::after, .hunt-main .firearm-rules[open] summary::after { content: "닫기 ×"; float: right; margin-left: 12px; color: #d0d7d6; font-size: 10px; font-weight: 400; }
-.hunt-main .weapon-rules[open] #weaponAbility { font-size: 12px; line-height: 1.7; margin: 10px 0 0; }
 .hunt-main .hunt-slots { display: grid; gap: 5px; flex: 1; min-height: 0; }
 .hunt-main .hunt-slot { min-height: 0; padding: 8px 6px; display: flex; flex-direction: column; gap: 5px; text-align: left; }
 .hunt-main .hunt-slot b { font-size: 13px; line-height: 1.3; }
@@ -179,10 +174,6 @@
 .hunt-main .gun-panel p { font-size: 10px; line-height: 1.5; margin: 3px 0; }
 .hunt-main .gun-panel > button { width: 100%; padding: 7px 8px; font-size: 11px; line-height: 1.45; margin-top: auto; }
 .hunt-main .firearm-rules { font-size: 10px; line-height: 1.5; min-height: 0; margin-bottom: 5px; }
-.hunt-main .firearm-rules[open] { position: absolute; left: -1px; right: -1px; bottom: calc(100% + 5px); margin: 0; padding: 12px 14px; max-height: min(280px, 45dvh); overflow: auto; scrollbar-width: thin; border: 1px solid #8fac99; border-radius: 6px; background: #152128; box-shadow: 0 12px 40px #000b; z-index: 30; font-size: 12px; }
-.hunt-main .firearm-rules[open] summary { font-size: 12px; font-weight: 600; color: #c7e0ce; }
-.hunt-main .firearm-rules[open] p { font-size: 12px; line-height: 1.7; margin: 10px 0 0; }
-.hunt-main .firearm-rules summary { color: #c6c9bc; cursor: pointer; }
 .hunt-screen .ready { color: #abd8b1; }
 .hunt-screen .spent { color: #e6ac9e; }
 .info-dialog { width: min(1060px, calc(100vw - 32px)); max-width: calc(100vw - 32px); height: min(720px, calc(100dvh - 36px)); max-height: calc(100dvh - 36px); padding: 0; color: var(--ink); background: #142027; border: 1px solid #9c8457; border-radius: 8px; overflow: hidden; box-shadow: 0 24px 90px #000a; }
@@ -323,6 +314,67 @@
 }
 
 [hidden] { display: none !important; }
+
+/* Persistent rules and public chapter information occupy reserved HUD space. */
+.hunt-screen .hunt-main { grid-template-rows: 132px 24px minmax(0, 1fr) 260px; }
+.hunt-main .weapon-panel, .hunt-main .gun-panel { overflow: hidden !important; }
+.hunt-main .weapon-rules, .hunt-main .firearm-rules { position: static; margin: 5px 0 7px; min-height: 0; }
+.hunt-main .weapon-rules h3, .hunt-main .firearm-rules h3 { margin: 0 0 3px; color: #e2cc9e; font-size: 10px; line-height: 1.3; }
+.hunt-main .weapon-rules { flex: 0 0 74px; overflow: auto; scrollbar-width: thin; }
+.hunt-main .firearm-rules { flex: 1; overflow: auto; scrollbar-width: thin; }
+.hunt-main #weaponAbility { margin: 0; font-size: 11px; line-height: 1.5; }
+.hunt-main .gun-panel p { font-size: 11px; line-height: 1.5; }
+.hunt-main .hunt-slots { flex: 1 1 100px; grid-auto-rows: minmax(0, 1fr); }
+.mission-hud-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(290px, 42%); gap: 14px; height: calc(100% - 24px); min-height: 0; }
+.mission-hud-goals { min-width: 0; min-height: 0; overflow: auto; scrollbar-width: thin; }
+.enemy-roster { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; align-content: start; min-width: 0; overflow: auto; scrollbar-width: thin; }
+.enemy-roster:has(> .enemy-roster-entry:nth-child(4)) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.enemy-roster:has(> .enemy-roster-entry:nth-child(5)) { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.enemy-roster:has(> .enemy-roster-entry:nth-child(6)) { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.enemy-roster .enemy-roster-entry { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; min-width: 0; min-height: 67px; margin: 0; padding: 9px; text-align: left; border-color: var(--marker, #9b8769); background: #142127; }
+.enemy-roster-entry strong { display: block; position: static; line-height: 1.35; font-size: 12px; overflow-wrap: anywhere; }
+.roster-marker { display: flex; gap: 5px; align-items: center; position: static; font-size: 10px; line-height: 1.3; color: var(--marker, #e2cc9e); }
+.roster-marker i { flex: 0 0 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--marker); }
+.chapter-conditions { margin: 5px 0 0; font-size: 11px; line-height: 1.4; color: #c1d0cf; }
+.condition-label { color: #e2cc9e; font-weight: 600; }
+.secondary-objective { margin-top: 5px; border-top: 1px solid #3e4c4f; padding-top: 3px; }
+.hunt-main .secondary-objective .mission-objective b { font-size: 11px; }
+.hunt-main .assignment .marker, .info-panel .assignment .marker { position: static; display: inline-block; max-width: 100%; line-height: 1.4; }
+.info-panel .assignment h3 { margin: 12px 0 8px; line-height: 1.4; }
+.deck-summary { display: flex; flex-wrap: wrap; align-items: center; gap: 3px 5px; }
+.deck-summary button { padding: 3px 5px; font-size: 10px; text-align: left; line-height: 1.35; }
+.enemy-action-history { padding-left: 30px; margin: 10px 0; }
+.enemy-action-history li { border-bottom: 1px solid #40515a; padding: 10px 8px; font-size: 13px; line-height: 1.5; }
+.enemy-action-history li > span, .enemy-action-history li > strong { display: block; }
+.enemy-action-history .history-meta { color: #aabcc2; font-size: 11px; }
+.chapter-condition-detail { border: 1px solid #706445; padding: 14px; margin: 15px 0; background: #1b2528; }
+@media (max-width: 1120px) and (min-width: 801px) {
+  .hud-summary { grid-template-columns: 205px minmax(0, 1fr); }
+  .mission-hud-body { grid-template-columns: minmax(0, 1fr) minmax(250px, 45%); gap: 8px; }
+  .enemy-roster .enemy-roster-entry { padding: 7px 5px; gap: 6px; }
+  .enemy-roster-entry strong { font-size: 11px; }
+  .roster-marker { font-size: 9px; }
+}
+@media (max-height: 720px) and (min-width: 801px) {
+  .hunt-screen .hunt-main { grid-template-rows: 126px 22px minmax(0, 1fr) 238px; }
+  .hunt-main .weapon-rules { flex-basis: 68px; }
+}
+@media (max-width: 800px) {
+  .hunt-screen .hunt-main { grid-template-rows: 164px 22px minmax(0, 1fr) 260px; }
+  .hud-summary { grid-template-columns: 140px minmax(0, 1fr); }
+  .mission-hud-body { grid-template-columns: minmax(0, 1fr); gap: 5px; height: calc(100% - 20px); }
+  .enemy-roster { grid-row: 2; }
+  .enemy-roster .enemy-roster-entry { min-height: 42px; padding: 4px; gap: 2px; }
+  .enemy-roster-entry strong { font-size: 10px; }
+  .roster-marker { font-size: 9px; }
+  .hunt-main .hunt-loadout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr) minmax(125px, .8fr); }
+  .hunt-main .gun-panel { position: static; width: auto; height: auto; padding: 6px !important; flex-direction: column !important; align-items: stretch; }
+  .hunt-main .gun-panel .eyebrow, .hunt-main .gun-panel .firearm-rules, .hunt-main .gun-panel > p { display: block; }
+  .hunt-main .gun-panel > button { width: 100%; margin-top: auto; }
+  .hunt-main .weapon-panel { padding-bottom: 6px !important; }
+  .hunt-main .weapon-rules { flex-basis: 82px; }
+  .hunt-main #weaponAbility, .hunt-main .gun-panel p { font-size: 9px; line-height: 1.45; }
+}
 .mission-panel { border-color: #81724e; }
 .mission-objectives, .revealed-cards, .rewards-grid {
   display: grid;
@@ -457,8 +509,8 @@ html[data-phase="combat_choose"] .decision-content:has(.map-context:not([hidden]
 .hunt-main .camera-tools button { min-height: 27px; padding: 3px 7px; font-size: 13px; line-height: 1.2; }
 .camera-tools #zoomReset { min-width: 47px; font-size: 11px; }
 .camera-tools #zoomFit { font-size: 11px; }
-#mapStage:has(#mapEffects[data-presentation-characters="ready"]) .hunter-map-marker { visibility: hidden; }
-#mapStage:has(#mapEffects[data-presentation-characters="ready"]) .space-status:has(.hunter-map-marker:only-child) { display: none; }
-#mapStage:has(#mapEffects[data-presentation-characters="ready"]) .map-figure { background: #11202855; font-size: 14px; box-shadow: 0 0 0 2px #0b141d77; }
-#mapStage:has(#mapEffects[data-presentation-characters="ready"]) .map-figure::before { content: ""; position: absolute; left: -17px; bottom: 0; width: 66px; height: 88px; border-radius: 45%; background: transparent; }
+#mapStage .hunter-map-marker[data-character-ready="true"] { visibility: hidden; }
+#mapStage .space-status:has(.hunter-map-marker[data-character-ready="true"]:only-child) { display: none; }
+#mapStage .map-figure[data-character-ready="true"] { background: #11202855; font-size: 14px; box-shadow: 0 0 0 2px #0b141d77; }
+#mapStage .map-figure[data-character-ready="true"]::before { content: ""; position: absolute; left: -17px; bottom: 0; width: 66px; height: 88px; border-radius: 45%; background: transparent; }
 @media (max-width: 600px) { .camera-tools { left: 4px; bottom: 5px; } .hunt-main .camera-tools button { padding: 3px 5px; min-height: 25px; } }

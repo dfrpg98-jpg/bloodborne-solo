@@ -1,0 +1,135 @@
+{
+  "frames": {
+    "0": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 110,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 110,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 110,
+        "h": 192
+      },
+      "renderOffset": {
+        "x": -1,
+        "y": -8
+      },
+      "supportAnchor": {
+        "x": 52,
+        "y": 179,
+        "targetX": 51,
+        "targetY": 171,
+        "method": "individually observed native planted boot support"
+      }
+    },
+    "1": {
+      "frame": {
+        "x": 110,
+        "y": 0,
+        "w": 110,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 110,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 110,
+        "h": 192
+      },
+      "renderOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "supportAnchor": {
+        "x": 51,
+        "y": 171,
+        "targetX": 51,
+        "targetY": 171,
+        "method": "individually observed native planted boot support"
+      }
+    },
+    "2": {
+      "frame": {
+        "x": 220,
+        "y": 0,
+        "w": 110,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 110,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 110,
+        "h": 192
+      },
+      "renderOffset": {
+        "x": 5,
+        "y": 8
+      },
+      "supportAnchor": {
+        "x": 46,
+        "y": 163,
+        "targetX": 51,
+        "targetY": 171,
+        "method": "individually observed native planted boot support"
+      }
+    },
+    "3": {
+      "frame": {
+        "x": 330,
+        "y": 0,
+        "w": 110,
+        "h": 192
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 110,
+        "h": 192
+      },
+      "sourceSize": {
+        "w": 110,
+        "h": 192
+      },
+      "renderOffset": {
+        "x": 7,
+        "y": 9
+      },
+      "supportAnchor": {
+        "x": 44,
+        "y": 162,
+        "targetX": 51,
+        "targetY": 171,
+        "method": "individually observed native planted boot support"
+      }
+    }
+  },
+  "meta": {
+    "size": {
+      "w": 440,
+      "h": 192
+    },
+    "scale": "1"
+  }
+}

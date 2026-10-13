@@ -30,7 +30,8 @@ test('natural chapter-three startup explains the reset and shows zero current in
  assert.match(ui.el('missionNotices').textContent,/이전 챕터의 미완료 임무·임무 토큰·대상 적은 초기화/);
  assert.match(ui.el('missionNotices').textContent,/이번 챕터의 계몽 획득 수에는 더하지 않습니다/);
  assert.doesNotMatch(ui.el('missionNotices').textContent,/53번 카드의 지시로/);
- assert.match(ui.el('pastChapters').textContent,/완료 카드 26, 34, 23/);
+ assert.match(ui.el('pastChapters').textContent,/완료 임무 이오세프카의 연구, 안전한 피신처: 오에돈 예배당, 야수를 가두었다/);
+ assert.doesNotMatch(ui.el('pastChapters').textContent,/완료 카드|완료 임무\s*26\b/,'archived completions use known mission names, not internal card numbers');
  assert.doesNotMatch(ui.el('missionTokens').textContent,/호위 생존자/);
 });
 test('the naturally reopened bridge creates a new escort notice and token without counting card 37 as completed insight',()=>{
@@ -39,7 +40,9 @@ test('the naturally reopened bridge creates a new escort notice and token withou
  assert.deepEqual(s.mission.completed,[]);assert.equal(s.mission.escort.node,'tile-18:top');
  assert.equal(s.mission.targets.bridge.complete,true);
  assert.equal(ui.el('missionInsight').textContent,'이번 챕터 완료 계몽 0장');
- assert.match(ui.el('missionNotices').textContent,/53번 카드의 지시로 35번을 이번 챕터에서 새로 공개/);
+ assert.match(ui.el('missionNotices').textContent,/대교에서 발견한 사건으로 새로운 구조 임무가 시작되었습니다/);
+ assert.match(ui.el('missionNotices').textContent,/현재 공개된 임무의 지시를 따르세요/);
+ assert.doesNotMatch(ui.el('missionNotices').textContent,/카드|\d+번/,'public chapter notices do not expose internal record numbers');
  assert.doesNotMatch(ui.el('missionNotices').textContent,/38|39/,'unrevealed escort endings stay hidden');
  assert.match(ui.el('missionTokens').textContent,/호위 생존자/);
 });
@@ -48,8 +51,9 @@ test('retained warning 39 changes the new bridge branch to 54 while current insi
  assert.deepEqual(s.mission.history[1].completed,[26,39,23]);
  assert(s.mission.revealed.includes(54));assert(!s.mission.revealed.includes(35));
  assert.equal(ui.el('missionInsight').textContent,'이번 챕터 완료 계몽 0장');
- assert.match(ui.el('pastChapters').textContent,/완료 카드 26, 39, 23/);
- assert.match(ui.el('missionNotices').textContent,/완료한 계몽 카드는 보관/);
+ assert.match(ui.el('pastChapters').textContent,/완료 임무 이오세프카의 연구, 불길한 경고, 야수를 가두었다/);
+ assert.doesNotMatch(ui.el('pastChapters').textContent,/완료 카드|완료 임무\s*26\b/,'retained warning is readable by its disclosed mission name');
+ assert.match(ui.el('missionNotices').textContent,/완료한 계몽 기록은 보관/);
  assert.doesNotMatch(ui.el('missionNotices').textContent,/53번 카드의 지시로 35번부터/);
 });
 test('a new chapter-three escort warning raises only the current chapter insight to one after mandatory reward choices',()=>{
@@ -57,6 +61,7 @@ test('a new chapter-three escort warning raises only the current chapter insight
  assert.deepEqual(s.mission.history[1].completed,[26,34,23]);
  assert.deepEqual(s.mission.completed,[39]);assert.equal(s.rewardChoices.length,0);
  assert.equal(ui.el('missionInsight').textContent,'이번 챕터 완료 계몽 1장');
- assert.match(ui.el('pastChapters').textContent,/완료 카드 26, 34, 23/);
+ assert.match(ui.el('pastChapters').textContent,/완료 임무 이오세프카의 연구, 안전한 피신처: 오에돈 예배당, 야수를 가두었다/);
+ assert.doesNotMatch(ui.el('pastChapters').textContent,/완료 카드|완료 임무\s*26\b/,'past completion titles do not change when a new chapter warning completes');
  assert.doesNotMatch(ui.el('missionTokens').textContent,/호위 생존자/);
 });

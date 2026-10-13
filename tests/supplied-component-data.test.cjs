@@ -1,12 +1,13 @@
 const test = require("node:test"), assert = require("node:assert/strict");
 const fs = require("node:fs"), path = require("node:path"), crypto = require("node:crypto"), vm = require("node:vm");
+const { referenceSource } = require("./helpers/reference-source.cjs");
 const A = require("../actual-components"), F = require("../firearms-engine"), T = require("../temporary-components");
 const source = require("../components/supplied-components.json"), root = path.join(__dirname, "..");
 
 test("supplied component photos retain their exact bytes, hashes and card provenance", () => {
   assert.equal(source.photos.length, 4);
   for (const photo of source.photos) {
-    const bytes = fs.readFileSync(path.join(root, photo.path));
+    const bytes = fs.readFileSync(referenceSource(photo.path));
     assert.equal(bytes.length, photo.bytes);
     assert.equal(crypto.createHash("sha256").update(bytes).digest("hex"), photo.sha256);
     assert(photo.cards.length >= 2);

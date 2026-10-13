@@ -5,90 +5,13 @@ const create = require('../hunt-presentation.js');
 const faceA = 'w-threaded-cane-a', faceB = 'w-threaded-cane-b';
 const poseFrames = { idle: [0, 1], walk: [2, 3, 4, 5], 'attack-0': [6, 7, 8, 9],
   'attack-1': [10, 11, 12, 13], 'attack-2': [14, 15, 16, 17], hit: [18, 19], death: [20, 21], transform: [22, 23] };
-function atlas(count) {
-  return { frames: Object.fromEntries(Array.from({ length: count }, (_, index) => [String(index), {
-    frame: { x: index % 8 * 32, y: Math.floor(index / 8) * 32, w: 32, h: 32 }, rotated: false, trimmed: true,
-    spriteSourceSize: { x: 200, y: 424, w: 32, h: 32 }, sourceSize: { w: 512, h: 512 }
-  }])), meta: { size: { w: 256, h: Math.ceil(count / 8) * 32 } } };
-}
-function fixture({ reduced = false, missing = [], incomplete = null, custom = null, geometry = false, noSpriteMask = false } = {}) {
-  const sprites = [], graphics = [], maskGraphics = [], masks = [], definitions = [], loads = [], tweens = [], timers = [], notifications = [], loaded = new Set();
-  let config, completeLoad, mediaChange, starts = 0;
-  const characters = Object.fromEntries(['hunter', 'mob', 'beast', 'boss', 'female'].map(skin => [skin,
-    { path: `assets/characters/${skin}.png`, frameWidth: 256, frameHeight: 256 }]));
-  for (const skin of [faceA, faceB]) characters[skin] = {
-    path: `assets/characters/${skin}.png`, atlasPath: `assets/characters/${skin}.atlas.json`, atlasData: atlas(24),
-    frameCount: 24, frameWidth: 512, frameHeight: 512, displayHeight: 128, originY: 460 / 512,
-    relatedSkins: [skin === faceA ? faceB : faceA],
-    animations: Object.fromEntries(Object.entries(poseFrames).map(([name, frames]) => [name, { frames, frameRate: name === 'attack-2' ? 9 : 12 }]))
-  };
-  custom?.(characters);
-  function object(x = 0, y = 0) {
-    return { x, y, plays: [], listeners: new Map(), destroyed: false,
-      setPosition(x, y) { this.x = x; this.y = y; return this; },
-      setDepth(value) { this.depth = value; return this; }, setScale(x, y = x) { this.scale = x; this.scaleX = x; this.scaleY = y; return this; },
-      setDisplaySize(width, height) { this.width = width; this.height = height; this.scaleX = width / (this.logicalWidth || width); this.scaleY = height / (this.logicalHeight || height); return this; },
-      setOrigin(x, y) { this.origin = [x, y]; return this; }, setFlipX(value) { this.flipX = value; return this; },
-      setTexture(texture, frame) { this.texture = texture; this.frame = frame;
-        const data = characters[texture.replace('bb-character-', '')]; this.logicalWidth = data?.frameWidth; this.logicalHeight = data?.frameHeight; return this; },
-      setFrame(frame) { this.frame = frame; return this; },
-      play(key, ignore) { if (!ignore || this.plays.at(-1) !== key) { this.plays.push(key);
-        this.frame = definitions.find(value => value.key === key)?.frames[0]?.frame ?? this.frame; } return this; },
-      on(event, callback) { this.continuous ||= new Map(); this.continuous.set(event, callback); return this; },
-      advanceFrame(frame) { this.frame = frame; this.continuous?.get('animationupdate')?.(); },
-      setMask(mask) { this.mask = mask; return this; }, clearMask() { this.mask = null; return this; },
-      once(event, callback) { this.listeners.set(event, callback); return this; },
-      removeAllListeners(event) { this.listeners.delete(event); return this; },
-      complete(event) { const callback = this.listeners.get(event); this.listeners.delete(event); callback?.(); },
-      destroy() { this.destroyed = true; } };
-  }
-  const scene = {
-    load: { spritesheet(key, path, data) { loads.push({ key, path, data, type: 'sheet' }); },
-      atlas(key, path, data) { loads.push({ key, path, data, type: 'atlas' }); },
-      once(event, callback) { assert.equal(event, 'complete'); completeLoad = callback; }, start() { starts++; } },
-    textures: { exists(key) { return loaded.has(key); }, get(key) { return { has(frame) { return !(key === incomplete && String(frame) === '23'); } }; } },
-    anims: { exists(key) { return definitions.some(definition => definition.key === key); },
-      generateFrameNumbers(key, data) { return data.frames.map(frame => ({ key, frame })); }, create(definition) { definitions.push(definition); } },
-    add: { sprite(x, y, texture, frame) {
-      const sprite = object(x, y); sprite.setTexture(texture, frame);
-      if (noSpriteMask) { sprite.setMask = undefined; sprite.clearMask = undefined; }
-      sprite.anims = { stop() { sprite.stopped = true; } }; sprites.push(sprite); return sprite;
-    }, graphics() { const graphic = object(); graphic.commands = []; graphics.push(graphic);
-      for (const name of ['lineStyle', 'fillStyle', 'fillEllipse', 'fillCircle', 'fillPoints', 'strokePoints', 'strokeCircle', 'lineBetween'])
-        graphic[name] = (...args) => { graphic.commands.push([name, ...args]); return graphic; };
-      return graphic;
-    } },
-    tweens: { add(data) { tweens.push(data); }, killTweensOf(target) { for (const tween of tweens) if (tween.targets === target) tween.killed = true; },
-      killAll() { for (const tween of tweens) tween.killed = true; } },
-    time: { delayedCall(delay, callback) { const timer = { delay, callback, remove() { this.removed = true; } }; timers.push(timer); return timer; } }
-  };
-  if (geometry) scene.make = { graphics(options) {
-    assert.equal(options.add, false, 'mask paths are never added to the display list');
-    const graphic = object(); graphic.commands = []; graphic.clearCount = 0;
-    graphic.clear = () => { graphic.commands = []; graphic.clearCount++; return graphic; };
-    graphic.fillStyle = (...args) => { graphic.commands.push(['fillStyle', ...args]); return graphic; };
-    graphic.fillRect = (...args) => { graphic.commands.push(['fillRect', ...args]); return graphic; };
-    graphic.createGeometryMask = () => { const mask = { graphics: graphic, destroyed: false, destroy() { this.destroyed = true; } };
-      masks.push(mask); return mask; };
-    maskGraphics.push(graphic); return graphic;
-  } };
-  function finishAssets() { for (const load of loads) if (!missing.includes(load.key)) loaded.add(load.key); }
-  const host = { dataset: {} }, media = { matches: reduced, addEventListener(type, callback) { mediaChange = callback; }, removeEventListener() {} };
-  const adapter = create({ document: { createElement() {}, defaultView: { matchMedia() { return media; } } }, host,
-    viewport: { clientWidth: 600, clientHeight: 400 }, characters, onReady(value) { notifications.push(value); },
-    Phaser: { VERSION: '4.2.1', CANVAS: 1, Game: class { constructor(value) { config = value; this.canvas = { width: 600, height: 400, style: {}, setAttribute() {} }; this.scale = { resize() {} }; } destroy() {} } } });
-  return { adapter, sprites, graphics, maskGraphics, masks, definitions, loads, tweens, timers, host, notifications, characters,
-    boot() { config.scene.preload.call(scene); finishAssets(); config.scene.create.call(scene); },
-    finishLoad() { finishAssets(); const callback = completeLoad; completeLoad = null; callback?.(); },
-    frame() { config.scene.update?.call(scene); },
-    starts() { return starts; }, motion(value) { mediaChange({ matches: value }); },
-    timer(timer) { if (!timer.removed) timer.callback(); },
-    tween(tween) { if (!tween.killed) { Object.assign(tween.targets, { x: tween.x ?? tween.targets.x, y: tween.y ?? tween.targets.y }); tween.onComplete?.(); } } };
-}
+const { fixture, atlas } = require('./helpers/presentation-harness-v084.cjs');
+
 const hunter = (skin = faceA, hp = 6, x = 80) => ({ id: 'hunter', kind: 'hunter', skin, weaponId: 'threaded-cane', weaponFace: skin === faceB ? 'b' : 'a', x, y: 100, hp });
 const enemy = hp => ({ id: 'enemy', kind: 'enemy', skin: 'mob', x: 150, y: 100, hp: hp ?? 10 });
 const hit = (slot, overrides = {}) => ({ type: 'attack', fromId: 'hunter', toId: 'enemy', attackSlot: slot, attackStyle: 'weapon', damage: 1, ...overrides });
 function equipped(options) { const f = fixture(options); f.adapter.sync({ revision: 1, sceneId: 'hunt', actors: [hunter(), enemy()] }); f.boot(); return f; }
+const liveSprites = f => f.sprites.filter(sprite => !sprite.destroyed);
 
 test('only the selected weapon pair preloads alongside the original actor assets', () => {
   const f = fixture({ custom(characters) { characters['w-saw-cleaver-a'] = { ...characters[faceA], relatedSkins: [], path: 'assets/characters/saw.png' }; } });
@@ -102,18 +25,18 @@ test('only the selected weapon pair preloads alongside the original actor assets
   assert.deepEqual(f.sprites[0].origin, [.5, 460 / 512]);
 });
 
-test('a weapon selected after boot loads its two forms once and replaces the generic fallback', () => {
+test('a weapon selected after boot keeps its DOM token until its original form loads', () => {
   const f = fixture(); f.boot();
   assert.equal(f.loads.length, 5);
   f.adapter.sync({ revision: 1, actors: [hunter(), enemy()] });
   assert.equal(f.starts(), 1);
-  assert.equal(f.sprites[0].texture, 'bb-character-hunter');
+  assert.deepEqual(liveSprites(f).map(s=>s.texture),['bb-character-mob']);assert.equal(f.adapter.actorReady('hunter'),false);
   assert.equal(f.host.dataset.presentationWeaponReady, 'false');
   f.adapter.sync({ revision: 1, actors: [hunter(), enemy()] });
   assert.equal(f.starts(), 1);
   f.finishLoad();
   assert.equal(f.sprites.length, 2);
-  assert.equal(f.sprites[0].texture, 'bb-character-' + faceA);
+  assert.equal(liveSprites(f).find(s=>s.texture==='bb-character-'+faceA).texture, 'bb-character-' + faceA);
   assert.equal(f.host.dataset.presentationWeaponReady, 'true');
   assert.equal(f.notifications.at(-1), true);
 });
@@ -269,15 +192,14 @@ test('whip, thrust and overhead public motions have different impact paths', () 
   assert.notDeepEqual(paths[0], paths[1]); assert.notDeepEqual(paths[1], paths[2]);
 });
 
-test('missing weapon sheets fall back per hunter while all enemies remain visible', () => {
+test('missing original weapon sheets hide the hunter sprite while other enemies remain visible', () => {
   const f = equipped({ missing: ['bb-character-' + faceA] });
   assert.equal(f.adapter.status().charactersReady, true);
-  assert.equal(f.sprites.length, 2);
-  assert.equal(f.sprites[0].texture, 'bb-character-hunter');
-  assert.equal(f.sprites[1].texture, 'bb-character-mob');
+  assert.equal(liveSprites(f).length, 1);
+  assert.equal(f.sprites[0].texture, 'bb-character-mob');assert.equal(f.adapter.actorReady('hunter'),false);
   assert.equal(f.host.dataset.presentationWeaponReady, 'false');
   f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [hunter(faceB), enemy()], actions: [{ type: 'transform', fromId: 'hunter' }] });
-  assert.equal(f.sprites[0].texture, 'bb-character-' + faceB);
+  assert.ok(liveSprites(f).some(s=>s.texture==='bb-character-'+faceB));assert.equal(f.adapter.actorReady('hunter'),true);
   assert.equal(f.host.dataset.presentationWeaponReady, 'true');
 });
 
@@ -286,7 +208,7 @@ test('an incomplete optional atlas does not register a partially invisible form'
   assert.equal(f.adapter.status().charactersReady, true);
   assert.ok(!f.definitions.some(definition => definition.key.startsWith('bb-' + faceB)));
   f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [hunter(faceB), enemy()] });
-  assert.equal(f.sprites[0].texture, 'bb-character-hunter');
+  assert.ok(f.sprites[0].destroyed);assert.deepEqual(liveSprites(f).map(s=>s.texture),['bb-character-mob']);assert.equal(f.adapter.actorReady('hunter'),false);
 });
 
 test('reduced motion still equips each form instantly without looping or attack effects', () => {
@@ -324,7 +246,7 @@ test('invalid frame counts above the supported 64-frame limit reject only that o
   const f = equipped({ custom(characters) { characters[faceA].frameCount = 65; } });
   assert.ok(!f.loads.some(load => load.key === 'bb-character-' + faceA));
   assert.equal(f.adapter.status().charactersReady, true);
-  assert.equal(f.sprites[0].texture, 'bb-character-hunter');
+  assert.deepEqual(liveSprites(f).map(s=>s.texture),['bb-character-mob']);assert.equal(f.adapter.actorReady('hunter'),false);
 });
 
 test('public projection ignores hidden equipment and future-action getters', () => {
@@ -342,8 +264,8 @@ test('late optional loading updates the latest form without replaying completed 
   f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [hunter(faceB), enemy(9)], actions: [hit(0)] });
   const attacksBefore = f.adapter.status().attacks;
   f.finishLoad();
-  assert.equal(f.sprites[0].texture, 'bb-character-' + faceB);
-  assert.equal(f.sprites[0].plays.at(-1), `bb-${faceB}-idle`);
+  const current=liveSprites(f).find(s=>s.texture==='bb-character-'+faceB);assert(current);
+  assert.equal(current.plays.at(-1), `bb-${faceB}-idle`);
   assert.equal(f.adapter.status().attacks, attacksBefore);
 });
 
@@ -490,19 +412,19 @@ test('deferred public death keeps its own clip until fading finishes, then relea
   f.tween(death); assert(sprite.destroyed && mask.destroyed && mask.graphics.destroyed);
 });
 
-test('unsupported native geometry masking falls back per weapon and never loads an unsafe visible pose', () => {
+test('unsupported native geometry masking hides only the original weapon actor, without generating a fallback body', () => {
   const f = equipped({ geometry: false, custom: clippedCharacters });
-  assert.equal(f.sprites[0].texture, 'bb-character-hunter'); assert.equal(f.sprites[1].texture, 'bb-character-mob');
+  assert.deepEqual(liveSprites(f).map(s=>s.texture),['bb-character-mob']);assert.equal(f.adapter.actorReady('hunter'),false);
   assert.equal(f.host.dataset.presentationWeaponReady, 'false'); assert.equal(f.adapter.status().charactersReady, true);
   f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [hunter(), enemy(9)], actions: [hit(0)] });
-  assert.equal(f.sprites[0].texture, 'bb-character-hunter'); assert.equal(f.sprites[0].plays.at(-1), 'bb-hunter-attack');
+  assert.deepEqual(liveSprites(f).map(s=>s.texture),['bb-character-mob']);assert.ok(!f.sprites.some(s=>!s.destroyed&&s.plays.includes('bb-hunter-attack')));
 });
 
 test('a sprite implementation without setMask rejects clipped forms before drawing their pixels', () => {
   const f = equipped({ geometry: true, noSpriteMask: true, custom: clippedCharacters });
-  assert.equal(f.sprites[0].texture, 'bb-character-hunter'); assert.equal(f.host.dataset.presentationWeaponReady, 'false');
+  assert.ok(f.sprites[0].destroyed); assert.equal(f.host.dataset.presentationWeaponReady, 'false');
   f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [hunter(faceB), enemy()], actions: [{ type: 'transform', fromId: 'hunter' }] });
-  assert.equal(f.sprites[0].texture, 'bb-character-hunter'); assert.equal(f.adapter.status().renderer, 'phaser');
+  assert.deepEqual(liveSprites(f).map(s=>s.texture),['bb-character-mob']); assert.equal(f.adapter.status().renderer, 'phaser');
 });
 
 for (const invalid of ['bounds', 'empty', 'too-many']) test(`invalid ${invalid} clip rectangles reject the optional sheet instead of drawing its unmasked sidecar`, () => {
@@ -510,7 +432,7 @@ for (const invalid of ['bounds', 'empty', 'too-many']) test(`invalid ${invalid} 
     characters[faceA].atlasData.frames['0'].clipRects = invalid === 'bounds' ? [{ x: 500, y: 420, w: 20, h: 20 }]
       : invalid === 'empty' ? [] : Array.from({ length: 2049 }, () => ({ x: 0, y: 0, w: 1, h: 1 }));
   } });
-  assert.equal(f.sprites[0].texture, 'bb-character-hunter');
+  assert.deepEqual(liveSprites(f).map(s=>s.texture),['bb-character-mob']);assert.equal(f.adapter.actorReady('hunter'),false);
   assert.ok(!f.loads.some(load => load.key === 'bb-character-' + faceA));
 });
 
@@ -525,16 +447,19 @@ test('mask geometry ignores unrelated metadata and remains independent of loader
   assert.deepEqual(localRects(sprite.mask.graphics), [[-56, -40, 20, 30], [4, -30, 30, 20]]);
 });
 
-test('normalized display heights up to 256 preserve public actor scale while larger values clamp safely', () => {
-  const f = equipped({ custom(characters) { characters[faceA].displayHeight = 200; characters[faceB].displayHeight = 400; } });
+test('normalized display heights up to 1024 preserve public actor scale while larger values clamp safely', () => {
+  const f = equipped({ custom(characters) { characters[faceA].displayHeight = 200; characters[faceB].displayHeight = 2000; } });
   assert.equal(f.sprites[0].height, 200);
   f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [{ ...hunter(faceB), scale: 1.5 }, enemy()] });
-  assert.equal(f.sprites[0].height, 256 * 1.5);
+  assert.equal(f.sprites[0].height, 1024 * 1.5);
 });
 
-test('all 30 shipped weapon atlases and every one of their 720 poses survive runtime validation with exact required mask coverage', () => {
+test('all shipped weapon atlases validate their declared real frames and source origins without fabricated motion banks', () => {
   const shipped = require('../assets/characters/weapon-manifest.json');
-  assert.equal(Object.keys(shipped).length, 30);
+  const expected = require('../weapon-visuals').ids.flatMap(id => ['w-'+id+'-a','w-'+id+'-b']);
+  assert.ok(Object.keys(shipped).length >= 28 && Object.keys(shipped).length <= 30);
+  assert.ok(Object.keys(shipped).every(skin => expected.includes(skin)));
+  assert.ok(expected.filter(skin => !shipped[skin]).every(skin => skin.startsWith('w-burial-')), 'only documented pending Burial source forms may be absent');
   const f = fixture({ geometry: true, custom(characters) { Object.assign(characters, shipped); } }); f.boot();
   let frameCount = 0, clipCount = 0, revision = 0;
   for (const [skin, data] of Object.entries(shipped)) {
@@ -542,16 +467,20 @@ test('all 30 shipped weapon atlases and every one of their 720 poses survive run
     const sprite = f.sprites.find(value => !value.destroyed);
     assert.equal(sprite.texture, 'bb-character-' + skin, `${skin} renders its validated own atlas`);
     assert.equal(f.host.dataset.presentationWeaponReady, 'true');
+    if (data.frameCount === 1) {
+      assert.deepEqual(Object.keys(data.animations), ['idle'], `${skin} static original source has no invented motion`);
+      assert.deepEqual(data.animations.idle.frames, [0]);
+    }
     for (let index = 0; index < data.frameCount; index++) {
       sprite.advanceFrame(String(index)); frameCount++;
       const clips = data.atlasData.frames[String(index)].clipRects;
       if (clips) {
         assert(sprite.mask && !sprite.mask.destroyed, `${skin} frame ${index} uses native clipping`); clipCount++;
-        assert.deepEqual(localRects(sprite.mask.graphics), clips.map(rect => [rect.x - 256, rect.y - 460, rect.w, rect.h]));
+        assert.deepEqual(localRects(sprite.mask.graphics), clips.map(rect => [rect.x - data.frameWidth * (data.originX ?? .5), rect.y - data.frameHeight * (data.originY ?? .86), rect.w, rect.h]));
       } else assert.equal(sprite.mask || null, null, `${skin} frame ${index} retains its clean original rendering`);
     }
   }
-  assert.equal(frameCount, 720); assert(clipCount > 0, 'the real shipped assets exercise the vector mask path');
+  assert.equal(frameCount, Object.values(shipped).reduce((sum, data) => sum + data.frameCount, 0));
   assert.equal(clipCount, Object.values(shipped).reduce((sum, data) => sum + Object.values(data.atlasData.frames).filter(frame => frame.clipRects).length, 0));
   f.adapter.destroy(); assert(f.maskGraphics.every(value => value.destroyed));
 });

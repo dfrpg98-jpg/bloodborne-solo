@@ -1,0 +1,42 @@
+{
+  "frames": {
+    "0": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 700,
+        "h": 980
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 700,
+        "h": 980
+      },
+      "sourceSize": {
+        "w": 700,
+        "h": 980
+      },
+      "renderOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "supportAnchor": {
+        "x": 430,
+        "y": 973,
+        "targetX": 430,
+        "targetY": 973,
+        "method": "manually observed native foot support"
+      }
+    }
+  },
+  "meta": {
+    "size": {
+      "w": 700,
+      "h": 980
+    },
+    "scale": "1"
+  }
+}

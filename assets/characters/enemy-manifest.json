@@ -1,0 +1,1327 @@
+{
+  "e-scourge-beast-a": {
+    "path": "assets/characters/e-scourge-beast-a.png",
+    "atlasPath": "assets/characters/e-scourge-beast-a.atlas.json",
+    "atlasData": {
+      "frames": {
+        "0": {
+          "frame": {
+            "x": 0,
+            "y": 0,
+            "w": 1010,
+            "h": 866
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 1010,
+            "h": 866
+          },
+          "sourceSize": {
+            "w": 1010,
+            "h": 866
+          },
+          "renderOffset": {
+            "x": 0,
+            "y": 0
+          },
+          "supportAnchor": {
+            "x": 490,
+            "y": 855,
+            "targetX": 490,
+            "targetY": 855,
+            "method": "manually observed native foot support"
+          }
+        }
+      },
+      "meta": {
+        "size": {
+          "w": 1010,
+          "h": 866
+        },
+        "scale": "1"
+      }
+    },
+    "frameWidth": 1010,
+    "frameHeight": 866,
+    "frameCount": 1,
+    "displayHeight": 90.733411,
+    "originX": 0.48514851485148514,
+    "originY": 0.9872979214780601,
+    "allowFlip": false,
+    "nativeFacing": "front",
+    "animations": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "frameRate": 1
+      }
+    },
+    "relatedSkins": [
+      "e-scourge-beast-b"
+    ],
+    "sourceKind": "original-model-render-pixels",
+    "motionCoverage": "static-idle-only",
+    "bodyCoverage": "full-body-original-model-view",
+    "sourceLimitations": "Native front static model rendering. The disconnected hands and cloth from other compilation panels are excluded by alpha only. A toe tip touches the original compilation bottom boundary; no missing original pixels are invented. No action timing or motion frames are available.",
+    "sourceProof": {
+      "sourceFile": "scourge-beast.png",
+      "sourceSha256": "894b9b5f2dd3ee8b6d903fcdfc2c26f26b74f9c2de815792296a6f5627437fc4",
+      "nativeCrop": [
+        1480,
+        1570,
+        2490,
+        2436
+      ],
+      "rgbSha256": "80e4ddc9bad8dd664461bf53c64120fef7012ca60fd4e82aa812a9793af6192c",
+      "rgbChangedPixels": 0,
+      "visibleBounds": [
+        34,
+        7,
+        934,
+        866
+      ],
+      "alphaMethod": "native black-background threshold6 and manually selected compilation panel"
+    }
+  },
+  "e-scourge-beast-b": {
+    "path": "assets/characters/e-scourge-beast-b.png",
+    "atlasPath": "assets/characters/e-scourge-beast-b.atlas.json",
+    "atlasData": {
+      "frames": {
+        "0": {
+          "frame": {
+            "x": 0,
+            "y": 0,
+            "w": 1010,
+            "h": 866
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 1010,
+            "h": 866
+          },
+          "sourceSize": {
+            "w": 1010,
+            "h": 866
+          },
+          "renderOffset": {
+            "x": 0,
+            "y": 0
+          },
+          "supportAnchor": {
+            "x": 490,
+            "y": 855,
+            "targetX": 490,
+            "targetY": 855,
+            "method": "manually observed native foot support"
+          }
+        }
+      },
+      "meta": {
+        "size": {
+          "w": 1010,
+          "h": 866
+        },
+        "scale": "1"
+      }
+    },
+    "frameWidth": 1010,
+    "frameHeight": 866,
+    "frameCount": 1,
+    "displayHeight": 90.733411,
+    "originX": 0.48514851485148514,
+    "originY": 0.9872979214780601,
+    "allowFlip": false,
+    "nativeFacing": "front",
+    "animations": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "frameRate": 1
+      }
+    },
+    "relatedSkins": [
+      "e-scourge-beast-a"
+    ],
+    "sourceKind": "original-model-render-pixels",
+    "motionCoverage": "static-idle-only",
+    "bodyCoverage": "full-body-original-model-view",
+    "sourceLimitations": "Native front static model rendering. The disconnected hands and cloth from other compilation panels are excluded by alpha only. A toe tip touches the original compilation bottom boundary; no missing original pixels are invented. No action timing or motion frames are available.",
+    "sourceProof": {
+      "sourceFile": "scourge-beast.png",
+      "sourceSha256": "894b9b5f2dd3ee8b6d903fcdfc2c26f26b74f9c2de815792296a6f5627437fc4",
+      "nativeCrop": [
+        1480,
+        1570,
+        2490,
+        2436
+      ],
+      "rgbSha256": "80e4ddc9bad8dd664461bf53c64120fef7012ca60fd4e82aa812a9793af6192c",
+      "rgbChangedPixels": 0,
+      "visibleBounds": [
+        34,
+        7,
+        934,
+        866
+      ],
+      "alphaMethod": "native black-background threshold6 and manually selected compilation panel"
+    }
+  },
+  "e-huntsmans-minion-a": {
+    "path": "assets/characters/e-huntsmans-minion-a.png",
+    "atlasPath": "assets/characters/e-huntsmans-minion-a.atlas.json",
+    "atlasData": {
+      "frames": {
+        "0": {
+          "frame": {
+            "x": 0,
+            "y": 0,
+            "w": 700,
+            "h": 980
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 700,
+            "h": 980
+          },
+          "sourceSize": {
+            "w": 700,
+            "h": 980
+          },
+          "renderOffset": {
+            "x": 0,
+            "y": 0
+          },
+          "supportAnchor": {
+            "x": 430,
+            "y": 973,
+            "targetX": 430,
+            "targetY": 973,
+            "method": "manually observed native foot support"
+          }
+        }
+      },
+      "meta": {
+        "size": {
+          "w": 700,
+          "h": 980
+        },
+        "scale": "1"
+      }
+    },
+    "frameWidth": 700,
+    "frameHeight": 980,
+    "frameCount": 1,
+    "displayHeight": 106.853583,
+    "originX": 0.6142857142857143,
+    "originY": 0.9928571428571429,
+    "allowFlip": false,
+    "nativeFacing": "front",
+    "animations": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "frameRate": 1
+      }
+    },
+    "relatedSkins": [
+      "e-huntsmans-minion-b"
+    ],
+    "sourceKind": "original-model-render-pixels",
+    "motionCoverage": "static-idle-only",
+    "bodyCoverage": "full-body-with-native-edge-clipping",
+    "sourceLimitations": "Faithful original brick-holding model with head, bandages, torso, both legs and the visible feet. The original image crops the lowest right toe/sole at its bottom boundary; missing pixels are not reconstructed. Both rule sides share one original static view. The incorrect large-statue model is excluded.",
+    "sourceProof": {
+      "sourceFile": "Huntsman's Minion (6).png",
+      "sourceSha256": "17f9606eaeae4f53931d4bff055ff66b34e32eb243640d6fa59ac5bca85d4bdf",
+      "nativeCrop": [
+        585,
+        20,
+        1285,
+        1000
+      ],
+      "rgbSha256": "0b8190461aee74455113dffeb43d3ecef7c4b63f5daef04a144a10a6a9e0553e",
+      "rgbChangedPixels": 0,
+      "visibleBounds": [
+        33,
+        17,
+        682,
+        980
+      ],
+      "alphaMethod": "native uniform-background color and manually observed contour; alpha only"
+    }
+  },
+  "e-huntsmans-minion-b": {
+    "path": "assets/characters/e-huntsmans-minion-b.png",
+    "atlasPath": "assets/characters/e-huntsmans-minion-b.atlas.json",
+    "atlasData": {
+      "frames": {
+        "0": {
+          "frame": {
+            "x": 0,
+            "y": 0,
+            "w": 700,
+            "h": 980
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 700,
+            "h": 980
+          },
+          "sourceSize": {
+            "w": 700,
+            "h": 980
+          },
+          "renderOffset": {
+            "x": 0,
+            "y": 0
+          },
+          "supportAnchor": {
+            "x": 430,
+            "y": 973,
+            "targetX": 430,
+            "targetY": 973,
+            "method": "manually observed native foot support"
+          }
+        }
+      },
+      "meta": {
+        "size": {
+          "w": 700,
+          "h": 980
+        },
+        "scale": "1"
+      }
+    },
+    "frameWidth": 700,
+    "frameHeight": 980,
+    "frameCount": 1,
+    "displayHeight": 106.853583,
+    "originX": 0.6142857142857143,
+    "originY": 0.9928571428571429,
+    "allowFlip": false,
+    "nativeFacing": "front",
+    "animations": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "frameRate": 1
+      }
+    },
+    "relatedSkins": [
+      "e-huntsmans-minion-a"
+    ],
+    "sourceKind": "original-model-render-pixels",
+    "motionCoverage": "static-idle-only",
+    "bodyCoverage": "full-body-with-native-edge-clipping",
+    "sourceLimitations": "Faithful original brick-holding model with head, bandages, torso, both legs and the visible feet. The original image crops the lowest right toe/sole at its bottom boundary; missing pixels are not reconstructed. Both rule sides share one original static view. The incorrect large-statue model is excluded.",
+    "sourceProof": {
+      "sourceFile": "Huntsman's Minion (6).png",
+      "sourceSha256": "17f9606eaeae4f53931d4bff055ff66b34e32eb243640d6fa59ac5bca85d4bdf",
+      "nativeCrop": [
+        585,
+        20,
+        1285,
+        1000
+      ],
+      "rgbSha256": "0b8190461aee74455113dffeb43d3ecef7c4b63f5daef04a144a10a6a9e0553e",
+      "rgbChangedPixels": 0,
+      "visibleBounds": [
+        33,
+        17,
+        682,
+        980
+      ],
+      "alphaMethod": "native uniform-background color and manually observed contour; alpha only"
+    }
+  },
+  "e-cleric-beast-1": {
+    "path": "assets/characters/e-cleric-beast-1.png",
+    "atlasPath": "assets/characters/e-cleric-beast-1.atlas.json",
+    "atlasData": {
+      "frames": {
+        "0": {
+          "frame": {
+            "x": 0,
+            "y": 0,
+            "w": 1230,
+            "h": 1070
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 1230,
+            "h": 1070
+          },
+          "sourceSize": {
+            "w": 1230,
+            "h": 1070
+          },
+          "renderOffset": {
+            "x": 0,
+            "y": 0
+          },
+          "supportAnchor": {
+            "x": 490,
+            "y": 1060,
+            "targetX": 490,
+            "targetY": 1060,
+            "method": "manually observed native foot support"
+          }
+        }
+      },
+      "meta": {
+        "size": {
+          "w": 1230,
+          "h": 1070
+        },
+        "scale": "1"
+      }
+    },
+    "frameWidth": 1230,
+    "frameHeight": 1070,
+    "frameCount": 1,
+    "displayHeight": 125.351453,
+    "originX": 0.3983739837398374,
+    "originY": 0.9906542056074766,
+    "allowFlip": false,
+    "nativeFacing": "front",
+    "animations": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "frameRate": 1
+      }
+    },
+    "relatedSkins": [
+      "e-cleric-beast-2"
+    ],
+    "sourceKind": "original-model-render-pixels",
+    "motionCoverage": "static-idle-only",
+    "bodyCoverage": "full-body-original-model-view",
+    "sourceLimitations": "Original native frontal model view of the Cleric Beast: the thin arm, huge hairy opposite arm, ribs, branched head and both legs remain visible. Phase one uses this static front view; phase two uses another original side viewpoint from the exact same contact-sheet source. Neither angle establishes a distinct canonical phase morphology. A horn tip and small claw tip meet the compilation image boundary; missing pixels are not invented. No action or phase-motion frames are claimed.",
+    "sourceProof": {
+      "sourceFile": "cleric-beast.png",
+      "sourceSha256": "1bda7db0ce36bba9d46650c88292bbbd5b93be278e872e9b1349af3206faaaeb",
+      "nativeCrop": [
+        0,
+        0,
+        1230,
+        1070
+      ],
+      "rgbSha256": "a8b7b5003c9d542d3e427a089a210174a3afda2ebd8551957ac8183cabbdb7a2",
+      "rgbChangedPixels": 0,
+      "visibleBounds": [
+        0,
+        0,
+        1230,
+        1067
+      ],
+      "alphaMethod": "native black-background threshold6 and manually selected compilation panel"
+    }
+  },
+  "e-cleric-beast-2": {
+    "path": "assets/characters/e-cleric-beast-2.png",
+    "atlasPath": "assets/characters/e-cleric-beast-2.atlas.json",
+    "atlasData": {
+      "frames": {
+        "0": {
+          "frame": {
+            "x": 0,
+            "y": 0,
+            "w": 720,
+            "h": 1085
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 720,
+            "h": 1085
+          },
+          "sourceSize": {
+            "w": 720,
+            "h": 1085
+          },
+          "renderOffset": {
+            "x": 0,
+            "y": 0
+          },
+          "supportAnchor": {
+            "x": 355,
+            "y": 1070,
+            "targetX": 355,
+            "targetY": 1070,
+            "method": "observed native side-view near foot support"
+          }
+        }
+      },
+      "meta": {
+        "size": {
+          "w": 720,
+          "h": 1085
+        },
+        "scale": "1"
+      }
+    },
+    "frameWidth": 720,
+    "frameHeight": 1085,
+    "frameCount": 1,
+    "displayHeight": 126.39795,
+    "originX": 0.4930555555555556,
+    "originY": 0.9861751152073732,
+    "allowFlip": false,
+    "nativeFacing": "right",
+    "animations": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "frameRate": 1
+      }
+    },
+    "relatedSkins": [
+      "e-cleric-beast-1"
+    ],
+    "sourceKind": "original-model-render-pixels",
+    "motionCoverage": "static-idle-only",
+    "bodyCoverage": "intact-original-side-model-with-self-occlusion",
+    "sourceLimitations": "Original Cleric Beast contact-sheet third side viewpoint, facing right, with branch head, fur, original limb asymmetry, near arm/claws, bent near leg and visible foot. The far leg/foot and much of the large arm overlap the body in the original side projection; no hidden limb is reconstructed. This is an alternate static original model viewpoint selected for the public second rule phase, with the same source anatomy and native palette as phase one. It is not evidence of an exclusive canonical phase-two form or a separate morphology. The branch and foot tips remain inside the original source boundaries. No attack, transformation or phase motion frames are claimed.",
+    "sourceProof": {
+      "sourceFile": "cleric-beast.png",
+      "sourceProvidedFilename": "boss_cleric-beast.png",
+      "sourceSha256": "1bda7db0ce36bba9d46650c88292bbbd5b93be278e872e9b1349af3206faaaeb",
+      "nativeCrop": [
+        2100,
+        0,
+        2820,
+        1085
+      ],
+      "rgbSha256": "c30b26e9a4586581f617ee2591ef058fce4bcbdcb3cc90f702c55adb8c5ef54d",
+      "rgbChangedPixels": 0,
+      "visibleBounds": [
+        29,
+        1,
+        706,
+        1074
+      ],
+      "alphaMethod": "Background RGB(2,2,2) threshold maxRGB>3, retain 8-connected native source component seeded at (2450,350). No RGB modifications or resampling."
+    }
+  },
+  "e-huntsman-mob-a": {
+    "path": "assets/characters/e-huntsman-mob-a.png",
+    "atlasPath": "assets/characters/e-huntsman-mob-a.atlas.json",
+    "atlasData": {
+      "frames": {
+        "0": {
+          "frame": {
+            "x": 0,
+            "y": 0,
+            "w": 110,
+            "h": 192
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 110,
+            "h": 192
+          },
+          "sourceSize": {
+            "w": 110,
+            "h": 192
+          },
+          "renderOffset": {
+            "x": -1,
+            "y": -8
+          },
+          "supportAnchor": {
+            "x": 52,
+            "y": 179,
+            "targetX": 51,
+            "targetY": 171,
+            "method": "individually observed native planted boot support"
+          }
+        },
+        "1": {
+          "frame": {
+            "x": 110,
+            "y": 0,
+            "w": 110,
+            "h": 192
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 110,
+            "h": 192
+          },
+          "sourceSize": {
+            "w": 110,
+            "h": 192
+          },
+          "renderOffset": {
+            "x": 0,
+            "y": 0
+          },
+          "supportAnchor": {
+            "x": 51,
+            "y": 171,
+            "targetX": 51,
+            "targetY": 171,
+            "method": "individually observed native planted boot support"
+          }
+        },
+        "2": {
+          "frame": {
+            "x": 220,
+            "y": 0,
+            "w": 110,
+            "h": 192
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 110,
+            "h": 192
+          },
+          "sourceSize": {
+            "w": 110,
+            "h": 192
+          },
+          "renderOffset": {
+            "x": 5,
+            "y": 8
+          },
+          "supportAnchor": {
+            "x": 46,
+            "y": 163,
+            "targetX": 51,
+            "targetY": 171,
+            "method": "individually observed native planted boot support"
+          }
+        },
+        "3": {
+          "frame": {
+            "x": 330,
+            "y": 0,
+            "w": 110,
+            "h": 192
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 110,
+            "h": 192
+          },
+          "sourceSize": {
+            "w": 110,
+            "h": 192
+          },
+          "renderOffset": {
+            "x": 7,
+            "y": 9
+          },
+          "supportAnchor": {
+            "x": 44,
+            "y": 162,
+            "targetX": 51,
+            "targetY": 171,
+            "method": "individually observed native planted boot support"
+          }
+        }
+      },
+      "meta": {
+        "size": {
+          "w": 440,
+          "h": 192
+        },
+        "scale": "1"
+      }
+    },
+    "frameWidth": 110,
+    "frameHeight": 192,
+    "frameCount": 4,
+    "displayHeight": 118.032787,
+    "originX": 0.4636363636363636,
+    "originY": 0.890625,
+    "allowFlip": false,
+    "nativeFacing": "right",
+    "animations": {
+      "idle": {
+        "frames": [
+          1
+        ],
+        "frameRate": 1
+      },
+      "walk": {
+        "frames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "frameRate": 12.5
+      }
+    },
+    "relatedSkins": [
+      "e-huntsman-mob-b"
+    ],
+    "sourceKind": "original-game-animation-pixels",
+    "motionCoverage": "partial-source-approach-walk-only",
+    "bodyCoverage": "full-visible-body-native-game-capture",
+    "sourceLimitations": "Native in-game torch-and-axe Huntsman, broad hat and long dark cape, from the right actor in user-provided Hunstman.webp. All four original frames 39–42 retain the visible full body, both boots, torch and axe; native RGB is unchanged, including transparent pixels. Only a 320 ms approach/recovery fragment is captured, not a complete walk cycle or attack. Public movement uses this short genuine step; no axe swing, shield bash, rifle shot, bottle throw or frenzy animation bank is registered. Both printed Mob rule sides share this native torch-and-axe visual variant; shield, rifle and bottle equipment are not shown by this source. The original camera perspective produces a small native body-height change across the fragment; it is not rescaled per frame.",
+    "sourceProof": {
+      "sourceFile": "Hunstman.webp",
+      "sourceSha256": "bc00554430c6bee9071cb818655f58f38cb1f12fa0bde3825ff3ddefb881d499",
+      "nativeCrop": [
+        400,
+        28,
+        510,
+        220
+      ],
+      "sourceFrame": 40,
+      "rgbSha256": "c1ca8593f2b351bd9120608b3cc0b3062c87545ba03010f6f5dd419c1254e641",
+      "rgbChangedPixels": 0,
+      "alphaMethod": "individually hand-traced original-pixel native-coordinate silhouettes, alpha only",
+      "frames": [
+        {
+          "frame": 0,
+          "sourceFrame": 39,
+          "timestampMs": 3120,
+          "durationMs": 80,
+          "nativeCrop": [
+            400,
+            28,
+            510,
+            220
+          ],
+          "rgbSha256": "9aee4a762c04fc59f50273a5e51fa1c75a9eadcfc98fad661ac67935c7e24b39",
+          "rgbChangedPixels": 0,
+          "sourceSupportAnchor": [
+            452,
+            207
+          ],
+          "bodyNativeHeightExcludingRaisedTorch": 125
+        },
+        {
+          "frame": 1,
+          "sourceFrame": 40,
+          "timestampMs": 3200,
+          "durationMs": 80,
+          "nativeCrop": [
+            400,
+            28,
+            510,
+            220
+          ],
+          "rgbSha256": "b82703e7b2217b691be14fe39cf2e1dcb0976bf1b01586c60e993313e6896d9a",
+          "rgbChangedPixels": 0,
+          "sourceSupportAnchor": [
+            451,
+            199
+          ],
+          "bodyNativeHeightExcludingRaisedTorch": 122
+        },
+        {
+          "frame": 2,
+          "sourceFrame": 41,
+          "timestampMs": 3280,
+          "durationMs": 80,
+          "nativeCrop": [
+            400,
+            28,
+            510,
+            220
+          ],
+          "rgbSha256": "be69d5bb4a14bc812bf1ac978fb14e67b55be86e0d2f5d9281ffb73f28913536",
+          "rgbChangedPixels": 0,
+          "sourceSupportAnchor": [
+            446,
+            191
+          ],
+          "bodyNativeHeightExcludingRaisedTorch": 121
+        },
+        {
+          "frame": 3,
+          "sourceFrame": 42,
+          "timestampMs": 3360,
+          "durationMs": 80,
+          "nativeCrop": [
+            400,
+            28,
+            510,
+            220
+          ],
+          "rgbSha256": "29a19156895e2a08cd43d48431a0b88b47ae50df0a8d556c6d6cf68ebac17f35",
+          "rgbChangedPixels": 0,
+          "sourceSupportAnchor": [
+            444,
+            190
+          ],
+          "bodyNativeHeightExcludingRaisedTorch": 117
+        }
+      ],
+      "registeredSourcePoses": [
+        "idle",
+        "walk"
+      ]
+    }
+  },
+  "e-huntsman-mob-b": {
+    "path": "assets/characters/e-huntsman-mob-b.png",
+    "atlasPath": "assets/characters/e-huntsman-mob-b.atlas.json",
+    "atlasData": {
+      "frames": {
+        "0": {
+          "frame": {
+            "x": 0,
+            "y": 0,
+            "w": 110,
+            "h": 192
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 110,
+            "h": 192
+          },
+          "sourceSize": {
+            "w": 110,
+            "h": 192
+          },
+          "renderOffset": {
+            "x": -1,
+            "y": -8
+          },
+          "supportAnchor": {
+            "x": 52,
+            "y": 179,
+            "targetX": 51,
+            "targetY": 171,
+            "method": "individually observed native planted boot support"
+          }
+        },
+        "1": {
+          "frame": {
+            "x": 110,
+            "y": 0,
+            "w": 110,
+            "h": 192
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 110,
+            "h": 192
+          },
+          "sourceSize": {
+            "w": 110,
+            "h": 192
+          },
+          "renderOffset": {
+            "x": 0,
+            "y": 0
+          },
+          "supportAnchor": {
+            "x": 51,
+            "y": 171,
+            "targetX": 51,
+            "targetY": 171,
+            "method": "individually observed native planted boot support"
+          }
+        },
+        "2": {
+          "frame": {
+            "x": 220,
+            "y": 0,
+            "w": 110,
+            "h": 192
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 110,
+            "h": 192
+          },
+          "sourceSize": {
+            "w": 110,
+            "h": 192
+          },
+          "renderOffset": {
+            "x": 5,
+            "y": 8
+          },
+          "supportAnchor": {
+            "x": 46,
+            "y": 163,
+            "targetX": 51,
+            "targetY": 171,
+            "method": "individually observed native planted boot support"
+          }
+        },
+        "3": {
+          "frame": {
+            "x": 330,
+            "y": 0,
+            "w": 110,
+            "h": 192
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 110,
+            "h": 192
+          },
+          "sourceSize": {
+            "w": 110,
+            "h": 192
+          },
+          "renderOffset": {
+            "x": 7,
+            "y": 9
+          },
+          "supportAnchor": {
+            "x": 44,
+            "y": 162,
+            "targetX": 51,
+            "targetY": 171,
+            "method": "individually observed native planted boot support"
+          }
+        }
+      },
+      "meta": {
+        "size": {
+          "w": 440,
+          "h": 192
+        },
+        "scale": "1"
+      }
+    },
+    "frameWidth": 110,
+    "frameHeight": 192,
+    "frameCount": 4,
+    "displayHeight": 118.032787,
+    "originX": 0.4636363636363636,
+    "originY": 0.890625,
+    "allowFlip": false,
+    "nativeFacing": "right",
+    "animations": {
+      "idle": {
+        "frames": [
+          1
+        ],
+        "frameRate": 1
+      },
+      "walk": {
+        "frames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "frameRate": 12.5
+      }
+    },
+    "relatedSkins": [
+      "e-huntsman-mob-a"
+    ],
+    "sourceKind": "original-game-animation-pixels",
+    "motionCoverage": "partial-source-approach-walk-only",
+    "bodyCoverage": "full-visible-body-native-game-capture",
+    "sourceLimitations": "Native in-game torch-and-axe Huntsman, broad hat and long dark cape, from the right actor in user-provided Hunstman.webp. All four original frames 39–42 retain the visible full body, both boots, torch and axe; native RGB is unchanged, including transparent pixels. Only a 320 ms approach/recovery fragment is captured, not a complete walk cycle or attack. Public movement uses this short genuine step; no axe swing, shield bash, rifle shot, bottle throw or frenzy animation bank is registered. Both printed Mob rule sides share this native torch-and-axe visual variant; shield, rifle and bottle equipment are not shown by this source. The original camera perspective produces a small native body-height change across the fragment; it is not rescaled per frame.",
+    "sourceProof": {
+      "sourceFile": "Hunstman.webp",
+      "sourceSha256": "bc00554430c6bee9071cb818655f58f38cb1f12fa0bde3825ff3ddefb881d499",
+      "nativeCrop": [
+        400,
+        28,
+        510,
+        220
+      ],
+      "sourceFrame": 40,
+      "rgbSha256": "c1ca8593f2b351bd9120608b3cc0b3062c87545ba03010f6f5dd419c1254e641",
+      "rgbChangedPixels": 0,
+      "alphaMethod": "individually hand-traced original-pixel native-coordinate silhouettes, alpha only",
+      "frames": [
+        {
+          "frame": 0,
+          "sourceFrame": 39,
+          "timestampMs": 3120,
+          "durationMs": 80,
+          "nativeCrop": [
+            400,
+            28,
+            510,
+            220
+          ],
+          "rgbSha256": "9aee4a762c04fc59f50273a5e51fa1c75a9eadcfc98fad661ac67935c7e24b39",
+          "rgbChangedPixels": 0,
+          "sourceSupportAnchor": [
+            452,
+            207
+          ],
+          "bodyNativeHeightExcludingRaisedTorch": 125
+        },
+        {
+          "frame": 1,
+          "sourceFrame": 40,
+          "timestampMs": 3200,
+          "durationMs": 80,
+          "nativeCrop": [
+            400,
+            28,
+            510,
+            220
+          ],
+          "rgbSha256": "b82703e7b2217b691be14fe39cf2e1dcb0976bf1b01586c60e993313e6896d9a",
+          "rgbChangedPixels": 0,
+          "sourceSupportAnchor": [
+            451,
+            199
+          ],
+          "bodyNativeHeightExcludingRaisedTorch": 122
+        },
+        {
+          "frame": 2,
+          "sourceFrame": 41,
+          "timestampMs": 3280,
+          "durationMs": 80,
+          "nativeCrop": [
+            400,
+            28,
+            510,
+            220
+          ],
+          "rgbSha256": "be69d5bb4a14bc812bf1ac978fb14e67b55be86e0d2f5d9281ffb73f28913536",
+          "rgbChangedPixels": 0,
+          "sourceSupportAnchor": [
+            446,
+            191
+          ],
+          "bodyNativeHeightExcludingRaisedTorch": 121
+        },
+        {
+          "frame": 3,
+          "sourceFrame": 42,
+          "timestampMs": 3360,
+          "durationMs": 80,
+          "nativeCrop": [
+            400,
+            28,
+            510,
+            220
+          ],
+          "rgbSha256": "29a19156895e2a08cd43d48431a0b88b47ae50df0a8d556c6d6cf68ebac17f35",
+          "rgbChangedPixels": 0,
+          "sourceSupportAnchor": [
+            444,
+            190
+          ],
+          "bodyNativeHeightExcludingRaisedTorch": 117
+        }
+      ],
+      "registeredSourcePoses": [
+        "idle",
+        "walk"
+      ]
+    }
+  },
+  "e-female-patient-a": {
+    "path": "assets/characters/e-female-patient-a.png",
+    "atlasPath": "assets/characters/e-female-patient-a.atlas.json",
+    "atlasData": {
+      "frames": {
+        "0": {
+          "frame": {
+            "x": 0,
+            "y": 0,
+            "w": 500,
+            "h": 729
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 500,
+            "h": 729
+          },
+          "sourceSize": {
+            "w": 500,
+            "h": 729
+          },
+          "renderOffset": {
+            "x": 0,
+            "y": 0
+          },
+          "supportAnchor": {
+            "x": 222,
+            "y": 719,
+            "targetX": 222,
+            "targetY": 719,
+            "method": "observed native lower cloak-ground contact; original ankles are cloak-covered"
+          }
+        }
+      },
+      "meta": {
+        "size": {
+          "w": 500,
+          "h": 729
+        },
+        "scale": "1"
+      }
+    },
+    "frameWidth": 500,
+    "frameHeight": 729,
+    "frameCount": 1,
+    "displayHeight": 77.553191,
+    "originX": 0.444,
+    "originY": 0.9862825788751715,
+    "allowFlip": false,
+    "nativeFacing": "right",
+    "animations": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "frameRate": 1
+      }
+    },
+    "relatedSkins": [
+      "e-female-patient-b"
+    ],
+    "sourceKind": "original-game-still-pixels",
+    "motionCoverage": "static-idle-only",
+    "bodyCoverage": "full-visible-cloaked-body-native-game-capture",
+    "sourceLimitations": "Native in-game still of one Female Beast Patient: sack hood, ochre ragged full cape, exposed bandaged clawed near arm, cloak-covered lower body and the visible bare toes. The other arm and most leg anatomy are hidden by the original cape and perspective, so no missing limb is reconstructed. This is one standing original pose, not a motion bank. Original scene lighting is retained without recoloring. The existing source street is removed only through alpha.",
+    "sourceProof": {
+      "sourceFile": "Beast_Patient_29_%3F2.webp",
+      "sourceSha256": "83504e00de109abec1c7e6df0dbf368d6f1750524c002b4fbfa577e816667145",
+      "nativeCrop": [
+        113,
+        64,
+        613,
+        793
+      ],
+      "rgbSha256": "bbdd4062ba9c0ed24509ab39eeaa95edce03d7ca67cde0d47c9d346ef0b5ee75",
+      "rgbChangedPixels": 0,
+      "visibleBounds": [
+        15,
+        15,
+        477,
+        720
+      ],
+      "alphaMethod": "manually observed native screenshot silhouette and deterministic GrabCut, alpha only"
+    }
+  },
+  "e-female-patient-b": {
+    "path": "assets/characters/e-female-patient-b.png",
+    "atlasPath": "assets/characters/e-female-patient-b.atlas.json",
+    "atlasData": {
+      "frames": {
+        "0": {
+          "frame": {
+            "x": 0,
+            "y": 0,
+            "w": 500,
+            "h": 729
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 500,
+            "h": 729
+          },
+          "sourceSize": {
+            "w": 500,
+            "h": 729
+          },
+          "renderOffset": {
+            "x": 0,
+            "y": 0
+          },
+          "supportAnchor": {
+            "x": 222,
+            "y": 719,
+            "targetX": 222,
+            "targetY": 719,
+            "method": "observed native lower cloak-ground contact; original ankles are cloak-covered"
+          }
+        }
+      },
+      "meta": {
+        "size": {
+          "w": 500,
+          "h": 729
+        },
+        "scale": "1"
+      }
+    },
+    "frameWidth": 500,
+    "frameHeight": 729,
+    "frameCount": 1,
+    "displayHeight": 77.553191,
+    "originX": 0.444,
+    "originY": 0.9862825788751715,
+    "allowFlip": false,
+    "nativeFacing": "right",
+    "animations": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "frameRate": 1
+      }
+    },
+    "relatedSkins": [
+      "e-female-patient-a"
+    ],
+    "sourceKind": "original-game-still-pixels",
+    "motionCoverage": "static-idle-only",
+    "bodyCoverage": "full-visible-cloaked-body-native-game-capture",
+    "sourceLimitations": "Native in-game still of one Female Beast Patient: sack hood, ochre ragged full cape, exposed bandaged clawed near arm, cloak-covered lower body and the visible bare toes. The other arm and most leg anatomy are hidden by the original cape and perspective, so no missing limb is reconstructed. This is one standing original pose, not a motion bank. Original scene lighting is retained without recoloring. The existing source street is removed only through alpha.",
+    "sourceProof": {
+      "sourceFile": "Beast_Patient_29_%3F2.webp",
+      "sourceSha256": "83504e00de109abec1c7e6df0dbf368d6f1750524c002b4fbfa577e816667145",
+      "nativeCrop": [
+        113,
+        64,
+        613,
+        793
+      ],
+      "rgbSha256": "bbdd4062ba9c0ed24509ab39eeaa95edce03d7ca67cde0d47c9d346ef0b5ee75",
+      "rgbChangedPixels": 0,
+      "visibleBounds": [
+        15,
+        15,
+        477,
+        720
+      ],
+      "alphaMethod": "manually observed native screenshot silhouette and deterministic GrabCut, alpha only"
+    }
+  },
+  "e-iosefka-hostile": {
+    "path": "assets/characters/e-iosefka-hostile.png",
+    "atlasPath": "assets/characters/e-iosefka-hostile.atlas.json",
+    "atlasData": {
+      "frames": {
+        "0": {
+          "frame": {
+            "x": 0,
+            "y": 0,
+            "w": 655,
+            "h": 1145
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 655,
+            "h": 1145
+          },
+          "sourceSize": {
+            "w": 655,
+            "h": 1145
+          },
+          "renderOffset": {
+            "x": 0,
+            "y": 0
+          },
+          "supportAnchor": {
+            "x": 500,
+            "y": 1130,
+            "targetX": 500,
+            "targetY": 1130,
+            "method": "manually observed native foot support"
+          }
+        }
+      },
+      "meta": {
+        "size": {
+          "w": 655,
+          "h": 1145
+        },
+        "scale": "1"
+      }
+    },
+    "frameWidth": 655,
+    "frameHeight": 1145,
+    "frameCount": 1,
+    "displayHeight": 76.880036,
+    "originX": 0.7633587786259542,
+    "originY": 0.9868995633187773,
+    "allowFlip": false,
+    "nativeFacing": "left",
+    "animations": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "frameRate": 1
+      }
+    },
+    "relatedSkins": [],
+    "sourceKind": "original-model-render-pixels",
+    "motionCoverage": "static-idle-only",
+    "bodyCoverage": "full-body-with-native-edge-clipping",
+    "sourceLimitations": "Faithful original impostor-Iosefka model: face, shawl, torso, full skirt, feet, blade cane and gun. The original image clips the cane blade at the left edge; no missing blade pixels are reconstructed. Grey graphic background/frame are removed by alpha only. No action timing or motion frames are available.",
+    "sourceProof": {
+      "sourceFile": "image_Impostor_Iosefka.png",
+      "sourceSha256": "b7776d36feca90ed88ac7368877ec341a54428f6a45beaa61bc93df0ea103101",
+      "nativeCrop": [
+        0,
+        20,
+        655,
+        1165
+      ],
+      "rgbSha256": "2946098d90dce0ae90c1c504fe184974cbc6dd9a0b40d85f2e2ca470f08bee3d",
+      "rgbChangedPixels": 0,
+      "visibleBounds": [
+        0,
+        13,
+        637,
+        1130
+      ],
+      "alphaMethod": "native uniform-background color and manually observed contour; alpha only"
+    }
+  }
+}

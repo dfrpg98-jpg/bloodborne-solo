@@ -123,6 +123,7 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
     ...options.engine,
   };
   const window = { BBHunt: engine, BBChapter: M, BBLongHunt: C, BBNarrativeText: require("../../campaigns/long-hunt/narrative-text"), BBEnemyDeck: ED, BBTileGeometry: G,
+    BBHuntPublicText: require("../../hunt-public-text"), BBEnemyActionHistory: require("../../enemy-action-history"),
     BBHuntContext: fs.existsSync(path.join(root, "hunt-context.js")) ? require("../../hunt-context") : null,
     BBHuntAnimationEvents: fs.existsSync(path.join(root, "hunt-animation-events.js")) ? require("../../hunt-animation-events") : null,
     BBActualComponents: require("../../actual-components"),

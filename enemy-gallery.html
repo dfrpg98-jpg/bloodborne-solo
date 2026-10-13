@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>적 외형과 동작 · 개발 미리보기 · v0.8.4</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body{margin:0;background:#10191e;color:#e9e1ce}main{max-width:1100px;margin:auto;padding:24px}h1{font-size:26px}header p{color:#b5c1c4;max-width:800px;line-height:1.65}.gallery-controls,.gallery-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}select,button{font:inherit;color:#e9e1ce;background:#26343d;border:1px solid #687779;border-radius:4px;padding:9px 12px}button:disabled{opacity:.45}button[hidden]{display:none}.gallery-board{position:relative;height:400px;background:radial-gradient(ellipse at center,#273b40,#10191e);border:1px solid #687779;border-radius:6px;overflow:hidden}.gallery-board canvas{pointer-events:none}#enemyGalleryEffects{position:absolute;inset:0}.gallery-status{font-size:14px;color:#b5c1c4;min-height:24px}a{color:#dbbd6f}.source-note{font-size:13px;color:#aebbbc;line-height:1.65}.gallery-tip{position:absolute;bottom:14px;left:18px;color:#788c93;font-size:12px;pointer-events:none}.developer-notice{border-left:3px solid #c6a866;padding-left:12px}@media(max-width:600px){main{padding:14px}.gallery-board{height:340px}h1{font-size:22px}select{max-width:100%}}
+</style>
+</head>
+<body><main>
+<header><p class="eyebrow">BLOODBORNE / ENEMY MOTION / DEVELOPER PREVIEW</p>
+<h1>적 외형과 동작</h1>
+<p class="developer-notice">제작 검토용 화면입니다. 캠페인에서 아직 만나지 않은 적과 보스의 다른 페이즈도 포함합니다. 이야기를 먼저 경험하고 싶다면 사냥 화면에서 진행하세요. 여기서는 게임 진행이나 저장이 바뀌지 않습니다.</p></header>
+<div class="gallery-controls"><label for="galleryEnemy">적 · 행동 구성 · 페이즈</label><select id="galleryEnemy"></select><button id="galleryEnemyPhase" hidden>페이즈 전환</button></div>
+<p id="enemyGalleryStatus" class="gallery-status" role="status">적 그림을 불러오는 중입니다.</p>
+<div id="enemyGalleryViewport" class="gallery-board"><div id="enemyGalleryEffects" aria-hidden="true"></div><span class="gallery-tip">왼쪽: 선택한 적 · 오른쪽: 동작 확인용 사냥꾼</span></div>
+<div id="enemyGalleryActions" class="gallery-actions" aria-label="선택한 적의 행동"></div>
+<div class="gallery-actions"><button id="galleryEnemyWalk">이동</button><button id="galleryEnemyHit">피격</button><button id="galleryEnemyDeath">쓰러짐</button><button id="galleryEnemyIdle">대기로 돌아가기</button></div>
+<p class="source-note">현재 원작 정지 외형에 공개된 행동 효과를 더해 보는 개발 화면입니다. 실제 원작 연속 동작이 없는 행동은 효과만 표시합니다. 일반 적과 여성 야수 환자의 서로 다른 행동 구성은 같은 적의 외형을 공유하며, 성직자 야수만 보스 페이즈를 전환합니다. 이 화면은 피해·상태·소환 같은 실제 규칙 판정을 실행하지 않습니다.</p>
+<p><a href="hunt.html">사냥으로 돌아가기</a> · <a href="weapon-gallery.html">장치무기 외형</a> · <a href="ENEMY_VISUAL_GUIDE.txt">사용 안내</a> · <a href="ENEMY_REFERENCE_REVIEW.txt">참고자료 분석</a></p>
+</main>
+<script src="assets/vendor/phaser-4.2.1.min.js"></script>
+<script src="assets/characters/manifest.js"></script>
+<script src="assets/characters/weapon-manifest.js"></script>
+<script src="assets/characters/enemy-manifest.js"></script>
+<script src="enemy-visuals.js"></script>
+<script src="hunt-presentation.js"></script>
+<script src="enemy-gallery.js"></script>
+</body></html>

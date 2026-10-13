@@ -13,7 +13,7 @@ REFERENCE_PHOTOS = {
     '참고자료/화기/20261011_230950.jpg',
     '참고자료/화기/20261011_231000.jpg',
 }
-IGNORED_PARTS = {'.git', 'node_modules', '__pycache__', '.pytest_cache', 'qa-fixtures'}
+IGNORED_PARTS = {'.git', 'node_modules', '__pycache__', '.pytest_cache', 'qa-fixtures', 'qa-fixtures-enemies'}
 
 def included(relative):
     p = Path(relative)
@@ -22,6 +22,7 @@ def included(relative):
     if p.parts[0] == '참고자료': return False
     if rel == 'qa-load.html' or p.suffix.lower() in {'.zip', '.pyc'}: return False
     if rel.startswith('campaigns/long-hunt/images/'): return False
+    if rel.startswith('components/images/'): return False
     return True
 
 def build(destination):

@@ -3,6 +3,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
+const { referenceSource } = require("./helpers/reference-source.cjs");
 const root = path.join(__dirname, "../campaigns/long-hunt");
 const data = JSON.parse(fs.readFileSync(path.join(root, "data.json"), "utf8"));
 const entries = [...data.preface, ...data.cards];
@@ -20,7 +21,7 @@ test("campaign covers all 67 ordered sources and 60 numbered cards with images",
   for (const [i, e] of entries.entries()) {
     assert.equal(e.source.sortPosition, i + 1);
     assert.match(e.source.sha256, /^[a-f0-9]{64}$/);
-    assert.ok(fs.statSync(path.join(root, e.image)).size > 0);
+    assert.ok(fs.statSync(referenceSource(path.posix.join("campaigns/long-hunt",e.image))).size > 0);
     for (const n of [
       ...e.reveal,
       ...(e.checksCards || []),
@@ -72,7 +73,7 @@ test("reference data preserves printed terminology with the confirmed enemy alia
     for (const side of enemy.sides) {
       photos.push(side.source.filename);
       assert.match(side.source.sha256, /^[a-f0-9]{64}$/);
-      assert.ok(fs.statSync(path.join(root, side.image)).size > 0);
+      assert.ok(fs.statSync(referenceSource(path.posix.join("campaigns/long-hunt",side.image))).size > 0);
       for (const attack of [side.basicAttack, side.specialAttack]) {
         assert.ok(attack.speed >= 1 && attack.speed <= 3);
         assert.ok(attack.damage > 0);

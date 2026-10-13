@@ -1,4 +1,5 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs');
+const {referenceSource}=require('./helpers/reference-source.cjs');
 const E=require('../engine.js'),h=E.hunter;
 const send=(s,type,a={})=>E.dispatch(s,{type,...a});
 test('all named test firearms use pistol rules, spend and reload correctly',()=>{
@@ -27,5 +28,5 @@ test('default v0.3 state remains without optional firearm fields and photo confi
  const c=E.data.components;assert.equal(c.questions.length,0);
  assert.deepEqual(c.cards.find(x=>x.id==='quick').confirmedEffects,{dodge:true,draw:1,clear:true});
  assert.equal(c.cards.flatMap(x=>x.photos||[]).length,9);
- for(const x of c.cards.flatMap(x=>x.photos||[]))assert(fs.existsSync(require('node:path').join(__dirname,'..',x.path)));
+ for(const x of c.cards.flatMap(x=>x.photos||[]))assert(fs.existsSync(referenceSource(x.path)));
 });

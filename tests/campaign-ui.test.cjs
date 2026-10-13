@@ -89,6 +89,7 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
     ...options.engine,
   };
   const window = { BBHunt: engine, BBChapter: M, BBLongHunt: C, BBNarrativeText: N, BBEnemyDeck: ED, BBTileGeometry: G,
+    BBHuntPublicText: require("../hunt-public-text"), BBEnemyActionHistory: require("../enemy-action-history"),
     BBActualComponents: require("../actual-components"),
     BBExtendedEnemies: require("../extended-enemies"),
     BBExtendedFirearms: require("../extended-firearms"),
@@ -451,7 +452,7 @@ test("the new practice target menu distinguishes general variants from hunter-co
   ui.el("practiceTarget").value = "henryk"; ui.el("practiceTarget").fire("change");
   assert.equal(ui.el("practiceSideLabel").hidden, true);
   assert.equal(ui.el("practiceSide").value, "a");
-  assert.match(ui.el("practiceTargetNotice").textContent, /1~2인 면/);
+  assert.match(ui.el("practiceTargetNotice").textContent, /혼자 사냥할 때의 능력/);
 });
 test("weapon effect decisions pass the engine-provided command without inventing a target", () => {
   const s = baseState(); s.phase = "weapon_choice";
@@ -520,7 +521,7 @@ test("face-down weapon slots hide the printed stat card face and describe the do
   h.slots[0] = { ...placed, faceDown: true };
   const ui = boot(s, mission(), rewards());
   const slot = ui.el("slots").querySelectorAll("[data-slot]").find((e) => e.dataset.slot === "0");
-  assert.match(slot.attributes.title || ui.el("slots").innerHTML, /뒷면으로 놓은 카드/);
+  assert.match(slot.attributes.title || ui.el("slots").innerHTML, /효과 없이 사용한 기술/);
   assert.match(ui.el("slots").innerHTML, /스탯 효과 미적용/);
   assert(!ui.el("slots").innerHTML.includes(E.card(placed).name));
 });
@@ -573,7 +574,8 @@ test("reading the introduction and readable public records changes no game save 
   assert.match(ui.el("storyText").innerHTML, new RegExp(C.preface[0].narrative.slice(0, 15)));
   assert.equal(ui.el("previousStory").disabled, true);
   ui.el("nextStory").click();
-  assert.match(ui.el("storyMeta").textContent, /카드 1/);
+  assert.match(ui.el("storyMeta").textContent, /챕터 1.*사냥 임무/);
+  assert.equal(ui.el("storyTitle").textContent, C.cards.find(card => card.number === 1).title);
   assert.match(ui.el("storyDescription").textContent, /밝혀진 이야기/);
   assert(ui.el("storyText").textContent.includes(N.cards[1].paragraphs[0]));
   assert(!ui.el("storyText").textContent.includes(N.cards[2].paragraphs[0]));
@@ -585,7 +587,8 @@ test("reading the introduction and readable public records changes no game save 
   assert.equal(ui.el("storyRules").style.fontSize, "1.5em");
   assert.equal(ui.el("storyZoomValue").textContent, "150%");
   ui.el("nextStory").click(); ui.el("nextStory").click();
-  assert.match(ui.el("storyMeta").textContent, /카드 6/);
+  assert.equal(ui.el("storyTitle").textContent, C.cards.find(card => card.number === 6).title);
+  assert(!ui.el("storyMeta").textContent.includes("카드"));
   assert.equal(ui.el("nextStory").disabled, true);
   ui.el("closeStory").click();
   assert.equal(ui.el("storyDialog").open, false);
@@ -611,10 +614,12 @@ test("past chapter story access is limited to its actual reveal history", () => 
   assert(!ui.el("pastChapters").innerHTML.includes("1:5"));
   assert(!ui.el("storyList").innerHTML.includes("2:19"));
   storyButton(ui, "pastChapters", "1:4").click();
-  assert.match(ui.el("storyMeta").textContent, /챕터 1.*카드 4/);
+  assert.match(ui.el("storyMeta").textContent, /챕터 1.*보상/);
+  assert.equal(ui.el("storyTitle").textContent, C.cards.find(card => card.number === 4).title);
   assert(ui.el("storyText").textContent.includes(N.cards[4].paragraphs[0]));
   ui.el("nextStory").click();
-  assert.match(ui.el("storyMeta").textContent, /챕터 2.*카드 17/);
+  assert.match(ui.el("storyMeta").textContent, /챕터 2/);
+  assert.equal(ui.el("storyTitle").textContent, C.cards.find(card => card.number === 17).title);
   assert.deepEqual(ui.commands, []);
 });
 test("a later reveal is highlighted after read marks without adding story data to a resumed old save", () => {
@@ -626,8 +631,9 @@ test("a later reveal is highlighted after read marks without adding story data t
   view.revealed.push(5, 6);
   ui.el("hand").querySelectorAll("[data-card]")[0].click();
   option(ui, "decisions", "MOVE").click();
-  assert.match(ui.el("storyNotice").innerHTML, /아직 읽지 않은 이야기 2장/);
-  assert.match(ui.el("storyNotice").innerHTML, /카드 5, 6/);
+  assert.match(ui.el("storyNotice").innerHTML, /아직 읽지 않은 이야기 2개/);
+  assert.match(ui.el("storyNotice").innerHTML, /지금 밝혀진 이야기/);
+  assert(!ui.el("storyNotice").innerHTML.includes("카드"));
   assert.equal(ui.storage.get("bloodborne-hunt-v06"), "old-save");
   assert(!ui.storage.get("bloodborne-hunt-v07").includes("readStories"));
   assert.equal(ui.commands.length, 1);
@@ -684,7 +690,7 @@ test("actual firearms display their own triggers and preparation costs instead o
     assert.match(ui.el("firearm").innerHTML, /장착 화기/);
     assert(!ui.el("firearm").innerHTML.includes("제공된 실물 카드"));
     assert(!ui.el("firearm").innerHTML.includes("임시 동작"));
-    assert.match(ui.el("firearm").innerHTML, new RegExp(`카드 ${id === "repeating-pistol" ? 1 : 2}장`));
+    assert.match(ui.el("firearm").innerHTML, new RegExp(`기술 ${id === "repeating-pistol" ? 1 : 2}개`));
     if (id === "ludwig-rifle") assert.match(ui.el("firearm").innerHTML, /이동해 들어올 때/);
     if (id === "repeating-pistol") assert.match(ui.el("firearm").innerHTML, /변형할 때도 준비/);
     if (id === "flamesprayer") assert.match(ui.el("firearm").innerHTML, /속도 2 · 피해 2 · 방해/);
@@ -825,7 +831,13 @@ test("actual special components hide unrevealed boss actions while retaining ins
   } });
   assert.equal(ui.el("componentsPanel").hidden, false);
   const html = ui.el("componentCards").innerHTML;
-  assert.match(html, /시트의 계몽 토큰 2개/); assert.match(html, /실제 구성품/);
+  assert.match(html, /계몽 토큰 2개/);
+  assert.match(html, /<p class="eyebrow">보스 · 1페이즈<\/p>/);
+  assert.match(html, /<p class="eyebrow">특수 적<\/p>/);
+  assert.match(html, /체력 10 \/ 10/);
+  assert.match(html, /보스에게 계몽 토큰 \+1/);
+  assert.doesNotMatch(html, /실제 구성품|임시 구성품|시트의|보스 시트에|2페이즈/,
+    "public actor labels do not expose implementation terms or a future phase");
   assert.doesNotMatch(html, /현재 페이즈의 행동 카드|내려찍기/);
   assert(!html.includes("참고자료/제공 구성품.jpg"));
   assert(!html.includes("실물 원문"));
