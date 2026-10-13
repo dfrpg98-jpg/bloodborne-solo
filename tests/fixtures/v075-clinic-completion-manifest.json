@@ -1,0 +1,237 @@
+{
+  "method": "Normal initial state, public commands only; no extra starting consumable or state edits.",
+  "records": [
+    {
+      "card": 51,
+      "completionCard": 26,
+      "reward": "iosefka-vial",
+      "commandsFile": "v075-clinic51-completed-natural-commands.json",
+      "setup": {
+        "seed": 90,
+        "weaponId": "kirkhammer",
+        "face": 0,
+        "startingConsumable": null,
+        "firearmId": "hunter-pistol",
+        "startSpace": "center",
+        "rulesVersion": 12
+      },
+      "commandCount": 343,
+      "entry": {
+        "command": 282,
+        "history": [
+          {
+            "chapter": 1,
+            "completed": [
+              7,
+              15,
+              4
+            ],
+            "revealed": [
+              1,
+              5,
+              6,
+              7,
+              12,
+              13,
+              8,
+              14,
+              15,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "chapter": 2,
+            "completed": [
+              28,
+              39,
+              23
+            ],
+            "revealed": [
+              17,
+              18,
+              24,
+              25,
+              27,
+              28,
+              35,
+              36,
+              37,
+              29,
+              33,
+              39,
+              19,
+              20,
+              21,
+              22,
+              23
+            ]
+          }
+        ],
+        "completed": [],
+        "insight": 0
+      },
+      "completion": {
+        "command": 340,
+        "commandType": "RESOLVE",
+        "position": "tile-20:entry"
+      },
+      "checkpoints": [
+        1,
+        12,
+        26,
+        51,
+        76,
+        82,
+        95,
+        101,
+        126,
+        147,
+        151,
+        176,
+        183,
+        201,
+        226,
+        251,
+        255,
+        263,
+        276,
+        301,
+        326,
+        340,
+        343
+      ],
+      "final": {
+        "phase": "hunter",
+        "track": 8,
+        "hp": 3,
+        "position": "tile-20:entry",
+        "completed": [
+          26
+        ],
+        "insight": 1,
+        "clinicDeposits": 0,
+        "heldSurvivors": 0,
+        "mandatoryChoices": 0
+      }
+    },
+    {
+      "card": 52,
+      "completionCard": 28,
+      "reward": "messengers-gift",
+      "commandsFile": "v075-clinic52-completed-natural-commands.json",
+      "setup": {
+        "seed": 90,
+        "weaponId": "beast-claw",
+        "face": 0,
+        "startingConsumable": null,
+        "firearmId": "hunter-pistol",
+        "startSpace": "center",
+        "rulesVersion": 12
+      },
+      "commandCount": 384,
+      "entry": {
+        "command": 328,
+        "history": [
+          {
+            "chapter": 1,
+            "completed": [
+              7,
+              15,
+              4
+            ],
+            "revealed": [
+              1,
+              5,
+              6,
+              7,
+              12,
+              13,
+              8,
+              14,
+              15,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "chapter": 2,
+            "completed": [
+              26,
+              39,
+              23
+            ],
+            "revealed": [
+              17,
+              18,
+              24,
+              25,
+              27,
+              26,
+              29,
+              33,
+              19,
+              35,
+              36,
+              37,
+              39,
+              20,
+              21,
+              22,
+              23
+            ]
+          }
+        ],
+        "completed": [],
+        "insight": 0
+      },
+      "completion": {
+        "command": 383,
+        "commandType": "STEP",
+        "position": "tile-20:entry"
+      },
+      "checkpoints": [
+        1,
+        13,
+        26,
+        51,
+        65,
+        76,
+        97,
+        101,
+        103,
+        126,
+        151,
+        176,
+        201,
+        224,
+        226,
+        251,
+        276,
+        286,
+        293,
+        301,
+        326,
+        351,
+        376,
+        383,
+        384
+      ],
+      "final": {
+        "phase": "hunter",
+        "track": 8,
+        "hp": 6,
+        "position": "tile-20:room",
+        "completed": [
+          28
+        ],
+        "insight": 1,
+        "clinicDeposits": 2,
+        "heldSurvivors": 0,
+        "mandatoryChoices": 0
+      }
+    }
+  ]
+}

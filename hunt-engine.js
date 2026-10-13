@@ -1262,6 +1262,13 @@
     s.move = null;
     s.phase = "hunter";
     if (moved) missions.onMovementEnd(s, !!m.pursuedIntoEnd, missionHelpers());
+    if (s.mission?.chapelArrival) {
+      s.missionArrivalAfter = { weaponAfter: m.weaponAfter || null };
+      return;
+    }
+    finishMovementEffects(s, m);
+  }
+  function finishMovementEffects(s, m) {
     if (s.leap) {
       const a = s.leap;
       s.leap = null;
@@ -2659,6 +2666,10 @@
       default:
         fail("알 수 없는 명령입니다.");
     }
+    if (missionHandled && !s.mission?.chapelArrival && s.missionArrivalAfter) {
+      const after = s.missionArrivalAfter; delete s.missionArrivalAfter;
+      finishMovementEffects(s, after);
+    }
     if(s.weaponMoveReturn && s.phase==="hunter") {
       const after=s.weaponMoveReturn;delete s.weaponMoveReturn;resume(s,after);
     }
@@ -2693,8 +2704,8 @@
     );
     need(options && typeof options.campaign === "boolean", "캠페인 시작 설정을 확인하세요.");
     const rulesVersion = Object.hasOwn(options, "rulesVersion")
-      ? options.rulesVersion : options.legacyReplay ? null : 11;
-    need(rulesVersion === null || [7, 8, 9, 10, 11].includes(rulesVersion),
+      ? options.rulesVersion : options.legacyReplay ? null : 12;
+    need(rulesVersion === null || [7, 8, 9, 10, 11, 12].includes(rulesVersion),
       "지원하는 규칙 버전을 선택하세요.");
     need(weaponId==="burial" || rulesVersion>=10 && !options.provisional &&
       Object.hasOwn(D.weapons,weaponId) && weaponId!=="training", "지원하는 장치 무기를 선택하세요.");
@@ -2861,7 +2872,7 @@
       Number.isInteger(s.rng) && s.rng > 0 && s.rng <= 4294967295,
       "난수 오류.",
     );
-    need(s.setup.rulesVersion === undefined || [7, 8, 9, 10, 11].includes(s.setup.rulesVersion),
+    need(s.setup.rulesVersion === undefined || [7, 8, 9, 10, 11, 12].includes(s.setup.rulesVersion),
       "지원하지 않는 규칙 버전입니다.");
     need(
       s.activeHunterId === "hunter-1" && Object.keys(s.hunters).length === 1,

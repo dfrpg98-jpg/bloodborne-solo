@@ -69,6 +69,9 @@ function clickCommand(s,command){
     if(command.type==='USE_REWARD'){
       if(command.node && ui.el('rewardLamp-'+command.rewardId))change('rewardLamp-'+command.rewardId,command.node);
       if(command.node && ui.el('rewardNode-'+command.rewardId))change('rewardNode-'+command.rewardId,command.node);
+      for(const move of command.moves||[]){
+        change('rewardMove-'+command.rewardId+'-'+move.enemyId,move.node);
+      }
     }
     const buttons=containers.flatMap(id=>ui.el(id)?.querySelectorAll('[data-command]')||[]);
     // The reducer accepts an explicit no-op boost; ordinary weapons do not

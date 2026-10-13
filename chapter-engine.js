@@ -227,7 +227,7 @@
     need(chapter, "지원하는 챕터를 선택하세요.");
     const rulesVersion = Object.hasOwn(options, "rulesVersion")
       ? options.rulesVersion : options.legacyReplay ? null : 9;
-    need(rulesVersion === null || [7, 8, 9, 10, 11].includes(rulesVersion),
+    need(rulesVersion === null || [7, 8, 9, 10, 11, 12].includes(rulesVersion),
       "지원하는 규칙 버전을 선택하세요.");
     const required = chapter.requiredTiles.map(
       (name) => C.tiles.find((t) => t.name === name).id,
@@ -443,7 +443,7 @@
       "챕터 준비 저장 형식 오류.",
     );
     need(["ready", "placing", "relocate"].includes(s.phase), "진행 상태 오류.");
-    need(s.rulesVersion === undefined || [7, 8, 9, 10, 11].includes(s.rulesVersion),
+    need(s.rulesVersion === undefined || [7, 8, 9, 10, 11, 12].includes(s.rulesVersion),
       "지원하지 않는 규칙 버전입니다.");
     need(
       s.assignments.length === 3 &&

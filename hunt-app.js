@@ -825,6 +825,7 @@
     } else if (["mission_survivor", "mission_choice", "mission_death"].includes(p)) {
       const pending = missionView()?.pending;
       help = pending ? pending.title + (pending.type === "survivor-move" ? ` · 남은 이동력 ${pending.remaining}` : "") : "임무의 다음 선택을 진행하세요.";
+      if (pending?.description) help += " · " + pending.description;
       html = (pending?.options || (E.missionActions ? E.missionActions(state) : [])).map((a) => commandButton(a, "primary")).join("");
     } else if (p === "between_chapters") {
       const chapter = missionView()?.chapter || 1, face = nextFace === null ? h.face : nextFace;

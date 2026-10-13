@@ -130,7 +130,19 @@
       } else {
         if (tile === "tile-20") open(s, 45, h);
         if (tile === "tile-18") open(s, 53, h);
-        if (tile === "tile-17") open(s, 56, h);
+        if (tile === "tile-17") {
+          const simultaneous = s.setup.rulesVersion >= 12 && !has(s, 56) && !owns(s, 39) &&
+            m.escort.carrierId === s.activeHunterId && has(s, 37);
+          if (simultaneous && !(owns(s, 28) && !owns(s, 34))) {
+            reveal(s, 56, h);
+            m.chapelArrival = { hunterId: s.activeHunterId, beforeCard: owns(s, 34) ? 59 : 33 };
+            m.choice = "chapel-order"; s.phase = "mission_choice";
+            h.log(s, "예배당 도착 · 임무 공개와 호위 완수가 동시에 발생했습니다. 사냥꾼에게 더 불리한 결과로 판정하세요.");
+            return;
+          }
+          if (simultaneous) h.log(s, "예배당 동시 효과 · 진료소 피신처 때문에 33번은 완수할 수 없습니다. 더 불리한 잠금 결과를 먼저 적용합니다.");
+          open(s, 56, h);
+        }
       }
       if (m.escort.carrierId === s.activeHunterId && has(s, 37) &&
           ["tile-20", "tile-17"].includes(tile)) {
@@ -410,7 +422,18 @@
       if (!m.counters[59]) { m.donationWindow = false; complete(s, "supplies", 60, h); }
     } else if (a.type === "MISSION_CHOICE") {
       h.need(s.phase === "mission_choice" && m.choice, "구조 분기를 선택할 단계가 아닙니다.");
-      if (m.choice === "iosefka") {
+      if (m.choice === "chapel-order") {
+        const pending = m.chapelArrival;
+        h.need(pending && pending.hunterId === s.activeHunterId &&
+          ["chapel-first", "escort-first"].includes(a.choice), "동시 효과의 더 불리한 결과를 판정하세요.");
+        m.choice = false; delete m.chapelArrival; s.phase = "hunter";
+        if (a.choice === "escort-first") {
+          m.escort.carrierId = null; m.escort.node = null;
+          complete(s, "bridge", 39, h); open(s, 57, h);
+        } else open(s, pending.beforeCard, h);
+        h.log(s, `예배당 동시 효과 판정 · ${a.choice === "escort-first" ? "39번 보상 후 57번 구원" : pending.beforeCard + "번 임무 후 39번 보상"}.`);
+        onMovementEnd(s, false, h);
+      } else if (m.choice === "iosefka") {
         h.need(["attack-iosefka", "help-iosefka"].includes(a.choice), "공격 또는 도움을 선택하세요.");
         m.choice = false; s.phase = "hunter"; open(s, a.choice === "attack-iosefka" ? 47 : 49, h);
       } else {
@@ -433,6 +456,11 @@
   function actions(s, h) {
     if (!active(s)) return [];
     if (s.phase === "mission_survivor") return survivorOptions(s, h);
+    if (s.phase === "mission_choice" && s.mission.choice === "chapel-order") return [
+      { label: `${s.mission.chapelArrival.beforeCard}번 ${card(s.mission.chapelArrival.beforeCard).title} · 호위 보상 전에 공개`,
+        command: { type: "MISSION_CHOICE", choice: "chapel-first" } },
+      { label: "57번 구원 · 호위 보상을 먼저 받은 뒤 공개",
+        command: { type: "MISSION_CHOICE", choice: "escort-first" } } ];
     if (s.phase === "mission_choice" && s.mission.choice === "iosefka") return [
       { label: "이오세프카를 공격한다", command: { type: "MISSION_CHOICE", choice: "attack-iosefka" } },
       { label: "이오세프카를 돕는다", command: { type: "MISSION_CHOICE", choice: "help-iosefka" } } ];
@@ -526,6 +554,14 @@
       h.distance(s, e.node, a[1].position) - h.distance(s, e.node, b[1].position) || lowest(a, b))[0];
     return [{ enemyId: e.id, targetId: target[0], move: same.length ? 0 : 4, extra: true }];
   }
+  function chapelAdjudicationDescription(s, h) {
+    const m = s.mission, held = m.heldSurvivors[s.activeHunterId] || 0;
+    const total = hunterCount(s) + 1;
+    const before = m.chapelArrival.beforeCard === 59
+      ? `59번 물자: 소모품 ${total}개 기부 → 정령의 빈 껍데기·화염방사기. 현재 소모품 ${h.hunter(s).consumables.length}개.`
+      : `33번 피신처: 생존자 ${total}개를 예배당에 인도 → 꿈틀거림 문자. 현재 보유 ${held}개는 이번 도착에 바로 전달하며, 이전 전달은 ${m.deposits.chapel}개입니다.`;
+    return `규칙서 24쪽: 해결 방법이 여러 가지라면 사냥꾼에게 가장 불리하게 판정합니다. ${before} 57번 구원: NPC와 같은 칸에서 야수 사냥 무리·하인을 ${total}번 처치 → 사냥 문자·소모품. 현재 지도·손패·소모품을 고려해 더 불리한 결과를 고르세요. 어느 쪽이든 39번 호위 보상(고대 사냥꾼의 유골·교단의 연발총)을 받습니다.`;
+  }
   function view(s, h) {
     if (!active(s)) return null;
     const m = s.mission, objective = (id, title, done, started, description) =>
@@ -574,7 +610,8 @@
       history: m.history || [], discarded: m.discarded || [], counters, notices,
       won: m.won, objectives, fog: [...m.fog], tokens,
       targets: Object.values(m.targets).map((x) => ({ ...x })),
-      pending: type ? { type, title: type === "survivor-move" ? "생존자 도주" : type === "death-dodge" ? "야수의 마지막 공격" : m.choice === "iosefka" ? "이오세프카에게 드러난 진실" : "구조 결과 선택",
+      pending: type ? { type, title: type === "survivor-move" ? "생존자 도주" : type === "death-dodge" ? "야수의 마지막 공격" : m.choice === "chapel-order" ? "동시 임무 · 더 불리한 결과 판정" : m.choice === "iosefka" ? "이오세프카에게 드러난 진실" : "구조 결과 선택",
+        ...(m.choice === "chapel-order" ? { description: chapelAdjudicationDescription(s, h) } : {}),
         remaining: m.survivor.remaining, options: h.missionActions(s) } : null };
   }
   function assert(s, h) {
@@ -601,6 +638,11 @@
       (t.currentNode === undefined || at(t.currentNode)) && count(t.tokens) &&
       count(t.initialTokens) && t.tokens <= t.initialTokens && typeof t.complete === "boolean"), "임무 적/부활 토큰 오류.");
     if (m.chapter === 1) return;
+    if (m.chapelArrival) need(s.setup.rulesVersion >= 12 && s.phase === "mission_choice" &&
+      m.choice === "chapel-order" && m.chapelArrival.hunterId === s.activeHunterId &&
+      [33, 59].includes(m.chapelArrival.beforeCard) && has(s, 56) && !owns(s, 39) &&
+      h.node(s, h.hunter(s).position).tile === "tile-17" && m.escort.carrierId === s.activeHunterId,
+      "예배당 동시 효과 판정 상태 오류.");
     need(Array.isArray(m.history) && m.history.length === m.chapter - 1 &&
       m.history.every((x, i) => x.chapter === i + 1 && completed(x.completed) && numbers(x.revealed)), "지난 챕터 완료 기록 오류.");
     need(numbers(m.discarded) && m.discarded.every((n) => [41, 43].includes(n) && has(s, n)), "제거한 임무 카드 오류.");
