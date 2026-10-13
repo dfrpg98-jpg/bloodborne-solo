@@ -10,7 +10,7 @@ for (let i = 0; i <= 123; i++) {
 function at(index) {
   const state = checkpoints.get(index), saved = E.exportSave(state);
   const ui = boot(state, E.missionView(state), E.rewardsView(state), {
-    realInventory: true, engine: E, storage: { 'bloodborne-hunt-v07': saved }
+    realInventory: true, engine: { ...E, applyTileSpeedRuling: s => s }, storage: { 'bloodborne-hunt-v07': saved }
   });
   assert.equal(ui.el('missionUpdateDialog').open, false, 'loading an existing hunt does not replay old notifications');
   assert.equal(ui.el('error').textContent, '');

@@ -49,3 +49,6 @@ node scripts/qa-smoke.cjs는 검증 초기화·소모품·이동·저장 복원�
 
 클라우드 UI 후속 검증
 연결 GitHub의 비공개 source artifact로 커밋·ZIP·내부 tar.gz 해시를 확인하여 클라우드 소스를 확보했습니다. scripts/cloud-ui-qa.cjs와 .github/workflows/cloud-ui-qa.yml은 정상 QA 명령으로 시작점을 생성하고 실제 Chromium 클릭·viewport·tooltip 경계·슬롯 스크롤·임무 알림·적 상세·이동/전투를 검사합니다. 원본 사진과 QA 저장은 브라우저 결과 artifact에 넣지 않습니다. 전체CI2648통과 및 실제 브라우저 실행 결과와 원문 근거 미확정 정책은 docs/audits/cloud-ui-qa-v0.8.13-dev.6/README.md에 구분합니다.
+
+예배당 판정 전환 후속(BB-025 / Issue32)
+기존 규칙14 저장은 원래 명령을 완전 일치 재생한 뒤 안전한 단계에서 전환 명령을 기록합니다. 진행 중 공격은 기존 속도로 마치며 이후 예배당 공격은 -1입니다. 임무10/31 특수는3→2, 일반 적1→0, 피해/기절/토큰/최종 처치 반응은 유지합니다. tests/helpers/tile-speed-checkpoints.cjs로 상태를 조립하지 않고 정상 QA 시작점을 생성합니다. scripts/cloud-tile-speed-qa.cjs는 실제 Chromium에서 raw legacy 파일 불러오기·후속 공격·RESOLVE·지연 전환을 확인하며 원본 저장은 결과에 보존하지 않습니다. 실행 완료 여부와 근거는 docs/audits/tile-speed-policy-v0.8.13-dev.6/README.md를 확인합니다. 사용자 로컬8786에는 배포하지 않았습니다.

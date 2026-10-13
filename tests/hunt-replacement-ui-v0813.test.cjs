@@ -12,7 +12,7 @@ function qaWithEnemy() {
 }
 function launch() {
   const qa = qaWithEnemy(), normalSave = E.exportSave(normal()), qaSave = E.exportSave(qa),
-    ui = boot(qa, E.missionView(qa), E.rewardsView(qa), { realInventory: true, engine: E,
+    ui = boot(qa, E.missionView(qa), E.rewardsView(qa), { realInventory: true, engine: { ...E, applyTileSpeedRuling: s => s },
       storage: { [normalKey]: normalSave, [qaKey]: qaSave, [activeKey]: "qa" } });
   return { ui, qa, normalSave, qaSave };
 }
