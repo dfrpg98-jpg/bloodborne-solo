@@ -81,8 +81,12 @@
       }
       const namedHit = line.match(/ · (?:같은 칸 )?(.+?)에게 피해\s*(\d+)\.$/);
       if (namedHit) {
-        const candidates = oldActors.filter(actor => actor.kind === "enemy" && actor.name === namedHit[1]);
-        const target = candidates.find(actor => !actions.some(action => action.fromId === "hunter" && action.toId === actor.id));
+        const candidates = oldActors.filter(actor => actor.kind === "enemy" && actor.name === namedHit[1] &&
+          !actions.some(action => action.fromId === "hunter" && action.toId === actor.id));
+        const target = candidates.find(actor => actor.id === commandTarget) || candidates.find(actor => {
+          const current = actors.find(value => value.id === actor.id);
+          return !current || Number.isFinite(actor.hp) && Number.isFinite(current.hp) && current.hp < actor.hp;
+        }) || candidates.find(actor => actor.id === targetId) || (candidates.length === 1 ? candidates[0] : null);
         if (target) {
           const current = actors.find(actor => actor.id === target.id);
           // Some printed weapon-effect log lines report the printed amount.

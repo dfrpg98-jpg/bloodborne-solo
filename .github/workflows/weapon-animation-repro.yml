@@ -25,10 +25,10 @@ jobs:
         run: |
           npm install --prefix "$RUNNER_TEMP/weapon-browser" --no-audit --no-fund playwright@1.62.1
           node "$RUNNER_TEMP/weapon-browser/node_modules/playwright/cli.js" install --with-deps chromium
-      - name: Reproduce original wrong target impact
+      - name: Recheck exact target after correction
         env:
           NODE_PATH: ${{ runner.temp }}/weapon-browser/node_modules
-          EXPECTED_IMPACTS: '2'
+          EXPECTED_IMPACTS: '1'
         run: node scripts/cloud-weapon-animation-repro.cjs
       - name: Preserve original frames and public results
         if: always()
