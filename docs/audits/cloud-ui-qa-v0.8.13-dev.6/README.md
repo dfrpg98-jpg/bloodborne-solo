@@ -30,3 +30,7 @@ BB-023의 화면 밖 화기 설명과 BB-024의 좁은 슬롯 글자 겹침을 �
 Git에는 수정 전후와 검증 장면의 JPEG 검토 사본을 [evidence](evidence/)에 보존합니다. [screenshot-index.json](screenshot-index.json)은 사본과 원본 PNG의 각각의 SHA-256, 실제 실행 번호와 변환 사실을 기록합니다. 원본 PNG는 비공개 Actions artifact로26장 보존되며2026-10-20 만료됩니다. JPEG를 원본 PNG 바이트라고 주장하지 않습니다.
 
 [규칙 근거 검토](rule-evidence-review.md)는 실제 원문 사진3장·공식 FAQ·현행 정책의 경계를 기록합니다. 원문 사진 대조는 완료했지만, 피신처/여성 환자의 속도 감소 면제는 근거를 확보하지 못했습니다. 이 정책 변경과 기존 규칙14 저장 전환의 검토는 남아 있습니다. 정규 장비 캠페인 완주, Unity 전체 C# reducer/Editor 실행, 병합·태그·정식 릴리스의 완료 증거가 아닙니다.
+
+## 2cd935a 소스 고정 후 재확인
+
+2026-10-14 후속에서 커밋 `2cd935a438f98e47bcfca1fceb0a3cbb06bdee9d`의 [회귀38427821578](https://github.com/dfrpg98-jpg/bloodborne-solo/actions/runs/38427821578), [회귀38427816398](https://github.com/dfrpg98-jpg/bloodborne-solo/actions/runs/38427816398)의 regression·unity-preparation job과 [실제 브라우저38427816119](https://github.com/dfrpg98-jpg/bloodborne-solo/actions/runs/38427816119)의 browser job이 모두 completed/success임을 연결 GitHub에서 다시 확인했습니다. UI1~12 검증은 완료 기록으로 유지하며, Issue32의 후속 판정 변경 검증과 구분합니다. 이 성공을 새 규칙 수정 커밋의 CI로 대신하지 않습니다.

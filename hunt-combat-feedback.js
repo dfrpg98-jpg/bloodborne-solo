@@ -111,7 +111,7 @@
     const action = { ...(context.resolvedAction || base) }, modifiers = [];
     if (base.type === "ability" || number(base.speed) === null) return { action, modifiers };
     const atSlowTile = context.tileId === "tile-17", ignoresTile = context.ignoreTileSpeed === true || context.missionId === "shelter",
-      penalty = atSlowTile && !ignoresTile ? 1 : 0, buff = context.buff || {},
+      penalty = context.tileSpeedPenalty ?? (atSlowTile && !ignoresTile ? 1 : 0), buff = context.buff || {},
       speed = number(buff.speed) || 0, damage = number(buff.damage) || 0,
       source = context.buffSource || "현재 공개된 능력";
     if (!context.resolvedAction) {
@@ -120,7 +120,7 @@
       if (buff.interrupt) action.interrupt = true;
     }
     if (penalty) modifiers.push(`${context.tileName || "현재 타일"} · 속도 -1`);
-    else if (atSlowTile && ignoresTile) modifiers.push("현재 임무 적용 · 타일의 속도 감소 미적용");
+    else if (atSlowTile && ignoresTile && context.tileSpeedPenalty !== 1) modifiers.push("현재 임무 적용 · 타일의 속도 감소 미적용");
     if (speed) modifiers.push(`${source} · 속도 ${speed > 0 ? "+" : ""}${speed}`);
     if (damage) modifiers.push(`${source} · 피해 ${damage > 0 ? "+" : ""}${damage}`);
     if (buff.interrupt) modifiers.push(`${source} · 방해 추가`);

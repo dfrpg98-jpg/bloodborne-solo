@@ -5,10 +5,19 @@ on:
     paths:
       - .github/workflows/cloud-ui-qa.yml
       - scripts/cloud-ui-qa.cjs
+      - scripts/cloud-tile-speed-qa.cjs
+      - tests/helpers/tile-speed-checkpoints.cjs
+      - mission-engine.js
       - hunt*.js
       - hunt*.css
       - hunt.html
   workflow_dispatch:
+    inputs:
+      scope:
+        description: Browser verification scope
+        type: choice
+        options: [ui, tile-speed]
+        default: ui
 permissions:
   contents: read
 jobs:
@@ -19,6 +28,7 @@ jobs:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
+          fetch-depth: 2
       - uses: actions/setup-node@v7
         with:
           node-version: '24'
@@ -30,12 +40,27 @@ jobs:
       - name: Run actual Chromium clicks against committed source
         env:
           NODE_PATH: ${{ runner.temp }}/bloodborne-browser/node_modules
-        run: node scripts/cloud-ui-qa.cjs
+        run: |
+          scope="${{ inputs.scope }}"
+          if [ -z "$scope" ]; then
+            if git diff --name-only HEAD^ HEAD | rg -q '^(hunt-engine.js|mission-engine.js|scripts/cloud-tile-speed-qa.cjs|tests/helpers/tile-speed-checkpoints.cjs)$'; then
+              scope=tile-speed
+            else
+              scope=ui
+            fi
+          fi
+          if [ "$scope" = tile-speed ]; then
+            node scripts/cloud-tile-speed-qa.cjs
+          else
+            node scripts/cloud-ui-qa.cjs
+          fi
       - name: Keep browser observations without raw saves
         if: always()
         uses: actions/upload-artifact@v7
         with:
           name: cloud-ui-qa-results
-          path: test-results/cloud-ui-qa/
+          path: |
+            test-results/cloud-ui-qa/
+            test-results/cloud-tile-speed-qa/
           retention-days: 7
           if-no-files-found: error

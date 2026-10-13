@@ -13,7 +13,7 @@ const house=()=>natural("v074-shelter-natural-commands.json",75);
 const bridge=()=>natural("v074-clinic-escort-chapter-two-natural-commands.json",125);
 function run(s,...commands){return commands.reduce((x,c)=>E.dispatch(x,c),s);}
 function launch(s){return boot(s,E.missionView(s),E.rewardsView(s),{realInventory:true,
- storage:{[key]:E.exportSave(s)},engine:{...E,applyChapelRuling:x=>x,
+ storage:{[key]:E.exportSave(s)},engine:{...E,applyTileSpeedRuling:state=>state,applyChapelRuling:x=>x,
   applyCombatReactionRuling:x=>x}});}
 function saved(ui){assert.equal(ui.el("error").textContent,"");return E.importSave(ui.storage.get(key));}
 function action(ui,id){const b=ui.el("mapContext").querySelectorAll("[data-context-id]").find(b=>b.dataset.contextId===id);assert(b,"missing "+id);return b;}

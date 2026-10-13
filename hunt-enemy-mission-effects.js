@@ -27,7 +27,7 @@
       const description = `${definition.name}의 ${type}이 ‘${action.name}’${particle} 변경되었습니다.`;
       const effects = [`${action.name} · ${stats.join(" · ")}`];
       if (number === 10) effects.push("체력이 가득 차 있으면 피해 2, 피해를 입은 상태라면 피해 4입니다.");
-      if (number === 31) effects.push("이 적은 임무에 따라 타일의 속도 감소를 받지 않습니다.");
+      if (number === 31 && definition.ignoreTileSpeed) effects.push("이 적은 임무에 따라 타일의 속도 감소를 받지 않습니다.");
       result.push({ enemyId: enemy.id, objectiveId: objectiveIds[number], card: number,
         title: `${definition.name} · 임무에 따른 능력 변경`, description, effects,
         signature: JSON.stringify([number, action.name, stats, definition.ignoreTileSpeed === true]) });

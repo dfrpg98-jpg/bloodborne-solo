@@ -771,6 +771,22 @@
     if (immediateKillReactions(s) || !(s.setup.rulesVersion >= 11) || s.provisional) return s;
     return dispatch(s,{type:"APPLY_COMBAT_REACTION_RULING"});
   }
+  function canApplyTileSpeedRuling(s) {
+    return s.setup.rulesVersion >= 9 && !s.provisional && !s.tileSpeedRuling &&
+      ["hunter", "move", "tile_place", "refill", "return", "between_chapters"].includes(s.phase) &&
+      !s.combat && !s.killReaction && !s.interaction && !s.weaponAfter &&
+      !s.weaponMoveReturn && !s.weaponEffects?.length && !s.missionArrivalAfter &&
+      !s.mission?.deathPending && !s.mission?.chapelArrival;
+  }
+  function applyTileSpeedRuling(s) {
+    // Verify old saves first. Record adoption only at a boundary with no pending
+    // attack/interaction; historical commands and already revealed attacks stay exact.
+    return canApplyTileSpeedRuling(s) ? dispatch(s, {type:"APPLY_TILE_SPEED_RULING"}) : s;
+  }
+  function enemyTileSpeedPenalty(s, e, d = enemyDef(s, e)) {
+    return node(s, e.node).tile === "tile-17" &&
+      (s.tileSpeedRuling === "all-attacks" || !d.ignoreTileSpeed && e.missionId !== "shelter") ? 1 : 0;
+  }
   function enemyDef(s, e) {
     if(typeof e==="object" && e.extendedId) return extendedEnemies.definition(e.extendedId,{side:e.extendedSide,hunterCount:1,order:4});
     const kind = typeof e === "string" ? e : e.kind;
@@ -1685,7 +1701,7 @@
       0,
       c.action.speed +
         c.buff.speed -
-        (node(s, e.node).tile === "tile-17" && !d.ignoreTileSpeed && e.missionId !== "shelter" ? 1 : 0),
+        enemyTileSpeedPenalty(s, e, d),
     );
     c.action.damage += c.buff.damage;
     c.action.interrupt ||= c.buff.interrupt;
@@ -2340,7 +2356,7 @@
     const phase = (p) =>
       need(s.phase === p, "현재 단계에서는 사용할 수 없는 행동입니다.");
     // New rules apply reward choices and timing windows before any firearm or weapon command.
-    const policyAdoption = ["APPLY_CHAPEL_RULING","APPLY_COMBAT_REACTION_RULING"].includes(a.type),
+    const policyAdoption = ["APPLY_CHAPEL_RULING","APPLY_COMBAT_REACTION_RULING","APPLY_TILE_SPEED_RULING"].includes(a.type),
       rewardFirst = s.setup.rulesVersion>=11 && rewardSession(s),
       rewardHandled = !policyAdoption && rewardFirst && rewards.dispatch(s,a,rewardHelpers());
     const firearmHandled = !policyAdoption && !rewardHandled && firearms.dispatch(s, a, firearmHelpers());
@@ -2349,6 +2365,14 @@
       !policyAdoption && !rewardFirst && rewardSession(s) && rewards.dispatch(s, a, rewardHelpers());
     const missionHandled = !policyAdoption && !handled && missions.dispatch(s, a, missionHelpers());
     if (!handled && !missionHandled) switch (a.type) {
+      case "APPLY_TILE_SPEED_RULING":
+        need(canApplyTileSpeedRuling(s), "진행 중인 공격과 반응을 마친 뒤 타일 속도 판정을 전환하세요.");
+        s.tileSpeedRuling = "all-attacks";
+        // Policy adoption changes no gameplay timing, RNG, HP, or mission hooks.
+        s.revision++;
+        s.commands.push(clone(command));
+        assertState(s);
+        return s;
       case "APPLY_COMBAT_REACTION_RULING":
         need(!immediateKillReactions(s) && s.setup.rulesVersion >= 11 && !s.provisional,
           "규칙 11~13의 실제 구성품 저장에 현재 처치 반응 판정을 적용하세요.");
@@ -2983,6 +3007,8 @@
     }
     need(s.chapelRuling === undefined || s.chapelRuling === "escort-first" && s.mission &&
       !(s.setup.rulesVersion >= 13), "예배당 판정 기록 오류.");
+    need(s.tileSpeedRuling === undefined || s.tileSpeedRuling === "all-attacks" &&
+      s.setup.rulesVersion >= 9 && !s.provisional, "타일 속도 판정 기록 오류.");
     need(s.combatReactionRuling === undefined || s.combatReactionRuling === "immediate" &&
       s.setup.rulesVersion >= 11 && !(s.setup.rulesVersion >= 14) && !s.provisional,"처치 반응 판정 기록 오류.");
     need(
@@ -3253,6 +3279,8 @@
     importSave,
     applyChapelRuling,
     applyCombatReactionRuling,
+    applyTileSpeedRuling,
+    enemyTileSpeedPenalty,
     killReactionActions,
     hunter,
     slots,

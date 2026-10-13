@@ -66,7 +66,8 @@
   const missionView = () => E.missionView ? E.missionView(state) : null;
   const applyLoadedRuling = (loaded) => {
     const chapel = E.applyChapelRuling ? E.applyChapelRuling(loaded) : loaded;
-    return E.applyCombatReactionRuling ? E.applyCombatReactionRuling(chapel) : chapel;
+    const combat = E.applyCombatReactionRuling ? E.applyCombatReactionRuling(chapel) : chapel;
+    return E.applyTileSpeedRuling ? E.applyTileSpeedRuling(combat) : combat;
   };
   const isQa = () => !!state.setup?.qa;
   const saveKey = () => isQa() ? qaKey : key;
@@ -372,7 +373,7 @@
       }
       const updates = observedSteps.flatMap(([prior, following]) => window.BBHuntMissionFeedback?.describe(prior, following,
         { E, publicText: window.BBHuntPublicText, data: window.BBLongHunt }) || []);
-      state = next;
+      state = E.applyTileSpeedRuling ? E.applyTileSpeedRuling(next) : next;
       recordMissionUpdates(updates);
       for (const [prior, following] of observedSteps) enemyHistory.observe(prior, following);
       presentationActions = window.BBHuntAnimationEvents?.describe(before, animationSnapshot(), commands) || [];
@@ -1443,6 +1444,7 @@
       buffSource = disclosed ? (combat.history || []).filter(entry => entry.kind === "ability").map(entry => entry.name).join(" · ") : "";
     return combatFeedback.contextualAction(action, { tileId, tileName: M.tile(tileId)?.displayName,
       ignoreTileSpeed: definition.ignoreTileSpeed === true, missionId: enemy.missionId,
+      ...(E.enemyTileSpeedPenalty ? {tileSpeedPenalty:E.enemyTileSpeedPenalty(state, enemy, definition)} : {}),
       ...(disclosed ? { resolvedAction: combat.action, buff: combat.buff, buffSource } : {}) });
   }
   function publicEnemyAction(action, showStats = true, modifiers = []) {
@@ -1826,6 +1828,7 @@
     if (!f) return;
     try {
       state = applyLoadedRuling(E.importSave(await f.text()));
+      state = applyLoadedRuling(state);
       resetStoryReading();
       setupRequired = false;
       restoredPrevious = false;
@@ -2081,6 +2084,7 @@
           ...($("playMode").value === "practice" && practiceRewards.size ? { practiceRewards: [...practiceRewards].flatMap(([id, count]) => Array(count).fill(id)) } : {}),
           ...(!["campaign", "practice", "qa-campaign"].includes($("playMode").value) ? { provisional: $("playMode").value } : {}) },
       );
+      state = applyLoadedRuling(state);
       resetStoryReading();
       setupRequired = false;
       restoredPrevious = false;

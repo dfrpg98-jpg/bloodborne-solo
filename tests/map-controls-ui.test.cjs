@@ -11,7 +11,7 @@ for (const command of fixture) timeline.push(E.dispatch(timeline.at(-1), command
 function launch(state) {
   return boot(state, E.missionView(state), E.rewardsView(state), { realInventory: true,
     storage: { [key]: E.exportSave(state) }, window: { BBHuntMapControls: U },
-    engine: { ...E, applyChapelRuling: state => state, applyCombatReactionRuling: state => state } });
+    engine: { ...E, applyTileSpeedRuling:state=>state, applyChapelRuling: state => state, applyCombatReactionRuling: state => state } });
 }
 function saved(ui) { assert.equal(ui.el("error").textContent, ""); return E.importSave(ui.storage.get(key)); }
 function command(ui, type) { return ui.el("movementControls").querySelectorAll("[data-command]").find(button => button.dataset.command === type); }

@@ -283,7 +283,7 @@
       delete d.special.forceHunterMove; delete d.special.afterAttackMove;
       delete d.special.afterDodgeDamageBonus;
     }
-    if (t.card === 31) d.ignoreTileSpeed = true;
+    if (t.card === 31 && s.tileSpeedRuling !== "all-attacks") d.ignoreTileSpeed = true;
     return d;
   }
   function reset(s, h) {
