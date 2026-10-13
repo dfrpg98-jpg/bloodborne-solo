@@ -29,7 +29,7 @@ test('new solo commands naturally reach the actual chapter-two boss and replay i
 
 test('public version-ten commands complete chapters one and two with actual health decks movement and a final dream',()=>{
   const path=require('./fixtures/actual-chapter-two-win-commands.json');
-  let s=E.create(90,'burial',1,null,'hunter-pistol','center',{campaign:true});
+  let s=E.create(90,'burial',1,null,'hunter-pistol','center',{campaign:true,rulesVersion:10});
   const phases=new Set(),checkpoints=new Set();
   for(const c of path){
     s=E.dispatch(s,c);

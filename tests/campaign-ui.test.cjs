@@ -91,6 +91,7 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
     BBActualComponents: require("../actual-components"),
     BBExtendedEnemies: require("../extended-enemies"),
     BBExtendedFirearms: require("../extended-firearms"),
+    BBRewards: options.rewardDefinitions ? { definitions: options.rewardDefinitions } : require("../rewards-engine"),
     BBInventory: () => ({ render() {}, clear() {}, ids: () => [], names: () => [] }),
     BBStartPlacement: { mount: (container, select, confirm) => {
       const update = () => { confirm.disabled = !select.value; };
@@ -107,6 +108,149 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
   };
 }
 function option(ui, id, type) { return ui.buttons(id).find((b) => b.dataset.command === type); }
+
+test("practice reward quantities use printed supply and never become campaign starting rewards", () => {
+  const definitions = Object.fromEntries(E.data.components.cards.filter((card) => card.group === "reward")
+    .map((card) => [card.id, { ...card, subtype: ["music-box", "ritual-material"].includes(card.id) ? "quest" : card.id.startsWith("rune-") ? "rune" : "tool" }]));
+  const ui = boot(baseState(), null, rewards(), { storage: {}, rewardDefinitions: definitions });
+  ui.el("playMode").value = "practice"; ui.el("playMode").fire("change");
+  const selections = ui.el("practiceRewards").querySelectorAll("[data-practice-reward]");
+  assert.equal(selections.length, 32);
+  const chunk = selections.find((select) => select.dataset.practiceReward === "bloodstone-chunk");
+  assert.match(ui.el("practiceRewards").innerHTML, /정규|사용 효과가 없는 임무 물품/);
+  chunk.value = "1"; chunk.fire("change");
+  const materials = selections.find((select) => select.dataset.practiceReward === "ritual-material");
+  materials.value = "2"; materials.fire("change");
+  assert.match(ui.el("practiceRewardsNotice").textContent, /3장/);
+  ui.el("start").value = "left"; ui.el("start").fire("change"); ui.el("confirmSetup").click();
+  assert.deepEqual([...ui.creates.at(-1)[6].practiceRewards], ["bloodstone-chunk", "ritual-material", "ritual-material"]);
+  ui.el("playMode").value = "campaign"; ui.el("playMode").fire("change");
+  assert.equal(ui.el("practiceSetup").hidden, true);
+  ui.el("confirmSetup").click();
+  assert.equal(Object.hasOwn(ui.creates.at(-1)[6], "practiceRewards"), false);
+});
+
+test("Adella optional echo payment and Guidance occupied slot choices reach the reward command", () => {
+  const items = [
+    { id: "adella", kind: "adella-blood", name: "아데라의 피", equipped: true, ready: true, usable: true, subtype: "tool", controls: { type: "echo-option", available: true } },
+    { id: "guidance", kind: "rune-guidance", name: "카릴 문자:인도", equipped: true, ready: true, usable: true, subtype: "rune", controls: { type: "slot", slots: [{ slot: 0, name: "빈 칸", occupied: false }, { slot: 1, name: "점유 슬롯", occupied: true }] } },
+  ];
+  const ui = boot(baseState(), null, rewards(items));
+  assert.match(ui.el("rewards").innerHTML, /추가 치유 2/);
+  assert.equal(ui.el("rewardEcho-adella").checked, false);
+  ui.el("rewardEcho-adella").checked = true;
+  ui.el("rewards").querySelectorAll("[data-reward-use]").find((b) => b.dataset.rewardUse === "adella").click();
+  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "USE_REWARD", rewardId: "adella", payEcho: true });
+  assert(ui.el("rewardSlot-guidance").innerHTML.includes('value="0"'));
+  assert.match(ui.el("rewardSlot-guidance").innerHTML, /비어 있음/);
+  ui.el("rewardSlot-guidance").value = "1";
+  ui.el("rewards").querySelectorAll("[data-reward-use]").find((b) => b.dataset.rewardUse === "guidance").click();
+  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[1])), { type: "USE_REWARD", rewardId: "guidance", slot: 1 });
+  ui.el("rewardSlot-guidance").value = "0";
+  ui.el("rewards").querySelectorAll("[data-reward-use]").find((b) => b.dataset.rewardUse === "guidance").click();
+  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[2])), { type: "USE_REWARD", rewardId: "guidance", slot: 0 });
+});
+
+test("new direct rewards expose available commands while unavailable quest and solo targets explain their limits", () => {
+  const direct = ["arianna-blood", "call-beyond", "queen-flesh", "ring", "rune-communion", "rune-radiance"];
+  const items = direct.map((kind) => ({ id: kind, kind, name: kind, equipped: true, ready: true, usable: true, subtype: kind.startsWith("rune-") ? "rune" : "tool" }));
+  items.push({ id: "music", kind: "music-box", name: "작은 오르골", ready: true, equipped: false, subtype: "quest", usable: false, disabledReason: "원문 사용불가" });
+  items.push({ id: "corruption", kind: "rune-corruption", name: "카릴 문자:타락", ready: true, equipped: true, subtype: "rune", triggerSelectable: true, limitUsed: true });
+  const ui = boot(baseState(), null, rewards(items));
+  assert.equal(ui.buttons("rewards").filter((b) => b.dataset.command === "USE_REWARD").length, 6);
+  assert.match(ui.el("rewards").innerHTML, /임무 물품 · 사용 효과 없음/);
+  assert.match(ui.el("rewards").innerHTML, /원문 사용불가/);
+  assert.match(ui.el("rewards").innerHTML, /이번 챕터 사용 완료/);
+  assert.match(ui.el("rewards").innerHTML, /다음 죽음에 카릴 문자:타락 사용/);
+  option(ui, "rewards", "SET_REWARD_TRIGGER").click();
+  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "SET_REWARD_TRIGGER", rewardId: "corruption", enabled: true });
+});
+
+test("a torch entry decision sends accept or skip before revealing a combat action", () => {
+  const s = baseState(); s.phase = "reward_entry";
+  const ui = boot(s, null, rewards([], { entry: { rewardId: "torch", title: "야수 사냥의 횃불", enemyId: "entering", enemyName: "교단 거인", damage: 1 } }));
+  assert.match(ui.el("phaseTitle").textContent, /횃불/);
+  assert.match(ui.el("phaseHelp").textContent, /교단 거인/);
+  assert.equal(ui.buttons("decisions").filter((b) => b.dataset.command === "ENTRY_REWARD").length, 2);
+  ui.buttons("decisions").find((b) => JSON.parse(b.dataset.args).accept === true).click();
+  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "ENTRY_REWARD", accept: true });
+  ui.buttons("decisions").find((b) => JSON.parse(b.dataset.args).accept === false).click();
+  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[1])), { type: "ENTRY_REWARD", accept: false });
+});
+
+test("standalone firearm attacks pass broad reward choices and explain the stat-only Clawmark restriction", () => {
+  const s = baseState(); s.setup.rulesVersion = 11; const h = E.hunter(s);
+  s.enemies = [{ id: "target", kind: "huntsman-mob", node: h.position, hp: 8, figure: 1 }];
+  h.rewards = [{ id: "shell", kind: "empty-shell", equipped: true, ready: true }, { id: "claw", kind: "rune-clawmark", equipped: true, ready: true }];
+  const items = h.rewards.map((r) => ({ ...r, name: r.kind, rules: "공격할 때", subtype: r.kind === "empty-shell" ? "tool" : "rune", attackSelectable: true }));
+  const ui = boot(s, null, rewards(items), { engine: { firearm: () => require("../extended-firearms").firearm("cannon"), canFirearm: () => true } });
+  let choice = ui.el("rewards").querySelectorAll("[data-reward-attack]").find((input) => input.dataset.rewardAttack === "shell");
+  choice.checked = true; choice.fire("change");
+  let gunButton = option(ui, "firearm", "FIREARM");
+  assert.deepEqual([...JSON.parse(gunButton.dataset.args).rewardIds], ["shell"]);
+  assert.equal(gunButton.disabled, false);
+  choice = ui.el("rewards").querySelectorAll("[data-reward-attack]").find((input) => input.dataset.rewardAttack === "claw");
+  choice.checked = true; choice.fire("change");
+  gunButton = option(ui, "firearm", "FIREARM");
+  assert.equal(gunButton.disabled, true);
+  assert.match(ui.el("firearm").innerHTML, /손톱자국은 스탯 카드 공격에만/);
+  choice = ui.el("rewards").querySelectorAll("[data-reward-attack]").find((input) => input.dataset.rewardAttack === "claw");
+  choice.checked = false; choice.fire("change");
+  option(ui, "firearm", "FIREARM").click();
+  assert.deepEqual([...ui.commands[0].rewardIds], ["shell"]);
+});
+
+test("a torch reacting to a longer entry lets the hunter select a legal one-space stopping point", () => {
+  const s = baseState(); s.phase = "reward_entry";
+  const ui = boot(s, null, rewards([], { entry: { rewardId: "torch", enemyId: "entering", enemyName: "적", damage: 1,
+    stops: [{ node: "left", name: "왼쪽 칸" }, { node: "right", name: "오른쪽 칸" }] } }));
+  const uses = ui.buttons("decisions").filter((b) => JSON.parse(b.dataset.args).accept === true);
+  assert.equal(uses.length, 2);
+  assert.match(uses[1].innerHTML + ui.el("decisions").innerHTML, /오른쪽 칸/);
+  uses[1].click();
+  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "ENTRY_REWARD", accept: true, node: "right" });
+});
+
+test("changing the selected enemy refreshes the standalone firearm target before it is used", () => {
+  const s = baseState(), h = E.hunter(s);
+  s.enemies = ["first", "second"].map((id, index) => ({ id, kind: "huntsman-mob", node: h.position, hp: 6, figure: index + 1 }));
+  const ui = boot(s, null, rewards(), { engine: { firearm: () => require("../extended-firearms").firearm("cannon"), canFirearm: () => true } });
+  ui.el("nearEnemies").querySelectorAll("[data-enemy]").find((b) => b.dataset.enemy === "second").click();
+  option(ui, "firearm", "FIREARM").click();
+  assert.equal(ui.commands[0].enemyId, "second");
+});
+
+test("the component catalog shows thirty reward effects and two unusable quest items without changing source data", () => {
+  const source = require("../components/cards.json"), before = JSON.stringify(source);
+  const document = new Document(fs.readFileSync(path.join(root, "components.html"), "utf8"));
+  document.getElementById("query").value = "";
+  document.getElementById("group").value = "reward";
+  document.getElementById("runtime").value = "playable";
+  const context = vm.createContext({ window: { BBComponents: source }, document });
+  vm.runInContext(fs.readFileSync(path.join(root, "components.js"), "utf8"), context);
+  assert.equal(document.getElementById("cards").children.length, 30);
+  document.getElementById("runtime").value = "reference"; document.getElementById("runtime").fire("change");
+  assert.equal(document.getElementById("cards").children.length, 2);
+  assert.deepEqual(document.getElementById("cards").children.map((c) => c.dataset.id), ["music-box", "ritual-material"]);
+  assert.equal(JSON.stringify(source), before);
+  assert(!fs.readFileSync(path.join(root, "components.html"), "utf8").includes("자료 등록\n        단계"));
+});
+
+test("pending reward equipment choices disable independent firearm attacks and effects in the firearm panel", () => {
+  const s = baseState(), h = E.hunter(s);
+  s.enemies = [{ id: "target", kind: "huntsman-mob", node: h.position, hp: 6, figure: 1 }];
+  const reward = { id: "gem", kind: "tear-gem", name: "눈물의 혈정석", rules: "부착", persistent: true, equipped: false, ready: true, subtype: "tool" };
+  for (const id of ["cannon", "hunter-blunderbuss"]) {
+    const ui = boot(s, null, rewards([reward], { choices: [{ rewardId: reward.id }] }), {
+      engine: { firearm: () => require("../extended-firearms").firearm(id), canFirearm: () => true },
+    });
+    const gun = option(ui, "firearm", "FIREARM");
+    assert.equal(gun.disabled, true);
+    gun.click();
+    assert.equal(ui.commands.length, 0);
+    assert.equal(ui.el("phaseTitle").textContent, "획득한 보상 선택");
+  }
+});
 
 test("the second chapter shows current evidence, nine tiles and temporary notices without undiscovered objectives", () => {
   const s = baseState(); s.world.tilePool = Array.from({ length: 9 }, (_, i) => "tile-" + i);

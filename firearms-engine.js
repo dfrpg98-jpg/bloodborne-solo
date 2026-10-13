@@ -127,7 +127,7 @@
       need(typeof h.addFirearmAttack === "function" || gun.id === "flamesprayer" && typeof h.addFlameAttack === "function",
         "화기 공격 처리기가 필요합니다.");
       h.hunter(s).firearmReady = false;
-      if (h.addFirearmAttack) h.addFirearmAttack(s, id, gun, command.weaponBoost);
+      if (h.addFirearmAttack) h.addFirearmAttack(s, id, gun, command.weaponBoost, command.rewardIds);
       else h.addFlameAttack(s, id);
       h.log(s, `${gun.name} · 속도 ${gun.speed}, 피해 ${gun.damage}${gun.interrupt ? ", 방해" : ""}${gun.splash ? ` · 같은 칸 다른 모든 적에게 피해 ${gun.splash}` : ""}, 화기 소진.`);
     }

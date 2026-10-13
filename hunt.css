@@ -316,6 +316,13 @@ dialog input {
 .reward-card label { display: block; margin: 8px 0; font-size: 12px; }
 .reward-pending { border: 1px solid #ac9265; background: #322d22; padding: 15px; border-radius: 5px; }
 .reward-pending .choice-grid { margin: 10px 0; }
+.practice-rewards-setup { border-top: 1px solid #67573e; padding-top: 14px; margin-top: 14px; }
+.practice-rewards-setup summary { color: var(--gold); cursor: pointer; }
+.practice-reward-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 9px; margin: 12px 0; }
+.practice-reward-grid label { margin: 0; padding: 10px; background: #18262c; border: 1px solid #46545a; border-radius: 5px; font-size: 13px; }
+.practice-reward-grid select { width: 100%; margin: 6px 0; }
+.practice-reward-grid small { display: block; color: var(--muted); line-height: 1.6; }
+.reward-card .reward-unavailable { color: #d2ba92; }
 .component-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
 .component-card { border: 1px solid #84755e; background: #282d29; padding: 16px; border-radius: 6px; }
 .component-card h3 { margin-top: 5px; }

@@ -48,7 +48,7 @@ test("the ten campaign rewards preserve printed source data and existing chapter
     assert(d, kind); assert.equal(d.rules, source.rules, kind); assert.equal(d.rawRules, source.rawRules, kind);
     assert.equal(d.subtype, kind.startsWith("rune-") ? "rune" : "tool");
   }
-  assert.equal(Object.keys(R.definitions).length, 16);
+  assert.equal(Object.keys(R.definitions).length, 32);
   const s = fixture(), before = clone(s);
   R.init(s);
   assert.deepEqual(s, before);

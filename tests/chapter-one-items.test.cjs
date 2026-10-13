@@ -221,7 +221,7 @@ test("bone ash cannot be spent during movement, interaction reactions, or reward
   reaction = exchange(reaction, { lootCount: 1 });
   assert.throws(() => go(reaction, "USE_CONSUMABLE", { itemId: f.itemId, rewardId: f.lantern }), /현재 단계/);
   const standalone = E.create(90, "burial", 1, "bone-ash"), original = structuredClone(standalone);
-  assert.throws(() => go(standalone, "USE_CONSUMABLE", { itemId: H(standalone).consumables[0].id }), /긴 사냥/);
+  assert.throws(() => go(standalone, "USE_CONSUMABLE", { itemId: H(standalone).consumables[0].id }), /소진된 장착 보상/);
   assert.deepEqual(standalone, original);
   const training = Training.create(90, "burial", 1, "bone-ash"), copy = structuredClone(training);
   assert.throws(() => Training.dispatch(training, { type: "USE_CONSUMABLE",

@@ -1,6 +1,13 @@
 (function () {
   "use strict";
-  const data = window.BBComponents,
+  const source = window.BBComponents,
+    quests = new Set(["music-box", "ritual-material"]),
+    data = { ...source, cards: source.cards.map((card) => card.group === "reward" ? {
+      ...card, runtime: quests.has(card.id) ? "reference" : "playable",
+      runtimeNote: quests.has(card.id)
+        ? "원문 사용불가 임무 물품입니다. 보관하며 도구·문자 장착 제한에 포함하지 않습니다."
+        : "실제 지도 전투의 새 규칙 사냥에서 효과를 실행합니다. 전투 연습의 시작 보상으로 선택할 수 있습니다. 정규 획득은 해당 캠페인 임무를 따릅니다.",
+    } : card) },
     $ = (id) => document.getElementById(id);
   const groups = {
     basic: "기본 스탯",
@@ -37,7 +44,7 @@
     $("totals").append(box);
   }
   for (const q of data.questions) $("questions").append(node("p", q.text));
-  if (!data.questions.length) $("questions").append(node("p", "쾌속의 회피 키워드와 보상 4종의 양면 사진을 확인했습니다. 각 카드에서 원본 사진을 열 수 있습니다. 보상 효과의 실행은 아직 연결 전입니다."));
+  if (!data.questions.length) $("questions").append(node("p", "확인된 카드 원문과 사진 출처를 각 카드에서 열 수 있습니다. 사용 가능한 보상30종의 효과와 사용불가 임무 물품2종의 보관을 연결했습니다."));
   for (const r of data.rules) $("rules").append(node("li", r));
   function render() {
     const q = $("query").value.trim().toLowerCase(),

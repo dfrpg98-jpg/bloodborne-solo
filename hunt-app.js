@@ -50,6 +50,7 @@
     restoredPrevious = false,
     startupError = "",
     setupRequired = true;
+  const practiceRewards = new Map();
   // Reading a story is presentation only. No story field is added to replayed
   // game state or saved commands, including when older saves are resumed.
   const readStories = new Set();
@@ -161,16 +162,19 @@
     const attack = actual && gun.trigger === "hunter-turn", effect = actual && gun.trigger === "hunter-effect",
       targetId = attack && state.phase === "combat_choose" ? state.combat?.enemyId : selectedEnemy,
       target = state.enemies.find((e) => e.id === targetId),
-      allowed = E.canFirearm(state) && (!(attack || effect) || target?.node === h.position) && (!effect || target && !E.enemyDef(state, target).boss);
+      attackRewardIds = state.setup.rulesVersion >= 11 ? [...selectedRewards] : [],
+      statReplacement = attack && attackRewardIds.some((id) => h.rewards?.some((r) => r.id === id && r.kind === "rune-clawmark")),
+      allowed = E.canFirearm(state) && !E.rewardsView?.(state)?.choices?.length && !statReplacement && (!(attack || effect) || target?.node === h.position) && (!effect || target && !E.enemyDef(state, target).boss);
     if (attack && !["hunter", "combat_choose"].includes(state.phase)) return "";
     if (effect && state.phase !== "hunter") return "";
     const label = attack ? state.phase === "combat_choose" ? `${gun.name}로 맞서 공격` : `${gun.name} 공격 · 선택한 적`
       : effect ? `${gun.name} · 선택한 적에게 피해 및 이동` : actual && gun.trigger === "enemy-attack" ? "적 공격 속도 -1 · 모든 공격 효과 제거" : "화기 사용 · 기본 공격 방해";
     const args = attack || effect ? { enemyId: target?.id || null } : {},
       boostCode = state.setup.rulesVersion >= 10 ? E.weaponFace(state).effect?.code : null;
+    if (attack && attackRewardIds.length) args.rewardIds = attackRewardIds;
     if (attack && boostCode === "attack_sacrifice_damage") args.weaponBoost = weaponBoost === "none" ? 0 : +weaponBoost;
     if (attack && boostCode === "attack_sacrifice_speed_or_damage") args.weaponBoost = ["speed", "damage"].includes(weaponBoost) ? weaponBoost : "none";
-    return button(label, "FIREARM", args, !allowed);
+    return button(label, "FIREARM", args, !allowed) + (statReplacement ? '<p class="muted">손톱자국은 스탯 카드 공격에만 사용합니다. 선택을 해제하면 화기로 공격할 수 있습니다.</p>' : "");
   }
   function renderFirearm() {
     const h = E.hunter(state), gun = E.firearm(state), actual = actualGun(),
@@ -355,7 +359,7 @@
     const h = E.hunter(state), pending = !!view.choices.length,
       between = state.phase === "between_chapters";
     selectedRewards = new Set([...selectedRewards].filter((id) => view.rewards.some((r) => r.id === id && r.attackSelectable)));
-    $("rewardsCount").textContent = `${view.rewards.length}장 · 사냥 도구 ${view.rewards.filter((r) => r.equipped && r.subtype === "tool").length}/2 · 카릴 문자 ${view.rewards.filter((r) => r.equipped && r.subtype === "rune").length}/2`;
+    $("rewardsCount").textContent = `${state.setup.practiceRewards?.length ? "연습 지급 · " : ""}${view.rewards.length}장 · 사냥 도구 ${view.rewards.filter((r) => r.equipped && r.subtype === "tool").length}/2 · 카릴 문자 ${view.rewards.filter((r) => r.equipped && r.subtype === "rune").length}/2`;
     $("rewards").innerHTML = view.rewards.map((r) => {
       let actions = "";
       if (r.controls && r.equipped) {
@@ -364,6 +368,10 @@
           destinations = (target) => (target.destinations || []).map((n) => `<option value="${esc(n.node)}">${esc(n.name)}</option>`).join("");
         if (control.type === "enemies-destinations")
           actions = control.targets.map((t) => `<label>${esc(t.name)}의 이동 목적지<select id="rewardMove-${r.id}-${t.enemyId}">${destinations(t)}</select></label>`).join("");
+        else if (control.type === "echo-option")
+          actions = `<label class="checkrow"><input id="rewardEcho-${r.id}" type="checkbox" ${control.available ? "" : "disabled"}>피의 유지 1개를 소모하여 추가 치유 2</label>`;
+        else if (control.type === "slot")
+          actions = `<label>비울 공격 슬롯<select id="rewardSlot-${r.id}">${control.slots.map((slot) => `<option value="${slot.slot}">${esc(slot.name || (slot.slot + 1) + "번 슬롯")} · ${slot.occupied ? "카드 있음" : "비어 있음"}</option>`).join("")}</select></label>`;
         else {
           actions = `<label>대상 적<select id="rewardEnemy-${r.id}">${opts(control.targets)}</select></label>`;
           if (control.type === "enemy-destination") actions += `<label>이동 목적지<select id="rewardNode-${r.id}"></select></label>`;
@@ -377,20 +385,20 @@
       } else if (r.kind === "rune-rapture" && r.equipped) {
         actions = button("피의 기쁨 · 카드 1장, 치유 1", "USE_REWARD", { rewardId: r.id }, !r.usable || pending);
         if (r.usable) actions = '<p class="muted">지금 사용하거나 다른 행동을 하면 이 처치의 사용 기회가 끝납니다.</p>' + actions;
-      } else if (r.equipped && ["iosefka-vial", "messengers-gift", "rune-formless", "old-hunter-bone"].includes(r.kind)) {
+      } else if (r.equipped && ["iosefka-vial", "messengers-gift", "rune-formless", "old-hunter-bone", "arianna-blood", "call-beyond", "queen-flesh", "ring", "rune-communion", "rune-radiance"].includes(r.kind)) {
         actions = button(`${esc(r.name)} 사용`, "USE_REWARD", { rewardId: r.id }, !r.usable || pending);
       }
       if (r.triggerSelectable)
-        actions += button(r.triggerArmed ? "다음 죽음에 사용 선택 해제" : "다음 죽음에 달 문자 사용", "SET_REWARD_TRIGGER", { rewardId: r.id, enabled: !r.triggerArmed }, pending);
+        actions += button(r.triggerArmed ? "다음 죽음에 사용 선택 해제" : `다음 죽음에 ${esc(r.name)} 사용`, "SET_REWARD_TRIGGER", { rewardId: r.id, enabled: !r.triggerArmed }, pending);
       if (r.reassignable && !pending)
-        actions += `<p class="muted">변형 직후 · 혈석을 옮길 수 있습니다.</p><div class="actions">${E.slots(state).map((sl, slot) => button(`${slot + 1}번으로 옮기기`, "REASSIGN_REWARD", { rewardId: r.id, slot }, slot === r.slot)).join("")}</div>`;
+        actions += `<p class="muted">변형 직후 · 슬롯 부착 보상을 옮길 수 있습니다.</p><div class="actions">${E.slots(state).map((sl, slot) => button(`${slot + 1}번으로 옮기기`, "REASSIGN_REWARD", { rewardId: r.id, slot }, slot === r.slot)).join("")}</div>`;
       if (r.attackSelectable && !pending)
         actions += `<label class="checkrow"><input type="checkbox" data-reward-attack="${r.id}" ${selectedRewards.has(r.id) ? "checked" : ""}>다음 공격에 이 보상 사용</label>`;
-      if (between && !pending)
+      if (between && !pending && r.subtype !== "quest")
         actions += r.equipped ? button("이 보상 보관", "KEEP_REWARD", { rewardId: r.id }) : rewardChoiceHTML({ ...view, choices: [{ rewardId: r.id }] }, true);
-      const status = !r.equipped ? "보관 중" : r.persistent ? `${r.slot + 1}번 공격 슬롯 · 지속 효과` : r.ready ? "장착 · 준비됨" : "장착 · 소진됨";
-      return `<article class="reward-card"><p class="eyebrow">${r.subtype === "rune" ? "카릴 문자" : "사냥 도구"}</p><h3>${esc(r.name)}</h3><p class="reward-state ${!r.ready ? "spent" : ""}">${status}${r.triggerArmed ? " · 다음 죽음에 사용 선택됨" : ""}</p><p>${esc(r.rules)}</p>${actions ? `<div class="reward-actions">${actions}</div>` : ""}${r.photos?.length ? `<details><summary>보상 원본 사진</summary>${r.photos.map((p) => `<a href="${esc(p.path)}" target="_blank"><img src="${esc(p.path)}" loading="lazy" alt="${esc(r.name)} 원본 사진"></a>`).join("")}</details>` : ""}</article>`;
-    }).join("") || '<p class="muted">보상은 임무를 완료하면 획득합니다.</p>';
+      const status = r.subtype === "quest" ? "임무 물품 · 사용 효과 없음" : !r.equipped ? "보관 중" : r.persistent ? `${r.slot + 1}번 공격 슬롯 · 지속 효과` : r.ready ? "장착 · 준비됨" : "장착 · 소진됨";
+      return `<article class="reward-card"><p class="eyebrow">${r.subtype === "rune" ? "카릴 문자" : r.subtype === "quest" ? "임무 물품" : "사냥 도구"}</p><h3>${esc(r.name)}</h3><p class="reward-state ${!r.ready ? "spent" : ""}">${status}${r.triggerArmed ? " · 다음 죽음에 사용 선택됨" : ""}${r.limitUsed ? " · 이번 챕터 사용 완료" : ""}</p><p>${esc(r.rules)}</p>${r.disabledReason || r.runtimeNote ? `<p class="reward-unavailable">${esc(r.disabledReason || r.runtimeNote)}</p>` : ""}${actions ? `<div class="reward-actions">${actions}</div>` : ""}${r.photos?.length ? `<details><summary>보상 원본 사진</summary>${r.photos.map((p) => `<a href="${esc(p.path)}" target="_blank"><img src="${esc(p.path)}" loading="lazy" alt="${esc(r.name)} 원본 사진"></a>`).join("")}</details>` : ""}</article>`;
+    }).join("") || `<p class="muted">${missionView() ? "보상은 임무를 완료하면 획득합니다." : "획득한 보상이 없습니다. 새 사냥의 전투 연습에서 시작 보상을 선택해 효과를 확인할 수 있습니다."}</p>`;
     const owned = view.firearms.filter((g) => !g.equipped);
     if (owned.length) $("rewards").innerHTML += `<article class="reward-card"><p class="eyebrow">보관한 화기</p>${owned.map((g) => `<p>${esc(g.name)}</p>${between ? button("이 화기 장착", "EQUIP_FIREARM", { firearmId: g.id }, pending) : ""}`).join("")}<p class="muted">화기는 획득할 때 또는 챕터 사이에 교체합니다.</p></article>`;
     bind($("rewards"));
@@ -409,6 +417,8 @@
       if (r.controls?.type === "enemies-destinations") args.moves = r.controls.targets.map((t) => ({ enemyId: t.enemyId, node: $("rewardMove-" + id + "-" + t.enemyId).value }));
       else if (r.controls?.type === "enemy-destination") { args.enemyId = $("rewardEnemy-" + id).value; args.node = $("rewardNode-" + id).value; }
       else if (r.controls?.type === "enemy") args.enemyId = $("rewardEnemy-" + id).value;
+      else if (r.controls?.type === "echo-option") args.payEcho = $("rewardEcho-" + id).checked;
+      else if (r.controls?.type === "slot") args.slot = +$("rewardSlot-" + id).value;
       else if (r.kind === "lantern") args.node = $("rewardLamp-" + id).value;
       else if (r.kind === "rune-eye") { args.discardId = $("rewardDiscard-" + id).value; args.takeId = $("rewardTake-" + id).value; }
       send("USE_REWARD", args);
@@ -418,6 +428,7 @@
     box.querySelectorAll("[data-reward-attack]").forEach((b) => b.onchange = () => {
       b.checked ? selectedRewards.add(b.dataset.rewardAttack) : selectedRewards.delete(b.dataset.rewardAttack);
       renderRewards();
+      renderFirearm();
       renderDecisions();
     });
   }
@@ -524,6 +535,7 @@
       between_chapters: "다음 챕터 준비",
       weapon_choice: "장치 무기 효과 선택",
       weapon_entry: "장치 무기 · 진입한 적 대응",
+      reward_entry: "야수 사냥의 횃불 · 진입한 적 대응",
       over: "사냥 종료",
     };
     $("phaseTitle").textContent = names[p];
@@ -796,6 +808,13 @@
           ),
         )
         .join("");
+    } else if (p === "reward_entry") {
+      const entry = E.rewardsView?.(state)?.entry;
+      help = entry ? `${entry.enemyName}이 칸에 진입하려 합니다. 횃불을 소진하면 적이 1칸 멀리서 멈추고 피해 1을 받습니다.` : "진입한 적에게 횃불을 사용할지 선택하세요.";
+      html = entry?.stops?.length
+        ? entry.stops.map((stop) => button(`${esc(stop.name)}에 멈춤 · 횃불 소진, 피해 1`, "ENTRY_REWARD", { accept: true, node: stop.node }, false, "primary")).join("")
+        : button("횃불 소진 · 적을 멈추고 피해 1", "ENTRY_REWARD", { accept: true }, !entry, "primary");
+      html += button("횃불 사용하지 않음 · 이동 계속", "ENTRY_REWARD", { accept: false });
     } else if (["mission_survivor", "mission_choice", "mission_death"].includes(p)) {
       const pending = missionView()?.pending;
       help = pending ? pending.title + (pending.type === "survivor-move" ? ` · 남은 이동력 ${pending.remaining}` : "") : "임무의 다음 선택을 진행하세요.";
@@ -1039,6 +1058,7 @@
           (b.onclick = () => {
             selectedEnemy = b.dataset.enemy;
             renderMap();
+            renderFirearm();
             renderDecisions();
           }),
       );
@@ -1166,6 +1186,24 @@
     $("practiceTargetNotice").textContent = target
       ? `선택한 실물 적 1개가 사냥꾼과 같은 칸에서 시작합니다.${variants ? " A·B면 중 연습할 면을 고르세요." : " 인원수에 따른 양면 카드로, 1인 사냥에서는 1~2인 면을 사용합니다."}` : "기나긴 사냥의 일반 적 배정으로 탐험과 전투를 연습합니다.";
   }
+  function renderPracticeRewards() {
+    const definitions = window.BBRewards?.definitions || {};
+    $("practiceRewards").innerHTML = Object.values(definitions).map((reward) => {
+      const count = practiceRewards.get(reward.id) || 0, note = reward.subtype === "quest" ? "사용 효과가 없는 임무 물품" : reward.availabilityNote || "";
+      return `<label>${esc(reward.name)}<select data-practice-reward="${esc(reward.id)}" aria-label="${esc(reward.name)} 지급 수량">${Array.from({ length: reward.count + 1 }, (_, i) => `<option value="${i}" ${i === count ? "selected" : ""}>${i ? i + "장 지급" : "지급하지 않음"}</option>`).join("")}</select>${note ? `<small>${esc(note)}</small>` : ""}</label>`;
+    }).join("");
+    $("practiceRewards").querySelectorAll("[data-practice-reward]").forEach((select) => select.onchange = () => {
+      const value = +select.value;
+      if (value) practiceRewards.set(select.dataset.practiceReward, value);
+      else practiceRewards.delete(select.dataset.practiceReward);
+      updatePracticeRewardsNotice();
+    });
+    updatePracticeRewardsNotice();
+  }
+  function updatePracticeRewardsNotice() {
+    const count = [...practiceRewards.values()].reduce((n, value) => n + value, 0);
+    $("practiceRewardsNotice").textContent = count ? `${count}장 연습 지급 · 시작 설정과 저장 파일에 기록합니다.` : "선택한 연습 보상 없음";
+  }
   try {
     $("restoreV05").hidden = !localStorage.getItem(oldKey);
     $("restoreV06").hidden = $("loadV06Setup").hidden = !localStorage.getItem(previousKey);
@@ -1204,6 +1242,7 @@
   function renderSetupStory() {
     renderSetupWeapons();
     renderPracticeTargets();
+    renderPracticeRewards();
     $("setupStory").hidden = $("playMode").value !== "campaign";
     $("setupStoryText").textContent = window.BBLongHunt.preface.find((entry) => entry.id === "intro")?.narrative || "";
   }
@@ -1242,6 +1281,7 @@
         { campaign: $("playMode").value === "campaign",
           ...(setupActualMode() && $("gun").value !== (setupWeapon().defaultFirearm || "hunter-pistol") ? { firearmOverride: true } : {}),
           ...($("playMode").value === "practice" && $("practiceTarget").value ? { practiceTarget: $("practiceTarget").value, practiceSide: $("practiceSide").value } : {}),
+          ...($("playMode").value === "practice" && practiceRewards.size ? { practiceRewards: [...practiceRewards].flatMap(([id, count]) => Array(count).fill(id)) } : {}),
           ...(!["campaign", "practice"].includes($("playMode").value) ? { provisional: $("playMode").value } : {}) },
       );
       resetStoryReading();
@@ -1264,6 +1304,7 @@
   };
   renderSetupWeapons(true);
   renderPracticeTargets();
+  renderPracticeRewards();
   render();
   if (startupError) $("error").textContent = startupError;
   else if (!setupRequired) save();

@@ -26,7 +26,7 @@ function acquireShard(s, slot = 0) {
   return id;
 }
 test("campaign reward catalogue uses the supplied effects and confirmed shard exception", () => {
-  assert.equal(Object.keys(R.definitions).length, 16);
+  assert.equal(Object.keys(R.definitions).length, 32);
   assert.equal(R.definitions["rune-clawmark"].rules,
     D.components.cards.find((r) => r.id === "rune-clawmark").rules);
   assert.equal(R.definitions["bloodstone-shard"].subtype, "tool");
@@ -201,6 +201,7 @@ test("bone ash readiness restores only an exhausted equipped reward; supply and 
 test("browser global exports the same module without a Node require", () => {
   const fs = require("node:fs"), vm = require("node:vm");
   const context = { BBHuntData: D };
+  vm.runInNewContext(fs.readFileSync(require.resolve("../extended-rewards.js"), "utf8"), context);
   vm.runInNewContext(fs.readFileSync(require.resolve("../rewards-engine.js"), "utf8"), context);
   assert.equal(typeof context.BBRewards.dispatch, "function");
   assert.equal(context.BBRewards.definitions["bloodstone-shard"].persistent, true);

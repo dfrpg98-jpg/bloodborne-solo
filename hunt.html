@@ -17,7 +17,7 @@
         ></a
       >
       <nav class="top-actions">
-        <span class="badge">v0.7.2</span
+        <span class="badge">v0.7.3</span
         ><a class="button" href="index.html">전투 훈련</a
         ><button id="save">저장 내보내기</button
         ><button id="load">불러오기</button><button id="new">새 사냥</button
@@ -184,6 +184,12 @@
         <label>전투 연습 상대<select id="practiceTarget"><option value="">현재 캠페인의 일반 적 · 지도 탐험</option></select></label>
         <label id="practiceSideLabel" hidden>연습 상대의 면<select id="practiceSide"><option value="a">A면</option><option value="b">B면</option></select></label>
         <p id="practiceTargetNotice" class="muted"></p>
+        <details id="practiceRewardsSetup" class="practice-rewards-setup">
+          <summary>연습 시작 보상 선택</summary>
+          <p class="muted">전투 연습에서 효과를 확인할 보상을 지급합니다. 정규 캠페인의 획득 보상이 아닙니다. 사냥 도구와 카릴 문자는 각각 2장까지 장착하며, 초과분은 시작 후 교체하거나 보관합니다.</p>
+          <div id="practiceRewards" class="practice-reward-grid"></div>
+          <p id="practiceRewardsNotice" class="muted" role="status"></p>
+        </details>
       </div>
       <details id="setupStory" class="setup-story"><summary>기나긴 사냥 도입부 읽기</summary><p id="setupStoryText"></p></details>
       <label
@@ -260,6 +266,7 @@
     <script src="boss-components.js"></script>
     <script src="firearms-engine.js"></script>
     <script src="mission-engine.js"></script>
+    <script src="extended-rewards.js"></script>
     <script src="rewards-engine.js"></script>
     <script src="weapon-rules.js"></script>
     <script src="weapon-flow.js"></script>

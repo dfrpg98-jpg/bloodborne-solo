@@ -1,8 +1,8 @@
 {
   "title": "블러드본 규칙 구현 점검표",
   "asOf": "2026-10-12 KST",
-  "version": "0.7.2",
-  "scope": "1인용 기나긴 사냥 챕터1~3, 장치 무기15종(기존 장송의 칼날+추가14종28면), 기존 캠페인 일반 적3종6면, 추가 실물 적12종24면의 독립 전투 연습, 실제 성직자 야수·여성 야수 환자·이오세프카, 추가 화기7종+기본 단총, 실행 보상16종. 다인 실행과 다른 캠페인은 별도 범위입니다.",
+  "version": "0.7.3",
+  "scope": "1인용 기나긴 사냥 챕터1~3, 장치 무기15종(기존 장송의 칼날+추가14종28면), 기존 캠페인 일반 적3종6면, 추가 실물 적12종24면의 독립 전투 연습, 실제 성직자 야수·여성 야수 환자·이오세프카, 추가 화기7종+기본 단총, 등록 보상32종(실행 효과30종과 사용불가 임무 물품2종), 보상 선택 전투 연습. 다인 실행과 다른 캠페인은 별도 범위입니다.",
   "sources": [
     {
       "title": "사용자 제공 한국어 규칙서",
@@ -17,7 +17,7 @@
     {
       "title": "제공 스탯/소모품/보상 전사",
       "path": "components/cards.json",
-      "scope": "정의75종; 보상32종 중 실행16종"
+      "scope": "정의75종; 보상32종(실행 효과30종과 사용불가 임무 물품2종)"
     },
     {
       "title": "코드 감사와 실제 검증 기록",
@@ -47,14 +47,16 @@
     "자동 테스트 근거 있음은 테스트명/파일이 존재한다는 의미입니다. 최종 버전 실행 결과는 VERIFICATION.txt를 확인합니다.",
     "부분·미구현·범위 제외가 섞인 이 목록으로 전체 규칙 완성률/100%를 계산하지 않습니다.",
     "페이지1/3/11/28은 표지·목차·준비 안내·제작진 페이지여서 독립 실행 조건 행으로 만들지 않았습니다. 22쪽 전투 예시는 전투 행의 근거에 포함합니다.",
-    "나머지 보상16종에는 원문 사용불가 임무 물건이 포함됩니다. 임의 사용 효과를 만들지 않습니다.",
+    "기존 실행16종에 추가 효과14종을 연결했습니다. 작은 오르골·의식용 재료2종은 원문 사용불가 임무 물품으로 등록하며 임의 효과를 만들지 않습니다.",
     "후속 임무 테스트에는 유효 상태를 조립한 분기/경계 검증도 있습니다. 실제 새 사냥부터의 전체 명령 완주 근거는 별도 행/VERIFICATION.txt로 구분합니다.",
     "보스 초기화의 일반 위치 보존, 챕터2 카드20/22의 지정칸 재출현, 챕터3 카드42의 위치 보존은 서로 다른 조건입니다.",
-    "새 v0.7.2 사냥은 rulesVersion10의 확장 무기·화기·실물 연습 상대를 사용합니다. 규칙9 저장은 v0.7.1의 실제 구성품 효과를, 규칙8/7/무버전 저장과 별도 임시 시험은 저장 당시 효과를 유지합니다. 저장 형식과 v07 키는 유지합니다.",
+    "새 v0.7.3 사냥은 rulesVersion11의 보상 확장을 사용합니다. 규칙10/9/8/7/무버전 저장과 임시 시험은 저장 당시 효과를 유지합니다. 저장 형식과 v07 키는 유지합니다.",
     "장치무기 시트의 아랫줄은 반대 면 요약입니다. 현재 면의 두 번째 능력으로 적용하지 않습니다.",
-    "RULES_CHECKLIST.json/TXT/XLSX는 v0.7.2의 동일한91행을 제공합니다.",
     "새 실물 적12종은 독립 연습에서 선택합니다. 기나긴 사냥의 임무에서 요구하는 기존 적 구성은 해당 임무 지시를 유지합니다.",
-    "규칙10의 실제 구성품으로 장송의 칼날·기본 단총 한 경로를325개 공개 명령만으로 진행하여 챕터1~3 연속 승리와 정확 저장 재생을 검증했습니다. 실제 성직자 야수는 챕터2/3의 체력10/8·양 페이즈 행동 덱을 사용하며 최종 꿈에서 사냥 트랙은 늘지 않습니다. 모든 무기 조합·모든 곁가지 경로의 본편 완주를 검증한 것은 아닙니다."
+    "규칙10의 실제 구성품으로 장송의 칼날·기본 단총 한 경로를325개 공개 명령만으로 진행하여 챕터1~3 연속 승리와 정확 저장 재생을 검증했습니다. 실제 성직자 야수는 챕터2/3의 체력10/8·양 페이즈 행동 덱을 사용하며 최종 꿈에서 사냥 트랙은 늘지 않습니다. 모든 무기 조합·모든 곁가지 경로의 본편 완주를 검증한 것은 아닙니다.",
+    "연습 시작 보상은 정규 임무 획득 보상이 아닙니다. 선택 수량을 초기 저장 설정에 기록하며 도구·문자 각각2장과 인쇄 공급량을 적용합니다.",
+    "무기15종×시작 면2×화기8종의240조합은 실제 공개 명령으로 진행하는 짧은 전투 연습·준비·변형·꿈·귀환·저장 재생 검증입니다.240조합 모두의 본편 캠페인 완주를 뜻하지 않습니다.",
+    "RULES_CHECKLIST.json/TXT/XLSX는 v0.7.3의 동일한100행을 제공합니다."
   ],
   "rows": [
     {
@@ -769,7 +771,7 @@
       "id": "R33",
       "category": "보상",
       "rulePage": "17, 23~24",
-      "criterion": "일반 보상은 사용 후 소진되고 꿈에서 준비되며 혈석의 파편은 지정 슬롯에 계속 적용된다.",
+      "criterion": "일반 보상은 소진 후 꿈에서 준비되며 혈석의 파편·덩어리·눈물의 혈정석은 지정 슬롯에 계속 적용된다. 챕터별1회 제한은 별도 유지한다.",
       "status": "구현",
       "priority": "없음",
       "verification": "자동 테스트 근거 있음",
@@ -791,13 +793,13 @@
       "id": "R34",
       "category": "보상",
       "rulePage": "17 / 제공 32종 목록",
-      "criterion": "현재 실행16종을 제외한 나머지 보상16종을 해당 임무 획득과 가능한 사용 효과에 연결한다.",
-      "status": "미구현",
+      "criterion": "보상32종의 가능한 사용 효과·보관과 해당 임무 획득 조건을 연결한다.",
+      "status": "부분",
       "priority": "후속",
-      "verification": "코드 확인 · 전용 자동 테스트 없음",
-      "evidence": "components/cards.json group=reward 32종; rewards-engine.js supported 16종; RULES_AUDIT.txt 나머지16종 목록",
+      "verification": "기존16종+추가14종 효과 및 사용불가2종 등록 · 획득 임무 일부는 자료 대기",
+      "evidence": "rewards-engine.js/extended-rewards.js:32종 정의, 실행 효과30종과 사용불가 임무 물품2종. 새로운 효과는 규칙11에 연결하며 다른 캠페인의 획득 조건은 만들지 않습니다. B01~B07의 개별 테스트를 참고합니다.",
       "testEvidence": [],
-      "nextAction": "다른 캠페인/획득 조건과 남은 도구·물건11종/문자5종을 연결합니다. 작은 오르골·의식용 재료의 사용불가 원문은 유지합니다.",
+      "nextAction": "다른 캠페인의 임무 카드가 제공되면 인쇄된 획득 조건을 연결합니다. 현 단계에서는 전투 연습 시작 보상으로30종 효과와2종 보관을 확인할 수 있습니다.",
       "manualCheck": "미점검"
     },
     {
@@ -1960,7 +1962,7 @@
       "status": "구현",
       "priority": "없음",
       "verification": "규칙10 공개 명령325개로 3챕터 자연 완주·정확 저장 재생 / 장송의 칼날 한 경로",
-      "nextAction": "",
+      "nextAction": "다른 무기·화기와 임무 곁가지 경로의 본편 장기 플레이를 추가 검증합니다.240조합의 전투 연습 검증과 본편 자연 완주 검증은 구분합니다.",
       "evidence": "mission-engine.js onKill(), complete(44); hunt-engine.js beginChapterDream(), finishDream(); hunt-app.js renderDecisions()\ntests/later-missions.test.cjs — chapter three final boss kill completes 44 and records campaign victory without track advance\ntests/campaign-ui.test.cjs — chapter completion offers equipment preparation and chapter three has a campaign ending\n규칙8 임시 구성품은332명령 자연 완주. 새 규칙9 실제 구성품은276명령 Ch1~2 완료·최종꿈, Ch3 최종 처치는 조립 상태 회귀; 새 구성품으로 전체 캠페인 자연 완주를 검증했다는 의미는 아님.\ntests/actual-boss.test.cjs — an actual phase-two final kill completes card44 and the final dream without advancing the hunt track\n규칙10의 실제 구성품으로 장송의 칼날·기본 단총 한 경로를325개 공개 명령만으로 진행하여 챕터1~3 연속 승리와 정확 저장 재생을 검증했습니다. 실제 성직자 야수는 챕터2/3의 체력10/8·양 페이즈 행동 덱을 사용하며 최종 꿈에서 사냥 트랙은 늘지 않습니다. 모든 무기 조합·모든 곁가지 경로의 본편 완주를 검증한 것은 아닙니다.\ntests/actual-full-campaign-v10.test.cjs — 325 public version-ten commands win all three Long Hunt chapters with actual Cleric Beast and exact save replay",
       "testEvidence": [
         {
@@ -2211,6 +2213,272 @@
         {
           "file": "tests/campaign-ui.test.cjs",
           "name": "a cannon counterattack uses its own name and damage without a flamesprayer label"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "B01",
+      "category": "보상 확장",
+      "rulePage": "17, 23~24 / 제공 보상·무기·화기",
+      "criterion": "추가 보상16종을 실행 효과14종과 사용불가 임무 물품2종으로 구분해 등록한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음 · 사용자 직접 점검은 미점검",
+      "evidence": "components/cards.json 원문/수량을 유지합니다. 아리안나·아데라·공허로의 외침·횃불·작은 토니트루스·혈석 덩어리·눈물 혈정석·여왕 살점·반지·성찬식·광휘·타락·인도·야수의1인용 효과를 연결합니다. 작은 오르골·의식용 재료는 보관하며 장비 슬롯을 사용하지 않습니다.\ntests/extended-rewards.test.cjs — all 16 remaining printed reward cards retain their source text and quantities\ntests/extended-rewards.test.cjs — unusable music box and ritual material are stored without equipment slots or invented actions\ntests/extended-rewards.test.cjs — old rule versions reject every additional reward without changing state\ntests/campaign-ui.test.cjs — the component catalog shows thirty reward effects and two unusable quest items without changing source data",
+      "testEvidence": [
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "all 16 remaining printed reward cards retain their source text and quantities"
+        },
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "unusable music box and ritual material are stored without equipment slots or invented actions"
+        },
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "old rule versions reject every additional reward without changing state"
+        },
+        {
+          "file": "tests/campaign-ui.test.cjs",
+          "name": "the component catalog shows thirty reward effects and two unusable quest items without changing source data"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "B02",
+      "category": "보상 전투 연습",
+      "rulePage": "17, 23~24 / 제공 보상·무기·화기",
+      "criterion": "정규 캠페인과 별도로 연습 보상의 수량을 선택하고 인쇄 공급·장비 제한 안에서 사용한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음 · 사용자 직접 점검은 미점검",
+      "evidence": "hunt-app.js 연습 시작 보상 선택과 hunt-engine.js 초기 practiceRewards 설정. 정규 캠페인·임시 시험에서는 추가 시작 보상을 지급하지 않습니다. 초과 장비는 교체/보관을 선택하고 임무 물품은 보관합니다. 지급 목록을 초기 저장 설정에 기록합니다.\ntests/campaign-ui.test.cjs — practice reward quantities use printed supply and never become campaign starting rewards\ntests/campaign-ui.test.cjs — new direct rewards expose available commands while unavailable quest and solo targets explain their limits\ntests/extended-rewards.test.cjs — public practice reward setup includes all 32 cards and replays equipment choices exactly\ntests/campaign-ui.test.cjs — pending reward equipment choices disable independent firearm attacks and effects in the firearm panel",
+      "testEvidence": [
+        {
+          "file": "tests/campaign-ui.test.cjs",
+          "name": "practice reward quantities use printed supply and never become campaign starting rewards"
+        },
+        {
+          "file": "tests/campaign-ui.test.cjs",
+          "name": "new direct rewards expose available commands while unavailable quest and solo targets explain their limits"
+        },
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "public practice reward setup includes all 32 cards and replays equipment choices exactly"
+        },
+        {
+          "file": "tests/campaign-ui.test.cjs",
+          "name": "pending reward equipment choices disable independent firearm attacks and effects in the firearm panel"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "B03",
+      "category": "보상 진입 반응",
+      "rulePage": "17, 23~24 / 제공 보상·무기·화기",
+      "criterion": "횃불은 비보스 적의 진입 전에 선택하며 사용하면1칸 멀리 멈추고 피해1, 거절하면 소진 없이 이어간다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음 · 사용자 직접 점검은 미점검",
+      "evidence": "extended-rewards.js onEnemyStep()/dispatchEntry(); hunt-engine.js 적 진입의 중단/재개; hunt-app.js reward_entry와 ENTRY_REWARD {accept,node}. 보스·정지·다른 칸 진입은 대상에서 제외합니다.2칸 끌기 진입에서는 유효한1칸 거리 정지 위치를 선택합니다.\ntests/extended-rewards.test.cjs — torch entry can be declined without exhaustion or accepted to stop at the previous space and deal one\ntests/extended-rewards.test.cjs — torch ignores bosses, stationary enemies and entries to another space\ntests/campaign-ui.test.cjs — a torch entry decision sends accept or skip before revealing a combat action\ntests/campaign-ui.test.cjs — a torch reacting to a longer entry lets the hunter select a legal one-space stopping point\ntests/extended-rewards.test.cjs — integrated torch declines through rifle-spear and rifle reactions, preserving the enemy activation\ntests/extended-rewards.test.cjs — integrated torch cancels a pull declaration if the chosen target stops outside the hunter space",
+      "testEvidence": [
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "torch entry can be declined without exhaustion or accepted to stop at the previous space and deal one"
+        },
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "torch ignores bosses, stationary enemies and entries to another space"
+        },
+        {
+          "file": "tests/campaign-ui.test.cjs",
+          "name": "a torch entry decision sends accept or skip before revealing a combat action"
+        },
+        {
+          "file": "tests/campaign-ui.test.cjs",
+          "name": "a torch reacting to a longer entry lets the hunter select a legal one-space stopping point"
+        },
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "integrated torch declines through rifle-spear and rifle reactions, preserving the enemy activation"
+        },
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "integrated torch cancels a pull declaration if the chosen target stops outside the hunter space"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "B04",
+      "category": "챕터별 보상 제한",
+      "rulePage": "17, 23~24 / 제공 보상·무기·화기",
+      "criterion": "광휘와 타락은 챕터마다1회이며 준비나 꿈으로 사용 횟수 제한을 되돌리지 않는다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음 · 사용자 직접 점검은 미점검",
+      "evidence": "광휘는 손패가3장이 될 때까지 뽑습니다. 타락은 사냥꾼 차례에 다음 치명적 피해에 사용할지 미리 선택하고 발동하면 체력6으로 회복하며 죽음을 막습니다. 상태/유지를 유지하고 챕터별 사용 기록을 저장합니다.\ntests/extended-rewards.test.cjs — radiance draws up to three once per chapter, and neither dream nor readiness bypasses the limit\ntests/extended-rewards.test.cjs — radiance at three cards cannot waste its chapter use\ntests/extended-rewards.test.cjs — corruption prevents only an armed lethal hit, heals all damage, and preserves statuses and echoes\ntests/extended-rewards.test.cjs — integrated corruption prevents direct weapon sacrifice, poison death and an equal-speed lethal attack\ntests/extended-rewards.test.cjs — a printed once-per-chapter rune cannot be readied with bone ash and the rejected use retains the consumable",
+      "testEvidence": [
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "radiance draws up to three once per chapter, and neither dream nor readiness bypasses the limit"
+        },
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "radiance at three cards cannot waste its chapter use"
+        },
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "corruption prevents only an armed lethal hit, heals all damage, and preserves statuses and echoes"
+        },
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "integrated corruption prevents direct weapon sacrifice, poison death and an equal-speed lethal attack"
+        },
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "a printed once-per-chapter rune cannot be readied with bone ash and the rejected use retains the consumable"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "B05",
+      "category": "보상 사용 시점",
+      "rulePage": "17, 23~24 / 제공 보상·무기·화기",
+      "criterion": "여왕의 살점은 차례 시작 직후 선택하며 다른 행동 뒤에는 사용 기회가 닫힌다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음 · 사용자 직접 점검은 미점검",
+      "evidence": "extended-rewards.js onTurnStart()와 rewards-engine.js 발동 창 관리. 사용 시 치유1과 소진을 적용하며 꿈/귀환과 시작 준비에서 새 차례의 기회를 설정합니다.\ntests/extended-rewards.test.cjs — queen flesh is an optional exhausting reward only at the turn start window",
+      "testEvidence": [
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "queen flesh is an optional exhausting reward only at the turn start window"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "B06",
+      "category": "보상 이동·대상",
+      "rulePage": "17, 23~24 / 제공 보상·무기·화기",
+      "criterion": "인도의 슬롯 비우기와2칸 이동, 작은 토니트루스의 개별 활성화 억제, 야수의 처치 직후 연쇄 반응을 실행한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음 · 사용자 직접 점검은 미점검",
+      "evidence": "인도는 유효 슬롯1개를 선택해 비운 뒤 스탯 비용 없는 정상 이동을 시작합니다. 이미 빈 슬롯도 선택할 수 있으며 슬롯 비우기 부가효과는 발생하지 않고 이동2를 실행합니다. 작은 토니트루스는1칸 이내 비보스에게 피해2를 주고 그 적의 다음 활성화를 억제합니다. 야수 문자는 처치 직후1칸 이내의 다른 적에게 피해2를 주며 다시 처치하면 새 반응 기회를 만듭니다.\ntests/extended-rewards.test.cjs — guidance clears an occupied slot before a normal two-space move without a stat-card cost\ntests/extended-rewards.test.cjs — tiny Tonitrus excludes bosses and remote targets, deals two, and skips only the surviving chosen enemy\ntests/extended-rewards.test.cjs — beast rune opens only on a living hunter kill, deals two within one space and can open the next kill reaction\ntests/campaign-ui.test.cjs — Adella optional echo payment and Guidance occupied slot choices reach the reward command\ntests/extended-rewards.test.cjs — integrated guidance runs the sword clear-slot damage before its two-space movement and resumes cleanly",
+      "testEvidence": [
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "guidance clears an occupied slot before a normal two-space move without a stat-card cost"
+        },
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "tiny Tonitrus excludes bosses and remote targets, deals two, and skips only the surviving chosen enemy"
+        },
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "beast rune opens only on a living hunter kill, deals two within one space and can open the next kill reaction"
+        },
+        {
+          "file": "tests/campaign-ui.test.cjs",
+          "name": "Adella optional echo payment and Guidance occupied slot choices reach the reward command"
+        },
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "integrated guidance runs the sword clear-slot damage before its two-space movement and resumes cleanly"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "B07",
+      "category": "슬롯 부착 보상",
+      "rulePage": "17, 23~24 / 제공 보상·무기·화기",
+      "criterion": "혈석 덩어리와 눈물 혈정석은 지정 슬롯 공격만 강화하고 슬롯 수가 줄어들면 유효 슬롯으로 재배치한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음 · 사용자 직접 점검은 미점검",
+      "evidence": "혈석 덩어리는 속도+1/피해+1, 눈물 혈정석은 공격할 때 치유1을 적용합니다. 지속 효과는 소진하지 않으며 변형 뒤 유효 슬롯에서 옮길 수 있습니다. 여러 부착 보상과 무기1~3개 슬롯을 구분합니다.\ntests/extended-rewards.test.cjs — chunk and tear attach without exhaustion and contribute only to their chosen attack slot\ntests/extended-rewards.test.cjs — persistent attachment must be reassigned when transforming from three slots into one\ntests/extended-rewards.test.cjs — within-range attachment can move on transformation; persistent rewards cannot be exhausted or overequipped",
+      "testEvidence": [
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "chunk and tear attach without exhaustion and contribute only to their chosen attack slot"
+        },
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "persistent attachment must be reassigned when transforming from three slots into one"
+        },
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "within-range attachment can move on transformation; persistent rewards cannot be exhausted or overequipped"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "B08",
+      "category": "무기·화기 조합 검증",
+      "rulePage": "17, 23~24 / 제공 보상·무기·화기",
+      "criterion": "무기15종×시작 면2×화기8종의240조합을 공개 명령의 전투 연습과 정확 저장 재생으로 점검한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음 · 사용자 직접 점검은 미점검",
+      "evidence": "weapon-firearm-matrix.test.cjs의 규칙11 현행240조합과 규칙10 보존240조합, 총480개 public encounter and save replay v{10|11}: 동적 케이스. 교단 거인A를 상대하며 화기의 인쇄 발동 사용·정확 준비 카드 비용, 스탯 비용 변형·슬롯 수, 라운드 진행, 꿈·반대 면 귀환, 스탯 카드 공격과 여러 저장 체크포인트를 확인합니다. 상태를 직접 편집하지 않습니다. 별도 기본 조합30개는 간단한 탐험 정책으로9~12라운드/총3631명령을 진행하고 모두 트랙 패배로 종료했습니다. 본편 승리·전술·밸런스 검증을 뜻하지 않습니다.\ntests/weapon-firearm-matrix.test.cjs — matrix includes precisely all fifteen weapons and all eight playable firearms\ntests/weapon-firearm-matrix.test.cjs — each weapon uses its printed starting gun and requires explicit campaign override for alternatives\ntests/weapon-firearm-matrix.test.cjs — the thirty default combinations finish multi-round public campaign traces and replay their terminal states",
+      "testEvidence": [
+        {
+          "file": "tests/weapon-firearm-matrix.test.cjs",
+          "name": "matrix includes precisely all fifteen weapons and all eight playable firearms"
+        },
+        {
+          "file": "tests/weapon-firearm-matrix.test.cjs",
+          "name": "each weapon uses its printed starting gun and requires explicit campaign override for alternatives"
+        },
+        {
+          "file": "tests/weapon-firearm-matrix.test.cjs",
+          "name": "the thirty default combinations finish multi-round public campaign traces and replay their terminal states"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "B09",
+      "category": "화기 공격 보상",
+      "rulePage": "17, 23~24 / 제공 보상·무기·화기",
+      "criterion": "독립 화기 공격에 공격 시점 보상을 선택하며 스탯 카드 대체 손톱자국과 슬롯 전용 부착 효과를 구분한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음 · 사용자 직접 점검은 미점검",
+      "evidence": "새 규칙11의 독립 대포/화염방사기 공격은 선택한 정령의 빈 껍데기·사냥·오에돈의 꿈틀거림을 적용합니다. 손톱자국 선택 시 화면은 화기 공격을 비활성화하고 이유를 표시합니다. 스탯 슬롯이 없는 독립 화기 공격에 슬롯 부착 보상을 합산하지 않습니다.\ntests/campaign-ui.test.cjs — standalone firearm attacks pass broad reward choices and explain the stat-only Clawmark restriction\ntests/extended-rewards.test.cjs — integrated standalone firearm attack applies selected attack runes and offers a free transform afterward\ntests/weapon-firearm-matrix.test.cjs — Writhe alone lets all thirty weapon faces stagger a same-speed cannon exchange\ntests/weapon-firearm-matrix.test.cjs — every standalone gun pairing rejects a Clawmark replacement before exhausting the gun or rune",
+      "testEvidence": [
+        {
+          "file": "tests/campaign-ui.test.cjs",
+          "name": "standalone firearm attacks pass broad reward choices and explain the stat-only Clawmark restriction"
+        },
+        {
+          "file": "tests/extended-rewards.test.cjs",
+          "name": "integrated standalone firearm attack applies selected attack runes and offers a free transform afterward"
+        },
+        {
+          "file": "tests/weapon-firearm-matrix.test.cjs",
+          "name": "Writhe alone lets all thirty weapon faces stagger a same-speed cannon exchange"
+        },
+        {
+          "file": "tests/weapon-firearm-matrix.test.cjs",
+          "name": "every standalone gun pairing rejects a Clawmark replacement before exhausting the gun or rune"
         }
       ],
       "nextAction": "",

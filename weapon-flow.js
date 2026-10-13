@@ -38,7 +38,7 @@
         s.weaponEffects.shift();
         s.move={remaining:q.remaining,path:[h.hunter(s).position],chasers:[],source:"weapon",weaponAfter:{type:"weapon_continue"}};
         s.phase="move";
-        h.log(s,`${h.weapon(s).name} · 처치 후 최대 ${q.remaining}칸 이동.`);
+        h.log(s,q.source==="reward" ? `${q.name} · 최대 ${q.remaining}칸 이동.` : `${h.weapon(s).name} · 처치 후 최대 ${q.remaining}칸 이동.`);
         return;
       }
       if (q.kind === "push") {

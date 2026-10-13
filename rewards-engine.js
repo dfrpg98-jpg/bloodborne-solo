@@ -2,6 +2,8 @@
   "use strict";
   const D = typeof module !== "undefined" && module.exports
     ? require("./hunt-data.js") : root.BBHuntData;
+  const X = typeof module !== "undefined" && module.exports
+    ? require("./extended-rewards.js") : root.BBExtendedRewards;
   const supported = new Set([
     "bloodstone-shard", "lantern", "rune-moon", "rune-clawmark",
     "rune-rapture", "rune-eye",
@@ -14,6 +16,7 @@
     .filter((c) => supported.has(c.id))
     .map((c) => [c.id, { ...c, subtype: c.id.startsWith("rune-") ? "rune" : "tool",
       persistent: c.id === "bloodstone-shard" }]));
+  Object.assign(definitions,X.definitions);
   const hunter = (s) => s.hunters[s.activeHunterId];
   const need = (ok, text) => { if (!ok) throw new Error(text); };
   const say = (s, helpers, text) => { if (helpers.log) helpers.log(s, text); };
@@ -21,6 +24,10 @@
   const get = (s, id) => hunter(s).rewards.find((r) => r.id === id);
   const equipped = (s, subtype) => hunter(s).rewards.filter(
     (r) => r.equipped && definitions[r.kind].subtype === subtype);
+  const known = (s,kind) => definitions[kind] &&
+    (!definitions[kind].minimumRulesVersion || X.enabled(s));
+  const slotCount = (s,helpers = {}) => X.enabled(s)
+    ? (helpers.slots?.(s)?.length || hunter(s).slots.length) : 3;
   function init(s) {
     const h = hunter(s);
     h.rewards ||= [];
@@ -34,6 +41,7 @@
     const r = get(s, id);
     need(r && r.equipped && r.ready && (!kind || r.kind === kind),
       "장착하고 준비된 보상을 선택하세요.");
+    need(known(s,r.kind) && !X.limitUsed(s,r),"이 보상은 이번 규칙 또는 챕터에서 사용할 수 없습니다.");
     return r;
   }
   function grant(s, kind, helpers = {}) {
@@ -47,7 +55,7 @@
       return kind;
     }
     const d = definitions[kind];
-    need(d, "현재 지원하지 않는 보상입니다.");
+    need(d && known(s,kind), "현재 지원하지 않는 보상입니다.");
     const count = Object.values(s.hunters).reduce((n, p) => n +
       (p.rewards || []).filter((r) => r.kind === kind).length, 0);
     need(count < d.count, "보상 카드 공급이 부족합니다.");
@@ -55,6 +63,10 @@
     const r = { id: `reward-${s.uid}`, kind, equipped: false, ready: true,
       slot: null, triggerArmed: false };
     h.rewards.push(r);
+    if(d.subtype === "quest") {
+      say(s,helpers,`${d.name} 획득 · 사용 불가 임무 물품으로 보관합니다.`);
+      return r.id;
+    }
     if (equipped(s, d.subtype).length >= 2)
       s.rewardChoices.push({ rewardId: r.id, reason: "equip" });
     else if (d.persistent)
@@ -74,13 +86,14 @@
     need(r && (pendingReward(s, r.id) || betweenChapters(s)),
       "새로 획득한 보상 또는 챕터 사이에 보관한 보상만 장착할 수 있습니다.");
     const d = definitions[r.kind], old = a.replaceId ? get(s, a.replaceId) : null;
+    need(known(s,r.kind) && d.subtype !== "quest","사용 불가 임무 물품은 장착하지 않고 보관합니다.");
     need(!r.equipped, "이미 장착한 보상입니다.");
     if (a.replaceId) need(old && old.equipped && old.id !== r.id &&
       definitions[old.kind].subtype === d.subtype, "교체할 같은 종류의 보상을 선택하세요.");
     need(equipped(s, d.subtype).length - (old ? 1 : 0) < 2,
       "사냥 도구와 카릴 문자는 각각 2장까지 장착합니다. 교체할 보상을 선택하세요.");
-    if (d.persistent) need(Number.isInteger(a.slot) && a.slot >= 0 && a.slot < 3,
-      "혈석의 파편을 놓을 공격 슬롯을 선택하세요.");
+    if (d.persistent) need(Number.isInteger(a.slot) && a.slot >= 0 && a.slot < slotCount(s,helpers),
+      X.enabled(s) ? "슬롯 부착 보상을 놓을 공격 슬롯을 선택하세요." : "혈석의 파편을 놓을 공격 슬롯을 선택하세요.");
     if (old) { old.equipped = false; old.triggerArmed = false; old.slot = null; }
     r.equipped = true;
     r.slot = d.persistent ? a.slot : null;
@@ -89,6 +102,7 @@
   }
   function use(s, a, helpers) {
     const h = hunter(s), r = readyItem(s, a.rewardId), d = definitions[r.kind];
+    if(X.use(s,r,a,helpers)) return;
     if (r.kind === "old-hunter-bone") {
       need(canAutoDodge(s, helpers), "회피할 수 있는 공격을 받을 때 유골을 사용하세요.");
       need(typeof helpers.autoDodge === "function", "자동 회피 연결이 필요합니다.");
@@ -183,16 +197,19 @@
   function dispatch(s, a, helpers = {}) {
     init(s);
     const h = hunter(s);
+    const killSerialBefore=h.rewardKillSerial || 0;
     const types = new Set(["USE_REWARD", "EQUIP_REWARD", "KEEP_REWARD",
-      "SET_REWARD_TRIGGER", "REASSIGN_REWARD", "EQUIP_FIREARM", "KEEP_FIREARM"]);
+      "SET_REWARD_TRIGGER", "REASSIGN_REWARD", "EQUIP_FIREARM", "KEEP_FIREARM", "ENTRY_REWARD"]);
     const equipmentChoice = ["EQUIP_REWARD", "KEEP_REWARD", "EQUIP_FIREARM", "KEEP_FIREARM"].includes(a.type);
     need(!s.rewardChoices.length || equipmentChoice,
       "획득한 보상의 장착·공격 슬롯·보관 선택을 먼저 마치세요.");
     if (!types.has(a.type)) {
       h.rewardKillWindow = false;
       h.rewardTransformWindow = false;
+      if(X.enabled(s)) {h.rewardTurnStartWindow=false;delete h.rewardBeastWindow;}
       return false;
     }
+    if(a.type === "ENTRY_REWARD") return X.dispatchEntry(s,a,helpers);
     if (a.type === "USE_REWARD") use(s, a, helpers);
     if (a.type === "EQUIP_REWARD") equipReward(s, a, helpers);
     if (a.type === "KEEP_REWARD") {
@@ -205,16 +222,18 @@
     if (a.type === "SET_REWARD_TRIGGER") {
       need(s.phase === "hunter" && typeof a.enabled === "boolean", "사냥꾼 차례에 발동 여부를 선택하세요.");
       const r = get(s, a.rewardId);
-      need(r?.equipped && r.kind === "rune-moon" && (!a.enabled || r.ready), "준비된 달 문자를 선택하세요.");
+      need(r?.equipped && (r.kind === "rune-moon" || X.enabled(s) && r.kind === "rune-corruption") &&
+        (!a.enabled || r.ready && !X.limitUsed(s,r)), "준비된 죽음 반응 문자를 선택하세요.");
       r.triggerArmed = a.enabled;
-      say(s, helpers, `카릴 문자: 달 · 다음 죽음에 사용 ${a.enabled ? "선택" : "해제"}.`);
+      say(s, helpers, r.kind === "rune-moon" ? `카릴 문자: 달 · 다음 죽음에 사용 ${a.enabled ? "선택" : "해제"}.` :
+        `${definitions[r.kind].name} · 다음 치명적 피해에 사용 ${a.enabled ? "선택" : "해제"}.`);
     }
     if (a.type === "REASSIGN_REWARD") {
-      const r = readyItem(s, a.rewardId, "bloodstone-shard");
-      need(h.rewardTransformWindow && Number.isInteger(a.slot) && a.slot >= 0 && a.slot < 3,
-        "무기를 변형한 직후 혈석의 파편을 옮길 슬롯을 선택하세요.");
+      const r = readyItem(s, a.rewardId);
+      need(definitions[r.kind].persistent && h.rewardTransformWindow && Number.isInteger(a.slot) && a.slot >= 0 && a.slot < slotCount(s,helpers),
+        X.enabled(s) ? "무기를 변형한 직후 슬롯 부착 보상을 옮길 슬롯을 선택하세요." : "무기를 변형한 직후 혈석의 파편을 옮길 슬롯을 선택하세요.");
       r.slot = a.slot;
-      say(s, helpers, `혈석의 파편 · ${a.slot + 1}번 슬롯으로 옮겼습니다.`);
+      say(s, helpers, `${definitions[r.kind].name} · ${a.slot + 1}번 슬롯으로 옮겼습니다.`);
     }
     if (a.type === "EQUIP_FIREARM" || a.type === "KEEP_FIREARM") {
       need(h.ownedFirearms.includes(a.firearmId), "획득한 화기를 선택하세요.");
@@ -229,14 +248,20 @@
     if (a.type !== "REASSIGN_REWARD" && !equipmentChoice) h.rewardTransformWindow = false;
     // Equipment granted by the killing event must be resolved before normal actions.
     // Those mandatory choices do not consume the optional on-kill reaction window.
-    if (!equipmentChoice && !(a.type === "USE_REWARD" && get(s, a.rewardId)?.kind === "rune-rapture"))
+    const freshKill=X.enabled(s) && (h.rewardKillSerial || 0)!==killSerialBefore;
+    if (!equipmentChoice && !freshKill && !(a.type === "USE_REWARD" && get(s, a.rewardId)?.kind === "rune-rapture"))
       h.rewardKillWindow = false;
+    if(X.enabled(s) && !equipmentChoice) {
+      if(!(a.type === "USE_REWARD" && get(s,a.rewardId)?.kind === "queen-flesh")) h.rewardTurnStartWindow=false;
+      // A beast hit can kill another enemy and open a fresh on-kill window.
+      if(!freshKill && !(a.type === "USE_REWARD" && get(s,a.rewardId)?.kind === "rune-beast")) delete h.rewardBeastWindow;
+    }
     return true;
   }
   // Called before placing the stat card: a replacement suppresses ALL printed stat effects.
   function attackBonus(s, slot, rewardIds = [], helpers = {}) {
     init(s);
-    need(Number.isInteger(slot) && slot >= 0 && slot < 3, "공격 슬롯을 선택하세요.");
+    need(Number.isInteger(slot) && (X.enabled(s) && slot === -1 || slot >= 0 && slot < slotCount(s,helpers)), "공격 슬롯을 선택하세요.");
     need(Array.isArray(rewardIds) && new Set(rewardIds).size === rewardIds.length,
       "보상 선택이 중복되었습니다.");
     const chosen = rewardIds.map((id) => {
@@ -246,10 +271,16 @@
     });
     const clawmarks = chosen.filter((r) => r.kind === "rune-clawmark");
     need(clawmarks.length <= 1, "한 스탯 카드에는 손톱자국 문자 하나를 선택하세요.");
-    const damage = equipped(s, "tool").filter((r) =>
-      r.kind === "bloodstone-shard" && r.slot === slot).length;
+    need(slot !== -1 || !clawmarks.length,"스탯 카드를 놓지 않는 화기 공격에는 손톱자국 효과 대체를 사용할 수 없습니다.");
+    const attachments = equipped(s,"tool").filter((r) => r.slot === slot);
+    const damage = attachments.filter((r) => r.kind === "bloodstone-shard" || X.enabled(s) && r.kind === "bloodstone-chunk").length;
     const bonus = { speed: 0, damage: damage + (clawmarks.length ? 1 : 0),
       interrupt: !!clawmarks.length, replaceCardEffects: !!clawmarks.length };
+    if(X.enabled(s)) {
+      bonus.speed += attachments.filter((r) => r.kind === "bloodstone-chunk").length;
+      const heal=attachments.filter((r) => r.kind === "tear-gem").length;
+      if(heal) bonus.heal=heal;
+    }
     for (const r of chosen) {
       r.ready = false;
       if (r.kind === "rune-clawmark")
@@ -277,6 +308,7 @@
     h.rewardKillWindow = false;
     h.rewardTransformWindow = false;
     if (Object.hasOwn(h, "rewardSkipActivation")) delete h.rewardSkipActivation;
+    if(X.enabled(s)) {h.rewardTurnStartWindow=false;delete h.rewardBeastWindow;}
     return saved;
   }
   function onKill(s) {
@@ -284,14 +316,27 @@
     const h = hunter(s);
     h.rewardKillWindow = h.hp > 0 && !h.inDream && h.rewards.some((r) =>
       r.equipped && r.ready && r.kind === "rune-rapture");
+    if(X.enabled(s)) h.rewardBeastWindow=h.hp>0 && !h.inDream && h.rewards.some((r) =>
+      r.equipped && r.ready && r.kind === "rune-beast");
+    if(X.enabled(s)) h.rewardKillSerial=(h.rewardKillSerial || 0)+1;
   }
   function onDodge() { /* No chapter-one reward is triggered by dodging. */ }
-  function onTransform(s) { init(s); hunter(s).rewardTransformWindow = true; }
+  function reconcileSlots(s,helpers = {}) {
+    init(s); const h=hunter(s);
+    if(X.enabled(s)) for(const r of h.rewards) if(r.equipped && definitions[r.kind].persistent && r.slot >= slotCount(s,helpers)) {
+      r.equipped=false;r.slot=null;
+      if(!pendingReward(s,r.id)) s.rewardChoices.push({rewardId:r.id,reason:"slot"});
+    }
+  }
+  function onTransform(s,helpers = {}) {
+    init(s);hunter(s).rewardTransformWindow = true;reconcileSlots(s,helpers);
+  }
   function ready(s, id, helpers = {}) {
     init(s);
     const r = get(s, id);
     need(r?.equipped && !r.ready && !definitions[r.kind].persistent,
       "준비할 소진된 장착 보상을 선택하세요.");
+    need(!X.limitUsed(s,r),"이번 챕터에 한 번 사용한 보상은 다음 챕터에 다시 사용할 수 있습니다.");
     r.ready = true;
     say(s, helpers, `${definitions[r.kind].name} 준비.`);
   }
@@ -321,22 +366,29 @@
       rewards: (h.rewards || []).map((r) => {
         const d = definitions[r.kind];
         const hunterTurn = s.phase === "hunter" && !h.inDream && h.hp > 0;
-        const controls = targetsView(s, r.kind, helpers);
+        const controls = X.controls(s,r,helpers) || targetsView(s, r.kind, helpers);
         const laterHunterUsable = hunterTurn &&
           (["iosefka-vial", "messengers-gift"].includes(r.kind) ||
            r.kind === "rune-formless" && !h.firearmReady ||
            ["beast-roar", "augur", "executioner-gloves"].includes(r.kind) && controls.targets.length > 0);
         return { ...r, name: d.name, rules: d.rules, timing: d.timing,
           subtype: d.subtype, persistent: d.persistent, photos: d.photos || [],
-          usable: r.equipped && r.ready &&
+          usable: X.definitions[r.kind] ? X.canUse(s,r,helpers) : r.equipped && r.ready &&
             (r.kind === "lantern" && hunterTurn ||
              r.kind === "rune-eye" && hunterTurn && h.hand.length > 0 && h.discard.length > 0 ||
              r.kind === "rune-rapture" && h.rewardKillWindow && h.hp > 0 && !h.inDream ||
              laterHunterUsable || r.kind === "old-hunter-bone" && canAutoDodge(s, helpers)),
           attackSelectable: attackKinds.has(r.kind) && r.equipped && r.ready &&
             ["hunter", "combat_choose"].includes(s.phase),
-          triggerSelectable: r.kind === "rune-moon" && r.equipped && r.ready && hunterTurn,
+          triggerSelectable: (r.kind === "rune-moon" || X.enabled(s) && r.kind === "rune-corruption") &&
+            r.equipped && r.ready && !X.limitUsed(s,r) && hunterTurn,
           reassignable: d.persistent && r.equipped && !!h.rewardTransformWindow,
+          ...(X.definitions[r.kind] ? {limitUsed:X.limitUsed(s,r), activeUse:d.activeUse,
+            disabledReason:d.subtype === "quest" ? "사용 불가 임무 물품 · 획득 임무는 해당 캠페인 자료가 필요합니다." :
+              X.limitUsed(s,r) ? "이번 챕터 사용 완료 · 꿈이나 도구 준비로 횟수 제한을 되돌릴 수 없습니다." :
+              r.kind === "queen-flesh" && !h.rewardTurnStartWindow ? "차례 시작 직후에 사용합니다." :
+              r.kind === "hunter-torch" ? "보스가 아닌 적이 같은 칸으로 이동해 들어올 때 반응을 선택합니다." :
+              r.kind === "rune-corruption" ? "다음 치명적 피해에 사용할지 미리 선택합니다." : ""} : {}),
           ...(controls ? { controls } : {}),
         };
       }),
@@ -344,18 +396,24 @@
         ({ id, ...D.firearms[id], equipped: h.firearmId === id,
           ready: h.firearmId === id && h.firearmReady })),
       killWindow: !!h.rewardKillWindow, transformWindow: !!h.rewardTransformWindow,
+      ...(X.enabled(s) ? {entry:X.entryView(s,helpers)} : {}),
     };
   }
   function assert(s) {
     const ids = new Set();
     for (const h of Object.values(s.hunters)) {
       for (const r of h.rewards || []) {
-        need(typeof r.id === "string" && !ids.has(r.id) && definitions[r.kind], "보상 상태를 확인하세요.");
+        need(typeof r.id === "string" && !ids.has(r.id) && known(s,r.kind), "보상 상태를 확인하세요.");
         ids.add(r.id);
         need(typeof r.equipped === "boolean" && typeof r.ready === "boolean", "보상 장착·준비 상태를 확인하세요.");
-        need(!definitions[r.kind].persistent || r.ready, "혈석의 파편은 소진되지 않습니다.");
+        need(!definitions[r.kind].persistent || r.ready, X.enabled(s) ? "슬롯 부착 보상은 소진되지 않습니다." : "혈석의 파편은 소진되지 않습니다.");
         if (r.equipped && definitions[r.kind].persistent)
-          need(Number.isInteger(r.slot) && r.slot >= 0 && r.slot < 3, "혈석의 파편 슬롯을 확인하세요.");
+          need(Number.isInteger(r.slot) && r.slot >= 0 && r.slot < (X.enabled(s) ? h.slots.length : 3), X.enabled(s) ? "슬롯 부착 보상의 슬롯을 확인하세요." : "혈석의 파편 슬롯을 확인하세요.");
+        if(X.definitions[r.kind]) {
+          need(definitions[r.kind].subtype !== "quest" || !r.equipped,"사용 불가 임무 물품은 보관합니다.");
+          need(r.lastUsedChapter === undefined || Number.isInteger(r.lastUsedChapter) && r.lastUsedChapter >= 1 && r.lastUsedChapter <= 3,
+            "챕터별 보상 사용 기록을 확인하세요.");
+        }
       }
       for (const subtype of ["tool", "rune"])
         need((h.rewards || []).filter((r) => r.equipped && definitions[r.kind].subtype === subtype).length <= 2,
@@ -373,7 +431,10 @@
     return true;
   }
   const api = { definitions, init, grant, dispatch, attackBonus, onDream, onKill,
-    onDodge, onTransform, ready, view, assert, canAutoDodge };
+    onDodge, onTransform, ready, view, assert, canAutoDodge,
+    onTurnStart:X.onTurnStart,onChapterStart:X.onChapterStart,preventDeath:X.preventDeath,
+    onEnemyStep:X.onEnemyStep,entryView:X.entryView };
+  api.reconcileSlots=reconcileSlots;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.BBRewards = api;
 })(typeof globalThis !== "undefined" ? globalThis : this);
