@@ -1,0 +1,40 @@
+name: Weapon target animation evidence
+on:
+  push:
+    branches: [qa/weapon-followup-repro-20261014]
+    paths:
+      - .github/workflows/weapon-animation-repro.yml
+      - scripts/cloud-weapon-animation-repro.cjs
+      - hunt-animation-events.js
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Install exact browser runtime
+        run: |
+          npm install --prefix "$RUNNER_TEMP/weapon-browser" --no-audit --no-fund playwright@1.62.1
+          node "$RUNNER_TEMP/weapon-browser/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: Reproduce original wrong target impact
+        env:
+          NODE_PATH: ${{ runner.temp }}/weapon-browser/node_modules
+          EXPECTED_IMPACTS: '2'
+        run: node scripts/cloud-weapon-animation-repro.cjs
+      - name: Preserve original frames and public results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: weapon-animation-target-evidence
+          path: test-results/weapon-animation-repro/
+          retention-days: 7
+          if-no-files-found: error
