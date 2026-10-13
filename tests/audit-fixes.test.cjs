@@ -4,7 +4,11 @@ const commands = require("./fixtures/chapter-one-commands.json");
 const H = E.hunter;
 function checkpoint(n) {
   let s = E.create(90,"burial",1,null,"hunter-pistol","center",{campaign:true});
-  for (const a of commands.slice(0,n)) s = E.dispatch(s,a);
+  for (const a of commands.slice(0,n)) {
+    while (s.phase === "interaction_order") s = E.dispatch(s,
+      {type:"INTERACTION_ENEMY",enemyId:E.interactionEnemies(s)[0].id});
+    s = E.dispatch(s,a);
+  }
   return s;
 }
 test("central lamp offers every fog space, accepts a non-lamp destination and exactly replays the movement", () => {
@@ -31,8 +35,10 @@ test("one stat action can combine rescue and both consumable tokens in the same 
   assert(E.interactionOptions(s).missionRescue); assert.equal(E.interactionOptions(s).loot,2);
   let combined = E.dispatch(s,{type:"INTERACT",cardId:H(s).hand[0].id,mission:"rescue",lootCount:2});
   // The enemies in this space react first; the interaction survives those choices.
-  while (combined.interaction && ["combat_react","stun","combat_extra"].includes(combined.phase)) {
-    const a = combined.phase === "stun" ? {type:"STUN_DISCARD",cardId:H(combined).hand[0]?.id} :
+  while (combined.interaction && ["interaction_order","combat_react","stun","combat_extra"].includes(combined.phase)) {
+    const a = combined.phase === "interaction_order" ?
+      {type:"INTERACTION_ENEMY",enemyId:E.interactionEnemies(combined)[0].id} :
+      combined.phase === "stun" ? {type:"STUN_DISCARD",cardId:H(combined).hand[0]?.id} :
       combined.phase === "combat_extra" ? {type:"EXTRA_TAKE"} :
       E.canFirearm(combined) ? {type:"FIREARM"} : {type:"RESOLVE"};
     combined = E.dispatch(combined,a);

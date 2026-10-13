@@ -65,6 +65,8 @@ function choose(s) {
       return a("SPAWN_CHOICE", { enemyId: s.spawnChoices[0] });
     case "enemy_path":
       return a("ENEMY_STEP", { node: E.moveOptions(s)[0] });
+    case "interaction_order":
+      return a("INTERACTION_ENEMY", { enemyId: E.interactionEnemies(s)[0].id });
     case "combat_choose":
       return card && slot !== undefined
         ? a("COUNTER", { cardId: card, slot })

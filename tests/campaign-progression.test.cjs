@@ -1,7 +1,8 @@
 const test = require('node:test'), assert = require('node:assert/strict');
 const E = require('../hunt-engine'), M = require('../chapter-engine');
 const R = require('../rewards-engine');
-const commands = require('./fixtures/chapter-one-commands.json');
+const commands = require('./fixtures/chapter-one-v8-commands.json');
+const legacyCommands = require('./fixtures/chapter-one-commands.json');
 const go=(s,type,args={})=>E.dispatch(s,{type,...args});
 function completeOne() {
   let s=E.create(90,'burial',1,null,'hunter-pistol','center',{campaign:true});
@@ -70,7 +71,7 @@ test('new provisional boss reset heals its current phase and keeps its moved pos
 });
 test('legacy chapter one saves can enter the new chapter flow and still replay exactly',()=>{
   let s=E.create(90,'burial',1,null,'hunter-pistol','center',{campaign:true,legacyReplay:true});
-  for(const a of commands)s=E.dispatch(s,a);
+  for(const a of legacyCommands)s=E.dispatch(s,a);
   assert(!Object.hasOwn(s.setup,'rulesVersion'));
   s=E.importSave(E.exportSave(s));
   s=go(s,'ENTER_BETWEEN_CHAPTERS');

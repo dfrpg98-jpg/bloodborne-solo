@@ -287,7 +287,7 @@ test("new bone ash use with a naturally earned and exhausted lantern saves by ex
 });
 
 test("pre-existing chapter-one commands and a pending rescue interaction still replay without new fields", () => {
-  let s = E.create(90, "burial", 1, null, "hunter-pistol", "center", { campaign: true });
+  let s = E.create(90, "burial", 1, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 7 });
   for (const command of commands.slice(0, 71)) s = E.dispatch(s, command);
   s = go(s, "INTERACT", { cardId: H(s).hand[0].id, mission: "rescue", lootCount: 2 });
   assert(s.interaction); assert.equal(s.interaction.exchange, false);

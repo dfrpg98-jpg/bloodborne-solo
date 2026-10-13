@@ -115,6 +115,11 @@
       ),
     );
     article.append(element("h2", e.title));
+    if (e.narrative) {
+      const narrative = element("section", undefined, "story-text");
+      narrative.append(element("h3", "도입부 이야기"), element("p", e.narrative));
+      article.append(narrative);
+    }
     article.append(element("p", `${e.source.archive} / ${e.source.filename}`, "card-meta"));
     for (const id of e.resolvedQuestions || []) {
       const q = data.questions.find((q) => q.id === id);
@@ -148,7 +153,8 @@
       rules.append(
         element(
           "p",
-          "이 카드에는 별도의 게임 처리 지시가 없습니다. 이야기 문구는 사진에서 확인할 수 있습니다.",
+          e.narrative ? "이 카드에는 별도의 게임 처리 지시가 없습니다. 도입부 이야기는 위 원문과 아래 사진에서 확인할 수 있습니다."
+            : "이 카드에는 별도의 게임 처리 지시가 없습니다. 이야기 문구는 사진에서 확인할 수 있습니다.",
         ),
       );
     e.rules.forEach((r) => rules.append(element("p", r)));
@@ -191,7 +197,7 @@
       element(
         "p",
         e.tileId
-          ? "방향은 사진을 기준으로 위·오른쪽·아래·왼쪽입니다. 실제 지도에 회전 배치하면 출입구 방향도 바뀝니다. 실제 지도 전투 화면에서 칸 연결·출현·카드 비용·전투를 처리합니다. 성배 교단 예배당의 교환과 안개 진입로는 연결 전입니다."
+          ? "방향은 사진을 기준으로 위·오른쪽·아래·왼쪽입니다. 실제 지도에 회전 배치하면 출입구 방향도 바뀝니다. 실제 지도 전투 화면에서 칸 연결·출현·카드 비용·전투·예배당 교환과 안개 진입로를 처리합니다."
           : e.enemyId
           ? "괄호 속 회피 속도는 인쇄된 기호를 옮긴 값입니다. 실제 처리에는 공통 회피 규칙을 함께 적용합니다. 적 3종의 양면 능력은 실제 지도 전투 화면에 연결했습니다. 현재는 1인 플레이만 지원합니다."
           : "아이콘 이름은 텍스트 표시용입니다. 원래 기호와 전체 서사는 사진을 참고하세요.",

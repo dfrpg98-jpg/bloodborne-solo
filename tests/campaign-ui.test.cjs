@@ -38,8 +38,12 @@ class Element {
   fire(type) { this["on" + type]?.({ target: this }); for (const handler of this.listeners[type] || []) handler({ target: this }); }
   click() { if (!this.disabled) this.fire("click"); }
   getBoundingClientRect() { return { left: 0, right: 0, top: 0, bottom: 0 }; }
+  setAttribute(name, value) { this.attributes[name] = value; }
+  append(...elements) { this.children.push(...elements); }
+  replaceChildren(...elements) { this.children = elements; }
   showModal() { this.open = true; }
-  close() { this.open = false; }
+  close() { this.open = false; this.fire("close"); }
+  focus() { this.document.activeElement = this; }
 }
 class Document {
   constructor(html) { this.ids = new Map(); this.parse(html); }
@@ -78,10 +82,13 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
     importSave: (text) => { imports.push(text); return structuredClone(state); },
     exportSave: (s) => JSON.stringify(s), missionView: () => view,
     rewardsView: () => rewardView, missionActions: () => options.actions || [],
+    interactionEnemies: () => options.interactionEnemies || [],
     provisionalView: () => null,
     dispatch: (s, command) => { commands.push(command); return structuredClone(s); },
+    ...options.engine,
   };
   const window = { BBHunt: engine, BBChapter: M, BBLongHunt: C, BBEnemyDeck: ED, BBTileGeometry: G,
+    BBActualComponents: require("../actual-components"),
     BBInventory: () => ({ render() {}, clear() {}, ids: () => [], names: () => [] }),
     BBStartPlacement: { mount: (container, select, confirm) => {
       const update = () => { confirm.disabled = !select.value; };
@@ -194,4 +201,284 @@ test("a stored shard offers legal replacement and slot choices between chapters"
   });
   chosen.click();
   assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "EQUIP_REWARD", rewardId: "shard", replaceId: "tool-a", slot: 2 });
+});
+
+function storyButton(ui, container, key) {
+  return ui.el(container).querySelectorAll("[data-story-key]").find((button) => button.dataset.storyKey === key);
+}
+test("campaign setup offers the supplied introduction and hides it in practice and temporary trials", () => {
+  const ui = boot(baseState(), mission(), rewards(), { storage: {} });
+  assert.equal(ui.el("setupDialog").open, true);
+  assert.equal(ui.el("setupStory").hidden, false);
+  assert.equal(ui.el("setupStoryText").textContent, C.preface[0].narrative);
+  assert.equal(ui.el("storyPanel").hidden, true);
+  for (const mode of ["practice", "cleric-beast", "female-patient-a", "iosefka"]) {
+    ui.el("playMode").value = mode; ui.el("playMode").fire("change");
+    assert.equal(ui.el("setupStory").hidden, true);
+  }
+  ui.el("playMode").value = "campaign"; ui.el("playMode").fire("change");
+  assert.equal(ui.el("setupStory").hidden, false);
+  assert.deepEqual(ui.commands, []);
+});
+test("reading the introduction and enlarged public cards changes no game save or commands", () => {
+  const s = baseState(), initial = JSON.stringify(s), ui = boot(s, mission(1, { revealed: [1, 5, 6] })),
+    saved = ui.storage.get("bloodborne-hunt-v07");
+  storyButton(ui, "storyIntro", "intro").click();
+  assert.equal(ui.el("storyDialog").open, true);
+  assert.match(ui.el("storyText").innerHTML, new RegExp(C.preface[0].narrative.slice(0, 15)));
+  assert.equal(ui.el("previousStory").disabled, true);
+  ui.el("nextStory").click();
+  assert.match(ui.el("storyMeta").textContent, /카드 1/);
+  assert.match(ui.el("storyDescription").textContent, /원문 이미지/);
+  assert.match(ui.el("storyPhoto").innerHTML, /card-01.jpg/);
+  assert(!ui.el("storyPhoto").innerHTML.includes("card-02.jpg"));
+  assert.equal(ui.el("storyText").hidden, true);
+  ui.el("storyZoom").value = "175"; ui.el("storyZoom").fire("input");
+  assert.equal(ui.el("storyImage").style.width, "175%");
+  assert.equal(ui.el("storyZoomValue").textContent, "175%");
+  ui.el("nextStory").click(); ui.el("nextStory").click();
+  assert.match(ui.el("storyMeta").textContent, /카드 6/);
+  assert.equal(ui.el("nextStory").disabled, true);
+  ui.el("closeStory").click();
+  assert.equal(ui.el("storyDialog").open, false);
+  assert.equal(ui.el("storyPhoto").innerHTML, "");
+  assert.deepEqual(ui.commands, []);
+  assert.equal(ui.storage.get("bloodborne-hunt-v07"), saved);
+  assert.equal(JSON.stringify(s), initial);
+});
+test("an altered story button cannot open an unrevealed source card", () => {
+  const ui = boot(baseState(), mission());
+  const button = storyButton(ui, "storyList", "1:1");
+  button.dataset.storyKey = "1:60"; button.click();
+  assert.equal(ui.el("storyDialog").open, false);
+  assert.equal(ui.el("storyPhoto").innerHTML, "");
+  assert(!ui.el("storyList").innerHTML.includes(C.cards[59].title));
+  assert(!ui.el("storyList").innerHTML.includes("1:60"));
+});
+test("past chapter story access is limited to its actual reveal history", () => {
+  const ui = boot(baseState(), mission(2, { revealed: [17, 18],
+    history: [{ chapter: 1, completed: [4], revealed: [1, 2, 3, 4] }] }));
+  assert.match(ui.el("pastChapters").innerHTML, /1:4/);
+  assert(!ui.el("pastChapters").innerHTML.includes("1:5"));
+  assert(!ui.el("storyList").innerHTML.includes("2:19"));
+  storyButton(ui, "pastChapters", "1:4").click();
+  assert.match(ui.el("storyMeta").textContent, /챕터 1.*카드 4/);
+  assert.match(ui.el("storyPhoto").innerHTML, /card-04.jpg/);
+  ui.el("nextStory").click();
+  assert.match(ui.el("storyMeta").textContent, /챕터 2.*카드 17/);
+  assert.deepEqual(ui.commands, []);
+});
+test("a later reveal is highlighted after read marks without adding story data to a resumed old save", () => {
+  const s = baseState(), view = mission(), ui = boot(s, view, rewards(), {
+    storage: { "bloodborne-hunt-v06": "old-save" },
+  });
+  storyButton(ui, "storyList", "1:1").click(); ui.el("closeStory").click();
+  assert.match(ui.el("storyNotice").innerHTML, /모두 읽었습니다/);
+  view.revealed.push(5, 6);
+  ui.el("hand").querySelectorAll("[data-card]")[0].click();
+  option(ui, "decisions", "MOVE").click();
+  assert.match(ui.el("storyNotice").innerHTML, /아직 읽지 않은 이야기 2장/);
+  assert.match(ui.el("storyNotice").innerHTML, /카드 5, 6/);
+  assert.equal(ui.storage.get("bloodborne-hunt-v06"), "old-save");
+  assert(!ui.storage.get("bloodborne-hunt-v07").includes("readStories"));
+  assert.equal(ui.commands.length, 1);
+});
+test("practice has no campaign story panel or available story opener", () => {
+  const ui = boot(baseState(), null);
+  assert.equal(ui.el("storyPanel").hidden, true);
+  assert.equal(ui.el("storyList").innerHTML, "");
+  assert.equal(ui.el("storyIntro").innerHTML, "");
+  assert.equal(ui.el("storyDialog").open, false);
+});
+test("activation order explains the rule to choose the most adverse result", () => {
+  const s = baseState(); s.phase = "activation";
+  const ui = boot(s);
+  assert.match(ui.el("phaseHelp").textContent, /사냥꾼에게 가장 불리한 결과/);
+});
+test("interaction retaliation offers each pending enemy and sends the selected figure identity", () => {
+  const s = baseState(); s.phase = "interaction_order";
+  const enemies = [
+    { id: "huntsman-mob-1", kind: "huntsman-mob", figure: 1, hp: 3, node: E.hunter(s).position },
+    { id: "huntsmans-minion-1", kind: "huntsmans-minion", figure: 1, hp: 4, node: E.hunter(s).position },
+  ];
+  s.enemies = enemies;
+  const ui = boot(s, mission(), rewards(), { interactionEnemies: enemies });
+  assert.match(ui.el("phaseTitle").textContent, /적의 반격 순서/);
+  assert.match(ui.el("phaseHelp").textContent, /사냥꾼에게 가장 불리한 결과/);
+  assert.match(ui.el("phaseHelp").textContent, /맞서 공격하거나 회피할 수 없습니다/);
+  const buttons = ui.buttons("decisions");
+  assert.deepEqual(buttons.map((button) => JSON.parse(button.dataset.args).enemyId), enemies.map((enemy) => enemy.id));
+  buttons[1].click();
+  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "INTERACTION_ENEMY", enemyId: enemies[1].id });
+});
+test("the source archive retains its spoiler gate and displays the supplied introduction text", () => {
+  const document = new Document(fs.readFileSync(path.join(root, "campaign.html"), "utf8"));
+  const context = vm.createContext({ window: { BBLongHunt: C, BBTileGeometry: G }, document, console });
+  vm.runInContext(fs.readFileSync(path.join(root, "campaign.js"), "utf8"), context);
+  assert.equal(document.getElementById("archive").hidden, true);
+  assert.equal(document.getElementById("cardDetail").children.length, 0);
+  document.getElementById("openArchive").click();
+  assert.equal(document.getElementById("gate").hidden, true);
+  assert.equal(document.getElementById("archive").hidden, false);
+  const texts = (element) => [element.textContent, ...element.children.flatMap(texts)];
+  assert(texts(document.getElementById("cardDetail")).includes(C.preface[0].narrative));
+});
+
+function suppliedGun(id, overrides = {}) {
+  return { id, name: id === "flamesprayer" ? "화염방사기" : id === "ludwig-rifle" ? "루드비히 장총" : "교단 연발총",
+    actual: true, temporary: false, prepareCost: id === "repeating-pistol" ? 1 : 2,
+    trigger: id === "flamesprayer" ? "hunter-turn" : id === "ludwig-rifle" ? "enemy-enters" : "enemy-basic",
+    prepareOnTransform: id === "repeating-pistol", ...overrides };
+}
+test("actual firearms display their own triggers and preparation costs instead of the legacy replacement", () => {
+  for (const id of ["ludwig-rifle", "repeating-pistol", "flamesprayer"]) {
+    const ui = boot(baseState(), mission(), rewards(), { engine: { firearm: () => suppliedGun(id), canFirearm: () => false } });
+    assert.match(ui.el("firearm").innerHTML, /제공된 실물 카드/);
+    assert(!ui.el("firearm").innerHTML.includes("임시 동작"));
+    assert.match(ui.el("firearm").innerHTML, new RegExp(`카드 ${id === "repeating-pistol" ? 1 : 2}장`));
+    if (id === "ludwig-rifle") assert.match(ui.el("firearm").innerHTML, /이동해 들어올 때/);
+    if (id === "repeating-pistol") assert.match(ui.el("firearm").innerHTML, /변형할 때도 준비/);
+    if (id === "flamesprayer") assert.match(ui.el("firearm").innerHTML, /속도 2 · 피해 2 · 방해/);
+  }
+  const legacyState = baseState(); E.hunter(legacyState).firearmId = "ludwig-rifle";
+  const legacy = boot(legacyState, mission(), rewards(), { engine: {
+    firearm: () => ({ name: "루드비히 장총", actual: false, temporary: true }), canFirearm: () => false,
+  } });
+  // An acquired old gun is deliberately still the approved pistol replacement.
+  assert.match(legacy.el("firearm").innerHTML, /기본 공격을 자동으로 방해/);
+  assert.match(legacy.el("firearm").innerHTML, /단총과 같은 능력으로 임시 동작/);
+  assert(!legacy.el("firearm").innerHTML.includes("제공된 실물 카드"));
+});
+test("fresh campaign gun choices distinguish supplied effects from the existing temporary trial effects", () => {
+  const ui = boot(baseState(), mission(), rewards(), { storage: {} });
+  assert.match(ui.el("gun").innerHTML, /실물 고유 효과/);
+  ui.el("gun").value = "ludwig-rifle";
+  ui.el("playMode").value = "practice"; ui.el("playMode").fire("change");
+  assert.match(ui.el("gun").innerHTML, /실물 고유 효과/);
+  assert.equal(ui.el("gun").value, "ludwig-rifle");
+  ui.el("playMode").value = "cleric-beast"; ui.el("playMode").fire("change");
+  assert.match(ui.el("gun").innerHTML, /임시 단총 능력/);
+  assert(!ui.el("gun").innerHTML.includes("실물 고유 효과"));
+  assert.equal(ui.el("gun").value, "ludwig-rifle");
+  ui.el("playMode").value = "campaign"; ui.el("playMode").fire("change");
+  assert.match(ui.el("gun").innerHTML, /실물 고유 효과/);
+  assert.equal(ui.el("gun").value, "ludwig-rifle");
+});
+test("two-card firearm preparation waits for distinct hand cards and sends both identities", () => {
+  const s = baseState(), h = E.hunter(s); h.firearmReady = false;
+  const ui = boot(s, mission(), rewards(), { engine: { firearm: () => suppliedGun("ludwig-rifle"), canFirearm: () => false } });
+  assert.equal(option(ui, "decisions", "RELOAD").disabled, true);
+  ui.el("hand").querySelectorAll("[data-card]")[0].click();
+  assert.equal(option(ui, "decisions", "RELOAD").disabled, true);
+  assert(!ui.el("reloadSecondCard").innerHTML.includes(`value="${h.hand[0].id}"`));
+  ui.el("reloadSecondCard").value = h.hand[1].id; ui.el("reloadSecondCard").fire("change");
+  const reload = option(ui, "decisions", "RELOAD"); assert.equal(reload.disabled, false); reload.click();
+  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "RELOAD", cardIds: [h.hand[0].id, h.hand[1].id] });
+});
+test("the repeating pistol prepares with one chosen card while an older save keeps cardId", () => {
+  for (const actual of [true, false]) {
+    const s = baseState(); E.hunter(s).firearmReady = false;
+    const ui = boot(s, mission(), rewards(), { engine: {
+      firearm: () => suppliedGun("repeating-pistol", { actual, temporary: !actual }), canFirearm: () => false,
+    } });
+    ui.el("hand").querySelectorAll("[data-card]")[0].click(); option(ui, "decisions", "RELOAD").click();
+    assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), actual
+      ? { type: "RELOAD", cardIds: [E.hunter(s).hand[0].id] }
+      : { type: "RELOAD", cardId: E.hunter(s).hand[0].id });
+  }
+});
+test("the flamesprayer targets the selected colocated enemy without selecting a stat card", () => {
+  const s = baseState(), h = E.hunter(s);
+  s.enemies = [{ id: "huntsman-mob-1", kind: "huntsman-mob", figure: 1, hp: 4, node: h.position }];
+  const ui = boot(s, mission(), rewards(), { engine: { firearm: () => suppliedGun("flamesprayer"), canFirearm: () => true } });
+  option(ui, "firearm", "FIREARM").click();
+  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "FIREARM", enemyId: "huntsman-mob-1" });
+});
+test("the flamesprayer can replace a counterattack before the enemy action is revealed", () => {
+  const s = baseState(), h = E.hunter(s);
+  s.enemies = [{ id: "huntsman-mob-1", kind: "huntsman-mob", figure: 1, hp: 4, node: h.position }];
+  s.phase = "combat_choose"; s.combat = { enemyId: "huntsman-mob-1", origin: "enemy" };
+  const ui = boot(s, mission(), rewards(), { engine: { firearm: () => suppliedGun("flamesprayer"), canFirearm: () => true } });
+  option(ui, "decisions", "FIREARM").click();
+  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "FIREARM", enemyId: "huntsman-mob-1" });
+  assert.match(ui.el("decisions").innerHTML, /화염방사기로 맞서 공격/);
+});
+test("the flamesprayer is hidden after an enemy action has been revealed", () => {
+  const s = baseState(), h = E.hunter(s);
+  s.enemies = [{ id: "huntsman-mob-1", kind: "huntsman-mob", figure: 1, hp: 4, node: h.position }];
+  s.phase = "combat_react"; s.combat = { enemyId: "huntsman-mob-1", origin: "enemy" };
+  const ui = boot(s, mission(), rewards(), { engine: { firearm: () => suppliedGun("flamesprayer"), canFirearm: () => true } });
+  assert.equal(ui.buttons("decisions").filter(b => b.dataset.command === "FIREARM").length, 0);
+  assert.equal(ui.buttons("firearm").filter(b => b.dataset.command === "FIREARM").length, 0);
+});
+test("combat information shows a declared standalone flamesprayer attack without a stat attack", () => {
+  const s = baseState(), h = E.hunter(s);
+  s.enemies = [{ id: "huntsman-mob-1", kind: "huntsman-mob", figure: 1, hp: 4, node: h.position }];
+  s.phase = "combat_react"; s.combat = {
+    enemyId: "huntsman-mob-1", origin: "firearm", attack: null, defense: 0,
+    action: { kind: "basic", name: "도끼 휘두르기", speed: 2, damage: 2 },
+    flame: { speed: 2, damage: 2, interrupt: true, splash: 1 },
+  };
+  const ui = boot(s, mission(), rewards(), { engine: { firearm: () => suppliedGun("flamesprayer"), canFirearm: () => false } });
+  assert.match(ui.el("combatInfo").innerHTML, /화염방사기 공격 · 속도 2 \/ 피해 2 · 방해 · 같은 칸의 다른 적에게 피해 1/);
+  assert(!ui.el("combatInfo").innerHTML.includes("사냥꾼 공격 없음"));
+});
+test("the long-rifle entry reaction offers use and skip without showing a later enemy action", () => {
+  const s = baseState(); s.phase = "firearm_react";
+  const ui = boot(s, mission(), rewards(), { engine: {
+    firearm: () => suppliedGun("ludwig-rifle"), canFirearm: () => false,
+    firearmEntryView: () => ({ enemyName: "재앙의 야수", damage: 2 }),
+  } });
+  assert.match(ui.el("phaseTitle").textContent, /진입한 적 대응/);
+  assert.match(ui.el("decisions").innerHTML, /재앙의 야수/);
+  assert.equal(ui.el("combatInfo").innerHTML, "");
+  const choices = ui.buttons("decisions").filter((b) => b.dataset.command === "FIREARM_ENTRY");
+  assert.equal(choices.length, 2); choices[0].click(); choices[1].click();
+  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands)), [
+    { type: "FIREARM_ENTRY", accept: true }, { type: "FIREARM_ENTRY", accept: false },
+  ]);
+});
+test("a boss or printed enemy ability reaction uses its indicated dodge speed and damage", () => {
+  const s = baseState(); s.phase = "boss_react";
+  const ui = boot(s, mission(), rewards(), { engine: {
+    combatReaction: () => ({ title: "뛰어 내려찍기", dodgeSpeed: 1, damage: 2, effects: ["기절"] }),
+    canDodge: (_state, cardId) => !!cardId,
+  } });
+  assert.equal(ui.el("phaseTitle").textContent, "뛰어 내려찍기");
+  assert.match(ui.el("phaseHelp").textContent, /속도 1.*기절/);
+  assert.equal(option(ui, "decisions", "DODGE").disabled, true);
+  ui.el("hand").querySelectorAll("[data-card]")[0].click(); option(ui, "decisions", "DODGE").click();
+  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "DODGE", cardId: E.hunter(s).hand[0].id, slot: 0 });
+  option(ui, "decisions", "RESOLVE").click(); assert.equal(ui.commands[1].type, "RESOLVE");
+});
+test("boss and forced hunter movements expose legal destinations with the BOSS_STEP contract", () => {
+  const s = baseState(); s.phase = "boss_move";
+  const ui = boot(s, mission(), rewards(), { engine: { bossMoveOptions: () => ["tile-14:left", "tile-14:right"] } });
+  const moves = ui.buttons("decisions").filter((b) => b.dataset.command === "BOSS_STEP");
+  assert.equal(moves.length, 2); moves[1].click();
+  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "BOSS_STEP", node: "tile-14:right" });
+});
+test("actual special components show source, insight tokens and project-relative images without invented prefixes", () => {
+  const s = baseState(), h = E.hunter(s);
+  const boss = { id: "mission-boss", kind: "scourge-beast", figure: 1, componentId: "cleric-beast",
+    componentPhase: 1, hp: 10, insightTokens: 2, node: h.position };
+  const npc = { id: "mission-npc", kind: "huntsmans-minion", figure: 1, componentId: "iosefka", hp: 10, node: h.position };
+  s.enemies = [boss, npc];
+  const defs = {
+    [boss.id]: { name: "성직자 야수", maxHp: 10, boss: true, actual: true, temporary: false,
+      source: { title: "실물 원문" }, sourceLabel: "실물 원문", face: {},
+      slam: { name: "내려찍기", type: "attack", speed: 2, damage: 4, rules: [] } },
+    [npc.id]: { name: "이오세프카", maxHp: 10, actual: true, temporary: false,
+      source: { title: "실물 원문" }, sourceLabel: "실물 원문", face: { image: "참고자료/제공 구성품.jpg", imageBase: "project" } },
+  };
+  const ui = boot(s, mission(), rewards(), { engine: { canBossInsight: () => true,
+    enemyDef: (state, enemy) => typeof enemy === "object" && defs[enemy.id] ? defs[enemy.id] : E.enemyDef(state, enemy),
+  } });
+  assert.equal(ui.el("componentsPanel").hidden, false);
+  const html = ui.el("componentCards").innerHTML;
+  assert.match(html, /시트의 계몽 토큰 2개/); assert.match(html, /실제 구성품/);
+  assert.match(html, /현재 페이즈의 행동 카드/); assert.match(html, /내려찍기/);
+  assert.match(html, /src="참고자료\/제공 구성품.jpg"/);
+  assert(!html.includes("campaigns/long-hunt/참고자료")); assert(!html.includes("[object Object]"));
+  option(ui, "componentCards", "BOSS_INSIGHT").click(); assert.equal(ui.commands[0].type, "BOSS_INSIGHT");
 });

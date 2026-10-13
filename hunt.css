@@ -253,6 +253,33 @@ dialog input {
 .mission-tokens { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
 .mission-token { border: 1px solid #84755e; background: #382f22; padding: 8px 12px; border-radius: 5px; font-size: 12px; }
 .mission-panel #missionFog { margin: 10px 0; }
+.mission-story { border: 1px solid #81724e; border-radius: 6px; background: #282d29; padding: 16px; margin: 18px 0; }
+.mission-story h3 { margin: 0; }
+.mission-story .panel-heading { flex-wrap: wrap; gap: 12px; }
+.story-notice { padding: 12px 0; }
+.story-notice p { margin: 0 0 12px; line-height: 1.7; }
+.story-notice strong { color: var(--gold); }
+.story-list { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 0; }
+.story-list button, .mission-story button { text-align: left; line-height: 1.6; }
+[data-story-key] small { display: block; color: var(--muted); font-size: 11px; }
+.story-unread { border-color: #c3a16a; background: #3d372c; }
+.story-index summary, .setup-story summary { cursor: pointer; color: var(--gold); }
+.setup-story { border: 1px solid #81724e; border-radius: 5px; padding: 12px; margin: 12px 0; }
+.setup-story p, .story-text p { line-height: 1.9; white-space: pre-line; }
+#setupDialog { max-height: 90vh; overflow: auto; }
+.story-dialog { width: min(900px, 94vw); max-width: 94vw; max-height: 94vh; padding: 24px; box-sizing: border-box; overflow: auto; }
+.story-dialog-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; }
+.story-dialog-heading h2 { margin: 5px 0; }
+.story-dialog-heading button { flex-shrink: 0; }
+.story-dialog .story-text { padding: 0 16px; border-left: 3px solid #a18d61; }
+.story-tools { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.story-tools label { display: flex; align-items: center; gap: 10px; margin: 0; }
+.story-tools input { width: 130px; margin: 0; }
+.story-tools output { min-width: 3.5em; }
+.story-photo-viewport { max-height: 55vh; overflow: auto; border: 1px solid #46545a; background: #10191e; }
+.story-photo-viewport img { display: block; width: 100%; max-width: none; height: auto; }
+.story-pager { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.story-dialog button:focus-visible, .story-dialog a:focus-visible, .story-photo-viewport:focus-visible { outline: 3px solid #e1c480; outline-offset: 3px; }
 .hunt-main .chapter-map .fog-tile { outline: 3px solid #9fabc0; outline-offset: -2px; box-shadow: inset 0 0 18px #c5c8d840; }
 .hunt-main .chapter-map .map-mission-token { color: #e5ca8f; font-size: 9px; }
 .reward-card .actions { margin: 12px 0 0; }
@@ -262,8 +289,24 @@ dialog input {
 .reward-card label { display: block; margin: 8px 0; font-size: 12px; }
 .reward-pending { border: 1px solid #ac9265; background: #322d22; padding: 15px; border-radius: 5px; }
 .reward-pending .choice-grid { margin: 10px 0; }
+.component-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.component-card { border: 1px solid #84755e; background: #282d29; padding: 16px; border-radius: 6px; }
+.component-card h3 { margin-top: 5px; }
+.component-card dl { margin-bottom: 0; }
+.component-card dt { color: var(--gold); margin-top: 10px; }
+.component-card dd { margin: 6px 0 12px; line-height: 1.6; }
+.component-card img { width: 100%; height: auto; display: block; margin-top: 12px; }
+.component-tokens { color: var(--gold); font-weight: 600; }
+.reload-choice { border: 1px solid #84755e; border-radius: 5px; padding: 12px; margin: 12px 0; }
+.reload-choice label { display: block; }
+.reload-choice select { width: 100%; margin: 8px 0; padding: 9px; }
 @media (max-width: 620px) {
   .mission-objectives, .revealed-cards, .rewards-grid { grid-template-columns: 1fr; }
   .mission-panel .panel-heading { align-items: flex-start; gap: 8px; flex-wrap: wrap; }
   .mission-panel .actions button, .reward-card .actions button { flex: 1 1 100%; }
+  .story-dialog { padding: 16px; }
+  .story-dialog-heading { gap: 8px; }
+  .story-dialog-heading h2 { font-size: 20px; }
+  .story-dialog-heading button { padding: 9px; }
+  .story-list button { flex: 1 1 100%; }
 }

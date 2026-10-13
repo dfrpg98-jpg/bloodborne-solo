@@ -1,8 +1,8 @@
 const test = require('node:test'), assert = require('node:assert/strict');
 const E = require('../hunt-engine.js');
-const commands = require('./fixtures/full-campaign-commands.json');
-const firstChapter = require('./fixtures/chapter-one-commands.json');
-const create = () => E.create(90, 'burial', 1, null, 'hunter-pistol', 'center', { campaign: true });
+const commands = require('./fixtures/full-campaign-v8-commands.json');
+const firstChapter = require('./fixtures/chapter-one-v8-commands.json');
+const create = () => E.create(90, 'burial', 1, null, 'hunter-pistol', 'center', { campaign: true, rulesVersion: 8 });
 function replay(visit = () => {}) {
   let s = create();
   for (const command of commands) {
@@ -13,7 +13,7 @@ function replay(visit = () => {}) {
 }
 
 test('real commands complete all three chapters with temporary component combat and an exact final save replay', () => {
-  assert.equal(commands.length, 327);
+  assert.equal(commands.length, 332);
   assert.deepEqual(commands.slice(0, firstChapter.length), firstChapter);
   const chapters = new Map(), bossPhases = new Map();
   let chapterThreeRelease;
@@ -79,6 +79,7 @@ test('natural chapter transition, boss and reward checkpoints round-trip by comm
   replay((s) => {
     const m = s.mission, boss = s.enemies.find((e) => e.missionId === 'main');
     const candidates = [];
+    if (s.phase === 'interaction_order') candidates.push('interaction-order');
     if (s.phase === 'between_chapters') candidates.push(`between-${m.chapter}-${m.chapter + 1}`);
     if (m.chapter === 2 && s.rewardChoices.some((q) => q.rewardId &&
       E.hunter(s).rewards.find((r) => r.id === q.rewardId)?.kind === 'iosefka-vial'))
@@ -96,7 +97,7 @@ test('natural chapter transition, boss and reward checkpoints round-trip by comm
       assert.deepEqual(restored.commands, commands.slice(0, s.revision), name);
     }
   });
-  assert.deepEqual([...checkpoints].sort(), ['between-1-2', 'between-2-3',
+  assert.deepEqual([...checkpoints].sort(), ['interaction-order', 'between-1-2', 'between-2-3',
     'chapter-two-vial-choice', 'chapter-two-invincible-boss', 'chapter-two-final-dream',
     'chapter-three-sealed-boss', 'chapter-three-released-boss',
     'chapter-three-second-phase', 'campaign-final'].sort());

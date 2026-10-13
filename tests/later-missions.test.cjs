@@ -7,7 +7,7 @@ function next(s, completed) {
   return go(s, "START_NEXT_CHAPTER", { startSpace: "center" });
 }
 function chapter(n, prior = [], ch1 = []) {
-  let s = E.create(17, "burial", 0, null, "hunter-pistol", "center", { campaign: true });
+  let s = E.create(17, "burial", 0, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 8 });
   s = next(s, ch1);
   return n === 2 ? s : next(s, prior);
 }

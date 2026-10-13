@@ -122,7 +122,7 @@
     s,
     tileId,
     anchor,
-    requireOpen = s.tileDeck.length > 0,
+    requireOpen = s.rulesVersion >= 8 || s.tileDeck.length > 0,
   ) {
     const [dx, dy] = vectors[anchor.edge],
       x = anchor.x + dx,
@@ -212,7 +212,8 @@
     }
     s.phase = "ready";
   }
-  function create(seed = 20261011, startSpace = "center", chapterNumber = 1) {
+  function create(seed = 20261011, startSpace = "center", chapterNumber = 1,
+    options = {}) {
     need(
       Number.isInteger(seed) && seed >= 0 && seed <= 4294967295,
       "시드는 0~4294967295 사이의 정수여야 합니다.",
@@ -224,6 +225,10 @@
     );
     const chapter = C.chapters.find((c) => c.number === chapterNumber);
     need(chapter, "지원하는 챕터를 선택하세요.");
+    const rulesVersion = Object.hasOwn(options, "rulesVersion")
+      ? options.rulesVersion : options.legacyReplay ? null : 9;
+    need(rulesVersion === null || [7, 8, 9].includes(rulesVersion),
+      "지원하는 규칙 버전을 선택하세요.");
     const required = chapter.requiredTiles.map(
       (name) => C.tiles.find((t) => t.name === name).id,
     );
@@ -235,6 +240,7 @@
       seed: seed >>> 0 || 1,
       rng: mixSeed(seed),
       startSpace,
+      ...(rulesVersion !== null ? { rulesVersion } : {}),
       revision: 0,
       phase: "ready",
       assignments: [],
@@ -370,11 +376,11 @@
         const anchor = availableExits(s).find((e) => e.edge === a.edge);
         need(anchor, "현재 칸의 열린 출입구를 선택하세요.");
         need(s.tileDeck.length, "타일 더미를 모두 공개했습니다.");
-        // A drawn dead-end must be returned and shuffled if no orientation leaves
-        // any map exit and further tiles remain (rulebook p.15).
+        // Rulebook p.15 has no exception for the final tile. Keep the previous
+        // interpretation only while replaying saves made under older rules.
         const rejected = [];
         let next = null;
-        const needsExit = s.tileDeck.length > 1;
+        const needsExit = s.rulesVersion >= 8 || s.tileDeck.length > 1;
         while (s.tileDeck.length) {
           const id = s.tileDeck.shift();
           if (placementOptions(s, id, anchor, needsExit).length) {
@@ -437,6 +443,8 @@
       "챕터 준비 저장 형식 오류.",
     );
     need(["ready", "placing", "relocate"].includes(s.phase), "진행 상태 오류.");
+    need(s.rulesVersion === undefined || [7, 8, 9].includes(s.rulesVersion),
+      "지원하지 않는 규칙 버전입니다.");
     need(
       s.assignments.length === 3 &&
         new Set(s.assignments.map((a) => a.enemyId)).size === 3,
@@ -540,7 +548,8 @@
     );
     const input = JSON.parse(text);
     assertState(input);
-    let s = create(input.seed, input.startSpace, input.chapter);
+    let s = create(input.seed, input.startSpace, input.chapter,
+      { rulesVersion: input.rulesVersion ?? null });
     for (const a of input.commands) s = dispatch(s, a);
     need(
       canonical(s) === canonical(input),

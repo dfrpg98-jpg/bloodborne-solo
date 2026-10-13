@@ -257,6 +257,12 @@
     if (t.card === 36) d.special = { ...d.special, name: "고통 면역", kind: "special",
       type: "attack", speed: 1, damage: 4, defense: 2, stun: false, interrupt: false,
       undodgeable: false, uninterruptible: true, followup: false, rules: [] };
+    if (s.setup.rulesVersion >= 9 && [31, 36].includes(t.card)) {
+      delete d.special.code;
+      d.special.poison = false; d.special.frenzy = false;
+      delete d.special.forceHunterMove; delete d.special.afterAttackMove;
+      delete d.special.afterDodgeDamageBonus;
+    }
     if (t.card === 31) d.ignoreTileSpeed = true;
     return d;
   }
@@ -267,7 +273,10 @@
       t.tokens = t.initialTokens;
       const e = s.enemies.find((e) => e.missionId === t.id);
       if (t.componentId === "cleric-beast") {
-        if (s.mission.chapter === 3 && live(s, 42)) t.tokens = 0;
+        if (s.mission.chapter === 3 && live(s, 42)) {
+          t.tokens = 0;
+          if (s.setup.rulesVersion >= 9 && e) e.insightTokens = 0;
+        }
         jobs.push({ kind: t.kind, node: s.mission.chapter === 2 ? "tile-13:middle" : e?.node || t.currentNode || t.node,
           missionId: t.id, componentId: t.componentId, componentPhase: e?.componentPhase || t.componentPhase || 1 });
       } else jobs.push({ kind: t.kind, node: t.node, missionId: t.id,
@@ -302,7 +311,7 @@
       .map((x) => h.distance(s, at, x.position)));
   }
   function placementOptions(s, h, pending = s.world.pending,
-      requireOpen = s.world.tileDeck.length > 0) {
+      requireOpen = s.setup.rulesVersion >= 8 || s.world.tileDeck.length > 0) {
     if (!pending) return [];
     const rotations = M.placementOptions(s.world, pending.tileId, pending.anchor, requireOpen);
     if (!pending.survivor) return rotations;
@@ -556,7 +565,8 @@
       { id: "clinic", name: "진료소 생존자", value: m.deposits.clinic },
       { id: "chapel", name: "예배당 생존자", value: m.deposits.chapel },
       ...Object.entries(m.counters).map(([n, value]) => ({ id: `card-${n}`, name: card(Number(n)).title, value }))] : [];
-    const notices = Object.values(m.targets).filter((t) => t.componentId && !t.complete)
+    const notices = Object.values(m.targets).filter((t) => t.componentId && !t.complete &&
+      !(s.setup.rulesVersion >= 9))
       .map((t) => `${t.componentId === "cleric-beast" ? "성직자 야수" : t.componentId === "female-patient" ? "여성 야수 환자" : "이오세프카"}: 사용자 승인 임시 전투 수치·효과 사용 중. 실물 자료 제공 후 교체합니다.`);
     return { chapter: m.chapter, insight: insight(s), revealed: [...m.revealed], completed: [...m.completed],
       history: m.history || [], discarded: m.discarded || [], counters, notices,

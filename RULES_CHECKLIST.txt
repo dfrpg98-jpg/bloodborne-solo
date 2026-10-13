@@ -1,11 +1,9 @@
-블러드본 규칙 구현 점검표 v0.7.0
+블러드본 규칙 구현 점검표 v0.7.1
 기준: 2026-10-11 KST
-1인용 기나긴 사냥 챕터 1~3 임무·준비·전환, 장송의 칼날, 실제 일반 적 3종6면, 보상16종. 성직자 야수·여성 야수 환자·이오세프카의 전투 수치/행동은 사용자 승인 임시 구성품이며 실제 구성품 검증과 구분합니다.
+1인용 기나긴 사냥 챕터1~3, 장송의 칼날, 일반 적3종6면, 보상16종, 사용자 전사 성직자 야수와 참고자료 여성 야수 환자·이오세프카·화기3종. 구저장/별도 시험의 임시 구성품은 호환 경로로 구분합니다.
 
-표 읽기: 구현 상태 / 검증 근거 수준 / 사용자 직접 점검은 별개입니다.
-직접 점검은 모두 미점검입니다. 실제로 확인한 조건만 결과를 변경하세요.
-자동 테스트명은 실제 파일과 대조했습니다. 실행 여부/최종 개수는 VERIFICATION.txt를 확인하세요.
-전체 규칙 완성률을 계산하지 않습니다. 임시 전투 통과를 실제 구성품 검증 완료로 표시하지 않습니다.
+구현 상태·검증 근거·사용자 직접 점검은 별개입니다. 직접 점검은 모두 미점검입니다.
+최종 테스트 실행 결과는 VERIFICATION.txt를 참고합니다. 전체 규칙 완성률을 계산하지 않습니다.
 
 status는 구현 여부, verification은 근거 수준, manualCheck는 사용자의 직접 점검 결과입니다. 서로 같은 의미가 아닙니다.
 manualCheck는 모두 미점검으로 시작합니다. 자동 테스트가 존재해도 사용자의 직접 확인을 완료로 표시하지 않습니다.
@@ -15,7 +13,7 @@ manualCheck는 모두 미점검으로 시작합니다. 자동 테스트가 존�
 나머지 보상16종에는 원문 사용불가 임무 물건이 포함됩니다. 임의 사용 효과를 만들지 않습니다.
 후속 임무 테스트에는 유효 상태를 조립한 분기/경계 검증도 있습니다. 실제 새 사냥부터의 전체 명령 완주 근거는 별도 행/VERIFICATION.txt로 구분합니다.
 보스 초기화의 일반 위치 보존, 챕터2 카드20/22의 지정칸 재출현, 챕터3 카드42의 위치 보존은 서로 다른 조건입니다.
-v0.6 과거 명령 저장 재생은 기존 처리 분기를 유지합니다. 새 v0.7 사냥 및 다음 챕터 준비부터 새 규칙 경로를 사용합니다.
+새 v0.7.1 사냥은 rulesVersion9의 실제 구성품을 사용합니다. 기존8/7/무버전 저장과 별도 임시 시험은 저장 당시 효과를 유지하며 저장 형식과 v07 키는 바꾸지 않습니다.
 
 R01 | 시작 준비 | 규칙 8쪽
 조건: 새 정규 사냥을 시작하면 사냥꾼의 체력이 6이다.
@@ -103,10 +101,15 @@ tests/campaign-ui.test.cjs — the next chapter requires an explicit start space
 
 R10 | 캠페인 안내 | 규칙 7, 12쪽
 조건: 플레이 시작 화면에서 캠페인 도입부와 공개된 임무의 이야기를 읽을 수 있다.
-상태: 부분 | 우선순위: 후속
-검증: 코드 확인 · 전용 자동 테스트 없음
-근거: campaign.html은 별도 도입부 자료실; hunt-app.js renderMission()은 주로 규칙/접힌 카드 사진 표시
-남은 조치: 게임 시작 도입부와 공개 임무의 서사를 읽는 흐름을 연결합니다.
+상태: 구현 | 우선순위: 없음
+검증: 자동 테스트 근거 있음
+근거: 준비 화면의 도입부 원문 텍스트; hunt-app.js renderStories()/openStory()에서 현재·지난 실제 공개 카드의 원문 이미지 확대 열람. 임무60장 텍스트 전사 완료를 뜻하지 않음
+tests/campaign-ui.test.cjs — campaign setup offers the supplied introduction and hides it in practice and temporary trials
+tests/campaign-ui.test.cjs — reading the introduction and enlarged public cards changes no game save or commands
+tests/campaign-ui.test.cjs — an altered story button cannot open an unrevealed source card
+tests/campaign-ui.test.cjs — past chapter story access is limited to its actual reveal history
+tests/campaign-ui.test.cjs — a later reveal is highlighted after read marks without adding story data to a resumed old save
+남은 조치: —
 사용자 직접 점검: 미점검
 
 R11 | 임무 | 규칙 12~13쪽
@@ -197,11 +200,13 @@ tests/chapter-map.test.cjs — matching exits are bidirectional; a blank tile ed
 
 R20 | 탐험 | 규칙 15쪽
 조건: 모든 출입구를 닫는 타일은 반환하고 적합한 타일을 다시 뽑는다.
-상태: 부분 | 우선순위: 후속
-검증: 부분 자동 테스트 · 마지막 타일 예외 해석 확인 필요
-근거: chapter-engine.js placementOptions(); hunt-engine.js explore()/placeTile()의 requireOpen은 남은 덱 여부에 따름
-tests/chapter-map.test.cjs — a tile that seals every exit is returned and shuffled after a suitable replacement is drawn
-남은 조치: 마지막 타일은 다른 타일을 뽑을 수 없어 봉쇄 배치를 허용하는 현재 해석을 추가 확인합니다.
+상태: 구현 | 우선순위: 없음
+검증: 자동 테스트 근거 있음
+근거: 새 rulesVersion8의 chapter-engine.js placementOptions()/EXPLORE, hunt-engine.js explore()/placeTile(): 마지막 한장도 봉쇄 금지; 대체가 없으면 거절/입력 불변. 과거 저장 분기 유지
+tests/rule-exceptions.test.cjs — the final tile may not seal every exit and failed exploration leaves both map inputs unchanged
+tests/rule-exceptions.test.cjs — a final tile with a remaining exit still places and forced sealing placement is rejected
+tests/rule-exceptions.test.cjs — version seven and unversioned saves retain the previous final-tile interpretation
+남은 조치: —
 사용자 직접 점검: 미점검
 
 R21 | 적 공급 | 규칙 15쪽
@@ -346,11 +351,13 @@ R34 | 보상 | 규칙 17 / 제공 32종 목록쪽
 
 R35 | 화기 | 규칙 17, 20~21 / 제공 추가 화기쪽
 조건: 루드비히 장총·교단 연발총·화염방사기의 실제 고유 화기 능력을 각각 실행한다.
-상태: 부분 | 우선순위: 후속
-검증: 임시 대체 효과만 자동 테스트
-근거: data.js firearms는 사용자 승인 단총 효과를 공유; 실제 장총 획득/보관은 rewards-engine.js grant()
-tests/firearms.test.cjs — all named test firearms use pistol rules, spend and reload correctly
-남은 조치: 실제 카드 자료대로 고유 효과를 교체합니다. 현재 테스트는 임시 단총 효과의 검증입니다.
+상태: 구현 | 우선순위: 없음
+검증: 실제 전사·사진 + 자동 테스트 근거 있음
+근거: actual-components.js / firearms-engine.js / hunt-engine.js: 장총 진입 피해2·카드2 준비, 연발총 기본 방해·카드1/변형 무료 준비, 화염방사기 속도2/피해2/방해/다른 적 피해1·카드2 준비. 실물 사진과 사용자 전사 출처 보존. 규칙8 이하 단총 대체 재생 유지
+tests/actual-firearm-integration.test.cjs — rifle entry pauses activation before an enemy card is revealed and can kill before countering
+tests/actual-firearm-integration.test.cjs — actual reload costs two cards atomically for rifle and flame, and repeated pistol prepares on transform
+tests/actual-firearm-integration.test.cjs — flame declares its sole speed-two attack before revealing, with splash and faster interrupt
+남은 조치: —
 사용자 직접 점검: 미점검
 
 R36 | 라운드 | 규칙 18쪽
@@ -450,25 +457,30 @@ R45 | 화기 | 규칙 20~21쪽
 상태: 구현 | 우선순위: 없음
 검증: 실제 기본 공격 제한 자동 테스트 · 재준비 비용은 코드/훈련 테스트 확인
 근거: hunt-engine.js canFirearm(), FIREARM, RELOAD; hunt-app.js 화기 표시
-tests/hunt.test.cjs — four firearms permit only basic attacks
+tests/hunt.test.cjs — legacy four firearms retain their former basic-attack replacement behavior
 tests/enemy-deck.test.cjs — firearm cannot fire before reveal, while exhausted, or after combat ends
 남은 조치: —
 사용자 직접 점검: 미점검
 
 R46 | 전투 | 규칙 21쪽
-조건: 실제 적 공격의 독/발광 키워드가 상태를 부여하고 이후 피해·해제·꿈 제거에 연결된다.
-상태: 부분 | 우선순위: 후속
-검증: 상태 피해/해제는 기존 테스트 · 실제 적 상태 부여는 미검증
-근거: hunt-engine.js 상태 보유/turn-end 독/피해 발광/해제는 존재; enemyDef()/resolve()의 상태 부여 일반화 미연결
-남은 조치: 후속 적 자료의 상태 키워드에 상태 부여를 연결하고 실제 지도 회귀 테스트를 추가합니다.
+조건: 독/발광 키워드 공격이 회피·취소·면역·마비 안개를 존중해 상태를 부여하고 이후 피해·해제·꿈 제거에 연결된다.
+상태: 구현 | 우선순위: 자료 대기
+검증: 실제 독 공격 + 시험용 발광 키워드 자동 회귀
+근거: hunt-engine.js enemyDef().convert()/resolve()의 독·발광 부여. 새 발광은 해당 타격 이후 적용; 방어만으로 상태를 막지 않음. 일반 적3종6면에는 해당 키워드가 없음. 이오세프카/여성은 실제 독 공격, 발광은 source-shaped 시험 공격으로 확인
+tests/rule-exceptions.test.cjs — supplied six faces do not claim poison frenzy or white-background ability coverage
+tests/rule-exceptions.test.cjs — status attack keywords apply once after damage and existing frenzy adds one to later attacks
+tests/rule-exceptions.test.cjs — dodged interrupted and immune status attacks cause no poison or frenzy
+tests/rule-exceptions.test.cjs — numbing mist removes status keywords while defense alone does not prevent their application
+tests/rule-exceptions.test.cjs — attack-applied poison deals one at turn end and dreaming clears both statuses
+남은 조치: 현재 출처에는 발광 공격이 없으므로 해당 실제 구성물이 추가되면 인쇄 효과와 대조합니다.
 사용자 직접 점검: 미점검
 
 R47 | 전투 | 규칙 21쪽
 조건: 기본/특수 칸에 인쇄된 흰 배경 전용 능력을 일반 공격과 구분해 실행한다.
 상태: 미구현 | 우선순위: 후속
 검증: 코드 확인 · 전용 자동 테스트 없음
-근거: hunt-engine.js enemyDef().convert()는 현재 기본/특수를 attack으로 처리
-남은 조치: 현재 적6면에는 해당 예외가 없습니다. 이를 요구하는 후속 자료 연결 전에 능력 의미를 분리합니다.
+근거: 현재 일반 적6면에는 흰 배경 기본/특수 능력이 없음. 실제 보스 회복·NPC 권총·여성 피의 질병은 전용 능력으로 처리하며 없는 효과를 창작하지 않음
+남은 조치: 현재 일반 적6면에는 해당 흰 배경 인쇄 능력이 없습니다. 새 보스/NPC 전용 능력은 연결했으며 다른 구성물의 흰 배경 기본/특수 효과는 자료별로 확장합니다.
 사용자 직접 점검: 미점검
 
 R48 | 꿈 | 규칙 23~24쪽
@@ -552,12 +564,15 @@ tests/audit-fixes.test.cjs — central lamp offers every fog space, accepts a no
 
 R56 | 보스 | 규칙 23쪽
 조건: 보스 1페이즈 사망은 치유/2페이즈 전환/초과 피해 폐기를 처리하고 별도 페이즈 행동덱을 사용한다.
-상태: 부분 | 우선순위: 후속
-검증: 임시 전투와 독립 행동덱의 자동 테스트 · 실제 보스 카드 검증 미완료
-근거: hunt-engine.js kill(), reveal(), finishSpawns(); temporary-components.js createDecks(), draw(); 임시 페이즈별 독립 draw/discard 사용
-tests/temporary.test.cjs — temporary boss changes phase on lethal damage, keeps slower attack, and grants one final kill
-tests/later-missions.test.cjs — chapter two boss phase change removes fog, prevents all damage and its crypt entry wins
-남은 조치: 실제 성직자 야수 양면 체력/행동 카드로 임시 수치와 각 페이즈 행동덱 내용을 교체합니다.
+상태: 구현 | 우선순위: 없음
+검증: 실제 전사·사진 + 자동 테스트 근거 있음
+근거: boss-components.js / hunt-engine.js: 1인 체력10/8·페이즈별5장·1페이즈 내려찍기2장, 사용자 행동 전사. 시트 계몽/화기 소진/회복 방어2·토큰 제거·덱 섞기/능력 추가공개/회피 보너스/강제 이동. 임무 토큰 분리. 구저장·별도시험 임시 정의 유지
+tests/actual-boss.test.cjs — actual Cleric Beast retains all printed health counts and both exact five-card decks
+tests/actual-boss.test.cjs — recovery removes insight, defends two damage, shuffles its current deck, and neither heals nor reveals another card
+tests/actual-boss.test.cjs — leap-slam requests an immediate speed-one dodge, then reveals another boss card with a fresh dodge opportunity
+tests/actual-boss.test.cjs — phase-one defeat restores the printed phase-two health without overflow and retains its separate deck
+tests/actual-natural-path.test.cjs — new solo commands naturally reach the actual chapter-two boss and replay its insight movement decision
+남은 조치: —
 사용자 직접 점검: 미점검
 
 R57 | 보스 | 규칙 24쪽
@@ -572,12 +587,13 @@ tests/later-missions.test.cjs — chapter-two boss reset respawns at the cemeter
 사용자 직접 점검: 미점검
 
 R58 | NPC | 규칙 23쪽
-조건: 적대 NPC 카드/플레이어 수별 면/토큰 대체와 일반 적 뒤 활성화를 실행한다.
-상태: 부분 | 우선순위: 후속
-검증: 1인용 임시 적대 NPC 자동 테스트 · 실제 카드/다인 면 검증 미완료
-근거: temporary-components.js iosefka-hostile; hunt-engine.js finishSpawns(), enemyDef(order5); mission-engine.js open(47)
-tests/later-missions.test.cjs — attacking Iosefka creates a hostile temporary target and help starts a four-step nonexploring escape
-남은 조치: 실제 이오세프카 NPC 전투 카드를 받아 1~2인 면 효과를 교체하고 다인 면 선택 규칙을 확장합니다.
+조건: 1인용 적대 NPC의1~2인 면·토큰 대체와 일반 적 뒤 활성화를 실행하며 다인 면은 출처로 보존한다.
+상태: 구현 | 우선순위: 없음
+검증: 실제 전사·사진 + 자동 테스트 근거 있음
+근거: actual-components.js / hunt-engine.js: 이오세프카1~2인 체력10, 독 지팡이·전조 방해/강제 이동·권총 회피3 또는 공격 취소 후 추가 공개, 일반 적 이후 활성화.3인 이상 체력18은 출처 자료만 보존; 단독 실행 범위
+tests/actual-component-combat.test.cjs — Iosefka pistol requires a speed-three dodge before another public action and interrupts the declared hunter attack on failure
+tests/actual-component-combat.test.cjs — Iosefka augur's direct forced movement is prevented by a dodge
+남은 조치: —
 사용자 직접 점검: 미점검
 
 R59 | 챕터 완료 | 규칙 25쪽
@@ -629,12 +645,15 @@ R63 | 캠페인 범위 | 규칙 2, 7, 12~13쪽
 사용자 직접 점검: 미점검
 
 R64 | 선택 규칙 | 규칙 24쪽
-조건: 유효 선택이 동률이면 사냥꾼에게 가장 불리한 결과를 선택한다.
-상태: 부분 | 우선순위: 후속
-검증: 선택 기능만 자동 테스트 · 불리함 판단은 수동
-근거: hunt-engine.js 적 경로/활성화/피규어 동률은 플레이어 선택; 최악 결과 자동 평가 없음
-tests/hunt.test.cjs — four-figure supply pauses on farthest tie and reuses a full-health figure
-남은 조치: 현재 선택 안내에 따라 사용자가 판단합니다. 자동 강제는 구현하지 않았습니다.
+조건: 적 경로·동률·복수 적 반격 순서에서 사냥꾼에게 가장 불리한 결과를 고르도록 안내하고 선택 기능을 제공한다.
+상태: 구현 | 우선순위: 없음
+검증: 자동 선택 회귀 · 불리함 판단은 수동
+근거: hunt-app.js 경로/피규어/활성화/interaction_order 안내; rulesVersion8의 INTERACTION_ENEMY는 미공개 행동덱을 먼저 보이지 않고 반격할 적을 선택. 실제 무리A/하인B 순서에 따른 사망/HP1 생존·상호작용 차이 검증
+tests/rule-exceptions.test.cjs — multiple interaction enemies wait for an explicit order before revealing the action deck
+tests/rule-exceptions.test.cjs — printed interaction attacks can make one order fatal and another complete at one health
+tests/rule-exceptions.test.cjs — remaining interaction enemies offer another order choice and cannot retaliate twice
+tests/rule-exceptions.test.cjs — legacy interaction order remains the first enemy in its assigned slot
+남은 조치: 플레이어가 안내에 따라 가장 불리한 결과를 판단합니다. 자동 최악 평가나 실제 선택의 최악 여부 검증은 하지 않습니다.
 사용자 직접 점검: 미점검
 
 R65 | 지도 표시 | 규칙 10, 14~15, 27 / 제공 타일쪽
@@ -645,6 +664,12 @@ R65 | 지도 표시 | 규칙 10, 14~15, 27 / 제공 타일쪽
 tests/tile-diagrams.test.cjs — all 20 photo layouts preserve 52 spaces, 47 exits and every printed marker
 tests/tile-diagrams.test.cjs — shared space boundaries match movement adjacency; a shared corner cannot add a move
 tests/tile-diagrams.test.cjs — 20 static vector assets agree with the rules atlas and contain no photographed pixels
+규칙8/7/무버전 저장의 정확 재생; 독립 과거 저장39개 대조는 VERIFICATION.txt의 실제 결과 참고
+tests/rule-exceptions.test.cjs — explicit rules versions round-trip and unsupported save or creation versions are rejected
+tests/rule-exceptions.test.cjs — legacy complete campaigns retain all 327 original commands and exact save replay
+규칙9 실제 구성품 결정 단계와 규칙8 임시 완주 저장의 재생 호환. 실제 결과는 VERIFICATION.txt 참고
+실제 규칙9 자연 보스 전투의 계몽/강제 이동 단계 저장 재생과 111개 독립 과거 엔진 상태 비교.
+tests/actual-natural-path.test.cjs — public commands complete chapters one and two with actual health decks movement and a final dream
 남은 조치: 논리 칸 구조·출입구·기호/수량을 확인합니다. 촬영 원근을 제거한 경계 비율은 근사 좌표이며 사진 픽셀/물리 치수 일치를 뜻하지 않습니다.
 사용자 직접 점검: 미점검
 
@@ -700,12 +725,14 @@ tests/later-missions.test.cjs — retained sanctuary outcomes block both survivo
 
 R71 | 후속 임무 적 | 규칙 12~13, 23~24 / 임무29~32쪽
 조건: 이전 자비16번으로 환자 분기를 열고 임무 부활2회·예배당 감속 면역·최종 처치 뒤 속도1 회피/피해3을 처리한다.
-상태: 부분 | 우선순위: 후속
-검증: 인쇄 임무 예외 자동 테스트 · 환자 실제 양면 전투 자료 미확인
-근거: mission-engine.js open(29/30), targetDef(), beforeKill(), onKill(); hunt-engine.js mission_death; 임시 female-patient-a 기본 수치
-tests/later-missions.test.cjs — later chapter preparation separates current insight from retained completed outcomes
-tests/later-missions.test.cjs — patient requires two real revival strikes and the final kill exposes its separate speed-one death reaction
-남은 조치: 여성 야수 환자의 실제 양면 카드로 기본 체력/기본공격/전용능력을 교체합니다.
+상태: 구현 | 우선순위: 없음
+검증: 실제 전사·사진 + 자동 테스트 근거 있음
+근거: actual-components.js / hunt-engine.js / mission-engine.js: 여성 야수 환자 체력3, 양면 특수/피의 질병. 챕터당 무작위 면 선택 유지와 부활/초기화, 임무31 예외. 사진4장 출처·정확 해시 보존
+tests/actual-component-combat.test.cjs — female B vomit cannot be dodged and applies its printed poison and stun
+tests/actual-component-combat.test.cjs — card31 replaces either patient face's special attack completely in version nine
+tests/actual-component-combat.test.cjs — patient face is randomly prepared once per chapter and persists through later resets
+tests/actual-firearm-integration.test.cjs — rifle lethal mission entry resolves its speed-one death reaction before continuing activation
+남은 조치: —
 사용자 직접 점검: 미점검
 
 R72 | 후속 호위 | 규칙 12~13 / 임무35~39쪽
@@ -721,8 +748,8 @@ tests/later-missions.test.cjs — the other bridge escort ending grants warning 
 R73 | 챕터2 주임무 | 규칙 12~13, 23 / 임무19~23쪽
 조건: 이번 챕터 계몽2개와 시체 봉헌 후 보스를 소환하고2페이즈에서 안개 제거·피해 면역·지하묘지 진입 승리를 처리한다.
 상태: 구현 | 우선순위: 없음
-검증: 임무 조건 자동 테스트 · 보스 전투 수치/행동은 임시
-근거: mission-engine.js check(), open(20/21/22), onBossPhase(), beforeEnemyDamage(), onEnemyStep(); 임시 성직자 야수 전투
+검증: 임무 조건·실제 보스 페이즈 전환 회귀
+근거: mission-engine.js check(), open(20/21/22), onBossPhase(), beforeEnemyDamage(), onEnemyStep(); 새9 실제 성직자 야수; 기존8 이하 임시 재생
 tests/later-missions.test.cjs — chapter two boss phase change removes fog, prevents all damage and its crypt entry wins
 남은 조치: —
 사용자 직접 점검: 미점검
@@ -749,18 +776,19 @@ tests/later-missions.test.cjs — crypt captivity rejects real steps and central
 R76 | 후속 보스 행동 | 규칙 17, 24 / 임무22,42~43쪽
 조건: 라운드 말의 추가 보스 활성화와 챕터3 회복 야수 소환을 실행하며 임무55 완료 뒤 소환을 중단한다.
 상태: 구현 | 우선순위: 없음
-검증: 추가 활성화 작업/회복 소환 자동 테스트 · 보스 행동 내용은 임시
+검증: 추가 활성화·실제 회복 즉시 소환 자동 회귀
 근거: mission-engine.js roundEnd(), onBossRecover(), complete(55); hunt-engine.js continueMissionRoundEnd(), resolveRevealedAbility(), spawnFigure(ephemeral)
 tests/later-missions.test.cjs — chapter two boss phase change removes fog, prevents all damage and its crypt entry wins
 tests/later-missions.test.cjs — crypt captivity blocks movement until the second printed reset, then boss reset preserves location and phase
 tests/later-missions.test.cjs — culling three real beasts completes 55 and immediately suppresses future boss recovery summons
+tests/actual-firearm-integration.test.cjs — card43 recovery summons its beast immediately before the declared flame attack applies splash
 남은 조치: —
 사용자 직접 점검: 미점검
 
 R77 | 챕터3 진료소 | 규칙 12~13, 23 / 임무45~52쪽
 조건: 과거26/28 완료 조합에 따라 분기하며46번에서 공격47/도움49를 선택하고48/50 보상을 각각 완료한다.
 상태: 구현 | 우선순위: 없음
-검증: 임무 분기/도움 완료 자동 테스트 · 적대 NPC 실제 전투는 미확인
+검증: 임무 분기·도움 완료 및 실제 NPC 전투 회귀
 근거: mission-engine.js owns(), open(45/46/47/49), MISSION_CHOICE, onKill(), onMovementEnd(); 적대 이오세프카 전투는 임시
 tests/later-missions.test.cjs — chapter three clinic branching reads retained outcomes without awarding prior chapter insight
 tests/later-missions.test.cjs — attacking Iosefka creates a hostile temporary target and help starts a four-step nonexploring escape
@@ -837,10 +865,11 @@ tests/campaign-progression.test.cjs — legacy chapter one saves can enter the n
 R84 | 캠페인 종료 | 규칙 12~13, 25 / 임무44쪽
 조건: 챕터3 보스의 최종 처치는44번과 캠페인 승리를 기록하고 최종 꿈 때문에 사냥 트랙을 전진시키지 않는다.
 상태: 구현 | 우선순위: 없음
-검증: 조립 상태의 최종 처치 및 UI 자동 테스트 · 실제 보스 전투 자료는 임시
+검증: 최종 처치·UI 회귀 / 자연 명령 범위는 근거 참조
 근거: mission-engine.js onKill(), complete(44); hunt-engine.js beginChapterDream(), finishDream(); hunt-app.js renderDecisions()
 tests/later-missions.test.cjs — chapter three final boss kill completes 44 and records campaign victory without track advance
 tests/campaign-ui.test.cjs — chapter completion offers equipment preparation and chapter three has a campaign ending
+규칙8 임시 구성품은332명령 자연 완주. 새 규칙9 실제 구성품은276명령 Ch1~2 완료·최종꿈, Ch3 최종 처치는 조립 상태 회귀; 새 구성품으로 전체 캠페인 자연 완주를 검증했다는 의미는 아님.
+tests/actual-boss.test.cjs — an actual phase-two final kill completes card44 and the final dream without advancing the hunt track
 남은 조치: —
 사용자 직접 점검: 미점검
-

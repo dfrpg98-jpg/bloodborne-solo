@@ -17,7 +17,7 @@
         ></a
       >
       <nav class="top-actions">
-        <span class="badge">v0.7.0</span
+        <span class="badge">v0.7.1</span
         ><a class="button" href="index.html">전투 훈련</a
         ><button id="save">저장 내보내기</button
         ><button id="load">불러오기</button><button id="new">새 사냥</button
@@ -43,6 +43,11 @@
         <div id="missionFog" class="muted"></div>
         <div id="missionNotices" class="muted"></div>
         <div id="missionActions" class="actions"></div>
+        <section id="storyPanel" class="mission-story" aria-labelledby="storyHeading" hidden>
+          <div class="panel-heading"><h3 id="storyHeading">도입부 · 임무 이야기</h3><div id="storyIntro"></div></div>
+          <div id="storyNotice" class="story-notice" role="status" aria-live="polite"></div>
+          <details class="story-index"><summary>현재 챕터에서 공개된 이야기</summary><div id="storyList" class="story-list"></div></details>
+        </section>
         <details class="mission-cards"><summary>공개된 카드 · 규칙과 원본 사진</summary><div id="revealedCards" class="revealed-cards"></div></details>
         <details id="missionHistory" class="mission-cards" hidden><summary>지난 챕터의 사냥 기록</summary><div id="pastChapters"></div></details>
       </section>
@@ -124,6 +129,10 @@
         <div class="panel-heading"><h2>획득한 보상</h2><span id="rewardsCount" class="muted"></span></div>
         <div id="rewards" class="rewards-grid"></div>
       </section>
+      <section id="componentsPanel" class="panel" hidden>
+        <div class="panel-heading"><h2>출현한 특수 적</h2><span class="muted">구성품과 적용 중인 능력</span></div>
+        <div id="componentCards" class="component-cards"></div>
+      </section>
       <details class="panel hunt-assignments">
         <summary>이번 챕터의 적 배정 · 능력과 원본 사진</summary>
         <p id="setupInfo" class="muted"></p>
@@ -144,15 +153,15 @@
         <p>
           캠페인 모드는 기나긴 사냥 챕터 1~3의 임무·호위·생존자 구조·특수 적·안개와
           보상을 처리합니다. 공개되기 전의 카드와 뒷이야기는 표시하지 않습니다.
-          챕터를 완수한 뒤 꿈에서 성장하고 보관한 장비를 교체해 다음 사냥으로 이어집니다. 자료가 없는 특수 구성품은 임시 작성된 규칙으로 표시하며, 원본 자료가 준비되면 교체합니다.
+          챕터를 완수한 뒤 꿈에서 성장하고 보관한 장비를 교체해 다음 사냥으로 이어집니다. 새 캠페인은 제공된 성직자 야수·여성 야수 환자·이오세프카의 실제 구성품을 사용합니다. 이전 저장과 별도 임시 시험은 적용 중인 임시 구성품을 표시합니다.
         </p>
         <p>
           기본 스탯 12장, 실제 업그레이드 60장, 소모품 36장(초대장 제외)을
           사용합니다. 골수 가루는 소진된 장착 보상 1장을 준비합니다.
           예배당 명칭 칸에서는 소모품 1장을 피의 유지 1개로 교환합니다.
           사냥꾼의 종은 다른 사냥꾼이 없는 1인용에서 사용할 수 없습니다.
-          다른 화기들은 요청에 따라 야수 사냥의 단총
-          능력으로 임시 동작합니다.
+          새 캠페인의 추가 화기는 제공된 고유 효과와 재준비 비용을 사용합니다.
+          이전 저장과 전투 시험의 추가 화기는 기존 단총 대체 효과를 유지합니다.
         </p>
         <p>
           v0.7 사냥·v0.6 사냥·v0.5 사냥·기존 전투 훈련의 자동 저장은 각각 별도입니다.
@@ -170,6 +179,7 @@
       <h2>새 사냥</h2>
       <p id="setupIntro">시작할 칸을 선택한 뒤 사냥을 시작하세요.</p>
       <label>플레이 모드<select id="playMode"><option value="campaign">기나긴 사냥 · 챕터 1</option><option value="practice">실제 지도 전투 연습 · 임무 없음</option><option value="cleric-beast">임시 성직자 야수 시험 · 2페이즈</option><option value="female-patient-a">임시 여성 야수 환자 A 시험</option><option value="female-patient-b">임시 여성 야수 환자 B 시험</option><option value="iosefka">임시 이오세프카 상호작용 시험</option></select></label>
+      <details id="setupStory" class="setup-story"><summary>기나긴 사냥 도입부 읽기</summary><p id="setupStoryText"></p></details>
       <label
         >준비 시드<input
           id="seed"
@@ -210,6 +220,14 @@
         <button id="loadV06Setup" hidden>v0.6 자동 저장 이어하기</button>
       </div>
     </dialog>
+    <dialog id="storyDialog" class="story-dialog" aria-labelledby="storyTitle" aria-describedby="storyDescription">
+      <div class="story-dialog-heading"><div><p id="storyMeta" class="eyebrow"></p><h2 id="storyTitle"></h2></div><button id="closeStory" autofocus>이야기 닫기</button></div>
+      <p id="storyDescription" class="muted"></p>
+      <div id="storyText" class="story-text"></div>
+      <div class="story-tools"><label for="storyZoom">원문 확대 <input id="storyZoom" type="range" min="100" max="200" step="25" value="100"><output id="storyZoomValue" for="storyZoom">100%</output></label><a id="storyOriginal" class="button" target="_blank" rel="noopener">원본 크게 열기 ↗</a></div>
+      <div id="storyPhoto" class="story-photo-viewport" tabindex="0" aria-label="공개된 이야기 원문 이미지 · 확대 후 스크롤"></div>
+      <div class="story-pager"><button id="previousStory">← 앞 이야기</button><span id="storyPosition" class="muted"></span><button id="nextStory">다음 이야기 →</button></div>
+    </dialog>
     <script src="components/cards.js"></script>
     <script src="data.js"></script>
     <script src="campaigns/long-hunt/data.js"></script>
@@ -219,6 +237,10 @@
     <script src="chapter-engine.js"></script>
     <script src="hunt-data.js"></script>
     <script src="temporary-components.js"></script>
+    <script src="components/supplied-components.js"></script>
+    <script src="actual-components.js"></script>
+    <script src="boss-components.js"></script>
+    <script src="firearms-engine.js"></script>
     <script src="mission-engine.js"></script>
     <script src="rewards-engine.js"></script>
     <script src="hunt-engine.js"></script>

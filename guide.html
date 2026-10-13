@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="ko">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>블러드본 개발판 v0.7.0 · 사용 안내</title><link rel="stylesheet" href="style.css"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>블러드본 개발판 v0.7.1 · 사용 안내</title><link rel="stylesheet" href="style.css"></head>
 <body><main class="guide">
-<p class="eyebrow">BLOODBORNE / DEVELOPMENT BUILD 0.7.0</p>
+<p class="eyebrow">BLOODBORNE / DEVELOPMENT BUILD 0.7.1</p>
 <h1>기나긴 사냥 챕터 1~3 플레이하기</h1>
 <p><a class="button primary" href="hunt.html">실제 지도에서 사냥 →</a></p>
-<div class="notice"><strong>후속 임무와 챕터 전환 연결판</strong><span>준비·임무·보상·성장 보관을 연결해 기나긴 사냥을 마지막 챕터까지 진행합니다. 성직자 야수·여성 야수 환자·이오세프카의 전투는 사용자 승인 임시 구성품을 사용합니다.</span></div>
+<div class="notice"><strong>공개 이야기와 실제 구성품 연결판</strong><span>준비·임무·보상·성장 보관을 연결해 기나긴 사냥을 마지막 챕터까지 진행합니다. 새 사냥은 제공된 성직자 야수·여성 야수 환자·이오세프카·추가 화기의 실제 효과를 적용합니다.</span></div>
 <h2>실행과 시작 칸</h2>
 <p>ZIP 전체를 압축 해제하고 <code>hunt.html</code>을 Chrome/Edge로 여세요. 인터넷이나 개발 도구 설치는 필요하지 않습니다. 첫 실행에서 ‘기나긴 사냥 · 챕터 1’을 고르고 중앙 등불 도식의 왼쪽·중앙·오른쪽 칸 중 원하는 곳을 선택합니다. 정상 자동 저장이 있으면 이어서 진행하며 ‘새 사냥’에서 다시 준비할 수 있습니다.</p>
 <h2>챕터를 이어가기</h2>
@@ -36,8 +36,8 @@
 <p>각 행동 뒤 자동 저장합니다. v0.7은 새 저장 공간을 사용하며 이전 v0.6/v0.5 자동 저장을 유지합니다. 정상 v0.6 진행은 불러온 뒤 이어서 다음 챕터를 준비할 수 있습니다. 과거 명령은 기존 처리 분기로 재생합니다. 중요한 진행은 ‘저장 내보내기’로 JSON을 보관하고 폴더/브라우저 이동이나 캐시 삭제 전에 내보내세요.</p>
 <table><thead><tr><th>화면</th><th>용도</th><th>저장</th></tr></thead><tbody><tr><td><a href="hunt.html">hunt.html</a></td><td>기나긴 사냥1~3·전투 연습·임시 시험</td><td>v0.7 자동 저장 / v0.6·v0.5 JSON 호환</td></tr><tr><td><a href="index.html">index.html</a></td><td>기존 훈련</td><td>기존 훈련 저장</td></tr><tr><td><a href="chapter.html">chapter.html</a></td><td>무료 이동·지도 배치 검증</td><td>기존 지도 검증 저장</td></tr></tbody></table>
 <h2>남은 구현</h2>
-<p>성직자 야수·여성 야수 환자·적대 이오세프카 전투는 임시 수치/행동입니다. 실제 양면 카드와 보스 행동 자료를 받으면 교체합니다. 실제 보스 전투를 검증 완료로 표시하지 않습니다. 추가 화기3종은 승인된 단총 임시 효과를 사용합니다.</p>
-<p>다른 세 캠페인, 기본판 네 사냥꾼/장치 무기,2~4인 규칙과 온라인 협동, 나머지 보상16종은 미구현입니다. 일부 보상 물건은 원문 자체가 사용불가입니다. 독/발광의 상태 처리와 회복은 있으나 후속 실제 적의 부여 효과는 연결 대상입니다.</p>
+<p>성직자 야수는 사용자 전사(1인 체력10/8), 여성 야수 환자와 이오세프카는 참고자료 사진을 적용합니다. 장총은 진입 피해2·카드2장 준비, 연발총은 기본공격 방해·카드1장 또는 변형 준비, 화염방사기는 스탯 대신 속도2/피해2/방해/다른 적 피해1 공격·카드2장 준비입니다. 도입부와 실제 공개된 임무 이야기는 게임 안에서 읽고 확대할 수 있습니다.</p>
+<p>기존 규칙8 이하 저장은 저장 당시 임시 효과를 유지합니다. 실제 구성품을 사용하려면 새 사냥을 시작하세요. 다른 세 캠페인, 기본판 네 사냥꾼/장치 무기,2~4인 규칙과 온라인 협동, 나머지 보상16종은 미구현입니다. 일부 보상 물건은 원문 자체가 사용불가입니다. 현재 구성품 밖의 흰 배경 기본/특수 능력과 실제 발광 공격은 자료별 확장 대상입니다.</p>
 <p>별도 임시 시험4종은 새 사냥에서 선택합니다. 이오세프카 치유 시험은 캠페인 적대 NPC와 별개입니다. 원문 JSON/출처/사용자 원본 파일은 보존합니다. 새 ZIP에는 지도 사진20장을 제외하며 다른 카드 사진은 이번 교체 범위 밖입니다.</p>
 <p><a href="campaign.html">캠페인 자료 →</a> · <a href="components.html">카드 목록 →</a></p>
 </main></body></html>

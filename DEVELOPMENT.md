@@ -1,4 +1,16 @@
-# Bloodborne Solo 0.7.0 — Long Hunt chapters one to three
+# Bloodborne Solo 0.7.1 — revealed stories and rule exceptions
+
+The solo Long Hunt game now displays the existing transcribed introduction and lets the player read the supplied mission story images inside an accessible enlarged viewer. Current and past chapter navigation is restricted to the actual revealed arrays; future titles and links remain hidden. Reading changes presentation only. Mission image viewing is not a claim that all sixty narratives have been transcribed into text.
+
+New hunts and map sessions use rulesVersion9; the core exceptions also apply to intermediate version8. Exploration requires an open exit even for the last candidate; if no legal replacement exists the immutable command fails without spending movement or altering the deck. The explicit chapter2/3 setup placements remain separate. Enemy poison/frenzy keywords are applied only by uncancelled, undodged attacks and respect immunity and removed keywords. A newly inflicted frenzy affects subsequent hits. No supplied ordinary enemy face currently prints those keywords, so the keyword tests deliberately exercise source-shaped synthetic attacks.
+
+Several enemies retaliating to an interaction now let the player choose the next eligible figure; the worst-outcome instruction also appears for activation order. The player judges the adverse outcome. Legacy rulesVersion7 and unmarked saves keep their original sequence and tile behavior, with their marker passed explicitly to the replay constructor. The save envelope and v07 browser key remain unchanged.
+
+Cleric Beast uses the user-transcribed solo10/8 sheet and five-card phase decks. Female Patient/Iosefka and Ludwig/Repeating firearms use the four supplied photo transcriptions; Flamesprayer uses the later direct user transcription. boss-components.js and actual-components.js isolate actual definitions from unchanged temporary sources. firearm-entry reactions and component decisions are serialized continuations. Version8/7/unmarked saves retain provisional combat, while new version9 hunts use actual components. Explicit temporary trials retain their trial definitions. Source health for additional player counts is preserved without claiming multiplayer execution. White-background abilities absent from the current six faces, other campaigns/hunters/weapons/rewards and multiplayer remain outside this release. Final counts and exact old-save comparison results are recorded in VERIFICATION.txt.
+
+---
+
+# Historical release: Bloodborne Solo 0.7.0 — Long Hunt chapters one to three
 
 ## Executable scope
 

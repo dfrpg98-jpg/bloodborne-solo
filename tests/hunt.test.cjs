@@ -134,10 +134,11 @@ test("ability followed by basic: mob applies speed/damage buff and permits pisto
   assert.equal(H(s).hp, 6);
   assert.equal(H(s).firearmReady, false);
 });
-test("four firearms permit only basic attacks", () => {
+test("legacy four firearms retain their former basic-attack replacement behavior", () => {
   for (const gun of Object.keys(E.data.firearms))
     for (const kind of ["basic", "special", "ability"]) {
       let s = fixture("huntsman-mob", "b", kind);
+      s.setup.rulesVersion = 8; s.world.rulesVersion = 8;
       H(s).firearmId = gun;
       s.setup.firearmId = gun;
       s = attack(s);

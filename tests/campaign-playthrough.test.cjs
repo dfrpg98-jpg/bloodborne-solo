@@ -1,7 +1,7 @@
 const test = require("node:test"), assert = require("node:assert/strict");
 const E = require("../hunt-engine.js");
 const commands = require("./fixtures/chapter-one-commands.json");
-const create = () => E.create(90, "burial", 1, null, "hunter-pistol", "center", { campaign: true });
+const create = () => E.create(90, "burial", 1, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 7 });
 function replay(visitor = () => {}) {
   let s = create();
   for (const command of commands) {

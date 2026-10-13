@@ -14,6 +14,12 @@
     ? require("./rewards-engine.js") : root.BBRewards;
   const temporary = typeof module !== "undefined" && module.exports
     ? require("./temporary-components.js") : root.BBTemporaryComponents;
+  const bosses = typeof module !== "undefined" && module.exports
+    ? require("./boss-components.js") : root.BBBossComponents;
+  const supplied = typeof module !== "undefined" && module.exports
+    ? require("./actual-components.js") : root.BBActualComponents;
+  const firearms = typeof module !== "undefined" && module.exports
+    ? require("./firearms-engine.js") : root.BBFirearms;
   const clone = (x) => JSON.parse(JSON.stringify(x));
   const enemyDeck =
     typeof module !== "undefined" && module.exports
@@ -37,8 +43,10 @@
   const node = (s, id) => nodes(s).find((n) => n.id === id);
   const card = (c) => D.cards[c.kind];
   const enemy = (s, id) => s.enemies.find((e) => e.id === id);
-  const firearm = (s) => D.firearms[hunter(s).firearmId || "hunter-pistol"];
+  const firearm = (s) => s.setup.rulesVersion >= 9 && !s.provisional &&
+    supplied.firearm(hunter(s).firearmId) || D.firearms[hunter(s).firearmId || "hunter-pistol"];
   const canFirearm = (s) =>
+    firearms.enabled(s, firearmHelpers()) ? firearms.canUse(s, firearmHelpers()) :
     !!(
       hunter(s).firearmReady &&
       s.phase === "combat_react" &&
@@ -72,6 +80,48 @@
       enemyDef, damageEnemy, canDisplace, displacementDestinations, displaceEnemy,
       autoDodge, canAutoDodge, skipNextActivation: (s) => { hunter(s).rewardSkipActivation = true; } };
   }
+  function firearmHelpers() {
+    return { hunter, firearm, enemy, enemyDef, damageEnemy, kill, log, pay,
+      addFlameAttack, pauseFirearmEntry, resumeFirearmEntry,
+      interruptCombat: (s) => { s.combat.cancelEnemy = true; s.combat.shot = true; } };
+  }
+  function addFlameAttack(s, enemyId) {
+    const fresh = s.phase === "hunter";
+    if (fresh) chooseCombat(s, enemyId, "firearm");
+    s.combat.flame = { speed: 2, damage: 2, interrupt: true, splash: 1 };
+    reveal(s);
+  }
+  function pauseFirearmEntry(s, e) {
+    s.firearmEntry = { enemyId: e.id, afterPhase: s.phase };
+    s.phase = "firearm_react";
+  }
+  function resumeFirearmEntry(s) {
+    const entry = s.firearmEntry; delete s.firearmEntry;
+    if (s.mission?.deathPending) {
+      offerDeathReaction(s, { type: "firearm_entry_done", entry }); return;
+    }
+    finishFirearmEntry(s, entry);
+  }
+  function finishFirearmEntry(s, entry) {
+    if (s.mission?.won) { beginChapterDream(s); return; }
+    s.phase = entry.afterPhase;
+    if (entry.afterCommand) {
+      const target = enemy(s, entry.afterCommand.enemyId);
+      if (!target) {
+        log(s, "장총으로 공격 대상이 처치되어 선언 전 공격을 종료합니다.");
+        if (s.combat) endCombat(s);
+        return;
+      }
+      performAttack(s, entry.afterCommand, entry.afterCommand.type === "COUNTER");
+      return;
+    }
+    if (s.enemyMove) runEnemyMove(s);
+  }
+  function firearmEntryView(s) {
+    const e = s.firearmEntry && enemy(s, s.firearmEntry.enemyId);
+    return e ? { title: "장총 · 적 진입 반응", enemyId: e.id,
+      enemyName: enemyDef(s, e).name, damage: 2 } : null;
+  }
   function displacementDestinations(s, e, range) {
     const queue = [[e.node,0]], seen = new Set([e.node]);
     for (let i=0; i<queue.length; i++) {
@@ -88,10 +138,76 @@
     const from=e.node; e.node=to;
     missions.onEnemyStep?.(s,e,from,to,missionHelpers());
     log(s,`${enemyDef(s,e).name} 이동 → ${nameAt(s,to)}.`);
+    firearms.onEnemyStep(s, e, from, to, firearmHelpers());
   }
   function damageEnemy(s,e,amount,context = {}) {
-    const damage = missions.beforeEnemyDamage ? missions.beforeEnemyDamage(s,e,amount,context,missionHelpers()) : amount;
+    let damage = missions.beforeEnemyDamage ? missions.beforeEnemyDamage(s,e,amount,context,missionHelpers()) : amount;
+    if (s.combat?.enemyId === e.id && ["hunter-attack", "firearm-attack"].includes(context.kind))
+      damage = Math.max(0, damage - (s.combat.enemyDefense || 0));
     e.hp -= damage; return damage;
+  }
+  const actualBoss = (s, e) => s.setup.rulesVersion >= 9 && !s.provisional && e?.componentId === "cleric-beast";
+  function canBossInsight(s) {
+    const c = s.combat, h = hunter(s), e = c && enemy(s, c.enemyId);
+    return s.phase === "combat_react" && actualBoss(s, e) &&
+      c.action?.bossInsight && !c.bossInsightUsed && !c.cancelEnemy &&
+      h.firearmReady && h.position === e.node;
+  }
+  function combatReaction(s) {
+    const q = s.combat?.immediate;
+    return q ? { title: q.name, damage: q.damage, dodgeSpeed: q.dodgeSpeed,
+      effects: [q.stun ? "기절" : "", q.poison ? "독" : "",
+        q.interruptHunter ? "사냥꾼 공격 방해" : ""].filter(Boolean) } : null;
+  }
+  function startImmediate(s, reaction) {
+    s.combat.immediate = reaction; s.combat.dodged = false;
+    s.phase = "boss_react";
+  }
+  function resolveImmediate(s) {
+    const c = s.combat, q = c.immediate, h = hunter(s);
+    delete c.immediate;
+    if (!c.dodged) {
+      if (q.damage) takeDamage(s, q.damage, q.name, false);
+      if (q.stun) c.pending.push({ type: "stun" });
+      if (q.poison && !c.immune.includes("poison")) h.status.poison = true;
+      if (q.interruptHunter && !c.immune.includes("interrupt")) c.cancelHunter = true;
+    }
+    c.afterImmediate = q.revealNext ? { type: "next_enemy_card" } : { type: "combat" };
+    if (h.hp <= 0) { enterDream(s, true); return; }
+    resolve(s);
+  }
+  function bossMoveOptions(s) {
+    const m = s.combat?.bossMove, e = m && enemy(s, s.combat.enemyId), h = hunter(s);
+    if (!m || !e || h.inDream) return [];
+    const from = m.actor === "enemy" ? e.node : h.position,
+      anchor = m.actor === "enemy" ? h.position : e.node,
+      distanceFrom = distance(s, from, anchor);
+    return neighbors(s, from).filter((to) => distance(s, to, anchor) > distanceFrom &&
+      (m.actor === "enemy" ? !fogCrossing(s, from, to) :
+        (!missions.fogged(s, node(s, from).tile) || sameTile(s, from, to)) &&
+        (!missions.canEnter || missions.canEnter(s, from, to))));
+  }
+  function runBossMove(s) {
+    const c = s.combat, m = c?.bossMove;
+    if (!m) return;
+    while (m.remaining > 0) {
+      const options = bossMoveOptions(s);
+      if (!options.length) break;
+      if (options.length > 1) { s.phase = "boss_move"; return; }
+      takeBossStep(s, options[0]);
+      if (s.mission?.won) { beginChapterDream(s); return; }
+    }
+    const after = m.after; delete c.bossMove; resume(s, after);
+  }
+  function takeBossStep(s, to) {
+    const c = s.combat, m = c.bossMove, e = enemy(s, c.enemyId);
+    if (m.actor === "enemy") displaceEnemy(s, e, to);
+    else { hunter(s).position = to; log(s, `사냥꾼을 멀리 이동 → ${nameAt(s, to)}.`); }
+    m.remaining--;
+  }
+  function startBossMove(s, actor, amount) {
+    s.combat.bossMove = { actor, remaining: amount, after: { type: "combat" } };
+    runBossMove(s);
   }
   function canAutoDodge(s) {
     const c=s.combat,h=hunter(s);
@@ -99,6 +215,7 @@
     if (s.phase==='mission_death') return true;
     if (!c || c.origin==='interaction' || c.noDodge) return false;
     if (s.phase==='combat_extra') return !!c.extra;
+    if (s.phase==='boss_react') return !c.dodged && !!c.immediate;
     return s.phase==='combat_react' && c.action?.type==='attack' && !c.action.undodgeable &&
       !c.cancelEnemy && !c.dodged && enemy(s,c.enemyId)?.node===h.position;
   }
@@ -108,7 +225,7 @@
     log(s,'고대 사냥꾼의 유골 · 스탯 카드와 슬롯 비용 없이 회피했습니다.');
     if (s.phase==='mission_death') { resume(s,{type:'mission_death_done'}); return; }
     if (s.phase==='combat_extra') { s.combat.extra=null; resolve(s); }
-    else s.combat.dodged=true;
+    else { s.combat.dodged=true; applyDodgeAttackBonus(s); }
   }
   function missionActions(s) {
     if (s.phase === "mission_death") {
@@ -209,7 +326,7 @@
       (e) => e.node !== h.position && distance(s, h.position, e.node) <= range && !fogCrossing(s, e.node, h.position),
     );
   }
-  function pullBeforeAttack(s, ids = []) {
+  function pullBeforeAttack(s, ids = [], afterCommand = null) {
     need(
       Array.isArray(ids) && new Set(ids).size === ids.length,
       "끌어올 적 선택을 확인하세요.",
@@ -219,7 +336,8 @@
       ids.every((id) => candidates.has(id)),
       "현재 무기로 끌어올 수 있는 2칸 이내의 적만 선택하세요.",
     );
-    for (const id of ids) {
+    for (let index = 0; index < ids.length; index++) {
+      const id = ids[index];
       const e = enemy(s, id);
       const from = e.node;
       e.node = hunter(s).position;
@@ -228,7 +346,12 @@
         s,
         `장송의 칼날 · 공격 전: ${enemyDef(s, e).name}을 사냥꾼의 칸으로 이동시켰습니다.`,
       );
+      if (afterCommand && firearms.onEnemyStep(s, e, from, e.node, firearmHelpers())) {
+        s.firearmEntry.afterCommand = { ...clone(afterCommand), pullIds: ids.slice(index + 1) };
+        return false;
+      }
     }
+    return true;
   }
   function nearby(s, a, b) {
     return (
@@ -332,6 +455,7 @@
       teleport(s, a.node);
       log(s, `${node(s, a.node).name}(으)로 순간이동 · 추격 없음.`);
     }
+    let enemyMovement = null;
     if (f.moveEnemy) {
       need(
         node(s, a.node) && distance(s, target.node, a.node) <= f.moveEnemy,
@@ -343,6 +467,7 @@
       target.node = a.node;
       missions.onEnemyStep?.(s,target,from,a.node,missionHelpers());
       log(s, `${enemyDef(s, target).name} 이동 → ${node(s, a.node).name}.`);
+      enemyMovement = { enemyId: target.id, from, to: a.node };
     }
     if (f.skipActivation && !s.skipActivation.includes(target.id))
       s.skipActivation.push(target.id);
@@ -369,6 +494,10 @@
       };
       s.phase = "move";
       log(s, "푸른 비약 · 이동 2 시작. 이동을 마치면 추격을 처리합니다.");
+    }
+    if (enemyMovement) {
+      const moved = enemy(s, enemyMovement.enemyId);
+      if (moved) firearms.onEnemyStep(s, moved, enemyMovement.from, enemyMovement.to, firearmHelpers());
     }
   }
   function take(s, id) {
@@ -453,7 +582,7 @@
       p.state.setup.firearmId,
       p.state.setup.startSpace,
       { campaign: !!p.state.setup.campaign, provisional: p.state.setup.provisional,
-        legacyReplay: !p.state.setup.rulesVersion },
+        rulesVersion: p.state.setup.rulesVersion ?? null },
     );
     for (const command of p.state.commands)
       verified = dispatch(verified, command);
@@ -466,6 +595,11 @@
   function enemyDef(s, e) {
     const kind = typeof e === "string" ? e : e.kind;
     if (typeof e === "object" && e.componentId) {
+      if (actualBoss(s, e)) return missions.targetDef(s, e,
+        bosses.definition("cleric-beast", e.componentPhase || 1, 4));
+      if (s.setup.rulesVersion >= 9 && !s.provisional && ["female-patient", "iosefka"].includes(e.componentId))
+        return missions.targetDef(s, e, supplied.definition(e.componentSpec, 1,
+          e.componentId === "iosefka" ? 5 : 4));
       const d = temporary.definition(e.componentSpec || e.componentId,e.componentPhase || 1,
         e.componentId==='iosefka' ? 5 : 4);
       return missions.targetDef(s,e,d);
@@ -487,6 +621,10 @@
       interrupt: x.keywords.includes("방해"),
       undodgeable: x.keywords.includes("회피할 수 없습니다."),
       uninterruptible: x.keywords.includes("방해할 수 없습니다."),
+      ...(s.setup.rulesVersion >= 8 ? {
+        poison: x.keywords.includes("독"),
+        frenzy: x.keywords.includes("발광"),
+      } : {}),
       rules: x.rules,
       followup:
         kind === "special" && base.id === "scourge-beast" && face.id === "b",
@@ -579,17 +717,24 @@
     while (s.spawnQueue.length) {
       if (s.spawnQueue[0].componentId) {
         const job=s.spawnQueue.shift(), id=`mission-${job.missionId}`,
-          spec = job.componentId === 'iosefka' ? 'iosefka-hostile' :
-            job.componentId === 'female-patient' ? 'female-patient-a' : job.componentId,
           old=s.enemies.find((e)=>e.id===id);
+        let spec = job.componentId === 'iosefka' ? 'iosefka-hostile' :
+          job.componentId === 'female-patient' ? 'female-patient-a' : job.componentId;
+        if (job.componentId === 'female-patient' && s.setup.rulesVersion >= 9) {
+          s.world.componentFaces ||= {};
+          s.world.componentFaces.femalePatient ||= random(s) < 0.5 ? 'female-patient-a' : 'female-patient-b';
+          spec = s.world.componentFaces.femalePatient;
+        }
         const e = old || {id,kind:temporary.specimens[spec].baseKind,figure:1,
           componentId:job.componentId,componentSpec:spec,componentPhase:job.componentPhase || 1,missionId:job.missionId};
         e.node=job.node; e.componentPhase=job.componentPhase || e.componentPhase;
         e.hp=enemyDef(s,e).maxHp;
-        if (enemyDef(s,e).boss && !e.bossDecks) e.bossDecks=temporary.createDecks(spec,s,shuffle);
+        if (actualBoss(s, e)) { e.actualComponent = true; e.insightTokens ??= 0; }
+        if (enemyDef(s,e).boss && !e.bossDecks)
+          e.bossDecks=(actualBoss(s,e) ? bosses : temporary).createDecks(spec,s,shuffle);
         s.enemies=s.enemies.filter((other)=>other.id!==id); s.enemies.push(e);
         s.mission.targets[job.missionId].enemyId=id;
-        log(s,`${enemyDef(s,e).name} 출현 · 임시 구성품을 사용합니다.`);
+        log(s,`${enemyDef(s,e).name} 출현 · ${enemyDef(s,e).actual ? "실물 전사 구성품" : "임시 구성품"}을 사용합니다.`);
         continue;
       }
       if (!s.spawnQueue[0].missionId && !s.spawnQueue[0].missionSummon && missions.fogged(s, node(s, s.spawnQueue[0].node)?.tile)) {
@@ -695,11 +840,13 @@
     const chapter=s.mission.chapter+1,
       history=[...(s.mission.history || []),{chapter:s.mission.chapter,
         completed:[...s.mission.completed],revealed:[...s.mission.revealed]}],
-      seed=Math.floor(random(s)*4294967296),map=M.create(seed,a.startSpace,chapter);
+      seed=Math.floor(random(s)*4294967296),
+      rulesVersion=s.setup.rulesVersion || 7,
+      map=M.create(seed,a.startSpace,chapter,{rulesVersion});
     s.rng=map.rng;
     s.world={chapter,assignments:map.assignments,tilePool:map.tilePool,tileDeck:map.tileDeck,
       tiles:map.tiles,pending:null,specialSetup:map.specialSetup};
-    s.setup.rulesVersion=7;
+    s.setup.rulesVersion=rulesVersion;
     s.round=1;s.track=1;s.lastRound=false;s.phase='hunter';s.result=null;s.kills=0;
     s.enemies=[];s.loot=[];s.enemyDeck=map.enemyDeck;s.enemyDiscard=[];
     for (const key of ['skipActivation','activation','spawnQueue','spawnChoices','cardChoices','lootChoice']) s[key]=[];
@@ -770,6 +917,7 @@
     s.move = null;
     s.interaction = null;
     s.enemyMove = null;
+    delete s.firearmEntry;
     s.cardChoices = [];
     s.freeTransform = null;
     s.activation = [];
@@ -826,7 +974,7 @@
     need(s.world.tileDeck.length, "남은 타일이 없습니다.");
     let next;
     const rejected = [],
-      needsExit = s.world.tileDeck.length > 1;
+      needsExit = s.setup.rulesVersion >= 8 || s.world.tileDeck.length > 1;
     while (s.world.tileDeck.length) {
       const id = s.world.tileDeck.shift();
       if (missions.placementOptions(s, missionHelpers(), { tileId: id, anchor,
@@ -906,8 +1054,10 @@
       s,
       `${enemyDef(s, e).name} → ${nameAt(s, to)}${m.drag ? " · 사냥꾼도 이동" : ""}.`,
     );
+    if (!m.drag) firearms.onEnemyStep(s, e, prev, to, firearmHelpers());
   }
   function runEnemyMove(s) {
+    if (s.firearmEntry) return;
     const m = s.enemyMove,
       e = enemy(s, m.enemyId);
     while (e && m.remaining > 0) {
@@ -919,6 +1069,7 @@
         return;
       }
       takeEnemyStep(s, options[0]);
+      if (s.firearmEntry) return;
       if (s.mission?.won) { beginChapterDream(s); return; }
     }
     const after = m.after;
@@ -982,6 +1133,7 @@
   }
   function resume(s, a) {
     if (!a) return;
+    if (a.type === "firearm_entry_done") { finishFirearmEntry(s, a.entry); return; }
     if (a.type === "mission_phase") { s.phase = a.phase; return; }
     if (a.type === "mission_hunter") { s.phase = "hunter"; return; }
     if (a.type === "mission_activation") { continueActivation(s); return; }
@@ -1042,6 +1194,15 @@
       s.phase = "combat_react";
       return;
     }
+    if (a.type === "boss_react") { s.phase = "boss_react"; return; }
+    if (a.type === "next_enemy_card") {
+      const c = s.combat;
+      c.dodged = false; c.cancelEnemy = false; c.groups = null; c.index = 0;
+      delete c.bossInsightUsed; delete c.dodgeBonusApplied;
+      if (a.discardHunterAttack && c.attackResolved) c.attack = null;
+      if (a.fury) c.furyNext = true;
+      reveal(s); return;
+    }
     if (a.type === "extra_done") {
       resolve(s);
       return;
@@ -1078,7 +1239,7 @@
   function kill(s, e) {
     if (e.hp > 0) return;
     if (e.componentId) {
-      const phases=temporary.specimens[e.componentSpec || e.componentId].phases;
+      const phases=actualBoss(s,e) ? bosses.specimen.phases : temporary.specimens[e.componentSpec || e.componentId].phases;
       if (e.componentPhase<phases.length) {
         e.componentPhase++; e.hp=enemyDef(s,e).maxHp;
         missions.onBossPhase?.(s,e,e.componentPhase,missionHelpers());
@@ -1182,6 +1343,36 @@
       h.status[value] = false;
     }
   }
+  function performAttack(s, a, counter = false) {
+    const h = hunter(s), target = enemy(s, a.enemyId || s.combat?.enemyId),
+      x = h.hand.find((x) => x.id === a.cardId);
+    need(target && x && Number.isInteger(a.slot) && slots(s)[a.slot] && !h.slots[a.slot],
+      "대상·손패·빈 공격 슬롯을 선택하세요.");
+    // A rifle may react to pulling before a stat attack is declared. Validate
+    // the later costs now so a paused command is already a legal declaration.
+    if (s.setup.rulesVersion >= 9 && a.pullIds?.length) {
+      attackConsumables(clone(s), a.itemIds);
+      if (s.mission) rewards.attackBonus(clone(s), a.slot, a.rewardIds || [], rewardHelpers());
+    }
+    const requested = { ...a, enemyId: target.id };
+    if (!pullBeforeAttack(s, a.pullIds, requested)) return;
+    if (s.setup.rulesVersion >= 9 && s.mission?.won) { beginChapterDream(s); return; }
+    const e = enemy(s, target.id);
+    if (!counter && e.node !== h.position) {
+      const bonus = s.mission ? rewards.attackBonus(clone(s), a.slot, a.rewardIds || [], rewardHelpers()) : {};
+      need(card(x).leap && !bonus.replaceCardEffects, "같은 칸의 적만 공격할 수 있습니다.");
+      const route = leapPaths(s, e.node).find((p) => JSON.stringify(p) === JSON.stringify(a.leapPath));
+      need(route && route.length > 1, "도약으로 진입할 경로를 선택하세요.");
+      attackConsumables(clone(s), a.itemIds);
+      if (s.mission) rewards.attackBonus(clone(s), a.slot, a.rewardIds || [], rewardHelpers());
+      s.leap = clone(a);
+      s.move = { remaining: route.length - 1, path: [h.position], chasers: [] };
+      for (const to of route.slice(1)) stepHunter(s, to);
+    } else {
+      if (!counter) chooseCombat(s, e.id, "hunter");
+      commitAttack(s, a.cardId, a.slot, a.itemIds, a.rewardIds);
+    }
+  }
   function commitAttack(s, id, index, itemIds, rewardIds) {
     const slot = slots(s)[index];
     need(slot, "공격 슬롯을 선택하세요.");
@@ -1217,14 +1408,19 @@
       endCombat(s);
       return;
     }
-    const kind = e.bossDecks ? temporary.draw(e,s,shuffle) : enemyDeck.draw(s, shuffle),
+    const kind = e.bossDecks ? (actualBoss(s,e) ? bosses : temporary).draw(e,s,shuffle) : enemyDeck.draw(s, shuffle),
       d = enemyDef(s, e);
     c.action = clone(d[kind]);
     c.history.push({ kind, name: c.action.name });
     log(
       s,
-      `${d.name} ${d.temporary ? (e.componentPhase || s.provisional?.phase) + "단계" : d.sideId.toUpperCase() + "면"} · ${enemyDeck.labels[kind] || '회복'}: ${c.action.name}.`,
+      `${d.name} ${actualBoss(s,e) ? e.componentPhase + "페이즈" : d.temporary ? (e.componentPhase || s.provisional?.phase) + "단계" : d.sideId.toUpperCase() + "면"} · ${actualBoss(s,e) ? c.action.name : enemyDeck.labels[kind] || '회복'}: ${c.action.name}.`,
     );
+    if (c.furyNext) {
+      delete c.furyNext;
+      if (kind === "basic") c.action.damage = Math.max(0, c.action.damage - 2);
+      else { c.action.interrupt = true; c.action.poison = true; c.furyEffects = true; }
+    }
     if (c.action.type === "ability") {
       c.abilityPending = true;
       c.abilityReactionOffered = false;
@@ -1255,9 +1451,14 @@
         "undodgeable",
         "uninterruptible",
         "followup",
+        ...(s.setup.rulesVersion >= 8 ? ["poison", "frenzy"] : []),
+        ...(s.setup.rulesVersion >= 9 ? ["bossInsight", "bossInsightReduction",
+          "forceHunterMove", "afterAttackMove", "afterDodgeDamageBonus"] : []),
       ])
         c.action[k] = false;
       log(s, "마비 안개 · 공격 효과 제거. 속도와 피해는 유지합니다.");
+      if (s.setup.rulesVersion >= 9 && c.action.code === "female-fury")
+        delete c.action.code;
     }
     s.phase = "combat_react";
   }
@@ -1269,6 +1470,27 @@
       return;
     }
     c.abilityPending = false;
+    if (c.action.code === "cleric-recovery") {
+      e.insightTokens = 0; c.enemyDefense = 2;
+      bosses.reshuffle(e, s, shuffle);
+      missions.onBossRecover?.(s, e, missionHelpers());
+      log(s, "성직자 야수 회복 · 계몽 제거, 사냥꾼 공격 피해2 방어, 현재 행동 덱을 다시 섞습니다.");
+      if (s.spawnQueue.length) {
+        s.spawnAfter = { type: "combat" }; finishSpawns(s); return;
+      }
+      resolve(s); return;
+    }
+    if (c.action.code === "cleric-leap") {
+      startImmediate(s, { name: c.action.name, damage: 2, dodgeSpeed: 1,
+        stun: true, revealNext: true }); return;
+    }
+    if (c.action.code === "iosefka-pistol") {
+      startImmediate(s, { name: c.action.name, damage: 0, dodgeSpeed: 3,
+        interruptHunter: true, poison: !!c.furyEffects, revealNext: true }); return;
+    }
+    if (c.action.code === "female-blood-disease") {
+      c.reflectDamage = true; resolve(s); return;
+    }
     if (c.action.code==='temporary-recover') {
       e.hp=Math.min(enemyDef(s,e).maxHp,e.hp+2);
       missions.onBossRecover?.(s,e,missionHelpers());
@@ -1327,9 +1549,10 @@
         s.phase === "combat_extra" &&
         slot.speed + (def.speed || 0) >= c.extra.dodgeSpeed
       );
-    if (s.phase !== "combat_react" || c.dodged || !enemy(s, c.enemyId))
+    if (!["combat_react", "boss_react"].includes(s.phase) || c.dodged ||
+      s.phase !== "boss_react" && !enemy(s, c.enemyId))
       return false;
-    const speed =
+    const speed = s.phase === "boss_react" ? c.immediate?.dodgeSpeed :
       c.action.type === "ability" ? c.action.dodgeSpeed : c.action.speed;
     return (
       speed !== null &&
@@ -1344,11 +1567,11 @@
       canDodge(s, a.cardId, a.slot, extra),
       "회피 가능한 카드·속도·빈 슬롯을 선택하세요.",
     );
-    const x = place(s, a.cardId, a.slot),
+    const immediate = s.phase === "boss_react", x = place(s, a.cardId, a.slot),
       def = card(x),
       c = s.combat;
     if (extra) c.extra = null;
-    else c.dodged = true;
+    else { c.dodged = true; if (!immediate) applyDodgeAttackBonus(s); }
     log(
       s,
       extra
@@ -1358,6 +1581,7 @@
     finishCardChoices(s, {
       type: "dodge_ready",
       extra,
+      ...(immediate ? { immediate: true } : {}),
       damage: def.afterDodgeDamage || 0,
       freeTransform: !!def.freeTransform,
     });
@@ -1371,7 +1595,8 @@
       log(s, `반격 · 적에게 ${a.damage} 피해.`);
       kill(s, e);
     }
-    const after = a.extra ? { type: "extra_done" } : { type: "react" };
+    const after = a.extra ? { type: "extra_done" } :
+      a.immediate ? { type: "boss_react" } : { type: "react" };
     if (a.freeTransform) {
       offerTransform(s, after);
       return;
@@ -1381,6 +1606,13 @@
       return;
     }
     resume(s, after);
+  }
+  function applyDodgeAttackBonus(s) {
+    const c = s.combat, attack = c.attack || c.flame;
+    if (c.action?.afterDodgeDamageBonus && attack && !c.dodgeBonusApplied) {
+      attack.damage += c.action.afterDodgeDamageBonus; c.dodgeBonusApplied = true;
+      log(s, "파괴적인 내려찍기 회피 · 사냥꾼 공격 피해+1.");
+    }
   }
   function offerTransform(s, after) {
     s.freeTransform = after;
@@ -1430,6 +1662,15 @@
       if (q.type === "transform") {
         offerTransform(s, { type: "combat" });
         return false;
+      }
+      if (q.type === "forced_move") {
+        if (enemy(s, c.enemyId)) { startBossMove(s, q.actor, q.amount); return false; }
+      }
+      if (q.type === "immediate") {
+        startImmediate(s, q.reaction); return false;
+      }
+      if (q.type === "next_enemy_card") {
+        resume(s, q); return false;
       }
     }
     return true;
@@ -1524,9 +1765,14 @@
     const c = s.combat;
     if (!c || hunter(s).inDream) return;
     if (!pendingCombat(s)) return;
+    if (c.afterImmediate) {
+      const after = c.afterImmediate; delete c.afterImmediate;
+      resume(s, after); return;
+    }
     if (!c.groups) {
       const speeds = [
         ...(c.attack ? [c.attack.speed] : []),
+        ...(c.flame && !c.flameResolved ? [c.flame.speed] : []),
         ...(c.action.speed !== null ? [c.action.speed] : []),
       ];
       c.groups = [...new Set(speeds)]
@@ -1552,6 +1798,7 @@
       }
       const speed = group.speed,
         ha = !!(c.attack && c.attack.speed === speed && !c.cancelHunter),
+        flame = !!(c.flame && !c.flameResolved && c.flame.speed === speed && !c.cancelHunter),
         enemyTiming = c.action.type === "attack" && c.action.speed === speed,
         ea = enemyTiming && !c.cancelEnemy && !c.dodged,
         shared = e.node === h.position;
@@ -1559,9 +1806,12 @@
         c.action.damage = (e.hp < enemyDef(s, e).maxHp ? 4 : 2) + c.buff.damage;
       // Snapshot both hits before changes for same-speed combat.
       if (ha) {
+        if (s.setup.rulesVersion >= 9) c.attackResolved = true;
         if (shared) {
-          damageEnemy(s,e,c.attack.damage,{kind:'hunter-attack',action:c.action});
-          log(s, `${c.attack.name} · 적에게 ${c.attack.damage} 피해.`);
+          const damage = damageEnemy(s,e,c.attack.damage,{kind:'hunter-attack',action:c.action});
+          if (c.reflectDamage && damage > 0) c.pending.push({type:"immediate", reaction:{
+            name: c.action.name, damage, dodgeSpeed: 3, poison: true }});
+          log(s, `${c.attack.name} · 적에게 ${s.setup.rulesVersion >= 9 ? damage : c.attack.damage} 피해.`);
         } else
           log(
             s,
@@ -1590,21 +1840,47 @@
           log(s, "방해 · 더 느린 적 공격 취소.");
         }
       }
+      if (flame) {
+        c.flameResolved = true;
+        if (shared) {
+          const damage = damageEnemy(s, e, c.flame.damage, {kind:"firearm-attack",action:c.action});
+          log(s, `화염방사기 · ${enemyDef(s,e).name}에게 피해 ${damage}.`);
+          if (c.reflectDamage && damage > 0) c.pending.push({type:"immediate",reaction:{
+            name:c.action.name,damage,dodgeSpeed:3,poison:true}});
+          for (const other of s.enemies.filter((x) => x.id !== e.id && x.node === h.position)) {
+            damageEnemy(s, other, 1, {kind:"firearm-attack",action:c.action});
+            log(s, `화염방사기 · 같은 칸 ${enemyDef(s,other).name}에게 피해1.`);
+          }
+          if (c.action.type === "attack" && speed > c.action.speed && !c.action.uninterruptible)
+            c.cancelEnemy = true;
+        }
+      }
       if (ea && shared && !(c.attack?.interruptEqual && c.cancelEnemy)) {
-        takeDamage(s, c.action.damage, c.action.name, true);
+        const incoming = Math.max(0, c.action.damage - (c.action.bossInsightReduction ? e.insightTokens || 0 : 0));
+        takeDamage(s, incoming, c.action.name, true);
         if (
           c.action.interrupt &&
-          c.attack &&
-          speed > c.attack.speed &&
+          (c.attack && speed > c.attack.speed || c.flame && speed > c.flame.speed) &&
           !c.immune.includes("interrupt")
         ) {
           c.cancelHunter = true;
           log(s, "적의 방해 · 사냥꾼 공격 취소.");
         }
         if (c.action.stun) c.pending.push({ type: "stun" });
+        if (c.action.forceHunterMove) c.pending.push({type:"forced_move",actor:"hunter",amount:c.action.forceHunterMove});
+        if (s.setup.rulesVersion >= 8)
+          for (const status of ["poison", "frenzy"])
+            if (c.action[status] && !c.immune.includes(status)) {
+              h.status[status] = true;
+              log(s, `${status === "poison" ? "독" : "발광"} 상태를 받았습니다.`);
+            }
       }
       if (enemyTiming && shared && c.action.followup)
         c.pending.push({ type: "extra" });
+      if (enemyTiming && !c.cancelEnemy && c.action.afterAttackMove)
+        c.pending.push({type:"forced_move",actor:"enemy",amount:c.action.afterAttackMove});
+      if (enemyTiming && c.action.code === "female-fury" && !c.cancelEnemy)
+        c.pending.push({type:"next_enemy_card",discardHunterAttack:true,fury:true});
       for (const dead of [...s.enemies].filter((e) => e.hp <= 0)) kill(s, dead);
       if (h.hp <= 0) {
         enterDream(s, true);
@@ -1625,6 +1901,7 @@
     hunter(s).face = 1 - hunter(s).face;
     log(s, "무기 변형 · 모든 슬롯을 비웠습니다.");
     if (s.mission) rewards.onTransform(s);
+    firearms.onTransform(s, firearmHelpers());
   }
   function payAction(s, id) {
     const x = pay(s, id),
@@ -1663,6 +1940,12 @@
       ...(s.mission ? { missionRescue: missions.rescueInteraction(s, missionHelpers()) } : {}),
     };
   }
+  function interactionEnemies(s) {
+    const q = s.interaction, h = hunter(s);
+    if (!q || h.inDream || h.position !== q.node) return [];
+    return q.enemies.map((id) => enemy(s, id))
+      .filter((e) => e && e.node === h.position);
+  }
   function nextInteraction(s) {
     const q = s.interaction,
       h = hunter(s);
@@ -1670,6 +1953,10 @@
       s.interaction = null;
       s.phase = "hunter";
       log(s, "상호작용 위치에서 벗어나 효과를 완료하지 못했습니다.");
+      return;
+    }
+    if (s.setup.rulesVersion >= 8 && interactionEnemies(s).length > 1) {
+      s.phase = "interaction_order";
       return;
     }
     while (q.enemies.length) {
@@ -1756,14 +2043,15 @@
       ["EQUIP_REWARD", "KEEP_REWARD", "EQUIP_FIREARM", "KEEP_FIREARM"].includes(a.type)), "사냥이 끝났습니다. 새 사냥을 시작하세요.");
     const phase = (p) =>
       need(s.phase === p, "현재 단계에서는 사용할 수 없는 행동입니다.");
-    const handled = s.mission && rewards.dispatch(s, a, rewardHelpers());
+    const firearmHandled = firearms.dispatch(s, a, firearmHelpers());
+    const handled = firearmHandled || s.mission && rewards.dispatch(s, a, rewardHelpers());
     const missionHandled = !handled && missions.dispatch(s, a, missionHelpers());
     if (!handled && !missionHandled) switch (a.type) {
       case 'ENTER_BETWEEN_CHAPTERS':
         need(s.phase==='over' && s.result==='chapter-win' && s.mission.chapter<3,
           '완료한 챕터1 또는2에서 다음 챕터를 준비하세요.');
         need(!s.rewardChoices.length,'보상 장착·보관 선택을 먼저 마치세요.');
-        s.setup.rulesVersion=7;s.phase='between_chapters';
+        s.setup.rulesVersion=s.setup.rulesVersion || 7;s.phase='between_chapters';
         log(s,`챕터 ${s.mission.chapter+1} 준비 · 장비를 교체하고 시작 칸을 선택하세요.`);
         break;
       case 'START_NEXT_CHAPTER': startNextChapter(s,a);break;
@@ -1823,51 +2111,19 @@
         break;
       case "ATTACK": {
         phase("hunter");
-        pullBeforeAttack(s, a.pullIds);
-        const e = enemy(s, a.enemyId),
-          x = h.hand.find((x) => x.id === a.cardId);
-        need(
-          e &&
-            x &&
-            Number.isInteger(a.slot) &&
-            slots(s)[a.slot] &&
-            !h.slots[a.slot],
-          "대상·손패·빈 공격 슬롯을 선택하세요.",
-        );
-        if (e.node !== h.position) {
-          const bonus = s.mission ? rewards.attackBonus(clone(s), a.slot, a.rewardIds || [], rewardHelpers()) : {};
-          need(card(x).leap && !bonus.replaceCardEffects, "같은 칸의 적만 공격할 수 있습니다.");
-          const route = leapPaths(s, e.node).find(
-            (p) => JSON.stringify(p) === JSON.stringify(a.leapPath),
-          );
-          need(route && route.length > 1, "도약으로 진입할 경로를 선택하세요.");
-          // Validate consumables before any movement/choice can commit part of this attack.
-          attackConsumables(clone(s), a.itemIds);
-          if (s.mission) rewards.attackBonus(clone(s), a.slot, a.rewardIds || [], rewardHelpers());
-          s.leap = clone(a);
-          s.move = {
-            remaining: route.length - 1,
-            path: [h.position],
-            chasers: [],
-          };
-          for (const to of route.slice(1)) stepHunter(s, to);
-        } else {
-          chooseCombat(s, e.id, "hunter");
-          commitAttack(s, a.cardId, a.slot, a.itemIds, a.rewardIds);
-        }
+        performAttack(s, a);
         break;
       }
       case "COUNTER":
         phase("combat_choose");
-        pullBeforeAttack(s, a.pullIds);
-        commitAttack(s, a.cardId, a.slot, a.itemIds, a.rewardIds);
+        performAttack(s, a, true);
         break;
       case "NO_ATTACK":
         phase("combat_choose");
         reveal(s);
         break;
       case "DODGE":
-        phase("combat_react");
+        need(["combat_react", "boss_react"].includes(s.phase), "현재 단계에서는 회피할 수 없습니다.");
         dodge(s, a);
         break;
       case "EXTRA_DODGE":
@@ -1893,8 +2149,20 @@
         log(s, `${firearm(s).name} · 기본 공격 자동 방해, 화기 소진.`);
         break;
       case "RESOLVE":
-        phase("combat_react");
-        resolve(s);
+        need(["combat_react", "boss_react"].includes(s.phase), "현재 단계에서는 전투를 처리할 수 없습니다.");
+        if (s.phase === "boss_react") resolveImmediate(s);
+        else resolve(s);
+        break;
+      case "BOSS_INSIGHT":
+        need(canBossInsight(s), "이 공격 전에 준비된 화기를 소진할 수 없습니다.");
+        h.firearmReady = false; s.combat.bossInsightUsed = true;
+        enemy(s, s.combat.enemyId).insightTokens++;
+        log(s, "화기 소진 · 성직자 야수 카드에 계몽 토큰1개를 놓았습니다.");
+        break;
+      case "BOSS_STEP":
+        phase("boss_move");
+        need(bossMoveOptions(s).includes(a.node), "멀어지는 유효 칸을 선택하세요.");
+        takeBossStep(s, a.node); runBossMove(s);
         break;
       case "STUN_DISCARD":
         phase("stun");
@@ -1995,6 +2263,17 @@
           ...(a.provisionalNpc ? { provisionalNpc: true } : {}),
         };
         nextInteraction(s);
+        break;
+      }
+      case "INTERACTION_ENEMY": {
+        phase("interaction_order");
+        need(interactionEnemies(s).some((e) => e.id === a.enemyId),
+          "같은 칸에서 아직 반격하지 않은 적을 선택하세요.");
+        const i = s.interaction.enemies.indexOf(a.enemyId);
+        s.interaction.enemies.splice(i, 1);
+        log(s, `${enemyDef(s, enemy(s, a.enemyId)).name}의 상호작용 반격을 먼저 처리합니다.`);
+        chooseCombat(s, a.enemyId, "interaction");
+        reveal(s);
         break;
       }
       case "EXCHANGE_CHOICE":
@@ -2166,8 +2445,12 @@
         D.consumables[startingConsumable]?.runtime === "playable",
       "시작 소모품을 확인하세요.",
     );
-    const map = M.create(seed, startSpace);
     need(options && typeof options.campaign === "boolean", "캠페인 시작 설정을 확인하세요.");
+    const rulesVersion = Object.hasOwn(options, "rulesVersion")
+      ? options.rulesVersion : options.legacyReplay ? null : 9;
+    need(rulesVersion === null || [7, 8, 9].includes(rulesVersion),
+      "지원하는 규칙 버전을 선택하세요.");
+    const map = M.create(seed, startSpace, 1, { rulesVersion });
     need(!options.provisional || temporary?.specimens[options.provisional] && !options.campaign,
       "임시 구성품 시험 설정을 확인하세요.");
     const s = {
@@ -2176,7 +2459,7 @@
       rng: map.rng,
       initialSeed: map.seed,
       setup: { weaponId, face, startingConsumable, firearmId, startSpace,
-        ...(!options.legacyReplay ? {rulesVersion:7} : {}),
+        ...(rulesVersion !== null ? { rulesVersion } : {}),
         ...(options.campaign ? { campaign: true } : {}),
         ...(options.provisional ? { provisional: options.provisional } : {}) },
       revision: 0,
@@ -2297,6 +2580,8 @@
       Number.isInteger(s.rng) && s.rng > 0 && s.rng <= 4294967295,
       "난수 오류.",
     );
+    need(s.setup.rulesVersion === undefined || [7, 8, 9].includes(s.setup.rulesVersion),
+      "지원하지 않는 규칙 버전입니다.");
     need(
       s.activeHunterId === "hunter-1" && Object.keys(s.hunters).length === 1,
       "현재는 1인용입니다.",
@@ -2441,6 +2726,9 @@
         "combat_choose",
         "combat_react",
         "combat_extra",
+        "boss_react",
+        "boss_move",
+        "firearm_react",
         "ability_choice",
         "cheap_shot",
         "card_choice",
@@ -2453,6 +2741,7 @@
         "upgrade_replace",
         "loot_choice",
         "exchange_choice",
+        "interaction_order",
         "mission_survivor",
         "mission_choice",
         "mission_death",
@@ -2465,6 +2754,11 @@
       !s.interaction.exchanged && s.interaction.node === h.position &&
       h.position === "tile-07:top" && s.lootRemaining === 0,
       "예배당 교환 선택 상태 오류.");
+    if (s.phase === "interaction_order")
+      need(s.setup.rulesVersion >= 8 && !s.interaction?.applied &&
+        interactionEnemies(s).length > 1 &&
+        new Set(s.interaction.enemies).size === s.interaction.enemies.length,
+        "상호작용 반격 순서 선택 상태 오류.");
     need(
       Array.isArray(s.commands) &&
         s.commands.length <= 10000 &&
@@ -2483,6 +2777,8 @@
         "combat_choose",
         "combat_react",
         "combat_extra",
+        "boss_react",
+        "boss_move",
         "ability_choice",
         "cheap_shot",
         "stun",
@@ -2500,6 +2796,13 @@
       need(s.spawnQueue.length && s.spawnChoices.length > 1, "출현 선택 오류.");
     if (s.phase === "enemy_path")
       need(s.enemyMove && moveOptions(s).length > 1, "적 경로 선택 오류.");
+    if (s.phase === "boss_react") need(s.combat?.immediate, "즉시 능력 반응 상태 오류.");
+    if (s.phase === "boss_move") need(s.combat?.bossMove && bossMoveOptions(s).length > 1,
+      "강제 이동 선택 상태 오류.");
+    if (s.phase === "firearm_react") need(s.firearmEntry && firearmEntryView(s),
+      "장총 진입 반응 상태 오류.");
+    for (const e of s.enemies.filter((x) => actualBoss(s, x)))
+      need(e.actualComponent === true && bosses.valid(e), "실제 성직자 야수 행동 덱·계몽 상태 오류.");
     if (s.mission) {
       need(s.setup.campaign === true && [1,2,3].includes(s.mission.chapter) &&
         new Set(s.mission.revealed).size === s.mission.revealed.length &&
@@ -2522,6 +2825,7 @@
     moveOptions,
     leapPaths,
     interactionOptions,
+    interactionEnemies,
     centralLampDestinations,
     canLeave,
     create,
@@ -2535,6 +2839,10 @@
     weaponFace,
     firearm,
     canFirearm,
+    canBossInsight,
+    combatReaction,
+    bossMoveOptions,
+    firearmEntryView,
     distance,
     pullCandidates,
     eligible,
