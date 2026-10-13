@@ -88,7 +88,7 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
     dispatch: (s, command) => { commands.push(command); return structuredClone(s); },
     ...options.engine,
   };
-  const window = { BBHunt: engine, BBChapter: M, BBLongHunt: C, BBEnemyDeck: ED, BBTileGeometry: G,
+  const window = { BBHunt: engine, BBChapter: M, BBLongHunt: C, BBNarrativeText: require("../../campaigns/long-hunt/narrative-text"), BBEnemyDeck: ED, BBTileGeometry: G,
     BBActualComponents: require("../../actual-components"),
     BBExtendedEnemies: require("../../extended-enemies"),
     BBExtendedFirearms: require("../../extended-firearms"),

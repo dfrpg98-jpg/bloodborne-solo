@@ -22,8 +22,7 @@
           "'": "&#39;",
         })[c],
     );
-  const photo = (p) => "campaigns/long-hunt/" + p,
-    colors = { gold: "#dec079", red: "#dc9784", purple: "#bca0d4" },
+  const colors = { gold: "#dec079", red: "#dc9784", purple: "#bca0d4" },
     directionNames = { N: "북쪽 ↑", E: "동쪽 →", S: "남쪽 ↓", W: "서쪽 ←" };
   const button = (label, type, args = {}, disabled = false, cls = "") =>
     `<button class="${cls}" data-command="${type}" data-args="${esc(JSON.stringify(args))}" ${disabled ? "disabled" : ""}>${label}</button>`;
@@ -198,7 +197,7 @@
           ? `자기 차례에 속도 ${gun.speed ?? 2} · 피해 ${gun.damage ?? 2}${gun.interrupt === false ? "" : " · 방해"} 공격을 합니다.${gun.splash === 0 ? "" : ` 공격 후 같은 칸의 다른 적들에게 피해 ${gun.splash ?? 1}을 줍니다.`}`
           : "적의 기본 공격을 자동으로 방해합니다.",
       printed = Array.isArray(gun.rules) && gun.rules.length ? gun.rules.map(esc).join("<br>") : esc(description);
-    $("firearm").innerHTML = `<p class="eyebrow">장착 화기${actual ? " · 제공된 실물 카드" : ""}</p><h2>${esc(gun.name)} <small class="${h.firearmReady ? "ready" : "spent"}">${h.firearmReady ? "준비됨" : "소진됨"}</small></h2><p>${printed}</p><p class="muted">사냥꾼 차례에 카드 ${cost}장을 버려 준비${actual && gun.prepareEchoCost ? ` 또는 피의 유지 ${gun.prepareEchoCost}개로 준비` : ""} · 꿈에서 회복${actual && gun.prepareOnTransform ? " · 무기를 변형할 때도 준비" : ""}${!actual && h.firearmId !== "hunter-pistol" ? "<br>이 저장/시험에서는 단총과 같은 능력으로 임시 동작" : ""}</p>${firearmAction()}`;
+    $("firearm").innerHTML = `<p class="eyebrow">장착 화기</p><h2>${esc(gun.name)} <small class="${h.firearmReady ? "ready" : "spent"}">${h.firearmReady ? "준비됨" : "소진됨"}</small></h2><p>${printed}</p><p class="muted">사냥꾼 차례에 카드 ${cost}장을 버려 준비${actual && gun.prepareEchoCost ? ` 또는 피의 유지 ${gun.prepareEchoCost}개로 준비` : ""} · 꿈에서 회복${actual && gun.prepareOnTransform ? " · 무기를 변형할 때도 준비" : ""}${!actual && h.firearmId !== "hunter-pistol" ? "<br>이 저장/시험에서는 단총과 같은 능력으로 임시 동작" : ""}</p>${firearmAction()}`;
     bind($("firearm"));
   }
   function renderComponents() {
@@ -214,14 +213,11 @@
             a.forceHunterMove && `공격당한 사냥꾼 ${a.forceHunterMove}칸 멀리 이동`].filter(Boolean);
           return `${esc(a.name)}${a.speed !== undefined && a.speed !== null ? ` · 속도 ${a.speed}` : ""}${a.type === "attack" && a.damage !== undefined ? ` · 피해 ${a.damage}` : ""}${effects.length ? `<p>${effects.map(esc).join(" · ")}</p>` : ""}${a.rules?.length ? `<p>${a.rules.map(esc).join("<br>")}</p>` : ""}`;
         },
-        source = typeof d.sourceLabel === "string" ? d.sourceLabel : actual
-          ? "사용자 제공 실물 구성품" : "임시 작성 구성품 · 이전 저장 또는 별도 시험",
         boss = d.boss ? `<p class="component-tokens">시트의 계몽 토큰 ${e.insightTokens || 0}개</p>${actual ? button("화기 소진 · 보스 시트에 계몽 토큰 +1", "BOSS_INSIGHT", {}, !E.canBossInsight?.(state)) : ""}` : "";
       const actions = d.boss && actual ? Object.values(d).filter((a) => a && typeof a === "object" && a.type && a.name) : null,
         abilityText = actions ? actions.map((a) => `<dt>${esc(a.type === "ability" ? "전용 능력" : "행동 공격")}</dt><dd>${describe(a)}</dd>`).join("")
-          : `<dt>기본 공격</dt><dd>${describe(d.basic)}</dd><dt>특수 공격</dt><dd>${describe(d.special)}</dd><dt>전용 능력</dt><dd>${describe(d.ability)}</dd>`,
-        imagePath = d.face?.image ? d.face.imageBase === "project" ? d.face.image : photo(d.face.image) : null;
-      return `<article class="component-card"><p class="eyebrow">${actual ? "실제 구성품" : "임시 구성품"}${e.componentPhase ? ` · ${e.componentPhase}페이즈` : ""}</p><h3>${esc(d.name)}</h3><p>체력 ${e.hp} / ${d.maxHp} · ${esc(nodeName(e.node))}</p>${boss}<p class="muted">${esc(source)}</p><details><summary>${actions ? "현재 페이즈의 행동 카드" : "공격과 전용 능력"}</summary><dl>${abilityText}</dl></details>${imagePath ? `<details><summary>제공된 실물 자료</summary><a href="${esc(imagePath)}" target="_blank" rel="noopener"><img src="${esc(imagePath)}" loading="lazy" alt="${esc(d.name)} · 제공 자료"></a></details>` : ""}</article>`;
+          : `<dt>기본 공격</dt><dd>${describe(d.basic)}</dd><dt>특수 공격</dt><dd>${describe(d.special)}</dd><dt>전용 능력</dt><dd>${describe(d.ability)}</dd>`;
+      return `<article class="component-card"><p class="eyebrow">${actual ? "실제 구성품" : "임시 구성품"}${e.componentPhase ? ` · ${e.componentPhase}페이즈` : ""}</p><h3>${esc(d.name)}</h3><p>체력 ${e.hp} / ${d.maxHp} · ${esc(nodeName(e.node))}</p>${boss}<details><summary>${actions ? "현재 페이즈의 행동 카드" : "공격과 전용 능력"}</summary><dl>${abilityText}</dl></details></article>`;
     }).join("");
     bind($("componentCards"));
   }
@@ -268,11 +264,15 @@
       const card = window.BBLongHunt.cards.find((c) => c.number === number);
       if (!card) return "";
       const completed = view.completed.includes(number), discarded = view.discarded?.includes(number);
-      return `<article class="revealed-card ${completed || discarded ? "completed" : ""}"><p class="eyebrow">${esc(card.type)} · 카드 ${number}${discarded ? " · 효과 제거됨" : completed ? " · 완료" : ""}</p><h3>${esc(card.title)}</h3>${discarded ? '<p class="muted">이 카드의 효과는 종료되었습니다. 아래 문구는 공개된 기록입니다.</p>' : ""}${card.rules.map((r) => `<p>${esc(r)}</p>`).join("")}<details><summary>이 카드의 원본 사진</summary><a href="${photo(card.image)}" target="_blank"><img src="${photo(card.image)}" loading="lazy" alt="공개된 카드 ${number} · ${esc(card.title)}"></a></details></article>`;
+      return `<article class="revealed-card ${completed || discarded ? "completed" : ""}"><p class="eyebrow">${esc(card.type)} · 카드 ${number}${discarded ? " · 효과 제거됨" : completed ? " · 완료" : ""}</p><h3>${esc(card.title)}</h3>${discarded ? '<p class="muted">이 카드의 효과는 종료되었습니다. 아래 문구는 공개된 기록입니다.</p>' : ""}${card.rules.map((r) => `<p>${esc(r)}</p>`).join("")}</article>`;
     }).join("");
   }
+  function storyParagraphs(entry) {
+    const text = entry.key === "intro" ? window.BBNarrativeText?.intro : window.BBNarrativeText?.cards?.[entry.number];
+    return text?.paragraphs || (entry.narrative ? [entry.narrative] : []);
+  }
   function storyButton(entry) {
-    return `<button data-story-key="${esc(entry.key)}" class="${readStories.has(entry.key) ? "" : "story-unread"}">${entry.number ? `카드 ${entry.number} · ` : ""}${esc(entry.title)}${readStories.has(entry.key) ? '<small>읽음</small>' : '<small>이야기 읽기</small>'}</button>`;
+    return `<button data-story-key="${esc(entry.key)}" class="${readStories.has(entry.key) ? "" : "story-unread"}">${entry.number ? `카드 ${entry.number} · ` : ""}${esc(entry.title)}${readStories.has(entry.key) ? '<small>읽음</small>' : `<small>${storyParagraphs(entry).length ? '이야기 읽기' : '기록 읽기'}</small>`}</button>`;
   }
   function bindStoryButtons(container) {
     container.querySelectorAll("[data-story-key]").forEach((button) => {
@@ -320,17 +320,14 @@
     const isIntro = entry.key === "intro", index = storyEntries.indexOf(entry);
     $("storyMeta").textContent = isIntro ? "기나긴 사냥 · 도입부" : `챕터 ${entry.chapter} · ${entry.type} · 카드 ${entry.number}`;
     $("storyTitle").textContent = entry.title;
-    $("storyDescription").textContent = isIntro
-      ? "제공된 도입부의 원문입니다. 아래에서 원본 이미지를 확인할 수 있습니다."
-      : "임무 이야기는 제공된 카드 원문 이미지로 표시합니다. 원문 확대 또는 원본 크게 열기로 읽으세요.";
-    $("storyText").innerHTML = isIntro && entry.narrative
-      ? `<p>${esc(entry.narrative)}</p>` : "";
-    $("storyText").hidden = !isIntro;
-    $("storyOriginal").href = photo(entry.image);
-    $("storyPhoto").innerHTML = `<img id="storyImage" src="${esc(photo(entry.image))}" alt="${esc(isIntro ? "기나긴 사냥 도입부 원문" : `공개된 카드 ${entry.number} · ${entry.title} 이야기와 규칙 원문`)}">`;
+    $("storyDescription").textContent = isIntro ? "야남에서 시작되는 기나긴 사냥" : "지금까지 밝혀진 이야기와 단서";
+    const paragraphs = storyParagraphs(entry);
+    $("storyText").innerHTML = paragraphs.map((paragraph) => `<p>${esc(paragraph)}</p>`).join("");
+    $("storyText").hidden = !paragraphs.length;
+    $("storyRules").innerHTML = isIntro ? "" : `<h3>임무 기록</h3>${entry.rules.map((rule) => `<p>${esc(rule)}</p>`).join("")}`;
+    $("storyRules").hidden = isIntro;
     $("storyZoom").value = "100";
     updateStoryZoom();
-    $("storyPhoto").scrollTop = $("storyPhoto").scrollLeft = 0;
     $("previousStory").disabled = index === 0;
     $("nextStory").disabled = index === storyEntries.length - 1;
     $("storyPosition").textContent = `${index + 1} / ${storyEntries.length} · 공개된 이야기`;
@@ -342,13 +339,14 @@
     bindStoryButtons($("pastChapters"));
   }
   function updateStoryZoom() {
-    const zoom = Math.max(100, Math.min(200, Number($("storyZoom").value) || 100));
+    const zoom = Math.max(100, Math.min(150, Number($("storyZoom").value) || 100));
     $("storyZoomValue").textContent = `${zoom}%`;
-    if ($("storyImage")) $("storyImage").style.width = `${zoom}%`;
+    $("storyText").style.fontSize = `${zoom / 100}em`;
+    $("storyRules").style.fontSize = `${zoom / 100}em`;
   }
   function closeStory() {
     $("storyDialog").close();
-    $("storyPhoto").innerHTML = $("storyText").innerHTML = "";
+    $("storyRules").innerHTML = $("storyText").innerHTML = "";
   }
   function resetStoryReading() {
     readStories.clear();
@@ -357,7 +355,7 @@
   }
   $("closeStory").onclick = closeStory;
   $("storyDialog").addEventListener("close", () => {
-    $("storyPhoto").innerHTML = $("storyText").innerHTML = "";
+    $("storyRules").innerHTML = $("storyText").innerHTML = "";
     const opener = storyOpener?.isConnected !== false ? storyOpener :
       ["storyIntro", "storyNotice", "storyList", "pastChapters"].flatMap((id) =>
         [...$(id).querySelectorAll("[data-story-key]")]).find((button) => button.dataset.storyKey === storySelection);
@@ -420,7 +418,7 @@
       if (between && !pending && r.subtype !== "quest")
         actions += r.equipped ? button("이 보상 보관", "KEEP_REWARD", { rewardId: r.id }) : rewardChoiceHTML({ ...view, choices: [{ rewardId: r.id }] }, true);
       const status = `${r.qaStart ? "검증 시작 지급 · " : ""}${r.subtype === "quest" ? "임무 물품 · 사용 효과 없음" : !r.equipped ? "보관 중" : r.persistent ? `${r.slot + 1}번 공격 슬롯 · 지속 효과` : r.ready ? "장착 · 준비됨" : "장착 · 소진됨"}`;
-      return `<article class="reward-card"><p class="eyebrow">${r.subtype === "rune" ? "카릴 문자" : r.subtype === "quest" ? "임무 물품" : "사냥 도구"}</p><h3>${esc(r.name)}</h3><p class="reward-state ${!r.ready ? "spent" : ""}">${status}${r.triggerArmed ? " · 다음 죽음에 사용 선택됨" : ""}${r.limitUsed ? " · 이번 챕터 사용 완료" : ""}</p><p>${esc(r.rules)}</p>${r.disabledReason || r.runtimeNote ? `<p class="reward-unavailable">${esc(r.disabledReason || r.runtimeNote)}</p>` : ""}${actions ? `<div class="reward-actions">${actions}</div>` : ""}${r.photos?.length ? `<details><summary>보상 원본 사진</summary>${r.photos.map((p) => `<a href="${esc(p.path)}" target="_blank"><img src="${esc(p.path)}" loading="lazy" alt="${esc(r.name)} 원본 사진"></a>`).join("")}</details>` : ""}</article>`;
+      return `<article class="reward-card"><p class="eyebrow">${r.subtype === "rune" ? "카릴 문자" : r.subtype === "quest" ? "임무 물품" : "사냥 도구"}</p><h3>${esc(r.name)}</h3><p class="reward-state ${!r.ready ? "spent" : ""}">${status}${r.triggerArmed ? " · 다음 죽음에 사용 선택됨" : ""}${r.limitUsed ? " · 이번 챕터 사용 완료" : ""}</p><p>${esc(r.rules)}</p>${r.disabledReason || r.runtimeNote ? `<p class="reward-unavailable">${esc(r.disabledReason || r.runtimeNote)}</p>` : ""}${actions ? `<div class="reward-actions">${actions}</div>` : ""}</article>`;
     }).join("") || `<p class="muted">${missionView() ? "보상은 임무를 완료하면 획득합니다." : "획득한 보상이 없습니다. 새 사냥의 전투 연습에서 시작 보상을 선택해 효과를 확인할 수 있습니다."}</p>`;
     const owned = view.firearms.filter((g) => !g.equipped);
     if (owned.length) $("rewards").innerHTML += `<article class="reward-card"><p class="eyebrow">보관한 화기</p>${owned.map((g) => `<p>${esc(g.name)}</p>${between ? button("이 화기 장착", "EQUIP_FIREARM", { firearmId: g.id }, pending) : ""}`).join("")}<p class="muted">화기는 획득할 때 또는 챕터 사이에 교체합니다.</p></article>`;
@@ -988,8 +986,7 @@
       .map((a) => {
         const d = E.enemyDef(state, a.enemyId),
           f = d.face;
-        const imagePath = f.imageBase === "project" ? f.image : photo(f.image);
-        return `<article class="assignment" style="--marker:${colors[a.marker]}"><span class="marker">${a.slot}순위 · ${a.marker === "gold" ? "금색" : a.marker === "red" ? "적갈색" : "보라색"} 마커</span><h3>${esc(d.name)} ${f.label}</h3><p>체력 ${d.health} · 지도 위 ${state.enemies.filter((e) => e.kind === a.enemyId).length} / 4개 · 이동 ${d.move}</p><dl><dt>기본 공격</dt><dd>${attack(f.basicAttack)}</dd><dt>특수 공격</dt><dd>${attack(f.specialAttack)}</dd><dt>전용 능력 · ${esc(f.ability.name)}</dt><dd>${f.ability.rules.map(esc).join("<br>")}</dd></dl><details><summary>원본 사진</summary><a href="${esc(imagePath)}" target="_blank"><img src="${esc(imagePath)}" loading="lazy" alt="${esc(d.name)} ${f.label}"></a></details></article>`;
+        return `<article class="assignment" style="--marker:${colors[a.marker]}"><span class="marker">${a.slot}순위 · ${a.marker === "gold" ? "금색" : a.marker === "red" ? "적갈색" : "보라색"} 마커</span><h3>${esc(d.name)} ${f.label}</h3><p>체력 ${d.health} · 지도 위 ${state.enemies.filter((e) => e.kind === a.enemyId).length} / 4개 · 이동 ${d.move}</p><dl><dt>기본 공격</dt><dd>${attack(f.basicAttack)}</dd><dt>특수 공격</dt><dd>${attack(f.specialAttack)}</dd><dt>전용 능력 · ${esc(f.ability.name)}</dt><dd>${f.ability.rules.map(esc).join("<br>")}</dd></dl></article>`;
       })
       .join("");
   }

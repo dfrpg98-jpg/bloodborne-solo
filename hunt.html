@@ -17,7 +17,7 @@
         ></a
       >
       <nav class="top-actions">
-        <span class="badge">v0.7.8</span
+        <span class="badge">v0.7.9</span
         ><a class="button" href="index.html">전투 훈련</a
         ><button id="save">저장 내보내기</button
         ><button id="load">불러오기</button><button id="new">새 사냥</button
@@ -50,7 +50,7 @@
           <div id="storyNotice" class="story-notice" role="status" aria-live="polite"></div>
           <details class="story-index"><summary>현재 챕터에서 공개된 이야기</summary><div id="storyList" class="story-list"></div></details>
         </section>
-        <details class="mission-cards"><summary>공개된 카드 · 규칙과 원본 사진</summary><div id="revealedCards" class="revealed-cards"></div></details>
+        <details class="mission-cards"><summary>공개된 임무 기록</summary><div id="revealedCards" class="revealed-cards"></div></details>
         <details id="missionHistory" class="mission-cards" hidden><summary>지난 챕터의 사냥 기록</summary><div id="pastChapters"></div></details>
       </section>
       <section class="track-panel">
@@ -132,11 +132,11 @@
         <div id="rewards" class="rewards-grid"></div>
       </section>
       <section id="componentsPanel" class="panel" hidden>
-        <div class="panel-heading"><h2>출현한 특수 적</h2><span class="muted">구성품과 적용 중인 능력</span></div>
+        <div class="panel-heading"><h2>출현한 특수 적</h2><span class="muted">현재의 모습과 능력</span></div>
         <div id="componentCards" class="component-cards"></div>
       </section>
       <details class="panel hunt-assignments">
-        <summary>이번 챕터의 적 배정 · 능력과 원본 사진</summary>
+        <summary>이번 사냥의 적 · 공격과 능력</summary>
         <p id="setupInfo" class="muted"></p>
         <div id="chapterEnemies" class="chapter-enemies"></div>
       </details>
@@ -145,7 +145,7 @@
         <div id="huntLog" class="chapter-log" aria-live="polite"></div>
       </section>
       <details class="panel">
-        <summary>구현 범위와 저장 안내</summary>
+        <summary>사냥 안내와 저장</summary>
         <p>
           실제 지도에서 카드 비용, 탐험, 추격, 적 활성화, 전투, 꿈의
           업그레이드와 지도 초기화를 처리합니다. 적의 면과 마커 배정은 새 사냥을
@@ -174,7 +174,7 @@
         <button id="restoreV06" hidden>이 브라우저의 v0.6 사냥 이어하기</button>
         <button id="restoreV05" hidden>이 브라우저의 v0.5 사냥 불러오기</button>
         <p class="muted">이전 사냥을 불러오면 전투 연습 모드로 이어집니다.</p>
-        <details><summary>전체 원본 자료 열기 · 이후 카드 내용 포함</summary><p class="muted">이 자료실에는 아직 공개하지 않은 카드의 내용도 있습니다.</p><a href="campaign.html" target="_blank">전체 원본 자료 ↗</a></details>
+        <a href="guide.html">사냥 안내 읽기 ↗</a>
         <a href="chapter.html">이전 지도 배치 검증 화면 →</a>
       </details>
     </main>
@@ -254,16 +254,17 @@
       </div>
     </dialog>
     <dialog id="storyDialog" class="story-dialog" aria-labelledby="storyTitle" aria-describedby="storyDescription">
-      <div class="story-dialog-heading"><div><p id="storyMeta" class="eyebrow"></p><h2 id="storyTitle"></h2></div><button id="closeStory" autofocus>이야기 닫기</button></div>
+      <div class="story-dialog-heading"><div><p id="storyMeta" class="eyebrow"></p><h2 id="storyTitle"></h2></div><button id="closeStory" autofocus>사냥으로 돌아가기</button></div>
       <p id="storyDescription" class="muted"></p>
       <div id="storyText" class="story-text"></div>
-      <div class="story-tools"><label for="storyZoom">원문 확대 <input id="storyZoom" type="range" min="100" max="200" step="25" value="100"><output id="storyZoomValue" for="storyZoom">100%</output></label><a id="storyOriginal" class="button" target="_blank" rel="noopener">원본 크게 열기 ↗</a></div>
-      <div id="storyPhoto" class="story-photo-viewport" tabindex="0" aria-label="공개된 이야기 원문 이미지 · 확대 후 스크롤"></div>
+      <section id="storyRules" class="story-rules"></section>
+      <div class="story-tools"><label for="storyZoom">글자 크기 <input id="storyZoom" type="range" min="100" max="150" step="25" value="100"><output id="storyZoomValue" for="storyZoom">100%</output></label></div>
       <div class="story-pager"><button id="previousStory">← 앞 이야기</button><span id="storyPosition" class="muted"></span><button id="nextStory">다음 이야기 →</button></div>
     </dialog>
     <script src="components/cards.js"></script>
     <script src="data.js"></script>
     <script src="campaigns/long-hunt/data.js"></script>
+    <script src="campaigns/long-hunt/narrative-text.js"></script>
     <script src="tile-geometry.js"></script>
     <script src="start-placement.js"></script>
     <script src="enemy-deck.js"></script>

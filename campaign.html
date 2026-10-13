@@ -3,118 +3,28 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>기나긴 사냥 v0.7.5 · 카드 자료</title>
+    <title>기나긴 사냥 · 캠페인 소개</title>
     <link rel="stylesheet" href="fonts/noto-sans-kr.css" />
     <link rel="stylesheet" href="campaign.css" />
   </head>
   <body>
-    <header>
-      <a href="hunt.html">← 실제 지도에서 사냥</a
-      ><a href="index.html">훈련 게임</a
-      ><a href="chapter.html">챕터 1 준비·탐험</a
-      ><a href="components.html">스탯·소모품·보상 목록</a
-      ><span>사냥의 기록 / 자료 검토판</span>
-    </header>
+    <header><a href="hunt.html">← 사냥으로 돌아가기</a><a href="guide.html">플레이 안내</a></header>
     <main>
       <p class="eyebrow">BLOODBORNE · THE LONG HUNT</p>
       <h1>기나긴 사냥</h1>
-      <p class="lead">
-        도입부·챕터 안내 7장 · 번호 카드 60장 · 적 양면 6장 · 지도 타일 20장
-      </p>
-      <div class="notice">
-        제공된 카드 원문과 지도 도식을 확인하는 자료실입니다. 실제 1인용 캠페인
-        챕터 1~3은 <a href="hunt.html">사냥 화면</a>에서 진행합니다. 이 자료실에는
-        아직 게임에서 공개하지 않은 이야기와 결과도 포함되어 있습니다.
-      </div>
-      <section id="gate" class="gate">
-        <h2>시나리오 내용이 포함되어 있습니다</h2>
-        <p>카드를 열면 이야기, 선택의 결과와 보상을 볼 수 있습니다.</p>
-        <button id="openArchive">카드 자료 열기</button>
+      <p class="lead">야남의 밤을 탐험하는 1인용 캠페인</p>
+      <section class="rules" aria-labelledby="introHeading">
+        <h2 id="introHeading">사냥의 밤</h2>
+        <div id="campaignIntro" class="story-text"></div>
       </section>
-      <div id="archive" hidden>
-        <div class="toolbar">
-          <label
-            >카드 찾기<input
-              id="search"
-              type="search"
-              placeholder="번호, 제목, 규칙 문구 또는 파일명"
-          /></label>
-          <label
-            >분류<select id="filter">
-              <option value="all">전체 93장</option>
-              <option value="preface">도입·챕터 안내</option>
-              <option value="numbered">번호 카드 1~60</option>
-              <option value="enemies">적 3종 · 양면</option>
-              <option value="tiles">지도 타일 20장</option>
-              <option value="questions">판독 확인 기록</option>
-            </select></label
-          >
-          <span id="count" aria-live="polite"></span>
-        </div>
-        <div class="workspace">
-          <nav id="cardList" aria-label="카드 목록"></nav>
-          <article id="cardDetail" tabindex="-1" aria-live="polite"></article>
-        </div>
-      </div>
-      <details class="notes" id="setupAudit">
-        <summary>챕터별 적 배정과 현재 실행 범위</summary>
-        <p>
-          규칙서 10쪽과 25쪽: 매 챕터 준비 때 적 카드마다 사용할 면을 무작위로
-          정하고, 카드 3장을 섞어 사냥 보드 슬롯에 무작위로 놓습니다. 이전과
-          같은 결과가 나올 수도 있습니다.
-        </p>
-        <p>
-          슬롯은 지도에 인쇄된 출현 기호와 적 종류를 연결하며 적 활성화 순서도
-          정합니다 (9·15·16쪽). 같은 종류의 피규어 4개는 그 챕터의 같은 카드
-          면을 사용합니다.
-        </p>
-        <p>
-          지도 초기화(24쪽), 타일 공개, 전투마다 배정을 다시 뽑지 않습니다. 별도
-          시나리오 지시는 우선 적용합니다. 보스·NPC는 각자의 별도 규칙을
-          따릅니다.
-        </p>
-        <p>
-          <strong><a href="hunt.html">실제 사냥 화면</a>에서 챕터 1~3의 준비·탐험·전투·임무와
-          챕터 전환을 진행합니다.</strong>
-          <a href="chapter.html">지도 배치 검증판</a>과 기존 훈련은 별도 화면입니다.
-          새 사냥은 제공된 장치무기15종과 화기8종, 실제 보스/NPC 효과와 규칙12를 사용합니다. 기존 규칙11 저장은 당시 처리로 이어집니다. 예배당의 동시 임무는 규칙서24쪽에 따라 더 불리한 결과로 판정하며 두 카드의 별도 공식 우선순위로 주장하지 않습니다.
-        </p>
-      </details>
-      <details class="notes">
-        <summary>판독 결과와 출처 기록</summary>
-        <p>
-          캠페인 67장과 적 카드 6장은 원본 자료로, 지도 타일 20장은 직접 그린 도식으로 확인합니다.
-          57번의 ‘야수 사냥 하수인’은 ‘야수 사냥 하인’과 같은 적으로 사용자
-          확인을 받았습니다. 판독·명칭 관련 미해결 질문은 없습니다.
-        </p>
-        <p>
-          사진의 줄바꿈과 일부 공백을 정리했고, 아이콘은 대괄호 안의 이름으로
-          기록했습니다. 공격 속도 아이콘은 1~3, 혈액방울은 피해로 표현했습니다.
-          전체 서사와 원래 인쇄 문구는 사진에서 확인할 수 있습니다.
-        </p>
-        <p>
-          카드 번호는 사용자가 알려 준 파일명 오름차순을 기준으로 연결했습니다.
-          챕터 3 안내는 임무, 준비 순으로 촬영되어 있습니다.
-        </p>
-        <p>
-          일반 적 3종의 피규어는 종류별 4개로 확인했습니다. 챕터 1~3 지정 지도와
-          실제 성직자 야수·여성 야수 환자·이오세프카, 참고자료의 무기·화기를
-          실행에 연결했습니다. 보상은 32종 정의 중 30종 사용 효과와 2종 사용불가
-          임무 물품을 구분합니다.51번 연구와52번 진료소 피신처는 정상 시작부터 완료·보상까지의 자연 경로도 확보했습니다. 현재 기나긴 사냥 진행을 위해 추가로 요청하는 자료는 없습니다.
-        </p>
-        <p>
-          원본 데이터의 runtime·automated·임시 정책은 자료 수신 당시 기록이며
-          현재 지원 상태를 뜻하지 않습니다. 출처와 원문은 보존합니다. 다른 캠페인과
-          다인 플레이는 이후 검토할 범위입니다. 현재 안내는 <a href="guide.html">사용 안내</a>,
-          실제 검사와 진행 결과는 <a href="VERIFICATION.txt">검증 기록</a>을 확인하세요.
-        </p>
-        <a href="campaigns/long-hunt/data.json" download="long-hunt-ko.json"
-          >규칙 데이터 내려받기</a
-        >
-      </details>
+      <section class="notes" aria-labelledby="startHeading">
+        <h2 id="startHeading">사냥을 시작하려면</h2>
+        <p>사냥 화면에서 ‘새 사냥’을 누르고 기나긴 사냥을 선택하세요. 장치무기와 시작 형태를 고른 뒤 중앙 등불 타일의 원하는 칸에서 출발합니다.</p>
+        <p>길을 탐험하고 적과 전투하며 임무를 진행합니다. 새로운 이야기와 임무의 결과는 플레이 중 조건을 충족했을 때 공개되며, 공개된 이야기는 사냥 화면에서 다시 읽을 수 있습니다.</p>
+        <p><a href="hunt.html">기나긴 사냥 시작하기 →</a></p>
+      </section>
     </main>
     <script src="campaigns/long-hunt/data.js"></script>
-    <script src="tile-geometry.js"></script>
     <script src="campaign.js"></script>
   </body>
 </html>

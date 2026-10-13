@@ -1,4 +1,4 @@
-"""Create an offline release ZIP without copying legacy reference-photo duplicates.
+"""Create an offline release ZIP without supplied source photographs.
 
 python scripts/build-release.py --output <new-release.zip>
 Original files are never removed or changed. Existing ZIPs are not overwritten.
@@ -19,17 +19,21 @@ def included(relative):
     p = Path(relative)
     rel = p.as_posix()
     if any(part in IGNORED_PARTS for part in p.parts): return False
-    if p.parts[0] == '참고자료': return rel in REFERENCE_PHOTOS
+    if p.parts[0] == '참고자료': return False
     if rel == 'qa-load.html' or p.suffix.lower() in {'.zip', '.pyc'}: return False
-    if p.parent.as_posix() == 'campaigns/long-hunt/images' and p.name.startswith('tile-') and p.suffix.lower() == '.jpg': return False
+    if rel.startswith('campaigns/long-hunt/images/'): return False
     return True
 
 def build(destination):
     destination = Path(destination).resolve()
     if destination.exists(): raise RuntimeError('Existing output is preserved; choose a new ZIP path.')
     data = json.loads((ROOT/'components/supplied-components.json').read_text(encoding='utf-8-sig'))
+    present = [photo for photo in data['photos'] if (ROOT/photo['path']).exists()]
+    if present and len(present) != len(data['photos']):
+        raise RuntimeError('Developer source-photo set is incomplete.')
     for photo in data['photos']:
         if photo['path'] not in REFERENCE_PHOTOS: raise RuntimeError('Non-canonical source-photo path.')
+        if not present: continue
         raw = (ROOT/photo['path']).read_bytes()
         if len(raw) != photo['bytes'] or hashlib.sha256(raw).hexdigest() != photo['sha256']:
             raise RuntimeError('Source photo differs from its recorded provenance: '+photo['path'])
@@ -43,7 +47,7 @@ def build(destination):
         if set(z.namelist()) != {'bloodborne-solo/'+rel for rel in files}: raise RuntimeError('ZIP inventory mismatch.')
         for rel,digest in expected.items():
             if hashlib.sha256(z.read('bloodborne-solo/'+rel)).hexdigest() != digest: raise RuntimeError('ZIP hash mismatch: '+rel)
-    return {'files':len(files),'sourcePhotos':len(REFERENCE_PHOTOS),'legacyRootPhotos':0}
+    return {'files':len(files),'sourcePhotos':0,'validatedDeveloperSourcePhotos':len(present),'legacyRootPhotos':0}
 
 if __name__ == '__main__':
     parser=argparse.ArgumentParser()

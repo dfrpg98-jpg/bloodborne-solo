@@ -1,9 +1,9 @@
-블러드본 규칙 구현 점검표 v0.7.8
+블러드본 규칙 구현 점검표 v0.7.9
 기준: 2026-10-12 KST
 한 명의 사냥꾼으로 기나긴 사냥 챕터 1~3. 제공 장치무기15종 양면·화기8종·실제 보스/NPC·보상32종(사용 효과30종·사용불가 임무 물품2종). 다른 캠페인과 다인/온라인 협동은 사용자가 이후 단계로 지정하여 이번 완료 범위에서 제외한다.
 
 구현 상태·검증 근거·사용자 직접 점검은 별개입니다. 직접 점검은 모두 미점검입니다.
-정규 범위110항목: 구현106,범위제외4,부분0,미구현0. T01은 추가한 검증 전용 개발 도구입니다.
+정규 범위110항목: 구현106,범위제외4,부분0,미구현0. T01은 검증 도구, U01은 첫 UI 개선이며 전체 재설계 완료를 뜻하지 않습니다.
 
 status는 구현 여부, verification은 근거 수준, manualCheck는 사용자의 직접 점검 결과입니다. 서로 같은 의미가 아닙니다.
 manualCheck는 모두 미점검으로 시작합니다. 자동 테스트가 존재해도 사용자의 직접 확인을 완료로 표시하지 않습니다.
@@ -23,10 +23,11 @@ v0.7.7는 한 캠페인의 1인 플레이를 완료 기준으로 삼는다. 다�
 공개 명령으로 실제 처음부터 도달한 임무 곁가지와 무기별 본편 승리의 범위는 C01~C10 및 VERIFICATION.txt에서 확인한다.
 같은 예배당 이동 종료에서 37 호위가 완료되면 39를 먼저 획득하고 그 결과를 반영하여 56을 판정한다. 사용자 결정으로 채택한 프로젝트 재정이며 공식 FAQ의 고유 판정으로 표시하지 않는다. 플레이어에게 순서 선택이나 아직 공개하지 않은 목표·보상·분기 비교를 보여주지 않는다. 호위가 없는 도착은 56의 일반 조건을 유지한다.
 v0.7.3 이전 기록에 적힌 한 승리 경로와 단순 정책의30패배는 당시 검증 범위다. 최신 자연 승리 결과는 VERIFICATION.txt를 기준으로 한다.
-RULES_CHECKLIST.json/TXT/XLSX는 v0.7.8의 같은111항목을 제공한다. 정규 범위110항목과 검증 전용 도구T01을 구분한다.
+RULES_CHECKLIST.json/TXT/XLSX는 v0.7.9의 같은112항목을 제공한다. 정규 범위110항목, 검증 전용 도구T01, 첫 UI 개선U01을 구분한다.
 v0.7.4에서는51/52의 자연 진입만 확인하고 정상 완료 경로는 미확보였다. v0.7.5에서는 원문 조건과 기본 시작 지급을 유지한 공개 명령만으로51의343명령 연구 완료/26/수혈액 장착·사용(체력3·트랙8),52의384명령 새 생존자2개 인도/28/사자 선물 장착(체력6·트랙8)을 추가 확인했다. 해당 임무 완료 기록 자체의 챕터3 최종 보스 승리를 주장하지 않는다.
 실제 과거 저장39개와 독립 v0.7.0 111·v0.7.1 277·v0.7.2 326·v0.7.3 326·v0.7.4 326개를 합한1405개가 정확 복원됐다. 최종 실제 검사 수는 VERIFICATION.txt를 확인한다.
 T01은 검증용 장비·시작 지급·소모품·별도 자동 저장을 다루는 개발 도구이다. 테스트 전용 장비로 진행한 결과는 정규 규칙의 난이도·정상 완주 근거로 계산하지 않는다. 정규 데이터의15무기·36소모품 공급과 정규 자동 저장은 유지한다.
+U01은 원본 사진 표시 제거와 공개된 이야기·규칙의 읽기 개선에 한정한 UI·UX 첫 단계이다. 지도 중심 화면 재구성, 대상 직접 행동, 전투 선택/자동 처리, 일지/이야기 연출, 독자 자산/반응 연출은 후속 단계이며 전체 UI 재설계가 끝났다는 뜻이 아니다. 엔진 규칙13과 정규 캠페인의 실행 범위는 유지한다.
 
 출처
 사용자 제공 한국어 규칙서: C:\Users\GOOD\Desktop\보겜프로젝트\블러드본한국어규칙서_압축.pdf / 28쪽 전체 검토; 플레이 조건은 주로 8~26쪽
@@ -129,10 +130,10 @@ tests/campaign-ui.test.cjs — the next chapter requires an explicit start space
 R10 | 캠페인 안내 | 규칙 7, 12쪽
 조건: 캠페인 도입부와 실제 공개한 임무의 이야기·현재 목표를 읽을 수 있으며 아직 공개하지 않은 임무·보상·완수 분기를 미리 표시하지 않는다.
 상태: 구현 | 우선순위: 없음
-검증: 자동 테스트 근거 있음
-근거: 준비 화면의 도입부 원문 텍스트; hunt-app.js renderStories()/openStory()에서 현재·지난 실제 공개 카드의 원문 이미지 확대 열람. 임무60장 텍스트 전사 완료를 뜻하지 않음
+검증: 공개 이력 제한·원문 텍스트·글자 크기·저장 불변 회귀 근거 있음
+근거: campaigns/long-hunt/narrative-text.js에 도입부와 번호 카드1~60의 이야기 원문을 전사했다(이야기가 있는51장·규칙만 있는9장). hunt-app.js renderStories()/openStory()에서 현재·지난 실제 공개 카드의 이야기와 현재 규칙을 텍스트로 표시하고 글자 크기를100~150%로 조절한다. 제공 사진과 원본 링크를 플레이 화면에 표시하지 않는다. 읽기/글자 크기 변경은 게임 상태나 명령을 바꾸지 않는다.
 tests/campaign-ui.test.cjs — campaign setup offers the supplied introduction and hides it in practice and temporary trials
-tests/campaign-ui.test.cjs — reading the introduction and enlarged public cards changes no game save or commands
+tests/campaign-ui.test.cjs — reading the introduction and readable public records changes no game save or commands
 tests/campaign-ui.test.cjs — an altered story button cannot open an unrevealed source card
 tests/campaign-ui.test.cjs — past chapter story access is limited to its actual reveal history
 tests/campaign-ui.test.cjs — a later reveal is highlighted after read marks without adding story data to a resumed old save
@@ -1009,7 +1010,8 @@ B01 | 보상 확장 | 규칙 17, 23~24 / 제공 보상·무기·화기쪽
 tests/extended-rewards.test.cjs — all 16 remaining printed reward cards retain their source text and quantities
 tests/extended-rewards.test.cjs — unusable music box and ritual material are stored without equipment slots or invented actions
 tests/extended-rewards.test.cjs — old rule versions reject every additional reward without changing state
-tests/campaign-ui.test.cjs — the component catalog shows thirty reward effects and two unusable quest items without changing source data
+tests/campaign-ui.test.cjs — the public component catalog keeps ordinary effects and hides undiscovered rewards without changing source data
+components.html은 공개 기본 스탯·소모품·업그레이드의 효과만 보여 준다. 아직 획득하지 않은 임무 보상의 전체 목록과 출처 사진·메타데이터는 공개 자료실에서 제거하며, 실제 획득 보상은 게임 인벤토리에서 표시한다.
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1205,4 +1207,20 @@ tests/qa-campaign-v078.test.cjs — QA healing after a public stock-weapon battl
 tests/qa-campaign-ui-v078.test.cjs — starting a QA hunt and using its real inventory preserves the normal autosave byte for byte
 tests/qa-campaign-ui-v078.test.cjs — custom QA setup serializes selected reward and consumable quantities through actual start controls
 남은 조치: 검증 장비를 사용한 결과는 임무 흐름 점검에 사용합니다. 정규 전투 수치·장비 효과와 정상 완주 검증에는 실제 구성품 경로를 유지합니다.
+사용자 직접 점검: 미점검
+
+U01 | UI·UX 1차 | 규칙 화면 개선쪽
+조건: 원본 사진·원본 링크를 플레이 화면에서 제거하고 현재 공개된 이야기·규칙을 텍스트로 읽는다. 기존 도식 지도·행동·보상·저장은 유지하며 미공개 임무와 보상을 자료실에서도 노출하지 않는다.
+상태: 구현 | 우선순위: 후속
+검증: 사진 없는 공개 정보 UI8개 회귀 · 정상3챕터 화면 경로
+근거: hunt-app.js / campaign.js / components.js / chapter-app.js / campaigns/long-hunt/narrative-text.js: 일반·검증 사냥, 이전 저장, 보상·적·NPC·보스, 공개 이야기 화면의 제공 사진과 원본 링크를 제거했다. 직접 만든 지도SVG는 유지한다. 현재 공개 기록만 이야기·규칙 텍스트로 표시하며100~150% 글자 크기를 제공한다. 캠페인 자료실은 도입부와 시작 진입만, 구성품 자료실은 기본 스탯·소모품·업그레이드만 공개한다. 일반 공개 명령351개로3챕터의 실제 인벤토리·임무·공개 이력과 사진 없는 화면을 검사한다. 엔진 규칙 변경이나 전체 UI 재설계 완료를 의미하지 않는다.
+tests/photo-free-ui-v079.test.cjs — normal hunt setup and revealed story use text while the independently drawn map remains visible
+tests/photo-free-ui-v079.test.cjs — QA starting rewards and consumables render without their supplied source photographs
+tests/photo-free-ui-v079.test.cjs — a changed story key cannot expose an unrevealed story or any future outcome
+tests/photo-free-ui-v079.test.cjs — normal public play across all three chapters keeps revealed history readable and all photo URLs absent
+tests/photo-free-ui-v079.test.cjs — an existing legacy save still loads its actual inventory and public UI without source photo links
+tests/photo-free-ui-v079.test.cjs — the former full campaign archive now shows only the introduction and playable entry point
+tests/photo-free-ui-v079.test.cjs — the public component catalogue retains basic effects without revealing future quest rewards or source metadata
+tests/photo-free-ui-v079.test.cjs — legacy map exploration keeps enemy attack rules and code-drawn tiles while removing original enemy pictures
+남은 조치: 지도 중심 화면과 상태HUD, 지도 대상 직접 행동, 전투 선택/결과 표시, 이야기·일지·보상 연출, 독자 시각 자산을 단계적으로 개선합니다. 첫 단계의 사진 제거·텍스트 읽기만 완료했습니다.
 사용자 직접 점검: 미점검

@@ -16,7 +16,6 @@
           "'": "&#39;",
         })[c],
     );
-  const photo = (path) => "campaigns/long-hunt/" + path;
   const colors = { gold: "#dec079", red: "#dc9784", purple: "#bca0d4" },
     markers = { gold: "① 금색", red: "② 적갈색", purple: "③ 보라색" };
   const directionNames = { N: "북쪽 ↑", E: "동쪽 →", S: "남쪽 ↓", W: "서쪽 ←" };
@@ -70,7 +69,7 @@
         const d = E.definition(state, a.enemyId),
           side = d.side,
           n = state.figures.filter((f) => f.kind === a.enemyId).length;
-        return `<article class="assignment" style="--marker:${colors[a.marker]}"><span class="marker">${markers[a.marker]} 마커 · 활성화 ${a.slot}순위</span><h3>${esc(d.name)} <small>${side.label}</small></h3><p>체력 ${d.health} · 지도 위 ${n} / 피규어 ${d.miniatureCount}개</p>${d.movementOverride ? '<p class="muted">활성화·추격 이동 2칸</p>' : ""}<dl><dt>기본 공격</dt><dd>${attackText(side.basicAttack)}</dd><dt>특수 공격</dt><dd>${attackText(side.specialAttack)}</dd><dt>전용 능력 · ${esc(side.ability.name)}</dt><dd>${side.ability.rules.map(esc).join("<br>")}</dd></dl><details><summary>선택된 면의 원본 사진</summary><a href="${photo(side.image)}" target="_blank"><img src="${photo(side.image)}" alt="${esc(d.name)} ${side.label}" loading="lazy"></a></details></article>`;
+        return `<article class="assignment" style="--marker:${colors[a.marker]}"><span class="marker">${markers[a.marker]} 마커 · 활성화 ${a.slot}순위</span><h3>${esc(d.name)} <small>${side.label}</small></h3><p>체력 ${d.health} · 지도 위 ${n} / 피규어 ${d.miniatureCount}개</p>${d.movementOverride ? '<p class="muted">활성화·추격 이동 2칸</p>' : ""}<dl><dt>기본 공격</dt><dd>${attackText(side.basicAttack)}</dd><dt>특수 공격</dt><dd>${attackText(side.specialAttack)}</dd><dt>전용 능력 · ${esc(side.ability.name)}</dt><dd>${side.ability.rules.map(esc).join("<br>")}</dd></dl></article>`;
       })
       .join("");
     $("setupSeed").textContent = `시드 ${state.seed}`;

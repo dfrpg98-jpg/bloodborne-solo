@@ -2,6 +2,7 @@ const test = require("node:test"), assert = require("node:assert/strict");
 const fs = require("node:fs"), path = require("node:path"), vm = require("node:vm");
 const E = require("../hunt-engine"), M = require("../chapter-engine");
 const C = require("../campaigns/long-hunt/data.json"), ED = require("../enemy-deck");
+const N = require("../campaigns/long-hunt/narrative-text");
 const G = require("../tile-geometry");
 const root = path.join(__dirname, "..");
 const decode = (value) => String(value).replace(/&quot;/g, '"').replace(/&#39;/g, "'")
@@ -87,7 +88,7 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
     dispatch: (s, command) => { commands.push(command); return structuredClone(s); },
     ...options.engine,
   };
-  const window = { BBHunt: engine, BBChapter: M, BBLongHunt: C, BBEnemyDeck: ED, BBTileGeometry: G,
+  const window = { BBHunt: engine, BBChapter: M, BBLongHunt: C, BBNarrativeText: N, BBEnemyDeck: ED, BBTileGeometry: G,
     BBActualComponents: require("../actual-components"),
     BBExtendedEnemies: require("../extended-enemies"),
     BBExtendedFirearms: require("../extended-firearms"),
@@ -248,18 +249,19 @@ test("changing the selected enemy refreshes the standalone firearm target before
   assert.equal(ui.commands[0].enemyId, "second");
 });
 
-test("the component catalog shows thirty reward effects and two unusable quest items without changing source data", () => {
+test("the public component catalog keeps ordinary effects and hides undiscovered rewards without changing source data", () => {
   const source = require("../components/cards.json"), before = JSON.stringify(source);
   const document = new Document(fs.readFileSync(path.join(root, "components.html"), "utf8"));
   document.getElementById("query").value = "";
   document.getElementById("group").value = "reward";
-  document.getElementById("runtime").value = "playable";
   const context = vm.createContext({ window: { BBComponents: source }, document });
   vm.runInContext(fs.readFileSync(path.join(root, "components.js"), "utf8"), context);
-  assert.equal(document.getElementById("cards").children.length, 30);
-  document.getElementById("runtime").value = "reference"; document.getElementById("runtime").fire("change");
-  assert.equal(document.getElementById("cards").children.length, 2);
-  assert.deepEqual(document.getElementById("cards").children.map((c) => c.dataset.id), ["music-box", "ritual-material"]);
+  assert.equal(document.getElementById("resultCount").textContent, "0종");
+  assert(document.getElementById("cards").children.every((c) => !c.dataset.id));
+  document.getElementById("group").value = "consumable"; document.getElementById("group").fire("change");
+  const texts = (element) => [element.textContent, ...element.children.flatMap(texts)];
+  assert(texts(document.getElementById("cards")).includes("골수 가루"));
+  assert(!texts(document.getElementById("cards")).includes("음악 상자"));
   assert.equal(JSON.stringify(source), before);
   assert(!fs.readFileSync(path.join(root, "components.html"), "utf8").includes("자료 등록\n        단계"));
 });
@@ -563,7 +565,7 @@ test("campaign setup offers the supplied introduction and hides it in practice a
   assert.equal(ui.el("setupStory").hidden, false);
   assert.deepEqual(ui.commands, []);
 });
-test("reading the introduction and enlarged public cards changes no game save or commands", () => {
+test("reading the introduction and readable public records changes no game save or commands", () => {
   const s = baseState(), initial = JSON.stringify(s), ui = boot(s, mission(1, { revealed: [1, 5, 6] })),
     saved = ui.storage.get("bloodborne-hunt-v07");
   storyButton(ui, "storyIntro", "intro").click();
@@ -572,19 +574,23 @@ test("reading the introduction and enlarged public cards changes no game save or
   assert.equal(ui.el("previousStory").disabled, true);
   ui.el("nextStory").click();
   assert.match(ui.el("storyMeta").textContent, /카드 1/);
-  assert.match(ui.el("storyDescription").textContent, /원문 이미지/);
-  assert.match(ui.el("storyPhoto").innerHTML, /card-01.jpg/);
-  assert(!ui.el("storyPhoto").innerHTML.includes("card-02.jpg"));
-  assert.equal(ui.el("storyText").hidden, true);
-  ui.el("storyZoom").value = "175"; ui.el("storyZoom").fire("input");
-  assert.equal(ui.el("storyImage").style.width, "175%");
-  assert.equal(ui.el("storyZoomValue").textContent, "175%");
+  assert.match(ui.el("storyDescription").textContent, /밝혀진 이야기/);
+  assert(ui.el("storyText").textContent.includes(N.cards[1].paragraphs[0]));
+  assert(!ui.el("storyText").textContent.includes(N.cards[2].paragraphs[0]));
+  assert.equal(ui.el("storyText").hidden, false);
+  assert.equal(ui.el("storyPhoto"), null);
+  assert.equal(ui.el("storyOriginal"), null);
+  ui.el("storyZoom").value = "150"; ui.el("storyZoom").fire("input");
+  assert.equal(ui.el("storyText").style.fontSize, "1.5em");
+  assert.equal(ui.el("storyRules").style.fontSize, "1.5em");
+  assert.equal(ui.el("storyZoomValue").textContent, "150%");
   ui.el("nextStory").click(); ui.el("nextStory").click();
   assert.match(ui.el("storyMeta").textContent, /카드 6/);
   assert.equal(ui.el("nextStory").disabled, true);
   ui.el("closeStory").click();
   assert.equal(ui.el("storyDialog").open, false);
-  assert.equal(ui.el("storyPhoto").innerHTML, "");
+  assert.equal(ui.el("storyText").innerHTML, "");
+  assert.equal(ui.el("storyRules").innerHTML, "");
   assert.deepEqual(ui.commands, []);
   assert.equal(ui.storage.get("bloodborne-hunt-v07"), saved);
   assert.equal(JSON.stringify(s), initial);
@@ -594,7 +600,7 @@ test("an altered story button cannot open an unrevealed source card", () => {
   const button = storyButton(ui, "storyList", "1:1");
   button.dataset.storyKey = "1:60"; button.click();
   assert.equal(ui.el("storyDialog").open, false);
-  assert.equal(ui.el("storyPhoto").innerHTML, "");
+  assert.equal(ui.el("storyText").innerHTML, "");
   assert(!ui.el("storyList").innerHTML.includes(C.cards[59].title));
   assert(!ui.el("storyList").innerHTML.includes("1:60"));
 });
@@ -606,7 +612,7 @@ test("past chapter story access is limited to its actual reveal history", () => 
   assert(!ui.el("storyList").innerHTML.includes("2:19"));
   storyButton(ui, "pastChapters", "1:4").click();
   assert.match(ui.el("storyMeta").textContent, /챕터 1.*카드 4/);
-  assert.match(ui.el("storyPhoto").innerHTML, /card-04.jpg/);
+  assert(ui.el("storyText").textContent.includes(N.cards[4].paragraphs[0]));
   ui.el("nextStory").click();
   assert.match(ui.el("storyMeta").textContent, /챕터 2.*카드 17/);
   assert.deepEqual(ui.commands, []);
@@ -654,17 +660,16 @@ test("interaction retaliation offers each pending enemy and sends the selected f
   buttons[1].click();
   assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "INTERACTION_ENEMY", enemyId: enemies[1].id });
 });
-test("the source archive retains its spoiler gate and displays the supplied introduction text", () => {
+test("the campaign introduction preserves its story without providing an unrevealed source archive", () => {
   const document = new Document(fs.readFileSync(path.join(root, "campaign.html"), "utf8"));
   const context = vm.createContext({ window: { BBLongHunt: C, BBTileGeometry: G }, document, console });
   vm.runInContext(fs.readFileSync(path.join(root, "campaign.js"), "utf8"), context);
-  assert.equal(document.getElementById("archive").hidden, true);
-  assert.equal(document.getElementById("cardDetail").children.length, 0);
-  document.getElementById("openArchive").click();
-  assert.equal(document.getElementById("gate").hidden, true);
-  assert.equal(document.getElementById("archive").hidden, false);
+  assert.equal(document.getElementById("archive"), null);
+  assert.equal(document.getElementById("openArchive"), null);
+  assert.equal(document.getElementById("cardDetail"), null);
   const texts = (element) => [element.textContent, ...element.children.flatMap(texts)];
-  assert(texts(document.getElementById("cardDetail")).includes(C.preface[0].narrative));
+  assert(texts(document.getElementById("campaignIntro")).includes(C.preface[0].narrative));
+  assert(!texts(document.getElementById("campaignIntro")).includes(C.cards[59].title));
 });
 
 function suppliedGun(id, overrides = {}) {
@@ -676,7 +681,8 @@ function suppliedGun(id, overrides = {}) {
 test("actual firearms display their own triggers and preparation costs instead of the legacy replacement", () => {
   for (const id of ["ludwig-rifle", "repeating-pistol", "flamesprayer"]) {
     const ui = boot(baseState(), mission(), rewards(), { engine: { firearm: () => suppliedGun(id), canFirearm: () => false } });
-    assert.match(ui.el("firearm").innerHTML, /제공된 실물 카드/);
+    assert.match(ui.el("firearm").innerHTML, /장착 화기/);
+    assert(!ui.el("firearm").innerHTML.includes("제공된 실물 카드"));
     assert(!ui.el("firearm").innerHTML.includes("임시 동작"));
     assert.match(ui.el("firearm").innerHTML, new RegExp(`카드 ${id === "repeating-pistol" ? 1 : 2}장`));
     if (id === "ludwig-rifle") assert.match(ui.el("firearm").innerHTML, /이동해 들어올 때/);
@@ -801,7 +807,7 @@ test("boss and forced hunter movements expose legal destinations with the BOSS_S
   assert.equal(moves.length, 2); moves[1].click();
   assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "BOSS_STEP", node: "tile-14:right" });
 });
-test("actual special components show source, insight tokens and project-relative images without invented prefixes", () => {
+test("actual special components retain abilities and insight actions while omitting supplied source photos", () => {
   const s = baseState(), h = E.hunter(s);
   const boss = { id: "mission-boss", kind: "scourge-beast", figure: 1, componentId: "cleric-beast",
     componentPhase: 1, hp: 10, insightTokens: 2, node: h.position };
@@ -821,7 +827,9 @@ test("actual special components show source, insight tokens and project-relative
   const html = ui.el("componentCards").innerHTML;
   assert.match(html, /시트의 계몽 토큰 2개/); assert.match(html, /실제 구성품/);
   assert.match(html, /현재 페이즈의 행동 카드/); assert.match(html, /내려찍기/);
-  assert.match(html, /src="참고자료\/제공 구성품.jpg"/);
-  assert(!html.includes("campaigns/long-hunt/참고자료")); assert(!html.includes("[object Object]"));
+  assert(!html.includes("참고자료/제공 구성품.jpg"));
+  assert(!html.includes("실물 원문"));
+  assert.doesNotMatch(html, /<img\b|href=/);
+  assert(!html.includes("[object Object]"));
   option(ui, "componentCards", "BOSS_INSIGHT").click(); assert.equal(ui.commands[0].type, "BOSS_INSIGHT");
 });
