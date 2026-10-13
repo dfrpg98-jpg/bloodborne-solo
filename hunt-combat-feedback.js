@@ -27,6 +27,24 @@
       String(gun.id || "gun").replace(/[^a-z0-9_-]/gi, "-");
     return `<span class="firearm-name-tooltip" tabindex="0" title="${esc(rules.join("\n"))}" aria-label="${esc(name)} · 능력과 준비 방법" aria-describedby="${id}" data-firearm-info="${esc(gun.id || "")}">${esc(name)}<span id="${id}" class="firearm-effect-tooltip" role="tooltip">${rules.map(rule => `<span>${esc(rule)}</span>`).join("")}</span></span>`;
   }
+  const tooltipDocuments = new WeakSet();
+  function installFirearmTooltips(document) {
+    if (!document?.addEventListener || tooltipDocuments.has(document)) return;
+    tooltipDocuments.add(document);
+    const position = event => {
+      const anchor = event.target?.closest?.(".firearm-name-tooltip"), tip = anchor?.querySelector(".firearm-effect-tooltip"),
+        view = document.defaultView;
+      if (!tip || !view || !anchor.getBoundingClientRect) return;
+      const a = anchor.getBoundingClientRect(), t = tip.getBoundingClientRect(), margin = 12,
+        width = view.innerWidth, height = view.innerHeight;
+      const left = Math.max(margin, Math.min(a.left, width - t.width - margin)),
+        top = a.top - t.height - 10 >= margin ? a.top - t.height - 10 :
+          Math.max(margin, Math.min(a.bottom + 10, height - t.height - margin));
+      tip.style.left = left + "px"; tip.style.top = top + "px";
+    };
+    document.addEventListener("mouseover", position);
+    document.addEventListener("focusin", position);
+  }
   const knownKeywords = {
     "방해": "interrupt", "기절": "stun", "독": "poison", "발광": "frenzy",
     "회피 불가": "undodgeable", "회피할 수 없습니다.": "undodgeable",
@@ -154,5 +172,5 @@
   function missionEffectsHTML(entries, clean) {
     return entries?.length ? `<section class="enemy-mission-effects" aria-label="임무로 변경된 적 능력"><h4>임무로 변경된 능력</h4>${entries.map(entry => `<p><strong>${esc(cleanText(entry.title || "현재 임무", clean))}</strong>${entry.description ? `<span>${esc(cleanText(entry.description, clean))}</span>` : ""}</p>${(entry.effects || []).map(effect => `<p>${esc(cleanText(effect, clean))}</p>`).join("")}`).join("")}</section>` : "";
   }
-  return Object.freeze({ firearmRules, firearmNameHTML, effects, contextualAction, actionDetailsHTML, combatHTML, missionEffectsHTML });
+  return Object.freeze({ firearmRules, firearmNameHTML, installFirearmTooltips, effects, contextualAction, actionDetailsHTML, combatHTML, missionEffectsHTML });
 });

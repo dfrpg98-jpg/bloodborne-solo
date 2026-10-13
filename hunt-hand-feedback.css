@@ -65,6 +65,9 @@
 .hunt-main #slots .hunt-slot small { font-size: 11px; line-height: 1.5; }
 .hunt-main #slots .hunt-slot b { font-size: 15px; line-height: 1.4; }
 .hunt-main #slots .hunt-slot > span { font-size: 13px; line-height: 1.5; }
+.hunt-main #slots.hunt-slots { overflow-y: auto; overflow-x: hidden; align-content: start; grid-auto-rows: max-content; scrollbar-width: thin; }
+.hunt-main #slots .hunt-slot { min-height: 140px; }
+.hunt-main #slots .hunt-slot > * { flex-shrink: 0; }
 
 /* One modest text step across the play HUD; map targets keep their physical size. */
 .hunt-screen .top-actions button { font-size: 13px; }

@@ -39,6 +39,7 @@
   };
   const faceName = (face, index = 0) => uiText(face?.name || "").trim() || (index ? "변형 상태" : "기본 형태");
   const combatFeedback = window.BBHuntCombatFeedback;
+  combatFeedback?.installFirearmTooltips?.(document);
   const firearmNameHTML = (gun, context) => combatFeedback?.firearmNameHTML(gun, context,
     rule => uiText(rule, "equipment")) || esc(gun?.name || gun?.id || "화기");
   function polishPlayerText(container = document.body) {

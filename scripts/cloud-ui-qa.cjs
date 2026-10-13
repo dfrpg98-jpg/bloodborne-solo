@@ -79,6 +79,11 @@ function chapelCombat(){let s=E.create(90,'beast-claw',0,null,'hunter-pistol','c
     if(s.phase==='combat_react'&&e?.kind==='scourge-beast'&&e.missionId!=='shelter'&&E.node(s,e.node)?.tile==='tile-17'&&s.combat.action?.kind==='special')return s;
   }throw Error('No normal chapel combat in natural replay');
 }
+function chapelZero(){const commands=[{type:'USE_CONSUMABLE',itemId:'item-qa-1-21'},{type:'EXPLORE',edge:'N'},
+  {type:'PLACE_TILE',rotation:1},{type:'STEP',node:'tile-17:top'},{type:'EXPLORE',edge:'E'},
+  {type:'PLACE_TILE',rotation:1},{type:'STEP',node:'tile-03:room'},{type:'STEP',node:'tile-03:entry'}];
+  return {before:replay(initial(7),commands),commands,step:{type:'STEP',node:'tile-17:top'}};
+}
 (async()=>{
   await new Promise(resolve=>server.listen(8787,'127.0.0.1',resolve));
   try{
@@ -98,6 +103,10 @@ function chapelCombat(){let s=E.create(90,'beast-claw',0,null,'hunter-pistol','c
         const gun=page.locator('#firearm [data-firearm-info]').first();await gun.hover();
         assert.equal(await gun.locator('[role=tooltip]').evaluate(el=>getComputedStyle(el).display),'block');await gun.focus();
         assert.equal(await gun.locator('[role=tooltip]').evaluate(el=>getComputedStyle(el).display),'block');
+        const box=await gun.locator('[role=tooltip]').boundingBox();assert(box.x>=0&&box.y>=0&&box.x+box.width<=width&&box.y+box.height<=848,'Firearm tooltip leaves the viewport');
+        const slots=await page.locator('#slots').evaluate(el=>({overflow:getComputedStyle(el).overflowY,scroll:el.scrollHeight,height:el.clientHeight,
+          spill:[...el.children].some(card=>card.scrollHeight>card.clientHeight+2)}));assert(!slots.spill,'Slot text spills outside its card');
+        if(slots.scroll>slots.height+2)assert(['auto','scroll'].includes(slots.overflow),'Offscreen slot text has no scroll path');
         report.observations.push({name:'viewport-'+width,layout,tooltip:await gun.getAttribute('title')});await screenshot('hand-tooltip-'+width);
       }
       await page.setViewportSize({width:1208,height:848});
@@ -130,6 +139,10 @@ function chapelCombat(){let s=E.create(90,'beast-claw',0,null,'hunter-pistol','c
       assert(changes.length);assert.equal(await page.locator('#missionUpdateDialog').evaluate(x=>x.open),true);
       const alert=await page.locator('#missionUpdateList').innerText();assert.match(alert,/속도|피해|공격|능력/);await screenshot('mission-'+record.wanted+'-alert');
       await acknowledge();const effect=Effects.describe(record.next,E).find(x=>x.card===record.wanted);assert(effect);
+      const enemy=record.next.enemies.find(e=>e.id===effect.enemyId);await page.locator(`[data-tile-info="${E.node(record.next,enemy.node).tile}"]`).click();
+      await page.locator(`#tileInfo [data-special-info="${enemy.id}"]`).click();
+      const detail=await page.locator('#enemyDetailContent').innerText();assert(detail.includes(effect.description));
+      await screenshot('mission-'+record.wanted+'-detail');await page.locator('#closeEnemyDetail').click();
       report.observations.push({name:'mission-'+record.wanted+'-public-alert',alert,effect});
       await clean();
     });
@@ -137,7 +150,7 @@ function chapelCombat(){let s=E.create(90,'beast-claw',0,null,'hunter-pistol','c
       const s=chapelCombat();await load(s);const e=s.enemies.find(e=>e.id===s.combat.enemyId),base=E.enemyDef(s,e).special;
       assert.equal(s.combat.action.speed,Math.max(0,base.speed-1));
       const text=await page.locator('#combatInfo').innerText();assert.match(text,/오에돈 예배당 · 속도 -1/);
-      assert.match(text,/속도 1 → 0/);
+      assert(text.includes(`속도 ${base.speed} → ${s.combat.action.speed}`));
       await page.locator(`[data-enemy="${e.id}"]`).first().click();assert.match(await page.locator('#mapContext').innerText(),/오에돈 예배당 · 속도 -1/);
       await page.locator('[data-tile-info="tile-17"]').click();assert.match(await page.locator('#tileInfo').innerText(),/속도/);
       assert.deepEqual(await saved(),s);await screenshot('chapel-zero-speed');
@@ -146,6 +159,15 @@ function chapelCombat(){let s=E.create(90,'beast-claw',0,null,'hunter-pistol','c
         report.observations.push({name:'rotated-art-loaded',tile:await img.getAttribute('data-tile-art'),rotation:await img.getAttribute('data-tile-rotation')});
       }
       await screenshot('rotated-tiles');
+    });
+    await attempt('chapel-one-to-zero-actual-pursuit-and-attack',async()=>{
+      const checkpoint=chapelZero();await load(checkpoint.before);let s=await transition(checkpoint.before,checkpoint.step);
+      assert.equal(E.hunter(s).position,'tile-17:top');const e=s.enemies.find(e=>e.id==='scourge-beast-1');assert.equal(e.node,'tile-17:top');
+      await page.locator(`[data-enemy="${e.id}"]`).click();assert.match(await page.locator('#mapContext').innerText(),/속도 1 → 0/);await screenshot('chapel-one-to-zero-detail');
+      const command={type:'ATTACK',cardId:E.hunter(s).hand[0].id,slot:0,enemyId:e.id};s=await transition(s,command);
+      assert.equal(s.combat.action.speed,0);assert.equal(s.combat.action.name,'달려들어 뜯기');assert.match(await page.locator('#combatInfo').innerText(),/속도 1 → 0/);
+      await screenshot('chapel-one-to-zero-combat');s=await transition(s,{type:'RESOLVE'});await acknowledge();await clean();await screenshot('chapel-one-to-zero-after-resolve');
+      report.observations.push({name:'chapel-zero-normal-command-preparation',seed:7,commands:checkpoint.commands,actualCommands:[checkpoint.step,command,{type:'RESOLVE'}]});
     });
   }catch(e){report.failures.push({name:'browser-run',error:e.stack});}
   finally{if(browser)await browser.close();server.close();fs.writeFileSync(path.join(out,'results.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({browser:report.browser,passed:report.observations.length,failures:report.failures,pageErrors:report.pageErrors},null,2));if(report.failures.length||report.pageErrors.length)process.exitCode=1;}

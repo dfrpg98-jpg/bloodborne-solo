@@ -1,6 +1,6 @@
 .firearm-name-tooltip { position: relative; cursor: help; text-decoration: underline dotted #dec079; text-underline-offset: 4px; }
 .firearm-name-tooltip:focus-visible { outline: 2px solid #dec079; outline-offset: 4px; border-radius: 2px; }
-.firearm-effect-tooltip { display: none; position: absolute; top: calc(100% + 10px); left: 0; z-index: 45; width: max-content; max-width: min(330px, 76vw); padding: 12px 14px; border: 1px solid #ac9265; border-radius: 5px; background: #101d24; color: #f1e6d0; box-shadow: 0 8px 26px #000b; font-size: 13px; line-height: 1.7; font-weight: 400; text-decoration: none; pointer-events: none; }
+.firearm-effect-tooltip { display: none; position: fixed; top: 12px; left: 12px; z-index: 45; box-sizing: border-box; width: max-content; max-width: min(330px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); overflow-y: auto; padding: 12px 14px; border: 1px solid #ac9265; border-radius: 5px; background: #101d24; color: #f1e6d0; box-shadow: 0 8px 26px #000b; font-size: 13px; line-height: 1.7; font-weight: 400; text-decoration: none; pointer-events: none; }
 .firearm-effect-tooltip > span { display: block; }
 .firearm-effect-tooltip > span + span { margin-top: 8px; color: #c5d4dd; }
 .firearm-name-tooltip:hover .firearm-effect-tooltip, .firearm-name-tooltip:focus .firearm-effect-tooltip { display: block; }
