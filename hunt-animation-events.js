@@ -7,7 +7,6 @@
       (actor.kind === "hunter" || actor.kind === "enemy")).map(actor => ({
       id: actor.id, kind: actor.kind, node: actor.node, hp: actor.hp, name: actor.name,
       skin: actor.skin, weaponId: actor.weaponId, weaponFace: actor.weaponFace,
-      enemyId: actor.enemyId, enemySide: actor.enemySide, enemyPhase: actor.enemyPhase,
     }));
   }
   function publicEvents(snapshot) {
@@ -34,12 +33,6 @@
     const commandTarget = [...commands].reverse().find(command => typeof command?.enemyId === "string")?.enemyId;
     const targetId = before.firearmEntry?.enemyId || commandTarget || combat.enemyId || nextCombat.enemyId;
     const targetExists = typeof targetId === "string" && allActors.get(targetId)?.kind === "enemy";
-    const enemyVisuals = typeof module !== "undefined" && module.exports ? require("./enemy-visuals") : root.BBEnemyVisuals;
-    const previousEnemy = oldActors.find(actor => actor.id === targetId), currentEnemy = actors.find(actor => actor.id === targetId);
-    let activeEnemy = previousEnemy || currentEnemy;
-    const enemyMetadata = (actor, action) => actor?.enemyId && enemyVisuals?.action(actor.enemyId, actor.enemySide, actor.enemyPhase || 1, action);
-    const cleanEnemyVisual = visual => visual ? { skin: visual.skin, attackSlot: visual.attackSlot,
-      attackStyle: "enemy", motion: visual.motion, pose: visual.pose } : null;
     const publicHunter = actors.find(actor => actor.kind === "hunter") || oldActors.find(actor => actor.kind === "hunter");
     const weaponVisual = value => value && typeof (value.attackSkin || value.skin) === "string" &&
       /^[a-z][a-z0-9_-]{0,40}$/.test(value.attackSkin || value.skin) &&
@@ -48,20 +41,12 @@
         ...(["slash", "thrust", "sweep", "overhead", "whip", "dual", "claw", "punch", "blast", "shot", "electric", "spirit", "blood"].includes(value.motion) ? { motion: value.motion } : {}) } : null;
     const combatWeapon = weaponVisual(combat) || weaponVisual(nextCombat), shotWeapon = weaponVisual(after.weaponShot);
     const otherVisual = publicHunter?.weaponId ? { attackStyle: "other" } : null;
-    const attack = (fromId, toId, damage, type = "attack", visual = null, eventKey = "") => {
+    const attack = (fromId, toId, damage, type = "attack", visual = null) => {
       if (!allActors.has(fromId) || !allActors.has(toId)) return;
-      const key = `${type}:${fromId}:${toId}:${eventKey}`;
+      const key = `${type}:${fromId}:${toId}`;
       if (acted.has(key)) return;
       acted.add(key); actions.push({ type, fromId, toId, ...(Number.isFinite(damage) ? { damage } : {}),
-        ...(fromId === "hunter" ? visual || otherVisual : visual || {}),
-        ...(toId === targetId && previousEnemy?.enemyPhase !== currentEnemy?.enemyPhase && previousEnemy?.skin
-          ? { targetSkin: previousEnemy.skin } : {}) });
-    };
-    const ability = (visual, eventKey = visual?.name) => {
-      if (!visual || !targetExists) return;
-      const key = `ability:${targetId}:${eventKey}`;
-      if (acted.has(key)) return;
-      acted.add(key); actions.push({ type: "ability", fromId: targetId, ...cleanEnemyVisual(visual) });
+        ...(fromId === "hunter" ? visual || otherVisual : {}) });
     };
     const acceptedWeaponShot = commands.some(command => command?.type === "WEAPON_SHOT");
     if (acceptedWeaponShot && shotWeapon && targetExists) {
@@ -80,24 +65,13 @@
       nextCombat.enemyActionName, nextCombat.immediateName, nextCombat.extraName, "다단 가르기 추가 피해"].filter(Boolean));
     const flameNames = new Set([combat.flameName, nextCombat.flameName].filter(Boolean));
     for (const line of lines) {
-      const phaseRevealed = line.match(/^(.+?) (\d+)페이즈 ·/);
-      if (phaseRevealed && activeEnemy?.name === phaseRevealed[1]) activeEnemy = { ...activeEnemy, enemyPhase: Number(phaseRevealed[2]) };
       const hunterHit = line.match(/^(.+?) · 적에게 (\d+) 피해\.$/);
       if (hunterHit && targetExists)
         attack("hunter", targetId, Number(hunterHit[2]), flameNames.has(hunterHit[1]) ? "shot" : "attack",
           !flameNames.has(hunterHit[1]) && [combat.attackName, nextCombat.attackName].includes(hunterHit[1]) ? combatWeapon : null);
       const enemyHit = line.match(/^(.+?) · 사냥꾼에게 (\d+) 피해\.$/);
-      const enemyHitVisual = enemyHit && (enemyMetadata(activeEnemy, enemyHit[1]) || enemyMetadata(currentEnemy, enemyHit[1]));
-      if (enemyHit && targetExists && (enemyLabels.has(enemyHit[1]) || enemyHitVisual))
-        attack(targetId, "hunter", Number(enemyHit[2]), enemyHitVisual?.motion === "shot" ? "shot" : "attack",
-          cleanEnemyVisual(enemyHitVisual), enemyHit[1]);
-      const prefix = line.split(" · ")[0], resolvedAbility = enemyMetadata(activeEnemy, prefix);
-      if (resolvedAbility?.actionType === "ability" && !enemyHit && !line.endsWith("피해.")) ability(resolvedAbility);
-      if (activeEnemy?.enemyId === "cleric-beast" && line.startsWith("성직자 야수 회복 ·"))
-        ability(enemyMetadata(activeEnemy, "회복"));
-      if (combat.enemyAction?.name === "야수의 포효" && /출현\.?$|재출현 ·/.test(line) &&
-        ["RESOLVE", "CARD_CHOICE", "SPAWN_CHOICE"].some(type => commands.some(command => command.type === type)))
-        ability(enemyMetadata(activeEnemy, "야수의 포효"));
+      if (enemyHit && targetExists && enemyLabels.has(enemyHit[1]))
+        attack(targetId, "hunter", Number(enemyHit[2]));
       // Entry shots report the actual defended damage in their public log.
       const entryHit = line.match(/^.+? · 진입한 .+?에게 피해 (\d+), 화기 소진\.$/);
       if (entryHit && targetExists) {
@@ -121,16 +95,6 @@
         }
       }
     }
-    if (targetExists && before.combat?.immediateAction && !after.combat?.immediateAction &&
-      commands.some(command => ["RESOLVE", "CARD_CHOICE"].includes(command.type))) {
-      const visual = before.combat.immediateAction;
-      attack(targetId, "hunter", 0, visual.motion === "shot" ? "shot" : "attack", cleanEnemyVisual(visual), visual.name);
-    }
-    if (targetExists && currentEnemy && combat.dodged === true && combat.cancelEnemy !== true && combat.enemyActionType === "attack" &&
-      commands.some(command => command.type === "RESOLVE") && combat.enemyAction)
-      attack(targetId, "hunter", 0, combat.enemyAction.motion === "shot" ? "shot" : "attack", cleanEnemyVisual(combat.enemyAction), combat.enemyAction.name);
-    if (targetExists && combat.enemyAction?.name === "벽돌 후려갈기기" && commands.some(command => command.type === "ABILITY_CHOICE"))
-      ability(combat.enemyAction);
     // Item, reward and splash damage may name a public enemy instead of a
     // combat target. A visible health decrease supplies that exact actor ID.
     const externalDamage = commands.some(command => ["USE_CONSUMABLE", "USE_REWARD", "WEAPON_CHOICE", "ENTRY_WEAPON",
@@ -154,13 +118,6 @@
       if (current && typeof previous.node === "string" && typeof current.node === "string" &&
           previous.node !== current.node && !(respawn && previous.kind === "enemy"))
         actions.push({ type: "move", fromId: previous.id, fromNode: previous.node, toNode: current.node });
-      if (current?.kind === "enemy" && previous.enemyId === "cleric-beast" && previous.enemyPhase !== current.enemyPhase &&
-        lines.some(line => /페이즈로 전환/.test(line)))
-        actions.push({ type: "phase", fromId: current.id, skin: current.skin });
-      if (current && Number.isFinite(previous.hp) && Number.isFinite(current.hp) && current.hp > previous.hp &&
-        (current.kind === "hunter" && current.weaponId || current.kind === "enemy" && current.enemyId) &&
-        !lines.some(line => /재출현|지도 초기화|페이즈로 전환/.test(line)))
-        actions.push({ type: "ability", fromId: current.id, pose: "recover", motion: "recover" });
     }
     const previousHunter = oldActors.find(actor => actor.kind === "hunter"), currentHunter = actors.find(actor => actor.kind === "hunter");
     if (previousHunter && currentHunter && previousHunter.weaponId === currentHunter.weaponId &&

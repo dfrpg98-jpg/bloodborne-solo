@@ -159,5 +159,5 @@ test('inspecting targets and selecting cards never transforms equipment or revea
   const projected = JSON.stringify(latest(f));
   assert.doesNotMatch(projected, /bossDecks|actionDeck|pendingReward|nextReward|futureStories|참고자료|\.jpg/);
   for (const value of latest(f).actors) for (const key of Object.keys(value))
-    assert(['id', 'kind', 'node', 'skin', 'scale', 'hp', 'selected', 'x', 'y', 'weaponId', 'weaponFace', 'enemyId', 'enemySide', 'enemyPhase', 'fallbackSkin'].includes(key));
+    assert(['id', 'kind', 'node', 'skin', 'scale', 'hp', 'selected', 'x', 'y', 'weaponId', 'weaponFace'].includes(key));
 });

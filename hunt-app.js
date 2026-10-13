@@ -129,7 +129,7 @@
   });
   const shell = window.BBHuntShell?.({ document, onCenterMap: () => centerMap(true) });
   presentation = window.BBHuntPresentation?.({ document, Phaser: window.Phaser,
-    viewport: $("mapViewport"), host: $("mapEffects"), characters: { ...window.BBCharacterAssets, ...window.BBWeaponCharacterAssets, ...window.BBEnemyCharacterAssets },
+    viewport: $("mapViewport"), host: $("mapEffects"), characters: { ...window.BBCharacterAssets, ...window.BBWeaponCharacterAssets },
     onReady: () => syncPresentation() });
   camera = window.BBHuntCamera?.({ document, viewport: $("mapViewport"),
     content: $("chapterMap"), surface: $("mapSurface"), padEdges: true, onChange: ({ zoom }) => {
@@ -189,17 +189,12 @@
     return visual;
   }
   function animationSnapshot() {
-    const h = E.hunter(state), c = state.combat, visual = currentAttackVisual(), target = c && state.enemies.find(enemy => enemy.id === c.enemyId),
-      enemy = target ? enemyVisual(target) : null,
-      enemyAction = action => action && enemy ? window.BBEnemyVisuals?.action(enemy.enemyId, enemy.enemySide, enemy.enemyPhase, action) : null;
+    const h = E.hunter(state), c = state.combat, visual = currentAttackVisual();
     return { sceneId: sceneId(), revision: state.revision, firearmReady: h.firearmReady,
-      phase: state.phase,
       actors: [{ id: "hunter", kind: "hunter", node: h.position, hp: h.hp, ...hunterVisual() },
-        ...state.enemies.map((e) => ({ id: e.id, kind: "enemy", node: e.node, hp: e.hp, name: E.enemyDef(state, e).name, ...enemyVisual(e) }))],
+        ...state.enemies.map((e) => ({ id: e.id, kind: "enemy", node: e.node, hp: e.hp, name: E.enemyDef(state, e).name }))],
       events: state.events.map(({ round, text }) => ({ round, text })),
       combat: c ? { enemyId: c.enemyId, attackName: c.attack?.name, enemyActionName: c.action?.name,
-        enemyAction: enemyAction(c.action), immediateAction: enemyAction(c.immediate), extraAction: enemyAction(c.extra),
-        dodged: c.dodged === true, cancelEnemy: c.cancelEnemy === true, enemyActionType: c.action?.type,
         ...(visual ? { attackSlot: visual.attackSlot, attackSkin: visual.skin, attackStyle: visual.attackStyle, motion: visual.motion,
           weaponId: visual.weaponId, weaponFace: visual.weaponFace } : {}),
         immediateName: c.immediate?.name || c.immediate?.label, extraName: c.extra?.name || c.extra?.label,
@@ -1389,16 +1384,7 @@
     });
   }
   function characterSkin(enemy) {
-    return enemyVisual(enemy).skin;
-  }
-  function enemyVisual(enemy, source = state) {
-    const d = E.enemyDef(source, enemy), id = enemy.componentSpec || enemy.extendedId || d.id || enemy.componentId || enemy.kind,
-      side = String(d.sideId || "a").toLowerCase(), phase = enemy.componentPhase || d.phase || 1,
-      fallbackSkin = genericEnemySkin(enemy, d);
-    return { enemyId: id, enemySide: side, enemyPhase: phase, fallbackSkin,
-      skin: window.BBEnemyVisuals?.skin(id, side, phase) || fallbackSkin };
-  }
-  function genericEnemySkin(enemy, d = E.enemyDef(state, enemy)) {
+    const d = E.enemyDef(state, enemy);
     if (d.boss) return "boss";
     if (d.npcEnemy || /이오세프카/.test(d.name)) return "female";
     if (/beast|dog|hound|crow|spider|rat/i.test(enemy.kind) || /야수|사냥개|늑대|까마귀|거미|쥐/.test(d.name) && !/야수.?사냥/.test(d.name)) return "beast";
@@ -1422,7 +1408,6 @@
         enemy = kind === "enemy" ? state.enemies.find((e) => e.id === id) : null;
       return { id, kind, node: anchor.dataset.presentationNode, skin: anchor.dataset.presentationSkin,
         ...(kind === "hunter" ? hunterVisual() : {}),
-        ...(kind === "enemy" && enemy ? enemyVisual(enemy) : {}),
         scale, hp: kind === "hunter" ? h.hp : enemy?.hp, selected: kind === "enemy" && mapTarget?.kind === "enemy" && selectedEnemy === id,
         ...point(anchor) };
     });
@@ -1437,10 +1422,13 @@
     presentation.sync({ sceneId: sceneId(), revision: state.revision, actors, actions,
       view: { x: (viewport.scrollLeft || 0) - (viewport.clientWidth || 0) / 2,
         y: (viewport.scrollTop || 0) - (viewport.clientHeight || 0) / 2, zoom } });
+    // The v0.8.3 renderer loads its five generic bodies together and uses the
+    // hunter body while an optional weapon sheet is still loading.
+    const charactersReady = presentation.status?.().charactersReady === true;
     for (const marker of $("chapterMap").querySelectorAll(".hunter-map-marker"))
-      marker.setAttribute("data-character-ready", String(presentation.actorReady?.("hunter") === true));
+      marker.setAttribute("data-character-ready", String(charactersReady));
     for (const marker of $("chapterMap").querySelectorAll(".map-figure"))
-      marker.setAttribute("data-character-ready", String(presentation.actorReady?.(marker.dataset.presentationId) === true));
+      marker.setAttribute("data-character-ready", String(charactersReady));
     presentationActions = [];
     presentationOrigins = new Map(actors.map((actor) => {
       const n = nodes.get(actor.node) || actor;

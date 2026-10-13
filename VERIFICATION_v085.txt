@@ -1,0 +1,17 @@
+v0.8.5: scoped rollback of artwork and animation to v0.8.3
+
+All 0.8.3 character sheets, atlases, visual mapping, animation events and the
+presentation renderer are restored byte-for-byte. Gallery explanatory HTML
+identifies this restored artwork. Version 0.8.4-only enemy native images and
+their old feature tests are removed from this distribution.
+
+The latest public HUD, always-visible weapon/firearm effects, chapter clues,
+resolved mission wording, current-deck history reset, map controls and camera
+remain in use. Gameplay engines and component data retain all 26 verified
+0.8.4 source SHA-256 values. Existing player saves are not rewritten by the
+installer. Supplied reference folders and other user files remain preserved.
+
+Final package regression, browser proof and installation checks are recorded
+in the accompanying final verification JSON. Raw reference-photo provenance
+tests use BB_REFERENCE_ROOT only to access developer originals; the actual
+tested engine/data/controller paths are in this distribution.

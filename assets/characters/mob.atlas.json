@@ -18,19 +18,6 @@
       "sourceSize": {
         "w": 512,
         "h": 512
-      },
-      "renderOffset": {
-        "x": 1.5,
-        "y": 6
-      },
-      "supportAnchor": {
-        "x": 254.5,
-        "y": 454,
-        "targetX": 256.0,
-        "targetY": 460,
-        "method": "bottom support band, >=30% column density, >=5px broad segments; excludes thin weapon tips",
-        "policy": "support-locked",
-        "referenceFrame": 0
       }
     },
     "1": {
@@ -51,19 +38,6 @@
       "sourceSize": {
         "w": 512,
         "h": 512
-      },
-      "renderOffset": {
-        "x": 3.0,
-        "y": 6
-      },
-      "supportAnchor": {
-        "x": 253.0,
-        "y": 454,
-        "targetX": 256.0,
-        "targetY": 460,
-        "method": "bottom support band, >=30% column density, >=5px broad segments; excludes thin weapon tips",
-        "policy": "support-locked",
-        "referenceFrame": 1
       }
     },
     "2": {
@@ -84,19 +58,6 @@
       "sourceSize": {
         "w": 512,
         "h": 512
-      },
-      "renderOffset": {
-        "x": 4.0,
-        "y": 6
-      },
-      "supportAnchor": {
-        "x": 252.0,
-        "y": 454,
-        "targetX": 256.0,
-        "targetY": 460,
-        "method": "bottom support band, >=30% column density, >=5px broad segments; excludes thin weapon tips",
-        "policy": "support-locked",
-        "referenceFrame": 2
       }
     },
     "3": {
@@ -117,19 +78,6 @@
       "sourceSize": {
         "w": 512,
         "h": 512
-      },
-      "renderOffset": {
-        "x": 0.5,
-        "y": 3
-      },
-      "supportAnchor": {
-        "x": 255.5,
-        "y": 457,
-        "targetX": 256.0,
-        "targetY": 460,
-        "method": "bottom support band, >=30% column density, >=5px broad segments; excludes thin weapon tips",
-        "policy": "support-locked",
-        "referenceFrame": 3
       }
     },
     "4": {
@@ -150,19 +98,6 @@
       "sourceSize": {
         "w": 512,
         "h": 512
-      },
-      "renderOffset": {
-        "x": -0.5,
-        "y": 6
-      },
-      "supportAnchor": {
-        "x": 256.5,
-        "y": 454,
-        "targetX": 256.0,
-        "targetY": 460,
-        "method": "bottom support band, >=30% column density, >=5px broad segments; excludes thin weapon tips",
-        "policy": "support-locked",
-        "referenceFrame": 4
       }
     },
     "5": {
@@ -183,19 +118,6 @@
       "sourceSize": {
         "w": 512,
         "h": 512
-      },
-      "renderOffset": {
-        "x": -5.5,
-        "y": 6
-      },
-      "supportAnchor": {
-        "x": 261.5,
-        "y": 454,
-        "targetX": 256.0,
-        "targetY": 460,
-        "method": "bottom support band, >=30% column density, >=5px broad segments; excludes thin weapon tips",
-        "policy": "support-locked",
-        "referenceFrame": 5
       }
     },
     "6": {
@@ -216,19 +138,6 @@
       "sourceSize": {
         "w": 512,
         "h": 512
-      },
-      "renderOffset": {
-        "x": 3.0,
-        "y": 7
-      },
-      "supportAnchor": {
-        "x": 253.0,
-        "y": 453,
-        "targetX": 256.0,
-        "targetY": 460,
-        "method": "bottom support band, >=30% column density, >=5px broad segments; excludes thin weapon tips",
-        "policy": "support-locked",
-        "referenceFrame": 6
       }
     },
     "7": {
@@ -249,19 +158,6 @@
       "sourceSize": {
         "w": 512,
         "h": 512
-      },
-      "renderOffset": {
-        "x": 1.0,
-        "y": 6
-      },
-      "supportAnchor": {
-        "x": 255.0,
-        "y": 454,
-        "targetX": 256.0,
-        "targetY": 460,
-        "method": "bottom support band, >=30% column density, >=5px broad segments; excludes thin weapon tips",
-        "policy": "support-locked",
-        "referenceFrame": 7
       }
     },
     "8": {
@@ -282,19 +178,6 @@
       "sourceSize": {
         "w": 512,
         "h": 512
-      },
-      "renderOffset": {
-        "x": -15.0,
-        "y": 12
-      },
-      "supportAnchor": {
-        "x": 271.0,
-        "y": 448,
-        "targetX": 256.0,
-        "targetY": 460,
-        "method": "bottom support band, >=30% column density, >=5px broad segments; excludes thin weapon tips",
-        "policy": "animation-bank-baseline",
-        "referenceFrame": 8
       }
     },
     "9": {
@@ -315,19 +198,6 @@
       "sourceSize": {
         "w": 512,
         "h": 512
-      },
-      "renderOffset": {
-        "x": -15.0,
-        "y": 12
-      },
-      "supportAnchor": {
-        "x": 267.0,
-        "y": 448,
-        "targetX": 256.0,
-        "targetY": 460,
-        "method": "bottom support band, >=30% column density, >=5px broad segments; excludes thin weapon tips",
-        "policy": "animation-bank-baseline",
-        "referenceFrame": 8
       }
     },
     "10": {
@@ -348,19 +218,6 @@
       "sourceSize": {
         "w": 512,
         "h": 512
-      },
-      "renderOffset": {
-        "x": -15.0,
-        "y": 12
-      },
-      "supportAnchor": {
-        "x": 236.0,
-        "y": 451,
-        "targetX": 256.0,
-        "targetY": 460,
-        "method": "bottom support band, >=30% column density, >=5px broad segments; excludes thin weapon tips",
-        "policy": "animation-bank-baseline",
-        "referenceFrame": 8
       }
     },
     "11": {
@@ -381,19 +238,6 @@
       "sourceSize": {
         "w": 512,
         "h": 512
-      },
-      "renderOffset": {
-        "x": -15.0,
-        "y": 12
-      },
-      "supportAnchor": {
-        "x": 223.0,
-        "y": 453,
-        "targetX": 256.0,
-        "targetY": 460,
-        "method": "bottom support band, >=30% column density, >=5px broad segments; excludes thin weapon tips",
-        "policy": "animation-bank-baseline",
-        "referenceFrame": 8
       }
     },
     "12": {
@@ -414,19 +258,6 @@
       "sourceSize": {
         "w": 512,
         "h": 512
-      },
-      "renderOffset": {
-        "x": -9.0,
-        "y": 41
-      },
-      "supportAnchor": {
-        "x": 265.0,
-        "y": 419,
-        "targetX": 256.0,
-        "targetY": 460,
-        "method": "bottom support band, >=30% column density, >=5px broad segments; excludes thin weapon tips",
-        "policy": "animation-bank-baseline",
-        "referenceFrame": 12
       }
     },
     "13": {
@@ -447,19 +278,6 @@
       "sourceSize": {
         "w": 512,
         "h": 512
-      },
-      "renderOffset": {
-        "x": -9.0,
-        "y": 41
-      },
-      "supportAnchor": {
-        "x": 255.5,
-        "y": 423,
-        "targetX": 256.0,
-        "targetY": 460,
-        "method": "bottom support band, >=30% column density, >=5px broad segments; excludes thin weapon tips",
-        "policy": "animation-bank-baseline",
-        "referenceFrame": 12
       }
     },
     "14": {
@@ -480,19 +298,6 @@
       "sourceSize": {
         "w": 512,
         "h": 512
-      },
-      "renderOffset": {
-        "x": -77.5,
-        "y": 2
-      },
-      "supportAnchor": {
-        "x": 333.5,
-        "y": 458,
-        "targetX": 256.0,
-        "targetY": 460,
-        "method": "bottom support band, >=30% column density, >=5px broad segments; excludes thin weapon tips",
-        "policy": "animation-bank-baseline",
-        "referenceFrame": 14
       }
     },
     "15": {
@@ -513,19 +318,6 @@
       "sourceSize": {
         "w": 512,
         "h": 512
-      },
-      "renderOffset": {
-        "x": -77.5,
-        "y": 2
-      },
-      "supportAnchor": {
-        "x": 356.0,
-        "y": 420,
-        "targetX": 256.0,
-        "targetY": 460,
-        "method": "bottom support band, >=30% column density, >=5px broad segments; excludes thin weapon tips",
-        "policy": "animation-bank-baseline",
-        "referenceFrame": 14
       }
     }
   },
