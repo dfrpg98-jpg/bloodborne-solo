@@ -1,0 +1,87 @@
+{
+  "sourceCommit": "0588903b836f55c1acb59d9390e7230c6d56d330",
+  "node": "v24.21.0",
+  "method": "Actual Chromium UI clicks. Normal create/dispatch QA checkpoints; no hand-assembled state.",
+  "observations": [
+    {
+      "name": "rotated-art-loaded",
+      "tile": "tile-07",
+      "rotation": "2"
+    },
+    {
+      "name": "chapel-zero-speed-and-real-detail",
+      "status": "passed"
+    }
+  ],
+  "failures": [
+    {
+      "name": "responsive-hand-selection-and-tooltips",
+      "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at load (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:31:14)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:107:119\n    at async attempt (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:65:37)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:106:5"
+    },
+    {
+      "name": "direction-controller-continuity",
+      "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at load (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:31:14)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:133:23\n    at async attempt (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:65:37)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:132:5"
+    },
+    {
+      "name": "naturally-earned-firearm-tooltip-and-equip",
+      "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at load (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:31:14)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:140:29\n    at async attempt (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:65:37)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:139:5"
+    },
+    {
+      "name": "controller-real-branch-choice",
+      "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at load (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:31:14)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:149:7\n    at async attempt (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:65:37)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:146:5"
+    },
+    {
+      "name": "controller-real-escort-confirmation",
+      "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at load (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:31:14)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:156:7\n    at async attempt (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:65:37)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:153:5"
+    },
+    {
+      "name": "rotated-tile-and-combat-continuity",
+      "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at load (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:31:14)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:163:136\n    at async attempt (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:65:37)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:162:5"
+    },
+    {
+      "name": "mission-3-actual-trigger",
+      "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at load (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:31:14)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:177:7\n    at async attempt (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:65:37)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:176:42"
+    },
+    {
+      "name": "mission-10-actual-trigger",
+      "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at load (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:31:14)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:177:7\n    at async attempt (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:65:37)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:176:42"
+    },
+    {
+      "name": "mission-31-actual-trigger",
+      "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at load (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:31:14)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:177:7\n    at async attempt (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:65:37)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:176:42"
+    },
+    {
+      "name": "mission-36-actual-trigger",
+      "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at load (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:31:14)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:177:7\n    at async attempt (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:65:37)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:176:42"
+    },
+    {
+      "name": "chapel-one-to-zero-actual-pursuit-and-attack",
+      "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at load (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:31:14)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:204:37\n    at async attempt (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:65:37)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:203:5"
+    },
+    {
+      "name": "real-unnamed-location-cleanup",
+      "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at load (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:31:14)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:217:65\n    at async attempt (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:65:37)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:214:5"
+    }
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    "responsive-hand-selection-and-tooltips-failure.png",
+    "direction-controller-continuity-failure.png",
+    "naturally-earned-firearm-tooltip-and-equip-failure.png",
+    "controller-real-branch-choice-failure.png",
+    "controller-real-escort-confirmation-failure.png",
+    "rotated-tile-and-combat-continuity-failure.png",
+    "mission-3-actual-trigger-failure.png",
+    "mission-10-actual-trigger-failure.png",
+    "mission-31-actual-trigger-failure.png",
+    "mission-36-actual-trigger-failure.png",
+    "chapel-zero-speed.png",
+    "rotated-tiles.png",
+    "chapel-one-to-zero-actual-pursuit-and-attack-failure.png",
+    "real-unnamed-location-cleanup-failure.png"
+  ],
+  "limitations": [
+    "Original reference photographs absent; official rule exceptions are not certified."
+  ],
+  "browser": "151.0.7922.34"
+}

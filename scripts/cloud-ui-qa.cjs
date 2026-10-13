@@ -8,7 +8,7 @@ const root=path.resolve(__dirname,'..'),out=path.join(root,'test-results/cloud-u
 fs.mkdirSync(out,{recursive:true});
 const report={sourceCommit:process.env.GITHUB_SHA||'local-uncommitted',node:process.version,
   method:'Actual Chromium UI clicks. Normal create/dispatch QA checkpoints; no hand-assembled state.',
-  observations:[],failures:[],pageErrors:[],screenshots:[],limitations:['Original reference photographs absent; official rule exceptions are not certified.']};
+  observations:[],failures:[],pageErrors:[],screenshots:[],limitations:['UI observations do not certify official rules; private original-photo audit is recorded separately.']};
 const supplies=[...Array(10).fill('qa-heal'),...Array(10).fill('qa-cards'),...Array(10).fill('qa-travel')];
 function initial(seed=140,weapon='burial',face=0){return E.create(seed,weapon,face,null,'hunter-pistol','center',
   {campaign:true,rulesVersion:14,qa:{preset:'custom',startRewards:[],startConsumables:supplies}});}
@@ -27,9 +27,9 @@ async function screenshot(name){const file=name+'.png';await page.screenshot({pa
 async function saved(){const text=await page.evaluate(()=>localStorage.getItem('bloodborne-hunt-qa-v1'));assert(text,'QA save missing');return E.importSave(text);}
 async function clean(){assert.equal(await page.locator('#error').innerText(),'');}
 function sameState(actual,expected){const a=structuredClone(actual),b=structuredClone(expected);delete a.commands;delete b.commands;assert.deepEqual(a,b);}
-async function load(s){assert.deepEqual(E.importSave(E.exportSave(s)),s);await page.locator('#file').setInputFiles({name:'qa-browser-checkpoint.json',mimeType:'application/json',buffer:Buffer.from(E.exportSave(s))});
-  await page.waitForFunction(expected=>!document.querySelector('#setupDialog').open&&localStorage.getItem('bloodborne-hunt-qa-v1')===expected,E.exportSave(s));
-  await clean();assert.deepEqual(await saved(),s);}
+async function load(s){const expected=E.applyTileSpeedRuling(s);assert.deepEqual(E.importSave(E.exportSave(s)),s);await page.locator('#file').setInputFiles({name:'qa-browser-checkpoint.json',mimeType:'application/json',buffer:Buffer.from(E.exportSave(s))});
+  await page.waitForFunction(expected=>!document.querySelector('#setupDialog').open&&localStorage.getItem('bloodborne-hunt-qa-v1')===expected,E.exportSave(expected));
+  await clean();assert.deepEqual(await saved(),expected);return expected;}
 async function acknowledge(){if(await page.locator('#missionUpdateDialog').evaluate(x=>x.open)){const before=E.exportSave(await saved());await page.locator('#missionUpdateContinue').click();assert.equal(E.exportSave(await saved()),before,'Acknowledging an alert spent an action');}}
 async function clickCommand(command){
   if(command.type==='USE_CONSUMABLE'){
@@ -61,7 +61,7 @@ async function clickCommand(command){
   }
   assert(picked,'No actual enabled control for '+JSON.stringify(command));await picked.click();await clean();
 }
-async function transition(s,c){const next=E.dispatch(s,c);await clickCommand(c);const actual=await saved();sameState(actual,next);return actual;}
+async function transition(s,c){const next=E.applyTileSpeedRuling(E.dispatch(s,c));await clickCommand(c);const actual=await saved();sameState(actual,next);return actual;}
 async function attempt(name,fn){try{await fn();report.observations.push({name,status:'passed'});}catch(e){report.failures.push({name,error:e.stack});try{await screenshot(name+'-failure');}catch{}}}
 function naturalRecords(){const records=[];
   for(const [file,wanted] of [['full-campaign-actual-v10-commands.json',3],['v074-shelter-natural-commands.json',10],['v074-patient-natural-commands.json',31],['v074-ch2-bridge-natural-commands.json',36]]){
@@ -104,7 +104,7 @@ function firearmReward(){let s=E.create(90,'burial',1,null,'hunter-pistol','cent
     page=await browser.newPage({viewport:{width:1208,height:848},reducedMotion:'no-preference'});
     page.on('pageerror',e=>report.pageErrors.push(e.message));await page.goto('http://127.0.0.1:8787/hunt.html');
     await attempt('responsive-hand-selection-and-tooltips',async()=>{
-      let s=replay(initial(),[{type:'USE_CONSUMABLE',itemId:'item-qa-1-11'}]);assert.equal(E.hunter(s).hand.length,6);await load(s);
+      let s=replay(initial(),[{type:'USE_CONSUMABLE',itemId:'item-qa-1-11'}]);assert.equal(E.hunter(s).hand.length,6);s=await load(s);
       for(const width of [1208,848,390]){
         await page.setViewportSize({width,height:848});
         const layout=await page.locator('#hand').evaluate(el=>({cols:getComputedStyle(el).gridTemplateColumns.split(' ').length,
@@ -130,37 +130,37 @@ function firearmReward(){let s=E.create(90,'burial',1,null,'hunter-pistol','cent
       const tile=page.locator('[data-tile-info="tile-14"]');await tile.click();assert.match(await page.locator('#tileInfo').innerText(),/中央|중앙|순간이동/);assert.deepEqual(await saved(),s);
     });
     await attempt('direction-controller-continuity',async()=>{
-      let s=initial();await load(s);const id=E.hunter(s).hand[0].id;await page.locator(`[data-card="${id}"]`).click();
+      let s=initial();s=await load(s);const id=E.hunter(s).hand[0].id;await page.locator(`[data-card="${id}"]`).click();
       await page.locator('#movementControls [data-command=MOVE]').click();s=E.dispatch(s,{type:'MOVE',cardId:id});assert.deepEqual(await saved(),s);
       await page.locator('[data-move-direction=E]').click();s=E.dispatch(s,{type:'STEP',node:'tile-14:right'});assert.deepEqual(await saved(),s);
       await page.locator('#movementControls [data-command=STOP_MOVE]').click();s=E.dispatch(s,{type:'STOP_MOVE'});assert.deepEqual(await saved(),s);await acknowledge();
       await clean();await screenshot('controller-after-move');
     });
     await attempt('naturally-earned-firearm-tooltip-and-equip',async()=>{
-      let s=firearmReward();await load(s);const choice=s.rewardChoices.find(c=>c.firearmId),gun=E.rewardsView(s).firearms.find(g=>g.id===choice.firearmId);
+      let s=firearmReward();s=await load(s);const choice=s.rewardChoices.find(c=>c.firearmId),gun=E.rewardsView(s).firearms.find(g=>g.id===choice.firearmId);
       assert(gun.actual);const name=page.locator(`#decisions [data-firearm-info="${gun.id}"]`);await name.hover();await name.focus();
       assert.match(await name.getAttribute('title'),/손패 2장/);const box=await name.locator('[role=tooltip]').boundingBox();assert(box.x>=0&&box.y>=0&&box.x+box.width<=1208&&box.y+box.height<=848);
       assert.deepEqual(await saved(),s);await screenshot('earned-firearm-tooltip');s=await transition(s,{type:'EQUIP_FIREARM',firearmId:gun.id});
       assert.equal(await page.locator('#firearm [data-firearm-info]').getAttribute('data-firearm-info'),gun.id);await screenshot('earned-firearm-equipped');
     });
     await attempt('controller-real-branch-choice',async()=>{
-      const s=naturalReplay(E.create(90,'beast-claw',0,null,'hunter-pistol','center',{campaign:true,rulesVersion:14,qa:{preset:'custom',startRewards:[],startConsumables:[]}}),
+      let s=naturalReplay(E.create(90,'beast-claw',0,null,'hunter-pistol','center',{campaign:true,rulesVersion:14,qa:{preset:'custom',startRewards:[],startConsumables:[]}}),
         require('../tests/fixtures/weapon-campaign-completion/beast-claw-0.json').slice(0,32));
-      await load(s);const down=U.movement(s).directions.find(d=>d.edge==='S');assert.equal(down.options.filter(o=>o.enabled).length,2);
+      s=await load(s);const down=U.movement(s).directions.find(d=>d.edge==='S');assert.equal(down.options.filter(o=>o.enabled).length,2);
       await page.locator('[data-move-direction=S]').click();assert.deepEqual(await saved(),s);await screenshot('controller-branch-choice');
       await page.locator('[data-move-option="1"]').click();assert.deepEqual(await saved(),E.dispatch(s,down.options[1].command));await acknowledge();
     });
     await attempt('controller-real-escort-confirmation',async()=>{
       let s=naturalReplay(E.create(90,'burial',1,null,'hunter-pistol','center',{campaign:true,rulesVersion:14,qa:{preset:'custom',startRewards:[],startConsumables:[]}}),
         require('../tests/fixtures/v074-shelter-natural-commands.json').slice(0,75));
-      await load(s);await page.locator('[data-card="card-1"]').click();await page.locator('#movementControls [data-command=MOVE]').click();s=E.dispatch(s,{type:'MOVE',cardId:'card-1'});
+      s=await load(s);await page.locator('[data-card="card-1"]').click();await page.locator('#movementControls [data-command=MOVE]').click();s=E.dispatch(s,{type:'MOVE',cardId:'card-1'});
       assert.deepEqual(await saved(),s);const d=U.movement(s).directions.find(d=>d.options.some(o=>o.command.node==='tile-11:street'));assert(d);
       await page.locator(`[data-move-direction="${d.edge}"]`).click();assert.equal(await page.locator('#escortDialog').evaluate(x=>x.open),true);
       assert.deepEqual(await saved(),s);await screenshot('controller-escort-confirm');await page.locator('#escortAccept').click();
       s=replay(s,[{type:'MISSION_PICKUP'},{type:'STEP',node:'tile-11:street'}]);assert.deepEqual(await saved(),s);await acknowledge();
     });
     await attempt('rotated-tile-and-combat-continuity',async()=>{
-      let s=replay(initial(),[{type:'USE_CONSUMABLE',itemId:'item-qa-1-21'},{type:'EXPLORE',edge:'N'},{type:'PLACE_TILE',rotation:0}]);await load(s);
+      let s=replay(initial(),[{type:'USE_CONSUMABLE',itemId:'item-qa-1-21'},{type:'EXPLORE',edge:'N'},{type:'PLACE_TILE',rotation:0}]);s=await load(s);
       const view=U.movement(s),direction=view.directions.find(d=>d.options.some(o=>o.command.node==='tile-01:top'));
       assert(direction);await page.locator(`[data-move-direction="${direction.edge}"]`).click();s=E.dispatch(s,{type:'STEP',node:'tile-01:top'});assert.deepEqual(await saved(),s);
       s=await transition(s,{type:'STOP_MOVE'});await acknowledge();
@@ -174,12 +174,13 @@ function firearmReward(){let s=E.create(90,'burial',1,null,'hunter-pistol','cent
       if(['combat_react','boss_react'].includes(s.phase))s=await transition(s,{type:'RESOLVE'});await acknowledge();await screenshot('after-resolve');
     });
     for(const record of naturalRecords())await attempt('mission-'+record.wanted+'-actual-trigger',async()=>{
-      await load(record.prior);await clickCommand(record.command);sameState(await saved(),record.next);
-      const changes=Feedback.describe(record.prior,record.next,{E,publicText:require('../hunt-public-text'),data:require('../campaigns/long-hunt/data.json')});
+      const prior=await load(record.prior),next=E.applyTileSpeedRuling(E.dispatch(prior,record.command));
+      await clickCommand(record.command);sameState(await saved(),next);
+      const changes=Feedback.describe(prior,next,{E,publicText:require('../hunt-public-text'),data:require('../campaigns/long-hunt/data.json')});
       assert(changes.length);assert.equal(await page.locator('#missionUpdateDialog').evaluate(x=>x.open),true);
       const alert=await page.locator('#missionUpdateList').innerText();assert.match(alert,/속도|피해|공격|능력/);await screenshot('mission-'+record.wanted+'-alert');
-      await acknowledge();const effect=Effects.describe(record.next,E).find(x=>x.card===record.wanted);assert(effect);
-      const enemy=record.next.enemies.find(e=>e.id===effect.enemyId);await page.locator(`[data-tile-info="${E.node(record.next,enemy.node).tile}"]`).click();
+      await acknowledge();const effect=Effects.describe(next,E).find(x=>x.card===record.wanted);assert(effect);
+      const enemy=next.enemies.find(e=>e.id===effect.enemyId);await page.locator(`[data-tile-info="${E.node(next,enemy.node).tile}"]`).click();
       await page.locator(`#tileInfo [data-special-info="${enemy.id}"]`).click();
       const detail=await page.locator('#enemyDetailContent').innerText();assert(detail.includes(effect.description));
       await screenshot('mission-'+record.wanted+'-detail');await page.locator('#closeEnemyDetail').click();
@@ -187,7 +188,7 @@ function firearmReward(){let s=E.create(90,'burial',1,null,'hunter-pistol','cent
       await clean();
     });
     await attempt('chapel-zero-speed-and-real-detail',async()=>{
-      const s=chapelCombat();await load(s);const e=s.enemies.find(e=>e.id===s.combat.enemyId),base=E.enemyDef(s,e).special;
+      let s=chapelCombat();s=await load(s);const e=s.enemies.find(e=>e.id===s.combat.enemyId),base=E.enemyDef(s,e).special;
       assert.equal(s.combat.action.speed,Math.max(0,base.speed-1));
       const text=await page.locator('#combatInfo').innerText();assert.match(text,/오에돈 예배당 · 속도 -1/);
       assert(text.includes(`속도 ${base.speed} → ${s.combat.action.speed}`));
@@ -201,7 +202,7 @@ function firearmReward(){let s=E.create(90,'burial',1,null,'hunter-pistol','cent
       await screenshot('rotated-tiles');
     });
     await attempt('chapel-one-to-zero-actual-pursuit-and-attack',async()=>{
-      const checkpoint=chapelZero();await load(checkpoint.before);let s=await transition(checkpoint.before,checkpoint.step);
+      const checkpoint=chapelZero();let s=await load(checkpoint.before);s=await transition(s,checkpoint.step);
       assert.equal(E.hunter(s).position,'tile-17:top');const e=s.enemies.find(e=>e.id==='scourge-beast-1');assert.equal(e.node,'tile-17:top');
       await page.locator(`#chapterMap [data-enemy="${e.id}"]`).click();assert.match(await page.locator('#mapContext').innerText(),/속도 1 → 0/);await screenshot('chapel-one-to-zero-detail');
       const command={type:'ATTACK',cardId:E.hunter(s).hand[0].id,slot:0,enemyId:e.id};s=await transition(s,command);
@@ -212,9 +213,9 @@ function firearmReward(){let s=E.create(90,'burial',1,null,'hunter-pistol','cent
       report.observations.push({name:'chapel-zero-normal-command-preparation',seed:7,commands:checkpoint.commands,actualCommands:[checkpoint.step,command,{type:'RESOLVE'}]});
     });
     await attempt('real-unnamed-location-cleanup',async()=>{
-      const s=naturalReplay(E.create(90,'beast-claw',0,null,'hunter-pistol','center',{campaign:true,rulesVersion:14,qa:{preset:'custom',startRewards:[],startConsumables:[]}}),
+      let s=naturalReplay(E.create(90,'beast-claw',0,null,'hunter-pistol','center',{campaign:true,rulesVersion:14,qa:{preset:'custom',startRewards:[],startConsumables:[]}}),
         require('../tests/fixtures/weapon-campaign-completion/beast-claw-0.json').slice(0,132));
-      assert.match(E.node(s,E.hunter(s).position).name,/명칭 없는/);await load(s);
+      assert.match(E.node(s,E.hunter(s).position).name,/명칭 없는/);s=await load(s);
       for(const id of ['status','chapterMap','huntLog'])assert.doesNotMatch(await page.locator('#'+id).innerText(),/명칭 없는 타일/);
       assert.deepEqual(await saved(),s);await screenshot('unnamed-cell-label');
     });

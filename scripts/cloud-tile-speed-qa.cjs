@@ -7,7 +7,7 @@ const {chromium}=require('playwright'),E=require('../hunt-engine'),U=require('..
 const root=path.resolve(__dirname,'..'),out=path.join(root,'test-results/cloud-tile-speed-qa');
 fs.mkdirSync(out,{recursive:true});
 const report={sourceCommit:process.env.GITHUB_SHA||'local-uncommitted',node:process.version,
-  method:'Actual Chromium UI clicks. Normal create/dispatch QA checkpoints; no hand-assembled state.',
+  method:'Actual Chromium UI clicks. Original rules14 QA checkpoints generated with create/dispatch and imported through the product file input; recorded adoption, no hand-assembled state.',
   observations:[],failures:[],pageErrors:[],screenshots:[],limitations:['Focused Issue32 browser verification; earlier UI1–12 screenshots are not repeated. Reference originals reviewed privately, not uploaded.']};
 const supplies=[...Array(10).fill('qa-heal'),...Array(10).fill('qa-cards'),...Array(10).fill('qa-travel')];
 function initial(seed=140,weapon='burial',face=0){return E.create(seed,weapon,face,null,'hunter-pistol','center',
