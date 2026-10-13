@@ -15,14 +15,14 @@ const pub=s=>({phase:s.phase,face:E.hunter(s).face,position:E.hunter(s).position
 const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.woff2':'font/woff2'};
 const server=http.createServer((req,res)=>{const p=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(!p.startsWith(root+path.sep)){res.writeHead(403).end();return;}fs.readFile(p,(err,data)=>{if(err){res.writeHead(404).end();return;}res.writeHead(200,{'Content-Type':mime[path.extname(p)]||'application/octet-stream','Cache-Control':'no-store'}).end(data);});});
 if(process.argv.includes('--model-only')){for(const [w,f] of [['ludwigs-holy-blade',1],['uncanny-ludwigs-holy-blade',0],['kirkhammer',0]])console.log(JSON.stringify({weapon:w,prepared:pub(prepare(w,f))}));process.exit(0);}
-(async()=>{const {chromium}=require('playwright');let browser;await new Promise(resolve=>server.listen(10080,'127.0.0.1',resolve));try{
+(async()=>{const {chromium}=require('playwright');let browser;await new Promise(resolve=>server.listen(8787,'127.0.0.1',resolve));try{
   browser=await chromium.launch({headless:true});report.browser=browser.version();
   for(const [weapon,face] of [['ludwigs-holy-blade',1],['uncanny-ludwigs-holy-blade',0],['kirkhammer',0]]){
     const context=await browser.newContext({viewport:{width:1459,height:1252},reducedMotion:'no-preference'}),page=await context.newPage();
     const row={weapon,initialFace:face,preparationCommands:prefix,trigger:{type:'WEAPON_CHOICE',enemyId:'scourge-beast-2'},screenshots:[]};
     page.on('pageerror',error=>report.pageErrors.push({weapon,error:error.message}));
     try{
-      let s=prepare(weapon,face);row.prepared=pub(s);await page.goto('http://127.0.0.1:10080/hunt.html');
+      let s=prepare(weapon,face);row.prepared=pub(s);await page.goto('http://127.0.0.1:8787/hunt.html');
       await page.locator('#file').setInputFiles({name:'qa-weapon-target.json',mimeType:'application/json',buffer:Buffer.from(E.exportSave(s))});s=ruling(s);
       await page.waitForFunction(expected=>!document.querySelector('#setupDialog').open&&localStorage.getItem('bloodborne-hunt-qa-v1')===expected,E.exportSave(s),{timeout:20000});
       const host=page.locator('[data-presentation-attacks]');await page.waitForFunction(()=>Array.from(document.querySelectorAll('[data-presentation-attacks]')).some(x=>x.dataset.presentationCharacters==='ready'),null,{timeout:20000});
