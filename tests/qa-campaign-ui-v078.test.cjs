@@ -32,6 +32,8 @@ test('starting a QA hunt and using its real inventory preserves the normal autos
   change(ui,'playMode','qa-campaign');change(ui,'weapon','qa-test-weapon');change(ui,'qaPreset','fast');
   change(ui,'seed',90);change(ui,'start','center');assert.equal(ui.el('confirmSetup').disabled,false);
   ui.el('confirmSetup').click();assert.equal(ui.el('error').textContent,'');
+  assert.equal(ui.el('missionUpdateDialog').open,true,'a new campaign first presents its current mission');
+  ui.el('missionUpdateContinue').click();
   let s=E.importSave(ui.storage.get(qaKey));assert.equal(s.setup.qa.preset,'fast');
   assert.equal(ui.storage.get(normalKey),saved);assert.equal(ui.storage.get(activeKey),'qa');
   assert.equal(ui.el('qaModeBadge').hidden,false);assert.equal(ui.el('resumeNormal').hidden,false);

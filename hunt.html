@@ -25,8 +25,8 @@
       <div class="hud-summary">
         <section id="status" class="hunter-status panel" aria-label="사냥꾼 상태"></section>
         <section id="missionPanel" class="panel mission-panel" aria-labelledby="missionHeading">
-          <div class="panel-heading"><h2 id="missionHeading">현재 목표</h2><div class="mission-heading-actions"><span id="missionInsight" class="badge"></span><button type="button" data-panel="journal" class="quiet goal-details">전체 목표</button></div></div>
-          <div class="mission-hud-body"><div class="mission-hud-goals"><div id="missionObjectives" class="mission-objectives"></div><div id="chapterConditions" class="chapter-conditions"></div><div class="mission-summary-foot"><div id="missionTokens" class="mission-tokens"></div><div id="missionFog" class="muted"></div></div></div><div id="enemyRoster" class="enemy-roster" aria-label="이번 사냥의 적"></div></div>
+          <div class="panel-heading"><h2 id="missionHeading">현재 목표</h2><div class="mission-heading-actions"><span id="missionInsight" class="badge"></span><button id="openMissionUpdates" type="button" class="quiet mission-update-trigger" aria-haspopup="dialog" aria-controls="missionUpdateDialog" hidden>임무 변화 확인 <span id="missionUpdateCount" class="toolbar-count" hidden></span></button><button type="button" data-panel="journal" class="quiet goal-details">전체 목표</button></div></div>
+          <div class="mission-hud-body"><div class="mission-hud-goals"><div id="missionRecent" class="mission-recent" role="status" aria-live="polite" hidden></div><div id="missionObjectives" class="mission-objectives"></div><div id="chapterConditions" class="chapter-conditions"></div><div class="mission-summary-foot"><div id="missionTokens" class="mission-tokens"></div><div id="missionFog" class="muted"></div></div></div><div id="enemyRoster" class="enemy-roster" aria-label="이번 사냥의 적"></div></div>
         </section>
       </div>
       <section class="track-panel" aria-label="사냥 트랙">
@@ -70,6 +70,7 @@
         <section class="info-panel journal-panel" data-info-panel="journal" aria-label="임무와 이야기" hidden>
           <div id="modeNotice" class="notice"><strong>기나긴 사냥 · 챕터 1</strong><span>공개된 임무를 따라 사냥을 진행하세요.</span></div>
           <h3>현재의 모든 목표</h3><div id="objectiveDetail" class="mission-objectives"></div><div id="chapterConditionDetail" class="chapter-condition-detail"></div><div id="missionNotices" class="muted"></div><div id="locationDetail" class="muted"></div>
+          <section class="mission-update-history-section" aria-labelledby="missionUpdateHistoryHeading"><h3 id="missionUpdateHistoryHeading">최근 임무 변화</h3><div id="missionUpdateHistory" class="mission-update-items"></div></section>
           <section id="storyPanel" class="mission-story" aria-labelledby="storyHeading" hidden><div class="panel-heading"><h3 id="storyHeading">도입부 · 임무 이야기</h3><div id="storyIntro"></div></div><div id="storyNotice" class="story-notice" role="status" aria-live="polite"></div><details class="story-index"><summary>현재 챕터에서 공개된 이야기</summary><div id="storyList" class="story-list"></div></details></section>
           <details class="mission-cards"><summary>공개된 임무 기록</summary><div id="revealedCards" class="revealed-cards"></div></details><details id="missionHistory" class="mission-cards" hidden><summary>지난 챕터의 사냥 기록</summary><div id="pastChapters"></div></details>
           <section class="journal-log"><h3>사냥 기록</h3><div id="huntLog" class="chapter-log" aria-live="polite"></div></section>
@@ -84,6 +85,11 @@
           <section class="map-key"><h3>지도와 행동</h3><p>칸·출입구·적 토큰을 누르면 오른쪽에 가능한 행동과 비용이 나타납니다. 손패의 기술과 필요한 무기 슬롯을 고른 뒤 행동을 실행하세요. 넓어진 지도는 지도 안에서 이동해 살펴볼 수 있습니다. <strong>현재 위치</strong>를 누르면 사냥꾼에게 돌아옵니다.</p><p>파랑 등불 · 초록 보물상자(소모품) · 흰 선은 칸 경계 · 가장자리 금색 틈은 출입구<br />● 사냥꾼 · ◇ 남은 소모품 · ◆ 임무 토큰 · ★ 특수 적 · ①②③ 적의 활성화 순서</p><a href="assets/tiles/index.html" target="_blank" rel="noopener">타일 도식 20종과 기호 범례 ↗</a></section>
         </section>
       </div>
+    </dialog>
+    <dialog id="missionUpdateDialog" class="mission-update-dialog" aria-labelledby="missionUpdateTitle" aria-describedby="missionUpdateSummary">
+      <div class="mission-update-heading"><p id="missionUpdateEyebrow" class="eyebrow">임무 변화</p><h2 id="missionUpdateTitle">새로운 임무를 확인하세요</h2></div>
+      <div class="mission-update-content"><p id="missionUpdateSummary" class="mission-update-summary" hidden></p><div id="missionUpdateList" class="mission-update-items"></div></div>
+      <div class="mission-update-footer"><button id="missionUpdateContinue" type="button" class="primary" autofocus>확인하고 계속하기</button></div>
     </dialog>
     <dialog id="enemyHistoryDialog" class="compact-info-dialog" aria-labelledby="enemyHistoryTitle">
       <div class="compact-dialog-heading"><h2 id="enemyHistoryTitle">적 행동 이력</h2><button id="closeEnemyHistory" type="button" autofocus>닫기</button></div>
@@ -210,6 +216,7 @@
     <script src="qa-mode.js"></script>
     <script src="hunt-engine.js"></script>
     <script src="hunt-public-text.js"></script>
+    <script src="hunt-mission-feedback.js"></script>
     <script src="enemy-action-history.js"></script>
     <script src="inventory.js"></script>
     <script src="hunt-shell.js"></script>

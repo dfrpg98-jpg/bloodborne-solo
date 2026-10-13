@@ -31,7 +31,7 @@ function copyModule(relative) {
 }
 const moduleNames = ['hunt-engine.js','chapter-engine.js','mission-engine.js','rewards-engine.js','weapon-rules.js','weapon-flow.js',
   'firearms-engine.js','enemy-deck.js','extended-enemy-rules.js','extended-rewards.js','tile-geometry.js','map-render-layout.js',
-  'hunt-animation-events.js','hunt-public-text.js','weapon-visuals.js','hunt-camera.js','inventory.js','start-placement.js',
+  'hunt-animation-events.js','hunt-public-text.js','hunt-mission-feedback.js','weapon-visuals.js','hunt-camera.js','inventory.js','start-placement.js',
   'hunt-departure.js','hunt-context.js','enemy-action-history.js'];
 moduleNames.forEach(copyModule);
 const moduleExports = {};

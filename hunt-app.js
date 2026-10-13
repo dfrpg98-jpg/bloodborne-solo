@@ -105,6 +105,69 @@
   // game state or saved commands, including when older saves are resumed.
   const readStories = new Set();
   let storyEntries = [], storySelection = null, storyOpener = null, storyReturnPanel = null;
+  // Mission feedback is presentation only: acknowledging it never spends a
+  // hand card, advances a turn, or adds commands to a replay save.
+  let missionUpdates = [], pendingMissionUpdates = [], lastMissionUpdateBatch = [], missionUpdateSequence = 0, missionFocusedObjectiveId = null;
+  const missionUpdateLabels = { new: "새로운 임무", updated: "목표 변경", completed: "임무 완수", chapter: "챕터 완수" };
+  function missionUpdateHTML(update) {
+    return `<article class="mission-update-item" data-kind="${esc(update.kind)}"><p class="mission-update-tag">${esc(missionUpdateLabels[update.kind] || "임무 변화")}</p><h3>${esc(uiText(update.title, "mission"))}</h3><p class="mission-update-objective">${esc(uiText(update.description, "mission"))}</p>${(update.effects || []).map(effect => `<p class="mission-update-context">${esc(uiText(effect, "mission"))}</p>`).join("")}</article>`;
+  }
+  function recordMissionUpdates(updates) {
+    if (!updates.length) return;
+    const batch = updates.map(update => ({ ...update, sequence: ++missionUpdateSequence }));
+    pendingMissionUpdates.push(...batch);
+    missionUpdates.push(...batch);
+    const active = [...batch].reverse().find(update => ["new", "updated"].includes(update.kind) && update.objectiveId);
+    if (active) missionFocusedObjectiveId = active.objectiveId;
+    // The journal is a recent session record; the engine remains the source
+    // of the full campaign history when a saved hunt is resumed.
+    missionUpdates = missionUpdates.slice(-40);
+    lastMissionUpdateBatch = [...pendingMissionUpdates];
+  }
+  function renderMissionFeedback() {
+    const count = pendingMissionUpdates.length, latest = missionUpdates[missionUpdates.length - 1];
+    $("openMissionUpdates").hidden = !latest;
+    $("openMissionUpdates").dataset.unread = String(count > 0);
+    $("openMissionUpdates").setAttribute("aria-label", count ? `미확인 임무 변화 ${count}개 확인` : "최근 임무 변화 다시 확인");
+    $("missionUpdateCount").hidden = !count;
+    $("missionUpdateCount").textContent = count ? String(count) : "";
+    $("missionRecent").hidden = !latest;
+    $("missionRecent").textContent = latest ? `${count ? `미확인 ${count}개 · ` : "최근 · "}${missionUpdateLabels[latest.kind]}: ${uiText(latest.title, "mission")}` : "";
+    $("missionRecent").dataset.kind = latest?.kind || "";
+    $("missionUpdateHistory").innerHTML = missionUpdates.length ? [...missionUpdates].reverse().map(missionUpdateHTML).join("") : '<p class="muted">이 사냥을 이어가는 동안 발생한 임무 변화가 이곳에 기록됩니다.</p>';
+  }
+  function showMissionUpdates() {
+    const batch = pendingMissionUpdates.length ? pendingMissionUpdates : lastMissionUpdateBatch;
+    if (!batch.length || setupRequired || $("setupDialog").open) return;
+    shell?.close(); historyPopup?.close(); enemyPopup?.close();
+    if ($("storyDialog").open) closeStory();
+    const completed = batch.every(update => ["completed", "chapter"].includes(update.kind));
+    $("missionUpdateEyebrow").textContent = "사냥의 변화";
+    $("missionUpdateTitle").textContent = batch.length === 1 ? missionUpdateLabels[batch[0].kind] : "임무가 변경되었습니다";
+    $("missionUpdateDialog").dataset.kind = completed ? "completed" : "new";
+    $("missionUpdateSummary").hidden = false;
+    $("missionUpdateSummary").textContent = E.rewardsView?.(state)?.choices.length
+      ? "임무 결과를 확인한 뒤, 행동 패널에서 획득한 보상을 선택하세요."
+      : "변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.";
+    $("missionUpdateList").innerHTML = batch.map(missionUpdateHTML).join("");
+    if (!$("missionUpdateDialog").open) $("missionUpdateDialog").showModal();
+    $("missionUpdateContinue").focus?.({ preventScroll: true });
+  }
+  function acknowledgeMissionUpdates() {
+    if (pendingMissionUpdates.length) lastMissionUpdateBatch = [...pendingMissionUpdates];
+    pendingMissionUpdates = [];
+    if ($("missionUpdateDialog").open) $("missionUpdateDialog").close();
+    renderMission();
+    $("phaseTitle").setAttribute("tabindex", "-1");
+    $("phaseTitle").focus?.({ preventScroll: true });
+  }
+  function resetMissionFeedback() {
+    missionUpdates = []; pendingMissionUpdates = []; lastMissionUpdateBatch = []; missionUpdateSequence = 0; missionFocusedObjectiveId = null;
+    if ($("missionUpdateDialog").open) $("missionUpdateDialog").close();
+  }
+  $("openMissionUpdates").onclick = showMissionUpdates;
+  $("missionUpdateContinue").onclick = acknowledgeMissionUpdates;
+  $("missionUpdateDialog").addEventListener("cancel", event => { event.preventDefault(); acknowledgeMissionUpdates(); });
   try {
     const current = localStorage.getItem(key), qaSaved = localStorage.getItem(qaKey),
       useQa = localStorage.getItem(activeModeKey) === "qa" && !!qaSaved,
@@ -273,6 +336,7 @@
     if (opener?.isConnected !== false) opener?.focus?.({ preventScroll: true });
   });
   function sendCommands(commands) {
+    if ($("missionUpdateDialog").open) return false;
     if (pendingEscort) return false;
     const decision = window.BBHuntDeparture?.plan(E, state, commands);
     if (!decision) return commitCommands(commands);
@@ -298,7 +362,10 @@
         currentAttackVisual(next, prior);
         observedSteps.push([prior, next]);
       }
+      const updates = observedSteps.flatMap(([prior, following]) => window.BBHuntMissionFeedback?.describe(prior, following,
+        { E, publicText: window.BBHuntPublicText, data: window.BBLongHunt }) || []);
       state = next;
+      recordMissionUpdates(updates);
       for (const [prior, following] of observedSteps) enemyHistory.observe(prior, following);
       presentationActions = window.BBHuntAnimationEvents?.describe(before, animationSnapshot(), commands) || [];
       needsCameraFollow = E.hunter(previous).position !== E.hunter(state).position ||
@@ -315,6 +382,7 @@
       save();
       render();
       showError("");
+      if (updates.length) showMissionUpdates();
       return true;
     } catch (e) {
       declaredWeaponVisual = previousDeclaredVisual;
@@ -444,6 +512,7 @@
     const view = missionView(), provisional = E.provisionalView ? E.provisionalView(state) : null,
       chapter = view?.chapter || 1;
     $("missionPanel").hidden = !view;
+    renderMissionFeedback();
     renderStories(view && !provisional ? view : null);
     $("modeLabel").textContent = view ? `${isQa() ? "검증 전용 · " : ""}기나긴 사냥 · 챕터 ${chapter}` : "실제 지도 · 전투 연습";
     $("qaModeBadge").hidden = !isQa();
@@ -465,10 +534,13 @@
       doneStatus = (o) => ["completed", "complete", "done", "완료"].includes(o.status),
       objectiveHTML = (o) => {
         const done = doneStatus(o), description = chapter === 1 && o.id === "main" && !view.revealed.includes(2)
-          ? "계몽 2장 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요." : o.description;
-        return `<article class="mission-objective ${done ? "completed" : ""}"><b>${done ? "✓ " : ""}${esc(uiText(o.title, "mission"))} <small>${esc(o.status)}</small></b><span class="muted">${esc(window.BBHuntPublicText.sentence(description || ""))}</span></article>`;
+          ? "계몽 2장 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요." : o.description,
+          update = [...pendingMissionUpdates].reverse().find(entry => entry.objectiveId === o.id),
+          marker = update ? update.kind === "completed" || update.kind === "chapter" ? "completed" : update.kind === "updated" ? "updated" : "new" : "";
+        return `<article class="mission-objective ${done ? "completed" : ""}${update ? " changed" : ""}"${marker ? ` data-mission-change="${marker}"` : ""}><b>${done ? "✓ " : ""}${esc(uiText(o.title, "mission"))} <small>${esc(o.status)}${update ? ` · ${esc(missionUpdateLabels[update.kind])}` : ""}</small></b><span class="muted">${esc(window.BBHuntPublicText.sentence(description || ""))}</span></article>`;
       },
-      primary = objectives.find((o) => !doneStatus(o)) || objectives[0],
+      latestChanged = [...pendingMissionUpdates].reverse().map(update => objectives.find(o => o.id === update.objectiveId && o.id !== "main")).find(Boolean),
+      primary = latestChanged || objectives.find(o => o.id === missionFocusedObjectiveId && !doneStatus(o)) || objectives.find((o) => !doneStatus(o)) || objectives[0],
       allObjectives = objectives.map(objectiveHTML).join("") || '<p class="muted">공개된 임무 기록을 확인하세요.</p>';
     const main = publicChapter?.main || objectives.find(o => o.id === "main") || primary;
     $("missionObjectives").innerHTML = main ? objectiveHTML(main) + (primary && primary.id !== main.id ? `<div class="secondary-objective">${objectiveHTML(primary)}</div>` : "") : allObjectives;
@@ -593,6 +665,7 @@
   }
   function resetStoryReading() {
     closeEscortPrompt();
+    resetMissionFeedback();
     enemyHistory.reset(state);
     presentationSession++; presentationActions = []; presentationOrigins.clear(); declaredWeaponVisual = null; needsCameraFollow = true;
     readStories.clear();
@@ -1922,6 +1995,10 @@
       save();
       render();
       $("setupDialog").close();
+      recordMissionUpdates(window.BBHuntMissionFeedback?.describe(null, state,
+        { E, publicText: window.BBHuntPublicText, data: window.BBLongHunt }) || []);
+      renderMission();
+      showMissionUpdates();
     } catch (e) {
       $("setupError").textContent = e.message;
     }

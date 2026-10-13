@@ -1,0 +1,28 @@
+{
+  "version": "0.8.13-dev.2",
+  "date": "2026-10-13",
+  "baselineCommit": "24a2b74e3af3b0ff686166dd1ce8d8f07c09efd9",
+  "branch": "ui/mission-change-feedback",
+  "changes": [
+    "Explicit mission activation, stage update, completion and chapter completion acknowledgement",
+    "Recent HUD summary, changed objective highlight and session-only journal history",
+    "Current Iosefka attack objective corrected; issue BB-008",
+    "Presentation module included in Unity preparation source exports"
+  ],
+  "validation": {
+    "relatedUiAndMissionSuite": { "tests": 386, "pass": 386, "fail": 0, "durationMs": 106511.3323 },
+    "latestUiSummaryCheck": { "tests": 5, "pass": 5, "fail": 0 },
+    "newModelTests": 15,
+    "newUiTests": 5,
+    "independentReview": "No actionable blocker found; model and actual DOM handlers reviewed",
+    "syntaxAndWhitespace": "passed",
+    "browserVisualQa": "not performed: existing browser saved-permission rejection remains unresolved"
+  },
+  "compatibility": {
+    "engineRulesChanged": false,
+    "saveFormatChanged": false,
+    "acknowledgementAddsReplayCommand": false,
+    "notificationHistory": "current session only, reset on load or new hunt"
+  },
+  "status": "development only; not merged or formally released"
+}

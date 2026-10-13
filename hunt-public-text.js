@@ -131,7 +131,9 @@
     const numbered = source.id?.match(/^card-(\d+)$/);
     if (gate && !known(gate, state) || numbered && !known(Number(numbered[1]), state)) return null;
     const description = m.chapter === 1 && source.id === "main" && !known(2, state)
-      ? "계몽 2개 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요." : sentence(source.description);
+      ? "계몽 2개 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요."
+      : source.id === "truth" && known(47, state) && !known(49, state)
+        ? "진료소의 이오세프카를 처치하세요." : sentence(source.description);
     return { ...source, title: clean(source.title), description };
   }
   function chapter(state, view, sourceData) {
