@@ -37,6 +37,7 @@ class Element {
     const attribute = selector.match(/^\[([^\]]+)\](:checked)?$/);
     if (attribute) return this.children.filter((e) => attribute[1] in e.attributes && (!attribute[2] || e.checked));
     if (selector.startsWith(".")) return this.children.filter((e) => selector.slice(1).split(".").every((c) => (e.attributes.class || "").split(" ").includes(c)));
+    if (/^[a-z][a-z0-9-]*$/i.test(selector)) return this.children.filter((e) => e.tagName.toLowerCase() === selector.toLowerCase());
     return [];
   }
   querySelector(selector) { return this.querySelectorAll(selector)[0] || null; }

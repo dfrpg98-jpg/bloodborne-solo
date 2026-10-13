@@ -60,7 +60,7 @@
     </main>
     <dialog id="infoDialog" class="info-dialog" aria-labelledby="infoTitle">
       <div class="info-dialog-heading"><div><p class="eyebrow">사냥의 기록</p><h2 id="infoTitle">소모품</h2></div><button id="closeInfo" type="button" autofocus>사냥으로 돌아가기</button></div>
-      <nav class="info-tabs" aria-label="사냥 정보"><button type="button" data-panel="inventory">소모품</button><button type="button" data-panel="rewards">장비·보상</button><button type="button" data-panel="journal">일지</button><button type="button" data-panel="enemies">적 도감</button><button type="button" data-panel="actions">적 행동 기록</button><button type="button" data-panel="help">메뉴·안내</button></nav>
+      <nav class="info-tabs" aria-label="사냥 정보"><button type="button" data-panel="inventory">소모품</button><button type="button" data-panel="rewards">장비·보상</button><button type="button" data-panel="journal">일지</button><button type="button" data-panel="enemies">적 도감</button><button type="button" data-panel="help">메뉴</button></nav>
       <p id="infoError" class="error" role="alert"></p>
       <div class="info-content">
         <section class="info-panel inventory-panel" data-info-panel="inventory" aria-label="보유 소모품">
@@ -79,29 +79,19 @@
           <section id="componentsPanel" hidden><div class="panel-heading"><h3>출현한 특수 적</h3><span class="muted">현재의 모습과 능력</span></div><div id="componentCards" class="component-cards"></div></section>
           <section class="hunt-assignments"><h3>이번 사냥의 적 · 공격과 능력</h3><p id="setupInfo" class="muted"></p><div id="chapterEnemies" class="chapter-enemies"></div></section>
         </section>
-        <section class="info-panel enemy-action-panel" data-info-panel="actions" aria-label="공개된 적 행동 기록" hidden><h3>이번 행동 덱의 공개 순서</h3><p id="enemyHistorySummary" class="muted"></p><ol id="enemyActionHistory" class="enemy-action-history"></ol></section>
-        <section class="info-panel help-panel" data-info-panel="help" aria-label="사냥 안내와 저장" hidden>
-          <div class="save-menu"><h3>진행 저장</h3><p class="muted">이 브라우저에 자동 저장됩니다. 진행 파일은 다른 기기에서 불러올 수 있습니다.</p><div class="actions"><button id="save">저장 내보내기</button><button id="load">불러오기</button><button id="resumeNormal" hidden>일반 사냥 이어하기</button><button id="resumeQa" hidden>검증 사냥 이어하기</button></div><input id="file" type="file" accept=".json,application/json" hidden /></div>
+        <section class="info-panel help-panel" data-info-panel="help" aria-label="진행 저장과 지도 안내" hidden>
+          <div class="save-menu"><h3>진행 저장</h3><p class="muted">이 브라우저에 자동 저장됩니다. 진행 파일은 다른 기기에서 불러올 수 있습니다.</p><div class="actions save-actions"><button id="save" type="button">저장 내보내기</button><button id="load" type="button">불러오기</button><button id="resumeNormal" type="button" hidden>일반 사냥 이어하기</button><button id="resumeQa" type="button" hidden>검증 사냥 이어하기</button></div><input id="file" type="file" accept=".json,application/json" hidden /></div>
           <section class="map-key"><h3>지도와 행동</h3><p>칸·출입구·적 토큰을 누르면 오른쪽에 가능한 행동과 비용이 나타납니다. 손패의 기술과 필요한 무기 슬롯을 고른 뒤 행동을 실행하세요. 넓어진 지도는 지도 안에서 이동해 살펴볼 수 있습니다. <strong>현재 위치</strong>를 누르면 사냥꾼에게 돌아옵니다.</p><p>파랑 등불 · 초록 보물상자(소모품) · 흰 선은 칸 경계 · 가장자리 금색 틈은 출입구<br />● 사냥꾼 · ◇ 남은 소모품 · ◆ 임무 토큰 · ★ 특수 적 · ①②③ 적의 활성화 순서</p><a href="assets/tiles/index.html" target="_blank" rel="noopener">타일 도식 20종과 기호 범례 ↗</a></section>
-          <section><h3>사냥 안내</h3>
-        <p>지도에서 탐험·추격·적의 행동·전투를 진행하고 꿈에서 성장합니다. 새 사냥마다 적의 능력과 출현 마커를 정하며, 지도 초기화에서는 같은 배정을 유지합니다. 일반 적은 종류별로 최대 4개체가 출현합니다.</p>
-        <p>기나긴 사냥의 세 챕터를 한 명의 사냥꾼으로 진행합니다. 아직 밝혀지지 않은 사건과 보상은 표시하지 않습니다. 챕터를 마치면 꿈에서 성장하고 보관한 장비를 교체한 뒤 다음 사냥의 시작 칸을 선택합니다.</p>
-        <p>사냥꾼의 기술은 성장 후에도 총 12개를 유지합니다. 골수 가루는 소진된 장착 사냥 도구나 카릴 문자 1개를 준비합니다. 성배 교단 예배당의 이름 칸에서는 소모품 1개를 피의 유지 1개로 교환합니다. 사냥꾼의 종은 다른 사냥꾼이 없는 혼자 사냥에서 사용할 수 없습니다.</p>
-        <p>장치무기를 변형하면 공격 슬롯과 고유 효과가 바뀝니다. 장착한 화기마다 사용 효과와 다시 준비하는 비용이 다르며, 두 효과 설명은 화면 하단에서 항상 확인할 수 있습니다. 이전 저장과 호환용 시험 모드는 저장 당시 규칙을 유지합니다.</p>
-        <p>
-          v0.7 사냥·v0.6 사냥·v0.5 사냥·기존 전투 훈련의 자동 저장은 각각 별도입니다.
-          이 화면에서 내보낸 저장은 이 화면에서 불러오세요. 새 게임을 시작하거나
-          브라우저 데이터를 지우기 전에는 파일로 내보내세요.
-        </p>
-        <button id="restoreV06" hidden>이 브라우저의 v0.6 사냥 이어하기</button>
-        <button id="restoreV05" hidden>이 브라우저의 v0.5 사냥 불러오기</button>
-        <p class="muted">이전 사냥을 불러오면 전투 연습 모드로 이어집니다.</p>
-        <a href="guide.html">사냥 안내 읽기 ↗</a>
-        <a href="chapter.html">이전 지도 배치 검증 화면 →</a>
-
-          </section><div class="help-links"><a class="button" href="index.html">전투 훈련</a><span class="badge">v0.8.6</span></div>
         </section>
       </div>
+    </dialog>
+    <dialog id="enemyHistoryDialog" class="compact-info-dialog" aria-labelledby="enemyHistoryTitle">
+      <div class="compact-dialog-heading"><h2 id="enemyHistoryTitle">이번 행동 덱의 공개 순서</h2><button id="closeEnemyHistory" type="button" autofocus>닫기</button></div>
+      <div class="compact-dialog-content"><p id="enemyHistorySummary" class="muted"></p><ol id="enemyActionHistory" class="enemy-action-history"></ol></div>
+    </dialog>
+    <dialog id="enemyDetailDialog" class="compact-info-dialog" aria-labelledby="enemyDetailTitle">
+      <div class="compact-dialog-heading"><h2 id="enemyDetailTitle">적 정보</h2><button id="closeEnemyDetail" type="button" autofocus>닫기</button></div>
+      <div id="enemyDetailContent" class="compact-dialog-content"></div>
     </dialog>
     <dialog id="setupDialog">
       <h2>새 사냥</h2>

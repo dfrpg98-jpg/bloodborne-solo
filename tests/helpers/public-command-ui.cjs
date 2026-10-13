@@ -82,6 +82,7 @@ function clickCommand(s,command,options={}){
     for(const [key,id]of Object.entries({enemyId:'itemEnemy',node:'itemNode',slot:'itemSlot',rewardId:'itemReward'}))if(command[key]!==undefined)change(id,command[key]);
     assert(ui.el('useItem')&&!ui.el('useItem').disabled,'consumable use control enabled');ui.el('useItem').click();
   }else if(command.type==='INTERACT' && !command.mission){
+    if(ui.el('tileRescue')){ui.el('tileRescue').checked=false;ui.el('tileRescue').fire('change');}
     if(ui.el('lootCount'))change('lootCount',command.lootCount||0);
     if(ui.el('tileHeal'))ui.el('tileHeal').checked=!!command.heal;
     if(ui.el('tileLamp'))change('tileLamp',command.lamp||'');
