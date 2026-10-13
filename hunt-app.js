@@ -229,14 +229,18 @@
       $("modeNotice").innerHTML = `<strong>${esc(provisional.name)}${state.result === "provisional-win" ? " · 시험 완료" : provisional.npc ? " · 상호작용" : provisional.phase ? ` · ${esc(provisional.phase)}페이즈` : ""}</strong><span>${esc(provisional.notice)} 이 시험은 기나긴 사냥 캠페인과 별도로 진행하며 임시 작성된 구성물을 사용합니다.</span>`;
     }
     if (!view) return;
-    $("missionInsight").textContent = `완료한 계몽 ${view.insight}장`;
+    $("missionInsight").textContent = `이번 챕터 완료 계몽 ${view.insight}장`;
     $("missionObjectives").innerHTML = view.objectives.filter((o) => o.status !== "미발견").map((o) => {
       const done = ["completed", "complete", "done", "완료"].includes(o.status),
         description = chapter === 1 && o.id === "main" && !view.revealed.includes(2) ? "계몽 2장 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요." : o.description;
       return `<article class="mission-objective ${done ? "completed" : ""}"><b>${done ? "✓ " : ""}${esc(o.title)} <small>${esc(o.status)}</small></b><span class="muted">${esc(description || "")}</span></article>`;
     }).join("") || '<p class="muted">공개된 임무 카드에서 다음 목표를 확인하세요.</p>';
     $("missionTokens").innerHTML = view.tokens.map((t) => `<span class="mission-token">◆ ${esc(t.name)} · ${t.carrierId !== null && t.carrierId !== undefined ? "사냥꾼이 운반 중" : esc(nodeName(t.node))}</span>`).join("") + (view.targets || []).filter((t) => !t.complete && t.tokens !== undefined).map((t) => `<span class="mission-token">◇ ${esc(window.BBLongHunt.cards.find((c) => c.number === t.card)?.title || "특수 적")} · 계몽 토큰 ${t.tokens}개</span>`).join("") + (view.counters || []).map((c) => `<span class="mission-token">${esc(c.name)} · ${esc(c.value)}</span>`).join("");
-    $("missionNotices").innerHTML = (view.notices || []).map((notice) => `<p>${esc(notice)}</p>`).join("");
+    const lifecycleNotices = chapter > 1
+      ? ["이전 챕터의 미완료 임무·임무 토큰·대상 적은 초기화되었습니다. 완료한 계몽 카드는 보관하며, 이번 챕터의 계몽 획득 수에는 더하지 않습니다."] : [];
+    if (chapter === 3 && view.revealed.includes(53) && view.revealed.includes(35))
+      lifecycleNotices.push("53번 카드의 지시로 35번부터 이번 챕터에서 새로 공개한 임무입니다. 37·38·39번도 이 경로에서 다시 진행할 수 있습니다.");
+    $("missionNotices").innerHTML = [...lifecycleNotices, ...(view.notices || [])].map((notice) => `<p>${esc(notice)}</p>`).join("");
     const history = view.history || state.mission?.history || [];
     $("missionHistory").hidden = !history.length;
     $("pastChapters").innerHTML = history.map((ch) => `<section><p>✓ 챕터 ${ch.chapter} 완수 · 완료 카드 ${(ch.completed || []).map(esc).join(", ")}</p><div class="story-list">${storyEntries.filter((entry) => entry.chapter === ch.chapter).map(storyButton).join("")}</div></section>`).join("");

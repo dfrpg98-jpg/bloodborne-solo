@@ -39,7 +39,7 @@ test("new firearm photos contain four new firearms and corroborate the three ear
   assert.equal(flame.speed, 2); assert.equal(flame.damage, 2);
   assert.equal(flame.interrupt, true); assert.equal(flame.splash, 1); assert.equal(flame.prepareCost, 2);
   const old = require("../components/supplied-components.json");
-  assert.equal(old.photos.find((p) => p.filename === "20261011_230950.jpg").bytes, 5558976);
+  assert.equal(old.photos.find((p) => p.filename === "20261011_230950.jpg").bytes, 5406072);
   assert.equal(old.firearms.find((g) => g.id === "flamesprayer").source.kind, "user-text");
 });
 

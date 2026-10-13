@@ -6,51 +6,300 @@
   "sourceDate": "2026-10-11",
   "transcriptionPolicy": "사용자가 제공한 사진을 육안으로 읽고 줄바꿈을 정리했습니다. 속도와 피해 아이콘은 숫자로 전사했습니다. 여성 카드의 A/B는 촬영 순서로 붙인 구분이며 공식 페이즈 이름이 아닙니다. 화염방사기는 사용자 직접 전사이며 사진이 없습니다.",
   "photos": [
-    { "id": "photo-230854", "filename": "20261011_230854.jpg", "path": "참고자료/20261011_230854.jpg", "bytes": 4777601, "sha256": "83b15cd23ee231c17ae0f9a53cf3042f7fdabdeb0ac67eb740cc4709f74c1f48", "cards": ["iosefka-1-2", "female-patient-a"] },
-    { "id": "photo-230907", "filename": "20261011_230907.jpg", "path": "참고자료/20261011_230907.jpg", "bytes": 5064243, "sha256": "4d47649ab113b8765e73ef32c7785508102f02eb0667ca2ca97c4b8e01f32586", "cards": ["iosefka-3-4", "female-patient-b"] },
-    { "id": "photo-230950", "filename": "20261011_230950.jpg", "path": "참고자료/20261011_230950.jpg", "bytes": 5558976, "sha256": "26141fb2d16a79fa7d74c0f99e489f3cec5ce917a52c9f845ab123d83966f24f", "cards": ["ludwig-rifle-effect", "repeating-pistol-effect"] },
-    { "id": "photo-231000", "filename": "20261011_231000.jpg", "path": "참고자료/20261011_231000.jpg", "bytes": 5624680, "sha256": "7b2c0264b7e20a9b75edd369a4f2a5ec1c8ae81aa3f46dd2371ba60ef1c05d2f", "cards": ["repeating-pistol-prepare", "ludwig-rifle-prepare"] }
+    {
+      "id": "photo-230854",
+      "filename": "20261011_230854.jpg",
+      "path": "참고자료/적 카드/20261011_230854.jpg",
+      "bytes": 4777601,
+      "sha256": "83b15cd23ee231c17ae0f9a53cf3042f7fdabdeb0ac67eb740cc4709f74c1f48",
+      "cards": [
+        "iosefka-1-2",
+        "female-patient-a"
+      ]
+    },
+    {
+      "id": "photo-230907",
+      "filename": "20261011_230907.jpg",
+      "path": "참고자료/적 카드/20261011_230907.jpg",
+      "bytes": 5064243,
+      "sha256": "4d47649ab113b8765e73ef32c7785508102f02eb0667ca2ca97c4b8e01f32586",
+      "cards": [
+        "iosefka-3-4",
+        "female-patient-b"
+      ]
+    },
+    {
+      "id": "photo-230950",
+      "filename": "20261011_230950.jpg",
+      "path": "참고자료/화기/20261011_230950.jpg",
+      "bytes": 5406072,
+      "sha256": "cd292352d3fc7f35b95fa61664643b55e0241efe0111edc16e7e2b4356275a3f",
+      "cards": [
+        "ludwig-rifle-effect",
+        "repeating-pistol-effect"
+      ]
+    },
+    {
+      "id": "photo-231000",
+      "filename": "20261011_231000.jpg",
+      "path": "참고자료/화기/20261011_231000.jpg",
+      "bytes": 5624680,
+      "sha256": "7b2c0264b7e20a9b75edd369a4f2a5ec1c8ae81aa3f46dd2371ba60ef1c05d2f",
+      "cards": [
+        "repeating-pistol-prepare",
+        "ludwig-rifle-prepare"
+      ]
+    }
   ],
-  "sharedEnemyDeck": { "composition": { "basic": 3, "special": 2, "ability": 1 }, "source": "한국어 규칙서 20쪽 · 보스 이외 적의 공통 행동 덱" },
+  "sharedEnemyDeck": {
+    "composition": {
+      "basic": 3,
+      "special": 2,
+      "ability": 1
+    },
+    "source": "한국어 규칙서 20쪽 · 보스 이외 적의 공통 행동 덱"
+  },
   "enemyCards": [
     {
-      "id": "female-patient-a", "name": "여성 야수환자", "aliases": ["여성 야수 환자"], "sideId": "a", "sideLabel": "A · 촬영 순서 구분", "health": 3,
-      "source": { "kind": "user-photo", "photoId": "photo-230854", "position": "right", "title": "제공된 여성 야수환자 카드 · 첫 번째 사진 오른쪽", "image": "참고자료/20261011_230854.jpg" },
-      "basic": { "name": "발톱 가르기", "speed": 2, "damage": 2, "keywords": [], "rules": [] },
-      "special": { "name": "화혈병의 분노", "speed": 3, "damage": 2, "keywords": [], "rules": ["다른 적 행동 카드 1장을 공개합니다. 기본 공격이라면, 그 공격은 -2 피해를 줍니다. 특수 공격이나 전용 능력이라면, 그 공격/능력은 방해와 독을 획득합니다."] },
-      "ability": { "name": "화혈병", "dodgeSpeed": 3, "rules": ["사냥꾼은 공격으로 피해를 준다면, 회피(속도 3)하거나 (또는) 그만큼 피해를 받고 독에 걸려야 합니다."] }
+      "id": "female-patient-a",
+      "name": "여성 야수환자",
+      "aliases": [
+        "여성 야수 환자"
+      ],
+      "sideId": "a",
+      "sideLabel": "A · 촬영 순서 구분",
+      "health": 3,
+      "source": {
+        "kind": "user-photo",
+        "photoId": "photo-230854",
+        "position": "right",
+        "title": "제공된 여성 야수환자 카드 · 첫 번째 사진 오른쪽",
+        "image": "참고자료/적 카드/20261011_230854.jpg"
+      },
+      "basic": {
+        "name": "발톱 가르기",
+        "speed": 2,
+        "damage": 2,
+        "keywords": [],
+        "rules": []
+      },
+      "special": {
+        "name": "화혈병의 분노",
+        "speed": 3,
+        "damage": 2,
+        "keywords": [],
+        "rules": [
+          "다른 적 행동 카드 1장을 공개합니다. 기본 공격이라면, 그 공격은 -2 피해를 줍니다. 특수 공격이나 전용 능력이라면, 그 공격/능력은 방해와 독을 획득합니다."
+        ]
+      },
+      "ability": {
+        "name": "화혈병",
+        "dodgeSpeed": 3,
+        "rules": [
+          "사냥꾼은 공격으로 피해를 준다면, 회피(속도 3)하거나 (또는) 그만큼 피해를 받고 독에 걸려야 합니다."
+        ]
+      }
     },
     {
-      "id": "female-patient-b", "name": "여성 야수환자", "aliases": ["여성 야수 환자"], "sideId": "b", "sideLabel": "B · 촬영 순서 구분", "health": 3,
-      "source": { "kind": "user-photo", "photoId": "photo-230907", "position": "right", "title": "제공된 여성 야수환자 카드 · 두 번째 사진 오른쪽", "image": "참고자료/20261011_230907.jpg" },
-      "basic": { "name": "발톱 가르기", "speed": 2, "damage": 2, "keywords": [], "rules": [] },
-      "special": { "name": "붙잡고 토하기", "speed": 2, "damage": 3, "keywords": ["독", "기절"], "rules": ["회피할 수 없습니다."] },
-      "ability": { "name": "화혈병", "dodgeSpeed": 3, "rules": ["사냥꾼은 공격으로 피해를 준다면, 회피(속도 3)하거나 (또는) 그만큼 피해를 받고 독에 걸려야 합니다."] }
+      "id": "female-patient-b",
+      "name": "여성 야수환자",
+      "aliases": [
+        "여성 야수 환자"
+      ],
+      "sideId": "b",
+      "sideLabel": "B · 촬영 순서 구분",
+      "health": 3,
+      "source": {
+        "kind": "user-photo",
+        "photoId": "photo-230907",
+        "position": "right",
+        "title": "제공된 여성 야수환자 카드 · 두 번째 사진 오른쪽",
+        "image": "참고자료/적 카드/20261011_230907.jpg"
+      },
+      "basic": {
+        "name": "발톱 가르기",
+        "speed": 2,
+        "damage": 2,
+        "keywords": [],
+        "rules": []
+      },
+      "special": {
+        "name": "붙잡고 토하기",
+        "speed": 2,
+        "damage": 3,
+        "keywords": [
+          "독",
+          "기절"
+        ],
+        "rules": [
+          "회피할 수 없습니다."
+        ]
+      },
+      "ability": {
+        "name": "화혈병",
+        "dodgeSpeed": 3,
+        "rules": [
+          "사냥꾼은 공격으로 피해를 준다면, 회피(속도 3)하거나 (또는) 그만큼 피해를 받고 독에 걸려야 합니다."
+        ]
+      }
     },
     {
-      "id": "iosefka-hostile", "name": "이오세프카", "sideRole": "hunter-count", "healthByHunterCount": { "1": 10, "2": 10, "3": 18, "4": 18 }, "supportedHunterCount": 1,
-      "source": { "kind": "user-photo", "title": "제공된 이오세프카 전투 카드 · 인원별 양면", "faces": [ { "hunters": [1, 2], "photoId": "photo-230854", "position": "left", "health": 10, "image": "참고자료/20261011_230854.jpg" }, { "hunters": [3, 4], "photoId": "photo-230907", "position": "left", "health": 18, "image": "참고자료/20261011_230907.jpg" } ] },
-      "basic": { "name": "칼날 지팡이", "speed": 3, "damage": 2, "keywords": ["독"], "rules": [] },
-      "special": { "name": "이브리에타스의 전조", "speed": 2, "damage": 3, "keywords": ["방해"], "rules": ["이 칸에 있는 모든 사냥꾼을 대상으로 삼습니다.", "공격당한 사냥꾼은 1칸 멀리 이동합니다."] },
-      "ability": { "name": "야수 사냥의 단총", "dodgeSpeed": 3, "rules": ["사냥꾼이 회피(속도 3)하지 않으면, 사냥꾼의 공격을 방해합니다.", "다른 적 행동 카드 1장을 공개합니다."] }
+      "id": "iosefka-hostile",
+      "name": "이오세프카",
+      "sideRole": "hunter-count",
+      "healthByHunterCount": {
+        "1": 10,
+        "2": 10,
+        "3": 18,
+        "4": 18
+      },
+      "supportedHunterCount": 1,
+      "source": {
+        "kind": "user-photo",
+        "title": "제공된 이오세프카 전투 카드 · 인원별 양면",
+        "faces": [
+          {
+            "hunters": [
+              1,
+              2
+            ],
+            "photoId": "photo-230854",
+            "position": "left",
+            "health": 10,
+            "image": "참고자료/적 카드/20261011_230854.jpg"
+          },
+          {
+            "hunters": [
+              3,
+              4
+            ],
+            "photoId": "photo-230907",
+            "position": "left",
+            "health": 18,
+            "image": "참고자료/적 카드/20261011_230907.jpg"
+          }
+        ]
+      },
+      "basic": {
+        "name": "칼날 지팡이",
+        "speed": 3,
+        "damage": 2,
+        "keywords": [
+          "독"
+        ],
+        "rules": []
+      },
+      "special": {
+        "name": "이브리에타스의 전조",
+        "speed": 2,
+        "damage": 3,
+        "keywords": [
+          "방해"
+        ],
+        "rules": [
+          "이 칸에 있는 모든 사냥꾼을 대상으로 삼습니다.",
+          "공격당한 사냥꾼은 1칸 멀리 이동합니다."
+        ]
+      },
+      "ability": {
+        "name": "야수 사냥의 단총",
+        "dodgeSpeed": 3,
+        "rules": [
+          "사냥꾼이 회피(속도 3)하지 않으면, 사냥꾼의 공격을 방해합니다.",
+          "다른 적 행동 카드 1장을 공개합니다."
+        ]
+      }
     }
   ],
   "firearms": [
     {
-      "id": "ludwig-rifle", "name": "루드비히의 장총", "trigger": "enemy-enters", "damage": 2, "prepareCost": 2, "prepareOnTransform": false,
-      "rules": ["적 하나가 당신이 위치한 칸으로 이동해 들어올 때: 해당 적에게 2 피해를 줍니다.", "사냥꾼 차례: 카드 2장을 버리면서 준비합니다."],
-      "source": { "kind": "user-photo", "title": "제공된 루드비히의 장총 양면", "faces": [ { "photoId": "photo-230950", "side": "effect", "position": "루드비히의 장총 효과면", "image": "참고자료/20261011_230950.jpg" }, { "photoId": "photo-231000", "side": "prepare", "position": "right", "image": "참고자료/20261011_231000.jpg" } ] }
+      "id": "ludwig-rifle",
+      "name": "루드비히의 장총",
+      "trigger": "enemy-enters",
+      "damage": 2,
+      "prepareCost": 2,
+      "prepareOnTransform": false,
+      "rules": [
+        "적 하나가 당신이 위치한 칸으로 이동해 들어올 때: 해당 적에게 2 피해를 줍니다.",
+        "사냥꾼 차례: 카드 2장을 버리면서 준비합니다."
+      ],
+      "source": {
+        "kind": "user-photo",
+        "title": "제공된 루드비히의 장총 양면",
+        "faces": [
+          {
+            "photoId": "photo-230950",
+            "side": "effect",
+            "position": "루드비히의 장총 효과면",
+            "image": "참고자료/화기/20261011_230950.jpg"
+          },
+          {
+            "photoId": "photo-231000",
+            "side": "prepare",
+            "position": "right",
+            "image": "참고자료/화기/20261011_231000.jpg"
+          }
+        ]
+      }
     },
     {
-      "id": "repeating-pistol", "name": "교단의 연발총", "trigger": "enemy-basic", "interrupt": true, "prepareCost": 1, "prepareOnTransform": true,
-      "rules": ["적 하나가 기본 공격을 할 때: 해당 적을 자동으로 방해합니다.", "사냥꾼 차례: 카드 1장을 버리면서 준비하거나, 당신의 무기를 변형할 때 무료로 준비합니다."],
-      "source": { "kind": "user-photo", "title": "제공된 교단의 연발총 양면", "faces": [ { "photoId": "photo-230950", "side": "effect", "position": "교단의 연발총 효과면", "image": "참고자료/20261011_230950.jpg" }, { "photoId": "photo-231000", "side": "prepare", "position": "left", "image": "참고자료/20261011_231000.jpg" } ] }
+      "id": "repeating-pistol",
+      "name": "교단의 연발총",
+      "trigger": "enemy-basic",
+      "interrupt": true,
+      "prepareCost": 1,
+      "prepareOnTransform": true,
+      "rules": [
+        "적 하나가 기본 공격을 할 때: 해당 적을 자동으로 방해합니다.",
+        "사냥꾼 차례: 카드 1장을 버리면서 준비하거나, 당신의 무기를 변형할 때 무료로 준비합니다."
+      ],
+      "source": {
+        "kind": "user-photo",
+        "title": "제공된 교단의 연발총 양면",
+        "faces": [
+          {
+            "photoId": "photo-230950",
+            "side": "effect",
+            "position": "교단의 연발총 효과면",
+            "image": "참고자료/화기/20261011_230950.jpg"
+          },
+          {
+            "photoId": "photo-231000",
+            "side": "prepare",
+            "position": "left",
+            "image": "참고자료/화기/20261011_231000.jpg"
+          }
+        ]
+      }
     },
     {
-      "id": "flamesprayer", "name": "화염방사기", "trigger": "hunter-turn", "speed": 2, "damage": 2, "interrupt": true, "splash": 1, "prepareCost": 2, "prepareOnTransform": false,
-      "rules": ["속도 2, 피해 2, 방해. 같은 칸의 다른 모든 적에게 피해 1을 줍니다.", "사냥꾼 차례에 카드 2장을 버려 준비합니다."],
-      "source": { "kind": "user-text", "title": "사용자가 직접 전사한 화염방사기 효과·준비 조건", "date": "2026-10-11", "image": null, "text": "속도2피해2방해,같은칸다른모든적피해1; 자기차례2장버려준비.", "note": "사진은 제공되지 않았으며 사용자 직접 전사를 보존했습니다. 표시용 규칙의 띄어쓰기는 정리했습니다." }
+      "id": "flamesprayer",
+      "name": "화염방사기",
+      "trigger": "hunter-turn",
+      "speed": 2,
+      "damage": 2,
+      "interrupt": true,
+      "splash": 1,
+      "prepareCost": 2,
+      "prepareOnTransform": false,
+      "rules": [
+        "속도 2, 피해 2, 방해. 같은 칸의 다른 모든 적에게 피해 1을 줍니다.",
+        "사냥꾼 차례에 카드 2장을 버려 준비합니다."
+      ],
+      "source": {
+        "kind": "user-text",
+        "title": "사용자가 직접 전사한 화염방사기 효과·준비 조건",
+        "date": "2026-10-11",
+        "image": null,
+        "text": "속도2피해2방해,같은칸다른모든적피해1; 자기차례2장버려준비.",
+        "note": "사진은 제공되지 않았으며 사용자 직접 전사를 보존했습니다. 표시용 규칙의 띄어쓰기는 정리했습니다."
+      }
     }
   ],
-  "scope": { "clericBeast": "별도 boss-components.js와 components/cleric-beast-source.txt에서 처리", "friendlyIosefka": "평화로운 NPC 치유 효과 자료는 포함되지 않음", "femaleSideChoice": "사진에는 면 선택 지시가 없으며 A/B는 페이즈가 아님" }
+  "scope": {
+    "clericBeast": "별도 boss-components.js와 components/cleric-beast-source.txt에서 처리",
+    "friendlyIosefka": "평화로운 NPC 치유 효과 자료는 포함되지 않음",
+    "femaleSideChoice": "사진에는 면 선택 지시가 없으며 A/B는 페이즈가 아님"
+  },
+  "sourceLayoutNote": "사진 출처는 참고자료/적 카드와 참고자료/화기의 사용자 정리본을 참조합니다. 루트의 이전 사본은 빌드에 포함하지 않습니다."
 }; if(typeof module!=="undefined" && module.exports) module.exports=data; else root.BBSuppliedComponents=data; })(typeof globalThis!=="undefined"?globalThis:this);
