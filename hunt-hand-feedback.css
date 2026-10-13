@@ -1,0 +1,90 @@
+/* Keep hand cards legible as their count grows; extra rows scroll vertically. */
+.hunt-main .hand-panel { container-type: inline-size; }
+.hunt-main .hand-panel #hand.cards {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 176px;
+  align-content: start;
+  gap: 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  padding: 2px 4px 6px;
+}
+.hunt-main .hand-panel #cardHint { display: block; font-size: 12px; line-height: 1.45; }
+.hunt-main .hand-panel #hand.cards .stat-card {
+  width: 100%;
+  min-width: 0;
+  height: 176px;
+  min-height: 176px;
+  padding: 10px 8px;
+  gap: 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+}
+.hunt-main .hand-panel #hand.cards .stat-card > small {
+  display: block;
+  font-size: 12px;
+  line-height: 1.35;
+  flex: 0 0 auto;
+}
+.hunt-main .hand-panel #hand.cards .stat-card b {
+  font-size: 16px;
+  line-height: 1.4;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  flex: 0 0 auto;
+}
+.hunt-main .hand-panel #hand.cards .stat-card span {
+  display: block;
+  font-size: 13px;
+  line-height: 1.5;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+  flex: 0 0 auto;
+}
+@container (max-width: 370px) {
+  .hunt-main .hand-panel #hand.cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container (max-width: 245px) {
+  .hunt-main .hand-panel #hand.cards { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* A filled slot remains readable and cannot look like an active selection. */
+.hunt-main #slots .hunt-slot.occupied:disabled {
+  opacity: 1;
+  cursor: not-allowed;
+  border-color: #a36f62;
+  background: repeating-linear-gradient(135deg, #342827, #342827 10px, #2a2323 10px, #2a2323 20px);
+  box-shadow: none;
+}
+.hunt-main #slots .hunt-slot.occupied .slot-state { color: #efb7a7; font-weight: 700; }
+.hunt-main #slots .hunt-slot small { font-size: 11px; line-height: 1.5; }
+.hunt-main #slots .hunt-slot b { font-size: 15px; line-height: 1.4; }
+.hunt-main #slots .hunt-slot > span { font-size: 13px; line-height: 1.5; }
+
+/* One modest text step across the play HUD; map targets keep their physical size. */
+.hunt-screen .top-actions button { font-size: 13px; }
+.hunt-screen .hunt-main { font-size: 14px; }
+.hunt-main .panel-heading h2 { font-size: 14px; }
+.hunt-main #phaseHelp, .hunt-main #decisions .muted,
+.hunt-main .weapon-rules, .hunt-main #weaponAbility,
+.hunt-main .firearm-rules, .hunt-main .gun-panel p,
+.hunt-main #deckCount, .hunt-main .slot-hint { font-size: 12px; line-height: 1.5; }
+.hunt-main .gun-panel > button, .hunt-main #decisions button,
+.hunt-main #mapContext button { font-size: 13px; line-height: 1.5; }
+.hunt-main .weapon-panel h2, .hunt-main .gun-panel h2 { font-size: 16px; line-height: 1.4; }
+.hunt-main #weaponFace, .hunt-main .gun-panel h2 small { font-size: 12px; }
+.hunt-main .hunter-status p { font-size: 12px; line-height: 1.45; }
+.hunt-main .mission-objective > span, .hunt-main .chapter-conditions,
+.hunt-main .roster-marker, .hunt-main .mission-summary-foot { font-size: 12px; line-height: 1.45; }
+.hunt-main .mission-objective b, .hunt-main .enemy-roster-entry strong { font-size: 14px; line-height: 1.45; }
+@media (max-width: 800px) {
+  .hunt-screen .top-actions button { font-size: 12px; }
+  .hunt-main #slots .hunt-slot small { font-size: 10px; }
+  .hunt-main #slots .hunt-slot b { font-size: 13px; }
+  .hunt-main #slots .hunt-slot > span { font-size: 12px; }
+}

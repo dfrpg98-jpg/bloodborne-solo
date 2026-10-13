@@ -127,18 +127,21 @@ test('actual movement animates the existing sprite and returns to idle on comple
   assert.equal(h.plays.at(-1), 'bb-hunter-idle');
 });
 
-test('camera movement during walking cancels the old tween and snaps the public position', () => {
+test('camera movement during walking replaces the old tween at the same progress without snapping to arrival', () => {
   const f = fixture(); f.boot();
   f.adapter.sync({ revision: 1, actors: [hunter()] });
   f.adapter.sync({ revision: 2, actors: [hunter(180)], action: { type: 'move', fromId: 'hunter' } });
   const movement = f.tweens.find(t => t.targets === f.sprites[0]);
   f.adapter.sync({ revision: 2, actors: [hunter(100, 120)], action: { type: 'move', fromId: 'hunter' } });
   assert.equal(movement.killed, true);
-  assert.equal(f.sprites[0].x, 100);
+  assert.equal(f.sprites[0].x, 0, 'the visible departure point receives the same camera translation');
   assert.equal(f.sprites[0].y, 120);
-  assert.equal(f.sprites[0].plays.at(-1), 'bb-hunter-idle');
+  assert.equal(f.sprites[0].plays.at(-1), 'bb-hunter-walk');
   f.completeTween(movement);
+  assert.equal(f.sprites[0].x, 0, 'the obsolete tween cannot snap to its old destination');
+  f.completeTween(f.tweens.at(-1));
   assert.equal(f.sprites[0].x, 100);
+  assert.equal(f.sprites[0].plays.at(-1), 'bb-hunter-idle');
   assert.equal(f.adapter.status().moves, 1);
 });
 
@@ -272,6 +275,8 @@ test('a newer revision cancels deferred visuals rather than replaying stale comb
   assert.equal(timer.removed, true);
   f.fireTimer(timer);
   assert.equal(f.adapter.status().attacks, 0);
+  assert.equal(f.sprites[0].plays.at(-1), 'bb-hunter-walk');
+  f.completeTween(f.tweens.at(-1));
   assert.equal(f.sprites[0].plays.at(-1), 'bb-hunter-idle');
 });
 

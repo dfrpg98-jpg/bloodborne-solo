@@ -1,9 +1,10 @@
 (function (root, factory) {
   "use strict";
-  const api = factory();
+  const api = factory(typeof module === "object" && module.exports
+    ? require("./hunt-enemy-mission-effects") : root.BBEnemyMissionEffects);
   if (typeof module === "object" && module.exports) module.exports = api;
   else root.BBHuntMissionFeedback = api;
-})(typeof globalThis !== "undefined" ? globalThis : this, function () {
+})(typeof globalThis !== "undefined" ? globalThis : this, function (enemyEffects) {
   "use strict";
   // Presentation only. A caller observes accepted command transitions; this
   // module never dispatches, reads storage, changes a save, or replays history.
@@ -92,6 +93,18 @@
       add("chapter", objective, `챕터 ${chapter} 완수`,
         next.result === "campaign-win" ? "기나긴 사냥의 모든 챕터를 완수했습니다." : `챕터 ${chapter}의 사냥을 완수했습니다.`, "won");
     }
+    if (sameChapter && enemyEffects) {
+      const priorEffects = new Map(enemyEffects.describe(previous, E).map(change => [change.enemyId, change]));
+      for (const change of enemyEffects.describe(next, E)) {
+        if (priorEffects.get(change.enemyId)?.signature === change.signature) continue;
+        const existing = events.find(event => event.objectiveId === change.objectiveId);
+        const effects = [change.description, ...change.effects];
+        if (existing) existing.effects = [...(existing.effects || []), ...effects];
+        else events.push({ key: `${chapter}:enemy-effect:${change.enemyId}:${change.signature}`,
+          kind: "updated", title: change.title, description: change.description,
+          objectiveId: change.objectiveId, effects: change.effects });
+      }
+    }
     // Effects are actual state deltas, attached once even when one command
     // completes several missions. No future reward or unopened branch is read.
     if (sameChapter && events.length) {
@@ -101,7 +114,10 @@
         const name = data?.tiles?.find(definition => definition.id === tile)?.name;
         if (name) effects.push(`${name}의 안개가 걷혔습니다.`);
       }
-      if (effects.length) (events.find(event => event.kind === "completed") || events[0]).effects = effects;
+      if (effects.length) {
+        const event = events.find(event => event.kind === "completed") || events[0];
+        event.effects = [...(event.effects || []), ...effects];
+      }
     }
     return events;
   }

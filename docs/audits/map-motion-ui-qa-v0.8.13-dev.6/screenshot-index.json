@@ -1,0 +1,727 @@
+{
+  "originalBytesPreserved": true,
+  "rawLocalEvidenceRetained": true,
+  "captureTiming": "Index preserves filename order. Exact per-frame times are not reconstructed from file modification timestamps.",
+  "files": [
+    {
+      "path": "browser/burial-0-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "burial:face0",
+      "sha256": "3904861d732b0f21a5868666b2bbec8f83077979a0e1afcef6300fb499964755",
+      "bytes": 152898
+    },
+    {
+      "path": "browser/burial-0-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "burial:face0",
+      "sha256": "9cc97a3baa3aa54093e582ca8931f71aeb3fc8b9efb91fb102f2f8b0456459df",
+      "bytes": 154545
+    },
+    {
+      "path": "browser/burial-0-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "burial:face0",
+      "sha256": "0e7c57b551a554a38e735fbec102d36cc224b426813aa305e7c2c1c8bc017936",
+      "bytes": 153977
+    },
+    {
+      "path": "browser/beast-claw-0-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "beast-claw:face0",
+      "sha256": "62cd507ccf5df600098126edaea0d24fedfecba54d3b9c997763b630f23d0b0d",
+      "bytes": 154241
+    },
+    {
+      "path": "browser/beast-claw-0-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "beast-claw:face0",
+      "sha256": "fc8b502053233d526a933ab645bd2fda8d14abaa24e67317e904e982aaae2eea",
+      "bytes": 152800
+    },
+    {
+      "path": "browser/beast-claw-0-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "beast-claw:face0",
+      "sha256": "0c5c6333bc820f9c64fb7489bf56438d862f8e9512139a3355a081a4c3048473",
+      "bytes": 155327
+    },
+    {
+      "path": "browser/threaded-cane-0-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "threaded-cane:face0",
+      "sha256": "e156e2245c57a55b230c006fcc11faeabe5cabdfb6f3423fe4a0801c97fccf81",
+      "bytes": 159812
+    },
+    {
+      "path": "browser/threaded-cane-0-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "threaded-cane:face0",
+      "sha256": "26a847f210fdea022ba0520d055320545e4ff6f373bf27dacc56f4848adc1d8c",
+      "bytes": 159225
+    },
+    {
+      "path": "browser/threaded-cane-0-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "threaded-cane:face0",
+      "sha256": "e151b71311faf99a7fd83c9c3dc36a7fb3fd4289507f4bb2d3663547b5860479",
+      "bytes": 158918
+    },
+    {
+      "path": "browser/hunter-axe-0-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "hunter-axe:face0",
+      "sha256": "b2ef1eaeee72b3ee85a504bb62318600ebb21bbeb6adf3d610679a0ae94a1e8c",
+      "bytes": 153008
+    },
+    {
+      "path": "browser/hunter-axe-0-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "hunter-axe:face0",
+      "sha256": "d6efeec89b1e9592958c16781e5bc3e8778072f8279f03998ff0bffb9435c2b5",
+      "bytes": 154133
+    },
+    {
+      "path": "browser/hunter-axe-0-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "hunter-axe:face0",
+      "sha256": "3e2865401fdd002810f41735482a85464fb44c2894c409941bf81aa722178ba5",
+      "bytes": 152194
+    },
+    {
+      "path": "browser/rifle-spear-0-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "rifle-spear:face0",
+      "sha256": "96a4bb699b09cd9f07dafe922b75303a0fcd3ab6ec2e93333d24604877ef105c",
+      "bytes": 153567
+    },
+    {
+      "path": "browser/rifle-spear-0-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "rifle-spear:face0",
+      "sha256": "dceb2092770daa5d0c4d54bf68ed359c75a126b40e7d5b9484081407f2f2c0dc",
+      "bytes": 152443
+    },
+    {
+      "path": "browser/rifle-spear-0-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "rifle-spear:face0",
+      "sha256": "a83cdcd96a22b815f7f3fb764ef4750e6659da6e984f52ace5df64132f6cff37",
+      "bytes": 152600
+    },
+    {
+      "path": "browser/saw-spear-0-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "saw-spear:face0",
+      "sha256": "9bec195336b2f8d3b48f0dfc76809ae1615b995e488c174e3046dbbba64e5109",
+      "bytes": 152449
+    },
+    {
+      "path": "browser/saw-spear-0-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "saw-spear:face0",
+      "sha256": "004f472fbe41073af33ecc86b8e8cf1eaf4b1bc18be6aa958aefdd68fce36e9c",
+      "bytes": 152421
+    },
+    {
+      "path": "browser/saw-spear-0-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "saw-spear:face0",
+      "sha256": "e5c250bb7eca5c3edfa37a872fa1afb31cf49fb7f1da9d53ff02db94e9d29604",
+      "bytes": 151914
+    },
+    {
+      "path": "browser/uncanny-ludwigs-holy-blade-0-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "uncanny-ludwigs-holy-blade:face0",
+      "sha256": "0a1e2c76fb7440da1101d8bce74f6188a5229af0463b9ccb023dfbce5299b978",
+      "bytes": 155719
+    },
+    {
+      "path": "browser/uncanny-ludwigs-holy-blade-0-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "uncanny-ludwigs-holy-blade:face0",
+      "sha256": "cafcb9b2fbde6f9de0089cc7d6b1d6cd37db3e44c7a4160fff28bc3d8de40e9b",
+      "bytes": 152552
+    },
+    {
+      "path": "browser/uncanny-ludwigs-holy-blade-0-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "uncanny-ludwigs-holy-blade:face0",
+      "sha256": "77f06733af7ee5a29ebb65749cecd43fd9f5b7d471e4281da198d774f89fa302",
+      "bytes": 155284
+    },
+    {
+      "path": "browser/tonitrus-0-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "tonitrus:face0",
+      "sha256": "4a33449f5d635c357b2ce8ed23313836f6427176376eac3dbd76cae890bf6258",
+      "bytes": 153588
+    },
+    {
+      "path": "browser/tonitrus-0-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "tonitrus:face0",
+      "sha256": "c946543494e3b9c2c1f3df5c2d1e29742c8b27b56fa886e378cfe0c19d091628",
+      "bytes": 153571
+    },
+    {
+      "path": "browser/tonitrus-0-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "tonitrus:face0",
+      "sha256": "06784f1e023e6277a5446787421eea395a209e7863b0ba1785cd5ae0292bb116",
+      "bytes": 152890
+    },
+    {
+      "path": "browser/blade-of-mercy-0-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "blade-of-mercy:face0",
+      "sha256": "b7df6a5d1026f6c33fab66a9ca61b48f496546aa39349cf1d8218e6abe9fe083",
+      "bytes": 152592
+    },
+    {
+      "path": "browser/blade-of-mercy-0-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "blade-of-mercy:face0",
+      "sha256": "26bd57ffb9f2b891a98adc38c408bf88ceaef5b0abd7ce5417ee679fd5c9c5a9",
+      "bytes": 153390
+    },
+    {
+      "path": "browser/blade-of-mercy-0-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "blade-of-mercy:face0",
+      "sha256": "04bd2d87e766e573e8366689b944fcd436552eb904d2b0d237b31e7ef13de54e",
+      "bytes": 151737
+    },
+    {
+      "path": "browser/ludwigs-holy-blade-0-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "ludwigs-holy-blade:face0",
+      "sha256": "a515b97164045edf9d0ae266045f3fdb8d5cd736bd96f9fe3ae9647c8e86af52",
+      "bytes": 153095
+    },
+    {
+      "path": "browser/ludwigs-holy-blade-0-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "ludwigs-holy-blade:face0",
+      "sha256": "e3a31f2f08c0899c7abb965528774388851581766b080532a3fe1853eb08fb09",
+      "bytes": 156729
+    },
+    {
+      "path": "browser/ludwigs-holy-blade-0-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "ludwigs-holy-blade:face0",
+      "sha256": "f8138f917867113e29f5583cfcefeba8594b0eaaa520bafcc07b252039ed3b82",
+      "bytes": 148634
+    },
+    {
+      "path": "browser/logarius-wheel-0-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "logarius-wheel:face0",
+      "sha256": "0a18bf0b188197695abe68032bf36882674c2d809631f64983c81c818c20c3a2",
+      "bytes": 151879
+    },
+    {
+      "path": "browser/logarius-wheel-0-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "logarius-wheel:face0",
+      "sha256": "670537cf9ca71c64486c033de5e8af227d5ac86795116bca5fc8a17fe3909606",
+      "bytes": 159157
+    },
+    {
+      "path": "browser/logarius-wheel-0-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "logarius-wheel:face0",
+      "sha256": "caf845c624748794100b4d2292d87c76989cb3f21af5daf1be4f2d22b1163099",
+      "bytes": 151153
+    },
+    {
+      "path": "browser/kirkhammer-0-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "kirkhammer:face0",
+      "sha256": "b314a5c16071276472c9b69223fcb78a1fa46e537b910c163d148ef93eef3d66",
+      "bytes": 153443
+    },
+    {
+      "path": "browser/kirkhammer-0-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "kirkhammer:face0",
+      "sha256": "17def9bbc42799a68d0492a1b424d72323697d2948f96d6ce32a74dccdcdad60",
+      "bytes": 152474
+    },
+    {
+      "path": "browser/kirkhammer-0-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "kirkhammer:face0",
+      "sha256": "9da338a0aa47c1fe1e40693de78cff3e059bd5c4455e92f517270b67816afe75",
+      "bytes": 152546
+    },
+    {
+      "path": "browser/stake-driver-0-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "stake-driver:face0",
+      "sha256": "0f4296a5fcaf2c09d2737b193b553f7060af042b1a70b20b6da2f748d0488364",
+      "bytes": 153524
+    },
+    {
+      "path": "browser/stake-driver-0-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "stake-driver:face0",
+      "sha256": "07da5d74c2bb659f948e378505880c3f7b400c31d8e4e837046fa5a6c31dd36d",
+      "bytes": 149332
+    },
+    {
+      "path": "browser/stake-driver-0-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "stake-driver:face0",
+      "sha256": "22d3c2f98b7f7e9e222b740537f67b47391e11adcdc9887f6a21432ad257227d",
+      "bytes": 152653
+    },
+    {
+      "path": "browser/chikage-0-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "chikage:face0",
+      "sha256": "a1b805f6ed712543c3c31cd708ed453e62c10c0dc7618f69107c83a5f0e34894",
+      "bytes": 156625
+    },
+    {
+      "path": "browser/chikage-0-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "chikage:face0",
+      "sha256": "dd6796397164b3e4c52a4557a97269ae996b98dc2e843c0459f132f455a4b2f3",
+      "bytes": 153147
+    },
+    {
+      "path": "browser/chikage-0-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "chikage:face0",
+      "sha256": "47967fb078f0bad64ff2ffbfaeb332a22ae96567c224e4085f15b9c558e6bec7",
+      "bytes": 153973
+    },
+    {
+      "path": "browser/reiterpallasch-0-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "reiterpallasch:face0",
+      "sha256": "b07fcc9cefb5ee207651a24e67c62f96eaf24146c4cd9a2e6d3a085686bda28e",
+      "bytes": 153904
+    },
+    {
+      "path": "browser/reiterpallasch-0-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "reiterpallasch:face0",
+      "sha256": "868b8b800472f5de1102d3a4e9acde5538bf8bcfe54bc75a09fb2945bfdb3796",
+      "bytes": 157585
+    },
+    {
+      "path": "browser/reiterpallasch-0-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "reiterpallasch:face0",
+      "sha256": "62c46d54644f051d541fd1f5044da7b06352424c0a87a8c71970a21d556869df",
+      "bytes": 154767
+    },
+    {
+      "path": "browser/burial-1-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "burial:face1",
+      "sha256": "dc5dc3575ec3e38e3a8712989d7f74a30eb8f160d1bc0f5be831cc13eb78ca90",
+      "bytes": 154395
+    },
+    {
+      "path": "browser/burial-1-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "burial:face1",
+      "sha256": "50d954cf0f00ca385aa7b8b85e7e1700caa6fb50db04c04abff217a64b92a884",
+      "bytes": 152817
+    },
+    {
+      "path": "browser/burial-1-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "burial:face1",
+      "sha256": "9e9b3459d01228ecf2ac4be7b0dea6828a86eff870e6b71b7b1f53894f5586e6",
+      "bytes": 155266
+    },
+    {
+      "path": "browser/beast-claw-1-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "beast-claw:face1",
+      "sha256": "3eb9e723c60db8aeae9b6e3a0f765e6f17a63885f3c6b285503a32be70d1a09a",
+      "bytes": 152651
+    },
+    {
+      "path": "browser/beast-claw-1-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "beast-claw:face1",
+      "sha256": "f716d8f0405692bab73919b936aac51623fc0d1d571b2058730873bb3508ce98",
+      "bytes": 154390
+    },
+    {
+      "path": "browser/beast-claw-1-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "beast-claw:face1",
+      "sha256": "ed49c132a3cf4df876a2474a836cd2042d75df6333efe684eced328ffd299025",
+      "bytes": 151771
+    },
+    {
+      "path": "browser/threaded-cane-1-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "threaded-cane:face1",
+      "sha256": "52496bcdfafb01285261ada9c620a40f609993329625299a4a0898092a3c3947",
+      "bytes": 159143
+    },
+    {
+      "path": "browser/threaded-cane-1-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "threaded-cane:face1",
+      "sha256": "876587868be715a56ad6fe91c738ed3cf1062c590e6e26c5492eddefecccbe61",
+      "bytes": 159849
+    },
+    {
+      "path": "browser/threaded-cane-1-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "threaded-cane:face1",
+      "sha256": "4a04c3c0876e163ed7aacd08c2c67045479e46261cb14486a979795410715dbd",
+      "bytes": 158209
+    },
+    {
+      "path": "browser/hunter-axe-1-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "hunter-axe:face1",
+      "sha256": "33de0eb855e5329810cf9eb64c1d1f0a8d789e5f28f097d79cd01c1f0d4d9e7e",
+      "bytes": 154170
+    },
+    {
+      "path": "browser/hunter-axe-1-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "hunter-axe:face1",
+      "sha256": "e6d2ace8f3c8bbb5d4b2cab4e06b1c2f666febec05f0d75089606169e5b5733b",
+      "bytes": 153034
+    },
+    {
+      "path": "browser/hunter-axe-1-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "hunter-axe:face1",
+      "sha256": "608eb5578d56a5c1594f668b7f4329a0e00eb2c2e51a77c01fbc91b5b9a1c413",
+      "bytes": 153202
+    },
+    {
+      "path": "browser/rifle-spear-1-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "rifle-spear:face1",
+      "sha256": "04894f2afeea6b131ecb800e058e412e4261aa710582ef2b49c5b23d3233de5a",
+      "bytes": 152084
+    },
+    {
+      "path": "browser/rifle-spear-1-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "rifle-spear:face1",
+      "sha256": "4b600b0cea7d92d34efba6cb522025f990a99bea02b96ccaf5df9c3e573a0fb0",
+      "bytes": 153513
+    },
+    {
+      "path": "browser/rifle-spear-1-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "rifle-spear:face1",
+      "sha256": "d69eb1553be0ff6dd16f88a9a47f7efc3af6a234fb6b62c50d5ce38d86d16a5e",
+      "bytes": 151168
+    },
+    {
+      "path": "browser/saw-spear-1-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "saw-spear:face1",
+      "sha256": "4ee27de7e50511c547799fbc41622d5bb5ddec9ef81926c6b4761a9550390ee6",
+      "bytes": 152121
+    },
+    {
+      "path": "browser/saw-spear-1-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "saw-spear:face1",
+      "sha256": "bb0cdd2e03c9cbecb4e0f0d70e8458afeb118a76286ae5125eed4c962f73a897",
+      "bytes": 152601
+    },
+    {
+      "path": "browser/saw-spear-1-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "saw-spear:face1",
+      "sha256": "bcf46c64bdf8198f4b80fa4a0fc55a27660301252ad0b56d13511dc4fc57177f",
+      "bytes": 151700
+    },
+    {
+      "path": "browser/uncanny-ludwigs-holy-blade-1-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "uncanny-ludwigs-holy-blade:face1",
+      "sha256": "90f92100b91dabf3a51c1b68354016bd9cf3d41f16914e9f01b206a0f9b9ea0c",
+      "bytes": 152328
+    },
+    {
+      "path": "browser/uncanny-ludwigs-holy-blade-1-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "uncanny-ludwigs-holy-blade:face1",
+      "sha256": "32f7759d355b5b29fe1596ad933143531a6f53c8789b51b4dc9b6bbd191b6b14",
+      "bytes": 155896
+    },
+    {
+      "path": "browser/uncanny-ludwigs-holy-blade-1-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "uncanny-ludwigs-holy-blade:face1",
+      "sha256": "ae86af4728cb3f5aeedfd0e61619056f9a41afb5df80b787a01bdba4b748e2c7",
+      "bytes": 150097
+    },
+    {
+      "path": "browser/tonitrus-1-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "tonitrus:face1",
+      "sha256": "a5faf2563282cbdd1d3a47ad7987ad7e1141ae93ba7b6c555cfbe5df6f84ff80",
+      "bytes": 153392
+    },
+    {
+      "path": "browser/tonitrus-1-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "tonitrus:face1",
+      "sha256": "3025cec5098b5ad2d925974fc5f74dd9afdd8d12da18a4d2304ff90c5d2bb4a6",
+      "bytes": 153634
+    },
+    {
+      "path": "browser/tonitrus-1-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "tonitrus:face1",
+      "sha256": "965227d3f7e2ed5d39e608cf2b3bf00fe8c851bf04ac2c91edada4c60fc623ed",
+      "bytes": 152529
+    },
+    {
+      "path": "browser/blade-of-mercy-1-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "blade-of-mercy:face1",
+      "sha256": "4512236a467c70551fb2eabd29a95e1993641004eed43e6f8c5ab46fb60479e8",
+      "bytes": 153195
+    },
+    {
+      "path": "browser/blade-of-mercy-1-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "blade-of-mercy:face1",
+      "sha256": "095e09d47278e3518b42152025e86d0dcf4c60ef9466058056ec6c7e6a79fb0f",
+      "bytes": 152630
+    },
+    {
+      "path": "browser/blade-of-mercy-1-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "blade-of-mercy:face1",
+      "sha256": "1e0f1c70689576e2f73de4d0ac90ad06529ba5f8818b9eed0e982db0d89764e6",
+      "bytes": 152289
+    },
+    {
+      "path": "browser/ludwigs-holy-blade-1-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "ludwigs-holy-blade:face1",
+      "sha256": "faca5bcfd1929e26034231a4d7ba89d69439fb3bc5d5f4f82dc822e26e61af7c",
+      "bytes": 156234
+    },
+    {
+      "path": "browser/ludwigs-holy-blade-1-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "ludwigs-holy-blade:face1",
+      "sha256": "7b56e035ac40c3c8428d9a135876f20864584bd5f19542bbaa3af64ff9c8bdcc",
+      "bytes": 153219
+    },
+    {
+      "path": "browser/ludwigs-holy-blade-1-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "ludwigs-holy-blade:face1",
+      "sha256": "0eaa981c3e5e22bb00e3423d35da4c98f94f3ee46f47c94197a783209df68930",
+      "bytes": 155718
+    },
+    {
+      "path": "browser/logarius-wheel-1-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "logarius-wheel:face1",
+      "sha256": "c91209eed954d3118b08245a8e7e0e4240116e9cfb6bf1d28d24fd1dfd8093fc",
+      "bytes": 158964
+    },
+    {
+      "path": "browser/logarius-wheel-1-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "logarius-wheel:face1",
+      "sha256": "4fa296321652998bd8b1062da42be45a1503899afe1e858d40a4bd67369327fc",
+      "bytes": 151974
+    },
+    {
+      "path": "browser/logarius-wheel-1-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "logarius-wheel:face1",
+      "sha256": "ee4a4c604c2f9aecb234bcdb00392c5da19dea77ffd85509c3072868d90d59fc",
+      "bytes": 158307
+    },
+    {
+      "path": "browser/kirkhammer-1-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "kirkhammer:face1",
+      "sha256": "2c4c93c21e188fe972a23ebd9ebe8a14020985a221df6f61a63a0df5e7cf1899",
+      "bytes": 152350
+    },
+    {
+      "path": "browser/kirkhammer-1-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "kirkhammer:face1",
+      "sha256": "d73a6aeec4599a451ca29ff379cdacee70b1c35de4c798c52c668533b295a64a",
+      "bytes": 153580
+    },
+    {
+      "path": "browser/kirkhammer-1-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "kirkhammer:face1",
+      "sha256": "f51810b2a86a056b41d99513a4b0b2861a46d04e3afd6f4eb61b303251f4b82a",
+      "bytes": 152001
+    },
+    {
+      "path": "browser/stake-driver-1-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "stake-driver:face1",
+      "sha256": "7cde510c52f1b949aca7ed773d9b4eb803d58cefb8df83e16dba7b74aadfe5eb",
+      "bytes": 149243
+    },
+    {
+      "path": "browser/stake-driver-1-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "stake-driver:face1",
+      "sha256": "1de5b8675b242785f3e71e167a967d97b6124c06d257acb3306e402822afe1a9",
+      "bytes": 153723
+    },
+    {
+      "path": "browser/stake-driver-1-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "stake-driver:face1",
+      "sha256": "287c62fb10c0d1e9320e60e1c4d1a46a30e3addf438de9a2d113633b4f9e69f9",
+      "bytes": 150053
+    },
+    {
+      "path": "browser/chikage-1-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "chikage:face1",
+      "sha256": "eaa812a76013895019f66f7e563bc52d47b2fb393f3f1b872adfb990a2e30f5b",
+      "bytes": 152941
+    },
+    {
+      "path": "browser/chikage-1-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "chikage:face1",
+      "sha256": "1af0ee38e90836e02d5590e9227bc1dbfd8ad99ec9cb49b44f0b84848a53b541",
+      "bytes": 156773
+    },
+    {
+      "path": "browser/chikage-1-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "chikage:face1",
+      "sha256": "69048ce59e07c6ad9cfc87923567d3129a03360c51a2749a7f0e867df97da9f5",
+      "bytes": 152545
+    },
+    {
+      "path": "browser/reiterpallasch-1-chase.jpg",
+      "role": "pursuit in progress sample",
+      "profile": "reiterpallasch:face1",
+      "sha256": "87f7103025dcbd6fdce4bb8d5bb2c1461d00e3039a620176ce1abf0e6323aaaf",
+      "bytes": 157533
+    },
+    {
+      "path": "browser/reiterpallasch-1-transform-other.jpg",
+      "role": "other weapon form after transform",
+      "profile": "reiterpallasch:face1",
+      "sha256": "5094029b7d3ea81f6ef48624d2bc5814fd49339ccb810c2eaffaffd195538b7b",
+      "bytes": 153887
+    },
+    {
+      "path": "browser/reiterpallasch-1-combat-2.jpg",
+      "role": "one sampled combat pose, not every animation frame",
+      "profile": "reiterpallasch:face1",
+      "sha256": "6dc8e1b1b84d614eac5709951daae1d359b30ddf9c9186aede13007eb4e2fbb1",
+      "bytes": 157091
+    },
+    {
+      "path": "evidence/before-overlap-burial.jpg",
+      "role": "Observed crowded body overlap before layout correction; original seed is not asserted",
+      "sha256": "454ed85398799e85ae4c075c839500648b4be15457e9d5dbc6876db92484de4a",
+      "bytes": 144233
+    },
+    {
+      "path": "evidence/after-overlap-burial.jpg",
+      "role": "Body-aware layout after correction; camera framing differs from before",
+      "sha256": "7aed868d0a176a365d76d98e67e53c5282b197a4f2bf4f0a5db787a6a4794d63",
+      "bytes": 158985
+    },
+    {
+      "path": "evidence/burial-before-kill.jpg",
+      "role": "QA seed140 before lethal combat",
+      "sha256": "633c15b06583face6716b686deabf9194f5c6ac90c6c4a90a7199177efaf424f",
+      "bytes": 142403
+    },
+    {
+      "path": "evidence/burial-after-kill.jpg",
+      "role": "QA seed140 after lethal combat",
+      "sha256": "84a68a4dfe0a400d8ae91bd57c7103034c9bea8cd2f2fc3a52fa7f8aa36843f1",
+      "bytes": 142302
+    },
+    {
+      "path": "evidence/after-fix-before-kill.jpg",
+      "role": "Independent legal QA seed13 reproduction before lethal combat",
+      "sha256": "60b63abb03afc73fb3bc6f69408a09d2e45dda8376aff183843adad91ad40762",
+      "bytes": 156508
+    },
+    {
+      "path": "evidence/stake-driver-1-push-complete.jpg",
+      "role": "Mandatory knockback follow-up completed",
+      "sha256": "23693a1bcd0ef647899c1bdb8de837630ae1a0e2e6996fa77391c125f173a2fe",
+      "bytes": 147824
+    },
+    {
+      "path": "evidence/uncanny-1-free-transform.jpg",
+      "role": "Uncanny holy blade face1 free-transform follow-up completed",
+      "sha256": "4d89f51c23b371aaa1206d8ca863a1e42d6cb99f13745d6e6424c55e9264c16f",
+      "bytes": 155100
+    },
+    {
+      "path": "evidence/after-fix-kill-0.jpg",
+      "role": "Death/repacking temporal sequence sample 0; ordinal order, no inferred timestamp",
+      "sha256": "3fa9ceb89cebdb149fcba5c2204f959a954bd84cf20740871f7e7a0f3a5bce45",
+      "bytes": 156522
+    },
+    {
+      "path": "evidence/after-fix-kill-1.jpg",
+      "role": "Death/repacking temporal sequence sample 1; ordinal order, no inferred timestamp",
+      "sha256": "24be3eeeec65b491a792f9129e26302064ab33cebce6b7350514d685d46221dd",
+      "bytes": 156517
+    },
+    {
+      "path": "evidence/after-fix-kill-2.jpg",
+      "role": "Death/repacking temporal sequence sample 2; ordinal order, no inferred timestamp",
+      "sha256": "b33d6ab1323186278069ad02ffa9643c7a07eb2c6ebd142b63e00707a30a83ff",
+      "bytes": 155216
+    },
+    {
+      "path": "evidence/after-fix-kill-3.jpg",
+      "role": "Death/repacking temporal sequence sample 3; ordinal order, no inferred timestamp",
+      "sha256": "2ed377da0d5270212a39f87a6c4c054521c86e874a0bdc6d116135dd00dcad7a",
+      "bytes": 155045
+    },
+    {
+      "path": "evidence/after-fix-kill-4.jpg",
+      "role": "Death/repacking temporal sequence sample 4; ordinal order, no inferred timestamp",
+      "sha256": "884efbdd9d52617073583637e003757c34105b4d1e02cbb16c82349b2647e745",
+      "bytes": 155235
+    },
+    {
+      "path": "evidence/after-fix-kill-5.jpg",
+      "role": "Death/repacking temporal sequence sample 5; ordinal order, no inferred timestamp",
+      "sha256": "be128aebdf6f2337e24ea8235de64265b2d990f48ea322011727a13c6184dc68",
+      "bytes": 155097
+    },
+    {
+      "path": "evidence/after-fix-kill-6.jpg",
+      "role": "Death/repacking temporal sequence sample 6; ordinal order, no inferred timestamp",
+      "sha256": "89b05d83fa1c587e2c789456abcf801d50c2d51d41ab1c91f0eb9fa3a2780a88",
+      "bytes": 154818
+    },
+    {
+      "path": "evidence/after-fix-kill-7.jpg",
+      "role": "Death/repacking temporal sequence sample 7; ordinal order, no inferred timestamp",
+      "sha256": "51c87aa37843217c2cab17439f1b60981f0ecbe991cece06e49a5434c59e395c",
+      "bytes": 154897
+    }
+  ]
+}

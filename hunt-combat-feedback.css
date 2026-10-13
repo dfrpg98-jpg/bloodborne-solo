@@ -1,0 +1,46 @@
+.firearm-name-tooltip { position: relative; cursor: help; text-decoration: underline dotted #dec079; text-underline-offset: 4px; }
+.firearm-name-tooltip:focus-visible { outline: 2px solid #dec079; outline-offset: 4px; border-radius: 2px; }
+.firearm-effect-tooltip { display: none; position: absolute; top: calc(100% + 10px); left: 0; z-index: 45; width: max-content; max-width: min(330px, 76vw); padding: 12px 14px; border: 1px solid #ac9265; border-radius: 5px; background: #101d24; color: #f1e6d0; box-shadow: 0 8px 26px #000b; font-size: 13px; line-height: 1.7; font-weight: 400; text-decoration: none; pointer-events: none; }
+.firearm-effect-tooltip > span { display: block; }
+.firearm-effect-tooltip > span + span { margin-top: 8px; color: #c5d4dd; }
+.firearm-name-tooltip:hover .firearm-effect-tooltip, .firearm-name-tooltip:focus .firearm-effect-tooltip { display: block; }
+.combat-comparison { margin: 9px 0 14px; border: 1px solid #8b7760; border-radius: 5px; padding: 12px; background: #131e24; }
+.hunt-main #combatInfo .combat-opponent { margin: 0 0 8px; font-size: 15px; font-weight: 700; color: #f1ddb5; }
+.hunt-main #combatInfo .combat-order { margin: 0 0 12px; padding: 8px 10px; border-left: 3px solid #dec079; background: #d9b86b16; color: #f1ddb5; font-size: 13px; line-height: 1.6; }
+.combat-comparison-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.combat-side { min-width: 0; padding: 10px; border: 1px solid #647d87; border-radius: 4px; background: #1b2a31; }
+.combat-side-enemy { border-color: #a77167; background: #302523; }
+.combat-side h3 { margin: 0 0 9px; color: #bcdae4; font-size: 13px; line-height: 1.45; }
+.combat-side-enemy h3 { color: #ecc0b4; }
+.combat-action-name { display: block; margin: 0 0 8px; font-size: 15px; line-height: 1.5; color: #f4e8d4; overflow-wrap: anywhere; }
+.combat-stats { display: flex; flex-wrap: wrap; gap: 6px; margin: 7px 0 10px; }
+.combat-stats .enemy-action-stats { display: inline-block; padding: 4px 7px; border: 1px solid #78909a; border-radius: 3px; color: #d2e0e6; font-size: 12px; line-height: 1.5; }
+.combat-stats .enemy-action-stats b { margin-left: 3px; color: #ffe1a4; font-size: 18px; }
+.combat-effect-list { display: grid; gap: 8px; padding: 0; margin: 10px 0; list-style: none; }
+.combat-effect-list li { padding-left: 8px; border-left: 2px solid #9f8660; font-size: 12px; line-height: 1.7; overflow-wrap: anywhere; }
+.combat-effect-list li > strong, .combat-effect-list li > span { display: block; }
+.combat-effect-list li > strong { color: #f0d399; font-size: 13px; }
+.combat-effect-list li > span { color: #ded7ca; }
+.hunt-main #combatInfo .combat-no-effects, .hunt-main #combatInfo .combat-empty-action { margin: 9px 0; color: #adbdc5; font-size: 12px; line-height: 1.6; }
+.combat-rule-description { margin-top: 11px; border-top: 1px solid #61717a66; padding-top: 9px; }
+.hunt-main #combatInfo .combat-rules-caption { margin: 0 0 5px; font-size: 12px; color: #c4d0d6; }
+.combat-rule-description ul { padding-left: 17px; margin: 5px 0; font-size: 12px; line-height: 1.75; }
+.combat-rule-description li + li { margin-top: 6px; }
+.combat-applied-modifiers { margin: 8px 0 11px; padding: 8px 10px; border: 1px solid #a18d57; border-radius: 3px; background: #dec07918; color: #e9d8a8; }
+.combat-applied-modifiers > p { margin: 0 0 4px; font-size: 12px; font-weight: 700; }
+.combat-applied-modifiers ul { margin: 0; padding-left: 17px; font-size: 12px; line-height: 1.7; }
+.hunt-main #combatInfo .combat-weapon-effect { margin: 12px 0 0; font-size: 12px; line-height: 1.7; }
+.combat-weapon-effect > b, .combat-weapon-effect > span { display: block; }
+.combat-weapon-effect > b { margin-bottom: 4px; color: #e3ca96; }
+.combat-current-status { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; padding: 0; list-style: none; }
+.combat-current-status li { padding: 5px 8px; background: #dcc07e18; border: 1px solid #967f59; border-radius: 3px; font-size: 12px; line-height: 1.5; color: #ead6ad; }
+.enemy-mission-effects { margin: 10px 0 14px; padding: 10px 12px; border: 1px solid #b18a4e; border-radius: 4px; background: #c5964020; }
+.enemy-mission-effects h4 { margin: 0 0 7px; color: #efca80; font-size: 14px; }
+.enemy-mission-effects p { margin: 6px 0; font-size: 13px; line-height: 1.65; }
+.enemy-mission-effects p > strong, .enemy-mission-effects p > span { display: block; }
+.enemy-mission-effects p > span { margin-top: 4px; }
+#enemyDetailContent .combat-rule-description, .context-enemy-abilities .combat-rule-description { font-size: 13px; }
+#enemyDetailContent .combat-action-name, .context-enemy-abilities .combat-action-name { font-size: 14px; }
+.enemy-mission-target { margin-top: 18px; border-top: 1px solid #9b8258; padding-top: 14px; }
+.enemy-mission-target h3, .enemy-standard-definition { color: #e6c58b; font-size: 15px; }
+@media (max-width: 1100px) { .combat-comparison-grid { grid-template-columns: 1fr; } }

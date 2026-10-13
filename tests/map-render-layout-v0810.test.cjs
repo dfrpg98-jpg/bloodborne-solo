@@ -133,7 +133,13 @@ test('rotation changes presentation coordinates only and never logical nodes or 
   assert.equal(normal.length,rotated.length);
   normal.forEach((item,index)=>{
     assert.equal(rotated[index].node,item.node);assert.equal(rotated[index].id,item.id);
-    assert.deepEqual(point(rotated[index]),G.rotatePoint(point(item),1));
+    if(item.anchorKind&&item.anchorKind!=='space')
+      assert.deepEqual(point(rotated[index]),G.rotatePoint(point(item),1));
+    else {
+      // Free figures repack because their bodies stay upright on a rotated tile.
+      const spaceId=item.node.slice(item.node.indexOf(':')+1);
+      assert(contains(point(rotated[index]),G.polygon('tile-04',spaceId,1)));
+    }
   });
   assert.equal(JSON.stringify(actual),original);assert.equal(JSON.stringify(G.tiles),geometryBefore);
   assert(normal.every(item=>!('rules' in item)&&!('name' in item)&&!('card' in item)),
@@ -209,7 +215,71 @@ test('two or three survivors avoid full upright character and chest rectangles i
     const gold=result.find(item=>item.id==='gold-enemy'),purple=result.find(item=>item.id==='purple-enemy');
     assert.deepEqual(point(gold),G.rotatePoint([20,23],rotation));
     assert.deepEqual(point(purple),G.rotatePoint([79,23],rotation));
-    assert.deepEqual(point(result.find(item=>item.id==='hunter')),G.rotatePoint([50,24],rotation));
+    const hunter=result.find(item=>item.id==='hunter');
+    assert(contains(point(hunter),G.polygon('tile-03','room',rotation)));
+    if(!hunter.crowded) {
+      for(const other of result.filter(item=>item.id!==hunter.id))
+        assert.equal(intersectsBox(visualBox(hunter),visualBox(other)),0,
+          `rotation${rotation} hunter avoids full upright ${other.id}`);
+    } else assert(['body-overlap','body-outside-tile','spacing-reduced','cell-crowded'].includes(hunter.reason));
+  }
+});
+
+test('seed 13 pulled room enemies and hunter avoid complete bodies in the entry cell after rotation',()=>{
+  const input=frozen({tileId:'tile-03',enemies:[
+    {id:'huntsman-mob-1',node:'tile-03:entry',markerId:'gold'},
+    {id:'scourge-beast-1',node:'tile-03:entry',markerId:'purple'},
+  ],hunter:{id:'hunter',node:'tile-03:entry'},loot:['tile-03:room','tile-03:room'],
+  tokens:[{id:'rescue',node:'tile-03:room'}]});
+  const original=JSON.stringify(input);
+  // The old foot-circle-only positions passed their radius test but covered
+  // 306 tile-percent-squared of one another's upright body (18 x 17).
+  const oldA={type:'enemy',x:50,y:73},oldB={type:'enemy',x:50,y:59};
+  assert.equal(intersectsBox(visualBox(oldA),visualBox(oldB)),306);
+  for(const rotation of [0,1,2,3]) {
+    const result=L.layout({...input,rotation});
+    const actors=result.filter(item=>item.type==='enemy'||item.type==='hunter');
+    assert.equal(actors.length,3);
+    for(const actor of actors) {
+      assert.equal(actor.node,'tile-03:entry');
+      assert(contains(point(actor),G.polygon('tile-03','entry',rotation)));
+      assert(!actor.crowded,`rotation${rotation}/${actor.id} has enough body space`);
+      for(const other of result.filter(item=>item.id!==actor.id))
+        assert.equal(intersectsBox(visualBox(actor),visualBox(other)),0,
+          `rotation${rotation}/${actor.id} body overlaps ${other.id}`);
+    }
+    const chests=result.filter(item=>item.type==='chest');
+    assert.deepEqual(chests.map(point),[[37,37],[61,37]].map(p=>G.rotatePoint(p,rotation)));
+    assert.deepEqual(result,L.layout({...input,rotation,enemies:[...input.enemies].reverse()}));
+  }
+  assert.equal(JSON.stringify(input),original);
+});
+
+test('a moved enemy sorting before a printed occupant cannot cover its reserved upright body',()=>{
+  for(const rotation of [0,1,2,3]) {
+    const result=L.layout({tileId:'tile-11',rotation,enemies:[
+      {id:'a-moved',node:'tile-11:street',markerId:'unmatched'},
+      {id:'z-printed',node:'tile-11:street',markerId:'gold'},
+    ]});
+    const moved=result.find(item=>item.id==='a-moved'),printed=result.find(item=>item.id==='z-printed');
+    assert.deepEqual(point(printed),G.rotatePoint([51,34],rotation));
+    assert.equal(intersectsBox(visualBox(moved),visualBox(printed)),0);
+    assert(contains(point(moved),G.polygon('tile-11','street',rotation)));
+  }
+});
+
+test('an impossible body fit preserves all logical actors and reports crowding instead of pretending they fit',()=>{
+  const result=L.layout({tileId:'tile-12',enemies:[
+    {id:'large-1',node:'tile-12:middle-left',anchorKind:'lamp',visualWidth:65,visualHeight:45},
+    {id:'large-2',node:'tile-12:middle-left',markerId:'unmatched',visualWidth:65,visualHeight:45},
+  ],hunter:{id:'hunter',node:'tile-12:middle-left',visualWidth:65,visualHeight:45}});
+  const actors=result.filter(item=>item.type==='enemy'||item.type==='hunter');
+  assert.equal(actors.length,3);
+  assert.deepEqual(point(actors.find(item=>item.id==='large-1')),[32,51]);
+  assert(actors.some(item=>item.crowded));
+  for(const actor of actors) {
+    assert.equal(actor.node,'tile-12:middle-left');
+    assert(contains(point(actor),G.polygon('tile-12','middle-left')));
   }
 });
 
