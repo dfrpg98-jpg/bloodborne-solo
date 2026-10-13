@@ -27,9 +27,9 @@ async function screenshot(name){const file=name+'.png';await page.screenshot({pa
 async function saved(){const text=await page.evaluate(()=>localStorage.getItem('bloodborne-hunt-qa-v1'));assert(text,'QA save missing');return E.importSave(text);}
 async function clean(){assert.equal(await page.locator('#error').innerText(),'');}
 function sameState(actual,expected){const a=structuredClone(actual),b=structuredClone(expected);delete a.commands;delete b.commands;assert.deepEqual(a,b);}
-async function load(s){s=E.applyTileSpeedRuling(s);assert.deepEqual(E.importSave(E.exportSave(s)),s);await page.locator('#file').setInputFiles({name:'qa-browser-checkpoint.json',mimeType:'application/json',buffer:Buffer.from(E.exportSave(s))});
-  await page.waitForFunction(expected=>!document.querySelector('#setupDialog').open&&localStorage.getItem('bloodborne-hunt-qa-v1')===expected,E.exportSave(s));
-  await clean();assert.deepEqual(await saved(),s);return s;}
+async function load(s){const expected=E.applyTileSpeedRuling(s);assert.deepEqual(E.importSave(E.exportSave(s)),s);await page.locator('#file').setInputFiles({name:'qa-browser-checkpoint.json',mimeType:'application/json',buffer:Buffer.from(E.exportSave(s))});
+  await page.waitForFunction(expected=>!document.querySelector('#setupDialog').open&&localStorage.getItem('bloodborne-hunt-qa-v1')===expected,E.exportSave(expected));
+  await clean();assert.deepEqual(await saved(),expected);return expected;}
 async function acknowledge(){if(await page.locator('#missionUpdateDialog').evaluate(x=>x.open)){const before=E.exportSave(await saved());await page.locator('#missionUpdateContinue').click();assert.equal(E.exportSave(await saved()),before,'Acknowledging an alert spent an action');}}
 async function clickCommand(command){
   if(command.type==='USE_CONSUMABLE'){
@@ -85,6 +85,7 @@ function summary(s){const e=s.combat&&s.enemies.find(e=>e.id===s.combat.enemyId)
         await screenshot('mission-'+card+'-corrected-special');
         const before=summary(s);s=await transition(s,{type:'RESOLVE'});await acknowledge();
         await screenshot('mission-'+card+'-after-resolve');
+        if(card===10&&s.phase==='mission_death'){s=await transition(s,{type:'MISSION_DEATH_TAKE'});assert.equal(E.hunter(s).hp,1);await acknowledge();await screenshot('mission-10-final-kill-reaction');}
         report.observations.push({name:'mission-'+card+'-numbers-and-reproduction',initialSeed:90,
           historicalCommandCount:r.before.commands.length,actualCommands:r.commands,
           legacy:summary(r.legacy),corrected:before,afterResolve:summary(s)});
