@@ -1,0 +1,41 @@
+name: Cloud browser UI QA
+on:
+  push:
+    branches: [ui/mission-change-feedback]
+    paths:
+      - .github/workflows/cloud-ui-qa.yml
+      - scripts/cloud-ui-qa.cjs
+      - hunt*.js
+      - hunt*.css
+      - hunt.html
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Install pinned browser test runtime
+        run: |
+          npm install --prefix "$RUNNER_TEMP/bloodborne-browser" --no-audit --no-fund playwright@1.62.1
+          node "$RUNNER_TEMP/bloodborne-browser/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: Run actual Chromium clicks against committed source
+        env:
+          NODE_PATH: ${{ runner.temp }}/bloodborne-browser/node_modules
+        run: node scripts/cloud-ui-qa.cjs
+      - name: Keep browser observations without raw saves
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: cloud-ui-qa-results
+          path: test-results/cloud-ui-qa/
+          retention-days: 7
+          if-no-files-found: error
