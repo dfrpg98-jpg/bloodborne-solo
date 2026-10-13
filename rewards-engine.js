@@ -122,9 +122,9 @@
       need(s.phase === "hunter" && !h.inDream && h.hp > 0,
         "보상은 사냥꾼의 차례에 행동 전후로 사용하세요.");
       if (r.kind === "lantern") {
-        const n = helpers.nodes?.(s).find((n) => n.id === a.node);
-        need(n && (n.lamp || n.icons?.some((i) => i.kind === "lamp")),
-          "공개된 등불 칸을 선택하세요.");
+        const n = targetsView(s, "lantern", helpers).targets.find((n) => n.node === a.node);
+        need(n,
+          "공개된 정상 등불 칸을 선택하세요. 파괴되었거나 안개 안의 이동 불가 등불은 대상이 아닙니다.");
         if (helpers.teleport) helpers.teleport(s, a.node);
         else h.position = a.node;
       } else if (r.kind === "rune-eye") {
@@ -344,6 +344,12 @@
     const h = hunter(s), enemies = s.enemies || [];
     const name = (e) => helpers.enemyDef?.(s, e)?.name || D.enemies[e.kind]?.name || e.kind;
     const nodes = helpers.nodes?.(s) || [];
+    if (kind === "lantern") return { type: "lamp",
+      targets: nodes.filter((n) =>
+        (n.lamp !== undefined ? n.lamp : n.icons?.some((i) => i.kind === "lamp")) &&
+        (!helpers.canTeleport || helpers.canTeleport(s, n.id)))
+        .map((n) => ({ node: n.id, name: n.name || n.id })),
+    };
     const destination = (e) => (helpers.displacementDestinations?.(s, e, 2) || [])
       .map((n) => typeof n === "string" ? { node: n, name: nodes.find((x) => x.id === n)?.name || n } :
         { node: n.id || n.node, name: n.name || n.id || n.node });
@@ -361,6 +367,11 @@
   }
   function view(s, helpers = {}) {
     const h = hunter(s);
+    const currentTile = (helpers.nodes?.(s) || []).find((n) => n.id === h.position)?.tile;
+    const lanternBlockedReason = s.result || s.phase === "over" ? "사냥이 종료되었습니다." :
+      h.inDream ? "사냥꾼의 꿈에서는 사용할 수 없습니다." :
+      s.mission?.fog?.includes(currentTile) ? "안개 진입로 안에서는 꿈으로만 나갈 수 있습니다." :
+      "현재 이동할 수 있는 등불이 없습니다.";
     return {
       choices: s.rewardChoices || [],
       rewards: (h.rewards || []).map((r) => {
@@ -374,7 +385,7 @@
         return { ...r, name: d.name, rules: d.rules, timing: d.timing,
           subtype: d.subtype, persistent: d.persistent, photos: d.photos || [],
           usable: X.definitions[r.kind] ? X.canUse(s,r,helpers) : r.equipped && r.ready &&
-            (r.kind === "lantern" && hunterTurn ||
+            (r.kind === "lantern" && hunterTurn && controls.targets.length > 0 ||
              r.kind === "rune-eye" && hunterTurn && h.hand.length > 0 && h.discard.length > 0 ||
              r.kind === "rune-rapture" && h.rewardKillWindow && h.hp > 0 && !h.inDream ||
              laterHunterUsable || r.kind === "old-hunter-bone" && canAutoDodge(s, helpers)),
@@ -383,6 +394,8 @@
           triggerSelectable: (r.kind === "rune-moon" || X.enabled(s) && r.kind === "rune-corruption") &&
             r.equipped && r.ready && !X.limitUsed(s,r) && hunterTurn,
           reassignable: d.persistent && r.equipped && !!h.rewardTransformWindow,
+          ...(r.kind === "lantern" && (s.result || h.inDream || !controls.targets.length) ?
+            {disabledReason:lanternBlockedReason} : {}),
           ...(X.definitions[r.kind] ? {limitUsed:X.limitUsed(s,r), activeUse:d.activeUse,
             disabledReason:d.subtype === "quest" ? "사용 불가 임무 물품 · 획득 임무는 해당 캠페인 자료가 필요합니다." :
               X.limitUsed(s,r) ? "이번 챕터 사용 완료 · 꿈이나 도구 준비로 횟수 제한을 되돌릴 수 없습니다." :
@@ -393,7 +406,7 @@
         };
       }),
       firearms: (h.ownedFirearms || [h.firearmId || "hunter-pistol"]).map((id) =>
-        ({ id, ...D.firearms[id], equipped: h.firearmId === id,
+        ({ id, ...(helpers.firearmDefinition?.(s,id) || D.firearms[id]), equipped: h.firearmId === id,
           ready: h.firearmId === id && h.firearmReady })),
       killWindow: !!h.rewardKillWindow, transformWindow: !!h.rewardTransformWindow,
       ...(X.enabled(s) ? {entry:X.entryView(s,helpers)} : {}),

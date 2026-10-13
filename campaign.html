@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>기나긴 사냥 · 카드 자료</title>
+    <title>기나긴 사냥 v0.7.4 · 카드 자료</title>
     <link rel="stylesheet" href="fonts/noto-sans-kr.css" />
     <link rel="stylesheet" href="campaign.css" />
   </head>
@@ -22,8 +22,9 @@
         도입부·챕터 안내 7장 · 번호 카드 60장 · 적 양면 6장 · 지도 타일 20장
       </p>
       <div class="notice">
-        사진과 규칙 문구를 정리한 개발 자료입니다. 실제 캠페인의 자동 진행은
-        아직 구현되지 않았습니다.
+        제공된 카드 원문과 지도 도식을 확인하는 자료실입니다. 실제 1인용 캠페인
+        챕터 1~3은 <a href="hunt.html">사냥 화면</a>에서 진행합니다. 이 자료실에는
+        아직 게임에서 공개하지 않은 이야기와 결과도 포함되어 있습니다.
       </div>
       <section id="gate" class="gate">
         <h2>시나리오 내용이 포함되어 있습니다</h2>
@@ -45,7 +46,7 @@
               <option value="numbered">번호 카드 1~60</option>
               <option value="enemies">적 3종 · 양면</option>
               <option value="tiles">지도 타일 20장</option>
-              <option value="questions">확인 필요</option>
+              <option value="questions">판독 확인 기록</option>
             </select></label
           >
           <span id="count" aria-live="polite"></span>
@@ -56,7 +57,7 @@
         </div>
       </div>
       <details class="notes" id="setupAudit">
-        <summary>챕터별 적 배정 규칙 · 챕터 1 준비 구현</summary>
+        <summary>챕터별 적 배정과 현재 실행 범위</summary>
         <p>
           규칙서 10쪽과 25쪽: 매 챕터 준비 때 적 카드마다 사용할 면을 무작위로
           정하고, 카드 3장을 섞어 사냥 보드 슬롯에 무작위로 놓습니다. 이전과
@@ -73,16 +74,14 @@
           따릅니다.
         </p>
         <p>
-          <strong
-            ><a href="chapter.html">챕터 1 준비·탐험 검증판</a>에서 실제 적의
-            면·슬롯을 추첨하고 출현과 타일 배치를 처리합니다.</strong
-          >
-          훈련 게임은 기존 테스트 적을 사용합니다. 실제 적의 전투 효과와 챕터
-          임무는 아직 연결 전입니다.
+          <strong><a href="hunt.html">실제 사냥 화면</a>에서 챕터 1~3의 준비·탐험·전투·임무와
+          챕터 전환을 진행합니다.</strong>
+          <a href="chapter.html">지도 배치 검증판</a>과 기존 훈련은 별도 화면입니다.
+          새 사냥은 제공된 장치무기 15종과 화기 8종, 실제 보스/NPC 효과를 사용합니다.
         </p>
       </details>
       <details class="notes">
-        <summary>판독 결과와 다음 개발에 필요한 자료</summary>
+        <summary>판독 결과와 출처 기록</summary>
         <p>
           캠페인 67장과 적 카드 6장은 원본 자료로, 지도 타일 20장은 직접 그린 도식으로 확인합니다.
           57번의 ‘야수 사냥 하수인’은 ‘야수 사냥 하인’과 같은 적으로 사용자
@@ -98,10 +97,16 @@
           챕터 3 안내는 임무, 준비 순으로 촬영되어 있습니다.
         </p>
         <p>
-          일반 적 3종의 피규어는 종류별 4개로 확인했습니다. 챕터 1~3 지정 지도,
-          기본 스탯·업그레이드·소모품·보상 32종은 받았습니다. 쾌속과 보상 4종의
-          사진을 확인했습니다. 추가 화기는 테스트용으로 단총 능력을 적용합니다.
-          후속 챕터의 보스·NPC 자료는 아직 필요합니다.
+          일반 적 3종의 피규어는 종류별 4개로 확인했습니다. 챕터 1~3 지정 지도와
+          실제 성직자 야수·여성 야수 환자·이오세프카, 참고자료의 무기·화기를
+          실행에 연결했습니다. 보상은 32종 정의 중 30종 사용 효과와 2종 사용불가
+          임무 물품을 구분합니다. 현재 기나긴 사냥 진행을 위해 추가로 요청하는 자료는 없습니다.
+        </p>
+        <p>
+          원본 데이터의 runtime·automated·임시 정책은 자료 수신 당시 기록이며
+          현재 지원 상태를 뜻하지 않습니다. 출처와 원문은 보존합니다. 다른 캠페인과
+          다인 플레이는 이후 검토할 범위입니다. 현재 안내는 <a href="guide.html">사용 안내</a>,
+          실제 검사와 진행 결과는 <a href="VERIFICATION.txt">검증 기록</a>을 확인하세요.
         </p>
         <a href="campaigns/long-hunt/data.json" download="long-hunt-ko.json"
           >규칙 데이터 내려받기</a

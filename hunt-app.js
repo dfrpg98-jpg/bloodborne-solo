@@ -73,6 +73,8 @@
       distance: (a, b) => E.distance(state, a, b),
       node: (id) => E.node(state, id),
       enemyDef: (e) => E.enemyDef(state, e),
+      canTeleport: (to) => E.canTeleport(state, to),
+      path: (a, b) => E.path(state, a, b),
     },
     getState: () => state,
     send,
@@ -372,6 +374,8 @@
           actions = `<label class="checkrow"><input id="rewardEcho-${r.id}" type="checkbox" ${control.available ? "" : "disabled"}>피의 유지 1개를 소모하여 추가 치유 2</label>`;
         else if (control.type === "slot")
           actions = `<label>비울 공격 슬롯<select id="rewardSlot-${r.id}">${control.slots.map((slot) => `<option value="${slot.slot}">${esc(slot.name || (slot.slot + 1) + "번 슬롯")} · ${slot.occupied ? "카드 있음" : "비어 있음"}</option>`).join("")}</select></label>`;
+        else if (control.type === "lamp")
+          actions = `<label>이동할 등불<select id="rewardLamp-${r.id}" ${control.targets.length ? "" : "disabled"}>${control.targets.map((n) => `<option value="${esc(n.node)}">${esc(n.name)}</option>`).join("")}</select></label>`;
         else {
           actions = `<label>대상 적<select id="rewardEnemy-${r.id}">${opts(control.targets)}</select></label>`;
           if (control.type === "enemy-destination") actions += `<label>이동 목적지<select id="rewardNode-${r.id}"></select></label>`;
@@ -453,6 +457,9 @@
   function renderHand() {
     const h = E.hunter(state);
     $("handCount").textContent = `${h.hand.length}장`;
+    $("cardHint").textContent = state.phase === "over"
+      ? "사냥이 종료되었습니다. 기록을 저장할 수 있습니다."
+      : "행동에 사용할 카드를 선택하세요.";
     $("hand").innerHTML =
       h.hand
         .map((c) => {
@@ -460,7 +467,7 @@
           return `<button class="stat-card ${d.type} ${selectedCard === c.id ? "selected" : ""}" data-card="${c.id}" aria-pressed="${selectedCard === c.id}"><small>${esc(c.id)} · ${d.type === "strength" ? "근력" : d.type === "skill" ? "기술" : d.type === "endurance" ? "지구력" : "활력"}</small><b>${esc(d.name)}</b><span>${esc(d.text)}</span></button>`;
         })
         .join("") ||
-      '<p class="muted">손패가 비었습니다. 차례를 마쳐 보충하세요.</p>';
+      `<p class="muted">${state.phase === "over" ? "마지막 사냥의 카드 기록을 보관했습니다." : "손패가 비었습니다. 차례를 마쳐 보충하세요."}</p>`;
     $("hand")
       .querySelectorAll("[data-card]")
       .forEach(
@@ -852,11 +859,11 @@
       html = rewardChoiceHTML(rewards);
     }
     const weaponChoices = E.weaponChoices?.(state, { cardId: selectedCard, slot: selectedSlot, enemyId: selectedEnemy }) || [];
-    if (p.startsWith("weapon_") || p === "entry_weapon") {
+    if (!rewards?.choices.length && (p.startsWith("weapon_") || p === "entry_weapon")) {
       $("phaseTitle").textContent = p.includes("entry") ? "장치 무기 · 진입한 적 대응" : "장치 무기 효과 선택";
       help = p.includes("entry") ? "무기 능력을 사용하려면 손에 든 카드와 빈 슬롯을 선택하세요." : "장치 무기의 효과를 처리할 대상이나 이동할 칸을 선택하세요.";
       html = `<p>${esc(selectHint)}</p>${weaponChoices.map((option) => commandButton(option)).join("")}`;
-    } else if (weaponChoices.length) html += `<div class="weapon-effect-choices"><p class="muted">${esc(E.weapon(state).name)} · 고유 효과</p>${weaponChoices.map((option) => commandButton(option)).join("")}</div>`;
+    } else if (!rewards?.choices.length && weaponChoices.length) html += `<div class="weapon-effect-choices"><p class="muted">${esc(E.weapon(state).name)} · 고유 효과</p>${weaponChoices.map((option) => commandButton(option)).join("")}</div>`;
     if (["hunter", "combat_choose"].includes(p) && ["attack_sacrifice_damage", "attack_sacrifice_speed_or_damage"].includes(boostCode)) {
       const options = boostCode === "attack_sacrifice_damage"
         ? [["none", "사용하지 않음"], ["1", "피해 1을 받고 공격 피해 +1"], ["2", "피해 2를 받고 공격 피해 +2"]]

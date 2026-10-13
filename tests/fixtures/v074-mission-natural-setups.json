@@ -1,0 +1,20 @@
+{
+  "v074-clinic52-locked-natural-commands.json": {
+    "seed": 90,
+    "weaponId": "beast-claw",
+    "face": 0,
+    "startingConsumable": null,
+    "firearmId": "hunter-pistol",
+    "startSpace": "center",
+    "rulesVersion": 11
+  },
+  "v074-clinic51-natural-commands.json": {
+    "seed": 90,
+    "weaponId": "kirkhammer",
+    "face": 0,
+    "startingConsumable": null,
+    "firearmId": "hunter-pistol",
+    "startSpace": "center",
+    "rulesVersion": 11
+  }
+}

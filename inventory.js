@@ -92,10 +92,12 @@
             controls +=
               '<label>적의 이동 목적지<select id="itemNode"></select></label>';
         } else if (f.target === "lamp") {
-          controls += `<label>등불 목적지<select id="itemNode">${D.nodes
-            .filter((n) => n.lamp)
+          const lamps = D.nodes.filter((n) => n.lamp && (!E.canTeleport || E.canTeleport(n.id)));
+          controls += `<label>등불 목적지<select id="itemNode">${lamps
             .map((n) => `<option value="${esc(n.id)}">${esc(n.name)}</option>`)
             .join("")}</select></label>`;
+          enabled &&= lamps.length > 0 && !p.inDream;
+          if (!lamps.length) hint = "현재 이동할 수 있는 정상 등불이 없습니다. 안개 안에서는 순간이동으로 탈출할 수 없습니다.";
         } else if (f.target === "slot") {
           const occupied = p.slots
             .map((c, i) => (c ? i : -1))
@@ -116,7 +118,10 @@
           const e = s.enemies.find((x) => x.id === $("itemEnemy").value);
           $("itemNode").innerHTML = (
             e
-              ? D.nodes.filter((n) => E.distance(e.node, n.id) <= f.moveEnemy)
+              ? D.nodes.filter((n) => E.distance(e.node, n.id) <= f.moveEnemy &&
+                  (!E.path || E.path(e.node, n.id).every((at, i, route) => !i ||
+                    E.node(route[i - 1]).tile === E.node(at).tile ||
+                    !s.mission?.fog.includes(E.node(route[i - 1]).tile) && !s.mission?.fog.includes(E.node(at).tile))))
               : []
           )
             .map(

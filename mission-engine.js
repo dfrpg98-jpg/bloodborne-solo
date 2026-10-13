@@ -237,7 +237,7 @@
     }
     if (!e.missionId) return;
     const t = s.mission.targets[e.missionId];
-    if (!t) return d;
+    if (!t) return;
     if (t.complete) return;
     complete(s, e.missionId, { mob: 7, shelter: 11, main: 4 }[e.missionId], h);
     if (e.missionId === "shelter" && h.hunter(s).hp > 0) s.mission.deathPending = true;
@@ -245,6 +245,7 @@
   function targetDef(s, e, d) {
     if (!active(s) || !e?.missionId) return d;
     const t = s.mission.targets[e.missionId];
+    if (!t) return d;
     if (t.card === 3) d.ability = { ...d.basic, kind: "ability", type: "attack",
       name: "광포한", damage: d.basic.damage + 1, interrupt: true, stun: true,
       uninterruptible: true, rules: [], code: "mission:main" };
@@ -541,7 +542,8 @@
       objectives = [objective("main", "재앙의 근원", m.won, true, m.chapter === 2
         ? has(s, 22) ? "피해를 입지 않는 성직자 야수를 지하묘지로 유인" : has(s, 20) ? "성직자 야수를 2페이즈로 전환" : `공동묘지에 시체 ${hunterCount(s) + 1}개를 바치고 이번 챕터 계몽 2개 획득`
         : live(s, 41) ? "이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인" : "풀려난 성직자 야수를 최종 처치")];
-      if (has(s, 24) || has(s, 51)) objectives.push(progress(has(s, 51) ? 51 : 24, 26, "진료소에서 사냥 무리/하수인 처치 후 재앙의 야수 처치"));
+      if (has(s, 24) || has(s, 51)) objectives.push(progress(has(s, 51) ? 51 : 24, 26,
+        has(s, 51) ? "진료소에서 재앙의 야수 처치" : "진료소에서 사냥 무리/하수인 처치 후 재앙의 야수 처치"));
       if (has(s, 27) || has(s, 52)) objectives.push(progress(has(s, 52) ? 52 : 27, 28,
         owns(s, 34) ? "예배당 피신처 완료로 이 임무를 완수할 수 없음" : `소모품 수집으로 얻은 생존자 ${hunterCount(s) + 1}개를 진료소에 인도`));
       if (has(s, 30)) objectives.push(progress(30, 32, "환자의 임무 부활 토큰을 소진시키고 최종 처치 후 속도 1 회피"));

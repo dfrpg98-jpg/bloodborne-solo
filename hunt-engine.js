@@ -54,9 +54,10 @@
   const node = (s, id) => nodes(s).find((n) => n.id === id);
   const card = (c) => D.cards[c.kind];
   const enemy = (s, id) => s.enemies.find((e) => e.id === id);
-  const firearm = (s) => s.setup.rulesVersion >= 10 && !s.provisional &&
-    extendedFirearms.firearm(hunter(s).firearmId) || s.setup.rulesVersion >= 9 && !s.provisional &&
-    supplied.firearm(hunter(s).firearmId) || D.firearms[hunter(s).firearmId || "hunter-pistol"];
+  const firearmDefinition = (s, id) => s.setup.rulesVersion >= 10 && !s.provisional &&
+    extendedFirearms.firearm(id) || s.setup.rulesVersion >= 9 && !s.provisional &&
+    supplied.firearm(id) || D.firearms[id || "hunter-pistol"];
+  const firearm = (s) => firearmDefinition(s, hunter(s).firearmId);
   const canFirearm = (s) =>
     firearms.enabled(s, firearmHelpers()) ? firearms.canUse(s, firearmHelpers()) :
     !!(
@@ -110,7 +111,7 @@
   }
   function rewardHelpers() {
     return { hunter, log, need, draw, drawConsumable, pay, take, clearSlot, nodes,
-      neighbors, distance, teleport, kill, takeDamage, slots, weaponFace, card,
+      neighbors, distance, teleport, canTeleport, firearmDefinition, kill, takeDamage, slots, weaponFace, card,
       enemyDef, damageEnemy, canDisplace, displacementDestinations, displaceEnemy,
       autoDodge, canAutoDodge, pauseFirearmEntry,
       rewardEntryStops: (s,entry) => {
@@ -359,6 +360,12 @@
   }
   function centralLampDestinations(s) {
     return nodes(s).filter((n) => n.lamp || missions.fogged(s, n.tile));
+  }
+  function canTeleport(s, to) {
+    const from = hunter(s).position, destination = node(s, to);
+    return !!(from && destination?.lamp &&
+      (!missions.fogged(s, node(s, from)?.tile) || sameTile(s, from, to)) &&
+      (!missions.canEnter || missions.canEnter(s, from, to)));
   }
   function teleport(s, to, allowFogDestination = false) {
     const h = hunter(s);
@@ -3109,6 +3116,7 @@
     interactionOptions,
     interactionEnemies,
     centralLampDestinations,
+    canTeleport,
     canLeave,
     create,
     dispatch,

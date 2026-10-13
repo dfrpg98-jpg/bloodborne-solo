@@ -1,8 +1,8 @@
 {
   "title": "블러드본 규칙 구현 점검표",
   "asOf": "2026-10-12 KST",
-  "version": "0.7.3",
-  "scope": "1인용 기나긴 사냥 챕터1~3, 장치 무기15종(기존 장송의 칼날+추가14종28면), 기존 캠페인 일반 적3종6면, 추가 실물 적12종24면의 독립 전투 연습, 실제 성직자 야수·여성 야수 환자·이오세프카, 추가 화기7종+기본 단총, 등록 보상32종(실행 효과30종과 사용불가 임무 물품2종), 보상 선택 전투 연습. 다인 실행과 다른 캠페인은 별도 범위입니다.",
+  "version": "0.7.4",
+  "scope": "한 명의 사냥꾼으로 기나긴 사냥 챕터 1~3. 제공 장치무기15종 양면·화기8종·실제 보스/NPC·보상32종(사용 효과30종·사용불가 임무 물품2종). 다른 캠페인과 다인/온라인 협동은 사용자가 이후 단계로 지정하여 이번 완료 범위에서 제외한다.",
   "sources": [
     {
       "title": "사용자 제공 한국어 규칙서",
@@ -33,6 +33,11 @@
       "title": "신규 장치무기·적·화기 직접 판독 자료",
       "path": "components/extended-weapons.json; components/extended-enemies.json; components/extended-firearms.json; SOURCE_INVENTORY.json",
       "scope": "참고자료 폴더의 사진42장과 기본화기/수량 안내 TXT1개. 양면 인원수 표시는 보스 페이즈로 해석하지 않습니다."
+    },
+    {
+      "title": "공식 FAQ v1.0",
+      "path": "https://www.cmon.com/wp-content/uploads/2023/06/Bloodborne_Boardgame_FAQ_v1.0.pdf",
+      "scope": "기나긴 사냥 카드20·준비17 정정과 전투·임무 부활·동시 효과 대조"
     }
   ],
   "statusDefinitions": {
@@ -50,13 +55,17 @@
     "기존 실행16종에 추가 효과14종을 연결했습니다. 작은 오르골·의식용 재료2종은 원문 사용불가 임무 물품으로 등록하며 임의 효과를 만들지 않습니다.",
     "후속 임무 테스트에는 유효 상태를 조립한 분기/경계 검증도 있습니다. 실제 새 사냥부터의 전체 명령 완주 근거는 별도 행/VERIFICATION.txt로 구분합니다.",
     "보스 초기화의 일반 위치 보존, 챕터2 카드20/22의 지정칸 재출현, 챕터3 카드42의 위치 보존은 서로 다른 조건입니다.",
-    "새 v0.7.3 사냥은 rulesVersion11의 보상 확장을 사용합니다. 규칙10/9/8/7/무버전 저장과 임시 시험은 저장 당시 효과를 유지합니다. 저장 형식과 v07 키는 유지합니다.",
+    "새 v0.7.4 사냥은 rulesVersion11의 보상 확장을 사용합니다. 규칙10/9/8/7/무버전 저장과 임시 시험은 저장 당시 효과를 유지합니다. 저장 형식과 v07 키는 유지합니다.",
     "장치무기 시트의 아랫줄은 반대 면 요약입니다. 현재 면의 두 번째 능력으로 적용하지 않습니다.",
     "새 실물 적12종은 독립 연습에서 선택합니다. 기나긴 사냥의 임무에서 요구하는 기존 적 구성은 해당 임무 지시를 유지합니다.",
     "규칙10의 실제 구성품으로 장송의 칼날·기본 단총 한 경로를325개 공개 명령만으로 진행하여 챕터1~3 연속 승리와 정확 저장 재생을 검증했습니다. 실제 성직자 야수는 챕터2/3의 체력10/8·양 페이즈 행동 덱을 사용하며 최종 꿈에서 사냥 트랙은 늘지 않습니다. 모든 무기 조합·모든 곁가지 경로의 본편 완주를 검증한 것은 아닙니다.",
     "연습 시작 보상은 정규 임무 획득 보상이 아닙니다. 선택 수량을 초기 저장 설정에 기록하며 도구·문자 각각2장과 인쇄 공급량을 적용합니다.",
     "무기15종×시작 면2×화기8종의240조합은 실제 공개 명령으로 진행하는 짧은 전투 연습·준비·변형·꿈·귀환·저장 재생 검증입니다.240조합 모두의 본편 캠페인 완주를 뜻하지 않습니다.",
-    "RULES_CHECKLIST.json/TXT/XLSX는 v0.7.3의 동일한100행을 제공합니다."
+    "v0.7.4는 한 캠페인의 1인 플레이를 완료 기준으로 삼는다. 다른 캠페인과 다인 실행은 남은 필수 작업으로 계산하지 않는다.",
+    "공개 명령으로 실제 처음부터 도달한 임무 곁가지와 무기별 본편 승리의 범위는 C01~C08 및 VERIFICATION.txt에서 확인한다.",
+    "카드56은 첫 예배당 이동 종료 전에 보유하던 완료 기록으로 판정한다. 같은 도착의37호위가39를 새로 주어도56을 재판정하지 않는다. 확정된 임무 자유 순서 규정이 없어 기존 해석을 유지하고 자연 회귀로 기록한다.",
+    "v0.7.3 이전 기록에 적힌 한 승리 경로와 단순 정책의30패배는 당시 검증 범위다. 최신 자연 승리 결과는 VERIFICATION.txt를 기준으로 한다.",
+    "RULES_CHECKLIST.json/TXT/XLSX는 v0.7.4의 동일한108항목을 제공한다."
   ],
   "rows": [
     {
@@ -793,13 +802,13 @@
       "id": "R34",
       "category": "보상",
       "rulePage": "17 / 제공 32종 목록",
-      "criterion": "보상32종의 가능한 사용 효과·보관과 해당 임무 획득 조건을 연결한다.",
-      "status": "부분",
-      "priority": "후속",
-      "verification": "기존16종+추가14종 효과 및 사용불가2종 등록 · 획득 임무 일부는 자료 대기",
-      "evidence": "rewards-engine.js/extended-rewards.js:32종 정의, 실행 효과30종과 사용불가 임무 물품2종. 새로운 효과는 규칙11에 연결하며 다른 캠페인의 획득 조건은 만들지 않습니다. B01~B07의 개별 테스트를 참고합니다.",
+      "criterion": "등록 보상32종의30사용 효과·2사용불가 임무 물품을 구분하고 기나긴 사냥 카드가 주는16종의 정규 획득 조건을 실행한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "실제 전사·효과 회귀·기나긴 사냥 임무 연결 근거 있음",
+      "evidence": "rewards-engine.js/extended-rewards.js:32종 등록, 사용 효과30종·임무 물품2종. 기나긴 사냥 카드의16종 정규 보상을 획득한다. 다른 캠페인의 획득 조건은 이번 범위 밖이다. B01~B09와 C01/C03의 근거를 함께 확인한다.",
       "testEvidence": [],
-      "nextAction": "다른 캠페인의 임무 카드가 제공되면 인쇄된 획득 조건을 연결합니다. 현 단계에서는 전투 연습 시작 보상으로30종 효과와2종 보관을 확인할 수 있습니다.",
+      "nextAction": "",
       "manualCheck": "미점검"
     },
     {
@@ -1453,12 +1462,12 @@
       "category": "다인 규칙",
       "rulePage": "2, 8~10, 15~17, 23~25",
       "criterion": "2~4인 차례 순서·다른 사냥꾼 대상·적 이동 제한·보상 전달·플레이어 수별 준비를 실행한다.",
-      "status": "미구현",
-      "priority": "후속",
-      "verification": "코드 확인 · 전용 자동 테스트 없음",
-      "evidence": "hunt-engine.js assertState()는 사냥꾼1명; activeHunterId 단일 상태; 다인 보상/NPC/보스 확장 없음",
+      "status": "범위 제외",
+      "priority": "없음",
+      "verification": "사용자의 현재 개발 범위 지정",
+      "evidence": "hunt-engine.js assertState()는 사냥꾼1명; activeHunterId 단일 상태; 다인 보상/NPC/보스 확장 없음\n2026-10-12 사용자 지시: 한 캠페인 1인 플레이 우선, 다른 캠페인·멀티플레이 이후 검토.",
       "testEvidence": [],
-      "nextAction": "온라인 연결에 앞서 다인 게임 상태·순서·대상·수량 규칙을 구현합니다.",
+      "nextAction": "사용자가 다른 캠페인 또는 멀티플레이를 요청할 때 별도로 개발한다.",
       "manualCheck": "미점검"
     },
     {
@@ -1466,12 +1475,12 @@
       "category": "캠페인 범위",
       "rulePage": "2, 7, 12~13",
       "criterion": "기나긴 사냥 외 기본판 세 캠페인의 준비와 임무를 실행한다.",
-      "status": "미구현",
-      "priority": "후속",
-      "verification": "코드 확인 · 전용 자동 테스트 없음",
-      "evidence": "campaigns/long-hunt/data.json만 연결; 다른 세 캠페인의 실행 엔진 없음",
+      "status": "범위 제외",
+      "priority": "없음",
+      "verification": "사용자의 현재 개발 범위 지정",
+      "evidence": "campaigns/long-hunt/data.json만 연결; 다른 세 캠페인의 실행 엔진 없음\n2026-10-12 사용자 지시: 한 캠페인 1인 플레이 우선, 다른 캠페인·멀티플레이 이후 검토.",
       "testEvidence": [],
-      "nextAction": "커져가는 광기·교단의 비밀·야남 구시가지의 몰락 자료와 임무 상태를 연결합니다.",
+      "nextAction": "사용자가 다른 캠페인 또는 멀티플레이를 요청할 때 별도로 개발한다.",
       "manualCheck": "미점검"
     },
     {
@@ -2481,6 +2490,157 @@
           "name": "every standalone gun pairing rejects a Clawmark replacement before exhausting the gun or rune"
         }
       ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "C01",
+      "category": "단일 캠페인",
+      "rulePage": "12~13 / 카드1~60",
+      "criterion": "전체60카드의 조건부 공개·이월 기록과 챕터3의 분기 조건을 현재1인 범위에서 대조한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 회귀·자연 공개 명령·저장/화면 점검 근거 있음",
+      "evidence": "tests/mission-branches-v074.test.cjs:36개 이전 결과 조합×진료소/예배당/대교3곳의108분기 조건. 자연 경로는 조립한 분기 검사와 구분한다.",
+      "testEvidence": [],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "C02",
+      "category": "무기별 완주",
+      "rulePage": "8, 12~13, 18~26",
+      "criterion": "장치무기15종 각각 적어도 한 정상 시작 조건에서 공개 명령만으로 기나긴 사냥1~3챕터 연속 승리와 저장을 확인한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "15/15무기 자연 전체 승리; 15초기 무기면 경로",
+      "evidence": "무기별 기록: tests/fixtures/weapon-campaign-completion/manifest.json 및 VERIFICATION.txt. tests/weapon-campaign-completion.test.cjs는 30개 시작면의 1챕터 승리와 무기별 전체 승리를 따로 검사한다. tests/solo-weapon-ui.test.cjs는 실제 화면 조작으로 주요 무기 효과·보상·전환·최종 결정을 확인한다. 초기 체력·덱·지도·보스 수치를 수정한 경로는 완주 근거로 사용하지 않는다.",
+      "testEvidence": [],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "C03",
+      "category": "임무 곁가지",
+      "rulePage": "카드8~16, 24~39, 45~60",
+      "criterion": "피신처·생존자 운반·여성 환자 부활·진료소 양 선택·대교·구원 NPC·무리 정리·물자 기부의 임무 결과를 점검한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 회귀·자연 공개 명령·저장/화면 점검 근거 있음",
+      "evidence": "tests/mission-branches-v074.test.cjs 및 v074-*-natural-commands.json의 공개 명령 경로. 임무별 자연 완료와 경계 조건의 조립 검사를 VERIFICATION.txt에서 구분한다.",
+      "testEvidence": [],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "C04",
+      "category": "화면 완주",
+      "rulePage": "10, 12~13, 14~26",
+      "criterion": "실제 오프라인 화면의 활성 버튼으로 세 챕터를 완주하며 매 결정 저장을 불러와 이어간다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 회귀·자연 공개 명령·저장/화면 점검 근거 있음",
+      "evidence": "tests/solo-ui-playthrough.test.cjs:실제 제어기·인벤토리의325개 공개 결정. tests/solo-branch-ui.test.cjs:곁가지 선택/상호작용/호위/최종 처리의 실제 화면 명령. 브라우저 캡처는 VERIFICATION.txt에 있다.",
+      "testEvidence": [
+        {
+          "file": "tests/solo-ui-playthrough.test.cjs",
+          "name": "actual offline controller completes three chapters through enabled controls and reloads each of 325 public decisions"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "C05",
+      "category": "이동·안개",
+      "rulePage": "16, 24",
+      "criterion": "랜턴은 실제로 이동 가능한 정상 등불만 표시하고 파괴·안개·봉인·꿈·사냥 종료 제한을 적용한다. 순간이동 소모품과 돌멩이의 목적지 목록도 동일한 이동 제한을 표시한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 회귀·자연 공개 명령·저장/화면 점검 근거 있음",
+      "evidence": "rewards-engine.js/hunt-engine.js의 공통 목적지 판정과 hunt-app.js의 등불 목록. 총창의 자연83명령 안개 상태에서 사용 거절·저장 복원을 확인한다.\n보유품 화면의 사냥꾼이라는 뚜렷한 증거는 정상 등불만, 돌멩이는 실제 안개 경로 검증을 통과하는 적 이동 칸만 제시한다. 경계 조건은 자연 안개 체크포인트에 소모품을 배치한 회귀 검사로 구분한다.",
+      "testEvidence": [
+        {
+          "file": "tests/solo-audit-regressions.test.cjs",
+          "name": "public chapter-one fog encounter disables the lantern and offers no forbidden destinations"
+        },
+        {
+          "file": "tests/solo-audit-regressions.test.cjs",
+          "name": "every lantern destination offered by a public checkpoint is accepted and replays exactly"
+        },
+        {
+          "file": "tests/solo-audit-regressions.test.cjs",
+          "name": "lantern unavailability explains dream and finished hunt before fog restrictions"
+        },
+        {
+          "file": "tests/solo-inventory-destinations.test.cjs",
+          "name": "inventory mark offers only legal intact lamps and every listed move is accepted"
+        },
+        {
+          "file": "tests/solo-inventory-destinations.test.cjs",
+          "name": "arranged consumable boundary on a public fog checkpoint disables mark without forbidden lamps"
+        },
+        {
+          "file": "tests/solo-inventory-destinations.test.cjs",
+          "name": "arranged stone boundary offers destinations accepted by fog path validation"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "C06",
+      "category": "필수 선택",
+      "rulePage": "17, 20~21 / 카드51",
+      "criterion": "무기 후속 효과와 겹쳐도 필수 보상 장착·보관을 먼저 선택할 수 있으며 카드51의 표시 목표는 실제 진료소 야수 처치 조건과 일치한다. 보관한 화기도 해당 저장 규칙의 실제 카드 정의를 표시한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 회귀·자연 공개 명령·저장/화면 점검 근거 있음",
+      "evidence": "hunt-app.js는 필수 보상 선택이 무기 선택에 가려지지 않도록 우선 표시한다. mission-engine.js의51진행문은 별도 사냥 무리 선행 조건을 요청하지 않는다.\n화기 보관 목록은 실행에 쓰는 firearmDefinition과 같은 정의를 조회한다. 최신8종과 이전 규칙8~11의 정의, 임무7에서 자연 획득한 장총의 보관·정상 장착을 대조했다.",
+      "testEvidence": [
+        {
+          "file": "tests/campaign-ui.test.cjs",
+          "name": "mandatory reward equipment stays actionable while a weapon continuation is waiting"
+        },
+        {
+          "file": "tests/mission-branches-v074.test.cjs",
+          "name": "card 51 requires the clinic beast only and its visible objective does not request the obsolete huntsman prerequisite"
+        },
+        {
+          "file": "tests/solo-owned-firearms.test.cjs",
+          "name": "owned firearm descriptions use the same supplied definitions as actual play in each saved rules version"
+        },
+        {
+          "file": "tests/solo-owned-firearms.test.cjs",
+          "name": "naturally earned Ludwig rifle displays the real card while stored and after legal equipment"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "C07",
+      "category": "저장 호환",
+      "rulePage": "프로그램 저장",
+      "criterion": "독립 이전 배포 엔진에서 생성한 정상 저장과 실제 과거 저장을 필드 변경 없이 복원한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 회귀·자연 공개 명령·저장/화면 점검 근거 있음",
+      "evidence": "별도 QA: 실제 과거 저장39개+v0.7.0의111상태+v0.7.1의277상태+v0.7.2의326상태+v0.7.3의326상태=1079정확 복원. 기존 규칙·명령·자동 저장 키를 유지한다.",
+      "testEvidence": [],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "C08",
+      "category": "동시 임무",
+      "rulePage": "카드37, 39, 56",
+      "criterion": "처음 예배당에 도착한 동일 이동 종료의56판정과37호위 보상39를 기존 보유 기록 기준으로 처리하고 저장 재생에서 순서를 보존한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 회귀·자연 공개 명령·저장/화면 점검 근거 있음",
+      "evidence": "v074-first-chapel-warning-natural-commands.json의340개 자연 명령:56→33→39. 이 도착에서39를 새로 얻어도57을 재판정하지 않는다. RULES_AUDIT.txt에 원문 해석 경계를 명시한다.",
+      "testEvidence": [],
       "nextAction": "",
       "manualCheck": "미점검"
     }

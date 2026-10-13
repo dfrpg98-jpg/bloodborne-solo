@@ -109,6 +109,34 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
 }
 function option(ui, id, type) { return ui.buttons(id).find((b) => b.dataset.command === type); }
 
+test("mandatory reward equipment stays actionable while a weapon continuation is waiting", () => {
+  const s=E.create(90,"burial",0,null,"hunter-pistol","center",{
+    campaign:false,practiceRewards:["bloodstone-chunk"],
+  });
+  s.phase="weapon_choice";
+  const ui=boot(s,null,E.rewardsView(s),{engine:{
+    weaponChoices:()=>[{label:"다음 무기 효과",command:{type:"WEAPON_CHOICE",enemyId:"scourge-beast-1"}}],
+  }});
+  assert.equal(ui.el("phaseTitle").textContent,"획득한 보상 선택");
+  assert(option(ui,"decisions","EQUIP_REWARD"));
+  assert(option(ui,"decisions","KEEP_REWARD"));
+  assert.equal(option(ui,"decisions","WEAPON_CHOICE"),undefined);
+  option(ui,"decisions","KEEP_REWARD").click();
+  assert.equal(ui.commands[0].type,"KEEP_REWARD");
+});
+
+test("public fog checkpoint explains why the lantern is disabled and hides forbidden lamps", () => {
+  let s=E.create(90,"rifle-spear",1,null,"hunter-pistol","center",{campaign:true,rulesVersion:11});
+  for(const command of require("./fixtures/v074-lantern-fog-commands.json"))s=E.dispatch(s,command);
+  const view=E.rewardsView(s), lantern=view.rewards.find(r=>r.kind==="lantern");
+  const ui=boot(s,E.missionView(s),view);
+  assert.equal(ui.el("rewardLamp-"+lantern.id).disabled,true);
+  assert.equal(ui.el("rewardLamp-"+lantern.id).innerHTML,"");
+  const use=ui.el("rewards").querySelectorAll("[data-reward-use]").find(b=>b.dataset.rewardUse===lantern.id);
+  assert(use.disabled);
+  assert.match(ui.el("rewards").innerHTML,/안개/);
+});
+
 test("practice reward quantities use printed supply and never become campaign starting rewards", () => {
   const definitions = Object.fromEntries(E.data.components.cards.filter((card) => card.group === "reward")
     .map((card) => [card.id, { ...card, subtype: ["music-box", "ritual-material"].includes(card.id) ? "quest" : card.id.startsWith("rune-") ? "rune" : "tool" }]));
