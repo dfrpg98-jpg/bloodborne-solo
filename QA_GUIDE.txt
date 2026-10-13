@@ -46,3 +46,6 @@ node scripts/qa-smoke.cjs는 검증 초기화·소모품·이동·저장 복원�
 기나긴 사냥 챕터1~3의 단일 사냥꾼 진행은 현재 확인한 범위에서 구현 완료입니다. 필수 미구현 항목과 추가 자료 요청은 없습니다.
 남은 일은 실제 플레이에서 발견하는 조작·가독성·예외 개선입니다. 수동 플레이 점검은 자동 회귀와 별도입니다.
 다른 캠페인과 멀티플레이는 사용자가 요청할 이후 범위입니다.
+
+클라우드 UI 후속 검증
+연결 GitHub의 비공개 source artifact로 커밋·ZIP·내부 tar.gz 해시를 확인하여 클라우드 소스를 확보했습니다. scripts/cloud-ui-qa.cjs와 .github/workflows/cloud-ui-qa.yml은 정상 QA 명령으로 시작점을 생성하고 실제 Chromium 클릭·viewport·tooltip 경계·슬롯 스크롤·임무 알림·적 상세·이동/전투를 검사합니다. 원본 사진과 QA 저장은 브라우저 결과 artifact에 넣지 않습니다. 전체CI2648통과 및 실제 브라우저 실행 결과와 원문 근거 미확정 정책은 docs/audits/cloud-ui-qa-v0.8.13-dev.6/README.md에 구분합니다.
