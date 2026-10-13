@@ -1,0 +1,230 @@
+[
+  {
+    "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-74.json",
+    "nextCommand": {
+      "type": "RESOLVE"
+    },
+    "events": [
+      {
+        "key": "2:updated:card-24:[\"이오세프카의 연구\",\"진료소에서 재앙의 야수를 처치하세요.\",\"진행 중\",[24,25]]",
+        "kind": "updated",
+        "title": "이오세프카의 연구",
+        "description": "진료소에서 재앙의 야수를 처치하세요.",
+        "objectiveId": "card-24"
+      },
+      {
+        "key": "2:new:card-27:[\"이오세프카의 진료소를 피신처 삼아\",\"소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.\",\"진행 중\",[27]]",
+        "kind": "new",
+        "title": "이오세프카의 진료소를 피신처 삼아",
+        "description": "소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.",
+        "objectiveId": "card-27"
+      }
+    ]
+  },
+  {
+    "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-104.json",
+    "nextCommand": {
+      "type": "STOP_MOVE"
+    },
+    "events": [
+      {
+        "key": "2:completed:card-27:28",
+        "kind": "completed",
+        "title": "안전한 피신처: 이오세프카의 진료소",
+        "description": "필요한 생존자들을 이오세프카의 진료소로 인도했습니다.",
+        "objectiveId": "card-27",
+        "effects": [
+          "이번 챕터 계몽 +1 · 현재 1개"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-108.json",
+    "nextCommand": {
+      "type": "MISSION_CORPSES",
+      "count": 2
+    },
+    "events": [
+      {
+        "key": "2:updated:main:[\"재앙의 근원\",\"이번 챕터에서 계몽 2개를 획득하세요.\",\"진행 중\",[18,19]]",
+        "kind": "updated",
+        "title": "재앙의 근원",
+        "description": "이번 챕터에서 계몽 2개를 획득하세요.",
+        "objectiveId": "main"
+      }
+    ]
+  },
+  {
+    "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-117.json",
+    "nextCommand": {
+      "type": "STOP_MOVE"
+    },
+    "events": [
+      {
+        "key": "2:new:bridge:[\"아슬아슬한 구조\",\"대교의 야수 사냥 하인을 처치하세요.\",\"진행 중\",[35]]",
+        "kind": "new",
+        "title": "아슬아슬한 구조",
+        "description": "대교의 야수 사냥 하인을 처치하세요.",
+        "objectiveId": "bridge"
+      }
+    ]
+  },
+  {
+    "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-126.json",
+    "nextCommand": {
+      "type": "RESOLVE"
+    },
+    "events": [
+      {
+        "key": "2:updated:bridge:[\"아슬아슬한 구조\",\"대교의 생존자를 진료소 또는 예배당으로 호위하세요.\",\"진행 중\",[35,37]]",
+        "kind": "updated",
+        "title": "아슬아슬한 구조",
+        "description": "대교의 생존자를 진료소 또는 예배당으로 호위하세요.",
+        "objectiveId": "bridge",
+        "effects": [
+          "대교의 안개가 걷혔습니다."
+        ]
+      }
+    ]
+  },
+  {
+    "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-137.json",
+    "nextCommand": {
+      "type": "STOP_MOVE"
+    },
+    "events": [
+      {
+        "key": "2:completed:bridge:39",
+        "kind": "completed",
+        "title": "불길한 경고",
+        "description": "대교의 생존자를 오에돈 예배당으로 호위했습니다.",
+        "objectiveId": "bridge",
+        "effects": [
+          "이번 챕터 계몽 +1 · 현재 2개"
+        ]
+      },
+      {
+        "key": "2:updated:main:[\"재앙의 근원\",\"성직자 야수를 2페이즈로 전환하세요.\",\"진행 중\",[18,19,20]]",
+        "kind": "updated",
+        "title": "재앙의 근원",
+        "description": "성직자 야수를 2페이즈로 전환하세요.",
+        "objectiveId": "main"
+      },
+      {
+        "key": "2:new:card-33:[\"오에돈 예배당을 피신처로 삼아\",\"진료소 피신처 완료로 이 임무를 완수할 수 없습니다.\",\"진행 중\",[33]]",
+        "kind": "new",
+        "title": "오에돈 예배당을 피신처로 삼아",
+        "description": "진료소 피신처 완료로 이 임무를 완수할 수 없습니다.",
+        "objectiveId": "card-33"
+      }
+    ]
+  },
+  {
+    "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-154.json",
+    "nextCommand": {
+      "type": "RESOLVE"
+    },
+    "events": [
+      {
+        "key": "2:updated:main:[\"재앙의 근원\",\"피해를 입지 않는 성직자 야수를 지하묘지로 유인하세요.\",\"진행 중\",[18,19,20,21]]",
+        "kind": "updated",
+        "title": "재앙의 근원",
+        "description": "피해를 입지 않는 성직자 야수를 지하묘지로 유인하세요.",
+        "objectiveId": "main",
+        "effects": [
+          "공동묘지의 안개가 걷혔습니다."
+        ]
+      }
+    ]
+  },
+  {
+    "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-168.json",
+    "nextCommand": {
+      "type": "END_TURN"
+    },
+    "events": [
+      {
+        "key": "2:completed:main:23",
+        "kind": "completed",
+        "title": "야수를 가두었다",
+        "description": "성직자 야수를 오에돈의 지하묘지로 유인했습니다.",
+        "objectiveId": "main"
+      },
+      {
+        "key": "2:chapter:main:won",
+        "kind": "chapter",
+        "title": "챕터 2 완수",
+        "description": "챕터 2의 사냥을 완수했습니다.",
+        "objectiveId": "main"
+      }
+    ]
+  },
+  {
+    "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-177.json",
+    "nextCommand": {
+      "type": "START_NEXT_CHAPTER",
+      "startSpace": "center",
+      "face": 0
+    },
+    "events": [
+      {
+        "key": "3:new:main:[\"재앙의 근원\",\"이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수를 봉인해 두세요.\",\"진행 중\",[40]]",
+        "kind": "new",
+        "title": "재앙의 근원",
+        "description": "이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수를 봉인해 두세요.",
+        "objectiveId": "main"
+      }
+    ]
+  },
+  {
+    "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-181.json",
+    "nextCommand": {
+      "type": "PLACE_TILE",
+      "rotation": 1
+    },
+    "events": [
+      {
+        "key": "3:new:card-54:[\"무리를 정리하다\",\"재앙의 야수를 처치해 계몽 토큰을 제거하세요.\",\"진행 중\",[54]]",
+        "kind": "new",
+        "title": "무리를 정리하다",
+        "description": "재앙의 야수를 처치해 계몽 토큰을 제거하세요.",
+        "objectiveId": "card-54"
+      }
+    ]
+  },
+  {
+    "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-196.json",
+    "nextCommand": {
+      "type": "PLACE_TILE",
+      "rotation": 1
+    },
+    "events": [
+      {
+        "key": "3:new:card-51:[\"이오세프카의 연구\",\"진료소에서 재앙의 야수를 처치하세요.\",\"진행 중\",[51]]",
+        "kind": "new",
+        "title": "이오세프카의 연구",
+        "description": "진료소에서 재앙의 야수를 처치하세요.",
+        "objectiveId": "card-51"
+      }
+    ]
+  },
+  {
+    "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-214.json",
+    "nextCommand": {
+      "type": "RESOLVE"
+    },
+    "events": [
+      {
+        "key": "3:completed:card-51:26",
+        "kind": "completed",
+        "title": "이오세프카의 연구",
+        "description": "진료소의 재앙의 야수를 처치했습니다.",
+        "objectiveId": "card-51",
+        "effects": [
+          "이번 챕터 계몽 +1 · 현재 1개"
+        ]
+      }
+    ]
+  }
+]

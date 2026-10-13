@@ -1,0 +1,84 @@
+[
+  {
+    "file": "checkpoints/release-patient/patient-before-notice-70.json",
+    "nextCommand": {
+      "type": "STOP_MOVE"
+    },
+    "events": [
+      {
+        "key": "2:new:card-24:[\"이오세프카의 연구\",\"진료소에서 야수 사냥 무리 또는 야수 사냥 하인을 처치하세요.\",\"진행 중\",[24]]",
+        "kind": "new",
+        "title": "이오세프카의 연구",
+        "description": "진료소에서 야수 사냥 무리 또는 야수 사냥 하인을 처치하세요.",
+        "objectiveId": "card-24"
+      }
+    ]
+  },
+  {
+    "file": "checkpoints/release-patient/patient-before-notice-77.json",
+    "nextCommand": {
+      "type": "STOP_MOVE"
+    },
+    "events": [
+      {
+        "key": "2:new:bridge:[\"아슬아슬한 구조\",\"대교의 야수 사냥 하인을 처치하세요.\",\"진행 중\",[35]]",
+        "kind": "new",
+        "title": "아슬아슬한 구조",
+        "description": "대교의 야수 사냥 하인을 처치하세요.",
+        "objectiveId": "bridge"
+      }
+    ]
+  },
+  {
+    "file": "checkpoints/release-patient/patient-before-notice-86.json",
+    "nextCommand": {
+      "type": "RESOLVE"
+    },
+    "events": [
+      {
+        "key": "2:updated:bridge:[\"아슬아슬한 구조\",\"대교의 생존자를 진료소 또는 예배당으로 호위하세요.\",\"진행 중\",[35,37]]",
+        "kind": "updated",
+        "title": "아슬아슬한 구조",
+        "description": "대교의 생존자를 진료소 또는 예배당으로 호위하세요.",
+        "objectiveId": "bridge",
+        "effects": [
+          "대교의 안개가 걷혔습니다."
+        ]
+      }
+    ]
+  },
+  {
+    "file": "checkpoints/release-patient/patient-before-notice-99.json",
+    "nextCommand": {
+      "type": "STOP_MOVE"
+    },
+    "events": [
+      {
+        "key": "2:new:card-30:[\"오에돈 예배당 대학살\",\"환자의 임무 부활 토큰을 소진시키고 최종 처치 후 속도 1 회피하세요.\",\"진행 중\",[30]]",
+        "kind": "new",
+        "title": "오에돈 예배당 대학살",
+        "description": "환자의 임무 부활 토큰을 소진시키고 최종 처치 후 속도 1 회피하세요.",
+        "objectiveId": "card-30"
+      }
+    ]
+  },
+  {
+    "file": "checkpoints/release-patient/patient-before-notice-113.json",
+    "nextCommand": {
+      "type": "RESOLVE"
+    },
+    "events": [
+      {
+        "key": "2:completed:card-30:32",
+        "kind": "completed",
+        "title": "마음이 약해진 대가",
+        "description": "오에돈 예배당의 여성 야수 환자를 처치했습니다.",
+        "objectiveId": "card-30",
+        "effects": [
+          "이번 챕터 계몽 +1 · 현재 1개",
+          "오에돈 예배당의 안개가 걷혔습니다."
+        ]
+      }
+    ]
+  }
+]

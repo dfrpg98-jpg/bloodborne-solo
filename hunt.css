@@ -552,7 +552,8 @@ html[data-phase="combat_choose"] .decision-content:has(.map-context:not([hidden]
 #mapStage .hunter-map-marker[data-character-ready="true"] { visibility: hidden; }
 #mapStage .space-status:has(.hunter-map-marker[data-character-ready="true"]:only-child) { display: none; }
 #mapStage .map-figure[data-character-ready="true"] { background: #11202855; font-size: 14px; box-shadow: 0 0 0 2px #0b141d77; }
-#mapStage .map-figure[data-character-ready="true"]::before { content: ""; position: absolute; left: -17px; bottom: 0; width: 66px; height: 88px; border-radius: 45%; background: transparent; }
+/* Decorative body bounds must not cover another enemy's selectable marker. */
+#mapStage .map-figure[data-character-ready="true"]::before { content: ""; position: absolute; left: -17px; bottom: 0; width: 66px; height: 88px; border-radius: 45%; background: transparent; pointer-events: none; }
 @media (max-width: 600px) { .camera-tools { left: 4px; bottom: 5px; } .hunt-main .camera-tools button { padding: 3px 5px; min-height: 25px; } }
 
 /* Upright scene artwork is anchored to the rotated printed marker's foot point. */

@@ -72,7 +72,9 @@
     return text;
   }
   function sentence(value) {
-    const text = clean(value);
+    const text = clean(value).replace(
+      /(재앙의 야수 우두머리|성직자 야수|여성 야수 환자|야수 사냥 무리|야수 사냥 하인|재앙의 야수|소모품|계몽 토큰)(?=\s+(?:최종\s+)?(?:처치|봉인|기부|제거)$)/g,
+      (_, noun) => noun + particle(noun, "를"));
     if (!text || /[.!?]$/.test(text)) return text;
     if (/처치$/.test(text)) return text + "하세요.";
     if (/호위$/.test(text)) return text + "하세요.";
@@ -88,6 +90,7 @@
     if (/전환$/.test(text)) return text + "하세요.";
     if (/유인$/.test(text)) return text + "하세요.";
     if (/봉인$/.test(text)) return text + "해 두세요.";
+    if (/제거$/.test(text)) return text + "하세요.";
     return text + ".";
   }
   function campaign(data) { return data || (typeof globalThis !== "undefined" ? globalThis.BBLongHunt : null) || { cards: [], chapters: [], preface: [] }; }

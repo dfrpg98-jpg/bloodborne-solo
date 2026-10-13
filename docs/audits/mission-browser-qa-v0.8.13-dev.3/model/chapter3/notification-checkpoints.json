@@ -1,0 +1,280 @@
+[
+  {
+    "name": "attack/before-iosefka-attack",
+    "file": "checkpoints/chapter3/attack/before-iosefka-attack.json",
+    "nextCommand": {
+      "type": "MISSION_CHOICE",
+      "choice": "attack-iosefka"
+    },
+    "events": [
+      {
+        "key": "3:updated:truth:[\"진실이 드러나다\",\"진료소의 이오세프카를 처치하세요.\",\"진행 중\",[46,47]]",
+        "kind": "updated",
+        "title": "진실이 드러나다",
+        "description": "진료소의 이오세프카를 처치하세요.",
+        "objectiveId": "truth"
+      }
+    ],
+    "method": "accepted engine checkpoint then actual browser import; not continuous browser play"
+  },
+  {
+    "name": "attack/before-iosefka-completion",
+    "file": "checkpoints/chapter3/attack/before-iosefka-completion.json",
+    "nextCommand": {
+      "type": "RESOLVE"
+    },
+    "events": [
+      {
+        "key": "3:completed:truth:48",
+        "kind": "completed",
+        "title": "목표 처치: 이오세프카",
+        "description": "진료소의 이오세프카를 처치했습니다.",
+        "objectiveId": "truth",
+        "effects": [
+          "이번 챕터 계몽 +1 · 현재 1개",
+          "이오세프카의 진료소의 안개가 걷혔습니다."
+        ]
+      }
+    ],
+    "method": "accepted engine checkpoint then actual browser import; not continuous browser play"
+  },
+  {
+    "name": "entry/before-bridge-cull",
+    "file": "checkpoints/chapter3/entry/before-bridge-cull.json",
+    "nextCommand": {
+      "type": "STOP_MOVE"
+    },
+    "events": [
+      {
+        "key": "3:new:card-54:[\"무리를 정리하다\",\"재앙의 야수를 처치해 계몽 토큰을 제거하세요.\",\"진행 중\",[54]]",
+        "kind": "new",
+        "title": "무리를 정리하다",
+        "description": "재앙의 야수를 처치해 계몽 토큰을 제거하세요.",
+        "objectiveId": "card-54"
+      }
+    ],
+    "method": "accepted engine checkpoint then actual browser import; not continuous browser play"
+  },
+  {
+    "name": "entry/before-clinic-truth",
+    "file": "checkpoints/chapter3/entry/before-clinic-truth.json",
+    "nextCommand": {
+      "type": "STOP_MOVE"
+    },
+    "events": [
+      {
+        "key": "3:new:truth:[\"진실이 드러나다\",\"이오세프카를 공격하거나 실험을 돕세요.\",\"진행 중\",[46]]",
+        "kind": "new",
+        "title": "진실이 드러나다",
+        "description": "이오세프카를 공격하거나 실험을 돕세요.",
+        "objectiveId": "truth"
+      }
+    ],
+    "method": "accepted engine checkpoint then actual browser import; not continuous browser play"
+  },
+  {
+    "name": "help/before-experiment-completion",
+    "file": "checkpoints/chapter3/help/before-experiment-completion.json",
+    "nextCommand": {
+      "type": "STOP_MOVE"
+    },
+    "events": [
+      {
+        "key": "3:completed:truth:50",
+        "kind": "completed",
+        "title": "계속되는 실험",
+        "description": "붙잡은 실험 생존자를 이오세프카의 진료소로 호위했습니다.",
+        "objectiveId": "truth",
+        "effects": [
+          "이번 챕터 계몽 +1 · 현재 1개"
+        ]
+      }
+    ],
+    "method": "accepted engine checkpoint then actual browser import; not continuous browser play"
+  },
+  {
+    "name": "help/before-iosefka-help",
+    "file": "checkpoints/chapter3/help/before-iosefka-help.json",
+    "nextCommand": {
+      "type": "MISSION_CHOICE",
+      "choice": "help-iosefka"
+    },
+    "events": [
+      {
+        "key": "3:updated:truth:[\"진실이 드러나다\",\"도망친 생존자와 상호작용해 붙잡고 진료소로 호위하세요.\",\"진행 중\",[46,49]]",
+        "kind": "updated",
+        "title": "진실이 드러나다",
+        "description": "도망친 생존자와 상호작용해 붙잡고 진료소로 호위하세요.",
+        "objectiveId": "truth"
+      }
+    ],
+    "method": "accepted engine checkpoint then actual browser import; not continuous browser play"
+  },
+  {
+    "name": "main/before-chapel-npc",
+    "file": "checkpoints/chapter3/main/before-chapel-npc.json",
+    "nextCommand": {
+      "type": "STOP_MOVE"
+    },
+    "events": [
+      {
+        "key": "3:new:card-57:[\"구원\",\"NPC와 같은 칸에서 사냥 무리/하수인을 처치하세요.\",\"진행 중\",[57]]",
+        "kind": "new",
+        "title": "구원",
+        "description": "NPC와 같은 칸에서 사냥 무리/하수인을 처치하세요.",
+        "objectiveId": "card-57"
+      }
+    ],
+    "method": "accepted engine checkpoint then actual browser import; not continuous browser play"
+  },
+  {
+    "name": "cull/before-boss-release",
+    "file": "checkpoints/chapter3/cull/before-boss-release.json",
+    "nextCommand": {
+      "type": "END_TURN"
+    },
+    "events": [
+      {
+        "key": "3:updated:main:[\"재앙의 근원\",\"풀려난 성직자 야수를 최종 처치하세요.\",\"진행 중\",[40]]",
+        "kind": "updated",
+        "title": "재앙의 근원",
+        "description": "풀려난 성직자 야수를 최종 처치하세요.",
+        "objectiveId": "main",
+        "effects": [
+          "오에돈의 지하묘지의 안개가 걷혔습니다."
+        ]
+      }
+    ],
+    "method": "accepted engine checkpoint then actual browser import; not continuous browser play"
+  },
+  {
+    "name": "cull/before-cull-completion",
+    "file": "checkpoints/chapter3/cull/before-cull-completion.json",
+    "nextCommand": {
+      "type": "RESOLVE"
+    },
+    "events": [
+      {
+        "key": "3:completed:card-54:55",
+        "kind": "completed",
+        "title": "무리를 정리하다",
+        "description": "무리를 정리하는 임무를 완수했습니다.",
+        "objectiveId": "card-54",
+        "effects": [
+          "이번 챕터 계몽 +1 · 현재 2개"
+        ]
+      }
+    ],
+    "method": "accepted engine checkpoint then actual browser import; not continuous browser play"
+  },
+  {
+    "name": "cull/before-final-win",
+    "file": "checkpoints/chapter3/cull/before-final-win.json",
+    "nextCommand": {
+      "type": "ATTACK",
+      "enemyId": "mission-main",
+      "cardId": "card-11",
+      "slot": 2
+    },
+    "events": [
+      {
+        "key": "3:completed:main:44",
+        "kind": "completed",
+        "title": "사냥 완수",
+        "description": "성직자 야수를 최종 처치했습니다.",
+        "objectiveId": "main"
+      },
+      {
+        "key": "3:chapter:main:won",
+        "kind": "chapter",
+        "title": "챕터 3 완수",
+        "description": "챕터 3의 사냥을 완수했습니다.",
+        "objectiveId": "main"
+      }
+    ],
+    "method": "accepted engine checkpoint then actual browser import; not continuous browser play"
+  },
+  {
+    "name": "main/before-boss-release",
+    "file": "checkpoints/chapter3/main/before-boss-release.json",
+    "nextCommand": {
+      "type": "RESOLVE"
+    },
+    "events": [
+      {
+        "key": "3:completed:card-57:58",
+        "kind": "completed",
+        "title": "사냥의 짜릿함",
+        "description": "구원 임무를 완수했습니다.",
+        "objectiveId": "card-57",
+        "effects": [
+          "이번 챕터 계몽 +1 · 현재 2개",
+          "오에돈의 지하묘지의 안개가 걷혔습니다."
+        ]
+      },
+      {
+        "key": "3:updated:main:[\"재앙의 근원\",\"풀려난 성직자 야수를 최종 처치하세요.\",\"진행 중\",[40]]",
+        "kind": "updated",
+        "title": "재앙의 근원",
+        "description": "풀려난 성직자 야수를 최종 처치하세요.",
+        "objectiveId": "main"
+      }
+    ],
+    "method": "accepted engine checkpoint then actual browser import; not continuous browser play"
+  },
+  {
+    "name": "main/before-final-win",
+    "file": "checkpoints/chapter3/main/before-final-win.json",
+    "nextCommand": {
+      "type": "ATTACK",
+      "enemyId": "mission-main",
+      "cardId": "card-7",
+      "slot": 0
+    },
+    "events": [
+      {
+        "key": "3:completed:main:44",
+        "kind": "completed",
+        "title": "사냥 완수",
+        "description": "성직자 야수를 최종 처치했습니다.",
+        "objectiveId": "main"
+      },
+      {
+        "key": "3:chapter:main:won",
+        "kind": "chapter",
+        "title": "챕터 3 완수",
+        "description": "챕터 3의 사냥을 완수했습니다.",
+        "objectiveId": "main"
+      }
+    ],
+    "method": "accepted engine checkpoint then actual browser import; not continuous browser play"
+  },
+  {
+    "name": "main/before-salvation-completion",
+    "file": "checkpoints/chapter3/main/before-salvation-completion.json",
+    "nextCommand": {
+      "type": "RESOLVE"
+    },
+    "events": [
+      {
+        "key": "3:completed:card-57:58",
+        "kind": "completed",
+        "title": "사냥의 짜릿함",
+        "description": "구원 임무를 완수했습니다.",
+        "objectiveId": "card-57",
+        "effects": [
+          "이번 챕터 계몽 +1 · 현재 2개",
+          "오에돈의 지하묘지의 안개가 걷혔습니다."
+        ]
+      },
+      {
+        "key": "3:updated:main:[\"재앙의 근원\",\"풀려난 성직자 야수를 최종 처치하세요.\",\"진행 중\",[40]]",
+        "kind": "updated",
+        "title": "재앙의 근원",
+        "description": "풀려난 성직자 야수를 최종 처치하세요.",
+        "objectiveId": "main"
+      }
+    ],
+    "method": "accepted engine checkpoint then actual browser import; not continuous browser play"
+  }
+]

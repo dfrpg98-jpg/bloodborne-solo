@@ -108,7 +108,7 @@ test('fresh chapter transition announces its initial goal without replaying prio
     assert(!t.events.some(e=>e.effects),'old-chapter insight is not subtracted or re-awarded');
   }
   assert.match(transitions[0].events[0].description,/공동묘지.*시체 2개/);
-  assert.match(transitions[1].events[0].description,/성직자 야수 봉인/);
+  assert.match(transitions[1].events[0].description,/성직자 야수를 봉인/);
 });
 
 test('actual boss phase and captivity release are objective updates without false special-rule missions',()=>{

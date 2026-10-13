@@ -233,56 +233,65 @@
     {
       "file": "01-initial-mission.png",
       "sha256": "7f8140f453b2ae5ec4cb16aacbb4a4f18e561288f6b6491c937abe121ed4f101",
-      "width": 65536,
-      "height": 4292542531
+      "width": 938,
+      "height": 1252,
+      "mimeType": "image/jpeg"
     },
     {
       "file": "02-yard-mission.png",
       "sha256": "e1c70221561d337edcdc92410110ff9162229e0248480052688f3ad9229a2aca",
-      "width": 65536,
-      "height": 4292542531
+      "width": 938,
+      "height": 1252,
+      "mimeType": "image/jpeg"
     },
     {
       "file": "03-mission-completed.png",
       "sha256": "3be9c554815a25a81fdad47dbf4ee5848089e07100e642c70cb6c2f634a21c8e",
-      "width": 65536,
-      "height": 4292542531
+      "width": 938,
+      "height": 1252,
+      "mimeType": "image/jpeg"
     },
     {
       "file": "04-rescue-mission.png",
       "sha256": "f9b1c4ae8d11fa4ccd513bd76aa8b8631a3438c6c93f2d0a2744fef7588e61d2",
-      "width": 65536,
-      "height": 4292542531
+      "width": 938,
+      "height": 1252,
+      "mimeType": "image/jpeg"
     },
     {
       "file": "05-objective-updated.png",
       "sha256": "b4db0e9ce4c2bea4806f262e7bcfef4ee2cb09b059278b97c96dff7957f9f530",
-      "width": 65536,
-      "height": 4292542531
+      "width": 938,
+      "height": 1252,
+      "mimeType": "image/jpeg"
     },
     {
       "file": "06-chapter-completed.png",
       "sha256": "73937d9be145eccd154a1b084601b87c4c1d8a297fd2329073ca6a89ba07bbff",
-      "width": 65536,
-      "height": 4292542531
+      "width": 938,
+      "height": 1252,
+      "mimeType": "image/jpeg"
     },
     {
       "file": "07-chapter2-new-mission.png",
       "sha256": "2ae89d0acb353d996c34bf98d56015540cb8645605deedb3e48160ba373c97e6",
-      "width": 65536,
-      "height": 4292542531
+      "width": 938,
+      "height": 1252,
+      "mimeType": "image/jpeg"
     },
     {
       "file": "08-chapter2-ready.png",
       "sha256": "5bbdcbbed7ad5e1c73479aa2ba1bf1867cb551c1edc2c79f08419da90f05b8bf",
-      "width": 65536,
-      "height": 4292542531
+      "width": 938,
+      "height": 1252,
+      "mimeType": "image/jpeg"
     },
     {
       "file": "09-fresh-hunt-ready.png",
       "sha256": "19ea7d1c21490ae920f89fc2beaee7f164e3134552265402df739802b492bfd0",
-      "width": 65536,
-      "height": 4292542531
+      "width": 938,
+      "height": 1252,
+      "mimeType": "image/jpeg"
     }
   ],
   "actionLogStartFixtureIndex": 7,
@@ -1579,5 +1588,6 @@
       "sha256": "d94e38c3e3f2487fad6b328fc6ce5af8df2ee80592048da675dbc347a74e0d06",
       "matchesLive": true
     }
-  ]
+  ],
+  "screenshotMetadataNote": "Capture format detected from actual image bytes; dimensions corrected from JPEG SOF, with original bytes/hashes and existing filenames preserved."
 }
