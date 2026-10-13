@@ -1,0 +1,494 @@
+{
+  "commit": "4165f7540bee713da66f0b8b9a7a792ce15b4333",
+  "mode": "before-fix-reproduction",
+  "expectedImpacts": 2,
+  "method": "Normal QA command preparation, product file import, actual Chromium clicks, public renderer counters and original screenshots.",
+  "cases": [
+    {
+      "weapon": "ludwigs-holy-blade",
+      "initialFace": 1,
+      "preparationCommands": [
+        {
+          "type": "USE_CONSUMABLE",
+          "itemId": "item-qa-1-21"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "N"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "STEP",
+          "node": "tile-01:top"
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "USE_CONSUMABLE",
+          "itemId": "item-qa-1-11"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-1"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-3"
+        },
+        {
+          "type": "USE_CONSUMABLE",
+          "itemId": "item-qa-1-22"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "N"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 1
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-6",
+          "slot": 0,
+          "enemyId": "huntsmans-minion-1"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "USE_CONSUMABLE",
+          "itemId": "item-qa-1-12"
+        }
+      ],
+      "trigger": {
+        "type": "WEAPON_CHOICE",
+        "enemyId": "scourge-beast-2"
+      },
+      "screenshots": [
+        {
+          "file": "ludwigs-holy-blade-before.png",
+          "requestedAtMs": 29,
+          "capturedAtMs": 305
+        },
+        {
+          "file": "ludwigs-holy-blade-first-impact.png",
+          "requestedAtMs": 395,
+          "capturedAtMs": 676
+        },
+        {
+          "file": "ludwigs-holy-blade-next-impact.png",
+          "requestedAtMs": 1007,
+          "capturedAtMs": 1288
+        },
+        {
+          "file": "ludwigs-holy-blade-settled.png",
+          "requestedAtMs": 2390,
+          "capturedAtMs": 2672
+        }
+      ],
+      "prepared": {
+        "phase": "weapon_choice",
+        "face": 1,
+        "position": "tile-11:street",
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "node": "tile-11:street",
+            "hp": 4
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-11:street",
+            "hp": 4
+          },
+          {
+            "id": "scourge-beast-2",
+            "node": "tile-11:street",
+            "hp": 4
+          }
+        ]
+      },
+      "before": {
+        "phase": "weapon_choice",
+        "face": 1,
+        "position": "tile-11:street",
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "node": "tile-11:street",
+            "hp": 4
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-11:street",
+            "hp": 4
+          },
+          {
+            "id": "scourge-beast-2",
+            "node": "tile-11:street",
+            "hp": 4
+          }
+        ]
+      },
+      "counterBefore": 0,
+      "after": {
+        "phase": "hunter",
+        "face": 1,
+        "position": "tile-11:street",
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "node": "tile-11:street",
+            "hp": 4
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-11:street",
+            "hp": 4
+          },
+          {
+            "id": "scourge-beast-2",
+            "node": "tile-11:street",
+            "hp": 3
+          }
+        ]
+      },
+      "counterAfter": 2,
+      "actualImpacts": 2,
+      "status": "verified"
+    },
+    {
+      "weapon": "uncanny-ludwigs-holy-blade",
+      "initialFace": 0,
+      "preparationCommands": [
+        {
+          "type": "USE_CONSUMABLE",
+          "itemId": "item-qa-1-21"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "N"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "STEP",
+          "node": "tile-01:top"
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "USE_CONSUMABLE",
+          "itemId": "item-qa-1-11"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-1"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-3"
+        },
+        {
+          "type": "USE_CONSUMABLE",
+          "itemId": "item-qa-1-22"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "N"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 1
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-6",
+          "slot": 0,
+          "enemyId": "huntsmans-minion-1"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "USE_CONSUMABLE",
+          "itemId": "item-qa-1-12"
+        }
+      ],
+      "trigger": {
+        "type": "WEAPON_CHOICE",
+        "enemyId": "scourge-beast-2"
+      },
+      "screenshots": [
+        {
+          "file": "uncanny-ludwigs-holy-blade-before.png",
+          "requestedAtMs": 16,
+          "capturedAtMs": 278
+        },
+        {
+          "file": "uncanny-ludwigs-holy-blade-first-impact.png",
+          "requestedAtMs": 365,
+          "capturedAtMs": 635
+        },
+        {
+          "file": "uncanny-ludwigs-holy-blade-next-impact.png",
+          "requestedAtMs": 964,
+          "capturedAtMs": 1219
+        },
+        {
+          "file": "uncanny-ludwigs-holy-blade-settled.png",
+          "requestedAtMs": 2320,
+          "capturedAtMs": 2609
+        }
+      ],
+      "prepared": {
+        "phase": "weapon_choice",
+        "face": 0,
+        "position": "tile-11:street",
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "node": "tile-11:street",
+            "hp": 4
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-11:street",
+            "hp": 4
+          },
+          {
+            "id": "scourge-beast-2",
+            "node": "tile-11:street",
+            "hp": 4
+          }
+        ]
+      },
+      "before": {
+        "phase": "weapon_choice",
+        "face": 0,
+        "position": "tile-11:street",
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "node": "tile-11:street",
+            "hp": 4
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-11:street",
+            "hp": 4
+          },
+          {
+            "id": "scourge-beast-2",
+            "node": "tile-11:street",
+            "hp": 4
+          }
+        ]
+      },
+      "counterBefore": 0,
+      "after": {
+        "phase": "hunter",
+        "face": 0,
+        "position": "tile-11:street",
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "node": "tile-11:street",
+            "hp": 4
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-11:street",
+            "hp": 4
+          },
+          {
+            "id": "scourge-beast-2",
+            "node": "tile-11:street",
+            "hp": 3
+          }
+        ]
+      },
+      "counterAfter": 2,
+      "actualImpacts": 2,
+      "status": "verified"
+    },
+    {
+      "weapon": "kirkhammer",
+      "initialFace": 0,
+      "preparationCommands": [
+        {
+          "type": "USE_CONSUMABLE",
+          "itemId": "item-qa-1-21"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "N"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "STEP",
+          "node": "tile-01:top"
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "USE_CONSUMABLE",
+          "itemId": "item-qa-1-11"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-1"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-3"
+        },
+        {
+          "type": "USE_CONSUMABLE",
+          "itemId": "item-qa-1-22"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "N"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 1
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-6",
+          "slot": 0,
+          "enemyId": "huntsmans-minion-1"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "USE_CONSUMABLE",
+          "itemId": "item-qa-1-12"
+        }
+      ],
+      "trigger": {
+        "type": "WEAPON_CHOICE",
+        "enemyId": "scourge-beast-2"
+      },
+      "screenshots": [
+        {
+          "file": "kirkhammer-before.png",
+          "requestedAtMs": 12,
+          "capturedAtMs": 317
+        },
+        {
+          "file": "kirkhammer-first-impact.png",
+          "requestedAtMs": 412,
+          "capturedAtMs": 690
+        },
+        {
+          "file": "kirkhammer-next-impact.png",
+          "requestedAtMs": 1021,
+          "capturedAtMs": 1319
+        },
+        {
+          "file": "kirkhammer-settled.png",
+          "requestedAtMs": 2420,
+          "capturedAtMs": 2684
+        }
+      ],
+      "prepared": {
+        "phase": "weapon_choice",
+        "face": 0,
+        "position": "tile-11:street",
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "node": "tile-11:street",
+            "hp": 4
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-11:street",
+            "hp": 4
+          },
+          {
+            "id": "scourge-beast-2",
+            "node": "tile-11:street",
+            "hp": 4
+          }
+        ]
+      },
+      "before": {
+        "phase": "weapon_choice",
+        "face": 0,
+        "position": "tile-11:street",
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "node": "tile-11:street",
+            "hp": 4
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-11:street",
+            "hp": 4
+          },
+          {
+            "id": "scourge-beast-2",
+            "node": "tile-11:street",
+            "hp": 4
+          }
+        ]
+      },
+      "counterBefore": 0,
+      "after": {
+        "phase": "hunter",
+        "face": 0,
+        "position": "tile-11:street",
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "node": "tile-11:street",
+            "hp": 4
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-11:street",
+            "hp": 4
+          },
+          {
+            "id": "scourge-beast-2",
+            "node": "tile-11:street",
+            "hp": 3
+          }
+        ]
+      },
+      "counterAfter": 2,
+      "actualImpacts": 2,
+      "status": "verified"
+    }
+  ],
+  "failures": [],
+  "pageErrors": [],
+  "browser": "151.0.7922.34"
+}
