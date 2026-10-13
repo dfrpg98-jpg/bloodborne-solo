@@ -16,7 +16,21 @@
     "newUiTests": 5,
     "independentReview": "No actionable blocker found; model and actual DOM handlers reviewed",
     "syntaxAndWhitespace": "passed",
-    "browserVisualQa": "not performed: existing browser saved-permission rejection remains unresolved"
+    "browserVisualQa": {
+      "report": "mission-browser-qa-v0.8.13-dev.2/results.json",
+      "method": "Actual browser controls on the regular campaign; no engine-state injection or saved-game fixture loading",
+      "scope": "Chapter 1 complete and transition to chapter 2; mission activation, objective updates, completion, grouped chapter result, acknowledgement, reward selection, escort confirmation, journal history, reload and new hunt",
+      "viewport": { "width": 938, "height": 1252 },
+      "checks": 23,
+      "pass": 23,
+      "fail": 0,
+      "consoleWarningsAndErrors": 0,
+      "notVerified": [
+        "Other chapter 2 and chapter 3 mission branches, including BB-008 Iosefka",
+        "Alternate small or short viewports",
+        "Browser import/export restoration"
+      ]
+    }
   },
   "compatibility": {
     "engineRulesChanged": false,

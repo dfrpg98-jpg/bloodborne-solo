@@ -1,0 +1,1583 @@
+{
+  "version": "0.8.13-dev.2",
+  "date": "2026-10-13",
+  "sourceCommit": "fc673208f5a452ba0f268fcc63d6d23fe8bf067d",
+  "branch": "ui/mission-change-feedback",
+  "targetUrl": "http://127.0.0.1:8786/bloodborne-solo/hunt.html",
+  "method": "Actual browser controls only; new regular campaign seed 90, burial face 1, hunter-pistol. No engine-state injection, saved-game fixture loading, or direct browser storage changes.",
+  "scope": "Chapter 1 complete, transition to chapter 2; normal gameplay including mission activation/update/completion, grouped chapter completion, reward selection, escort confirmation, death/return and reload.",
+  "limitations": [
+    "Other chapter 2 and chapter 3 mission branches not played in this browser run",
+    "BB-008 Iosefka chapter 3 objective was not browser-tested here",
+    "No alternate viewport override or short-screen scrolling test performed",
+    "Import/export restoration was not browser-tested"
+  ],
+  "checks": [
+    {
+      "name": "new-hunt-initial-notice",
+      "actual": {
+        "dialogOpen": true,
+        "focused": "missionUpdateContinue",
+        "hand": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0"
+      },
+      "pass": true
+    },
+    {
+      "name": "background-action-blocked",
+      "pass": true,
+      "inputClickError": null,
+      "before": {
+        "dialog": true,
+        "hand": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n중앙 등불 / 중앙 등불\n\n독 없음 · 발광 없음"
+      },
+      "after": {
+        "dialog": true,
+        "hand": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n중앙 등불 / 중앙 등불\n\n독 없음 · 발광 없음"
+      }
+    },
+    {
+      "name": "ack-preserves-phase-round-hand",
+      "pass": true,
+      "actual": {
+        "dialogOpen": false,
+        "focused": "phaseTitle",
+        "hand": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0"
+      }
+    },
+    {
+      "name": "no-mission-before-movement-end",
+      "pass": true
+    },
+    {
+      "name": "yard-mission-activated-after-stop",
+      "pass": true,
+      "actual": {
+        "goal": "재앙의 근원 진행 중계몽 2개 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요.사냥을 시작하다 진행 중 · 새로운 임무마당 등불의 야수 사냥 무리 처치하세요.",
+        "hand": "덱 9장 · 버림 1장 · 슬롯 0장 / 총 12장",
+        "message": "새로운 임무사냥을 시작하다마당 등불의 야수 사냥 무리 처치하세요.",
+        "nativeModal": true,
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "title": "새로운 임무",
+        "unread": "1"
+      }
+    },
+    {
+      "name": "review-opens-last-notice",
+      "pass": true
+    },
+    {
+      "name": "escape-acknowledges",
+      "pass": true
+    },
+    {
+      "name": "normal-combat-mission-completion",
+      "pass": true,
+      "actual": {
+        "hand": "덱 7장 · 버림 3장 · 슬롯 2장 / 총 12장",
+        "insight": "이번 챕터 완료 계몽 1장",
+        "message": "임무 완수사냥을 시작하다마당 등불의 야수 사냥 무리를 처치했습니다.이번 챕터 계몽 +1 · 현재 1개마당 등불의 안개가 걷혔습니다.",
+        "nativeModal": true,
+        "phase": "획득한 보상 선택",
+        "round": "라운드 3 · 처치 1",
+        "status": "사냥꾼체력 4 / 6 · 피의 유지 1 / 3마당 등불 / 마당 등불독 없음 · 발광 없음",
+        "summary": "임무 결과를 확인한 뒤, 행동 패널에서 획득한 보상을 선택하세요.",
+        "title": "임무 완수"
+      }
+    },
+    {
+      "name": "completion-dialog-layout-at-native-size",
+      "pass": true,
+      "actual": {
+        "bodyOverflow": false,
+        "confirmVisible": true,
+        "dialog": {
+          "bottom": 848.265625,
+          "left": 139,
+          "right": 799,
+          "top": 403.734375
+        },
+        "viewport": {
+          "height": 1252,
+          "width": 938
+        }
+      }
+    },
+    {
+      "name": "completion-ack-retains-reward-choice-and-costs",
+      "pass": true,
+      "actual": {
+        "hand": "덱 7장 · 버림 3장 · 슬롯 2장 / 총 12장",
+        "notice": false,
+        "phase": "획득한 보상 선택",
+        "round": "라운드 3 · 처치 1",
+        "status": "사냥꾼체력 4 / 6 · 피의 유지 1 / 3마당 등불 / 마당 등불독 없음 · 발광 없음"
+      }
+    },
+    {
+      "name": "exploration-triggers-rescue-notice",
+      "pass": true,
+      "observation": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n구조\n\n폐가 생존자 토큰과 상호작용하세요.\n\n확인하고 계속하기"
+    },
+    {
+      "name": "rescue-objective-updated-after-interaction",
+      "pass": true,
+      "observation": "사냥의 변화\n\n목표 변경\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n목표 변경\n\n구조\n\n생존자가 있는 칸에서 적의 추격 없이 이동을 마치세요.\n\n확인하고 계속하기"
+    },
+    {
+      "name": "house-entry-triggers-shelter-notice",
+      "pass": true,
+      "observation": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n피신처\n\n민가 생존자를 오에돈 예배당으로 호위하세요.\n\n확인하고 계속하기"
+    },
+    {
+      "name": "escort-confirmation-does-not-overlap-mission-notice",
+      "pass": true,
+      "observation": "생존자 동행 확인창만 표시됨"
+    },
+    {
+      "name": "rescued-survivor-stop-triggers-choice-notice",
+      "pass": true,
+      "observation": "사냥의 변화\n\n목표 변경\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n목표 변경\n\n구조\n\n구조 임무에서 제시한 선택을 해결하세요.\n\n확인하고 계속하기"
+    },
+    {
+      "name": "rescue-choice-completes-mission-with-insight",
+      "pass": true,
+      "observation": "사냥의 변화\n\n임무 완수\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n임무 완수\n\n자비란 없다\n\n구조한 여자를 공격하는 선택을 마쳤습니다.\n\n이번 챕터 계몽 +1 · 현재 2개\n\n확인하고 계속하기"
+    },
+    {
+      "name": "lantern-use-closes-equipment-before-mission-notice",
+      "pass": true,
+      "observation": {
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "notice": "사냥의 변화\n\n목표 변경\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n목표 변경\n\n재앙의 근원\n\n중앙 등불의 재앙의 야수 우두머리 처치하세요.\n\n확인하고 계속하기"
+      }
+    },
+    {
+      "name": "main-and-chapter-completion-grouped",
+      "pass": true,
+      "observation": "사냥의 변화\n\n임무가 변경되었습니다\n\n임무 결과를 확인한 뒤, 행동 패널에서 획득한 보상을 선택하세요.\n\n임무 완수\n\n목표 처치: 재앙의 야수 우두머리\n\n중앙 등불의 재앙의 야수 우두머리를 처치했습니다.\n\n중앙 등불의 안개가 걷혔습니다.\n\n챕터 완수\n\n챕터 1 완수\n\n챕터 1의 사냥을 완수했습니다.\n\n확인하고 계속하기"
+    },
+    {
+      "name": "journal-shows-all-session-mission-changes",
+      "pass": true,
+      "observation": {
+        "count": 11,
+        "latest": [
+          "챕터 완수\n\n챕터 1 완수\n\n챕터 1의 사냥을 완수했습니다.",
+          "임무 완수\n\n목표 처치: 재앙의 야수 우두머리\n\n중앙 등불의 재앙의 야수 우두머리를 처치했습니다.\n\n중앙 등불의 안개가 걷혔습니다."
+        ]
+      }
+    },
+    {
+      "name": "chapter2-new-objective-notice",
+      "pass": true,
+      "observation": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n재앙의 근원\n\n공동묘지에 시체 2개를 바치세요.\n\n확인하고 계속하기"
+    },
+    {
+      "name": "reload-preserves-game-and-does-not-replay-acknowledged-notice",
+      "pass": true,
+      "before": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "dialog": false,
+        "hand": "근력\n기본 근력\n공격 피해 +1\n기술\n기본 기술\n방해 · 더 느린 적의 공격을 취소합니다.\n활력\n방어태세\n방어 2피해",
+        "location": "현재 위치 · 중앙 등불 / 중앙 등불",
+        "objectives": "재앙의 근원 진행 중\n공동묘지에 시체 2개를 바치세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n중앙 등불 / 중앙 등불\n\n독 없음 · 발광 없음"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "dialog": false,
+        "hand": "근력\n기본 근력\n공격 피해 +1\n기술\n기본 기술\n방해 · 더 느린 적의 공격을 취소합니다.\n활력\n방어태세\n방어 2피해",
+        "location": "현재 위치 · 중앙 등불 / 중앙 등불",
+        "objectives": "재앙의 근원 진행 중\n공동묘지에 시체 2개를 바치세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n중앙 등불 / 중앙 등불\n\n독 없음 · 발광 없음"
+      }
+    },
+    {
+      "name": "reload-resets-session-notice-history",
+      "pass": true,
+      "observation": {
+        "historyCount": 0,
+        "objective": "재앙의 근원 진행 중\n공동묘지에 시체 2개를 바치세요.",
+        "reopenButtonHidden": true
+      }
+    },
+    {
+      "name": "new-hunt-clears-previous-campaign-and-session-history",
+      "pass": true,
+      "observation": {
+        "history": 1,
+        "objective": "재앙의 근원 진행 중 · 새로운 임무\n계몽 2개 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요.",
+        "round": "라운드 1 · 처치 0"
+      }
+    }
+  ],
+  "consoleWarningsAndErrors": [],
+  "screenshots": [
+    {
+      "file": "01-initial-mission.png",
+      "sha256": "7f8140f453b2ae5ec4cb16aacbb4a4f18e561288f6b6491c937abe121ed4f101",
+      "width": 65536,
+      "height": 4292542531
+    },
+    {
+      "file": "02-yard-mission.png",
+      "sha256": "e1c70221561d337edcdc92410110ff9162229e0248480052688f3ad9229a2aca",
+      "width": 65536,
+      "height": 4292542531
+    },
+    {
+      "file": "03-mission-completed.png",
+      "sha256": "3be9c554815a25a81fdad47dbf4ee5848089e07100e642c70cb6c2f634a21c8e",
+      "width": 65536,
+      "height": 4292542531
+    },
+    {
+      "file": "04-rescue-mission.png",
+      "sha256": "f9b1c4ae8d11fa4ccd513bd76aa8b8631a3438c6c93f2d0a2744fef7588e61d2",
+      "width": 65536,
+      "height": 4292542531
+    },
+    {
+      "file": "05-objective-updated.png",
+      "sha256": "b4db0e9ce4c2bea4806f262e7bcfef4ee2cb09b059278b97c96dff7957f9f530",
+      "width": 65536,
+      "height": 4292542531
+    },
+    {
+      "file": "06-chapter-completed.png",
+      "sha256": "73937d9be145eccd154a1b084601b87c4c1d8a297fd2329073ca6a89ba07bbff",
+      "width": 65536,
+      "height": 4292542531
+    },
+    {
+      "file": "07-chapter2-new-mission.png",
+      "sha256": "2ae89d0acb353d996c34bf98d56015540cb8645605deedb3e48160ba373c97e6",
+      "width": 65536,
+      "height": 4292542531
+    },
+    {
+      "file": "08-chapter2-ready.png",
+      "sha256": "5bbdcbbed7ad5e1c73479aa2ba1bf1867cb551c1edc2c79f08419da90f05b8bf",
+      "width": 65536,
+      "height": 4292542531
+    },
+    {
+      "file": "09-fresh-hunt-ready.png",
+      "sha256": "19ea7d1c21490ae920f89fc2beaee7f164e3134552265402df739802b492bfd0",
+      "width": 65536,
+      "height": 4292542531
+    }
+  ],
+  "actionLogStartFixtureIndex": 7,
+  "actionLogNote": "Fixture commands 0..6 were performed manually before this action log. Card selection, map selection, acknowledgement, initial/new-hunt forms, escort yes and journal/reload controls are recorded in checks rather than the command array. Fixture command 97 was intentionally replaced by the UI escort confirmation at command 107.",
+  "actionLog": [
+    {
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "huntsman-mob-1",
+        "cardId": "card-1",
+        "slot": 2
+      },
+      "button": "선택한 기술과 슬롯으로 공격",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 1 · 처치 0"
+    },
+    {
+      "command": {
+        "type": "RESOLVE"
+      },
+      "button": "속도 순서대로 전투 처리",
+      "error": "",
+      "notice": false,
+      "phase": "플레이어의 차례",
+      "round": "라운드 1 · 처치 0"
+    },
+    {
+      "command": {
+        "type": "END_TURN"
+      },
+      "button": "플레이어의 차례 마치기",
+      "error": "",
+      "notice": false,
+      "phase": "적과 조우",
+      "round": "라운드 1 · 처치 0"
+    },
+    {
+      "command": {
+        "type": "NO_ATTACK"
+      },
+      "button": "공격하지 않고 행동 공개",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 1 · 처치 0"
+    },
+    {
+      "command": {
+        "type": "RESOLVE"
+      },
+      "button": "속도 순서대로 전투 처리",
+      "error": "",
+      "notice": false,
+      "phase": "다음 차례 · 손패 보충",
+      "round": "라운드 2 · 처치 0"
+    },
+    {
+      "command": {
+        "type": "REFILL"
+      },
+      "button": "손패 보충"
+    },
+    {
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "huntsman-mob-1",
+        "cardId": "card-11",
+        "slot": 2
+      },
+      "button": "선택한 기술과 슬롯으로 공격",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 2 · 처치 0"
+    },
+    {
+      "command": {
+        "type": "RESOLVE"
+      },
+      "button": "속도 순서대로 전투 처리",
+      "error": "",
+      "notice": false,
+      "phase": "다음 차례 · 손패 보충",
+      "round": "라운드 3 · 처치 0"
+    },
+    {
+      "command": {
+        "type": "REFILL"
+      },
+      "button": "손패 보충"
+    },
+    {
+      "command": {
+        "type": "RETURN",
+        "node": "tile-14:center",
+        "face": 1
+      },
+      "button": "중앙 등불 / 중앙 등불에서 귀환"
+    },
+    {
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-9"
+      },
+      "button": "이동",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 3 · 처치 0"
+    },
+    {
+      "command": {
+        "type": "STEP",
+        "node": "tile-04:center"
+      },
+      "button": "출입구를 지나 이동이동력 1 · 추가 카드 없음",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 3 · 처치 0"
+    },
+    {
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "button": "여기서 이동 마치기",
+      "error": "",
+      "notice": false,
+      "phase": "플레이어의 차례",
+      "round": "라운드 3 · 처치 0"
+    },
+    {
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "huntsman-mob-1",
+        "cardId": "card-12",
+        "slot": 1
+      },
+      "button": "선택한 기술과 슬롯으로 공격",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 3 · 처치 0"
+    },
+    {
+      "command": {
+        "type": "RESOLVE"
+      },
+      "button": "속도 순서대로 전투 처리",
+      "error": "",
+      "notice": false,
+      "phase": "기절 · 기술 버리기",
+      "round": "라운드 3 · 처치 0"
+    },
+    {
+      "command": {
+        "type": "STUN_DISCARD",
+        "cardId": "card-7"
+      },
+      "button": "기본 근력공격 피해 +1",
+      "error": "",
+      "notice": false,
+      "phase": "플레이어의 차례",
+      "round": "라운드 3 · 처치 0"
+    },
+    {
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "huntsman-mob-1",
+        "cardId": "card-10",
+        "slot": 2
+      },
+      "button": "선택한 기술과 슬롯으로 공격",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 3 · 처치 0"
+    },
+    {
+      "command": {
+        "type": "DODGE",
+        "cardId": "card-2",
+        "slot": 0
+      },
+      "button": "회피",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 3 · 처치 0"
+    },
+    {
+      "command": {
+        "type": "RESOLVE"
+      },
+      "button": "속도 순서대로 전투 처리",
+      "error": "",
+      "notice": true,
+      "phase": "획득한 보상 선택",
+      "round": "라운드 3 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "KEEP_FIREARM",
+        "firearmId": "ludwig-rifle"
+      },
+      "button": "화기 보관",
+      "error": "",
+      "notice": false,
+      "phase": "플레이어의 차례",
+      "round": "라운드 3 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "END_TURN"
+      },
+      "button": "플레이어의 차례 마치기",
+      "error": "",
+      "notice": false,
+      "phase": "다음 차례 · 손패 보충",
+      "round": "라운드 4 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "REFILL"
+      },
+      "button": "손패 보충"
+    },
+    {
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-6"
+      },
+      "button": "이동",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 4 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STEP",
+        "node": "tile-14:center"
+      },
+      "button": "출입구를 지나 이동이동력 1 · 추가 카드 없음",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 4 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "EXPLORE",
+        "edge": "S"
+      },
+      "button": "남쪽 ↓ 출입구로 탐험",
+      "error": "",
+      "notice": false,
+      "phase": "새 타일 배치",
+      "round": "라운드 4 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 2
+      },
+      "button": "이 방향으로 배치하고 진입",
+      "error": "",
+      "notice": false,
+      "phase": "플레이어의 차례",
+      "round": "라운드 4 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-5"
+      },
+      "button": "이동",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 4 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STEP",
+        "node": "tile-14:center"
+      },
+      "button": "출입구를 지나 이동이동력 1 · 추가 카드 없음",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 4 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STEP",
+        "node": "tile-14:left"
+      },
+      "button": "이 칸으로 이동이동력 1 · 추가 카드 없음",
+      "error": "",
+      "notice": false,
+      "phase": "플레이어의 차례",
+      "round": "라운드 4 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-3"
+      },
+      "button": "이동",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 4 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "EXPLORE",
+        "edge": "W"
+      },
+      "button": "서쪽 ← 출입구로 탐험",
+      "error": "",
+      "notice": false,
+      "phase": "새 타일 배치",
+      "round": "라운드 4 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 0
+      },
+      "button": "이 방향으로 배치하고 진입",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 4 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "EXPLORE",
+        "edge": "W"
+      },
+      "button": "서쪽 ← 출입구로 탐험",
+      "error": "",
+      "notice": false,
+      "phase": "새 타일 배치",
+      "round": "라운드 4 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 0
+      },
+      "button": "이 방향으로 배치하고 진입",
+      "error": "",
+      "notice": false,
+      "phase": "플레이어의 차례",
+      "round": "라운드 4 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "END_TURN"
+      },
+      "button": "플레이어의 차례 마치기",
+      "error": "",
+      "notice": false,
+      "phase": "적과 조우",
+      "round": "라운드 4 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "NO_ATTACK"
+      },
+      "button": "공격하지 않고 행동 공개",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 4 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "FIREARM"
+      },
+      "button": "화기 사용 · 기본 공격 방해",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 4 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "RESOLVE"
+      },
+      "button": "속도 순서대로 전투 처리",
+      "error": "",
+      "notice": false,
+      "phase": "다음 차례 · 손패 보충",
+      "round": "라운드 5 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "REFILL"
+      },
+      "button": "손패 보충"
+    },
+    {
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-1"
+      },
+      "button": "이동",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 5 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STEP",
+        "node": "tile-17:top"
+      },
+      "button": "이 칸으로 이동이동력 1 · 추가 카드 없음",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 5 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "EXPLORE",
+        "edge": "N"
+      },
+      "button": "북쪽 ↑ 출입구로 탐험",
+      "error": "",
+      "notice": false,
+      "phase": "새 타일 배치",
+      "round": "라운드 5 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 0
+      },
+      "button": "이 방향으로 배치하고 진입",
+      "error": "",
+      "notice": true,
+      "phase": "플레이어의 차례",
+      "round": "라운드 5 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-8"
+      },
+      "button": "이동",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 5 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STEP",
+        "node": "tile-03:room"
+      },
+      "button": "이 칸으로 이동이동력 1 · 추가 카드 없음",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 5 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "button": "여기서 이동 마치기",
+      "error": "",
+      "notice": false,
+      "phase": "플레이어의 차례",
+      "round": "라운드 5 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "INTERACT",
+        "cardId": "card-11",
+        "mission": "rescue"
+      },
+      "button": "임무 대상 · 상호작용",
+      "error": "",
+      "notice": false,
+      "phase": "상호작용 · 적의 반격 순서",
+      "round": "라운드 5 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "INTERACTION_ENEMY",
+        "enemyId": "huntsmans-minion-1"
+      },
+      "button": "야수 사냥 하인 #1 · 폐가 / 폐가",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 5 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "RESOLVE"
+      },
+      "button": "속도 순서대로 전투 처리",
+      "error": "",
+      "notice": false,
+      "phase": "상호작용 · 적의 반격 순서",
+      "round": "라운드 5 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "INTERACTION_ENEMY",
+        "enemyId": "scourge-beast-1"
+      },
+      "button": "재앙의 야수 #1 · 폐가 / 폐가",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 5 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "RESOLVE"
+      },
+      "button": "속도 순서대로 전투 처리",
+      "error": "",
+      "notice": false,
+      "phase": "다음 차례 · 손패 보충",
+      "round": "라운드 6 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "REFILL"
+      },
+      "button": "손패 보충"
+    },
+    {
+      "command": {
+        "type": "RETURN",
+        "node": "tile-17:top",
+        "face": 1
+      },
+      "button": "오에돈 예배당 / 오에돈 예배당에서 귀환"
+    },
+    {
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-3"
+      },
+      "button": "이동",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 6 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STEP",
+        "node": "tile-03:entry"
+      },
+      "button": "이 칸으로 이동이동력 1 · 추가 카드 없음",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 6 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STEP",
+        "node": "tile-03:room"
+      },
+      "button": "이 칸으로 이동이동력 1 · 추가 카드 없음",
+      "error": "",
+      "notice": false,
+      "phase": "플레이어의 차례",
+      "round": "라운드 6 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "INTERACT",
+        "cardId": "card-1",
+        "mission": "rescue"
+      },
+      "button": "임무 대상 · 상호작용",
+      "error": "",
+      "notice": false,
+      "phase": "상호작용 · 적의 반격 순서",
+      "round": "라운드 6 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "INTERACTION_ENEMY",
+        "enemyId": "huntsmans-minion-1"
+      },
+      "button": "야수 사냥 하인 #1 · 폐가 / 폐가",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 6 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "RESOLVE"
+      },
+      "button": "속도 순서대로 전투 처리",
+      "error": "",
+      "notice": false,
+      "phase": "상호작용 · 적의 반격 순서",
+      "round": "라운드 6 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "INTERACTION_ENEMY",
+        "enemyId": "scourge-beast-1"
+      },
+      "button": "재앙의 야수 #1 · 폐가 / 폐가",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 6 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "FIREARM"
+      },
+      "button": "화기 사용 · 기본 공격 방해",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 6 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "RESOLVE"
+      },
+      "button": "속도 순서대로 전투 처리",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 6 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "RESOLVE"
+      },
+      "button": "속도 순서대로 전투 처리",
+      "error": "",
+      "notice": false,
+      "phase": "다음 차례 · 손패 보충",
+      "round": "라운드 7 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "REFILL"
+      },
+      "button": "손패 보충"
+    },
+    {
+      "command": {
+        "type": "RETURN",
+        "node": "tile-17:top",
+        "face": 1
+      },
+      "button": "오에돈 예배당 / 오에돈 예배당에서 귀환"
+    },
+    {
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-2"
+      },
+      "button": "이동",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 7 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STEP",
+        "node": "tile-03:entry"
+      },
+      "button": "이 칸으로 이동이동력 1 · 추가 카드 없음",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 7 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STEP",
+        "node": "tile-03:room"
+      },
+      "button": "이 칸으로 이동이동력 1 · 추가 카드 없음",
+      "error": "",
+      "notice": false,
+      "phase": "플레이어의 차례",
+      "round": "라운드 7 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "INTERACT",
+        "cardId": "card-8",
+        "mission": "rescue"
+      },
+      "button": "임무 대상 · 상호작용",
+      "error": "",
+      "notice": false,
+      "phase": "상호작용 · 적의 반격 순서",
+      "round": "라운드 7 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "INTERACTION_ENEMY",
+        "enemyId": "huntsmans-minion-1"
+      },
+      "button": "야수 사냥 하인 #1 · 폐가 / 폐가",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 7 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "FIREARM"
+      },
+      "button": "화기 사용 · 기본 공격 방해",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 7 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "RESOLVE"
+      },
+      "button": "속도 순서대로 전투 처리",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 7 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "RESOLVE"
+      },
+      "button": "속도 순서대로 전투 처리",
+      "error": "",
+      "notice": false,
+      "phase": "기절 · 기술 버리기",
+      "round": "라운드 7 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STUN_DISCARD",
+        "cardId": "card-11"
+      },
+      "button": "기본 활력즉시 기술 1개를 뽑습니다.",
+      "error": "",
+      "notice": true,
+      "phase": "구조한 생존자 이동",
+      "round": "라운드 7 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "MISSION_SURVIVOR_STEP",
+        "node": "tile-03:entry"
+      },
+      "button": "생존자 → 폐가 / 아래쪽 입구 칸",
+      "error": "",
+      "notice": false,
+      "phase": "구조한 생존자 이동",
+      "round": "라운드 7 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "MISSION_SURVIVOR_STEP",
+        "node": "tile-17:top"
+      },
+      "button": "생존자 → 오에돈 예배당 / 오에돈 예배당",
+      "error": "",
+      "notice": false,
+      "phase": "구조한 생존자 이동",
+      "round": "라운드 7 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "MISSION_SURVIVOR_STEP",
+        "node": "tile-17:lower-left"
+      },
+      "button": "생존자 → 오에돈 예배당 / 왼쪽 아래 칸",
+      "error": "",
+      "notice": false,
+      "phase": "구조한 생존자 이동",
+      "round": "라운드 7 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "MISSION_SURVIVOR_EXPLORE",
+        "edge": "W"
+      },
+      "button": "생존자 W 탐험",
+      "error": "",
+      "notice": false,
+      "phase": "새 타일 배치",
+      "round": "라운드 7 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "PLACE_TILE",
+        "rotation": 0
+      },
+      "button": "이 방향으로 배치하고 진입",
+      "error": "",
+      "notice": false,
+      "phase": "플레이어의 차례",
+      "round": "라운드 7 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "END_TURN"
+      },
+      "button": "플레이어의 차례 마치기",
+      "error": "",
+      "notice": false,
+      "phase": "구조한 생존자 이동",
+      "round": "라운드 7 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "MISSION_SURVIVOR_STEP",
+        "node": "tile-11:house"
+      },
+      "button": "생존자 → 민가 / 민가",
+      "error": "",
+      "notice": false,
+      "phase": "적과 조우",
+      "round": "라운드 7 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "NO_ATTACK"
+      },
+      "button": "공격하지 않고 행동 공개",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 7 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "RESOLVE"
+      },
+      "button": "속도 순서대로 전투 처리",
+      "error": "",
+      "notice": false,
+      "phase": "다음 차례 · 손패 보충",
+      "round": "라운드 8 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "REFILL"
+      },
+      "button": "손패 보충"
+    },
+    {
+      "command": {
+        "type": "RETURN",
+        "node": "tile-17:top",
+        "face": 1
+      },
+      "button": "오에돈 예배당 / 오에돈 예배당에서 귀환"
+    },
+    {
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-3"
+      },
+      "button": "이동",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 8 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STEP",
+        "node": "tile-17:lower-left"
+      },
+      "button": "이 칸으로 이동이동력 1 · 추가 카드 없음",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 8 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STEP",
+        "node": "tile-11:street"
+      },
+      "button": "이 칸으로 이동이동력 1 · 추가 카드 없음",
+      "error": "",
+      "notice": true,
+      "phase": "플레이어의 차례",
+      "round": "라운드 8 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-1"
+      },
+      "button": "이동",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 8 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STEP",
+        "node": "tile-11:house"
+      },
+      "button": "이 칸으로 이동이동력 1 · 추가 카드 없음",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 8 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "button": "여기서 이동 마치기",
+      "error": "",
+      "notice": false,
+      "phase": "플레이어의 차례",
+      "round": "라운드 8 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-11"
+      },
+      "button": "이동",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 8 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "button": "여기서 이동 마치기",
+      "error": "",
+      "notice": false,
+      "phase": "플레이어의 차례",
+      "round": "라운드 8 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "END_TURN"
+      },
+      "button": "플레이어의 차례 마치기",
+      "error": "",
+      "notice": false,
+      "phase": "구조한 생존자 이동",
+      "round": "라운드 8 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "MISSION_SURVIVOR_STEP",
+        "node": "tile-11:street"
+      },
+      "button": "생존자 → 민가 / 위쪽 거리 칸",
+      "error": "",
+      "notice": false,
+      "phase": "적과 조우",
+      "round": "라운드 8 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "NO_ATTACK"
+      },
+      "button": "공격하지 않고 행동 공개",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 8 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "RESOLVE"
+      },
+      "button": "속도 순서대로 전투 처리",
+      "error": "",
+      "notice": false,
+      "phase": "다음 차례 · 손패 보충",
+      "round": "라운드 9 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "REFILL"
+      },
+      "button": "손패 보충"
+    },
+    {
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-4"
+      },
+      "button": "이동",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 9 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STEP",
+        "node": "tile-11:street"
+      },
+      "button": "이 칸으로 이동이동력 1 · 추가 카드 없음",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 9 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "button": "여기서 이동 마치기",
+      "error": "",
+      "notice": true,
+      "phase": "임무의 선택",
+      "round": "라운드 9 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "MISSION_CHOICE",
+        "choice": "attack"
+      },
+      "button": "여자를 공격한다",
+      "error": "",
+      "notice": true,
+      "phase": "플레이어의 차례",
+      "round": "라운드 9 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "USE_REWARD",
+        "rewardId": "reward-13",
+        "node": "tile-14:center"
+      },
+      "button": "랜턴 사용"
+    },
+    {
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "scourge-beast-2",
+        "cardId": "card-8",
+        "slot": 1
+      },
+      "button": "이 적 공격스탯 카드 1장 배치 · 빈 공격 슬롯 2번",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 9 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "FIREARM"
+      },
+      "button": "화기 사용 · 기본 공격 방해",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 9 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "RESOLVE"
+      },
+      "button": "속도 순서대로 전투 처리",
+      "error": "",
+      "notice": false,
+      "phase": "플레이어의 차례",
+      "round": "라운드 9 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "scourge-beast-2",
+        "cardId": "card-5",
+        "slot": 2
+      },
+      "button": "선택한 기술과 슬롯으로 공격",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 9 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "RESOLVE"
+      },
+      "button": "속도 순서대로 전투 처리",
+      "error": "",
+      "notice": false,
+      "phase": "다음 차례 · 손패 보충",
+      "round": "라운드 10 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "REFILL"
+      },
+      "button": "손패 보충"
+    },
+    {
+      "command": {
+        "type": "RETURN",
+        "node": "tile-04:center",
+        "face": 1
+      },
+      "button": "마당 등불 / 마당 등불에서 귀환"
+    },
+    {
+      "command": {
+        "type": "MOVE",
+        "cardId": "card-1"
+      },
+      "button": "이동",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 10 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STEP",
+        "node": "tile-14:center"
+      },
+      "button": "출입구를 지나 이동이동력 1 · 추가 카드 없음",
+      "error": "",
+      "notice": false,
+      "phase": "이동과 탐험",
+      "round": "라운드 10 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "button": "여기서 이동 마치기",
+      "error": "",
+      "notice": false,
+      "phase": "플레이어의 차례",
+      "round": "라운드 10 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "scourge-beast-2",
+        "cardId": "card-9",
+        "slot": 1
+      },
+      "button": "선택한 기술과 슬롯으로 공격",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 10 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "FIREARM"
+      },
+      "button": "화기 사용 · 기본 공격 방해",
+      "error": "",
+      "notice": false,
+      "phase": "전투 대응",
+      "round": "라운드 10 · 처치 1"
+    },
+    {
+      "command": {
+        "type": "RESOLVE"
+      },
+      "button": "속도 순서대로 전투 처리",
+      "error": "",
+      "notice": true,
+      "phase": "획득한 보상 선택",
+      "round": "라운드 10 · 처치 2"
+    },
+    {
+      "command": {
+        "type": "EQUIP_REWARD",
+        "rewardId": "reward-15",
+        "slot": 1
+      },
+      "button": "2번 슬롯에 장착",
+      "error": "",
+      "notice": false,
+      "phase": "꿈 · 업그레이드 획득",
+      "round": "라운드 10 · 처치 2"
+    },
+    {
+      "command": {
+        "type": "PICK_UPGRADE",
+        "index": 0
+      },
+      "button": "방어태세방어 2피해",
+      "error": "",
+      "notice": false,
+      "phase": "꿈 · 덱 교체",
+      "round": "라운드 10 · 처치 2"
+    },
+    {
+      "command": {
+        "type": "REPLACE_UPGRADE",
+        "replaceId": "card-4"
+      },
+      "button": "기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+      "error": "",
+      "notice": false,
+      "phase": "챕터 1 완수",
+      "round": "라운드 10 · 처치 2"
+    },
+    {
+      "command": {
+        "type": "ENTER_BETWEEN_CHAPTERS"
+      },
+      "button": "챕터 2 준비 · 장비 교체",
+      "error": "",
+      "notice": false,
+      "phase": "다음 챕터 준비",
+      "round": "라운드 10 · 처치 2"
+    },
+    {
+      "command": {
+        "type": "START_NEXT_CHAPTER",
+        "startSpace": "center",
+        "face": 1
+      },
+      "button": "챕터 2 시작"
+    }
+  ],
+  "confirmedFunctionalBugs": [],
+  "finalState": {
+    "notice": false,
+    "objectives": "재앙의 근원 진행 중\n계몽 2개 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요.",
+    "phase": "플레이어의 차례",
+    "round": "라운드 1 · 처치 0",
+    "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n중앙 등불 / 중앙 등불\n\n독 없음 · 발광 없음",
+    "url": "http://127.0.0.1:8786/bloodborne-solo/hunt.html",
+    "versionText": null,
+    "viewport": {
+      "height": 1252,
+      "width": 938
+    }
+  },
+  "runtimeFiles": [
+    {
+      "file": "package.json",
+      "sha256": "3c6558cf5e56a44ce339cd0de8a9f8a19de1ae733d73b67fb575f9d4e1559ba9",
+      "matchesLive": true
+    },
+    {
+      "file": "hunt-app.js",
+      "sha256": "ca012c6e216db0127789a5b8c3f37779f40a27a31e54913b39a54ded00a8c2a3",
+      "matchesLive": true
+    },
+    {
+      "file": "hunt.html",
+      "sha256": "b16883405154add0ebfb63000a03c024d449cbe363d14b605fae2b1bea8a7ebb",
+      "matchesLive": true
+    },
+    {
+      "file": "hunt.css",
+      "sha256": "a142fe6472c205637b235c339428dbb154fb22676c8a31fb912f833d60c35c5a",
+      "matchesLive": true
+    },
+    {
+      "file": "hunt-public-text.js",
+      "sha256": "0a2b362fcc5cf56f20e1564166ab1aebe35a5e7305f84a95850f192c10a2140e",
+      "matchesLive": true
+    },
+    {
+      "file": "hunt-mission-feedback.js",
+      "sha256": "d94e38c3e3f2487fad6b328fc6ce5af8df2ee80592048da675dbc347a74e0d06",
+      "matchesLive": true
+    }
+  ]
+}

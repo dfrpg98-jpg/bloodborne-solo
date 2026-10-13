@@ -8,6 +8,8 @@
 - `location-install-proof.json`: 기존0.8.12의509파일을 변경하지 않고 위치 검사만 추가한 증거.
 - `departure-package-checks-v0.8.12.json`: 생존자 동행과 관련 범위375개 검사 통과. 전체 테스트 합계나 현재 GitHub Actions 성공을 주장하는 수치가 아닙니다.
 - `departure-review-v0.8.12.json`: 동행 확인과 실제 임무 조건의 검토 기록.
+- [mission-feedback-v0.8.13-dev.2.json](mission-feedback-v0.8.13-dev.2.json): 임무 알림 표시 모듈과 UI·임무 관련386개 검사 통과 기록. 자연 엔진 재생·DOM 검사와 실제 브라우저 검증을 구분합니다.
+- [mission-browser-qa-v0.8.13-dev.2/results.json](mission-browser-qa-v0.8.13-dev.2/results.json): 실제 브라우저 컨트롤로 챕터1 완수와 챕터2 진입을 진행한23개 확인 및 스크린샷. 938×1252 화면에서 임무 등장·변경·완수, 확인 비용, 보상 선택, 동행 질문, 일지·새로고침을 점검했습니다. 다른 챕터2·3 분기(BB-008 포함), 작은·낮은 화면과 브라우저 가져오기·내보내기는 미검증입니다.
 
 GitHub Actions가 실제 실행한 최신 전체 결과는 Actions의 `game-regression-results` 아티팩트에서 확인합니다. 참고사진의 실제 바이트를 읽는4개 검사는 CI에서 제외하고 로컬 전체 검사에서 확인합니다.
 
