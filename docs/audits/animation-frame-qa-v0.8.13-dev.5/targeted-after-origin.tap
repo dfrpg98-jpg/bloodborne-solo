@@ -1,0 +1,733 @@
+TAP version 13
+# Subtest: character sheets load before readiness and define all five finite/looped poses
+ok 1 - character sheets load before readiness and define all five finite/looped poses
+  ---
+  duration_ms: 7.8656
+  type: 'test'
+  ...
+# Subtest: actors persist across UI refresh and camera zoom without playing movement
+ok 2 - actors persist across UI refresh and camera zoom without playing movement
+  ---
+  duration_ms: 1.1783
+  type: 'test'
+  ...
+# Subtest: actual movement animates the existing sprite and returns to idle on completion
+ok 3 - actual movement animates the existing sprite and returns to idle on completion
+  ---
+  duration_ms: 3.7743
+  type: 'test'
+  ...
+# Subtest: camera movement during walking cancels the old tween and snaps the public position
+ok 4 - camera movement during walking cancels the old tween and snaps the public position
+  ---
+  duration_ms: 1.7771
+  type: 'test'
+  ...
+# Subtest: resolved damage plays attack and hit while blocked attacks never invent hit poses
+ok 5 - resolved damage plays attack and hit while blocked attacks never invent hit poses
+  ---
+  duration_ms: 1.3983
+  type: 'test'
+  ...
+# Subtest: defeated public target plays death once then is removed; vanished targets do not respawn
+ok 6 - defeated public target plays death once then is removed; vanished targets do not respawn
+  ---
+  duration_ms: 1.0171
+  type: 'test'
+  ...
+# Subtest: firearm-only flashes do not pose a melee swing or invent damage reactions
+ok 7 - firearm-only flashes do not pose a melee swing or invent damage reactions
+  ---
+  duration_ms: 0.8893
+  type: 'test'
+  ...
+# Subtest: new save/chapter and decreasing revision reset sprites without animated game actions
+ok 8 - new save/chapter and decreasing revision reset sprites without animated game actions
+  ---
+  duration_ms: 0.6293
+  type: 'test'
+  ...
+# Subtest: reduced motion draws persistent static actors but disables all pose/effect loops
+ok 9 - reduced motion draws persistent static actors but disables all pose/effect loops
+  ---
+  duration_ms: 0.6819
+  type: 'test'
+  ...
+# Subtest: partial asset loads retain DOM fallback and never create missing/invisible actors
+ok 10 - partial asset loads retain DOM fallback and never create missing/invisible actors
+  ---
+  duration_ms: 0.5155
+  type: 'test'
+  ...
+# Subtest: public actor and effect projections do not read hidden getters
+ok 11 - public actor and effect projections do not read hidden getters
+  ---
+  duration_ms: 0.6795
+  type: 'test'
+  ...
+# Subtest: destroy cancels actor tweens and removes persistent sprites without resurrecting them
+ok 12 - destroy cancels actor tweens and removes persistent sprites without resurrecting them
+  ---
+  duration_ms: 0.6008
+  type: 'test'
+  ...
+# Subtest: both combatants get visible attack poses in sequence without blocking game revisions
+ok 13 - both combatants get visible attack poses in sequence without blocking game revisions
+  ---
+  duration_ms: 1.048
+  type: 'test'
+  ...
+# Subtest: a newer revision cancels deferred visuals rather than replaying stale combat later
+ok 14 - a newer revision cancels deferred visuals rather than replaying stale combat later
+  ---
+  duration_ms: 0.5723
+  type: 'test'
+  ...
+# Subtest: deferred defeat keeps its already-visible actor until the public death visual begins
+ok 15 - deferred defeat keeps its already-visible actor until the public death visual begins
+  ---
+  duration_ms: 0.5421
+  type: 'test'
+  ...
+# Subtest: a sprite animation failure restores DOM fallback even when animation cleanup also fails
+ok 16 - a sprite animation failure restores DOM fallback even when animation cleanup also fails
+  ---
+  duration_ms: 0.6374
+  type: 'test'
+  ...
+# Subtest: a deferred second attack failure restores DOM fallback without escaping its timer callback
+ok 17 - a deferred second attack failure restores DOM fallback without escaping its timer callback
+  ---
+  duration_ms: 0.6421
+  type: 'test'
+  ...
+# Subtest: a pending public defeat stays at its map location when padded camera zoom and scroll change
+ok 18 - a pending public defeat stays at its map location when padded camera zoom and scroll change
+  ---
+  duration_ms: 0.9612
+  type: 'test'
+  ...
+# Subtest: trimmed atlas poses load as named frames with shared sole origin and correct public scale
+ok 19 - trimmed atlas poses load as named frames with shared sole origin and correct public scale
+  ---
+  duration_ms: 3.4531
+  type: 'test'
+  ...
+# Subtest: an atlas with missing animation frames keeps the legible DOM fallback
+ok 20 - an atlas with missing animation frames keeps the legible DOM fallback
+  ---
+  duration_ms: 0.3605
+  type: 'test'
+  ...
+# Subtest: public HP loss outside combat plays hit without inventing an attacker or future action
+ok 21 - public HP loss outside combat plays hit without inventing an attacker or future action
+  ---
+  duration_ms: 1.4834
+  type: 'test'
+  ...
+# Subtest: offline atlas loading uses validated inline rectangles and native Image elements
+ok 22 - offline atlas loading uses validated inline rectangles and native Image elements
+  ---
+  duration_ms: 1.4758
+  type: 'test'
+  ...
+# Subtest: invalid inline atlas bounds fall back to the sidecar path rather than unsanitized data
+ok 23 - invalid inline atlas bounds fall back to the sidecar path rather than unsanitized data
+  ---
+  duration_ms: 0.4872
+  type: 'test'
+  ...
+# Subtest: a viewport resize during async asset loading commits the latest canvas dimensions at create
+ok 24 - a viewport resize during async asset loading commits the latest canvas dimensions at create
+  ---
+  duration_ms: 0.7861
+  type: 'test'
+  ...
+# Subtest: offline character manifest exposes only local texture metadata and agrees with its JSON source
+ok 25 - offline character manifest exposes only local texture metadata and agrees with its JSON source
+  ---
+  duration_ms: 17.676
+  type: 'test'
+  ...
+# Subtest: hunter has sixteen bounded transparent PNG atlas frames with preserved padding and an explicit ground anchor
+ok 26 - hunter has sixteen bounded transparent PNG atlas frames with preserved padding and an explicit ground anchor
+  ---
+  duration_ms: 6.6652
+  type: 'test'
+  ...
+# Subtest: mob has sixteen bounded transparent PNG atlas frames with preserved padding and an explicit ground anchor
+ok 27 - mob has sixteen bounded transparent PNG atlas frames with preserved padding and an explicit ground anchor
+  ---
+  duration_ms: 12.2139
+  type: 'test'
+  ...
+# Subtest: beast has sixteen bounded transparent PNG atlas frames with preserved padding and an explicit ground anchor
+ok 28 - beast has sixteen bounded transparent PNG atlas frames with preserved padding and an explicit ground anchor
+  ---
+  duration_ms: 3.6504
+  type: 'test'
+  ...
+# Subtest: boss has sixteen bounded transparent PNG atlas frames with preserved padding and an explicit ground anchor
+ok 29 - boss has sixteen bounded transparent PNG atlas frames with preserved padding and an explicit ground anchor
+  ---
+  duration_ms: 3.7076
+  type: 'test'
+  ...
+# Subtest: female has sixteen bounded transparent PNG atlas frames with preserved padding and an explicit ground anchor
+ok 30 - female has sixteen bounded transparent PNG atlas frames with preserved padding and an explicit ground anchor
+  ---
+  duration_ms: 5.8979
+  type: 'test'
+  ...
+# Subtest: public preview controls exercise hunter idle, walk, attack, hit and death without weapon actions
+ok 31 - public preview controls exercise hunter idle, walk, attack, hit and death without weapon actions
+  ---
+  duration_ms: 13.6033
+  type: 'test'
+  ...
+# Subtest: public preview controls exercise mob idle, walk, attack, hit and death without weapon actions
+ok 32 - public preview controls exercise mob idle, walk, attack, hit and death without weapon actions
+  ---
+  duration_ms: 14.2267
+  type: 'test'
+  ...
+# Subtest: public preview controls exercise beast idle, walk, attack, hit and death without weapon actions
+ok 33 - public preview controls exercise beast idle, walk, attack, hit and death without weapon actions
+  ---
+  duration_ms: 5.218
+  type: 'test'
+  ...
+# Subtest: public preview controls exercise boss idle, walk, attack, hit and death without weapon actions
+ok 34 - public preview controls exercise boss idle, walk, attack, hit and death without weapon actions
+  ---
+  duration_ms: 2.5196
+  type: 'test'
+  ...
+# Subtest: public preview controls exercise female idle, walk, attack, hit and death without weapon actions
+ok 35 - public preview controls exercise female idle, walk, attack, hit and death without weapon actions
+  ---
+  duration_ms: 7.2148
+  type: 'test'
+  ...
+# Subtest: returning from a generic preview restores the selected weapon forms and three exact attack slots
+ok 36 - returning from a generic preview restores the selected weapon forms and three exact attack slots
+  ---
+  duration_ms: 6.374
+  type: 'test'
+  ...
+# Subtest: unloaded generic characters show loading status instead of claiming a ready actor
+ok 37 - unloaded generic characters show loading status instead of claiming a ready actor
+  ---
+  duration_ms: 2.3906
+  type: 'test'
+  ...
+# Subtest: generic actor source PNGs remain byte-identical and repaired crops preserve pose placement
+ok 38 - generic actor source PNGs remain byte-identical and repaired crops preserve pose placement
+  ---
+  duration_ms: 24.4877
+  type: 'test'
+  ...
+# Subtest: actual beast idle paws meet the ground without changing the relative movement of its sixteen poses
+ok 39 - actual beast idle paws meet the ground without changing the relative movement of its sixteen poses
+  ---
+  duration_ms: 88.1102
+  type: 'test'
+  ...
+# Actual source-pixel lowest paw/body Y values: [432,432,432,432,421,421,421,422,423,420,421,422,414,405,395,404]
+# Subtest: hunter: actual PNG pixels retain all sixteen poses without neighbor fragments or clipped weapons
+ok 40 - hunter: actual PNG pixels retain all sixteen poses without neighbor fragments or clipped weapons
+  ---
+  duration_ms: 550.8755
+  type: 'test'
+  ...
+# Subtest: mob: actual PNG pixels retain all sixteen poses without neighbor fragments or clipped weapons
+ok 41 - mob: actual PNG pixels retain all sixteen poses without neighbor fragments or clipped weapons
+  ---
+  duration_ms: 338.2783
+  type: 'test'
+  ...
+# Subtest: beast: actual PNG pixels retain all sixteen poses without neighbor fragments or clipped weapons
+ok 42 - beast: actual PNG pixels retain all sixteen poses without neighbor fragments or clipped weapons
+  ---
+  duration_ms: 430.3413
+  type: 'test'
+  ...
+# Subtest: boss: actual PNG pixels retain all sixteen poses without neighbor fragments or clipped weapons
+ok 43 - boss: actual PNG pixels retain all sixteen poses without neighbor fragments or clipped weapons
+  ---
+  duration_ms: 384.476
+  type: 'test'
+  ...
+# Subtest: female: actual PNG pixels retain all sixteen poses without neighbor fragments or clipped weapons
+ok 44 - female: actual PNG pixels retain all sixteen poses without neighbor fragments or clipped weapons
+  ---
+  duration_ms: 296.8853
+  type: 'test'
+  ...
+# Subtest: the bundled Phaser runtime is pinned and matches its provenance digest
+ok 45 - the bundled Phaser runtime is pinned and matches its provenance digest
+  ---
+  duration_ms: 6.7688
+  type: 'test'
+  ...
+# Subtest: presentation uses one noninteractive transparent scene and latest preboot public snapshot
+ok 46 - presentation uses one noninteractive transparent scene and latest preboot public snapshot
+  ---
+  duration_ms: 3.6546
+  type: 'test'
+  ...
+# Subtest: scrolls, refreshes and target selections do not animate or count as game movement
+ok 47 - scrolls, refreshes and target selections do not animate or count as game movement
+  ---
+  duration_ms: 0.5749
+  type: 'test'
+  ...
+# Subtest: only the declared moving actor is animated when map camera changes every public coordinate
+ok 48 - only the declared moving actor is animated when map camera changes every public coordinate
+  ---
+  duration_ms: 0.6857
+  type: 'test'
+  ...
+# Subtest: an actual resolved attack can mark a defeated public target at its last visible location
+ok 49 - an actual resolved attack can mark a defeated public target at its last visible location
+  ---
+  duration_ms: 2.6599
+  type: 'test'
+  ...
+# Subtest: presentation reads only allowlisted public coordinates and ignores all hidden or rule data
+ok 50 - presentation reads only allowlisted public coordinates and ignores all hidden or rule data
+  ---
+  duration_ms: 0.512
+  type: 'test'
+  ...
+# Subtest: reduced motion cancels effects and disables subsequent moves, attacks and focus effects
+ok 51 - reduced motion cancels effects and disables subsequent moves, attacks and focus effects
+  ---
+  duration_ms: 0.9063
+  type: 'test'
+  ...
+# Subtest: resize cleans old effects, updates the existing canvas and destroy removes listeners
+ok 52 - resize cleans old effects, updates the existing canvas and destroy removes listeners
+  ---
+  duration_ms: 0.4654
+  type: 'test'
+  ...
+# Subtest: renderer failure and missing Phaser leave an inert fallback without touching game rules
+ok 53 - renderer failure and missing Phaser leave an inert fallback without touching game rules
+  ---
+  duration_ms: 0.4206
+  type: 'test'
+  ...
+# Subtest: only the selected weapon pair preloads alongside the original actor assets
+ok 54 - only the selected weapon pair preloads alongside the original actor assets
+  ---
+  duration_ms: 28.5399
+  type: 'test'
+  ...
+# Subtest: a weapon selected after boot loads its two forms once and replaces the generic fallback
+ok 55 - a weapon selected after boot loads its two forms once and replaces the generic fallback
+  ---
+  duration_ms: 2.4874
+  type: 'test'
+  ...
+# Subtest: resolved weapon attack slot 0 selects its exact four frames
+ok 56 - resolved weapon attack slot 0 selects its exact four frames
+  ---
+  duration_ms: 2.4197
+  type: 'test'
+  ...
+# Subtest: resolved weapon attack slot 1 selects its exact four frames
+ok 57 - resolved weapon attack slot 1 selects its exact four frames
+  ---
+  duration_ms: 1.971
+  type: 'test'
+  ...
+# Subtest: resolved weapon attack slot 2 selects its exact four frames
+ok 58 - resolved weapon attack slot 2 selects its exact four frames
+  ---
+  duration_ms: 1.2417
+  type: 'test'
+  ...
+# Subtest: both weapon forms register independent attack sequences and configured attack pace
+ok 59 - both weapon forms register independent attack sequences and configured attack pace
+  ---
+  duration_ms: 1.3108
+  type: 'test'
+  ...
+# Subtest: confirmed transformation immediately equips the target form and returns to its idle
+ok 60 - confirmed transformation immediately equips the target form and returns to its idle
+  ---
+  duration_ms: 2.6458
+  type: 'test'
+  ...
+# Subtest: loading, save changes and unconfirmed form changes equip the right form without inventing transformation
+ok 61 - loading, save changes and unconfirmed form changes equip the right form without inventing transformation
+  ---
+  duration_ms: 3.5811
+  type: 'test'
+  ...
+# Subtest: a redundant transformation action cannot animate an unchanged form
+ok 62 - a redundant transformation action cannot animate an unchanged form
+  ---
+  duration_ms: 1.0387
+  type: 'test'
+  ...
+# Subtest: a confirmed numeric face change replays recharge while the actual weapon texture stays identical
+ok 63 - a confirmed numeric face change replays recharge while the actual weapon texture stays identical
+  ---
+  duration_ms: 1.8902
+  type: 'test'
+  ...
+# Subtest: movement, hit and defeat retain the actual equipped weapon texture
+ok 64 - movement, hit and defeat retain the actual equipped weapon texture
+  ---
+  duration_ms: 1.7414
+  type: 'test'
+  ...
+# Subtest: an explicit source form on a resolved attack restores the current equipment afterward
+ok 65 - an explicit source form on a resolved attack restores the current equipment afterward
+  ---
+  duration_ms: 0.6878
+  type: 'test'
+  ...
+# Subtest: camera refreshes preserve a consumed-charge source attack until completion without replaying it
+ok 66 - camera refreshes preserve a consumed-charge source attack until completion without replaying it
+  ---
+  duration_ms: 0.8927
+  type: 'test'
+  ...
+# Subtest: a new resolved hit cancels a former source pose and reacts with the current equipment
+ok 67 - a new resolved hit cancels a former source pose and reacts with the current equipment
+  ---
+  duration_ms: 1.3765
+  type: 'test'
+  ...
+# Subtest: firearms and external damage never trigger a selected weapon swing
+ok 68 - firearms and external damage never trigger a selected weapon swing
+  ---
+  duration_ms: 0.8536
+  type: 'test'
+  ...
+# Subtest: Reiterpallasch-style weapon shot plays its own aiming slot and a muzzle flash
+ok 69 - Reiterpallasch-style weapon shot plays its own aiming slot and a muzzle flash
+  ---
+  duration_ms: 0.5649
+  type: 'test'
+  ...
+# Subtest: stake-driver blast plays the equipped punch slot and radial impact instead of a gun shot
+ok 70 - stake-driver blast plays the equipped punch slot and radial impact instead of a gun shot
+  ---
+  duration_ms: 2.4468
+  type: 'test'
+  ...
+# Subtest: public electric impact uses its visual color without generating extra rules damage
+ok 71 - public electric impact uses its visual color without generating extra rules damage
+  ---
+  duration_ms: 0.6902
+  type: 'test'
+  ...
+# Subtest: public spirit impact uses its visual color without generating extra rules damage
+ok 72 - public spirit impact uses its visual color without generating extra rules damage
+  ---
+  duration_ms: 0.5107
+  type: 'test'
+  ...
+# Subtest: public blood impact uses its visual color without generating extra rules damage
+ok 73 - public blood impact uses its visual color without generating extra rules damage
+  ---
+  duration_ms: 0.4787
+  type: 'test'
+  ...
+# Subtest: whip, thrust and overhead public motions have different impact paths
+ok 74 - whip, thrust and overhead public motions have different impact paths
+  ---
+  duration_ms: 0.7995
+  type: 'test'
+  ...
+# Subtest: missing weapon sheets fall back per hunter while all enemies remain visible
+ok 75 - missing weapon sheets fall back per hunter while all enemies remain visible
+  ---
+  duration_ms: 0.7162
+  type: 'test'
+  ...
+# Subtest: an incomplete optional atlas does not register a partially invisible form
+ok 76 - an incomplete optional atlas does not register a partially invisible form
+  ---
+  duration_ms: 2.4065
+  type: 'test'
+  ...
+# Subtest: reduced motion still equips each form instantly without looping or attack effects
+ok 77 - reduced motion still equips each form instantly without looping or attack effects
+  ---
+  duration_ms: 0.6658
+  type: 'test'
+  ...
+# Subtest: a sprite sheet may use all 64 frames with a custom nonzero static idle frame
+ok 78 - a sprite sheet may use all 64 frames with a custom nonzero static idle frame
+  ---
+  duration_ms: 2.5816
+  type: 'test'
+  ...
+# Subtest: invalid attack frame ranges do not switch a ready weapon back to generic attack art
+ok 79 - invalid attack frame ranges do not switch a ready weapon back to generic attack art
+  ---
+  duration_ms: 0.6251
+  type: 'test'
+  ...
+# Subtest: invalid frame counts above the supported 64-frame limit reject only that optional sheet
+ok 80 - invalid frame counts above the supported 64-frame limit reject only that optional sheet
+  ---
+  duration_ms: 0.4031
+  type: 'test'
+  ...
+# Subtest: public projection ignores hidden equipment and future-action getters
+ok 81 - public projection ignores hidden equipment and future-action getters
+  ---
+  duration_ms: 4.8703
+  type: 'test'
+  ...
+# Subtest: late optional loading updates the latest form without replaying completed attacks
+ok 82 - late optional loading updates the latest form without replaying completed attacks
+  ---
+  duration_ms: 1.2817
+  type: 'test'
+  ...
+# Subtest: destroying during lazy loading cannot recreate actors or fire readiness callbacks
+ok 83 - destroying during lazy loading cannot recreate actors or fire readiness callbacks
+  ---
+  duration_ms: 0.8515
+  type: 'test'
+  ...
+# Subtest: a newer rule revision cancels a deferred equipped-weapon attack
+ok 84 - a newer rule revision cancels a deferred equipped-weapon attack
+  ---
+  duration_ms: 1.3279
+  type: 'test'
+  ...
+# Subtest: a heavy attack completes its full four-frame 9 fps follow-through before the next combatant acts
+ok 85 - a heavy attack completes its full four-frame 9 fps follow-through before the next combatant acts
+  ---
+  duration_ms: 0.5668
+  type: 'test'
+  ...
+# Subtest: a full four-frame walking cycle completes before the next attack and returns to stable idle
+ok 86 - a full four-frame walking cycle completes before the next attack and returns to stable idle
+  ---
+  duration_ms: 0.858
+  type: 'test'
+  ...
+# Subtest: walk pacing remains bounded for optional 20 fps clips
+ok 87 - walk pacing remains bounded for optional 20 fps clips
+  ---
+  duration_ms: 0.6275
+  type: 'test'
+  ...
+# Subtest: walk pacing remains bounded for optional 2 fps clips
+ok 88 - walk pacing remains bounded for optional 2 fps clips
+  ---
+  duration_ms: 0.39
+  type: 'test'
+  ...
+# Subtest: idle frame changes and same-state refreshes preserve position, facing, origin, scale and shadow
+ok 89 - idle frame changes and same-state refreshes preserve position, facing, origin, scale and shadow
+  ---
+  duration_ms: 2.0055
+  type: 'test'
+  ...
+# Subtest: a quick four-frame weapon attack preserves the old 300 ms minimum combat spacing
+ok 90 - a quick four-frame weapon attack preserves the old 300 ms minimum combat spacing
+  ---
+  duration_ms: 0.5506
+  type: 'test'
+  ...
+# Subtest: logical foreground rectangles are safely copied and rendered as a nondisplayed native mask union
+ok 91 - logical foreground rectangles are safely copied and rendered as a nondisplayed native mask union
+  ---
+  duration_ms: 5.477
+  type: 'test'
+  ...
+# Subtest: the mask union preserves all included own rectangles and excludes a neighboring foreground point
+ok 92 - the mask union preserves all included own rectangles and excludes a neighboring foreground point
+  ---
+  duration_ms: 1.7449
+  type: 'test'
+  ...
+# Subtest: moving masked actors carry their clip along every tween update and honor horizontal facing
+ok 93 - moving masked actors carry their clip along every tween update and honor horizontal facing
+  ---
+  duration_ms: 1.8954
+  type: 'test'
+  ...
+# Subtest: camera zoom and viewport synchronization update mask placement and scale without another animation
+ok 94 - camera zoom and viewport synchronization update mask placement and scale without another animation
+  ---
+  duration_ms: 1.7107
+  type: 'test'
+  ...
+# Subtest: animation frame updates attach or clear only the affected pose mask
+ok 95 - animation frame updates attach or clear only the affected pose mask
+  ---
+  duration_ms: 1.8119
+  type: 'test'
+  ...
+# Subtest: transforming changes inclusion geometry to the new own form and clears it at the clean idle frame
+ok 96 - transforming changes inclusion geometry to the new own form and clears it at the clean idle frame
+  ---
+  duration_ms: 2.1596
+  type: 'test'
+  ...
+# Subtest: a pinned source-form attack keeps its own mask through camera refresh and restores the current form cleanly
+ok 97 - a pinned source-form attack keeps its own mask through camera refresh and restores the current form cleanly
+  ---
+  duration_ms: 0.9716
+  type: 'test'
+  ...
+# Subtest: resize and reduced motion retain safe static inclusion geometry at the exact current position
+ok 98 - resize and reduced motion retain safe static inclusion geometry at the exact current position
+  ---
+  duration_ms: 0.9031
+  type: 'test'
+  ...
+# Subtest: destroy and ordinary removal clear masks before releasing their native graphics and references
+ok 99 - destroy and ordinary removal clear masks before releasing their native graphics and references
+  ---
+  duration_ms: 0.6961
+  type: 'test'
+  ...
+# Subtest: deferred public death keeps its own clip until fading finishes, then releases it
+ok 100 - deferred public death keeps its own clip until fading finishes, then releases it
+  ---
+  duration_ms: 0.784
+  type: 'test'
+  ...
+# Subtest: unsupported native geometry masking falls back per weapon and never loads an unsafe visible pose
+ok 101 - unsupported native geometry masking falls back per weapon and never loads an unsafe visible pose
+  ---
+  duration_ms: 0.5404
+  type: 'test'
+  ...
+# Subtest: required shipped bodies retain DOM fallback when native clipping is missing
+ok 102 - required shipped bodies retain DOM fallback when native clipping is missing
+  ---
+  duration_ms: 5.154
+  type: 'test'
+  ...
+# Subtest: required shipped bodies retain DOM fallback when native clipping is throwing
+ok 103 - required shipped bodies retain DOM fallback when native clipping is throwing
+  ---
+  duration_ms: 1.1797
+  type: 'test'
+  ...
+# Subtest: a sprite implementation without setMask rejects clipped forms before drawing their pixels
+ok 104 - a sprite implementation without setMask rejects clipped forms before drawing their pixels
+  ---
+  duration_ms: 0.9175
+  type: 'test'
+  ...
+# Subtest: invalid bounds clip rectangles reject the optional sheet instead of drawing its unmasked sidecar
+ok 105 - invalid bounds clip rectangles reject the optional sheet instead of drawing its unmasked sidecar
+  ---
+  duration_ms: 0.4817
+  type: 'test'
+  ...
+# Subtest: invalid empty clip rectangles reject the optional sheet instead of drawing its unmasked sidecar
+ok 106 - invalid empty clip rectangles reject the optional sheet instead of drawing its unmasked sidecar
+  ---
+  duration_ms: 0.3671
+  type: 'test'
+  ...
+# Subtest: invalid too-many clip rectangles reject the optional sheet instead of drawing its unmasked sidecar
+ok 107 - invalid too-many clip rectangles reject the optional sheet instead of drawing its unmasked sidecar
+  ---
+  duration_ms: 3.2458
+  type: 'test'
+  ...
+# Subtest: mask geometry ignores unrelated metadata and remains independent of loader-side objects
+ok 108 - mask geometry ignores unrelated metadata and remains independent of loader-side objects
+  ---
+  duration_ms: 0.8163
+  type: 'test'
+  ...
+# Subtest: normalized display heights up to 256 preserve public actor scale while larger values clamp safely
+ok 109 - normalized display heights up to 256 preserve public actor scale while larger values clamp safely
+  ---
+  duration_ms: 0.4983
+  type: 'test'
+  ...
+# Subtest: all 30 shipped weapon atlases and every one of their 720 poses survive runtime validation with exact required mask coverage
+ok 110 - all 30 shipped weapon atlases and every one of their 720 poses survive runtime validation with exact required mask coverage
+  ---
+  duration_ms: 80.835
+  type: 'test'
+  ...
+# Subtest: all fifteen weapons own both form-specific sheets with reciprocal pairing
+ok 111 - all fifteen weapons own both form-specific sheets with reciprocal pairing
+  ---
+  duration_ms: 2.2582
+  type: 'test'
+  ...
+# Subtest: generated PNG signatures, RGBA headers, dimensions and source hashes match deployed bytes
+ok 112 - generated PNG signatures, RGBA headers, dimensions and source hashes match deployed bytes
+  ---
+  duration_ms: 164.6129
+  type: 'test'
+  ...
+# Subtest: every atlas owns 24 isolated poses within the raw sheet and common foot baseline
+ok 113 - every atlas owns 24 isolated poses within the raw sheet and common foot baseline
+  ---
+  duration_ms: 109.1824
+  type: 'test'
+  ...
+# Subtest: actual PNG foreground belongs to exactly one rendered pose after vector clip geometry
+ok 114 - actual PNG foreground belongs to exactly one rendered pose after vector clip geometry
+  ---
+  duration_ms: 1694.4137
+  type: 'test'
+  ...
+# Subtest: idle, walk, three attacks, hurt, defeat and transformation occupy distinct frame sequences
+ok 115 - idle, walk, three attacks, hurt, defeat and transformation occupy distinct frame sequences
+  ---
+  duration_ms: 1.8932
+  type: 'test'
+  ...
+# Subtest: weapon metadata adds a separate global and keeps the five existing actor skins available
+ok 116 - weapon metadata adds a separate global and keeps the five existing actor skins available
+  ---
+  duration_ms: 87.4442
+  type: 'test'
+  ...
+# Subtest: runtime asset paths reference only new artwork and source photos are provenance names only
+ok 117 - runtime asset paths reference only new artwork and source photos are provenance names only
+  ---
+  duration_ms: 1.7656
+  type: 'test'
+  ...
+# Subtest: retaken beast-claw B follows inspected poses and matches preserved A actual head-to-sole scale
+ok 118 - retaken beast-claw B follows inspected poses and matches preserved A actual head-to-sole scale
+  ---
+  duration_ms: 78.2127
+  type: 'test'
+  ...
+# Subtest: all 30 weapon forms keep actual idle feet, torso and head within 2 displayed pixels
+ok 119 - all 30 weapon forms keep actual idle feet, torso and head within 2 displayed pixels
+  ---
+  duration_ms: 1835.3872
+  type: 'test'
+  ...
+# Actual PNG idle pair maximum drift: {"feet":1.57633203125,"torso":1.8902720374354336,"head":1.8270950437612221}
+# Subtest: restoring the 15 original placements reproduces standing jumps using unchanged source pixels
+ok 120 - restoring the 15 original placements reproduces standing jumps using unchanged source pixels
+  ---
+  duration_ms: 105.3138
+  type: 'test'
+  ...
+# Reproduced and corrected source-pixel cases: {"w-threaded-cane-a":{"before":{"feet":2.290728515625,"head":2.030913152112249,"torso":2.3970862731190055},"after":{"feet":0.084841796875,"head":0.344657160387751,"torso":0.021515960619005556}},"w-hunter-axe-a":{"before":{"feet":2.29429931640625,"head":1.7500359188692565,"torso":1.9145045345187046},"after":{"feet":0.39556884765625,"head":0.14869454988074352,"torso":0.01577406576870446}},"w-rifle-spear-a":{"before":{"feet":4.7619140625,"head":5.318960254106099,"torso":4.675238834694512},"after":{"feet":0.34013671875,"head":0.21690947285609907,"torso":0.42681194655548776}},"w-rifle-spear-b":{"before":{"feet":9.958130859375,"head":10.0810930990599,"torso":9.46754967968098},"after":{"feet":0.089712890625,"head":0.033249349059899964,"torso":0.5802940703190196}},"w-saw-spear-a":{"before":{"feet":4.777060546875,"head":3.627102269475112,"torso":4.106274543015406},"after":{"feet":0.63694140625,"head":0.5130168711498877,"torso":0.033844597609594115}},"w-ludwigs-holy-blade-b":{"before":{"feet":3.0269003906250003,"head":3.6848431353172626,"torso":3.592646327898167},"after":{"feet":0.336322265625,"head":0.32162047906726265,"torso":0.22942367164816682}},"w-logarius-wheel-a":{"before":{"feet":5.805422851562501,"head":5.558085233598913,"torso":5.719211674098957},"after":{"feet":0.1569033203125,"head":0.0904342976510873,"torso":0.07069214284895646}},"w-kirkhammer-b":{"before":{"feet":2.7777832031250003,"head":2.637839330991802,"torso":1.9768618695151778},"after":{"feet":0.308642578125,"head":0.1686987059918017,"torso":0.49227875548481337}},"w-stake-driver-a":{"before":{"feet":2.48446875,"head":2.1917163375123185,"torso":2.391257544347837},"after":{"feet":0,"head":0.2927524124876817,"torso":0.09321120565217181}},"w-chikage-a":{"before":{"feet":2.8470654296875,"head":4.875292113338599,"torso":3.9079932379537796},"after":{"feet":1.0574814453124999,"head":0.970745238338599,"torso":0.003446362953779667}},"w-beast-claw-a":{"before":{"feet":4.0952900390625,"head":3.081935328837774,"torso":4.17913895884603},"after":{"feet":0.5620986328125,"head":0.4512560774122171,"torso":0.6459475525960295}},"w-beast-claw-b":{"before":{"feet":2.04407666015625,"head":2.079104959602948,"torso":1.9752549490952334},"after":{"feet":0.07570654296875,"head":0.04067824352205224,"torso":0.14452825402976668}},"w-reiterpallasch-a":{"before":{"feet":2.7378398437500002,"head":5.588303528432975,"torso":3.062053226840943},"after":{"feet":1.57633203125,"head":1.2741316534329756,"torso":1.252118648159057}},"w-reiterpallasch-b":{"before":{"feet":2.287578125,"head":4.019587540230119,"torso":2.84261360423187},"after":{"feet":0.980390625,"head":0.7516187902301192,"torso":0.42535514576813005}},"w-burial-a":{"before":{"feet":11.10197021484375,"head":12.564968585299077,"torso":11.354682215168344},"after":{"feet":0.08223681640625,"head":1.380761554049078,"torso":0.1704751839183344}}}
+1..120
+# tests 120
+# suites 0
+# pass 120
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2437.4773

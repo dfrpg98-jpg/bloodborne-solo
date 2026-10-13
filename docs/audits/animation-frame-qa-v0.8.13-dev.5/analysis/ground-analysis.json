@@ -1,0 +1,732 @@
+{
+  "hunter": [
+    {
+      "frame": 0,
+      "groundExclusive": 456,
+      "lowest10pxXRange": [
+        206,
+        314
+      ],
+      "lowBandPixels": 395
+    },
+    {
+      "frame": 1,
+      "groundExclusive": 455,
+      "lowest10pxXRange": [
+        196,
+        302
+      ],
+      "lowBandPixels": 430
+    },
+    {
+      "frame": 2,
+      "groundExclusive": 455,
+      "lowest10pxXRange": [
+        183,
+        290
+      ],
+      "lowBandPixels": 481
+    },
+    {
+      "frame": 3,
+      "groundExclusive": 455,
+      "lowest10pxXRange": [
+        190,
+        298
+      ],
+      "lowBandPixels": 504
+    },
+    {
+      "frame": 4,
+      "groundExclusive": 455,
+      "lowest10pxXRange": [
+        189,
+        370
+      ],
+      "lowBandPixels": 660
+    },
+    {
+      "frame": 5,
+      "groundExclusive": 453,
+      "lowest10pxXRange": [
+        189,
+        351
+      ],
+      "lowBandPixels": 553
+    },
+    {
+      "frame": 6,
+      "groundExclusive": 454,
+      "lowest10pxXRange": [
+        170,
+        345
+      ],
+      "lowBandPixels": 460
+    },
+    {
+      "frame": 7,
+      "groundExclusive": 450,
+      "lowest10pxXRange": [
+        191,
+        361
+      ],
+      "lowBandPixels": 570
+    },
+    {
+      "frame": 8,
+      "groundExclusive": 439,
+      "lowest10pxXRange": [
+        147,
+        368
+      ],
+      "lowBandPixels": 518
+    },
+    {
+      "frame": 9,
+      "groundExclusive": 440,
+      "lowest10pxXRange": [
+        174,
+        374
+      ],
+      "lowBandPixels": 550
+    },
+    {
+      "frame": 10,
+      "groundExclusive": 439,
+      "lowest10pxXRange": [
+        133,
+        392
+      ],
+      "lowBandPixels": 552
+    },
+    {
+      "frame": 11,
+      "groundExclusive": 439,
+      "lowest10pxXRange": [
+        166,
+        366
+      ],
+      "lowBandPixels": 610
+    },
+    {
+      "frame": 12,
+      "groundExclusive": 446,
+      "lowest10pxXRange": [
+        186,
+        383
+      ],
+      "lowBandPixels": 424
+    },
+    {
+      "frame": 13,
+      "groundExclusive": 433,
+      "lowest10pxXRange": [
+        188,
+        351
+      ],
+      "lowBandPixels": 422
+    },
+    {
+      "frame": 14,
+      "groundExclusive": 423,
+      "lowest10pxXRange": [
+        306,
+        419
+      ],
+      "lowBandPixels": 671
+    },
+    {
+      "frame": 15,
+      "groundExclusive": 419,
+      "lowest10pxXRange": [
+        148,
+        404
+      ],
+      "lowBandPixels": 662
+    }
+  ],
+  "mob": [
+    {
+      "frame": 0,
+      "groundExclusive": 454,
+      "lowest10pxXRange": [
+        198,
+        312
+      ],
+      "lowBandPixels": 588
+    },
+    {
+      "frame": 1,
+      "groundExclusive": 454,
+      "lowest10pxXRange": [
+        196,
+        311
+      ],
+      "lowBandPixels": 595
+    },
+    {
+      "frame": 2,
+      "groundExclusive": 454,
+      "lowest10pxXRange": [
+        196,
+        309
+      ],
+      "lowBandPixels": 581
+    },
+    {
+      "frame": 3,
+      "groundExclusive": 457,
+      "lowest10pxXRange": [
+        199,
+        313
+      ],
+      "lowBandPixels": 585
+    },
+    {
+      "frame": 4,
+      "groundExclusive": 454,
+      "lowest10pxXRange": [
+        176,
+        341
+      ],
+      "lowBandPixels": 569
+    },
+    {
+      "frame": 5,
+      "groundExclusive": 454,
+      "lowest10pxXRange": [
+        170,
+        341
+      ],
+      "lowBandPixels": 557
+    },
+    {
+      "frame": 6,
+      "groundExclusive": 454,
+      "lowest10pxXRange": [
+        171,
+        343
+      ],
+      "lowBandPixels": 674
+    },
+    {
+      "frame": 7,
+      "groundExclusive": 454,
+      "lowest10pxXRange": [
+        172,
+        333
+      ],
+      "lowBandPixels": 463
+    },
+    {
+      "frame": 8,
+      "groundExclusive": 448,
+      "lowest10pxXRange": [
+        162,
+        383
+      ],
+      "lowBandPixels": 445
+    },
+    {
+      "frame": 9,
+      "groundExclusive": 448,
+      "lowest10pxXRange": [
+        190,
+        345
+      ],
+      "lowBandPixels": 403
+    },
+    {
+      "frame": 10,
+      "groundExclusive": 451,
+      "lowest10pxXRange": [
+        136,
+        343
+      ],
+      "lowBandPixels": 504
+    },
+    {
+      "frame": 11,
+      "groundExclusive": 453,
+      "lowest10pxXRange": [
+        144,
+        312
+      ],
+      "lowBandPixels": 506
+    },
+    {
+      "frame": 12,
+      "groundExclusive": 419,
+      "lowest10pxXRange": [
+        191,
+        334
+      ],
+      "lowBandPixels": 668
+    },
+    {
+      "frame": 13,
+      "groundExclusive": 423,
+      "lowest10pxXRange": [
+        165,
+        300
+      ],
+      "lowBandPixels": 450
+    },
+    {
+      "frame": 14,
+      "groundExclusive": 458,
+      "lowest10pxXRange": [
+        307,
+        360
+      ],
+      "lowBandPixels": 403
+    },
+    {
+      "frame": 15,
+      "groundExclusive": 420,
+      "lowest10pxXRange": [
+        327,
+        383
+      ],
+      "lowBandPixels": 474
+    }
+  ],
+  "beast": [
+    {
+      "frame": 0,
+      "groundExclusive": 433,
+      "lowest10pxXRange": [
+        132,
+        383
+      ],
+      "lowBandPixels": 528
+    },
+    {
+      "frame": 1,
+      "groundExclusive": 433,
+      "lowest10pxXRange": [
+        132,
+        382
+      ],
+      "lowBandPixels": 528
+    },
+    {
+      "frame": 2,
+      "groundExclusive": 433,
+      "lowest10pxXRange": [
+        132,
+        382
+      ],
+      "lowBandPixels": 510
+    },
+    {
+      "frame": 3,
+      "groundExclusive": 433,
+      "lowest10pxXRange": [
+        132,
+        383
+      ],
+      "lowBandPixels": 538
+    },
+    {
+      "frame": 4,
+      "groundExclusive": 422,
+      "lowest10pxXRange": [
+        151,
+        390
+      ],
+      "lowBandPixels": 965
+    },
+    {
+      "frame": 5,
+      "groundExclusive": 422,
+      "lowest10pxXRange": [
+        168,
+        379
+      ],
+      "lowBandPixels": 1028
+    },
+    {
+      "frame": 6,
+      "groundExclusive": 422,
+      "lowest10pxXRange": [
+        144,
+        378
+      ],
+      "lowBandPixels": 791
+    },
+    {
+      "frame": 7,
+      "groundExclusive": 423,
+      "lowest10pxXRange": [
+        178,
+        378
+      ],
+      "lowBandPixels": 809
+    },
+    {
+      "frame": 8,
+      "groundExclusive": 424,
+      "lowest10pxXRange": [
+        132,
+        391
+      ],
+      "lowBandPixels": 702
+    },
+    {
+      "frame": 9,
+      "groundExclusive": 421,
+      "lowest10pxXRange": [
+        139,
+        341
+      ],
+      "lowBandPixels": 356
+    },
+    {
+      "frame": 10,
+      "groundExclusive": 422,
+      "lowest10pxXRange": [
+        136,
+        294
+      ],
+      "lowBandPixels": 452
+    },
+    {
+      "frame": 11,
+      "groundExclusive": 423,
+      "lowest10pxXRange": [
+        137,
+        394
+      ],
+      "lowBandPixels": 681
+    },
+    {
+      "frame": 12,
+      "groundExclusive": 415,
+      "lowest10pxXRange": [
+        144,
+        179
+      ],
+      "lowBandPixels": 290
+    },
+    {
+      "frame": 13,
+      "groundExclusive": 406,
+      "lowest10pxXRange": [
+        147,
+        371
+      ],
+      "lowBandPixels": 533
+    },
+    {
+      "frame": 14,
+      "groundExclusive": 396,
+      "lowest10pxXRange": [
+        168,
+        380
+      ],
+      "lowBandPixels": 541
+    },
+    {
+      "frame": 15,
+      "groundExclusive": 405,
+      "lowest10pxXRange": [
+        276,
+        307
+      ],
+      "lowBandPixels": 234
+    }
+  ],
+  "boss": [
+    {
+      "frame": 0,
+      "groundExclusive": 454,
+      "lowest10pxXRange": [
+        181,
+        324
+      ],
+      "lowBandPixels": 424
+    },
+    {
+      "frame": 1,
+      "groundExclusive": 454,
+      "lowest10pxXRange": [
+        181,
+        319
+      ],
+      "lowBandPixels": 415
+    },
+    {
+      "frame": 2,
+      "groundExclusive": 454,
+      "lowest10pxXRange": [
+        180,
+        323
+      ],
+      "lowBandPixels": 416
+    },
+    {
+      "frame": 3,
+      "groundExclusive": 454,
+      "lowest10pxXRange": [
+        181,
+        318
+      ],
+      "lowBandPixels": 412
+    },
+    {
+      "frame": 4,
+      "groundExclusive": 453,
+      "lowest10pxXRange": [
+        145,
+        345
+      ],
+      "lowBandPixels": 698
+    },
+    {
+      "frame": 5,
+      "groundExclusive": 453,
+      "lowest10pxXRange": [
+        161,
+        320
+      ],
+      "lowBandPixels": 678
+    },
+    {
+      "frame": 6,
+      "groundExclusive": 453,
+      "lowest10pxXRange": [
+        216,
+        311
+      ],
+      "lowBandPixels": 741
+    },
+    {
+      "frame": 7,
+      "groundExclusive": 452,
+      "lowest10pxXRange": [
+        181,
+        358
+      ],
+      "lowBandPixels": 732
+    },
+    {
+      "frame": 8,
+      "groundExclusive": 450,
+      "lowest10pxXRange": [
+        179,
+        346
+      ],
+      "lowBandPixels": 540
+    },
+    {
+      "frame": 9,
+      "groundExclusive": 450,
+      "lowest10pxXRange": [
+        143,
+        319
+      ],
+      "lowBandPixels": 516
+    },
+    {
+      "frame": 10,
+      "groundExclusive": 452,
+      "lowest10pxXRange": [
+        119,
+        334
+      ],
+      "lowBandPixels": 448
+    },
+    {
+      "frame": 11,
+      "groundExclusive": 455,
+      "lowest10pxXRange": [
+        116,
+        333
+      ],
+      "lowBandPixels": 776
+    },
+    {
+      "frame": 12,
+      "groundExclusive": 455,
+      "lowest10pxXRange": [
+        161,
+        337
+      ],
+      "lowBandPixels": 451
+    },
+    {
+      "frame": 13,
+      "groundExclusive": 440,
+      "lowest10pxXRange": [
+        163,
+        338
+      ],
+      "lowBandPixels": 510
+    },
+    {
+      "frame": 14,
+      "groundExclusive": 452,
+      "lowest10pxXRange": [
+        124,
+        332
+      ],
+      "lowBandPixels": 572
+    },
+    {
+      "frame": 15,
+      "groundExclusive": 431,
+      "lowest10pxXRange": [
+        110,
+        136
+      ],
+      "lowBandPixels": 171
+    }
+  ],
+  "female": [
+    {
+      "frame": 0,
+      "groundExclusive": 453,
+      "lowest10pxXRange": [
+        244,
+        285
+      ],
+      "lowBandPixels": 364
+    },
+    {
+      "frame": 1,
+      "groundExclusive": 453,
+      "lowest10pxXRange": [
+        243,
+        285
+      ],
+      "lowBandPixels": 372
+    },
+    {
+      "frame": 2,
+      "groundExclusive": 453,
+      "lowest10pxXRange": [
+        243,
+        285
+      ],
+      "lowBandPixels": 368
+    },
+    {
+      "frame": 3,
+      "groundExclusive": 453,
+      "lowest10pxXRange": [
+        245,
+        286
+      ],
+      "lowBandPixels": 363
+    },
+    {
+      "frame": 4,
+      "groundExclusive": 452,
+      "lowest10pxXRange": [
+        196,
+        337
+      ],
+      "lowBandPixels": 506
+    },
+    {
+      "frame": 5,
+      "groundExclusive": 449,
+      "lowest10pxXRange": [
+        191,
+        337
+      ],
+      "lowBandPixels": 625
+    },
+    {
+      "frame": 6,
+      "groundExclusive": 452,
+      "lowest10pxXRange": [
+        199,
+        346
+      ],
+      "lowBandPixels": 459
+    },
+    {
+      "frame": 7,
+      "groundExclusive": 452,
+      "lowest10pxXRange": [
+        208,
+        349
+      ],
+      "lowBandPixels": 538
+    },
+    {
+      "frame": 8,
+      "groundExclusive": 452,
+      "lowest10pxXRange": [
+        194,
+        324
+      ],
+      "lowBandPixels": 563
+    },
+    {
+      "frame": 9,
+      "groundExclusive": 454,
+      "lowest10pxXRange": [
+        192,
+        306
+      ],
+      "lowBandPixels": 524
+    },
+    {
+      "frame": 10,
+      "groundExclusive": 454,
+      "lowest10pxXRange": [
+        162,
+        308
+      ],
+      "lowBandPixels": 640
+    },
+    {
+      "frame": 11,
+      "groundExclusive": 453,
+      "lowest10pxXRange": [
+        192,
+        323
+      ],
+      "lowBandPixels": 555
+    },
+    {
+      "frame": 12,
+      "groundExclusive": 432,
+      "lowest10pxXRange": [
+        185,
+        330
+      ],
+      "lowBandPixels": 605
+    },
+    {
+      "frame": 13,
+      "groundExclusive": 450,
+      "lowest10pxXRange": [
+        173,
+        316
+      ],
+      "lowBandPixels": 491
+    },
+    {
+      "frame": 14,
+      "groundExclusive": 454,
+      "lowest10pxXRange": [
+        150,
+        179
+      ],
+      "lowBandPixels": 164
+    },
+    {
+      "frame": 15,
+      "groundExclusive": 428,
+      "lowest10pxXRange": [
+        163,
+        233
+      ],
+      "lowBandPixels": 356
+    }
+  ]
+}

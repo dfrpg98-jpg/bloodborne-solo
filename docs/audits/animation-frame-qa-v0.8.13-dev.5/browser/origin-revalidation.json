@@ -1,0 +1,852 @@
+{
+  "version": "0.8.13-dev.5",
+  "scope": "Generic skins revalidation after beast originY432/512; thirty weapon form data and renderer logic unchanged.",
+  "loadedScripts": [
+    "assets/vendor/phaser-4.2.1.min.js",
+    "assets/characters/manifest.js?v=0.8.13-dev.5&h=fc5309eed25a",
+    "assets/characters/weapon-manifest.js?v=0.8.13-dev.5",
+    "weapon-visuals.js",
+    "hunt-presentation.js?v=0.8.13-dev.5",
+    "weapon-gallery.js?v=0.8.13-dev.5"
+  ],
+  "generic": [
+    {
+      "subject": "hunter",
+      "idle": {
+        "canvasCount": 1,
+        "form0": "false",
+        "form1": "false",
+        "presentation": {
+          "presentation": "phaser",
+          "presentationActors": "2",
+          "presentationAttacks": "0",
+          "presentationCharacters": "ready",
+          "presentationMotion": "full",
+          "presentationMoves": "0",
+          "presentationShots": "0",
+          "presentationVersion": "4.2.1",
+          "presentationWeapon": "hunter",
+          "presentationWeaponReady": "true"
+        },
+        "status": "공통 사냥꾼 · 동작 미리보기",
+        "subject": "hunter",
+        "weapon": "threaded-cane"
+      },
+      "actions": [
+        {
+          "action": "attack",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "1",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "0",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "hunter",
+              "presentationWeaponReady": "true"
+            },
+            "status": "공통 사냥꾼 · 동작 미리보기",
+            "subject": "hunter",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "1",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "1",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "hunter",
+              "presentationWeaponReady": "true"
+            },
+            "status": "공통 사냥꾼 · 동작 미리보기",
+            "subject": "hunter",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "1",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "2",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "hunter",
+              "presentationWeaponReady": "true"
+            },
+            "status": "공통 사냥꾼 · 동작 미리보기",
+            "subject": "hunter",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "hit",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "2",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "2",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "hunter",
+              "presentationWeaponReady": "true"
+            },
+            "status": "공통 사냥꾼 · 동작 미리보기",
+            "subject": "hunter",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "death",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "1",
+              "presentationAttacks": "3",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "2",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+            "subject": "hunter",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "idle",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "3",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "2",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "hunter",
+              "presentationWeaponReady": "true"
+            },
+            "status": "공통 사냥꾼 · 동작 미리보기",
+            "subject": "hunter",
+            "weapon": "threaded-cane"
+          }
+        }
+      ],
+      "idleScreen": "generic-hunter-idle.jpg",
+      "attackScreen": "generic-hunter-attack-sample.jpg"
+    },
+    {
+      "subject": "mob",
+      "idle": {
+        "canvasCount": 1,
+        "form0": "false",
+        "form1": "false",
+        "presentation": {
+          "presentation": "phaser",
+          "presentationActors": "2",
+          "presentationAttacks": "3",
+          "presentationCharacters": "ready",
+          "presentationMotion": "full",
+          "presentationMoves": "2",
+          "presentationShots": "0",
+          "presentationVersion": "4.2.1",
+          "presentationWeapon": "",
+          "presentationWeaponReady": "false"
+        },
+        "status": "공통 인간형 적 · 동작 미리보기",
+        "subject": "mob",
+        "weapon": "threaded-cane"
+      },
+      "actions": [
+        {
+          "action": "attack",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "4",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "2",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 인간형 적 · 동작 미리보기",
+            "subject": "mob",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "4",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "3",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 인간형 적 · 동작 미리보기",
+            "subject": "mob",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "4",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "4",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 인간형 적 · 동작 미리보기",
+            "subject": "mob",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "hit",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "5",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "4",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 인간형 적 · 동작 미리보기",
+            "subject": "mob",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "death",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "1",
+              "presentationAttacks": "6",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "4",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+            "subject": "mob",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "idle",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "6",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "4",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 인간형 적 · 동작 미리보기",
+            "subject": "mob",
+            "weapon": "threaded-cane"
+          }
+        }
+      ],
+      "idleScreen": "generic-mob-idle.jpg",
+      "attackScreen": "generic-mob-attack-sample.jpg"
+    },
+    {
+      "subject": "beast",
+      "idle": {
+        "canvasCount": 1,
+        "form0": "false",
+        "form1": "false",
+        "presentation": {
+          "presentation": "phaser",
+          "presentationActors": "2",
+          "presentationAttacks": "6",
+          "presentationCharacters": "ready",
+          "presentationMotion": "full",
+          "presentationMoves": "4",
+          "presentationShots": "0",
+          "presentationVersion": "4.2.1",
+          "presentationWeapon": "",
+          "presentationWeaponReady": "false"
+        },
+        "status": "공통 야수형 적 · 동작 미리보기",
+        "subject": "beast",
+        "weapon": "threaded-cane"
+      },
+      "actions": [
+        {
+          "action": "attack",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "7",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "4",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 야수형 적 · 동작 미리보기",
+            "subject": "beast",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "7",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "5",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 야수형 적 · 동작 미리보기",
+            "subject": "beast",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "7",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "6",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 야수형 적 · 동작 미리보기",
+            "subject": "beast",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "hit",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "8",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "6",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 야수형 적 · 동작 미리보기",
+            "subject": "beast",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "death",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "1",
+              "presentationAttacks": "9",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "6",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+            "subject": "beast",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "idle",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "9",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "6",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 야수형 적 · 동작 미리보기",
+            "subject": "beast",
+            "weapon": "threaded-cane"
+          }
+        }
+      ],
+      "idleScreen": "generic-beast-idle.jpg",
+      "attackScreen": "generic-beast-attack-sample.jpg"
+    },
+    {
+      "subject": "boss",
+      "idle": {
+        "canvasCount": 1,
+        "form0": "false",
+        "form1": "false",
+        "presentation": {
+          "presentation": "phaser",
+          "presentationActors": "2",
+          "presentationAttacks": "9",
+          "presentationCharacters": "ready",
+          "presentationMotion": "full",
+          "presentationMoves": "6",
+          "presentationShots": "0",
+          "presentationVersion": "4.2.1",
+          "presentationWeapon": "",
+          "presentationWeaponReady": "false"
+        },
+        "status": "공통 보스 · 동작 미리보기",
+        "subject": "boss",
+        "weapon": "threaded-cane"
+      },
+      "actions": [
+        {
+          "action": "attack",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "10",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "6",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 보스 · 동작 미리보기",
+            "subject": "boss",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "10",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "7",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 보스 · 동작 미리보기",
+            "subject": "boss",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "10",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "8",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 보스 · 동작 미리보기",
+            "subject": "boss",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "hit",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "11",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "8",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 보스 · 동작 미리보기",
+            "subject": "boss",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "death",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "1",
+              "presentationAttacks": "12",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "8",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+            "subject": "boss",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "idle",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "12",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "8",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 보스 · 동작 미리보기",
+            "subject": "boss",
+            "weapon": "threaded-cane"
+          }
+        }
+      ],
+      "idleScreen": "generic-boss-idle.jpg",
+      "attackScreen": "generic-boss-attack-sample.jpg"
+    },
+    {
+      "subject": "female",
+      "idle": {
+        "canvasCount": 1,
+        "form0": "false",
+        "form1": "false",
+        "presentation": {
+          "presentation": "phaser",
+          "presentationActors": "2",
+          "presentationAttacks": "12",
+          "presentationCharacters": "ready",
+          "presentationMotion": "full",
+          "presentationMoves": "8",
+          "presentationShots": "0",
+          "presentationVersion": "4.2.1",
+          "presentationWeapon": "",
+          "presentationWeaponReady": "false"
+        },
+        "status": "공통 여성 NPC · 동작 미리보기",
+        "subject": "female",
+        "weapon": "threaded-cane"
+      },
+      "actions": [
+        {
+          "action": "attack",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "13",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "8",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 여성 NPC · 동작 미리보기",
+            "subject": "female",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "13",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "9",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 여성 NPC · 동작 미리보기",
+            "subject": "female",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "13",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "10",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 여성 NPC · 동작 미리보기",
+            "subject": "female",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "hit",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "14",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "10",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 여성 NPC · 동작 미리보기",
+            "subject": "female",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "death",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "1",
+              "presentationAttacks": "15",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "10",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+            "subject": "female",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "idle",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "15",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "10",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 여성 NPC · 동작 미리보기",
+            "subject": "female",
+            "weapon": "threaded-cane"
+          }
+        }
+      ],
+      "idleScreen": "generic-female-idle.jpg",
+      "attackScreen": "generic-female-attack-sample.jpg"
+    }
+  ],
+  "presentation": {
+    "presentation": "phaser",
+    "presentationActors": "2",
+    "presentationAttacks": "15",
+    "presentationCharacters": "ready",
+    "presentationMotion": "full",
+    "presentationMoves": "10",
+    "presentationShots": "0",
+    "presentationVersion": "4.2.1",
+    "presentationWeapon": "",
+    "presentationWeaponReady": "false"
+  },
+  "console": []
+}

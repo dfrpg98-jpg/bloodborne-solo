@@ -267,7 +267,7 @@ test('a newer revision cancels deferred visuals rather than replaying stale comb
     { type: 'move', fromId: 'hunter' }, { type: 'attack', fromId: 'e1', toId: 'hunter' }
   ] });
   const timer = f.timers[0];
-  assert.equal(timer.delay, 350);
+  assert.equal(timer.delay, 410);
   f.adapter.sync({ revision: 3, actors: [hunter(200), enemy()] });
   assert.equal(timer.removed, true);
   f.fireTimer(timer);

@@ -15,6 +15,11 @@
 | BB-009 | P3 · 지시문 | ‘무리를 정리하다’ 알림이 ‘재앙의 야수를 처치해 계몽 토큰 제거.’로 끝나고 처치·봉인·기부 지시에서 목적격 조사가 누락됨 | 0.8.13-dev.3 수정·실제 브라우저 검증, PR 검토 대기 | [#16](https://github.com/dfrpg98-jpg/bloodborne-solo/issues/16) |
 | BB-010 | P2 · 대상 선택 | 성직자 야수 마커를 누르면 아래에 소환된 재앙의 야수 #2의 투명 이미지 영역이 클릭을 받아 다른 적이 선택됨 | 0.8.13-dev.3 수정·실제 브라우저 검증, PR 검토 대기 | [#17](https://github.com/dfrpg98-jpg/bloodborne-solo/issues/17) |
 | BB-011 | P2 · 진행 전환 UI | 검증 사냥에서 적을 선택하고 적이 없는 일반 사냥으로 복귀하면 이전 지도 선택이 남아 기본 이동이 접힌 메뉴에 들어감 | 0.8.13-dev.4 수정·실제 브라우저 검증, PR 검토 대기 | [#18](https://github.com/dfrpg98-jpg/bloodborne-solo/issues/18) |
+| BB-012 | P3 · 동작 표시 | 장송의 칼날로 서 있기만 해도 두 대기 프레임마다 발이 약11.1px 좌우로 이동함 | 0.8.13-dev.5 위치 등록 수정·검증, PR 검토 대기 | [#19](https://github.com/dfrpg98-jpg/bloodborne-solo/issues/19) |
+| BB-013 | P3 · 프레임 표시 | 인간형 적의 도끼 끝이 공격10에서 잘리고 공격11에 조각으로 나타남. 다른 캐릭터의 칼·앞발·손끝·죽음 프레임도 같은 오류 | 0.8.13-dev.5 프레임 경계 수정·검증, PR 검토 대기 | [#20](https://github.com/dfrpg98-jpg/bloodborne-solo/issues/20) |
+| BB-014 | P2 · 표시 fallback | 마스크 생성 실패 환경에서 필수 캐릭터 등록0개여도 준비 완료를 알리고 DOM 캐릭터까지 숨김 | 이번 프레임 보정 검토 중 발견·수정·모의 검증, PR 검토 대기 | [#21](https://github.com/dfrpg98-jpg/bloodborne-solo/issues/21) |
+| BB-015 | P2 · 화면 갱신 | 새 공통 캐릭터 선택 목록에서 인간형 적을 골라도 캐시된 이전 JavaScript가 실행되어 장송의 칼날 상태와 무기 버튼이 남음 | 0.8.13-dev.5 캐시 구분 수정·실제 브라우저 재현 및 선택 복구 확인, PR 검토 대기 | [#22](https://github.com/dfrpg98-jpg/bloodborne-solo/issues/22) |
+| BB-016 | P3 · 접지 표시 | 공통 야수형의 실제 발끝은432인데 원점은460으로, 대기 중 발이 바닥에서 정상 크기7px 떠 보임 | 0.8.13-dev.5 원점 수정·실제 PNG와 브라우저 재검증, PR 검토 대기 | [#23](https://github.com/dfrpg98-jpg/bloodborne-solo/issues/23) |
 
 ## BB-001 · 빠른 범위 처치 효과보다 느린 공격이 먼저 진행됨
 
@@ -113,6 +118,51 @@
 - 회귀 검사: 실제 클릭 핸들러를 실행하는 `tests/hunt-replacement-ui-v0813.test.cjs`의11개 검사. 수정 전9실패·2통과, 수정 후11통과입니다. 적·칸·출입구 각각의 저장 복귀/파일 불러오기/새 사냥, 이어지는 이동 비용·결과, 실패 파일 보존과 일반 선택을 확인합니다. 관련 기존 검사까지55통과·0실패인 별도 실행이며 전체 검사 합계로 세지 않습니다.
 - 실제 브라우저: 수정 전/후 같은 QA 적 선택 → 일반 사냥 복귀를 수행했습니다. 수정 후 이전 대상 창과 접힌 기본 행동 묶음이 없고, 손패를 선택하면 이동이 바로 표시됩니다. 새 검증 사냥과 파일 불러오기, 수정본의 전체 연속 플레이 결과는 [브라우저 증거](audits/mission-continuous-qa-v0.8.13-dev.4/results.json)에 기록합니다.
 - 관리: [Issue #18](https://github.com/dfrpg98-jpg/bloodborne-solo/issues/18), [PR #15](https://github.com/dfrpg98-jpg/bloodborne-solo/pull/15). 수정 개발본0.8.13-dev.4이며 정식 릴리스에서 해결됐다는 뜻은 아닙니다.
+
+## BB-012 · 대기 프레임의 몸 위치가 좌우로 튐
+
+- 발견 버전·범위: 0.8.13-dev.4, P3 · 시각 표시. 사냥꾼의 실제 지도 위치가 변한 게임 판정 오류와 구분합니다.
+- 재현 예시: 장송의 칼날 첫 형태를 장착하고 아무 행동 없이 기다립니다. 대기0→1에서 실제 두 부츠의 등록 중심이33.75source px 이동해 정상 크기에서11.1020px 움직입니다. 상체도11.3547px 이동합니다. 발 높이460과 renderer world 좌표는 동일하므로 ‘서 있는데 순간이동’처럼 보입니다.
+- 수정 후: 해당 idle0의 spriteSourceSize.x를234→200으로 바꿉니다. 원본 PNG와 잘라 읽는 crop은 보존되며 부츠 이동0.0822px, 상체0.1705px로 줄었습니다. 같은 등록 오류가 확인된15형태의 idle0만 수정했습니다. 두 번째 대기 프레임과660개 행동 프레임, scale·순서·FPS는 유지합니다.
+- 전수 검토: 30형태720프레임의 원본/crop/등록 좌표와 접촉시트를 대조했습니다. 공격의 회전·런지·들린 발·피격·죽음은 의도한 포즈 변화로 구분합니다. 예를 들어 교단의 돌망치 첫 형태에서 낮은 칼끝이 발 bbox에 들어간 오탐은 정렬 대상으로 삼지 않았습니다. 근거 없이 skin 전체를 재중앙화하지 않습니다.
+- 회귀 검사: tests/weapon-idle-registration.test.cjs가 실제 PNG alpha를 읽어 무기 끝을 제외한 주요 부츠·상체·모자 위치를 검사합니다. 전체30형태의 최대 잔차는 부츠1.5763px/상체1.8903px/모자1.8271px이며 모두2px 미만입니다. 과거 등록값을 메모리에서 되돌리면15건 모두 이전 점프가 재현됩니다. 기존 asset 검사와 합친 별도10개 실행이 통과했습니다.
+- 브라우저·증거: 저장을 바꾸지 않는 동작 미리보기에서 장송 수정 전/후의 시간차 화면을 보존했습니다. 다른 형태의 실제 동작 재생 범위와 결과는 [점검 기록](audits/animation-frame-qa-v0.8.13-dev.5/results.json)에 명시합니다. 원본35PNG의 동일 해시 검사와 실제 브라우저 재생은 서로 다른 검증입니다.
+- 관리: [Issue #19](https://github.com/dfrpg98-jpg/bloodborne-solo/issues/19), [PR #15](https://github.com/dfrpg98-jpg/bloodborne-solo/pull/15). 수정 개발본0.8.13-dev.5이며 정식 릴리스 완료가 아닙니다.
+
+## BB-013 · 공격·죽음 그림이 잘려 옆 프레임에 혼입됨
+
+- 발견 버전·범위: 0.8.13-dev.4, P3 · 프레임 경계. 공통 skin5종80프레임을 실제 PNG의 alpha≥32 주요 연결 영역과 대조했습니다.
+- 재현 예시: 공통 인간형 적(mob)의 공격10을 재생하면 도끼 끝78source px가 잘립니다. 다음 공격11의 왼쪽에는 그 조각이 남습니다. 자신의 도끼3422픽셀이 다른 프레임 crop에 들어갑니다. 공통 사냥꾼 칼날55px, 야수 앞발49px, 보스 손끝9px도 같은 오류입니다.
+- 다른 예시: 여성 NPC의 공격11 왼쪽3column/14픽셀이 공격10에 들어갑니다. 공통 사냥꾼의 쓰러짐14 칼날265픽셀이 잘려 쓰러짐15에 나타납니다. 여성 NPC skin을 실제 여성 야수 환자의 전용 외형이라고 소개하지 않습니다.
+- 수정 후: 총12프레임의 crop을 확장하고 넓은 native clip rectangles로 원래 포즈에 속한 영역만 읽습니다. 원본PNG와 crop→logical canvas 변환을 유지해 기존 몸 위치·회전·반동·죽음 동작은 보존합니다. 주요 픽셀6095개를 복원했고 누락/혼입은0입니다. 자신의 주요 윤곽3px 내이며 다른 포즈 윤곽3px 밖인 고유 alpha1..31 가장자리66502개도 전부 보존합니다. 공유된 낮은 alpha의 모호한 소유권을 모두 확정했다고 주장하지 않습니다.
+- 회귀 검사: tests/generic-asset-frame-regression.test.cjs가 원본PNG5해시, 12개 원점 변환과 실제80포즈의 포함/제외를 검사합니다. 신규6개와 기존 asset6개가 통과한 별도 실행이며 전체CI에 다시 더하지 않습니다. 수정 전/후의 실제 픽셀 비교 그림과 브라우저 재생은 [점검 기록](audits/animation-frame-qa-v0.8.13-dev.5/results.json)에 보존합니다.
+- 관리: [Issue #20](https://github.com/dfrpg98-jpg/bloodborne-solo/issues/20), [PR #15](https://github.com/dfrpg98-jpg/bloodborne-solo/pull/15). 수정 개발본0.8.13-dev.5이며 정식 릴리스 완료가 아닙니다.
+
+## BB-014 · 필수 마스크 실패에도 캐릭터 준비 완료를 표시함
+
+- 발견 범위: 이번 프레임 경계 보정의 독립 검토에서 모의 재현한 호환성 회귀입니다. 사용자의 정상 Phaser 브라우저에서 발생한 오류나 이전 출시본의 독립 오류라고 확대하지 않습니다.
+- 재현 예시: 실제 공통 skin manifest를 사용하되 GeometryMask API를 지원하지 않거나 createGeometryMask에서 예외가 나는 환경으로 실행합니다. 이전 registerAnimations는 모든 필수 skin을 건너뛰고도 charactersReady:true/등록캐릭터0/sprite0/onReady(true)를 표시합니다. hunt-app은 준비 완료 값을 보고 DOM 대체 캐릭터도 숨깁니다.
+- 수정 후: 모든 필수 skin이 실제 readySheets에 등록된 경우에만 준비 완료를 알립니다. 필수 마스크 실패 시 DOM fallback을 유지하고 뒤늦은 선택 무기 로딩과 resize도 거짓 준비 완료를 만들지 않습니다.
+- 회귀 검사: tests/weapon-animation-v083.test.cjs에서 실제 generic manifest로 geometry 미지원/생성 예외 두 경우를 검사합니다. 정상 실제 브라우저의 native clip 재생과 실패 환경 모의 검사는 구분합니다. 관련 renderer/UI 별도97개가 통과했습니다.
+- 관리: [Issue #21](https://github.com/dfrpg98-jpg/bloodborne-solo/issues/21), [PR #15](https://github.com/dfrpg98-jpg/bloodborne-solo/pull/15). 개발본0.8.13-dev.5의 검토 중 수정이며 정식 릴리스 완료가 아닙니다.
+
+## BB-015 · 새 HTML과 이전 캐시 스크립트가 섞여 선택이 반영되지 않음
+
+- 발견 범위: 0.8.13-dev.5 동작 미리보기의 실제 브라우저 점검 중 재현한 캐시 혼합입니다. 서버가 열리지 않은 문제나 사이트 접근 권한 거부와 구분합니다.
+- 재현 예시: 이전 장송의 칼날 미리보기를 열었던 브라우저에서 새 공통 캐릭터 선택 목록이 보이는 화면을 엽니다. 공통 인간형 적(`mob`)을 마우스 선택과 키보드로 각각 선택해도 상태는 ‘장송의 칼날 · 칼날 형태’이고, 기존 무기 공격과 변형 버튼이 남습니다. 서버에서 읽은 새 gallery JavaScript는 변경 핸들러를 포함한 정상 200 응답이며 브라우저 콘솔 오류는0건이었습니다.
+- 수정 전: 새 HTML에 추가한 선택 목록과 이전 캐시의 스크립트가 함께 실행되어, 화면의 선택값과 실제 동작 대상이 일치하지 않습니다. 실제 적 유형을 선택해도 그 유형의 동작을 확인할 수 없습니다.
+- 수정 후: `hunt.html`과 `weapon-gallery.html`에서 이번에 변경한 manifest·presentation·gallery JavaScript 참조에 `?v=0.8.13-dev.5`를 붙여 개발 버전별 캐시를 구분합니다. 같은 컨트롤로 다시 선택한 뒤 ‘공통 인간형 적 · 동작 미리보기’, ‘공통 공격’, 변형 버튼 비활성화를 실제 브라우저에서 확인했습니다. 게임 진행·판정·저장은 변경하지 않습니다.
+- 검증 구분: 버전 쿼리 적용 전의 캡처와 입력 기록은 [이전 캐시 기록](audits/animation-frame-qa-v0.8.13-dev.5/browser/pre-cache-reload/)에 따로 보존합니다. 해당 기록을 최종 JavaScript의 정상 재생 증거로 합산하지 않습니다. 최종 버전 참조로 다시 수행한30무기 형태·5공통 캐릭터의 전체 브라우저 재생이 완료됐고 콘솔 경고·오류는0입니다. 자세한 범위는 [점검 기록](audits/animation-frame-qa-v0.8.13-dev.5/README.md)에 명시합니다.
+- 관리: [Issue #22](https://github.com/dfrpg98-jpg/bloodborne-solo/issues/22), [PR #15](https://github.com/dfrpg98-jpg/bloodborne-solo/pull/15). 수정 개발본0.8.13-dev.5이며 정식 릴리스 완료가 아닙니다.
+
+## BB-016 · 야수형의 실제 발끝과 표시 원점이 불일치
+
+- 발견 버전·범위: 0.8.13-dev.4의 공통 야수형(beast), P3 · 접지 표시. 최종 브라우저 시각 검토에서 그림자와 발이 떨어지는 모습을 확인하고 실제 PNG로 대조했습니다.
+- 재현 예시: 재앙의 야수처럼 공통 beast skin을 사용하는 적의 대기를 확인합니다. 대기0~3의 마지막 불투명 발 픽셀은 모두 가상y432인데 originY는460/512였습니다. 정상 표시 크기에서 발이7px, 2.1배 미리보기에서는14.7px 바닥 기준 위에 있습니다. 잘라 읽는 crop의 끝460은 실제 발끝이 아니었습니다.
+- 수정 후: beast.originY를432/512로 맞춥니다. 다른 네 공통 skin의 원점, 원본 PNG·atlas·crop/trim·clipRect·순서·크기는 유지합니다. 16포즈가 같은 원점 변화로 이동해 기존 상대 높이 차이는 보존됩니다. 대기 프레임만28px 내려 걷기 전환 차이가10→38px가 되는 방식은 사용하지 않습니다.
+- 회귀 검사: tests/generic-asset-frame-regression.test.cjs가 실제 alpha>16의 대기 발끝4개와 높은 alpha의 충분한 발 영역을 읽어 이전7px 부유와 수정 후 접지0을 대조합니다. 16포즈의 상대 높이와 atlas 의미 SHA도 보존합니다. 기존 asset 검사에서 crop 끝과 접지 원점이라는 서로 다른 값을 분리했습니다. 관련94개 검사와 최종120개 검사에서 실패0입니다. 별도 실행 횟수를 전체CI에 더하지 않습니다.
+- 실제 브라우저: 공통5종의 대기·양방향 걷기·공격·피격·쓰러짐·복귀를 최종 내용 해시 주소로 다시 재생했습니다. 캐릭터 ready/full·표시2개와 콘솔 경고·오류0입니다. 장송과 다른29무기 형태의 프레임 데이터·renderer 로직은 이 접지 수정에서 바뀌지 않았습니다. [원점 재검증](audits/animation-frame-qa-v0.8.13-dev.5/browser/origin-revalidation.json)과 [실제 PNG 전후 계측](audits/animation-frame-qa-v0.8.13-dev.5/analysis/beast-ground-after.json)을 보존합니다.
+- 관리: [Issue #23](https://github.com/dfrpg98-jpg/bloodborne-solo/issues/23), [PR #15](https://github.com/dfrpg98-jpg/bloodborne-solo/pull/15). 개발본0.8.13-dev.5의 수정이며 정식 릴리스 완료가 아닙니다.
 
 ## 추가·상태 변경 규칙
 

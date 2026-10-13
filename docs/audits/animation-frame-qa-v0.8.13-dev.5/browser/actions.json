@@ -1,0 +1,5314 @@
+{
+  "version": "0.8.13-dev.5",
+  "url": "http://127.0.0.1:8786/bloodborne-solo/weapon-gallery.html",
+  "weapons": [
+    {
+      "id": "threaded-cane",
+      "name": "칼날 지팡이",
+      "forms": [
+        {
+          "face": 0,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "true",
+            "form1": "false",
+            "status": "칼날 지팡이 · 채찍 형태",
+            "subject": "weapon",
+            "weapon": "threaded-cane",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "칼날 지팡이 · 채찍 형태",
+                "subject": "weapon",
+                "weapon": "threaded-cane",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "칼날 지팡이 · 채찍 형태",
+                "subject": "weapon",
+                "weapon": "threaded-cane",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "칼날 지팡이 · 채찍 형태",
+                "subject": "weapon",
+                "weapon": "threaded-cane",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "칼날 지팡이 · 채찍 형태",
+                "subject": "weapon",
+                "weapon": "threaded-cane",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "칼날 지팡이 · 채찍 형태",
+                "subject": "weapon",
+                "weapon": "threaded-cane",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "칼날 지팡이 · 채찍 형태",
+                "subject": "weapon",
+                "weapon": "threaded-cane",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "threaded-cane",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "칼날 지팡이 · 채찍 형태",
+                "subject": "weapon",
+                "weapon": "threaded-cane",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "threaded-cane-0-idle.jpg",
+          "attackScreen": "threaded-cane-0-attack.jpg"
+        },
+        {
+          "face": 1,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "true",
+            "status": "칼날 지팡이 · 지팡이 형태",
+            "subject": "weapon",
+            "weapon": "threaded-cane",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "칼날 지팡이 · 지팡이 형태",
+                "subject": "weapon",
+                "weapon": "threaded-cane",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "칼날 지팡이 · 지팡이 형태",
+                "subject": "weapon",
+                "weapon": "threaded-cane",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "칼날 지팡이 · 지팡이 형태",
+                "subject": "weapon",
+                "weapon": "threaded-cane",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "칼날 지팡이 · 지팡이 형태",
+                "subject": "weapon",
+                "weapon": "threaded-cane",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "칼날 지팡이 · 지팡이 형태",
+                "subject": "weapon",
+                "weapon": "threaded-cane",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "칼날 지팡이 · 지팡이 형태",
+                "subject": "weapon",
+                "weapon": "threaded-cane",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "threaded-cane",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "칼날 지팡이 · 지팡이 형태",
+                "subject": "weapon",
+                "weapon": "threaded-cane",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "threaded-cane-1-idle.jpg",
+          "attackScreen": "threaded-cane-1-attack.jpg"
+        }
+      ],
+      "transformed": {
+        "canvasCount": 1,
+        "form0": "true",
+        "form1": "false",
+        "status": "칼날 지팡이 · 채찍 형태",
+        "subject": "weapon",
+        "weapon": "threaded-cane",
+        "weaponReady": "true"
+      }
+    },
+    {
+      "id": "hunter-axe",
+      "name": "야수 사냥의 도끼",
+      "forms": [
+        {
+          "face": 0,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "true",
+            "form1": "false",
+            "status": "야수 사냥의 도끼 · 짧은 도끼 형태",
+            "subject": "weapon",
+            "weapon": "hunter-axe",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "야수 사냥의 도끼 · 짧은 도끼 형태",
+                "subject": "weapon",
+                "weapon": "hunter-axe",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "야수 사냥의 도끼 · 짧은 도끼 형태",
+                "subject": "weapon",
+                "weapon": "hunter-axe",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "야수 사냥의 도끼 · 짧은 도끼 형태",
+                "subject": "weapon",
+                "weapon": "hunter-axe",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "야수 사냥의 도끼 · 짧은 도끼 형태",
+                "subject": "weapon",
+                "weapon": "hunter-axe",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "야수 사냥의 도끼 · 짧은 도끼 형태",
+                "subject": "weapon",
+                "weapon": "hunter-axe",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "야수 사냥의 도끼 · 짧은 도끼 형태",
+                "subject": "weapon",
+                "weapon": "hunter-axe",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "hunter-axe",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "야수 사냥의 도끼 · 짧은 도끼 형태",
+                "subject": "weapon",
+                "weapon": "hunter-axe",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "hunter-axe-0-idle.jpg",
+          "attackScreen": "hunter-axe-0-attack.jpg"
+        },
+        {
+          "face": 1,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "true",
+            "status": "야수 사냥의 도끼 · 긴 도끼 형태",
+            "subject": "weapon",
+            "weapon": "hunter-axe",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "야수 사냥의 도끼 · 긴 도끼 형태",
+                "subject": "weapon",
+                "weapon": "hunter-axe",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "야수 사냥의 도끼 · 긴 도끼 형태",
+                "subject": "weapon",
+                "weapon": "hunter-axe",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "야수 사냥의 도끼 · 긴 도끼 형태",
+                "subject": "weapon",
+                "weapon": "hunter-axe",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "야수 사냥의 도끼 · 긴 도끼 형태",
+                "subject": "weapon",
+                "weapon": "hunter-axe",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "야수 사냥의 도끼 · 긴 도끼 형태",
+                "subject": "weapon",
+                "weapon": "hunter-axe",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "야수 사냥의 도끼 · 긴 도끼 형태",
+                "subject": "weapon",
+                "weapon": "hunter-axe",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "hunter-axe",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "야수 사냥의 도끼 · 긴 도끼 형태",
+                "subject": "weapon",
+                "weapon": "hunter-axe",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "hunter-axe-1-idle.jpg",
+          "attackScreen": "hunter-axe-1-attack.jpg"
+        }
+      ],
+      "transformed": {
+        "canvasCount": 1,
+        "form0": "true",
+        "form1": "false",
+        "status": "야수 사냥의 도끼 · 짧은 도끼 형태",
+        "subject": "weapon",
+        "weapon": "hunter-axe",
+        "weaponReady": "true"
+      }
+    },
+    {
+      "id": "rifle-spear",
+      "name": "총창",
+      "forms": [
+        {
+          "face": 0,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "true",
+            "form1": "false",
+            "status": "총창 · 일자 창 형태",
+            "subject": "weapon",
+            "weapon": "rifle-spear",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "총창 · 일자 창 형태",
+                "subject": "weapon",
+                "weapon": "rifle-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "총창 · 일자 창 형태",
+                "subject": "weapon",
+                "weapon": "rifle-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "총창 · 일자 창 형태",
+                "subject": "weapon",
+                "weapon": "rifle-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "총창 · 일자 창 형태",
+                "subject": "weapon",
+                "weapon": "rifle-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "총창 · 일자 창 형태",
+                "subject": "weapon",
+                "weapon": "rifle-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "총창 · 일자 창 형태",
+                "subject": "weapon",
+                "weapon": "rifle-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "rifle-spear",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "총창 · 일자 창 형태",
+                "subject": "weapon",
+                "weapon": "rifle-spear",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "rifle-spear-0-idle.jpg",
+          "attackScreen": "rifle-spear-0-attack.jpg"
+        },
+        {
+          "face": 1,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "true",
+            "status": "총창 · 날이 펼쳐진 형태",
+            "subject": "weapon",
+            "weapon": "rifle-spear",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "총창 · 날이 펼쳐진 형태",
+                "subject": "weapon",
+                "weapon": "rifle-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "총창 · 날이 펼쳐진 형태",
+                "subject": "weapon",
+                "weapon": "rifle-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "총창 · 날이 펼쳐진 형태",
+                "subject": "weapon",
+                "weapon": "rifle-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "총창 · 날이 펼쳐진 형태",
+                "subject": "weapon",
+                "weapon": "rifle-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "총창 · 날이 펼쳐진 형태",
+                "subject": "weapon",
+                "weapon": "rifle-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "총창 · 날이 펼쳐진 형태",
+                "subject": "weapon",
+                "weapon": "rifle-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "rifle-spear",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "총창 · 날이 펼쳐진 형태",
+                "subject": "weapon",
+                "weapon": "rifle-spear",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "rifle-spear-1-idle.jpg",
+          "attackScreen": "rifle-spear-1-attack.jpg"
+        }
+      ],
+      "transformed": {
+        "canvasCount": 1,
+        "form0": "true",
+        "form1": "false",
+        "status": "총창 · 일자 창 형태",
+        "subject": "weapon",
+        "weapon": "rifle-spear",
+        "weaponReady": "true"
+      }
+    },
+    {
+      "id": "saw-spear",
+      "name": "톱 단창",
+      "forms": [
+        {
+          "face": 0,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "true",
+            "form1": "false",
+            "status": "톱 단창 · 짧은 형태",
+            "subject": "weapon",
+            "weapon": "saw-spear",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "톱 단창 · 짧은 형태",
+                "subject": "weapon",
+                "weapon": "saw-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "톱 단창 · 짧은 형태",
+                "subject": "weapon",
+                "weapon": "saw-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "톱 단창 · 짧은 형태",
+                "subject": "weapon",
+                "weapon": "saw-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "톱 단창 · 짧은 형태",
+                "subject": "weapon",
+                "weapon": "saw-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "톱 단창 · 짧은 형태",
+                "subject": "weapon",
+                "weapon": "saw-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "톱 단창 · 짧은 형태",
+                "subject": "weapon",
+                "weapon": "saw-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "saw-spear",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "톱 단창 · 짧은 형태",
+                "subject": "weapon",
+                "weapon": "saw-spear",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "saw-spear-0-idle.jpg",
+          "attackScreen": "saw-spear-0-attack.jpg"
+        },
+        {
+          "face": 1,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "true",
+            "status": "톱 단창 · 긴 형태",
+            "subject": "weapon",
+            "weapon": "saw-spear",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "톱 단창 · 긴 형태",
+                "subject": "weapon",
+                "weapon": "saw-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "톱 단창 · 긴 형태",
+                "subject": "weapon",
+                "weapon": "saw-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "톱 단창 · 긴 형태",
+                "subject": "weapon",
+                "weapon": "saw-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "톱 단창 · 긴 형태",
+                "subject": "weapon",
+                "weapon": "saw-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "톱 단창 · 긴 형태",
+                "subject": "weapon",
+                "weapon": "saw-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "톱 단창 · 긴 형태",
+                "subject": "weapon",
+                "weapon": "saw-spear",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "saw-spear",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "톱 단창 · 긴 형태",
+                "subject": "weapon",
+                "weapon": "saw-spear",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "saw-spear-1-idle.jpg",
+          "attackScreen": "saw-spear-1-attack.jpg"
+        }
+      ],
+      "transformed": {
+        "canvasCount": 1,
+        "form0": "true",
+        "form1": "false",
+        "status": "톱 단창 · 짧은 형태",
+        "subject": "weapon",
+        "weapon": "saw-spear",
+        "weaponReady": "true"
+      }
+    },
+    {
+      "id": "uncanny-ludwigs-holy-blade",
+      "name": "이질적인 루드비히의 성검",
+      "forms": [
+        {
+          "face": 0,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "true",
+            "form1": "false",
+            "status": "이질적인 루드비히의 성검 · 소검 형태",
+            "subject": "weapon",
+            "weapon": "uncanny-ludwigs-holy-blade",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "이질적인 루드비히의 성검 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "uncanny-ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "이질적인 루드비히의 성검 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "uncanny-ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "이질적인 루드비히의 성검 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "uncanny-ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "이질적인 루드비히의 성검 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "uncanny-ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "이질적인 루드비히의 성검 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "uncanny-ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "이질적인 루드비히의 성검 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "uncanny-ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "uncanny-ludwigs-holy-blade",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "이질적인 루드비히의 성검 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "uncanny-ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "uncanny-ludwigs-holy-blade-0-idle.jpg",
+          "attackScreen": "uncanny-ludwigs-holy-blade-0-attack.jpg"
+        },
+        {
+          "face": 1,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "true",
+            "status": "이질적인 루드비히의 성검 · 대검 형태",
+            "subject": "weapon",
+            "weapon": "uncanny-ludwigs-holy-blade",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "이질적인 루드비히의 성검 · 대검 형태",
+                "subject": "weapon",
+                "weapon": "uncanny-ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "이질적인 루드비히의 성검 · 대검 형태",
+                "subject": "weapon",
+                "weapon": "uncanny-ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "이질적인 루드비히의 성검 · 대검 형태",
+                "subject": "weapon",
+                "weapon": "uncanny-ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "이질적인 루드비히의 성검 · 대검 형태",
+                "subject": "weapon",
+                "weapon": "uncanny-ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "이질적인 루드비히의 성검 · 대검 형태",
+                "subject": "weapon",
+                "weapon": "uncanny-ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "uncanny-ludwigs-holy-blade",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "이질적인 루드비히의 성검 · 대검 형태",
+                "subject": "weapon",
+                "weapon": "uncanny-ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "uncanny-ludwigs-holy-blade-1-idle.jpg",
+          "attackScreen": "uncanny-ludwigs-holy-blade-1-attack.jpg"
+        }
+      ],
+      "transformed": {
+        "canvasCount": 1,
+        "form0": "true",
+        "form1": "false",
+        "status": "이질적인 루드비히의 성검 · 소검 형태",
+        "subject": "weapon",
+        "weapon": "uncanny-ludwigs-holy-blade",
+        "weaponReady": "true"
+      }
+    },
+    {
+      "id": "tonitrus",
+      "name": "토니트루스",
+      "forms": [
+        {
+          "face": 0,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "true",
+            "form1": "false",
+            "status": "토니트루스 · 충전 전",
+            "subject": "weapon",
+            "weapon": "tonitrus",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "토니트루스 · 충전 전",
+                "subject": "weapon",
+                "weapon": "tonitrus",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "토니트루스 · 충전 전",
+                "subject": "weapon",
+                "weapon": "tonitrus",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "토니트루스 · 충전 전",
+                "subject": "weapon",
+                "weapon": "tonitrus",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "토니트루스 · 충전 전",
+                "subject": "weapon",
+                "weapon": "tonitrus",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "토니트루스 · 충전 전",
+                "subject": "weapon",
+                "weapon": "tonitrus",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "토니트루스 · 충전 전",
+                "subject": "weapon",
+                "weapon": "tonitrus",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "tonitrus",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "토니트루스 · 충전 전",
+                "subject": "weapon",
+                "weapon": "tonitrus",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "tonitrus-0-idle.jpg",
+          "attackScreen": "tonitrus-0-attack.jpg"
+        },
+        {
+          "face": 1,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "true",
+            "status": "토니트루스 · 전기 충전",
+            "subject": "weapon",
+            "weapon": "tonitrus",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "토니트루스 · 전기 충전",
+                "subject": "weapon",
+                "weapon": "tonitrus",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "토니트루스 · 전기 충전",
+                "subject": "weapon",
+                "weapon": "tonitrus",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "토니트루스 · 전기 충전",
+                "subject": "weapon",
+                "weapon": "tonitrus",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "토니트루스 · 전기 충전",
+                "subject": "weapon",
+                "weapon": "tonitrus",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "토니트루스 · 전기 충전",
+                "subject": "weapon",
+                "weapon": "tonitrus",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "토니트루스 · 전기 충전",
+                "subject": "weapon",
+                "weapon": "tonitrus",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "tonitrus",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "토니트루스 · 전기 충전",
+                "subject": "weapon",
+                "weapon": "tonitrus",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "tonitrus-1-idle.jpg",
+          "attackScreen": "tonitrus-1-attack.jpg"
+        }
+      ],
+      "transformed": {
+        "canvasCount": 1,
+        "form0": "true",
+        "form1": "false",
+        "status": "토니트루스 · 충전 전",
+        "subject": "weapon",
+        "weapon": "tonitrus",
+        "weaponReady": "true"
+      }
+    },
+    {
+      "id": "blade-of-mercy",
+      "name": "자비의 칼날",
+      "forms": [
+        {
+          "face": 0,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "true",
+            "form1": "false",
+            "status": "자비의 칼날 · 합쳐진 형태",
+            "subject": "weapon",
+            "weapon": "blade-of-mercy",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "자비의 칼날 · 합쳐진 형태",
+                "subject": "weapon",
+                "weapon": "blade-of-mercy",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "자비의 칼날 · 합쳐진 형태",
+                "subject": "weapon",
+                "weapon": "blade-of-mercy",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "자비의 칼날 · 합쳐진 형태",
+                "subject": "weapon",
+                "weapon": "blade-of-mercy",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "자비의 칼날 · 합쳐진 형태",
+                "subject": "weapon",
+                "weapon": "blade-of-mercy",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "자비의 칼날 · 합쳐진 형태",
+                "subject": "weapon",
+                "weapon": "blade-of-mercy",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "자비의 칼날 · 합쳐진 형태",
+                "subject": "weapon",
+                "weapon": "blade-of-mercy",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "blade-of-mercy",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "자비의 칼날 · 합쳐진 형태",
+                "subject": "weapon",
+                "weapon": "blade-of-mercy",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "blade-of-mercy-0-idle.jpg",
+          "attackScreen": "blade-of-mercy-0-attack.jpg"
+        },
+        {
+          "face": 1,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "true",
+            "status": "자비의 칼날 · 쌍검 형태",
+            "subject": "weapon",
+            "weapon": "blade-of-mercy",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "자비의 칼날 · 쌍검 형태",
+                "subject": "weapon",
+                "weapon": "blade-of-mercy",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "자비의 칼날 · 쌍검 형태",
+                "subject": "weapon",
+                "weapon": "blade-of-mercy",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "자비의 칼날 · 쌍검 형태",
+                "subject": "weapon",
+                "weapon": "blade-of-mercy",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "자비의 칼날 · 쌍검 형태",
+                "subject": "weapon",
+                "weapon": "blade-of-mercy",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "자비의 칼날 · 쌍검 형태",
+                "subject": "weapon",
+                "weapon": "blade-of-mercy",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "자비의 칼날 · 쌍검 형태",
+                "subject": "weapon",
+                "weapon": "blade-of-mercy",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "blade-of-mercy",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "자비의 칼날 · 쌍검 형태",
+                "subject": "weapon",
+                "weapon": "blade-of-mercy",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "blade-of-mercy-1-idle.jpg",
+          "attackScreen": "blade-of-mercy-1-attack.jpg"
+        }
+      ],
+      "transformed": {
+        "canvasCount": 1,
+        "form0": "true",
+        "form1": "false",
+        "status": "자비의 칼날 · 합쳐진 형태",
+        "subject": "weapon",
+        "weapon": "blade-of-mercy",
+        "weaponReady": "true"
+      }
+    },
+    {
+      "id": "ludwigs-holy-blade",
+      "name": "루드비히의 성검",
+      "forms": [
+        {
+          "face": 0,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "true",
+            "form1": "false",
+            "status": "루드비히의 성검 · 대검 형태",
+            "subject": "weapon",
+            "weapon": "ludwigs-holy-blade",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "루드비히의 성검 · 대검 형태",
+                "subject": "weapon",
+                "weapon": "ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "루드비히의 성검 · 대검 형태",
+                "subject": "weapon",
+                "weapon": "ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "루드비히의 성검 · 대검 형태",
+                "subject": "weapon",
+                "weapon": "ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "루드비히의 성검 · 대검 형태",
+                "subject": "weapon",
+                "weapon": "ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "루드비히의 성검 · 대검 형태",
+                "subject": "weapon",
+                "weapon": "ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "ludwigs-holy-blade",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "루드비히의 성검 · 대검 형태",
+                "subject": "weapon",
+                "weapon": "ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "ludwigs-holy-blade-0-idle.jpg",
+          "attackScreen": "ludwigs-holy-blade-0-attack.jpg"
+        },
+        {
+          "face": 1,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "true",
+            "status": "루드비히의 성검 · 소검 형태",
+            "subject": "weapon",
+            "weapon": "ludwigs-holy-blade",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "루드비히의 성검 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "루드비히의 성검 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "루드비히의 성검 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "루드비히의 성검 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "루드비히의 성검 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "루드비히의 성검 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "ludwigs-holy-blade",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "루드비히의 성검 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "ludwigs-holy-blade",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "ludwigs-holy-blade-1-idle.jpg",
+          "attackScreen": "ludwigs-holy-blade-1-attack.jpg"
+        }
+      ],
+      "transformed": {
+        "canvasCount": 1,
+        "form0": "true",
+        "form1": "false",
+        "status": "루드비히의 성검 · 대검 형태",
+        "subject": "weapon",
+        "weapon": "ludwigs-holy-blade",
+        "weaponReady": "true"
+      }
+    },
+    {
+      "id": "logarius-wheel",
+      "name": "로가리우스의 바퀴",
+      "forms": [
+        {
+          "face": 0,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "true",
+            "form1": "false",
+            "status": "로가리우스의 바퀴 · 바퀴 형태",
+            "subject": "weapon",
+            "weapon": "logarius-wheel",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "로가리우스의 바퀴 · 바퀴 형태",
+                "subject": "weapon",
+                "weapon": "logarius-wheel",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "로가리우스의 바퀴 · 바퀴 형태",
+                "subject": "weapon",
+                "weapon": "logarius-wheel",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "로가리우스의 바퀴 · 바퀴 형태",
+                "subject": "weapon",
+                "weapon": "logarius-wheel",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "로가리우스의 바퀴 · 바퀴 형태",
+                "subject": "weapon",
+                "weapon": "logarius-wheel",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "로가리우스의 바퀴 · 바퀴 형태",
+                "subject": "weapon",
+                "weapon": "logarius-wheel",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "로가리우스의 바퀴 · 바퀴 형태",
+                "subject": "weapon",
+                "weapon": "logarius-wheel",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "logarius-wheel",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "로가리우스의 바퀴 · 바퀴 형태",
+                "subject": "weapon",
+                "weapon": "logarius-wheel",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "logarius-wheel-0-idle.jpg",
+          "attackScreen": "logarius-wheel-0-attack.jpg"
+        },
+        {
+          "face": 1,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "true",
+            "status": "로가리우스의 바퀴 · 강화 바퀴 형태",
+            "subject": "weapon",
+            "weapon": "logarius-wheel",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "로가리우스의 바퀴 · 강화 바퀴 형태",
+                "subject": "weapon",
+                "weapon": "logarius-wheel",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "로가리우스의 바퀴 · 강화 바퀴 형태",
+                "subject": "weapon",
+                "weapon": "logarius-wheel",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "로가리우스의 바퀴 · 강화 바퀴 형태",
+                "subject": "weapon",
+                "weapon": "logarius-wheel",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "로가리우스의 바퀴 · 강화 바퀴 형태",
+                "subject": "weapon",
+                "weapon": "logarius-wheel",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "로가리우스의 바퀴 · 강화 바퀴 형태",
+                "subject": "weapon",
+                "weapon": "logarius-wheel",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "로가리우스의 바퀴 · 강화 바퀴 형태",
+                "subject": "weapon",
+                "weapon": "logarius-wheel",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "logarius-wheel",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "로가리우스의 바퀴 · 강화 바퀴 형태",
+                "subject": "weapon",
+                "weapon": "logarius-wheel",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "logarius-wheel-1-idle.jpg",
+          "attackScreen": "logarius-wheel-1-attack.jpg"
+        }
+      ],
+      "transformed": {
+        "canvasCount": 1,
+        "form0": "true",
+        "form1": "false",
+        "status": "로가리우스의 바퀴 · 바퀴 형태",
+        "subject": "weapon",
+        "weapon": "logarius-wheel",
+        "weaponReady": "true"
+      }
+    },
+    {
+      "id": "kirkhammer",
+      "name": "교단의 돌망치",
+      "forms": [
+        {
+          "face": 0,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "true",
+            "form1": "false",
+            "status": "교단의 돌망치 · 소검 형태",
+            "subject": "weapon",
+            "weapon": "kirkhammer",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "교단의 돌망치 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "kirkhammer",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "교단의 돌망치 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "kirkhammer",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "교단의 돌망치 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "kirkhammer",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "교단의 돌망치 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "kirkhammer",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "교단의 돌망치 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "kirkhammer",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "교단의 돌망치 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "kirkhammer",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "kirkhammer",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "교단의 돌망치 · 소검 형태",
+                "subject": "weapon",
+                "weapon": "kirkhammer",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "kirkhammer-0-idle.jpg",
+          "attackScreen": "kirkhammer-0-attack.jpg"
+        },
+        {
+          "face": 1,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "true",
+            "status": "교단의 돌망치 · 돌망치 형태",
+            "subject": "weapon",
+            "weapon": "kirkhammer",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "교단의 돌망치 · 돌망치 형태",
+                "subject": "weapon",
+                "weapon": "kirkhammer",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "교단의 돌망치 · 돌망치 형태",
+                "subject": "weapon",
+                "weapon": "kirkhammer",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "교단의 돌망치 · 돌망치 형태",
+                "subject": "weapon",
+                "weapon": "kirkhammer",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "교단의 돌망치 · 돌망치 형태",
+                "subject": "weapon",
+                "weapon": "kirkhammer",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "교단의 돌망치 · 돌망치 형태",
+                "subject": "weapon",
+                "weapon": "kirkhammer",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "kirkhammer",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "교단의 돌망치 · 돌망치 형태",
+                "subject": "weapon",
+                "weapon": "kirkhammer",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "kirkhammer-1-idle.jpg",
+          "attackScreen": "kirkhammer-1-attack.jpg"
+        }
+      ],
+      "transformed": {
+        "canvasCount": 1,
+        "form0": "true",
+        "form1": "false",
+        "status": "교단의 돌망치 · 소검 형태",
+        "subject": "weapon",
+        "weapon": "kirkhammer",
+        "weaponReady": "true"
+      }
+    },
+    {
+      "id": "stake-driver",
+      "name": "말뚝박이",
+      "forms": [
+        {
+          "face": 0,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "true",
+            "form1": "false",
+            "status": "말뚝박이 · 장전 형태",
+            "subject": "weapon",
+            "weapon": "stake-driver",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "말뚝박이 · 장전 형태",
+                "subject": "weapon",
+                "weapon": "stake-driver",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "말뚝박이 · 장전 형태",
+                "subject": "weapon",
+                "weapon": "stake-driver",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "말뚝박이 · 장전 형태",
+                "subject": "weapon",
+                "weapon": "stake-driver",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "말뚝박이 · 장전 형태",
+                "subject": "weapon",
+                "weapon": "stake-driver",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "말뚝박이 · 장전 형태",
+                "subject": "weapon",
+                "weapon": "stake-driver",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "말뚝박이 · 장전 형태",
+                "subject": "weapon",
+                "weapon": "stake-driver",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "stake-driver",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "말뚝박이 · 장전 형태",
+                "subject": "weapon",
+                "weapon": "stake-driver",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "stake-driver-0-idle.jpg",
+          "attackScreen": "stake-driver-0-attack.jpg"
+        },
+        {
+          "face": 1,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "true",
+            "status": "말뚝박이 · 폭파 형태",
+            "subject": "weapon",
+            "weapon": "stake-driver",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "말뚝박이 · 폭파 형태",
+                "subject": "weapon",
+                "weapon": "stake-driver",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "말뚝박이 · 폭파 형태",
+                "subject": "weapon",
+                "weapon": "stake-driver",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "말뚝박이 · 폭파 형태",
+                "subject": "weapon",
+                "weapon": "stake-driver",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "말뚝박이 · 폭파 형태",
+                "subject": "weapon",
+                "weapon": "stake-driver",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "stake-driver",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "말뚝박이 · 폭파 형태",
+                "subject": "weapon",
+                "weapon": "stake-driver",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "stake-driver-1-idle.jpg",
+          "attackScreen": "stake-driver-1-attack.jpg"
+        }
+      ],
+      "transformed": {
+        "canvasCount": 1,
+        "form0": "true",
+        "form1": "false",
+        "status": "말뚝박이 · 장전 형태",
+        "subject": "weapon",
+        "weapon": "stake-driver",
+        "weaponReady": "true"
+      }
+    },
+    {
+      "id": "chikage",
+      "name": "치카게",
+      "forms": [
+        {
+          "face": 0,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "true",
+            "form1": "false",
+            "status": "치카게 · 혈검 형태",
+            "subject": "weapon",
+            "weapon": "chikage",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "치카게 · 혈검 형태",
+                "subject": "weapon",
+                "weapon": "chikage",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "치카게 · 혈검 형태",
+                "subject": "weapon",
+                "weapon": "chikage",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "치카게 · 혈검 형태",
+                "subject": "weapon",
+                "weapon": "chikage",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "치카게 · 혈검 형태",
+                "subject": "weapon",
+                "weapon": "chikage",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "치카게 · 혈검 형태",
+                "subject": "weapon",
+                "weapon": "chikage",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "치카게 · 혈검 형태",
+                "subject": "weapon",
+                "weapon": "chikage",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "chikage",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "치카게 · 혈검 형태",
+                "subject": "weapon",
+                "weapon": "chikage",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "chikage-0-idle.jpg",
+          "attackScreen": "chikage-0-attack.jpg"
+        },
+        {
+          "face": 1,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "true",
+            "status": "치카게 · 도검 형태",
+            "subject": "weapon",
+            "weapon": "chikage",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "치카게 · 도검 형태",
+                "subject": "weapon",
+                "weapon": "chikage",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "치카게 · 도검 형태",
+                "subject": "weapon",
+                "weapon": "chikage",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "치카게 · 도검 형태",
+                "subject": "weapon",
+                "weapon": "chikage",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "치카게 · 도검 형태",
+                "subject": "weapon",
+                "weapon": "chikage",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "치카게 · 도검 형태",
+                "subject": "weapon",
+                "weapon": "chikage",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "치카게 · 도검 형태",
+                "subject": "weapon",
+                "weapon": "chikage",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "chikage",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "치카게 · 도검 형태",
+                "subject": "weapon",
+                "weapon": "chikage",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "chikage-1-idle.jpg",
+          "attackScreen": "chikage-1-attack.jpg"
+        }
+      ],
+      "transformed": {
+        "canvasCount": 1,
+        "form0": "true",
+        "form1": "false",
+        "status": "치카게 · 혈검 형태",
+        "subject": "weapon",
+        "weapon": "chikage",
+        "weaponReady": "true"
+      }
+    },
+    {
+      "id": "beast-claw",
+      "name": "야수의 발톱",
+      "forms": [
+        {
+          "face": 0,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "true",
+            "form1": "false",
+            "status": "야수의 발톱 · 발톱 형태",
+            "subject": "weapon",
+            "weapon": "beast-claw",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "야수의 발톱 · 발톱 형태",
+                "subject": "weapon",
+                "weapon": "beast-claw",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "야수의 발톱 · 발톱 형태",
+                "subject": "weapon",
+                "weapon": "beast-claw",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "야수의 발톱 · 발톱 형태",
+                "subject": "weapon",
+                "weapon": "beast-claw",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "야수의 발톱 · 발톱 형태",
+                "subject": "weapon",
+                "weapon": "beast-claw",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "야수의 발톱 · 발톱 형태",
+                "subject": "weapon",
+                "weapon": "beast-claw",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "야수의 발톱 · 발톱 형태",
+                "subject": "weapon",
+                "weapon": "beast-claw",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "beast-claw",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "야수의 발톱 · 발톱 형태",
+                "subject": "weapon",
+                "weapon": "beast-claw",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "beast-claw-0-idle.jpg",
+          "attackScreen": "beast-claw-0-attack.jpg"
+        },
+        {
+          "face": 1,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "true",
+            "status": "야수의 발톱 · 변형 발톱 형태",
+            "subject": "weapon",
+            "weapon": "beast-claw",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "야수의 발톱 · 변형 발톱 형태",
+                "subject": "weapon",
+                "weapon": "beast-claw",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "야수의 발톱 · 변형 발톱 형태",
+                "subject": "weapon",
+                "weapon": "beast-claw",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "야수의 발톱 · 변형 발톱 형태",
+                "subject": "weapon",
+                "weapon": "beast-claw",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "야수의 발톱 · 변형 발톱 형태",
+                "subject": "weapon",
+                "weapon": "beast-claw",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "야수의 발톱 · 변형 발톱 형태",
+                "subject": "weapon",
+                "weapon": "beast-claw",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "야수의 발톱 · 변형 발톱 형태",
+                "subject": "weapon",
+                "weapon": "beast-claw",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "beast-claw",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "야수의 발톱 · 변형 발톱 형태",
+                "subject": "weapon",
+                "weapon": "beast-claw",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "beast-claw-1-idle.jpg",
+          "attackScreen": "beast-claw-1-attack.jpg"
+        }
+      ],
+      "transformed": {
+        "canvasCount": 1,
+        "form0": "true",
+        "form1": "false",
+        "status": "야수의 발톱 · 발톱 형태",
+        "subject": "weapon",
+        "weapon": "beast-claw",
+        "weaponReady": "true"
+      }
+    },
+    {
+      "id": "reiterpallasch",
+      "name": "레이테르팔라슈",
+      "forms": [
+        {
+          "face": 0,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "true",
+            "form1": "false",
+            "status": "레이테르팔라슈 · 찌르기 형태",
+            "subject": "weapon",
+            "weapon": "reiterpallasch",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "레이테르팔라슈 · 찌르기 형태",
+                "subject": "weapon",
+                "weapon": "reiterpallasch",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "레이테르팔라슈 · 찌르기 형태",
+                "subject": "weapon",
+                "weapon": "reiterpallasch",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "레이테르팔라슈 · 찌르기 형태",
+                "subject": "weapon",
+                "weapon": "reiterpallasch",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "레이테르팔라슈 · 찌르기 형태",
+                "subject": "weapon",
+                "weapon": "reiterpallasch",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "레이테르팔라슈 · 찌르기 형태",
+                "subject": "weapon",
+                "weapon": "reiterpallasch",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "레이테르팔라슈 · 찌르기 형태",
+                "subject": "weapon",
+                "weapon": "reiterpallasch",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "reiterpallasch",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "레이테르팔라슈 · 찌르기 형태",
+                "subject": "weapon",
+                "weapon": "reiterpallasch",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "reiterpallasch-0-idle.jpg",
+          "attackScreen": "reiterpallasch-0-attack.jpg"
+        },
+        {
+          "face": 1,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "true",
+            "status": "레이테르팔라슈 · 수은탄 사격 형태",
+            "subject": "weapon",
+            "weapon": "reiterpallasch",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "레이테르팔라슈 · 수은탄 사격 형태",
+                "subject": "weapon",
+                "weapon": "reiterpallasch",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "레이테르팔라슈 · 수은탄 사격 형태",
+                "subject": "weapon",
+                "weapon": "reiterpallasch",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "레이테르팔라슈 · 수은탄 사격 형태",
+                "subject": "weapon",
+                "weapon": "reiterpallasch",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "레이테르팔라슈 · 수은탄 사격 형태",
+                "subject": "weapon",
+                "weapon": "reiterpallasch",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "레이테르팔라슈 · 수은탄 사격 형태",
+                "subject": "weapon",
+                "weapon": "reiterpallasch",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "레이테르팔라슈 · 수은탄 사격 형태",
+                "subject": "weapon",
+                "weapon": "reiterpallasch",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "reiterpallasch",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "레이테르팔라슈 · 수은탄 사격 형태",
+                "subject": "weapon",
+                "weapon": "reiterpallasch",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "reiterpallasch-1-idle.jpg",
+          "attackScreen": "reiterpallasch-1-attack.jpg"
+        }
+      ],
+      "transformed": {
+        "canvasCount": 1,
+        "form0": "true",
+        "form1": "false",
+        "status": "레이테르팔라슈 · 찌르기 형태",
+        "subject": "weapon",
+        "weapon": "reiterpallasch",
+        "weaponReady": "true"
+      }
+    },
+    {
+      "id": "burial",
+      "name": "장송의 칼날",
+      "forms": [
+        {
+          "face": 0,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "true",
+            "form1": "false",
+            "status": "장송의 칼날 · 칼날 형태",
+            "subject": "weapon",
+            "weapon": "burial",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "장송의 칼날 · 칼날 형태",
+                "subject": "weapon",
+                "weapon": "burial",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "장송의 칼날 · 칼날 형태",
+                "subject": "weapon",
+                "weapon": "burial",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "장송의 칼날 · 칼날 형태",
+                "subject": "weapon",
+                "weapon": "burial",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "장송의 칼날 · 칼날 형태",
+                "subject": "weapon",
+                "weapon": "burial",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "장송의 칼날 · 칼날 형태",
+                "subject": "weapon",
+                "weapon": "burial",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "장송의 칼날 · 칼날 형태",
+                "subject": "weapon",
+                "weapon": "burial",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "burial",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "true",
+                "form1": "false",
+                "status": "장송의 칼날 · 칼날 형태",
+                "subject": "weapon",
+                "weapon": "burial",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "burial-0-idle.jpg",
+          "attackScreen": "burial-0-attack.jpg"
+        },
+        {
+          "face": 1,
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "true",
+            "status": "장송의 칼날 · 낫 형태",
+            "subject": "weapon",
+            "weapon": "burial",
+            "weaponReady": "true"
+          },
+          "actions": [
+            {
+              "action": "attack0",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "장송의 칼날 · 낫 형태",
+                "subject": "weapon",
+                "weapon": "burial",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack1",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "장송의 칼날 · 낫 형태",
+                "subject": "weapon",
+                "weapon": "burial",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "attack2",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "장송의 칼날 · 낫 형태",
+                "subject": "weapon",
+                "weapon": "burial",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "장송의 칼날 · 낫 형태",
+                "subject": "weapon",
+                "weapon": "burial",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "장송의 칼날 · 낫 형태",
+                "subject": "weapon",
+                "weapon": "burial",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "장송의 칼날 · 낫 형태",
+                "subject": "weapon",
+                "weapon": "burial",
+                "weaponReady": "true"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "weapon",
+                "weapon": "burial",
+                "weaponReady": "false"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "true",
+                "status": "장송의 칼날 · 낫 형태",
+                "subject": "weapon",
+                "weapon": "burial",
+                "weaponReady": "true"
+              }
+            }
+          ],
+          "idleScreen": "burial-1-idle.jpg",
+          "attackScreen": "burial-1-attack.jpg"
+        }
+      ],
+      "transformed": {
+        "canvasCount": 1,
+        "form0": "true",
+        "form1": "false",
+        "status": "장송의 칼날 · 칼날 형태",
+        "subject": "weapon",
+        "weapon": "burial",
+        "weaponReady": "true"
+      }
+    }
+  ],
+  "generic": [
+    {
+      "subject": "hunter",
+      "idle": {
+        "canvasCount": 1,
+        "form0": "false",
+        "form1": "false",
+        "presentation": {
+          "presentation": "phaser",
+          "presentationActors": "2",
+          "presentationAttacks": "0",
+          "presentationCharacters": "ready",
+          "presentationMotion": "full",
+          "presentationMoves": "0",
+          "presentationShots": "0",
+          "presentationVersion": "4.2.1",
+          "presentationWeapon": "hunter",
+          "presentationWeaponReady": "true"
+        },
+        "status": "공통 사냥꾼 · 동작 미리보기",
+        "subject": "hunter",
+        "weapon": "threaded-cane"
+      },
+      "actions": [
+        {
+          "action": "attack",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "1",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "0",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "hunter",
+              "presentationWeaponReady": "true"
+            },
+            "status": "공통 사냥꾼 · 동작 미리보기",
+            "subject": "hunter",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "1",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "1",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "hunter",
+              "presentationWeaponReady": "true"
+            },
+            "status": "공통 사냥꾼 · 동작 미리보기",
+            "subject": "hunter",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "1",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "2",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "hunter",
+              "presentationWeaponReady": "true"
+            },
+            "status": "공통 사냥꾼 · 동작 미리보기",
+            "subject": "hunter",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "hit",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "2",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "2",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "hunter",
+              "presentationWeaponReady": "true"
+            },
+            "status": "공통 사냥꾼 · 동작 미리보기",
+            "subject": "hunter",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "death",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "1",
+              "presentationAttacks": "3",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "2",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+            "subject": "hunter",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "idle",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "3",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "2",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "hunter",
+              "presentationWeaponReady": "true"
+            },
+            "status": "공통 사냥꾼 · 동작 미리보기",
+            "subject": "hunter",
+            "weapon": "threaded-cane"
+          }
+        }
+      ],
+      "idleScreen": "generic-hunter-idle.jpg",
+      "attackScreen": "generic-hunter-attack-sample.jpg"
+    },
+    {
+      "subject": "mob",
+      "idle": {
+        "canvasCount": 1,
+        "form0": "false",
+        "form1": "false",
+        "presentation": {
+          "presentation": "phaser",
+          "presentationActors": "2",
+          "presentationAttacks": "3",
+          "presentationCharacters": "ready",
+          "presentationMotion": "full",
+          "presentationMoves": "2",
+          "presentationShots": "0",
+          "presentationVersion": "4.2.1",
+          "presentationWeapon": "",
+          "presentationWeaponReady": "false"
+        },
+        "status": "공통 인간형 적 · 동작 미리보기",
+        "subject": "mob",
+        "weapon": "threaded-cane"
+      },
+      "actions": [
+        {
+          "action": "attack",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "4",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "2",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 인간형 적 · 동작 미리보기",
+            "subject": "mob",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "4",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "3",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 인간형 적 · 동작 미리보기",
+            "subject": "mob",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "4",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "4",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 인간형 적 · 동작 미리보기",
+            "subject": "mob",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "hit",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "5",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "4",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 인간형 적 · 동작 미리보기",
+            "subject": "mob",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "death",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "1",
+              "presentationAttacks": "6",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "4",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+            "subject": "mob",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "idle",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "6",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "4",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 인간형 적 · 동작 미리보기",
+            "subject": "mob",
+            "weapon": "threaded-cane"
+          }
+        }
+      ],
+      "idleScreen": "generic-mob-idle.jpg",
+      "attackScreen": "generic-mob-attack-sample.jpg"
+    },
+    {
+      "subject": "beast",
+      "idle": {
+        "canvasCount": 1,
+        "form0": "false",
+        "form1": "false",
+        "presentation": {
+          "presentation": "phaser",
+          "presentationActors": "2",
+          "presentationAttacks": "6",
+          "presentationCharacters": "ready",
+          "presentationMotion": "full",
+          "presentationMoves": "4",
+          "presentationShots": "0",
+          "presentationVersion": "4.2.1",
+          "presentationWeapon": "",
+          "presentationWeaponReady": "false"
+        },
+        "status": "공통 야수형 적 · 동작 미리보기",
+        "subject": "beast",
+        "weapon": "threaded-cane"
+      },
+      "actions": [
+        {
+          "action": "attack",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "7",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "4",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 야수형 적 · 동작 미리보기",
+            "subject": "beast",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "7",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "5",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 야수형 적 · 동작 미리보기",
+            "subject": "beast",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "7",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "6",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 야수형 적 · 동작 미리보기",
+            "subject": "beast",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "hit",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "8",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "6",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 야수형 적 · 동작 미리보기",
+            "subject": "beast",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "death",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "1",
+              "presentationAttacks": "9",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "6",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+            "subject": "beast",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "idle",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "9",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "6",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 야수형 적 · 동작 미리보기",
+            "subject": "beast",
+            "weapon": "threaded-cane"
+          }
+        }
+      ],
+      "idleScreen": "generic-beast-idle.jpg",
+      "attackScreen": "generic-beast-attack-sample.jpg"
+    },
+    {
+      "subject": "boss",
+      "idle": {
+        "canvasCount": 1,
+        "form0": "false",
+        "form1": "false",
+        "presentation": {
+          "presentation": "phaser",
+          "presentationActors": "2",
+          "presentationAttacks": "9",
+          "presentationCharacters": "ready",
+          "presentationMotion": "full",
+          "presentationMoves": "6",
+          "presentationShots": "0",
+          "presentationVersion": "4.2.1",
+          "presentationWeapon": "",
+          "presentationWeaponReady": "false"
+        },
+        "status": "공통 보스 · 동작 미리보기",
+        "subject": "boss",
+        "weapon": "threaded-cane"
+      },
+      "actions": [
+        {
+          "action": "attack",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "10",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "6",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 보스 · 동작 미리보기",
+            "subject": "boss",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "10",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "7",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 보스 · 동작 미리보기",
+            "subject": "boss",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "10",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "8",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 보스 · 동작 미리보기",
+            "subject": "boss",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "hit",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "11",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "8",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 보스 · 동작 미리보기",
+            "subject": "boss",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "death",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "1",
+              "presentationAttacks": "12",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "8",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+            "subject": "boss",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "idle",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "12",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "8",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 보스 · 동작 미리보기",
+            "subject": "boss",
+            "weapon": "threaded-cane"
+          }
+        }
+      ],
+      "idleScreen": "generic-boss-idle.jpg",
+      "attackScreen": "generic-boss-attack-sample.jpg"
+    },
+    {
+      "subject": "female",
+      "idle": {
+        "canvasCount": 1,
+        "form0": "false",
+        "form1": "false",
+        "presentation": {
+          "presentation": "phaser",
+          "presentationActors": "2",
+          "presentationAttacks": "12",
+          "presentationCharacters": "ready",
+          "presentationMotion": "full",
+          "presentationMoves": "8",
+          "presentationShots": "0",
+          "presentationVersion": "4.2.1",
+          "presentationWeapon": "",
+          "presentationWeaponReady": "false"
+        },
+        "status": "공통 여성 NPC · 동작 미리보기",
+        "subject": "female",
+        "weapon": "threaded-cane"
+      },
+      "actions": [
+        {
+          "action": "attack",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "13",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "8",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 여성 NPC · 동작 미리보기",
+            "subject": "female",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "13",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "9",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 여성 NPC · 동작 미리보기",
+            "subject": "female",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "13",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "10",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 여성 NPC · 동작 미리보기",
+            "subject": "female",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "hit",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "14",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "10",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 여성 NPC · 동작 미리보기",
+            "subject": "female",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "death",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "1",
+              "presentationAttacks": "15",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "10",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+            "subject": "female",
+            "weapon": "threaded-cane"
+          }
+        },
+        {
+          "action": "idle",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "15",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "10",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 여성 NPC · 동작 미리보기",
+            "subject": "female",
+            "weapon": "threaded-cane"
+          }
+        }
+      ],
+      "idleScreen": "generic-female-idle.jpg",
+      "attackScreen": "generic-female-attack-sample.jpg"
+    }
+  ],
+  "beforeBurialSamples": [
+    {
+      "file": "before-burial-idle-0.jpg",
+      "time": "2026-10-13T12:54:10.853Z"
+    },
+    {
+      "file": "before-burial-idle-1.jpg",
+      "time": "2026-10-13T12:54:11.136Z"
+    },
+    {
+      "file": "before-burial-idle-2.jpg",
+      "time": "2026-10-13T12:54:11.420Z"
+    },
+    {
+      "file": "before-burial-idle-3.jpg",
+      "time": "2026-10-13T12:54:11.702Z"
+    },
+    {
+      "file": "before-burial-idle-4.jpg",
+      "time": "2026-10-13T12:54:11.970Z"
+    },
+    {
+      "file": "before-burial-idle-5.jpg",
+      "time": "2026-10-13T12:54:12.236Z"
+    },
+    {
+      "file": "before-burial-idle-6.jpg",
+      "time": "2026-10-13T12:54:12.505Z"
+    },
+    {
+      "file": "before-burial-idle-7.jpg",
+      "time": "2026-10-13T12:54:12.787Z"
+    }
+  ],
+  "afterBurialSamples": [
+    {
+      "file": "after-burial-idle-0.jpg",
+      "time": "2026-10-13T13:23:10.286Z"
+    },
+    {
+      "file": "after-burial-idle-1.jpg",
+      "time": "2026-10-13T13:23:10.587Z"
+    },
+    {
+      "file": "after-burial-idle-2.jpg",
+      "time": "2026-10-13T13:23:10.870Z"
+    },
+    {
+      "file": "after-burial-idle-3.jpg",
+      "time": "2026-10-13T13:23:11.147Z"
+    },
+    {
+      "file": "after-burial-idle-4.jpg",
+      "time": "2026-10-13T13:23:11.429Z"
+    },
+    {
+      "file": "after-burial-idle-5.jpg",
+      "time": "2026-10-13T13:23:11.713Z"
+    },
+    {
+      "file": "after-burial-idle-6.jpg",
+      "time": "2026-10-13T13:23:11.996Z"
+    },
+    {
+      "file": "after-burial-idle-7.jpg",
+      "time": "2026-10-13T13:23:12.280Z"
+    }
+  ],
+  "finalPresentation": {
+    "presentation": "phaser",
+    "presentationActors": "2",
+    "presentationAttacks": "159",
+    "presentationCharacters": "ready",
+    "presentationMotion": "full",
+    "presentationMoves": "70",
+    "presentationShots": "1",
+    "presentationVersion": "4.2.1",
+    "presentationWeapon": "",
+    "presentationWeaponReady": "false"
+  },
+  "console": [],
+  "versionedScriptsVerified": true,
+  "cacheReproduction": {
+    "before": {
+      "selectedSubject": "mob",
+      "status": "장송의 칼날 · 칼날 형태",
+      "weaponControlsVisible": true
+    },
+    "after": {
+      "selectedSubject": "mob",
+      "status": "공통 인간형 적 · 동작 미리보기",
+      "transformDisabled": true
+    },
+    "method": "same public dropdown after reload with changed script URLs"
+  },
+  "loadedScripts": [
+    "assets/vendor/phaser-4.2.1.min.js",
+    "assets/characters/manifest.js?v=0.8.13-dev.5",
+    "assets/characters/weapon-manifest.js?v=0.8.13-dev.5",
+    "weapon-visuals.js",
+    "hunt-presentation.js?v=0.8.13-dev.5",
+    "weapon-gallery.js?v=0.8.13-dev.5"
+  ],
+  "loggingNote": "One final Burial Blade repeat recovered the completed weapon rows after the logging helper retained an earlier object reference. The repeat is not counted as extra unique coverage; presentation totals shown were observed at the end of the initial full 30-form/5-generic final-runtime run.",
+  "originRevalidation": {
+    "version": "0.8.13-dev.5",
+    "scope": "Generic skins revalidation after beast originY432/512; thirty weapon form data and renderer logic unchanged.",
+    "loadedScripts": [
+      "assets/vendor/phaser-4.2.1.min.js",
+      "assets/characters/manifest.js?v=0.8.13-dev.5&h=fc5309eed25a",
+      "assets/characters/weapon-manifest.js?v=0.8.13-dev.5",
+      "weapon-visuals.js",
+      "hunt-presentation.js?v=0.8.13-dev.5",
+      "weapon-gallery.js?v=0.8.13-dev.5"
+    ],
+    "generic": [
+      {
+        "subject": "hunter",
+        "idle": {
+          "canvasCount": 1,
+          "form0": "false",
+          "form1": "false",
+          "presentation": {
+            "presentation": "phaser",
+            "presentationActors": "2",
+            "presentationAttacks": "0",
+            "presentationCharacters": "ready",
+            "presentationMotion": "full",
+            "presentationMoves": "0",
+            "presentationShots": "0",
+            "presentationVersion": "4.2.1",
+            "presentationWeapon": "hunter",
+            "presentationWeaponReady": "true"
+          },
+          "status": "공통 사냥꾼 · 동작 미리보기",
+          "subject": "hunter",
+          "weapon": "threaded-cane"
+        },
+        "actions": [
+          {
+            "action": "attack",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "1",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "0",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "hunter",
+                "presentationWeaponReady": "true"
+              },
+              "status": "공통 사냥꾼 · 동작 미리보기",
+              "subject": "hunter",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "walk",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "1",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "1",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "hunter",
+                "presentationWeaponReady": "true"
+              },
+              "status": "공통 사냥꾼 · 동작 미리보기",
+              "subject": "hunter",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "walk",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "1",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "2",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "hunter",
+                "presentationWeaponReady": "true"
+              },
+              "status": "공통 사냥꾼 · 동작 미리보기",
+              "subject": "hunter",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "hit",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "2",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "2",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "hunter",
+                "presentationWeaponReady": "true"
+              },
+              "status": "공통 사냥꾼 · 동작 미리보기",
+              "subject": "hunter",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "death",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "1",
+                "presentationAttacks": "3",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "2",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+              "subject": "hunter",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "idle",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "3",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "2",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "hunter",
+                "presentationWeaponReady": "true"
+              },
+              "status": "공통 사냥꾼 · 동작 미리보기",
+              "subject": "hunter",
+              "weapon": "threaded-cane"
+            }
+          }
+        ],
+        "idleScreen": "generic-hunter-idle.jpg",
+        "attackScreen": "generic-hunter-attack-sample.jpg"
+      },
+      {
+        "subject": "mob",
+        "idle": {
+          "canvasCount": 1,
+          "form0": "false",
+          "form1": "false",
+          "presentation": {
+            "presentation": "phaser",
+            "presentationActors": "2",
+            "presentationAttacks": "3",
+            "presentationCharacters": "ready",
+            "presentationMotion": "full",
+            "presentationMoves": "2",
+            "presentationShots": "0",
+            "presentationVersion": "4.2.1",
+            "presentationWeapon": "",
+            "presentationWeaponReady": "false"
+          },
+          "status": "공통 인간형 적 · 동작 미리보기",
+          "subject": "mob",
+          "weapon": "threaded-cane"
+        },
+        "actions": [
+          {
+            "action": "attack",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "4",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "2",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 인간형 적 · 동작 미리보기",
+              "subject": "mob",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "walk",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "4",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "3",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 인간형 적 · 동작 미리보기",
+              "subject": "mob",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "walk",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "4",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "4",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 인간형 적 · 동작 미리보기",
+              "subject": "mob",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "hit",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "5",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "4",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 인간형 적 · 동작 미리보기",
+              "subject": "mob",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "death",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "1",
+                "presentationAttacks": "6",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "4",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+              "subject": "mob",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "idle",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "6",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "4",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 인간형 적 · 동작 미리보기",
+              "subject": "mob",
+              "weapon": "threaded-cane"
+            }
+          }
+        ],
+        "idleScreen": "generic-mob-idle.jpg",
+        "attackScreen": "generic-mob-attack-sample.jpg"
+      },
+      {
+        "subject": "beast",
+        "idle": {
+          "canvasCount": 1,
+          "form0": "false",
+          "form1": "false",
+          "presentation": {
+            "presentation": "phaser",
+            "presentationActors": "2",
+            "presentationAttacks": "6",
+            "presentationCharacters": "ready",
+            "presentationMotion": "full",
+            "presentationMoves": "4",
+            "presentationShots": "0",
+            "presentationVersion": "4.2.1",
+            "presentationWeapon": "",
+            "presentationWeaponReady": "false"
+          },
+          "status": "공통 야수형 적 · 동작 미리보기",
+          "subject": "beast",
+          "weapon": "threaded-cane"
+        },
+        "actions": [
+          {
+            "action": "attack",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "7",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "4",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 야수형 적 · 동작 미리보기",
+              "subject": "beast",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "walk",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "7",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "5",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 야수형 적 · 동작 미리보기",
+              "subject": "beast",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "walk",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "7",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "6",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 야수형 적 · 동작 미리보기",
+              "subject": "beast",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "hit",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "8",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "6",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 야수형 적 · 동작 미리보기",
+              "subject": "beast",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "death",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "1",
+                "presentationAttacks": "9",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "6",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+              "subject": "beast",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "idle",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "9",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "6",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 야수형 적 · 동작 미리보기",
+              "subject": "beast",
+              "weapon": "threaded-cane"
+            }
+          }
+        ],
+        "idleScreen": "generic-beast-idle.jpg",
+        "attackScreen": "generic-beast-attack-sample.jpg"
+      },
+      {
+        "subject": "boss",
+        "idle": {
+          "canvasCount": 1,
+          "form0": "false",
+          "form1": "false",
+          "presentation": {
+            "presentation": "phaser",
+            "presentationActors": "2",
+            "presentationAttacks": "9",
+            "presentationCharacters": "ready",
+            "presentationMotion": "full",
+            "presentationMoves": "6",
+            "presentationShots": "0",
+            "presentationVersion": "4.2.1",
+            "presentationWeapon": "",
+            "presentationWeaponReady": "false"
+          },
+          "status": "공통 보스 · 동작 미리보기",
+          "subject": "boss",
+          "weapon": "threaded-cane"
+        },
+        "actions": [
+          {
+            "action": "attack",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "10",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "6",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 보스 · 동작 미리보기",
+              "subject": "boss",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "walk",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "10",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "7",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 보스 · 동작 미리보기",
+              "subject": "boss",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "walk",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "10",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "8",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 보스 · 동작 미리보기",
+              "subject": "boss",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "hit",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "11",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "8",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 보스 · 동작 미리보기",
+              "subject": "boss",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "death",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "1",
+                "presentationAttacks": "12",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "8",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+              "subject": "boss",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "idle",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "12",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "8",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 보스 · 동작 미리보기",
+              "subject": "boss",
+              "weapon": "threaded-cane"
+            }
+          }
+        ],
+        "idleScreen": "generic-boss-idle.jpg",
+        "attackScreen": "generic-boss-attack-sample.jpg"
+      },
+      {
+        "subject": "female",
+        "idle": {
+          "canvasCount": 1,
+          "form0": "false",
+          "form1": "false",
+          "presentation": {
+            "presentation": "phaser",
+            "presentationActors": "2",
+            "presentationAttacks": "12",
+            "presentationCharacters": "ready",
+            "presentationMotion": "full",
+            "presentationMoves": "8",
+            "presentationShots": "0",
+            "presentationVersion": "4.2.1",
+            "presentationWeapon": "",
+            "presentationWeaponReady": "false"
+          },
+          "status": "공통 여성 NPC · 동작 미리보기",
+          "subject": "female",
+          "weapon": "threaded-cane"
+        },
+        "actions": [
+          {
+            "action": "attack",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "13",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "8",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 여성 NPC · 동작 미리보기",
+              "subject": "female",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "walk",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "13",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "9",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 여성 NPC · 동작 미리보기",
+              "subject": "female",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "walk",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "13",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "10",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 여성 NPC · 동작 미리보기",
+              "subject": "female",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "hit",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "14",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "10",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 여성 NPC · 동작 미리보기",
+              "subject": "female",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "death",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "1",
+                "presentationAttacks": "15",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "10",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+              "subject": "female",
+              "weapon": "threaded-cane"
+            }
+          },
+          {
+            "action": "idle",
+            "state": {
+              "canvasCount": 1,
+              "form0": "false",
+              "form1": "false",
+              "presentation": {
+                "presentation": "phaser",
+                "presentationActors": "2",
+                "presentationAttacks": "15",
+                "presentationCharacters": "ready",
+                "presentationMotion": "full",
+                "presentationMoves": "10",
+                "presentationShots": "0",
+                "presentationVersion": "4.2.1",
+                "presentationWeapon": "",
+                "presentationWeaponReady": "false"
+              },
+              "status": "공통 여성 NPC · 동작 미리보기",
+              "subject": "female",
+              "weapon": "threaded-cane"
+            }
+          }
+        ],
+        "idleScreen": "generic-female-idle.jpg",
+        "attackScreen": "generic-female-attack-sample.jpg"
+      }
+    ],
+    "presentation": {
+      "presentation": "phaser",
+      "presentationActors": "2",
+      "presentationAttacks": "15",
+      "presentationCharacters": "ready",
+      "presentationMotion": "full",
+      "presentationMoves": "10",
+      "presentationShots": "0",
+      "presentationVersion": "4.2.1",
+      "presentationWeapon": "",
+      "presentationWeaponReady": "false"
+    },
+    "console": []
+  }
+}

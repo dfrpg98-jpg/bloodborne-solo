@@ -1,0 +1,111 @@
+{
+  "sourcePixelsEdited": false,
+  "formsReviewed": 30,
+  "framesReviewed": 720,
+  "contactSheetsVisuallyInspected": 30,
+  "idleFramesChanged": 15,
+  "nonIdleFramesChanged": 0,
+  "idleReferenceFramesChanged": 0,
+  "skinCommonOffsetsApplied": false,
+  "changedFrameList": [
+    {
+      "skin": "w-threaded-cane-a",
+      "frame": 0
+    },
+    {
+      "skin": "w-hunter-axe-a",
+      "frame": 0
+    },
+    {
+      "skin": "w-rifle-spear-a",
+      "frame": 0
+    },
+    {
+      "skin": "w-rifle-spear-b",
+      "frame": 0
+    },
+    {
+      "skin": "w-saw-spear-a",
+      "frame": 0
+    },
+    {
+      "skin": "w-ludwigs-holy-blade-b",
+      "frame": 0
+    },
+    {
+      "skin": "w-logarius-wheel-a",
+      "frame": 0
+    },
+    {
+      "skin": "w-kirkhammer-b",
+      "frame": 0
+    },
+    {
+      "skin": "w-stake-driver-a",
+      "frame": 0
+    },
+    {
+      "skin": "w-chikage-a",
+      "frame": 0
+    },
+    {
+      "skin": "w-beast-claw-a",
+      "frame": 0
+    },
+    {
+      "skin": "w-beast-claw-b",
+      "frame": 0
+    },
+    {
+      "skin": "w-reiterpallasch-a",
+      "frame": 0
+    },
+    {
+      "skin": "w-reiterpallasch-b",
+      "frame": 0
+    },
+    {
+      "skin": "w-burial-a",
+      "frame": 0
+    }
+  ],
+  "method": "Original RGBA pixels read after existing clipRects; major two boot components plus bounded torso/cap foreground; virtual source512 ground460; source scale displayHeight/512. All 720 frame diagnostic contact sheets visually inspected. Non-idle lunge, rotation, recoil, death and one-foot contact treated as action pose changes instead of automatic defects.",
+  "testRun": {
+    "command": "node --test tests/weapon-idle-registration.test.cjs tests/weapon-character-assets-v083.test.cjs",
+    "passed": 10,
+    "failed": 0,
+    "durationMs": 1854.0034,
+    "historicalStandingJumpsReproduced": 15,
+    "all30FormsMaxDriftPx": {
+      "feet": 1.57633203125,
+      "torso": 1.8902720374354336,
+      "head": 1.8270950437612221
+    },
+    "modified15FormsMaxDriftPx": {
+      "feet": 1.57633203125,
+      "torso": 1.252118648159057,
+      "head": 1.380761554049078
+    },
+    "burialExample": {
+      "beforeFeetPx": 11.10197021484375,
+      "afterFeetPx": 0.08223681640625,
+      "beforeTorsoPx": 11.354682215168344,
+      "afterTorsoPx": 0.1704751839183344
+    }
+  },
+  "manualReview": {
+    "sourceDirectionOutfitMismatchConfirmed": false,
+    "notes": [
+      "Attack follow-through can turn the whole character away; this is the original intentional strike/rotation sequence rather than runtime flip inconsistency.",
+      "Rifle-spear B standing arm/weapon angle changes, but isolated anatomical anchors remain stable after registration.",
+      "Kirkhammer A sword tip and Chikage A trailing blade contaminate whole-foot-band bounding boxes. Major boot components remove these false positives.",
+      "Walk and attack poses deliberately alter footprint, including raised feet; automatic source-centroid centering would remove lunges or produce new jumps.",
+      "Common skin offsets were proposed for review but rejected; only confirmed idle0 relative placement errors were corrected."
+    ]
+  },
+  "limitations": [
+    "This pixel/atlas audit is distinct from actual browser playback; root performs browser verification.",
+    "A maximum drift under 2px checks anatomical registration, not artistic quality of every independent generated pose.",
+    "Original artwork was retained; no bitmap edits, additional artwork or changes to animation frame sequences were made."
+  ]
+}

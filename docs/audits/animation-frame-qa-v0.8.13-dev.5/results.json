@@ -1,0 +1,3673 @@
+{
+  "version": "0.8.13-dev.5",
+  "comparisonSourceCommit": "377224adf266fb87b64f4384552cb058c72a062b",
+  "scope": {
+    "weaponForms": 30,
+    "weaponFrames": 720,
+    "genericSkins": 5,
+    "genericFrames": 80,
+    "totalFrames": 800
+  },
+  "fixes": {
+    "BB012": {
+      "issue": 19,
+      "positionFrames": 15,
+      "report": {
+        "sourcePixelsEdited": false,
+        "formsReviewed": 30,
+        "framesReviewed": 720,
+        "contactSheetsVisuallyInspected": 30,
+        "idleFramesChanged": 15,
+        "nonIdleFramesChanged": 0,
+        "idleReferenceFramesChanged": 0,
+        "skinCommonOffsetsApplied": false,
+        "changedFrameList": [
+          {
+            "skin": "w-threaded-cane-a",
+            "frame": 0
+          },
+          {
+            "skin": "w-hunter-axe-a",
+            "frame": 0
+          },
+          {
+            "skin": "w-rifle-spear-a",
+            "frame": 0
+          },
+          {
+            "skin": "w-rifle-spear-b",
+            "frame": 0
+          },
+          {
+            "skin": "w-saw-spear-a",
+            "frame": 0
+          },
+          {
+            "skin": "w-ludwigs-holy-blade-b",
+            "frame": 0
+          },
+          {
+            "skin": "w-logarius-wheel-a",
+            "frame": 0
+          },
+          {
+            "skin": "w-kirkhammer-b",
+            "frame": 0
+          },
+          {
+            "skin": "w-stake-driver-a",
+            "frame": 0
+          },
+          {
+            "skin": "w-chikage-a",
+            "frame": 0
+          },
+          {
+            "skin": "w-beast-claw-a",
+            "frame": 0
+          },
+          {
+            "skin": "w-beast-claw-b",
+            "frame": 0
+          },
+          {
+            "skin": "w-reiterpallasch-a",
+            "frame": 0
+          },
+          {
+            "skin": "w-reiterpallasch-b",
+            "frame": 0
+          },
+          {
+            "skin": "w-burial-a",
+            "frame": 0
+          }
+        ],
+        "method": "Original RGBA pixels read after existing clipRects; major two boot components plus bounded torso/cap foreground; virtual source512 ground460; source scale displayHeight/512. All 720 frame diagnostic contact sheets visually inspected. Non-idle lunge, rotation, recoil, death and one-foot contact treated as action pose changes instead of automatic defects.",
+        "testRun": {
+          "command": "node --test tests/weapon-idle-registration.test.cjs tests/weapon-character-assets-v083.test.cjs",
+          "passed": 10,
+          "failed": 0,
+          "durationMs": 1854.0034,
+          "historicalStandingJumpsReproduced": 15,
+          "all30FormsMaxDriftPx": {
+            "feet": 1.57633203125,
+            "torso": 1.8902720374354336,
+            "head": 1.8270950437612221
+          },
+          "modified15FormsMaxDriftPx": {
+            "feet": 1.57633203125,
+            "torso": 1.252118648159057,
+            "head": 1.380761554049078
+          },
+          "burialExample": {
+            "beforeFeetPx": 11.10197021484375,
+            "afterFeetPx": 0.08223681640625,
+            "beforeTorsoPx": 11.354682215168344,
+            "afterTorsoPx": 0.1704751839183344
+          }
+        },
+        "manualReview": {
+          "sourceDirectionOutfitMismatchConfirmed": false,
+          "notes": [
+            "Attack follow-through can turn the whole character away; this is the original intentional strike/rotation sequence rather than runtime flip inconsistency.",
+            "Rifle-spear B standing arm/weapon angle changes, but isolated anatomical anchors remain stable after registration.",
+            "Kirkhammer A sword tip and Chikage A trailing blade contaminate whole-foot-band bounding boxes. Major boot components remove these false positives.",
+            "Walk and attack poses deliberately alter footprint, including raised feet; automatic source-centroid centering would remove lunges or produce new jumps.",
+            "Common skin offsets were proposed for review but rejected; only confirmed idle0 relative placement errors were corrected."
+          ]
+        },
+        "limitations": [
+          "This pixel/atlas audit is distinct from actual browser playback; root performs browser verification.",
+          "A maximum drift under 2px checks anatomical registration, not artistic quality of every independent generated pose.",
+          "Original artwork was retained; no bitmap edits, additional artwork or changes to animation frame sequences were made."
+        ]
+      },
+      "browserTemporalMeasurement": {
+        "sourceScreenshotsEdited": false,
+        "productionEdited": false,
+        "method": "Actual JPEG screenshots, visible stage left-border localization for scroll compensation; brown/neutral foreground in expected lower-foot region excludes teal backdrop/shadow; two substantial horizontal foot runs averaged. Integer-pixel photographic measurement, not source-alpha exactness.",
+        "sequences": {
+          "before": {
+            "samples": [
+              {
+                "file": "before-burial-idle-0.jpg",
+                "time": "2026-10-13T12:54:10.853Z",
+                "sha256": "639da43033488f20ded29a2aff32a060f02e1370242ed8fade11191320e9e55b",
+                "stageBottomEstimated": 512,
+                "footBottomY": 446,
+                "footBottomRelativeToStageBottom": -66,
+                "footCenterX": 542.75,
+                "bootComponents": [
+                  {
+                    "bounds": [
+                      559,
+                      574
+                    ],
+                    "area": 76,
+                    "center": 566.5
+                  },
+                  {
+                    "bounds": [
+                      517,
+                      521
+                    ],
+                    "area": 55,
+                    "center": 519
+                  }
+                ]
+              },
+              {
+                "file": "before-burial-idle-1.jpg",
+                "time": "2026-10-13T12:54:11.136Z",
+                "sha256": "b1fbdaa8c40a071fa86a25055ba80a2ed6d422820fe5e51dc33b425fee39adf7",
+                "stageBottomEstimated": 512,
+                "footBottomY": 446,
+                "footBottomRelativeToStageBottom": -66,
+                "footCenterX": 519.5,
+                "bootComponents": [
+                  {
+                    "bounds": [
+                      535,
+                      549
+                    ],
+                    "area": 81,
+                    "center": 542
+                  },
+                  {
+                    "bounds": [
+                      494,
+                      500
+                    ],
+                    "area": 63,
+                    "center": 497
+                  }
+                ]
+              },
+              {
+                "file": "before-burial-idle-2.jpg",
+                "time": "2026-10-13T12:54:11.420Z",
+                "sha256": "eb25dda3795e38e72b9994c5355efaaec84e40792b203c4c8240e8b4fc9a092b",
+                "stageBottomEstimated": 512,
+                "footBottomY": 446,
+                "footBottomRelativeToStageBottom": -66,
+                "footCenterX": 542.75,
+                "bootComponents": [
+                  {
+                    "bounds": [
+                      559,
+                      574
+                    ],
+                    "area": 76,
+                    "center": 566.5
+                  },
+                  {
+                    "bounds": [
+                      517,
+                      521
+                    ],
+                    "area": 55,
+                    "center": 519
+                  }
+                ]
+              },
+              {
+                "file": "before-burial-idle-3.jpg",
+                "time": "2026-10-13T12:54:11.702Z",
+                "sha256": "02755e4837ac05889485f039cb064371205435782107e82c424d35efc41af7f7",
+                "stageBottomEstimated": 512,
+                "footBottomY": 446,
+                "footBottomRelativeToStageBottom": -66,
+                "footCenterX": 519.5,
+                "bootComponents": [
+                  {
+                    "bounds": [
+                      535,
+                      549
+                    ],
+                    "area": 81,
+                    "center": 542
+                  },
+                  {
+                    "bounds": [
+                      494,
+                      500
+                    ],
+                    "area": 63,
+                    "center": 497
+                  }
+                ]
+              },
+              {
+                "file": "before-burial-idle-4.jpg",
+                "time": "2026-10-13T12:54:11.970Z",
+                "sha256": "639da43033488f20ded29a2aff32a060f02e1370242ed8fade11191320e9e55b",
+                "stageBottomEstimated": 512,
+                "footBottomY": 446,
+                "footBottomRelativeToStageBottom": -66,
+                "footCenterX": 542.75,
+                "bootComponents": [
+                  {
+                    "bounds": [
+                      559,
+                      574
+                    ],
+                    "area": 76,
+                    "center": 566.5
+                  },
+                  {
+                    "bounds": [
+                      517,
+                      521
+                    ],
+                    "area": 55,
+                    "center": 519
+                  }
+                ]
+              },
+              {
+                "file": "before-burial-idle-5.jpg",
+                "time": "2026-10-13T12:54:12.236Z",
+                "sha256": "b1fbdaa8c40a071fa86a25055ba80a2ed6d422820fe5e51dc33b425fee39adf7",
+                "stageBottomEstimated": 512,
+                "footBottomY": 446,
+                "footBottomRelativeToStageBottom": -66,
+                "footCenterX": 519.5,
+                "bootComponents": [
+                  {
+                    "bounds": [
+                      535,
+                      549
+                    ],
+                    "area": 81,
+                    "center": 542
+                  },
+                  {
+                    "bounds": [
+                      494,
+                      500
+                    ],
+                    "area": 63,
+                    "center": 497
+                  }
+                ]
+              },
+              {
+                "file": "before-burial-idle-6.jpg",
+                "time": "2026-10-13T12:54:12.505Z",
+                "sha256": "b1fbdaa8c40a071fa86a25055ba80a2ed6d422820fe5e51dc33b425fee39adf7",
+                "stageBottomEstimated": 512,
+                "footBottomY": 446,
+                "footBottomRelativeToStageBottom": -66,
+                "footCenterX": 519.5,
+                "bootComponents": [
+                  {
+                    "bounds": [
+                      535,
+                      549
+                    ],
+                    "area": 81,
+                    "center": 542
+                  },
+                  {
+                    "bounds": [
+                      494,
+                      500
+                    ],
+                    "area": 63,
+                    "center": 497
+                  }
+                ]
+              },
+              {
+                "file": "before-burial-idle-7.jpg",
+                "time": "2026-10-13T12:54:12.787Z",
+                "sha256": "eb25dda3795e38e72b9994c5355efaaec84e40792b203c4c8240e8b4fc9a092b",
+                "stageBottomEstimated": 512,
+                "footBottomY": 446,
+                "footBottomRelativeToStageBottom": -66,
+                "footCenterX": 542.75,
+                "bootComponents": [
+                  {
+                    "bounds": [
+                      559,
+                      574
+                    ],
+                    "area": 76,
+                    "center": 566.5
+                  },
+                  {
+                    "bounds": [
+                      517,
+                      521
+                    ],
+                    "area": 55,
+                    "center": 519
+                  }
+                ]
+              }
+            ],
+            "uniqueScreenshotFiles": 4,
+            "uniqueFootCenterX": [
+              519.5,
+              542.75
+            ],
+            "footCenterPeakToPeakPx": 23.25,
+            "footBottomPeakToPeakPx": 0
+          },
+          "after": {
+            "samples": [
+              {
+                "file": "after-burial-idle-0.jpg",
+                "time": "2026-10-13T13:23:10.286Z",
+                "sha256": "eb20b65a21421d46104a6ac1a55415325a45d5ff7c4e30b3f3eab338e69ef8e9",
+                "stageBottomEstimated": 534,
+                "footBottomY": 464,
+                "footBottomRelativeToStageBottom": -70,
+                "footCenterX": 519.5,
+                "bootComponents": [
+                  {
+                    "bounds": [
+                      536,
+                      548
+                    ],
+                    "area": 78,
+                    "center": 542
+                  },
+                  {
+                    "bounds": [
+                      495,
+                      499
+                    ],
+                    "area": 49,
+                    "center": 497
+                  }
+                ]
+              },
+              {
+                "file": "after-burial-idle-1.jpg",
+                "time": "2026-10-13T13:23:10.587Z",
+                "sha256": "5d5f4f6df76168dc77eae114ddcd87c7a016d74eb6785110edb9c75764769737",
+                "stageBottomEstimated": 534,
+                "footBottomY": 465,
+                "footBottomRelativeToStageBottom": -69,
+                "footCenterX": 519,
+                "bootComponents": [
+                  {
+                    "bounds": [
+                      536,
+                      549
+                    ],
+                    "area": 81,
+                    "center": 542.5
+                  },
+                  {
+                    "bounds": [
+                      493,
+                      498
+                    ],
+                    "area": 64,
+                    "center": 495.5
+                  }
+                ]
+              },
+              {
+                "file": "after-burial-idle-2.jpg",
+                "time": "2026-10-13T13:23:10.870Z",
+                "sha256": "371b8416507dab5564f307a726651da507db027d1de50f8aff6f8c2186094a0b",
+                "stageBottomEstimated": 534,
+                "footBottomY": 464,
+                "footBottomRelativeToStageBottom": -70,
+                "footCenterX": 519.5,
+                "bootComponents": [
+                  {
+                    "bounds": [
+                      536,
+                      548
+                    ],
+                    "area": 78,
+                    "center": 542
+                  },
+                  {
+                    "bounds": [
+                      495,
+                      499
+                    ],
+                    "area": 49,
+                    "center": 497
+                  }
+                ]
+              },
+              {
+                "file": "after-burial-idle-3.jpg",
+                "time": "2026-10-13T13:23:11.147Z",
+                "sha256": "739ba83dc199c1d170f9f618513fef41b0d82455ccff8fc83d8884c732c68dae",
+                "stageBottomEstimated": 534,
+                "footBottomY": 464,
+                "footBottomRelativeToStageBottom": -70,
+                "footCenterX": 519.5,
+                "bootComponents": [
+                  {
+                    "bounds": [
+                      536,
+                      548
+                    ],
+                    "area": 78,
+                    "center": 542
+                  },
+                  {
+                    "bounds": [
+                      495,
+                      499
+                    ],
+                    "area": 49,
+                    "center": 497
+                  }
+                ]
+              },
+              {
+                "file": "after-burial-idle-4.jpg",
+                "time": "2026-10-13T13:23:11.429Z",
+                "sha256": "905234cd4b5f2f0a067cdb138a97feba8538be51b6bdbb64107907f57cdeea63",
+                "stageBottomEstimated": 534,
+                "footBottomY": 465,
+                "footBottomRelativeToStageBottom": -69,
+                "footCenterX": 519,
+                "bootComponents": [
+                  {
+                    "bounds": [
+                      536,
+                      549
+                    ],
+                    "area": 81,
+                    "center": 542.5
+                  },
+                  {
+                    "bounds": [
+                      493,
+                      498
+                    ],
+                    "area": 64,
+                    "center": 495.5
+                  }
+                ]
+              },
+              {
+                "file": "after-burial-idle-5.jpg",
+                "time": "2026-10-13T13:23:11.713Z",
+                "sha256": "eb20b65a21421d46104a6ac1a55415325a45d5ff7c4e30b3f3eab338e69ef8e9",
+                "stageBottomEstimated": 534,
+                "footBottomY": 464,
+                "footBottomRelativeToStageBottom": -70,
+                "footCenterX": 519.5,
+                "bootComponents": [
+                  {
+                    "bounds": [
+                      536,
+                      548
+                    ],
+                    "area": 78,
+                    "center": 542
+                  },
+                  {
+                    "bounds": [
+                      495,
+                      499
+                    ],
+                    "area": 49,
+                    "center": 497
+                  }
+                ]
+              },
+              {
+                "file": "after-burial-idle-6.jpg",
+                "time": "2026-10-13T13:23:11.996Z",
+                "sha256": "ceca32af96c9aea5917bb0f2d71f8716f06b34bba213dd958117a0b4af95e61d",
+                "stageBottomEstimated": 534,
+                "footBottomY": 465,
+                "footBottomRelativeToStageBottom": -69,
+                "footCenterX": 519,
+                "bootComponents": [
+                  {
+                    "bounds": [
+                      536,
+                      549
+                    ],
+                    "area": 81,
+                    "center": 542.5
+                  },
+                  {
+                    "bounds": [
+                      493,
+                      498
+                    ],
+                    "area": 64,
+                    "center": 495.5
+                  }
+                ]
+              },
+              {
+                "file": "after-burial-idle-7.jpg",
+                "time": "2026-10-13T13:23:12.280Z",
+                "sha256": "739ba83dc199c1d170f9f618513fef41b0d82455ccff8fc83d8884c732c68dae",
+                "stageBottomEstimated": 534,
+                "footBottomY": 464,
+                "footBottomRelativeToStageBottom": -70,
+                "footCenterX": 519.5,
+                "bootComponents": [
+                  {
+                    "bounds": [
+                      536,
+                      548
+                    ],
+                    "area": 78,
+                    "center": 542
+                  },
+                  {
+                    "bounds": [
+                      495,
+                      499
+                    ],
+                    "area": 49,
+                    "center": 497
+                  }
+                ]
+              }
+            ],
+            "uniqueScreenshotFiles": 6,
+            "uniqueFootCenterX": [
+              519,
+              519.5
+            ],
+            "footCenterPeakToPeakPx": 0.5,
+            "footBottomPeakToPeakPx": 1
+          }
+        },
+        "measuredImprovementPx": 22.75,
+        "measuredReductionPercent": 97.84946236559139
+      }
+    },
+    "BB013": {
+      "issue": 20,
+      "cropFrames": 12,
+      "report": {
+        "genericOriginalPngCount": 5,
+        "genericFramesInspected": 80,
+        "framesRepaired": 12,
+        "primaryPixelsRecovered": 6095,
+        "foreignPrimaryPixelsAfter": 0,
+        "missingPrimaryPixelsAfter": 0,
+        "unambiguousFeatherPixelsWithin3pxRetained": 66502,
+        "unambiguousFeatherPixelsWithin3pxMissing": 0,
+        "sourceTransformsPreserved": true,
+        "originalPngHashesMatch": true,
+        "allGenericFacingInspected": "All eighty poses face right in source; walking weight transfer, attack reach, hit recoil and death collapse are intentional and preserved. Idle clothing/feet pixel medians are not actor roots; no unsupported center-of-mass recentering was applied."
+      }
+    },
+    "BB014": {
+      "issue": 21,
+      "environment": "simulated GeometryMask unavailable or throws; required readySheets now controls DOM fallback"
+    },
+    "BB015": {
+      "issue": 22,
+      "environment": "real browser update kept old unversioned scripts; new versioned references restore new subject controls",
+      "reproduction": {
+        "before": {
+          "selectedSubject": "mob",
+          "status": "장송의 칼날 · 칼날 형태",
+          "weaponControlsVisible": true
+        },
+        "after": {
+          "selectedSubject": "mob",
+          "status": "공통 인간형 적 · 동작 미리보기",
+          "transformDisabled": true
+        },
+        "method": "same public dropdown after reload with changed script URLs"
+      }
+    },
+    "BB016": {
+      "issue": 23,
+      "originChanges": [
+        {
+          "skin": "beast",
+          "before": 0.8984375,
+          "after": 0.84375,
+          "allPoseRelativeOffsetsUnchanged": true
+        }
+      ],
+      "before": {
+        "originY": 0.8984375,
+        "atlasSemanticSha256": "244e03e87225776d774e49771d5c7f8505f3698a1c74ee5eed4eb38abfe7dbce",
+        "pngSha256": "553cb7f423987034ec9a1853a416935090f11cc8d96ff4986ac06f95049f5d61",
+        "groundPixelY": [
+          432,
+          432,
+          432,
+          432,
+          421,
+          421,
+          421,
+          422,
+          423,
+          420,
+          421,
+          422,
+          414,
+          405,
+          395,
+          404
+        ]
+      },
+      "after": {
+        "bugId": "BB-016",
+        "originBefore": 0.8984375,
+        "originAfter": 0.84375,
+        "sourcePixelLowestY": [
+          432,
+          432,
+          432,
+          432,
+          421,
+          421,
+          421,
+          422,
+          423,
+          420,
+          421,
+          422,
+          414,
+          405,
+          395,
+          404
+        ],
+        "normalIdleGapBeforePx": 7,
+        "normalIdleGapAfterPx": 0,
+        "galleryIdleGapBeforePx": 14.7,
+        "galleryIdleGapAfterPx": 0,
+        "atlasSemanticSha256": "244e03e87225776d774e49771d5c7f8505f3698a1c74ee5eed4eb38abfe7dbce",
+        "sourceSha256": "553cb7f423987034ec9a1853a416935090f11cc8d96ff4986ac06f95049f5d61",
+        "otherSkinOrigins": {
+          "hunter": 0.8984375,
+          "mob": 0.8984375,
+          "boss": 0.8984375,
+          "female": 0.8984375
+        },
+        "targetedTestRun": {
+          "tests": 94,
+          "pass": 94,
+          "fail": 0,
+          "durationMs": 1474.3734,
+          "files": [
+            "tests/generic-asset-frame-regression.test.cjs",
+            "tests/character-assets-v082.test.cjs",
+            "tests/character-animation-v082.test.cjs",
+            "tests/weapon-animation-v083.test.cjs"
+          ]
+        }
+      },
+      "actualBrowserMeasurement": {
+        "sourceScreenshotsEdited": false,
+        "productionFilesEditedByThisReview": false,
+        "reviewedCaptures": 2,
+        "viewedDirectionClippingIssues": [],
+        "visualConclusion": "Actual gallery photos visibly move beast feet toward the same shadow after origin correction. The idle body is intact with no new cut parts or stray fragments. Old paws visibly float above the shadow; new paws reach/overlap the upper shadow area.",
+        "method": "Approximate actual JPEG paw foreground and dark teal shadow segmentation; fixed same viewport/same visible stage, integer pixels. Green line is foreground foot bottom; red line is shadow top.",
+        "samples": [
+          {
+            "file": "before-ground-fix/generic-beast-idle.jpg",
+            "sha256": "6164569ef00b9cccea5723d4b869c5d80d4e8744e9d20a593e84ffdef982c65c",
+            "footBottomYApprox": 452,
+            "shadowTopYApprox": 463,
+            "clearGapPxApprox": 10
+          },
+          {
+            "file": "generic-beast-idle.jpg",
+            "sha256": "006015e0368abda0f6dc8aaec9ea7f0c16f8e0f87240d97e751d3eb0202f9c8b",
+            "footBottomYApprox": 467,
+            "shadowTopYApprox": 465,
+            "clearGapPxApprox": -3
+          }
+        ],
+        "footVerticalChangePxApprox": 15,
+        "originChangeReportedByParent": {
+          "before": 0.8984375,
+          "after": 0.84375
+        },
+        "limitations": [
+          "This is an idle still-image comparison; parent separately verified all16pose relative coordinates and UI playback.",
+          "JPEG color masks approximate visible boundaries and are not exact source alpha measurements."
+        ]
+      }
+    }
+  },
+  "motionPolish": {
+    "shippedWalkFrames": 4,
+    "frameRate": 10,
+    "durationBeforeMs": 340,
+    "durationAfterMs": 400,
+    "followingAttackOrHitMs": 410,
+    "optionalClipBoundsMs": [
+      340,
+      600
+    ],
+    "gameRulesChanged": false
+  },
+  "sourcePixels": [
+    {
+      "skin": "hunter",
+      "path": "assets/characters/hunter.png",
+      "sha256": "73baa453857a91bc2ac19298f842f3d6bd2a8a3f5def6ed8c6f3f2c06a118a09",
+      "unchanged": true
+    },
+    {
+      "skin": "mob",
+      "path": "assets/characters/mob.png",
+      "sha256": "3c5e3057786e0b9257dce296fd35bded2fba2a5cdabbf901845e531127fdd779",
+      "unchanged": true
+    },
+    {
+      "skin": "beast",
+      "path": "assets/characters/beast.png",
+      "sha256": "553cb7f423987034ec9a1853a416935090f11cc8d96ff4986ac06f95049f5d61",
+      "unchanged": true
+    },
+    {
+      "skin": "boss",
+      "path": "assets/characters/boss.png",
+      "sha256": "3098fff6158fbaf9dd5eeecdc2ad63e58353fcf46d5cc7a05c13cd103e95941a",
+      "unchanged": true
+    },
+    {
+      "skin": "female",
+      "path": "assets/characters/female.png",
+      "sha256": "193f1e483b3f35d3c9192704553feb6b11a45eb61546db96e03d9543a810fd90",
+      "unchanged": true
+    },
+    {
+      "skin": "w-threaded-cane-a",
+      "path": "assets/characters/w-threaded-cane-a.png",
+      "sha256": "37cd3631333511c5469f615229e9cfd916b735af5fb0df314146e4a81c1a2a5b",
+      "unchanged": true
+    },
+    {
+      "skin": "w-threaded-cane-b",
+      "path": "assets/characters/w-threaded-cane-b.png",
+      "sha256": "2d37e00000104de27c47077640898ec9f5c56b16e550846119339ca924068bf7",
+      "unchanged": true
+    },
+    {
+      "skin": "w-hunter-axe-a",
+      "path": "assets/characters/w-hunter-axe-a.png",
+      "sha256": "f78c97300c583d5dd8b6579d307fead17a8599debad107cf019da50e1226700a",
+      "unchanged": true
+    },
+    {
+      "skin": "w-hunter-axe-b",
+      "path": "assets/characters/w-hunter-axe-b.png",
+      "sha256": "87af293062b358411d445a2aa12abf8ae4022336aa44504ec1d2c593459c1b4e",
+      "unchanged": true
+    },
+    {
+      "skin": "w-rifle-spear-a",
+      "path": "assets/characters/w-rifle-spear-a.png",
+      "sha256": "18d52671447fb1993211cc01474c78482c4d1eb2df6913eca4c34baef2332839",
+      "unchanged": true
+    },
+    {
+      "skin": "w-rifle-spear-b",
+      "path": "assets/characters/w-rifle-spear-b.png",
+      "sha256": "0c073913ad861897b9cce950c323f49ca1fde05d3eee28272799e157ff2dc295",
+      "unchanged": true
+    },
+    {
+      "skin": "w-saw-spear-a",
+      "path": "assets/characters/w-saw-spear-a.png",
+      "sha256": "5b2655c1890fbb20afdd9e0fc82ca6e331590671f02e7b00647303e5136f5952",
+      "unchanged": true
+    },
+    {
+      "skin": "w-saw-spear-b",
+      "path": "assets/characters/w-saw-spear-b.png",
+      "sha256": "6751afc637fa11401928cbb844975230d84098643ef7a9cf9a03c7e846b1a616",
+      "unchanged": true
+    },
+    {
+      "skin": "w-uncanny-ludwigs-holy-blade-a",
+      "path": "assets/characters/w-uncanny-ludwigs-holy-blade-a.png",
+      "sha256": "44c257f76678a56c2216d73badd48375bd95ed8e49a152983262642ffccdf04f",
+      "unchanged": true
+    },
+    {
+      "skin": "w-uncanny-ludwigs-holy-blade-b",
+      "path": "assets/characters/w-uncanny-ludwigs-holy-blade-b.png",
+      "sha256": "ad18541b1420be739b792d08a5f28b57f8ad492316ff1ee4c8625644b0cb367f",
+      "unchanged": true
+    },
+    {
+      "skin": "w-tonitrus-a",
+      "path": "assets/characters/w-tonitrus-a.png",
+      "sha256": "0afe9d0aeddcc1a77a7c611e7886f53b788ab70e58962453bac8f598cb19904e",
+      "unchanged": true
+    },
+    {
+      "skin": "w-tonitrus-b",
+      "path": "assets/characters/w-tonitrus-b.png",
+      "sha256": "8f9e15e95672343c3cc1a24735884894e58b52ce9ac78a35513f7a09b54ac1e7",
+      "unchanged": true
+    },
+    {
+      "skin": "w-blade-of-mercy-a",
+      "path": "assets/characters/w-blade-of-mercy-a.png",
+      "sha256": "877d34697f5bb4a5b8c94d5a1a703cde1ce9373050897af37d8be5de0bb663f4",
+      "unchanged": true
+    },
+    {
+      "skin": "w-blade-of-mercy-b",
+      "path": "assets/characters/w-blade-of-mercy-b.png",
+      "sha256": "a6451f4ea2c607e2fe820ed0e1f85267e9ac93d8a88bf364d5ee996f42edbc19",
+      "unchanged": true
+    },
+    {
+      "skin": "w-ludwigs-holy-blade-a",
+      "path": "assets/characters/w-ludwigs-holy-blade-a.png",
+      "sha256": "54dc9b6c8ddaa9834ab4bbc4bbde6749c2e2144e6e0afd2054a127e745bc8ec2",
+      "unchanged": true
+    },
+    {
+      "skin": "w-ludwigs-holy-blade-b",
+      "path": "assets/characters/w-ludwigs-holy-blade-b.png",
+      "sha256": "d57c39903a3e7efbbfb8926d2fabf7ae8b6d2f7b09b38d6c9a8bdda4c8ec5c2f",
+      "unchanged": true
+    },
+    {
+      "skin": "w-logarius-wheel-a",
+      "path": "assets/characters/w-logarius-wheel-a.png",
+      "sha256": "5de0f60b3d7c0cceee5e0ba1d9cee69583900adbb1f0dd93f922c6c3b53c5980",
+      "unchanged": true
+    },
+    {
+      "skin": "w-logarius-wheel-b",
+      "path": "assets/characters/w-logarius-wheel-b.png",
+      "sha256": "53052b9873199b3d6ccfdd8d28a03077578075281c462f712396d4f591299f9d",
+      "unchanged": true
+    },
+    {
+      "skin": "w-kirkhammer-a",
+      "path": "assets/characters/w-kirkhammer-a.png",
+      "sha256": "478dec9f538a326e9e89844a9c489e1180b5c2e933671c2229c5d3472046ad2b",
+      "unchanged": true
+    },
+    {
+      "skin": "w-kirkhammer-b",
+      "path": "assets/characters/w-kirkhammer-b.png",
+      "sha256": "e9213b424fdc55ff12e64ad3a1f48f531fb12aa1acb4e7002fffcbbeb9e0c2b9",
+      "unchanged": true
+    },
+    {
+      "skin": "w-stake-driver-a",
+      "path": "assets/characters/w-stake-driver-a.png",
+      "sha256": "8eea4586b4267cc57b02274a50371f9d0bcad5248352d1e78f93767e132e7feb",
+      "unchanged": true
+    },
+    {
+      "skin": "w-stake-driver-b",
+      "path": "assets/characters/w-stake-driver-b.png",
+      "sha256": "9ff3304d9737da3d82278a0ae4c5e99aef97990d05546cf38671c75b3948bf13",
+      "unchanged": true
+    },
+    {
+      "skin": "w-chikage-a",
+      "path": "assets/characters/w-chikage-a.png",
+      "sha256": "ebf7e25e563318a0613a13a1e035bc690bfb8cdbf2c3b003c63812560d8c19c6",
+      "unchanged": true
+    },
+    {
+      "skin": "w-chikage-b",
+      "path": "assets/characters/w-chikage-b.png",
+      "sha256": "30e2989e13a7be69067267b898b3e6ea1189cc5852e0b08a9c5ca01fd90259db",
+      "unchanged": true
+    },
+    {
+      "skin": "w-beast-claw-a",
+      "path": "assets/characters/w-beast-claw-a.png",
+      "sha256": "aa971f891386d993ebf062b569102e170f000b82d591607fef0ca700a579926c",
+      "unchanged": true
+    },
+    {
+      "skin": "w-beast-claw-b",
+      "path": "assets/characters/w-beast-claw-b-v0810.png",
+      "sha256": "b1e6e0f34c674f27e417f2cb5eecdb651fdc45ee8025f8d08cefd01c3f1d91c2",
+      "unchanged": true
+    },
+    {
+      "skin": "w-reiterpallasch-a",
+      "path": "assets/characters/w-reiterpallasch-a.png",
+      "sha256": "d8782eb343cda1fcccad250a5220fd7df0c2057500deff8fb6b8bace7c4b2da0",
+      "unchanged": true
+    },
+    {
+      "skin": "w-reiterpallasch-b",
+      "path": "assets/characters/w-reiterpallasch-b.png",
+      "sha256": "aee1a50762c900736fd02e2039cf5be92c62f202f95422c66c77590a921ef7b8",
+      "unchanged": true
+    },
+    {
+      "skin": "w-burial-a",
+      "path": "assets/characters/w-burial-a.png",
+      "sha256": "c46b1cb52233e07113eb1e07dafb0fd615fc64f2dacc1f25354c3887934d0225",
+      "unchanged": true
+    },
+    {
+      "skin": "w-burial-b",
+      "path": "assets/characters/w-burial-b.png",
+      "sha256": "25a975d324b277245c3b83eac1b2cc30669079d41e99b2ac3038977bc0b5fea1",
+      "unchanged": true
+    }
+  ],
+  "metadataChanges": [
+    {
+      "skin": "hunter",
+      "frame": 10,
+      "kind": "crop-ownership",
+      "sourceBefore": {
+        "x": 99,
+        "y": 144,
+        "w": 314,
+        "h": 316
+      },
+      "sourceAfter": {
+        "x": 99,
+        "y": 144,
+        "w": 385,
+        "h": 316
+      },
+      "cropBefore": {
+        "x": 627,
+        "y": 624,
+        "w": 314,
+        "h": 316
+      },
+      "cropAfter": {
+        "x": 627,
+        "y": 624,
+        "w": 385,
+        "h": 316
+      },
+      "clipRectsAfter": 101
+    },
+    {
+      "skin": "hunter",
+      "frame": 11,
+      "kind": "crop-ownership",
+      "sourceBefore": {
+        "x": 100,
+        "y": 144,
+        "w": 303,
+        "h": 316
+      },
+      "sourceAfter": {
+        "x": 100,
+        "y": 144,
+        "w": 306,
+        "h": 316
+      },
+      "cropBefore": {
+        "x": 941,
+        "y": 624,
+        "w": 303,
+        "h": 316
+      },
+      "cropAfter": {
+        "x": 941,
+        "y": 624,
+        "w": 306,
+        "h": 316
+      },
+      "clipRectsAfter": 137
+    },
+    {
+      "skin": "hunter",
+      "frame": 14,
+      "kind": "crop-ownership",
+      "sourceBefore": {
+        "x": 108,
+        "y": 146,
+        "w": 289,
+        "h": 314
+      },
+      "sourceAfter": {
+        "x": 108,
+        "y": 146,
+        "w": 328,
+        "h": 314
+      },
+      "cropBefore": {
+        "x": 636,
+        "y": 940,
+        "w": 289,
+        "h": 314
+      },
+      "cropAfter": {
+        "x": 636,
+        "y": 940,
+        "w": 328,
+        "h": 314
+      },
+      "clipRectsAfter": 149
+    },
+    {
+      "skin": "hunter",
+      "frame": 15,
+      "kind": "crop-ownership",
+      "sourceBefore": {
+        "x": 84,
+        "y": 146,
+        "w": 329,
+        "h": 314
+      },
+      "sourceAfter": {
+        "x": 69,
+        "y": 146,
+        "w": 344,
+        "h": 314
+      },
+      "cropBefore": {
+        "x": 925,
+        "y": 940,
+        "w": 329,
+        "h": 314
+      },
+      "cropAfter": {
+        "x": 910,
+        "y": 940,
+        "w": 344,
+        "h": 314
+      },
+      "clipRectsAfter": 208
+    },
+    {
+      "skin": "mob",
+      "frame": 10,
+      "kind": "crop-ownership",
+      "sourceBefore": {
+        "x": 99,
+        "y": 152,
+        "w": 277,
+        "h": 308
+      },
+      "sourceAfter": {
+        "x": 95,
+        "y": 152,
+        "w": 382,
+        "h": 308
+      },
+      "cropBefore": {
+        "x": 627,
+        "y": 627,
+        "w": 277,
+        "h": 308
+      },
+      "cropAfter": {
+        "x": 623,
+        "y": 627,
+        "w": 382,
+        "h": 308
+      },
+      "clipRectsAfter": 75
+    },
+    {
+      "skin": "mob",
+      "frame": 11,
+      "kind": "crop-ownership",
+      "sourceBefore": {
+        "x": 63,
+        "y": 154,
+        "w": 340,
+        "h": 306
+      },
+      "sourceAfter": {
+        "x": 63,
+        "y": 154,
+        "w": 350,
+        "h": 306
+      },
+      "cropBefore": {
+        "x": 904,
+        "y": 627,
+        "w": 340,
+        "h": 306
+      },
+      "cropAfter": {
+        "x": 904,
+        "y": 627,
+        "w": 350,
+        "h": 306
+      },
+      "clipRectsAfter": 136
+    },
+    {
+      "skin": "beast",
+      "frame": 10,
+      "kind": "crop-ownership",
+      "sourceBefore": {
+        "x": 99,
+        "y": 147,
+        "w": 300,
+        "h": 313
+      },
+      "sourceAfter": {
+        "x": 88,
+        "y": 147,
+        "w": 376,
+        "h": 313
+      },
+      "cropBefore": {
+        "x": 627,
+        "y": 627,
+        "w": 300,
+        "h": 313
+      },
+      "cropAfter": {
+        "x": 616,
+        "y": 627,
+        "w": 376,
+        "h": 313
+      },
+      "clipRectsAfter": 177
+    },
+    {
+      "skin": "beast",
+      "frame": 11,
+      "kind": "crop-ownership",
+      "sourceBefore": {
+        "x": 86,
+        "y": 148,
+        "w": 327,
+        "h": 312
+      },
+      "sourceAfter": {
+        "x": 86,
+        "y": 148,
+        "w": 327,
+        "h": 312
+      },
+      "cropBefore": {
+        "x": 927,
+        "y": 628,
+        "w": 327,
+        "h": 312
+      },
+      "cropAfter": {
+        "x": 927,
+        "y": 628,
+        "w": 327,
+        "h": 312
+      },
+      "clipRectsAfter": 112
+    },
+    {
+      "skin": "boss",
+      "frame": 10,
+      "kind": "crop-ownership",
+      "sourceBefore": {
+        "x": 100,
+        "y": 146,
+        "w": 324,
+        "h": 314
+      },
+      "sourceAfter": {
+        "x": 94,
+        "y": 146,
+        "w": 355,
+        "h": 314
+      },
+      "cropBefore": {
+        "x": 628,
+        "y": 626,
+        "w": 324,
+        "h": 314
+      },
+      "cropAfter": {
+        "x": 622,
+        "y": 626,
+        "w": 355,
+        "h": 314
+      },
+      "clipRectsAfter": 115
+    },
+    {
+      "skin": "boss",
+      "frame": 11,
+      "kind": "crop-ownership",
+      "sourceBefore": {
+        "x": 111,
+        "y": 151,
+        "w": 292,
+        "h": 309
+      },
+      "sourceAfter": {
+        "x": 97,
+        "y": 151,
+        "w": 315,
+        "h": 309
+      },
+      "cropBefore": {
+        "x": 952,
+        "y": 626,
+        "w": 292,
+        "h": 309
+      },
+      "cropAfter": {
+        "x": 938,
+        "y": 626,
+        "w": 315,
+        "h": 309
+      },
+      "clipRectsAfter": 86
+    },
+    {
+      "skin": "female",
+      "frame": 10,
+      "kind": "crop-ownership",
+      "sourceBefore": {
+        "x": 99,
+        "y": 142,
+        "w": 389,
+        "h": 318
+      },
+      "sourceAfter": {
+        "x": 99,
+        "y": 142,
+        "w": 400,
+        "h": 318
+      },
+      "cropBefore": {
+        "x": 627,
+        "y": 622,
+        "w": 389,
+        "h": 318
+      },
+      "cropAfter": {
+        "x": 627,
+        "y": 622,
+        "w": 400,
+        "h": 318
+      },
+      "clipRectsAfter": 82
+    },
+    {
+      "skin": "female",
+      "frame": 11,
+      "kind": "crop-ownership",
+      "sourceBefore": {
+        "x": 175,
+        "y": 142,
+        "w": 237,
+        "h": 318
+      },
+      "sourceAfter": {
+        "x": 156,
+        "y": 142,
+        "w": 256,
+        "h": 318
+      },
+      "cropBefore": {
+        "x": 1016,
+        "y": 622,
+        "w": 237,
+        "h": 318
+      },
+      "cropAfter": {
+        "x": 997,
+        "y": 622,
+        "w": 256,
+        "h": 318
+      },
+      "clipRectsAfter": 56
+    },
+    {
+      "skin": "w-threaded-cane-a",
+      "frame": 0,
+      "kind": "idle-position-registration",
+      "sourceBefore": {
+        "x": 211,
+        "y": 234,
+        "w": 115,
+        "h": 226
+      },
+      "sourceAfter": {
+        "x": 204,
+        "y": 234,
+        "w": 115,
+        "h": 226
+      },
+      "cropBefore": {
+        "x": 83,
+        "y": 29,
+        "w": 115,
+        "h": 226
+      },
+      "cropAfter": {
+        "x": 83,
+        "y": 29,
+        "w": 115,
+        "h": 226
+      },
+      "clipRectsAfter": 0
+    },
+    {
+      "skin": "w-hunter-axe-a",
+      "frame": 0,
+      "kind": "idle-position-registration",
+      "sourceBefore": {
+        "x": 184,
+        "y": 217,
+        "w": 131,
+        "h": 243
+      },
+      "sourceAfter": {
+        "x": 178,
+        "y": 217,
+        "w": 131,
+        "h": 243
+      },
+      "cropBefore": {
+        "x": 56,
+        "y": 16,
+        "w": 131,
+        "h": 243
+      },
+      "cropAfter": {
+        "x": 56,
+        "y": 16,
+        "w": 131,
+        "h": 243
+      },
+      "clipRectsAfter": 0
+    },
+    {
+      "skin": "w-rifle-spear-a",
+      "frame": 0,
+      "kind": "idle-position-registration",
+      "sourceBefore": {
+        "x": 166,
+        "y": 222,
+        "w": 198,
+        "h": 238
+      },
+      "sourceAfter": {
+        "x": 151,
+        "y": 222,
+        "w": 198,
+        "h": 238
+      },
+      "cropBefore": {
+        "x": 38,
+        "y": 29,
+        "w": 198,
+        "h": 238
+      },
+      "cropAfter": {
+        "x": 38,
+        "y": 29,
+        "w": 198,
+        "h": 238
+      },
+      "clipRectsAfter": 0
+    },
+    {
+      "skin": "w-rifle-spear-b",
+      "frame": 0,
+      "kind": "idle-position-registration",
+      "sourceBefore": {
+        "x": 171,
+        "y": 246,
+        "w": 198,
+        "h": 214
+      },
+      "sourceAfter": {
+        "x": 143,
+        "y": 246,
+        "w": 198,
+        "h": 214
+      },
+      "cropBefore": {
+        "x": 43,
+        "y": 38,
+        "w": 198,
+        "h": 214
+      },
+      "cropAfter": {
+        "x": 43,
+        "y": 38,
+        "w": 198,
+        "h": 214
+      },
+      "clipRectsAfter": 0
+    },
+    {
+      "skin": "w-saw-spear-a",
+      "frame": 0,
+      "kind": "idle-position-registration",
+      "sourceBefore": {
+        "x": 206,
+        "y": 215,
+        "w": 131,
+        "h": 245
+      },
+      "sourceAfter": {
+        "x": 193,
+        "y": 215,
+        "w": 131,
+        "h": 245
+      },
+      "cropBefore": {
+        "x": 78,
+        "y": 8,
+        "w": 131,
+        "h": 245
+      },
+      "cropAfter": {
+        "x": 78,
+        "y": 8,
+        "w": 131,
+        "h": 245
+      },
+      "clipRectsAfter": 0
+    },
+    {
+      "skin": "w-ludwigs-holy-blade-b",
+      "frame": 0,
+      "kind": "idle-position-registration",
+      "sourceBefore": {
+        "x": 194,
+        "y": 231,
+        "w": 127,
+        "h": 229
+      },
+      "sourceAfter": {
+        "x": 184,
+        "y": 231,
+        "w": 127,
+        "h": 229
+      },
+      "cropBefore": {
+        "x": 66,
+        "y": 39,
+        "w": 127,
+        "h": 229
+      },
+      "cropAfter": {
+        "x": 66,
+        "y": 39,
+        "w": 127,
+        "h": 229
+      },
+      "clipRectsAfter": 0
+    },
+    {
+      "skin": "w-logarius-wheel-a",
+      "frame": 0,
+      "kind": "idle-position-registration",
+      "sourceBefore": {
+        "x": 166,
+        "y": 214,
+        "w": 164,
+        "h": 246
+      },
+      "sourceAfter": {
+        "x": 148,
+        "y": 214,
+        "w": 164,
+        "h": 246
+      },
+      "cropBefore": {
+        "x": 38,
+        "y": 7,
+        "w": 164,
+        "h": 246
+      },
+      "cropAfter": {
+        "x": 38,
+        "y": 7,
+        "w": 164,
+        "h": 246
+      },
+      "clipRectsAfter": 0
+    },
+    {
+      "skin": "w-kirkhammer-b",
+      "frame": 0,
+      "kind": "idle-position-registration",
+      "sourceBefore": {
+        "x": 201,
+        "y": 206,
+        "w": 162,
+        "h": 254
+      },
+      "sourceAfter": {
+        "x": 193,
+        "y": 206,
+        "w": 162,
+        "h": 254
+      },
+      "cropBefore": {
+        "x": 73,
+        "y": 4,
+        "w": 162,
+        "h": 254
+      },
+      "cropAfter": {
+        "x": 73,
+        "y": 4,
+        "w": 162,
+        "h": 254
+      },
+      "clipRectsAfter": 0
+    },
+    {
+      "skin": "w-stake-driver-a",
+      "frame": 0,
+      "kind": "idle-position-registration",
+      "sourceBefore": {
+        "x": 210,
+        "y": 214,
+        "w": 115,
+        "h": 246
+      },
+      "sourceAfter": {
+        "x": 202,
+        "y": 214,
+        "w": 115,
+        "h": 246
+      },
+      "cropBefore": {
+        "x": 82,
+        "y": 11,
+        "w": 115,
+        "h": 246
+      },
+      "cropAfter": {
+        "x": 82,
+        "y": 11,
+        "w": 115,
+        "h": 246
+      },
+      "clipRectsAfter": 0
+    },
+    {
+      "skin": "w-chikage-a",
+      "frame": 0,
+      "kind": "idle-position-registration",
+      "sourceBefore": {
+        "x": 141,
+        "y": 222,
+        "w": 203,
+        "h": 238
+      },
+      "sourceAfter": {
+        "x": 129,
+        "y": 222,
+        "w": 203,
+        "h": 238
+      },
+      "cropBefore": {
+        "x": 13,
+        "y": 6,
+        "w": 203,
+        "h": 238
+      },
+      "cropAfter": {
+        "x": 13,
+        "y": 6,
+        "w": 203,
+        "h": 238
+      },
+      "clipRectsAfter": 0
+    },
+    {
+      "skin": "w-beast-claw-a",
+      "frame": 0,
+      "kind": "idle-position-registration",
+      "sourceBefore": {
+        "x": 187,
+        "y": 218,
+        "w": 155,
+        "h": 242
+      },
+      "sourceAfter": {
+        "x": 176,
+        "y": 218,
+        "w": 155,
+        "h": 242
+      },
+      "cropBefore": {
+        "x": 59,
+        "y": 13,
+        "w": 155,
+        "h": 242
+      },
+      "cropAfter": {
+        "x": 59,
+        "y": 13,
+        "w": 155,
+        "h": 242
+      },
+      "clipRectsAfter": 0
+    },
+    {
+      "skin": "w-beast-claw-b",
+      "frame": 0,
+      "kind": "idle-position-registration",
+      "sourceBefore": {
+        "x": 179,
+        "y": 203,
+        "w": 169,
+        "h": 257
+      },
+      "sourceAfter": {
+        "x": 172,
+        "y": 203,
+        "w": 169,
+        "h": 257
+      },
+      "cropBefore": {
+        "x": 51,
+        "y": 6,
+        "w": 169,
+        "h": 257
+      },
+      "cropAfter": {
+        "x": 51,
+        "y": 6,
+        "w": 169,
+        "h": 257
+      },
+      "clipRectsAfter": 0
+    },
+    {
+      "skin": "w-reiterpallasch-a",
+      "frame": 0,
+      "kind": "idle-position-registration",
+      "sourceBefore": {
+        "x": 174,
+        "y": 228,
+        "w": 191,
+        "h": 232
+      },
+      "sourceAfter": {
+        "x": 161,
+        "y": 228,
+        "w": 191,
+        "h": 232
+      },
+      "cropBefore": {
+        "x": 46,
+        "y": 41,
+        "w": 191,
+        "h": 232
+      },
+      "cropAfter": {
+        "x": 46,
+        "y": 41,
+        "w": 191,
+        "h": 232
+      },
+      "clipRectsAfter": 0
+    },
+    {
+      "skin": "w-reiterpallasch-b",
+      "frame": 0,
+      "kind": "idle-position-registration",
+      "sourceBefore": {
+        "x": 190,
+        "y": 219,
+        "w": 152,
+        "h": 241
+      },
+      "sourceAfter": {
+        "x": 180,
+        "y": 219,
+        "w": 152,
+        "h": 241
+      },
+      "cropBefore": {
+        "x": 62,
+        "y": 14,
+        "w": 152,
+        "h": 241
+      },
+      "cropAfter": {
+        "x": 62,
+        "y": 14,
+        "w": 152,
+        "h": 241
+      },
+      "clipRectsAfter": 0
+    },
+    {
+      "skin": "w-burial-a",
+      "frame": 0,
+      "kind": "idle-position-registration",
+      "sourceBefore": {
+        "x": 234,
+        "y": 223,
+        "w": 109,
+        "h": 237
+      },
+      "sourceAfter": {
+        "x": 200,
+        "y": 223,
+        "w": 109,
+        "h": 237
+      },
+      "cropBefore": {
+        "x": 106,
+        "y": 10,
+        "w": 109,
+        "h": 237
+      },
+      "cropAfter": {
+        "x": 106,
+        "y": 10,
+        "w": 109,
+        "h": 237
+      },
+      "clipRectsAfter": 0
+    }
+  ],
+  "actualBrowser": {
+    "url": "http://127.0.0.1:8786/bloodborne-solo/weapon-gallery.html",
+    "weaponCount": 15,
+    "formCount": 30,
+    "genericCount": 5,
+    "actionsFile": "browser/actions.json",
+    "screenshots": [
+      {
+        "path": "browser/after-burial-idle-0.jpg",
+        "bytes": 54357,
+        "sha256": "eb20b65a21421d46104a6ac1a55415325a45d5ff7c4e30b3f3eab338e69ef8e9"
+      },
+      {
+        "path": "browser/after-burial-idle-1.jpg",
+        "bytes": 54353,
+        "sha256": "5d5f4f6df76168dc77eae114ddcd87c7a016d74eb6785110edb9c75764769737"
+      },
+      {
+        "path": "browser/after-burial-idle-2.jpg",
+        "bytes": 54335,
+        "sha256": "371b8416507dab5564f307a726651da507db027d1de50f8aff6f8c2186094a0b"
+      },
+      {
+        "path": "browser/after-burial-idle-3.jpg",
+        "bytes": 54316,
+        "sha256": "739ba83dc199c1d170f9f618513fef41b0d82455ccff8fc83d8884c732c68dae"
+      },
+      {
+        "path": "browser/after-burial-idle-4.jpg",
+        "bytes": 54264,
+        "sha256": "905234cd4b5f2f0a067cdb138a97feba8538be51b6bdbb64107907f57cdeea63"
+      },
+      {
+        "path": "browser/after-burial-idle-5.jpg",
+        "bytes": 54357,
+        "sha256": "eb20b65a21421d46104a6ac1a55415325a45d5ff7c4e30b3f3eab338e69ef8e9"
+      },
+      {
+        "path": "browser/after-burial-idle-6.jpg",
+        "bytes": 54352,
+        "sha256": "ceca32af96c9aea5917bb0f2d71f8716f06b34bba213dd958117a0b4af95e61d"
+      },
+      {
+        "path": "browser/after-burial-idle-7.jpg",
+        "bytes": 54316,
+        "sha256": "739ba83dc199c1d170f9f618513fef41b0d82455ccff8fc83d8884c732c68dae"
+      },
+      {
+        "path": "browser/beast-claw-0-attack.jpg",
+        "bytes": 56777,
+        "sha256": "bd1ad8204c44f7f7b2e00f671afdb29b9f810cfb3bc8d74d380572aead56352c"
+      },
+      {
+        "path": "browser/beast-claw-0-idle.jpg",
+        "bytes": 52533,
+        "sha256": "c9b81287074c9a8ad09f2c8153efef3a13584e31eaa4f588b258db79e95f8afb"
+      },
+      {
+        "path": "browser/beast-claw-1-attack.jpg",
+        "bytes": 57654,
+        "sha256": "051456e76d38a13b9ca00b1f192515c943a8fe46eb197f62ab98a9c8bba78fd4"
+      },
+      {
+        "path": "browser/beast-claw-1-idle.jpg",
+        "bytes": 53371,
+        "sha256": "a9a5f8610720ba0598cb320ca5e54e56b146a3730620ba545dd0a3371a85e7c9"
+      },
+      {
+        "path": "browser/before-burial-full.jpg",
+        "bytes": 52381,
+        "sha256": "02755e4837ac05889485f039cb064371205435782107e82c424d35efc41af7f7"
+      },
+      {
+        "path": "browser/before-burial-idle-0.jpg",
+        "bytes": 52266,
+        "sha256": "639da43033488f20ded29a2aff32a060f02e1370242ed8fade11191320e9e55b"
+      },
+      {
+        "path": "browser/before-burial-idle-1.jpg",
+        "bytes": 52439,
+        "sha256": "b1fbdaa8c40a071fa86a25055ba80a2ed6d422820fe5e51dc33b425fee39adf7"
+      },
+      {
+        "path": "browser/before-burial-idle-2.jpg",
+        "bytes": 52301,
+        "sha256": "eb25dda3795e38e72b9994c5355efaaec84e40792b203c4c8240e8b4fc9a092b"
+      },
+      {
+        "path": "browser/before-burial-idle-3.jpg",
+        "bytes": 52381,
+        "sha256": "02755e4837ac05889485f039cb064371205435782107e82c424d35efc41af7f7"
+      },
+      {
+        "path": "browser/before-burial-idle-4.jpg",
+        "bytes": 52266,
+        "sha256": "639da43033488f20ded29a2aff32a060f02e1370242ed8fade11191320e9e55b"
+      },
+      {
+        "path": "browser/before-burial-idle-5.jpg",
+        "bytes": 52439,
+        "sha256": "b1fbdaa8c40a071fa86a25055ba80a2ed6d422820fe5e51dc33b425fee39adf7"
+      },
+      {
+        "path": "browser/before-burial-idle-6.jpg",
+        "bytes": 52439,
+        "sha256": "b1fbdaa8c40a071fa86a25055ba80a2ed6d422820fe5e51dc33b425fee39adf7"
+      },
+      {
+        "path": "browser/before-burial-idle-7.jpg",
+        "bytes": 52301,
+        "sha256": "eb25dda3795e38e72b9994c5355efaaec84e40792b203c4c8240e8b4fc9a092b"
+      },
+      {
+        "path": "browser/blade-of-mercy-0-attack.jpg",
+        "bytes": 55148,
+        "sha256": "97e3def5ac599471014414ac5af7457c3096107d130391faed0c45f4c2fe29da"
+      },
+      {
+        "path": "browser/blade-of-mercy-0-idle.jpg",
+        "bytes": 51058,
+        "sha256": "baa13175792f5f75c86438a49747795fb790aad25f736a6a7b925ee7b627a02d"
+      },
+      {
+        "path": "browser/blade-of-mercy-1-attack.jpg",
+        "bytes": 56085,
+        "sha256": "b7505f2c6e9b284f11b66998b8d0a24fc2d1ec40c1aef138a3ed9657a760bd49"
+      },
+      {
+        "path": "browser/blade-of-mercy-1-idle.jpg",
+        "bytes": 51823,
+        "sha256": "463f8c581e9cafde803a55ad02968a436eb096ebbb001f4099e2127ddc75d0aa"
+      },
+      {
+        "path": "browser/burial-0-attack.jpg",
+        "bytes": 54491,
+        "sha256": "948e3f1e0e53c7acebfd8eb10afe3f9819564c237716f67eae4f76d2853d81bf"
+      },
+      {
+        "path": "browser/burial-0-idle.jpg",
+        "bytes": 50363,
+        "sha256": "9012588ff4ae726d71044c31859a4c47d08ced91a477ebebfacad90a7a1f2d20"
+      },
+      {
+        "path": "browser/burial-1-attack.jpg",
+        "bytes": 54568,
+        "sha256": "0477d796c0893520f45149f8c1dc3a91b4f60a1aa1cbede7f746d53df53dc3e8"
+      },
+      {
+        "path": "browser/burial-1-idle.jpg",
+        "bytes": 50418,
+        "sha256": "81b228f649815cae9de78693597dfa86bcc499f811215b70fe92e0f2a63861ee"
+      },
+      {
+        "path": "browser/chikage-0-attack.jpg",
+        "bytes": 54194,
+        "sha256": "2c3727205a2bc0ea304e366d8c3ad17cf61778154845258e305e504a35d677e4"
+      },
+      {
+        "path": "browser/chikage-0-idle.jpg",
+        "bytes": 50258,
+        "sha256": "656cb599b4330a56588e26ad2f32bb493de981cedf1f49d40142349ef0d65476"
+      },
+      {
+        "path": "browser/chikage-1-attack.jpg",
+        "bytes": 54071,
+        "sha256": "d011f9c3433ecd7c438d38a4eeba208c88a452b8986ae3f8afcd16ecf0d48ab1"
+      },
+      {
+        "path": "browser/chikage-1-idle.jpg",
+        "bytes": 49990,
+        "sha256": "a8ba24c990abb9a355164d5d4886ab8af1779c73427e49d844a41b9732946553"
+      },
+      {
+        "path": "browser/final-preview.jpg",
+        "bytes": 64622,
+        "sha256": "14d401ac1431ddeaba4cbccf6720bd587db694e5b2b23faedd9857a91fd2ce42"
+      },
+      {
+        "path": "browser/generic-beast-attack-sample.jpg",
+        "bytes": 50424,
+        "sha256": "ea2f6812b68b6929179e1b78a42381202dc0d8814b50f57f3426a772b0e7de5b"
+      },
+      {
+        "path": "browser/generic-beast-idle.jpg",
+        "bytes": 50054,
+        "sha256": "006015e0368abda0f6dc8aaec9ea7f0c16f8e0f87240d97e751d3eb0202f9c8b"
+      },
+      {
+        "path": "browser/generic-boss-attack-sample.jpg",
+        "bytes": 51087,
+        "sha256": "eb97db6c545103eaea4271e1ff76cb4905fa7063cb3f5b8d34d84e9071535e96"
+      },
+      {
+        "path": "browser/generic-boss-idle.jpg",
+        "bytes": 50476,
+        "sha256": "0957a0bb34c3fe42d0773733885d978c301acf6cd3d331070591d99f661cfca9"
+      },
+      {
+        "path": "browser/generic-female-attack-sample.jpg",
+        "bytes": 49287,
+        "sha256": "cb1703a300db9a08bd8ce071bde86e4a061b99ec90e5b8fa7c1ade41f3411b1e"
+      },
+      {
+        "path": "browser/generic-female-idle.jpg",
+        "bytes": 48445,
+        "sha256": "788f890ee7cd4fc756729c1a00ec0f8893a3199e8962fb603fb48a2394b7b724"
+      },
+      {
+        "path": "browser/generic-hunter-attack-sample.jpg",
+        "bytes": 49262,
+        "sha256": "3885b6f9a39cbd390bc5a1849501e6af0f160a10d1b14b03185c0b50ae6163f0"
+      },
+      {
+        "path": "browser/generic-hunter-idle.jpg",
+        "bytes": 46005,
+        "sha256": "c59f9cfdbda5954e7f41dc04d0ce6abab15a0eb64627717f6c914fd8b9e6086e"
+      },
+      {
+        "path": "browser/generic-mob-attack-sample.jpg",
+        "bytes": 49786,
+        "sha256": "666445ab8f2ba02d34e0a49482b9453b006f6c24d4b8d0e0d89496a241b11eef"
+      },
+      {
+        "path": "browser/generic-mob-idle.jpg",
+        "bytes": 49395,
+        "sha256": "65efbf51eea8bf643aa392f95d135198f803a5019d83037cfa0a28af2445adcb"
+      },
+      {
+        "path": "browser/hunter-axe-0-attack.jpg",
+        "bytes": 56543,
+        "sha256": "184ffb407b2540125a2cc2212a4fd8192d7ee3267ef4d675741ee09bbad3c1a8"
+      },
+      {
+        "path": "browser/hunter-axe-0-idle.jpg",
+        "bytes": 52453,
+        "sha256": "db0883a10182248c02be08861e1a51c0c350169762c5dc4f98a68a35cdeb9baf"
+      },
+      {
+        "path": "browser/hunter-axe-1-attack.jpg",
+        "bytes": 58168,
+        "sha256": "4d223ec70fe475506fafbdbff4143515446944aa7052eea2d5040af295fba1fc"
+      },
+      {
+        "path": "browser/hunter-axe-1-idle.jpg",
+        "bytes": 53846,
+        "sha256": "70bbbe08ed49b142999a68e7c4bc836ea957279d33d6975784a777e31b8613d1"
+      },
+      {
+        "path": "browser/kirkhammer-0-attack.jpg",
+        "bytes": 55348,
+        "sha256": "9b672fc5dc8e1b7917e795c31177f3cf0ebb2865864018cd0498376b7c0595af"
+      },
+      {
+        "path": "browser/kirkhammer-0-idle.jpg",
+        "bytes": 51270,
+        "sha256": "20e785297bef71ce8617833d4fd79e0eed501e5cf95d644310c7ee6e2b63fe00"
+      },
+      {
+        "path": "browser/kirkhammer-1-attack.jpg",
+        "bytes": 57425,
+        "sha256": "654762851ab4af4b6675400593793019f2f134c0c59b7bc1091b4711d983f67b"
+      },
+      {
+        "path": "browser/kirkhammer-1-idle.jpg",
+        "bytes": 53028,
+        "sha256": "494b0c5326822415847829bb1ab834b825fa2b2316aa04570ebe77d137d3267e"
+      },
+      {
+        "path": "browser/logarius-wheel-0-attack.jpg",
+        "bytes": 56177,
+        "sha256": "a9504eaf427e63a2974337ebf6ed60668f9bfbd49ca65c82f7299f71e65b356a"
+      },
+      {
+        "path": "browser/logarius-wheel-0-idle.jpg",
+        "bytes": 51960,
+        "sha256": "604b2b04b90fcf5335bcfcbc7031b15d63ffa8fe0aed2ece6031b582a04ee347"
+      },
+      {
+        "path": "browser/logarius-wheel-1-attack.jpg",
+        "bytes": 58309,
+        "sha256": "f58eafdc31e32617ada54e6b41aeb0a5a467fcfa16d74d4252411b28aff421aa"
+      },
+      {
+        "path": "browser/logarius-wheel-1-idle.jpg",
+        "bytes": 53860,
+        "sha256": "f7c3c51bc9b4fb04ec3a8d5f4906d4e7bd52bdd3d0cc606d9797f3a29bb06596"
+      },
+      {
+        "path": "browser/ludwigs-holy-blade-0-attack.jpg",
+        "bytes": 56268,
+        "sha256": "baee2caf77073efe29a9248a9669a738f7f2843ca204784745acfd07c5fc7991"
+      },
+      {
+        "path": "browser/ludwigs-holy-blade-0-idle.jpg",
+        "bytes": 52233,
+        "sha256": "033dc9887e9ca2bba2eb07cf8b26f1fe5caa8af7eeff6c8ac6027c612d3a996a"
+      },
+      {
+        "path": "browser/ludwigs-holy-blade-1-attack.jpg",
+        "bytes": 55789,
+        "sha256": "2c42878210a2eee769eb996065001a88bd3c0eb40f4344310d43f1a956fa44f2"
+      },
+      {
+        "path": "browser/ludwigs-holy-blade-1-idle.jpg",
+        "bytes": 51768,
+        "sha256": "38c26fb16f72bd267dabf9a08ea66883061d62764fefb8a2dfa39eba8ab3ac2d"
+      },
+      {
+        "path": "browser/regular-game-after-0.jpg",
+        "bytes": 143676,
+        "sha256": "3a6de9e66d38af76d865267eefc6768cd3e2adeff8be982d41ca89e2b88bc070"
+      },
+      {
+        "path": "browser/regular-game-after-1.jpg",
+        "bytes": 143676,
+        "sha256": "3a6de9e66d38af76d865267eefc6768cd3e2adeff8be982d41ca89e2b88bc070"
+      },
+      {
+        "path": "browser/regular-game-after-2.jpg",
+        "bytes": 143666,
+        "sha256": "a39d69e17368ade2b5a8da37fe9a648a1f8cb5f545ee6c021f23eda2bea76efc"
+      },
+      {
+        "path": "browser/reiterpallasch-0-attack.jpg",
+        "bytes": 57286,
+        "sha256": "3b663553198d3e29e9de2a46423666b7a4968ecabfce6903adf05ea345fe57ca"
+      },
+      {
+        "path": "browser/reiterpallasch-0-idle.jpg",
+        "bytes": 53171,
+        "sha256": "53a7315e63e5a8b79272c5134d88f92a5298c6cf710a02df42ad828fbadf183c"
+      },
+      {
+        "path": "browser/reiterpallasch-1-attack.jpg",
+        "bytes": 56710,
+        "sha256": "97c9ce9042e16ac5fc0cfc1ed1a6ed3e6d462ef3bd2b934d1b3f3773c0ab8ab6"
+      },
+      {
+        "path": "browser/reiterpallasch-1-idle.jpg",
+        "bytes": 52502,
+        "sha256": "1c4c70e5a01fbc7c4a5a8cfcf4afd24865b93112b69624a29a95e08d3a319f3f"
+      },
+      {
+        "path": "browser/rifle-spear-0-attack.jpg",
+        "bytes": 54913,
+        "sha256": "c63fbafa724f0ca3185d16b952491312914c510918547a15c8e327769e54628b"
+      },
+      {
+        "path": "browser/rifle-spear-0-idle.jpg",
+        "bytes": 50934,
+        "sha256": "3b6663fa4e22e23080f2e377ad8cb90a690128713af4d9e050b5c6bcc184d4dc"
+      },
+      {
+        "path": "browser/rifle-spear-1-attack.jpg",
+        "bytes": 55036,
+        "sha256": "cf26e6679e21dbd8c58b838051ef46a4e30b3e7cb07a5f3f5c1aa027cd2bfdb1"
+      },
+      {
+        "path": "browser/rifle-spear-1-idle.jpg",
+        "bytes": 51043,
+        "sha256": "506325bc0c0af406c4eeb49086b3ba2d626febd3b8b8895ed938cf7ae1ed689c"
+      },
+      {
+        "path": "browser/saw-spear-0-attack.jpg",
+        "bytes": 54499,
+        "sha256": "758bfc4cf68c60a51278ff8c4f815a692cab974cfef5c1897c1b28e935ff1d05"
+      },
+      {
+        "path": "browser/saw-spear-0-idle.jpg",
+        "bytes": 50387,
+        "sha256": "264bb27488d1d0a0b0c4fd89fc0ed772f8380b0a602f9b16bccd280faa325375"
+      },
+      {
+        "path": "browser/saw-spear-1-attack.jpg",
+        "bytes": 55135,
+        "sha256": "c792832b5ca4b5c648a1d16fd5b9ebf03017bf53ef5915e4a98503fff8991e0c"
+      },
+      {
+        "path": "browser/saw-spear-1-idle.jpg",
+        "bytes": 51051,
+        "sha256": "b216b5850318d00fb8d73a5aa951227f56f463d13c5f8b0a323373187f863153"
+      },
+      {
+        "path": "browser/stake-driver-0-attack.jpg",
+        "bytes": 54287,
+        "sha256": "2080f5ef3ca81929fe0b339bfebb2316e9d87490601768c1f44649282d246ebc"
+      },
+      {
+        "path": "browser/stake-driver-0-idle.jpg",
+        "bytes": 50265,
+        "sha256": "98ac6fc0ec5302a91e5a87dad33027bef921f5f949da082cdae44a6220a4a7ac"
+      },
+      {
+        "path": "browser/stake-driver-1-attack.jpg",
+        "bytes": 54254,
+        "sha256": "23e869f067203cc6a4d1c4e88d95322a8fdd02f7d21c7af0d2b490500da8c5c9"
+      },
+      {
+        "path": "browser/stake-driver-1-idle.jpg",
+        "bytes": 50036,
+        "sha256": "ee49f3a4e22d2262070d029f60b72e57f852a4fbb6cedb73940bb3c1315e9cf4"
+      },
+      {
+        "path": "browser/threaded-cane-0-attack.jpg",
+        "bytes": 55584,
+        "sha256": "bc64a1ba8a1ee0538273e6ce316a7172903f70e80000a6ac873fe1c995a1953c"
+      },
+      {
+        "path": "browser/threaded-cane-0-idle.jpg",
+        "bytes": 51495,
+        "sha256": "0a3aff520eadc5e073997aede06bf9881e7a31352b86feca9e19e46d975830e3"
+      },
+      {
+        "path": "browser/threaded-cane-1-attack.jpg",
+        "bytes": 54917,
+        "sha256": "39218b818cd9ec35bd71914cebdceda9c96d3bef869dd8a912f91b1b42c300c7"
+      },
+      {
+        "path": "browser/threaded-cane-1-idle.jpg",
+        "bytes": 50761,
+        "sha256": "04b4c4d3a038ac8d604bd3d47da534a3e5e596ed28dce9119227627c5dac06a0"
+      },
+      {
+        "path": "browser/tonitrus-0-attack.jpg",
+        "bytes": 53727,
+        "sha256": "8ac98de132c9cd568d816928fc0224446652b36e2d08db6b2ba225118f724b0f"
+      },
+      {
+        "path": "browser/tonitrus-0-idle.jpg",
+        "bytes": 49984,
+        "sha256": "f189ce20301d9a37d2ad466dbab6ca92ea493cd269b4cd4fee9fa9b0b5b10f01"
+      },
+      {
+        "path": "browser/tonitrus-1-attack.jpg",
+        "bytes": 53890,
+        "sha256": "a1a055a0941cdd9a03e7e5d939afdf5da760968f18fef32f92c5470db9f67636"
+      },
+      {
+        "path": "browser/tonitrus-1-idle.jpg",
+        "bytes": 50093,
+        "sha256": "be4b1327b82936959cd7561e63544b34174924b13996f9da2492f3332df2905d"
+      },
+      {
+        "path": "browser/uncanny-ludwigs-holy-blade-0-attack.jpg",
+        "bytes": 56868,
+        "sha256": "86ee1ab3fdd24f62db559d4872af1535f9b0f5a07381bde6eaae1e6e2daed5e8"
+      },
+      {
+        "path": "browser/uncanny-ludwigs-holy-blade-0-idle.jpg",
+        "bytes": 52582,
+        "sha256": "bf554e7dddaf78a2a6d96456aaf2ffde3af9f3da14d85d83c3b5a0cd8a2b2134"
+      },
+      {
+        "path": "browser/uncanny-ludwigs-holy-blade-1-attack.jpg",
+        "bytes": 57236,
+        "sha256": "a7816fabb2fdef0f4f78d189385696dd6567034809677553ea8a6d676a1a5682"
+      },
+      {
+        "path": "browser/uncanny-ludwigs-holy-blade-1-idle.jpg",
+        "bytes": 53136,
+        "sha256": "26519285431c45bca9423ecb12203c78606ab5a558c71eb87c6db1fb6c220951"
+      }
+    ],
+    "coverage": "Public preview controls used for idle, both movement directions, three weapon attacks, hit, death, idle restoration and weapon transform. Most timed attack screenshots show idle/recovery, not a guaranteed intermediate attack frame. All 800 source frames were reviewed independently in contact sheets and pixel checks. Earlier cached-runtime playback is retained separately in browser/pre-cache-reload and excluded from final corrected runtime coverage.",
+    "finalPresentation": {
+      "presentation": "phaser",
+      "presentationActors": "2",
+      "presentationAttacks": "159",
+      "presentationCharacters": "ready",
+      "presentationMotion": "full",
+      "presentationMoves": "70",
+      "presentationShots": "1",
+      "presentationVersion": "4.2.1",
+      "presentationWeapon": "",
+      "presentationWeaponReady": "false"
+    },
+    "console": [],
+    "originRevalidation": {
+      "version": "0.8.13-dev.5",
+      "scope": "Generic skins revalidation after beast originY432/512; thirty weapon form data and renderer logic unchanged.",
+      "loadedScripts": [
+        "assets/vendor/phaser-4.2.1.min.js",
+        "assets/characters/manifest.js?v=0.8.13-dev.5&h=fc5309eed25a",
+        "assets/characters/weapon-manifest.js?v=0.8.13-dev.5",
+        "weapon-visuals.js",
+        "hunt-presentation.js?v=0.8.13-dev.5",
+        "weapon-gallery.js?v=0.8.13-dev.5"
+      ],
+      "generic": [
+        {
+          "subject": "hunter",
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "0",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "0",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "hunter",
+              "presentationWeaponReady": "true"
+            },
+            "status": "공통 사냥꾼 · 동작 미리보기",
+            "subject": "hunter",
+            "weapon": "threaded-cane"
+          },
+          "actions": [
+            {
+              "action": "attack",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "1",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "0",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "hunter",
+                  "presentationWeaponReady": "true"
+                },
+                "status": "공통 사냥꾼 · 동작 미리보기",
+                "subject": "hunter",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "1",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "1",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "hunter",
+                  "presentationWeaponReady": "true"
+                },
+                "status": "공통 사냥꾼 · 동작 미리보기",
+                "subject": "hunter",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "1",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "2",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "hunter",
+                  "presentationWeaponReady": "true"
+                },
+                "status": "공통 사냥꾼 · 동작 미리보기",
+                "subject": "hunter",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "2",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "2",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "hunter",
+                  "presentationWeaponReady": "true"
+                },
+                "status": "공통 사냥꾼 · 동작 미리보기",
+                "subject": "hunter",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "1",
+                  "presentationAttacks": "3",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "2",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "hunter",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "3",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "2",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "hunter",
+                  "presentationWeaponReady": "true"
+                },
+                "status": "공통 사냥꾼 · 동작 미리보기",
+                "subject": "hunter",
+                "weapon": "threaded-cane"
+              }
+            }
+          ],
+          "idleScreen": "generic-hunter-idle.jpg",
+          "attackScreen": "generic-hunter-attack-sample.jpg"
+        },
+        {
+          "subject": "mob",
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "3",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "2",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 인간형 적 · 동작 미리보기",
+            "subject": "mob",
+            "weapon": "threaded-cane"
+          },
+          "actions": [
+            {
+              "action": "attack",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "4",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "2",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 인간형 적 · 동작 미리보기",
+                "subject": "mob",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "4",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "3",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 인간형 적 · 동작 미리보기",
+                "subject": "mob",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "4",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "4",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 인간형 적 · 동작 미리보기",
+                "subject": "mob",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "5",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "4",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 인간형 적 · 동작 미리보기",
+                "subject": "mob",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "1",
+                  "presentationAttacks": "6",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "4",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "mob",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "6",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "4",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 인간형 적 · 동작 미리보기",
+                "subject": "mob",
+                "weapon": "threaded-cane"
+              }
+            }
+          ],
+          "idleScreen": "generic-mob-idle.jpg",
+          "attackScreen": "generic-mob-attack-sample.jpg"
+        },
+        {
+          "subject": "beast",
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "6",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "4",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 야수형 적 · 동작 미리보기",
+            "subject": "beast",
+            "weapon": "threaded-cane"
+          },
+          "actions": [
+            {
+              "action": "attack",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "7",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "4",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 야수형 적 · 동작 미리보기",
+                "subject": "beast",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "7",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "5",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 야수형 적 · 동작 미리보기",
+                "subject": "beast",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "7",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "6",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 야수형 적 · 동작 미리보기",
+                "subject": "beast",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "8",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "6",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 야수형 적 · 동작 미리보기",
+                "subject": "beast",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "1",
+                  "presentationAttacks": "9",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "6",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "beast",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "9",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "6",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 야수형 적 · 동작 미리보기",
+                "subject": "beast",
+                "weapon": "threaded-cane"
+              }
+            }
+          ],
+          "idleScreen": "generic-beast-idle.jpg",
+          "attackScreen": "generic-beast-attack-sample.jpg"
+        },
+        {
+          "subject": "boss",
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "9",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "6",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 보스 · 동작 미리보기",
+            "subject": "boss",
+            "weapon": "threaded-cane"
+          },
+          "actions": [
+            {
+              "action": "attack",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "10",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "6",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 보스 · 동작 미리보기",
+                "subject": "boss",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "10",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "7",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 보스 · 동작 미리보기",
+                "subject": "boss",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "10",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "8",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 보스 · 동작 미리보기",
+                "subject": "boss",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "11",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "8",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 보스 · 동작 미리보기",
+                "subject": "boss",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "1",
+                  "presentationAttacks": "12",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "8",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "boss",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "12",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "8",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 보스 · 동작 미리보기",
+                "subject": "boss",
+                "weapon": "threaded-cane"
+              }
+            }
+          ],
+          "idleScreen": "generic-boss-idle.jpg",
+          "attackScreen": "generic-boss-attack-sample.jpg"
+        },
+        {
+          "subject": "female",
+          "idle": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "12",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "8",
+              "presentationShots": "0",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 여성 NPC · 동작 미리보기",
+            "subject": "female",
+            "weapon": "threaded-cane"
+          },
+          "actions": [
+            {
+              "action": "attack",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "13",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "8",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 여성 NPC · 동작 미리보기",
+                "subject": "female",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "13",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "9",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 여성 NPC · 동작 미리보기",
+                "subject": "female",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "walk",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "13",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "10",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 여성 NPC · 동작 미리보기",
+                "subject": "female",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "hit",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "14",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "10",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 여성 NPC · 동작 미리보기",
+                "subject": "female",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "death",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "1",
+                  "presentationAttacks": "15",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "10",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+                "subject": "female",
+                "weapon": "threaded-cane"
+              }
+            },
+            {
+              "action": "idle",
+              "state": {
+                "canvasCount": 1,
+                "form0": "false",
+                "form1": "false",
+                "presentation": {
+                  "presentation": "phaser",
+                  "presentationActors": "2",
+                  "presentationAttacks": "15",
+                  "presentationCharacters": "ready",
+                  "presentationMotion": "full",
+                  "presentationMoves": "10",
+                  "presentationShots": "0",
+                  "presentationVersion": "4.2.1",
+                  "presentationWeapon": "",
+                  "presentationWeaponReady": "false"
+                },
+                "status": "공통 여성 NPC · 동작 미리보기",
+                "subject": "female",
+                "weapon": "threaded-cane"
+              }
+            }
+          ],
+          "idleScreen": "generic-female-idle.jpg",
+          "attackScreen": "generic-female-attack-sample.jpg"
+        }
+      ],
+      "presentation": {
+        "presentation": "phaser",
+        "presentationActors": "2",
+        "presentationAttacks": "15",
+        "presentationCharacters": "ready",
+        "presentationMotion": "full",
+        "presentationMoves": "10",
+        "presentationShots": "0",
+        "presentationVersion": "4.2.1",
+        "presentationWeapon": "",
+        "presentationWeaponReady": "false"
+      },
+      "console": []
+    },
+    "regularGameApply": {
+      "publicBefore": {
+        "deckCount": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "hand": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.지구력기본 지구력회피 · 이 슬롯을 비웁니다.근력기본 근력공격 피해 +1",
+        "locationText": "현재 위치 · 중앙 등불 / 중앙 등불",
+        "modeLabel": "기나긴 사냥 · 챕터 1",
+        "phaseTitle": "플레이어의 차례",
+        "roundLabel": "라운드 1 · 처치 0",
+        "status": "사냥꾼체력 6 / 6 · 피의 유지 0 / 3중앙 등불 / 중앙 등불독 없음 · 발광 없음",
+        "weaponFace": "칼날 형태",
+        "weaponName": "장송의 칼날"
+      },
+      "publicAfter": {
+        "deckCount": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "hand": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.지구력기본 지구력회피 · 이 슬롯을 비웁니다.근력기본 근력공격 피해 +1",
+        "locationText": "현재 위치 · 중앙 등불 / 중앙 등불",
+        "modeLabel": "기나긴 사냥 · 챕터 1",
+        "phaseTitle": "플레이어의 차례",
+        "roundLabel": "라운드 1 · 처치 0",
+        "status": "사냥꾼체력 6 / 6 · 피의 유지 0 / 3중앙 등불 / 중앙 등불독 없음 · 발광 없음",
+        "weaponFace": "칼날 형태",
+        "weaponName": "장송의 칼날"
+      },
+      "sameVisibleProgress": true,
+      "scripts": [
+        "components/cards.js",
+        "data.js",
+        "campaigns/long-hunt/data.js",
+        "campaigns/long-hunt/narrative-text.js",
+        "tile-geometry.js",
+        "map-render-layout.js",
+        "start-placement.js",
+        "enemy-deck.js",
+        "chapter-engine.js",
+        "components/extended-weapons.js",
+        "extended-weapons.js",
+        "components/extended-firearms.js",
+        "extended-firearms.js",
+        "hunt-data.js",
+        "temporary-components.js",
+        "components/supplied-components.js",
+        "actual-components.js",
+        "components/extended-enemies.js",
+        "extended-enemies.js",
+        "boss-components.js",
+        "firearms-engine.js",
+        "mission-engine.js",
+        "extended-rewards.js",
+        "rewards-engine.js",
+        "weapon-rules.js",
+        "weapon-flow.js",
+        "extended-enemy-rules.js",
+        "qa-mode.js",
+        "hunt-engine.js",
+        "hunt-public-text.js",
+        "hunt-mission-feedback.js",
+        "enemy-action-history.js",
+        "inventory.js",
+        "hunt-shell.js",
+        "hunt-context.js",
+        "hunt-departure.js",
+        "hunt-camera.js",
+        "hunt-animation-events.js",
+        "assets/vendor/phaser-4.2.1.min.js",
+        "assets/characters/manifest.js?v=0.8.13-dev.5&h=fc5309eed25a",
+        "assets/characters/weapon-manifest.js?v=0.8.13-dev.5",
+        "weapon-visuals.js",
+        "hunt-presentation.js?v=0.8.13-dev.5",
+        "hunt-app.js"
+      ],
+      "presentation": {
+        "presentation": "phaser",
+        "presentationActors": "1",
+        "presentationAttacks": "0",
+        "presentationCharacters": "ready",
+        "presentationMotion": "full",
+        "presentationMoves": "0",
+        "presentationShots": "0",
+        "presentationVersion": "4.2.1",
+        "presentationWeapon": "w-burial-a",
+        "presentationWeaponReady": "true"
+      },
+      "console": [],
+      "screens": [
+        {
+          "file": "regular-game-after-0.jpg",
+          "time": "2026-10-13T13:27:26.559Z"
+        },
+        {
+          "file": "regular-game-after-1.jpg",
+          "time": "2026-10-13T13:27:27.026Z"
+        },
+        {
+          "file": "regular-game-after-2.jpg",
+          "time": "2026-10-13T13:27:27.489Z"
+        }
+      ],
+      "stage": "Final beast origin correction loaded through content-hash script reference."
+    },
+    "regularSaveMutated": false
+  },
+  "tests": {
+    "ci": {
+      "nodeVersion": "v24.19.0",
+      "runtimeVersion": "0.8.13-dev.5",
+      "testFiles": [
+        "tests/actual-boss.test.cjs",
+        "tests/actual-component-combat.test.cjs",
+        "tests/actual-firearm-integration.test.cjs",
+        "tests/actual-full-campaign-v10.test.cjs",
+        "tests/actual-full-campaign-v11.test.cjs",
+        "tests/actual-natural-path.test.cjs",
+        "tests/animation-camera-ui-v082.test.cjs",
+        "tests/animation-events-v082.test.cjs",
+        "tests/audit-fixes.test.cjs",
+        "tests/camera-v082.test.cjs",
+        "tests/campaign-data.test.cjs",
+        "tests/campaign-playthrough.test.cjs",
+        "tests/campaign-progression.test.cjs",
+        "tests/campaign-ui.test.cjs",
+        "tests/chapel-migration-v077.test.cjs",
+        "tests/chapel-natural-v075.test.cjs",
+        "tests/chapel-policy-v077.test.cjs",
+        "tests/chapter-map.test.cjs",
+        "tests/chapter-one-items.test.cjs",
+        "tests/chapter-transition-ui-v076.test.cjs",
+        "tests/character-animation-v082.test.cjs",
+        "tests/character-assets-v082.test.cjs",
+        "tests/character-gallery-ui.test.cjs",
+        "tests/clinic-completion-v075.test.cjs",
+        "tests/combat-kill-reaction-v14.test.cjs",
+        "tests/consumables.test.cjs",
+        "tests/context-actions-v081.test.cjs",
+        "tests/courtyard-enemy-preservation-v089.test.cjs",
+        "tests/current-campaign-v075.test.cjs",
+        "tests/departure-prompt-v0812.test.cjs",
+        "tests/departure-ui-v0812.test.cjs",
+        "tests/direct-map-v081.test.cjs",
+        "tests/enemy-action-history-v084.test.cjs",
+        "tests/enemy-deck.test.cjs",
+        "tests/engine.test.cjs",
+        "tests/escort-context-v0811.test.cjs",
+        "tests/escort-ui-v0811.test.cjs",
+        "tests/extended-enemy-engine.test.cjs",
+        "tests/extended-enemy-rules.test.cjs",
+        "tests/extended-firearm-integration.test.cjs",
+        "tests/extended-firearms.test.cjs",
+        "tests/extended-rewards.test.cjs",
+        "tests/extended-weapon-data.test.cjs",
+        "tests/extended-weapons.test.cjs",
+        "tests/firearms.test.cjs",
+        "tests/fog-lantern-v089.test.cjs",
+        "tests/full-campaign-playthrough.test.cjs",
+        "tests/generic-asset-frame-regression.test.cjs",
+        "tests/hunt-mission-feedback.test.cjs",
+        "tests/hunt-playthrough.test.cjs",
+        "tests/hunt-public-text-v084.test.cjs",
+        "tests/hunt-replacement-ui-v0813.test.cjs",
+        "tests/hunt.test.cjs",
+        "tests/info-panels-v087.test.cjs",
+        "tests/kill-reaction-ui-v0813.test.cjs",
+        "tests/later-missions.test.cjs",
+        "tests/later-rewards.test.cjs",
+        "tests/map-context-v089.test.cjs",
+        "tests/map-hud-v080.test.cjs",
+        "tests/map-render-layout-v0810.test.cjs",
+        "tests/map-scene-v0810.test.cjs",
+        "tests/mission-branches-v074.test.cjs",
+        "tests/mission-feedback-ui.test.cjs",
+        "tests/mission-location-scope-v0813.test.cjs",
+        "tests/mission-objective-visibility-v077.test.cjs",
+        "tests/mission-rc-audit-v0812.test.cjs",
+        "tests/mission-timing-v075.test.cjs",
+        "tests/mission.test.cjs",
+        "tests/photo-free-ui-v079.test.cjs",
+        "tests/presentation-v081.test.cjs",
+        "tests/qa-campaign-ui-v078.test.cjs",
+        "tests/qa-campaign-v078.test.cjs",
+        "tests/reference-source-v084.test.cjs",
+        "tests/rewards.test.cjs",
+        "tests/rule-exceptions.test.cjs",
+        "tests/solo-audit-regressions.test.cjs",
+        "tests/solo-branch-ui.test.cjs",
+        "tests/solo-inventory-destinations.test.cjs",
+        "tests/solo-owned-firearms.test.cjs",
+        "tests/solo-ui-playthrough.test.cjs",
+        "tests/solo-weapon-ui.test.cjs",
+        "tests/supplied-component-data.test.cjs",
+        "tests/temporary.test.cjs",
+        "tests/tile-diagrams.test.cjs",
+        "tests/ui-selection-v086.test.cjs",
+        "tests/weapon-animation-v083.test.cjs",
+        "tests/weapon-campaign-completion.test.cjs",
+        "tests/weapon-character-assets-v083.test.cjs",
+        "tests/weapon-continuations.test.cjs",
+        "tests/weapon-events-v083.test.cjs",
+        "tests/weapon-firearm-matrix.test.cjs",
+        "tests/weapon-idle-registration.test.cjs",
+        "tests/weapon-rules.test.cjs",
+        "tests/weapon-visual-ui-v083.test.cjs"
+      ],
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=2",
+        "--test-skip-pattern=^(?:campaign covers all 67 ordered sources and 60 numbered cards with images|reference data preserves printed terminology with the confirmed enemy alias and six enemy sides|default v0\\.3 state remains without optional firearm fields and photo confirmation retains raw text|supplied component photos retain their exact bytes, hashes and card provenance)$",
+        "tests/actual-boss.test.cjs",
+        "tests/actual-component-combat.test.cjs",
+        "tests/actual-firearm-integration.test.cjs",
+        "tests/actual-full-campaign-v10.test.cjs",
+        "tests/actual-full-campaign-v11.test.cjs",
+        "tests/actual-natural-path.test.cjs",
+        "tests/animation-camera-ui-v082.test.cjs",
+        "tests/animation-events-v082.test.cjs",
+        "tests/audit-fixes.test.cjs",
+        "tests/camera-v082.test.cjs",
+        "tests/campaign-data.test.cjs",
+        "tests/campaign-playthrough.test.cjs",
+        "tests/campaign-progression.test.cjs",
+        "tests/campaign-ui.test.cjs",
+        "tests/chapel-migration-v077.test.cjs",
+        "tests/chapel-natural-v075.test.cjs",
+        "tests/chapel-policy-v077.test.cjs",
+        "tests/chapter-map.test.cjs",
+        "tests/chapter-one-items.test.cjs",
+        "tests/chapter-transition-ui-v076.test.cjs",
+        "tests/character-animation-v082.test.cjs",
+        "tests/character-assets-v082.test.cjs",
+        "tests/character-gallery-ui.test.cjs",
+        "tests/clinic-completion-v075.test.cjs",
+        "tests/combat-kill-reaction-v14.test.cjs",
+        "tests/consumables.test.cjs",
+        "tests/context-actions-v081.test.cjs",
+        "tests/courtyard-enemy-preservation-v089.test.cjs",
+        "tests/current-campaign-v075.test.cjs",
+        "tests/departure-prompt-v0812.test.cjs",
+        "tests/departure-ui-v0812.test.cjs",
+        "tests/direct-map-v081.test.cjs",
+        "tests/enemy-action-history-v084.test.cjs",
+        "tests/enemy-deck.test.cjs",
+        "tests/engine.test.cjs",
+        "tests/escort-context-v0811.test.cjs",
+        "tests/escort-ui-v0811.test.cjs",
+        "tests/extended-enemy-engine.test.cjs",
+        "tests/extended-enemy-rules.test.cjs",
+        "tests/extended-firearm-integration.test.cjs",
+        "tests/extended-firearms.test.cjs",
+        "tests/extended-rewards.test.cjs",
+        "tests/extended-weapon-data.test.cjs",
+        "tests/extended-weapons.test.cjs",
+        "tests/firearms.test.cjs",
+        "tests/fog-lantern-v089.test.cjs",
+        "tests/full-campaign-playthrough.test.cjs",
+        "tests/generic-asset-frame-regression.test.cjs",
+        "tests/hunt-mission-feedback.test.cjs",
+        "tests/hunt-playthrough.test.cjs",
+        "tests/hunt-public-text-v084.test.cjs",
+        "tests/hunt-replacement-ui-v0813.test.cjs",
+        "tests/hunt.test.cjs",
+        "tests/info-panels-v087.test.cjs",
+        "tests/kill-reaction-ui-v0813.test.cjs",
+        "tests/later-missions.test.cjs",
+        "tests/later-rewards.test.cjs",
+        "tests/map-context-v089.test.cjs",
+        "tests/map-hud-v080.test.cjs",
+        "tests/map-render-layout-v0810.test.cjs",
+        "tests/map-scene-v0810.test.cjs",
+        "tests/mission-branches-v074.test.cjs",
+        "tests/mission-feedback-ui.test.cjs",
+        "tests/mission-location-scope-v0813.test.cjs",
+        "tests/mission-objective-visibility-v077.test.cjs",
+        "tests/mission-rc-audit-v0812.test.cjs",
+        "tests/mission-timing-v075.test.cjs",
+        "tests/mission.test.cjs",
+        "tests/photo-free-ui-v079.test.cjs",
+        "tests/presentation-v081.test.cjs",
+        "tests/qa-campaign-ui-v078.test.cjs",
+        "tests/qa-campaign-v078.test.cjs",
+        "tests/reference-source-v084.test.cjs",
+        "tests/rewards.test.cjs",
+        "tests/rule-exceptions.test.cjs",
+        "tests/solo-audit-regressions.test.cjs",
+        "tests/solo-branch-ui.test.cjs",
+        "tests/solo-inventory-destinations.test.cjs",
+        "tests/solo-owned-firearms.test.cjs",
+        "tests/solo-ui-playthrough.test.cjs",
+        "tests/solo-weapon-ui.test.cjs",
+        "tests/supplied-component-data.test.cjs",
+        "tests/temporary.test.cjs",
+        "tests/tile-diagrams.test.cjs",
+        "tests/ui-selection-v086.test.cjs",
+        "tests/weapon-animation-v083.test.cjs",
+        "tests/weapon-campaign-completion.test.cjs",
+        "tests/weapon-character-assets-v083.test.cjs",
+        "tests/weapon-continuations.test.cjs",
+        "tests/weapon-events-v083.test.cjs",
+        "tests/weapon-firearm-matrix.test.cjs",
+        "tests/weapon-idle-registration.test.cjs",
+        "tests/weapon-rules.test.cjs",
+        "tests/weapon-visual-ui-v083.test.cjs"
+      ],
+      "sourcePhotoTestsExcluded": [
+        "campaign covers all 67 ordered sources and 60 numbered cards with images",
+        "reference data preserves printed terminology with the confirmed enemy alias and six enemy sides",
+        "default v0.3 state remains without optional firearm fields and photo confirmation retains raw text",
+        "supplied component photos retain their exact bytes, hashes and card provenance"
+      ],
+      "durationSeconds": 589.617,
+      "exitCode": 0,
+      "signal": null,
+      "spawnError": null,
+      "counts": {
+        "tests": 2597,
+        "suites": 0,
+        "pass": 2597,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "failedSubtests": []
+    },
+    "ciBeforeGroundFix": {
+      "nodeVersion": "v24.19.0",
+      "runtimeVersion": "0.8.13-dev.5",
+      "testFiles": [
+        "tests/actual-boss.test.cjs",
+        "tests/actual-component-combat.test.cjs",
+        "tests/actual-firearm-integration.test.cjs",
+        "tests/actual-full-campaign-v10.test.cjs",
+        "tests/actual-full-campaign-v11.test.cjs",
+        "tests/actual-natural-path.test.cjs",
+        "tests/animation-camera-ui-v082.test.cjs",
+        "tests/animation-events-v082.test.cjs",
+        "tests/audit-fixes.test.cjs",
+        "tests/camera-v082.test.cjs",
+        "tests/campaign-data.test.cjs",
+        "tests/campaign-playthrough.test.cjs",
+        "tests/campaign-progression.test.cjs",
+        "tests/campaign-ui.test.cjs",
+        "tests/chapel-migration-v077.test.cjs",
+        "tests/chapel-natural-v075.test.cjs",
+        "tests/chapel-policy-v077.test.cjs",
+        "tests/chapter-map.test.cjs",
+        "tests/chapter-one-items.test.cjs",
+        "tests/chapter-transition-ui-v076.test.cjs",
+        "tests/character-animation-v082.test.cjs",
+        "tests/character-assets-v082.test.cjs",
+        "tests/character-gallery-ui.test.cjs",
+        "tests/clinic-completion-v075.test.cjs",
+        "tests/combat-kill-reaction-v14.test.cjs",
+        "tests/consumables.test.cjs",
+        "tests/context-actions-v081.test.cjs",
+        "tests/courtyard-enemy-preservation-v089.test.cjs",
+        "tests/current-campaign-v075.test.cjs",
+        "tests/departure-prompt-v0812.test.cjs",
+        "tests/departure-ui-v0812.test.cjs",
+        "tests/direct-map-v081.test.cjs",
+        "tests/enemy-action-history-v084.test.cjs",
+        "tests/enemy-deck.test.cjs",
+        "tests/engine.test.cjs",
+        "tests/escort-context-v0811.test.cjs",
+        "tests/escort-ui-v0811.test.cjs",
+        "tests/extended-enemy-engine.test.cjs",
+        "tests/extended-enemy-rules.test.cjs",
+        "tests/extended-firearm-integration.test.cjs",
+        "tests/extended-firearms.test.cjs",
+        "tests/extended-rewards.test.cjs",
+        "tests/extended-weapon-data.test.cjs",
+        "tests/extended-weapons.test.cjs",
+        "tests/firearms.test.cjs",
+        "tests/fog-lantern-v089.test.cjs",
+        "tests/full-campaign-playthrough.test.cjs",
+        "tests/generic-asset-frame-regression.test.cjs",
+        "tests/hunt-mission-feedback.test.cjs",
+        "tests/hunt-playthrough.test.cjs",
+        "tests/hunt-public-text-v084.test.cjs",
+        "tests/hunt-replacement-ui-v0813.test.cjs",
+        "tests/hunt.test.cjs",
+        "tests/info-panels-v087.test.cjs",
+        "tests/kill-reaction-ui-v0813.test.cjs",
+        "tests/later-missions.test.cjs",
+        "tests/later-rewards.test.cjs",
+        "tests/map-context-v089.test.cjs",
+        "tests/map-hud-v080.test.cjs",
+        "tests/map-render-layout-v0810.test.cjs",
+        "tests/map-scene-v0810.test.cjs",
+        "tests/mission-branches-v074.test.cjs",
+        "tests/mission-feedback-ui.test.cjs",
+        "tests/mission-location-scope-v0813.test.cjs",
+        "tests/mission-objective-visibility-v077.test.cjs",
+        "tests/mission-rc-audit-v0812.test.cjs",
+        "tests/mission-timing-v075.test.cjs",
+        "tests/mission.test.cjs",
+        "tests/photo-free-ui-v079.test.cjs",
+        "tests/presentation-v081.test.cjs",
+        "tests/qa-campaign-ui-v078.test.cjs",
+        "tests/qa-campaign-v078.test.cjs",
+        "tests/reference-source-v084.test.cjs",
+        "tests/rewards.test.cjs",
+        "tests/rule-exceptions.test.cjs",
+        "tests/solo-audit-regressions.test.cjs",
+        "tests/solo-branch-ui.test.cjs",
+        "tests/solo-inventory-destinations.test.cjs",
+        "tests/solo-owned-firearms.test.cjs",
+        "tests/solo-ui-playthrough.test.cjs",
+        "tests/solo-weapon-ui.test.cjs",
+        "tests/supplied-component-data.test.cjs",
+        "tests/temporary.test.cjs",
+        "tests/tile-diagrams.test.cjs",
+        "tests/ui-selection-v086.test.cjs",
+        "tests/weapon-animation-v083.test.cjs",
+        "tests/weapon-campaign-completion.test.cjs",
+        "tests/weapon-character-assets-v083.test.cjs",
+        "tests/weapon-continuations.test.cjs",
+        "tests/weapon-events-v083.test.cjs",
+        "tests/weapon-firearm-matrix.test.cjs",
+        "tests/weapon-idle-registration.test.cjs",
+        "tests/weapon-rules.test.cjs",
+        "tests/weapon-visual-ui-v083.test.cjs"
+      ],
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=2",
+        "--test-skip-pattern=^(?:campaign covers all 67 ordered sources and 60 numbered cards with images|reference data preserves printed terminology with the confirmed enemy alias and six enemy sides|default v0\\.3 state remains without optional firearm fields and photo confirmation retains raw text|supplied component photos retain their exact bytes, hashes and card provenance)$",
+        "tests/actual-boss.test.cjs",
+        "tests/actual-component-combat.test.cjs",
+        "tests/actual-firearm-integration.test.cjs",
+        "tests/actual-full-campaign-v10.test.cjs",
+        "tests/actual-full-campaign-v11.test.cjs",
+        "tests/actual-natural-path.test.cjs",
+        "tests/animation-camera-ui-v082.test.cjs",
+        "tests/animation-events-v082.test.cjs",
+        "tests/audit-fixes.test.cjs",
+        "tests/camera-v082.test.cjs",
+        "tests/campaign-data.test.cjs",
+        "tests/campaign-playthrough.test.cjs",
+        "tests/campaign-progression.test.cjs",
+        "tests/campaign-ui.test.cjs",
+        "tests/chapel-migration-v077.test.cjs",
+        "tests/chapel-natural-v075.test.cjs",
+        "tests/chapel-policy-v077.test.cjs",
+        "tests/chapter-map.test.cjs",
+        "tests/chapter-one-items.test.cjs",
+        "tests/chapter-transition-ui-v076.test.cjs",
+        "tests/character-animation-v082.test.cjs",
+        "tests/character-assets-v082.test.cjs",
+        "tests/character-gallery-ui.test.cjs",
+        "tests/clinic-completion-v075.test.cjs",
+        "tests/combat-kill-reaction-v14.test.cjs",
+        "tests/consumables.test.cjs",
+        "tests/context-actions-v081.test.cjs",
+        "tests/courtyard-enemy-preservation-v089.test.cjs",
+        "tests/current-campaign-v075.test.cjs",
+        "tests/departure-prompt-v0812.test.cjs",
+        "tests/departure-ui-v0812.test.cjs",
+        "tests/direct-map-v081.test.cjs",
+        "tests/enemy-action-history-v084.test.cjs",
+        "tests/enemy-deck.test.cjs",
+        "tests/engine.test.cjs",
+        "tests/escort-context-v0811.test.cjs",
+        "tests/escort-ui-v0811.test.cjs",
+        "tests/extended-enemy-engine.test.cjs",
+        "tests/extended-enemy-rules.test.cjs",
+        "tests/extended-firearm-integration.test.cjs",
+        "tests/extended-firearms.test.cjs",
+        "tests/extended-rewards.test.cjs",
+        "tests/extended-weapon-data.test.cjs",
+        "tests/extended-weapons.test.cjs",
+        "tests/firearms.test.cjs",
+        "tests/fog-lantern-v089.test.cjs",
+        "tests/full-campaign-playthrough.test.cjs",
+        "tests/generic-asset-frame-regression.test.cjs",
+        "tests/hunt-mission-feedback.test.cjs",
+        "tests/hunt-playthrough.test.cjs",
+        "tests/hunt-public-text-v084.test.cjs",
+        "tests/hunt-replacement-ui-v0813.test.cjs",
+        "tests/hunt.test.cjs",
+        "tests/info-panels-v087.test.cjs",
+        "tests/kill-reaction-ui-v0813.test.cjs",
+        "tests/later-missions.test.cjs",
+        "tests/later-rewards.test.cjs",
+        "tests/map-context-v089.test.cjs",
+        "tests/map-hud-v080.test.cjs",
+        "tests/map-render-layout-v0810.test.cjs",
+        "tests/map-scene-v0810.test.cjs",
+        "tests/mission-branches-v074.test.cjs",
+        "tests/mission-feedback-ui.test.cjs",
+        "tests/mission-location-scope-v0813.test.cjs",
+        "tests/mission-objective-visibility-v077.test.cjs",
+        "tests/mission-rc-audit-v0812.test.cjs",
+        "tests/mission-timing-v075.test.cjs",
+        "tests/mission.test.cjs",
+        "tests/photo-free-ui-v079.test.cjs",
+        "tests/presentation-v081.test.cjs",
+        "tests/qa-campaign-ui-v078.test.cjs",
+        "tests/qa-campaign-v078.test.cjs",
+        "tests/reference-source-v084.test.cjs",
+        "tests/rewards.test.cjs",
+        "tests/rule-exceptions.test.cjs",
+        "tests/solo-audit-regressions.test.cjs",
+        "tests/solo-branch-ui.test.cjs",
+        "tests/solo-inventory-destinations.test.cjs",
+        "tests/solo-owned-firearms.test.cjs",
+        "tests/solo-ui-playthrough.test.cjs",
+        "tests/solo-weapon-ui.test.cjs",
+        "tests/supplied-component-data.test.cjs",
+        "tests/temporary.test.cjs",
+        "tests/tile-diagrams.test.cjs",
+        "tests/ui-selection-v086.test.cjs",
+        "tests/weapon-animation-v083.test.cjs",
+        "tests/weapon-campaign-completion.test.cjs",
+        "tests/weapon-character-assets-v083.test.cjs",
+        "tests/weapon-continuations.test.cjs",
+        "tests/weapon-events-v083.test.cjs",
+        "tests/weapon-firearm-matrix.test.cjs",
+        "tests/weapon-idle-registration.test.cjs",
+        "tests/weapon-rules.test.cjs",
+        "tests/weapon-visual-ui-v083.test.cjs"
+      ],
+      "sourcePhotoTestsExcluded": [
+        "campaign covers all 67 ordered sources and 60 numbered cards with images",
+        "reference data preserves printed terminology with the confirmed enemy alias and six enemy sides",
+        "default v0.3 state remains without optional firearm fields and photo confirmation retains raw text",
+        "supplied component photos retain their exact bytes, hashes and card provenance"
+      ],
+      "durationSeconds": 529.006,
+      "exitCode": 0,
+      "signal": null,
+      "spawnError": null,
+      "counts": {
+        "tests": 2596,
+        "suites": 0,
+        "pass": 2596,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "failedSubtests": []
+    },
+    "targetedAfterVersionedScriptReferences": {
+      "tests": 119,
+      "pass": 119,
+      "fail": 0,
+      "durationMs": 1728.8104
+    },
+    "targetedAfterBeastOrigin": {
+      "tests": 120,
+      "pass": 120,
+      "fail": 0,
+      "durationMs": 2437.4773,
+      "log": "targeted-after-origin.tap"
+    },
+    "ciTiming": "Final CI includes the beast origin correction. A prior 2596-test run and final 120-test related run are retained separately and not summed."
+  },
+  "limits": [
+    "Source artwork has limited authored frame counts; smooth interpolation or new illustrations are not added.",
+    "Intentional lunges, turns, recoil and collapse remain; anatomical center metrics do not prove artistic perfection.",
+    "Mask failure behavior is verified in a mocked renderer, not by disabling native browser capabilities.",
+    "Current UI screenshots reflect one desktop viewport; device-specific/Unity Editor rendering is not tested."
+  ]
+}

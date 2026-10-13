@@ -68,7 +68,8 @@ function fixture({ reduced = false, missing = [], incomplete = null, custom = nu
     graphic.clear = () => { graphic.commands = []; graphic.clearCount++; return graphic; };
     graphic.fillStyle = (...args) => { graphic.commands.push(['fillStyle', ...args]); return graphic; };
     graphic.fillRect = (...args) => { graphic.commands.push(['fillRect', ...args]); return graphic; };
-    graphic.createGeometryMask = () => { const mask = { graphics: graphic, destroyed: false, destroy() { this.destroyed = true; } };
+    graphic.createGeometryMask = () => { if (geometry === 'throw') throw Error('native clipping unavailable');
+      const mask = { graphics: graphic, destroyed: false, destroy() { this.destroyed = true; } };
       masks.push(mask); return mask; };
     maskGraphics.push(graphic); return graphic;
   } };
@@ -383,6 +384,58 @@ test('a heavy attack completes its full four-frame 9 fps follow-through before t
   assert.equal(f.sprites[1].plays.at(-1), 'bb-mob-attack');
 });
 
+test('a full four-frame walking cycle completes before the next attack and returns to stable idle', () => {
+  const f = equipped({ custom(characters) { characters[faceA].animations.walk.frameRate = 10; } });
+  const snapshot = { revision: 2, sceneId: 'hunt', actors: [hunter(faceA, 6, 20), enemy(9)], actions: [
+    { type: 'move', fromId: 'hunter' }, hit(0)
+  ] }, unchanged = JSON.stringify(snapshot);
+  f.adapter.sync(snapshot);
+  const sprite = f.sprites[0], movement = f.tweens.find(tween => tween.targets === sprite && tween.x === 20);
+  const walk = f.definitions.find(definition => definition.key === `bb-${faceA}-walk`);
+  assert.equal(movement.duration, 400);
+  assert.equal(movement.duration, walk.frames.length * 1000 / walk.frameRate);
+  assert.equal(f.timers[0].delay, 410, 'the attack starts after the complete walk cycle');
+  for (const frame of poseFrames.walk) {
+    sprite.advanceFrame(String(frame));
+    assert.equal(sprite.plays.at(-1), `bb-${faceA}-walk`);
+    assert.equal(sprite.flipX, true);
+  }
+  sprite.x = 20; movement.onUpdate(); f.tween(movement);
+  assert.equal(sprite.x, 20); assert.equal(sprite.y, 100);
+  assert.equal(sprite.frame, '0'); assert.equal(sprite.plays.at(-1), `bb-${faceA}-idle`);
+  assert.equal(f.graphics[0].x, 20); assert.equal(f.graphics[0].y, 102);
+  f.timer(f.timers[0]);
+  assert.equal(sprite.plays.at(-1), `bb-${faceA}-attack-0`);
+  assert.equal(JSON.stringify(snapshot), unchanged, 'visual timing never changes the public input');
+});
+
+for (const [frameRate, duration] of [[20, 340], [2, 600]])
+  test(`walk pacing remains bounded for optional ${frameRate} fps clips`, () => {
+    const f = equipped({ custom(characters) { characters[faceA].animations.walk.frameRate = frameRate; } });
+    f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [hunter(faceA, 5, 20), enemy()], actions: [{ type: 'move', fromId: 'hunter' }] });
+    const movement = f.tweens.find(tween => tween.targets === f.sprites[0] && tween.x === 20);
+    assert.equal(movement.duration, duration);
+    assert.equal(f.timers[0].delay, duration + 10, 'a nonattack HP reaction uses the same movement boundary');
+    f.tween(movement); f.timer(f.timers[0]);
+    assert.equal(f.sprites[0].plays.at(-1), `bb-${faceA}-hit`);
+  });
+
+test('idle frame changes and same-state refreshes preserve position, facing, origin, scale and shadow', () => {
+  const f = equipped(), sprite = f.sprites[0], shadow = f.graphics[0];
+  sprite.setFlipX(true);
+  const properties = () => [sprite.x, sprite.y, sprite.flipX, ...sprite.origin,
+    sprite.scaleX, sprite.scaleY, shadow.x, shadow.y];
+  const before = properties(), plays = sprite.plays.length;
+  for (let index = 0; index < 8; index++) {
+    sprite.advanceFrame(String(index % 2)); f.frame();
+    f.adapter.sync({ revision: 1, sceneId: 'hunt', actors: [hunter(), { ...enemy(), selected: !!(index % 2) }] });
+    assert.deepEqual(properties(), before);
+    assert.equal(sprite.frame, String(index % 2), 'refresh does not restart idle');
+    assert.equal(sprite.plays.length, plays);
+  }
+  assert.equal(f.adapter.status().moves, 0); assert.equal(f.adapter.status().attacks, 0);
+});
+
 test('a quick four-frame weapon attack preserves the old 300 ms minimum combat spacing', () => {
   const f = equipped({ custom(characters) { characters[faceA].animations['attack-0'].frameRate = 16; } });
   f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [hunter(faceA, 4), enemy(9)], actions: [
@@ -497,6 +550,25 @@ test('unsupported native geometry masking falls back per weapon and never loads 
   f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [hunter(), enemy(9)], actions: [hit(0)] });
   assert.equal(f.sprites[0].texture, 'bb-character-hunter'); assert.equal(f.sprites[0].plays.at(-1), 'bb-hunter-attack');
 });
+
+for (const geometry of [false, 'throw'])
+  test(`required shipped bodies retain DOM fallback when native clipping is ${geometry === false ? 'missing' : 'throwing'}`, () => {
+    const shipped = require('../assets/characters/manifest.json');
+    assert.equal(Object.keys(shipped).length, 5);
+    const f = fixture({ geometry, custom(characters) { Object.assign(characters, shipped); } });
+    const actors = [{ id: 'hunter', kind: 'hunter', skin: 'hunter', x: 80, y: 100, hp: 6 }, enemy()];
+    f.adapter.sync({ revision: 1, sceneId: 'required-body-fallback', actors }); f.boot();
+    assert.equal(f.adapter.status().charactersReady, false);
+    assert.equal(f.host.dataset.presentationCharacters, 'fallback', 'the game keeps DOM markers visible');
+    assert.equal(f.sprites.length, 0, 'unmasked contaminated required PNGs never draw');
+    assert.ok(!f.notifications.includes(true), 'the UI never receives a false ready notification');
+    f.adapter.sync({ revision: 2, sceneId: 'required-body-fallback', actors: [hunter(), enemy(9)], actions: [hit(0)] });
+    f.finishLoad(); f.adapter.resize({ width: 500, height: 300 });
+    assert.equal(f.adapter.status().charactersReady, false);
+    assert.equal(f.host.dataset.presentationCharacters, 'fallback');
+    assert.equal(f.sprites.length, 0, 'optional weapon loading cannot hide unavailable required bodies');
+    f.adapter.destroy(); assert.equal(f.adapter.status().characters, 0);
+  });
 
 test('a sprite implementation without setMask rejects clipped forms before drawing their pixels', () => {
   const f = equipped({ geometry: true, noSpriteMask: true, custom: clippedCharacters });

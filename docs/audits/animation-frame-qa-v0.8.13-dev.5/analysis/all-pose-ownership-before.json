@@ -1,0 +1,1132 @@
+{
+  "hunter": [
+    {
+      "frame": 0,
+      "primaryComponentPixels": 26960,
+      "retainedPrimaryPixels": 26960,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        62,
+        21,
+        303,
+        308
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 1,
+      "primaryComponentPixels": 26861,
+      "retainedPrimaryPixels": 26861,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        364,
+        20,
+        602,
+        308
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 2,
+      "primaryComponentPixels": 27098,
+      "retainedPrimaryPixels": 27098,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        666,
+        21,
+        907,
+        308
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 3,
+      "primaryComponentPixels": 27059,
+      "retainedPrimaryPixels": 27059,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        986,
+        21,
+        1224,
+        308
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 4,
+      "primaryComponentPixels": 29202,
+      "retainedPrimaryPixels": 29202,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        48,
+        335,
+        311,
+        619
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 5,
+      "primaryComponentPixels": 27400,
+      "retainedPrimaryPixels": 27400,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        352,
+        334,
+        626,
+        617
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 6,
+      "primaryComponentPixels": 28647,
+      "retainedPrimaryPixels": 28647,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        662,
+        329,
+        924,
+        618
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 7,
+      "primaryComponentPixels": 26723,
+      "retainedPrimaryPixels": 26723,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        980,
+        334,
+        1242,
+        614
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 8,
+      "primaryComponentPixels": 29283,
+      "retainedPrimaryPixels": 29283,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        36,
+        688,
+        280,
+        919
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 9,
+      "primaryComponentPixels": 32274,
+      "retainedPrimaryPixels": 32274,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        362,
+        625,
+        592,
+        919
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 10,
+      "primaryComponentPixels": 30870,
+      "retainedPrimaryPixels": 30081,
+      "missingPrimaryPixels": 789,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        643,
+        684,
+        996,
+        919
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 11,
+      "primaryComponentPixels": 27653,
+      "retainedPrimaryPixels": 27653,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 789,
+      "primaryBbox": [
+        992,
+        654,
+        1231,
+        919
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 12,
+      "primaryComponentPixels": 30553,
+      "retainedPrimaryPixels": 30553,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        53,
+        959,
+        285,
+        1214
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 13,
+      "primaryComponentPixels": 27193,
+      "retainedPrimaryPixels": 27193,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        352,
+        976,
+        586,
+        1213
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 14,
+      "primaryComponentPixels": 20899,
+      "retainedPrimaryPixels": 20634,
+      "missingPrimaryPixels": 265,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        654,
+        1064,
+        948,
+        1217
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 15,
+      "primaryComponentPixels": 18362,
+      "retainedPrimaryPixels": 18362,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 265,
+      "primaryBbox": [
+        926,
+        1119,
+        1246,
+        1213
+      ],
+      "threshold": 32
+    }
+  ],
+  "mob": [
+    {
+      "frame": 0,
+      "primaryComponentPixels": 29520,
+      "retainedPrimaryPixels": 29520,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        57,
+        14,
+        277,
+        307
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 1,
+      "primaryComponentPixels": 28884,
+      "retainedPrimaryPixels": 28884,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        370,
+        14,
+        583,
+        307
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 2,
+      "primaryComponentPixels": 29295,
+      "retainedPrimaryPixels": 29295,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        683,
+        17,
+        896,
+        307
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 3,
+      "primaryComponentPixels": 29070,
+      "retainedPrimaryPixels": 29070,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        999,
+        14,
+        1211,
+        307
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 4,
+      "primaryComponentPixels": 30745,
+      "retainedPrimaryPixels": 30745,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        46,
+        336,
+        286,
+        621
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 5,
+      "primaryComponentPixels": 30509,
+      "retainedPrimaryPixels": 30509,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        357,
+        334,
+        596,
+        621
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 6,
+      "primaryComponentPixels": 29846,
+      "retainedPrimaryPixels": 29846,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        665,
+        332,
+        911,
+        620
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 7,
+      "primaryComponentPixels": 31735,
+      "retainedPrimaryPixels": 31735,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        984,
+        328,
+        1222,
+        621
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 8,
+      "primaryComponentPixels": 30488,
+      "retainedPrimaryPixels": 30488,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        44,
+        687,
+        287,
+        928
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 9,
+      "primaryComponentPixels": 30133,
+      "retainedPrimaryPixels": 30133,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        355,
+        628,
+        564,
+        928
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 10,
+      "primaryComponentPixels": 30719,
+      "retainedPrimaryPixels": 27297,
+      "missingPrimaryPixels": 3422,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        639,
+        696,
+        989,
+        926
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 11,
+      "primaryComponentPixels": 27864,
+      "retainedPrimaryPixels": 27864,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 3422,
+      "primaryBbox": [
+        973,
+        695,
+        1239,
+        926
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 12,
+      "primaryComponentPixels": 29311,
+      "retainedPrimaryPixels": 29311,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        55,
+        963,
+        280,
+        1213
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 13,
+      "primaryComponentPixels": 26356,
+      "retainedPrimaryPixels": 26356,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        352,
+        983,
+        565,
+        1217
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 14,
+      "primaryComponentPixels": 23570,
+      "retainedPrimaryPixels": 23570,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        651,
+        1059,
+        894,
+        1237
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 15,
+      "primaryComponentPixels": 20966,
+      "retainedPrimaryPixels": 20966,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        924,
+        1109,
+        1240,
+        1214
+      ],
+      "threshold": 32
+    }
+  ],
+  "beast": [
+    {
+      "frame": 0,
+      "primaryComponentPixels": 34375,
+      "retainedPrimaryPixels": 34375,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        16,
+        60,
+        308,
+        286
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 1,
+      "primaryComponentPixels": 34987,
+      "retainedPrimaryPixels": 34987,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        329,
+        58,
+        622,
+        286
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 2,
+      "primaryComponentPixels": 34827,
+      "retainedPrimaryPixels": 34827,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        644,
+        58,
+        935,
+        286
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 3,
+      "primaryComponentPixels": 34283,
+      "retainedPrimaryPixels": 34283,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        956,
+        60,
+        1248,
+        286
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 4,
+      "primaryComponentPixels": 33686,
+      "retainedPrimaryPixels": 33686,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        13,
+        377,
+        317,
+        589
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 5,
+      "primaryComponentPixels": 33887,
+      "retainedPrimaryPixels": 33887,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        327,
+        375,
+        624,
+        589
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 6,
+      "primaryComponentPixels": 34329,
+      "retainedPrimaryPixels": 34329,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        631,
+        373,
+        938,
+        589
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 7,
+      "primaryComponentPixels": 32814,
+      "retainedPrimaryPixels": 32814,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        948,
+        372,
+        1248,
+        590
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 8,
+      "primaryComponentPixels": 33341,
+      "retainedPrimaryPixels": 33341,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        11,
+        704,
+        315,
+        904
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 9,
+      "primaryComponentPixels": 36699,
+      "retainedPrimaryPixels": 36699,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        320,
+        642,
+        622,
+        901
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 10,
+      "primaryComponentPixels": 36790,
+      "retainedPrimaryPixels": 35432,
+      "missingPrimaryPixels": 1358,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        632,
+        656,
+        976,
+        902
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 11,
+      "primaryComponentPixels": 33848,
+      "retainedPrimaryPixels": 33848,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 1358,
+      "primaryBbox": [
+        956,
+        687,
+        1250,
+        903
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 12,
+      "primaryComponentPixels": 31863,
+      "retainedPrimaryPixels": 31863,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        16,
+        974,
+        286,
+        1209
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 13,
+      "primaryComponentPixels": 32480,
+      "retainedPrimaryPixels": 32480,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        327,
+        1003,
+        608,
+        1199
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 14,
+      "primaryComponentPixels": 28439,
+      "retainedPrimaryPixels": 28439,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        638,
+        1044,
+        935,
+        1190
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 15,
+      "primaryComponentPixels": 19880,
+      "retainedPrimaryPixels": 19880,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        942,
+        1091,
+        1245,
+        1199
+      ],
+      "threshold": 32
+    }
+  ],
+  "boss": [
+    {
+      "frame": 0,
+      "primaryComponentPixels": 34279,
+      "retainedPrimaryPixels": 34279,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        47,
+        8,
+        269,
+        307
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 1,
+      "primaryComponentPixels": 33960,
+      "retainedPrimaryPixels": 33960,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        361,
+        7,
+        573,
+        307
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 2,
+      "primaryComponentPixels": 34690,
+      "retainedPrimaryPixels": 34690,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        674,
+        15,
+        888,
+        307
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 3,
+      "primaryComponentPixels": 34376,
+      "retainedPrimaryPixels": 34376,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        987,
+        10,
+        1207,
+        307
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 4,
+      "primaryComponentPixels": 32491,
+      "retainedPrimaryPixels": 32491,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        31,
+        323,
+        270,
+        619
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 5,
+      "primaryComponentPixels": 34495,
+      "retainedPrimaryPixels": 34495,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        350,
+        324,
+        581,
+        619
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 6,
+      "primaryComponentPixels": 34016,
+      "retainedPrimaryPixels": 34016,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        674,
+        316,
+        905,
+        619
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 7,
+      "primaryComponentPixels": 34235,
+      "retainedPrimaryPixels": 34235,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        976,
+        318,
+        1219,
+        618
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 8,
+      "primaryComponentPixels": 35124,
+      "retainedPrimaryPixels": 35124,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        41,
+        650,
+        280,
+        930
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 9,
+      "primaryComponentPixels": 38158,
+      "retainedPrimaryPixels": 38158,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        348,
+        627,
+        587,
+        930
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 10,
+      "primaryComponentPixels": 41987,
+      "retainedPrimaryPixels": 41740,
+      "missingPrimaryPixels": 247,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        638,
+        642,
+        961,
+        932
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 11,
+      "primaryComponentPixels": 37034,
+      "retainedPrimaryPixels": 37034,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 247,
+      "primaryBbox": [
+        954,
+        657,
+        1237,
+        930
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 12,
+      "primaryComponentPixels": 34422,
+      "retainedPrimaryPixels": 34422,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        49,
+        950,
+        301,
+        1234
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 13,
+      "primaryComponentPixels": 31569,
+      "retainedPrimaryPixels": 31569,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        361,
+        971,
+        590,
+        1234
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 14,
+      "primaryComponentPixels": 30216,
+      "retainedPrimaryPixels": 30216,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        650,
+        1046,
+        929,
+        1235
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 15,
+      "primaryComponentPixels": 21482,
+      "retainedPrimaryPixels": 21482,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        948,
+        1102,
+        1247,
+        1225
+      ],
+      "threshold": 32
+    }
+  ],
+  "female": [
+    {
+      "frame": 0,
+      "primaryComponentPixels": 22776,
+      "retainedPrimaryPixels": 22776,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        94,
+        12,
+        223,
+        306
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 1,
+      "primaryComponentPixels": 22947,
+      "retainedPrimaryPixels": 22947,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        404,
+        12,
+        537,
+        306
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 2,
+      "primaryComponentPixels": 22963,
+      "retainedPrimaryPixels": 22963,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        719,
+        12,
+        850,
+        306
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 3,
+      "primaryComponentPixels": 22947,
+      "retainedPrimaryPixels": 22947,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        1031,
+        12,
+        1164,
+        306
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 4,
+      "primaryComponentPixels": 25744,
+      "retainedPrimaryPixels": 25744,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        65,
+        323,
+        249,
+        614
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 5,
+      "primaryComponentPixels": 25278,
+      "retainedPrimaryPixels": 25278,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        365,
+        327,
+        557,
+        611
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 6,
+      "primaryComponentPixels": 25551,
+      "retainedPrimaryPixels": 25551,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        695,
+        329,
+        883,
+        614
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 7,
+      "primaryComponentPixels": 24512,
+      "retainedPrimaryPixels": 24512,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        995,
+        331,
+        1192,
+        614
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 8,
+      "primaryComponentPixels": 27382,
+      "retainedPrimaryPixels": 27382,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        75,
+        642,
+        251,
+        932
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 9,
+      "primaryComponentPixels": 30470,
+      "retainedPrimaryPixels": 30470,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        381,
+        626,
+        569,
+        934
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 10,
+      "primaryComponentPixels": 42815,
+      "retainedPrimaryPixels": 42815,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 14,
+      "primaryBbox": [
+        659,
+        645,
+        1011,
+        934
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 11,
+      "primaryComponentPixels": 29128,
+      "retainedPrimaryPixels": 29114,
+      "missingPrimaryPixels": 14,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        1013,
+        650,
+        1205,
+        933
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 12,
+      "primaryComponentPixels": 25940,
+      "retainedPrimaryPixels": 25940,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        60,
+        958,
+        246,
+        1226
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 13,
+      "primaryComponentPixels": 24803,
+      "retainedPrimaryPixels": 24803,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        369,
+        980,
+        553,
+        1224
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 14,
+      "primaryComponentPixels": 20562,
+      "retainedPrimaryPixels": 20562,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        652,
+        1045,
+        875,
+        1229
+      ],
+      "threshold": 32
+    },
+    {
+      "frame": 15,
+      "primaryComponentPixels": 17485,
+      "retainedPrimaryPixels": 17485,
+      "missingPrimaryPixels": 0,
+      "foreignPrimaryPixels": 0,
+      "primaryBbox": [
+        927,
+        1126,
+        1238,
+        1222
+      ],
+      "threshold": 32
+    }
+  ]
+}

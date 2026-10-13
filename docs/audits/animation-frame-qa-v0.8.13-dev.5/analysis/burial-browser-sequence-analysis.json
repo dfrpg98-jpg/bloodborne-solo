@@ -1,0 +1,463 @@
+{
+  "sourceScreenshotsEdited": false,
+  "productionEdited": false,
+  "method": "Actual JPEG screenshots, visible stage left-border localization for scroll compensation; brown/neutral foreground in expected lower-foot region excludes teal backdrop/shadow; two substantial horizontal foot runs averaged. Integer-pixel photographic measurement, not source-alpha exactness.",
+  "sequences": {
+    "before": {
+      "samples": [
+        {
+          "file": "before-burial-idle-0.jpg",
+          "time": "2026-10-13T12:54:10.853Z",
+          "sha256": "639da43033488f20ded29a2aff32a060f02e1370242ed8fade11191320e9e55b",
+          "stageBottomEstimated": 512,
+          "footBottomY": 446,
+          "footBottomRelativeToStageBottom": -66,
+          "footCenterX": 542.75,
+          "bootComponents": [
+            {
+              "bounds": [
+                559,
+                574
+              ],
+              "area": 76,
+              "center": 566.5
+            },
+            {
+              "bounds": [
+                517,
+                521
+              ],
+              "area": 55,
+              "center": 519.0
+            }
+          ]
+        },
+        {
+          "file": "before-burial-idle-1.jpg",
+          "time": "2026-10-13T12:54:11.136Z",
+          "sha256": "b1fbdaa8c40a071fa86a25055ba80a2ed6d422820fe5e51dc33b425fee39adf7",
+          "stageBottomEstimated": 512,
+          "footBottomY": 446,
+          "footBottomRelativeToStageBottom": -66,
+          "footCenterX": 519.5,
+          "bootComponents": [
+            {
+              "bounds": [
+                535,
+                549
+              ],
+              "area": 81,
+              "center": 542.0
+            },
+            {
+              "bounds": [
+                494,
+                500
+              ],
+              "area": 63,
+              "center": 497.0
+            }
+          ]
+        },
+        {
+          "file": "before-burial-idle-2.jpg",
+          "time": "2026-10-13T12:54:11.420Z",
+          "sha256": "eb25dda3795e38e72b9994c5355efaaec84e40792b203c4c8240e8b4fc9a092b",
+          "stageBottomEstimated": 512,
+          "footBottomY": 446,
+          "footBottomRelativeToStageBottom": -66,
+          "footCenterX": 542.75,
+          "bootComponents": [
+            {
+              "bounds": [
+                559,
+                574
+              ],
+              "area": 76,
+              "center": 566.5
+            },
+            {
+              "bounds": [
+                517,
+                521
+              ],
+              "area": 55,
+              "center": 519.0
+            }
+          ]
+        },
+        {
+          "file": "before-burial-idle-3.jpg",
+          "time": "2026-10-13T12:54:11.702Z",
+          "sha256": "02755e4837ac05889485f039cb064371205435782107e82c424d35efc41af7f7",
+          "stageBottomEstimated": 512,
+          "footBottomY": 446,
+          "footBottomRelativeToStageBottom": -66,
+          "footCenterX": 519.5,
+          "bootComponents": [
+            {
+              "bounds": [
+                535,
+                549
+              ],
+              "area": 81,
+              "center": 542.0
+            },
+            {
+              "bounds": [
+                494,
+                500
+              ],
+              "area": 63,
+              "center": 497.0
+            }
+          ]
+        },
+        {
+          "file": "before-burial-idle-4.jpg",
+          "time": "2026-10-13T12:54:11.970Z",
+          "sha256": "639da43033488f20ded29a2aff32a060f02e1370242ed8fade11191320e9e55b",
+          "stageBottomEstimated": 512,
+          "footBottomY": 446,
+          "footBottomRelativeToStageBottom": -66,
+          "footCenterX": 542.75,
+          "bootComponents": [
+            {
+              "bounds": [
+                559,
+                574
+              ],
+              "area": 76,
+              "center": 566.5
+            },
+            {
+              "bounds": [
+                517,
+                521
+              ],
+              "area": 55,
+              "center": 519.0
+            }
+          ]
+        },
+        {
+          "file": "before-burial-idle-5.jpg",
+          "time": "2026-10-13T12:54:12.236Z",
+          "sha256": "b1fbdaa8c40a071fa86a25055ba80a2ed6d422820fe5e51dc33b425fee39adf7",
+          "stageBottomEstimated": 512,
+          "footBottomY": 446,
+          "footBottomRelativeToStageBottom": -66,
+          "footCenterX": 519.5,
+          "bootComponents": [
+            {
+              "bounds": [
+                535,
+                549
+              ],
+              "area": 81,
+              "center": 542.0
+            },
+            {
+              "bounds": [
+                494,
+                500
+              ],
+              "area": 63,
+              "center": 497.0
+            }
+          ]
+        },
+        {
+          "file": "before-burial-idle-6.jpg",
+          "time": "2026-10-13T12:54:12.505Z",
+          "sha256": "b1fbdaa8c40a071fa86a25055ba80a2ed6d422820fe5e51dc33b425fee39adf7",
+          "stageBottomEstimated": 512,
+          "footBottomY": 446,
+          "footBottomRelativeToStageBottom": -66,
+          "footCenterX": 519.5,
+          "bootComponents": [
+            {
+              "bounds": [
+                535,
+                549
+              ],
+              "area": 81,
+              "center": 542.0
+            },
+            {
+              "bounds": [
+                494,
+                500
+              ],
+              "area": 63,
+              "center": 497.0
+            }
+          ]
+        },
+        {
+          "file": "before-burial-idle-7.jpg",
+          "time": "2026-10-13T12:54:12.787Z",
+          "sha256": "eb25dda3795e38e72b9994c5355efaaec84e40792b203c4c8240e8b4fc9a092b",
+          "stageBottomEstimated": 512,
+          "footBottomY": 446,
+          "footBottomRelativeToStageBottom": -66,
+          "footCenterX": 542.75,
+          "bootComponents": [
+            {
+              "bounds": [
+                559,
+                574
+              ],
+              "area": 76,
+              "center": 566.5
+            },
+            {
+              "bounds": [
+                517,
+                521
+              ],
+              "area": 55,
+              "center": 519.0
+            }
+          ]
+        }
+      ],
+      "uniqueScreenshotFiles": 4,
+      "uniqueFootCenterX": [
+        519.5,
+        542.75
+      ],
+      "footCenterPeakToPeakPx": 23.25,
+      "footBottomPeakToPeakPx": 0
+    },
+    "after": {
+      "samples": [
+        {
+          "file": "after-burial-idle-0.jpg",
+          "time": "2026-10-13T13:23:10.286Z",
+          "sha256": "eb20b65a21421d46104a6ac1a55415325a45d5ff7c4e30b3f3eab338e69ef8e9",
+          "stageBottomEstimated": 534,
+          "footBottomY": 464,
+          "footBottomRelativeToStageBottom": -70,
+          "footCenterX": 519.5,
+          "bootComponents": [
+            {
+              "bounds": [
+                536,
+                548
+              ],
+              "area": 78,
+              "center": 542.0
+            },
+            {
+              "bounds": [
+                495,
+                499
+              ],
+              "area": 49,
+              "center": 497.0
+            }
+          ]
+        },
+        {
+          "file": "after-burial-idle-1.jpg",
+          "time": "2026-10-13T13:23:10.587Z",
+          "sha256": "5d5f4f6df76168dc77eae114ddcd87c7a016d74eb6785110edb9c75764769737",
+          "stageBottomEstimated": 534,
+          "footBottomY": 465,
+          "footBottomRelativeToStageBottom": -69,
+          "footCenterX": 519.0,
+          "bootComponents": [
+            {
+              "bounds": [
+                536,
+                549
+              ],
+              "area": 81,
+              "center": 542.5
+            },
+            {
+              "bounds": [
+                493,
+                498
+              ],
+              "area": 64,
+              "center": 495.5
+            }
+          ]
+        },
+        {
+          "file": "after-burial-idle-2.jpg",
+          "time": "2026-10-13T13:23:10.870Z",
+          "sha256": "371b8416507dab5564f307a726651da507db027d1de50f8aff6f8c2186094a0b",
+          "stageBottomEstimated": 534,
+          "footBottomY": 464,
+          "footBottomRelativeToStageBottom": -70,
+          "footCenterX": 519.5,
+          "bootComponents": [
+            {
+              "bounds": [
+                536,
+                548
+              ],
+              "area": 78,
+              "center": 542.0
+            },
+            {
+              "bounds": [
+                495,
+                499
+              ],
+              "area": 49,
+              "center": 497.0
+            }
+          ]
+        },
+        {
+          "file": "after-burial-idle-3.jpg",
+          "time": "2026-10-13T13:23:11.147Z",
+          "sha256": "739ba83dc199c1d170f9f618513fef41b0d82455ccff8fc83d8884c732c68dae",
+          "stageBottomEstimated": 534,
+          "footBottomY": 464,
+          "footBottomRelativeToStageBottom": -70,
+          "footCenterX": 519.5,
+          "bootComponents": [
+            {
+              "bounds": [
+                536,
+                548
+              ],
+              "area": 78,
+              "center": 542.0
+            },
+            {
+              "bounds": [
+                495,
+                499
+              ],
+              "area": 49,
+              "center": 497.0
+            }
+          ]
+        },
+        {
+          "file": "after-burial-idle-4.jpg",
+          "time": "2026-10-13T13:23:11.429Z",
+          "sha256": "905234cd4b5f2f0a067cdb138a97feba8538be51b6bdbb64107907f57cdeea63",
+          "stageBottomEstimated": 534,
+          "footBottomY": 465,
+          "footBottomRelativeToStageBottom": -69,
+          "footCenterX": 519.0,
+          "bootComponents": [
+            {
+              "bounds": [
+                536,
+                549
+              ],
+              "area": 81,
+              "center": 542.5
+            },
+            {
+              "bounds": [
+                493,
+                498
+              ],
+              "area": 64,
+              "center": 495.5
+            }
+          ]
+        },
+        {
+          "file": "after-burial-idle-5.jpg",
+          "time": "2026-10-13T13:23:11.713Z",
+          "sha256": "eb20b65a21421d46104a6ac1a55415325a45d5ff7c4e30b3f3eab338e69ef8e9",
+          "stageBottomEstimated": 534,
+          "footBottomY": 464,
+          "footBottomRelativeToStageBottom": -70,
+          "footCenterX": 519.5,
+          "bootComponents": [
+            {
+              "bounds": [
+                536,
+                548
+              ],
+              "area": 78,
+              "center": 542.0
+            },
+            {
+              "bounds": [
+                495,
+                499
+              ],
+              "area": 49,
+              "center": 497.0
+            }
+          ]
+        },
+        {
+          "file": "after-burial-idle-6.jpg",
+          "time": "2026-10-13T13:23:11.996Z",
+          "sha256": "ceca32af96c9aea5917bb0f2d71f8716f06b34bba213dd958117a0b4af95e61d",
+          "stageBottomEstimated": 534,
+          "footBottomY": 465,
+          "footBottomRelativeToStageBottom": -69,
+          "footCenterX": 519.0,
+          "bootComponents": [
+            {
+              "bounds": [
+                536,
+                549
+              ],
+              "area": 81,
+              "center": 542.5
+            },
+            {
+              "bounds": [
+                493,
+                498
+              ],
+              "area": 64,
+              "center": 495.5
+            }
+          ]
+        },
+        {
+          "file": "after-burial-idle-7.jpg",
+          "time": "2026-10-13T13:23:12.280Z",
+          "sha256": "739ba83dc199c1d170f9f618513fef41b0d82455ccff8fc83d8884c732c68dae",
+          "stageBottomEstimated": 534,
+          "footBottomY": 464,
+          "footBottomRelativeToStageBottom": -70,
+          "footCenterX": 519.5,
+          "bootComponents": [
+            {
+              "bounds": [
+                536,
+                548
+              ],
+              "area": 78,
+              "center": 542.0
+            },
+            {
+              "bounds": [
+                495,
+                499
+              ],
+              "area": 49,
+              "center": 497.0
+            }
+          ]
+        }
+      ],
+      "uniqueScreenshotFiles": 6,
+      "uniqueFootCenterX": [
+        519.0,
+        519.5
+      ],
+      "footCenterPeakToPeakPx": 0.5,
+      "footBottomPeakToPeakPx": 1
+    }
+  },
+  "measuredImprovementPx": 22.75,
+  "measuredReductionPercent": 97.84946236559139
+}

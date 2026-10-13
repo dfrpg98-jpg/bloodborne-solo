@@ -1,0 +1,33 @@
+{
+  "sourceScreenshotsEdited": false,
+  "productionFilesEditedByThisReview": false,
+  "reviewedCaptures": 2,
+  "viewedDirectionClippingIssues": [],
+  "visualConclusion": "Actual gallery photos visibly move beast feet toward the same shadow after origin correction. The idle body is intact with no new cut parts or stray fragments. Old paws visibly float above the shadow; new paws reach/overlap the upper shadow area.",
+  "method": "Approximate actual JPEG paw foreground and dark teal shadow segmentation; fixed same viewport/same visible stage, integer pixels. Green line is foreground foot bottom; red line is shadow top.",
+  "samples": [
+    {
+      "file": "before-ground-fix/generic-beast-idle.jpg",
+      "sha256": "6164569ef00b9cccea5723d4b869c5d80d4e8744e9d20a593e84ffdef982c65c",
+      "footBottomYApprox": 452,
+      "shadowTopYApprox": 463,
+      "clearGapPxApprox": 10
+    },
+    {
+      "file": "generic-beast-idle.jpg",
+      "sha256": "006015e0368abda0f6dc8aaec9ea7f0c16f8e0f87240d97e751d3eb0202f9c8b",
+      "footBottomYApprox": 467,
+      "shadowTopYApprox": 465,
+      "clearGapPxApprox": -3
+    }
+  ],
+  "footVerticalChangePxApprox": 15,
+  "originChangeReportedByParent": {
+    "before": 0.8984375,
+    "after": 0.84375
+  },
+  "limitations": [
+    "This is an idle still-image comparison; parent separately verified all16pose relative coordinates and UI playback.",
+    "JPEG color masks approximate visible boundaries and are not exact source alpha measurements."
+  ]
+}

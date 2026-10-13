@@ -260,7 +260,9 @@
       }
       readySheets.add(skin);
     }
-    setReady(true);
+    // Required bodies may load successfully but still need unsupported native
+    // clipping. Keep their DOM markers visible until every required body can draw.
+    setReady([...sheets].filter(([, data]) => !data.optional).every(([skin]) => readySheets.has(skin)));
   }
   function renderSkin(actor) {
     if (readySheets.has(actor.skin)) return actor.skin;
@@ -389,13 +391,19 @@
     }
     return g;
   }
+  function movementDuration(actor) {
+    const animation = sheets.get(renderSkin(actor))?.animations.walk;
+    // A visible walk finishes one footfall cycle before returning to idle.
+    // Keep short/fallback walks readable and bound unusually long optional clips.
+    return animation ? Math.max(340, Math.min(600, Math.ceil(animation.frames.length * 1000 / animation.frameRate))) : 340;
+  }
   function moveActor(before, after) {
     const unit = units.get(after.id);
     if (charactersReady && unit) {
       cancelUnitMotion(unit, false); unit.sprite.setPosition(before.x, before.y);
       unit.sprite.setFlipX?.(after.x < before.x); unit.moving = true; pose(unit, "walk");
       const epoch = unit.epoch;
-      scene.tweens.add({ targets: unit.sprite, x: after.x, y: after.y, duration: 340, ease: "Sine.easeInOut",
+      scene.tweens.add({ targets: unit.sprite, x: after.x, y: after.y, duration: movementDuration(after), ease: "Sine.easeInOut",
         onUpdate: () => { unit.shadow?.setPosition?.(unit.sprite.x, unit.sprite.y + 2); unit.sprite.setDepth?.(100 + unit.sprite.y);
           try { updateMask(unit); } catch (_) { fail(); } },
         onComplete: () => { if (unit.epoch === epoch && units.get(after.id) === unit) { unit.moving = false; idle(unit); } } });
@@ -518,8 +526,10 @@
       }
     }
     actors.clear(); for (const actor of current.values()) actors.set(actor.id, actor);
-    const hasMovement = actions.some(action => action.type === "move");
-    let attackDelay = hasMovement ? 350 : 0;
+    const movingActors = actions.filter(action => action.type === "move").flatMap(action =>
+      [...current.values()].filter(actor => !action.fromId || action.fromId === actor.id));
+    const movementDelay = movingActors.length ? Math.max(...movingActors.map(movementDuration)) + 10 : 0;
+    let attackDelay = movementDelay;
     if (scene && !failed && !motionReduced && changedRevision) for (const action of actions) {
       if (action.type === "move") for (const actor of current.values()) {
         if (action.fromId && action.fromId !== actor.id) continue;
@@ -549,7 +559,7 @@
       if (!unit || old?.hp === null || actor.hp === null || !(actor.hp < old?.hp) ||
         actions.some(action => ["attack", "shot"].includes(action.type) && action.toId === actor.id)) continue;
       // Poison, mission damage and other observed HP losses need no guessed attack.
-      later(() => { cancelUnitMotion(unit, true); pose(unit, "hit", () => idle(unit)); }, hasMovement ? 350 : 0);
+      later(() => { cancelUnitMotion(unit, true); pose(unit, "hit", () => idle(unit)); }, movementDelay);
     }
     for (const unit of units.values()) updateMask(unit);
     lastRevision = snapshot.revision; lastSceneId = snapshot.sceneId; lastView = snapshot.view; publish();
