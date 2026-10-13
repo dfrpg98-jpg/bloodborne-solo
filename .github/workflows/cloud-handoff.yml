@@ -1,0 +1,37 @@
+name: Cloud handoff snapshot
+
+on:
+  push:
+    branches: [ui/mission-change-feedback]
+    paths:
+      - .github/workflows/cloud-handoff.yml
+      - docs/cloud-handoff-v0.8.13-dev.6.md
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Archive only the committed project
+        run: |
+          git archive --format=tar.gz --output=bloodborne-source.tar.gz HEAD
+          sha256sum bloodborne-source.tar.gz > bloodborne-source.sha256
+          git rev-parse HEAD > bloodborne-source.commit
+      - name: Keep private cloud continuation source
+        uses: actions/upload-artifact@v7
+        with:
+          name: bloodborne-cloud-source
+          path: |
+            bloodborne-source.tar.gz
+            bloodborne-source.sha256
+            bloodborne-source.commit
+          compression-level: 0
+          retention-days: 1
+          if-no-files-found: error
