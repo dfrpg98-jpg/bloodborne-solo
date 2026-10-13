@@ -341,6 +341,7 @@ test("two independently selected attack rewards are passed together with the cho
     choice.checked = true; choice.fire("change");
   }
   ui.el("hand").querySelectorAll("[data-card]")[0].click();
+  ui.el("slots").querySelectorAll("[data-slot]")[0].click();
   option(ui, "decisions", "ATTACK").click();
   assert.deepEqual([...ui.commands[0].rewardIds].sort(), ["reward-0", "reward-1"]);
   assert.equal(ui.commands[0].cardId, h.hand[0].id);
@@ -434,7 +435,7 @@ test("a two-slot weapon keeps its own effect and resets an out-of-range selectio
   option(ui, "decisions", "TRANSFORM").click();
   assert.equal(ui.el("slots").querySelectorAll("[data-slot]").length, 2);
   assert.match(ui.el("weaponAbility").textContent, /방해받을 수 없지만/);
-  assert.equal(ui.el("slots").querySelectorAll("[data-slot]")[0].attributes["aria-pressed"], "true");
+  assert(ui.el("slots").querySelectorAll("[data-slot]").every(slot => slot.attributes["aria-pressed"] === "false"));
 });
 test("the new practice target menu distinguishes general variants from hunter-count NPC faces", () => {
   const ui = boot(baseState(), null, rewards(), { storage: {} });
@@ -470,6 +471,7 @@ test("the chosen optional wheel sacrifice reaches the attack command and leaves 
   s.enemies = [{ id: "huntsman-mob-1", kind: "huntsman-mob", figure: 1, hp: 3, node: h.position }];
   const ui = boot(s, mission(), rewards());
   ui.el("hand").querySelectorAll("[data-card]")[0].click();
+  ui.el("slots").querySelectorAll("[data-slot]")[0].click();
   assert.equal(JSON.parse(option(ui, "decisions", "ATTACK").dataset.args).weaponBoost, 0);
   ui.el("weaponBoost").value = "2"; ui.el("weaponBoost").fire("change");
   option(ui, "decisions", "ATTACK").click();
@@ -686,16 +688,17 @@ function suppliedGun(id, overrides = {}) {
 }
 test("actual firearms display their own triggers and preparation costs instead of the legacy replacement", () => {
   for (const id of ["ludwig-rifle", "repeating-pistol", "flamesprayer"]) {
-    const ui = boot(baseState(), mission(), rewards(), { engine: { firearm: () => suppliedGun(id), canFirearm: () => false } });
+    const state = baseState(); E.hunter(state).firearmReady = false;
+    const ui = boot(state, mission(), rewards(), { engine: { firearm: () => suppliedGun(id), canFirearm: () => false } });
     assert.match(ui.el("firearm").innerHTML, /장착 화기/);
     assert(!ui.el("firearm").innerHTML.includes("제공된 실물 카드"));
     assert(!ui.el("firearm").innerHTML.includes("임시 동작"));
-    assert.match(ui.el("firearm").innerHTML, new RegExp(`기술 ${id === "repeating-pistol" ? 1 : 2}개`));
+    assert.match(ui.el("firearm").innerHTML, new RegExp(`플레이어의 차례에 손패 ${id === "repeating-pistol" ? 1 : 2}장을 버려 준비`));
     if (id === "ludwig-rifle") assert.match(ui.el("firearm").innerHTML, /이동해 들어올 때/);
     if (id === "repeating-pistol") assert.match(ui.el("firearm").innerHTML, /변형할 때도 준비/);
     if (id === "flamesprayer") assert.match(ui.el("firearm").innerHTML, /속도 2 · 피해 2 · 방해/);
   }
-  const legacyState = baseState(); E.hunter(legacyState).firearmId = "ludwig-rifle";
+  const legacyState = baseState(); E.hunter(legacyState).firearmId = "ludwig-rifle"; E.hunter(legacyState).firearmReady = false;
   const legacy = boot(legacyState, mission(), rewards(), { engine: {
     firearm: () => ({ name: "루드비히 장총", actual: false, temporary: true }), canFirearm: () => false,
   } });
@@ -802,7 +805,9 @@ test("a boss or printed enemy ability reaction uses its indicated dodge speed an
   assert.equal(ui.el("phaseTitle").textContent, "뛰어 내려찍기");
   assert.match(ui.el("phaseHelp").textContent, /속도 1.*기절/);
   assert.equal(option(ui, "decisions", "DODGE").disabled, true);
-  ui.el("hand").querySelectorAll("[data-card]")[0].click(); option(ui, "decisions", "DODGE").click();
+  ui.el("hand").querySelectorAll("[data-card]")[0].click();
+  ui.el("slots").querySelectorAll("[data-slot]")[0].click();
+  option(ui, "decisions", "DODGE").click();
   assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "DODGE", cardId: E.hunter(s).hand[0].id, slot: 0 });
   option(ui, "decisions", "RESOLVE").click(); assert.equal(ui.commands[1].type, "RESOLVE");
 });

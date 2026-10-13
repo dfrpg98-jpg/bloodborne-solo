@@ -69,7 +69,7 @@
     : M.placementOptions(state.world, state.world.pending.tileId, state.world.pending.anchor);
   let state = E.create(undefined, "burial", 0, null, "hunter-pistol", "center", { campaign: true }),
     selectedCard = null,
-    selectedSlot = 0,
+    selectedSlot = null,
     selectedEnemy = null,
     mapTarget = null,
     presentationActions = [],
@@ -279,7 +279,7 @@
         state.enemies[0]?.id ||
         null;
     const currentSlots = E.slots(state);
-    if (!currentSlots[selectedSlot] || h.slots[selectedSlot]) selectedSlot = currentSlots.findIndex((_, i) => !h.slots[i]);
+    if (selectedSlot !== null && (!currentSlots[selectedSlot] || h.slots[selectedSlot])) selectedSlot = null;
     const valid = new Set(E.pullCandidates(state).map((e) => e.id));
     pulls = new Set([...pulls].filter((id) => valid.has(id)));
     $("roundLabel").textContent = `라운드 ${state.round} · 처치 ${state.kills}`;
@@ -346,8 +346,11 @@
         : actual && gun.trigger === "hunter-turn"
           ? `자기 차례에 속도 ${gun.speed ?? 2} · 피해 ${gun.damage ?? 2}${gun.interrupt === false ? "" : " · 방해"} 공격을 합니다.${gun.splash === 0 ? "" : ` 공격 후 같은 칸의 다른 적들에게 피해 ${gun.splash ?? 1}을 줍니다.`}`
           : "적의 기본 공격을 자동으로 방해합니다.",
-      printed = Array.isArray(gun.rules) && gun.rules.length ? gun.rules.map(rule => esc(uiText(rule))).join("<br>") : esc(description);
-    $("firearm").innerHTML = `<p class="eyebrow">장착 화기</p><h2>${esc(gun.name)} <small class="${h.firearmReady ? "ready" : "spent"}">${h.firearmReady ? "준비됨" : "소진됨"}</small></h2><section class="firearm-rules" aria-label="화기 효과와 준비"><h3>화기 효과와 준비</h3><p>${printed}</p><p class="muted">사냥꾼 차례에 기술 ${cost}개를 버려 준비${actual && gun.prepareEchoCost ? ` 또는 피의 유지 ${gun.prepareEchoCost}개로 준비` : ""} · 꿈에서 회복${actual && gun.prepareOnTransform ? " · 무기를 변형할 때도 준비" : ""}${!actual && h.firearmId !== "hunter-pistol" ? "<br>이 저장/시험에서는 단총과 같은 능력으로 임시 동작" : ""}</p></section>${firearmAction()}`;
+      preparationRules = new Set([gun.prepareText, gun.readyRule].filter(Boolean)),
+      effectRules = Array.isArray(gun.rules) ? gun.rules.filter(rule => !preparationRules.has(rule)) : [],
+      printed = effectRules.length ? effectRules.map(rule => esc(uiText(rule))).join("<br>") : esc(description);
+    const preparation = h.firearmReady ? "" : `<p class="muted" data-firearm-preparation>플레이어의 차례에 손패 ${cost}장을 버려 준비${actual && gun.prepareEchoCost ? ` 또는 피의 유지 ${gun.prepareEchoCost}개로 준비` : ""} · 꿈에서 회복${actual && gun.prepareOnTransform ? " · 무기를 변형할 때도 준비" : ""}${!actual && h.firearmId !== "hunter-pistol" ? "<br>이 저장/시험에서는 단총과 같은 능력으로 임시 동작" : ""}</p>`;
+    $("firearm").innerHTML = `<p class="eyebrow">장착 화기</p><h2>${esc(gun.name)} <small class="${h.firearmReady ? "ready" : "spent"}">${h.firearmReady ? "준비됨" : "소진됨"}</small></h2><section class="firearm-rules" aria-label="화기 효과와 준비"><h3>화기 효과와 준비</h3><p>${printed}</p>${preparation}</section>${firearmAction()}`;
     bind($("firearm"));
   }
   function renderComponents() {
@@ -691,7 +694,8 @@
       .forEach(
         (b) =>
           (b.onclick = () => {
-            selectedSlot = +b.dataset.slot;
+            const slot = +b.dataset.slot;
+            selectedSlot = selectedSlot === slot ? null : slot;
             renderHand();
             renderDecisions();
           }),
@@ -707,7 +711,7 @@
       empty = !!slot && !h.slots[selectedSlot],
       canCommit = !!chosen && empty;
     const names = {
-      hunter: "사냥꾼의 차례",
+      hunter: "플레이어의 차례",
       move: "이동과 탐험",
       tile_place: "새 타일 배치",
       spawn_choice: "피규어 재배치",
@@ -765,10 +769,10 @@
       help =
         "아래 손패에서 카드를 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.";
       const gun = E.firearm(state), realGun = actualGun(), reloadCost = realGun ? gun.prepareCost || 1 : 1;
-      html = `<p class="muted">${esc(selectHint)}</p><div class="actions">${button("이동", "MOVE", { cardId: selectedCard }, !chosen)}${button("무기 변형", "TRANSFORM", { cardId: selectedCard }, !chosen)}${button("꿈으로 이동", "DREAM", { cardId: selectedCard }, !chosen)}${reloadCost === 1 ? button("화기 다시 준비 · 카드 1장", "RELOAD", realGun ? { cardIds: [selectedCard] } : { cardId: selectedCard }, !chosen || h.firearmReady) : ""}</div>`;
+      html = `<p class="muted">${esc(selectHint)}</p><div class="actions">${button("이동", "MOVE", { cardId: selectedCard }, !chosen)}${button("무기 변형", "TRANSFORM", { cardId: selectedCard }, !chosen)}${button("꿈으로 이동", "DREAM", { cardId: selectedCard }, !chosen)}${reloadCost === 1 ? button("화기 다시 준비 · 손패 1장", "RELOAD", realGun ? { cardIds: [selectedCard] } : { cardId: selectedCard }, !chosen || h.firearmReady) : ""}</div>`;
       if (reloadCost > 1) {
         const second = h.hand.find((card) => card.id === reloadSecondCardId && card.id !== selectedCard);
-        html += `<div class="reload-choice"><p class="muted">${esc(gun.name)} 재준비 · 서로 다른 카드 ${reloadCost}장</p><label>두 번째로 버릴 카드<select id="reloadSecondCard"><option value="">카드를 선택하세요</option>${h.hand.filter((card) => card.id !== selectedCard).map((card) => `<option value="${esc(card.id)}" ${card.id === reloadSecondCardId ? "selected" : ""}>${esc(E.card(card).name)}</option>`).join("")}</select></label>${button("화기 다시 준비 · 카드 2장", "RELOAD", { cardIds: [selectedCard, second?.id || null] }, !chosen || !second || h.firearmReady)}</div>`;
+        html += `<div class="reload-choice"><p class="muted">${esc(gun.name)} 재준비 · 서로 다른 손패 ${reloadCost}장</p><label>두 번째로 버릴 손패<select id="reloadSecondCard"><option value="">손패를 선택하세요</option>${h.hand.filter((card) => card.id !== selectedCard).map((card) => `<option value="${esc(card.id)}" ${card.id === reloadSecondCardId ? "selected" : ""}>${esc(E.card(card).name)}</option>`).join("")}</select></label>${button("화기 다시 준비 · 손패 2장", "RELOAD", { cardIds: [selectedCard, second?.id || null] }, !chosen || !second || h.firearmReady)}</div>`;
       }
       if (realGun && gun.prepareEchoCost) html += button(`화기 다시 준비 · 피의 유지 ${gun.prepareEchoCost}개`, "RELOAD", { payEcho: true, cardIds: [] }, h.firearmReady || h.echoes < gun.prepareEchoCost);
       if (mapTarget) html = `<details class="utility-actions"><summary>다른 행동 · 변형·꿈·화기 준비</summary>${html}</details>`;
@@ -824,7 +828,7 @@
           {},
           state.clinicUsed,
         );
-      html += button("사냥꾼 차례 마치기", "END_TURN");
+      html += button("플레이어의 차례 마치기", "END_TURN");
     } else if (p === "move") {
       help = `남은 이동력 ${state.move.remaining}. 밝은 칸 또는 현재 칸의 출입구를 누르세요. 이동을 마치면 적의 추격을 처리합니다.`;
       if ((E.missionActions ? E.missionActions(state) : []).some((a) => a.command.type === "MISSION_PICKUP"))
@@ -887,13 +891,13 @@
       help = blockPerSpeed
         ? `회피 속도마다 ${blockPerSpeed}피해를 방어합니다. 회피 카드와 빈 슬롯을 선택하세요.`
         : `속도 ${reaction.dodgeSpeed ?? 1} 이상 회피 카드와 빈 슬롯을 선택하세요.${reaction.effects?.length ? " " + reaction.effects.join(" · ") : ""}`;
-      html = `<p>${esc(selectHint)}</p>${button("이 효과 회피", "DODGE", { cardId: selectedCard, slot: selectedSlot }, !E.canDodge(state, selectedCard, selectedSlot))}${button(reaction.damage ? `피해 ${reaction.damage}와 효과를 받고 계속` : "회피하지 않고 효과 처리", "RESOLVE", {}, false, "primary")}`;
+      html = `<p>${esc(selectHint)}</p>${button("이 효과 회피", "DODGE", { cardId: selectedCard, slot: selectedSlot }, !canCommit || !E.canDodge(state, selectedCard, selectedSlot))}${button(reaction.damage ? `피해 ${reaction.damage}와 효과를 받고 계속` : "회피하지 않고 효과 처리", "RESOLVE", {}, false, "primary")}`;
     } else if (p === "combat_react" || p === "combat_extra") {
       const extra = p === "combat_extra";
       help = extra
         ? "첫 공격을 피했거나 방해했어도 별도의 속도 2 회피가 필요합니다."
         : "회피할 경우 손패의 회피 카드와 충분한 속도의 빈 슬롯을 선택하세요.";
-      html = `<p>${esc(selectHint)}</p>${button(extra ? "추가 타격 회피" : "회피", extra ? "EXTRA_DODGE" : "DODGE", { cardId: selectedCard, slot: selectedSlot }, !E.canDodge(state, selectedCard, selectedSlot, extra))}`;
+      html = `<p>${esc(selectHint)}</p>${button(extra ? "추가 타격 회피" : "회피", extra ? "EXTRA_DODGE" : "DODGE", { cardId: selectedCard, slot: selectedSlot }, !canCommit || !E.canDodge(state, selectedCard, selectedSlot, extra))}`;
       if (!extra) html += firearmAction();
       html += button(
         extra ? "추가 피해 받기" : "속도 순서대로 전투 처리",
@@ -1489,6 +1493,7 @@
       nextFace = null;
       if ($("setupDialog").open) $("setupDialog").close();
       selectedCard = null;
+      selectedSlot = null;
       selectedRewards.clear();
       pulls.clear();
       inventory.clear();
@@ -1649,7 +1654,7 @@
       nextFace = null;
       if ($("setupDialog").open) $("setupDialog").close();
       selectedCard = null;
-      selectedSlot = 0;
+      selectedSlot = null;
       selectedRewards.clear();
       selectedEnemy = null;
       pulls.clear();
@@ -1740,7 +1745,7 @@
       nextStartSpace = "";
       nextFace = null;
       selectedCard = null;
-      selectedSlot = 0;
+      selectedSlot = null;
       selectedRewards.clear();
       selectedEnemy = null;
       pulls.clear();
