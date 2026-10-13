@@ -32,6 +32,7 @@
     const context = asContext(options), noun = ["skill", "stat", "combat"].includes(context) ? "기술" :
       ["item", "consumable"].includes(context) ? "소모품" : ["equipment", "reward"].includes(context) ? "장비" : "임무";
     let text = String(value ?? "");
+    text = text.replace(/\[\s*속도\s*(\d+)\s*\]\s*속도로\s*/g, "[속도 $1]로 ");
     // Named opponents refer to the actor, not to a hand skill or a new mission.
     // This only transforms a name already present in the public input.
     text = text.replace(/(성직자 야수|이오세프카|여성 야수 환자|야수 사냥 무리|야수 사냥 하인|재앙의 야수)(?:\s*NPC)?\s*카드(에게|에|의|를|을|가|이|은|는|으로|로|와|과)?/g,

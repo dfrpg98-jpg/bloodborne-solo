@@ -388,7 +388,7 @@
             a.undodgeable && "회피 불가", a.uninterruptible && "방해 불가",
             a.bossInsightReduction && "보스의 계몽 토큰마다 피해 -1",
             a.forceHunterMove && `공격당한 사냥꾼 ${a.forceHunterMove}칸 멀리 이동`].filter(Boolean);
-          return `${esc(a.name)}${a.speed !== undefined && a.speed !== null ? ` · 속도 ${a.speed}` : ""}${a.type === "attack" && a.damage !== undefined ? ` · 피해 ${a.damage}` : ""}${effects.length ? `<p>${effects.map(esc).join(" · ")}</p>` : ""}${a.rules?.length ? `<p>${a.rules.map(esc).join("<br>")}</p>` : ""}`;
+          return `${esc(a.name)}${a.type !== "ability" && Number.isFinite(a.speed) ? ` · 속도 ${a.speed}` : ""}${a.type === "attack" && a.damage !== undefined ? ` · 피해 ${a.damage}` : ""}${effects.length ? `<p>${effects.map(esc).join(" · ")}</p>` : ""}${a.rules?.length ? `<p>${a.rules.map(rule => esc(uiText(rule))).join("<br>")}</p>` : ""}`;
         },
         boss = d.boss ? `<p class="component-tokens">계몽 토큰 ${e.insightTokens || 0}개</p>${actual ? button("화기 소진 · 보스에게 계몽 토큰 +1", "BOSS_INSIGHT", {}, !E.canBossInsight?.(state)) : ""}` : "";
       const actions = d.boss && actual ? (state.combat?.enemyId === e.id && state.combat.action ? [state.combat.action] : []) : null,
@@ -659,8 +659,7 @@
     });
   }
   function rewardAttackOption(reward, label, context = "decision") {
-    const rules = uiText(reward.rules || ""), timing = uiText(reward.timing || ""),
-      effect = [rules, timing].filter(Boolean).join(" · "),
+    const effect = uiText(reward.rules || ""),
       tooltipId = `reward-effect-${context}-${reward.id}`;
     return `<label class="checkrow reward-attack-option" title="${esc(effect)}"><input type="checkbox" data-reward-attack="${esc(reward.id)}" aria-describedby="${esc(tooltipId)}" ${selectedRewards.has(reward.id) ? "checked" : ""}>${esc(label)}<span id="${esc(tooltipId)}" class="reward-effect-tooltip" role="tooltip">${esc(effect)}</span></label>`;
   }
@@ -1093,7 +1092,7 @@
     if (rewards && ["combat_react", "combat_extra", "mission_death", "boss_react"].includes(p))
       html += rewards.rewards.filter((r) => r.kind === "old-hunter-bone" && r.usable).map((r) => button(`${esc(r.name)} · 자동 회피`, "USE_REWARD", { rewardId: r.id })).join("");
     if (["hunter", "combat_choose"].includes(p) && rewards)
-      html += rewards.rewards.filter((r) => r.attackSelectable).map((r) => rewardAttackOption(r, `${r.name} · 다음 공격에 사용`)).join("");
+      html += rewards.rewards.filter((r) => r.attackSelectable).map((r) => rewardAttackOption(r, r.name)).join("");
     if (rewards?.choices.length) {
       $("phaseTitle").textContent = "획득한 보상 선택";
       help = "다음 행동 전에 보상의 장착·슬롯·보관을 결정하세요.";
@@ -1130,7 +1129,7 @@
       $("startNextChapter").onclick = () => send("START_NEXT_CHAPTER", { startSpace: $("nextChapterStart").value, face: +$("nextChapterFace").value });
     }
     $("combatInfo").innerHTML = c
-      ? `<div class="combat-card"><b>${esc(state.enemies.some((e) => e.id === c.enemyId) ? E.enemyDef(state, state.enemies.find((e) => e.id === c.enemyId)).name : "처치된 적")}</b><p>${c.action ? `${esc(ED.labels[c.action.kind])} · ${esc(c.action.name)}${c.action.speed !== null ? " · 속도 " + c.action.speed : ""}${c.action.damage !== undefined ? " · 피해 " + c.action.damage : ""}` : "적 행동 공개 전"}</p>${c.action?.rules?.length ? `<p>${c.action.rules.map(esc).join("<br>")}</p>` : ""}<small>${c.attack ? `사냥꾼 공격 · 속도 ${c.attack.speed} / 피해 ${c.attack.damage}` : c.flame ? `${esc(c.flame.name || E.firearm(state).name)} 공격 · 속도 ${c.flame.speed} / 피해 ${c.flame.damage}${c.flame.interrupt ? " · 방해" : ""}${c.flame.splash ? ` · 같은 칸의 다른 적에게 피해 ${c.flame.splash}` : ""}` : "사냥꾼 공격 없음"} · 방어 ${c.defense}${c.dodged ? " · 회피 선택됨" : ""}${c.cancelEnemy ? " · 적 공격 방해됨" : ""}${c.noDodge ? " · 회피 불가" : ""}</small></div>`
+      ? `<div class="combat-card"><b>${esc(state.enemies.some((e) => e.id === c.enemyId) ? E.enemyDef(state, state.enemies.find((e) => e.id === c.enemyId)).name : "처치된 적")}</b><p>${c.action ? `${esc(ED.labels[c.action.kind])} · ${esc(c.action.name)}${c.action.type !== "ability" && Number.isFinite(c.action.speed) ? " · 속도 " + c.action.speed : ""}${Number.isFinite(c.action.damage) && (c.action.type !== "ability" || c.action.damage > 0) ? " · 피해 " + c.action.damage : ""}` : "적 행동 공개 전"}</p>${c.action?.rules?.length ? `<p>${c.action.rules.map(rule => esc(uiText(rule))).join("<br>")}</p>` : ""}<small>${c.attack ? `사냥꾼 공격 · 속도 ${c.attack.speed} / 피해 ${c.attack.damage}` : c.flame ? `${esc(c.flame.name || E.firearm(state).name)} 공격 · 속도 ${c.flame.speed} / 피해 ${c.flame.damage}${c.flame.interrupt ? " · 방해" : ""}${c.flame.splash ? ` · 같은 칸의 다른 적에게 피해 ${c.flame.splash}` : ""}` : "사냥꾼 공격 없음"} · 방어 ${c.defense}${c.dodged ? " · 회피 선택됨" : ""}${c.cancelEnemy ? " · 적 공격 방해됨" : ""}${c.noDodge ? " · 회피 불가" : ""}</small></div>`
       : "";
     renderEnemyHistory();
     $("deckStatus").innerHTML = `<div class="deck-summary"><span>적 행동 · 남음 ${state.enemyDeck.length}</span><button type="button" data-enemy-history aria-controls="enemyHistoryDialog" aria-label="버린 적 행동과 공개 순서 확인">버림 ${state.enemyDiscard.length}</button><span class="last-enemy-action">마지막 공개: ${ED.labels[state.enemyDiscard.at(-1)] || "없음"}</span></div>`;
@@ -1247,14 +1246,13 @@
   }
   function renderEnemyHistory() {
     const history = enemyHistory.view();
-    $("enemyHistorySummary").textContent = `현재 행동 덱에서 공개된 공용 적 행동 ${history.records.length}개. 행동 덱을 다시 섞으면 기록을 초기화합니다.${history.replayComplete ? "" : " 이전 명령을 확인할 수 없어 현재 버림 묶음의 공개 순서만 표시합니다."}`;
-    $("enemyActionHistory").innerHTML = history.records.map(record => `<li><span class="history-meta">${record.chapter ? `챕터 ${record.chapter} · ` : ""}${record.round === null ? "공개 순서 " + record.order : "라운드 " + record.round}</span><strong>${esc(ED.labels[record.kind])}</strong>${record.enemy ? `<span>${esc(uiText(record.enemy))} · ${esc(uiText(record.action))}</span>` : ""}</li>`).join("") || '<li class="muted">이번 행동 덱에서 아직 공개된 적 행동이 없습니다.</li>';
+    $("enemyActionHistory").innerHTML = history.records.map(record => `<li><strong>${esc(ED.labels[record.kind])}</strong>${record.enemy ? `<span>${esc(uiText(record.enemy))} · ${esc(uiText(record.action))}</span>` : ""}</li>`).join("") || '<li class="muted">아직 공개된 적 행동이 없습니다.</li>';
   }
-  function publicEnemyAction(action) {
+  function publicEnemyAction(action, showStats = true) {
     if (!action) return "";
-    const values = [Number.isFinite(action.speed) ? `속도 ${action.speed}` : "",
+    const values = showStats ? [Number.isFinite(action.speed) ? `속도 ${action.speed}` : "",
       Number.isFinite(action.dodgeSpeed) ? `회피 속도 ${action.dodgeSpeed}` : "",
-      Number.isFinite(action.damage) && (action.type !== "ability" || action.damage > 0) ? `피해 ${action.damage}` : ""].filter(Boolean),
+      Number.isFinite(action.damage) && (action.type !== "ability" || action.damage > 0) ? `피해 ${action.damage}` : ""].filter(Boolean) : [],
       effects = [...new Set([...(action.keywords || []), action.interrupt && "방해", action.stun && "기절",
         action.poison && "독", action.frenzy && "발광", action.undodgeable && "회피 불가",
         action.uninterruptible && "방해 불가", action.bossInsightReduction && "계몽 토큰마다 피해 -1",
@@ -1282,7 +1280,7 @@
       detail = `<p>계몽 토큰 ${enemy.insightTokens || 0}개</p>${unique.length ? `<dl>${unique.map(action => `<dt>현재 공개된 행동</dt><dd>${publicEnemyAction(action)}</dd>`).join("")}</dl>` : '<p class="muted">아직 공개된 행동이 없습니다.</p>'}`;
     } else {
       const basic = f?.basicAttack || d.basic, special = f?.specialAttack || d.special, ability = f?.ability || d.ability;
-      detail = `<dl>${[["기본 공격", basic], ["특수 공격", special], ["전용 능력", ability]].filter(([, action]) => action).map(([label, action]) => `<dt>${label}</dt><dd>${publicEnemyAction(action)}</dd>`).join("")}</dl>`;
+      detail = `<dl>${[["기본 공격", basic], ["특수 공격", special], ["전용 능력", ability]].filter(([, action]) => action).map(([label, action]) => `<dt>${label}</dt><dd>${publicEnemyAction(action, label !== "전용 능력")}</dd>`).join("")}</dl>`;
     }
     $("enemyDetailTitle").textContent = uiText(d.name);
     $("enemyDetailContent").innerHTML = stats + detail;
@@ -1292,7 +1290,7 @@
     $("setupInfo").textContent =
       `시드 ${state.initialSeed} · 새 사냥마다 배정 · 초기화 시 유지`;
     const attack = (a) =>
-      `${esc(a.name)} · 속도 ${a.speed} / 피해 ${a.damage}${a.keywords.length ? " · " + a.keywords.map(esc).join(" · ") : ""}${a.rules.length ? "<br>" + a.rules.map(esc).join("<br>") : ""}`;
+      `${esc(a.name)} · 속도 ${a.speed} / 피해 ${a.damage}${a.keywords.length ? " · " + a.keywords.map(esc).join(" · ") : ""}${a.rules.length ? "<br>" + a.rules.map(rule => esc(uiText(rule))).join("<br>") : ""}`;
     $("chapterEnemies").innerHTML = state.world.assignments
       .map((a) => {
         const d = E.enemyDef(state, a.enemyId),

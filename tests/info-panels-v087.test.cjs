@@ -222,12 +222,12 @@ test("the shared public-command helper explicitly deselects default rescue when 
 });
 
 const decode = text => text.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, "&");
-test("attack reward checkboxes in both locations expose their exact public rules and timing as hover and accessible tooltip text", () => {
+test("attack reward checkboxes in both locations expose their public effects as hover and accessible tooltip text", () => {
   const state = E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true,
     qa: { preset: "custom", startRewards: ["rune-hunter", "rune-writhe"], startConsumables: [] } });
   const f = launch(state), rewards = E.rewardsView(state).rewards.filter(reward => reward.attackSelectable); assert.equal(rewards.length, 2);
   for (const container of ["rewards", "decisions"]) for (const reward of rewards) {
-    const box = f.ui.el(container), expected = [clean(f, reward.rules), clean(f, reward.timing)].filter(Boolean).join(" · ");
+    const box = f.ui.el(container), expected = clean(f, reward.rules);
     const input = box.querySelectorAll("[data-reward-attack]").find(input => input.dataset.rewardAttack === reward.id); assert(input);
     assert(box.querySelectorAll(".reward-attack-option").some(label => label.getAttribute("title") === expected));
     const tooltipId = input.getAttribute("aria-describedby"), tooltip = f.ui.el(tooltipId); assert(tooltip);

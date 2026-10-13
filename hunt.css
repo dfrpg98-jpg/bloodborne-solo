@@ -368,7 +368,6 @@
 .enemy-action-history { padding-left: 30px; margin: 10px 0; }
 .enemy-action-history li { border-bottom: 1px solid #40515a; padding: 10px 8px; font-size: 13px; line-height: 1.5; }
 .enemy-action-history li > span, .enemy-action-history li > strong { display: block; }
-.enemy-action-history .history-meta { color: #aabcc2; font-size: 11px; }
 .chapter-condition-detail { border: 1px solid #706445; padding: 14px; margin: 15px 0; background: #1b2528; }
 @media (max-width: 1120px) and (min-width: 801px) {
   .hud-summary { grid-template-columns: 205px minmax(0, 1fr); }
