@@ -1,0 +1,767 @@
+{
+  "threaded-cane": {
+    "name": "칼날 지팡이",
+    "faces": [
+      {
+        "skin": "w-threaded-cane-a",
+        "name": "채찍 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "신속한 휘두르기",
+            "speed": 3,
+            "motion": "whip"
+          },
+          {
+            "slot": 1,
+            "name": "후려치기",
+            "speed": 2,
+            "motion": "whip"
+          },
+          {
+            "slot": 2,
+            "name": "후려치기",
+            "speed": 2,
+            "motion": "whip"
+          }
+        ]
+      },
+      {
+        "skin": "w-threaded-cane-b",
+        "name": "지팡이 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "신속한 베기",
+            "speed": 3,
+            "motion": "slash"
+          },
+          {
+            "slot": 1,
+            "name": "긋기",
+            "speed": 2,
+            "motion": "slash"
+          },
+          {
+            "slot": 2,
+            "name": "급소 찌르기",
+            "speed": 1,
+            "motion": "thrust"
+          }
+        ]
+      }
+    ]
+  },
+  "hunter-axe": {
+    "name": "야수 사냥의 도끼",
+    "faces": [
+      {
+        "skin": "w-hunter-axe-a",
+        "name": "짧은 도끼 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "가르기",
+            "speed": 2,
+            "motion": "slash"
+          },
+          {
+            "slot": 1,
+            "name": "가르기",
+            "speed": 2,
+            "motion": "slash"
+          },
+          {
+            "slot": 2,
+            "name": "리게인 공격",
+            "speed": 2,
+            "motion": "sweep"
+          }
+        ]
+      },
+      {
+        "skin": "w-hunter-axe-b",
+        "name": "긴 도끼 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "휘두르기",
+            "speed": 2,
+            "motion": "sweep"
+          },
+          {
+            "slot": 1,
+            "name": "강력한 찍기",
+            "speed": 1,
+            "motion": "overhead"
+          },
+          {
+            "slot": 2,
+            "name": "강력한 찍기",
+            "speed": 1,
+            "motion": "overhead"
+          }
+        ]
+      }
+    ]
+  },
+  "rifle-spear": {
+    "name": "총창",
+    "faces": [
+      {
+        "skin": "w-rifle-spear-a",
+        "name": "일자 창 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "찌르기",
+            "speed": 2,
+            "motion": "thrust"
+          },
+          {
+            "slot": 1,
+            "name": "찌르기",
+            "speed": 2,
+            "motion": "thrust"
+          },
+          {
+            "slot": 2,
+            "name": "찌르기",
+            "speed": 2,
+            "motion": "thrust"
+          }
+        ]
+      },
+      {
+        "skin": "w-rifle-spear-b",
+        "name": "날이 펼쳐진 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "가르기",
+            "speed": 2,
+            "motion": "sweep"
+          },
+          {
+            "slot": 1,
+            "name": "가르기",
+            "speed": 2,
+            "motion": "sweep"
+          },
+          {
+            "slot": 2,
+            "name": "꿰뚫기",
+            "speed": 1,
+            "motion": "thrust"
+          }
+        ]
+      }
+    ]
+  },
+  "saw-spear": {
+    "name": "톱 단창",
+    "faces": [
+      {
+        "skin": "w-saw-spear-a",
+        "name": "짧은 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "신속한 베기",
+            "speed": 3,
+            "motion": "slash"
+          },
+          {
+            "slot": 1,
+            "name": "긋기",
+            "speed": 2,
+            "motion": "slash"
+          },
+          {
+            "slot": 2,
+            "name": "강력한 후리기",
+            "speed": 1,
+            "motion": "sweep"
+          }
+        ]
+      },
+      {
+        "skin": "w-saw-spear-b",
+        "name": "긴 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "신속한 베기",
+            "speed": 3,
+            "motion": "slash"
+          },
+          {
+            "slot": 1,
+            "name": "신속한 베기",
+            "speed": 3,
+            "motion": "slash"
+          },
+          {
+            "slot": 2,
+            "name": "긋기",
+            "speed": 2,
+            "motion": "sweep"
+          }
+        ]
+      }
+    ]
+  },
+  "uncanny-ludwigs-holy-blade": {
+    "name": "이질적인 루드비히의 성검",
+    "faces": [
+      {
+        "skin": "w-uncanny-ludwigs-holy-blade-a",
+        "name": "소검 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "신속 찌르기",
+            "speed": 3,
+            "motion": "thrust"
+          },
+          {
+            "slot": 1,
+            "name": "신속 찌르기",
+            "speed": 3,
+            "motion": "thrust"
+          },
+          {
+            "slot": 2,
+            "name": "강력한 가르기",
+            "speed": 1,
+            "motion": "overhead"
+          }
+        ]
+      },
+      {
+        "skin": "w-uncanny-ludwigs-holy-blade-b",
+        "name": "대검 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "콤보 공격",
+            "speed": 2,
+            "motion": "sweep"
+          },
+          {
+            "slot": 1,
+            "name": "모아 찌르기",
+            "speed": 2,
+            "motion": "thrust"
+          }
+        ]
+      }
+    ]
+  },
+  "tonitrus": {
+    "name": "토니트루스",
+    "faces": [
+      {
+        "skin": "w-tonitrus-a",
+        "name": "전기 꺼진 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "후리기",
+            "speed": 2,
+            "motion": "electric"
+          },
+          {
+            "slot": 1,
+            "name": "후리기",
+            "speed": 2,
+            "motion": "electric"
+          },
+          {
+            "slot": 2,
+            "name": "묵직한 찍기",
+            "speed": 1,
+            "motion": "electric"
+          }
+        ]
+      },
+      {
+        "skin": "w-tonitrus-b",
+        "name": "전기 켜진 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "후리기",
+            "speed": 2,
+            "motion": "electric"
+          },
+          {
+            "slot": 1,
+            "name": "후리기",
+            "speed": 2,
+            "motion": "electric"
+          },
+          {
+            "slot": 2,
+            "name": "묵직한 찍기",
+            "speed": 1,
+            "motion": "electric"
+          }
+        ]
+      }
+    ]
+  },
+  "blade-of-mercy": {
+    "name": "자비의 칼날",
+    "faces": [
+      {
+        "skin": "w-blade-of-mercy-a",
+        "name": "합쳐진 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "긋기",
+            "speed": 2,
+            "motion": "slash"
+          },
+          {
+            "slot": 1,
+            "name": "긋기",
+            "speed": 2,
+            "motion": "slash"
+          },
+          {
+            "slot": 2,
+            "name": "강력한 가르기",
+            "speed": 1,
+            "motion": "sweep"
+          }
+        ]
+      },
+      {
+        "skin": "w-blade-of-mercy-b",
+        "name": "쌍검 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "신속한 베기",
+            "speed": 3,
+            "motion": "dual"
+          },
+          {
+            "slot": 1,
+            "name": "신속한 베기",
+            "speed": 3,
+            "motion": "dual"
+          },
+          {
+            "slot": 2,
+            "name": "마무리 콤보",
+            "speed": 3,
+            "motion": "dual"
+          }
+        ]
+      }
+    ]
+  },
+  "ludwigs-holy-blade": {
+    "name": "루드비히의 성검",
+    "faces": [
+      {
+        "skin": "w-ludwigs-holy-blade-a",
+        "name": "대검 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "다단 가르기",
+            "speed": 2,
+            "motion": "dual"
+          },
+          {
+            "slot": 1,
+            "name": "내려찍기",
+            "speed": 1,
+            "motion": "overhead"
+          }
+        ]
+      },
+      {
+        "skin": "w-ludwigs-holy-blade-b",
+        "name": "소검 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "신속한 찌르기",
+            "speed": 3,
+            "motion": "thrust"
+          },
+          {
+            "slot": 1,
+            "name": "가르기",
+            "speed": 2,
+            "motion": "slash"
+          },
+          {
+            "slot": 2,
+            "name": "가르기",
+            "speed": 2,
+            "motion": "slash"
+          }
+        ]
+      }
+    ]
+  },
+  "logarius-wheel": {
+    "name": "로가리우스의 바퀴",
+    "faces": [
+      {
+        "skin": "w-logarius-wheel-a",
+        "name": "바퀴 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "후려치기",
+            "speed": 2,
+            "motion": "overhead"
+          },
+          {
+            "slot": 1,
+            "name": "내려찍기",
+            "speed": 1,
+            "motion": "overhead"
+          },
+          {
+            "slot": 2,
+            "name": "내려찍기",
+            "speed": 1,
+            "motion": "overhead"
+          }
+        ]
+      },
+      {
+        "skin": "w-logarius-wheel-b",
+        "name": "강화 바퀴 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "강화 후려치기",
+            "speed": 2,
+            "motion": "spirit"
+          },
+          {
+            "slot": 1,
+            "name": "강화 내려찍기",
+            "speed": 1,
+            "motion": "spirit"
+          },
+          {
+            "slot": 2,
+            "name": "강화 내려찍기",
+            "speed": 1,
+            "motion": "spirit"
+          }
+        ]
+      }
+    ]
+  },
+  "kirkhammer": {
+    "name": "교단의 돌망치",
+    "faces": [
+      {
+        "skin": "w-kirkhammer-a",
+        "name": "소검 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "신속 찌르기",
+            "speed": 3,
+            "motion": "thrust"
+          },
+          {
+            "slot": 1,
+            "name": "긋기",
+            "speed": 2,
+            "motion": "slash"
+          },
+          {
+            "slot": 2,
+            "name": "긋기",
+            "speed": 2,
+            "motion": "slash"
+          }
+        ]
+      },
+      {
+        "skin": "w-kirkhammer-b",
+        "name": "돌망치 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "묵직한 휘두르기",
+            "speed": 1,
+            "motion": "sweep"
+          },
+          {
+            "slot": 1,
+            "name": "파괴적인 내려찍기",
+            "speed": 1,
+            "motion": "overhead"
+          }
+        ]
+      }
+    ]
+  },
+  "stake-driver": {
+    "name": "말뚝박이",
+    "faces": [
+      {
+        "skin": "w-stake-driver-a",
+        "name": "장전 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "찌르기",
+            "speed": 2,
+            "motion": "thrust"
+          },
+          {
+            "slot": 1,
+            "name": "장전용 가르기",
+            "speed": 2,
+            "motion": "slash"
+          },
+          {
+            "slot": 2,
+            "name": "관통",
+            "speed": 1,
+            "motion": "punch"
+          }
+        ]
+      },
+      {
+        "skin": "w-stake-driver-b",
+        "name": "폭파 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "폭파",
+            "speed": 1,
+            "motion": "blast"
+          }
+        ]
+      }
+    ]
+  },
+  "chikage": {
+    "name": "치카게",
+    "faces": [
+      {
+        "skin": "w-chikage-a",
+        "name": "혈검 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "신속한 베기",
+            "speed": 3,
+            "motion": "blood"
+          },
+          {
+            "slot": 1,
+            "name": "가르기",
+            "speed": 2,
+            "motion": "blood"
+          },
+          {
+            "slot": 2,
+            "name": "가르기",
+            "speed": 2,
+            "motion": "blood"
+          }
+        ]
+      },
+      {
+        "skin": "w-chikage-b",
+        "name": "도검 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "신속한 베기",
+            "speed": 3,
+            "motion": "slash"
+          },
+          {
+            "slot": 1,
+            "name": "긋기",
+            "speed": 2,
+            "motion": "slash"
+          },
+          {
+            "slot": 2,
+            "name": "긋기",
+            "speed": 2,
+            "motion": "slash"
+          }
+        ]
+      }
+    ]
+  },
+  "beast-claw": {
+    "name": "야수의 발톱",
+    "faces": [
+      {
+        "skin": "w-beast-claw-a",
+        "name": "발톱 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "신속한 가르기",
+            "speed": 3,
+            "motion": "claw"
+          },
+          {
+            "slot": 1,
+            "name": "긋기",
+            "speed": 2,
+            "motion": "claw"
+          },
+          {
+            "slot": 2,
+            "name": "광란의 베기",
+            "speed": 1,
+            "motion": "claw"
+          }
+        ]
+      },
+      {
+        "skin": "w-beast-claw-b",
+        "name": "변형 발톱 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "신속한 가르기",
+            "speed": 3,
+            "motion": "claw"
+          },
+          {
+            "slot": 1,
+            "name": "긋기",
+            "speed": 2,
+            "motion": "claw"
+          },
+          {
+            "slot": 2,
+            "name": "강력한 후리기",
+            "speed": 1,
+            "motion": "claw"
+          }
+        ]
+      }
+    ]
+  },
+  "reiterpallasch": {
+    "name": "레이테르팔라슈",
+    "faces": [
+      {
+        "skin": "w-reiterpallasch-a",
+        "name": "찌르기 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "신속한 찌르기",
+            "speed": 3,
+            "motion": "thrust"
+          },
+          {
+            "slot": 1,
+            "name": "가르기",
+            "speed": 2,
+            "motion": "slash"
+          },
+          {
+            "slot": 2,
+            "name": "급소 찌르기",
+            "speed": 1,
+            "motion": "thrust"
+          }
+        ]
+      },
+      {
+        "skin": "w-reiterpallasch-b",
+        "name": "수은탄 사격 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "응수",
+            "speed": 3,
+            "motion": "slash"
+          },
+          {
+            "slot": 1,
+            "name": "수은탄 사격",
+            "speed": 2,
+            "motion": "shot"
+          },
+          {
+            "slot": 2,
+            "name": "급소 찌르기",
+            "speed": 1,
+            "motion": "thrust"
+          }
+        ]
+      }
+    ]
+  },
+  "burial": {
+    "name": "장송의 칼날",
+    "faces": [
+      {
+        "skin": "w-burial-a",
+        "name": "칼날 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "재빠른 저미기",
+            "speed": 3,
+            "motion": "slash"
+          },
+          {
+            "slot": 1,
+            "name": "긋기",
+            "speed": 2,
+            "motion": "slash"
+          },
+          {
+            "slot": 2,
+            "name": "긋기",
+            "speed": 2,
+            "motion": "slash"
+          }
+        ]
+      },
+      {
+        "skin": "w-burial-b",
+        "name": "낫 형태",
+        "attacks": [
+          {
+            "slot": 0,
+            "name": "긋기",
+            "speed": 2,
+            "motion": "sweep"
+          },
+          {
+            "slot": 1,
+            "name": "원호 가르기",
+            "speed": 1,
+            "motion": "sweep"
+          },
+          {
+            "slot": 2,
+            "name": "원호 가르기",
+            "speed": 1,
+            "motion": "sweep"
+          }
+        ]
+      }
+    ]
+  }
+}

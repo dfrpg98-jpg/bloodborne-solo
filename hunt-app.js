@@ -48,6 +48,7 @@
     presentationActions = [],
     presentationSession = 1,
     presentationOrigins = new Map(),
+    declaredWeaponVisual = null,
     needsCameraFollow = true,
     rendering = false,
     camera = null,
@@ -99,7 +100,7 @@
   });
   const shell = window.BBHuntShell?.({ document, onCenterMap: () => centerMap(true) });
   presentation = window.BBHuntPresentation?.({ document, Phaser: window.Phaser,
-    viewport: $("mapViewport"), host: $("mapEffects"), characters: window.BBCharacterAssets,
+    viewport: $("mapViewport"), host: $("mapEffects"), characters: { ...window.BBCharacterAssets, ...window.BBWeaponCharacterAssets },
     onReady: () => syncPresentation() });
   camera = window.BBHuntCamera?.({ document, viewport: $("mapViewport"),
     content: $("chapterMap"), surface: $("mapSurface"), padEdges: true, onChange: ({ zoom }) => {
@@ -107,15 +108,70 @@
       if (!rendering) syncPresentation();
     } });
   function sceneId() { return `${state.initialSeed}:${state.mission?.chapter || 0}:${presentationSession}`; }
+  function hunterVisual(source = state) {
+    const h = E.hunter(source), charged = h.weaponCharge?.round === source.round;
+    return { weaponId: h.weaponId, weaponFace: h.face,
+      skin: window.BBWeaponVisuals?.skin(h.weaponId, h.face, charged) || "hunter" };
+  }
+  function attackDeclaration(source) {
+    const c = source.combat;
+    if (!c?.attack) return null;
+    const h = E.hunter(source), history = source.commands || [];
+    let index = -1;
+    for (let i = history.length - 1; i >= 0; i--) {
+      const command = history[i];
+      if (["ATTACK", "COUNTER"].includes(command.type) && Number.isInteger(command.slot) &&
+        (!command.enemyId || command.enemyId === c.enemyId)) { index = i; break; }
+    }
+    const faces = D.weapons[h.weaponId]?.faces || [];
+    let face = c.attack.weaponFace ? faces.findIndex(value => JSON.stringify(value) === JSON.stringify(c.attack.weaponFace)) : h.face;
+    if (face < 0) face = h.face;
+    const slot = index >= 0 ? history[index].slot : faces[face]?.slots?.findIndex(value => value.name === c.attack.name);
+    if (!Number.isInteger(slot) || slot < 0 || slot > 2) return null;
+    return { weaponId: h.weaponId, face, slot, index,
+      signature: `${source.initialSeed}:${source.mission?.chapter || 0}:${c.enemyId}:${c.attack.name}:${index}` };
+  }
+  function recoveredCharge(source, index) {
+    if (E.hunter(source).weaponId !== "tonitrus" || index < 0) return false;
+    try {
+      // A loaded combat has already consumed its charge. Replay its own accepted
+      // inputs on a disposable copy, once, to recover the public pre-attack glow.
+      const setup = source.setup;
+      let replay = E.create(source.initialSeed, setup.weaponId, setup.face, setup.startingConsumable,
+        setup.firearmId, setup.startSpace, { campaign: !!setup.campaign, provisional: setup.provisional,
+          ...(setup.firearmOverride ? { firearmOverride: true } : {}),
+          ...(setup.practiceTarget ? { practiceTarget: setup.practiceTarget, practiceSide: setup.practiceSide } : {}),
+          ...(Object.hasOwn(setup, "practiceRewards") ? { practiceRewards: setup.practiceRewards } : {}),
+          ...(setup.qa ? { qa: setup.qa } : {}), rulesVersion: setup.rulesVersion ?? null });
+      for (const command of source.commands.slice(0, index)) replay = E.dispatch(replay, command);
+      return E.hunter(replay).weaponCharge?.round === replay.round;
+    } catch (_) { return false; }
+  }
+  function currentAttackVisual(source = state, previous = null) {
+    const declaration = attackDeclaration(source);
+    if (!declaration || !window.BBWeaponVisuals) return null;
+    if (declaredWeaponVisual?.signature === declaration.signature) return declaredWeaponVisual.visual;
+    const charged = previous && E.hunter(previous).weaponId === declaration.weaponId
+      ? E.hunter(previous).weaponCharge?.round === previous.round : recoveredCharge(source, declaration.index);
+    const visual = window.BBWeaponVisuals.attack(declaration.weaponId, declaration.face, declaration.slot, charged) ||
+      { skin: "hunter", attackSlot: declaration.slot, attackStyle: "weapon", motion: "slash",
+        weaponId: declaration.weaponId, weaponFace: declaration.face };
+    declaredWeaponVisual = { signature: declaration.signature, visual };
+    return visual;
+  }
   function animationSnapshot() {
-    const h = E.hunter(state), c = state.combat;
+    const h = E.hunter(state), c = state.combat, visual = currentAttackVisual();
     return { sceneId: sceneId(), revision: state.revision, firearmReady: h.firearmReady,
-      actors: [{ id: "hunter", kind: "hunter", node: h.position, hp: h.hp },
+      actors: [{ id: "hunter", kind: "hunter", node: h.position, hp: h.hp, ...hunterVisual() },
         ...state.enemies.map((e) => ({ id: e.id, kind: "enemy", node: e.node, hp: e.hp, name: E.enemyDef(state, e).name }))],
       events: state.events.map(({ round, text }) => ({ round, text })),
       combat: c ? { enemyId: c.enemyId, attackName: c.attack?.name, enemyActionName: c.action?.name,
+        ...(visual ? { attackSlot: visual.attackSlot, attackSkin: visual.skin, attackStyle: visual.attackStyle, motion: visual.motion,
+          weaponId: visual.weaponId, weaponFace: visual.weaponFace } : {}),
         immediateName: c.immediate?.name || c.immediate?.label, extraName: c.extra?.name || c.extra?.label,
         flameName: c.flame ? c.flame.name || E.firearm(state).name : undefined } : null,
+      weaponShot: state.commands?.at(-1)?.type === "WEAPON_SHOT"
+        ? window.BBWeaponVisuals?.attack(h.weaponId, h.face, state.commands.at(-1).slot, h.weaponCharge?.round === state.round) : null,
       firearmEntry: state.firearmEntry ? { enemyId: state.firearmEntry.enemyId } : null };
   }
   function showError(message = "") {
@@ -136,12 +192,16 @@
     return sendCommands([{ type, ...args }]);
   }
   function sendCommands(commands) {
+    const previousDeclaredVisual = declaredWeaponVisual;
     try {
       const previous = state, before = animationSnapshot(), last = commands[commands.length - 1], type = last.type;
       // Validate the entire convenience action before committing its original
       // commands. Costs, event order and replay data still belong to the engine.
       let next = state;
-      for (const command of commands) next = E.dispatch(next, command);
+      for (const command of commands) {
+        const prior = next; next = E.dispatch(next, command);
+        currentAttackVisual(next, prior);
+      }
       state = next;
       presentationActions = window.BBHuntAnimationEvents?.describe(before, animationSnapshot(), commands) || [];
       needsCameraFollow = E.hunter(previous).position !== E.hunter(state).position ||
@@ -160,6 +220,7 @@
       showError("");
       return true;
     } catch (e) {
+      declaredWeaponVisual = previousDeclaredVisual;
       showError(e.message);
       return false;
     }
@@ -420,7 +481,7 @@
     $("storyRules").innerHTML = $("storyText").innerHTML = "";
   }
   function resetStoryReading() {
-    presentationSession++; presentationActions = []; presentationOrigins.clear(); needsCameraFollow = true;
+    presentationSession++; presentationActions = []; presentationOrigins.clear(); declaredWeaponVisual = null; needsCameraFollow = true;
     readStories.clear();
     storyReturnPanel = null;
     reloadSecondCardId = null;
@@ -1129,7 +1190,7 @@
         figures = ghost ? [] : state.enemies.filter((f) => f.node === id),
         tokens = ghost ? [] : (mission?.tokens || []).filter((t) => t.node === id || (t.carrierId === state.activeHunterId && here));
       const status = `${here ? '<span class="hunter-map-marker">● 사냥꾼</span>' : ""}${loot ? `<small>◇ 남은 소모품 ${loot}</small>` : ""}${tokens.map((t) => `<small class="map-mission-token">◆ ${esc(t.name)}</small>`).join("")}`;
-      return `<button class="space diagram-space ${here ? "here" : ""} ${reach ? "reachable" : ""} ${mapTarget?.kind === "cell" && mapTarget.node === id ? "context-selected" : ""} ${ghost ? "ghost-space" : ""}" style="left:${left}%;top:${top}%;width:${width}%;height:${height}%;clip-path:polygon(${polygon})" data-node="${esc(id)}" aria-pressed="${mapTarget?.kind === "cell" && mapTarget.node === id}" ${ghost ? "disabled" : ""} aria-label="${esc(n.placeName || n.label)}${here ? " · 사냥꾼" : ""}${loot ? " · 소모품 " + loot : ""}${figures.length ? " · 적 " + figures.length : ""}" title="${esc(n.placeName || n.label)}"><span class="node-anchor" data-node-anchor="${esc(id)}" style="left:${localX}%;top:${localY}%" aria-hidden="true"></span>${here && !h.inDream ? `<span class="hunter-anchor" data-presentation-id="hunter" data-presentation-kind="hunter" data-presentation-node="${esc(id)}" data-presentation-skin="hunter" style="left:${localX}%;top:${localY}%" aria-hidden="true"></span>` : ""}<span class="space-status" style="left:${localX}%;top:${Math.min(90,localY+10)}%">${status}</span></button>`;
+      return `<button class="space diagram-space ${here ? "here" : ""} ${reach ? "reachable" : ""} ${mapTarget?.kind === "cell" && mapTarget.node === id ? "context-selected" : ""} ${ghost ? "ghost-space" : ""}" style="left:${left}%;top:${top}%;width:${width}%;height:${height}%;clip-path:polygon(${polygon})" data-node="${esc(id)}" aria-pressed="${mapTarget?.kind === "cell" && mapTarget.node === id}" ${ghost ? "disabled" : ""} aria-label="${esc(n.placeName || n.label)}${here ? " · 사냥꾼" : ""}${loot ? " · 소모품 " + loot : ""}${figures.length ? " · 적 " + figures.length : ""}" title="${esc(n.placeName || n.label)}"><span class="node-anchor" data-node-anchor="${esc(id)}" style="left:${localX}%;top:${localY}%" aria-hidden="true"></span>${here && !h.inDream ? `<span class="hunter-anchor" data-presentation-id="hunter" data-presentation-kind="hunter" data-presentation-node="${esc(id)}" data-presentation-skin="${esc(hunterVisual().skin)}" style="left:${localX}%;top:${localY}%" aria-hidden="true"></span>` : ""}<span class="space-status" style="left:${localX}%;top:${Math.min(90,localY+10)}%">${status}</span></button>`;
     }).join("")}${ghost ? "" : def.spaces.map((space) => {
       const node = `${p.tileId}:${space.id}`, figures = state.enemies.filter((enemy) => enemy.node === node);
       if (!figures.length) return "";
@@ -1288,6 +1349,7 @@
       const id = anchor.dataset.presentationId, kind = anchor.dataset.presentationKind,
         enemy = kind === "enemy" ? state.enemies.find((e) => e.id === id) : null;
       return { id, kind, node: anchor.dataset.presentationNode, skin: anchor.dataset.presentationSkin,
+        ...(kind === "hunter" ? hunterVisual() : {}),
         scale, hp: kind === "hunter" ? h.hp : enemy?.hp, selected: kind === "enemy" && mapTarget?.kind === "enemy" && selectedEnemy === id,
         ...point(anchor) };
     });

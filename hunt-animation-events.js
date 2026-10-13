@@ -6,6 +6,7 @@
     return (snapshot?.actors || []).filter(actor => actor && typeof actor.id === "string" &&
       (actor.kind === "hunter" || actor.kind === "enemy")).map(actor => ({
       id: actor.id, kind: actor.kind, node: actor.node, hp: actor.hp, name: actor.name,
+      skin: actor.skin, weaponId: actor.weaponId, weaponFace: actor.weaponFace,
     }));
   }
   function publicEvents(snapshot) {
@@ -32,12 +33,28 @@
     const commandTarget = [...commands].reverse().find(command => typeof command?.enemyId === "string")?.enemyId;
     const targetId = before.firearmEntry?.enemyId || commandTarget || combat.enemyId || nextCombat.enemyId;
     const targetExists = typeof targetId === "string" && allActors.get(targetId)?.kind === "enemy";
-    const attack = (fromId, toId, damage, type = "attack") => {
+    const publicHunter = actors.find(actor => actor.kind === "hunter") || oldActors.find(actor => actor.kind === "hunter");
+    const weaponVisual = value => value && typeof (value.attackSkin || value.skin) === "string" &&
+      /^[a-z][a-z0-9_-]{0,40}$/.test(value.attackSkin || value.skin) &&
+      Number.isInteger(value.attackSlot) && value.attackSlot >= 0 && value.attackSlot <= 2
+      ? { skin: value.attackSkin || value.skin, attackSlot: value.attackSlot, attackStyle: "weapon",
+        ...(["slash", "thrust", "sweep", "overhead", "whip", "dual", "claw", "punch", "blast", "shot", "electric", "spirit", "blood"].includes(value.motion) ? { motion: value.motion } : {}) } : null;
+    const combatWeapon = weaponVisual(combat) || weaponVisual(nextCombat), shotWeapon = weaponVisual(after.weaponShot);
+    const otherVisual = publicHunter?.weaponId ? { attackStyle: "other" } : null;
+    const attack = (fromId, toId, damage, type = "attack", visual = null) => {
       if (!allActors.has(fromId) || !allActors.has(toId)) return;
       const key = `${type}:${fromId}:${toId}`;
       if (acted.has(key)) return;
-      acted.add(key); actions.push({ type, fromId, toId, ...(Number.isFinite(damage) ? { damage } : {}) });
+      acted.add(key); actions.push({ type, fromId, toId, ...(Number.isFinite(damage) ? { damage } : {}),
+        ...(fromId === "hunter" ? visual || otherVisual : {}) });
     };
+    const acceptedWeaponShot = commands.some(command => command?.type === "WEAPON_SHOT");
+    if (acceptedWeaponShot && shotWeapon && targetExists) {
+      const previous = oldActors.find(actor => actor.id === targetId), current = actors.find(actor => actor.id === targetId);
+      const damage = Number.isFinite(previous?.hp) && Number.isFinite(current?.hp)
+        ? Math.max(0, previous.hp - current.hp) : previous?.hp;
+      attack("hunter", targetId, damage, "shot", shotWeapon);
+    }
     // Interrupting pistols fire immediately. A speed-group firearm attack can
     // still be canceled, so its shot waits for the resolved public damage log.
     const declaredFirearmAttack = !!nextCombat.flameName && !before.combat?.flameName;
@@ -50,7 +67,8 @@
     for (const line of lines) {
       const hunterHit = line.match(/^(.+?) · 적에게 (\d+) 피해\.$/);
       if (hunterHit && targetExists)
-        attack("hunter", targetId, Number(hunterHit[2]), flameNames.has(hunterHit[1]) ? "shot" : "attack");
+        attack("hunter", targetId, Number(hunterHit[2]), flameNames.has(hunterHit[1]) ? "shot" : "attack",
+          !flameNames.has(hunterHit[1]) && [combat.attackName, nextCombat.attackName].includes(hunterHit[1]) ? combatWeapon : null);
       const enemyHit = line.match(/^(.+?) · 사냥꾼에게 (\d+) 피해\.$/);
       if (enemyHit && targetExists && enemyLabels.has(enemyHit[1]))
         attack(targetId, "hunter", Number(enemyHit[2]));
@@ -71,7 +89,9 @@
           // Use visible health loss for the hit pose so defense remains honest.
           const damage = current && Number.isFinite(target.hp) && Number.isFinite(current.hp)
             ? Math.max(0, target.hp - current.hp) : undefined;
-          attack("hunter", target.id, damage, flameNames.has(line.split(" · ")[0]) ? "shot" : "attack");
+          const label = line.split(" · ")[0];
+          attack("hunter", target.id, damage, flameNames.has(label) ? "shot" : "attack",
+            target.id === targetId && !flameNames.has(label) && [combat.attackName, nextCombat.attackName].includes(label) ? combatWeapon : null);
         }
       }
     }
@@ -99,6 +119,12 @@
           previous.node !== current.node && !(respawn && previous.kind === "enemy"))
         actions.push({ type: "move", fromId: previous.id, fromNode: previous.node, toNode: current.node });
     }
+    const previousHunter = oldActors.find(actor => actor.kind === "hunter"), currentHunter = actors.find(actor => actor.kind === "hunter");
+    if (previousHunter && currentHunter && previousHunter.weaponId === currentHunter.weaponId &&
+      (previousHunter.weaponFace === 0 || previousHunter.weaponFace === 1) &&
+      currentHunter.weaponFace !== previousHunter.weaponFace &&
+      commands.some(command => command?.type === "TRANSFORM" || command?.type === "FREE_TRANSFORM" && command.accept === true))
+      actions.push({ type: "transform", fromId: currentHunter.id, skin: currentHunter.skin });
     return actions;
   }
   const api = { describe };

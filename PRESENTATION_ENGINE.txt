@@ -1,4 +1,8 @@
-Phaser 표시 엔진과 카메라 / v0.8.2 / 2026-10-12
+Phaser 표시 엔진과 카메라 / v0.8.3 / 2026-10-12
+
+아래 기존 구성은 v0.8.2의 기록이며 현재 무기별 확장은 문서 끝의 v0.8.3 항목을 따릅니다.
+
+v0.8.2 구성 기록
 
 Phaser 4.2.1의 공식 npm 실행 파일과 MIT 라이선스를 assets/vendor에 포함합니다. 원본 배포·무결성은 phaser-provenance.json에 기록했습니다. 추가 설치와 CDN 연결은 필요 없습니다.
 
@@ -26,3 +30,12 @@ https://docs.phaser.io/phaser/concepts/cameras
 https://docs.phaser.io/api-documentation/class/animations-animationmanager
 https://docs.phaser.io/api-documentation/class/gameobjects-sprite
 https://docs.phaser.io/api-documentation/class/loader-loaderplugin
+
+
+v0.8.3 — 무기별 표시 확장
+장치무기 15종의 양면 30개와 인쇄된 공격 슬롯 85개를 weapon-visuals.js에서 공개된 무기 ID·면·슬롯에 연결합니다. 기존 규칙 엔진과 카드 수치는 유지합니다. 일반 성검과 이질적인 성검은 면 순서가 반대이고, 야수의 발톱은 카드 사진의 왼손 상태를 따릅니다. 토니트루스의 그림은 공개된 실제 충전 여부로 선택하며 면 번호만으로 뇌광을 결정하지 않습니다.
+새 PNG 30장의 장당 24프레임, 총 720프레임을 사용합니다. 현재 무기의 양면을 우선 불러오는 방식입니다. 원래 생성 PNG의 픽셀은 변경하지 않고 프레임별 atlas와 vector GeometryMask로 필요한 동작을 표시합니다. 무기 길이 대신 사냥꾼 몸통의 화면 높이를 약 75픽셀 기준으로 맞추며, 이는 자세와 머리 장식을 포함할 수 있는 표시용 추정값입니다.
+실제 장치무기 공격이 해결된 후 해당 슬롯의 attack-0/1/2를 사용합니다. 인쇄 속도 3/2/1의 재생 속도는 16/12/9fps이며 규칙의 속도 판정을 바꾸지 않습니다. 레이테르팔라슈 B면 슬롯 1의 수은탄은 총검 발사로 재생합니다. 별도 화기·아이템 효과와 적 공격을 해당 무기 공격으로 추측하지 않습니다. 정상 변형 또는 무료 변형 수락이 성립한 경우에만 변형 동작을 요청합니다.
+weapon-gallery.html은 규칙 상태와 저장에 접근하지 않는 동작 확인 화면입니다. 같은 표시 엔진으로 30개 형태, 해당 면에 있는 공격, 걷기·피격·쓰러짐·변형을 확인합니다.
+표현은 제공된 카드와 실제 게임 영상을 참고한 압축된 2D 재해석입니다. 원작 모델·리그를 추출하거나 모든 콤보를 프레임 단위로 복제하지 않았습니다. 추가 Unity/Godot 설치는 필요 없습니다. 기존 카메라·입력·공개 정보 경계는 유지합니다.
+사용 안내: WEAPON_VISUAL_GUIDE.txt. 근거: WEAPON_REFERENCE_REVIEW.txt. 실제 검사·배포·설치 범위: VERIFICATION_v083.txt.

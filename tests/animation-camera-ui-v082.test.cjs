@@ -102,7 +102,7 @@ test("public character snapshots omit decks, future missions and hidden reward o
   assert(latest(f).actors.length, "visible map characters are supplied to the renderer");
   for (const actor of latest(f).actors) {
     assert(visible.has(actor.id)); assert(["hunter", "enemy"].includes(actor.kind));
-    for (const key of Object.keys(actor)) assert(["id", "kind", "node", "skin", "scale", "hp", "selected", "x", "y"].includes(key), `public actor field ${key}`);
+    for (const key of Object.keys(actor)) assert(["id", "kind", "node", "skin", "scale", "hp", "selected", "x", "y", "weaponId", "weaponFace"].includes(key), `public actor field ${key}`);
     assert(!actor.skin || !/images|\.jpe?g|참고자료/i.test(actor.skin), "appearance selects independently drawn local assets");
   }
   assert.deepEqual(Object.keys(latest(f)).sort(), ["actions", "actors", "revision", "sceneId", "view"].sort());
