@@ -6,6 +6,8 @@
     ED = window.BBEnemyDeck,
     $ = (id) => document.getElementById(id),
     key = "bloodborne-hunt-v07",
+    qaKey = "bloodborne-hunt-qa-v1",
+    activeModeKey = "bloodborne-hunt-active-mode",
     previousKey = "bloodborne-hunt-v06",
     oldKey = "bloodborne-hunt-v05";
   const esc = (x) =>
@@ -31,6 +33,9 @@
   };
   const missionView = () => E.missionView ? E.missionView(state) : null;
   const applyLoadedRuling = (loaded) => E.applyChapelRuling ? E.applyChapelRuling(loaded) : loaded;
+  const isQa = () => !!state.setup?.qa;
+  const saveKey = () => isQa() ? qaKey : key;
+  const consumableDefinitions = () => E.consumableDefinitions ? E.consumableDefinitions(state) : D.consumables;
   const attackReplacesCardEffects = () => [...selectedRewards].some((id) => E.hunter(state).rewards?.some((r) => r.id === id && r.kind === "rune-clawmark"));
   const nodeName = (id) => E.node(state, id)?.name || "지도 밖";
   const placementOptions = () => E.placementOptions
@@ -51,22 +56,25 @@
     restoredPrevious = false,
     startupError = "",
     setupRequired = true;
-  const practiceRewards = new Map();
+  const practiceRewards = new Map(), qaRewards = new Map(), qaConsumables = new Map();
+  let lastSetupMode = "campaign";
   // Reading a story is presentation only. No story field is added to replayed
   // game state or saved commands, including when older saves are resumed.
   const readStories = new Set();
   let storyEntries = [], storySelection = null, storyOpener = null;
   try {
-    const current = localStorage.getItem(key),
-      saved = current || localStorage.getItem(previousKey);
+    const current = localStorage.getItem(key), qaSaved = localStorage.getItem(qaKey),
+      useQa = localStorage.getItem(activeModeKey) === "qa" && !!qaSaved,
+      saved = useQa ? qaSaved : current || localStorage.getItem(previousKey) || qaSaved;
     if (saved) { state = applyLoadedRuling(E.importSave(saved)); setupRequired = false; }
-    restoredPrevious = !!saved && !current;
+    restoredPrevious = !!saved && !current && !isQa();
   } catch {
     startupError =
       "자동 저장을 읽지 못했습니다. 내보낸 실제 지도 저장 파일을 불러오세요.";
   }
   const invData = { ...D };
   Object.defineProperty(invData, "nodes", { get: () => E.nodes(state) });
+  Object.defineProperty(invData, "consumables", { get: consumableDefinitions });
   const inventory = window.BBInventory({
     E: {
       ...E,
@@ -83,8 +91,9 @@
   });
   function save() {
     try {
-      localStorage.setItem(key, E.exportSave(state));
-      $("saveStatus").textContent = `${restoredPrevious ? "v0.6에서 이어온 진행 · " : ""}v0.7 자동 저장됨`;
+      localStorage.setItem(saveKey(), E.exportSave(state));
+      localStorage.setItem(activeModeKey, isQa() ? "qa" : "normal");
+      $("saveStatus").textContent = isQa() ? "검증 전용 진행 · 별도 자동 저장됨" : `${restoredPrevious ? "v0.6에서 이어온 진행 · " : ""}v0.7 자동 저장됨`;
     } catch {
       $("saveStatus").textContent =
         "자동 저장 불가 · 저장 내보내기를 이용하세요";
@@ -120,6 +129,7 @@
     return `<div class="choice-grid">${cards.map((c) => button(`${esc(E.card(c).name)}<small>${esc(E.card(c).text)}</small>`, type, { [keyName]: c.id })).join("")}</div>`;
   }
   function render() {
+    renderResumeButtons();
     const h = E.hunter(state);
     if (!h.hand.some((c) => c.id === selectedCard)) selectedCard = null;
     if (!state.enemies.some((e) => e.id === selectedEnemy))
@@ -220,8 +230,9 @@
       chapter = view?.chapter || 1;
     $("missionPanel").hidden = !view;
     renderStories(view && !provisional ? view : null);
-    $("modeLabel").textContent = view ? `기나긴 사냥 · 챕터 ${chapter}` : "실제 지도 · 전투 연습";
-    document.title = view ? `블러드본 · 기나긴 사냥 챕터 ${chapter}` : "블러드본 · 사냥 연습";
+    $("modeLabel").textContent = view ? `${isQa() ? "검증 전용 · " : ""}기나긴 사냥 · 챕터 ${chapter}` : "실제 지도 · 전투 연습";
+    $("qaModeBadge").hidden = !isQa();
+    document.title = view ? `블러드본 · ${isQa() ? "검증 전용 · " : ""}기나긴 사냥 챕터 ${chapter}` : "블러드본 · 사냥 연습";
     $("modeNotice").innerHTML = view
       ? `<strong>기나긴 사냥 · 챕터 ${chapter}${view.won ? " 완수" : ""}</strong><span>${view.won ? chapter === 3 ? "기나긴 사냥의 마지막 사냥을 완수했습니다. 마지막 꿈에서 성장을 마치고 전체 캠페인 기록을 보관하세요." : state.phase === "between_chapters" ? `장비를 교체하고 중앙 등불 타일의 시작 칸을 골라 챕터 ${chapter + 1}을 시작하세요.` : "사냥을 완수했습니다. 마지막 꿈에서 성장을 마친 뒤 다음 챕터를 준비할 수 있습니다." : "공개된 임무를 따라 사냥을 진행하세요. 챕터 사이에는 보관한 장비를 교체하고 다음 사냥의 시작 칸을 선택합니다."}</span>`
       : "<strong>실제 지도 전투 연습</strong><span>이 사냥은 임무 없이 탐험·전투·꿈의 업그레이드를 연습하는 모드입니다. 새 사냥에서 기나긴 사냥 챕터 1을 선택할 수 있습니다.</span>";
@@ -229,6 +240,9 @@
       $("modeLabel").textContent = `임시 구성물 시험 · ${provisional.name}`;
       $("modeNotice").innerHTML = `<strong>${esc(provisional.name)}${state.result === "provisional-win" ? " · 시험 완료" : provisional.npc ? " · 상호작용" : provisional.phase ? ` · ${esc(provisional.phase)}페이즈` : ""}</strong><span>${esc(provisional.notice)} 이 시험은 기나긴 사냥 캠페인과 별도로 진행하며 임시 작성된 구성물을 사용합니다.</span>`;
     }
+    if (isQa()) $("modeNotice").innerHTML = $("modeNotice").innerHTML
+      .replace("<strong>기나긴 사냥", "<strong>검증 전용 · 기나긴 사냥")
+      .replace("</span>", " 테스트 장비와 시작 지급을 사용하며, 일반 사냥과 별도로 자동 저장됩니다.</span>");
     if (!view) return;
     $("missionInsight").textContent = `이번 챕터 완료 계몽 ${view.insight}장`;
     $("missionObjectives").innerHTML = view.objectives.filter((o) => o.status !== "미발견").map((o) => {
@@ -366,7 +380,7 @@
     const h = E.hunter(state), pending = !!view.choices.length,
       between = state.phase === "between_chapters";
     selectedRewards = new Set([...selectedRewards].filter((id) => view.rewards.some((r) => r.id === id && r.attackSelectable)));
-    $("rewardsCount").textContent = `${state.setup.practiceRewards?.length ? "연습 지급 · " : ""}${view.rewards.length}장 · 사냥 도구 ${view.rewards.filter((r) => r.equipped && r.subtype === "tool").length}/2 · 카릴 문자 ${view.rewards.filter((r) => r.equipped && r.subtype === "rune").length}/2`;
+    $("rewardsCount").textContent = `${view.rewards.some((r) => r.qaStart) ? "검증 시작 지급 포함 · " : state.setup.practiceRewards?.length ? "연습 지급 · " : ""}${view.rewards.length}장 · 사냥 도구 ${view.rewards.filter((r) => r.equipped && r.subtype === "tool").length}/2 · 카릴 문자 ${view.rewards.filter((r) => r.equipped && r.subtype === "rune").length}/2`;
     $("rewards").innerHTML = view.rewards.map((r) => {
       let actions = "";
       if (r.controls && r.equipped) {
@@ -405,7 +419,7 @@
         actions += `<label class="checkrow"><input type="checkbox" data-reward-attack="${r.id}" ${selectedRewards.has(r.id) ? "checked" : ""}>다음 공격에 이 보상 사용</label>`;
       if (between && !pending && r.subtype !== "quest")
         actions += r.equipped ? button("이 보상 보관", "KEEP_REWARD", { rewardId: r.id }) : rewardChoiceHTML({ ...view, choices: [{ rewardId: r.id }] }, true);
-      const status = r.subtype === "quest" ? "임무 물품 · 사용 효과 없음" : !r.equipped ? "보관 중" : r.persistent ? `${r.slot + 1}번 공격 슬롯 · 지속 효과` : r.ready ? "장착 · 준비됨" : "장착 · 소진됨";
+      const status = `${r.qaStart ? "검증 시작 지급 · " : ""}${r.subtype === "quest" ? "임무 물품 · 사용 효과 없음" : !r.equipped ? "보관 중" : r.persistent ? `${r.slot + 1}번 공격 슬롯 · 지속 효과` : r.ready ? "장착 · 준비됨" : "장착 · 소진됨"}`;
       return `<article class="reward-card"><p class="eyebrow">${r.subtype === "rune" ? "카릴 문자" : r.subtype === "quest" ? "임무 물품" : "사냥 도구"}</p><h3>${esc(r.name)}</h3><p class="reward-state ${!r.ready ? "spent" : ""}">${status}${r.triggerArmed ? " · 다음 죽음에 사용 선택됨" : ""}${r.limitUsed ? " · 이번 챕터 사용 완료" : ""}</p><p>${esc(r.rules)}</p>${r.disabledReason || r.runtimeNote ? `<p class="reward-unavailable">${esc(r.disabledReason || r.runtimeNote)}</p>` : ""}${actions ? `<div class="reward-actions">${actions}</div>` : ""}${r.photos?.length ? `<details><summary>보상 원본 사진</summary>${r.photos.map((p) => `<a href="${esc(p.path)}" target="_blank"><img src="${esc(p.path)}" loading="lazy" alt="${esc(r.name)} 원본 사진"></a>`).join("")}</details>` : ""}</article>`;
     }).join("") || `<p class="muted">${missionView() ? "보상은 임무를 완료하면 획득합니다." : "획득한 보상이 없습니다. 새 사냥의 전투 연습에서 시작 보상을 선택해 효과를 확인할 수 있습니다."}</p>`;
     const owned = view.firearms.filter((g) => !g.equipped);
@@ -624,7 +638,7 @@
                 .map((n) => `<option value="${n.id}">${esc(n.name)}${n.lamp ? "" : " · 안개 안"}</option>`)
                 .join("")}</select></label>`
             : ""
-        }${o.workshop ? `<label>성배 교단 예배당 · 소모품 1장 교환<select id="tileExchangeItem"><option value="">교환하지 않음</option>${h.consumables.map((item) => `<option value="${esc(item.id)}">${esc(D.consumables[item.kind].name)}</option>`).join("")}${o.loot ? '<option value="after-loot">소모품 획득 후 교환할 카드 선택</option>' : ""}</select></label><p class="muted">선택한 소모품을 버리고 피의 유지 1개를 얻습니다(최대 3개). 소모품의 일반 사용 효과는 적용하지 않습니다.${h.consumables.length || o.loot ? "" : " 교환할 소모품이 없습니다."}</p>` : ""}${o.loot || o.heal || o.teleport || o.missionRescue || o.workshop ? `<button id="interact" ${chosen ? "" : "disabled"}>상호작용 실행</button>` : ""}</details>`;
+        }${o.workshop ? `<label>성배 교단 예배당 · 소모품 1장 교환<select id="tileExchangeItem"><option value="">교환하지 않음</option>${h.consumables.map((item) => `<option value="${esc(item.id)}">${esc(consumableDefinitions()[item.kind].name)}</option>`).join("")}${o.loot ? '<option value="after-loot">소모품 획득 후 교환할 카드 선택</option>' : ""}</select></label><p class="muted">선택한 소모품을 버리고 피의 유지 1개를 얻습니다(최대 3개). 소모품의 일반 사용 효과는 적용하지 않습니다.${h.consumables.length || o.loot ? "" : " 교환할 소모품이 없습니다."}</p>` : ""}${o.loot || o.heal || o.teleport || o.missionRescue || o.workshop ? `<button id="interact" ${chosen ? "" : "disabled"}>상호작용 실행</button>` : ""}</details>`;
       }
       if (E.node(state, h.position).tile === "tile-20")
         html += button(
@@ -648,7 +662,7 @@
       html = `<h3>${esc(t.displayName)}</h3><div class="rotation-preview"><img src="${G.image(t.id)}" style="transform:rotate(${rotation * 90}deg)" alt="새 타일 방향"></div><div class="actions">${[0, 1, 2, 3].map((r) => `<button data-rotation="${r}" class="${rotation === r ? "primary" : ""}" ${opts.includes(r) ? "" : "disabled"}>${r * 90}°</button>`).join("")}</div>${button("이 방향으로 배치하고 진입", "PLACE_TILE", { rotation }, false, "primary")}`;
     } else if (p === "exchange_choice") {
       help = "획득한 소모품도 교환할 수 있습니다. 1장을 버려 피의 유지 1개를 얻거나 교환을 마치세요. 추가 스탯 카드 비용은 없습니다.";
-      html = h.consumables.map((item) => button(`${esc(D.consumables[item.kind].name)} 교환 · 유지 +1`, "EXCHANGE_CHOICE", { itemId: item.id })).join("")
+      html = h.consumables.map((item) => button(`${esc(consumableDefinitions()[item.kind].name)} 교환 · 유지 +1`, "EXCHANGE_CHOICE", { itemId: item.id })).join("")
         + button("교환하지 않고 마치기", "EXCHANGE_CHOICE", { skip: true });
     } else if (p === "interaction_order") {
       help = "같은 칸의 적들이 상호작용에 앞서 반격합니다. 사냥꾼에게 가장 불리한 결과가 되는 순서로 먼저 행동할 적을 선택하세요. 이 반격에는 맞서 공격하거나 회피할 수 없습니다.";
@@ -814,7 +828,7 @@
       html = state.lootChoice
         .map((x) =>
           button(
-            `${esc(D.consumables[x.kind].name)}<small>${esc(D.consumables[x.kind].rules)}</small>`,
+            `${esc(consumableDefinitions()[x.kind].name)}<small>${esc(consumableDefinitions()[x.kind].rules)}</small>`,
             "LOOT_CHOICE",
             { itemId: x.id },
           ),
@@ -1116,7 +1130,7 @@
       a = document.createElement("a");
     a.href = url;
     const provisional = E.provisionalView ? E.provisionalView(state) : null;
-    a.download = `bloodborne-v07-${missionView() ? "campaign-ch" + missionView().chapter : provisional ? "trial-" + provisional.componentId : "practice"}-${state.initialSeed}-r${state.round}.json`;
+    a.download = `bloodborne-v07-${isQa() ? "qa-" : ""}${missionView() ? "campaign-ch" + missionView().chapter : provisional ? "trial-" + provisional.componentId : "practice"}-${state.initialSeed}-r${state.round}.json`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
@@ -1154,8 +1168,10 @@
     }).join("");
     $("gun").value = Object.hasOwn(D.firearms, selected) ? selected : actualMode ? "" : "hunter-pistol";
   }
-  const setupActualMode = () => ["campaign", "practice"].includes($("playMode").value);
-  const setupWeapon = () => D.weapons[$("weapon").value || "burial"] || D.weapons.burial;
+  const setupQaMode = () => $("playMode").value === "qa-campaign";
+  const setupActualMode = () => ["campaign", "practice", "qa-campaign"].includes($("playMode").value);
+  const setupWeapons = () => setupQaMode() && E.qaData?.weapon ? { ...D.weapons, [E.qaData.weapon.id]: E.qaData.weapon } : D.weapons;
+  const setupWeapon = () => setupWeapons()[$("weapon").value || "burial"] || D.weapons.burial;
   const knownDefaultFirearm = () => Object.hasOwn(D.firearms, setupWeapon().defaultFirearm || "hunter-pistol");
   function validateSetupLoadout() {
     const actual = setupActualMode(), weapon = setupWeapon(), expected = weapon.defaultFirearm || "hunter-pistol",
@@ -1166,7 +1182,8 @@
       ? `${weapon.name}의 기본 화기: ${gunName}${defaultKnown ? "" : " · 카드 자료 확인이 필요합니다. 제공된 화기를 선택해 대체 연습할 수 있습니다."}`
       : "별도 임시 구성품 시험에서는 장송의 칼날과 기존 임시 화기 규칙을 사용합니다.";
     $("firearmOverrideLabel").hidden = $("firearmOverrideNotice").hidden = !changed;
-    const valid = !!selected && (!changed || $("firearmOverride").checked);
+    const qaValid = !setupQaMode() || $("qaPreset").value === "fast" || (selectionCount(qaRewards) <= 16 && selectionCount(qaConsumables) <= 40),
+      valid = !!selected && (!changed || $("firearmOverride").checked) && qaValid;
     $("confirmSetup").disabled = !$("start").value || !valid;
     return valid;
   }
@@ -1175,11 +1192,11 @@
     $("setupWeaponPreview").innerHTML = `<p><strong>${esc(weapon.name)} · ${esc(face.name)}</strong></p><p>${esc(face.text || "")}</p><div class="setup-slot-preview">${face.slots.map((slot, index) => `<span><b>${index + 1}번 · ${esc(slot.name)}</b><small>속도 ${slot.speed} · 피해 ${slot.damage}</small>${slot.text ? `<small>${esc(slot.text)}</small>` : ""}</span>`).join("")}</div>`;
   }
   function renderSetupWeapons(useDefaultGun = false) {
-    const actual = setupActualMode(), selected = actual ? $("weapon").value || "burial" : "burial",
+    const actual = setupActualMode(), definitions = setupWeapons(), selected = actual ? $("weapon").value || "burial" : "burial",
       face = +$("face").value || 0;
-    $("weapon").innerHTML = Object.entries(D.weapons).filter(([id]) => id !== "training" && (actual || id === "burial"))
+    $("weapon").innerHTML = Object.entries(definitions).filter(([id]) => id !== "training" && (actual || id === "burial"))
       .map(([id, weapon]) => `<option value="${id}" ${id === selected ? "selected" : ""}>${esc(weapon.name)}</option>`).join("");
-    $("weapon").value = Object.hasOwn(D.weapons, selected) ? selected : "burial";
+    $("weapon").value = Object.hasOwn(definitions, selected) ? selected : "burial";
     $("weapon").disabled = !actual;
     $("face").innerHTML = setupWeapon().faces.map((part, index) => `<option value="${index}" ${index === face ? "selected" : ""}>${esc(part.name || (index ? "뒷면" : "앞면"))}</option>`).join("");
     $("face").value = String(face);
@@ -1226,6 +1243,58 @@
     $("restoreV05").hidden = !localStorage.getItem(oldKey);
     $("restoreV06").hidden = $("loadV06Setup").hidden = !localStorage.getItem(previousKey);
   } catch { /* File save remains available. */ }
+  function selectionCount(selection) { return [...selection.values()].reduce((count, value) => count + value, 0); }
+  function selectionIds(selection) { return [...selection].flatMap(([id, count]) => Array(count).fill(id)); }
+  function startSupplyNames(ids, definitions) {
+    const counts = new Map();
+    for (const id of ids || []) counts.set(id, (counts.get(id) || 0) + 1);
+    return [...counts].map(([id, count]) => `${definitions[id]?.name || id}${count > 1 ? ` ${count}장` : ""}`).join(", ");
+  }
+  function renderQaSetup() {
+    const active = setupQaMode(), custom = $("qaPreset").value === "custom",
+      definitions = window.BBRewards?.definitions || {},
+      consumables = { ...D.consumables, ...(E.qaData?.consumables || {}) },
+      preset = E.qaData?.presets?.fast;
+    $("qaSetup").hidden = !active;
+    $("qaCustomSetup").hidden = !custom;
+    $("qaPresetNotice").hidden = custom;
+    $("startingItemSetup").hidden = active;
+    $("confirmSetup").textContent = active ? "검증 사냥 시작" : "새 사냥 시작";
+    $("qaPresetNotice").textContent = preset
+      ? `빠른 임무 검증 시작 지급: ${startSupplyNames(preset.startRewards, definitions)} / ${startSupplyNames(preset.startConsumables, consumables)}. 장치 무기는 아래에서 직접 선택합니다.`
+      : "검증 전용 시작 지급은 일반 사냥의 획득 보상과 별도로 기록됩니다.";
+    $("qaRewards").innerHTML = Object.values(definitions).map((reward) => `<label>${esc(reward.name)}<select data-qa-reward="${esc(reward.id)}" aria-label="${esc(reward.name)} 검증 지급 수량">${Array.from({ length: reward.count + 1 }, (_, count) => `<option value="${count}" ${count === (qaRewards.get(reward.id) || 0) ? "selected" : ""}>${count ? count + "장 지급" : "지급하지 않음"}</option>`).join("")}</select>${reward.subtype === "quest" ? "<small>사용 효과가 없는 임무 물품</small>" : ""}</label>`).join("");
+    $("qaConsumables").innerHTML = Object.entries(consumables).filter(([id, item]) => item.runtime === "playable" || id.startsWith("qa-")).map(([id, item]) => {
+      const limit = id.startsWith("qa-") ? 10 : item.count || 0;
+      return `<label>${esc(item.name)}<select data-qa-consumable="${esc(id)}" aria-label="${esc(item.name)} 검증 지급 수량">${Array.from({ length: limit + 1 }, (_, count) => `<option value="${count}" ${count === (qaConsumables.get(id) || 0) ? "selected" : ""}>${count ? count + "장 지급" : "지급하지 않음"}</option>`).join("")}</select><small>${esc(item.rules || item.text || "")}</small></label>`;
+    }).join("");
+    $("qaRewards").querySelectorAll("[data-qa-reward]").forEach((select) => select.onchange = () => {
+      if (+select.value) qaRewards.set(select.dataset.qaReward, +select.value);
+      else qaRewards.delete(select.dataset.qaReward);
+      updateQaSetupNotice();
+    });
+    $("qaConsumables").querySelectorAll("[data-qa-consumable]").forEach((select) => select.onchange = () => {
+      if (+select.value) qaConsumables.set(select.dataset.qaConsumable, +select.value);
+      else qaConsumables.delete(select.dataset.qaConsumable);
+      updateQaSetupNotice();
+    });
+    updateQaSetupNotice();
+  }
+  function updateQaSetupNotice() {
+    const rewards = selectionCount(qaRewards), consumables = selectionCount(qaConsumables), invalid = rewards > 16 || consumables > 40;
+    $("qaSetupNotice").textContent = `직접 선택: 시작 보상 ${rewards}/16장 · 소모품 ${consumables}/40장${invalid ? " · 지급 상한을 초과했습니다." : " · 시작 후 보상을 장착하거나 보관합니다."}`;
+    $("qaSetupNotice").className = invalid ? "error" : "muted";
+    validateSetupLoadout();
+  }
+  function renderResumeButtons() {
+    try {
+      const normal = !!(localStorage.getItem(key) || localStorage.getItem(previousKey)), qa = !!localStorage.getItem(qaKey);
+      $("resumeNormal").hidden = !normal || !isQa();
+      $("resumeQa").hidden = !qa || isQa();
+      $("resumeNormalSetup").hidden = !normal;
+      $("resumeQaSetup").hidden = !qa;
+    } catch { /* File save remains available. */ }
+  }
   function restoreStored(storageKey, label) {
     try {
       const saved = localStorage.getItem(storageKey);
@@ -1250,6 +1319,12 @@
   }
   $("restoreV05").onclick = () => restoreStored(oldKey, "v0.5");
   $("restoreV06").onclick = $("loadV06Setup").onclick = () => restoreStored(previousKey, "v0.6");
+  const restoreNormal = () => {
+    try { restoreStored(localStorage.getItem(key) ? key : previousKey, "일반 사냥"); }
+    catch (error) { $("error").textContent = error.message; }
+  };
+  $("resumeNormal").onclick = $("resumeNormalSetup").onclick = restoreNormal;
+  $("resumeQa").onclick = $("resumeQaSetup").onclick = () => restoreStored(qaKey, "검증 사냥");
   $("startingItem").innerHTML += Object.values(D.consumables)
     .filter((x) => x.runtime === "playable")
     .map((x) => `<option value="${x.id}">${esc(x.name)}</option>`)
@@ -1261,10 +1336,21 @@
     renderSetupWeapons();
     renderPracticeTargets();
     renderPracticeRewards();
-    $("setupStory").hidden = $("playMode").value !== "campaign";
+    renderQaSetup();
+    $("setupStory").hidden = !["campaign", "qa-campaign"].includes($("playMode").value);
     $("setupStoryText").textContent = window.BBLongHunt.preface.find((entry) => entry.id === "intro")?.narrative || "";
   }
-  $("playMode").onchange = renderSetupStory;
+  $("playMode").onchange = () => {
+    if (setupQaMode() && lastSetupMode !== "qa-campaign" && E.qaData?.weapon) {
+      $("weapon").value = E.qaData.weapon.id;
+      $("face").value = "0";
+      $("gun").value = E.qaData.weapon.defaultFirearm || "hunter-pistol";
+      $("firearmOverride").checked = false;
+    }
+    lastSetupMode = $("playMode").value;
+    renderSetupStory();
+  };
+  $("qaPreset").onchange = renderQaSetup;
   $("weapon").onchange = () => renderSetupWeapons(true);
   $("face").onchange = renderSetupWeaponPreview;
   $("gun").onchange = validateSetupLoadout;
@@ -1280,6 +1366,7 @@
       : "현재 진행을 보관하려면 먼저 저장을 내보내세요.";
     $("setupError").textContent = "";
     renderSetupStory();
+    renderResumeButtons();
     $("setupDialog").showModal();
   }
   $("new").onclick = openSetup;
@@ -1288,19 +1375,21 @@
   $("cancelSetup").onclick = () => $("setupDialog").close();
   $("confirmSetup").onclick = () => {
     try {
+      if (setupQaMode() && $("qaPreset").value === "custom" && (selectionCount(qaRewards) > 16 || selectionCount(qaConsumables) > 40)) throw new Error("검증 시작 보상은 총 16장, 소모품은 총 40장까지 지급할 수 있습니다.");
       if (!validateSetupLoadout()) throw new Error("화기를 선택하세요. 기본 화기를 대신한다면 대체 연습 설정을 확인해야 합니다.");
       state = E.create(
         +$("seed").value,
         $("weapon").value,
         +$("face").value,
-        $("startingItem").value || null,
+        setupQaMode() ? null : $("startingItem").value || null,
         $("gun").value,
         $("start").value,
-        { campaign: $("playMode").value === "campaign",
+        { campaign: ["campaign", "qa-campaign"].includes($("playMode").value),
+          ...(setupQaMode() ? { qa: $("qaPreset").value === "custom" ? { preset: "custom", startRewards: selectionIds(qaRewards), startConsumables: selectionIds(qaConsumables) } : { preset: "fast" } } : {}),
           ...(setupActualMode() && $("gun").value !== (setupWeapon().defaultFirearm || "hunter-pistol") ? { firearmOverride: true } : {}),
           ...($("playMode").value === "practice" && $("practiceTarget").value ? { practiceTarget: $("practiceTarget").value, practiceSide: $("practiceSide").value } : {}),
           ...($("playMode").value === "practice" && practiceRewards.size ? { practiceRewards: [...practiceRewards].flatMap(([id, count]) => Array(count).fill(id)) } : {}),
-          ...(!["campaign", "practice"].includes($("playMode").value) ? { provisional: $("playMode").value } : {}) },
+          ...(!["campaign", "practice", "qa-campaign"].includes($("playMode").value) ? { provisional: $("playMode").value } : {}) },
       );
       resetStoryReading();
       setupRequired = false;
@@ -1323,6 +1412,7 @@
   renderSetupWeapons(true);
   renderPracticeTargets();
   renderPracticeRewards();
+  renderQaSetup();
   render();
   if (startupError) $("error").textContent = startupError;
   else if (!setupRequired) save();

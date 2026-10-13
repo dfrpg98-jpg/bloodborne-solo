@@ -30,6 +30,8 @@
     ? require("./extended-enemy-rules.js") : root.BBExtendedEnemyRules;
   const extendedFirearms = typeof module !== "undefined" && module.exports
     ? require("./extended-firearms.js") : root.BBExtendedFirearms;
+  const qaMode = typeof module !== "undefined" && module.exports
+    ? require("./qa-mode.js") : root.BBQAMode;
   const clone = (x) => JSON.parse(JSON.stringify(x));
   const enemyDeck =
     typeof module !== "undefined" && module.exports
@@ -69,7 +71,11 @@
       !!enemy(s, s.combat.enemyId) &&
       !s.combat.cancelEnemy
     );
-  const weapon = (s) => D.weapons[hunter(s).weaponId];
+  const weapon = (s) => s.setup.qa && hunter(s).weaponId === qaMode.weapon.id
+    ? qaMode.weapon : D.weapons[hunter(s).weaponId];
+  const consumableDefinitions = (s) => s.setup.qa
+    ? {...D.consumables,...qaMode.consumables} : D.consumables;
+  const consumableDefinition = (s,kind) => consumableDefinitions(s)[kind];
   const weaponFace = (s) => weapon(s).faces[hunter(s).face];
   const slots = (s) => weaponFace(s).slots;
   const log = (s, text) => {
@@ -506,7 +512,7 @@
     const item = s.consumableDeck.shift();
     if (item) {
       hunter(s).consumables.push(item);
-      log(s, `소모품 획득 · ${D.consumables[item.kind].name}.`);
+      log(s, `소모품 획득 · ${consumableDefinition(s,item.kind).name}.`);
     } else
       log(s, "소모품 덱과 버림 더미가 모두 비어 있어 획득하지 못했습니다.");
   }
@@ -515,7 +521,7 @@
       i = h.consumables.findIndex((x) => x.id === id);
     need(i >= 0, "보유한 소모품을 선택하세요.");
     const item = h.consumables[i],
-      def = D.consumables[item.kind];
+      def = consumableDefinition(s,item.kind);
     need(
       def.runtime === "playable",
       def.runtimeNote || "현재 사용할 수 없는 소모품입니다.",
@@ -598,6 +604,7 @@
       log(s, `소모품 피해 ${f.damage}.`);
       kill(s, target);
     }
+    if (f.qaClearSlots && s.setup.qa) for(let i=0;i<h.slots.length;i++) if(h.slots[i])clearSlot(s,i);
     if (f.draw) draw(s, f.draw);
     if (f.removeStatus) h.status[f.removeStatus] = false;
     if (f.heal) h.hp = Math.min(6, h.hp + f.heal);
@@ -615,7 +622,8 @@
         source: "consumable",
       };
       s.phase = "move";
-      log(s, "푸른 비약 · 이동 2 시작. 이동을 마치면 추격을 처리합니다.");
+      log(s, s.setup.qa && f.qaLabel ? `${f.qaLabel} · 이동 ${f.move} 시작. 이동을 마치면 추격을 처리합니다.` :
+        "푸른 비약 · 이동 2 시작. 이동을 마치면 추격을 처리합니다.");
     }
     if (enemyMovement) {
       const moved = enemy(s, enemyMovement.enemyId);
@@ -712,6 +720,7 @@
         ...(p.state.setup.firearmOverride ? {firearmOverride:true} : {}),
         ...(p.state.setup.practiceTarget ? {practiceTarget:p.state.setup.practiceTarget,practiceSide:p.state.setup.practiceSide} : {}),
          ...(Object.hasOwn(p.state.setup,"practiceRewards") ? {practiceRewards:p.state.setup.practiceRewards} : {}),
+        ...(p.state.setup.qa ? {qa:p.state.setup.qa} : {}),
         rulesVersion: p.state.setup.rulesVersion ?? null },
     );
     for (const command of p.state.commands)
@@ -1008,6 +1017,7 @@
       s.removedCards.push(...Array(3-(held.get(id)||0)).fill(id));
     s.upgradeDeck=shuffle(s,D.upgrades.flatMap((id)=>Array(3-(held.get(id)||0)).fill(id)));
     s.market=s.upgradeDeck.splice(0,4);
+    if(s.setup.qa) h.consumables=h.consumables.filter(item=>!qaMode.consumables[item.kind]);
     const carried=new Set(h.consumables.map((item)=>item.id));
     s.consumableDeck=shuffle(s,Object.values(D.consumables).filter((d)=>d.runtime!=='excluded')
       .flatMap((d)=>Array.from({length:d.count},(_,i)=>({id:`item-${d.id}-${i+1}`,kind:d.id})))
@@ -1016,6 +1026,7 @@
     for (const r of h.rewards) {r.ready=true;r.triggerArmed=false;}
     h.rewardKillWindow=false;h.rewardTransformWindow=false;
     missions.init(s,missionHelpers(),chapter,history);
+    if(s.setup.qa) qaMode.issueConsumables(s,h);
     for(const p of s.world.tiles) spawnOnTile(s,p);
     s.spawnAfter={type:'mission_phase',phase:'hunter'};finishSpawns(s);
     draw(s,3);
@@ -2229,7 +2240,7 @@
     const item = h.consumables.splice(index, 1)[0];
     s.consumableDiscard.push(item);
     h.echoes = Math.min(3, h.echoes + 1);
-    log(s, `성배 교단 예배당 · ${D.consumables[item.kind].name}을(를) 사용하여 피의 유지 1 획득.`);
+    log(s, `성배 교단 예배당 · ${consumableDefinition(s,item.kind).name}을(를) 사용하여 피의 유지 1 획득.`);
   }
   function collectLoot(s) {
     const q = s.interaction;
@@ -2559,7 +2570,7 @@
         s.lootChoice = [];
         log(
           s,
-          `지하 묘지 · ${D.consumables[item.kind].name} 선택, 나머지는 더미에 섞었습니다.`,
+          `지하 묘지 · ${consumableDefinition(s,item.kind).name} 선택, 나머지는 더미에 섞었습니다.`,
         );
         collectLoot(s);
         break;
@@ -2727,9 +2738,17 @@
       ? options.rulesVersion : options.legacyReplay ? null : 13;
     need(rulesVersion === null || [7, 8, 9, 10, 11, 12, 13].includes(rulesVersion),
       "지원하는 규칙 버전을 선택하세요.");
-    need(weaponId==="burial" || rulesVersion>=10 && !options.provisional &&
+    let qa;
+    if(Object.hasOwn(options,"qa")) {
+      need(options.campaign && rulesVersion===13 && !options.provisional && !options.practiceTarget &&
+        !Object.hasOwn(options,"practiceRewards") && startingConsumable===null,
+        "검증 지급은 현재 규칙의 기나긴 사냥 검증 모드에서만 사용하세요.");
+      qa=qaMode.normalize(options.qa,D,rewards.definitions);
+    }
+    const weaponDef=qa && weaponId===qaMode.weapon.id ? qaMode.weapon : D.weapons[weaponId];
+    need(qa && weaponId===qaMode.weapon.id || weaponId==="burial" || rulesVersion>=10 && !options.provisional &&
       Object.hasOwn(D.weapons,weaponId) && weaponId!=="training", "지원하는 장치 무기를 선택하세요.");
-    const defaultGun=D.weapons[weaponId].defaultFirearm || "hunter-pistol";
+    const defaultGun=weaponDef.defaultFirearm || "hunter-pistol";
     need(!(rulesVersion>=10 && options.campaign && firearmId!==defaultGun && !options.firearmOverride),
       "기본 화기를 선택하거나 연습용 대체 화기에 명시적으로 동의하세요.");
     need(!options.practiceTarget || rulesVersion>=10 && !options.campaign && !options.provisional && extendedEnemies.specimens[options.practiceTarget],
@@ -2753,6 +2772,7 @@
       rng: map.rng,
       initialSeed: map.seed,
       setup: { weaponId, face, startingConsumable, firearmId, startSpace,
+        ...(qa ? {qa} : {}),
         ...(options.firearmOverride ? {firearmOverride:true} : {}),
         ...(options.practiceTarget ? {practiceTarget:options.practiceTarget,practiceSide:extendedEnemies.normalizeSide(options.practiceTarget,options.practiceSide,1)} : {}),
         ...(Object.hasOwn(options,"practiceRewards") ? {practiceRewards:[...options.practiceRewards]} : {}),
@@ -2822,7 +2842,7 @@
       hand: [],
       deck: shuffle(s, deck),
       discard: [],
-      slots: Array(D.weapons[weaponId].faces[face].slots.length).fill(null),
+      slots: Array(weaponDef.faces[face].slots.length).fill(null),
       status: { poison: false, frenzy: false },
       firearmId,
       firearmReady: true,
@@ -2855,6 +2875,7 @@
     shuffle(s, s.consumableDeck);
     if (options.campaign || rulesVersion>=11 && !options.provisional) rewards.init(s);
     if (options.campaign) missions.init(s, missionHelpers());
+    if(qa) qaMode.issueConsumables(s,hunter(s));
     if (options.provisional) {
       s.provisional = { componentId: options.provisional, phase: 1, finished: false, npcVisits: 0 };
       spawnProvisional(s);
@@ -2867,9 +2888,11 @@
       log(s,`${d.name} · 1인용 실물 적 전투 연습을 시작합니다.`);
     }
     if(options.practiceRewards) for(const id of options.practiceRewards) rewards.grant(s,id,rewardHelpers());
+    if(qa) for(const id of qa.startRewards) rewards.grant(s,id,{...rewardHelpers(),qaStart:true});
     if(rewardSession(s)) rewards.onTurnStart(s);
     log(
       s,
+      qa ? "기나긴 사냥 검증 모드 · 검증 전용 장비와 지급을 사용하며 정규 완주 검증과 별도로 기록합니다." :
       options.campaign ? "기나긴 사냥 챕터 1 · 임무와 보상 연결 플레이를 시작합니다." : options.provisional ?
         "임시 구성품 시험을 시작합니다. 새 사냥에서 구성품을 바꿀 수 있습니다." :
         rulesVersion>=11 ? "자유 전투 연습 · 선택한 시작 보상은 정규 임무 획득과 별개입니다." :
@@ -2894,6 +2917,11 @@
     );
     need(s.setup.rulesVersion === undefined || [7, 8, 9, 10, 11, 12, 13].includes(s.setup.rulesVersion),
       "지원하지 않는 규칙 버전입니다.");
+    if(s.setup.qa) {
+      need(s.setup.campaign===true && s.setup.rulesVersion===13 && !s.provisional && !s.setup.practiceTarget &&
+        !Object.hasOwn(s.setup,"practiceRewards") && s.setup.startingConsumable===null,"검증 모드 설정 오류.");
+      need(canonical(qaMode.normalize(s.setup.qa,D,rewards.definitions))===canonical(s.setup.qa),"검증 지급 기록 오류.");
+    }
     need(s.chapelRuling === undefined || s.chapelRuling === "escort-first" && s.mission &&
       !(s.setup.rulesVersion >= 13), "예배당 판정 기록 오류.");
     need(
@@ -2903,7 +2931,7 @@
     const h = hunter(s),
       all = allCards(h);
     need(
-      (s.setup.weaponId === "burial" || s.setup.rulesVersion>=10 && !s.provisional && D.weapons[s.setup.weaponId] && s.setup.weaponId!=="training") &&
+      (s.setup.qa && s.setup.weaponId===qaMode.weapon.id || s.setup.weaponId === "burial" || s.setup.rulesVersion>=10 && !s.provisional && D.weapons[s.setup.weaponId] && s.setup.weaponId!=="training") &&
         h.weaponId === s.setup.weaponId &&
         Object.hasOwn(D.firearms, h.firearmId) &&
         (h.firearmId === s.setup.firearmId || s.mission && h.ownedFirearms.includes(h.firearmId)),
@@ -3000,14 +3028,15 @@
       ...s.lootChoice,
     ];
     need(
-      items.length === 36 && new Set(items.map((i) => i.id)).size === 36,
+      items.length === 36+(s.setup.qa?.startConsumables.filter(id=>qaMode.consumables[id]).length||0) &&
+        new Set(items.map((i) => i.id)).size === items.length,
       "소모품 수량 오류.",
     );
     for (const i of items)
       need(
-        D.consumables[i.kind] &&
+        consumableDefinition(s,i.kind) &&
           i.id.match(/^item-/) &&
-          D.consumables[i.kind].runtime !== "excluded",
+          consumableDefinition(s,i.kind).runtime !== "excluded",
         "소모품 데이터 오류.",
       );
     const stats = [
@@ -3106,7 +3135,7 @@
       need(s.combat, "전투 상태 누락.");
     if (s.phase === "move")
       need(
-        s.move && s.move.remaining > 0 && s.move.remaining <= 3,
+        s.move && s.move.remaining > 0 && s.move.remaining <= (s.setup.qa && s.move.source === "consumable" ? 6 : 3),
         "이동 상태 오류.",
       );
     if (s.phase === "tile_place")
@@ -3181,6 +3210,8 @@
     provisionalView,
     placementOptions: (s) => missions.placementOptions(s, missionHelpers()),
     data: D,
+    qaData: {weapon:qaMode.weapon,consumables:qaMode.consumables,presets:qaMode.presets},
+    consumableDefinitions,
   };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.BBHunt = api;

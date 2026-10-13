@@ -1,0 +1,232 @@
+{
+  "scope": "A recorded public first-enemy-kill sequence. This does not claim a full campaign completion.",
+  "seed": 1,
+  "normal": [
+    {
+      "type": "MOVE",
+      "cardId": "card-7"
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "N"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 0
+    },
+    {
+      "type": "STEP",
+      "node": "tile-14:center"
+    },
+    {
+      "type": "MOVE",
+      "cardId": "card-1"
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "S"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 2
+    },
+    {
+      "type": "STEP",
+      "node": "tile-14:center"
+    },
+    {
+      "type": "ATTACK",
+      "cardId": "card-4",
+      "slot": 1,
+      "enemyId": "scourge-beast-1"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "EXTRA_TAKE"
+    },
+    {
+      "type": "END_TURN"
+    },
+    {
+      "type": "NO_ATTACK"
+    },
+    {
+      "type": "FIREARM"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "NO_ATTACK"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "REFILL"
+    },
+    {
+      "type": "RETURN",
+      "node": "tile-19:bottom",
+      "face": 1
+    },
+    {
+      "type": "MOVE",
+      "cardId": "card-9"
+    },
+    {
+      "type": "STEP",
+      "node": "tile-14:center"
+    },
+    {
+      "type": "STEP",
+      "node": "tile-14:left"
+    },
+    {
+      "type": "ATTACK",
+      "cardId": "card-3",
+      "slot": 1,
+      "enemyId": "scourge-beast-1"
+    },
+    {
+      "type": "FIREARM"
+    },
+    {
+      "type": "RESOLVE"
+    }
+  ],
+  "qa": [
+    {
+      "type": "MOVE",
+      "cardId": "card-7"
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "N"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 0
+    },
+    {
+      "type": "STEP",
+      "node": "tile-14:center"
+    },
+    {
+      "type": "MOVE",
+      "cardId": "card-1"
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "S"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 2
+    },
+    {
+      "type": "STEP",
+      "node": "tile-14:center"
+    },
+    {
+      "type": "ATTACK",
+      "cardId": "card-4",
+      "slot": 0,
+      "enemyId": "scourge-beast-1"
+    },
+    {
+      "type": "RESOLVE"
+    }
+  ],
+  "healingSeed": 90,
+  "healingNormal": [
+    {
+      "type": "MOVE",
+      "cardId": "card-3"
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "N"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 0
+    },
+    {
+      "type": "STEP",
+      "node": "tile-14:center"
+    },
+    {
+      "type": "MOVE",
+      "cardId": "card-1"
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "S"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 2
+    },
+    {
+      "type": "STEP",
+      "node": "tile-14:center"
+    },
+    {
+      "type": "MOVE",
+      "cardId": "card-7"
+    },
+    {
+      "type": "STEP",
+      "node": "tile-14:left"
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "W"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 0
+    },
+    {
+      "type": "END_TURN"
+    },
+    {
+      "type": "NO_ATTACK"
+    },
+    {
+      "type": "FIREARM"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "REFILL"
+    },
+    {
+      "type": "ATTACK",
+      "cardId": "card-11",
+      "slot": 1,
+      "enemyId": "scourge-beast-1"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "ATTACK",
+      "cardId": "card-12",
+      "slot": 2,
+      "enemyId": "scourge-beast-1"
+    },
+    {
+      "type": "DODGE",
+      "cardId": "card-2",
+      "slot": 0
+    },
+    {
+      "type": "RESOLVE"
+    }
+  ]
+}

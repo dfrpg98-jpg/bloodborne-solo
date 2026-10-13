@@ -1,7 +1,7 @@
 {
   "title": "블러드본 규칙 구현 점검표",
   "asOf": "2026-10-12 KST",
-  "version": "0.7.7",
+  "version": "0.7.8",
   "scope": "한 명의 사냥꾼으로 기나긴 사냥 챕터 1~3. 제공 장치무기15종 양면·화기8종·실제 보스/NPC·보상32종(사용 효과30종·사용불가 임무 물품2종). 다른 캠페인과 다인/온라인 협동은 사용자가 이후 단계로 지정하여 이번 완료 범위에서 제외한다.",
   "sources": [
     {
@@ -65,9 +65,10 @@
     "공개 명령으로 실제 처음부터 도달한 임무 곁가지와 무기별 본편 승리의 범위는 C01~C10 및 VERIFICATION.txt에서 확인한다.",
     "같은 예배당 이동 종료에서 37 호위가 완료되면 39를 먼저 획득하고 그 결과를 반영하여 56을 판정한다. 사용자 결정으로 채택한 프로젝트 재정이며 공식 FAQ의 고유 판정으로 표시하지 않는다. 플레이어에게 순서 선택이나 아직 공개하지 않은 목표·보상·분기 비교를 보여주지 않는다. 호위가 없는 도착은 56의 일반 조건을 유지한다.",
     "v0.7.3 이전 기록에 적힌 한 승리 경로와 단순 정책의30패배는 당시 검증 범위다. 최신 자연 승리 결과는 VERIFICATION.txt를 기준으로 한다.",
-    "RULES_CHECKLIST.json/TXT/XLSX는 v0.7.7의 같은110항목을 제공한다.",
+    "RULES_CHECKLIST.json/TXT/XLSX는 v0.7.8의 같은111항목을 제공한다. 정규 범위110항목과 검증 전용 도구T01을 구분한다.",
     "v0.7.4에서는51/52의 자연 진입만 확인하고 정상 완료 경로는 미확보였다. v0.7.5에서는 원문 조건과 기본 시작 지급을 유지한 공개 명령만으로51의343명령 연구 완료/26/수혈액 장착·사용(체력3·트랙8),52의384명령 새 생존자2개 인도/28/사자 선물 장착(체력6·트랙8)을 추가 확인했다. 해당 임무 완료 기록 자체의 챕터3 최종 보스 승리를 주장하지 않는다.",
-    "실제 과거 저장39개와 독립 v0.7.0 111·v0.7.1 277·v0.7.2 326·v0.7.3 326·v0.7.4 326개를 합한1405개가 정확 복원됐다. 최종 실제 검사 수는 VERIFICATION.txt를 확인한다."
+    "실제 과거 저장39개와 독립 v0.7.0 111·v0.7.1 277·v0.7.2 326·v0.7.3 326·v0.7.4 326개를 합한1405개가 정확 복원됐다. 최종 실제 검사 수는 VERIFICATION.txt를 확인한다.",
+    "T01은 검증용 장비·시작 지급·소모품·별도 자동 저장을 다루는 개발 도구이다. 테스트 전용 장비로 진행한 결과는 정규 규칙의 난이도·정상 완주 근거로 계산하지 않는다. 정규 데이터의15무기·36소모품 공급과 정규 자동 저장은 유지한다."
   ],
   "rows": [
     {
@@ -2001,7 +2002,7 @@
       "status": "구현",
       "priority": "없음",
       "verification": "규칙10 공개 명령325개로 3챕터 자연 완주·정확 저장 재생 / 장송의 칼날 한 경로",
-      "nextAction": "다른 무기·화기와 임무 곁가지 경로의 본편 장기 플레이를 추가 검증합니다.240조합의 전투 연습 검증과 본편 자연 완주 검증은 구분합니다.",
+      "nextAction": "현재 규칙13에서15개 무기 각각의 정상 본편 완주 경로를 확인했습니다(C02). 모든 화기 조합·곁가지 경로를 각각 최종 보스까지 완주한 것은 아니며, 새로운 예외가 발견되면 추가 점검합니다.",
       "evidence": "mission-engine.js onKill(), complete(44); hunt-engine.js beginChapterDream(), finishDream(); hunt-app.js renderDecisions()\ntests/later-missions.test.cjs — chapter three final boss kill completes 44 and records campaign victory without track advance\ntests/campaign-ui.test.cjs — chapter completion offers equipment preparation and chapter three has a campaign ending\n규칙8 임시 구성품은332명령 자연 완주. 새 규칙9 실제 구성품은276명령 Ch1~2 완료·최종꿈, Ch3 최종 처치는 조립 상태 회귀; 새 구성품으로 전체 캠페인 자연 완주를 검증했다는 의미는 아님.\ntests/actual-boss.test.cjs — an actual phase-two final kill completes card44 and the final dream without advancing the hunt track\n규칙10의 실제 구성품으로 장송의 칼날·기본 단총 한 경로를325개 공개 명령만으로 진행하여 챕터1~3 연속 승리와 정확 저장 재생을 검증했습니다. 실제 성직자 야수는 챕터2/3의 체력10/8·양 페이즈 행동 덱을 사용하며 최종 꿈에서 사냥 트랙은 늘지 않습니다. 모든 무기 조합·모든 곁가지 경로의 본편 완주를 검증한 것은 아닙니다.\ntests/actual-full-campaign-v10.test.cjs — 325 public version-ten commands win all three Long Hunt chapters with actual Cleric Beast and exact save replay",
       "testEvidence": [
         {
@@ -2795,6 +2796,52 @@
         }
       ],
       "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "T01",
+      "category": "검증 도구",
+      "rulePage": "개발용",
+      "criterion": "검증 전용 캠페인에서 장치무기 양면(3속도·12/6피해), 빠른 시작 보상·소모품과 직접 수량 선택, 회복·손패/슬롯 보충·6칸 이동을 사용한다. 정규 자동 저장·구성품 공급과 분리한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "개발 도구 회귀16개 · 정규 완주 근거와 별도",
+      "evidence": "qa-mode.js / hunt-engine.js / hunt-app.js: 명시한 검증 모드에서만 장치무기와 소모품3종을 제공한다. 빠른 프리셋 또는 기존 보상·정규/검증 소모품의 시작 수량을 선택한다. 시작 보상은qaStart 사본으로 지급하여 실제 임무 보상 공급을 보존하고, 선택 소모품은 매 챕터 시작에 다시 지급한다. 정규 시작 화면과15무기·36소모품 공급, 일반 자동 저장을 유지한다. 일반/검증 저장은 별도 재개하며 검증 설정과 명령을 정확 재생한다.\ntests/qa-campaign-v078.test.cjs — QA definitions stay outside stock component decks and normal creation\ntests/qa-campaign-v078.test.cjs — fast QA setup is explicit, contains separate issued items, and roundtrips exactly\ntests/qa-campaign-v078.test.cjs — QA starting reward persists once and spent QA supplies renew at both natural chapter transitions\ntests/qa-campaign-v078.test.cjs — a QA starting lantern does not block the actual chapter-one lantern reward\ntests/qa-campaign-v078.test.cjs — QA weapon kills a real spawned enemy and QA cards clear the occupied attack slot\ntests/qa-campaign-v078.test.cjs — QA healing after a public stock-weapon battle restores actual damage and an exhausted firearm\ntests/qa-campaign-ui-v078.test.cjs — starting a QA hunt and using its real inventory preserves the normal autosave byte for byte\ntests/qa-campaign-ui-v078.test.cjs — custom QA setup serializes selected reward and consumable quantities through actual start controls",
+      "testEvidence": [
+        {
+          "file": "tests/qa-campaign-v078.test.cjs",
+          "name": "QA definitions stay outside stock component decks and normal creation"
+        },
+        {
+          "file": "tests/qa-campaign-v078.test.cjs",
+          "name": "fast QA setup is explicit, contains separate issued items, and roundtrips exactly"
+        },
+        {
+          "file": "tests/qa-campaign-v078.test.cjs",
+          "name": "QA starting reward persists once and spent QA supplies renew at both natural chapter transitions"
+        },
+        {
+          "file": "tests/qa-campaign-v078.test.cjs",
+          "name": "a QA starting lantern does not block the actual chapter-one lantern reward"
+        },
+        {
+          "file": "tests/qa-campaign-v078.test.cjs",
+          "name": "QA weapon kills a real spawned enemy and QA cards clear the occupied attack slot"
+        },
+        {
+          "file": "tests/qa-campaign-v078.test.cjs",
+          "name": "QA healing after a public stock-weapon battle restores actual damage and an exhausted firearm"
+        },
+        {
+          "file": "tests/qa-campaign-ui-v078.test.cjs",
+          "name": "starting a QA hunt and using its real inventory preserves the normal autosave byte for byte"
+        },
+        {
+          "file": "tests/qa-campaign-ui-v078.test.cjs",
+          "name": "custom QA setup serializes selected reward and consumable quantities through actual start controls"
+        }
+      ],
+      "nextAction": "검증 장비를 사용한 결과는 임무 흐름 점검에 사용합니다. 정규 전투 수치·장비 효과와 정상 완주 검증에는 실제 구성품 경로를 유지합니다.",
       "manualCheck": "미점검"
     }
   ]

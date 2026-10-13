@@ -56,12 +56,13 @@
     }
     const d = definitions[kind];
     need(d && known(s,kind), "현재 지원하지 않는 보상입니다.");
+    const qaStart=!!s.setup?.qa && helpers.qaStart===true;
     const count = Object.values(s.hunters).reduce((n, p) => n +
-      (p.rewards || []).filter((r) => r.kind === kind).length, 0);
+      (p.rewards || []).filter((r) => r.kind === kind && !!r.qaStart===qaStart).length, 0);
     need(count < d.count, "보상 카드 공급이 부족합니다.");
     s.uid = (s.uid || 0) + 1;
     const r = { id: `reward-${s.uid}`, kind, equipped: false, ready: true,
-      slot: null, triggerArmed: false };
+      slot: null, triggerArmed: false, ...(qaStart ? {qaStart:true} : {}) };
     h.rewards.push(r);
     if(d.subtype === "quest") {
       say(s,helpers,`${d.name} 획득 · 사용 불가 임무 물품으로 보관합니다.`);
@@ -417,6 +418,8 @@
     for (const h of Object.values(s.hunters)) {
       for (const r of h.rewards || []) {
         need(typeof r.id === "string" && !ids.has(r.id) && known(s,r.kind), "보상 상태를 확인하세요.");
+        need(r.qaStart===undefined || r.qaStart===true && s.setup?.qa &&
+          s.setup.qa.startRewards.includes(r.kind),"검증 시작 보상 기록 오류.");
         ids.add(r.id);
         need(typeof r.equipped === "boolean" && typeof r.ready === "boolean", "보상 장착·준비 상태를 확인하세요.");
         need(!definitions[r.kind].persistent || r.ready, X.enabled(s) ? "슬롯 부착 보상은 소진되지 않습니다." : "혈석의 파편은 소진되지 않습니다.");
@@ -436,8 +439,11 @@
         "화기 보관·장착 상태를 확인하세요.");
     }
     for (const [kind, d] of Object.entries(definitions))
-      need(Object.values(s.hunters).reduce((n, h) => n + (h.rewards || []).filter((r) => r.kind === kind).length, 0) <= d.count,
+      need(Object.values(s.hunters).reduce((n, h) => n + (h.rewards || []).filter((r) => r.kind === kind && !r.qaStart).length, 0) <= d.count,
         "보상 카드 공급을 초과했습니다.");
+    if(s.setup?.qa)for(const kind of Object.keys(definitions))
+      need(Object.values(s.hunters).reduce((n,h)=>n+(h.rewards||[]).filter(r=>r.kind===kind&&r.qaStart).length,0)<=
+        s.setup.qa.startRewards.filter(id=>id===kind).length,"검증 시작 보상 수량 오류.");
     for (const q of s.rewardChoices || [])
       need(q.rewardId ? get(s, q.rewardId) && !get(s, q.rewardId).equipped :
         hunter(s).ownedFirearms.includes(q.firearmId), "보상 선택 상태를 확인하세요.");

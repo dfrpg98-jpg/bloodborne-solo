@@ -1,9 +1,9 @@
-블러드본 규칙 구현 점검표 v0.7.7
+블러드본 규칙 구현 점검표 v0.7.8
 기준: 2026-10-12 KST
 한 명의 사냥꾼으로 기나긴 사냥 챕터 1~3. 제공 장치무기15종 양면·화기8종·실제 보스/NPC·보상32종(사용 효과30종·사용불가 임무 물품2종). 다른 캠페인과 다인/온라인 협동은 사용자가 이후 단계로 지정하여 이번 완료 범위에서 제외한다.
 
 구현 상태·검증 근거·사용자 직접 점검은 별개입니다. 직접 점검은 모두 미점검입니다.
-최종 실제 검사 결과는 VERIFICATION.txt를 참고합니다.
+정규 범위110항목: 구현106,범위제외4,부분0,미구현0. T01은 추가한 검증 전용 개발 도구입니다.
 
 status는 구현 여부, verification은 근거 수준, manualCheck는 사용자의 직접 점검 결과입니다. 서로 같은 의미가 아닙니다.
 manualCheck는 모두 미점검으로 시작합니다. 자동 테스트가 존재해도 사용자의 직접 확인을 완료로 표시하지 않습니다.
@@ -23,16 +23,25 @@ v0.7.7는 한 캠페인의 1인 플레이를 완료 기준으로 삼는다. 다�
 공개 명령으로 실제 처음부터 도달한 임무 곁가지와 무기별 본편 승리의 범위는 C01~C10 및 VERIFICATION.txt에서 확인한다.
 같은 예배당 이동 종료에서 37 호위가 완료되면 39를 먼저 획득하고 그 결과를 반영하여 56을 판정한다. 사용자 결정으로 채택한 프로젝트 재정이며 공식 FAQ의 고유 판정으로 표시하지 않는다. 플레이어에게 순서 선택이나 아직 공개하지 않은 목표·보상·분기 비교를 보여주지 않는다. 호위가 없는 도착은 56의 일반 조건을 유지한다.
 v0.7.3 이전 기록에 적힌 한 승리 경로와 단순 정책의30패배는 당시 검증 범위다. 최신 자연 승리 결과는 VERIFICATION.txt를 기준으로 한다.
-RULES_CHECKLIST.json/TXT/XLSX는 v0.7.7의 같은110항목을 제공한다.
+RULES_CHECKLIST.json/TXT/XLSX는 v0.7.8의 같은111항목을 제공한다. 정규 범위110항목과 검증 전용 도구T01을 구분한다.
 v0.7.4에서는51/52의 자연 진입만 확인하고 정상 완료 경로는 미확보였다. v0.7.5에서는 원문 조건과 기본 시작 지급을 유지한 공개 명령만으로51의343명령 연구 완료/26/수혈액 장착·사용(체력3·트랙8),52의384명령 새 생존자2개 인도/28/사자 선물 장착(체력6·트랙8)을 추가 확인했다. 해당 임무 완료 기록 자체의 챕터3 최종 보스 승리를 주장하지 않는다.
 실제 과거 저장39개와 독립 v0.7.0 111·v0.7.1 277·v0.7.2 326·v0.7.3 326·v0.7.4 326개를 합한1405개가 정확 복원됐다. 최종 실제 검사 수는 VERIFICATION.txt를 확인한다.
+T01은 검증용 장비·시작 지급·소모품·별도 자동 저장을 다루는 개발 도구이다. 테스트 전용 장비로 진행한 결과는 정규 규칙의 난이도·정상 완주 근거로 계산하지 않는다. 정규 데이터의15무기·36소모품 공급과 정규 자동 저장은 유지한다.
+
+출처
+사용자 제공 한국어 규칙서: C:\Users\GOOD\Desktop\보겜프로젝트\블러드본한국어규칙서_압축.pdf / 28쪽 전체 검토; 플레이 조건은 주로 8~26쪽
+제공 캠페인/타일 전사: campaigns/long-hunt/data.json / 카드1~60, 적3종6면, 타일20종
+제공 스탯/소모품/보상 전사: components/cards.json / 정의75종; 보상32종(실행 효과30종과 사용불가 임무 물품2종)
+코드 감사와 실제 검증 기록: RULES_AUDIT.txt; VERIFICATION.txt; tests/*.test.cjs / 현재 구현과 전용 테스트 존재 여부를 대조
+실제 보스/NPC/화기 제공 자료: components/supplied-components.json; components/cleric-beast-source.txt; 참고자료/적 카드/*.jpg; 참고자료/화기/*.jpg / 성직자 야수/화염방사기 직접 전사와 여성/NPC/장총/연발총 사진4장 및 해시
+신규 장치무기·적·화기 직접 판독 자료: components/extended-weapons.json; components/extended-enemies.json; components/extended-firearms.json; SOURCE_INVENTORY.json / 참고자료 폴더의 사진42장과 기본화기/수량 안내 TXT1개. 양면 인원수 표시는 보스 페이즈로 해석하지 않습니다.
+공식 FAQ v1.0: https://www.cmon.com/wp-content/uploads/2023/06/Bloodborne_Boardgame_FAQ_v1.0.pdf / 기나긴 사냥 카드20·준비17 정정과 전투·임무 부활·동시 효과 대조
 
 R01 | 시작 준비 | 규칙 8쪽
 조건: 새 정규 사냥을 시작하면 사냥꾼의 체력이 6이다.
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: hunt-engine.js create(), assertState()
-tests/hunt.test.cjs — actual 12/60/36 supply and independent replay save
 tests/hunt.test.cjs — actual 12/60/36 supply and independent replay save
 남은 조치: —
 사용자 직접 점검: 미점검
@@ -43,7 +52,6 @@ R02 | 시작 준비 | 규칙 8쪽
 검증: 자동 테스트 근거 있음
 근거: hunt-engine.js create(), allCards(), assertState()
 tests/hunt.test.cjs — actual 12/60/36 supply and independent replay save
-tests/hunt.test.cjs — actual 12/60/36 supply and independent replay save
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -52,8 +60,6 @@ R03 | 시작 준비 | 규칙 8쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: hunt-app.js renderSetupWeapons()/renderSetupWeaponPreview(), hunt-engine.js create()/weaponFace(). 1~3개 슬롯을 원본대로 표시합니다.
-tests/campaign-ui.test.cjs — the new-hunt weapon menu exposes all supplied weapons and previews their real slot counts
-tests/extended-weapon-data.test.cjs — printed speed, damage and one-to-three slot counts are preserved for every supplied face
 tests/campaign-ui.test.cjs — the new-hunt weapon menu exposes all supplied weapons and previews their real slot counts
 tests/extended-weapon-data.test.cjs — printed speed, damage and one-to-three slot counts are preserved for every supplied face
 남은 조치: —
@@ -68,10 +74,6 @@ tests/extended-weapon-data.test.cjs — all supplied weapon photos form fourteen
 tests/weapon-rules.test.cjs — regain, free transforms and destructive hammer restrictions stay on the named slot
 tests/weapon-rules.test.cjs — dodge abilities distinguish all nearby enemies, chosen same-space enemy and matched combat enemy
 tests/campaign-ui.test.cjs — a two-slot weapon keeps its own effect and resets an out-of-range selection after transformation
-tests/extended-weapon-data.test.cjs — all supplied weapon photos form fourteen distinct pairs with traceable source hashes
-tests/weapon-rules.test.cjs — regain, free transforms and destructive hammer restrictions stay on the named slot
-tests/weapon-rules.test.cjs — dodge abilities distinguish all nearby enemies, chosen same-space enemy and matched combat enemy
-tests/campaign-ui.test.cjs — a two-slot weapon keeps its own effect and resets an out-of-range selection after transformation
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -80,8 +82,6 @@ R05 | 시작 준비 | 규칙 9, 17쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: hunt-engine.js create(), drawConsumable(), assertState()
-tests/consumables.test.cjs — play pool retains 2 of each of 18 types, excludes invitation, grants no extra copy
-tests/hunt.test.cjs — actual 12/60/36 supply and independent replay save
 tests/consumables.test.cjs — play pool retains 2 of each of 18 types, excludes invitation, grants no extra copy
 tests/hunt.test.cjs — actual 12/60/36 supply and independent replay save
 남은 조치: —
@@ -93,7 +93,6 @@ R06 | 시작 준비 | 규칙 9, 17 / 사용자 지시쪽
 검증: 자동 테스트 근거 있음
 근거: data.js consumables; hunt-data.js consumablePool; 사용자 이전 제외 지시
 tests/consumables.test.cjs — play pool retains 2 of each of 18 types, excludes invitation, grants no extra copy
-tests/consumables.test.cjs — play pool retains 2 of each of 18 types, excludes invitation, grants no extra copy
 남은 조치: 사용자 제외 지시를 유지합니다. 일반 규칙의 결함으로 합산하지 않습니다.
 사용자 직접 점검: 미점검
 
@@ -102,8 +101,6 @@ R07 | 챕터 준비 | 규칙 9~10쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: chapter-engine.js create(), definition(); hunt-engine.js enemyDef(), startNextChapter()
-tests/chapter-map.test.cjs — randomization varies faces, slot permutation and includes named optional tiles
-tests/campaign-progression.test.cjs — chapter two and three special setup preserves card 17 topology, supplies and deterministic choices
 tests/chapter-map.test.cjs — randomization varies faces, slot permutation and includes named optional tiles
 tests/campaign-progression.test.cjs — chapter two and three special setup preserves card 17 topology, supplies and deterministic choices
 남은 조치: —
@@ -115,7 +112,6 @@ R08 | 챕터 준비 | 규칙 10쪽
 검증: 자동 테스트 근거 있음
 근거: chapter-engine.js create(); campaigns/long-hunt/data.json chapters[0]
 tests/chapter-map.test.cjs — chapter 1 setup selects required four plus two random tiles, central separate, all three kinds and four figures each
-tests/chapter-map.test.cjs — chapter 1 setup selects required four plus two random tiles, central separate, all three kinds and four figures each
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -124,9 +120,6 @@ R09 | 챕터 준비 | 규칙 10쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: start-placement.js mount()/update(); hunt-app.js openSetup(), confirmSetup(), renderDecisions(); hunt-engine.js startNextChapter()
-tests/chapter-map.test.cjs — starting space is a choice, not necessarily the lamp-marked space
-tests/campaign-progression.test.cjs — natural chapter one completion advances with growth inventory and resets chapter supplies at the chosen start
-tests/campaign-ui.test.cjs — the next chapter requires an explicit start space and sends the selected weapon face
 tests/chapter-map.test.cjs — starting space is a choice, not necessarily the lamp-marked space
 tests/campaign-progression.test.cjs — natural chapter one completion advances with growth inventory and resets chapter supplies at the chosen start
 tests/campaign-ui.test.cjs — the next chapter requires an explicit start space and sends the selected weapon face
@@ -144,18 +137,6 @@ tests/campaign-ui.test.cjs — an altered story button cannot open an unrevealed
 tests/campaign-ui.test.cjs — past chapter story access is limited to its actual reveal history
 tests/campaign-ui.test.cjs — a later reveal is highlighted after read marks without adding story data to a resumed old save
 mission-engine.js 진행문과 hunt-app.js는 공개 카드에 적힌 현재 지시만 표시한다. 8·12·18·24·35·37의 후속 목표와 보상 예고를 제거하고 이전 동시 판정 대기도 미공개 비교 없이 표시한다.
-tests/campaign-ui.test.cjs — campaign setup offers the supplied introduction and hides it in practice and temporary trials
-tests/campaign-ui.test.cjs — reading the introduction and enlarged public cards changes no game save or commands
-tests/campaign-ui.test.cjs — an altered story button cannot open an unrevealed source card
-tests/campaign-ui.test.cjs — past chapter story access is limited to its actual reveal history
-tests/campaign-ui.test.cjs — a later reveal is highlighted after read marks without adding story data to a resumed old save
-tests/mission-objective-visibility-v077.test.cjs — a fresh hunt names and describes only the already-revealed main mission
-tests/mission-objective-visibility-v077.test.cjs — card 8 shows escort instructions without the unrevealed chapel beast
-tests/mission-objective-visibility-v077.test.cjs — card 12 shows interaction without predicting a chase or later choice
-tests/mission-objective-visibility-v077.test.cjs — card 18 shows only corpse deposits before card 19 adds an insight requirement
-tests/mission-objective-visibility-v077.test.cjs — card 35 shows the bridge minion fight without predicting the rescued escort
-tests/mission-objective-visibility-v077.test.cjs — card 37 shows its disclosed destinations without predicting either reward
-tests/mission-objective-visibility-v077.test.cjs — an old real pending chapel save receives a neutral title and no future mission or reward comparison
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -164,8 +145,6 @@ R11 | 임무 | 규칙 12~13쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: mission-engine.js init(), reveal(), onMovementEnd(), rescueInteraction(), onKill()
-tests/mission.test.cjs — movement ending anywhere on the mission tile triggers only immediate cards
-tests/campaign-playthrough.test.cjs — 122 real player commands complete chapter one from a fresh seed and preserve final dream progress
 tests/mission.test.cjs — movement ending anywhere on the mission tile triggers only immediate cards
 tests/campaign-playthrough.test.cjs — 122 real player commands complete chapter one from a fresh seed and preserve final dream progress
 남은 조치: —
@@ -178,8 +157,6 @@ R12 | 임무 | 규칙 12~13쪽
 근거: mission-engine.js insight(), owns(), check(), onMovementEnd()
 tests/mission.test.cjs — main trigger counts completed white insight cards, main ability replaces either enemy face
 tests/later-missions.test.cjs — later chapter preparation separates current insight from retained completed outcomes
-tests/mission.test.cjs — main trigger counts completed white insight cards, main ability replaces either enemy face
-tests/later-missions.test.cjs — later chapter preparation separates current insight from retained completed outcomes
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -188,7 +165,6 @@ R13 | 임무 | 규칙 12~13 / 제공 카드 8~11쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: mission-engine.js onStep(), onTeleport(); hunt-engine.js enterDream()
-tests/mission.test.cjs — escort pickup is optional, only while leaving its named space, and teleport returns it
 tests/mission.test.cjs — escort pickup is optional, only while leaving its named space, and teleport returns it
 남은 조치: —
 사용자 직접 점검: 미점검
@@ -201,9 +177,6 @@ R14 | 임무 | 규칙 12~13 / 제공 카드 12~16쪽
 tests/mission.test.cjs — rescue interaction starts four-space escape with exploration then turn-end one-space escape
 tests/mission.test.cjs — rescue catch rejects actual pursuit into end space and exposes only selected reward branch
 tests/mission.test.cjs — NPC circular exploration filters shortcut rotations while preserving ordinary exploration
-tests/mission.test.cjs — rescue interaction starts four-space escape with exploration then turn-end one-space escape
-tests/mission.test.cjs — rescue catch rejects actual pursuit into end space and exposes only selected reward branch
-tests/mission.test.cjs — NPC circular exploration filters shortcut rotations while preserving ordinary exploration
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -212,7 +185,6 @@ R15 | 라운드 | 규칙 13, 18, 24쪽
 상태: 구현 | 우선순위: 없음
 검증: 코드 확인 · 완수 경로 테스트 있음 · 실패 경계 전용 실제 지도 테스트는 제한적
 근거: hunt-engine.js advance(), nextRound(), finalRound/result 처리
-tests/campaign-playthrough.test.cjs — 122 real player commands complete chapter one from a fresh seed and preserve final dream progress
 tests/campaign-playthrough.test.cjs — 122 real player commands complete chapter one from a fresh seed and preserve final dream progress
 남은 조치: —
 사용자 직접 점검: 미점검
@@ -223,7 +195,6 @@ R16 | 행동 | 규칙 14~16쪽
 검증: 자동 테스트 근거 있음
 근거: hunt-engine.js pay(), MOVE/TRANSFORM/DREAM/INTERACT 명령
 tests/hunt.test.cjs — map movement costs one card, unknown commands and invalid attacks roll back
-tests/hunt.test.cjs — map movement costs one card, unknown commands and invalid attacks roll back
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -232,7 +203,6 @@ R17 | 이동 | 규칙 14쪽
 상태: 구현 | 우선순위: 없음
 검증: 이동 비용 자동 테스트 · 이동 중 다른 행동 제한은 코드 확인
 근거: hunt-engine.js MOVE, STEP, STOP_MOVE, resume(), dispatch() phase 검사
-tests/hunt.test.cjs — map movement costs one card, unknown commands and invalid attacks roll back
 tests/hunt.test.cjs — map movement costs one card, unknown commands and invalid attacks roll back
 남은 조치: —
 사용자 직접 점검: 미점검
@@ -243,7 +213,6 @@ R18 | 이동 | 규칙 14쪽
 검증: 자동 테스트 근거 있음
 근거: hunt-engine.js stepHunter(), finishMove(), continuePursuit()
 tests/hunt.test.cjs — beast pursuit follows movement trail two spaces and does not attack
-tests/hunt.test.cjs — beast pursuit follows movement trail two spaces and does not attack
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -252,8 +221,6 @@ R19 | 탐험 | 규칙 14~15쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: chapter-engine.js graph(), exits(), placementOptions(); hunt-engine.js explore(), placeTile(), finishSpawns()
-tests/chapter-map.test.cjs — exploration is atomic; revealed tile cannot be cancelled or skipped, must connect and enter
-tests/chapter-map.test.cjs — matching exits are bidirectional; a blank tile edge blocks crossing
 tests/chapter-map.test.cjs — exploration is atomic; revealed tile cannot be cancelled or skipped, must connect and enter
 tests/chapter-map.test.cjs — matching exits are bidirectional; a blank tile edge blocks crossing
 남은 조치: —
@@ -267,9 +234,6 @@ R20 | 탐험 | 규칙 15쪽
 tests/rule-exceptions.test.cjs — the final tile may not seal every exit and failed exploration leaves both map inputs unchanged
 tests/rule-exceptions.test.cjs — a final tile with a remaining exit still places and forced sealing placement is rejected
 tests/rule-exceptions.test.cjs — version seven and unversioned saves retain the previous final-tile interpretation
-tests/rule-exceptions.test.cjs — the final tile may not seal every exit and failed exploration leaves both map inputs unchanged
-tests/rule-exceptions.test.cjs — a final tile with a remaining exit still places and forced sealing placement is rejected
-tests/rule-exceptions.test.cjs — version seven and unversioned saves retain the previous final-tile interpretation
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -278,8 +242,6 @@ R21 | 적 공급 | 규칙 15쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: hunt-engine.js farthest(), spawnFigure(), finishSpawns(); 임무 피규어 보호
-tests/hunt.test.cjs — four-figure supply pauses on farthest tie and reuses a full-health figure
-tests/chapter-map.test.cjs — four-figure supply relocates the farthest; equal distance asks for one figure and never creates a fifth
 tests/hunt.test.cjs — four-figure supply pauses on farthest tie and reuses a full-health figure
 tests/chapter-map.test.cjs — four-figure supply relocates the farthest; equal distance asks for one figure and never creates a fifth
 남은 조치: —
@@ -291,7 +253,6 @@ R22 | 상호작용 | 규칙 16쪽
 검증: 자동 테스트 근거 있음
 근거: hunt-engine.js nextInteraction(), chooseCombat(), collectLoot()
 tests/hunt.test.cjs — interaction forbids counter and dodge, permits firearm reaction, then completes
-tests/hunt.test.cjs — interaction forbids counter and dodge, permits firearm reaction, then completes
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -300,7 +261,6 @@ R23 | 상호작용 | 규칙 16쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: hunt-app.js renderDecisions()/interact; hunt-engine.js INTERACT/collectLoot()
-tests/audit-fixes.test.cjs — one stat action can combine rescue and both consumable tokens in the same space
 tests/audit-fixes.test.cjs — one stat action can combine rescue and both consumable tokens in the same space
 남은 조치: —
 사용자 직접 점검: 미점검
@@ -314,10 +274,6 @@ tests/chapter-one-items.test.cjs — chapel combines two loot tokens and exchang
 tests/chapter-one-items.test.cjs — death during chapel retaliation preserves held consumables and unopened loot in both exchange modes
 tests/chapter-one-items.test.cjs — chapel can exchange a newly drawn item with no prior inventory and replay pending and final choices
 tests/chapter-one-items.test.cjs — chapel discarded cost can be redrawn when combined loot exhausts the deck
-tests/chapter-one-items.test.cjs — chapel combines two loot tokens and exchange for one stat card and caps echoes at three
-tests/chapter-one-items.test.cjs — death during chapel retaliation preserves held consumables and unopened loot in both exchange modes
-tests/chapter-one-items.test.cjs — chapel can exchange a newly drawn item with no prior inventory and replay pending and final choices
-tests/chapter-one-items.test.cjs — chapel discarded cost can be redrawn when combined loot exhausts the deck
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -326,7 +282,6 @@ R25 | 변형 | 규칙 16쪽
 상태: 구현 | 우선순위: 없음
 검증: 코드 확인 · 무료 변형 테스트 있음 · 유료 변형은 연속 플레이 근거
 근거: hunt-engine.js TRANSFORM, clearSlot(), rewards.onTransform()
-tests/hunt.test.cjs — swift transform offers choice after attacking and after dodging
 tests/hunt.test.cjs — swift transform offers choice after attacking and after dodging
 남은 조치: —
 사용자 직접 점검: 미점검
@@ -338,8 +293,6 @@ R26 | 적 활성화 | 규칙 16~17쪽
 근거: hunt-engine.js eligible(), continueActivation(), activateEnemy(), runEnemyMove()
 tests/hunt.test.cjs — beast activation moves two spaces then requests counter
 tests/chapter-map.test.cjs — randomization varies faces, slot permutation and includes named optional tiles
-tests/hunt.test.cjs — beast activation moves two spaces then requests counter
-tests/chapter-map.test.cjs — randomization varies faces, slot permutation and includes named optional tiles
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -349,7 +302,6 @@ R27 | 적 활성화 | 규칙 17쪽
 검증: 새 적 출현 자동 테스트 · 후속 적 순서는 코드 확인
 근거: hunt-engine.js eligible(), enemyDef(), continueActivation(), enterDream(); 임시 후속 적 order4/5는 일반 슬롯1~3 뒤에 활성화
 tests/hunt.test.cjs — newly spawned beast remains eligible during activation
-tests/hunt.test.cjs — newly spawned beast remains eligible during activation
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -358,8 +310,6 @@ R28 | 소모품 | 규칙 17쪽
 상태: 구현 | 우선순위: 없음
 검증: 훈련 소모품 자동 테스트 · 실제 지도 통합은 일부 항목/연속 플레이 근거
 근거: hunt-engine.js consume(), useConsumable(), attackConsumables(), drawConsumable(); 기나긴 사냥17종/훈련·독립16종 실행
-tests/consumables.test.cjs — invalid or duplicate attack items roll back every card, item, RNG and pull
-tests/consumables.test.cjs — loot draws a real consumable and recycles the discard only when the draw deck empties
 tests/consumables.test.cjs — invalid or duplicate attack items roll back every card, item, RNG and pull
 tests/consumables.test.cjs — loot draws a real consumable and recycles the discard only when the draw deck empties
 남은 조치: —
@@ -375,11 +325,6 @@ tests/chapter-one-items.test.cjs — bone ash rejects ready, stored, persistent,
 tests/chapter-one-items.test.cjs — bone ash cannot be spent during movement, interaction reactions, or reward-free modes
 tests/chapter-one-items.test.cjs — new bone ash use with a naturally earned and exhausted lantern saves by exact command replay
 tests/chapter-one-items.test.cjs — a v0.6.1 save with a naturally looted pending bone ash imports unchanged and needs no migration
-tests/chapter-one-items.test.cjs — bone ash readies exactly one chosen equipped exhausted tool or rune and costs no stat card
-tests/chapter-one-items.test.cjs — bone ash rejects ready, stored, persistent, foreign, absent and firearm targets without consumption
-tests/chapter-one-items.test.cjs — bone ash cannot be spent during movement, interaction reactions, or reward-free modes
-tests/chapter-one-items.test.cjs — new bone ash use with a naturally earned and exhausted lantern saves by exact command replay
-tests/chapter-one-items.test.cjs — a v0.6.1 save with a naturally looted pending bone ash imports unchanged and needs no migration
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -389,7 +334,6 @@ R30 | 소모품 | 규칙 17 / 제공 hunter-bell쪽
 검증: 훈련 제한 자동 테스트 · 실제 사냥 제한 코드 확인
 근거: hunt-engine.js consume()/useConsumable(); assertState()는 사냥꾼 1명만 허용
 tests/consumables.test.cjs — reward-only and multiplayer items cannot silently be consumed in training
-tests/consumables.test.cjs — reward-only and multiplayer items cannot silently be consumed in training
 남은 조치: 다인용 상태/대상 선택을 구현할 때 연결합니다. 현재 소모품은 소유할 수 있지만 사용하지 않습니다.
 사용자 직접 점검: 미점검
 
@@ -398,10 +342,6 @@ R31 | 보상 | 규칙 17 / 제공 보상 6종쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: mission-engine.js complete(); rewards-engine.js supported, grant(), dispatch()
-tests/rewards.test.cjs — campaign reward catalogue uses the supplied effects and confirmed shard exception
-tests/rewards.test.cjs — integrated clawmark replaces immediate draw, discard, status, heal, block, slot and attack effects before placement
-tests/rewards.test.cjs — integrated kill opens optional rapture choice and simultaneous hunter death cannot heal
-tests/rewards.test.cjs — integrated moon transfers one selected echo into the death dream shop before loss
 tests/rewards.test.cjs — campaign reward catalogue uses the supplied effects and confirmed shard exception
 tests/rewards.test.cjs — integrated clawmark replaces immediate draw, discard, status, heal, block, slot and attack effects before placement
 tests/rewards.test.cjs — integrated kill opens optional rapture choice and simultaneous hunter death cannot heal
@@ -416,8 +356,6 @@ R32 | 보상 | 규칙 17쪽
 근거: rewards-engine.js equipped(), equipReward(), grant()/화기 선택
 tests/rewards.test.cjs — limits apply separately to tools and runes; invalid replacement leaves equipment intact
 tests/rewards.test.cjs — Ludwig rifle is retained alongside the original firearm with an explicit equipment choice
-tests/rewards.test.cjs — limits apply separately to tools and runes; invalid replacement leaves equipment intact
-tests/rewards.test.cjs — Ludwig rifle is retained alongside the original firearm with an explicit equipment choice
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -426,8 +364,6 @@ R33 | 보상 | 규칙 17, 23~24쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: rewards-engine.js use(), attackBonus(), onDream(), persistent 파편 처리
-tests/rewards.test.cjs — lantern teleports through the engine helper and exhausts rather than discards
-tests/rewards.test.cjs — shard requires initial slot choice, stays active, and moves only after transformation
 tests/rewards.test.cjs — lantern teleports through the engine helper and exhausts rather than discards
 tests/rewards.test.cjs — shard requires initial slot choice, stays active, and moves only after transformation
 남은 조치: —
@@ -449,9 +385,6 @@ R35 | 화기 | 규칙 17, 20~21 / 제공 추가 화기쪽
 tests/actual-firearm-integration.test.cjs — rifle entry pauses activation before an enemy card is revealed and can kill before countering
 tests/actual-firearm-integration.test.cjs — actual reload costs two cards atomically for rifle and flame, and repeated pistol prepares on transform
 tests/actual-firearm-integration.test.cjs — flame declares its sole speed-two attack before revealing, with splash and faster interrupt
-tests/actual-firearm-integration.test.cjs — rifle entry pauses activation before an enemy card is revealed and can kill before countering
-tests/actual-firearm-integration.test.cjs — actual reload costs two cards atomically for rifle and flame, and repeated pistol prepares on transform
-tests/actual-firearm-integration.test.cjs — flame declares its sole speed-two attack before revealing, with splash and faster interrupt
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -460,7 +393,6 @@ R36 | 라운드 | 규칙 18쪽
 상태: 구현 | 우선순위: 없음
 검증: 코드 확인 · 연속 플레이 근거 · 선택적 버림 경계는 훈련 테스트도 있음
 근거: hunt-engine.js nextRound(), REFILL, draw(); hunt-app.js refill 선택
-tests/campaign-playthrough.test.cjs — 122 real player commands complete chapter one from a fresh seed and preserve final dream progress
 tests/campaign-playthrough.test.cjs — 122 real player commands complete chapter one from a fresh seed and preserve final dream progress
 남은 조치: —
 사용자 직접 점검: 미점검
@@ -472,8 +404,6 @@ R37 | 전투 | 규칙 19~20쪽
 근거: hunt-engine.js place(), commitAttack(), reveal(), finishCardChoices()
 tests/hunt.test.cjs — block is immediate against faster attacks and abilities
 tests/hunt.test.cjs — tenacious draw/discard/status choices and energized clear choice
-tests/hunt.test.cjs — block is immediate against faster attacks and abilities
-tests/hunt.test.cjs — tenacious draw/discard/status choices and energized clear choice
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -482,7 +412,6 @@ R38 | 전투 | 규칙 20쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: enemy-deck.js create()/draw(); hunt-engine.js reveal()
-tests/chapter-map.test.cjs — same behavior deck is shared across species; seven draws reshuffle only on exhaustion
 tests/chapter-map.test.cjs — same behavior deck is shared across species; seven draws reshuffle only on exhaustion
 남은 조치: —
 사용자 직접 점검: 미점검
@@ -494,8 +423,6 @@ R39 | 전투 | 규칙 20~21쪽
 근거: hunt-engine.js canDodge(), dodge(), extra followup dodge
 tests/hunt.test.cjs — quick still needs sufficient speed and tactical can dodge speed3 in speed2 slot
 tests/hunt.test.cjs — undodgeable special rejects dodge; uninterruptible special ignores faster stagger
-tests/hunt.test.cjs — quick still needs sufficient speed and tactical can dodge speed3 in speed2 slot
-tests/hunt.test.cjs — undodgeable special rejects dodge; uninterruptible special ignores faster stagger
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -504,8 +431,6 @@ R40 | 전투 | 규칙 21쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: hunt-engine.js resolve(), pendingCombat(); attack flags interrupt/uninterruptible
-tests/hunt.test.cjs — same speed attacks are simultaneous; equal stagger does not prevent enemy
-tests/hunt.test.cjs — undodgeable special rejects dodge; uninterruptible special ignores faster stagger
 tests/hunt.test.cjs — same speed attacks are simultaneous; equal stagger does not prevent enemy
 tests/hunt.test.cjs — undodgeable special rejects dodge; uninterruptible special ignores faster stagger
 남은 조치: —
@@ -519,9 +444,6 @@ R41 | 전투 | 규칙 19~22쪽
 tests/hunt.test.cjs — same speed attacks are simultaneous; equal stagger does not prevent enemy
 tests/hunt.test.cjs — regain heals after a missed attack but not after lethal simultaneous hit
 tests/chapter-one-items.test.cjs — chapel combines two loot tokens and exchange for one stat card and caps echoes at three
-tests/hunt.test.cjs — same speed attacks are simultaneous; equal stagger does not prevent enemy
-tests/hunt.test.cjs — regain heals after a missed attack but not after lethal simultaneous hit
-tests/chapter-one-items.test.cjs — chapel combines two loot tokens and exchange for one stat card and caps echoes at three
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -531,7 +453,6 @@ R42 | 전투 | 규칙 21쪽
 검증: 자동 테스트 근거 있음
 근거: hunt-engine.js pendingCombat(), stun 선택, finishCardChoices()
 tests/hunt.test.cjs — stun discards a card or damages empty hand, immunity prevents stagger/stun
-tests/hunt.test.cjs — stun discards a card or damages empty hand, immunity prevents stagger/stun
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -540,10 +461,6 @@ R43 | 전투 | 규칙 19~22 / 제공 적6면쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: hunt-engine.js enemyDef(), resolveRevealedAbility(), resolve(), extra followup 처리
-tests/hunt.test.cjs — timed ability precedes equal speed hunter attack
-tests/hunt.test.cjs — faster kill cancels slower timed spawn ability
-tests/hunt.test.cjs — double strike needs two dodges and survives first stagger
-tests/hunt.test.cjs — firebomb moves before tied attack, causes no frenzy bonus, and attack misses displaced target
 tests/hunt.test.cjs — timed ability precedes equal speed hunter attack
 tests/hunt.test.cjs — faster kill cancels slower timed spawn ability
 tests/hunt.test.cjs — double strike needs two dodges and survives first stagger
@@ -560,10 +477,6 @@ tests/hunt.test.cjs — leap moves into enemy with one stat card and rejects out
 tests/hunt.test.cjs — sprint move3; rest heals non-attack action but not firearm reload
 tests/hunt.test.cjs — clear-slot dodge effects, quick draw and tactical speed
 tests/hunt.test.cjs — swift transform offers choice after attacking and after dodging
-tests/hunt.test.cjs — leap moves into enemy with one stat card and rejects out-of-range routes atomically
-tests/hunt.test.cjs — sprint move3; rest heals non-attack action but not firearm reload
-tests/hunt.test.cjs — clear-slot dodge effects, quick draw and tactical speed
-tests/hunt.test.cjs — swift transform offers choice after attacking and after dodging
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -574,8 +487,6 @@ R45 | 화기 | 규칙 20~21쪽
 근거: hunt-engine.js canFirearm(), FIREARM, RELOAD; hunt-app.js 화기 표시
 tests/hunt.test.cjs — legacy four firearms retain their former basic-attack replacement behavior
 tests/enemy-deck.test.cjs — firearm cannot fire before reveal, while exhausted, or after combat ends
-tests/hunt.test.cjs — legacy four firearms retain their former basic-attack replacement behavior
-tests/enemy-deck.test.cjs — firearm cannot fire before reveal, while exhausted, or after combat ends
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -584,12 +495,6 @@ R46 | 전투 | 규칙 21쪽
 상태: 구현 | 우선순위: 자료 대기
 검증: 실제 독 공격 + 시험용 발광 키워드 자동 회귀
 근거: hunt-engine.js enemyDef().convert()/resolve()의 독·발광 부여. 새 발광은 해당 타격 이후 적용; 방어만으로 상태를 막지 않음. 일반 적3종6면에는 해당 키워드가 없음. 이오세프카/여성은 실제 독 공격, 추가 교단의 종복/거인에 실제 발광 공격·능력을 연결
-tests/rule-exceptions.test.cjs — supplied six faces do not claim poison frenzy or white-background ability coverage
-tests/rule-exceptions.test.cjs — status attack keywords apply once after damage and existing frenzy adds one to later attacks
-tests/rule-exceptions.test.cjs — dodged interrupted and immune status attacks cause no poison or frenzy
-tests/rule-exceptions.test.cjs — numbing mist removes status keywords while defense alone does not prevent their application
-tests/rule-exceptions.test.cjs — attack-applied poison deals one at turn end and dreaming clears both statuses
-tests/extended-enemy-rules.test.cjs — horrifying illusion grants Frenzy then queues another shared card
 tests/rule-exceptions.test.cjs — supplied six faces do not claim poison frenzy or white-background ability coverage
 tests/rule-exceptions.test.cjs — status attack keywords apply once after damage and existing frenzy adds one to later attacks
 tests/rule-exceptions.test.cjs — dodged interrupted and immune status attacks cause no poison or frenzy
@@ -607,9 +512,6 @@ R47 | 전투 | 규칙 21쪽
 tests/extended-enemy-rules.test.cjs — giant's white ability resolves hunter attack without making a new attack
 tests/extended-enemy-rules.test.cjs — white parry explicit exception allows a declared interrupting attack; otherwise reflects its damage
 tests/extended-enemy-rules.test.cjs — Numbing Mist suppresses extended attack effects but does not remove white abilities
-tests/extended-enemy-rules.test.cjs — giant's white ability resolves hunter attack without making a new attack
-tests/extended-enemy-rules.test.cjs — white parry explicit exception allows a declared interrupting attack; otherwise reflects its damage
-tests/extended-enemy-rules.test.cjs — Numbing Mist suppresses extended attack effects but does not remove white abilities
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -618,8 +520,6 @@ R48 | 꿈 | 규칙 23~24쪽
 상태: 구현 | 우선순위: 없음
 검증: 꿈/성장/귀환 자동 테스트 · 실제 적 상태 제거는 코드 확인
 근거: hunt-engine.js enterDream(), finishDream(); rewards-engine.js onDream()
-tests/hunt.test.cjs — actual dream upgrade replaces one card, spends echoes, refills and returns
-tests/consumables.test.cjs — dream and map reset preserve consumable inventory and total supply
 tests/hunt.test.cjs — actual dream upgrade replaces one card, spends echoes, refills and returns
 tests/consumables.test.cjs — dream and map reset preserve consumable inventory and total supply
 남은 조치: —
@@ -632,8 +532,6 @@ R49 | 시작 준비/꿈 | 규칙 9, 23~24쪽
 근거: hunt-engine.js create(), PICK_UPGRADE, REPLACE_UPGRADE, finishDream(), assertState()
 tests/hunt.test.cjs — actual dream upgrade replaces one card, spends echoes, refills and returns
 tests/campaign-playthrough.test.cjs — 122 real player commands complete chapter one from a fresh seed and preserve final dream progress
-tests/hunt.test.cjs — actual dream upgrade replaces one card, spends echoes, refills and returns
-tests/campaign-playthrough.test.cjs — 122 real player commands complete chapter one from a fresh seed and preserve final dream progress
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -642,7 +540,6 @@ R50 | 꿈 | 규칙 24쪽
 상태: 구현 | 우선순위: 없음
 검증: 코드 확인 · 연속 플레이 귀환 근거 · 파괴 등불 RETURN 전용 테스트 없음
 근거: hunt-engine.js RETURN, nodes(), finishDream()
-tests/campaign-playthrough.test.cjs — 122 real player commands complete chapter one from a fresh seed and preserve final dream progress
 tests/campaign-playthrough.test.cjs — 122 real player commands complete chapter one from a fresh seed and preserve final dream progress
 남은 조치: —
 사용자 직접 점검: 미점검
@@ -654,8 +551,6 @@ R51 | 지도 초기화 | 규칙 24쪽
 근거: hunt-engine.js resetMap(), spawnOnTile(), finishSpawns(); chapter-engine.js reset
 tests/chapter-map.test.cjs — map reset retains enemy faces, assignments, tile positions and both deck orders
 tests/hunt-playthrough.test.cjs — six complete command-driven hunts preserve quantities and replay including map resets
-tests/chapter-map.test.cjs — map reset retains enemy faces, assignments, tile positions and both deck orders
-tests/hunt-playthrough.test.cjs — six complete command-driven hunts preserve quantities and replay including map resets
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -665,7 +560,6 @@ R52 | 지도 초기화 | 규칙 24 / 임무쪽
 검증: 자동 테스트 근거 있음
 근거: mission-engine.js reset(); hunt-engine.js flushMissionSpawns()/resetMap()
 tests/mission.test.cjs — reset restores mission target and revival tokens before ordinary spawns
-tests/mission.test.cjs — reset restores mission target and revival tokens before ordinary spawns
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -674,9 +568,6 @@ R53 | 안개 | 규칙 24~25쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: mission-engine.js encounter(), complete(), fogged(); hunt-engine.js fogCrossing()/eligible()/moveOptions()/spawnOnTile()
-tests/mission.test.cjs — fog removes ordinary occupants, blocks departure and preserves inner movement
-tests/mission.test.cjs — fog blocks the shelter beast roar from spawning a normal beast inside the encounter
-tests/mission.test.cjs — final mission kill yields insight and rewards once, restores lamp and fog
 tests/mission.test.cjs — fog removes ordinary occupants, blocks departure and preserves inner movement
 tests/mission.test.cjs — fog blocks the shelter beast roar from spawning a normal beast inside the encounter
 tests/mission.test.cjs — final mission kill yields insight and rewards once, restores lamp and fog
@@ -690,8 +581,6 @@ R54 | 상호작용 | 규칙 10 타일 효과, 24쪽
 근거: hunt-engine.js centralLampDestinations(), teleport(allowFogDestination), INTERACT; hunt-app.js 목적지 선택
 tests/audit-fixes.test.cjs — central lamp offers every fog space, accepts a non-lamp destination and exactly replays the movement
 tests/audit-fixes.test.cjs — central lamp rejects ordinary destinations and the lantern cannot target a destroyed lamp
-tests/audit-fixes.test.cjs — central lamp offers every fog space, accepts a non-lamp destination and exactly replays the movement
-tests/audit-fixes.test.cjs — central lamp rejects ordinary destinations and the lantern cannot target a destroyed lamp
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -702,8 +591,6 @@ R55 | 순간이동 | 규칙 26쪽
 근거: hunt-engine.js teleport(); mission-engine.js onTeleport(), onMovementEnd()
 tests/mission.test.cjs — escort pickup is optional, only while leaving its named space, and teleport returns it
 tests/audit-fixes.test.cjs — central lamp offers every fog space, accepts a non-lamp destination and exactly replays the movement
-tests/mission.test.cjs — escort pickup is optional, only while leaving its named space, and teleport returns it
-tests/audit-fixes.test.cjs — central lamp offers every fog space, accepts a non-lamp destination and exactly replays the movement
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -712,11 +599,6 @@ R56 | 보스 | 규칙 23쪽
 상태: 구현 | 우선순위: 없음
 검증: 실제 전사·사진 + 자동 테스트 근거 있음
 근거: boss-components.js / hunt-engine.js: 1인 체력10/8·페이즈별5장·1페이즈 내려찍기2장, 사용자 행동 전사. 시트 계몽/화기 소진/회복 방어2·토큰 제거·덱 섞기/능력 추가공개/회피 보너스/강제 이동. 임무 토큰 분리. 구저장·별도시험 임시 정의 유지
-tests/actual-boss.test.cjs — actual Cleric Beast retains all printed health counts and both exact five-card decks
-tests/actual-boss.test.cjs — recovery removes insight, defends two damage, shuffles its current deck, and neither heals nor reveals another card
-tests/actual-boss.test.cjs — leap-slam requests an immediate speed-one dodge, then reveals another boss card with a fresh dodge opportunity
-tests/actual-boss.test.cjs — phase-one defeat restores the printed phase-two health without overflow and retains its separate deck
-tests/actual-natural-path.test.cjs — new solo commands naturally reach the actual chapter-two boss and replay its insight movement decision
 tests/actual-boss.test.cjs — actual Cleric Beast retains all printed health counts and both exact five-card decks
 tests/actual-boss.test.cjs — recovery removes insight, defends two damage, shuffles its current deck, and neither heals nor reveals another card
 tests/actual-boss.test.cjs — leap-slam requests an immediate speed-one dodge, then reveals another boss card with a fresh dodge opportunity
@@ -733,9 +615,6 @@ R57 | 보스 | 규칙 24쪽
 tests/campaign-progression.test.cjs — new provisional boss reset heals its current phase and keeps its moved position
 tests/later-missions.test.cjs — crypt captivity blocks movement until the second printed reset, then boss reset preserves location and phase
 tests/later-missions.test.cjs — chapter-two boss reset respawns at the cemetery marker in both phase one and phase two
-tests/campaign-progression.test.cjs — new provisional boss reset heals its current phase and keeps its moved position
-tests/later-missions.test.cjs — crypt captivity blocks movement until the second printed reset, then boss reset preserves location and phase
-tests/later-missions.test.cjs — chapter-two boss reset respawns at the cemetery marker in both phase one and phase two
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -746,8 +625,6 @@ R58 | NPC | 규칙 23쪽
 근거: actual-components.js / hunt-engine.js: 이오세프카1~2인 체력10, 독 지팡이·전조 방해/강제 이동·권총 회피3 또는 공격 취소 후 추가 공개, 일반 적 이후 활성화.3인 이상 체력18은 출처 자료만 보존; 단독 실행 범위
 tests/actual-component-combat.test.cjs — Iosefka pistol requires a speed-three dodge before another public action and interrupts the declared hunter attack on failure
 tests/actual-component-combat.test.cjs — Iosefka augur's direct forced movement is prevented by a dodge
-tests/actual-component-combat.test.cjs — Iosefka pistol requires a speed-three dodge before another public action and interrupts the declared hunter attack on failure
-tests/actual-component-combat.test.cjs — Iosefka augur's direct forced movement is prevented by a dodge
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -756,8 +633,6 @@ R59 | 챕터 완료 | 규칙 25쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: hunt-engine.js beginChapterDream()/finishDream()/exportSave()/importSave()
-tests/campaign-playthrough.test.cjs — 122 real player commands complete chapter one from a fresh seed and preserve final dream progress
-tests/mission.test.cjs — simultaneous chapter victory and hunter death still permits the mandatory shard slot choice
 tests/campaign-playthrough.test.cjs — 122 real player commands complete chapter one from a fresh seed and preserve final dream progress
 tests/mission.test.cjs — simultaneous chapter victory and hunter death still permits the mandatory shard slot choice
 남은 조치: —
@@ -772,10 +647,6 @@ tests/campaign-progression.test.cjs — chapter two and three special setup pres
 tests/campaign-progression.test.cjs — natural chapter one completion advances with growth inventory and resets chapter supplies at the chosen start
 tests/campaign-progression.test.cjs — chapter transition rejects invalid phase start and unresolved equipment atomically
 tests/campaign-progression.test.cjs — legacy chapter one saves can enter the new chapter flow and still replay exactly
-tests/campaign-progression.test.cjs — chapter two and three special setup preserves card 17 topology, supplies and deterministic choices
-tests/campaign-progression.test.cjs — natural chapter one completion advances with growth inventory and resets chapter supplies at the chosen start
-tests/campaign-progression.test.cjs — chapter transition rejects invalid phase start and unresolved equipment atomically
-tests/campaign-progression.test.cjs — legacy chapter one saves can enter the new chapter flow and still replay exactly
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -784,8 +655,6 @@ R61 | 챕터 전환 | 규칙 25쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: hunt-engine.js ENTER_BETWEEN_CHAPTERS의 between_chapters 단계; rewards-engine.js betweenChapters(), equipReward(), KEEP_REWARD, EQUIP_FIREARM; hunt-app.js renderRewards()
-tests/later-rewards.test.cjs — between chapters, stored rewards and firearms can be swapped while retaining all collected cards
-tests/campaign-ui.test.cjs — a stored shard offers legal replacement and slot choices between chapters
 tests/later-rewards.test.cjs — between chapters, stored rewards and firearms can be swapped while retaining all collected cards
 tests/campaign-ui.test.cjs — a stored shard offers legal replacement and slot choices between chapters
 남은 조치: —
@@ -818,10 +687,6 @@ tests/rule-exceptions.test.cjs — multiple interaction enemies wait for an expl
 tests/rule-exceptions.test.cjs — printed interaction attacks can make one order fatal and another complete at one health
 tests/rule-exceptions.test.cjs — remaining interaction enemies offer another order choice and cannot retaliate twice
 tests/rule-exceptions.test.cjs — legacy interaction order remains the first enemy in its assigned slot
-tests/rule-exceptions.test.cjs — multiple interaction enemies wait for an explicit order before revealing the action deck
-tests/rule-exceptions.test.cjs — printed interaction attacks can make one order fatal and another complete at one health
-tests/rule-exceptions.test.cjs — remaining interaction enemies offer another order choice and cannot retaliate twice
-tests/rule-exceptions.test.cjs — legacy interaction order remains the first enemy in its assigned slot
 남은 조치: 플레이어가 안내에 따라 가장 불리한 결과를 판단합니다. 자동 최악 평가나 실제 선택의 최악 여부 검증은 하지 않습니다.
 사용자 직접 점검: 미점검
 
@@ -839,8 +704,6 @@ tests/rule-exceptions.test.cjs — legacy complete campaigns retain all 327 orig
 규칙9 실제 구성품 결정 단계와 규칙8 임시 완주 저장의 재생 호환. 실제 결과는 VERIFICATION.txt 참고
 실제 규칙9 자연 보스 전투의 계몽/강제 이동 단계 저장 재생과 111개 독립 과거 엔진 상태 비교.
 tests/actual-natural-path.test.cjs — public commands complete chapters one and two with actual health decks movement and a final dream
-tests/rule-exceptions.test.cjs — explicit rules versions round-trip and unsupported save or creation versions are rejected
-tests/rule-exceptions.test.cjs — legacy complete campaigns retain all 327 original commands and exact save replay
 남은 조치: 논리 칸 구조·출입구·기호/수량을 확인합니다. 촬영 원근을 제거한 경계 비율은 근사 좌표이며 사진 픽셀/물리 치수 일치를 뜻하지 않습니다.
 사용자 직접 점검: 미점검
 
@@ -850,7 +713,6 @@ R66 | 후속 준비 | 규칙 10, 25 / 임무17쪽
 검증: 자동 테스트 근거 있음
 근거: chapter-engine.js create()의 specialSetupCards17/connect; 1인용 전체9타일=선배치4+탐험덱5
 tests/campaign-progression.test.cjs — chapter two and three special setup preserves card 17 topology, supplies and deterministic choices
-tests/campaign-progression.test.cjs — chapter two and three special setup preserves card 17 topology, supplies and deterministic choices
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -859,8 +721,6 @@ R67 | 챕터2 시체 | 규칙 12~13, 17 / 임무18~19쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: mission-engine.js MISSION_LURE, MISSION_CORPSES, onKill(), check(); hunt-engine.js spawnFigure(), finishSpawns()
-tests/later-missions.test.cjs — luring spends the selected real consumable, final beast kills yield corpses, cemetery offering opens 19
-tests/later-missions.test.cjs — a card-18 mission summon remains legal within a fog encounter unlike ordinary tile spawning
 tests/later-missions.test.cjs — luring spends the selected real consumable, final beast kills yield corpses, cemetery offering opens 19
 tests/later-missions.test.cjs — a card-18 mission summon remains legal within a fog encounter unlike ordinary tile spawning
 남은 조치: —
@@ -873,8 +733,6 @@ R68 | 후속 연구 | 규칙 12~13 / 임무24~26,51쪽
 근거: mission-engine.js open(24/25/51), onKill(), complete(26)
 tests/later-missions.test.cjs — research requires the clinic kills in order and its consumable pickup supplies survivors once per token
 tests/later-missions.test.cjs — chapter three clinic branching reads retained outcomes without awarding prior chapter insight
-tests/later-missions.test.cjs — research requires the clinic kills in order and its consumable pickup supplies survivors once per token
-tests/later-missions.test.cjs — chapter three clinic branching reads retained outcomes without awarding prior chapter insight
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -885,8 +743,6 @@ R69 | 후속 피신처 | 규칙 12~13, 17 / 임무27~28,33~34,52쪽
 근거: mission-engine.js onLoot(), onMovementEnd(), onTeleport(); hunt-engine.js collectLoot()
 tests/later-missions.test.cjs — research requires the clinic kills in order and its consumable pickup supplies survivors once per token
 tests/later-missions.test.cjs — survivor collection is cleared by dream/teleport while corpse tokens are retained
-tests/later-missions.test.cjs — research requires the clinic kills in order and its consumable pickup supplies survivors once per token
-tests/later-missions.test.cjs — survivor collection is cleared by dream/teleport while corpse tokens are retained
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -895,9 +751,6 @@ R70 | 후속 피신처 | 규칙 12~13, 25 / 임무28,34쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: mission-engine.js owns(), onLoot(), onMovementEnd(); history 완료 카드28/34 사용
-tests/later-missions.test.cjs — research requires the clinic kills in order and its consumable pickup supplies survivors once per token
-tests/later-missions.test.cjs — chapter three clinic branching reads retained outcomes without awarding prior chapter insight
-tests/later-missions.test.cjs — retained sanctuary outcomes block both survivor collection and delivery to the competing sanctuary
 tests/later-missions.test.cjs — research requires the clinic kills in order and its consumable pickup supplies survivors once per token
 tests/later-missions.test.cjs — chapter three clinic branching reads retained outcomes without awarding prior chapter insight
 tests/later-missions.test.cjs — retained sanctuary outcomes block both survivor collection and delivery to the competing sanctuary
@@ -913,10 +766,6 @@ tests/actual-component-combat.test.cjs — female B vomit cannot be dodged and a
 tests/actual-component-combat.test.cjs — card31 replaces either patient face's special attack completely in version nine
 tests/actual-component-combat.test.cjs — patient face is randomly prepared once per chapter and persists through later resets
 tests/actual-firearm-integration.test.cjs — rifle lethal mission entry resolves its speed-one death reaction before continuing activation
-tests/actual-component-combat.test.cjs — female B vomit cannot be dodged and applies its printed poison and stun
-tests/actual-component-combat.test.cjs — card31 replaces either patient face's special attack completely in version nine
-tests/actual-component-combat.test.cjs — patient face is randomly prepared once per chapter and persists through later resets
-tests/actual-firearm-integration.test.cjs — rifle lethal mission entry resolves its speed-one death reaction before continuing activation
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -925,8 +774,6 @@ R72 | 후속 호위 | 규칙 12~13 / 임무35~39쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: mission-engine.js open(35/37), targetDef(), beforeEnemyDamage(), onStep(), onTeleport(), onMovementEnd()
-tests/later-missions.test.cjs — bridge revival is not a kill, special defends hunter damage, final kill starts optional escort
-tests/later-missions.test.cjs — the other bridge escort ending grants warning 39 and changes both subsequent branches
 tests/later-missions.test.cjs — bridge revival is not a kill, special defends hunter damage, final kill starts optional escort
 tests/later-missions.test.cjs — the other bridge escort ending grants warning 39 and changes both subsequent branches
 남은 조치: —
@@ -938,7 +785,6 @@ R73 | 챕터2 주임무 | 규칙 12~13, 23 / 임무19~23쪽
 검증: 임무 조건·실제 보스 페이즈 전환 회귀
 근거: mission-engine.js check(), open(20/21/22), onBossPhase(), beforeEnemyDamage(), onEnemyStep(); 새9 실제 성직자 야수; 기존8 이하 임시 재생
 tests/later-missions.test.cjs — chapter two boss phase change removes fog, prevents all damage and its crypt entry wins
-tests/later-missions.test.cjs — chapter two boss phase change removes fog, prevents all damage and its crypt entry wins
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -948,7 +794,6 @@ R74 | 챕터2 초기화 | 규칙 24 / 임무20,22쪽
 검증: 자동 테스트 근거 있음
 근거: mission-engine.js reset(); hunt-engine.js resetMap(), finishSpawns()
 tests/later-missions.test.cjs — chapter-two boss reset respawns at the cemetery marker in both phase one and phase two
-tests/later-missions.test.cjs — chapter-two boss reset respawns at the cemetery marker in both phase one and phase two
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -957,8 +802,6 @@ R75 | 챕터3 봉인 | 규칙 12~13, 24 / 임무40~42쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: mission-engine.js open(40/41/42), check(), onTrackChange(), canEnter(); hunt-engine.js stepHunter(), teleport(), advance()
-tests/later-missions.test.cjs — crypt captivity blocks movement until the second printed reset, then boss reset preserves location and phase
-tests/later-missions.test.cjs — crypt captivity rejects real steps and central-lamp teleport attempts until two current-chapter insight rewards
 tests/later-missions.test.cjs — crypt captivity blocks movement until the second printed reset, then boss reset preserves location and phase
 tests/later-missions.test.cjs — crypt captivity rejects real steps and central-lamp teleport attempts until two current-chapter insight rewards
 남은 조치: —
@@ -973,9 +816,6 @@ tests/later-missions.test.cjs — chapter two boss phase change removes fog, pre
 tests/later-missions.test.cjs — crypt captivity blocks movement until the second printed reset, then boss reset preserves location and phase
 tests/later-missions.test.cjs — culling three real beasts completes 55 and immediately suppresses future boss recovery summons
 tests/actual-firearm-integration.test.cjs — card43 recovery summons its beast immediately before the declared flame attack applies splash
-tests/later-missions.test.cjs — chapter two boss phase change removes fog, prevents all damage and its crypt entry wins
-tests/later-missions.test.cjs — crypt captivity blocks movement until the second printed reset, then boss reset preserves location and phase
-tests/later-missions.test.cjs — culling three real beasts completes 55 and immediately suppresses future boss recovery summons
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -984,9 +824,6 @@ R77 | 챕터3 진료소 | 규칙 12~13, 23 / 임무45~52쪽
 상태: 구현 | 우선순위: 없음
 검증: 임무 분기·도움 완료 및 실제 NPC 전투 회귀
 근거: mission-engine.js owns(), open(45/46/47/49), MISSION_CHOICE, onKill(), onMovementEnd(); 새 규칙9 이상 적대 이오세프카는 실제1~2인 면을 사용하며, 구저장은 해당 버전의 임시 전투를 유지
-tests/later-missions.test.cjs — chapter three clinic branching reads retained outcomes without awarding prior chapter insight
-tests/later-missions.test.cjs — attacking Iosefka creates a hostile temporary target and help starts a four-step nonexploring escape
-tests/later-missions.test.cjs — helping Iosefka allows an interaction catch and delivery ending 50 instead of hostile ending 48
 tests/later-missions.test.cjs — chapter three clinic branching reads retained outcomes without awarding prior chapter insight
 tests/later-missions.test.cjs — attacking Iosefka creates a hostile temporary target and help starts a four-step nonexploring escape
 tests/later-missions.test.cjs — helping Iosefka allows an interaction catch and delivery ending 50 instead of hostile ending 48
@@ -1001,9 +838,6 @@ R78 | 실험 생존자 | 규칙 12~13 / 임무49~50쪽
 tests/later-missions.test.cjs — attacking Iosefka creates a hostile temporary target and help starts a four-step nonexploring escape
 tests/later-missions.test.cjs — helping Iosefka allows an interaction catch and delivery ending 50 instead of hostile ending 48
 tests/later-missions.test.cjs — fleeing NPC cannot cross a fog boundary even when that step increases its shortest distance
-tests/later-missions.test.cjs — attacking Iosefka creates a hostile temporary target and help starts a four-step nonexploring escape
-tests/later-missions.test.cjs — helping Iosefka allows an interaction catch and delivery ending 50 instead of hostile ending 48
-tests/later-missions.test.cjs — fleeing NPC cannot cross a fog boundary even when that step increases its shortest distance
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1012,8 +846,6 @@ R79 | 챕터3 대교 | 규칙 12~13 / 임무53~55쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: mission-engine.js open(53/54), onKill(), complete(55)
-tests/later-missions.test.cjs — culling three real beasts completes 55 and immediately suppresses future boss recovery summons
-tests/later-missions.test.cjs — the other bridge escort ending grants warning 39 and changes both subsequent branches
 tests/later-missions.test.cjs — culling three real beasts completes 55 and immediately suppresses future boss recovery summons
 tests/later-missions.test.cjs — the other bridge escort ending grants warning 39 and changes both subsequent branches
 남은 조치: —
@@ -1025,7 +857,6 @@ R80 | 챕터3 구원 | 규칙 12~13 / 임무56~58쪽
 검증: 자동 테스트 근거 있음
 근거: mission-engine.js open(56/57), MISSION_NPC_FOLLOW, onStep(), onKill()
 tests/later-missions.test.cjs — chapel NPC follows optional movement and only kills in its exact current space count
-tests/later-missions.test.cjs — chapel NPC follows optional movement and only kills in its exact current space count
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1035,7 +866,6 @@ R81 | 챕터3 물자 | 규칙 12~13, 17 / 임무56,59~60쪽
 검증: 자동 테스트 근거 있음
 근거: mission-engine.js open(56/59), onMovementEnd(), dispatch(), MISSION_DONATE, discardConsumable()
 tests/later-missions.test.cjs — chapel supplies accept actual consumable choices only just after movement, reaching two grants 60
-tests/later-missions.test.cjs — chapel supplies accept actual consumable choices only just after movement, reaching two grants 60
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1044,13 +874,6 @@ R82 | 후속 보상 | 규칙 17 / 제공 보상10종쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음
 근거: rewards-engine.js supported, use(), attackBonus(), canAutoDodge(), targetsView(); hunt-engine.js rewardHelpers()
-tests/later-rewards.test.cjs — the ten campaign rewards preserve printed source data and existing chapter-one state shape
-tests/later-rewards.test.cjs — roar rejects omitted, duplicate, foreign, out-of-range and fog destinations without spending
-tests/later-rewards.test.cjs — augur routes damage through campaign mitigation before checking death and moving
-tests/later-rewards.test.cjs — integrated writhe interrupts an equal-speed enemy before its damage; ordinary stagger does not
-tests/later-rewards.test.cjs — integrated hunter rune offers a free optional transform only after the selected attack
-tests/later-rewards.test.cjs — integrated bone dodges a real attack without another stat card or slot
-tests/later-rewards.test.cjs — integrated gift skips non-boss activation once, then the next round re-enables it
 tests/later-rewards.test.cjs — the ten campaign rewards preserve printed source data and existing chapter-one state shape
 tests/later-rewards.test.cjs — roar rejects omitted, duplicate, foreign, out-of-range and fog destinations without spending
 tests/later-rewards.test.cjs — augur routes damage through campaign mitigation before checking death and moving
@@ -1070,10 +893,6 @@ tests/later-missions.test.cjs — later chapter preparation separates current in
 tests/later-missions.test.cjs — mission assertions reject duplicated prior outcomes, negative tokens and nonexistent NPC locations
 tests/campaign-progression.test.cjs — natural chapter one completion advances with growth inventory and resets chapter supplies at the chosen start
 tests/campaign-progression.test.cjs — legacy chapter one saves can enter the new chapter flow and still replay exactly
-tests/later-missions.test.cjs — later chapter preparation separates current insight from retained completed outcomes
-tests/later-missions.test.cjs — mission assertions reject duplicated prior outcomes, negative tokens and nonexistent NPC locations
-tests/campaign-progression.test.cjs — natural chapter one completion advances with growth inventory and resets chapter supplies at the chosen start
-tests/campaign-progression.test.cjs — legacy chapter one saves can enter the new chapter flow and still replay exactly
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1088,11 +907,7 @@ tests/campaign-ui.test.cjs — chapter completion offers equipment preparation a
 tests/actual-boss.test.cjs — an actual phase-two final kill completes card44 and the final dream without advancing the hunt track
 규칙10의 실제 구성품으로 장송의 칼날·기본 단총 한 경로를325개 공개 명령만으로 진행하여 챕터1~3 연속 승리와 정확 저장 재생을 검증했습니다. 실제 성직자 야수는 챕터2/3의 체력10/8·양 페이즈 행동 덱을 사용하며 최종 꿈에서 사냥 트랙은 늘지 않습니다. 모든 무기 조합·모든 곁가지 경로의 본편 완주를 검증한 것은 아닙니다.
 tests/actual-full-campaign-v10.test.cjs — 325 public version-ten commands win all three Long Hunt chapters with actual Cleric Beast and exact save replay
-tests/later-missions.test.cjs — chapter three final boss kill completes 44 and records campaign victory without track advance
-tests/campaign-ui.test.cjs — chapter completion offers equipment preparation and chapter three has a campaign ending
-tests/actual-boss.test.cjs — an actual phase-two final kill completes card44 and the final dream without advancing the hunt track
-tests/actual-full-campaign-v10.test.cjs — 325 public version-ten commands win all three Long Hunt chapters with actual Cleric Beast and exact save replay
-남은 조치: 다른 무기·화기와 임무 곁가지 경로의 본편 장기 플레이를 추가 검증합니다.240조합의 전투 연습 검증과 본편 자연 완주 검증은 구분합니다.
+남은 조치: 현재 규칙13에서15개 무기 각각의 정상 본편 완주 경로를 확인했습니다(C02). 모든 화기 조합·곁가지 경로를 각각 최종 보스까지 완주한 것은 아니며, 새로운 예외가 발견되면 추가 점검합니다.
 사용자 직접 점검: 미점검
 
 W01 | 신규 무기 | 규칙 사용자 제공 양면 시트쪽
@@ -1100,8 +915,6 @@ W01 | 신규 무기 | 규칙 사용자 제공 양면 시트쪽
 상태: 구현 | 우선순위: 없음
 검증: 직접 판독 자료 + 자동 테스트 근거 있음
 근거: components/extended-weapons.json의28면/해시; hunt-app.js 현재 슬롯 수에 따른 표시 및 보상 장착 슬롯 제한.
-tests/extended-weapon-data.test.cjs — each bottom summary describes the opposite face and never becomes a second active effect
-tests/campaign-ui.test.cjs — weapon panels render only their current slots and offer only legal persistent-reward slots
 tests/extended-weapon-data.test.cjs — each bottom summary describes the opposite face and never becomes a second active effect
 tests/campaign-ui.test.cjs — weapon panels render only their current slots and offer only legal persistent-reward slots
 남은 조치: —
@@ -1112,12 +925,6 @@ W02 | 신규 무기 | 규칙 사용자 제공 양면 시트쪽
 상태: 구현 | 우선순위: 없음
 검증: 직접 판독 자료 + 자동 테스트 근거 있음
 근거: weapon-rules.js attackBonus()/afterTransform(); hunt-app.js 공격 weaponBoost 선택을 명령에 전달.
-tests/weapon-rules.test.cjs — wheel self-damage choices are bounded integers and calculate equal extra damage
-tests/weapon-rules.test.cjs — chikage permits one self-damage for exactly one speed or damage bonus
-tests/weapon-rules.test.cjs — beast claw low-health threshold includes three health and excludes four
-tests/weapon-rules.test.cjs — tonitrus charge is gained on either transform and expires with its round
-tests/campaign-ui.test.cjs — the chosen optional wheel sacrifice reaches the attack command and leaves the default at zero
-tests/campaign-ui.test.cjs — optional weapon sacrifices reach standalone firearm attacks and firearm counterattacks
 tests/weapon-rules.test.cjs — wheel self-damage choices are bounded integers and calculate equal extra damage
 tests/weapon-rules.test.cjs — chikage permits one self-damage for exactly one speed or damage bonus
 tests/weapon-rules.test.cjs — beast claw low-health threshold includes three health and excludes four
@@ -1143,16 +950,6 @@ tests/weapon-continuations.test.cjs — clearing a face-down weapon card removes
 tests/weapon-continuations.test.cjs — dream collection removes face-down weapon tags before recycling the hunter deck
 tests/campaign-ui.test.cjs — face-down weapon slots hide the printed stat card face and describe the dormant effects
 회피/임무 선택/버림·꿈 정리의 경계는 유효 조립 상태의 회귀 검증입니다. 자연 명령 저장 재생의 근거와 구분합니다.
-tests/weapon-rules.test.cjs — extended weapon rules are isolated from old saves and provisional practice
-tests/weapon-rules.test.cjs — clear and kill callbacks preserve target selection, drawing, healing and movement
-tests/campaign-ui.test.cjs — weapon effect decisions pass the engine-provided command without inventing a target
-tests/weapon-continuations.test.cjs — automatic dodge applies the whip area effect without spending a stat card
-tests/weapon-continuations.test.cjs — automatic dodge applies Chikage healing and its same-space damage
-tests/weapon-continuations.test.cjs — the mission death dodge applies the current weapon effect before resuming the mission
-tests/weapon-continuations.test.cjs — a beast-claw kill movement resumes enemy activation after the survivor mission choice
-tests/weapon-continuations.test.cjs — clearing a face-down weapon card removes its temporary tag before it enters discard
-tests/weapon-continuations.test.cjs — dream collection removes face-down weapon tags before recycling the hunter deck
-tests/campaign-ui.test.cjs — face-down weapon slots hide the printed stat card face and describe the dormant effects
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1161,9 +958,6 @@ E01 | 신규 실물 적 | 규칙 사용자 제공 적 카드쪽
 상태: 구현 | 우선순위: 없음
 검증: 직접 판독 자료 + 자동 테스트 근거 있음
 근거: components/extended-enemies.json/extended-enemies.js definition()과 hunt-app.js practiceTarget/practiceSide. 1인 NPC는1~2인 면 고정; 다인 실행 지원을 뜻하지 않습니다.
-tests/extended-enemy-rules.test.cjs — enemy count sides use supplied health and do not become boss phases
-tests/campaign-ui.test.cjs — the new practice target menu distinguishes general variants from hunter-count NPC faces
-tests/weapon-continuations.test.cjs — map reset restores the selected real practice opponent and its side at the chosen start space
 tests/extended-enemy-rules.test.cjs — enemy count sides use supplied health and do not become boss phases
 tests/campaign-ui.test.cjs — the new practice target menu distinguishes general variants from hunter-count NPC faces
 tests/weapon-continuations.test.cjs — map reset restores the selected real practice opponent and its side at the chosen start space
@@ -1180,11 +974,6 @@ tests/extended-enemy-rules.test.cjs — Eileen compares attack speeds and also h
 tests/extended-enemy-rules.test.cjs — blood knight stores corruption separately, spends one on basic, and gains it only on hit
 tests/extended-enemy-rules.test.cjs — bloodlicker gets speed and damage from echoes and reactivates only once after activation leap
 tests/campaign-ui.test.cjs — arcane barrage describes defense per dodge speed instead of a zero-speed threshold
-tests/extended-enemy-rules.test.cjs — Henryk poison knife, Eileen pistol, Alfred rifle and Djura shotgun offer exact immediate reactions
-tests/extended-enemy-rules.test.cjs — Eileen compares attack speeds and also handles firearm attacks
-tests/extended-enemy-rules.test.cjs — blood knight stores corruption separately, spends one on basic, and gains it only on hit
-tests/extended-enemy-rules.test.cjs — bloodlicker gets speed and damage from echoes and reactivates only once after activation leap
-tests/campaign-ui.test.cjs — arcane barrage describes defense per dodge speed instead of a zero-speed threshold
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1196,9 +985,6 @@ G01 | 신규 화기 | 규칙 사용자 제공 사진/TXT쪽
 tests/extended-firearms.test.cjs — new firearm photos contain four new firearms and corroborate the three earlier effects
 tests/extended-firearms.test.cjs — firearm stock is recorded separately from starting firearms with exact user supplied counts
 tests/extended-weapon-data.test.cjs — starting firearms follow the user supplied weapon-to-firearm text
-tests/extended-firearms.test.cjs — new firearm photos contain four new firearms and corroborate the three earlier effects
-tests/extended-firearms.test.cjs — firearm stock is recorded separately from starting firearms with exact user supplied counts
-tests/extended-weapon-data.test.cjs — starting firearms follow the user supplied weapon-to-firearm text
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1207,11 +993,6 @@ G02 | 신규 화기 | 규칙 사용자 제공 사진쪽
 상태: 구현 | 우선순위: 없음
 검증: 직접 판독 자료 + 자동 테스트 근거 있음
 근거: extended-firearms.js/firearms-engine.js/hunt-engine.js/hunt-app.js. 산탄총의 이동은 WEAPON_CHOICE로 유효 목적지를 고릅니다.
-tests/extended-firearms.test.cjs — cannon declares one independent attack and cannot join an attack already declared
-tests/extended-firearms.test.cjs — rosmarinus can remove uninterruptible special attack effects but excludes bosses and abilities
-tests/extended-firearms.test.cjs — evelyn can prepare by one echo without discarding a card or prepare by exactly one card
-tests/campaign-ui.test.cjs — the blunderbuss effect selects a colocated non-boss enemy during the hunter turn
-tests/campaign-ui.test.cjs — a cannon counterattack uses its own name and damage without a flamesprayer label
 tests/extended-firearms.test.cjs — cannon declares one independent attack and cannot join an attack already declared
 tests/extended-firearms.test.cjs — rosmarinus can remove uninterruptible special attack effects but excludes bosses and abilities
 tests/extended-firearms.test.cjs — evelyn can prepare by one echo without discarding a card or prepare by exactly one card
@@ -1229,10 +1010,6 @@ tests/extended-rewards.test.cjs — all 16 remaining printed reward cards retain
 tests/extended-rewards.test.cjs — unusable music box and ritual material are stored without equipment slots or invented actions
 tests/extended-rewards.test.cjs — old rule versions reject every additional reward without changing state
 tests/campaign-ui.test.cjs — the component catalog shows thirty reward effects and two unusable quest items without changing source data
-tests/extended-rewards.test.cjs — all 16 remaining printed reward cards retain their source text and quantities
-tests/extended-rewards.test.cjs — unusable music box and ritual material are stored without equipment slots or invented actions
-tests/extended-rewards.test.cjs — old rule versions reject every additional reward without changing state
-tests/campaign-ui.test.cjs — the component catalog shows thirty reward effects and two unusable quest items without changing source data
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1245,10 +1022,6 @@ tests/campaign-ui.test.cjs — practice reward quantities use printed supply and
 tests/campaign-ui.test.cjs — new direct rewards expose available commands while unavailable quest and solo targets explain their limits
 tests/extended-rewards.test.cjs — public practice reward setup includes all 32 cards and replays equipment choices exactly
 tests/campaign-ui.test.cjs — pending reward equipment choices disable independent firearm attacks and effects in the firearm panel
-tests/campaign-ui.test.cjs — practice reward quantities use printed supply and never become campaign starting rewards
-tests/campaign-ui.test.cjs — new direct rewards expose available commands while unavailable quest and solo targets explain their limits
-tests/extended-rewards.test.cjs — public practice reward setup includes all 32 cards and replays equipment choices exactly
-tests/campaign-ui.test.cjs — pending reward equipment choices disable independent firearm attacks and effects in the firearm panel
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1257,12 +1030,6 @@ B03 | 보상 진입 반응 | 규칙 17, 23~24 / 제공 보상·무기·화기쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음 · 사용자 직접 점검은 미점검
 근거: extended-rewards.js onEnemyStep()/dispatchEntry(); hunt-engine.js 적 진입의 중단/재개; hunt-app.js reward_entry와 ENTRY_REWARD {accept,node}. 보스·정지·다른 칸 진입은 대상에서 제외합니다.2칸 끌기 진입에서는 유효한1칸 거리 정지 위치를 선택합니다.
-tests/extended-rewards.test.cjs — torch entry can be declined without exhaustion or accepted to stop at the previous space and deal one
-tests/extended-rewards.test.cjs — torch ignores bosses, stationary enemies and entries to another space
-tests/campaign-ui.test.cjs — a torch entry decision sends accept or skip before revealing a combat action
-tests/campaign-ui.test.cjs — a torch reacting to a longer entry lets the hunter select a legal one-space stopping point
-tests/extended-rewards.test.cjs — integrated torch declines through rifle-spear and rifle reactions, preserving the enemy activation
-tests/extended-rewards.test.cjs — integrated torch cancels a pull declaration if the chosen target stops outside the hunter space
 tests/extended-rewards.test.cjs — torch entry can be declined without exhaustion or accepted to stop at the previous space and deal one
 tests/extended-rewards.test.cjs — torch ignores bosses, stationary enemies and entries to another space
 tests/campaign-ui.test.cjs — a torch entry decision sends accept or skip before revealing a combat action
@@ -1282,11 +1049,6 @@ tests/extended-rewards.test.cjs — radiance at three cards cannot waste its cha
 tests/extended-rewards.test.cjs — corruption prevents only an armed lethal hit, heals all damage, and preserves statuses and echoes
 tests/extended-rewards.test.cjs — integrated corruption prevents direct weapon sacrifice, poison death and an equal-speed lethal attack
 tests/extended-rewards.test.cjs — a printed once-per-chapter rune cannot be readied with bone ash and the rejected use retains the consumable
-tests/extended-rewards.test.cjs — radiance draws up to three once per chapter, and neither dream nor readiness bypasses the limit
-tests/extended-rewards.test.cjs — radiance at three cards cannot waste its chapter use
-tests/extended-rewards.test.cjs — corruption prevents only an armed lethal hit, heals all damage, and preserves statuses and echoes
-tests/extended-rewards.test.cjs — integrated corruption prevents direct weapon sacrifice, poison death and an equal-speed lethal attack
-tests/extended-rewards.test.cjs — a printed once-per-chapter rune cannot be readied with bone ash and the rejected use retains the consumable
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1296,7 +1058,6 @@ B05 | 보상 사용 시점 | 규칙 17, 23~24 / 제공 보상·무기·화기쪽
 검증: 자동 테스트 근거 있음 · 사용자 직접 점검은 미점검
 근거: extended-rewards.js onTurnStart()와 rewards-engine.js 발동 창 관리. 사용 시 치유1과 소진을 적용하며 꿈/귀환과 시작 준비에서 새 차례의 기회를 설정합니다.
 tests/extended-rewards.test.cjs — queen flesh is an optional exhausting reward only at the turn start window
-tests/extended-rewards.test.cjs — queen flesh is an optional exhausting reward only at the turn start window
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1305,11 +1066,6 @@ B06 | 보상 이동·대상 | 규칙 17, 23~24 / 제공 보상·무기·화기�
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음 · 사용자 직접 점검은 미점검
 근거: 인도는 유효 슬롯1개를 선택해 비운 뒤 스탯 비용 없는 정상 이동을 시작합니다. 이미 빈 슬롯도 선택할 수 있으며 슬롯 비우기 부가효과는 발생하지 않고 이동2를 실행합니다. 작은 토니트루스는1칸 이내 비보스에게 피해2를 주고 그 적의 다음 활성화를 억제합니다. 야수 문자는 처치 직후1칸 이내의 다른 적에게 피해2를 주며 다시 처치하면 새 반응 기회를 만듭니다.
-tests/extended-rewards.test.cjs — guidance clears an occupied slot before a normal two-space move without a stat-card cost
-tests/extended-rewards.test.cjs — tiny Tonitrus excludes bosses and remote targets, deals two, and skips only the surviving chosen enemy
-tests/extended-rewards.test.cjs — beast rune opens only on a living hunter kill, deals two within one space and can open the next kill reaction
-tests/campaign-ui.test.cjs — Adella optional echo payment and Guidance occupied slot choices reach the reward command
-tests/extended-rewards.test.cjs — integrated guidance runs the sword clear-slot damage before its two-space movement and resumes cleanly
 tests/extended-rewards.test.cjs — guidance clears an occupied slot before a normal two-space move without a stat-card cost
 tests/extended-rewards.test.cjs — tiny Tonitrus excludes bosses and remote targets, deals two, and skips only the surviving chosen enemy
 tests/extended-rewards.test.cjs — beast rune opens only on a living hunter kill, deals two within one space and can open the next kill reaction
@@ -1326,9 +1082,6 @@ B07 | 슬롯 부착 보상 | 규칙 17, 23~24 / 제공 보상·무기·화기쪽
 tests/extended-rewards.test.cjs — chunk and tear attach without exhaustion and contribute only to their chosen attack slot
 tests/extended-rewards.test.cjs — persistent attachment must be reassigned when transforming from three slots into one
 tests/extended-rewards.test.cjs — within-range attachment can move on transformation; persistent rewards cannot be exhausted or overequipped
-tests/extended-rewards.test.cjs — chunk and tear attach without exhaustion and contribute only to their chosen attack slot
-tests/extended-rewards.test.cjs — persistent attachment must be reassigned when transforming from three slots into one
-tests/extended-rewards.test.cjs — within-range attachment can move on transformation; persistent rewards cannot be exhausted or overequipped
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1337,9 +1090,6 @@ B08 | 무기·화기 조합 검증 | 규칙 17, 23~24 / 제공 보상·무기·�
 상태: 구현 | 우선순위: 없음
 검증: 자동 테스트 근거 있음 · 사용자 직접 점검은 미점검
 근거: weapon-firearm-matrix.test.cjs의 현행 규칙12 및 보존 규칙10·11 각각240조합, 총720개 public encounter and save replay v{10|11|12} 동적 케이스. 공개 전투에서 실제 화기 발동·준비 비용, 카드 비용 변형·슬롯 수, 라운드 진행, 꿈·반대 면 귀환, 공격 및 정확 저장을 확인한다. 상태를 직접 편집하지 않는다. 기존v074 단순 정책의30패배 기록은 당시 제한된 전술 검증이며 모든 조합의 본편 승리/균형을 뜻하지 않는다. 새12 본편15무기 경로는 C02에 별도 기록하고 최종 실행 수는 VERIFICATION.txt에서 확인한다.
-tests/weapon-firearm-matrix.test.cjs — matrix includes precisely all fifteen weapons and all eight playable firearms
-tests/weapon-firearm-matrix.test.cjs — each weapon uses its printed starting gun and requires explicit campaign override for alternatives
-tests/weapon-firearm-matrix.test.cjs — the thirty default combinations finish multi-round public campaign traces and replay their terminal states
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1352,10 +1102,6 @@ tests/campaign-ui.test.cjs — standalone firearm attacks pass broad reward choi
 tests/extended-rewards.test.cjs — integrated standalone firearm attack applies selected attack runes and offers a free transform afterward
 tests/weapon-firearm-matrix.test.cjs — Writhe alone lets all thirty weapon faces stagger a same-speed cannon exchange
 tests/weapon-firearm-matrix.test.cjs — every standalone gun pairing rejects a Clawmark replacement before exhausting the gun or rune
-tests/campaign-ui.test.cjs — standalone firearm attacks pass broad reward choices and explain the stat-only Clawmark restriction
-tests/extended-rewards.test.cjs — integrated standalone firearm attack applies selected attack runes and offers a free transform afterward
-tests/weapon-firearm-matrix.test.cjs — Writhe alone lets all thirty weapon faces stagger a same-speed cannon exchange
-tests/weapon-firearm-matrix.test.cjs — every standalone gun pairing rejects a Clawmark replacement before exhausting the gun or rune
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1364,10 +1110,6 @@ C01 | 단일 캠페인 | 규칙 12~13 / 카드1~60쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 회귀·자연 공개 명령·저장/화면 점검 근거 있음
 근거: 36개 이전 결과 조합×진료소/예배당/대교3곳의108독립 분기 조건과 전체60카드 자연 공개를 대조한다. v0.7.5는51/52의 정상 완료·보상을 추가 자연 공개 명령으로 확보했다. 카드 공개와 임무 완료, 이력 조립 계약과 자연 플레이는 구분한다. tests/mission-branches-v074.test.cjs, clinic-completion-v075.test.cjs, VERIFICATION.txt 참조.
-tests/clinic-completion-v075.test.cjs — natural card 51 finishes research and rewards from a normal chapter-one start
-tests/clinic-completion-v075.test.cjs — actual controller completes all natural card 51 decisions and restarts every saved action
-tests/clinic-completion-v075.test.cjs — natural card 52 delivers two new survivors and grants the clinic sanctuary without a retained lock
-tests/clinic-completion-v075.test.cjs — actual controller completes all natural card 52 decisions and restarts every saved action
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1392,7 +1134,6 @@ C04 | 화면 완주 | 규칙 10, 12~13, 14~26쪽
 상태: 구현 | 우선순위: 없음
 검증: 자동 회귀·자연 공개 명령·저장/화면 점검 근거 있음
 근거: tests/solo-ui-playthrough.test.cjs:실제 제어기·인벤토리의325개 공개 결정. tests/solo-branch-ui.test.cjs:곁가지 선택/상호작용/호위/최종 처리의 실제 화면 명령. 브라우저 캡처는 VERIFICATION.txt에 있다.
-tests/solo-ui-playthrough.test.cjs — actual offline controller completes three chapters through enabled controls and reloads each of 325 public decisions
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1402,12 +1143,6 @@ C05 | 이동·안개 | 규칙 16, 24쪽
 검증: 자동 회귀·자연 공개 명령·저장/화면 점검 근거 있음
 근거: rewards-engine.js/hunt-engine.js의 공통 목적지 판정과 hunt-app.js의 등불 목록. 총창의 자연83명령 안개 상태에서 사용 거절·저장 복원을 확인한다.
 보유품 화면의 사냥꾼이라는 뚜렷한 증거는 정상 등불만, 돌멩이는 실제 안개 경로 검증을 통과하는 적 이동 칸만 제시한다. 경계 조건은 자연 안개 체크포인트에 소모품을 배치한 회귀 검사로 구분한다.
-tests/solo-audit-regressions.test.cjs — public chapter-one fog encounter disables the lantern and offers no forbidden destinations
-tests/solo-audit-regressions.test.cjs — every lantern destination offered by a public checkpoint is accepted and replays exactly
-tests/solo-audit-regressions.test.cjs — lantern unavailability explains dream and finished hunt before fog restrictions
-tests/solo-inventory-destinations.test.cjs — inventory mark offers only legal intact lamps and every listed move is accepted
-tests/solo-inventory-destinations.test.cjs — arranged consumable boundary on a public fog checkpoint disables mark without forbidden lamps
-tests/solo-inventory-destinations.test.cjs — arranged stone boundary offers destinations accepted by fog path validation
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1417,10 +1152,6 @@ C06 | 필수 선택 | 규칙 17, 20~21 / 카드51쪽
 검증: 자동 회귀·자연 공개 명령·저장/화면 점검 근거 있음
 근거: hunt-app.js는 필수 보상 선택이 무기 선택에 가려지지 않도록 우선 표시한다. mission-engine.js의51진행문은 별도 사냥 무리 선행 조건을 요청하지 않는다.
 화기 보관 목록은 실행에 쓰는 firearmDefinition과 같은 정의를 조회한다. 최신8종과 이전 규칙8~11의 정의, 임무7에서 자연 획득한 장총의 보관·정상 장착을 대조했다.
-tests/campaign-ui.test.cjs — mandatory reward equipment stays actionable while a weapon continuation is waiting
-tests/mission-branches-v074.test.cjs — card 51 requires the clinic beast only and its visible objective does not request the obsolete huntsman prerequisite
-tests/solo-owned-firearms.test.cjs — owned firearm descriptions use the same supplied definitions as actual play in each saved rules version
-tests/solo-owned-firearms.test.cjs — naturally earned Ludwig rifle displays the real card while stored and after legal equipment
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1430,29 +1161,17 @@ C07 | 저장 호환 | 규칙 프로그램 저장쪽
 검증: 자동 회귀·자연 공개 명령·저장/화면 점검 근거 있음
 근거: 실제 과거 저장39개+독립v0.7.0 111상태+v0.7.1 277상태+v0.7.2 326상태+v0.7.3 326상태+v0.7.4 326상태=1405개 정확 복원 통과. 별도 QA v075-early-save-compat.json(150)과 v075-released-engine-compat.json(1255). 이전 규칙11과 기존 명령·저장 형식·자동 저장 v07 키를 유지한다.
 규칙12 이하 저장의 정확 가져오기를 유지한다. 가져온 뒤 APPLY_CHAPEL_RULING 한 명령을 기록하여 미래의 동시 도착에 사용자 재정을 적용한다. 미결 37/56은 39부터 한 번만 해결하며 이미 정한 33·57·59, 보상·기부·게임 종료 상태는 다시 열지 않는다. 규칙13 새 게임과 독립 연습에는 채택 명령을 추가하지 않는다.
-tests/chapel-migration-v077.test.cjs — legacy prearrival save adopts future escort-first policy without changing any gameplay state
-tests/chapel-migration-v077.test.cjs — legacy pending simultaneous save records one adoption and resolves escort first exactly once
-tests/chapel-migration-v077.test.cjs — adopted old policy persists through chapter transition while unfinished mission state resets
-tests/chapel-migration-v077.test.cjs — new rules13 and noncampaign practice do not add adoption commands
-tests/chapel-migration-v077.test.cjs — legacy completed campaign adopts metadata without reopening the over state
-tests/chapel-migration-v077.test.cjs — a hand edited policy flag cannot bypass exact save replay verification
-tests/chapel-migration-v077.test.cjs — assembled reward and donation windows remain unchanged by metadata adoption
 남은 조치: —
 사용자 직접 점검: 미점검
 
-C08 | 동시 임무 | 프로젝트 재정 37·39 56·57
+C08 | 동시 임무 | 규칙 프로젝트
+재정
+37·39
+56·57쪽
 조건: 같은 예배당 이동 종료에서는 37 호위를 완료하여 39와 보상을 먼저 획득한 후 56을 판정하고 57을 공개한다. 순서 선택과 미공개 결과 비교를 표시하지 않는다.
 상태: 구현 | 우선순위: 없음
 검증: 자동 회귀·자연 공개 명령·저장/화면 점검 근거 있음
 근거: 사용자가 2번 순서를 확정하여 rulesVersion13에 호위 먼저 재정을 채택했다. 공식 FAQ의 고유 우선순위로 주장하지 않는다. 정상 315번째 도착 명령에서 39 완료가 56/57 공개보다 먼저 기록되며 필수 보상 후속 선택은 유지한다. 과거 28·34 보유 여부로 이 동시 도착을 33·59로 먼저 보내지 않는다. 호위가 없거나 이전에 완료한 39를 보유한 도착은 일반 56 조건을 유지한다. 공개 명령만으로 317개 실제 제어기 결정과 매 행동 정확 저장 복원을 검사하며, 이력·생존자·도약·무기 후속 효과의 조립 경계는 정상 경로와 별도로 검사한다. 기존 규칙12 저장은 정확 가져오기 후 일회 채택 명령을 기록하며 이미 완결한 분기는 보존한다.
-tests/chapel-policy-v077.test.cjs — rules13 natural 315th command completes39 before revealing56 and57 without a timing decision
-tests/chapel-policy-v077.test.cjs — all317 natural rules13 decisions use real controls and exact save restoration with no adjudication button
-tests/chapel-policy-v077.test.cjs — legacy importer remains exact and fallback controller offers only escort-first completion
-tests/chapel-policy-v077.test.cjs — assembled earlier39 already meets56 and opens57 without a fresh escort
-tests/chapel-policy-v077.test.cjs — assembled first chapel arrival without37 still follows56 ordinary conditions
-tests/chapel-policy-v077.test.cjs — assembled leap attack resumes once with mandatory39 rewards before combat controls
-tests/chapel-policy-v077.test.cjs — assembled weapon movement continuation starts once and rewards block the next movement control
-tests/chapel-migration-v077.test.cjs — legacy pending simultaneous save records one adoption and resolves escort first exactly once
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1461,8 +1180,6 @@ C09 | 진료소 연구 정상 완료 | 규칙 12~13,17 / 카드45,51,26쪽
 상태: 구현 | 우선순위: 없음
 검증: 자연 공개 명령 정상 완료·실제 제어기의 모든 결정/매 행동 저장 검사 근거 있음
 근거: 규칙12·시드90·교단의 돌망치 앞면·기본 단총·시작 소모품 없음의343명령.340번째 진료소 야수 최종 처치로26과 이오세프카 수혈액 획득, 장착/사용 후 체력3·트랙8·현재 계몽1·필수 보상 선택0. 상태 편집 없이 진행했으며 이 기록 자체의 챕터3 최종 승리를 주장하지 않는다. v074의 자연 진입만 확인했던 한계를 v075에서 정상 완료 증거로 보완했다. 실제 제어기의 전체343결정과 매 행동 import 검사는 별도로 실행하며 최종 결과를 VERIFICATION.txt에 기록한다.
-tests/clinic-completion-v075.test.cjs — natural card 51 finishes research and rewards from a normal chapter-one start
-tests/clinic-completion-v075.test.cjs — actual controller completes all natural card 51 decisions and restarts every saved action
 남은 조치: —
 사용자 직접 점검: 미점검
 
@@ -1471,7 +1188,21 @@ C10 | 진료소 피신처 정상 완료 | 규칙 12~13,17 / 카드45,52,28쪽
 상태: 구현 | 우선순위: 없음
 검증: 잠금 없는 자연 공개 명령 정상 완료·실제 제어기의 모든 결정/매 행동 저장 검사 근거 있음
 근거: 규칙12·시드90·야수의 발톱 앞면·기본 단총·시작 소모품 없음의384명령.383번째 이동 종료에 새 생존자2개 전달로28 획득, 사자 선물 장착 후 체력6·트랙8·현재 계몽1·보유 생존자0·필수 보상 선택0. 상태 편집 없이 진행했으며 이 기록 자체의 챕터3 최종 승리를 주장하지 않는다. v074의34 보유 잠금 자연 진입만이 아닌 새로운 잠금 없는 완료 경로를 확보했다. 실제 제어기의 전체384결정과 매 행동 import 검사는 별도로 실행하며 최종 결과를 VERIFICATION.txt에 기록한다.
-tests/clinic-completion-v075.test.cjs — natural card 52 delivers two new survivors and grants the clinic sanctuary without a retained lock
-tests/clinic-completion-v075.test.cjs — actual controller completes all natural card 52 decisions and restarts every saved action
 남은 조치: —
+사용자 직접 점검: 미점검
+
+T01 | 검증 도구 | 규칙 개발용쪽
+조건: 검증 전용 캠페인에서 장치무기 양면(3속도·12/6피해), 빠른 시작 보상·소모품과 직접 수량 선택, 회복·손패/슬롯 보충·6칸 이동을 사용한다. 정규 자동 저장·구성품 공급과 분리한다.
+상태: 구현 | 우선순위: 없음
+검증: 개발 도구 회귀16개 · 정규 완주 근거와 별도
+근거: qa-mode.js / hunt-engine.js / hunt-app.js: 명시한 검증 모드에서만 장치무기와 소모품3종을 제공한다. 빠른 프리셋 또는 기존 보상·정규/검증 소모품의 시작 수량을 선택한다. 시작 보상은qaStart 사본으로 지급하여 실제 임무 보상 공급을 보존하고, 선택 소모품은 매 챕터 시작에 다시 지급한다. 정규 시작 화면과15무기·36소모품 공급, 일반 자동 저장을 유지한다. 일반/검증 저장은 별도 재개하며 검증 설정과 명령을 정확 재생한다.
+tests/qa-campaign-v078.test.cjs — QA definitions stay outside stock component decks and normal creation
+tests/qa-campaign-v078.test.cjs — fast QA setup is explicit, contains separate issued items, and roundtrips exactly
+tests/qa-campaign-v078.test.cjs — QA starting reward persists once and spent QA supplies renew at both natural chapter transitions
+tests/qa-campaign-v078.test.cjs — a QA starting lantern does not block the actual chapter-one lantern reward
+tests/qa-campaign-v078.test.cjs — QA weapon kills a real spawned enemy and QA cards clear the occupied attack slot
+tests/qa-campaign-v078.test.cjs — QA healing after a public stock-weapon battle restores actual damage and an exhausted firearm
+tests/qa-campaign-ui-v078.test.cjs — starting a QA hunt and using its real inventory preserves the normal autosave byte for byte
+tests/qa-campaign-ui-v078.test.cjs — custom QA setup serializes selected reward and consumable quantities through actual start controls
+남은 조치: 검증 장비를 사용한 결과는 임무 흐름 점검에 사용합니다. 정규 전투 수치·장비 효과와 정상 완주 검증에는 실제 구성품 경로를 유지합니다.
 사용자 직접 점검: 미점검
