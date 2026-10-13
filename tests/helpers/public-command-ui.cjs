@@ -15,6 +15,7 @@ function clickCommand(s,command,options={}){
       interactionEnemies:E.interactionEnemies,provisionalView:E.provisionalView,
     }});
   options.onBoot?.(ui);
+  const originalSave=ui.storage.get('bloodborne-hunt-v07');
   const change=(id,value)=>{const element=ui.el(id);assert(element,`missing ${id}`);element.value=String(value);element.fire('change');};
   const chosenCard=command.cardId||(command.type==='RELOAD'&&command.cardIds?.[0]);
   if(chosenCard && E.hunter(s).hand.some(c=>c.id===chosenCard)){
@@ -116,11 +117,73 @@ function clickCommand(s,command,options={}){
       assert(reward,'reward use control enabled');reward.click();
     }else assert.fail(`No enabled UI action for ${s.phase}: ${JSON.stringify(command)}`);
   }
+  const departure=ui.el('escortDialog'),expectedCommands=options.expectedCommands||[command];
+  assert(Array.isArray(expectedCommands),'the expected public command batch is explicit');
+  if(departure?.open){
+    assert.equal(ui.storage.get('bloodborne-hunt-v07'),originalSave,'a departure request preserves the exact save before its answer');
+    assert.equal(E.importSave(ui.storage.get('bloodborne-hunt-v07')).revision,s.revision,'a departure request commits no movement, optional pickup or cost');
+    options.onDepartureRequest?.(ui);
+    assert.equal(ui.storage.get('bloodborne-hunt-v07'),originalSave,'inspecting the departure prompt preserves the save');
+    const answer=options.departureAnswer||'decline',id={accept:'escortAccept',decline:'escortDecline',cancel:'escortCancel'}[answer];
+    assert(id,`unknown departure answer ${answer}`);
+    const button=ui.el(id);assert(button&&!button.disabled,`the ${answer} departure answer is available`);button.click();
+    assert.equal(departure.open,false,'the answered departure dialog closes');
+  }else if(options.departureAnswer){
+    assert.fail(`The requested ${options.departureAnswer} departure answer needs a real departure dialog`);
+  }
   assert.equal(ui.el('error').textContent,'',`UI rejected ${JSON.stringify(command)}`);
   const next=E.importSave(ui.storage.get('bloodborne-hunt-v07'));
-  assert.equal(next.revision,s.revision+1,'one real reducer command from UI');
-  const reference=E.dispatch(s,command), functional=state=>{const copy=plain(state);delete copy.commands;return copy;};
-  assert.deepEqual(functional(next),functional(reference),'actual UI command preserves intended game result');
+  assert.equal(next.revision,s.revision+expectedCommands.length,'only the explicitly expected public command batch commits');
+  const committed=next.commands.slice(s.commands.length);
+  assert.deepEqual(committed.map(c=>c.type),expectedCommands.map(c=>c.type),'the UI records the complete intended reducer batch once');
+  const reference=expectedCommands.reduce((state,c)=>E.dispatch(state,c),s),functional=state=>{const copy=plain(state);delete copy.commands;return copy;};
+  assert.deepEqual(functional(next),functional(reference),'actual UI commands preserve the intended original-rule result');
+  if(!expectedCommands.length)assert.equal(ui.storage.get('bloodborne-hunt-v07'),originalSave,'cancel preserves the exact save');
   return next;
 }
-module.exports={clickCommand};
+// Historical traces used MISSION_PICKUP to arm a future departure. The new
+// public controller asks at departure instead. Preserve the original engine
+// stream separately and compare every gameplay field at each checkpoint.
+function traceBehavior(state,ignorePickupReservation=false){
+  const copy=plain(state);delete copy.commands;delete copy.revision;delete copy.log;
+  if(ignorePickupReservation&&copy.mission?.escort)delete copy.mission.escort.pickup;
+  return copy;
+}
+function replayPublicTrace(initial,commands,options={}){
+  let state=initial,reference=initial,uiCommandCount=0,uiActions=0,deferredReservations=0;
+  for(let index=0;index<commands.length;index++){
+    const command=commands[index],beforeReference=reference;
+    reference=E.dispatch(reference,command);
+    let clicked=false,expectedCommands=[];
+    try{
+      if(command.type==='MISSION_PICKUP'){
+        // This is a legacy intent, not a surviving UI button. It may be unused
+        // (for example STOP_MOVE, a story choice, then teleport), so never
+        // fabricate a click or mutate the player's actual save here.
+        deferredReservations++;
+      }else{
+        const leaving=['STEP','EXPLORE'].includes(command.type),escort=state.mission?.escort;
+        const eligible=leaving&&E.missionActions(state).some(a=>a.command.type==='MISSION_PICKUP');
+        const intent=!!beforeReference.mission?.escort?.pickup;
+        if(eligible&&!!escort.pickup!==intent)expectedCommands.push({type:'MISSION_PICKUP'});
+        expectedCommands.push(command);
+        clicked=options.shouldClick?!!options.shouldClick(beforeReference,command,reference,index):true;
+        if(clicked){
+          const clickOptions={...(options.clickOptions||{}),expectedCommands};
+          if(eligible)clickOptions.departureAnswer=intent?'accept':'decline';
+          state=clickCommand(state,command,clickOptions);
+          uiCommandCount+=expectedCommands.length;uiActions++;
+        }else state=expectedCommands.reduce((value,c)=>E.dispatch(value,c),state);
+      }
+      // Ignore only the temporarily deferred pickup flag when it actually
+      // differs. Carrier identity, token positions, NPC follow, resources,
+      // random state, health, mission completion and every other field match.
+      const pending=state.mission?.escort?.pickup!==reference.mission?.escort?.pickup;
+      assert.deepEqual(traceBehavior(state,pending),traceBehavior(reference,pending),`original gameplay result at command ${index+1}`);
+      options.onCheckpoint?.({state,reference,beforeReference,command,index,clicked,expectedCommands});
+    }catch(error){throw new Error(`${options.label||'public trace'} command ${index+1}/${commands.length} (${command.type}): ${error.message}`,{cause:error});}
+  }
+  assert.deepEqual(traceBehavior(state),traceBehavior(reference),'final gameplay and pickup state equal the original unmodified trace');
+  return {state,reference,originalCommandCount:commands.length,uiCommandCount,uiActions,deferredReservations};
+}
+module.exports={clickCommand,replayPublicTrace};

@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict"), fs = require("node:fs"), path = require("node:path");
-const E = require("../hunt-engine"), { boot } = require("./helpers/ui-harness.cjs"), { clickCommand } = require("./helpers/public-command-ui.cjs");
+const E = require("../hunt-engine"), { boot } = require("./helpers/ui-harness.cjs"), { clickCommand, replayPublicTrace } = require("./helpers/public-command-ui.cjs");
 const normalKey = "bloodborne-hunt-v07", qaKey = "bloodborne-hunt-qa-v1", activeKey = "bloodborne-hunt-active-mode";
 const realEngine = { create: E.create, importSave: E.importSave, exportSave: E.exportSave, dispatch: E.dispatch,
   missionView: E.missionView, rewardsView: E.rewardsView, missionActions: E.missionActions,
@@ -138,21 +138,23 @@ test("mandatory reward decisions remain in the action area while movement and ot
   assert.equal(next.rewardChoices.length, 0); assert.deepEqual(E.importSave(E.exportSave(next)), next);
 });
 
-test("the map HUD completes a normal three-chapter campaign via all 351 enabled public controls with exact saves", () => {
+test("the map HUD replays 351 original commands through public controls with exact projected saves", t => {
   const commands = require("./fixtures/weapon-campaign-completion/beast-claw-0.json");
-  assert.equal(commands.length, 351); let state = normal(); const phases = new Set(), chapters = new Set();
-  for (let index = 0; index < commands.length; index++) {
-    const command = commands[index]; phases.add(state.phase); chapters.add(state.mission.chapter);
-    try {
-      state = clickCommand(state, command, { onBoot(ui) {
-        assert.equal(ui.el("error").textContent, "");
-        assert(ui.el("status").innerHTML.trim()); assert(ui.el("chapterMap").innerHTML.trim());
-        assert(ui.el("hand") && ui.el("slots") && ui.el("missionObjectives"));
-      }, beforeInventory: ui => openPanel(ui, "inventory"), afterInventory: ui => { if (ui.el("infoDialog").open) ui.el("closeInfo").click(); },
-        beforeReward: ui => openPanel(ui, "rewards"), beforeTarget: ui => openPanel(ui, "enemies"),
-        afterTarget: ui => { if (ui.el("infoDialog").open) ui.el("closeInfo").click(); } });
-    } catch (error) { throw new Error(`HUD command ${index + 1}/${commands.length} (${command.type}): ${error.message}`, { cause: error }); }
-  }
+  assert.equal(commands.length, 351); const phases = new Set(), chapters = new Set();
+  const replay = replayPublicTrace(normal(), commands, { label: "HUD", clickOptions: { onBoot(ui) {
+    assert.equal(ui.el("error").textContent, "");
+    assert(ui.el("status").innerHTML.trim()); assert(ui.el("chapterMap").innerHTML.trim());
+    assert(ui.el("hand") && ui.el("slots") && ui.el("missionObjectives"));
+  }, beforeInventory: ui => openPanel(ui, "inventory"), afterInventory: ui => { if (ui.el("infoDialog").open) ui.el("closeInfo").click(); },
+    beforeReward: ui => openPanel(ui, "rewards"), beforeTarget: ui => openPanel(ui, "enemies"),
+    afterTarget: ui => { if (ui.el("infoDialog").open) ui.el("closeInfo").click(); } },
+    onCheckpoint({ beforeReference }) { phases.add(beforeReference.phase); chapters.add(beforeReference.mission.chapter); } });
+  const state = replay.state;
+  assert.equal(replay.originalCommandCount, 351);
+  // The source's only pickup reservation ends in teleport without departure.
+  assert.equal(replay.deferredReservations, 1); assert.equal(replay.uiCommandCount, 350);
+  t.diagnostic(JSON.stringify({ originalCommandCount: replay.originalCommandCount,
+    uiCommandCount: replay.uiCommandCount, deferredReservations: replay.deferredReservations }));
   assert.equal(state.result, "campaign-win"); assert.deepEqual([...chapters], [1, 2, 3]);
   for (const phase of ["move", "tile_place", "combat_choose", "combat_react", "upgrade_pick", "upgrade_replace", "between_chapters", "firearm_react", "boss_move"])
     assert(phases.has(phase), `${phase} is reached by normal play`);

@@ -21,8 +21,8 @@ function inspect(s,target=escortTarget('tile-11:house'),cardId=H(s).hand[0]?.id)
   return view;
 }
 function start(s) {
-  const action=inspect(s).actions.find(action=>action.id==='escort-move-start');assert(action&&action.enabled);
-  for(const value of action.sequence)s=command(s,value);return s;
+  s=command(s,{type:'MOVE',cardId:H(s).hand[0].id});
+  return command(s,{type:'MISSION_PICKUP'});
 }
 function normalRoom() {
   let s=E.create(90,'beast-claw',0,null,'hunter-pistol','center',{campaign:true});
@@ -30,72 +30,58 @@ function normalRoom() {
   return checked(s);
 }
 
-test('public mission08 token inspection offers departure escort with no INTERACT or additional hand-card charge',()=>{
-  const s=house(),view=inspect(s),action=view.actions.find(a=>a.id==='escort-move-start');
-  assert(action&&action.enabled);assert.equal(action.label,'생존자와 이동 시작');
-  assert.match(action.cost,/손패 1장/);assert.match(action.cost,/추가 비용 없음/);
-  assert.match(view.hint,/이동해 나갈 때/);
-  assert.deepEqual(action.sequence.map(c=>c.type),['MOVE','MISSION_PICKUP']);
-  assert(!view.actions.some(a=>a.id==='interact'||a.command?.type==='INTERACT'));
+test('public mission08 token inspection explains the departure prompt without a paid interaction or a manual reservation button',()=>{
+  const s=house(),view=inspect(s);
+  assert.match(view.hint,/이동해 나갈 때/);assert.match(view.hint,/동행할지 확인/);
+  assert(!view.actions.some(a=>a.id==='interact'||/^escort-/.test(a.id)));
   assert.equal(s.revision,4);assert.equal(s.mission.escort.carrierId,null);
 });
 
-test('escort movement requires choosing an existing hand card before any command is executed',()=>{
-  const s=house(),view=inspect(s,escortTarget('tile-11:house'),null);
-  const action=view.actions.find(a=>a.id==='escort-move-start');assert(action);assert.equal(action.enabled,false);
-  assert.match(action.reason,/손패/);assert.equal(H(s).hand.length,2);
-  const stale=inspect(s,escortTarget('tile-11:house'),'missing-card');
-  assert.equal(stale.actions.find(a=>a.id==='escort-move-start').enabled,false);
+test('ordinary movement still requires an existing hand card without opting into escort inside the context command',()=>{
+  const s=house(),target={kind:'cell',node:'tile-11:street'};
+  const unchosen=inspect(s,target,null).actions.find(a=>a.id==='move');
+  assert(unchosen&&!unchosen.enabled);assert.match(unchosen.reason,/카드/);
+  const chosen=inspect(s,target).actions.find(a=>a.id==='move');assert(chosen.enabled);
+  assert.deepEqual(chosen.sequence.map(c=>c.type),['MOVE','STEP']);
 });
 
-test('explicit escort start pays for MOVE once, arms free pickup and carries the token only after an actual departure',()=>{
+test('engine pickup remains free and acquires the token only on actual departure',()=>{
   const before=house(),after=start(before);
   assert.equal(after.phase,'move');assert.equal(H(after).hand.length,H(before).hand.length-1);
   assert.equal(H(after).position,'tile-11:house');assert.equal(after.mission.escort.node,'tile-11:house');
   assert.equal(after.mission.escort.carrierId,null);assert.equal(after.mission.escort.pickup,true);
-  assert.equal(after.enemyDeck.length,before.enemyDeck.length);assert.equal(after.enemyDiscard.length,before.enemyDiscard.length);
-  assert.equal(after.move.remaining,2);assert.equal(H(after).hp,H(before).hp);
+  assert.equal(after.enemyDeck.length,before.enemyDeck.length);assert.equal(after.move.remaining,2);
   const departed=command(after,{type:'STEP',node:'tile-11:street'});
   assert.equal(departed.mission.escort.carrierId,departed.activeHunterId);assert.equal(departed.mission.escort.node,null);
   assert.equal(H(departed).hand.length,H(after).hand.length);assert.equal(departed.move.remaining,1);
-  assert.equal(before.mission.escort.node,'tile-11:house','the original checkpoint is retained');
 });
 
-test('the in-movement pickup is a free explicit toggle while ordinary map movement continues to leave the survivor behind',()=>{
-  const before=house();let moving=command(before,{type:'MOVE',cardId:H(before).hand[0].id});
-  const pickup=inspect(moving).actions.find(a=>a.id==='escort-pickup');
-  assert(pickup&&pickup.enabled);assert.equal(pickup.command.type,'MISSION_PICKUP');assert.equal(pickup.cost,'추가 비용 없음');
-  const handCount=H(moving).hand.length,remaining=moving.move.remaining;
-  moving=command(moving,pickup.command);
-  const leave=inspect(moving).actions.find(a=>a.id==='escort-pickup');
-  assert.equal(leave.label,'생존자를 이곳에 남겨 두기');moving=command(moving,leave.command);
-  assert.equal(moving.mission.escort.pickup,false);assert.equal(H(moving).hand.length,handCount);assert.equal(moving.move.remaining,remaining);
+test('declining a reservation is distinct from dropping an already carried survivor',()=>{
+  let moving=start(house());const hand=H(moving).hand.length,remaining=moving.move.remaining;
+  moving=command(moving,{type:'MISSION_PICKUP'});
+  assert.equal(H(moving).hand.length,hand);assert.equal(moving.move.remaining,remaining);
   moving=command(moving,{type:'STEP',node:'tile-11:street'});
   assert.equal(moving.mission.escort.node,'tile-11:house');assert.equal(moving.mission.escort.carrierId,null);
-  const plain=inspect(before,{kind:'cell',node:'tile-11:street'}).actions.find(a=>a.id==='move');
-  assert.deepEqual(plain.sequence.map(c=>c.type),['MOVE','STEP'],'ordinary routes never opt in automatically');
+  const carried=command(start(house()),{type:'STEP',node:'tile-11:street'});
+  assert(!E.missionActions(carried).some(a=>a.command.type==='MISSION_PICKUP'));
 });
 
-test('an escort elsewhere on the same tile requires first reaching its exact cell and can then be picked up within that same MOVE',()=>{
-  const atHouse=house();let s=command(atHouse,{type:'MOVE',cardId:H(atHouse).hand[0].id});
+test('a survivor in the named house cell cannot be picked up from the street of that tile',()=>{
+  let s=command(house(),{type:'MOVE',cardId:H(house()).hand[0].id});
   s=command(s,{type:'STEP',node:'tile-11:street'});s=command(s,{type:'STOP_MOVE'});
-  const remote=inspect(s);assert(!remote.actions.some(a=>/^escort-/.test(a.id)));
-  assert.match(remote.hint,/생존자가 있는 칸/);
-  const move=remote.actions.find(a=>a.id==='move');assert(move&&move.enabled);
+  const remote=inspect(s);assert.match(remote.hint,/생존자가 있는 칸/);
+  assert(!E.missionActions(s).some(a=>a.command.type==='MISSION_PICKUP'));
+  const move=remote.actions.find(a=>a.id==='move');assert(move.enabled);
   for(const c of move.sequence)s=command(s,c);
-  assert.equal(s.phase,'move');assert.equal(H(s).position,'tile-11:house');assert.equal(s.move.remaining,1);
-  const free=inspect(s).actions.find(a=>a.id==='escort-pickup');assert(free&&free.enabled);
-  const paid=H(s).hand.length;s=command(s,free.command);s=command(s,{type:'STEP',node:'tile-11:street'});
-  assert.equal(s.mission.escort.carrierId,s.activeHunterId);assert.equal(H(s).hand.length,paid);
+  assert.equal(H(s).position,'tile-11:house');assert.equal(s.move.remaining,1);
+  assert(E.missionActions(s).some(a=>a.command.type==='MISSION_PICKUP'));
 });
 
-test('restarting from an already-armed non-departure does not toggle the selected escort off',()=>{
+test('an old armed save keeps its engine selection while inspection does not change it',()=>{
   let s=start(house());s=command(s,{type:'STOP_MOVE'});
-  assert.equal(s.mission.escort.pickup,true);assert.equal(s.mission.escort.carrierId,null);
-  const action=inspect(s).actions.find(a=>a.id==='escort-move-start');assert(action&&action.enabled);
-  assert.deepEqual(action.sequence.map(c=>c.type),['MOVE']);
-  for(const c of action.sequence)s=command(s,c);
-  s=command(s,{type:'STEP',node:'tile-11:street'});assert.equal(s.mission.escort.carrierId,s.activeHunterId);
+  const before=JSON.stringify(s),view=inspect(s);
+  assert.match(view.hint,/동행할지 확인/);assert.equal(JSON.stringify(s),before);
+  assert.equal(s.mission.escort.pickup,true);
 });
 
 test('explicit departure escort retains the printed return-home rule for a real teleport and voluntary Dream entry',()=>{

@@ -72,6 +72,8 @@
     selectedSlot = null,
     selectedEnemy = null,
     mapTarget = null,
+    pendingEscort = null,
+    escortPromptOpener = null,
     presentationActions = [],
     presentationSession = 1,
     presentationOrigins = new Map(),
@@ -244,7 +246,44 @@
   function send(type, args = {}) {
     return sendCommands([{ type, ...args }]);
   }
+  function closeEscortPrompt() {
+    pendingEscort = null;
+    if ($("escortDialog").open) $("escortDialog").close();
+  }
+  function answerEscort(accept) {
+    const pending = pendingEscort;
+    if (!pending) return;
+    closeEscortPrompt();
+    if (pending.sourceState !== state || pending.sourceRevision !== state.revision) {
+      showError("진행 상태가 변경되었습니다. 이동할 칸을 다시 선택하세요.");
+      return;
+    }
+    commitCommands(accept ? pending.acceptCommands : pending.declineCommands);
+  }
+  $("escortAccept").onclick = () => answerEscort(true);
+  $("escortDecline").onclick = () => answerEscort(false);
+  $("escortCancel").onclick = closeEscortPrompt;
+  $("escortDialog").addEventListener("cancel", event => { event.preventDefault(); closeEscortPrompt(); });
+  $("escortDialog").addEventListener("close", () => {
+    pendingEscort = null;
+    const opener = escortPromptOpener; escortPromptOpener = null;
+    if (opener?.isConnected !== false) opener?.focus?.({ preventScroll: true });
+  });
   function sendCommands(commands) {
+    if (pendingEscort) return false;
+    const decision = window.BBHuntDeparture?.plan(E, state, commands);
+    if (!decision) return commitCommands(commands);
+    pendingEscort = { ...decision, sourceState: state };
+    escortPromptOpener = document.activeElement;
+    $("escortPromptTitle").textContent = decision.title;
+    $("escortPromptDescription").textContent = `${uiText(decision.name, "mission")}와 함께 이동할지 선택하세요. 동행에는 추가 비용이 없습니다.`;
+    shell?.close();
+    $("escortDialog").showModal();
+    $("escortAccept").focus?.({ preventScroll: true });
+    showError("");
+    return false;
+  }
+  function commitCommands(commands) {
     const previousDeclaredVisual = declaredWeaponVisual;
     try {
       const previous = state, before = animationSnapshot(), last = commands[commands.length - 1], type = last.type;
@@ -550,6 +589,7 @@
     $("storyRules").innerHTML = $("storyText").innerHTML = "";
   }
   function resetStoryReading() {
+    closeEscortPrompt();
     enemyHistory.reset(state);
     presentationSession++; presentationActions = []; presentationOrigins.clear(); declaredWeaponVisual = null; needsCameraFollow = true;
     readStories.clear();
@@ -867,9 +907,8 @@
     } else if (p === "move") {
       help = `남은 이동력 ${state.move.remaining}. 밝은 칸 또는 현재 칸의 출입구를 누르세요. 이동을 마치면 적의 추격을 처리합니다.`;
       const carry = (E.missionActions ? E.missionActions(state) : []).find(action => action.command.type === "MISSION_PICKUP");
-      if (carry) help += " 생존자를 데리고 갈지는 아래에서 선택하세요. 이 칸에서 나갈 때 함께 이동하며 추가 비용은 없습니다.";
-      html = (carry ? `<div class="escort-movement-choice"><p>${state.mission?.escort.pickup ? "생존자와 함께 이동하도록 선택했습니다." : "생존자를 동행시킬 수 있습니다."}</p>${button(`${state.mission?.escort.pickup ? "생존자를 이곳에 남겨 두기" : "생존자를 데리고 이동"}<small> · 추가 비용 없음</small>`, "MISSION_PICKUP", {}, false, "primary")}</div>` : "")
-        + button("여기서 이동 마치기", "STOP_MOVE");
+      if (carry) help += "이 칸에서 나갈 때 생존자와 동행할지 확인합니다. 추가 비용은 없습니다.";
+      html = button("여기서 이동 마치기", "STOP_MOVE");
     } else if (p === "tile_place") {
       help =
         "출입구가 이어지는 방향을 선택하세요. 배치 후 적·소모품을 놓고 연결된 칸으로 진입합니다.";

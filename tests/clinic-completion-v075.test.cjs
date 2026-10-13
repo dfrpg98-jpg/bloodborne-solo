@@ -1,5 +1,5 @@
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine.js'),{clickCommand}=require('./helpers/public-command-ui.cjs');
+const E=require('../hunt-engine.js'),{replayPublicTrace}=require('./helpers/public-command-ui.cjs');
 const {records}=require('./fixtures/v075-clinic-completion-manifest.json');
 assert.deepEqual(records.map(x=>x.card),[51,52]);
 function replay(card,ui){
@@ -9,10 +9,8 @@ function replay(card,ui){
   assert.equal(commands.length,r.commandCount);
   let s=E.create(t.seed,t.weaponId,t.face,null,t.firearmId,t.startSpace,{campaign:true});
   let entry=false,completed=false;let collected=0;
-  for(let index=0;index<commands.length;index++){
-    const before=s,command=commands[index];
-    try{s=ui?clickCommand(s,command):E.dispatch(s,command);}
-    catch(error){throw new Error(`card ${card}, command ${index+1}: ${error.message}`,{cause:error});}
+  const checkpoint=(before,next,index)=>{
+    s=next;
     if(s.mission.chapter===3){
       const gained=(s.mission.heldSurvivors[s.activeHunterId]||0)-(before.mission.heldSurvivors?.[s.activeHunterId]||0);
       if(gained>0)collected+=gained;
@@ -26,6 +24,12 @@ function replay(card,ui){
       if(s.mission.completed.includes(r.completionCard))completed=true;
     }
     if(ui||r.checkpoints.includes(index+1))assert.deepEqual(E.importSave(E.exportSave(s)),s);
+  };
+  if(ui){
+    const replay=replayPublicTrace(s,commands,{label:`card ${card}`,onCheckpoint({state,beforeReference,index}){checkpoint(beforeReference,state,index);}});
+    s=replay.state;
+  }else{
+    for(const [index,command] of commands.entries()){const before=s;checkpoint(before,E.dispatch(s,command),index);}
   }
   assert(entry&&completed);assert.equal(s.result,null);
   assert.equal(s.phase,r.final.phase);assert.equal(s.track,r.final.track);

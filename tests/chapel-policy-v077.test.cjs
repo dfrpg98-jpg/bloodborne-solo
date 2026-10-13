@@ -1,6 +1,6 @@
 const test=require('node:test'),assert=require('node:assert/strict');
 const E=require('../hunt-engine.js');
-const {clickCommand}=require('./helpers/public-command-ui.cjs');
+const {clickCommand,replayPublicTrace}=require('./helpers/public-command-ui.cjs');
 const {boot}=require('./helpers/ui-harness.cjs');
 const naturalCommands=require('./fixtures/v077-chapel-escort-first-natural-commands.json');
 const oldPendingCommands=require('./fixtures/v075-chapel-timing-natural-pending-commands.json');
@@ -61,14 +61,14 @@ test('rules13 natural 315th command completes39 before revealing56 and57 without
   assert.deepEqual(s.mission.completed,[39]);assert.equal(E.missionView(s).insight,1);
 });
 
-test('all317 natural rules13 decisions use real controls and exact save restoration with no adjudication button',()=>{
+test('317 original natural rules13 commands project through real controls with exact save restoration and no adjudication button',t=>{
   let s=E.create(90,'beast-claw',0,null,'hunter-pistol','center',{campaign:true});
   assert.equal(s.setup.rulesVersion,13);
-  for(let i=0;i<naturalCommands.length;i++){
-    try{s=clickCommand(s,naturalCommands[i]);assert.deepEqual(E.importSave(E.exportSave(s)),s);}
-    catch(error){throw new Error(`natural command ${i+1}: ${error.message}`,{cause:error});}
-    if(i===314){checkAutomaticArrival(s);assert.equal(s.rewardChoices.length,2);}
-  }
+  const replay=replayPublicTrace(s,naturalCommands,{label:'natural chapel',onCheckpoint({state,index}){
+    if(index===314){checkAutomaticArrival(state);assert.equal(state.rewardChoices.length,2);}
+  }});
+  s=replay.state;assert.equal(replay.originalCommandCount,317);
+  t.diagnostic(JSON.stringify({originalCommandCount:replay.originalCommandCount,uiCommandCount:replay.uiCommandCount,deferredReservations:replay.deferredReservations}));
   checkAutomaticArrival(s);assert.equal(s.rewardChoices.length,0);
 });
 

@@ -93,6 +93,10 @@
       <div class="compact-dialog-heading"><h2 id="enemyDetailTitle">적 정보</h2><button id="closeEnemyDetail" type="button" autofocus>닫기</button></div>
       <div id="enemyDetailContent" class="compact-dialog-content"></div>
     </dialog>
+    <dialog id="escortDialog" class="compact-info-dialog escort-dialog" aria-labelledby="escortPromptTitle" aria-describedby="escortPromptDescription">
+      <div class="compact-dialog-heading"><h2 id="escortPromptTitle">생존자와 동행하시겠습니까?</h2><button id="escortCancel" type="button" aria-label="이동 취소">취소</button></div>
+      <div class="compact-dialog-content"><p id="escortPromptDescription"></p><div class="actions escort-prompt-actions"><button id="escortAccept" type="button" class="primary">예</button><button id="escortDecline" type="button">아니오</button></div></div>
+    </dialog>
     <dialog id="setupDialog">
       <h2>새 사냥</h2>
       <p id="setupIntro">시작할 칸을 선택한 뒤 사냥을 시작하세요.</p>
@@ -210,6 +214,7 @@
     <script src="inventory.js"></script>
     <script src="hunt-shell.js"></script>
     <script src="hunt-context.js"></script>
+    <script src="hunt-departure.js"></script>
     <script src="hunt-camera.js"></script>
     <script src="hunt-animation-events.js"></script>
     <script src="assets/vendor/phaser-4.2.1.min.js"></script>

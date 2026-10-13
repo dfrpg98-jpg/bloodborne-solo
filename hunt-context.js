@@ -69,16 +69,8 @@
           phase === "hunter" ? [{ type: "MOVE", cardId: chosen?.id || null }, { type: "STEP", node: nodeId }] : null);
       } else {
         result.hint = "사냥꾼이 있는 칸입니다.";
-        if (phase === "move" && showEscortChoice)
-          add("escort-pickup", escort.pickup ? "생존자를 이곳에 남겨 두기" : "생존자를 데리고 이동",
-            "추가 비용 없음", "", { type: "MISSION_PICKUP" });
         if (phase === "move") add("stop-move", "여기서 이동 마치기", "추가 비용 없음", "", { type: "STOP_MOVE" });
         if (phase === "hunter") {
-          if (showEscortChoice)
-            add("escort-move-start", "생존자와 이동 시작", "손패 1장 버림 · 동행 선택은 추가 비용 없음",
-              !chosen ? "하단 손패에서 이동에 사용할 손패 1장을 선택하세요." :
-                !E.canLeave(state, h.position) ? "대교에서 적과 같은 칸을 벗어날 수 없습니다." : "", null,
-              [{ type: "MOVE", cardId: chosen?.id || null }, ...(escort.pickup ? [] : [{ type: "MISSION_PICKUP" }])]);
           const options = E.interactionOptions(state);
           const available = options.loot || options.heal || options.teleport || options.workshop ||
             options.provisionalNpc || options.missionRescue;
@@ -169,14 +161,12 @@
       if (escort?.carrierId === state.activeHunterId && nodeId === h.position)
         result.hint = "생존자를 데리고 이동 중입니다. 순간이동하거나 사냥꾼의 꿈에 입장하면 원래 칸으로 돌아갑니다.";
       else if (escort?.node === nodeId && nodeId !== h.position)
-        result.hint = "생존자가 있는 칸으로 이동한 뒤, 그 칸에서 나갈 때 함께 데려갈 수 있습니다. 동행 선택에는 추가 비용이 없습니다.";
+        result.hint = "생존자가 있는 칸으로 이동한 뒤, 그 칸에서 나갈 때 동행 여부를 확인합니다. 추가 비용은 없습니다.";
       else if (escortHere)
-        result.hint = escort.pickup
-          ? "다음 칸으로 이동하면 생존자를 함께 데려갑니다. 실제로 이 칸을 떠나기 전까지 생존자는 이곳에 있습니다. 추가 비용은 없습니다."
-          : "이 칸에서 이동해 나갈 때 생존자를 함께 데려갈 수 있습니다. 이동에 쓰는 손패 외에 추가 비용은 없습니다.";
+        result.hint = "이 칸에서 이동해 나갈 때 생존자와 동행할지 확인합니다. 이동에 쓰는 손패 외에 추가 비용은 없습니다.";
       result.hint += " 별도 상호작용은 필요하지 않습니다.";
     } else if (showEscortChoice) {
-      result.hint += (result.hint ? " " : "") + "이 칸에서 나갈 때 생존자 동행을 선택할 수 있습니다. 추가 비용은 없습니다.";
+      result.hint += (result.hint ? " " : "") + "이 칸에서 나갈 때 생존자와 동행할지 확인합니다. 추가 비용은 없습니다.";
     }
     return result;
   }
