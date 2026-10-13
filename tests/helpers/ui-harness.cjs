@@ -81,6 +81,7 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
   const engine = { ...E, create: (...args) => { creates.push(args); return structuredClone(state); },
     importSave: (text) => { imports.push(text); return structuredClone(state); },
     exportSave: (s) => JSON.stringify(s), missionView: () => view,
+    applyChapelRuling: (s) => s,
     rewardsView: () => rewardView, missionActions: () => options.actions || [],
     interactionEnemies: () => options.interactionEnemies || [],
     provisionalView: () => null,

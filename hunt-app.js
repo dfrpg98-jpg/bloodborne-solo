@@ -30,6 +30,7 @@
     return button(esc(option.label), type, args, !!option.disabled, cls);
   };
   const missionView = () => E.missionView ? E.missionView(state) : null;
+  const applyLoadedRuling = (loaded) => E.applyChapelRuling ? E.applyChapelRuling(loaded) : loaded;
   const attackReplacesCardEffects = () => [...selectedRewards].some((id) => E.hunter(state).rewards?.some((r) => r.id === id && r.kind === "rune-clawmark"));
   const nodeName = (id) => E.node(state, id)?.name || "지도 밖";
   const placementOptions = () => E.placementOptions
@@ -58,7 +59,7 @@
   try {
     const current = localStorage.getItem(key),
       saved = current || localStorage.getItem(previousKey);
-    if (saved) { state = E.importSave(saved); setupRequired = false; }
+    if (saved) { state = applyLoadedRuling(E.importSave(saved)); setupRequired = false; }
     restoredPrevious = !!saved && !current;
   } catch {
     startupError =
@@ -239,7 +240,7 @@
     const lifecycleNotices = chapter > 1
       ? ["이전 챕터의 미완료 임무·임무 토큰·대상 적은 초기화되었습니다. 완료한 계몽 카드는 보관하며, 이번 챕터의 계몽 획득 수에는 더하지 않습니다."] : [];
     if (chapter === 3 && view.revealed.includes(53) && view.revealed.includes(35))
-      lifecycleNotices.push("53번 카드의 지시로 35번부터 이번 챕터에서 새로 공개한 임무입니다. 37·38·39번도 이 경로에서 다시 진행할 수 있습니다.");
+      lifecycleNotices.push("53번 카드의 지시로 35번을 이번 챕터에서 새로 공개했습니다. 이후 진행은 현재 공개된 카드의 지시를 따르세요.");
     $("missionNotices").innerHTML = [...lifecycleNotices, ...(view.notices || [])].map((notice) => `<p>${esc(notice)}</p>`).join("");
     const history = view.history || state.mission?.history || [];
     $("missionHistory").hidden = !history.length;
@@ -827,7 +828,12 @@
         : button("횃불 소진 · 적을 멈추고 피해 1", "ENTRY_REWARD", { accept: true }, !entry, "primary");
       html += button("횃불 사용하지 않음 · 이동 계속", "ENTRY_REWARD", { accept: false });
     } else if (["mission_survivor", "mission_choice", "mission_death"].includes(p)) {
-      const pending = missionView()?.pending;
+      const chapelOrder = p === "mission_choice" && state.mission?.choice === "chapel-order",
+        pending = chapelOrder ? {
+          type: "choice", title: "호위 완료 후 예배당 사건 처리",
+          options: [{ label: "호위 완료 후 예배당 사건 처리",
+            command: { type: "MISSION_CHOICE", choice: "escort-first" } }],
+        } : missionView()?.pending;
       help = pending ? pending.title + (pending.type === "survivor-move" ? ` · 남은 이동력 ${pending.remaining}` : "") : "임무의 다음 선택을 진행하세요.";
       if (pending?.description) help += " · " + pending.description;
       html = (pending?.options || (E.missionActions ? E.missionActions(state) : [])).map((a) => commandButton(a, "primary")).join("");
@@ -1119,7 +1125,7 @@
     const f = e.target.files[0];
     if (!f) return;
     try {
-      state = E.importSave(await f.text());
+      state = applyLoadedRuling(E.importSave(await f.text()));
       resetStoryReading();
       setupRequired = false;
       restoredPrevious = false;
@@ -1224,7 +1230,7 @@
     try {
       const saved = localStorage.getItem(storageKey);
       if (!saved) throw new Error(`이 브라우저에 ${label} 자동 저장이 없습니다.`);
-      state = E.importSave(saved);
+      state = applyLoadedRuling(E.importSave(saved));
       resetStoryReading();
       restoredPrevious = storageKey === previousKey;
       setupRequired = false;

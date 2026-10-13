@@ -7,6 +7,10 @@ function clickCommand(s,command){
   const ui=boot(s,E.missionView(s),E.rewardsView(s),{realInventory:true,
     storage:{'bloodborne-hunt-v07':E.exportSave(s)},engine:{
       create:E.create,importSave:E.importSave,exportSave:E.exportSave,dispatch:E.dispatch,
+      // Historical traces must replay the requested command in their original
+      // rule context. Automatic adoption of the current chapel ruling has its
+      // own real-startup tests; adding it here would change each checkpoint.
+      applyChapelRuling:state=>state,
       missionView:E.missionView,rewardsView:E.rewardsView,missionActions:E.missionActions,
       interactionEnemies:E.interactionEnemies,provisionalView:E.provisionalView,
     }});

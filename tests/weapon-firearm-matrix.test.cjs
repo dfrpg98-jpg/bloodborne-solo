@@ -83,7 +83,7 @@ test("matrix includes precisely all fifteen weapons and all eight playable firea
   assert.equal(weapons.length, 15); assert.equal(guns.length, 8);
 });
 
-for (const rulesVersion of [10, 11, 12]) for (const id of weapons) for (const face of [0, 1]) for (const gun of guns) {
+for (const rulesVersion of [10, 11, 12, 13]) for (const id of weapons) for (const face of [0, 1]) for (const gun of guns) {
   test(`public encounter and save replay v${rulesVersion}: ${id}, face ${face}, ${gun}`, () => {
     let s = E.create(4, id, face, null, gun, "center", {
       campaign: false, rulesVersion, firearmOverride: gun !== (E.data.weapons[id].defaultFirearm || "hunter-pistol"),

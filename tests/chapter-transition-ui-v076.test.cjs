@@ -39,8 +39,8 @@ test('the naturally reopened bridge creates a new escort notice and token withou
  assert.deepEqual(s.mission.completed,[]);assert.equal(s.mission.escort.node,'tile-18:top');
  assert.equal(s.mission.targets.bridge.complete,true);
  assert.equal(ui.el('missionInsight').textContent,'이번 챕터 완료 계몽 0장');
- assert.match(ui.el('missionNotices').textContent,/53번 카드의 지시로 35번부터 이번 챕터에서 새로 공개/);
- assert.match(ui.el('missionNotices').textContent,/37·38·39번도 이 경로에서 다시 진행/);
+ assert.match(ui.el('missionNotices').textContent,/53번 카드의 지시로 35번을 이번 챕터에서 새로 공개/);
+ assert.doesNotMatch(ui.el('missionNotices').textContent,/38|39/,'unrevealed escort endings stay hidden');
  assert.match(ui.el('missionTokens').textContent,/호위 생존자/);
 });
 test('retained warning 39 changes the new bridge branch to 54 while current insight remains zero',()=>{

@@ -131,7 +131,14 @@
         if (tile === "tile-20") open(s, 45, h);
         if (tile === "tile-18") open(s, 53, h);
         if (tile === "tile-17") {
-          const simultaneous = s.setup.rulesVersion >= 12 && !has(s, 56) && !owns(s, 39) &&
+          // Project ruling (2026-10-12): finish the escort before evaluating
+          // the first chapel visit. Older command histories retain their rules.
+          if ((s.setup.rulesVersion >= 13 || s.chapelRuling === "escort-first") && !has(s, 56) &&
+              m.escort.carrierId === s.activeHunterId && has(s, 37)) {
+            m.escort.carrierId = null; m.escort.node = null;
+            complete(s, "bridge", 39, h);
+          }
+          const simultaneous = s.setup.rulesVersion === 12 && !s.chapelRuling && !has(s, 56) && !owns(s, 39) &&
             m.escort.carrierId === s.activeHunterId && has(s, 37);
           if (simultaneous && !(owns(s, 28) && !owns(s, 34))) {
             reveal(s, 56, h);
@@ -457,9 +464,7 @@
     if (!active(s)) return [];
     if (s.phase === "mission_survivor") return survivorOptions(s, h);
     if (s.phase === "mission_choice" && s.mission.choice === "chapel-order") return [
-      { label: `${s.mission.chapelArrival.beforeCard}번 ${card(s.mission.chapelArrival.beforeCard).title} · 호위 보상 전에 공개`,
-        command: { type: "MISSION_CHOICE", choice: "chapel-first" } },
-      { label: "57번 구원 · 호위 보상을 먼저 받은 뒤 공개",
+      { label: "호위 완료 후 예배당 사건 처리",
         command: { type: "MISSION_CHOICE", choice: "escort-first" } } ];
     if (s.phase === "mission_choice" && s.mission.choice === "iosefka") return [
       { label: "이오세프카를 공격한다", command: { type: "MISSION_CHOICE", choice: "attack-iosefka" } },
@@ -555,37 +560,38 @@
     return [{ enemyId: e.id, targetId: target[0], move: same.length ? 0 : 4, extra: true }];
   }
   function chapelAdjudicationDescription(s, h) {
-    const m = s.mission, held = m.heldSurvivors[s.activeHunterId] || 0;
-    const total = hunterCount(s) + 1;
-    const before = m.chapelArrival.beforeCard === 59
-      ? `59번 물자: 소모품 ${total}개 기부 → 정령의 빈 껍데기·화염방사기. 현재 소모품 ${h.hunter(s).consumables.length}개.`
-      : `33번 피신처: 생존자 ${total}개를 예배당에 인도 → 꿈틀거림 문자. 현재 보유 ${held}개는 이번 도착에 바로 전달하며, 이전 전달은 ${m.deposits.chapel}개입니다.`;
-    return `규칙서 24쪽: 해결 방법이 여러 가지라면 사냥꾼에게 가장 불리하게 판정합니다. ${before} 57번 구원: NPC와 같은 칸에서 야수 사냥 무리·하인을 ${total}번 처치 → 사냥 문자·소모품. 현재 지도·손패·소모품을 고려해 더 불리한 결과를 고르세요. 어느 쪽이든 39번 호위 보상(고대 사냥꾼의 유골·교단의 연발총)을 받습니다.`;
+    return "이동 종료로 호위 임무와 예배당 사건이 함께 발생했습니다. 현재 공개된 카드의 지시를 처리합니다.";
   }
   function view(s, h) {
     if (!active(s)) return null;
     const m = s.mission, objective = (id, title, done, started, description) =>
       ({ id, title, status: done ? "완료" : started ? "진행 중" : "미발견", description });
     let objectives = [
-      objective("main", "재앙의 근원", m.won, true, insight(s) >= 2 ? "중앙 등불에서 이동 종료 → 우두머리 처치" : "계몽 임무 2개 완료 후 중앙 등불로 이동"),
+      objective("main", "재앙의 근원", m.won, true, has(s, 2)
+        ? "중앙 등불의 재앙의 야수 우두머리 처치" : "계몽 임무 2개 완료 후 중앙 등불에서 이동 종료"),
       objective("mob", "사냥을 시작하다", m.completed.includes(7), m.revealed.includes(5), "마당 등불의 야수 사냥 무리 처치"),
-      objective("shelter", "피신처", m.completed.includes(11), m.revealed.includes(8), "민가 생존자 호위 → 오에돈 예배당의 야수 처치"),
-      objective("rescue", "구조", m.completed.some((n) => [15, 16].includes(n)), m.revealed.includes(12), "폐가 생존자와 상호작용 → 추격 없이 따라잡기 → 선택"),
-    ];
+      objective("shelter", "피신처", m.completed.includes(11), m.revealed.includes(8), has(s, 9)
+        ? "오에돈 예배당의 재앙의 야수 처치" : "민가 생존자를 오에돈 예배당으로 호위"),
+      objective("rescue", "구조", m.completed.some((n) => [15, 16].includes(n)), m.revealed.includes(12), has(s, 14)
+        ? "공개된 구조 카드의 선택 해결" : has(s, 13)
+          ? "생존자가 있는 칸에서 적의 추격 없이 이동 종료" : "폐가 생존자 토큰과 상호작용"),
+    ].filter((o) => o.status !== "미발견");
     if (m.chapter > 1) {
       const progress = (start, reward, text) => objective(`card-${start}`, card(start).title,
         done(s, reward), has(s, start), text);
       objectives = [objective("main", "재앙의 근원", m.won, true, m.chapter === 2
-        ? has(s, 22) ? "피해를 입지 않는 성직자 야수를 지하묘지로 유인" : has(s, 20) ? "성직자 야수를 2페이즈로 전환" : `공동묘지에 시체 ${hunterCount(s) + 1}개를 바치고 이번 챕터 계몽 2개 획득`
+        ? has(s, 22) ? "피해를 입지 않는 성직자 야수를 지하묘지로 유인" : has(s, 20) ? "성직자 야수를 2페이즈로 전환"
+          : has(s, 19) ? "이번 챕터 계몽 2개 획득" : `공동묘지에 시체 ${hunterCount(s) + 1}개를 바치기`
         : live(s, 41) ? "이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인" : "풀려난 성직자 야수를 최종 처치")];
       if (has(s, 24) || has(s, 51)) objectives.push(progress(has(s, 51) ? 51 : 24, 26,
-        has(s, 51) ? "진료소에서 재앙의 야수 처치" : "진료소에서 사냥 무리/하수인 처치 후 재앙의 야수 처치"));
+        has(s, 51) || has(s, 25) ? "진료소에서 재앙의 야수 처치" : "진료소에서 야수 사냥 무리 또는 야수 사냥 하인 처치"));
       if (has(s, 27) || has(s, 52)) objectives.push(progress(has(s, 52) ? 52 : 27, 28,
         owns(s, 34) ? "예배당 피신처 완료로 이 임무를 완수할 수 없음" : `소모품 수집으로 얻은 생존자 ${hunterCount(s) + 1}개를 진료소에 인도`));
       if (has(s, 30)) objectives.push(progress(30, 32, "환자의 임무 부활 토큰을 소진시키고 최종 처치 후 속도 1 회피"));
       if (has(s, 33)) objectives.push(progress(33, 34,
         owns(s, 28) ? "진료소 피신처 완료로 이 임무를 완수할 수 없음" : `소모품 수집으로 얻은 생존자 ${hunterCount(s) + 1}개를 예배당에 인도`));
-      if (has(s, 35)) objectives.push(objective("bridge", "아슬아슬한 구조", done(s, 38) || done(s, 39), true, "대교의 하수인 처치 후 생존자를 진료소 또는 예배당으로 호위"));
+      if (has(s, 35)) objectives.push(objective("bridge", "아슬아슬한 구조", done(s, 38) || done(s, 39), true, has(s, 37)
+        ? "대교의 생존자를 진료소 또는 예배당으로 호위" : "대교의 야수 사냥 하인 처치"));
       if (has(s, 46)) objectives.push(objective("truth", "진실이 드러나다", done(s, 48) || done(s, 50), true, has(s, 49) ? "도망친 생존자와 상호작용해 붙잡고 진료소로 호위" : "이오세프카를 공격하거나 실험을 돕기"));
       if (has(s, 54)) objectives.push(progress(54, 55, "재앙의 야수를 처치해 계몽 토큰 제거"));
       if (has(s, 57)) objectives.push(progress(57, 58, "NPC와 같은 칸에서 사냥 무리/하수인을 처치"));
@@ -610,7 +616,7 @@
       history: m.history || [], discarded: m.discarded || [], counters, notices,
       won: m.won, objectives, fog: [...m.fog], tokens,
       targets: Object.values(m.targets).map((x) => ({ ...x })),
-      pending: type ? { type, title: type === "survivor-move" ? "생존자 도주" : type === "death-dodge" ? "야수의 마지막 공격" : m.choice === "chapel-order" ? "동시 임무 · 더 불리한 결과 판정" : m.choice === "iosefka" ? "이오세프카에게 드러난 진실" : "구조 결과 선택",
+      pending: type ? { type, title: type === "survivor-move" ? "생존자 도주" : type === "death-dodge" ? "야수의 마지막 공격" : m.choice === "chapel-order" ? "호위 완료와 예배당 사건" : m.choice === "iosefka" ? "이오세프카에게 드러난 진실" : "구조 결과 선택",
         ...(m.choice === "chapel-order" ? { description: chapelAdjudicationDescription(s, h) } : {}),
         remaining: m.survivor.remaining, options: h.missionActions(s) } : null };
   }

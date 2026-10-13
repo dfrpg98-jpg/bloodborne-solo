@@ -49,6 +49,7 @@ function contractUi(s) {
   return boot(s,E.missionView(s),E.rewardsView(s),{realInventory:true,
     storage:{'bloodborne-hunt-v07':E.exportSave(s)},engine:{
       importSave:()=>copy(s),exportSave:E.exportSave,dispatch:E.dispatch,
+      applyChapelRuling:state=>state,
       missionView:E.missionView,rewardsView:E.rewardsView,missionActions:E.missionActions,
       interactionEnemies:E.interactionEnemies,provisionalView:E.provisionalView,
     }});
@@ -64,14 +65,14 @@ function clickContract(s,command) {
   assert.deepEqual(next,E.dispatch(s,command));E.assertState(next);return next;
 }
 
-test('rules12 is the new hunt default and chapter world preserves the explicit rules12 tag',()=>{
+test('rules13 is the new hunt default and chapter world preserves the explicit rules13 tag',()=>{
   const s=E.create(90,'burial',1,null,'hunter-pistol','center',{campaign:true});
-  assert.equal(s.setup.rulesVersion,12);
-  const world=M.create(90,'center',3,{rulesVersion:12});M.assertState(world);
-  assert.equal(world.rulesVersion,12);
+  assert.equal(s.setup.rulesVersion,13);
+  const world=M.create(90,'center',3,{rulesVersion:13});M.assertState(world);
+  assert.equal(world.rulesVersion,13);
 });
 
-test('the genuine retained28 arrival automatically applies locked33 and exactly imports its new-rules save',()=>{
+test('legacy rules12 retained28 arrival automatically applies locked33 and exactly imports its original save',()=>{
   const before=prefix(), next=clickCommand(before,{type:'STOP_MOVE'});
   assert.deepEqual(before.mission.history[1].completed,[26,28,23]);
   assert.equal(next.phase,'hunter');assert(!next.mission.chapelArrival);
@@ -108,10 +109,7 @@ for(const kind of ['33','59']) {
     assert.deepEqual(H(s).hand,H(before).hand);assert.equal(H(s).hp,H(before).hp);
     assert.equal(s.track,before.track);
     const view=E.missionView(s);
-    assert.match(view.pending.title,/더 불리한 결과/);
-    assert.match(view.pending.description,/규칙서 24쪽/);
-    assert.match(view.pending.description,/어느 쪽이든.*39번.*호위 보상/);
-    assert.deepEqual(E.missionActions(s).map(x=>x.command.choice),['chapel-first','escort-first']);
+    assert.deepEqual(E.missionActions(s).map(x=>x.command.choice),['escort-first']);
     for(const command of [{type:'END_TURN'},{type:'MOVE',cardId:H(s).hand[0].id},{type:'MISSION_CHOICE',choice:'invalid'}])
       assert.throws(()=>E.dispatch(s,command));
     const restored=JSON.parse(E.exportSave(s)).state;E.assertState(restored);assert.deepEqual(restored,s);
@@ -120,12 +118,12 @@ for(const kind of ['33','59']) {
   });
 
   for(const choice of ['chapel-first','escort-first']) {
-    test(`assembled ${kind}/57 ${choice} controller exposes and applies the stated result once`,()=>{
+    test(`assembled ${kind}/57 ${choice==='chapel-first'?'legacy command':'current fallback controller'} applies ${choice} once`,()=>{
       const s=pending(kind), ui=contractUi(s);
-      assert.match(ui.el('phaseHelp').textContent,/더 불리한 결과/);
       const controls=ui.buttons('decisions').filter(b=>b.dataset.command==='MISSION_CHOICE');
-      assert.equal(controls.length,2);assert(controls.every(b=>!b.disabled));
-      let next=clickContract(s,{type:'MISSION_CHOICE',choice});checkGrant(next);
+      assert.equal(controls.length,1);assert(controls.every(b=>!b.disabled));
+      assert.equal(JSON.parse(controls[0].dataset.args).choice,'escort-first');
+      let next=choice==='chapel-first'?E.dispatch(s,{type:'MISSION_CHOICE',choice}):clickContract(s,{type:'MISSION_CHOICE',choice});checkGrant(next);
       const expected=choice==='escort-first'?57:+kind;
       assert(next.mission.revealed.includes(expected));
       assert(!next.mission.revealed.includes(choice==='escort-first'?+kind:57));
@@ -161,15 +159,12 @@ test('an already-held39 uses57 without a timing choice even when a fresh escort 
   assert(next.mission.revealed.includes(57));assert(!next.mission.chapelArrival);checkGrant(next);
 });
 
-test('assembled held survivors are described before choosing33 and deposited on that same arrival',()=>{
+test('legacy chapel-first command deposits assembled held survivors on that same arrival',()=>{
   const before=contract();before.mission.heldSurvivors[before.activeHunterId]=2;
   const waiting=E.dispatch(before,{type:'STOP_MOVE'});
   assert.equal(waiting.mission.deposits.chapel,0);
   assert.equal(waiting.mission.heldSurvivors[waiting.activeHunterId],2);
-  const description=E.missionView(waiting).pending.description;
-  assert.match(description,/보유 2개.*이번 도착에 바로 전달/);
-  assert.match(description,/이전 전달은 0개/);
-  const after=clickContract(waiting,{type:'MISSION_CHOICE',choice:'chapel-first'});
+  const after=E.dispatch(waiting,{type:'MISSION_CHOICE',choice:'chapel-first'});
   assert.equal(after.mission.heldSurvivors[after.activeHunterId],0);
   assert.equal(after.mission.deposits.chapel,2);
   assert(after.mission.completed.includes(34));assert(after.mission.completed.includes(39));

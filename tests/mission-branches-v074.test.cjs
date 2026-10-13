@@ -111,14 +111,20 @@ for(const rules of [{name:'released rules 11',options:{rulesVersion:11}},{name:'
   assert.deepEqual(s.mission.completed,[50]);assert.equal(s.mission.survivor.node,null);
   assert.equal(s.mission.survivor.carrierId,null);assert(H(s).rewards.some(r=>r.kind==='augur'));
  });
- test(`${rules.name}: first chapel arrival evaluates 56 before the same arrival grants warning 39`,()=>{
+  test(`${rules.name}: first chapel arrival follows its saved rule version for warning 39 and 56`,()=>{
   const {s}=natural(fixtures.warning,rules.options);
   const prefix=natural(fixtures.warning.slice(0,-1),rules.options).s;
   assert(!prefix.mission.revealed.includes(56));assert(!prefix.mission.completed.includes(39));
   assert.equal(prefix.mission.escort.carrierId,prefix.activeHunterId);
   assert.deepEqual(s.mission.completed,[39]);assert.equal(s.track,8);assert.equal(H(s).hp,3);
-  assert(s.mission.revealed.includes(56));assert(s.mission.revealed.includes(33));assert(!s.mission.revealed.includes(57));
-  assert(s.mission.revealed.indexOf(56)<s.mission.revealed.indexOf(39));
+   assert(s.mission.revealed.includes(56));
+   if(s.setup.rulesVersion>=13) {
+    assert(s.mission.revealed.includes(57));assert(!s.mission.revealed.includes(33));
+    assert(s.mission.revealed.indexOf(39)<s.mission.revealed.indexOf(56));
+   } else {
+    assert(s.mission.revealed.includes(33));assert(!s.mission.revealed.includes(57));
+    assert(s.mission.revealed.indexOf(56)<s.mission.revealed.indexOf(39));
+   }
   assert(!s.mission.completed.includes(38));assert.equal(s.mission.escort.carrierId,null);
   assert(H(s).ownedFirearms.includes('repeating-pistol'));assert(H(s).rewards.some(r=>r.kind==='old-hunter-bone'));
  });

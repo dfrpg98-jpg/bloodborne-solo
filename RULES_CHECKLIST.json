@@ -1,7 +1,7 @@
 {
   "title": "블러드본 규칙 구현 점검표",
   "asOf": "2026-10-12 KST",
-  "version": "0.7.5",
+  "version": "0.7.7",
   "scope": "한 명의 사냥꾼으로 기나긴 사냥 챕터 1~3. 제공 장치무기15종 양면·화기8종·실제 보스/NPC·보상32종(사용 효과30종·사용불가 임무 물품2종). 다른 캠페인과 다인/온라인 협동은 사용자가 이후 단계로 지정하여 이번 완료 범위에서 제외한다.",
   "sources": [
     {
@@ -26,7 +26,7 @@
     },
     {
       "title": "실제 보스/NPC/화기 제공 자료",
-      "path": "components/supplied-components.json; components/cleric-beast-source.txt; 참고자료/*.jpg",
+      "path": "components/supplied-components.json; components/cleric-beast-source.txt; 참고자료/적 카드/*.jpg; 참고자료/화기/*.jpg",
       "scope": "성직자 야수/화염방사기 직접 전사와 여성/NPC/장총/연발총 사진4장 및 해시"
     },
     {
@@ -55,17 +55,17 @@
     "기존 실행16종에 추가 효과14종을 연결했습니다. 작은 오르골·의식용 재료2종은 원문 사용불가 임무 물품으로 등록하며 임의 효과를 만들지 않습니다.",
     "후속 임무 테스트에는 유효 상태를 조립한 분기/경계 검증도 있습니다. 실제 새 사냥부터의 전체 명령 완주 근거는 별도 행/VERIFICATION.txt로 구분합니다.",
     "보스 초기화의 일반 위치 보존, 챕터2 카드20/22의 지정칸 재출현, 챕터3 카드42의 위치 보존은 서로 다른 조건입니다.",
-    "새 v0.7.5 사냥은 rulesVersion12의 동시 예배당 판정을 사용한다. 규칙11/10/9/8/7/무버전 저장과 임시 시험은 저장 당시 효과를 유지한다. 저장 형식과 v07 키는 유지한다.",
+    "새 v0.7.7 사냥은 rulesVersion13의 호위 먼저 재정을 사용한다. 규칙12 이하 저장은 가져오기 시 당시 상태를 정확히 복원한 뒤 APPLY_CHAPEL_RULING 일회 명령으로 새 재정을 채택한다. 아직 결정하지 않은 동시 도착은 호위를 먼저 완료하며, 이미 완료된 56 분기와 보상은 보존한다. 저장 형식과 v07 키는 유지한다.",
     "장치무기 시트의 아랫줄은 반대 면 요약입니다. 현재 면의 두 번째 능력으로 적용하지 않습니다.",
     "새 실물 적12종은 독립 연습에서 선택합니다. 기나긴 사냥의 임무에서 요구하는 기존 적 구성은 해당 임무 지시를 유지합니다.",
     "규칙10의 실제 구성품으로 장송의 칼날·기본 단총 한 경로를325개 공개 명령만으로 진행하여 챕터1~3 연속 승리와 정확 저장 재생을 검증했습니다. 실제 성직자 야수는 챕터2/3의 체력10/8·양 페이즈 행동 덱을 사용하며 최종 꿈에서 사냥 트랙은 늘지 않습니다. 모든 무기 조합·모든 곁가지 경로의 본편 완주를 검증한 것은 아닙니다.",
     "연습 시작 보상은 정규 임무 획득 보상이 아닙니다. 선택 수량을 초기 저장 설정에 기록하며 도구·문자 각각2장과 인쇄 공급량을 적용합니다.",
-    "무기15종×시작 면2×화기8종의240조합은 현행 규칙12와 보존 규칙10·11에서 각각 공개 명령 전투 연습·준비·변형·꿈·귀환·저장을 검사한다(총720개 전투 행렬). 모든 조합의 본편 완주를 뜻하지 않는다.",
-    "v0.7.5는 한 캠페인의 1인 플레이를 완료 기준으로 삼는다. 다른 캠페인과 다인 실행은 남은 필수 작업으로 계산하지 않는다.",
+    "무기15종×시작 면2×화기8종의240조합은 v0.7.5에서 검증한 규칙12와 보존 규칙10·11에서 각각 공개 명령 전투 연습·준비·변형·꿈·귀환·저장을 검사한다(총720개 전투 행렬). 모든 조합의 본편 완주를 뜻하지 않는다. 현재 기본 규칙13의 최종 실행 범위와 수는 VERIFICATION.txt에서 확인한다.",
+    "v0.7.7는 한 캠페인의 1인 플레이를 완료 기준으로 삼는다. 다른 캠페인과 다인 실행은 남은 필수 작업으로 계산하지 않는다.",
     "공개 명령으로 실제 처음부터 도달한 임무 곁가지와 무기별 본편 승리의 범위는 C01~C10 및 VERIFICATION.txt에서 확인한다.",
-    "56 공개와37의 호위 완료는 같은 예배당 이동 종료에 발생할 수 있으나 공식 고유 우선순위는 없다. 규칙12는 규칙서24쪽의 더 불리한 결과 원칙을 적용한다.28 보유·34/39 미보유로33이 잠기면 자동으로 예배당 임무를 먼저 적용한다. 나머지는 두 결과의 목표·비용·보상과 현재 자원을 보고 더 불리한 결과를 판정한다. 어느 순서든39 보상은 지급하며 이미 정한56을 나중39 획득으로 소급 재판정하지 않는다. 이 UI는 일반 원칙에 근거한 해석이며 별도 제작사 정정이 아니다.",
+    "같은 예배당 이동 종료에서 37 호위가 완료되면 39를 먼저 획득하고 그 결과를 반영하여 56을 판정한다. 사용자 결정으로 채택한 프로젝트 재정이며 공식 FAQ의 고유 판정으로 표시하지 않는다. 플레이어에게 순서 선택이나 아직 공개하지 않은 목표·보상·분기 비교를 보여주지 않는다. 호위가 없는 도착은 56의 일반 조건을 유지한다.",
     "v0.7.3 이전 기록에 적힌 한 승리 경로와 단순 정책의30패배는 당시 검증 범위다. 최신 자연 승리 결과는 VERIFICATION.txt를 기준으로 한다.",
-    "RULES_CHECKLIST.json/TXT/XLSX는 v0.7.5의 같은110항목을 제공한다.",
+    "RULES_CHECKLIST.json/TXT/XLSX는 v0.7.7의 같은110항목을 제공한다.",
     "v0.7.4에서는51/52의 자연 진입만 확인하고 정상 완료 경로는 미확보였다. v0.7.5에서는 원문 조건과 기본 시작 지급을 유지한 공개 명령만으로51의343명령 연구 완료/26/수혈액 장착·사용(체력3·트랙8),52의384명령 새 생존자2개 인도/28/사자 선물 장착(체력6·트랙8)을 추가 확인했다. 해당 임무 완료 기록 자체의 챕터3 최종 보스 승리를 주장하지 않는다.",
     "실제 과거 저장39개와 독립 v0.7.0 111·v0.7.1 277·v0.7.2 326·v0.7.3 326·v0.7.4 326개를 합한1405개가 정확 복원됐다. 최종 실제 검사 수는 VERIFICATION.txt를 확인한다."
   ],
@@ -268,11 +268,11 @@
       "id": "R10",
       "category": "캠페인 안내",
       "rulePage": "7, 12",
-      "criterion": "플레이 시작 화면에서 캠페인 도입부와 공개된 임무의 이야기를 읽을 수 있다.",
+      "criterion": "캠페인 도입부와 실제 공개한 임무의 이야기·현재 목표를 읽을 수 있으며 아직 공개하지 않은 임무·보상·완수 분기를 미리 표시하지 않는다.",
       "status": "구현",
       "priority": "없음",
       "verification": "자동 테스트 근거 있음",
-      "evidence": "준비 화면의 도입부 원문 텍스트; hunt-app.js renderStories()/openStory()에서 현재·지난 실제 공개 카드의 원문 이미지 확대 열람. 임무60장 텍스트 전사 완료를 뜻하지 않음\ntests/campaign-ui.test.cjs — campaign setup offers the supplied introduction and hides it in practice and temporary trials\ntests/campaign-ui.test.cjs — reading the introduction and enlarged public cards changes no game save or commands\ntests/campaign-ui.test.cjs — an altered story button cannot open an unrevealed source card\ntests/campaign-ui.test.cjs — past chapter story access is limited to its actual reveal history\ntests/campaign-ui.test.cjs — a later reveal is highlighted after read marks without adding story data to a resumed old save",
+      "evidence": "준비 화면의 도입부 원문 텍스트; hunt-app.js renderStories()/openStory()에서 현재·지난 실제 공개 카드의 원문 이미지 확대 열람. 임무60장 텍스트 전사 완료를 뜻하지 않음\ntests/campaign-ui.test.cjs — campaign setup offers the supplied introduction and hides it in practice and temporary trials\ntests/campaign-ui.test.cjs — reading the introduction and enlarged public cards changes no game save or commands\ntests/campaign-ui.test.cjs — an altered story button cannot open an unrevealed source card\ntests/campaign-ui.test.cjs — past chapter story access is limited to its actual reveal history\ntests/campaign-ui.test.cjs — a later reveal is highlighted after read marks without adding story data to a resumed old save\nmission-engine.js 진행문과 hunt-app.js는 공개 카드에 적힌 현재 지시만 표시한다. 8·12·18·24·35·37의 후속 목표와 보상 예고를 제거하고 이전 동시 판정 대기도 미공개 비교 없이 표시한다.",
       "testEvidence": [
         {
           "file": "tests/campaign-ui.test.cjs",
@@ -293,6 +293,34 @@
         {
           "file": "tests/campaign-ui.test.cjs",
           "name": "a later reveal is highlighted after read marks without adding story data to a resumed old save"
+        },
+        {
+          "file": "tests/mission-objective-visibility-v077.test.cjs",
+          "name": "a fresh hunt names and describes only the already-revealed main mission"
+        },
+        {
+          "file": "tests/mission-objective-visibility-v077.test.cjs",
+          "name": "card 8 shows escort instructions without the unrevealed chapel beast"
+        },
+        {
+          "file": "tests/mission-objective-visibility-v077.test.cjs",
+          "name": "card 12 shows interaction without predicting a chase or later choice"
+        },
+        {
+          "file": "tests/mission-objective-visibility-v077.test.cjs",
+          "name": "card 18 shows only corpse deposits before card 19 adds an insight requirement"
+        },
+        {
+          "file": "tests/mission-objective-visibility-v077.test.cjs",
+          "name": "card 35 shows the bridge minion fight without predicting the rescued escort"
+        },
+        {
+          "file": "tests/mission-objective-visibility-v077.test.cjs",
+          "name": "card 37 shows its disclosed destinations without predicting either reward"
+        },
+        {
+          "file": "tests/mission-objective-visibility-v077.test.cjs",
+          "name": "an old real pending chapel save receives a neutral title and no future mission or reward comparison"
         }
       ],
       "nextAction": "",
@@ -2641,52 +2669,85 @@
       "id": "C07",
       "category": "저장 호환",
       "rulePage": "프로그램 저장",
-      "criterion": "독립 이전 배포 엔진에서 생성한 정상 저장과 실제 과거 저장을 필드 변경 없이 복원한다.",
+      "criterion": "독립 이전 배포 엔진에서 생성한 정상 저장과 실제 과거 저장을 필드 변경 없이 복원한다. 기존 저장이 미결 동시 도착에 멈췄다면 별도 일회 명령으로 호위 먼저 재정을 적용하고, 이미 확정한 분기는 보존한다.",
       "status": "구현",
       "priority": "없음",
       "verification": "자동 회귀·자연 공개 명령·저장/화면 점검 근거 있음",
-      "evidence": "실제 과거 저장39개+독립v0.7.0 111상태+v0.7.1 277상태+v0.7.2 326상태+v0.7.3 326상태+v0.7.4 326상태=1405개 정확 복원 통과. 별도 QA v075-early-save-compat.json(150)과 v075-released-engine-compat.json(1255). 이전 규칙11과 기존 명령·저장 형식·자동 저장 v07 키를 유지한다.",
-      "testEvidence": [],
+      "evidence": "실제 과거 저장39개+독립v0.7.0 111상태+v0.7.1 277상태+v0.7.2 326상태+v0.7.3 326상태+v0.7.4 326상태=1405개 정확 복원 통과. 별도 QA v075-early-save-compat.json(150)과 v075-released-engine-compat.json(1255). 이전 규칙11과 기존 명령·저장 형식·자동 저장 v07 키를 유지한다.\n규칙12 이하 저장의 정확 가져오기를 유지한다. 가져온 뒤 APPLY_CHAPEL_RULING 한 명령을 기록하여 미래의 동시 도착에 사용자 재정을 적용한다. 미결 37/56은 39부터 한 번만 해결하며 이미 정한 33·57·59, 보상·기부·게임 종료 상태는 다시 열지 않는다. 규칙13 새 게임과 독립 연습에는 채택 명령을 추가하지 않는다.",
+      "testEvidence": [
+        {
+          "file": "tests/chapel-migration-v077.test.cjs",
+          "name": "legacy prearrival save adopts future escort-first policy without changing any gameplay state"
+        },
+        {
+          "file": "tests/chapel-migration-v077.test.cjs",
+          "name": "legacy pending simultaneous save records one adoption and resolves escort first exactly once"
+        },
+        {
+          "file": "tests/chapel-migration-v077.test.cjs",
+          "name": "adopted old policy persists through chapter transition while unfinished mission state resets"
+        },
+        {
+          "file": "tests/chapel-migration-v077.test.cjs",
+          "name": "new rules13 and noncampaign practice do not add adoption commands"
+        },
+        {
+          "file": "tests/chapel-migration-v077.test.cjs",
+          "name": "legacy completed campaign adopts metadata without reopening the over state"
+        },
+        {
+          "file": "tests/chapel-migration-v077.test.cjs",
+          "name": "a hand edited policy flag cannot bypass exact save replay verification"
+        },
+        {
+          "file": "tests/chapel-migration-v077.test.cjs",
+          "name": "assembled reward and donation windows remain unchanged by metadata adoption"
+        }
+      ],
       "nextAction": "",
       "manualCheck": "미점검"
     },
     {
       "id": "C08",
       "category": "동시 임무",
-      "rulePage": "12~13,24 / 카드28,33~39,56~59",
-      "criterion": "동일 이동 종료의56 공개와37 호위 완료를 규칙24쪽의 더 불리한 결과로 판정한다.28 잠금은 자동 적용하고 다른 상황은 현재 자원과 두 결과를 비교한다.39 보상은 항상 지급하고 이미 정한56은 소급 재판정하지 않는다.",
+      "rulePage": "프로젝트\n재정\n37·39\n56·57",
+      "criterion": "같은 예배당 이동 종료에서는 37 호위를 완료하여 39와 보상을 먼저 획득한 후 56을 판정하고 57을 공개한다. 순서 선택과 미공개 결과 비교를 표시하지 않는다.",
       "status": "구현",
       "priority": "없음",
       "verification": "자동 회귀·자연 공개 명령·저장/화면 점검 근거 있음",
-      "evidence": "56 공개와37의 호위 완료는 같은 예배당 이동 종료에 발생할 수 있으나 공식 고유 우선순위는 없다. 규칙12는 규칙서24쪽의 더 불리한 결과 원칙을 적용한다.28 보유·34/39 미보유로33이 잠기면 자동으로 예배당 임무를 먼저 적용한다. 나머지는 두 결과의 목표·비용·보상과 현재 자원을 보고 더 불리한 결과를 판정한다. 어느 순서든39 보상은 지급하며 이미 정한56을 나중39 획득으로 소급 재판정하지 않는다. 이 UI는 일반 원칙에 근거한 해석이며 별도 제작사 정정이 아니다. 자연315명령의 판정 대기 저장과 두318명령의 실제 제어기 선택/보상/정확 가져오기를 확인했다. 규칙11의340명령은 독립v074 배포 엔진과 전체 상태가 같다. 이력 조립33/57·59/57 계약, 일반 생존자 즉시 전달, 도약/무기 후속 보류 및 조립 저장 거절은 자연 경로와 별도 검사다.",
+      "evidence": "사용자가 2번 순서를 확정하여 rulesVersion13에 호위 먼저 재정을 채택했다. 공식 FAQ의 고유 우선순위로 주장하지 않는다. 정상 315번째 도착 명령에서 39 완료가 56/57 공개보다 먼저 기록되며 필수 보상 후속 선택은 유지한다. 과거 28·34 보유 여부로 이 동시 도착을 33·59로 먼저 보내지 않는다. 호위가 없거나 이전에 완료한 39를 보유한 도착은 일반 56 조건을 유지한다. 공개 명령만으로 317개 실제 제어기 결정과 매 행동 정확 저장 복원을 검사하며, 이력·생존자·도약·무기 후속 효과의 조립 경계는 정상 경로와 별도로 검사한다. 기존 규칙12 저장은 정확 가져오기 후 일회 채택 명령을 기록하며 이미 완결한 분기는 보존한다.",
       "testEvidence": [
         {
-          "file": "tests/chapel-natural-v075.test.cjs",
-          "name": "natural chapel arrival reaches the unresolved simultaneous effects and restores the pending decision"
+          "file": "tests/chapel-policy-v077.test.cjs",
+          "name": "rules13 natural 315th command completes39 before revealing56 and57 without a timing decision"
         },
         {
-          "file": "tests/chapel-natural-v075.test.cjs",
-          "name": "natural chapel-first adjudication completes escort rewards through actual controls and save resumes"
+          "file": "tests/chapel-policy-v077.test.cjs",
+          "name": "all317 natural rules13 decisions use real controls and exact save restoration with no adjudication button"
         },
         {
-          "file": "tests/chapel-natural-v075.test.cjs",
-          "name": "natural escort-first adjudication completes escort rewards through actual controls and save resumes"
+          "file": "tests/chapel-policy-v077.test.cjs",
+          "name": "legacy importer remains exact and fallback controller offers only escort-first completion"
         },
         {
-          "file": "tests/mission-timing-v075.test.cjs",
-          "name": "rules11 public replay is unchanged from the released engine and never adds a timing choice"
+          "file": "tests/chapel-policy-v077.test.cjs",
+          "name": "assembled earlier39 already meets56 and opens57 without a fresh escort"
         },
         {
-          "file": "tests/mission-timing-v075.test.cjs",
-          "name": "the genuine retained28 arrival automatically applies locked33 and exactly imports its new-rules save"
+          "file": "tests/chapel-policy-v077.test.cjs",
+          "name": "assembled first chapel arrival without37 still follows56 ordinary conditions"
         },
         {
-          "file": "tests/mission-timing-v075.test.cjs",
-          "name": "assembled held survivors are described before choosing33 and deposited on that same arrival"
+          "file": "tests/chapel-policy-v077.test.cjs",
+          "name": "assembled leap attack resumes once with mandatory39 rewards before combat controls"
         },
         {
-          "file": "tests/mission-timing-v075.test.cjs",
-          "name": "assembled weapon movement continuation waits for mission choice then resumes its queued effect once"
+          "file": "tests/chapel-policy-v077.test.cjs",
+          "name": "assembled weapon movement continuation starts once and rewards block the next movement control"
+        },
+        {
+          "file": "tests/chapel-migration-v077.test.cjs",
+          "name": "legacy pending simultaneous save records one adoption and resolves escort first exactly once"
         }
       ],
       "nextAction": "",

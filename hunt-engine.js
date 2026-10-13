@@ -722,6 +722,12 @@
     );
     return verified;
   }
+  function applyChapelRuling(s) {
+    // Import first verifies the original replay. Adopting the current project
+    // ruling is a separate, recorded action; previous outcomes remain intact.
+    if (!s.mission || s.setup.rulesVersion >= 13 || s.chapelRuling === "escort-first") return s;
+    return dispatch(s, { type: "APPLY_CHAPEL_RULING" });
+  }
   function enemyDef(s, e) {
     if(typeof e==="object" && e.extendedId) return extendedEnemies.definition(e.extendedId,{side:e.extendedSide,hunterCount:1,order:4});
     const kind = typeof e === "string" ? e : e.kind;
@@ -2275,20 +2281,34 @@
       !a.hunterId || a.hunterId === s.activeHunterId,
       "현재 사냥꾼의 차례가 아닙니다.",
     );
-    need(s.phase !== "over" || s.result === "chapter-win" &&
+    need(s.phase !== "over" || a.type === "APPLY_CHAPEL_RULING" || s.result === "chapter-win" &&
       (a.type==='ENTER_BETWEEN_CHAPTERS' || s.rewardChoices?.length &&
       ["EQUIP_REWARD", "KEEP_REWARD", "EQUIP_FIREARM", "KEEP_FIREARM"].includes(a.type)), "사냥이 끝났습니다. 새 사냥을 시작하세요.");
     const phase = (p) =>
       need(s.phase === p, "현재 단계에서는 사용할 수 없는 행동입니다.");
     // New rules apply reward choices and timing windows before any firearm or weapon command.
-    const rewardFirst = s.setup.rulesVersion>=11 && rewardSession(s),
-      rewardHandled = rewardFirst && rewards.dispatch(s,a,rewardHelpers());
-    const firearmHandled = !rewardHandled && firearms.dispatch(s, a, firearmHelpers());
-    const weaponHandled = !rewardHandled && !firearmHandled && weaponFlow.dispatch(s,a,weaponHelpers());
+    const policyAdoption = a.type === "APPLY_CHAPEL_RULING",
+      rewardFirst = s.setup.rulesVersion>=11 && rewardSession(s),
+      rewardHandled = !policyAdoption && rewardFirst && rewards.dispatch(s,a,rewardHelpers());
+    const firearmHandled = !policyAdoption && !rewardHandled && firearms.dispatch(s, a, firearmHelpers());
+    const weaponHandled = !policyAdoption && !rewardHandled && !firearmHandled && weaponFlow.dispatch(s,a,weaponHelpers());
     const handled = rewardHandled || firearmHandled || weaponHandled ||
-      !rewardFirst && rewardSession(s) && rewards.dispatch(s, a, rewardHelpers());
-    const missionHandled = !handled && missions.dispatch(s, a, missionHelpers());
+      !policyAdoption && !rewardFirst && rewardSession(s) && rewards.dispatch(s, a, rewardHelpers());
+    const missionHandled = !policyAdoption && !handled && missions.dispatch(s, a, missionHelpers());
     if (!handled && !missionHandled) switch (a.type) {
+      case "APPLY_CHAPEL_RULING": {
+        need(s.mission && !(s.setup.rulesVersion >= 13) && !s.chapelRuling,
+          "이 저장에는 현재 예배당 판정이 이미 적용되었습니다.");
+        s.chapelRuling = "escort-first";
+        if (s.mission.chapelArrival) {
+          missions.dispatch(s, { type: "MISSION_CHOICE", choice: "escort-first" }, missionHelpers());
+          if (s.missionArrivalAfter) {
+            const after = s.missionArrivalAfter; delete s.missionArrivalAfter;
+            finishMovementEffects(s, after);
+          }
+        }
+        break;
+      }
       case 'ENTER_BETWEEN_CHAPTERS':
         need(s.phase==='over' && s.result==='chapter-win' && s.mission.chapter<3,
           '완료한 챕터1 또는2에서 다음 챕터를 준비하세요.');
@@ -2704,8 +2724,8 @@
     );
     need(options && typeof options.campaign === "boolean", "캠페인 시작 설정을 확인하세요.");
     const rulesVersion = Object.hasOwn(options, "rulesVersion")
-      ? options.rulesVersion : options.legacyReplay ? null : 12;
-    need(rulesVersion === null || [7, 8, 9, 10, 11, 12].includes(rulesVersion),
+      ? options.rulesVersion : options.legacyReplay ? null : 13;
+    need(rulesVersion === null || [7, 8, 9, 10, 11, 12, 13].includes(rulesVersion),
       "지원하는 규칙 버전을 선택하세요.");
     need(weaponId==="burial" || rulesVersion>=10 && !options.provisional &&
       Object.hasOwn(D.weapons,weaponId) && weaponId!=="training", "지원하는 장치 무기를 선택하세요.");
@@ -2872,8 +2892,10 @@
       Number.isInteger(s.rng) && s.rng > 0 && s.rng <= 4294967295,
       "난수 오류.",
     );
-    need(s.setup.rulesVersion === undefined || [7, 8, 9, 10, 11, 12].includes(s.setup.rulesVersion),
+    need(s.setup.rulesVersion === undefined || [7, 8, 9, 10, 11, 12, 13].includes(s.setup.rulesVersion),
       "지원하지 않는 규칙 버전입니다.");
+    need(s.chapelRuling === undefined || s.chapelRuling === "escort-first" && s.mission &&
+      !(s.setup.rulesVersion >= 13), "예배당 판정 기록 오류.");
     need(
       s.activeHunterId === "hunter-1" && Object.keys(s.hunters).length === 1,
       "현재는 1인용입니다.",
@@ -3134,6 +3156,7 @@
     assertState,
     exportSave,
     importSave,
+    applyChapelRuling,
     hunter,
     slots,
     weapon,
