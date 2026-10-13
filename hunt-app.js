@@ -46,6 +46,7 @@
     selectedEnemy = null,
     rotation = null,
     previewTile = null,
+    mapColumns = 1,
     pulls = new Set(),
     selectedRewards = new Set(),
     nextStartSpace = "",
@@ -60,7 +61,7 @@
   // Reading a story is presentation only. No story field is added to replayed
   // game state or saved commands, including when older saves are resumed.
   const readStories = new Set();
-  let storyEntries = [], storySelection = null, storyOpener = null;
+  let storyEntries = [], storySelection = null, storyOpener = null, storyReturnPanel = null;
   try {
     const current = localStorage.getItem(key), qaSaved = localStorage.getItem(qaKey),
       useQa = localStorage.getItem(activeModeKey) === "qa" && !!qaSaved,
@@ -88,11 +89,16 @@
     send,
     refresh: renderDecisions,
   });
+  const shell = window.BBHuntShell?.({ document, onCenterMap: () => centerMap(true) });
+  function showError(message = "") {
+    $("error").textContent = message;
+    if ($("infoError")) $("infoError").textContent = message;
+  }
   function save() {
     try {
       localStorage.setItem(saveKey(), E.exportSave(state));
       localStorage.setItem(activeModeKey, isQa() ? "qa" : "normal");
-      $("saveStatus").textContent = isQa() ? "검증 전용 진행 · 별도 자동 저장됨" : `${restoredPrevious ? "v0.6에서 이어온 진행 · " : ""}v0.7 자동 저장됨`;
+      $("saveStatus").textContent = isQa() ? "검증 전용 진행 · 별도 자동 저장됨" : `${restoredPrevious ? "v0.6에서 이어온 진행 · " : ""}자동 저장됨`;
     } catch {
       $("saveStatus").textContent =
         "자동 저장 불가 · 저장 내보내기를 이용하세요";
@@ -101,6 +107,7 @@
   function send(type, args = {}) {
     try {
       state = E.dispatch(state, { type, ...args });
+      shell?.close();
       if (type === "START_NEXT_CHAPTER") { nextStartSpace = ""; nextFace = null; }
       if (type === "ENTER_BETWEEN_CHAPTERS") { nextStartSpace = ""; nextFace = E.hunter(state).face; }
       pulls.clear();
@@ -110,9 +117,9 @@
       inventory.clear();
       save();
       render();
-      $("error").textContent = "";
+      showError("");
     } catch (e) {
-      $("error").textContent = e.message;
+      showError(e.message);
     }
   }
   function bind(box) {
@@ -163,6 +170,10 @@
       .reverse()
       .map((e) => `<p><small>라운드 ${e.round}</small> ${esc(e.text)}</p>`)
       .join("");
+    shell?.sync({ phase: state.phase, mandatoryReward: !!E.rewardsView?.(state)?.choices.length,
+      setupOpen: setupRequired || $("setupDialog").open });
+    resizeMap();
+    centerMap(false);
   }
   function actualGun() {
     const gun = E.firearm(state);
@@ -197,7 +208,7 @@
           ? `자기 차례에 속도 ${gun.speed ?? 2} · 피해 ${gun.damage ?? 2}${gun.interrupt === false ? "" : " · 방해"} 공격을 합니다.${gun.splash === 0 ? "" : ` 공격 후 같은 칸의 다른 적들에게 피해 ${gun.splash ?? 1}을 줍니다.`}`
           : "적의 기본 공격을 자동으로 방해합니다.",
       printed = Array.isArray(gun.rules) && gun.rules.length ? gun.rules.map(esc).join("<br>") : esc(description);
-    $("firearm").innerHTML = `<p class="eyebrow">장착 화기</p><h2>${esc(gun.name)} <small class="${h.firearmReady ? "ready" : "spent"}">${h.firearmReady ? "준비됨" : "소진됨"}</small></h2><p>${printed}</p><p class="muted">사냥꾼 차례에 카드 ${cost}장을 버려 준비${actual && gun.prepareEchoCost ? ` 또는 피의 유지 ${gun.prepareEchoCost}개로 준비` : ""} · 꿈에서 회복${actual && gun.prepareOnTransform ? " · 무기를 변형할 때도 준비" : ""}${!actual && h.firearmId !== "hunter-pistol" ? "<br>이 저장/시험에서는 단총과 같은 능력으로 임시 동작" : ""}</p>${firearmAction()}`;
+    $("firearm").innerHTML = `<p class="eyebrow">장착 화기</p><h2>${esc(gun.name)} <small class="${h.firearmReady ? "ready" : "spent"}">${h.firearmReady ? "준비됨" : "소진됨"}</small></h2><details class="firearm-rules"><summary>화기 효과와 준비</summary><p>${printed}</p><p class="muted">사냥꾼 차례에 카드 ${cost}장을 버려 준비${actual && gun.prepareEchoCost ? ` 또는 피의 유지 ${gun.prepareEchoCost}개로 준비` : ""} · 꿈에서 회복${actual && gun.prepareOnTransform ? " · 무기를 변형할 때도 준비" : ""}${!actual && h.firearmId !== "hunter-pistol" ? "<br>이 저장/시험에서는 단총과 같은 능력으로 임시 동작" : ""}</p></details>${firearmAction()}`;
     bind($("firearm"));
   }
   function renderComponents() {
@@ -241,11 +252,17 @@
       .replace("</span>", " 테스트 장비와 시작 지급을 사용하며, 일반 사냥과 별도로 자동 저장됩니다.</span>");
     if (!view) return;
     $("missionInsight").textContent = `이번 챕터 완료 계몽 ${view.insight}장`;
-    $("missionObjectives").innerHTML = view.objectives.filter((o) => o.status !== "미발견").map((o) => {
-      const done = ["completed", "complete", "done", "완료"].includes(o.status),
-        description = chapter === 1 && o.id === "main" && !view.revealed.includes(2) ? "계몽 2장 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요." : o.description;
-      return `<article class="mission-objective ${done ? "completed" : ""}"><b>${done ? "✓ " : ""}${esc(o.title)} <small>${esc(o.status)}</small></b><span class="muted">${esc(description || "")}</span></article>`;
-    }).join("") || '<p class="muted">공개된 임무 카드에서 다음 목표를 확인하세요.</p>';
+    const objectives = view.objectives.filter((o) => o.status !== "미발견"),
+      doneStatus = (o) => ["completed", "complete", "done", "완료"].includes(o.status),
+      objectiveHTML = (o) => {
+        const done = doneStatus(o), description = chapter === 1 && o.id === "main" && !view.revealed.includes(2)
+          ? "계몽 2장 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요." : o.description;
+        return `<article class="mission-objective ${done ? "completed" : ""}"><b>${done ? "✓ " : ""}${esc(o.title)} <small>${esc(o.status)}</small></b><span class="muted">${esc(description || "")}</span></article>`;
+      },
+      primary = objectives.find((o) => !doneStatus(o)) || objectives[0],
+      allObjectives = objectives.map(objectiveHTML).join("") || '<p class="muted">공개된 임무 기록을 확인하세요.</p>';
+    $("missionObjectives").innerHTML = primary ? objectiveHTML(primary) : allObjectives;
+    if ($("objectiveDetail")) $("objectiveDetail").innerHTML = allObjectives;
     $("missionTokens").innerHTML = view.tokens.map((t) => `<span class="mission-token">◆ ${esc(t.name)} · ${t.carrierId !== null && t.carrierId !== undefined ? "사냥꾼이 운반 중" : esc(nodeName(t.node))}</span>`).join("") + (view.targets || []).filter((t) => !t.complete && t.tokens !== undefined).map((t) => `<span class="mission-token">◇ ${esc(window.BBLongHunt.cards.find((c) => c.number === t.card)?.title || "특수 적")} · 계몽 토큰 ${t.tokens}개</span>`).join("") + (view.counters || []).map((c) => `<span class="mission-token">${esc(c.name)} · ${esc(c.value)}</span>`).join("");
     const lifecycleNotices = chapter > 1
       ? ["이전 챕터의 미완료 임무·임무 토큰·대상 적은 초기화되었습니다. 완료한 계몽 카드는 보관하며, 이번 챕터의 계몽 획득 수에는 더하지 않습니다."] : [];
@@ -301,6 +318,10 @@
     bindStoryButtons($("storyIntro"));
     const current = storyEntries.filter((entry) => entry.chapter === view.chapter),
       unread = current.filter((entry) => !readStories.has(entry.key));
+    if ($("storyPendingBadge")) {
+      $("storyPendingBadge").textContent = String(unread.length);
+      $("storyPendingBadge").hidden = !unread.length;
+    }
     $("storyList").innerHTML = current.map(storyButton).join("");
     bindStoryButtons($("storyList"));
     $("storyNotice").innerHTML = unread.length
@@ -314,7 +335,11 @@
     // source archive. Altering a UI attribute cannot open an unrevealed card.
     const entry = storyEntries.find((entry) => entry.key === key);
     if (!entry || setupRequired || !missionView()) return;
-    if (!$("storyDialog").open) storyOpener = opener || null;
+    if (!$("storyDialog").open) {
+      storyOpener = opener || null;
+      storyReturnPanel = shell?.activePanel() || null;
+    }
+    shell?.close();
     storySelection = key;
     readStories.add(key);
     const isIntro = entry.key === "intro", index = storyEntries.indexOf(entry);
@@ -350,6 +375,7 @@
   }
   function resetStoryReading() {
     readStories.clear();
+    storyReturnPanel = null;
     reloadSecondCardId = null;
     if ($("storyDialog").open) closeStory();
   }
@@ -359,8 +385,10 @@
     const opener = storyOpener?.isConnected !== false ? storyOpener :
       ["storyIntro", "storyNotice", "storyList", "pastChapters"].flatMap((id) =>
         [...$(id).querySelectorAll("[data-story-key]")]).find((button) => button.dataset.storyKey === storySelection);
+    if (storyReturnPanel) shell?.open(storyReturnPanel);
     opener?.focus?.({ preventScroll: true });
     storyOpener = null;
+    storyReturnPanel = null;
   });
   $("storyZoom").oninput = updateStoryZoom;
   $("previousStory").onclick = () => {
@@ -481,7 +509,7 @@
       h.hand
         .map((c) => {
           const d = E.card(c);
-          return `<button class="stat-card ${d.type} ${selectedCard === c.id ? "selected" : ""}" data-card="${c.id}" aria-pressed="${selectedCard === c.id}"><small>${esc(c.id)} · ${d.type === "strength" ? "근력" : d.type === "skill" ? "기술" : d.type === "endurance" ? "지구력" : "활력"}</small><b>${esc(d.name)}</b><span>${esc(d.text)}</span></button>`;
+          return `<button class="stat-card ${d.type} ${selectedCard === c.id ? "selected" : ""}" data-card="${c.id}" aria-pressed="${selectedCard === c.id}" title="${esc(d.name + ' · ' + d.text)}"><small>${esc(c.id)} · ${d.type === "strength" ? "근력" : d.type === "skill" ? "기술" : d.type === "endurance" ? "지구력" : "활력"}</small><b>${esc(d.name)}</b><span>${esc(d.text)}</span></button>`;
         })
         .join("") ||
       `<p class="muted">${state.phase === "over" ? "마지막 사냥의 카드 기록을 보관했습니다." : "손패가 비었습니다. 차례를 마쳐 보충하세요."}</p>`;
@@ -657,7 +685,7 @@
       const q = state.world.pending,
         t = M.tile(q.tileId),
         opts = placementOptions();
-      html = `<h3>${esc(t.displayName)}</h3><div class="rotation-preview"><img src="${G.image(t.id)}" style="transform:rotate(${rotation * 90}deg)" alt="새 타일 방향"></div><div class="actions">${[0, 1, 2, 3].map((r) => `<button data-rotation="${r}" class="${rotation === r ? "primary" : ""}" ${opts.includes(r) ? "" : "disabled"}>${r * 90}°</button>`).join("")}</div>${button("이 방향으로 배치하고 진입", "PLACE_TILE", { rotation }, false, "primary")}`;
+      html = `<h3>${esc(t.displayName)}</h3><p class="muted">지도에 표시된 미리보기에서 방향을 확인하세요.</p><div class="actions">${[0, 1, 2, 3].map((r) => `<button data-rotation="${r}" class="${rotation === r ? "primary" : ""}" ${opts.includes(r) ? "" : "disabled"}>${r * 90}°</button>`).join("")}</div>${button("이 방향으로 배치하고 진입", "PLACE_TILE", { rotation }, false, "primary")}`;
     } else if (p === "exchange_choice") {
       help = "획득한 소모품도 교환할 수 있습니다. 1장을 버려 피의 유지 1개를 얻거나 교환을 마치세요. 추가 스탯 카드 비용은 없습니다.";
       html = h.consumables.map((item) => button(`${esc(consumableDefinitions()[item.kind].name)} 교환 · 유지 +1`, "EXCHANGE_CHOICE", { itemId: item.id })).join("")
@@ -691,11 +719,11 @@
     } else if (p === "enemy_path") {
       help =
         "같은 조건의 경로가 여러 개입니다. 사냥꾼에게 가장 불리한 결과가 되도록 선택하세요.";
-      html = E.moveOptions(state)
+      html = '<div class="compact-choices">' + E.moveOptions(state)
         .map((n) =>
           button(esc(E.node(state, n).name), "ENEMY_STEP", { node: n }),
         )
-        .join("");
+        .join("") + '</div>';
     } else if (p === "combat_choose") {
       help =
         "적 행동을 공개하기 전에 맞서 공격할 카드·슬롯과 공격용 소모품을 선택하세요.";
@@ -1005,11 +1033,17 @@
         loot = ghost ? 0 : state.loot.filter((l) => l === id).length,
         figures = ghost ? [] : state.enemies.filter((f) => f.node === id),
         tokens = ghost ? [] : (mission?.tokens || []).filter((t) => t.node === id || (t.carrierId === state.activeHunterId && here));
-      const status = `${here ? "● 사냥꾼" : ""}${loot ? `<small>◇ 남은 소모품 ${loot}</small>` : ""}${tokens.map((t) => `<small class="map-mission-token">◆ ${esc(t.name)}</small>`).join("")}${figures.map((f) => {
-        const a = state.world.assignments.find((a) => a.enemyId === f.kind);
-        return `<span class="token" style="--marker:${colors[a?.marker] || colors.gold}" title="${esc(E.enemyDef(state, f).name)} #${f.figure}">${f.missionId || f.provisionalKind || f.componentId || !a ? "★" : ["①","②","③"][a.slot - 1]} #${f.figure}</span>`;
-      }).join("")}`;
+      const status = `${here ? "● 사냥꾼" : ""}${loot ? `<small>◇ 남은 소모품 ${loot}</small>` : ""}${tokens.map((t) => `<small class="map-mission-token">◆ ${esc(t.name)}</small>`).join("")}`;
       return `<button class="space diagram-space ${here ? "here" : ""} ${reach ? "reachable" : ""} ${ghost ? "ghost-space" : ""}" style="clip-path:polygon(${polygon})" data-command="STEP" data-args="${esc(JSON.stringify({node:id}))}" ${reach ? "" : "disabled"} aria-label="${esc(n.placeName || n.label)}${here ? " · 사냥꾼" : ""}${loot ? " · 소모품 " + loot : ""}${figures.length ? " · 적 " + figures.length : ""}" title="${esc(n.placeName || n.label)}"><span class="space-status" style="left:${x}%;top:${Math.min(90,y+10)}%">${status}</span></button>`;
+    }).join("")}${ghost ? "" : def.spaces.map((space) => {
+      const node = `${p.tileId}:${space.id}`, figures = state.enemies.filter((enemy) => enemy.node === node);
+      if (!figures.length) return "";
+      const [x, y] = G.point(p.tileId, space.id, p.rotation);
+      return `<div class="map-figures" style="left:${x}%;top:${Math.min(82, y + 18)}%">${figures.map((enemy) => {
+        const assigned = state.world.assignments.find((assignment) => assignment.enemyId === enemy.kind), d = E.enemyDef(state, enemy),
+          marker = enemy.missionId || enemy.provisionalKind || enemy.componentId || !assigned ? "★" : ["①", "②", "③"][assigned.slot - 1];
+        return `<button type="button" class="map-figure ${selectedEnemy === enemy.id ? "selected" : ""}" data-enemy="${esc(enemy.id)}" aria-pressed="${selectedEnemy === enemy.id}" aria-label="${esc(d.name)} ${enemy.figure}번 · 체력 ${enemy.hp} · 대상 선택" title="${esc(d.name)} · 체력 ${enemy.hp}/${d.maxHp}" style="--marker:${colors[assigned?.marker] || colors.gold}">${marker}<small>${enemy.figure}</small></button>`;
+      }).join("")}</div>`;
     }).join("")}</div>`;
   }
   function preview() {
@@ -1063,34 +1097,27 @@
           html += `<div class="tile-empty">${exit && state.world.tileDeck.length ? button(`${directionNames[exit.edge]} 탐험`, "EXPLORE", { edge: exit.edge }, state.phase !== "move", "explore-empty") : "미탐험 구역"}</div>`;
         }
       }
-    $("chapterMap").style.gridTemplateColumns =
-      `repeat(${maxX - minX + 1},290px)`;
+    mapColumns = maxX - minX + 1;
+    resizeMap();
     $("chapterMap").innerHTML = html;
     bind($("chapterMap"));
+    bindEnemyTargets($("chapterMap"));
     $("tileCount").textContent =
       `공개 ${state.world.tiles.length + (state.world.pending ? 1 : 0)} / ${state.world.tilePool.length} · 더미 ${state.world.tileDeck.length}`;
     const n = E.nodes(state).find((n) => n.id === E.hunter(state).position),
       def = n ? M.tile(n.tileId) : null;
-    $("locationText").innerHTML = n
+    const locationDetail = n
       ? `<b>현재 위치 · ${esc(n.name)}</b>${def.rules.length ? '<p class="muted">' + def.rules.map(esc).join(" ") + "</p>" : ""}${def.id === "tile-07" ? '<p class="muted">성배 교단 예배당 칸에서 상호작용하면 소모품 1장을 버리고 피의 유지 1개를 얻습니다. 같은 상호작용에서 획득한 소모품도 교환할 수 있습니다.</p>' : ""}`
       : "<b>현재 위치 · 사냥꾼의 꿈</b>";
+    $("locationText").textContent = n ? `현재 위치 · ${n.name}` : "현재 위치 · 사냥꾼의 꿈";
+    if ($("locationDetail")) $("locationDetail").innerHTML = locationDetail;
     $("nearEnemies").innerHTML = state.enemies
       .map(
         (e) =>
           `<div class="hunt-enemy ${selectedEnemy === e.id ? "selected" : ""}"><span>${esc(E.enemyDef(state, e).name)} #${e.figure} · ${esc(E.node(state, e.node).name)}<br>체력 ${e.hp} / ${E.enemyDef(state, e).maxHp} · ${E.hunter(state).inDream ? "" : E.distance(state, E.hunter(state).position, e.node) + "칸 거리"}</span><button data-enemy="${e.id}">대상 선택</button></div>`,
       )
       .join("");
-    $("nearEnemies")
-      .querySelectorAll("[data-enemy]")
-      .forEach(
-        (b) =>
-          (b.onclick = () => {
-            selectedEnemy = b.dataset.enemy;
-            renderMap();
-            renderFirearm();
-            renderDecisions();
-          }),
-      );
+    bindEnemyTargets($("nearEnemies"));
     $("explorationActions").innerHTML = state.world.tileDeck.length
       ? available
           .map((e) =>
@@ -1107,18 +1134,30 @@
       $("explorationActions").innerHTML =
         '<p class="muted">열린 출입구가 있는 칸으로 이동하면 탐험할 수 있습니다.</p>';
     bind($("explorationActions"));
-    const focus = $("chapterMap").querySelector(
-        ghost ? ".ghost" : ".space.here",
-      ),
-      viewport = $("mapViewport");
-    if (focus) {
-      const r = focus.getBoundingClientRect(),
-        v = viewport.getBoundingClientRect();
-      if (r.left < v.left + 12 || r.right > v.right - 12)
-        viewport.scrollLeft += (r.left + r.right - v.left - v.right) / 2;
-      if (r.top < v.top + 12 || r.bottom > v.bottom - 12)
-        viewport.scrollTop += (r.top + r.bottom - v.top - v.bottom) / 2;
-    }
+    centerMap(false);
+  }
+  function bindEnemyTargets(box) {
+    box.querySelectorAll("[data-enemy]").forEach((button) => {
+      button.onclick = () => {
+        selectedEnemy = button.dataset.enemy;
+        if (shell?.activePanel() === "enemies") shell.close();
+        renderMap(); renderFirearm(); renderDecisions(); shell?.bind();
+      };
+    });
+  }
+  function resizeMap() {
+    const viewport = $("mapViewport"), height = viewport.clientHeight,
+      size = height ? Math.max(170, Math.min(290, height - 10)) : 290;
+    $("chapterMap").style.setProperty?.("--map-tile-size", `${size}px`);
+    $("chapterMap").style.gridTemplateColumns = `repeat(${mapColumns},${size}px)`;
+  }
+  window.addEventListener?.("resize", () => { resizeMap(); centerMap(true); });
+  function centerMap(force = false) {
+    const focus = $("chapterMap").querySelector(previewTile ? ".ghost" : ".space.here"), viewport = $("mapViewport");
+    if (!focus) return;
+    const r = focus.getBoundingClientRect(), v = viewport.getBoundingClientRect();
+    if (force || r.left < v.left + 12 || r.right > v.right - 12) viewport.scrollLeft += (r.left + r.right - v.left - v.right) / 2;
+    if (force || r.top < v.top + 12 || r.bottom > v.bottom - 12) viewport.scrollTop += (r.top + r.bottom - v.top - v.bottom) / 2;
   }
 
   $("save").onclick = () => {
@@ -1149,7 +1188,7 @@
       inventory.clear();
       save();
       render();
-      $("error").textContent = "";
+      showError("");
     } catch (x) {
       $("error").textContent = x.message;
       if ($("setupDialog").open) $("setupError").textContent = x.message;
@@ -1311,14 +1350,14 @@
       inventory.clear();
       save();
       render();
-      $("error").textContent = "";
-    } catch (e) { $("error").textContent = e.message; }
+      showError("");
+    } catch (e) { showError(e.message); }
   }
   $("restoreV05").onclick = () => restoreStored(oldKey, "v0.5");
   $("restoreV06").onclick = $("loadV06Setup").onclick = () => restoreStored(previousKey, "v0.6");
   const restoreNormal = () => {
     try { restoreStored(localStorage.getItem(key) ? key : previousKey, "일반 사냥"); }
-    catch (error) { $("error").textContent = error.message; }
+    catch (error) { showError(error.message); }
   };
   $("resumeNormal").onclick = $("resumeNormalSetup").onclick = restoreNormal;
   $("resumeQa").onclick = $("resumeQaSetup").onclick = () => restoreStored(qaKey, "검증 사냥");
@@ -1354,6 +1393,7 @@
   $("firearmOverride").onchange = validateSetupLoadout;
   $("practiceTarget").onchange = renderPracticeTargets;
   function openSetup() {
+    shell?.close();
     $("seed").value = Date.now() % 4294967295;
     $("start").value = "";
     startPlacement.update();
@@ -1411,7 +1451,7 @@
   renderPracticeRewards();
   renderQaSetup();
   render();
-  if (startupError) $("error").textContent = startupError;
+  if (startupError) showError(startupError);
   else if (!setupRequired) save();
   if (setupRequired) openSetup();
 })();

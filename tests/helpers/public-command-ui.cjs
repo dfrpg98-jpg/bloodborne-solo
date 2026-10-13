@@ -3,7 +3,7 @@ const E=require('../../hunt-engine'), {boot}=require('./ui-harness.cjs');
 const plain=x=>JSON.parse(JSON.stringify(x));
 const containers=['decisions','missionActions','rewards','firearm','componentCards','chapterMap','explorationActions'];
 function matches(actual,wanted){return Object.entries(wanted).every(([k,v])=>JSON.stringify(actual[k])===JSON.stringify(v));}
-function clickCommand(s,command){
+function clickCommand(s,command,options={}){
   const ui=boot(s,E.missionView(s),E.rewardsView(s),{realInventory:true,
     storage:{'bloodborne-hunt-v07':E.exportSave(s)},engine:{
       create:E.create,importSave:E.importSave,exportSave:E.exportSave,dispatch:E.dispatch,
@@ -14,6 +14,7 @@ function clickCommand(s,command){
       missionView:E.missionView,rewardsView:E.rewardsView,missionActions:E.missionActions,
       interactionEnemies:E.interactionEnemies,provisionalView:E.provisionalView,
     }});
+  options.onBoot?.(ui);
   const change=(id,value)=>{const element=ui.el(id);assert(element,`missing ${id}`);element.value=String(value);element.fire('change');};
   const chosenCard=command.cardId||(command.type==='RELOAD'&&command.cardIds?.[0]);
   if(chosenCard && E.hunter(s).hand.some(c=>c.id===chosenCard)){
@@ -25,8 +26,11 @@ function clickCommand(s,command){
     if(slot)slot.click();
   }
   if(command.enemyId && ['ATTACK','FIREARM','WEAPON_SHOT'].includes(command.type)){
-    const target=ui.el('nearEnemies').querySelectorAll('[data-enemy]').find(b=>b.dataset.enemy===command.enemyId);
+    const mapTarget=ui.el('chapterMap').querySelectorAll('[data-enemy]').find(b=>b.dataset.enemy===command.enemyId);
+    if(!mapTarget)options.beforeTarget?.(ui);
+    const target=mapTarget||ui.el('nearEnemies').querySelectorAll('[data-enemy]').find(b=>b.dataset.enemy===command.enemyId);
     assert(target,'enemy selectable');target.click();
+    if(!mapTarget)options.afterTarget?.(ui);
   }
   for(const id of command.pullIds||[]){
     const input=ui.el('decisions').querySelectorAll('[data-pull]').find(b=>b.dataset.pull===id);
@@ -38,12 +42,14 @@ function clickCommand(s,command){
   }
   if(command.weaponBoost!==undefined && ui.el('weaponBoost'))change('weaponBoost',command.weaponBoost||'none');
   if(command.type==='RELOAD'&&command.cardIds?.length>1)change('reloadSecondCard',command.cardIds[1]);
+  if(command.itemIds?.length)options.beforeInventory?.(ui);
   for(const id of command.itemIds||[]){
     const item=ui.el('inventory').querySelectorAll('[data-item]').find(b=>b.dataset.item===id);
     assert(item,'attack consumable visible');item.click();
     assert(ui.el('toggleAttackItem')&&!ui.el('toggleAttackItem').disabled,'attack consumable enabled');
     ui.el('toggleAttackItem').click();
   }
+  if(command.itemIds?.length)options.afterInventory?.(ui);
   if(command.type==='PLACE_TILE'){
     const rotation=ui.el('decisions').querySelectorAll('[data-rotation]').find(b=>+b.dataset.rotation===command.rotation);
     assert(rotation&&!rotation.disabled,'legal tile rotation visible');rotation.click();
@@ -60,6 +66,7 @@ function clickCommand(s,command){
     if(command.face!==undefined)change('nextChapterFace',command.face);
     ui.el('startNextChapter').click();
   }else if(command.type==='USE_CONSUMABLE'){
+    options.beforeInventory?.(ui);
     const item=ui.el('inventory').querySelectorAll('[data-item]').find(b=>b.dataset.item===command.itemId);
     assert(item,'consumable selectable');item.click();
     for(const [key,id]of Object.entries({enemyId:'itemEnemy',node:'itemNode',slot:'itemSlot',rewardId:'itemReward'}))if(command[key]!==undefined)change(id,command[key]);
@@ -71,6 +78,7 @@ function clickCommand(s,command){
     assert(ui.el('interact')&&!ui.el('interact').disabled,'interaction control enabled');ui.el('interact').click();
   }else{
     if(command.type==='USE_REWARD'){
+      options.beforeReward?.(ui);
       if(command.node && ui.el('rewardLamp-'+command.rewardId))change('rewardLamp-'+command.rewardId,command.node);
       if(command.node && ui.el('rewardNode-'+command.rewardId))change('rewardNode-'+command.rewardId,command.node);
       for(const move of command.moves||[]){

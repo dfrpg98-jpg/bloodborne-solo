@@ -23,19 +23,49 @@ function at(number){
  const view=E.missionView(s);
  const ui=boot(s,view,E.rewardsView(s),{realInventory:true,engine:E,
   storage:{'bloodborne-hunt-v07':E.exportSave(s)}});
- assert.equal(ui.el('error').textContent,'');return {s,view,ui};
+ assert.equal(ui.el('error').textContent,'');
+ // The fixed HUD shows the current primary goal; the journal contains every
+ // revealed goal. Check both actual rendered descriptions before testing the
+ // card-specific future-information boundaries below.
+ const visible=view.objectives.filter(o=>o.status!=='미발견'),
+  description=o=>view.chapter===1&&o.id==='main'&&!view.revealed.includes(2)
+   ? '계몽 2장 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요.' : o.description||'',
+  completed=o=>['completed','complete','done','완료'].includes(o.status),
+  primary=visible.find(o=>!completed(o))||visible[0];
+ assert.deepEqual(renderedDescriptions(ui,'missionObjectives'),primary?[description(primary)]:[],
+  'the HUD contains only the already-revealed primary objective');
+ const before=ui.storage.get('bloodborne-hunt-v07'),
+  journal=ui.document.querySelectorAll('[data-panel]').find(button=>button.dataset.panel==='journal');
+ assert(journal,'the full objective journal has an actual entry point');journal.focus();journal.click();
+ assert.equal(ui.el('infoDialog').open,true);
+ assert.equal(ui.document.querySelectorAll('[data-info-panel]').find(panel=>panel.dataset.infoPanel==='journal').hidden,false);
+ assert.deepEqual(renderedDescriptions(ui,'objectiveDetail'),visible.map(description),
+  'the opened journal contains exactly the currently revealed objective descriptions');
+ assert.deepEqual(renderedDescriptions(ui,'missionObjectives'),primary?[description(primary)]:[],
+  'opening the journal cannot add an unrevealed goal to the fixed HUD');
+ assert.equal(ui.storage.get('bloodborne-hunt-v07'),before,'reading objectives preserves the exact saved game');
+ return {s,view,ui};
+}
+function renderedDescriptions(ui,id){
+ const decode=value=>value.replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<')
+  .replace(/&gt;/g,'>').replace(/&amp;/g,'&');
+ return [...ui.el(id).innerHTML.matchAll(/<article class="mission-objective\b[^"\n]*">([\s\S]*?)<\/article>/g)]
+  .map(match=>{const description=match[1].match(/<span class="muted">([\s\S]*?)<\/span>/);
+   assert(description,'each rendered objective has its actual description');return decode(description[1]);});
 }
 function objective(number,id){
  const result=at(number);result.objective=result.view.objectives.find(o=>o.id===id);
  assert(result.objective,`visible current objective ${id}`);
- assert(result.ui.el('missionObjectives').textContent.includes(result.objective.description));return result;
+ assert(result.ui.el('objectiveDetail').textContent.includes(result.objective.description));return result;
 }
 
 test('a fresh hunt names and describes only the already-revealed main mission',()=>{
  const {s,view,ui}=at(1);assert.deepEqual(s.mission.revealed,[1]);
  assert.deepEqual(view.objectives.map(o=>o.id),['main']);
- assert.match(ui.el('missionObjectives').textContent,/계몽 2장 이상/);
- assert.doesNotMatch(ui.el('missionObjectives').textContent,/우두머리|피신처|구조|사냥을 시작하다/);
+ for(const id of ['missionObjectives','objectiveDetail']){
+  assert.match(ui.el(id).textContent,/계몽 2장 이상/);
+  assert.doesNotMatch(ui.el(id).textContent,/우두머리|피신처|구조|사냥을 시작하다/);
+ }
 });
 test('card 2 makes the revealed main boss objective visible',()=>{
  const {objective:o}=objective(2,'main');assert.match(o.description,/재앙의 야수 우두머리 처치/);

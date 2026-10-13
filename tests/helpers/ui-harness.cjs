@@ -16,6 +16,12 @@ class Element {
     this.value = attributes.value || ""; this.checked = "checked" in attributes;
     this.disabled = "disabled" in attributes; this.hidden = "hidden" in attributes;
     this.open = false; this._html = ""; this._text = null;
+    this.classList = {
+      contains: (name) => (this.attributes.class || "").split(/\s+/).includes(name),
+      add: (...names) => { this.attributes.class = [...new Set([...(this.attributes.class || "").split(/\s+/).filter(Boolean), ...names])].join(" "); },
+      remove: (...names) => { this.attributes.class = (this.attributes.class || "").split(/\s+/).filter(name => name && !names.includes(name)).join(" "); },
+      toggle: (name, force) => { const enabled = force ?? !this.classList.contains(name); enabled ? this.classList.add(name) : this.classList.remove(name); return enabled; },
+    };
     for (const [key, value] of Object.entries(attributes)) if (key.startsWith("data-"))
       this.dataset[key.slice(5).replace(/-([a-z])/g, (_, c) => c.toUpperCase())] = value;
   }
@@ -35,10 +41,19 @@ class Element {
   }
   querySelector(selector) { return this.querySelectorAll(selector)[0] || null; }
   addEventListener(type, handler) { (this.listeners[type] ||= []).push(handler); }
-  fire(type) { this["on" + type]?.({ target: this }); for (const handler of this.listeners[type] || []) handler({ target: this }); }
+  fire(type, properties = {}) {
+    const event = { target: this, currentTarget: this, defaultPrevented: false,
+      preventDefault() { this.defaultPrevented = true; }, stopPropagation() {}, ...properties };
+    this["on" + type]?.(event); for (const handler of this.listeners[type] || []) handler(event);
+    return event;
+  }
   click() { if (!this.disabled) this.fire("click"); }
   getBoundingClientRect() { return { left: 0, right: 0, top: 0, bottom: 0 }; }
   setAttribute(name, value) { this.attributes[name] = value; }
+  getAttribute(name) { return this.attributes[name] ?? null; }
+  hasAttribute(name) { return name in this.attributes; }
+  removeAttribute(name) { delete this.attributes[name]; }
+  contains(element) { return element === this || this.children.some(child => child.contains(element)); }
   append(...elements) { this.children.push(...elements); }
   replaceChildren(...elements) { this.children = elements; }
   showModal() { this.open = true; }
@@ -46,7 +61,11 @@ class Element {
   focus() { this.document.activeElement = this; }
 }
 class Document {
-  constructor(html) { this.ids = new Map(); this.parse(html); }
+  constructor(html) {
+    this.ids = new Map(); this.listeners = {}; this.elements = this.parse(html);
+    this.body = this.elements.find(element => element.tagName.toLowerCase() === "body");
+    this.documentElement = this.elements.find(element => element.tagName.toLowerCase() === "html");
+  }
   parse(html) {
     const elements = [];
     for (const match of html.matchAll(/<([a-z][a-z0-9-]*)\b([^>]*)>/gi)) {
@@ -65,6 +84,20 @@ class Document {
   }
   getElementById(id) { return this.ids.get(id) || null; }
   createElement(tag) { return new Element(this, tag); }
+  querySelectorAll(selector) {
+    const all = new Set(this.elements);
+    const visit = element => { all.add(element); for (const child of element.children) visit(child); };
+    for (const element of this.ids.values()) visit(element);
+    if (selector.startsWith("#")) return [...all].filter(element => element.attributes.id === selector.slice(1));
+    const matcher = new Element(this); matcher.children = [...all]; return matcher.querySelectorAll(selector);
+  }
+  querySelector(selector) { return this.querySelectorAll(selector)[0] || null; }
+  addEventListener(type, handler) { (this.listeners[type] ||= []).push(handler); }
+  fire(type, properties = {}) {
+    const event = { target: this, currentTarget: this, defaultPrevented: false,
+      preventDefault() { this.defaultPrevented = true; }, stopPropagation() {}, ...properties };
+    for (const handler of this.listeners[type] || []) handler(event); return event;
+  }
 }
 function baseState() { return E.create(90, "burial", 0, null, "hunter-pistol", "center", { campaign: true }); }
 function mission(chapter = 1, overrides = {}) {
@@ -103,6 +136,7 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
     getItem: (key) => storage.get(key) || null, setItem: (key, value) => storage.set(key, value),
   }, Blob, URL, setTimeout() {}, console });
   if (options.realInventory) vm.runInContext(fs.readFileSync(path.join(root, "inventory.js"), "utf8"), context);
+  if (fs.existsSync(path.join(root, "hunt-shell.js"))) vm.runInContext(fs.readFileSync(path.join(root, "hunt-shell.js"), "utf8"), context);
   vm.runInContext(fs.readFileSync(path.join(root, "hunt-app.js"), "utf8"), context);
   return { document, commands, storage, imports, creates,
     el: (id) => document.getElementById(id),

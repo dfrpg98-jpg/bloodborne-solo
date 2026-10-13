@@ -13,7 +13,7 @@ REFERENCE_PHOTOS = {
     '참고자료/화기/20261011_230950.jpg',
     '참고자료/화기/20261011_231000.jpg',
 }
-IGNORED_PARTS = {'.git', 'node_modules', '__pycache__', '.pytest_cache'}
+IGNORED_PARTS = {'.git', 'node_modules', '__pycache__', '.pytest_cache', 'qa-fixtures'}
 
 def included(relative):
     p = Path(relative)
