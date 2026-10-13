@@ -1,0 +1,245 @@
+{
+  "destination": "C:\\Users\\GOOD\\Documents\\Codex\\bloodborne-solo",
+  "runtimeVersion": "0.8.12",
+  "tags": [
+    {
+      "version": "0.6.0",
+      "tag": "v0.6.0",
+      "commit": "7cb27c0b3ca7a4d7b8e95655c3be619c095fcd83",
+      "files": 176,
+      "bytes": 2845964,
+      "manifestSha256": "cadc3f1bd249963d2e9815f857c2c51aa19b4425a8978d1eb37e1d048975dfe7",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.6.1",
+      "tag": "v0.6.1",
+      "commit": "07c378c4f48318f1baf65d3f376af1225c578ea3",
+      "files": 204,
+      "bytes": 3024695,
+      "manifestSha256": "0f513622fc5378a37c31eed1ff460352aabf030a11e648c9e50547a8232041e7",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.6.2",
+      "tag": "v0.6.2",
+      "commit": "dac6c6d3309da89f8726acbd4252ffd4ad8ea293",
+      "files": 209,
+      "bytes": 3198718,
+      "manifestSha256": "fa640785c09b62c9dfc4b6482bce2f745b44c7eea4e9d5175b465e42c0efcf50",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.7.0",
+      "tag": "v0.7.0",
+      "commit": "8004310fdb87796b705cf8003309a64340352958",
+      "files": 215,
+      "bytes": 3364836,
+      "manifestSha256": "16f8704f68021fde9972a5a14514a3bf04614a1efd55f0a46430e827e4569882",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.7.1",
+      "tag": "v0.7.1",
+      "commit": "a3f43620fc18d8f3aa2ed8545bedd1b5bae43926",
+      "files": 232,
+      "bytes": 3602472,
+      "manifestSha256": "ffc6e6b629f86d7bacb81c40bf6fca5d09f48cc4d91b99ae00226901cdc7070a",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.7.2",
+      "tag": "v0.7.2",
+      "commit": "fbb14eb4fa46dd25bb02e82cd132f5345cbc926b",
+      "files": 256,
+      "bytes": 4020168,
+      "manifestSha256": "82419d923d5de384b9ecd896da841e23e3a98dfa2f85f55e49fe7731176defdc",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.7.3",
+      "tag": "v0.7.3",
+      "commit": "1353865bc737df98937f786f9703b960b1b2943d",
+      "files": 261,
+      "bytes": 4157827,
+      "manifestSha256": "dbdca8e53dcb7dff2d14c838993d1160d4f0fa79ddd9e9f32e8c98902949e8db",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.7.4",
+      "tag": "v0.7.4",
+      "commit": "dbdfba87320f0392032247a25a252a1fdfeef504",
+      "files": 334,
+      "bytes": 4876213,
+      "manifestSha256": "1e4522e4c36be46221f0be4eb5fb07cf2a2d1659afa146d594c76c6431b80a38",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.7.5",
+      "tag": "v0.7.5",
+      "commit": "a033bbe75b6a0150e86047b03b7b9f213e6fcd9d",
+      "files": 346,
+      "bytes": 5125121,
+      "manifestSha256": "32a2cf75fd25f345a3f08499e5a5e27d9e9608327f7651537d56b5c9a464bd33",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.7.6",
+      "tag": "v0.7.6",
+      "commit": "4f252e3fb282682564073d1df755f77e5857e707",
+      "files": 350,
+      "bytes": 5145694,
+      "manifestSha256": "bab386257de017fd87183fa5ebf962f54d36950700d4e2ac730713345667f9c0",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.7.7",
+      "tag": "v0.7.7",
+      "commit": "5e33a6d2f6429941a023b54560368482672d23f0",
+      "files": 355,
+      "bytes": 5194712,
+      "manifestSha256": "d71ced2fe77e47e8e75e452d83d977488a1eec4f51e0d5ed791f884e898d3e07",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.7.8",
+      "tag": "v0.7.8",
+      "commit": "f3264d8360d4fcde9c90fa03271352d66d10f5a7",
+      "files": 362,
+      "bytes": 5215643,
+      "manifestSha256": "2ebb201d4a1d2f07d9566fb55302ffbbac49a3486a0871a44e18efe45c3e62a2",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.7.9",
+      "tag": "v0.7.9",
+      "commit": "fec78cbec899aae86ad4f458ab6f1e22f17c17cf",
+      "files": 366,
+      "bytes": 5256095,
+      "manifestSha256": "08255fb682461fe91d02a7cd0ff98ef57ca97c860d334202dfd34aa313552218",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.8.0",
+      "tag": "v0.8.0",
+      "commit": "b733e974f28eab4ccb7f99067566ae927e28248b",
+      "files": 371,
+      "bytes": 5327656,
+      "manifestSha256": "10c964b917d6435375fa5fb63f4867efb0a8871032a0de81fa3a8426b7c3fcc7",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.8.1",
+      "tag": "v0.8.1",
+      "commit": "6ad086cc236a603dc213d86bdaac4423e270fdfe",
+      "files": 382,
+      "bytes": 6790092,
+      "manifestSha256": "636ad384320732a06d37fdbb63d38604fcb86f27b29bcced6cff4fe2e1afe329",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.8.2",
+      "tag": "v0.8.2",
+      "commit": "e0d1c3aa5280866f1774eaa7d60b46b715a9e9ad",
+      "files": 404,
+      "bytes": 15844350,
+      "manifestSha256": "69226b3b84736820880f717948345d55bd03825b6a195cf5d961e1d7aa66c129",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.8.3",
+      "tag": "v0.8.3",
+      "commit": "876b0234190c1e974ebd761525e96a7a8c577a2b",
+      "files": 477,
+      "bytes": 88837540,
+      "manifestSha256": "b9974e692761fe0215cd2f4782e12f262f82c541ccb07baf6c7bae878a36fb94",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.8.4",
+      "tag": "v0.8.4",
+      "commit": "e7979d2a870b7b78ab54fcaf787e59e91c9430c3",
+      "files": 520,
+      "bytes": 59365687,
+      "manifestSha256": "9f84d707cc60e18051c60ee228b6bfc6b578affea59e95eea5c0e0c568228f34",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.8.5",
+      "tag": "v0.8.5",
+      "commit": "c48846e0cfcdb795fc66d02fea96999b5a937445",
+      "files": 487,
+      "bytes": 88854877,
+      "manifestSha256": "5483c44cb36d2c3b6e1dca647701e37933ff10ba78f7930df1004b50e0fea95c",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.8.6",
+      "tag": "v0.8.6",
+      "commit": "26bcc308346126f2521a3306991310bced8e98fe",
+      "files": 488,
+      "bytes": 88869372,
+      "manifestSha256": "d0fb794b8d94cd897527fd1a56aea37f941793418748e68cd2e38be55f3b196f",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.8.7",
+      "tag": "v0.8.7",
+      "commit": "b83eaa8a268a1875ac538a9fec2a57866ec0caac",
+      "files": 489,
+      "bytes": 88896901,
+      "manifestSha256": "3a47abb9417caaf855e32cba3e67e7f6df54ed23ebac6947d3620cfa2c605334",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.8.8",
+      "tag": "v0.8.8",
+      "commit": "27ad6bc016486d868f1a29c01826d107148e535d",
+      "files": 489,
+      "bytes": 88896361,
+      "manifestSha256": "2cc54b8bbc5fde5dd77fa74646c9db5ea6d1b63640d92867d7e8db7cbc1fe0d2",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.8.9",
+      "tag": "v0.8.9",
+      "commit": "2e4d52245d48feff74c325b7d12d997ae3d456bd",
+      "files": 494,
+      "bytes": 88938187,
+      "manifestSha256": "1a4f8706e993291a7a5d928c501ddad7a6aa9457073f4260ff6267754e5e96a8",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.8.10",
+      "tag": "v0.8.10",
+      "commit": "1e291d5b29240500fdfa94e2a3d1fac69a7e36bc",
+      "files": 504,
+      "bytes": 93469190,
+      "manifestSha256": "446ee85846b015deb386f3bbe3489b9bbf3f43b524c105e6a2a9b021a0cd3227",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.8.11",
+      "tag": "v0.8.11",
+      "commit": "c54d0946f376c0bd8a7f4a4bf02a465bd64266e7",
+      "files": 506,
+      "bytes": 93487613,
+      "manifestSha256": "8e49766c233b4bb059c216c76d09c83cf68433a222423be2990a1b8a8c227e7d",
+      "referencePhotosIncluded": false
+    },
+    {
+      "version": "0.8.12",
+      "tag": "v0.8.12",
+      "commit": "4b8df3b295eee300b4683e508a937d51d02e7218",
+      "files": 509,
+      "bytes": 93515415,
+      "manifestSha256": "c5fb537026695d0eb20d4db82f245e954584a55d11df1b4b3ac5027b6c2a532a",
+      "referencePhotosIncluded": false
+    }
+  ],
+  "currentFiles": 510,
+  "currentCommit": "3d749d4302068ed8f1dcf4929dd205efda4a11fe",
+  "liveModified": false,
+  "sourcePhotosUploaded": false,
+  "originalCommitHistoryExisted": false
+}

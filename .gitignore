@@ -1,0 +1,30 @@
+# Supplied reference originals stay in the local source archive.
+/참고자료/
+/components/images/
+/campaigns/long-hunt/images/
+
+# Generated builds and checks.
+/outputs/
+/work/
+/dist/
+/test-results/
+/qa-fixtures*/
+/qa-load.html
+*.zip
+*.log
+*.tap
+__pycache__/
+*.pyc
+node_modules/
+
+# Local settings and credentials.
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+
+# Exported player progress is kept outside the repository.
+/save*.json
+/bloodborne-hunt-save*.json
+/bloodborne-hunt-qa*.json

@@ -1,0 +1,14 @@
+{
+  "tests": 26,
+  "pass": 26,
+  "fail": 0,
+  "skipped": 0,
+  "cancelled": 0,
+  "exitCode": 0,
+  "seconds": 1.86,
+  "files": [
+    "tests/map-render-layout-v0810.test.cjs",
+    "tests/map-scene-v0810.test.cjs"
+  ],
+  "scope": "Exact source marker placement, named logical nodes, rotated tiles, survivors and real public UI scenes"
+}

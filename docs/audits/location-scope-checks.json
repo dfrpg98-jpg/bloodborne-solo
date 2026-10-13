@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-13",
+  "tests": 28,
+  "pass": 28,
+  "fail": 0,
+  "skipped": 0,
+  "cancelled": 0,
+  "exitCode": 0,
+  "execution": "node --test tests/mission-location-scope-v0813.test.cjs",
+  "executionEvidence": "Direct exec_command tool result: 28 tests, 28 pass, 0 fail, duration_ms 539.0046",
+  "testFile": "tests/mission-location-scope-v0813.test.cjs",
+  "testSha256": "888e7abb008227db39239fbcd43e999cc7942125ce9eb8a3b6ad37412433fc7a",
+  "newAdjudicationTests": 9,
+  "adjudicatedCards": [
+    18,
+    21,
+    41
+  ],
+  "scope": "tile",
+  "officialConfirmed": false,
+  "authority": "direct user answer",
+  "runtimeChanges": []
+}

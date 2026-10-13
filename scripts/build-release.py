@@ -19,7 +19,8 @@ def included(relative):
     p = Path(relative)
     rel = p.as_posix()
     if any(part in IGNORED_PARTS for part in p.parts): return False
-    if p.parts[0] == '참고자료': return False
+    if p.parts[0] in {'참고자료', '.github', 'docs', 'test-results', 'dist', 'outputs', 'work'}: return False
+    if rel in {'README.md', 'CHANGELOG.md', 'CONTRIBUTING.md', '.gitignore', '.gitattributes', 'scripts/test-ci.cjs'}: return False
     if rel == 'qa-load.html' or p.suffix.lower() in {'.zip', '.pyc'}: return False
     if rel.startswith('campaigns/long-hunt/images/'): return False
     if rel.startswith('components/images/'): return False

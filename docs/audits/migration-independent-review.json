@@ -1,0 +1,107 @@
+{
+  "reviewDate": "2026-10-13",
+  "runtimeVersion": "0.8.12",
+  "localBaseline": {
+    "nodeVersion": "v24.19.0",
+    "testFiles": 85,
+    "tests": 2290,
+    "pass": 2290,
+    "fail": 0,
+    "skipped": 0,
+    "durationSeconds": 380.65,
+    "referencePhotos": "local originals included",
+    "evidence": "local-full-test.json"
+  },
+  "migrationSourceComparison": {
+    "filesExpected": 510,
+    "missing": [],
+    "differences": [
+      "scripts/build-release.py"
+    ],
+    "differencePurpose": "Exclude GitHub management documents and generated CI output from offline game packages",
+    "gameplayRuntimeChanged": false,
+    "rawSourcePhotoDirectoriesPresent": [],
+    "largestRuntimeFile": {
+      "path": "assets/characters/w-beast-claw-b-v0810.png",
+      "bytes": 2750626
+    }
+  },
+  "releaseFilter": {
+    "samplesVerified": 17,
+    "allPass": true,
+    "retains": [
+      "hunt-engine.js",
+      "assets/characters/hunter.png",
+      "tests/mission-location-scope-v0813.test.cjs"
+    ],
+    "excludes": [
+      "docs/decisions.md",
+      ".github/workflows/ci.yml",
+      "test-results/ci.json",
+      "work/foo.txt",
+      "outputs/foo.json",
+      "scripts/test-ci.cjs",
+      "README.md",
+      "CHANGELOG.md",
+      ".gitignore",
+      "campaigns/long-hunt/images/card-01.jpg",
+      "components/images/20261011_230854.jpg",
+      "참고자료/boss_cleric-beast.png",
+      ".gitattributes",
+      "CONTRIBUTING.md"
+    ]
+  },
+  "portability": {
+    "nodeVersion": "24",
+    "ciRunner": "windows-latest",
+    "linuxValidated": false,
+    "thirdPartyNpmInstallRequired": false,
+    "referenceRootOverrideAlreadySupported": "tests/helpers/reference-source.cjs",
+    "absoluteLocalMetadataPaths": "Historical source provenance only; not used to load game runtime",
+    "oldDocumentationSuperseded": [
+      "README.txt",
+      "DEVELOPMENT.md"
+    ]
+  },
+  "actionVersions": {
+    "checkout": "v7",
+    "setup-node": "v7",
+    "upload-artifact": "v7",
+    "verifiedOfficialSources": [
+      "https://github.com/actions/checkout",
+      "https://github.com/actions/setup-node",
+      "https://github.com/actions/upload-artifact"
+    ]
+  },
+  "photoFreeCI": {
+    "status": "passed",
+    "command": "node scripts/test-ci.cjs",
+    "evidence": "test-results/ci.json",
+    "log": "test-results/ci.tap",
+    "fullSuiteExecutedAgainstMigratedCheckout": true,
+    "testFileCount": 85,
+    "sourcePhotoTestsExcluded": [
+      "campaign covers all 67 ordered sources and 60 numbered cards with images",
+      "reference data preserves printed terminology with the confirmed enemy alias and six enemy sides",
+      "default v0.3 state remains without optional firearm fields and photo confirmation retains raw text",
+      "supplied component photos retain their exact bytes, hashes and card provenance"
+    ],
+    "durationSeconds": 373.04,
+    "nodeVersion": "v24.19.0",
+    "runtimeVersion": "0.8.12",
+    "exitCode": 0,
+    "counts": {
+      "tests": 2286,
+      "suites": 0,
+      "pass": 2286,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "failedSubtests": [],
+    "evidenceSha256": "634c615607dca2b4800c7f366ce289a038b80ffaed5cacb9969b3eef345bd37c",
+    "logSha256": "55be9d27539d4ff670c7fa642570be72ec46ecc93c39fbb86b48ecb4d8c8f782",
+    "githubActionsExecutedRemotely": false
+  }
+}
