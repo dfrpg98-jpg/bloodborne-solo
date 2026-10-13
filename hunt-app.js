@@ -1220,7 +1220,7 @@
           ...(state.setup.rulesVersion >= 11 && selectedRewards.size ? { rewardIds: [...selectedRewards] } : {}),
           ...(Object.hasOwn(actionArgs, "weaponBoost") ? { weaponBoost: actionArgs.weaponBoost } : {}) } : {}) };
     };
-    box.innerHTML = `<div class="context-heading"><div><p class="eyebrow">선택한 대상</p><h3>${esc(view.title)}</h3></div><button id="clearMapTarget" type="button" aria-label="대상 선택 닫기">×</button></div>${view.hint ? `<p class="context-hint">${esc(view.hint)}</p>` : ""}<div class="context-actions">${actions.map((action, index) => {
+    box.innerHTML = `<div class="context-heading"><div><p class="eyebrow">선택한 대상</p><h3>${esc(mapTarget.objectName || view.title)}</h3></div><button id="clearMapTarget" type="button" aria-label="대상 선택 닫기">×</button></div>${view.hint ? `<p class="context-hint">${esc(view.hint)}</p>` : ""}<div class="context-actions">${actions.map((action, index) => {
       const c = command(action), { type, ...args } = c || {};
       const selfCost = ["ATTACK", "COUNTER", "FIREARM"].includes(type) && actionArgs.weaponBoost && actionArgs.weaponBoost !== "none"
         ? ` · 자기 피해 ${typeof actionArgs.weaponBoost === "number" ? actionArgs.weaponBoost : 1}` : "";
@@ -1304,12 +1304,47 @@
     $("enemyRoster").querySelectorAll("button").forEach(button => button.onclick = () => openEnemyDetail(button));
   }
   const G = window.BBTileGeometry;
+  function mapScene(p, ghost, mission, h) {
+    if (ghost) return [];
+    const prefix = p.tileId + ":", tokens = (mission?.tokens || []).map(token => ({
+      ...token, node: token.carrierId === state.activeHunterId && !h.inDream ? h.position : token.node,
+    })).filter(token => token.node?.startsWith(prefix));
+    const carried = mission?.counters?.find(counter => counter.id === "survivors-held");
+    if (carried?.value > 0 && !h.inDream && h.position?.startsWith(prefix))
+      tokens.push({ id: "survivors-held", node: h.position, name: "구조한 생존자", count: carried.value });
+    return window.BBMapRenderLayout.layout({ tileId: p.tileId, rotation: p.rotation,
+      enemies: state.enemies.filter(enemy => enemy.node.startsWith(prefix)).map(enemy => {
+        const markers = G.definition(p.tileId).markers.filter(marker => `${p.tileId}:${marker.spaceId}` === enemy.node),
+          assigned = state.world.assignments.find(assignment => assignment.enemyId === enemy.kind)?.marker,
+          lamp = enemy.missionId && markers.some(marker => marker.kind === "lamp"),
+          spawn = markers.filter(marker => marker.kind === "spawn"),
+          markerId = enemy.missionId && !lamp && spawn.length === 1 ? spawn[0].markerId : assigned;
+        return { id: enemy.id, node: enemy.node, markerId,
+          ...(lamp ? { anchorKind: "lamp" } : {}),
+          ...(E.enemyDef(state, enemy).boss ? { visualWidth: 36, visualHeight: 40 } : {}),
+        };
+      }), hunter: !h.inDream && h.position?.startsWith(prefix) ? { id: "hunter", node: h.position } : null,
+      loot: state.loot.filter(node => node.startsWith(prefix)), tokens,
+    }).map(entry => entry.type === "token" ? { ...entry, token: tokens.find(token => token.id === entry.id) } : entry);
+  }
+  function mapObjectHTML(entry, fog) {
+    const broken = entry.type === "lamp" && fog,
+      name = entry.type === "lamp" ? broken ? "망가진 등불" : "등불"
+        : entry.type === "chest" ? "보물상자" : entry.token?.name || "생존자",
+      count = entry.type === "token" ? entry.token?.count || 1 : entry.count || 1,
+      file = entry.type === "lamp" ? broken ? "broken-lamp" : "lamp"
+        : entry.type === "chest" ? "chest" : "survivor",
+      compact = entry.crowded && entry.type === "token",
+      caption = entry.type === "token" || broken,
+      hint = entry.type === "chest" ? ` · 남은 소모품 ${count}` : count > 1 ? ` · ${count}명` : "";
+    return `<div class="map-scene-object object-${entry.type} ${compact ? "object-crowded" : ""}" data-layout-id="${esc(entry.id)}" style="left:${entry.x}%;top:${entry.y}%;--object-width:${entry.visualWidth}%"><button type="button" class="map-object ${broken ? "broken-lamp-label" : ""}" data-map-object="${entry.type}" data-map-object-id="${esc(entry.id)}" data-object-node="${esc(entry.node)}" data-object-name="${esc(name)}" aria-label="${esc(name + hint)} · 행동과 비용 보기" title="${esc(name + hint)}${broken ? " · 사용 및 꿈 복귀 불가" : ""}"><img src="assets/objects/${file}.svg" alt="" draggable="false">${caption ? `<span class="map-object-caption">${esc(name)}${count > 1 ? ` ${count}` : ""}</span>` : count > 1 ? `<span class="map-object-count">${count}</span>` : ""}</button></div>`;
+  }
   function tileHTML(p, ghost = false) {
     const def = M.tile(p.tileId), h = E.hunter(state),
       reachable = E.neighbors(state, h.position), mission = missionView(),
       currentTile = E.node(state, h.position)?.tile,
       currentFog = !!mission?.fog.includes(currentTile),
-      fog = !ghost && !!mission?.fog.includes(p.tileId);
+      fog = !ghost && !!mission?.fog.includes(p.tileId), scene = mapScene(p, ghost, mission, h);
     return `<div class="tile-cell ${ghost ? "ghost" : ""} ${fog ? "fog-tile" : ""}" data-tile="${p.tileId}"><img class="tile-diagram" src="${G.image(p.tileId)}" alt="" style="transform:rotate(${p.rotation * 90}deg)"><div class="tile-name"><span class="tile-label">${esc(def.displayName)}</span>${ghost || fog ? `<span>${ghost ? "미리보기" : "안개"}</span>` : ""}</div>${def.spaces.map((n) => {
       const id = `${p.tileId}:${n.id}`, [x, y] = G.point(p.tileId, n.id, p.rotation),
         outline = G.polygon(p.tileId, n.id, p.rotation),
@@ -1321,23 +1356,17 @@
         reach = !ghost && state.phase === "move" && reachable.includes(id) && (!currentFog || p.tileId === currentTile),
         loot = ghost ? 0 : state.loot.filter((l) => l === id).length,
         figures = ghost ? [] : state.enemies.filter((f) => f.node === id),
-        tokens = ghost ? [] : (mission?.tokens || []).filter((t) => t.node === id || (t.carrierId === state.activeHunterId && here)),
         brokenLamp = fog && n.icons.some(icon => icon.kind === "lamp"),
-        lampOccupied = n.icons.some(icon => icon.kind === "lamp") && figures.some(enemy => enemy.missionId),
-        hunterX = lampOccupied ? Math.min(85, localX + 30) : localX;
-      const status = `${here ? '<span class="hunter-map-marker">● 사냥꾼</span>' : ""}${brokenLamp ? '<small class="broken-lamp-label">망가진 등불</small>' : ""}${loot ? `<small>◇ 남은 소모품 ${loot}</small>` : ""}${tokens.map((t) => `<small class="map-mission-token">◆ ${esc(t.name)}</small>`).join("")}`;
-      return `<button class="space diagram-space ${here ? "here" : ""} ${reach ? "reachable" : ""} ${mapTarget?.kind === "cell" && mapTarget.node === id ? "context-selected" : ""} ${ghost ? "ghost-space" : ""}" style="left:${left}%;top:${top}%;width:${width}%;height:${height}%;clip-path:polygon(${polygon})" data-node="${esc(id)}" aria-pressed="${mapTarget?.kind === "cell" && mapTarget.node === id}" ${ghost ? "disabled" : ""} aria-label="${esc(n.placeName || n.label)}${brokenLamp ? " · 망가진 등불" : ""}${here ? " · 사냥꾼" : ""}${loot ? " · 소모품 " + loot : ""}${figures.length ? " · 적 " + figures.length : ""}" title="${esc(n.placeName || n.label)}${brokenLamp ? " · 망가진 등불 · 사용 및 꿈 복귀 불가" : ""}">${brokenLamp ? `<span class="broken-lamp-marker" style="left:${localX}%;top:${localY}%" aria-hidden="true">×</span>` : ""}<span class="node-anchor" data-node-anchor="${esc(id)}" style="left:${localX}%;top:${localY}%" aria-hidden="true"></span>${here && !h.inDream ? `<span class="hunter-anchor" data-presentation-id="hunter" data-presentation-kind="hunter" data-presentation-node="${esc(id)}" data-presentation-skin="${esc(hunterVisual().skin)}" style="left:${hunterX}%;top:${localY}%" aria-hidden="true"></span>` : ""}<span class="space-status" style="left:${localX}%;top:${Math.min(90,localY+10)}%">${status}</span></button>`;
-    }).join("")}${ghost ? "" : def.spaces.map((space) => {
-      const node = `${p.tileId}:${space.id}`, figures = state.enemies.filter((enemy) => enemy.node === node);
-      if (!figures.length) return "";
-      const lampMarker = figures.some(enemy => enemy.missionId) && G.definition(p.tileId).markers.find(marker => marker.spaceId === space.id && marker.kind === "lamp"),
-        [x, y] = lampMarker ? G.rotatePoint(lampMarker.point, p.rotation) : G.point(p.tileId, space.id, p.rotation);
-      return `<div class="map-figures ${lampMarker ? "lamp-figures" : ""}" style="left:${x}%;top:${lampMarker ? y : Math.min(82, y + 18)}%">${figures.map((enemy) => {
-        const assigned = state.world.assignments.find((assignment) => assignment.enemyId === enemy.kind), d = E.enemyDef(state, enemy),
-          marker = enemy.missionId || enemy.provisionalKind || enemy.componentId || !assigned ? "★" : ["①", "②", "③"][assigned.slot - 1],
-          insight = window.BBHuntContext?.enemyInsightTokens(state, enemy), tokenLabel = Number.isFinite(insight) ? ` · 계몽 토큰 ${insight}개` : "";
-        return `<button type="button" class="map-figure ${selectedEnemy === enemy.id ? "selected" : ""}" data-enemy="${esc(enemy.id)}" data-presentation-id="${esc(enemy.id)}" data-presentation-kind="enemy" data-presentation-node="${esc(node)}" data-presentation-skin="${characterSkin(enemy)}" aria-pressed="${selectedEnemy === enemy.id}" aria-label="${esc(d.name)} ${enemy.figure}번 · 체력 ${enemy.hp}${tokenLabel} · 대상 선택" title="${esc(d.name)} · 체력 ${enemy.hp}/${d.maxHp}${tokenLabel}" style="--marker:${colors[assigned?.marker] || colors.gold}">${marker}<small>${enemy.figure}</small>${Number.isFinite(insight) ? `<span class="enemy-insight-badge" aria-hidden="true">◇ ${insight}</span>` : ""}</button>`;
-      }).join("")}</div>`;
+        hunter = scene.find(entry => entry.type === "hunter" && entry.node === id),
+        hunterX = hunter ? (hunter.x-left)/width*100 : localX,
+        hunterY = hunter ? (hunter.y-top)/height*100 : localY;
+      return `<button class="space diagram-space ${here ? "here" : ""} ${reach ? "reachable" : ""} ${mapTarget?.kind === "cell" && mapTarget.node === id ? "context-selected" : ""} ${ghost ? "ghost-space" : ""}" style="left:${left}%;top:${top}%;width:${width}%;height:${height}%;clip-path:polygon(${polygon})" data-node="${esc(id)}" aria-pressed="${mapTarget?.kind === "cell" && mapTarget.node === id}" ${ghost ? "disabled" : ""} aria-label="${esc(n.placeName || n.label)}${brokenLamp ? " · 망가진 등불" : ""}${here ? " · 사냥꾼" : ""}${loot ? " · 소모품 " + loot : ""}${figures.length ? " · 적 " + figures.length : ""}" title="${esc(n.placeName || n.label)}${brokenLamp ? " · 망가진 등불 · 사용 및 꿈 복귀 불가" : ""}"><span class="node-anchor" data-node-anchor="${esc(id)}" style="left:${localX}%;top:${localY}%" aria-hidden="true"></span>${hunter ? `<span class="hunter-anchor" data-layout-id="hunter" data-presentation-id="hunter" data-presentation-kind="hunter" data-presentation-node="${esc(id)}" data-presentation-skin="${esc(hunterVisual().skin)}" style="left:${hunterX}%;top:${hunterY}%" aria-hidden="true"></span>` : ""}${here ? `<span class="space-status" style="left:${hunterX}%;top:${Math.min(95,hunterY+10)}%"><span class="hunter-map-marker">● 사냥꾼</span></span>` : ""}</button>`;
+    }).join("")}${scene.filter(entry => ["lamp", "chest", "token"].includes(entry.type)).map(entry => mapObjectHTML(entry, fog)).join("")}${scene.filter(entry => entry.type === "enemy").map(entry => {
+      const enemy = state.enemies.find(enemy => enemy.id === entry.id),
+        assigned = state.world.assignments.find(assignment => assignment.enemyId === enemy.kind), d = E.enemyDef(state, enemy),
+        marker = enemy.missionId || enemy.provisionalKind || enemy.componentId || !assigned ? "★" : ["●", "▲", "■"][assigned.slot - 1],
+        insight = window.BBHuntContext?.enemyInsightTokens(state, enemy), tokenLabel = Number.isFinite(insight) ? ` · 계몽 토큰 ${insight}개` : "";
+      return `<div class="map-figures scene-figure ${entry.anchorKind === "lamp" ? "lamp-figures" : ""}" data-layout-id="${esc(entry.id)}" style="left:${entry.x}%;top:${entry.y}%"><button type="button" class="map-figure ${selectedEnemy === enemy.id ? "selected" : ""}" data-enemy="${esc(enemy.id)}" data-presentation-id="${esc(enemy.id)}" data-presentation-kind="enemy" data-presentation-node="${esc(entry.node)}" data-presentation-skin="${characterSkin(enemy)}" aria-pressed="${selectedEnemy === enemy.id}" aria-label="${esc(d.name)} ${enemy.figure}번 · 체력 ${enemy.hp}${tokenLabel} · 대상 선택" title="${esc(d.name)} · 체력 ${enemy.hp}/${d.maxHp}${tokenLabel}" style="--marker:${colors[assigned?.marker] || colors.gold}">${marker}<small>${enemy.figure}</small>${Number.isFinite(insight) ? `<span class="enemy-insight-badge" aria-hidden="true">✧ ${insight}</span>` : ""}</button></div>`;
     }).join("")}${ghost ? "" : gateHTML(p)}</div>`;
   }
   function gateHTML(p) {
@@ -1404,6 +1433,10 @@
     mapColumns = maxX - minX + 1;
     resizeMap();
     $("chapterMap").innerHTML = html;
+    if (mapTarget?.objectId && ![...$("chapterMap").querySelectorAll("[data-map-object-id]")]
+        .some(object => object.dataset.mapObjectId === mapTarget.objectId && object.dataset.objectNode === mapTarget.node)) {
+      delete mapTarget.objectId; delete mapTarget.objectKind; delete mapTarget.objectName;
+    }
     bind($("chapterMap"));
     bindMapTargets();
     bindEnemyTargets($("chapterMap"));
@@ -1452,6 +1485,14 @@
     });
   }
   function bindMapTargets() {
+    $("chapterMap").querySelectorAll("[data-map-object]").forEach(b => {
+      b.onclick = () => {
+        mapTarget = { kind: "cell", node: b.dataset.objectNode, objectKind: b.dataset.mapObject,
+          objectName: b.dataset.objectName, objectId: b.dataset.mapObjectId };
+        renderMap(); renderDecisions(); syncPresentation();
+        $("mapContext")?.focus();
+      };
+    });
     $("chapterMap").querySelectorAll("[data-node]").forEach((b) => {
       b.onclick = () => {
         if (b.disabled) return;

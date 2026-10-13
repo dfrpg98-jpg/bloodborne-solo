@@ -19,6 +19,13 @@ const frames = {
   'attack-1': [10, 11, 12, 13], 'attack-2': [14, 15, 16, 17],
   hit: [18, 19], death: [20, 21], transform: [22, 23],
 };
+const clawBFrames = {
+  idle: [0, 1], walk: [2, 3, 4, 5], 'attack-0': [6, 7, 8, 9],
+  'attack-1': [10, 12, 13, 19], 'attack-2': [14, 16, 17, 18],
+  hit: [20], death: [21, 22], transform: [23],
+};
+const retakenClaw = (key, m) => key === 'w-beast-claw-b' &&
+  m.path === 'assets/characters/w-beast-claw-b-v0810.png';
 const hash = raw => crypto.createHash('sha256').update(raw).digest('hex');
 const entries = () => Object.entries(metadata);
 
@@ -80,8 +87,14 @@ test('all fifteen weapons own both form-specific sheets with reciprocal pairing'
 
 test('generated PNG signatures, RGBA headers, dimensions and source hashes match deployed bytes', () => {
   for (const [key, m] of entries()) {
-    assert.match(m.path, /^assets\/characters\/w-[a-z-]+\.png$/);
-    assert.match(m.atlasPath, /^assets\/characters\/w-[a-z-]+\.atlas\.json$/);
+    if (retakenClaw(key, m)) {
+      assert.equal(m.path, 'assets/characters/w-beast-claw-b-v0810.png');
+      assert.equal(m.atlasPath, 'assets/characters/w-beast-claw-b-v0810.atlas.json');
+    } else {
+      // Versioned path support is scoped to this inspected replacement only.
+      assert.match(m.path, /^assets\/characters\/w-[a-z-]+\.png$/);
+      assert.match(m.atlasPath, /^assets\/characters\/w-[a-z-]+\.atlas\.json$/);
+    }
     const raw = fs.readFileSync(path.join(base, m.path));
     assert.deepEqual([...raw.subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10], key);
     assert.equal(raw.subarray(12, 16).toString('ascii'), 'IHDR', key);
@@ -109,7 +122,13 @@ test('every atlas owns 24 isolated poses within the raw sheet and common foot ba
     assert.equal(m.bodyNormalization.idleMeasurements.length, 2);
     const measured = m.displayHeight * m.bodyNormalization.measuredBodyHeight / 512;
     assert.ok(Math.abs(measured - m.bodyNormalization.estimatedVisibleHeight) < 0.01);
-    if (!m.bodyNormalization.clamped) assert.ok(Math.abs(measured - 75) < 0.01);
+    if (retakenClaw(key, m)) {
+      const master = m.bodyNormalization.appearanceMaster;
+      assert.equal(master.skin, 'w-beast-claw-a');
+      assert.equal(master.sha256, metadata['w-beast-claw-a'].sha256);
+      assert.ok(Math.abs(measured - master.estimatedVisibleHeight) < 0.01);
+      assert.ok(Math.abs(measured - 75) < 2, 'preserved A actual body height remains near nominal target');
+    } else if (!m.bodyNormalization.clamped) assert.ok(Math.abs(measured - 75) < 0.01);
     const atlas = m.atlasData;
     assert.equal(atlas.meta.analysis.foregroundPoseCount, 24);
     assert.equal(atlas.meta.analysis.foreignPosePixels, 0);
@@ -194,7 +213,7 @@ test('idle, walk, three attacks, hurt, defeat and transformation occupy distinct
   for (const [key, m] of entries()) {
     assert.deepEqual(Object.keys(m.animations).sort(), Object.keys(frames).sort(), key);
     const used = [];
-    for (const [name, expected] of Object.entries(frames)) {
+    for (const [name, expected] of Object.entries(retakenClaw(key, m) ? clawBFrames : frames)) {
       const a = m.animations[name];
       assert.deepEqual(a.frames, expected, `${key}/${name}`);
       assert.ok(Number.isFinite(a.frameRate) && a.frameRate > 0 && a.frameRate <= 30);
@@ -209,7 +228,10 @@ test('idle, walk, three attacks, hurt, defeat and transformation occupy distinct
       }
       used.push(...a.frames);
     }
-    assert.equal(new Set(used).size, 24, `${key}: every state owns its own poses`);
+    if (retakenClaw(key, m)) {
+      assert.equal(new Set(used).size, 22, 'inspected B banks use all poses except two unused recovery alternatives');
+      assert.deepEqual(Array.from({length: 24}, (_, i) => i).filter(i => !used.includes(i)), [11, 15]);
+    } else assert.equal(new Set(used).size, 24, `${key}: every state owns its own poses`);
   }
 });
 
@@ -244,4 +266,36 @@ test('runtime asset paths reference only new artwork and source photos are prove
       assert.deepEqual(Object.keys(r).sort(), ['filename', 'sha256']);
     }
   }
+});
+
+
+test('retaken beast-claw B follows inspected poses and matches preserved A actual head-to-sole scale', () => {
+  const a = metadata['w-beast-claw-a'], b = metadata['w-beast-claw-b'];
+  assert.ok(retakenClaw('w-beast-claw-b', b));
+  assert.equal(b.provenance.appearanceMasterFilename, 'w-beast-claw-a.png');
+  assert.equal(b.provenance.appearanceMasterSha256, a.sha256);
+  assert.equal(b.sha256, 'b1e6e0f34c674f27e417f2cb5eecdb651fdc45ee8025f8d08cefd01c3f1d91c2');
+  assert.equal(b.provenance.sourceFilename, 'exec-de719f64-fb04-4f09-801a-ab308d833709.png');
+  assert.equal(b.provenance.promptSha256, '78eae9a8389f79fd6fb5edba58cb0faa1034d5bf6c7beaabc3e0c0ee6544a6f7');
+  for (const [pose, expected] of Object.entries(clawBFrames)) assert.deepEqual(b.animations[pose].frames, expected, pose);
+  const height = m => {
+    const {width, alpha} = readPngAlpha(fs.readFileSync(path.join(base, m.path)));
+    return [0, 1].reduce((sum, index) => {
+      const f = m.atlasData.frames[String(index)].frame;
+      let top = Infinity, bottom = -Infinity;
+      for (let y = f.y; y < f.y + f.h; y++) for (let x = f.x; x < f.x + f.w; x++) {
+        if (alpha[y * width + x] > 16) { top = Math.min(top, y); bottom = Math.max(bottom, y + 1); }
+      }
+      assert.ok(Number.isFinite(top) && bottom > top);
+      return sum + bottom - top;
+    }, 0) / 2;
+  };
+  const actualA = height(a), actualB = height(b);
+  const visibleA = actualA * a.displayHeight / a.frameHeight;
+  const visibleB = actualB * b.displayHeight / b.frameHeight;
+  assert.ok(Math.abs(visibleA - visibleB) <= 2, `paired body heights ${visibleA} / ${visibleB} stay within 2px`);
+  assert.equal(b.bodyNormalization.measuredBodyHeight, actualB);
+  assert.equal(b.bodyNormalization.appearanceMaster.measuredBodyHeight, actualA);
+  assert.ok(Math.abs(visibleB - b.bodyNormalization.estimatedVisibleHeight) < 0.01);
+  assert.match(b.bodyNormalization.method, /^paired-A isolated idle alpha/);
 });

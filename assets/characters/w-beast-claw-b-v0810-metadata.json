@@ -1,0 +1,860 @@
+{
+  "dimensions": [
+    1024,
+    1536
+  ],
+  "alpha": [
+    0,
+    254
+  ],
+  "coreThreshold": 16,
+  "frameCount": 24,
+  "analysisMethod": "24 alpha connected components, spatial grid ownership; vector GeometryMask for contaminated trim rectangles; no raster editing",
+  "frames": [
+    {
+      "index": 0,
+      "gridCell": [
+        0,
+        0
+      ],
+      "coreBounds": [
+        53,
+        8,
+        218,
+        261
+      ],
+      "trimBounds": [
+        51,
+        6,
+        169,
+        257
+      ],
+      "coreAlphaPixels": 23496,
+      "posePixelsSha256": "1bc78f795e8e4685a8a9b2296a4f29d7fa1bdc0d1202a1115916e1217562d376",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 23496,
+        "maskRectCount": 0
+      }
+    },
+    {
+      "index": 1,
+      "gridCell": [
+        1,
+        0
+      ],
+      "coreBounds": [
+        305,
+        7,
+        467,
+        261
+      ],
+      "trimBounds": [
+        303,
+        5,
+        166,
+        258
+      ],
+      "coreAlphaPixels": 23493,
+      "posePixelsSha256": "d4452b1c3e1bee2321b4b1bba0e2da7e5de0305021581e26b3d2ccc45237ce76",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 23493,
+        "maskRectCount": 0
+      }
+    },
+    {
+      "index": 2,
+      "gridCell": [
+        2,
+        0
+      ],
+      "coreBounds": [
+        548,
+        8,
+        743,
+        261
+      ],
+      "trimBounds": [
+        546,
+        6,
+        199,
+        257
+      ],
+      "coreAlphaPixels": 25280,
+      "posePixelsSha256": "e1b151cf34e7ad5a315bff79db502c31f711b97c8b34428f736193a234af71d3",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 25280,
+        "maskRectCount": 0
+      }
+    },
+    {
+      "index": 3,
+      "gridCell": [
+        3,
+        0
+      ],
+      "coreBounds": [
+        802,
+        7,
+        997,
+        261
+      ],
+      "trimBounds": [
+        800,
+        5,
+        199,
+        258
+      ],
+      "coreAlphaPixels": 23917,
+      "posePixelsSha256": "238ac3eddebc76260b9169d421026c0212f520cb8623b13ea020ae84177a29ac",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 23917,
+        "maskRectCount": 0
+      }
+    },
+    {
+      "index": 4,
+      "gridCell": [
+        0,
+        1
+      ],
+      "coreBounds": [
+        42,
+        268,
+        226,
+        514
+      ],
+      "trimBounds": [
+        40,
+        266,
+        188,
+        250
+      ],
+      "coreAlphaPixels": 22051,
+      "posePixelsSha256": "942a86d9fdf599329f34bd34711c003d8b79178f4ee286f6128d04cd1acbf7ed",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 22051,
+        "maskRectCount": 0
+      }
+    },
+    {
+      "index": 5,
+      "gridCell": [
+        1,
+        1
+      ],
+      "coreBounds": [
+        295,
+        268,
+        479,
+        513
+      ],
+      "trimBounds": [
+        293,
+        266,
+        188,
+        249
+      ],
+      "coreAlphaPixels": 22417,
+      "posePixelsSha256": "af29501a32afd7e9b6ffc36ee12b118a6bf626ac65782074b6b4df1b440a65db",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 22417,
+        "maskRectCount": 0
+      }
+    },
+    {
+      "index": 6,
+      "gridCell": [
+        2,
+        1
+      ],
+      "coreBounds": [
+        541,
+        268,
+        757,
+        514
+      ],
+      "trimBounds": [
+        539,
+        266,
+        220,
+        250
+      ],
+      "coreAlphaPixels": 24623,
+      "posePixelsSha256": "1771f2ac842dfc68d5ef849838bdc5df2285e69bc068b0c01cf38f9fcb8b3242",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 24623,
+        "maskRectCount": 0
+      }
+    },
+    {
+      "index": 7,
+      "gridCell": [
+        3,
+        1
+      ],
+      "coreBounds": [
+        801,
+        269,
+        1012,
+        514
+      ],
+      "trimBounds": [
+        799,
+        267,
+        215,
+        249
+      ],
+      "coreAlphaPixels": 23617,
+      "posePixelsSha256": "f42c9bbafa0e7337fc62617dc5684019225e109df9322458957b019fe1742c34",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 23617,
+        "maskRectCount": 0
+      }
+    },
+    {
+      "index": 8,
+      "gridCell": [
+        0,
+        2
+      ],
+      "coreBounds": [
+        12,
+        527,
+        242,
+        759
+      ],
+      "trimBounds": [
+        10,
+        525,
+        234,
+        236
+      ],
+      "coreAlphaPixels": 27135,
+      "posePixelsSha256": "2b2af80f218219c6f96a3cac733e4ebb3e4572c331448febc337f07023ee3493",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 27135,
+        "maskRectCount": 0
+      }
+    },
+    {
+      "index": 9,
+      "gridCell": [
+        1,
+        2
+      ],
+      "coreBounds": [
+        271,
+        530,
+        539,
+        760
+      ],
+      "trimBounds": [
+        269,
+        528,
+        272,
+        234
+      ],
+      "coreAlphaPixels": 27627,
+      "posePixelsSha256": "d694c510603444de58553cd559cf6c9d3ecb332eaa64e55ab9a17487c30787a9",
+      "ground": 460,
+      "sourceForeignPosePixels": 186,
+      "clipProof": {
+        "geometryMaskRequired": true,
+        "maskRectCount": 396,
+        "ownCorePixels": 27627,
+        "foreignCorePixels": 186,
+        "ownCorePixelsLost": 0,
+        "foreignCorePixelsIncluded": 0,
+        "softEdgeExpansionPixels": 1,
+        "includedSoftEdgePixels": 2003,
+        "coordinateSystem": "logical sourceSize512 including spriteSourceSize offsets"
+      }
+    },
+    {
+      "index": 10,
+      "gridCell": [
+        2,
+        2
+      ],
+      "coreBounds": [
+        531,
+        544,
+        782,
+        767
+      ],
+      "trimBounds": [
+        529,
+        542,
+        255,
+        227
+      ],
+      "coreAlphaPixels": 27497,
+      "posePixelsSha256": "c564cdd66b9a7472e6b18594e83ecb246a975ef0b9f75bd4964557a448849fc5",
+      "ground": 460,
+      "sourceForeignPosePixels": 224,
+      "clipProof": {
+        "geometryMaskRequired": true,
+        "maskRectCount": 396,
+        "ownCorePixels": 27497,
+        "foreignCorePixels": 224,
+        "ownCorePixelsLost": 0,
+        "foreignCorePixelsIncluded": 0,
+        "softEdgeExpansionPixels": 1,
+        "includedSoftEdgePixels": 2018,
+        "coordinateSystem": "logical sourceSize512 including spriteSourceSize offsets"
+      }
+    },
+    {
+      "index": 11,
+      "gridCell": [
+        3,
+        2
+      ],
+      "coreBounds": [
+        806,
+        527,
+        1007,
+        767
+      ],
+      "trimBounds": [
+        804,
+        525,
+        205,
+        244
+      ],
+      "coreAlphaPixels": 24528,
+      "posePixelsSha256": "8df37ad17c09bbc600d2580bc1c13d1827db37c0fac3f9442b736869c72ab6ae",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 24528,
+        "maskRectCount": 0
+      }
+    },
+    {
+      "index": 12,
+      "gridCell": [
+        0,
+        3
+      ],
+      "coreBounds": [
+        28,
+        791,
+        251,
+        1011
+      ],
+      "trimBounds": [
+        26,
+        789,
+        227,
+        224
+      ],
+      "coreAlphaPixels": 24819,
+      "posePixelsSha256": "14cdc5ca363b941ba80163de158ed933d8ca319a79395546e86d1ada18f51cae",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 24819,
+        "maskRectCount": 0
+      }
+    },
+    {
+      "index": 13,
+      "gridCell": [
+        1,
+        3
+      ],
+      "coreBounds": [
+        261,
+        788,
+        558,
+        1008
+      ],
+      "trimBounds": [
+        259,
+        786,
+        301,
+        224
+      ],
+      "coreAlphaPixels": 26869,
+      "posePixelsSha256": "367589d1b7138c22cd684ec9537edd3d74ac2edd27a32a391a7729003e106908",
+      "ground": 460,
+      "sourceForeignPosePixels": 58,
+      "clipProof": {
+        "geometryMaskRequired": true,
+        "maskRectCount": 365,
+        "ownCorePixels": 26869,
+        "foreignCorePixels": 58,
+        "ownCorePixelsLost": 0,
+        "foreignCorePixelsIncluded": 0,
+        "softEdgeExpansionPixels": 1,
+        "includedSoftEdgePixels": 1897,
+        "coordinateSystem": "logical sourceSize512 including spriteSourceSize offsets"
+      }
+    },
+    {
+      "index": 14,
+      "gridCell": [
+        2,
+        3
+      ],
+      "coreBounds": [
+        554,
+        782,
+        777,
+        1014
+      ],
+      "trimBounds": [
+        552,
+        780,
+        227,
+        236
+      ],
+      "coreAlphaPixels": 25581,
+      "posePixelsSha256": "ca3ea9acf2b76b1352b9ac61ddb4f50415b2a2f6ada539ad7fb263de598f9bbd",
+      "ground": 460,
+      "sourceForeignPosePixels": 57,
+      "clipProof": {
+        "geometryMaskRequired": true,
+        "maskRectCount": 389,
+        "ownCorePixels": 25581,
+        "foreignCorePixels": 57,
+        "ownCorePixelsLost": 0,
+        "foreignCorePixelsIncluded": 0,
+        "softEdgeExpansionPixels": 1,
+        "includedSoftEdgePixels": 1856,
+        "coordinateSystem": "logical sourceSize512 including spriteSourceSize offsets"
+      }
+    },
+    {
+      "index": 15,
+      "gridCell": [
+        3,
+        3
+      ],
+      "coreBounds": [
+        806,
+        777,
+        1008,
+        1019
+      ],
+      "trimBounds": [
+        804,
+        775,
+        206,
+        246
+      ],
+      "coreAlphaPixels": 24613,
+      "posePixelsSha256": "78c2f7ba7e79607f25121df1dfb1ded2048ca272c3ad4e89647722a29bbb1da7",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 24613,
+        "maskRectCount": 0
+      }
+    },
+    {
+      "index": 16,
+      "gridCell": [
+        0,
+        4
+      ],
+      "coreBounds": [
+        20,
+        1020,
+        254,
+        1272
+      ],
+      "trimBounds": [
+        18,
+        1018,
+        238,
+        256
+      ],
+      "coreAlphaPixels": 28343,
+      "posePixelsSha256": "d13237e34cc86b678d1871a2127a6b8ae5dd10764b91f640049050eef3cf367b",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 28343,
+        "maskRectCount": 0
+      }
+    },
+    {
+      "index": 17,
+      "gridCell": [
+        1,
+        4
+      ],
+      "coreBounds": [
+        277,
+        1064,
+        510,
+        1273
+      ],
+      "trimBounds": [
+        275,
+        1062,
+        237,
+        213
+      ],
+      "coreAlphaPixels": 25410,
+      "posePixelsSha256": "cd4d2b2b1b06eff4d2d1fe1ef85d6d707680708c3711e9b40dd8162035374e41",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 25410,
+        "maskRectCount": 0
+      }
+    },
+    {
+      "index": 18,
+      "gridCell": [
+        2,
+        4
+      ],
+      "coreBounds": [
+        527,
+        1094,
+        798,
+        1270
+      ],
+      "trimBounds": [
+        525,
+        1092,
+        275,
+        180
+      ],
+      "coreAlphaPixels": 26807,
+      "posePixelsSha256": "5f6bc3fd1dceebbf33614fc1d099e8ef9b379dbfbe3b4a899e6b681166c2bf95",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 26807,
+        "maskRectCount": 0
+      }
+    },
+    {
+      "index": 19,
+      "gridCell": [
+        3,
+        4
+      ],
+      "coreBounds": [
+        812,
+        1029,
+        999,
+        1275
+      ],
+      "trimBounds": [
+        810,
+        1027,
+        191,
+        250
+      ],
+      "coreAlphaPixels": 24341,
+      "posePixelsSha256": "913446116cecbf97e6537484ce36375c29cf283c069ae88e07169525df6cf037",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 24341,
+        "maskRectCount": 0
+      }
+    },
+    {
+      "index": 20,
+      "gridCell": [
+        0,
+        5
+      ],
+      "coreBounds": [
+        18,
+        1289,
+        234,
+        1523
+      ],
+      "trimBounds": [
+        16,
+        1287,
+        220,
+        238
+      ],
+      "coreAlphaPixels": 27835,
+      "posePixelsSha256": "d0bc1a8bb9a0633dcf4a7d725647b148711d23652b6a38b02d39d5a67ebcfdae",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 27835,
+        "maskRectCount": 0
+      }
+    },
+    {
+      "index": 21,
+      "gridCell": [
+        1,
+        5
+      ],
+      "coreBounds": [
+        275,
+        1348,
+        514,
+        1511
+      ],
+      "trimBounds": [
+        273,
+        1346,
+        243,
+        167
+      ],
+      "coreAlphaPixels": 20264,
+      "posePixelsSha256": "35fa20e3b75c1bef31ac9e20c651ed6dbc588a27130ac8a0083b22e265c0fefc",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 20264,
+        "maskRectCount": 0
+      }
+    },
+    {
+      "index": 22,
+      "gridCell": [
+        2,
+        5
+      ],
+      "coreBounds": [
+        516,
+        1416,
+        778,
+        1527
+      ],
+      "trimBounds": [
+        514,
+        1414,
+        266,
+        115
+      ],
+      "coreAlphaPixels": 16586,
+      "posePixelsSha256": "99b7d3b701e1b66eed72833a81d8ee6db281fbec1ec3ac4e08a2e9eaa594cedc",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 16586,
+        "maskRectCount": 0
+      }
+    },
+    {
+      "index": 23,
+      "gridCell": [
+        3,
+        5
+      ],
+      "coreBounds": [
+        816,
+        1283,
+        1006,
+        1524
+      ],
+      "trimBounds": [
+        814,
+        1281,
+        194,
+        245
+      ],
+      "coreAlphaPixels": 23520,
+      "posePixelsSha256": "174b7a41a9f92819ed5bbb857197c8627b55ec8b61d5d48494487addde46e2eb",
+      "ground": 460,
+      "sourceForeignPosePixels": 0,
+      "clipProof": {
+        "geometryMaskRequired": false,
+        "foreignCorePixels": 0,
+        "ownCorePixels": 23520,
+        "maskRectCount": 0
+      }
+    }
+  ],
+  "distinctPosePixelHashes": 24,
+  "isolatedRuntimePoseGeometry": true,
+  "bodyNormalization": {
+    "method": "paired-A isolated idle alpha foreground head-to-sole ratio; full body bounds inspected to exclude outside weapon tips",
+    "targetVisibleHeight": 75,
+    "measuredBodyHeight": 253.5,
+    "idleMeasurements": [
+      {
+        "frame": 0,
+        "coreYBounds": [
+          8,
+          261
+        ],
+        "measuredHeight": 253,
+        "alphaThreshold": 16
+      },
+      {
+        "frame": 1,
+        "coreYBounds": [
+          7,
+          261
+        ],
+        "measuredHeight": 254,
+        "alphaThreshold": 16
+      }
+    ],
+    "displayHeight": 155.047,
+    "requestedDisplayHeight": 155.047,
+    "clamped": false,
+    "estimatedVisibleHeight": 76.766,
+    "appearanceMaster": {
+      "skin": "w-beast-claw-a",
+      "sha256": "aa971f891386d993ebf062b569102e170f000b82d591607fef0ca700a579926c",
+      "measuredBodyHeight": 239.0,
+      "idleMeasurements": [
+        {
+          "frame": 0,
+          "coreYBounds": [
+            15,
+            253
+          ],
+          "measuredHeight": 238,
+          "alphaThreshold": 16
+        },
+        {
+          "frame": 1,
+          "coreYBounds": [
+            14,
+            254
+          ],
+          "measuredHeight": 240,
+          "alphaThreshold": 16
+        }
+      ],
+      "displayHeight": 164.454,
+      "estimatedVisibleHeight": 76.767
+    },
+    "limitation": "For these inspected idle frames, claw tips lie between hood top and foot soles. Nominal target remains 75px, while the preserved A master actual head-to-sole size is matched exactly."
+  },
+  "sourceFilename": "exec-de719f64-fb04-4f09-801a-ab308d833709.png",
+  "sourceSha256": "b1e6e0f34c674f27e417f2cb5eecdb651fdc45ee8025f8d08cefd01c3f1d91c2",
+  "sourceBytesUnchanged": true,
+  "rasterMutation": false,
+  "inspectedBaseFacing": "right",
+  "inspectedRoles": {
+    "idle": [
+      0,
+      1
+    ],
+    "walk": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "attack-0": [
+      6,
+      7,
+      8,
+      9
+    ],
+    "attack-1": [
+      10,
+      12,
+      13,
+      19
+    ],
+    "attack-2": [
+      14,
+      16,
+      17,
+      18
+    ],
+    "hit": [
+      20
+    ],
+    "death": [
+      21,
+      22
+    ],
+    "transform": [
+      23
+    ],
+    "unusedRecoveryAlternatives": [
+      11,
+      15
+    ]
+  },
+  "appearanceMasterFilename": "w-beast-claw-a.png",
+  "appearanceMasterSha256": "aa971f891386d993ebf062b569102e170f000b82d591607fef0ca700a579926c",
+  "appearanceMatchesMaster": [
+    "hood",
+    "turquoise shoulder trim",
+    "two red vials",
+    "ragged kilt",
+    "bare thighs",
+    "wrapped calves",
+    "warm lighting"
+  ],
+  "formDifference": "B left arm stays human; A left arm stays beastlike. Right bone-claw weapon retained in both.",
+  "atlasGeometryOnly": true,
+  "preservedFileCount": 73,
+  "unrelatedManifestEntriesPreserved": 29,
+  "pairedVisibleBodyHeight": {
+    "master": 76.767,
+    "newB": 76.766,
+    "difference": 0.001,
+    "tolerance": 2
+  }
+}

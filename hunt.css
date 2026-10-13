@@ -554,3 +554,17 @@ html[data-phase="combat_choose"] .decision-content:has(.map-context:not([hidden]
 #mapStage .map-figure[data-character-ready="true"] { background: #11202855; font-size: 14px; box-shadow: 0 0 0 2px #0b141d77; }
 #mapStage .map-figure[data-character-ready="true"]::before { content: ""; position: absolute; left: -17px; bottom: 0; width: 66px; height: 88px; border-radius: 45%; background: transparent; }
 @media (max-width: 600px) { .camera-tools { left: 4px; bottom: 5px; } .hunt-main .camera-tools button { padding: 3px 5px; min-height: 25px; } }
+
+/* Upright scene artwork is anchored to the rotated printed marker's foot point. */
+.hunt-main .map-figures.scene-figure { transform: translate(-50%, -50%); }
+.hunt-main .map-scene-object { position: absolute; width: var(--object-width); height: 0; transform: translateX(-50%); z-index: 7; pointer-events: none; }
+.hunt-main .map-object { position: absolute; left: 0; bottom: 0; width: 100%; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; pointer-events: auto; line-height: 0; overflow: visible; }
+.hunt-main .map-object img { width: 100%; height: auto; display: block; filter: drop-shadow(0 2px 2px #0009); }
+.hunt-main .map-object:hover img, .hunt-main .map-object:focus-visible img { filter: drop-shadow(0 0 3px #ead39f); }
+.hunt-main .map-object:focus-visible { outline: 2px solid #e3cc8b; outline-offset: 3px; }
+.hunt-main .map-object-caption { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); padding: 2px 4px; margin-top: 2px; border: 1px solid #807450; border-radius: 3px; color: #f2dfad; background: #101b23ee; line-height: 1.25; font-size: 10px; white-space: nowrap; max-width: 110px; overflow: hidden; text-overflow: ellipsis; pointer-events: none; }
+.hunt-main .map-object-count { position: absolute; right: -3px; bottom: -4px; min-width: 15px; padding: 3px; border-radius: 50%; background: #142c25; border: 1px solid #a3b798; color: #f2dfad; line-height: 1; font-size: 10px; }
+.hunt-main .object-crowded { z-index: 10; }
+.hunt-main .object-crowded img { opacity: .95; }
+.hunt-main .object-lamp .broken-lamp-label .map-object-caption { color: #e4b4a6; border-color: #9b7666; }
+.hunt-main .chapter-map .tile-diagram { opacity: 1; }

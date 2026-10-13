@@ -1,6 +1,6 @@
 {
   "name": "bloodborne-solo-rules-lab",
-  "version": "0.8.9",
+  "version": "0.8.10",
   "private": true,
   "description": "Offline solo Bloodborne Long Hunt chapters 1-3 with supplied weapons, firearms, mission branches, rewards and replay saves",
   "bundledRuntimeDependencies": {
