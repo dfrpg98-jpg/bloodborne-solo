@@ -309,6 +309,10 @@
     if (f.heal) h.hp = Math.min(6, h.hp + f.heal);
     if (f.echoes) h.echoes = Math.min(3, h.echoes + f.echoes);
     if (f.readyFirearm) h.firearmReady = true;
+    if (f.readyReward) {
+      need(s.mission, "보상을 사용하는 긴 사냥 모드에서 골수 가루를 사용할 수 있습니다.");
+      rewards.ready(s, a.rewardId, rewardHelpers());
+    }
     if (f.move) {
       s.move = {
         remaining: f.move,
@@ -1492,7 +1496,7 @@
       loot: s.loot.filter((x) => x === n.id).length,
       teleport: n.lamp && n.tile === "tile-14" && n.id.endsWith(":center"),
       heal: n.tile === "tile-12",
-      workshop: false,
+      workshop: n.id === "tile-07:top",
       provisionalNpc: !!s.provisional && s.provisional.componentId === "iosefka" && n.id === "tile-14:center",
       ...(s.mission ? { missionRescue: missions.rescueInteraction(s, missionHelpers()) } : {}),
     };
@@ -1520,10 +1524,19 @@
         h.hp = Math.min(6, h.hp + 2);
         log(s, "대성당 · 치유 2.");
       }
+      if (q.exchange && !q.exchangeAfterLoot) exchangeConsumable(s, q.exchangeItemId);
       for (let i = 0; i < q.loot; i++) s.loot.splice(s.loot.indexOf(q.node), 1);
       s.lootRemaining = q.loot;
     }
     collectLoot(s);
+  }
+  function exchangeConsumable(s, itemId) {
+    const h = hunter(s), index = h.consumables.findIndex((item) => item.id === itemId);
+    need(index >= 0, "교환할 보유 소모품을 선택하세요.");
+    const item = h.consumables.splice(index, 1)[0];
+    s.consumableDiscard.push(item);
+    h.echoes = Math.min(3, h.echoes + 1);
+    log(s, `성배 교단 예배당 · ${D.consumables[item.kind].name}을(를) 사용하여 피의 유지 1 획득.`);
   }
   function collectLoot(s) {
     const q = s.interaction;
@@ -1543,6 +1556,10 @@
           return;
         }
       } else drawConsumable(s);
+    }
+    if (q.exchangeAfterLoot && !q.exchanged) {
+      s.phase = "exchange_choice";
+      return;
     }
     if (q.lamp) {
       teleport(s, q.lamp, true);
@@ -1780,10 +1797,14 @@
           !a.lamp || (opt.teleport && centralLampDestinations(s).some((n) => n.id === a.lamp)),
           "중앙 등불에서 목적지 등불 또는 안개 안 칸을 선택하세요.",
         );
-        need(!a.exchange, "성배 교단 예배당의 교환 효과는 아직 연결 전입니다.");
+        need(!a.exchange || opt.workshop, "성배 교단 예배당 명칭 칸에서 교환할 수 있습니다.");
+        need(!a.exchangeAfterLoot || a.exchange && count > 0,
+          "획득 후 교환하려면 같은 상호작용에서 소모품 토큰을 획득하세요.");
+        need(!a.exchange || a.exchangeAfterLoot || h.consumables.some((item) => item.id === a.exchangeItemId),
+          "교환할 보유 소모품을 선택하세요.");
         need(!a.mission || a.mission === "rescue" && opt.missionRescue, "같은 칸의 구조 토큰을 선택하세요.");
         need(!a.provisionalNpc || opt.provisionalNpc, "임시 이오세프카는 중앙 등불 칸에서 만날 수 있습니다.");
-        need(count || a.heal || a.lamp || a.mission || a.provisionalNpc, "상호작용할 대상을 선택하세요.");
+        need(count || a.heal || a.lamp || a.exchange || a.mission || a.provisionalNpc, "상호작용할 대상을 선택하세요.");
         payAction(s, a.cardId);
         s.interaction = {
           node: h.position,
@@ -1796,12 +1817,23 @@
           lamp: a.lamp || null,
           exchange: !!a.exchange,
           applied: false,
+          ...(a.exchangeAfterLoot ? { exchangeAfterLoot: true } :
+            a.exchange ? { exchangeItemId: a.exchangeItemId } : {}),
           ...(a.mission ? { mission: a.mission } : {}),
           ...(a.provisionalNpc ? { provisionalNpc: true } : {}),
         };
         nextInteraction(s);
         break;
       }
+      case "EXCHANGE_CHOICE":
+        phase("exchange_choice");
+        need(s.interaction?.exchangeAfterLoot && !s.interaction.exchanged,
+          "소모품 획득 후 교환 선택 단계가 아닙니다.");
+        if (a.skip === true) log(s, "성배 교단 예배당 · 소모품 교환을 건너뛰었습니다.");
+        else exchangeConsumable(s, a.itemId);
+        s.interaction.exchanged = true;
+        collectLoot(s);
+        break;
       case "LOOT_CHOICE": {
         phase("loot_choice");
         const i = s.lootChoice.findIndex((x) => x.id === a.itemId);
@@ -2247,6 +2279,7 @@
         "upgrade_pick",
         "upgrade_replace",
         "loot_choice",
+        "exchange_choice",
         "mission_survivor",
         "mission_choice",
         "mission_death",
@@ -2254,6 +2287,10 @@
       ].includes(s.phase),
       "진행 단계 오류.",
     );
+    if (s.phase === "exchange_choice") need(s.interaction?.exchangeAfterLoot &&
+      !s.interaction.exchanged && s.interaction.node === h.position &&
+      h.position === "tile-07:top" && s.lootRemaining === 0,
+      "예배당 교환 선택 상태 오류.");
     need(
       Array.isArray(s.commands) &&
         s.commands.length <= 10000 &&

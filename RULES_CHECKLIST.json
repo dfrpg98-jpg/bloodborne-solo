@@ -1,0 +1,1332 @@
+{
+  "title": "블러드본 규칙 구현 점검표",
+  "asOf": "2026-10-11 KST",
+  "version": "0.6.2",
+  "scope": "현재 실제 실행 범위는 1인용 기나긴 사냥 챕터 1·장송의 칼날·실제 적 3종6면·보상6종입니다. 임시 보스/NPC 시험과 훈련 화면은 정식 캠페인 구현과 구분합니다.",
+  "sources": [
+    {
+      "title": "사용자 제공 한국어 규칙서",
+      "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\블러드본한국어규칙서_압축.pdf",
+      "scope": "28쪽 전체 검토; 플레이 조건은 주로 8~26쪽"
+    },
+    {
+      "title": "제공 캠페인/타일 전사",
+      "path": "campaigns/long-hunt/data.json",
+      "scope": "카드1~60, 적3종6면, 타일20종"
+    },
+    {
+      "title": "제공 스탯/소모품/보상 전사",
+      "path": "components/cards.json",
+      "scope": "정의75종; 보상32종 중 실행6종"
+    },
+    {
+      "title": "코드 감사와 실제 검증 기록",
+      "path": "RULES_AUDIT.txt; VERIFICATION.txt; tests/*.test.cjs",
+      "scope": "현재 구현과 전용 테스트 존재 여부를 대조"
+    }
+  ],
+  "statusDefinitions": {
+    "구현": "현재 명시된 범위의 실행 코드/조작이 연결됨",
+    "부분": "일부 절차·임시 효과·수동 판단만 존재하거나 확인된 불일치가 있음",
+    "미구현": "실행 경로가 없거나 현재 거절됨",
+    "범위 제외": "사용자 제외 지시 또는 현재 1인용 범위에 의한 의도적 제한"
+  },
+  "notes": [
+    "status는 구현 여부, verification은 근거 수준, manualCheck는 사용자의 직접 점검 결과입니다. 서로 같은 의미가 아닙니다.",
+    "manualCheck는 모두 미점검으로 시작합니다. 자동 테스트가 존재해도 사용자의 직접 확인을 완료로 표시하지 않습니다.",
+    "자동 테스트 근거 있음은 테스트명/파일이 존재한다는 의미입니다. 최종 버전 실행 결과는 VERIFICATION.txt를 확인합니다.",
+    "부분·미구현·범위 제외가 섞인 이 목록으로 전체 규칙 완성률/100%를 계산하지 않습니다.",
+    "페이지1/3/11/28은 표지·목차·준비 안내·제작진 페이지여서 독립 실행 조건 행으로 만들지 않았습니다. 22쪽 전투 예시는 전투 행의 근거에 포함합니다.",
+    "보상 26종에는 원문에서 사용불가인 임무 물건이 포함됩니다. 전부 일반 사용 효과가 있어야 한다고 판정하지 않습니다."
+  ],
+  "rows": [
+    {
+      "id": "R01",
+      "category": "시작 준비",
+      "rulePage": "8",
+      "criterion": "새 정규 사냥을 시작하면 사냥꾼의 체력이 6이다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-engine.js create(), assertState()\ntests/hunt.test.cjs — actual 12/60/36 supply and independent replay save",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "actual 12/60/36 supply and independent replay save"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R02",
+      "category": "시작 준비",
+      "rulePage": "8",
+      "criterion": "기본 네 스탯 유형을 각 3장씩, 총 12장으로 시작하고 카드 공급을 보존한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-engine.js create(), allCards(), assertState()\ntests/hunt.test.cjs — actual 12/60/36 supply and independent replay save",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "actual 12/60/36 supply and independent replay save"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R03",
+      "category": "시작 준비",
+      "rulePage": "8",
+      "criterion": "제공된 장송의 칼날의 시작 면을 선택하면 실제 슬롯과 저장의 초기 면에 반영된다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "코드 확인 · 기존 브라우저 확인 · 시작 면 전용 테스트는 제한적",
+      "evidence": "hunt-engine.js create(), weaponFace(); hunt-app.js confirmSetup()\ntests/hunt.test.cjs — actual 12/60/36 supply and independent replay save",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "actual 12/60/36 supply and independent replay save"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R04",
+      "category": "시작 준비",
+      "rulePage": "4~6, 8",
+      "criterion": "기본판 네 사냥꾼과 각 장치 무기를 선택하여 고유 효과를 실행할 수 있다.",
+      "status": "미구현",
+      "priority": "후속",
+      "verification": "코드 확인 · 전용 자동 테스트 없음",
+      "evidence": "hunt-engine.js create()의 허용 weaponId는 burial; hunt-data.js weapons",
+      "testEvidence": [],
+      "nextAction": "실물 자료를 연결하고 무기별 선언·범위·효과·저장 검증을 추가합니다.",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R05",
+      "category": "시작 준비",
+      "rulePage": "9, 17",
+      "criterion": "초대장을 제외한 소모품 18종×2장=36장을 덱·소유·버림 영역 사이에서 보존한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-engine.js create(), drawConsumable(), assertState()\ntests/consumables.test.cjs — play pool retains 2 of each of 18 types, excludes invitation, grants no extra copy\ntests/hunt.test.cjs — actual 12/60/36 supply and independent replay save",
+      "testEvidence": [
+        {
+          "file": "tests/consumables.test.cjs",
+          "name": "play pool retains 2 of each of 18 types, excludes invitation, grants no extra copy"
+        },
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "actual 12/60/36 supply and independent replay save"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R06",
+      "category": "시작 준비",
+      "rulePage": "9, 17 / 사용자 지시",
+      "criterion": "초대장 1장은 현재 플레이 덱에서 제외한다.",
+      "status": "범위 제외",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "data.js consumables; hunt-data.js consumablePool; 사용자 이전 제외 지시\ntests/consumables.test.cjs — play pool retains 2 of each of 18 types, excludes invitation, grants no extra copy",
+      "testEvidence": [
+        {
+          "file": "tests/consumables.test.cjs",
+          "name": "play pool retains 2 of each of 18 types, excludes invitation, grants no extra copy"
+        }
+      ],
+      "nextAction": "사용자 제외 지시를 유지합니다. 일반 규칙의 결함으로 합산하지 않습니다.",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R07",
+      "category": "챕터 준비",
+      "rulePage": "9~10",
+      "criterion": "챕터 1 준비에서 적 3종의 면과 사냥 보드 슬롯을 각각 무작위로 정하고 같은 종류의 적에 공통 적용한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "chapter-engine.js create(), definition(); hunt-engine.js enemyDef()\ntests/chapter-map.test.cjs — randomization varies faces, slot permutation and includes named optional tiles",
+      "testEvidence": [
+        {
+          "file": "tests/chapter-map.test.cjs",
+          "name": "randomization varies faces, slot permutation and includes named optional tiles"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R08",
+      "category": "챕터 준비",
+      "rulePage": "10",
+      "criterion": "중앙 등불을 별도로 놓고 필수 4타일과 무작위 2타일을 챕터 1 탐험 덱으로 준비한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "chapter-engine.js create(); campaigns/long-hunt/data.json chapters[0]\ntests/chapter-map.test.cjs — chapter 1 setup selects required four plus two random tiles, central separate, all three kinds and four figures each",
+      "testEvidence": [
+        {
+          "file": "tests/chapter-map.test.cjs",
+          "name": "chapter 1 setup selects required four plus two random tiles, central separate, all three kinds and four figures each"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R09",
+      "category": "챕터 준비",
+      "rulePage": "10",
+      "criterion": "챕터 1 시작 전에 중앙 등불 타일의 왼쪽·중앙·오른쪽 중 원하는 칸을 고르고 그 칸에서 시작한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음 · v0.6.1 브라우저 확인",
+      "evidence": "start-placement.js mount()/update(); hunt-app.js openSetup()/confirmSetup(); chapter-engine.js create(startSpace)\ntests/chapter-map.test.cjs — starting space is a choice, not necessarily the lamp-marked space",
+      "testEvidence": [
+        {
+          "file": "tests/chapter-map.test.cjs",
+          "name": "starting space is a choice, not necessarily the lamp-marked space"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R10",
+      "category": "캠페인 안내",
+      "rulePage": "7, 12",
+      "criterion": "플레이 시작 화면에서 캠페인 도입부와 공개된 임무의 이야기를 읽을 수 있다.",
+      "status": "부분",
+      "priority": "후속",
+      "verification": "코드 확인 · 전용 자동 테스트 없음",
+      "evidence": "campaign.html은 별도 도입부 자료실; hunt-app.js renderMission()은 주로 규칙/접힌 카드 사진 표시",
+      "testEvidence": [],
+      "nextAction": "게임 시작 도입부와 공개 임무의 서사를 읽는 흐름을 연결합니다.",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R11",
+      "category": "임무",
+      "rulePage": "12~13",
+      "criterion": "챕터 1 카드는 해당 이동 종료·상호작용·처치 조건을 만족할 때만 공개된다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "mission-engine.js init(), reveal(), onMovementEnd(), rescueInteraction(), onKill()\ntests/mission.test.cjs — movement ending anywhere on the mission tile triggers only immediate cards\ntests/campaign-playthrough.test.cjs — 122 real player commands complete chapter one from a fresh seed and preserve final dream progress",
+      "testEvidence": [
+        {
+          "file": "tests/mission.test.cjs",
+          "name": "movement ending anywhere on the mission tile triggers only immediate cards"
+        },
+        {
+          "file": "tests/campaign-playthrough.test.cjs",
+          "name": "122 real player commands complete chapter one from a fresh seed and preserve final dream progress"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R12",
+      "category": "임무",
+      "rulePage": "12~13",
+      "criterion": "완료된 흰 결과 카드가 계몽으로 집계되며 계몽 2개 뒤 중앙 등불 주임무가 열린다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "mission-engine.js insight(), onMovementEnd(), complete()\ntests/mission.test.cjs — main trigger counts completed white insight cards, main ability replaces either enemy face",
+      "testEvidence": [
+        {
+          "file": "tests/mission.test.cjs",
+          "name": "main trigger counts completed white insight cards, main ability replaces either enemy face"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R13",
+      "category": "임무",
+      "rulePage": "12~13 / 제공 카드 8~11",
+      "criterion": "민가의 호위를 떠날 때 선택하고 실제 이동으로 전달하며 순간이동·꿈에서는 민가로 되돌린다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "mission-engine.js onStep(), onTeleport(); hunt-engine.js enterDream()\ntests/mission.test.cjs — escort pickup is optional, only while leaving its named space, and teleport returns it",
+      "testEvidence": [
+        {
+          "file": "tests/mission.test.cjs",
+          "name": "escort pickup is optional, only while leaving its named space, and teleport returns it"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R14",
+      "category": "임무",
+      "rulePage": "12~13 / 제공 카드 12~16",
+      "criterion": "폐가 구조 후 처음 4칸 도주·이후 차례 끝 1칸 도주와 추격 없는 포획, 선택한 결과 분기를 처리한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "mission-engine.js rescueInteraction(), survivorOptions(), placementOptions(), turnEnd(), dispatch()\ntests/mission.test.cjs — rescue interaction starts four-space escape with exploration then turn-end one-space escape\ntests/mission.test.cjs — rescue catch rejects actual pursuit into end space and exposes only selected reward branch\ntests/mission.test.cjs — NPC circular exploration filters shortcut rotations while preserving ordinary exploration",
+      "testEvidence": [
+        {
+          "file": "tests/mission.test.cjs",
+          "name": "rescue interaction starts four-space escape with exploration then turn-end one-space escape"
+        },
+        {
+          "file": "tests/mission.test.cjs",
+          "name": "rescue catch rejects actual pursuit into end space and exposes only selected reward branch"
+        },
+        {
+          "file": "tests/mission.test.cjs",
+          "name": "NPC circular exploration filters shortcut rotations while preserving ordinary exploration"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R15",
+      "category": "라운드",
+      "rulePage": "13, 18, 24",
+      "criterion": "마지막 트랙 칸에 도달한 라운드를 끝까지 진행하고 완수하지 못하면 사냥이 실패한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "코드 확인 · 완수 경로 테스트 있음 · 실패 경계 전용 실제 지도 테스트는 제한적",
+      "evidence": "hunt-engine.js advance(), nextRound(), finalRound/result 처리\ntests/campaign-playthrough.test.cjs — 122 real player commands complete chapter one from a fresh seed and preserve final dream progress",
+      "testEvidence": [
+        {
+          "file": "tests/campaign-playthrough.test.cjs",
+          "name": "122 real player commands complete chapter one from a fresh seed and preserve final dream progress"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R16",
+      "category": "행동",
+      "rulePage": "14~16",
+      "criterion": "카드를 버리는 행동 비용은 즉시 카드 효과를 적용하지 않고 정확히 카드 1장을 지불한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-engine.js pay(), MOVE/TRANSFORM/DREAM/INTERACT 명령\ntests/hunt.test.cjs — map movement costs one card, unknown commands and invalid attacks roll back",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "map movement costs one card, unknown commands and invalid attacks roll back"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R17",
+      "category": "이동",
+      "rulePage": "14",
+      "criterion": "이동 행동으로 최대 2칸 이동하거나 중도 정지하고 이동 중 다른 행동을 하지 못한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "이동 비용 자동 테스트 · 이동 중 다른 행동 제한은 코드 확인",
+      "evidence": "hunt-engine.js MOVE, STEP, STOP_MOVE, resume(), dispatch() phase 검사\ntests/hunt.test.cjs — map movement costs one card, unknown commands and invalid attacks roll back",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "map movement costs one card, unknown commands and invalid attacks roll back"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R18",
+      "category": "이동",
+      "rulePage": "14",
+      "criterion": "이동 종료 때 적은 실제 이동 경로를 추격하며 재앙의 야수의 2칸 추격을 적용한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-engine.js stepHunter(), finishMove(), continuePursuit()\ntests/hunt.test.cjs — beast pursuit follows movement trail two spaces and does not attack",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "beast pursuit follows movement trail two spaces and does not attack"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R19",
+      "category": "탐험",
+      "rulePage": "14~15",
+      "criterion": "출입구 양쪽이 맞도록 타일을 회전·배치하고 적/소모품을 먼저 배치한 뒤 반드시 연결 칸으로 진입한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "chapter-engine.js graph(), exits(), placementOptions(); hunt-engine.js explore(), placeTile(), finishSpawns()\ntests/chapter-map.test.cjs — exploration is atomic; revealed tile cannot be cancelled or skipped, must connect and enter\ntests/chapter-map.test.cjs — matching exits are bidirectional; a blank tile edge blocks crossing",
+      "testEvidence": [
+        {
+          "file": "tests/chapter-map.test.cjs",
+          "name": "exploration is atomic; revealed tile cannot be cancelled or skipped, must connect and enter"
+        },
+        {
+          "file": "tests/chapter-map.test.cjs",
+          "name": "matching exits are bidirectional; a blank tile edge blocks crossing"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R20",
+      "category": "탐험",
+      "rulePage": "15",
+      "criterion": "모든 출입구를 닫는 타일은 반환하고 적합한 타일을 다시 뽑는다.",
+      "status": "부분",
+      "priority": "후속",
+      "verification": "부분 자동 테스트 · 마지막 타일 예외 해석 확인 필요",
+      "evidence": "chapter-engine.js placementOptions(); hunt-engine.js explore()/placeTile()의 requireOpen은 남은 덱 여부에 따름\ntests/chapter-map.test.cjs — a tile that seals every exit is returned and shuffled after a suitable replacement is drawn",
+      "testEvidence": [
+        {
+          "file": "tests/chapter-map.test.cjs",
+          "name": "a tile that seals every exit is returned and shuffled after a suitable replacement is drawn"
+        }
+      ],
+      "nextAction": "마지막 타일은 다른 타일을 뽑을 수 없어 봉쇄 배치를 허용하는 현재 해석을 추가 확인합니다.",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R21",
+      "category": "적 공급",
+      "rulePage": "15",
+      "criterion": "적 종류별 피규어 4개를 넘기지 않고 부족하면 가장 먼 피규어를 재사용하며 동률을 선택한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-engine.js farthest(), spawnFigure(), finishSpawns(); 임무 피규어 보호\ntests/hunt.test.cjs — four-figure supply pauses on farthest tie and reuses a full-health figure\ntests/chapter-map.test.cjs — four-figure supply relocates the farthest; equal distance asks for one figure and never creates a fifth",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "four-figure supply pauses on farthest tie and reuses a full-health figure"
+        },
+        {
+          "file": "tests/chapter-map.test.cjs",
+          "name": "four-figure supply relocates the farthest; equal distance asks for one figure and never creates a fifth"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R22",
+      "category": "상호작용",
+      "rulePage": "16",
+      "criterion": "같은 칸 적들의 선행 반격을 처리하고 맞서 공격·회피를 금지하며 사망하면 상호작용 효과를 적용하지 않는다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-engine.js nextInteraction(), chooseCombat(), collectLoot()\ntests/hunt.test.cjs — interaction forbids counter and dodge, permits firearm reaction, then completes",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "interaction forbids counter and dodge, permits firearm reaction, then completes"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R23",
+      "category": "상호작용",
+      "rulePage": "16",
+      "criterion": "폐가에서 소모품 획득과 생존자 구조를 카드 1장으로 함께 선택할 수 있다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-app.js renderDecisions()/interact; hunt-engine.js INTERACT/collectLoot()\ntests/audit-fixes.test.cjs — one stat action can combine rescue and both consumable tokens in the same space",
+      "testEvidence": [
+        {
+          "file": "tests/audit-fixes.test.cjs",
+          "name": "one stat action can combine rescue and both consumable tokens in the same space"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R24",
+      "category": "상호작용",
+      "rulePage": "16 / 제공 tile-07",
+      "criterion": "성배 교단 예배당 명명 칸에서 보유 또는 이번에 획득한 소모품 1장을 버려 피의 유지 1개를 얻는다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-engine.js interactionOptions(), nextInteraction(), exchangeConsumable(), collectLoot(), INTERACT/EXCHANGE_CHOICE; 스탯1장 비용으로 소모품 획득과 결합, 획득 뒤 선택에는 추가 스탯 비용 없음\ntests/chapter-one-items.test.cjs — chapel combines two loot tokens and exchange for one stat card and caps echoes at three\ntests/chapter-one-items.test.cjs — death during chapel retaliation preserves held consumables and unopened loot in both exchange modes\ntests/chapter-one-items.test.cjs — chapel can exchange a newly drawn item with no prior inventory and replay pending and final choices\ntests/chapter-one-items.test.cjs — chapel discarded cost can be redrawn when combined loot exhausts the deck",
+      "testEvidence": [
+        {
+          "file": "tests/chapter-one-items.test.cjs",
+          "name": "chapel combines two loot tokens and exchange for one stat card and caps echoes at three"
+        },
+        {
+          "file": "tests/chapter-one-items.test.cjs",
+          "name": "death during chapel retaliation preserves held consumables and unopened loot in both exchange modes"
+        },
+        {
+          "file": "tests/chapter-one-items.test.cjs",
+          "name": "chapel can exchange a newly drawn item with no prior inventory and replay pending and final choices"
+        },
+        {
+          "file": "tests/chapter-one-items.test.cjs",
+          "name": "chapel discarded cost can be redrawn when combined loot exhausts the deck"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R25",
+      "category": "변형",
+      "rulePage": "16",
+      "criterion": "변형은 카드 1장을 버려 무기 면을 뒤집고 점유한 공격 슬롯을 비운다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "코드 확인 · 무료 변형 테스트 있음 · 유료 변형은 연속 플레이 근거",
+      "evidence": "hunt-engine.js TRANSFORM, clearSlot(), rewards.onTransform()\ntests/hunt.test.cjs — swift transform offers choice after attacking and after dodging",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "swift transform offers choice after attacking and after dodging"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R26",
+      "category": "적 활성화",
+      "rulePage": "16~17",
+      "criterion": "같은/인접 타일의 적을 사냥 보드 순서로 활성화하고 경로 선택·이동 뒤 공격을 처리한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "이동/반격 자동 테스트 · 실제 지도 슬롯 순서 경계는 코드 확인",
+      "evidence": "hunt-engine.js eligible(), continueActivation(), activateEnemy(), runEnemyMove()\ntests/hunt.test.cjs — beast activation moves two spaces then requests counter\ntests/chapter-map.test.cjs — randomization varies faces, slot permutation and includes named optional tiles",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "beast activation moves two spaces then requests counter"
+        },
+        {
+          "file": "tests/chapter-map.test.cjs",
+          "name": "randomization varies faces, slot permutation and includes named optional tiles"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R27",
+      "category": "적 활성화",
+      "rulePage": "17",
+      "criterion": "활성화 중 새로 출현한 적도 다시 평가하고 사냥꾼 사망/꿈 입장은 남은 활성화를 중단한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "새 출현 자동 테스트 · 사망/꿈의 활성화 중단은 코드 확인",
+      "evidence": "hunt-engine.js eligible(), continueActivation(), enterDream()\ntests/hunt.test.cjs — newly spawned beast remains eligible during activation",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "newly spawned beast remains eligible during activation"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R28",
+      "category": "소모품",
+      "rulePage": "17",
+      "criterion": "실행 가능한 소모품은 소유·사용 시점·대상을 검증해 버리고, 뽑기 덱 소진 때만 버림을 재구성한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "훈련 소모품 자동 테스트 · 실제 지도 통합은 일부 항목/연속 플레이 근거",
+      "evidence": "hunt-engine.js consume(), useConsumable(), attackConsumables(), drawConsumable(); 기나긴 사냥17종/훈련·독립16종 실행\ntests/consumables.test.cjs — invalid or duplicate attack items roll back every card, item, RNG and pull\ntests/consumables.test.cjs — loot draws a real consumable and recycles the discard only when the draw deck empties",
+      "testEvidence": [
+        {
+          "file": "tests/consumables.test.cjs",
+          "name": "invalid or duplicate attack items roll back every card, item, RNG and pull"
+        },
+        {
+          "file": "tests/consumables.test.cjs",
+          "name": "loot draws a real consumable and recycles the discard only when the draw deck empties"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R29",
+      "category": "소모품",
+      "rulePage": "17 / 제공 bone-ash",
+      "criterion": "기나긴 사냥의 자기 차례에 골수 가루로 소진된 장착 보상 1장을 준비하고 소모품만 버린다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-engine.js consume()/useConsumable() → rewards-engine.js ready(); USE_CONSUMABLE {itemId,rewardId}; components/cards.json bone-ash runtime=playable, 비지속 도구/문자만 대상\ntests/chapter-one-items.test.cjs — bone ash readies exactly one chosen equipped exhausted tool or rune and costs no stat card\ntests/chapter-one-items.test.cjs — bone ash rejects ready, stored, persistent, foreign, absent and firearm targets without consumption\ntests/chapter-one-items.test.cjs — bone ash cannot be spent during movement, interaction reactions, or reward-free modes\ntests/chapter-one-items.test.cjs — new bone ash use with a naturally earned and exhausted lantern saves by exact command replay\ntests/chapter-one-items.test.cjs — a v0.6.1 save with a naturally looted pending bone ash imports unchanged and needs no migration",
+      "testEvidence": [
+        {
+          "file": "tests/chapter-one-items.test.cjs",
+          "name": "bone ash readies exactly one chosen equipped exhausted tool or rune and costs no stat card"
+        },
+        {
+          "file": "tests/chapter-one-items.test.cjs",
+          "name": "bone ash rejects ready, stored, persistent, foreign, absent and firearm targets without consumption"
+        },
+        {
+          "file": "tests/chapter-one-items.test.cjs",
+          "name": "bone ash cannot be spent during movement, interaction reactions, or reward-free modes"
+        },
+        {
+          "file": "tests/chapter-one-items.test.cjs",
+          "name": "new bone ash use with a naturally earned and exhausted lantern saves by exact command replay"
+        },
+        {
+          "file": "tests/chapter-one-items.test.cjs",
+          "name": "a v0.6.1 save with a naturally looted pending bone ash imports unchanged and needs no migration"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R30",
+      "category": "소모품",
+      "rulePage": "17 / 제공 hunter-bell",
+      "criterion": "다른 사냥꾼에게 적용하는 사냥꾼의 종은 현재 1인용에서 사용할 수 없다.",
+      "status": "범위 제외",
+      "priority": "후속",
+      "verification": "훈련 제한 자동 테스트 · 실제 사냥 제한 코드 확인",
+      "evidence": "hunt-engine.js consume()/useConsumable(); assertState()는 사냥꾼 1명만 허용\ntests/consumables.test.cjs — reward-only and multiplayer items cannot silently be consumed in training",
+      "testEvidence": [
+        {
+          "file": "tests/consumables.test.cjs",
+          "name": "reward-only and multiplayer items cannot silently be consumed in training"
+        }
+      ],
+      "nextAction": "다인용 상태/대상 선택을 구현할 때 연결합니다. 현재 소모품은 소유할 수 있지만 사용하지 않습니다.",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R31",
+      "category": "보상",
+      "rulePage": "17 / 제공 보상 6종",
+      "criterion": "챕터 1에서 파편·랜턴·달·손톱자국·피의 기쁨·눈을 획득하고 해당 선택 효과를 실행한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "mission-engine.js complete(); rewards-engine.js supported, grant(), dispatch()\ntests/rewards.test.cjs — chapter-one catalogue uses the supplied effects and confirmed shard exception\ntests/rewards.test.cjs — integrated clawmark replaces immediate draw, discard, status, heal, block, slot and attack effects before placement\ntests/rewards.test.cjs — integrated kill opens optional rapture choice and simultaneous hunter death cannot heal\ntests/rewards.test.cjs — integrated moon transfers one selected echo into the death dream shop before loss",
+      "testEvidence": [
+        {
+          "file": "tests/rewards.test.cjs",
+          "name": "chapter-one catalogue uses the supplied effects and confirmed shard exception"
+        },
+        {
+          "file": "tests/rewards.test.cjs",
+          "name": "integrated clawmark replaces immediate draw, discard, status, heal, block, slot and attack effects before placement"
+        },
+        {
+          "file": "tests/rewards.test.cjs",
+          "name": "integrated kill opens optional rapture choice and simultaneous hunter death cannot heal"
+        },
+        {
+          "file": "tests/rewards.test.cjs",
+          "name": "integrated moon transfers one selected echo into the death dream shop before loss"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R32",
+      "category": "보상",
+      "rulePage": "17",
+      "criterion": "사냥 도구 2장·카릴 문자 2장·화기 1개 장착 한도를 지키며 초과 획득을 보관/교체 선택한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "rewards-engine.js equipped(), equipReward(), grant()/화기 선택\ntests/rewards.test.cjs — limits apply separately to tools and runes; invalid replacement leaves equipment intact\ntests/rewards.test.cjs — Ludwig rifle is retained alongside the original firearm with an explicit equipment choice",
+      "testEvidence": [
+        {
+          "file": "tests/rewards.test.cjs",
+          "name": "limits apply separately to tools and runes; invalid replacement leaves equipment intact"
+        },
+        {
+          "file": "tests/rewards.test.cjs",
+          "name": "Ludwig rifle is retained alongside the original firearm with an explicit equipment choice"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R33",
+      "category": "보상",
+      "rulePage": "17, 23~24",
+      "criterion": "일반 보상은 사용 후 소진되고 꿈에서 준비되며 혈석의 파편은 지정 슬롯에 계속 적용된다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "rewards-engine.js use(), attackBonus(), onDream(), persistent 파편 처리\ntests/rewards.test.cjs — lantern teleports through the engine helper and exhausts rather than discards\ntests/rewards.test.cjs — shard requires initial slot choice, stays active, and moves only after transformation",
+      "testEvidence": [
+        {
+          "file": "tests/rewards.test.cjs",
+          "name": "lantern teleports through the engine helper and exhausts rather than discards"
+        },
+        {
+          "file": "tests/rewards.test.cjs",
+          "name": "shard requires initial slot choice, stays active, and moves only after transformation"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R34",
+      "category": "보상",
+      "rulePage": "17 / 제공 32종 목록",
+      "criterion": "챕터 1의 6종을 제외한 보상 26종을 실제 임무 획득/사용에 연결한다.",
+      "status": "미구현",
+      "priority": "후속",
+      "verification": "코드 확인 · 전용 자동 테스트 없음",
+      "evidence": "components/cards.json 보상 32종; rewards-engine.js supported는 6종; RULES_AUDIT.txt 보상 실행 목록",
+      "testEvidence": [],
+      "nextAction": "도구/물건 18종과 문자 8종의 획득 조건 및 사용 가능 효과를 연결합니다. 원문 사용불가 임무 물건에 임의 사용 효과를 만들지 않습니다.",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R35",
+      "category": "화기",
+      "rulePage": "17, 20~21 / 제공 추가 화기",
+      "criterion": "루드비히 장총·교단 연발총·화염방사기의 실제 고유 화기 능력을 각각 실행한다.",
+      "status": "부분",
+      "priority": "후속",
+      "verification": "임시 대체 효과만 자동 테스트",
+      "evidence": "data.js firearms는 사용자 승인 단총 효과를 공유; 실제 장총 획득/보관은 rewards-engine.js grant()\ntests/firearms.test.cjs — all named test firearms use pistol rules, spend and reload correctly",
+      "testEvidence": [
+        {
+          "file": "tests/firearms.test.cjs",
+          "name": "all named test firearms use pistol rules, spend and reload correctly"
+        }
+      ],
+      "nextAction": "실제 카드 자료대로 고유 효과를 교체합니다. 현재 테스트는 임시 단총 효과의 검증입니다.",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R36",
+      "category": "라운드",
+      "rulePage": "18",
+      "criterion": "새 라운드에서 원하는 손패만 버리고 3장까지 보충하며 손패가 이미 3장 이상이면 유지한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "코드 확인 · 연속 플레이 근거 · 선택적 버림 경계는 훈련 테스트도 있음",
+      "evidence": "hunt-engine.js nextRound(), REFILL, draw(); hunt-app.js refill 선택\ntests/campaign-playthrough.test.cjs — 122 real player commands complete chapter one from a fresh seed and preserve final dream progress",
+      "testEvidence": [
+        {
+          "file": "tests/campaign-playthrough.test.cjs",
+          "name": "122 real player commands complete chapter one from a fresh seed and preserve final dream progress"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R37",
+      "category": "전투",
+      "rulePage": "19~20",
+      "criterion": "빈 슬롯에 공격 카드를 먼저 놓고 즉시 효과를 처리한 뒤 적 행동을 공개한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-engine.js place(), commitAttack(), reveal(), finishCardChoices()\ntests/hunt.test.cjs — block is immediate against faster attacks and abilities\ntests/hunt.test.cjs — tenacious draw/discard/status choices and energized clear choice",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "block is immediate against faster attacks and abilities"
+        },
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "tenacious draw/discard/status choices and energized clear choice"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R38",
+      "category": "전투",
+      "rulePage": "20",
+      "criterion": "일반 적은 기본 3·특수 2·능력 1의 공용 행동덱을 공유하며 7번째 뽑기에서 재섞는다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "enemy-deck.js create()/draw(); hunt-engine.js reveal()\ntests/chapter-map.test.cjs — same behavior deck is shared across species; seven draws reshuffle only on exhaustion",
+      "testEvidence": [
+        {
+          "file": "tests/chapter-map.test.cjs",
+          "name": "same behavior deck is shared across species; seven draws reshuffle only on exhaustion"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R39",
+      "category": "전투",
+      "rulePage": "20~21",
+      "criterion": "회피는 지정 조건을 만족하는 충분한 속도의 빈 슬롯에 카드를 놓아 해결한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-engine.js canDodge(), dodge(), extra followup dodge\ntests/hunt.test.cjs — quick still needs sufficient speed and tactical can dodge speed3 in speed2 slot\ntests/hunt.test.cjs — undodgeable special rejects dodge; uninterruptible special ignores faster stagger",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "quick still needs sufficient speed and tactical can dodge speed3 in speed2 slot"
+        },
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "undodgeable special rejects dodge; uninterruptible special ignores faster stagger"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R40",
+      "category": "전투",
+      "rulePage": "21",
+      "criterion": "일반 방해는 더 빠를 때만 늦은 공격을 취소하고 같은 속도·방해 불가 공격을 취소하지 않는다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-engine.js resolve(), pendingCombat(); attack flags interrupt/uninterruptible\ntests/hunt.test.cjs — same speed attacks are simultaneous; equal stagger does not prevent enemy\ntests/hunt.test.cjs — undodgeable special rejects dodge; uninterruptible special ignores faster stagger",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "same speed attacks are simultaneous; equal stagger does not prevent enemy"
+        },
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "undodgeable special rejects dodge; uninterruptible special ignores faster stagger"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R41",
+      "category": "전투",
+      "rulePage": "19~22",
+      "criterion": "속도/동시 판정으로 처치를 처리하고 일반 처치당 유지 1개(최대3)를 얻으며 동시 사망 때는 모두 잃는다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음 · 일반 처치당1/상한은 kill() 코드도 확인",
+      "evidence": "hunt-engine.js resolve(), kill(), takeDamage(), enterDream(); kill()의 Math.min(3,echoes+1)\ntests/hunt.test.cjs — same speed attacks are simultaneous; equal stagger does not prevent enemy\ntests/hunt.test.cjs — regain heals after a missed attack but not after lethal simultaneous hit\ntests/chapter-one-items.test.cjs — chapel combines two loot tokens and exchange for one stat card and caps echoes at three",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "same speed attacks are simultaneous; equal stagger does not prevent enemy"
+        },
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "regain heals after a missed attack but not after lethal simultaneous hit"
+        },
+        {
+          "file": "tests/chapter-one-items.test.cjs",
+          "name": "chapel combines two loot tokens and exchange for one stat card and caps echoes at three"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R42",
+      "category": "전투",
+      "rulePage": "21",
+      "criterion": "기절은 손패 버림 선택 또는 빈 손패 추가 피해를 처리하고 면역을 적용한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-engine.js pendingCombat(), stun 선택, finishCardChoices()\ntests/hunt.test.cjs — stun discards a card or damages empty hand, immunity prevents stagger/stun",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "stun discards a card or damages empty hand, immunity prevents stagger/stun"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R43",
+      "category": "전투",
+      "rulePage": "19~22 / 제공 적6면",
+      "criterion": "적 3종6면의 지정 속도 능력·추가 행동·이동·다단 공격을 각각 실제 시점에서 처리한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-engine.js enemyDef(), resolveRevealedAbility(), resolve(), extra followup 처리\ntests/hunt.test.cjs — timed ability precedes equal speed hunter attack\ntests/hunt.test.cjs — faster kill cancels slower timed spawn ability\ntests/hunt.test.cjs — double strike needs two dodges and survives first stagger\ntests/hunt.test.cjs — firebomb moves before tied attack, causes no frenzy bonus, and attack misses displaced target",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "timed ability precedes equal speed hunter attack"
+        },
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "faster kill cancels slower timed spawn ability"
+        },
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "double strike needs two dodges and survives first stagger"
+        },
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "firebomb moves before tied attack, causes no frenzy bonus, and attack misses displaced target"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R44",
+      "category": "전투",
+      "rulePage": "19~21 / 제공 업그레이드",
+      "criterion": "제공 업그레이드의 뽑기·선택 버림·도약·질주·회피·무료 변형·리게인을 해당 시점에 적용한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "주요 제공 효과 자동 테스트 · 모든 카드/상황 조합을 뜻하지 않음",
+      "evidence": "hunt-data.js cards; hunt-engine.js place(), applyCardChoice(), commitAttack(), afterDodge(), resolve()\ntests/hunt.test.cjs — leap moves into enemy with one stat card and rejects out-of-range routes atomically\ntests/hunt.test.cjs — sprint move3; rest heals non-attack action but not firearm reload\ntests/hunt.test.cjs — clear-slot dodge effects, quick draw and tactical speed\ntests/hunt.test.cjs — swift transform offers choice after attacking and after dodging",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "leap moves into enemy with one stat card and rejects out-of-range routes atomically"
+        },
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "sprint move3; rest heals non-attack action but not firearm reload"
+        },
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "clear-slot dodge effects, quick draw and tactical speed"
+        },
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "swift transform offers choice after attacking and after dodging"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R45",
+      "category": "화기",
+      "rulePage": "20~21",
+      "criterion": "준비된 단총은 공개된 기본 공격에만 사용하고 소진하며 카드 1장으로 재준비한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "실제 기본 공격 제한 자동 테스트 · 재준비 비용은 코드/훈련 테스트 확인",
+      "evidence": "hunt-engine.js canFirearm(), FIREARM, RELOAD; hunt-app.js 화기 표시\ntests/hunt.test.cjs — four firearms permit only basic attacks\ntests/enemy-deck.test.cjs — firearm cannot fire before reveal, while exhausted, or after combat ends",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "four firearms permit only basic attacks"
+        },
+        {
+          "file": "tests/enemy-deck.test.cjs",
+          "name": "firearm cannot fire before reveal, while exhausted, or after combat ends"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R46",
+      "category": "전투",
+      "rulePage": "21",
+      "criterion": "실제 적 공격의 독/발광 키워드가 상태를 부여하고 이후 피해·해제·꿈 제거에 연결된다.",
+      "status": "부분",
+      "priority": "후속",
+      "verification": "상태 피해/해제는 기존 테스트 · 실제 적 상태 부여는 미검증",
+      "evidence": "hunt-engine.js 상태 보유/turn-end 독/피해 발광/해제는 존재; enemyDef()/resolve()의 상태 부여 일반화 미연결",
+      "testEvidence": [],
+      "nextAction": "후속 적 자료의 상태 키워드에 상태 부여를 연결하고 실제 지도 회귀 테스트를 추가합니다.",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R47",
+      "category": "전투",
+      "rulePage": "21",
+      "criterion": "기본/특수 칸에 인쇄된 흰 배경 전용 능력을 일반 공격과 구분해 실행한다.",
+      "status": "미구현",
+      "priority": "후속",
+      "verification": "코드 확인 · 전용 자동 테스트 없음",
+      "evidence": "hunt-engine.js enemyDef().convert()는 현재 기본/특수를 attack으로 처리",
+      "testEvidence": [],
+      "nextAction": "현재 적6면에는 해당 예외가 없습니다. 이를 요구하는 후속 자료 연결 전에 능력 의미를 분리합니다.",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R48",
+      "category": "꿈",
+      "rulePage": "23~24",
+      "criterion": "꿈에 입장하면 체력·상태·카드 영역·화기·보상을 회복/재준비한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "꿈/성장/귀환 자동 테스트 · 실제 적 상태 제거는 코드 확인",
+      "evidence": "hunt-engine.js enterDream(), finishDream(); rewards-engine.js onDream()\ntests/hunt.test.cjs — actual dream upgrade replaces one card, spends echoes, refills and returns\ntests/consumables.test.cjs — dream and map reset preserve consumable inventory and total supply",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "actual dream upgrade replaces one card, spends echoes, refills and returns"
+        },
+        {
+          "file": "tests/consumables.test.cjs",
+          "name": "dream and map reset preserve consumable inventory and total supply"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R49",
+      "category": "시작 준비/꿈",
+      "rulePage": "9, 23~24",
+      "criterion": "업그레이드 공급 60장의 시장 4장을 준비/구매마다 보충하고 카드 교체/신규 포기로 덱 12장을 유지한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-engine.js create(), PICK_UPGRADE, REPLACE_UPGRADE, finishDream(), assertState()\ntests/hunt.test.cjs — actual dream upgrade replaces one card, spends echoes, refills and returns\ntests/campaign-playthrough.test.cjs — 122 real player commands complete chapter one from a fresh seed and preserve final dream progress",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "actual dream upgrade replaces one card, spends echoes, refills and returns"
+        },
+        {
+          "file": "tests/campaign-playthrough.test.cjs",
+          "name": "122 real player commands complete chapter one from a fresh seed and preserve final dream progress"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R50",
+      "category": "꿈",
+      "rulePage": "24",
+      "criterion": "꿈 이후 다음 라운드에 사용 가능한 등불로 돌아오며 파괴된 등불을 선택하지 못한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "코드 확인 · 연속 플레이 귀환 근거 · 파괴 등불 RETURN 전용 테스트 없음",
+      "evidence": "hunt-engine.js RETURN, nodes(), finishDream()\ntests/campaign-playthrough.test.cjs — 122 real player commands complete chapter one from a fresh seed and preserve final dream progress",
+      "testEvidence": [
+        {
+          "file": "tests/campaign-playthrough.test.cjs",
+          "name": "122 real player commands complete chapter one from a fresh seed and preserve final dream progress"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R51",
+      "category": "지도 초기화",
+      "rulePage": "24",
+      "criterion": "일반 적과 소모품을 복원하고 공개 지도·적 면/슬롯 배정·행동덱을 유지한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-engine.js resetMap(), spawnOnTile(), finishSpawns(); chapter-engine.js reset\ntests/chapter-map.test.cjs — map reset retains enemy faces, assignments, tile positions and both deck orders\ntests/hunt-playthrough.test.cjs — six complete command-driven hunts preserve quantities and replay including map resets",
+      "testEvidence": [
+        {
+          "file": "tests/chapter-map.test.cjs",
+          "name": "map reset retains enemy faces, assignments, tile positions and both deck orders"
+        },
+        {
+          "file": "tests/hunt-playthrough.test.cjs",
+          "name": "six complete command-driven hunts preserve quantities and replay including map resets"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R52",
+      "category": "지도 초기화",
+      "rulePage": "24 / 임무",
+      "criterion": "초기화 때 임무 적을 일반 적보다 먼저 복원하고 남은 임무 적의 부활 토큰을 보충한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "mission-engine.js reset(); hunt-engine.js flushMissionSpawns()/resetMap()\ntests/mission.test.cjs — reset restores mission target and revival tokens before ordinary spawns",
+      "testEvidence": [
+        {
+          "file": "tests/mission.test.cjs",
+          "name": "reset restores mission target and revival tokens before ordinary spawns"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R53",
+      "category": "안개",
+      "rulePage": "24~25",
+      "criterion": "안개가 일반 적을 제거/출현 금지하고 등불을 파괴하며 사냥꾼의 외부 이동을 막고 완수 때 해제된다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "mission-engine.js encounter(), complete(), fogged(); hunt-engine.js fogCrossing()/eligible()/moveOptions()/spawnOnTile()\ntests/mission.test.cjs — fog removes ordinary occupants, blocks departure and preserves inner movement\ntests/mission.test.cjs — fog blocks the shelter beast roar from spawning a normal beast inside the encounter\ntests/mission.test.cjs — final mission kill yields insight and rewards once, restores lamp and fog",
+      "testEvidence": [
+        {
+          "file": "tests/mission.test.cjs",
+          "name": "fog removes ordinary occupants, blocks departure and preserves inner movement"
+        },
+        {
+          "file": "tests/mission.test.cjs",
+          "name": "fog blocks the shelter beast roar from spawning a normal beast inside the encounter"
+        },
+        {
+          "file": "tests/mission.test.cjs",
+          "name": "final mission kill yields insight and rewards once, restores lamp and fog"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R54",
+      "category": "상호작용",
+      "rulePage": "10 타일 효과, 24",
+      "criterion": "중앙 등불 상호작용으로 정상 등불 또는 안개 내부의 아무 칸에 순간이동한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-engine.js centralLampDestinations(), teleport(allowFogDestination), INTERACT; hunt-app.js 목적지 선택\ntests/audit-fixes.test.cjs — central lamp offers every fog space, accepts a non-lamp destination and exactly replays the movement\ntests/audit-fixes.test.cjs — central lamp rejects ordinary destinations and the lantern cannot target a destroyed lamp",
+      "testEvidence": [
+        {
+          "file": "tests/audit-fixes.test.cjs",
+          "name": "central lamp offers every fog space, accepts a non-lamp destination and exactly replays the movement"
+        },
+        {
+          "file": "tests/audit-fixes.test.cjs",
+          "name": "central lamp rejects ordinary destinations and the lantern cannot target a destroyed lamp"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R55",
+      "category": "순간이동",
+      "rulePage": "26",
+      "criterion": "순간이동은 이동 종료 임무 조건을 실행하며 호위 토큰 복귀를 그보다 먼저 처리한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-engine.js teleport(); mission-engine.js onTeleport(), onMovementEnd()\ntests/mission.test.cjs — escort pickup is optional, only while leaving its named space, and teleport returns it\ntests/audit-fixes.test.cjs — central lamp offers every fog space, accepts a non-lamp destination and exactly replays the movement",
+      "testEvidence": [
+        {
+          "file": "tests/mission.test.cjs",
+          "name": "escort pickup is optional, only while leaving its named space, and teleport returns it"
+        },
+        {
+          "file": "tests/audit-fixes.test.cjs",
+          "name": "central lamp offers every fog space, accepts a non-lamp destination and exactly replays the movement"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R56",
+      "category": "보스",
+      "rulePage": "23",
+      "criterion": "보스 1페이즈 사망은 치유/2페이즈 전환/초과 피해 폐기를 처리하고 별도 페이즈 행동덱을 사용한다.",
+      "status": "부분",
+      "priority": "후속",
+      "verification": "임시 페이즈 전환만 자동 테스트 · 정식 보스 규칙 미완료",
+      "evidence": "hunt-engine.js kill()/spawnProvisional(); temporary-components.js cleric-beast; reveal()은 공용6장 덱\ntests/temporary.test.cjs — temporary boss changes phase on lethal damage, keeps slower attack, and grants one final kill",
+      "testEvidence": [
+        {
+          "file": "tests/temporary.test.cjs",
+          "name": "temporary boss changes phase on lethal damage, keeps slower attack, and grants one final kill"
+        }
+      ],
+      "nextAction": "임시 수치를 실제 성직자 야수 자료로 교체하고 페이즈별 독립 행동덱을 연결합니다.",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R57",
+      "category": "보스",
+      "rulePage": "24",
+      "criterion": "지도 초기화 때 움직인 보스는 현재 칸과 현재 페이즈를 유지하고 체력만 회복한다.",
+      "status": "부분",
+      "priority": "다음",
+      "verification": "코드로 위치 불일치 확인 · 위치 보존 테스트 없음",
+      "evidence": "hunt-engine.js resetMap()는 적을 지운 뒤 spawnProvisional()로 중앙 등불에 재생성",
+      "testEvidence": [],
+      "nextAction": "확인된 임시 시험 위치 불일치를 수정하고 이동한 보스의 초기화 위치/체력/페이즈 회귀 테스트를 추가합니다.",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R58",
+      "category": "NPC",
+      "rulePage": "23",
+      "criterion": "적대 NPC 카드/플레이어 수별 면/토큰 대체와 일반 적 뒤 활성화를 실행한다.",
+      "status": "미구현",
+      "priority": "후속",
+      "verification": "임시 비전투 시험만 자동 테스트",
+      "evidence": "temporary-components.js iosefka는 사용자 허용 비전투 치유 시험; hunt-engine.js 임시 NPC 상호작용\ntests/temporary.test.cjs — temporary NPC consumes a real stat card and replays interaction without inventing supply",
+      "testEvidence": [
+        {
+          "file": "tests/temporary.test.cjs",
+          "name": "temporary NPC consumes a real stat card and replays interaction without inventing supply"
+        }
+      ],
+      "nextAction": "실제 NPC 전투 자료를 연결합니다. 임시 치유 상호작용을 적대 NPC 구현으로 계산하지 않습니다.",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R59",
+      "category": "챕터 완료",
+      "rulePage": "25",
+      "criterion": "챕터 1 완수 후 마지막 꿈의 성장과 장비/소모품/화기/완료 계몽을 저장한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음",
+      "evidence": "hunt-engine.js beginChapterDream()/finishDream()/exportSave()/importSave()\ntests/campaign-playthrough.test.cjs — 122 real player commands complete chapter one from a fresh seed and preserve final dream progress\ntests/mission.test.cjs — simultaneous chapter victory and hunter death still permits the mandatory shard slot choice",
+      "testEvidence": [
+        {
+          "file": "tests/campaign-playthrough.test.cjs",
+          "name": "122 real player commands complete chapter one from a fresh seed and preserve final dream progress"
+        },
+        {
+          "file": "tests/mission.test.cjs",
+          "name": "simultaneous chapter victory and hunter death still permits the mandatory shard slot choice"
+        }
+      ],
+      "nextAction": "",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R60",
+      "category": "챕터 전환",
+      "rulePage": "10, 25",
+      "criterion": "챕터 2~3의 특수 준비·필수/무작위 타일·적 면/슬롯·임무를 새로 준비하고 매 챕터 시작 칸을 선택한다.",
+      "status": "미구현",
+      "priority": "후속",
+      "verification": "코드 확인 · 전용 자동 테스트 없음",
+      "evidence": "chapter-engine.js create()는 챕터1; mission-engine.js init()/onMovementEnd()는 카드1~16; 완료 phase=over",
+      "testEvidence": [],
+      "nextAction": "완료 저장을 다음 챕터 준비로 넘기고 카드17 이후/새 트랙/덱과 챕터별 시작 칸 선택을 연결합니다.",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R61",
+      "category": "챕터 전환",
+      "rulePage": "25",
+      "criterion": "챕터 사이에 보관한 도구·문자·화기를 장착/교체할 수 있다.",
+      "status": "미구현",
+      "priority": "후속",
+      "verification": "코드 확인 · 전용 자동 테스트 없음",
+      "evidence": "rewards-engine.js betweenChapters() phase는 hunt-engine.js에서 도달할 수 없음; over는 일반 명령 거절",
+      "testEvidence": [],
+      "nextAction": "도달 가능한 챕터 사이 상태와 장비 교체 UI/명령 검증을 연결합니다.",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R62",
+      "category": "다인 규칙",
+      "rulePage": "2, 8~10, 15~17, 23~25",
+      "criterion": "2~4인 차례 순서·다른 사냥꾼 대상·적 이동 제한·보상 전달·플레이어 수별 준비를 실행한다.",
+      "status": "미구현",
+      "priority": "후속",
+      "verification": "코드 확인 · 전용 자동 테스트 없음",
+      "evidence": "hunt-engine.js assertState()는 사냥꾼1명; activeHunterId 단일 상태; 다인 보상/NPC/보스 확장 없음",
+      "testEvidence": [],
+      "nextAction": "온라인 연결에 앞서 다인 게임 상태·순서·대상·수량 규칙을 구현합니다.",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R63",
+      "category": "캠페인 범위",
+      "rulePage": "2, 7, 12~13",
+      "criterion": "기나긴 사냥 외 기본판 세 캠페인의 준비와 임무를 실행한다.",
+      "status": "미구현",
+      "priority": "후속",
+      "verification": "코드 확인 · 전용 자동 테스트 없음",
+      "evidence": "campaigns/long-hunt/data.json만 연결; 다른 세 캠페인의 실행 엔진 없음",
+      "testEvidence": [],
+      "nextAction": "커져가는 광기·교단의 비밀·야남 구시가지의 몰락 자료와 임무 상태를 연결합니다.",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R64",
+      "category": "선택 규칙",
+      "rulePage": "24",
+      "criterion": "유효 선택이 동률이면 사냥꾼에게 가장 불리한 결과를 선택한다.",
+      "status": "부분",
+      "priority": "후속",
+      "verification": "선택 기능만 자동 테스트 · 불리함 판단은 수동",
+      "evidence": "hunt-engine.js 적 경로/활성화/피규어 동률은 플레이어 선택; 최악 결과 자동 평가 없음\ntests/hunt.test.cjs — four-figure supply pauses on farthest tie and reuses a full-health figure",
+      "testEvidence": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "name": "four-figure supply pauses on farthest tie and reuses a full-health figure"
+        }
+      ],
+      "nextAction": "현재 선택 안내에 따라 사용자가 판단합니다. 자동 강제는 구현하지 않았습니다.",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "R65",
+      "category": "지도 표시",
+      "rulePage": "10, 14~15, 27 / 제공 타일",
+      "criterion": "지도 20종의 52칸·47출입구·등불7·소모품토큰14·출현17을 새 도식과 클릭 영역에 동일하게 표시한다.",
+      "status": "구현",
+      "priority": "없음",
+      "verification": "자동 테스트 근거 있음 · 20개 사진/렌더 독립 시각 대조",
+      "evidence": "tile-geometry.js; assets/tiles/tile-01.svg~20.svg; scripts/generate-tile-diagrams.cjs\ntests/tile-diagrams.test.cjs — all 20 photo layouts preserve 52 spaces, 47 exits and every printed marker\ntests/tile-diagrams.test.cjs — shared space boundaries match movement adjacency; a shared corner cannot add a move\ntests/tile-diagrams.test.cjs — 20 static vector assets agree with the rules atlas and contain no photographed pixels",
+      "testEvidence": [
+        {
+          "file": "tests/tile-diagrams.test.cjs",
+          "name": "all 20 photo layouts preserve 52 spaces, 47 exits and every printed marker"
+        },
+        {
+          "file": "tests/tile-diagrams.test.cjs",
+          "name": "shared space boundaries match movement adjacency; a shared corner cannot add a move"
+        },
+        {
+          "file": "tests/tile-diagrams.test.cjs",
+          "name": "20 static vector assets agree with the rules atlas and contain no photographed pixels"
+        }
+      ],
+      "nextAction": "논리 칸 구조·출입구·기호/수량을 확인합니다. 촬영 원근을 제거한 경계 비율은 근사 좌표이며 사진 픽셀/물리 치수 일치를 뜻하지 않습니다.",
+      "manualCheck": "미점검"
+    }
+  ]
+}

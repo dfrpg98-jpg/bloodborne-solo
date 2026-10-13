@@ -69,7 +69,14 @@
         hint =
           "공격 또는 맞서 공격을 확정할 때 소비합니다. 선택만으로는 소비하지 않습니다. 적 행동 공개 후에는 추가할 수 없습니다.";
       } else {
-        if (f.target === "enemy" || f.target === "enemy-destination") {
+        if (f.readyReward) {
+          const view = E.rewardsView ? E.rewardsView(s) : null,
+            rewards = view ? view.rewards.filter((r) => r.equipped && !r.ready && !r.persistent) : [];
+          controls += `<label>준비할 소진된 보상<select id="itemReward">${rewards.length ? rewards.map((r) => `<option value="${esc(r.id)}">${esc(r.name)}</option>`).join("") : '<option value="">준비할 보상 없음</option>'}</select></label>`;
+          enabled &&= rewards.length > 0 && !view?.choices.length;
+          if (!rewards.length) hint = "소진된 장착 보상이 없습니다. 골수 가루는 소비하지 않습니다.";
+          else if (view.choices.length) hint = "먼저 획득한 보상의 장착·보관 선택을 마치세요.";
+        } else if (f.target === "enemy" || f.target === "enemy-destination") {
           const targets = p.inDream
             ? []
             : s.enemies.filter(
@@ -128,6 +135,7 @@
             ...($("itemEnemy") ? { enemyId: $("itemEnemy").value } : {}),
             ...($("itemNode") ? { node: $("itemNode").value } : {}),
             ...($("itemSlot") ? { slot: +$("itemSlot").value } : {}),
+            ...($("itemReward") ? { rewardId: $("itemReward").value } : {}),
           });
       if ($("toggleAttackItem"))
         $("toggleAttackItem").onclick = () => {

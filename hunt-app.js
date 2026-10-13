@@ -300,6 +300,7 @@
       upgrade_pick: "꿈 · 업그레이드 획득",
       upgrade_replace: "꿈 · 덱 교체",
       loot_choice: "지하묘지 · 소모품 선택",
+      exchange_choice: "예배당 · 교환할 소모품 선택",
       mission_survivor: "구조한 생존자 이동",
       mission_choice: "임무의 선택",
       mission_death: "죽음 뒤의 회피",
@@ -363,14 +364,14 @@
       const o = E.interactionOptions(state);
       if (o.missionRescue)
         html += button("생존자 구조 · 상호작용", "INTERACT", { cardId: selectedCard, mission: "rescue" }, !chosen, "primary");
-      if (o.loot || o.heal || o.teleport || o.provisionalNpc || o.missionRescue) {
+      if (o.loot || o.heal || o.teleport || o.provisionalNpc || o.missionRescue || o.workshop) {
         html += `<details><summary>상호작용 · 카드 1장</summary><p class="muted">같은 칸의 대상 여럿을 카드 1장으로 함께 선택할 수 있습니다. 적들이 먼저 행동하며, 이때 맞서 공격하거나 회피할 수 없습니다.</p>${o.missionRescue ? '<label class="checkrow"><input id="tileRescue" type="checkbox">생존자 구조도 함께 선택</label>' : ""}${o.provisionalNpc ? button("임시 NPC · 카드 1장을 버려 치유 2", "INTERACT", { cardId: selectedCard, provisionalNpc: true }, !chosen) : ""}${o.loot ? `<label>획득할 소모품 토큰<select id="lootCount">${Array.from({ length: o.loot + 1 }, (_, i) => `<option value="${i}" ${i === o.loot ? "selected" : ""}>${i}개</option>`).join("")}</select></label>` : ""}${o.heal ? '<label class="checkrow"><input id="tileHeal" type="checkbox" checked>대성당 · 치유 2</label>' : ""}${
           o.teleport
             ? `<label>중앙 등불 순간이동 · 등불 또는 안개 안 칸<select id="tileLamp"><option value="">사용하지 않음</option>${E.centralLampDestinations(state)
                 .map((n) => `<option value="${n.id}">${esc(n.name)}${n.lamp ? "" : " · 안개 안"}</option>`)
                 .join("")}</select></label>`
             : ""
-        }${o.loot || o.heal || o.teleport || o.missionRescue ? `<button id="interact" ${chosen ? "" : "disabled"}>상호작용 실행</button>` : ""}</details>`;
+        }${o.workshop ? `<label>성배 교단 예배당 · 소모품 1장 교환<select id="tileExchangeItem"><option value="">교환하지 않음</option>${h.consumables.map((item) => `<option value="${esc(item.id)}">${esc(D.consumables[item.kind].name)}</option>`).join("")}${o.loot ? '<option value="after-loot">소모품 획득 후 교환할 카드 선택</option>' : ""}</select></label><p class="muted">선택한 소모품을 버리고 피의 유지 1개를 얻습니다(최대 3개). 소모품의 일반 사용 효과는 적용하지 않습니다.${h.consumables.length || o.loot ? "" : " 교환할 소모품이 없습니다."}</p>` : ""}${o.loot || o.heal || o.teleport || o.missionRescue || o.workshop ? `<button id="interact" ${chosen ? "" : "disabled"}>상호작용 실행</button>` : ""}</details>`;
       }
       if (E.node(state, h.position).tile === "tile-20")
         html += button(
@@ -392,6 +393,10 @@
         t = M.tile(q.tileId),
         opts = placementOptions();
       html = `<h3>${esc(t.displayName)}</h3><div class="rotation-preview"><img src="${G.image(t.id)}" style="transform:rotate(${rotation * 90}deg)" alt="새 타일 방향"></div><div class="actions">${[0, 1, 2, 3].map((r) => `<button data-rotation="${r}" class="${rotation === r ? "primary" : ""}" ${opts.includes(r) ? "" : "disabled"}>${r * 90}°</button>`).join("")}</div>${button("이 방향으로 배치하고 진입", "PLACE_TILE", { rotation }, false, "primary")}`;
+    } else if (p === "exchange_choice") {
+      help = "획득한 소모품도 교환할 수 있습니다. 1장을 버려 피의 유지 1개를 얻거나 교환을 마치세요. 추가 스탯 카드 비용은 없습니다.";
+      html = h.consumables.map((item) => button(`${esc(D.consumables[item.kind].name)} 교환 · 유지 +1`, "EXCHANGE_CHOICE", { itemId: item.id })).join("")
+        + button("교환하지 않고 마치기", "EXCHANGE_CHOICE", { skip: true });
     } else if (p === "spawn_choice") {
       help =
         "피규어 4개가 모두 사용 중입니다. 가장 먼 적 중 사냥꾼에게 가장 불리한 결과가 되도록 고르세요.";
@@ -621,6 +626,16 @@
             ...$("decisions").querySelectorAll("[data-refill]:checked"),
           ].map((x) => x.dataset.refill),
         });
+    if ($("tileExchangeItem") && $("lootCount")) {
+      const updateExchangeChoice = () => {
+        const option = $("tileExchangeItem").querySelector('option[value="after-loot"]');
+        if (!option) return;
+        option.disabled = !+$("lootCount").value;
+        if (option.disabled && $("tileExchangeItem").value === "after-loot") $("tileExchangeItem").value = "";
+      };
+      $("lootCount").onchange = updateExchangeChoice;
+      updateExchangeChoice();
+    }
     if ($("interact"))
       $("interact").onclick = () =>
         send("INTERACT", {
@@ -629,6 +644,9 @@
           heal: !!$("tileHeal")?.checked,
           lamp: $("tileLamp")?.value || null,
           ...($("tileRescue")?.checked ? { mission: "rescue" } : {}),
+          ...($("tileExchangeItem")?.value === "after-loot"
+            ? { exchange: true, exchangeAfterLoot: true }
+            : $("tileExchangeItem")?.value ? { exchange: true, exchangeItemId: $("tileExchangeItem").value } : {}),
         });
   }
   function renderEnemies() {
@@ -726,7 +744,7 @@
     const n = E.nodes(state).find((n) => n.id === E.hunter(state).position),
       def = n ? M.tile(n.tileId) : null;
     $("locationText").innerHTML = n
-      ? `<b>현재 위치 · ${esc(n.name)}</b>${def.rules.length ? '<p class="muted">' + def.rules.map(esc).join(" ") + "</p>" : ""}${def.id === "tile-07" ? '<p class="muted">이 타일의 소모품 교환 효과는 아직 미처리입니다.</p>' : ""}`
+      ? `<b>현재 위치 · ${esc(n.name)}</b>${def.rules.length ? '<p class="muted">' + def.rules.map(esc).join(" ") + "</p>" : ""}${def.id === "tile-07" ? '<p class="muted">성배 교단 예배당 칸에서 상호작용하면 소모품 1장을 버리고 피의 유지 1개를 얻습니다. 같은 상호작용에서 획득한 소모품도 교환할 수 있습니다.</p>' : ""}`
       : "<b>현재 위치 · 사냥꾼의 꿈</b>";
     $("nearEnemies").innerHTML = state.enemies
       .map(

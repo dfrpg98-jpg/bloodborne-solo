@@ -68,7 +68,7 @@ test("catalogue preserves all 75 definitions, quantities, original text and offl
   assert.equal(
     C.cards.filter((c) => c.group === "consumable" && c.runtime === "playable")
       .length,
-    16,
+    17,
   );
   assert.equal(
     C.cards.find((c) => c.id === "quick").rawRules,
@@ -254,7 +254,7 @@ test("numbing mist removes attack keywords, preserves damage and dedicated abili
   assert.equal(h(s).status.frenzy, true);
   assert.equal(s.combat.action.kind, "ability");
 });
-test("pending and multiplayer items cannot silently be consumed", () => {
+test("reward-only and multiplayer items cannot silently be consumed in training", () => {
   for (const kind of ["bone-ash", "hunters-bell"]) {
     const s = start(null);
     give(s, kind);

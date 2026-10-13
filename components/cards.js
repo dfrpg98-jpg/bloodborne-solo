@@ -95,12 +95,12 @@
       "rules": "보상카드1장을 준비합니다.",
       "rawRules": "보상카드1장을 준비합니다.",
       "source": "사용자 전사문 · 2026-10-11 16:04 KST",
-      "runtime": "pending",
+      "runtime": "playable",
       "questions": [],
       "effects": {
         "readyReward": true
       },
-      "runtimeNote": "보상 카드 소유·준비 상태의 실행은 아직 연결 전입니다. 소모하지 않습니다."
+      "runtimeNote": "긴 사냥에서 소진된 장착 도구 또는 문자를 1장 선택해 준비합니다. 준비할 보상이 없거나 전투 연습이면 소모하지 않습니다."
     },
     {
       "id": "pungent-blood",

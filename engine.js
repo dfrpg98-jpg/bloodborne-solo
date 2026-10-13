@@ -178,6 +178,7 @@
     const h = hunter(s),
       f = consume(s, a.itemId, "사냥꾼의 차례");
     // dispatch works on a clone: any invalid target rolls back both the item and all effects.
+    need(!f.readyReward, "전투 연습에는 준비할 보상이 없습니다. 긴 사냥 모드에서 골수 가루를 사용하세요.");
     let target;
     if (f.target === "enemy" || f.target === "enemy-destination") {
       target = enemy(s, a.enemyId);
