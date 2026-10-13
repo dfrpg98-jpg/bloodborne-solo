@@ -58,15 +58,57 @@
   function missionHelpers() {
     return { hunter, log, need, node, nodes, neighbors, distance, draw, drawConsumable,
       pay, clearSlot, slots, weaponFace, card, takeDamage, kill, resume, explore,
-      openExits: (s) => M.openExits(s.world),
+      openExits: (s) => M.openExits(s.world), trackResets: D.track.resets,
+      enemyDef, spawnNormal: (s, kind, at, extra = {}) => s.spawnQueue.push({kind,node:at,...extra}),
       spawnMission: (s, t) => {
-        s.spawnQueue.push({ kind: t.kind, node: t.node, missionId: t.id });
+        s.spawnQueue.push({ kind: t.kind, node: t.node, missionId: t.id,
+          ...(t.componentId ? {componentId:t.componentId} : {}) });
       },
       grant: (s, id) => rewards.grant(s, id, rewardHelpers()), missionActions };
   }
   function rewardHelpers() {
     return { hunter, log, need, draw, drawConsumable, pay, take, clearSlot, nodes,
-      neighbors, distance, teleport, kill, takeDamage, slots, weaponFace, card };
+      neighbors, distance, teleport, kill, takeDamage, slots, weaponFace, card,
+      enemyDef, damageEnemy, canDisplace, displacementDestinations, displaceEnemy,
+      autoDodge, canAutoDodge, skipNextActivation: (s) => { hunter(s).rewardSkipActivation = true; } };
+  }
+  function displacementDestinations(s, e, range) {
+    const queue = [[e.node,0]], seen = new Set([e.node]);
+    for (let i=0; i<queue.length; i++) {
+      const [at,d] = queue[i];
+      if (d >= range) continue;
+      for (const next of neighbors(s,at)) if (!seen.has(next) && !fogCrossing(s,at,next)) {
+        seen.add(next); queue.push([next,d+1]);
+      }
+    }
+    return [...seen];
+  }
+  function canDisplace(s,e,to,range) { return displacementDestinations(s,e,range).includes(to); }
+  function displaceEnemy(s,e,to) {
+    const from=e.node; e.node=to;
+    missions.onEnemyStep?.(s,e,from,to,missionHelpers());
+    log(s,`${enemyDef(s,e).name} 이동 → ${nameAt(s,to)}.`);
+  }
+  function damageEnemy(s,e,amount,context = {}) {
+    const damage = missions.beforeEnemyDamage ? missions.beforeEnemyDamage(s,e,amount,context,missionHelpers()) : amount;
+    e.hp -= damage; return damage;
+  }
+  function canAutoDodge(s) {
+    const c=s.combat,h=hunter(s);
+    if (h.inDream || h.hp<=0) return false;
+    if (s.phase==='mission_death') return true;
+    if (!c || c.origin==='interaction' || c.noDodge) return false;
+    if (s.phase==='combat_extra') return !!c.extra;
+    return s.phase==='combat_react' && c.action?.type==='attack' && !c.action.undodgeable &&
+      !c.cancelEnemy && !c.dodged && enemy(s,c.enemyId)?.node===h.position;
+  }
+  function autoDodge(s) {
+    need(canAutoDodge(s),'회피할 수 있는 공격이 없습니다.');
+    if (s.mission) rewards.onDodge(s,rewardHelpers());
+    log(s,'고대 사냥꾼의 유골 · 스탯 카드와 슬롯 비용 없이 회피했습니다.');
+    if (s.phase==='mission_death') { resume(s,{type:'mission_death_done'}); return; }
+    if (s.phase==='combat_extra') { s.combat.extra=null; resolve(s); }
+    else s.combat.dodged=true;
   }
   function missionActions(s) {
     if (s.phase === "mission_death") {
@@ -93,6 +135,7 @@
       "사용할 수 있는 등불 또는 허용된 안개 안 칸을 선택하세요.");
     need(!missions.fogged(s, node(s, h.position)?.tile) || sameTile(s, h.position, to),
       "안개 진입로 안에서는 꿈 이외의 방법으로 탈출할 수 없습니다.");
+    need(!missions.canEnter || missions.canEnter(s,h.position,to), "현재 임무에 의해 진입할 수 없는 칸입니다.");
     missions.onTeleport(s, missionHelpers());
     h.position = to;
     missions.onMovementEnd(s, false, missionHelpers());
@@ -178,7 +221,9 @@
     );
     for (const id of ids) {
       const e = enemy(s, id);
+      const from = e.node;
       e.node = hunter(s).position;
+      missions.onEnemyStep?.(s, e, from, e.node, missionHelpers());
       log(
         s,
         `장송의 칼날 · 공격 전: ${enemyDef(s, e).name}을 사냥꾼의 칸으로 이동시켰습니다.`,
@@ -294,13 +339,15 @@
       );
       need(path(s, target.node, a.node).every((at, i, p) => !i || !fogCrossing(s, p[i - 1], at)),
         "적은 안개 진입로를 통과할 수 없습니다.");
+      const from=target.node;
       target.node = a.node;
+      missions.onEnemyStep?.(s,target,from,a.node,missionHelpers());
       log(s, `${enemyDef(s, target).name} 이동 → ${node(s, a.node).name}.`);
     }
     if (f.skipActivation && !s.skipActivation.includes(target.id))
       s.skipActivation.push(target.id);
     if (f.damage) {
-      target.hp -= f.damage;
+      damageEnemy(s,target,f.damage,{kind:'consumable'});
       log(s, `소모품 피해 ${f.damage}.`);
       kill(s, target);
     }
@@ -351,6 +398,7 @@
     const a = s.enemies.filter(
       (e) =>
         !s.activation.includes(e.id) &&
+        !(h.rewardSkipActivation && !enemyDef(s,e).boss) &&
         !s.skipActivation.includes(e.id) &&
         nearby(s, e.node, h.position) && !fogCrossing(s, e.node, h.position),
     );
@@ -404,7 +452,8 @@
       p.state.setup.startingConsumable,
       p.state.setup.firearmId,
       p.state.setup.startSpace,
-      { campaign: !!p.state.setup.campaign, provisional: p.state.setup.provisional },
+      { campaign: !!p.state.setup.campaign, provisional: p.state.setup.provisional,
+        legacyReplay: !p.state.setup.rulesVersion },
     );
     for (const command of p.state.commands)
       verified = dispatch(verified, command);
@@ -416,6 +465,11 @@
   }
   function enemyDef(s, e) {
     const kind = typeof e === "string" ? e : e.kind;
+    if (typeof e === "object" && e.componentId) {
+      const d = temporary.definition(e.componentSpec || e.componentId,e.componentPhase || 1,
+        e.componentId==='iosefka' ? 5 : 4);
+      return missions.targetDef(s,e,d);
+    }
     if (typeof e === "object" && e.provisionalKind) {
       const order = s.world.assignments.find((a) => a.enemyId === kind).slot;
       return temporary.definition(e.provisionalKind, e.provisionalPhase, order);
@@ -482,7 +536,7 @@
       }
   }
   function farthest(s, kind) {
-    const figures = s.enemies.filter((e) => e.kind === kind && !e.missionId),
+    const figures = s.enemies.filter((e) => e.kind === kind && !e.missionId && !e.componentId),
       h = hunter(s);
     const measure = (e) =>
       h.inDream ? Infinity : distance(s, h.position, e.node);
@@ -491,7 +545,7 @@
   }
   function spawnFigure(s, job, figure) {
     const old = s.enemies.find(
-      (e) => e.kind === job.kind && e.figure === figure,
+      (e) => !e.componentId && e.kind === job.kind && e.figure === figure,
     );
     s.activation = s.activation.filter((id) => id !== job.kind + "-" + figure);
     s.skipActivation = s.skipActivation.filter(
@@ -500,6 +554,8 @@
     if (old) {
       old.node = job.node;
       old.hp = enemyDef(s, old).maxHp;
+      if (job.missionSummon) old.missionSummon = true;
+      else delete old.missionSummon;
       if (job.missionId) old.missionId = job.missionId;
       log(
         s,
@@ -513,6 +569,7 @@
         node: job.node,
         hp: D.enemies[job.kind].health,
         ...(job.missionId ? { missionId: job.missionId } : {}),
+        ...(job.missionSummon ? { missionSummon: true } : {}),
       });
       log(s, `${D.enemies[job.kind].name} #${figure} 출현.`);
     }
@@ -520,14 +577,29 @@
   }
   function finishSpawns(s) {
     while (s.spawnQueue.length) {
-      if (!s.spawnQueue[0].missionId && missions.fogged(s, node(s, s.spawnQueue[0].node)?.tile)) {
+      if (s.spawnQueue[0].componentId) {
+        const job=s.spawnQueue.shift(), id=`mission-${job.missionId}`,
+          spec = job.componentId === 'iosefka' ? 'iosefka-hostile' :
+            job.componentId === 'female-patient' ? 'female-patient-a' : job.componentId,
+          old=s.enemies.find((e)=>e.id===id);
+        const e = old || {id,kind:temporary.specimens[spec].baseKind,figure:1,
+          componentId:job.componentId,componentSpec:spec,componentPhase:job.componentPhase || 1,missionId:job.missionId};
+        e.node=job.node; e.componentPhase=job.componentPhase || e.componentPhase;
+        e.hp=enemyDef(s,e).maxHp;
+        if (enemyDef(s,e).boss && !e.bossDecks) e.bossDecks=temporary.createDecks(spec,s,shuffle);
+        s.enemies=s.enemies.filter((other)=>other.id!==id); s.enemies.push(e);
+        s.mission.targets[job.missionId].enemyId=id;
+        log(s,`${enemyDef(s,e).name} 출현 · 임시 구성품을 사용합니다.`);
+        continue;
+      }
+      if (!s.spawnQueue[0].missionId && !s.spawnQueue[0].missionSummon && missions.fogged(s, node(s, s.spawnQueue[0].node)?.tile)) {
         s.spawnQueue.shift();
         log(s, "안개 진입로 · 일반 적의 출현을 막았습니다.");
         continue;
       }
       const job = s.spawnQueue[0],
         free = [1, 2, 3, 4].find(
-          (n) => !s.enemies.some((e) => e.kind === job.kind && e.figure === n),
+          (n) => !s.enemies.some((e) => !e.componentId && e.kind === job.kind && e.figure === n),
         );
       if (free) {
         s.spawnQueue.shift();
@@ -549,8 +621,11 @@
     resume(s, after);
   }
   function resetMap(s, after) {
-    s.enemies = [];
-    spawnProvisional(s);
+    if (s.setup.rulesVersion) {
+      s.enemies=s.enemies.filter((e)=>enemyDef(s,e).boss);
+      for (const e of s.enemies) e.hp=enemyDef(s,e).maxHp;
+      if (s.provisional && !temporary.specimens[s.provisional.componentId].boss) spawnProvisional(s);
+    } else { s.enemies = []; spawnProvisional(s); }
     s.skipActivation = [];
     s.loot = [];
     s.spawnQueue = [];
@@ -563,8 +638,8 @@
           ? 0
           : distance(s, h.position, a.node) -
             distance(s, h.position, b.node)) ||
-        s.world.assignments.find((x) => x.enemyId === a.kind).slot -
-          s.world.assignments.find((x) => x.enemyId === b.kind).slot,
+        (s.world.assignments.find((x) => x.enemyId === a.kind)?.slot || 4) -
+          (s.world.assignments.find((x) => x.enemyId === b.kind)?.slot || 4),
     );
     log(
       s,
@@ -576,11 +651,18 @@
   function advance(s, reason, after) {
     s.track = Math.min(D.track.length, s.track + 1);
     log(s, `사냥 트랙 ${s.track}/${D.track.length} · ${reason}`);
+    missions.onTrackChange?.(s,missionHelpers());
     if (D.track.resets.includes(s.track)) resetMap(s, after);
     else resume(s, after);
   }
   function nextRound(s) {
     if (s.mission?.won && !s.mission.chapterDream) { beginChapterDream(s); return; }
+    if (!s.missionExtraQueue && s.mission?.chapter > 1) {
+      s.missionExtraQueue=hunter(s).inDream ? [] : missions.roundEnd(s,missionHelpers());
+      continueMissionRoundEnd(s); return;
+    }
+    if (s.missionExtraQueue) delete s.missionExtraQueue;
+    delete hunter(s).rewardSkipActivation;
     if (s.lastRound) {
       s.phase = "over";
       s.result = "loss";
@@ -593,6 +675,59 @@
     s.clinicUsed = false;
     advance(s, "새 라운드", { type: "round_ready" });
   }
+  function continueMissionRoundEnd(s) {
+    if (hunter(s).inDream || s.mission?.won) {s.missionExtraQueue=[];nextRound(s);return;}
+    const job=s.missionExtraQueue.shift();
+    if (!job) {nextRound(s);return;}
+    const e=enemy(s,job.enemyId);
+    if (!e) {continueMissionRoundEnd(s);return;}
+    s.enemyMove={enemyId:e.id,remaining:job.move ?? enemyDef(s,e).move,mode:'toward',
+      anchor:hunter(s).position,after:{type:'mission_extra_attack',enemyId:e.id}};
+    runEnemyMove(s);
+  }
+  function startNextChapter(s,a) {
+    need(s.phase==='between_chapters' && s.mission?.won && s.mission.chapter<3,
+      '다음 챕터 준비 단계에서 시작하세요.');
+    need(!s.rewardChoices.length,'보상 장착·보관 선택을 먼저 마치세요.');
+    need(['left','center','right'].includes(a.startSpace),'중앙 등불의 시작 칸을 선택하세요.');
+    const h=hunter(s), face=a.face ?? h.face;
+    need([0,1].includes(face),'장치 무기 면을 선택하세요.');
+    const chapter=s.mission.chapter+1,
+      history=[...(s.mission.history || []),{chapter:s.mission.chapter,
+        completed:[...s.mission.completed],revealed:[...s.mission.revealed]}],
+      seed=Math.floor(random(s)*4294967296),map=M.create(seed,a.startSpace,chapter);
+    s.rng=map.rng;
+    s.world={chapter,assignments:map.assignments,tilePool:map.tilePool,tileDeck:map.tileDeck,
+      tiles:map.tiles,pending:null,specialSetup:map.specialSetup};
+    s.setup.rulesVersion=7;
+    s.round=1;s.track=1;s.lastRound=false;s.phase='hunter';s.result=null;s.kills=0;
+    s.enemies=[];s.loot=[];s.enemyDeck=map.enemyDeck;s.enemyDiscard=[];
+    for (const key of ['skipActivation','activation','spawnQueue','spawnChoices','cardChoices','lootChoice']) s[key]=[];
+    for (const key of ['combat','move','interaction','dream','spawnAfter','enemyMove','cardAfter','freeTransform','leap']) s[key]=null;
+    delete s.missionExtraQueue;s.lootRemaining=0;s.clinicUsed=false;
+    h.deck=shuffle(s,allCards(h));h.hand=[];h.discard=[];h.slots=[null,null,null];
+    h.position=map.position;h.inDream=false;h.hp=6;h.echoes=0;h.face=face;
+    h.status={poison:false,frenzy:false};h.firearmReady=true;
+    delete h.rewardSkipActivation;
+    const held=new Map();for (const c of h.deck) held.set(c.kind,(held.get(c.kind)||0)+1);
+    s.removedCards=[];
+    for (const id of Object.keys(D.cards).filter((id)=>!D.upgrades.includes(id)))
+      s.removedCards.push(...Array(3-(held.get(id)||0)).fill(id));
+    s.upgradeDeck=shuffle(s,D.upgrades.flatMap((id)=>Array(3-(held.get(id)||0)).fill(id)));
+    s.market=s.upgradeDeck.splice(0,4);
+    const carried=new Set(h.consumables.map((item)=>item.id));
+    s.consumableDeck=shuffle(s,Object.values(D.consumables).filter((d)=>d.runtime!=='excluded')
+      .flatMap((d)=>Array.from({length:d.count},(_,i)=>({id:`item-${d.id}-${i+1}`,kind:d.id})))
+      .filter((item)=>!carried.has(item.id)));
+    s.consumableDiscard=[];
+    for (const r of h.rewards) {r.ready=true;r.triggerArmed=false;}
+    h.rewardKillWindow=false;h.rewardTransformWindow=false;
+    missions.init(s,missionHelpers(),chapter,history);
+    for(const p of s.world.tiles) spawnOnTile(s,p);
+    s.spawnAfter={type:'mission_phase',phase:'hunter'};finishSpawns(s);
+    draw(s,3);
+    log(s,`기나긴 사냥 챕터 ${chapter} 시작 · 중앙 등불 ${a.startSpace}칸 · 성장과 소지품을 이어갑니다.`);
+  }
   function finishDream(s) {
     const h = hunter(s);
     h.deck = shuffle(s, h.deck);
@@ -602,8 +737,9 @@
     s.dream = null;
     log(s, "사냥꾼의 꿈에서 체력·화기·상태 이상을 회복했습니다.");
     if (s.mission?.chapterDream) {
-      s.phase = "over"; s.result = "chapter-win";
-      log(s, "챕터 1 완료 · 성장·소모품·보상·화기·계몽을 저장해 다음 챕터 준비를 기다립니다.");
+      s.phase = "over"; s.result = s.mission.chapter === 3 ? "campaign-win" : "chapter-win";
+      log(s, s.mission.chapter===1 ? "챕터 1 완료 · 성장·소모품·보상·화기·계몽을 저장해 다음 챕터 준비를 기다립니다." :
+        `챕터 ${s.mission.chapter} 완료 · 성장·소모품·보상·화기·계몽을 보존합니다.`);
       return;
     }
     nextRound(s);
@@ -656,6 +792,7 @@
     need(neighbors(s, prev).includes(to), "인접한 칸으로만 이동하세요.");
     need(!missions.fogged(s, node(s, prev).tile) || sameTile(s, prev, to),
       "안개 진입로를 걸어서 벗어날 수 없습니다. 임무를 완수하거나 꿈에 입장하세요.");
+    need(!missions.canEnter || missions.canEnter(s,prev,to),"현재 임무에 의해 진입할 수 없는 칸입니다.");
     for (const e of s.enemies)
       if (
         e.node === prev ||
@@ -756,6 +893,7 @@
       e = enemy(s, m.enemyId),
       prev = e.node;
     e.node = to;
+    missions.onEnemyStep?.(s,e,prev,to,missionHelpers());
     if (m.mode === "pursuit" && s.move && to === hunter(s).position)
       s.move.pursuedIntoEnd = true;
     m.remaining--;
@@ -781,6 +919,7 @@
         return;
       }
       takeEnemyStep(s, options[0]);
+      if (s.mission?.won) { beginChapterDream(s); return; }
     }
     const after = m.after;
     s.enemyMove = null;
@@ -873,6 +1012,12 @@
       else continueActivation(s);
       return;
     }
+    if (a.type === "mission_extra_attack") {
+      const e=enemy(s,a.enemyId);
+      if(e && e.node===hunter(s).position) chooseCombat(s,e.id,'mission_extra');
+      else continueMissionRoundEnd(s);
+      return;
+    }
     if (a.type === "pursuit") {
       continuePursuit(s);
       return;
@@ -932,6 +1077,15 @@
   }
   function kill(s, e) {
     if (e.hp > 0) return;
+    if (e.componentId) {
+      const phases=temporary.specimens[e.componentSpec || e.componentId].phases;
+      if (e.componentPhase<phases.length) {
+        e.componentPhase++; e.hp=enemyDef(s,e).maxHp;
+        missions.onBossPhase?.(s,e,e.componentPhase,missionHelpers());
+        log(s,`${enemyDef(s,e).name} · ${e.componentPhase}페이즈로 전환, 초과 피해는 넘기지 않습니다.`);
+        return;
+      }
+    }
     if (e.provisionalKind) {
       const phases = temporary.specimens[e.provisionalKind].phases;
       if (e.provisionalPhase < phases.length) {
@@ -1045,7 +1199,8 @@
       splash: weaponFace(s).splash ? clone(weaponFace(s).splash) : null,
       afterAttackHeal: def.afterAttackHeal || 0,
       onKill: def.onKill || null,
-      freeTransform: !!def.freeTransform,
+      freeTransform: !!def.freeTransform || !!rewardBonus.freeTransform,
+      ...(rewardBonus.interruptEqual ? {interruptEqual:true} : {}),
     };
     c.defense += bonus.defense;
     c.removeEnemyAttackEffects = bonus.removeEnemyAttackEffects;
@@ -1062,15 +1217,15 @@
       endCombat(s);
       return;
     }
-    const kind = enemyDeck.draw(s, shuffle),
+    const kind = e.bossDecks ? temporary.draw(e,s,shuffle) : enemyDeck.draw(s, shuffle),
       d = enemyDef(s, e);
     c.action = clone(d[kind]);
     c.history.push({ kind, name: c.action.name });
     log(
       s,
-      `${d.name} ${d.temporary ? s.provisional.phase + "단계" : d.sideId.toUpperCase() + "면"} · ${enemyDeck.labels[kind]}: ${c.action.name}.`,
+      `${d.name} ${d.temporary ? (e.componentPhase || s.provisional?.phase) + "단계" : d.sideId.toUpperCase() + "면"} · ${enemyDeck.labels[kind] || '회복'}: ${c.action.name}.`,
     );
-    if (kind === "ability" && c.action.type === "ability") {
+    if (c.action.type === "ability") {
       c.abilityPending = true;
       c.abilityReactionOffered = false;
       if (
@@ -1089,7 +1244,7 @@
       0,
       c.action.speed +
         c.buff.speed -
-        (node(s, e.node).tile === "tile-17" && e.missionId !== "shelter" ? 1 : 0),
+        (node(s, e.node).tile === "tile-17" && !d.ignoreTileSpeed && e.missionId !== "shelter" ? 1 : 0),
     );
     c.action.damage += c.buff.damage;
     c.action.interrupt ||= c.buff.interrupt;
@@ -1114,6 +1269,12 @@
       return;
     }
     c.abilityPending = false;
+    if (c.action.code==='temporary-recover') {
+      e.hp=Math.min(enemyDef(s,e).maxHp,e.hp+2);
+      missions.onBossRecover?.(s,e,missionHelpers());
+      log(s,'임시 보스 회복 · 체력2 회복.');
+      reveal(s); return;
+    }
     const code = c.action.code;
     if (code === "huntsman-mob:a") {
       c.buff.speed++;
@@ -1206,7 +1367,7 @@
       e = enemy(s, c.enemyId);
     if (s.mission) rewards.onDodge(s, rewardHelpers());
     if (a.damage && e) {
-      e.hp -= a.damage;
+      damageEnemy(s,e,a.damage,{kind:'dodge'});
       log(s, `반격 · 적에게 ${a.damage} 피해.`);
       kill(s, e);
     }
@@ -1341,6 +1502,7 @@
     }
     if (s.mission?.won) { beginChapterDream(s); return; }
     if (origin === "activation") continueActivation(s);
+    else if (origin === "mission_extra") continueMissionRoundEnd(s);
     else if (origin === "interaction") nextInteraction(s);
     else s.phase = "hunter";
   }
@@ -1398,7 +1560,7 @@
       // Snapshot both hits before changes for same-speed combat.
       if (ha) {
         if (shared) {
-          e.hp -= c.attack.damage;
+          damageEnemy(s,e,c.attack.damage,{kind:'hunter-attack',action:c.action});
           log(s, `${c.attack.name} · 적에게 ${c.attack.damage} 피해.`);
         } else
           log(
@@ -1411,7 +1573,7 @@
               x.id !== e.id &&
               distance(s, h.position, x.node) <= c.attack.splash.range,
           )) {
-            other.hp -= c.attack.splash.damage;
+            damageEnemy(s,other,c.attack.splash.damage,{kind:'splash'});
             log(
               s,
               `장송의 칼날 범위 피해 · ${enemyDef(s, other).name}에게 1 피해.`,
@@ -1421,14 +1583,14 @@
           shared &&
           c.attack.interrupt &&
           c.action.type === "attack" &&
-          speed > c.action.speed &&
+          (speed > c.action.speed || c.attack.interruptEqual && speed === c.action.speed) &&
           !c.action.uninterruptible
         ) {
           c.cancelEnemy = true;
           log(s, "방해 · 더 느린 적 공격 취소.");
         }
       }
-      if (ea && shared) {
+      if (ea && shared && !(c.attack?.interruptEqual && c.cancelEnemy)) {
         takeDamage(s, c.action.damage, c.action.name, true);
         if (
           c.action.interrupt &&
@@ -1526,6 +1688,7 @@
       }
       if (q.exchange && !q.exchangeAfterLoot) exchangeConsumable(s, q.exchangeItemId);
       for (let i = 0; i < q.loot; i++) s.loot.splice(s.loot.indexOf(q.node), 1);
+      missions.onLoot?.(s,q.node,q.loot,missionHelpers());
       s.lootRemaining = q.loot;
     }
     collectLoot(s);
@@ -1588,13 +1751,22 @@
       !a.hunterId || a.hunterId === s.activeHunterId,
       "현재 사냥꾼의 차례가 아닙니다.",
     );
-    need(s.phase !== "over" || s.result === "chapter-win" && s.rewardChoices?.length &&
-      ["EQUIP_REWARD", "KEEP_REWARD"].includes(a.type), "사냥이 끝났습니다. 새 사냥을 시작하세요.");
+    need(s.phase !== "over" || s.result === "chapter-win" &&
+      (a.type==='ENTER_BETWEEN_CHAPTERS' || s.rewardChoices?.length &&
+      ["EQUIP_REWARD", "KEEP_REWARD", "EQUIP_FIREARM", "KEEP_FIREARM"].includes(a.type)), "사냥이 끝났습니다. 새 사냥을 시작하세요.");
     const phase = (p) =>
       need(s.phase === p, "현재 단계에서는 사용할 수 없는 행동입니다.");
     const handled = s.mission && rewards.dispatch(s, a, rewardHelpers());
     const missionHandled = !handled && missions.dispatch(s, a, missionHelpers());
     if (!handled && !missionHandled) switch (a.type) {
+      case 'ENTER_BETWEEN_CHAPTERS':
+        need(s.phase==='over' && s.result==='chapter-win' && s.mission.chapter<3,
+          '완료한 챕터1 또는2에서 다음 챕터를 준비하세요.');
+        need(!s.rewardChoices.length,'보상 장착·보관 선택을 먼저 마치세요.');
+        s.setup.rulesVersion=7;s.phase='between_chapters';
+        log(s,`챕터 ${s.mission.chapter+1} 준비 · 장비를 교체하고 시작 칸을 선택하세요.`);
+        break;
+      case 'START_NEXT_CHAPTER': startNextChapter(s,a);break;
       case "MOVE": {
         phase("hunter");
         const x = payAction(s, a.cardId);
@@ -1746,7 +1918,7 @@
             "비열한 일격 카드를 선택하세요.",
           );
           pay(s, a.cardId);
-          e.hp -= 2;
+          damageEnemy(s,e,2,{kind:'cheap-shot'});
           log(s, "비열한 일격 · 손에서 버리며 피해 2.");
           kill(s, e);
           if (!enemy(s, e.id)) {
@@ -2004,6 +2176,7 @@
       rng: map.rng,
       initialSeed: map.seed,
       setup: { weaponId, face, startingConsumable, firearmId, startSpace,
+        ...(!options.legacyReplay ? {rulesVersion:7} : {}),
         ...(options.campaign ? { campaign: true } : {}),
         ...(options.provisional ? { provisional: options.provisional } : {}) },
       revision: 0,
@@ -2175,8 +2348,8 @@
       ...(s.world.pending ? [s.world.pending.tileId] : []),
     ];
     need(
-      tiles.length === 7 &&
-        new Set(tiles).size === 7 &&
+      tiles.length === ((s.mission?.chapter || 1)===1 ? 7 : 9) &&
+        new Set(tiles).size === tiles.length &&
         tiles.every((id) => s.world.tilePool.includes(id)),
       "타일 수량 오류.",
     );
@@ -2193,7 +2366,7 @@
       "타일 배치 오류.",
     );
     need(
-      s.enemies.length <= 12 &&
+      s.enemies.filter((e)=>!e.componentId).length <= 12 && s.enemies.length <= 16 &&
         new Set(s.enemies.map((e) => e.id)).size === s.enemies.length,
       "피규어 개수 오류.",
     );
@@ -2201,7 +2374,7 @@
       need(
         D.enemies[e.kind] &&
           [1, 2, 3, 4].includes(e.figure) &&
-          e.id === e.kind + "-" + e.figure &&
+          (e.componentId ? e.id===`mission-${e.missionId}` && temporary.specimens[e.componentSpec || e.componentId] : e.id === e.kind + "-" + e.figure) &&
           node(s, e.node) &&
           Number.isInteger(e.hp) &&
           e.hp > 0 &&
@@ -2210,7 +2383,7 @@
       );
     for (const kind of Object.keys(D.enemies))
       need(
-        s.enemies.filter((e) => e.kind === kind).length <= 4,
+        s.enemies.filter((e) => e.kind === kind && !e.componentId).length <= 4,
         "피규어 공급 초과.",
       );
     need(enemyDeck.valid(s), "공용 적 행동 덱 수량 오류.");
@@ -2283,6 +2456,7 @@
         "mission_survivor",
         "mission_choice",
         "mission_death",
+        "between_chapters",
         "over",
       ].includes(s.phase),
       "진행 단계 오류.",
@@ -2327,10 +2501,11 @@
     if (s.phase === "enemy_path")
       need(s.enemyMove && moveOptions(s).length > 1, "적 경로 선택 오류.");
     if (s.mission) {
-      need(s.setup.campaign === true && s.mission.chapter === 1 &&
+      need(s.setup.campaign === true && [1,2,3].includes(s.mission.chapter) &&
         new Set(s.mission.revealed).size === s.mission.revealed.length &&
-        s.mission.revealed.every((x) => Number.isInteger(x) && x >= 1 && x <= 16), "임무 상태 오류.");
+        s.mission.revealed.every((x) => Number.isInteger(x) && x >= 1 && x <= (s.mission.chapter===1 ? 16 : 60)), "임무 상태 오류.");
       rewards.assert(s);
+      missions.assert?.(s, missionHelpers());
     }
     if (s.provisional) {
       need(s.setup.provisional === s.provisional.componentId && temporary.specimens[s.provisional.componentId] &&
@@ -2369,7 +2544,7 @@
     card,
     missionView: (s) => missions.view(s, missionHelpers()),
     missionActions,
-    rewardsView: (s) => rewards.view(s),
+    rewardsView: (s) => rewards.view(s,rewardHelpers()),
     provisionalView,
     placementOptions: (s) => missions.placementOptions(s, missionHelpers()),
     data: D,

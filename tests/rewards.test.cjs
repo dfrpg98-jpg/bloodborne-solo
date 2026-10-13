@@ -25,8 +25,8 @@ function acquireShard(s, slot = 0) {
   dispatch(s, "EQUIP_REWARD", { rewardId: id, slot });
   return id;
 }
-test("chapter-one catalogue uses the supplied effects and confirmed shard exception", () => {
-  assert.equal(Object.keys(R.definitions).length, 6);
+test("campaign reward catalogue uses the supplied effects and confirmed shard exception", () => {
+  assert.equal(Object.keys(R.definitions).length, 16);
   assert.equal(R.definitions["rune-clawmark"].rules,
     D.components.cards.find((r) => r.id === "rune-clawmark").rules);
   assert.equal(R.definitions["bloodstone-shard"].subtype, "tool");

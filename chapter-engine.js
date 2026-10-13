@@ -212,7 +212,7 @@
     }
     s.phase = "ready";
   }
-  function create(seed = 20261011, startSpace = "center") {
+  function create(seed = 20261011, startSpace = "center", chapterNumber = 1) {
     need(
       Number.isInteger(seed) && seed >= 0 && seed <= 4294967295,
       "시드는 0~4294967295 사이의 정수여야 합니다.",
@@ -222,14 +222,15 @@
       central.spaces.some((n) => n.id === startSpace),
       "중앙 등불 타일의 시작 칸을 선택하세요.",
     );
-    const chapter = C.chapters.find((c) => c.number === 1);
+    const chapter = C.chapters.find((c) => c.number === chapterNumber);
+    need(chapter, "지원하는 챕터를 선택하세요.");
     const required = chapter.requiredTiles.map(
       (name) => C.tiles.find((t) => t.name === name).id,
     );
     const s = {
       format: "bloodborne-chapter-map",
       version: 1,
-      chapter: 1,
+      chapter: chapterNumber,
       playerCount: 1,
       seed: seed >>> 0 || 1,
       rng: mixSeed(seed),
@@ -270,16 +271,45 @@
         .filter((t) => t.id !== central.id && !required.includes(t.id))
         .map((t) => t.id),
     );
+    let special = null;
+    if (chapter.specialSetupCards.includes(17)) {
+      const index = unused.findIndex((id) => new Set(tile(id).exits.map((e) => e.edge)).size >= 2);
+      need(index >= 0, "특수 준비의 연결 타일을 찾을 수 없습니다.");
+      special = unused.splice(index, 1)[0];
+    }
     const extras = unused.slice(
       0,
       Math.min(chapter.randomTiles.perHunter, chapter.randomTiles.maximum),
     );
-    s.tilePool = [central.id, ...required, ...extras];
-    s.tileDeck = shuffle(s, [...required, ...extras]);
+    s.tilePool = [central.id, ...required, ...extras, ...(special ? [special] : [])];
+    let remaining = [...required, ...extras];
+    if (special) {
+      const grave = C.tiles.find((t) => t.name === "공동묘지").id,
+        crypt = C.tiles.find((t) => t.name === "오에돈의 지하묘지").id;
+      function connect(id, anchor) {
+        const rotation = placementOptions(s, id, anchor, false)[0];
+        need(rotation !== undefined, "특수 준비 타일의 출입구를 연결할 수 없습니다.");
+        const [dx, dy] = vectors[anchor.edge];
+        const p = {tileId:id,x:anchor.x+dx,y:anchor.y+dy,rotation};
+        s.tiles.push(p);
+        return p;
+      }
+      const north = openExits(s).find((e) => e.tileId === central.id && e.edge === "N");
+      connect(grave, north);
+      const south = openExits(s).find((e) => e.tileId === central.id && e.edge === "S");
+      const bridge = connect(special, south);
+      const exit = openExits(s).find((e) => e.tileId === bridge.tileId);
+      need(exit, "특수 준비 연결 타일에는 두 번째 출입구가 필요합니다.");
+      connect(crypt, exit);
+      remaining = remaining.filter((id) => id !== grave && id !== crypt);
+      s.specialSetup = {card:17,connector:special};
+    }
+    s.tileDeck = shuffle(s, remaining);
     s.enemyDeck = ED.create(s, shuffle);
     note(
       s,
-      "챕터 1 준비: 적 3종의 면과 슬롯 배정 · 지정 타일 4개 + 무작위 타일 2개 · 공용 적 행동 덱 6장.",
+      chapterNumber === 1 ? "챕터 1 준비: 적 3종의 면과 슬롯 배정 · 지정 타일 4개 + 무작위 타일 2개 · 공용 적 행동 덱 6장." :
+        `챕터 ${chapterNumber} 준비: 특수 준비 17번 · 선공개 타일4개, 더미5개 · 공용 적 행동 덱6장.`,
     );
     assertState(s);
     return s;
@@ -402,7 +432,7 @@
       s &&
         s.format === "bloodborne-chapter-map" &&
         s.version === 1 &&
-        s.chapter === 1 &&
+        [1,2,3].includes(s.chapter) &&
         s.playerCount === 1,
       "챕터 준비 저장 형식 오류.",
     );
@@ -441,10 +471,10 @@
       ...(s.pending ? [s.pending.tileId] : []),
     ];
     need(
-      all.length === 7 &&
-        new Set(all).size === 7 &&
+      all.length === (s.chapter === 1 ? 7 : 9) &&
+        new Set(all).size === all.length &&
         all.every((id) => s.tilePool.includes(id)) &&
-        s.tilePool.length === 7,
+        s.tilePool.length === all.length,
       "타일 수량 오류.",
     );
     const nodes = new Set(graph(s).nodes.map((n) => n.id));
@@ -510,7 +540,7 @@
     );
     const input = JSON.parse(text);
     assertState(input);
-    let s = create(input.seed, input.startSpace);
+    let s = create(input.seed, input.startSpace, input.chapter);
     for (const a of input.commands) s = dispatch(s, a);
     need(
       canonical(s) === canonical(input),

@@ -5,7 +5,8 @@
     D = E.data,
     ED = window.BBEnemyDeck,
     $ = (id) => document.getElementById(id),
-    key = "bloodborne-hunt-v06",
+    key = "bloodborne-hunt-v07",
+    previousKey = "bloodborne-hunt-v06",
     oldKey = "bloodborne-hunt-v05";
   const esc = (x) =>
     String(x ?? "").replace(
@@ -29,6 +30,7 @@
     return button(esc(option.label), type, args, !!option.disabled, cls);
   };
   const missionView = () => E.missionView ? E.missionView(state) : null;
+  const attackReplacesCardEffects = () => [...selectedRewards].some((id) => E.hunter(state).rewards?.some((r) => r.id === id && r.kind === "rune-clawmark"));
   const nodeName = (id) => E.node(state, id)?.name || "지도 밖";
   const placementOptions = () => E.placementOptions
     ? E.placementOptions(state)
@@ -40,12 +42,17 @@
     rotation = null,
     previewTile = null,
     pulls = new Set(),
-    selectedReward = null,
+    selectedRewards = new Set(),
+    nextStartSpace = "",
+    nextFace = null,
+    restoredPrevious = false,
     startupError = "",
     setupRequired = true;
   try {
-    const saved = localStorage.getItem(key);
+    const current = localStorage.getItem(key),
+      saved = current || localStorage.getItem(previousKey);
     if (saved) { state = E.importSave(saved); setupRequired = false; }
+    restoredPrevious = !!saved && !current;
   } catch {
     startupError =
       "자동 저장을 읽지 못했습니다. 내보낸 실제 지도 저장 파일을 불러오세요.";
@@ -67,7 +74,7 @@
   function save() {
     try {
       localStorage.setItem(key, E.exportSave(state));
-      $("saveStatus").textContent = "v0.6 진행 자동 저장됨";
+      $("saveStatus").textContent = `${restoredPrevious ? "v0.6에서 이어온 진행 · " : ""}v0.7 자동 저장됨`;
     } catch {
       $("saveStatus").textContent =
         "자동 저장 불가 · 저장 내보내기를 이용하세요";
@@ -76,8 +83,10 @@
   function send(type, args = {}) {
     try {
       state = E.dispatch(state, { type, ...args });
+      if (type === "START_NEXT_CHAPTER") { nextStartSpace = ""; nextFace = null; }
+      if (type === "ENTER_BETWEEN_CHAPTERS") { nextStartSpace = ""; nextFace = E.hunter(state).face; }
       pulls.clear();
-      selectedReward = null;
+      selectedRewards.clear();
       inventory.clear();
       save();
       render();
@@ -136,11 +145,13 @@
       .join("");
   }
   function renderMission() {
-    const view = missionView(), provisional = E.provisionalView ? E.provisionalView(state) : null;
+    const view = missionView(), provisional = E.provisionalView ? E.provisionalView(state) : null,
+      chapter = view?.chapter || 1;
     $("missionPanel").hidden = !view;
-    $("modeLabel").textContent = view ? "기나긴 사냥 · 챕터 1" : "실제 지도 · 전투 연습";
+    $("modeLabel").textContent = view ? `기나긴 사냥 · 챕터 ${chapter}` : "실제 지도 · 전투 연습";
+    document.title = view ? `블러드본 · 기나긴 사냥 챕터 ${chapter}` : "블러드본 · 사냥 연습";
     $("modeNotice").innerHTML = view
-      ? `<strong>기나긴 사냥 · 챕터 1${view.won ? " 완수" : ""}</strong><span>${view.won ? "사냥을 완수했습니다. 상단의 저장 내보내기로 기록과 보상을 보관하세요. 챕터 2~3 전환은 다음 구현 단계입니다." : "공개된 임무를 따라 계몽을 모으고 사냥을 완수하세요. 챕터 1을 마치면 진행을 파일로 내보내 보관할 수 있습니다."}</span>`
+      ? `<strong>기나긴 사냥 · 챕터 ${chapter}${view.won ? " 완수" : ""}</strong><span>${view.won ? chapter === 3 ? "기나긴 사냥의 마지막 사냥을 완수했습니다. 마지막 꿈에서 성장을 마치고 전체 캠페인 기록을 보관하세요." : state.phase === "between_chapters" ? `장비를 교체하고 중앙 등불 타일의 시작 칸을 골라 챕터 ${chapter + 1}을 시작하세요.` : "사냥을 완수했습니다. 마지막 꿈에서 성장을 마친 뒤 다음 챕터를 준비할 수 있습니다." : "공개된 임무를 따라 사냥을 진행하세요. 챕터 사이에는 보관한 장비를 교체하고 다음 사냥의 시작 칸을 선택합니다."}</span>`
       : "<strong>실제 지도 전투 연습</strong><span>이 사냥은 임무 없이 탐험·전투·꿈의 업그레이드를 연습하는 모드입니다. 새 사냥에서 기나긴 사냥 챕터 1을 선택할 수 있습니다.</span>";
     if (provisional) {
       $("modeLabel").textContent = `임시 구성물 시험 · ${provisional.name}`;
@@ -150,10 +161,14 @@
     $("missionInsight").textContent = `완료한 계몽 ${view.insight}장`;
     $("missionObjectives").innerHTML = view.objectives.filter((o) => o.status !== "미발견").map((o) => {
       const done = ["completed", "complete", "done", "완료"].includes(o.status),
-        description = o.id === "main" && !view.revealed.includes(2) ? "계몽 2장 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요." : o.description;
+        description = chapter === 1 && o.id === "main" && !view.revealed.includes(2) ? "계몽 2장 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요." : o.description;
       return `<article class="mission-objective ${done ? "completed" : ""}"><b>${done ? "✓ " : ""}${esc(o.title)} <small>${esc(o.status)}</small></b><span class="muted">${esc(description || "")}</span></article>`;
     }).join("") || '<p class="muted">공개된 임무 카드에서 다음 목표를 확인하세요.</p>';
-    $("missionTokens").innerHTML = view.tokens.map((t) => `<span class="mission-token">◆ ${esc(t.name)} · ${t.carrierId !== null && t.carrierId !== undefined ? "사냥꾼이 운반 중" : esc(nodeName(t.node))}</span>`).join("") + (view.targets || []).filter((t) => !t.complete).map((t) => `<span class="mission-token">◇ ${esc(window.BBLongHunt.cards.find((c) => c.number === t.card)?.title || "특수 적")} · 계몽 토큰 ${t.tokens}개</span>`).join("");
+    $("missionTokens").innerHTML = view.tokens.map((t) => `<span class="mission-token">◆ ${esc(t.name)} · ${t.carrierId !== null && t.carrierId !== undefined ? "사냥꾼이 운반 중" : esc(nodeName(t.node))}</span>`).join("") + (view.targets || []).filter((t) => !t.complete && t.tokens !== undefined).map((t) => `<span class="mission-token">◇ ${esc(window.BBLongHunt.cards.find((c) => c.number === t.card)?.title || "특수 적")} · 계몽 토큰 ${t.tokens}개</span>`).join("") + (view.counters || []).map((c) => `<span class="mission-token">${esc(c.name)} · ${esc(c.value)}</span>`).join("");
+    $("missionNotices").innerHTML = (view.notices || []).map((notice) => `<p>${esc(notice)}</p>`).join("");
+    const history = view.history || state.mission?.history || [];
+    $("missionHistory").hidden = !history.length;
+    $("pastChapters").innerHTML = history.map((ch) => `<p>✓ 챕터 ${ch.chapter} 완수 · 완료 카드 ${(ch.completed || []).map(esc).join(", ")}</p>`).join("");
     $("missionFog").textContent = view.fog.length ? `안개 진입로 · ${view.fog.map((id) => M.tile(id)?.displayName || id).join(", ")}` : "";
     const actions = view.pending || state.rewardChoices?.length ? [] : (E.missionActions ? E.missionActions(state) : []);
     $("missionActions").innerHTML = actions.map((a) => commandButton(a)).join("");
@@ -161,20 +176,32 @@
     $("revealedCards").innerHTML = view.revealed.map((number) => {
       const card = window.BBLongHunt.cards.find((c) => c.number === number);
       if (!card) return "";
-      const completed = view.completed.includes(number);
-      return `<article class="revealed-card ${completed ? "completed" : ""}"><p class="eyebrow">${esc(card.type)} · 카드 ${number}${completed ? " · 완료" : ""}</p><h3>${esc(card.title)}</h3>${card.rules.map((r) => `<p>${esc(r)}</p>`).join("")}<details><summary>이 카드의 원본 사진</summary><a href="${photo(card.image)}" target="_blank"><img src="${photo(card.image)}" loading="lazy" alt="공개된 카드 ${number} · ${esc(card.title)}"></a></details></article>`;
+      const completed = view.completed.includes(number), discarded = view.discarded?.includes(number);
+      return `<article class="revealed-card ${completed || discarded ? "completed" : ""}"><p class="eyebrow">${esc(card.type)} · 카드 ${number}${discarded ? " · 효과 제거됨" : completed ? " · 완료" : ""}</p><h3>${esc(card.title)}</h3>${discarded ? '<p class="muted">이 카드의 효과는 종료되었습니다. 아래 문구는 공개된 기록입니다.</p>' : ""}${card.rules.map((r) => `<p>${esc(r)}</p>`).join("")}<details><summary>이 카드의 원본 사진</summary><a href="${photo(card.image)}" target="_blank"><img src="${photo(card.image)}" loading="lazy" alt="공개된 카드 ${number} · ${esc(card.title)}"></a></details></article>`;
     }).join("");
   }
   function renderRewards() {
     const view = E.rewardsView ? E.rewardsView(state) : null;
     $("rewardsPanel").hidden = !view;
     if (!view) return;
-    const h = E.hunter(state), pending = !!view.choices.length;
-    if (!view.rewards.some((r) => r.id === selectedReward && r.attackSelectable)) selectedReward = null;
+    const h = E.hunter(state), pending = !!view.choices.length,
+      between = state.phase === "between_chapters";
+    selectedRewards = new Set([...selectedRewards].filter((id) => view.rewards.some((r) => r.id === id && r.attackSelectable)));
     $("rewardsCount").textContent = `${view.rewards.length}장 · 사냥 도구 ${view.rewards.filter((r) => r.equipped && r.subtype === "tool").length}/2 · 카릴 문자 ${view.rewards.filter((r) => r.equipped && r.subtype === "rune").length}/2`;
     $("rewards").innerHTML = view.rewards.map((r) => {
       let actions = "";
-      if (r.kind === "lantern" && r.equipped) {
+      if (r.controls && r.equipped) {
+        const control = r.controls,
+          opts = (targets) => targets.map((t) => `<option value="${esc(t.enemyId)}">${esc(t.name)}</option>`).join(""),
+          destinations = (target) => (target.destinations || []).map((n) => `<option value="${esc(n.node)}">${esc(n.name)}</option>`).join("");
+        if (control.type === "enemies-destinations")
+          actions = control.targets.map((t) => `<label>${esc(t.name)}의 이동 목적지<select id="rewardMove-${r.id}-${t.enemyId}">${destinations(t)}</select></label>`).join("");
+        else {
+          actions = `<label>대상 적<select id="rewardEnemy-${r.id}">${opts(control.targets)}</select></label>`;
+          if (control.type === "enemy-destination") actions += `<label>이동 목적지<select id="rewardNode-${r.id}"></select></label>`;
+        }
+        actions += `<button data-reward-use="${r.id}" ${r.usable && !pending ? "" : "disabled"}>${esc(r.name)} 사용</button>`;
+      } else if (r.kind === "lantern" && r.equipped) {
         actions = `<label>이동할 등불<select id="rewardLamp-${r.id}">${E.nodes(state).filter((n) => n.lamp).map((n) => `<option value="${n.id}">${esc(n.name)}</option>`).join("")}</select></label><button data-reward-use="${r.id}" data-reward-kind="lantern" ${r.usable && !pending ? "" : "disabled"}>등불 사용</button>`;
       } else if (r.kind === "rune-eye" && r.equipped) {
         const cards = (list) => list.map((c) => `<option value="${c.id}">${esc(E.card(c).name)} · ${esc(c.id)}</option>`).join("");
@@ -182,35 +209,51 @@
       } else if (r.kind === "rune-rapture" && r.equipped) {
         actions = button("피의 기쁨 · 카드 1장, 치유 1", "USE_REWARD", { rewardId: r.id }, !r.usable || pending);
         if (r.usable) actions = '<p class="muted">지금 사용하거나 다른 행동을 하면 이 처치의 사용 기회가 끝납니다.</p>' + actions;
+      } else if (r.equipped && ["iosefka-vial", "messengers-gift", "rune-formless", "old-hunter-bone"].includes(r.kind)) {
+        actions = button(`${esc(r.name)} 사용`, "USE_REWARD", { rewardId: r.id }, !r.usable || pending);
       }
       if (r.triggerSelectable)
         actions += button(r.triggerArmed ? "다음 죽음에 사용 선택 해제" : "다음 죽음에 달 문자 사용", "SET_REWARD_TRIGGER", { rewardId: r.id, enabled: !r.triggerArmed }, pending);
       if (r.reassignable && !pending)
         actions += `<p class="muted">변형 직후 · 혈석을 옮길 수 있습니다.</p><div class="actions">${E.slots(state).map((sl, slot) => button(`${slot + 1}번으로 옮기기`, "REASSIGN_REWARD", { rewardId: r.id, slot }, slot === r.slot)).join("")}</div>`;
       if (r.attackSelectable && !pending)
-        actions += `<label class="checkrow"><input type="checkbox" data-reward-attack="${r.id}" ${selectedReward === r.id ? "checked" : ""}>다음 공격의 스탯 효과를 +1피해·방해로 대체</label>`;
+        actions += `<label class="checkrow"><input type="checkbox" data-reward-attack="${r.id}" ${selectedRewards.has(r.id) ? "checked" : ""}>다음 공격에 이 보상 사용</label>`;
+      if (between && !pending)
+        actions += r.equipped ? button("이 보상 보관", "KEEP_REWARD", { rewardId: r.id }) : rewardChoiceHTML({ ...view, choices: [{ rewardId: r.id }] }, true);
       const status = !r.equipped ? "보관 중" : r.persistent ? `${r.slot + 1}번 공격 슬롯 · 지속 효과` : r.ready ? "장착 · 준비됨" : "장착 · 소진됨";
       return `<article class="reward-card"><p class="eyebrow">${r.subtype === "rune" ? "카릴 문자" : "사냥 도구"}</p><h3>${esc(r.name)}</h3><p class="reward-state ${!r.ready ? "spent" : ""}">${status}${r.triggerArmed ? " · 다음 죽음에 사용 선택됨" : ""}</p><p>${esc(r.rules)}</p>${actions ? `<div class="reward-actions">${actions}</div>` : ""}${r.photos?.length ? `<details><summary>보상 원본 사진</summary>${r.photos.map((p) => `<a href="${esc(p.path)}" target="_blank"><img src="${esc(p.path)}" loading="lazy" alt="${esc(r.name)} 원본 사진"></a>`).join("")}</details>` : ""}</article>`;
     }).join("") || '<p class="muted">보상은 임무를 완료하면 획득합니다.</p>';
     const owned = view.firearms.filter((g) => !g.equipped);
-    if (owned.length) $("rewards").innerHTML += `<article class="reward-card"><p class="eyebrow">보관한 화기</p>${owned.map((g) => `<p>${esc(g.name)}</p>`).join("")}<p class="muted">화기는 획득할 때 또는 챕터 사이에 교체합니다.</p></article>`;
+    if (owned.length) $("rewards").innerHTML += `<article class="reward-card"><p class="eyebrow">보관한 화기</p>${owned.map((g) => `<p>${esc(g.name)}</p>${between ? button("이 화기 장착", "EQUIP_FIREARM", { firearmId: g.id }, pending) : ""}`).join("")}<p class="muted">화기는 획득할 때 또는 챕터 사이에 교체합니다.</p></article>`;
     bind($("rewards"));
     bindRewardAttack($("rewards"));
+    view.rewards.filter((r) => r.controls?.type === "enemy-destination" && r.equipped).forEach((r) => {
+      const select = $("rewardEnemy-" + r.id), destination = $("rewardNode-" + r.id);
+      const update = () => {
+        const target = r.controls.targets.find((t) => t.enemyId === select.value);
+        destination.innerHTML = (target?.destinations || []).map((n) => `<option value="${esc(n.node)}">${esc(n.name)}</option>`).join("");
+      };
+      select.onchange = update;
+      update();
+    });
     $("rewards").querySelectorAll("[data-reward-use]").forEach((b) => b.onclick = () => {
-      const id = b.dataset.rewardUse;
-      send("USE_REWARD", b.dataset.rewardKind === "lantern"
-        ? { rewardId: id, node: $("rewardLamp-" + id).value }
-        : { rewardId: id, discardId: $("rewardDiscard-" + id).value, takeId: $("rewardTake-" + id).value });
+      const id = b.dataset.rewardUse, r = view.rewards.find((r) => r.id === id), args = { rewardId: id };
+      if (r.controls?.type === "enemies-destinations") args.moves = r.controls.targets.map((t) => ({ enemyId: t.enemyId, node: $("rewardMove-" + id + "-" + t.enemyId).value }));
+      else if (r.controls?.type === "enemy-destination") { args.enemyId = $("rewardEnemy-" + id).value; args.node = $("rewardNode-" + id).value; }
+      else if (r.controls?.type === "enemy") args.enemyId = $("rewardEnemy-" + id).value;
+      else if (r.kind === "lantern") args.node = $("rewardLamp-" + id).value;
+      else if (r.kind === "rune-eye") { args.discardId = $("rewardDiscard-" + id).value; args.takeId = $("rewardTake-" + id).value; }
+      send("USE_REWARD", args);
     });
   }
   function bindRewardAttack(box) {
     box.querySelectorAll("[data-reward-attack]").forEach((b) => b.onchange = () => {
-      selectedReward = b.checked ? b.dataset.rewardAttack : null;
+      b.checked ? selectedRewards.add(b.dataset.rewardAttack) : selectedRewards.delete(b.dataset.rewardAttack);
       renderRewards();
       renderDecisions();
     });
   }
-  function rewardChoiceHTML(view) {
+  function rewardChoiceHTML(view, stored = false) {
     const choice = view.choices[0];
     if (choice.firearmId) {
       const g = view.firearms.find((g) => g.id === choice.firearmId);
@@ -226,7 +269,7 @@
       if (slot !== null) args.slot = slot;
       return button(`${old ? esc(old.name) + "을 보관하고 " : ""}${slot !== null ? (slot + 1) + "번 슬롯에 " : ""}장착`, "EQUIP_REWARD", args, false, "primary");
     })).join("");
-    return `<div class="reward-pending"><h3>${esc(r.name)} 획득</h3><p>${esc(r.rules)}</p><p class="muted">사냥 도구와 카릴 문자는 각각 2장까지 장착합니다. 보관한 카드는 챕터 사이에 교체할 수 있습니다.</p><div class="choice-grid">${opts}${button("이 보상 보관", "KEEP_REWARD", { rewardId: r.id })}</div></div>`;
+    return `<div class="reward-pending"><h3>${esc(r.name)} ${stored ? "교체 장착" : "획득"}</h3><p>${esc(r.rules)}</p><p class="muted">사냥 도구와 카릴 문자는 각각 2장까지 장착합니다. 보관한 카드는 챕터 사이에 교체할 수 있습니다.</p><div class="choice-grid">${opts}${stored ? "" : button("이 보상 보관", "KEEP_REWARD", { rewardId: r.id })}</div></div>`;
   }
   function renderHand() {
     const h = E.hunter(state);
@@ -304,6 +347,7 @@
       mission_survivor: "구조한 생존자 이동",
       mission_choice: "임무의 선택",
       mission_death: "죽음 뒤의 회피",
+      between_chapters: "다음 챕터 준비",
       over: "사냥 종료",
     };
     $("phaseTitle").textContent = names[p];
@@ -314,7 +358,7 @@
       slot: selectedSlot,
       itemIds: inventory.ids(),
       pullIds: [...pulls],
-      rewardIds: selectedReward ? [selectedReward] : [],
+      rewardIds: [...selectedRewards],
     };
     const selectHint = `선택 카드: ${chosen ? E.card(chosen).name : "없음"} · 슬롯: ${slot ? selectedSlot + 1 + "번" + (empty ? "" : " (점유됨)") : "없음"}`;
     const checkPulls = () =>
@@ -334,7 +378,7 @@
         html += `<p>공격 대상 · ${esc(E.enemyDef(state, target).name)} #${target.figure} · 체력 ${target.hp}</p>`;
         const same = target.node === h.position || pulls.has(target.id),
           paths =
-            chosen && E.card(chosen).leap && !selectedReward
+            chosen && E.card(chosen).leap && !attackReplacesCardEffects()
               ? E.leapPaths(state, target.node).filter((p) => p.length > 1)
               : [];
         if (!same && paths.length)
@@ -363,9 +407,9 @@
       }
       const o = E.interactionOptions(state);
       if (o.missionRescue)
-        html += button("생존자 구조 · 상호작용", "INTERACT", { cardId: selectedCard, mission: "rescue" }, !chosen, "primary");
+        html += button("임무 대상 · 상호작용", "INTERACT", { cardId: selectedCard, mission: "rescue" }, !chosen, "primary");
       if (o.loot || o.heal || o.teleport || o.provisionalNpc || o.missionRescue || o.workshop) {
-        html += `<details><summary>상호작용 · 카드 1장</summary><p class="muted">같은 칸의 대상 여럿을 카드 1장으로 함께 선택할 수 있습니다. 적들이 먼저 행동하며, 이때 맞서 공격하거나 회피할 수 없습니다.</p>${o.missionRescue ? '<label class="checkrow"><input id="tileRescue" type="checkbox">생존자 구조도 함께 선택</label>' : ""}${o.provisionalNpc ? button("임시 NPC · 카드 1장을 버려 치유 2", "INTERACT", { cardId: selectedCard, provisionalNpc: true }, !chosen) : ""}${o.loot ? `<label>획득할 소모품 토큰<select id="lootCount">${Array.from({ length: o.loot + 1 }, (_, i) => `<option value="${i}" ${i === o.loot ? "selected" : ""}>${i}개</option>`).join("")}</select></label>` : ""}${o.heal ? '<label class="checkrow"><input id="tileHeal" type="checkbox" checked>대성당 · 치유 2</label>' : ""}${
+        html += `<details><summary>상호작용 · 카드 1장</summary><p class="muted">같은 칸의 대상 여럿을 카드 1장으로 함께 선택할 수 있습니다. 적들이 먼저 행동하며, 이때 맞서 공격하거나 회피할 수 없습니다.</p>${o.missionRescue ? '<label class="checkrow"><input id="tileRescue" type="checkbox">임무 상호작용도 함께 선택</label>' : ""}${o.provisionalNpc ? button("임시 NPC · 카드 1장을 버려 치유 2", "INTERACT", { cardId: selectedCard, provisionalNpc: true }, !chosen) : ""}${o.loot ? `<label>획득할 소모품 토큰<select id="lootCount">${Array.from({ length: o.loot + 1 }, (_, i) => `<option value="${i}" ${i === o.loot ? "selected" : ""}>${i}개</option>`).join("")}</select></label>` : ""}${o.heal ? '<label class="checkrow"><input id="tileHeal" type="checkbox" checked>대성당 · 치유 2</label>' : ""}${
           o.teleport
             ? `<label>중앙 등불 순간이동 · 등불 또는 안개 안 칸<select id="tileLamp"><option value="">사용하지 않음</option>${E.centralLampDestinations(state)
                 .map((n) => `<option value="${n.id}">${esc(n.name)}${n.lamp ? "" : " · 안개 안"}</option>`)
@@ -555,24 +599,32 @@
       const pending = missionView()?.pending;
       help = pending ? pending.title + (pending.type === "survivor-move" ? ` · 남은 이동력 ${pending.remaining}` : "") : "임무의 다음 선택을 진행하세요.";
       html = (pending?.options || (E.missionActions ? E.missionActions(state) : [])).map((a) => commandButton(a, "primary")).join("");
+    } else if (p === "between_chapters") {
+      const chapter = missionView()?.chapter || 1, face = nextFace === null ? h.face : nextFace;
+      help = `챕터 ${chapter}을 완수했습니다. 아래 보상에서 장비를 교체한 뒤, 다음 사냥의 시작 칸과 무기 형태를 고르세요.`;
+      html = `<label>챕터 ${chapter + 1}의 시작 칸<select id="nextChapterStart"><option value="">시작할 칸을 직접 선택하세요</option>${["left", "center", "right"].map((id) => `<option value="${id}" ${nextStartSpace === id ? "selected" : ""}>${id === "left" ? "왼쪽 칸" : id === "right" ? "오른쪽 칸" : "중앙 등불"}</option>`).join("")}</select></label><div id="nextChapterPlacement"></div><label>시작 무기 형태<select id="nextChapterFace"><option value="0" ${face === 0 ? "selected" : ""}>앞면</option><option value="1" ${face === 1 ? "selected" : ""}>뒷면</option></select></label><button id="startNextChapter" class="primary" ${nextStartSpace ? "" : "disabled"}>챕터 ${chapter + 1} 시작</button><button id="exportChapterSave">여기까지 저장 내보내기</button>`;
     } else if (p === "over") {
       const won = state.result === "chapter-win" || missionView()?.won,
-        trialWon = state.result === "provisional-win";
+        trialWon = state.result === "provisional-win",
+        chapter = missionView()?.chapter || 1;
       help = trialWon
         ? "임시 적 시험을 완료했습니다. 이 결과는 기나긴 사냥의 정식 챕터 완료와 별개입니다. 시험 기록을 저장하거나 새 사냥에서 다음 모드를 선택하세요."
         : won
-        ? "기나긴 사냥 챕터 1을 완수했습니다. 기록과 보상을 저장으로 내보내세요. 챕터 2~3 전환은 다음 구현 단계입니다."
+        ? chapter === 3 ? "기나긴 사냥 챕터 1~3을 모두 완수했습니다. 전체 캠페인의 기록과 보상을 파일로 보관하세요." : `챕터 ${chapter}의 사냥과 마지막 꿈을 마쳤습니다. 장비를 교체하고 다음 챕터를 시작할 수 있습니다.`
         : "사냥이 종료되었습니다. 상단의 새 사냥으로 다시 시작할 수 있습니다.";
       if (won || trialWon) {
-        $("phaseTitle").textContent = trialWon ? "임시 적 시험 완료" : "챕터 1 완수";
+        $("phaseTitle").textContent = trialWon ? "임시 적 시험 완료" : chapter === 3 ? "기나긴 사냥 캠페인 완수" : `챕터 ${chapter} 완수`;
         html = `<button id="exportChapterSave" class="primary">${trialWon ? "시험 결과" : "완료한 사냥"} 저장 내보내기</button>`;
+        if (won && chapter < 3) html += button(`챕터 ${chapter + 1} 준비 · 장비 교체`, "ENTER_BETWEEN_CHAPTERS", {}, false, "primary");
       }
     }
     if (["hunter", "combat_choose"].includes(p) && inventory.names().length)
       html += `<p class="muted">공격에 함께 사용: ${inventory.names().map(esc).join(", ")}</p>`;
     const rewards = E.rewardsView ? E.rewardsView(state) : null;
+    if (rewards && ["combat_react", "combat_extra", "mission_death"].includes(p))
+      html += rewards.rewards.filter((r) => r.kind === "old-hunter-bone" && r.usable).map((r) => button(`${esc(r.name)} · 자동 회피`, "USE_REWARD", { rewardId: r.id })).join("");
     if (["hunter", "combat_choose"].includes(p) && rewards)
-      html += rewards.rewards.filter((r) => r.attackSelectable).map((r) => `<label class="checkrow"><input type="checkbox" data-reward-attack="${r.id}" ${selectedReward === r.id ? "checked" : ""}>${esc(r.name)} · 스탯 효과를 +1피해·방해로 대체</label>`).join("");
+      html += rewards.rewards.filter((r) => r.attackSelectable).map((r) => `<label class="checkrow"><input type="checkbox" data-reward-attack="${r.id}" ${selectedRewards.has(r.id) ? "checked" : ""}>${esc(r.name)} · 다음 공격에 사용</label>`).join("");
     if (rewards?.choices.length) {
       $("phaseTitle").textContent = "획득한 보상 선택";
       help = "다음 행동 전에 보상의 장착·슬롯·보관을 결정하세요.";
@@ -583,6 +635,14 @@
     bind($("decisions"));
     bindRewardAttack($("decisions"));
     if ($("exportChapterSave")) $("exportChapterSave").onclick = () => $("save").click();
+    if ($("nextChapterStart")) {
+      window.BBStartPlacement.mount($("nextChapterPlacement"), $("nextChapterStart"), $("startNextChapter"));
+      const rememberStart = () => { nextStartSpace = $("nextChapterStart").value; };
+      $("nextChapterStart").addEventListener("change", rememberStart);
+      $("nextChapterPlacement").addEventListener("click", rememberStart);
+      $("nextChapterFace").onchange = () => { nextFace = +$("nextChapterFace").value; };
+      $("startNextChapter").onclick = () => send("START_NEXT_CHAPTER", { startSpace: $("nextChapterStart").value, face: +$("nextChapterFace").value });
+    }
     $("combatInfo").innerHTML = c
       ? `<div class="combat-card"><b>${esc(state.enemies.some((e) => e.id === c.enemyId) ? E.enemyDef(state, state.enemies.find((e) => e.id === c.enemyId)).name : "처치된 적")}</b><p>${c.action ? `${esc(ED.labels[c.action.kind])} · ${esc(c.action.name)}${c.action.speed !== null ? " · 속도 " + c.action.speed : ""}${c.action.damage !== undefined ? " · 피해 " + c.action.damage : ""}` : "적 행동 공개 전"}</p>${c.action?.rules?.length ? `<p>${c.action.rules.map(esc).join("<br>")}</p>` : ""}<small>${c.attack ? `사냥꾼 공격 · 속도 ${c.attack.speed} / 피해 ${c.attack.damage}` : "사냥꾼 공격 없음"} · 방어 ${c.defense}${c.dodged ? " · 회피 선택됨" : ""}${c.cancelEnemy ? " · 적 공격 방해됨" : ""}${c.noDodge ? " · 회피 불가" : ""}</small></div>`
       : "";
@@ -679,7 +739,7 @@
         tokens = ghost ? [] : (mission?.tokens || []).filter((t) => t.node === id || (t.carrierId === state.activeHunterId && here));
       const status = `${here ? "● 사냥꾼" : ""}${loot ? `<small>◇ 남은 소모품 ${loot}</small>` : ""}${tokens.map((t) => `<small class="map-mission-token">◆ ${esc(t.name)}</small>`).join("")}${figures.map((f) => {
         const a = state.world.assignments.find((a) => a.enemyId === f.kind);
-        return `<span class="token" style="--marker:${colors[a?.marker] || colors.gold}" title="${esc(E.enemyDef(state, f).name)} #${f.figure}">${f.missionId || f.provisionalKind || !a ? "★" : ["①","②","③"][a.slot - 1]} #${f.figure}</span>`;
+        return `<span class="token" style="--marker:${colors[a?.marker] || colors.gold}" title="${esc(E.enemyDef(state, f).name)} #${f.figure}">${f.missionId || f.provisionalKind || f.componentId || !a ? "★" : ["①","②","③"][a.slot - 1]} #${f.figure}</span>`;
       }).join("")}`;
       return `<button class="space diagram-space ${here ? "here" : ""} ${reach ? "reachable" : ""} ${ghost ? "ghost-space" : ""}" style="clip-path:polygon(${polygon})" data-command="STEP" data-args="${esc(JSON.stringify({node:id}))}" ${reach ? "" : "disabled"} aria-label="${esc(n.placeName || n.label)}${here ? " · 사냥꾼" : ""}${loot ? " · 소모품 " + loot : ""}${figures.length ? " · 적 " + figures.length : ""}" title="${esc(n.placeName || n.label)}"><span class="space-status" style="left:${x}%;top:${Math.min(90,y+10)}%">${status}</span></button>`;
     }).join("")}</div>`;
@@ -740,7 +800,7 @@
     $("chapterMap").innerHTML = html;
     bind($("chapterMap"));
     $("tileCount").textContent =
-      `공개 ${state.world.tiles.length + (state.world.pending ? 1 : 0)} / 7 · 더미 ${state.world.tileDeck.length}`;
+      `공개 ${state.world.tiles.length + (state.world.pending ? 1 : 0)} / ${state.world.tilePool.length} · 더미 ${state.world.tileDeck.length}`;
     const n = E.nodes(state).find((n) => n.id === E.hunter(state).position),
       def = n ? M.tile(n.tileId) : null;
     $("locationText").innerHTML = n
@@ -798,7 +858,7 @@
       a = document.createElement("a");
     a.href = url;
     const provisional = E.provisionalView ? E.provisionalView(state) : null;
-    a.download = `bloodborne-v06-${missionView() ? "campaign-ch1" : provisional ? "trial-" + provisional.componentId : "practice"}-${state.initialSeed}-r${state.round}.json`;
+    a.download = `bloodborne-v07-${missionView() ? "campaign-ch" + missionView().chapter : provisional ? "trial-" + provisional.componentId : "practice"}-${state.initialSeed}-r${state.round}.json`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
@@ -809,9 +869,12 @@
     try {
       state = E.importSave(await f.text());
       setupRequired = false;
+      restoredPrevious = false;
+      nextStartSpace = "";
+      nextFace = null;
       if ($("setupDialog").open) $("setupDialog").close();
       selectedCard = null;
-      selectedReward = null;
+      selectedRewards.clear();
       pulls.clear();
       inventory.clear();
       save();
@@ -829,15 +892,23 @@
         `<option value="${id}">${esc(g.name)}${id === "hunter-pistol" ? "" : " · 임시 단총 능력"}</option>`,
     )
     .join("");
-  try { $("restoreV05").hidden = !localStorage.getItem(oldKey); } catch { /* File save remains available. */ }
-  $("restoreV05").onclick = () => {
+  try {
+    $("restoreV05").hidden = !localStorage.getItem(oldKey);
+    $("restoreV06").hidden = $("loadV06Setup").hidden = !localStorage.getItem(previousKey);
+  } catch { /* File save remains available. */ }
+  function restoreStored(storageKey, label) {
     try {
-      const saved = localStorage.getItem(oldKey);
-      if (!saved) throw new Error("이 브라우저에 v0.5 자동 저장이 없습니다.");
+      const saved = localStorage.getItem(storageKey);
+      if (!saved) throw new Error(`이 브라우저에 ${label} 자동 저장이 없습니다.`);
       state = E.importSave(saved);
+      restoredPrevious = storageKey === previousKey;
+      setupRequired = false;
+      nextStartSpace = "";
+      nextFace = null;
+      if ($("setupDialog").open) $("setupDialog").close();
       selectedCard = null;
       selectedSlot = 0;
-      selectedReward = null;
+      selectedRewards.clear();
       selectedEnemy = null;
       pulls.clear();
       inventory.clear();
@@ -845,7 +916,9 @@
       render();
       $("error").textContent = "";
     } catch (e) { $("error").textContent = e.message; }
-  };
+  }
+  $("restoreV05").onclick = () => restoreStored(oldKey, "v0.5");
+  $("restoreV06").onclick = $("loadV06Setup").onclick = () => restoreStored(previousKey, "v0.6");
   $("startingItem").innerHTML += Object.values(D.consumables)
     .filter((x) => x.runtime === "playable")
     .map((x) => `<option value="${x.id}">${esc(x.name)}</option>`)
@@ -879,9 +952,12 @@
           ...(!["campaign", "practice"].includes($("playMode").value) ? { provisional: $("playMode").value } : {}) },
       );
       setupRequired = false;
+      restoredPrevious = false;
+      nextStartSpace = "";
+      nextFace = null;
       selectedCard = null;
       selectedSlot = 0;
-      selectedReward = null;
+      selectedRewards.clear();
       selectedEnemy = null;
       pulls.clear();
       inventory.clear();

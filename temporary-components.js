@@ -35,17 +35,32 @@
     iosefka: { name: "이오세프카 · 임시", npc: true,
       interaction: { heal: 2, statCost: 1, text: "중앙 등불 칸에서 카드 1장을 버려 치유 2를 합니다." } },
   };
+  specimens['iosefka-hostile'] = {
+    name:'이오세프카 · 임시 적대 NPC',baseKind:'huntsmans-minion',npcEnemy:true,boss:false,
+    phases:[{maxHp:5,basic:action('임시 · 찌르기','basic',2,2),
+      special:action('임시 · 피의 공격','special',3,1,{interrupt:true}),
+      ability:action('임시 · 강타','ability',1,3,{stun:true})}]
+  };
   function definition(id, phase = 1, order = 1) {
     const d = specimens[id];
     if (!d || d.npc) return null;
     const p = d.phases[phase - 1];
     if (!p) throw new Error("임시 적 페이즈를 확인하세요.");
     return { ...JSON.parse(JSON.stringify(p)), name: d.name,
+      recover:{name:'임시 · 회복',kind:'recover',type:'ability',speed:null,damage:0,code:'temporary-recover',rules:[]},
       id: id, boss: d.boss, move: 1, pursuit: 1, order,
       sideId: "temporary", temporary: true, source: notice,
       health: p.maxHp, face: { id: "temporary", image: null } };
   }
-  const api = { specimens, notice, definition };
+  function createDecks(id,s,shuffle) {
+    return specimens[id].phases.map(()=>({draw:shuffle(s,['basic','basic','special','special','ability','recover']),discard:[]}));
+  }
+  function draw(e,s,shuffle) {
+    const deck=e.bossDecks[e.componentPhase-1];
+    if (!deck.draw.length) {deck.draw=shuffle(s,deck.discard);deck.discard=[];}
+    const card=deck.draw.shift();deck.discard.push(card);return card;
+  }
+  const api = { specimens, notice, definition, createDecks, draw };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.BBTemporaryComponents = api;
 })(typeof globalThis !== "undefined" ? globalThis : this);

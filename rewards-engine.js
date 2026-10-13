@@ -5,7 +5,11 @@
   const supported = new Set([
     "bloodstone-shard", "lantern", "rune-moon", "rune-clawmark",
     "rune-rapture", "rune-eye",
+    "beast-roar", "iosefka-vial", "messengers-gift", "rune-formless",
+    "rune-writhe", "old-hunter-bone", "augur", "executioner-gloves",
+    "rune-hunter", "empty-shell",
   ]);
+  const attackKinds = new Set(["rune-clawmark", "rune-writhe", "rune-hunter", "empty-shell"]);
   const definitions = Object.fromEntries(D.components.cards
     .filter((c) => supported.has(c.id))
     .map((c) => [c.id, { ...c, subtype: c.id.startsWith("rune-") ? "rune" : "tool",
@@ -85,7 +89,15 @@
   }
   function use(s, a, helpers) {
     const h = hunter(s), r = readyItem(s, a.rewardId), d = definitions[r.kind];
-    if (r.kind === "rune-rapture") {
+    if (r.kind === "old-hunter-bone") {
+      need(canAutoDodge(s, helpers), "회피할 수 있는 공격을 받을 때 유골을 사용하세요.");
+      need(typeof helpers.autoDodge === "function", "자동 회피 연결이 필요합니다.");
+      // The resolver can enter the dream. Exhaust before it runs so dream refresh wins.
+      r.ready = false;
+      say(s, helpers, `${d.name} 사용 · 소진했습니다.`);
+      helpers.autoDodge(s);
+      return;
+    } else if (r.kind === "rune-rapture") {
       need(h.rewardKillWindow && h.hp > 0 && !h.inDream,
         "적을 처치한 직후 생존한 사냥꾼만 피의 기쁨을 사용할 수 있습니다.");
       need(typeof helpers.draw === "function", "카드 뽑기 연결이 필요합니다.");
@@ -108,10 +120,65 @@
         const returned = h.discard.splice(to, 1)[0];
         h.discard.push(h.hand.splice(from, 1)[0]);
         h.hand.push(returned);
+      } else if (r.kind === "iosefka-vial") {
+        h.hp = Math.min(6, h.hp + 2);
+      } else if (r.kind === "rune-formless") {
+        need(!h.firearmReady, "화기가 이미 준비되어 있습니다.");
+        h.firearmReady = true;
+      } else if (r.kind === "messengers-gift") {
+        need(typeof helpers.skipNextActivation === "function", "적 활성화 억제 연결이 필요합니다.");
+        helpers.skipNextActivation(s);
+      } else if (r.kind === "beast-roar") {
+        const targets = s.enemies.filter((e) => e.node === h.position);
+        need(targets.length > 0, "같은 칸에 이동시킬 적이 없습니다.");
+        need(Array.isArray(a.moves) && a.moves.length === targets.length &&
+          new Set(a.moves.map((m) => m.enemyId)).size === targets.length &&
+          a.moves.every((m) => targets.some((e) => e.id === m.enemyId)),
+          "같은 칸에 있는 모든 적의 목적지를 각각 선택하세요.");
+        need(typeof helpers.displaceEnemy === "function", "적 이동 연결이 필요합니다.");
+        for (const move of a.moves) validateDisplacement(s, targets.find((e) => e.id === move.enemyId), move.node, helpers);
+        for (const move of a.moves) helpers.displaceEnemy(s, targets.find((e) => e.id === move.enemyId), move.node);
+      } else if (r.kind === "augur") {
+        const target = s.enemies.find((e) => e.id === a.enemyId && e.node === h.position);
+        need(target, "같은 칸에 있는 적을 선택하세요.");
+        validateDisplacement(s, target, a.node, helpers);
+        need(typeof helpers.kill === "function" && typeof helpers.displaceEnemy === "function",
+          "적 피해와 이동 연결이 필요합니다.");
+        if (helpers.damageEnemy) helpers.damageEnemy(s, target, 2, { source: "reward", rewardKind: r.kind });
+        else target.hp -= 2;
+        say(s, helpers, `${d.name} · 적에게 2 피해.`);
+        helpers.kill(s, target);
+        const living = s.enemies.find((e) => e.id === target.id);
+        if (living) helpers.displaceEnemy(s, living, a.node);
+      } else if (r.kind === "executioner-gloves") {
+        const target = s.enemies.find((e) => e.id === a.enemyId);
+        need(target && target.hp > 0 && target.hp <= 2 &&
+          typeof helpers.distance === "function" && helpers.distance(s, h.position, target.node) <= 2,
+          "2칸 이내에 있는 체력 2 이하인 적을 선택하세요.");
+        need(typeof helpers.kill === "function", "적 처치 연결이 필요합니다.");
+        target.hp = 0;
+        say(s, helpers, `${d.name} · 적을 처치합니다.`);
+        helpers.kill(s, target);
       } else throw new Error("이 보상의 발동 시점에 맞는 선택을 사용하세요.");
     }
     r.ready = false;
     say(s, helpers, `${d.name} 사용 · 소진했습니다.`);
+  }
+  function validateDisplacement(s, target, destination, helpers) {
+    need(typeof helpers.canDisplace === "function" &&
+      helpers.canDisplace(s, target, destination, 2),
+      "안개 진입로를 통과하지 않는 2칸 이내의 적 이동 목적지를 선택하세요.");
+  }
+  function canAutoDodge(s, helpers = {}) {
+    const h = hunter(s), c = s.combat;
+    if (helpers.canAutoDodge) return !!helpers.canAutoDodge(s);
+    if (!h || h.inDream || h.hp <= 0) return false;
+    if (s.phase === "mission_death") return true;
+    if (!c || c.noDodge || c.origin === "interaction") return false;
+    if (s.phase === "combat_extra") return !!c.extra;
+    return s.phase === "combat_react" && c.action?.type === "attack" &&
+      !c.action.undodgeable && !c.dodged && !c.cancelEnemy &&
+      s.enemies.some((e) => e.id === c.enemyId && e.node === h.position);
   }
   function dispatch(s, a, helpers = {}) {
     init(s);
@@ -172,15 +239,27 @@
     need(Number.isInteger(slot) && slot >= 0 && slot < 3, "공격 슬롯을 선택하세요.");
     need(Array.isArray(rewardIds) && new Set(rewardIds).size === rewardIds.length,
       "보상 선택이 중복되었습니다.");
-    need(rewardIds.length <= 1, "한 스탯 카드에는 손톱자국 문자 하나를 선택하세요.");
-    const chosen = rewardIds.map((id) => readyItem(s, id, "rune-clawmark"));
+    const chosen = rewardIds.map((id) => {
+      const r = readyItem(s, id);
+      need(attackKinds.has(r.kind), "공격할 때 사용할 수 있는 준비된 보상을 선택하세요.");
+      return r;
+    });
+    const clawmarks = chosen.filter((r) => r.kind === "rune-clawmark");
+    need(clawmarks.length <= 1, "한 스탯 카드에는 손톱자국 문자 하나를 선택하세요.");
     const damage = equipped(s, "tool").filter((r) =>
       r.kind === "bloodstone-shard" && r.slot === slot).length;
-    const bonus = { speed: 0, damage: damage + (chosen.length ? 1 : 0),
-      interrupt: !!chosen.length, replaceCardEffects: !!chosen.length };
+    const bonus = { speed: 0, damage: damage + (clawmarks.length ? 1 : 0),
+      interrupt: !!clawmarks.length, replaceCardEffects: !!clawmarks.length };
     for (const r of chosen) {
       r.ready = false;
-      say(s, helpers, "카릴 문자: 손톱자국 · 스탯 효과를 +1피해·방해로 대체, 소진했습니다.");
+      if (r.kind === "rune-clawmark")
+        say(s, helpers, "카릴 문자: 손톱자국 · 스탯 효과를 +1피해·방해로 대체, 소진했습니다.");
+      else {
+        if (r.kind === "empty-shell") { bonus.speed++; bonus.damage++; }
+        if (r.kind === "rune-hunter") { bonus.speed++; bonus.freeTransform = true; }
+        if (r.kind === "rune-writhe") { bonus.interrupt = true; bonus.interruptEqual = true; }
+        say(s, helpers, `${definitions[r.kind].name} 사용 · 소진했습니다.`);
+      }
     }
     return bonus;
   }
@@ -197,6 +276,7 @@
     for (const r of h.rewards) r.ready = true;
     h.rewardKillWindow = false;
     h.rewardTransformWindow = false;
+    if (Object.hasOwn(h, "rewardSkipActivation")) delete h.rewardSkipActivation;
     return saved;
   }
   function onKill(s) {
@@ -215,23 +295,49 @@
     r.ready = true;
     say(s, helpers, `${definitions[r.kind].name} 준비.`);
   }
-  function view(s) {
+  function targetsView(s, kind, helpers) {
+    const h = hunter(s), enemies = s.enemies || [];
+    const name = (e) => helpers.enemyDef?.(s, e)?.name || D.enemies[e.kind]?.name || e.kind;
+    const nodes = helpers.nodes?.(s) || [];
+    const destination = (e) => (helpers.displacementDestinations?.(s, e, 2) || [])
+      .map((n) => typeof n === "string" ? { node: n, name: nodes.find((x) => x.id === n)?.name || n } :
+        { node: n.id || n.node, name: n.name || n.id || n.node });
+    if (kind === "beast-roar" || kind === "augur") return {
+      type: kind === "beast-roar" ? "enemies-destinations" : "enemy-destination",
+      targets: enemies.filter((e) => e.node === h.position)
+        .map((e) => ({ enemyId: e.id, name: name(e), destinations: destination(e) })),
+    };
+    if (kind === "executioner-gloves") return { type: "enemy",
+      targets: enemies.filter((e) => e.hp > 0 && e.hp <= 2 &&
+        helpers.distance && helpers.distance(s, h.position, e.node) <= 2)
+        .map((e) => ({ enemyId: e.id, name: name(e) })),
+    };
+    return null;
+  }
+  function view(s, helpers = {}) {
     const h = hunter(s);
     return {
       choices: s.rewardChoices || [],
       rewards: (h.rewards || []).map((r) => {
         const d = definitions[r.kind];
         const hunterTurn = s.phase === "hunter" && !h.inDream && h.hp > 0;
+        const controls = targetsView(s, r.kind, helpers);
+        const laterHunterUsable = hunterTurn &&
+          (["iosefka-vial", "messengers-gift"].includes(r.kind) ||
+           r.kind === "rune-formless" && !h.firearmReady ||
+           ["beast-roar", "augur", "executioner-gloves"].includes(r.kind) && controls.targets.length > 0);
         return { ...r, name: d.name, rules: d.rules, timing: d.timing,
           subtype: d.subtype, persistent: d.persistent, photos: d.photos || [],
           usable: r.equipped && r.ready &&
             (r.kind === "lantern" && hunterTurn ||
              r.kind === "rune-eye" && hunterTurn && h.hand.length > 0 && h.discard.length > 0 ||
-             r.kind === "rune-rapture" && h.rewardKillWindow && h.hp > 0 && !h.inDream),
-          attackSelectable: r.kind === "rune-clawmark" && r.equipped && r.ready &&
+             r.kind === "rune-rapture" && h.rewardKillWindow && h.hp > 0 && !h.inDream ||
+             laterHunterUsable || r.kind === "old-hunter-bone" && canAutoDodge(s, helpers)),
+          attackSelectable: attackKinds.has(r.kind) && r.equipped && r.ready &&
             ["hunter", "combat_choose"].includes(s.phase),
           triggerSelectable: r.kind === "rune-moon" && r.equipped && r.ready && hunterTurn,
           reassignable: d.persistent && r.equipped && !!h.rewardTransformWindow,
+          ...(controls ? { controls } : {}),
         };
       }),
       firearms: (h.ownedFirearms || [h.firearmId || "hunter-pistol"]).map((id) =>
@@ -267,7 +373,7 @@
     return true;
   }
   const api = { definitions, init, grant, dispatch, attackBonus, onDream, onKill,
-    onDodge, onTransform, ready, view, assert };
+    onDodge, onTransform, ready, view, assert, canAutoDodge };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.BBRewards = api;
 })(typeof globalThis !== "undefined" ? globalThis : this);
