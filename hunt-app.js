@@ -445,7 +445,8 @@
     $("pastChapters").innerHTML = history.map((ch) => `<section><p>✓ 챕터 ${ch.chapter} 완수 · 완료 임무 ${storyEntries.filter(entry => entry.chapter === ch.chapter && ch.completed?.includes(entry.number)).map(entry => esc(entry.title)).join(", ") || "없음"}</p><div class="story-list">${storyEntries.filter((entry) => entry.chapter === ch.chapter).map(storyButton).join("")}</div></section>`).join("");
     bindStoryButtons($("pastChapters"));
     $("missionFog").textContent = view.fog.length ? `안개 진입로 · ${view.fog.map((id) => M.tile(id)?.displayName || id).join(", ")}` : "";
-    const actions = view.pending || state.rewardChoices?.length ? [] : (E.missionActions ? E.missionActions(state) : []);
+    const actions = view.pending || state.rewardChoices?.length ? [] : (E.missionActions ? E.missionActions(state) : [])
+      .filter(action => action.command.type !== "MISSION_PICKUP");
     $("missionActions").innerHTML = actions.map((a) => commandButton(a)).join("");
     bind($("missionActions"));
     $("revealedCards").innerHTML = view.revealed.map((number) => {
@@ -865,9 +866,10 @@
       html += button("플레이어의 차례 마치기", "END_TURN");
     } else if (p === "move") {
       help = `남은 이동력 ${state.move.remaining}. 밝은 칸 또는 현재 칸의 출입구를 누르세요. 이동을 마치면 적의 추격을 처리합니다.`;
-      if ((E.missionActions ? E.missionActions(state) : []).some((a) => a.command.type === "MISSION_PICKUP"))
-        help += " 호위 토큰을 함께 옮기려면 현재 임무의 운반 버튼을 먼저 선택하세요.";
-      html = button("여기서 이동 마치기", "STOP_MOVE");
+      const carry = (E.missionActions ? E.missionActions(state) : []).find(action => action.command.type === "MISSION_PICKUP");
+      if (carry) help += " 생존자를 데리고 갈지는 아래에서 선택하세요. 이 칸에서 나갈 때 함께 이동하며 추가 비용은 없습니다.";
+      html = (carry ? `<div class="escort-movement-choice"><p>${state.mission?.escort.pickup ? "생존자와 함께 이동하도록 선택했습니다." : "생존자를 동행시킬 수 있습니다."}</p>${button(`${state.mission?.escort.pickup ? "생존자를 이곳에 남겨 두기" : "생존자를 데리고 이동"}<small> · 추가 비용 없음</small>`, "MISSION_PICKUP", {}, false, "primary")}</div>` : "")
+        + button("여기서 이동 마치기", "STOP_MOVE");
     } else if (p === "tile_place") {
       help =
         "출입구가 이어지는 방향을 선택하세요. 배치 후 적·소모품을 놓고 연결된 칸으로 진입합니다.";

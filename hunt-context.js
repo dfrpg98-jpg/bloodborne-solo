@@ -48,6 +48,10 @@
       `스탯 카드 1장 버림 · 이동력 1 사용 / 최대 ${def?.move || 2}칸`;
     const phaseReason = "현재 단계의 선택을 먼저 마치세요.";
 
+    const escort = state.mission?.escort,
+      escortObject = kind === "cell" && target.objectKind === "token" && target.objectId === "escort",
+      escortHere = !!escort?.node && escort.node === h.position && !escort.carrierId && nodeId === h.position,
+      showEscortChoice = kind === "cell" && escortHere && (escortObject || !target.objectKind);
     if (kind === "cell") {
       if (phase === "enemy_path") {
         add("enemy-step", "적을 이 칸으로 이동", "적 이동력 1 · 카드 없음",
@@ -65,12 +69,20 @@
           phase === "hunter" ? [{ type: "MOVE", cardId: chosen?.id || null }, { type: "STEP", node: nodeId }] : null);
       } else {
         result.hint = "사냥꾼이 있는 칸입니다.";
+        if (phase === "move" && showEscortChoice)
+          add("escort-pickup", escort.pickup ? "생존자를 이곳에 남겨 두기" : "생존자를 데리고 이동",
+            "추가 비용 없음", "", { type: "MISSION_PICKUP" });
         if (phase === "move") add("stop-move", "여기서 이동 마치기", "추가 비용 없음", "", { type: "STOP_MOVE" });
         if (phase === "hunter") {
+          if (showEscortChoice)
+            add("escort-move-start", "생존자와 이동 시작", "손패 1장 버림 · 동행 선택은 추가 비용 없음",
+              !chosen ? "하단 손패에서 이동에 사용할 손패 1장을 선택하세요." :
+                !E.canLeave(state, h.position) ? "대교에서 적과 같은 칸을 벗어날 수 없습니다." : "", null,
+              [{ type: "MOVE", cardId: chosen?.id || null }, ...(escort.pickup ? [] : [{ type: "MISSION_PICKUP" }])]);
           const options = E.interactionOptions(state);
           const available = options.loot || options.heal || options.teleport || options.workshop ||
             options.provisionalNpc || options.missionRescue;
-          if (available) {
+          if (available && !escortObject) {
             add("interact", "이 칸에서 상호작용", "스탯 카드 1장 버림",
               !chosen ? "하단 손패에서 버릴 스탯 카드 1장을 선택하세요." :
                 options.workshop && !h.consumables.length && !options.loot && !options.heal && !options.teleport &&
@@ -153,6 +165,19 @@
         { type: "INTERACTION_ENEMY", enemyId: e.id });
       if (!actions.length) result.hint += " · 현재 단계의 선택은 행동 패널에서 진행하세요.";
     }
+    if (escortObject) {
+      if (escort?.carrierId === state.activeHunterId && nodeId === h.position)
+        result.hint = "생존자를 데리고 이동 중입니다. 순간이동하거나 사냥꾼의 꿈에 입장하면 원래 칸으로 돌아갑니다.";
+      else if (escort?.node === nodeId && nodeId !== h.position)
+        result.hint = "생존자가 있는 칸으로 이동한 뒤, 그 칸에서 나갈 때 함께 데려갈 수 있습니다. 동행 선택에는 추가 비용이 없습니다.";
+      else if (escortHere)
+        result.hint = escort.pickup
+          ? "다음 칸으로 이동하면 생존자를 함께 데려갑니다. 실제로 이 칸을 떠나기 전까지 생존자는 이곳에 있습니다. 추가 비용은 없습니다."
+          : "이 칸에서 이동해 나갈 때 생존자를 함께 데려갈 수 있습니다. 이동에 쓰는 손패 외에 추가 비용은 없습니다.";
+      result.hint += " 별도 상호작용은 필요하지 않습니다.";
+    } else if (showEscortChoice) {
+      result.hint += (result.hint ? " " : "") + "이 칸에서 나갈 때 생존자 동행을 선택할 수 있습니다. 추가 비용은 없습니다.";
+    }
     return result;
   }
 
@@ -160,3 +185,5 @@
   if (local) module.exports = api;
   else root.BBHuntContext = api;
 })(typeof globalThis !== "undefined" ? globalThis : this);
+
+
