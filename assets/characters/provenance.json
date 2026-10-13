@@ -1,0 +1,93 @@
+{
+  "version": "0.8.2",
+  "created": "2026-10-12",
+  "tool": "OpenAI ImageGen",
+  "method": "Generated new transparent artwork from text prompts; no referenced user photographs or other game artwork.",
+  "pixelProcessing": "Generated PNG files copied unchanged. Atlas rectangles and ground alignment are metadata only.",
+  "animations": {
+    "idle": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "walk": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "attack": [
+      8,
+      9,
+      10,
+      11
+    ],
+    "hit": [
+      12,
+      13
+    ],
+    "death": [
+      14,
+      15
+    ]
+  },
+  "scope": "Shared hunter and actor archetypes. Individual weapon and enemy designs remain future visual work.",
+  "assets": [
+    {
+      "skin": "hunter",
+      "file": "hunter.png",
+      "sha256": "73baa453857a91bc2ac19298f842f3d6bd2a8a3f5def6ed8c6f3f2c06a118a09",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "frames": 16,
+      "generatedPixelsUnchanged": true
+    },
+    {
+      "skin": "mob",
+      "file": "mob.png",
+      "sha256": "3c5e3057786e0b9257dce296fd35bded2fba2a5cdabbf901845e531127fdd779",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "frames": 16,
+      "generatedPixelsUnchanged": true
+    },
+    {
+      "skin": "beast",
+      "file": "beast.png",
+      "sha256": "553cb7f423987034ec9a1853a416935090f11cc8d96ff4986ac06f95049f5d61",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "frames": 16,
+      "generatedPixelsUnchanged": true
+    },
+    {
+      "skin": "boss",
+      "file": "boss.png",
+      "sha256": "3098fff6158fbaf9dd5eeecdc2ad63e58353fcf46d5cc7a05c13cd103e95941a",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "frames": 16,
+      "generatedPixelsUnchanged": true
+    },
+    {
+      "skin": "female",
+      "file": "female.png",
+      "sha256": "193f1e483b3f35d3c9192704553feb6b11a45eb61546db96e03d9543a810fd90",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "frames": 16,
+      "generatedPixelsUnchanged": true
+    }
+  ]
+}

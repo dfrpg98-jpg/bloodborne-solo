@@ -70,7 +70,7 @@ test('scrolls, refreshes and target selections do not animate or count as game m
   f.adapter.sync({ revision: 1, actors: [actor('hunter', 150, 130)], action: { type: 'move', fromId: 'hunter' } });
   f.adapter.sync({ revision: 2, actors: [actor('hunter', 150, 130)] });
   assert.equal(f.graphics.length, 0);
-  assert.deepEqual(f.adapter.status(), { renderer: 'phaser', version: '4.2.1', reducedMotion: false, moves: 0, attacks: 0, effects: 0 });
+  assert.deepEqual(f.adapter.status(), { renderer: 'phaser', version: '4.2.1', reducedMotion: false, moves: 0, attacks: 0, effects: 0, shots: 0, charactersReady: false, characters: 0 });
 });
 test('only the declared moving actor is animated when map camera changes every public coordinate', () => {
   const f = fixture(); f.boot();

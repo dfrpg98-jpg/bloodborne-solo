@@ -447,3 +447,18 @@ html[data-phase="combat_choose"] .decision-content:has(.map-context:not([hidden]
  .context-heading h3 { font-size: 13px; }
  .context-action button { padding: 5px; font-size: 11px; }
 }
+
+/* Zoom scales the diagram and its actual DOM targets together. */
+.hunt-main .map-surface { position: relative; overflow: hidden; min-width: 1px; min-height: 1px; }
+.hunt-main .chapter-map { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+.map-viewport.is-panning { cursor: grabbing; user-select: none; }
+.node-anchor { position: absolute; width: 0; height: 0; pointer-events: none; }
+.camera-tools { position: absolute; left: 9px; bottom: 10px; z-index: 20; display: flex; align-items: center; gap: 2px; padding: 3px; background: #10191eef; border: 1px solid #62706c; border-radius: 5px; box-shadow: 0 2px 8px #0007; }
+.hunt-main .camera-tools button { min-height: 27px; padding: 3px 7px; font-size: 13px; line-height: 1.2; }
+.camera-tools #zoomReset { min-width: 47px; font-size: 11px; }
+.camera-tools #zoomFit { font-size: 11px; }
+#mapStage:has(#mapEffects[data-presentation-characters="ready"]) .hunter-map-marker { visibility: hidden; }
+#mapStage:has(#mapEffects[data-presentation-characters="ready"]) .space-status:has(.hunter-map-marker:only-child) { display: none; }
+#mapStage:has(#mapEffects[data-presentation-characters="ready"]) .map-figure { background: #11202855; font-size: 14px; box-shadow: 0 0 0 2px #0b141d77; }
+#mapStage:has(#mapEffects[data-presentation-characters="ready"]) .map-figure::before { content: ""; position: absolute; left: -17px; bottom: 0; width: 66px; height: 88px; border-radius: 45%; background: transparent; }
+@media (max-width: 600px) { .camera-tools { left: 4px; bottom: 5px; } .hunt-main .camera-tools button { padding: 3px 5px; min-height: 25px; } }

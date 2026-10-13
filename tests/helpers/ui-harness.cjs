@@ -48,7 +48,7 @@ class Element {
     return event;
   }
   click() { if (!this.disabled) this.fire("click"); }
-  getBoundingClientRect() { return { left: 0, right: 0, top: 0, bottom: 0 }; }
+  getBoundingClientRect() { return this._rect || { left: 0, right: 0, top: 0, bottom: 0, width: 0, height: 0 }; }
   setAttribute(name, value) { this.attributes[name] = value; }
   getAttribute(name) { return this.attributes[name] ?? null; }
   hasAttribute(name) { return name in this.attributes; }
@@ -109,6 +109,7 @@ function rewards(items = [], overrides = {}) {
 }
 function boot(state, view = mission(), rewardView = rewards(), options = {}) {
   const document = new Document(fs.readFileSync(path.join(root, "hunt.html"), "utf8"));
+  options.setupDocument?.(document);
   const storage = new Map(Object.entries(options.storage || { "bloodborne-hunt-v07": "fixture" }));
   const commands = [], imports = [], creates = [];
   const engine = { ...E, create: (...args) => { creates.push(args); return structuredClone(state); },
@@ -123,6 +124,7 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
   };
   const window = { BBHunt: engine, BBChapter: M, BBLongHunt: C, BBNarrativeText: require("../../campaigns/long-hunt/narrative-text"), BBEnemyDeck: ED, BBTileGeometry: G,
     BBHuntContext: fs.existsSync(path.join(root, "hunt-context.js")) ? require("../../hunt-context") : null,
+    BBHuntAnimationEvents: fs.existsSync(path.join(root, "hunt-animation-events.js")) ? require("../../hunt-animation-events") : null,
     BBActualComponents: require("../../actual-components"),
     BBExtendedEnemies: require("../../extended-enemies"),
     BBExtendedFirearms: require("../../extended-firearms"),
@@ -132,14 +134,16 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
       const update = () => { confirm.disabled = !select.value; };
       select.addEventListener("change", update); update(); return { update };
     } },
+    ...options.window,
   };
+  document.defaultView = window;
   const context = vm.createContext({ window, document, localStorage: {
     getItem: (key) => storage.get(key) || null, setItem: (key, value) => storage.set(key, value),
   }, Blob, URL, setTimeout() {}, console });
   if (options.realInventory) vm.runInContext(fs.readFileSync(path.join(root, "inventory.js"), "utf8"), context);
   if (fs.existsSync(path.join(root, "hunt-shell.js"))) vm.runInContext(fs.readFileSync(path.join(root, "hunt-shell.js"), "utf8"), context);
   vm.runInContext(fs.readFileSync(path.join(root, "hunt-app.js"), "utf8"), context);
-  return { document, commands, storage, imports, creates,
+  return { document, window, commands, storage, imports, creates,
     el: (id) => document.getElementById(id),
     buttons: (id) => document.getElementById(id).querySelectorAll("[data-command]"),
   };

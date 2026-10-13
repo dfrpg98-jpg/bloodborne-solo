@@ -39,7 +39,7 @@
       <div class="hunt-layout">
         <section class="panel hunt-map" aria-labelledby="mapHeading">
           <div class="panel-heading"><h2 id="mapHeading">야남의 길</h2><div class="map-tools"><span id="tileCount" class="badge"></span><button id="centerMap" type="button" title="사냥꾼의 현재 위치로 지도 이동">현재 위치</button><button type="button" data-panel="help" class="quiet" aria-label="지도 기호 안내">?</button></div></div>
-          <div id="mapStage" class="map-stage"><div id="mapViewport" class="map-viewport" tabindex="0" aria-label="실제 사냥 지도"><div id="chapterMap" class="chapter-map"></div></div><div id="mapEffects" class="map-effects" aria-hidden="true"></div></div>
+          <div id="mapStage" class="map-stage"><div id="mapViewport" class="map-viewport" tabindex="0" aria-label="실제 사냥 지도"><div id="mapSurface" class="map-surface"><div id="chapterMap" class="chapter-map"></div></div></div><div id="mapEffects" class="map-effects" aria-hidden="true"></div><div class="camera-tools" role="group" aria-label="지도 배율"><button id="zoomOut" type="button" aria-label="지도 축소" title="지도 축소 · 지도에 초점을 둔 뒤 −">−</button><button id="zoomReset" type="button" aria-label="지도 배율 100%로 초기화" title="100%로 초기화 · 지도에 초점을 둔 뒤 0"><span id="zoomLabel">100%</span></button><button id="zoomIn" type="button" aria-label="지도 확대" title="지도 확대 · Ctrl+휠 또는 지도에 초점을 둔 뒤 +">+</button><button id="zoomFit" type="button" title="표시된 지도를 확대 범위에 맞춤">맞춤</button></div></div>
           <div class="map-footer"><div id="locationText"></div><div id="explorationActions" class="actions"></div></div>
         </section>
         <section class="panel hunt-decisions" aria-labelledby="phaseTitle">
@@ -116,7 +116,7 @@
         <a href="guide.html">사냥 안내 읽기 ↗</a>
         <a href="chapter.html">이전 지도 배치 검증 화면 →</a>
 
-          </section><div class="help-links"><a class="button" href="index.html">전투 훈련</a><span class="badge">v0.8.1</span></div>
+          </section><div class="help-links"><a class="button" href="index.html">전투 훈련</a><span class="badge">v0.8.2</span></div>
         </section>
       </div>
     </dialog>
@@ -234,7 +234,10 @@
     <script src="inventory.js"></script>
     <script src="hunt-shell.js"></script>
     <script src="hunt-context.js"></script>
+    <script src="hunt-camera.js"></script>
+    <script src="hunt-animation-events.js"></script>
     <script src="assets/vendor/phaser-4.2.1.min.js"></script>
+    <script src="assets/characters/manifest.js"></script>
     <script src="hunt-presentation.js"></script>
     <script src="hunt-app.js"></script>
   </body>

@@ -45,7 +45,13 @@
     selectedSlot = 0,
     selectedEnemy = null,
     mapTarget = null,
-    presentationAction = null,
+    presentationActions = [],
+    presentationSession = 1,
+    presentationOrigins = new Map(),
+    needsCameraFollow = true,
+    rendering = false,
+    camera = null,
+    presentation = null,
     rotation = null,
     previewTile = null,
     mapColumns = 1,
@@ -92,8 +98,26 @@
     refresh: renderDecisions,
   });
   const shell = window.BBHuntShell?.({ document, onCenterMap: () => centerMap(true) });
-  const presentation = window.BBHuntPresentation?.({ document, Phaser: window.Phaser,
-    viewport: $("mapViewport"), host: $("mapEffects") });
+  presentation = window.BBHuntPresentation?.({ document, Phaser: window.Phaser,
+    viewport: $("mapViewport"), host: $("mapEffects"), characters: window.BBCharacterAssets,
+    onReady: () => syncPresentation() });
+  camera = window.BBHuntCamera?.({ document, viewport: $("mapViewport"),
+    content: $("chapterMap"), surface: $("mapSurface"), padEdges: true, onChange: ({ zoom }) => {
+      if ($("zoomLabel")) $("zoomLabel").textContent = `${Math.round(zoom * 100)}%`;
+      if (!rendering) syncPresentation();
+    } });
+  function sceneId() { return `${state.initialSeed}:${state.mission?.chapter || 0}:${presentationSession}`; }
+  function animationSnapshot() {
+    const h = E.hunter(state), c = state.combat;
+    return { sceneId: sceneId(), revision: state.revision, firearmReady: h.firearmReady,
+      actors: [{ id: "hunter", kind: "hunter", node: h.position, hp: h.hp },
+        ...state.enemies.map((e) => ({ id: e.id, kind: "enemy", node: e.node, hp: e.hp, name: E.enemyDef(state, e).name }))],
+      events: state.events.map(({ round, text }) => ({ round, text })),
+      combat: c ? { enemyId: c.enemyId, attackName: c.attack?.name, enemyActionName: c.action?.name,
+        immediateName: c.immediate?.name || c.immediate?.label, extraName: c.extra?.name || c.extra?.label,
+        flameName: c.flame ? c.flame.name || E.firearm(state).name : undefined } : null,
+      firearmEntry: state.firearmEntry ? { enemyId: state.firearmEntry.enemyId } : null };
+  }
   function showError(message = "") {
     $("error").textContent = message;
     if ($("infoError")) $("infoError").textContent = message;
@@ -113,19 +137,15 @@
   }
   function sendCommands(commands) {
     try {
-      const previous = state, last = commands[commands.length - 1], type = last.type;
+      const previous = state, before = animationSnapshot(), last = commands[commands.length - 1], type = last.type;
       // Validate the entire convenience action before committing its original
       // commands. Costs, event order and replay data still belong to the engine.
       let next = state;
       for (const command of commands) next = E.dispatch(next, command);
       state = next;
-      const targetId = previous.combat?.enemyId || last.enemyId || selectedEnemy;
-      const enemyAttacks = ["EXTRA_TAKE", "EXTRA_DODGE"].includes(type) || !previous.combat?.attack && type !== "FIREARM";
-      presentationAction = ["RESOLVE", "EXTRA_TAKE", "DODGE", "EXTRA_DODGE", "FIREARM"].includes(type)
-        ? { type: "attack", fromId: enemyAttacks ? targetId : "hunter", toId: enemyAttacks ? "hunter" : targetId }
-        : ["STEP", "PLACE_TILE"].includes(type) ? { type: "move", fromId: "hunter" }
-        : type === "ENEMY_STEP" ? { type: "move", fromId: previous.enemyMove?.enemyId }
-        : type === "BOSS_STEP" ? { type: "move", fromId: previous.combat?.bossMove?.actor === "hunter" ? "hunter" : targetId } : null;
+      presentationActions = window.BBHuntAnimationEvents?.describe(before, animationSnapshot(), commands) || [];
+      needsCameraFollow = E.hunter(previous).position !== E.hunter(state).position ||
+        previous.world.pending?.tileId !== state.world.pending?.tileId || previous.mission?.chapter !== state.mission?.chapter;
       mapTarget = null;
       shell?.close();
       if (type === "START_NEXT_CHAPTER") { nextStartSpace = ""; nextFace = null; }
@@ -157,6 +177,7 @@
     return `<div class="choice-grid">${cards.map((c) => button(`${esc(E.card(c).name)}<small>${esc(E.card(c).text)}</small>`, type, { [keyName]: c.id })).join("")}</div>`;
   }
   function render() {
+    rendering = true;
     renderResumeButtons();
     const h = E.hunter(state);
     if (!h.hand.some((c) => c.id === selectedCard)) selectedCard = null;
@@ -195,7 +216,9 @@
     shell?.sync({ phase: state.phase, mandatoryReward: !!E.rewardsView?.(state)?.choices.length,
       setupOpen: setupRequired || $("setupDialog").open });
     resizeMap();
-    centerMap(false);
+    if (needsCameraFollow) centerMap(true, false);
+    needsCameraFollow = false;
+    rendering = false;
     syncPresentation();
   }
   function actualGun() {
@@ -397,6 +420,7 @@
     $("storyRules").innerHTML = $("storyText").innerHTML = "";
   }
   function resetStoryReading() {
+    presentationSession++; presentationActions = []; presentationOrigins.clear(); needsCameraFollow = true;
     readStories.clear();
     storyReturnPanel = null;
     reloadSecondCardId = null;
@@ -1104,8 +1128,8 @@
         loot = ghost ? 0 : state.loot.filter((l) => l === id).length,
         figures = ghost ? [] : state.enemies.filter((f) => f.node === id),
         tokens = ghost ? [] : (mission?.tokens || []).filter((t) => t.node === id || (t.carrierId === state.activeHunterId && here));
-      const status = `${here ? "● 사냥꾼" : ""}${loot ? `<small>◇ 남은 소모품 ${loot}</small>` : ""}${tokens.map((t) => `<small class="map-mission-token">◆ ${esc(t.name)}</small>`).join("")}`;
-      return `<button class="space diagram-space ${here ? "here" : ""} ${reach ? "reachable" : ""} ${mapTarget?.kind === "cell" && mapTarget.node === id ? "context-selected" : ""} ${ghost ? "ghost-space" : ""}" style="left:${left}%;top:${top}%;width:${width}%;height:${height}%;clip-path:polygon(${polygon})" data-node="${esc(id)}" aria-pressed="${mapTarget?.kind === "cell" && mapTarget.node === id}" ${ghost ? "disabled" : ""} aria-label="${esc(n.placeName || n.label)}${here ? " · 사냥꾼" : ""}${loot ? " · 소모품 " + loot : ""}${figures.length ? " · 적 " + figures.length : ""}" title="${esc(n.placeName || n.label)}">${here ? `<span class="hunter-anchor" data-presentation-id="hunter" data-presentation-kind="hunter" style="left:${localX}%;top:${localY}%" aria-hidden="true"></span>` : ""}<span class="space-status" style="left:${localX}%;top:${Math.min(90,localY+10)}%">${status}</span></button>`;
+      const status = `${here ? '<span class="hunter-map-marker">● 사냥꾼</span>' : ""}${loot ? `<small>◇ 남은 소모품 ${loot}</small>` : ""}${tokens.map((t) => `<small class="map-mission-token">◆ ${esc(t.name)}</small>`).join("")}`;
+      return `<button class="space diagram-space ${here ? "here" : ""} ${reach ? "reachable" : ""} ${mapTarget?.kind === "cell" && mapTarget.node === id ? "context-selected" : ""} ${ghost ? "ghost-space" : ""}" style="left:${left}%;top:${top}%;width:${width}%;height:${height}%;clip-path:polygon(${polygon})" data-node="${esc(id)}" aria-pressed="${mapTarget?.kind === "cell" && mapTarget.node === id}" ${ghost ? "disabled" : ""} aria-label="${esc(n.placeName || n.label)}${here ? " · 사냥꾼" : ""}${loot ? " · 소모품 " + loot : ""}${figures.length ? " · 적 " + figures.length : ""}" title="${esc(n.placeName || n.label)}"><span class="node-anchor" data-node-anchor="${esc(id)}" style="left:${localX}%;top:${localY}%" aria-hidden="true"></span>${here && !h.inDream ? `<span class="hunter-anchor" data-presentation-id="hunter" data-presentation-kind="hunter" data-presentation-node="${esc(id)}" data-presentation-skin="hunter" style="left:${localX}%;top:${localY}%" aria-hidden="true"></span>` : ""}<span class="space-status" style="left:${localX}%;top:${Math.min(90,localY+10)}%">${status}</span></button>`;
     }).join("")}${ghost ? "" : def.spaces.map((space) => {
       const node = `${p.tileId}:${space.id}`, figures = state.enemies.filter((enemy) => enemy.node === node);
       if (!figures.length) return "";
@@ -1113,7 +1137,7 @@
       return `<div class="map-figures" style="left:${x}%;top:${Math.min(82, y + 18)}%">${figures.map((enemy) => {
         const assigned = state.world.assignments.find((assignment) => assignment.enemyId === enemy.kind), d = E.enemyDef(state, enemy),
           marker = enemy.missionId || enemy.provisionalKind || enemy.componentId || !assigned ? "★" : ["①", "②", "③"][assigned.slot - 1];
-        return `<button type="button" class="map-figure ${selectedEnemy === enemy.id ? "selected" : ""}" data-enemy="${esc(enemy.id)}" data-presentation-id="${esc(enemy.id)}" data-presentation-kind="enemy" aria-pressed="${selectedEnemy === enemy.id}" aria-label="${esc(d.name)} ${enemy.figure}번 · 체력 ${enemy.hp} · 대상 선택" title="${esc(d.name)} · 체력 ${enemy.hp}/${d.maxHp}" style="--marker:${colors[assigned?.marker] || colors.gold}">${marker}<small>${enemy.figure}</small></button>`;
+        return `<button type="button" class="map-figure ${selectedEnemy === enemy.id ? "selected" : ""}" data-enemy="${esc(enemy.id)}" data-presentation-id="${esc(enemy.id)}" data-presentation-kind="enemy" data-presentation-node="${esc(node)}" data-presentation-skin="${characterSkin(enemy)}" aria-pressed="${selectedEnemy === enemy.id}" aria-label="${esc(d.name)} ${enemy.figure}번 · 체력 ${enemy.hp} · 대상 선택" title="${esc(d.name)} · 체력 ${enemy.hp}/${d.maxHp}" style="--marker:${colors[assigned?.marker] || colors.gold}">${marker}<small>${enemy.figure}</small></button>`;
       }).join("")}</div>`;
     }).join("")}${ghost ? "" : gateHTML(p)}</div>`;
   }
@@ -1216,7 +1240,7 @@
       $("explorationActions").innerHTML =
         '<p class="muted">열린 출입구가 있는 칸으로 이동하면 탐험할 수 있습니다.</p>';
     bind($("explorationActions"));
-    centerMap(false);
+    camera?.layout({ notify: false });
   }
   function bindEnemyTargets(box) {
     box.querySelectorAll("[data-enemy]").forEach((button) => {
@@ -1224,7 +1248,7 @@
         selectedEnemy = button.dataset.enemy;
         mapTarget = { kind: "enemy", enemyId: selectedEnemy };
         if (shell?.activePanel() === "enemies") shell.close();
-        renderMap(); renderFirearm(); renderDecisions(); shell?.bind();
+        renderMap(); renderFirearm(); renderDecisions(); shell?.bind(); syncPresentation();
       };
     });
   }
@@ -1235,45 +1259,84 @@
         mapTarget = b.dataset.entrance
           ? { kind: "entrance", node: b.dataset.node, edge: b.dataset.edge, tileId: b.dataset.tileId }
           : { kind: "cell", node: b.dataset.node };
-        renderMap(); renderDecisions();
+        renderMap(); renderDecisions(); syncPresentation();
         $("mapContext")?.focus();
       };
     });
   }
+  function characterSkin(enemy) {
+    const d = E.enemyDef(state, enemy);
+    if (d.boss) return "boss";
+    if (d.npcEnemy || /이오세프카/.test(d.name)) return "female";
+    if (/beast|dog|hound|crow|spider|rat/i.test(enemy.kind) || /야수|사냥개|늑대|까마귀|거미|쥐/.test(d.name) && !/야수.?사냥/.test(d.name)) return "beast";
+    return "mob";
+  }
   function syncPresentation() {
-    if (!presentation) return;
-    const viewport = $("mapViewport"), bounds = viewport.getBoundingClientRect();
-    const actors = [...$("chapterMap").querySelectorAll("[data-presentation-id]")].map((anchor) => {
-      const r = anchor.getBoundingClientRect();
-      return { id: anchor.dataset.presentationId, kind: anchor.dataset.presentationKind,
-        x: (r.left + r.right) / 2 - bounds.left, y: (r.top + r.bottom) / 2 - bounds.top };
+    if (!presentation || rendering) return;
+    const viewport = $("mapViewport"), bounds = viewport.getBoundingClientRect(),
+      zoom = camera?.zoom() || 1, tileSize = Math.max(170, Math.min(290, (viewport.clientHeight || 300) - 10)),
+      scale = zoom * tileSize / 290;
+    const host = $("mapEffects");
+    host.style.left = `${viewport.clientLeft || 0}px`; host.style.top = `${viewport.clientTop || 0}px`;
+    host.style.width = `${viewport.clientWidth || 1}px`; host.style.height = `${viewport.clientHeight || 1}px`;
+    const point = (element) => {
+      const r = element.getBoundingClientRect();
+      return { x: (r.left + r.right) / 2 - bounds.left - (viewport.clientLeft || 0), y: (r.top + r.bottom) / 2 - bounds.top - (viewport.clientTop || 0) };
+    };
+    const nodes = new Map([...$("chapterMap").querySelectorAll("[data-node-anchor]")].map((anchor) => [anchor.dataset.nodeAnchor, point(anchor)]));
+    const h = E.hunter(state), actors = [...$("chapterMap").querySelectorAll("[data-presentation-id]")].map((anchor) => {
+      const id = anchor.dataset.presentationId, kind = anchor.dataset.presentationKind,
+        enemy = kind === "enemy" ? state.enemies.find((e) => e.id === id) : null;
+      return { id, kind, node: anchor.dataset.presentationNode, skin: anchor.dataset.presentationSkin,
+        scale, hp: kind === "hunter" ? h.hp : enemy?.hp, selected: kind === "enemy" && mapTarget?.kind === "enemy" && selectedEnemy === id,
+        ...point(anchor) };
+    });
+    const actions = presentationActions.map((action) => {
+      if (action.type !== "move") return action;
+      const origin = nodes.get(action.fromNode), prior = presentationOrigins.get(action.fromId);
+      if (!origin) return action;
+      return { ...action, from: { x: origin.x + (prior?.dx || 0) * scale / (prior?.scale || scale),
+        y: origin.y + (prior?.dy || 0) * scale / (prior?.scale || scale) } };
     });
     presentation.resize({ width: viewport.clientWidth || 1, height: viewport.clientHeight || 1 });
-    presentation.sync({ revision: state.revision, actors, action: presentationAction });
-    presentationAction = null;
+    presentation.sync({ sceneId: sceneId(), revision: state.revision, actors, actions,
+      view: { x: (viewport.scrollLeft || 0) - (viewport.clientWidth || 0) / 2,
+        y: (viewport.scrollTop || 0) - (viewport.clientHeight || 0) / 2, zoom } });
+    presentationActions = [];
+    presentationOrigins = new Map(actors.map((actor) => {
+      const n = nodes.get(actor.node) || actor;
+      return [actor.id, { dx: actor.x - n.x, dy: actor.y - n.y, scale }];
+    }));
   }
+
   function resizeMap() {
     const viewport = $("mapViewport"), height = viewport.clientHeight,
       size = height ? Math.max(170, Math.min(290, height - 10)) : 290;
     $("chapterMap").style.setProperty?.("--map-tile-size", `${size}px`);
     $("chapterMap").style.gridTemplateColumns = `repeat(${mapColumns},${size}px)`;
+    camera?.layout({ notify: false });
   }
   window.addEventListener?.("resize", () => { resizeMap(); centerMap(true); syncPresentation(); });
   $("mapViewport").addEventListener("scroll", syncPresentation);
-  function centerMap(force = false) {
-    const focus = $("chapterMap").querySelector(previewTile ? ".ghost" : ".space.here"), viewport = $("mapViewport");
+  function centerMap(force = false, smooth = true) {
+    const focus = $("chapterMap").querySelector(previewTile ? ".ghost" : ".hunter-anchor") || $("chapterMap").querySelector(".space.here"),
+      viewport = $("mapViewport");
     if (!focus) return;
     const r = focus.getBoundingClientRect(), v = viewport.getBoundingClientRect();
-    const dx = force || r.left < v.left + 12 || r.right > v.right - 12 ? (r.left + r.right - v.left - v.right) / 2 : 0,
-      dy = force || r.top < v.top + 12 || r.bottom > v.bottom - 12 ? (r.top + r.bottom - v.top - v.bottom) / 2 : 0;
-    if (force && viewport.scrollTo) viewport.scrollTo({ left: viewport.scrollLeft + dx, top: viewport.scrollTop + dy,
-      behavior: window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
-    else { viewport.scrollLeft += dx; viewport.scrollTop += dy; }
-    if (force && presentation) {
+    const outside = r.left < v.left + 20 || r.right > v.right - 20 || r.top < v.top + 20 || r.bottom > v.bottom - 20;
+    if (camera && (force || outside)) camera.centerOn(focus, { smooth });
+    else if (!camera) {
+      if (force || r.left < v.left + 12 || r.right > v.right - 12) viewport.scrollLeft += (r.left + r.right - v.left - v.right) / 2;
+      if (force || r.top < v.top + 12 || r.bottom > v.bottom - 12) viewport.scrollTop += (r.top + r.bottom - v.top - v.bottom) / 2;
+    }
+    if (force && presentation && !rendering) {
       syncPresentation();
       const anchor = $("chapterMap").querySelector(".hunter-anchor"), a = anchor?.getBoundingClientRect();
-      if (a) presentation.focus({ x: (a.left + a.right) / 2 - v.left, y: (a.top + a.bottom) / 2 - v.top });
+      if (a) presentation.focus({ x: (a.left + a.right) / 2 - v.left - (viewport.clientLeft || 0), y: (a.top + a.bottom) / 2 - v.top - (viewport.clientTop || 0) });
     }
+  }
+  for (const [id, method] of [["zoomIn", "zoomIn"], ["zoomOut", "zoomOut"], ["zoomReset", "reset"], ["zoomFit", "fit"]]) {
+    if ($(id)) $(id).onclick = () => camera?.[method]();
   }
 
   $("save").onclick = () => {
