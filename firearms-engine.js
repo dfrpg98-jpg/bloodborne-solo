@@ -4,11 +4,14 @@
   // This adapter is called only by the new actual-component reducer path.
   // Version 8 and older saves keep their recorded provisional firearm rules.
   const enabled = (s, h) => !!(s.setup?.rulesVersion >= 9 &&
-    !s.provisional && h.firearm(s)?.actual);
+    !s.provisional && h.firearm(s)?.actual &&
+    s.setup.rulesVersion >= (h.firearm(s).minimumRulesVersion || 9));
   const alive = (s, h) => !h.hunter(s).inDream && h.hunter(s).hp > 0 && !s.mission?.won;
   function combatTarget(s, h) {
     return s.combat && h.enemy(s, s.combat.enemyId);
   }
+  const isBoss = (s, enemy, h) => !!(enemy &&
+    (enemy.boss || enemy.bossDecks || h.enemyDef(s, enemy)?.boss));
   function canUse(s, h) {
     if (!enabled(s, h) || !alive(s, h) || !h.hunter(s).firearmReady) return false;
     const gun = h.firearm(s), target = combatTarget(s, h), c = s.combat;
@@ -19,6 +22,10 @@
     if (gun.trigger === "enemy-basic") return !!(s.phase === "combat_react" && target &&
       target.hp > 0 && c.action?.type === "attack" && c.action.kind === "basic" &&
       !c.action.uninterruptible && !c.cancelEnemy);
+    if (gun.trigger === "enemy-attack") return !!(s.phase === "combat_react" && target &&
+      target.hp > 0 && !isBoss(s, target, h) && c.action?.type === "attack" && !c.cancelEnemy);
+    if (gun.trigger === "hunter-effect") return s.phase === "hunter" &&
+      s.enemies.some((enemy) => enemy.hp > 0 && enemy.node === h.hunter(s).position && !isBoss(s, enemy, h));
     if (gun.trigger === "hunter-turn") {
       if (s.phase === "hunter") return s.enemies.some((enemy) => enemy.hp > 0 && enemy.node === h.hunter(s).position);
       // This firearm declares the hunter's attack before the enemy card is
@@ -29,11 +36,20 @@
     }
     return false;
   }
-  function reload(s, cardIds, h) {
+  function reload(s, cardIds, h, options = {}) {
     need(enabled(s, h), "실물 화기 준비 규칙을 적용할 사냥이 아닙니다.");
     need(s.phase === "hunter" && alive(s, h), "사냥꾼 차례에 화기를 준비하세요.");
     const hunter = h.hunter(s), gun = h.firearm(s);
     need(!hunter.firearmReady, "이미 준비된 화기입니다.");
+    if (options.payEcho === true) {
+      need(gun.prepareEchoCost > 0, "이 화기는 피의 유지로 준비할 수 없습니다.");
+      need(Array.isArray(cardIds) && cardIds.length === 0, "피의 유지와 스탯 카드 중 준비 비용 하나를 선택하세요.");
+      need(Number.isInteger(hunter.echoes) && hunter.echoes >= gun.prepareEchoCost, "준비할 피의 유지가 부족합니다.");
+      hunter.echoes -= gun.prepareEchoCost;
+      hunter.firearmReady = true;
+      h.log(s, `${gun.name} · 피의 유지 ${gun.prepareEchoCost}개를 버려 준비했습니다.`);
+      return true;
+    }
     need(Array.isArray(cardIds) && cardIds.length === gun.prepareCost &&
       cardIds.every((id) => typeof id === "string" && id.length > 0) &&
       new Set(cardIds).size === cardIds.length,
@@ -63,7 +79,7 @@
     if (!enabled(s, h)) return false;
     if (command.type === "RELOAD") {
       const ids = command.cardIds ?? (command.cardId ? [command.cardId] : []);
-      return reload(s, ids, h);
+      return reload(s, ids, h, { payEcho: command.payEcho });
     }
     if (command.type === "FIREARM_ENTRY") {
       need(s.phase === "firearm_react" && s.firearmEntry && h.firearm(s).trigger === "enemy-enters",
@@ -88,15 +104,32 @@
       h.hunter(s).firearmReady = false;
       h.interruptCombat(s);
       h.log(s, `${gun.name} · 기본 공격 자동 방해, 화기 소진.`);
+    } else if (gun.trigger === "enemy-attack") {
+      need(typeof h.stripEnemyAttackEffects === "function", "공격 효과 제거 처리기가 필요합니다.");
+      h.hunter(s).firearmReady = false;
+      h.stripEnemyAttackEffects(s, gun);
+      h.log(s, `${gun.name} · 보스가 아닌 적의 공격 속도 -${gun.speedPenalty}, 모든 공격 효과 제거, 화기 소진.`);
+    } else if (gun.trigger === "hunter-effect") {
+      const target = h.enemy(s, command.enemyId);
+      need(typeof command.enemyId === "string" && target && target.hp > 0 &&
+        target.node === h.hunter(s).position && !isBoss(s, target, h),
+        "같은 칸에 있는 보스가 아닌 적을 선택하세요.");
+      need(typeof h.addBlunderbussEffect === "function", "산탄총 피해와 이동 처리기가 필요합니다.");
+      h.hunter(s).firearmReady = false;
+      h.addBlunderbussEffect(s, target, gun);
+      h.log(s, `${gun.name} · 피해 ${gun.damage}, 살아남은 적 ${gun.push}칸 멀리 이동, 화기 소진.`);
     } else if (gun.trigger === "hunter-turn") {
       const id = s.phase === "combat_choose" ? s.combat.enemyId : command.enemyId;
       const target = h.enemy(s, id);
       need(typeof id === "string" && target && target.hp > 0 && target.node === h.hunter(s).position,
-        "같은 칸의 화염방사기 공격 대상을 선택하세요.");
+        "같은 칸의 화기 공격 대상을 선택하세요.");
       need(!command.enemyId || command.enemyId === id, "현재 전투의 적을 대상으로 선택하세요.");
+      need(typeof h.addFirearmAttack === "function" || gun.id === "flamesprayer" && typeof h.addFlameAttack === "function",
+        "화기 공격 처리기가 필요합니다.");
       h.hunter(s).firearmReady = false;
-      h.addFlameAttack(s, id);
-      h.log(s, `${gun.name} · 속도 ${gun.speed}, 피해 ${gun.damage}, 방해 · 같은 칸 다른 모든 적에게 피해 ${gun.splash}, 화기 소진.`);
+      if (h.addFirearmAttack) h.addFirearmAttack(s, id, gun, command.weaponBoost);
+      else h.addFlameAttack(s, id);
+      h.log(s, `${gun.name} · 속도 ${gun.speed}, 피해 ${gun.damage}${gun.interrupt ? ", 방해" : ""}${gun.splash ? ` · 같은 칸 다른 모든 적에게 피해 ${gun.splash}` : ""}, 화기 소진.`);
     }
     return true;
   }

@@ -1,0 +1,346 @@
+(function (root) {
+  "use strict";
+  const source = {
+  "schemaVersion": 1,
+  "id": "bloodborne-firearms-2026-10-12",
+  "language": "ko",
+  "sourceRoot": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기",
+  "transcriptionPolicy": "새 사진 2장과 현재 화기 폴더의 장총·연발총 양면 사진 2장을 직접 판독. 준비면과 효과면이 사진 순서와 다른 에블린을 구분했다. 화염방사기 효과는 기존 사용자 직접 전사와 일치함을 대조. 기존 rulesVersion 9 자료는 수정하지 않음.",
+  "photos": [
+    {
+      "id": "photo-20261011_230950",
+      "filename": "20261011_230950.jpg",
+      "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기\\20261011_230950.jpg",
+      "bytes": 5406072,
+      "lastModified": "2026-10-11T14:48:57.234Z",
+      "sha256": "cd292352d3fc7f35b95fa61664643b55e0241efe0111edc16e7e2b4356275a3f"
+    },
+    {
+      "id": "photo-20261011_231000",
+      "filename": "20261011_231000.jpg",
+      "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기\\20261011_231000.jpg",
+      "bytes": 5624680,
+      "lastModified": "2026-10-11T14:13:52.503Z",
+      "sha256": "7b2c0264b7e20a9b75edd369a4f2a5ec1c8ae81aa3f46dd2371ba60ef1c05d2f"
+    },
+    {
+      "id": "photo-20261012_005525",
+      "filename": "20261012_005525.jpg",
+      "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기\\20261012_005525.jpg",
+      "bytes": 5216542,
+      "lastModified": "2026-10-11T15:58:43.422Z",
+      "sha256": "e2309c6585151a1130869385bfbc9e5eb5ea4a5d9fcde300ed09b12565d8b04e"
+    },
+    {
+      "id": "photo-20261012_005542",
+      "filename": "20261012_005542.jpg",
+      "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기\\20261012_005542.jpg",
+      "bytes": 5115131,
+      "lastModified": "2026-10-11T15:58:48.520Z",
+      "sha256": "4d5a78a32ec136bf85a6594674e705e23596901f81ed70ee25c7e31f08196f4e"
+    }
+  ],
+  "firearms": [
+    {
+      "id": "ludwig-rifle",
+      "name": "루드비히의 장총",
+      "trigger": "enemy-enters",
+      "damage": 2,
+      "prepareCost": 2,
+      "prepareOnTransform": false,
+      "rules": [
+        "적 하나가 당신이 위치한 칸으로 이동해 들어올 때: 해당 적에게 2 피해를 줍니다.",
+        "사냥꾼 차례: 카드 2장을 버리면서 준비합니다."
+      ],
+      "source": {
+        "kind": "user-photo",
+        "title": "사용자 제공 루드비히의 장총 양면 · 현재 화기 폴더 자료",
+        "faces": [
+          {
+            "id": "photo-20261011_230950",
+            "filename": "20261011_230950.jpg",
+            "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기\\20261011_230950.jpg",
+            "bytes": 5406072,
+            "lastModified": "2026-10-11T14:48:57.234Z",
+            "sha256": "cd292352d3fc7f35b95fa61664643b55e0241efe0111edc16e7e2b4356275a3f",
+            "side": "effect",
+            "position": "left"
+          },
+          {
+            "id": "photo-20261011_231000",
+            "filename": "20261011_231000.jpg",
+            "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기\\20261011_231000.jpg",
+            "bytes": 5624680,
+            "lastModified": "2026-10-11T14:13:52.503Z",
+            "sha256": "7b2c0264b7e20a9b75edd369a4f2a5ec1c8ae81aa3f46dd2371ba60ef1c05d2f",
+            "side": "prepare",
+            "position": "right"
+          }
+        ]
+      }
+    },
+    {
+      "id": "repeating-pistol",
+      "name": "교단의 연발총",
+      "trigger": "enemy-basic",
+      "interrupt": true,
+      "prepareCost": 1,
+      "prepareOnTransform": true,
+      "rules": [
+        "적 하나가 기본 공격을 할 때: 해당 적을 자동으로 방해합니다.",
+        "사냥꾼 차례: 카드 1장을 버리면서 준비하거나, 당신의 무기를 변형할 때 무료로 준비합니다."
+      ],
+      "source": {
+        "kind": "user-photo",
+        "title": "사용자 제공 교단의 연발총 양면 · 현재 화기 폴더 자료",
+        "faces": [
+          {
+            "id": "photo-20261011_230950",
+            "filename": "20261011_230950.jpg",
+            "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기\\20261011_230950.jpg",
+            "bytes": 5406072,
+            "lastModified": "2026-10-11T14:48:57.234Z",
+            "sha256": "cd292352d3fc7f35b95fa61664643b55e0241efe0111edc16e7e2b4356275a3f",
+            "side": "effect",
+            "position": "right"
+          },
+          {
+            "id": "photo-20261011_231000",
+            "filename": "20261011_231000.jpg",
+            "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기\\20261011_231000.jpg",
+            "bytes": 5624680,
+            "lastModified": "2026-10-11T14:13:52.503Z",
+            "sha256": "7b2c0264b7e20a9b75edd369a4f2a5ec1c8ae81aa3f46dd2371ba60ef1c05d2f",
+            "side": "prepare",
+            "position": "left"
+          }
+        ]
+      }
+    },
+    {
+      "id": "flamesprayer",
+      "name": "화염방사기",
+      "trigger": "hunter-turn",
+      "speed": 2,
+      "damage": 2,
+      "interrupt": true,
+      "splash": 1,
+      "prepareCost": 2,
+      "prepareOnTransform": false,
+      "rules": [
+        "다음과 같은 공격을 하기 위해 사용할 수 있습니다: 속도 2, 피해 2, 방해. 그 칸에 있는 다른 모든 적에게 1피해를 줍니다.",
+        "사냥꾼 차례: 카드 2장을 버리면서 준비합니다."
+      ],
+      "source": {
+        "kind": "user-photo",
+        "title": "사용자 제공 화염방사기 양면",
+        "faces": [
+          {
+            "id": "photo-20261012_005525",
+            "filename": "20261012_005525.jpg",
+            "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기\\20261012_005525.jpg",
+            "bytes": 5216542,
+            "lastModified": "2026-10-11T15:58:43.422Z",
+            "sha256": "e2309c6585151a1130869385bfbc9e5eb5ea4a5d9fcde300ed09b12565d8b04e",
+            "side": "effect",
+            "position": "bottom-middle"
+          },
+          {
+            "id": "photo-20261012_005542",
+            "filename": "20261012_005542.jpg",
+            "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기\\20261012_005542.jpg",
+            "bytes": 5115131,
+            "lastModified": "2026-10-11T15:58:48.520Z",
+            "sha256": "4d5a78a32ec136bf85a6594674e705e23596901f81ed70ee25c7e31f08196f4e",
+            "side": "prepare",
+            "position": "bottom-middle"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cannon",
+      "name": "대포",
+      "minimumRulesVersion": 10,
+      "trigger": "hunter-turn",
+      "speed": 1,
+      "damage": 3,
+      "interrupt": false,
+      "splash": 0,
+      "prepareCost": 2,
+      "prepareOnTransform": false,
+      "rules": [
+        "다음과 같은 공격을 하기 위해 사용할 수 있습니다: 속도 1, 피해 3.",
+        "사냥꾼 차례: 카드 2장을 버리면서 준비합니다."
+      ],
+      "source": {
+        "kind": "user-photo",
+        "title": "사용자 제공 대포 양면",
+        "faces": [
+          {
+            "id": "photo-20261012_005525",
+            "filename": "20261012_005525.jpg",
+            "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기\\20261012_005525.jpg",
+            "bytes": 5216542,
+            "lastModified": "2026-10-11T15:58:43.422Z",
+            "sha256": "e2309c6585151a1130869385bfbc9e5eb5ea4a5d9fcde300ed09b12565d8b04e",
+            "side": "effect",
+            "position": "top-left"
+          },
+          {
+            "id": "photo-20261012_005542",
+            "filename": "20261012_005542.jpg",
+            "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기\\20261012_005542.jpg",
+            "bytes": 5115131,
+            "lastModified": "2026-10-11T15:58:48.520Z",
+            "sha256": "4d5a78a32ec136bf85a6594674e705e23596901f81ed70ee25c7e31f08196f4e",
+            "side": "prepare",
+            "position": "top-left"
+          }
+        ]
+      }
+    },
+    {
+      "id": "evelyn",
+      "name": "에블린",
+      "minimumRulesVersion": 10,
+      "trigger": "enemy-basic",
+      "interrupt": true,
+      "prepareCost": 1,
+      "prepareEchoCost": 1,
+      "prepareOnTransform": false,
+      "rules": [
+        "적 하나가 기본 공격을 할 때: 해당 적을 자동으로 방해합니다.",
+        "사냥꾼 차례: 카드 1장 또는 피의 유지 1개를 버리면서 준비합니다."
+      ],
+      "source": {
+        "kind": "user-photo",
+        "title": "사용자 제공 에블린 양면",
+        "faces": [
+          {
+            "id": "photo-20261012_005542",
+            "filename": "20261012_005542.jpg",
+            "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기\\20261012_005542.jpg",
+            "bytes": 5115131,
+            "lastModified": "2026-10-11T15:58:48.520Z",
+            "sha256": "4d5a78a32ec136bf85a6594674e705e23596901f81ed70ee25c7e31f08196f4e",
+            "side": "effect",
+            "position": "bottom-left"
+          },
+          {
+            "id": "photo-20261012_005525",
+            "filename": "20261012_005525.jpg",
+            "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기\\20261012_005525.jpg",
+            "bytes": 5216542,
+            "lastModified": "2026-10-11T15:58:43.422Z",
+            "sha256": "e2309c6585151a1130869385bfbc9e5eb5ea4a5d9fcde300ed09b12565d8b04e",
+            "side": "prepare",
+            "position": "bottom-left"
+          }
+        ]
+      }
+    },
+    {
+      "id": "rosmarinus",
+      "name": "로즈마리누스",
+      "minimumRulesVersion": 10,
+      "trigger": "enemy-attack",
+      "nonBossOnly": true,
+      "speedPenalty": 1,
+      "removeAttackEffects": true,
+      "prepareCost": 2,
+      "prepareOnTransform": false,
+      "rules": [
+        "보스가 아닌 적이 공격할 때: 그 공격은 -1속도가 되고, 모든 효과를 잃습니다.",
+        "사냥꾼 차례: 카드 2장을 버리면서 준비합니다."
+      ],
+      "source": {
+        "kind": "user-photo",
+        "title": "사용자 제공 로즈마리누스 양면",
+        "faces": [
+          {
+            "id": "photo-20261012_005525",
+            "filename": "20261012_005525.jpg",
+            "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기\\20261012_005525.jpg",
+            "bytes": 5216542,
+            "lastModified": "2026-10-11T15:58:43.422Z",
+            "sha256": "e2309c6585151a1130869385bfbc9e5eb5ea4a5d9fcde300ed09b12565d8b04e",
+            "side": "effect",
+            "position": "top-middle"
+          },
+          {
+            "id": "photo-20261012_005542",
+            "filename": "20261012_005542.jpg",
+            "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기\\20261012_005542.jpg",
+            "bytes": 5115131,
+            "lastModified": "2026-10-11T15:58:48.520Z",
+            "sha256": "4d5a78a32ec136bf85a6594674e705e23596901f81ed70ee25c7e31f08196f4e",
+            "side": "prepare",
+            "position": "top-middle"
+          }
+        ]
+      }
+    },
+    {
+      "id": "hunter-blunderbuss",
+      "name": "야수 사냥의 산탄총",
+      "minimumRulesVersion": 10,
+      "trigger": "hunter-effect",
+      "nonBossOnly": true,
+      "damage": 1,
+      "push": 1,
+      "prepareCost": 2,
+      "prepareOnTransform": false,
+      "rules": [
+        "사냥꾼 차례: 당신이 위치한 칸에 있는 보스가 아닌 적 하나에게 1피해를 주고 1칸 멀리 이동시킵니다.",
+        "사냥꾼 차례: 카드 2장을 버리면서 준비합니다."
+      ],
+      "source": {
+        "kind": "user-photo",
+        "title": "사용자 제공 야수 사냥의 산탄총 양면",
+        "faces": [
+          {
+            "id": "photo-20261012_005525",
+            "filename": "20261012_005525.jpg",
+            "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기\\20261012_005525.jpg",
+            "bytes": 5216542,
+            "lastModified": "2026-10-11T15:58:43.422Z",
+            "sha256": "e2309c6585151a1130869385bfbc9e5eb5ea4a5d9fcde300ed09b12565d8b04e",
+            "side": "effect",
+            "position": "top-right"
+          },
+          {
+            "id": "photo-20261012_005542",
+            "filename": "20261012_005542.jpg",
+            "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기\\20261012_005542.jpg",
+            "bytes": 5115131,
+            "lastModified": "2026-10-11T15:58:48.520Z",
+            "sha256": "4d5a78a32ec136bf85a6594674e705e23596901f81ed70ee25c7e31f08196f4e",
+            "side": "prepare",
+            "position": "top-right"
+          }
+        ]
+      }
+    }
+  ],
+  "stockWithoutStartingFirearms": {
+    "evelyn": 3,
+    "cannon": 3,
+    "repeating-pistol": 3,
+    "rosmarinus": 1,
+    "flamesprayer": 2,
+    "ludwig-rifle": 1,
+    "hunter-blunderbuss": 1
+  },
+  "stockSource": {
+    "filename": "화기 관련 정보.txt",
+    "path": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo\\참고자료\\화기\\화기 관련 정보.txt",
+    "sha256": "403caa540af80bcf885208158ae88d0657a3aa4e802dc6b40d543ec2e8e156c6",
+    "lastModified": "2026-10-11T14:48:43.160Z",
+    "text": "1. 장치무기 별 기본화기\r\n칼날 지팡이 - 대포\r\n이질적인 루드비히의 성검, 말뚝박이 - 교단의 연발총\r\n루드비히의 성검 - 에블린\r\n나머지 장치무기 - 야수 사냥의 단총\r\n\r\n2. 화기카드 종류 및 개수 (기본화기 제외)\r\n에블린(3장), 대포(3장), 교단의 연발총(3장), 로즈마리누스(1장), 화염방사기(2장), 루드비히의 장총(1장), 야수 사냥의 산탄총(1장)\r\n\r\n"
+  },
+  "verifiedPhotoTranscription": true
+};
+  if (typeof module !== "undefined" && module.exports) module.exports = source;
+  else root.BBExtendedFirearmSource = source;
+})(typeof globalThis !== "undefined" ? globalThis : this);

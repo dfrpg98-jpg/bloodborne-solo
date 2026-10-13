@@ -1,7 +1,7 @@
 const test=require('node:test'),assert=require('node:assert/strict'),E=require('../hunt-engine.js');
 const commands=require('./fixtures/actual-boss-natural-commands.json');
 test('new solo commands naturally reach the actual chapter-two boss and replay its insight movement decision',()=>{
-  let s=E.create(90,'burial',1,null,'hunter-pistol','center',{campaign:true});
+  let s=E.create(90,'burial',1,null,'hunter-pistol','center',{campaign:true,rulesVersion:9});
   for(const c of commands)s=E.dispatch(s,c);
   assert.equal(s.setup.rulesVersion,9);
   assert.equal(s.mission.chapter,2);
@@ -27,7 +27,7 @@ test('new solo commands naturally reach the actual chapter-two boss and replay i
   assert.deepEqual(E.importSave(E.exportSave(s)),s);
 });
 
-test('public commands complete chapters one and two with actual health decks movement and a final dream',()=>{
+test('public version-ten commands complete chapters one and two with actual health decks movement and a final dream',()=>{
   const path=require('./fixtures/actual-chapter-two-win-commands.json');
   let s=E.create(90,'burial',1,null,'hunter-pistol','center',{campaign:true});
   const phases=new Set(),checkpoints=new Set();

@@ -94,6 +94,33 @@
 .hunt-slot.occupied {
   border-color: #9e786d;
 }
+.setup-weapon-preview,
+.practice-setup {
+  padding: 12px;
+  margin: 12px 0;
+  border: 1px solid #67573e;
+  background: #25231f;
+}
+.setup-weapon-preview p:first-child {
+  margin-top: 0;
+}
+.setup-slot-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px;
+}
+.setup-slot-preview > span {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  border: 1px solid #514a3f;
+  gap: 6px;
+}
+.weapon-effect-choices {
+  border-top: 1px solid #67573e;
+  padding-top: 12px;
+  margin-top: 14px;
+}
 .hunt-slot b {
   font-size: 17px;
 }

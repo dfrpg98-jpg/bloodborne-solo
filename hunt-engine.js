@@ -20,6 +20,16 @@
     ? require("./actual-components.js") : root.BBActualComponents;
   const firearms = typeof module !== "undefined" && module.exports
     ? require("./firearms-engine.js") : root.BBFirearms;
+  const weaponRules = typeof module !== "undefined" && module.exports
+    ? require("./weapon-rules.js") : root.BBWeaponRules;
+  const weaponFlow = typeof module !== "undefined" && module.exports
+    ? require("./weapon-flow.js") : root.BBWeaponFlow;
+  const extendedEnemies = typeof module !== "undefined" && module.exports
+    ? require("./extended-enemies.js") : root.BBExtendedEnemies;
+  const extendedEnemyRules = typeof module !== "undefined" && module.exports
+    ? require("./extended-enemy-rules.js") : root.BBExtendedEnemyRules;
+  const extendedFirearms = typeof module !== "undefined" && module.exports
+    ? require("./extended-firearms.js") : root.BBExtendedFirearms;
   const clone = (x) => JSON.parse(JSON.stringify(x));
   const enemyDeck =
     typeof module !== "undefined" && module.exports
@@ -43,7 +53,8 @@
   const node = (s, id) => nodes(s).find((n) => n.id === id);
   const card = (c) => D.cards[c.kind];
   const enemy = (s, id) => s.enemies.find((e) => e.id === id);
-  const firearm = (s) => s.setup.rulesVersion >= 9 && !s.provisional &&
+  const firearm = (s) => s.setup.rulesVersion >= 10 && !s.provisional &&
+    extendedFirearms.firearm(hunter(s).firearmId) || s.setup.rulesVersion >= 9 && !s.provisional &&
     supplied.firearm(hunter(s).firearmId) || D.firearms[hunter(s).firearmId || "hunter-pistol"];
   const canFirearm = (s) =>
     firearms.enabled(s, firearmHelpers()) ? firearms.canUse(s, firearmHelpers()) :
@@ -63,6 +74,27 @@
     s.events.push({ round: s.round, text });
     if (s.events.length > 180) s.events.shift();
   };
+  function weaponHelpers() {
+    return {hunter,enemy,enemyDef,weapon,weaponFace,slots,draw,damageEnemy,kill,
+      log,need,resume,neighbors,distance,fogCrossing,displaceEnemy,nameAt,
+      pauseFirearmEntry,resumeFirearmEntry,canFirearm,putFaceDown};
+  }
+  function extendedEnemyHelpers() {
+    return {hunter,enemy,enemyDef,damageEnemy,kill,takeDamage,draw,clearSlot,pay,log,need,
+      reveal,resolve,startImmediate,startBossMove,finishSpawns,
+      spawnNormal:(s,kind,node,extra={})=>s.spawnQueue.push({kind,node,...extra})};
+  }
+  function putFaceDown(s,id,index) {
+    need(Number.isInteger(index) && slots(s)[index] && !hunter(s).slots[index], "빈 슬롯을 선택하세요.");
+    // A face-down card pays/occupies a slot without executing stat effects.
+    hunter(s).slots[index]={...take(s,id),faceDown:true};
+  }
+  const enqueueWeapon = (s,effect) => weaponFlow.enqueue(s,effect,weaponHelpers());
+  const drainWeapons = (s,after) => weaponFlow.drain(s,after,weaponHelpers());
+  const weaponChoices = (s,selection={}) => weaponFlow.choices(s,selection,weaponHelpers());
+  function onEnemyEntry(s,e,from,to) {
+    return weaponFlow.onEnemyStep(s,e,from,to,weaponHelpers()) || firearms.onEnemyStep(s,e,from,to,firearmHelpers());
+  }
   function missionHelpers() {
     return { hunter, log, need, node, nodes, neighbors, distance, draw, drawConsumable,
       pay, clearSlot, slots, weaponFace, card, takeDamage, kill, resume, explore,
@@ -82,8 +114,38 @@
   }
   function firearmHelpers() {
     return { hunter, firearm, enemy, enemyDef, damageEnemy, kill, log, pay,
-      addFlameAttack, pauseFirearmEntry, resumeFirearmEntry,
+      addFlameAttack, addFirearmAttack,stripEnemyAttackEffects,addBlunderbussEffect,pauseFirearmEntry,resumeFirearmEntry,
       interruptCombat: (s) => { s.combat.cancelEnemy = true; s.combat.shot = true; } };
+  }
+  function addFirearmAttack(s,enemyId,gun,boost) {
+    if(s.setup.rulesVersion<10) {addFlameAttack(s,enemyId);return;}
+    if(s.phase==="hunter") chooseCombat(s,enemyId,"firearm");
+    const wb=weaponRules.attackBonus(s,weaponFace(s),-1,{interrupt:gun.interrupt},{},boost);
+    if(wb.selfDamage) {
+      hunter(s).hp=Math.max(0,hunter(s).hp-wb.selfDamage);
+      log(s,`${weapon(s).name} · 체력 ${wb.selfDamage}을 지불했습니다.`);
+      if(hunter(s).hp<=0) {enterDream(s,true);return;}
+    }
+    if(wb.heal) hunter(s).hp=Math.min(6,hunter(s).hp+wb.heal);
+    if(wb.consumeCharge) delete hunter(s).weaponCharge;
+    s.combat.flame={name:gun.name,speed:gun.speed+wb.speed,damage:gun.damage+wb.damage,
+      interrupt:!!gun.interrupt,interruptEqual:!!wb.interruptEqual,splash:gun.splash || 0,weaponFace:clone(weaponFace(s))};
+    reveal(s);
+  }
+  function stripEnemyAttackEffects(s,gun) {
+    const c=s.combat;
+    c.action.speed=Math.max(0,c.action.speed-1);
+    for(const key of ["interrupt","poison","frenzy","stun","undodgeable","uninterruptible","followup","allHunters",
+      "forceHunterMove","afterAttackMove","afterDodgeDamageBonus","code"]) delete c.action[key];
+    c.removeEnemyAttackEffects=true;delete c.furyEffects;
+    delete c.groups;c.groups=null;c.index=0;
+    log(s,`${gun.name} · 적 공격 속도-1, 모든 공격 효과 제거.`);
+  }
+  function addBlunderbussEffect(s,target,gun) {
+    damageEnemy(s,target,gun.damage,{kind:"firearm-effect"});kill(s,target);
+    if(enemy(s,target.id)) (s.weaponEffects ||= []).push({kind:"push",enemyId:target.id,anchor:hunter(s).position,remaining:gun.push,mandatory:true});
+    if(s.mission?.deathPending) {offerDeathReaction(s,{type:"weapon_continue"});s.weaponAfter={type:"mission_hunter"};return;}
+    drainWeapons(s,{type:"mission_hunter"});
   }
   function addFlameAttack(s, enemyId) {
     const fresh = s.phase === "hunter";
@@ -138,12 +200,13 @@
     const from=e.node; e.node=to;
     missions.onEnemyStep?.(s,e,from,to,missionHelpers());
     log(s,`${enemyDef(s,e).name} 이동 → ${nameAt(s,to)}.`);
-    firearms.onEnemyStep(s, e, from, to, firearmHelpers());
+    onEnemyEntry(s, e, from, to);
   }
   function damageEnemy(s,e,amount,context = {}) {
     let damage = missions.beforeEnemyDamage ? missions.beforeEnemyDamage(s,e,amount,context,missionHelpers()) : amount;
     if (s.combat?.enemyId === e.id && ["hunter-attack", "firearm-attack"].includes(context.kind))
       damage = Math.max(0, damage - (s.combat.enemyDefense || 0));
+    damage=extendedEnemyRules.beforeEnemyDamage(s,e,damage,context,extendedEnemyHelpers());
     e.hp -= damage; return damage;
   }
   const actualBoss = (s, e) => s.setup.rulesVersion >= 9 && !s.provisional && e?.componentId === "cleric-beast";
@@ -166,7 +229,9 @@
   function resolveImmediate(s) {
     const c = s.combat, q = c.immediate, h = hunter(s);
     delete c.immediate;
-    if (!c.dodged) {
+    if(q.dodgeBlockPerSpeed) {
+      takeDamage(s,Math.max(0,q.damage-(q.dodgeBlock || 0)),q.name,false);
+    } else if (!c.dodged) {
       if (q.damage) takeDamage(s, q.damage, q.name, false);
       if (q.stun) c.pending.push({ type: "stun" });
       if (q.poison && !c.immune.includes("poison")) h.status.poison = true;
@@ -215,7 +280,7 @@
     if (s.phase==='mission_death') return true;
     if (!c || c.origin==='interaction' || c.noDodge) return false;
     if (s.phase==='combat_extra') return !!c.extra;
-    if (s.phase==='boss_react') return !c.dodged && !!c.immediate;
+    if (s.phase==='boss_react') return !c.dodged && !!c.immediate && !c.immediate.unavoidable && !c.immediate.dodgeBlockPerSpeed;
     return s.phase==='combat_react' && c.action?.type==='attack' && !c.action.undodgeable &&
       !c.cancelEnemy && !c.dodged && enemy(s,c.enemyId)?.node===h.position;
   }
@@ -223,9 +288,20 @@
     need(canAutoDodge(s),'회피할 수 있는 공격이 없습니다.');
     if (s.mission) rewards.onDodge(s,rewardHelpers());
     log(s,'고대 사냥꾼의 유골 · 스탯 카드와 슬롯 비용 없이 회피했습니다.');
-    if (s.phase==='mission_death') { resume(s,{type:'mission_death_done'}); return; }
-    if (s.phase==='combat_extra') { s.combat.extra=null; resolve(s); }
-    else { s.combat.dodged=true; applyDodgeAttackBonus(s); }
+    const phase=s.phase;
+    if(weaponRules.enabled(s)) enqueueWeapon(s,weaponRules.afterDodge(s,weaponFace(s),null,
+      s.combat?.immediate?.dodgeSpeed ?? s.combat?.action?.speed));
+    if (phase==='mission_death') {
+      if(!drainWeapons(s,{type:'mission_death_done'})) resume(s,{type:'mission_death_done'});
+      return;
+    }
+    if (phase==='combat_extra') {
+      s.combat.extra=null;
+      if(!drainWeapons(s,{type:'combat'})) resolve(s);
+    } else {
+      s.combat.dodged=true; applyDodgeAttackBonus(s);
+      drainWeapons(s,{type:'weapon_phase',phase});
+    }
   }
   function missionActions(s) {
     if (s.phase === "mission_death") {
@@ -346,7 +422,7 @@
         s,
         `장송의 칼날 · 공격 전: ${enemyDef(s, e).name}을 사냥꾼의 칸으로 이동시켰습니다.`,
       );
-      if (afterCommand && firearms.onEnemyStep(s, e, from, e.node, firearmHelpers())) {
+      if (afterCommand && onEnemyEntry(s, e, from, e.node)) {
         s.firearmEntry.afterCommand = { ...clone(afterCommand), pullIds: ids.slice(index + 1) };
         return false;
       }
@@ -497,7 +573,7 @@
     }
     if (enemyMovement) {
       const moved = enemy(s, enemyMovement.enemyId);
-      if (moved) firearms.onEnemyStep(s, moved, enemyMovement.from, enemyMovement.to, firearmHelpers());
+      if (moved) onEnemyEntry(s, moved, enemyMovement.from, enemyMovement.to);
     }
   }
   function take(s, id) {
@@ -514,12 +590,17 @@
   function clearSlot(s, index) {
     const h = hunter(s);
     if (h.slots[index]) {
-      h.discard.push(h.slots[index]);
+      const discarded={...h.slots[index]};delete discarded.faceDown;
+      h.discard.push(discarded);
       h.slots[index] = null;
+      if (weaponRules.enabled(s)) enqueueWeapon(s,weaponRules.afterClear(weaponFace(s)));
     }
   }
   function allCards(h) {
-    return [...h.deck, ...h.hand, ...h.discard, ...h.slots.filter(Boolean)];
+    return [...h.deck, ...h.hand, ...h.discard, ...h.slots.filter(Boolean)].map(x=>{
+      if(!x.faceDown) return x;
+      const clean={...x};delete clean.faceDown;return clean;
+    });
   }
   function eligible(s) {
     const h = hunter(s);
@@ -582,6 +663,8 @@
       p.state.setup.firearmId,
       p.state.setup.startSpace,
       { campaign: !!p.state.setup.campaign, provisional: p.state.setup.provisional,
+        ...(p.state.setup.firearmOverride ? {firearmOverride:true} : {}),
+        ...(p.state.setup.practiceTarget ? {practiceTarget:p.state.setup.practiceTarget,practiceSide:p.state.setup.practiceSide} : {}),
         rulesVersion: p.state.setup.rulesVersion ?? null },
     );
     for (const command of p.state.commands)
@@ -593,6 +676,7 @@
     return verified;
   }
   function enemyDef(s, e) {
+    if(typeof e==="object" && e.extendedId) return extendedEnemies.definition(e.extendedId,{side:e.extendedSide,hunterCount:1,order:4});
     const kind = typeof e === "string" ? e : e.kind;
     if (typeof e === "object" && e.componentId) {
       if (actualBoss(s, e)) return missions.targetDef(s, e,
@@ -691,6 +775,7 @@
     );
     if (old) {
       old.node = job.node;
+      if(job.extendedId) {old.extendedId=job.extendedId;old.extendedSide=job.extendedSide;}
       old.hp = enemyDef(s, old).maxHp;
       if (job.missionSummon) old.missionSummon = true;
       else delete old.missionSummon;
@@ -705,7 +790,8 @@
         kind: job.kind,
         figure,
         node: job.node,
-        hp: D.enemies[job.kind].health,
+        hp: job.extendedId ? extendedEnemies.definition(job.extendedId,{side:job.extendedSide,hunterCount:1}).maxHp : D.enemies[job.kind].health,
+        ...(job.extendedId ? {extendedId:job.extendedId,extendedSide:job.extendedSide} : {}),
         ...(job.missionId ? { missionId: job.missionId } : {}),
         ...(job.missionSummon ? { missionSummon: true } : {}),
       });
@@ -766,6 +852,11 @@
     resume(s, after);
   }
   function resetMap(s, after) {
+    if(s.setup.practiceTarget) {
+      spawnPractice(s);s.skipActivation=[];s.loot=[];s.spawnQueue=[];
+      log(s,"지도 초기화 · 선택한 실물 연습 상대를 시작 칸에 복원합니다.");
+      resume(s,after);return;
+    }
     if (s.setup.rulesVersion) {
       s.enemies=s.enemies.filter((e)=>enemyDef(s,e).boss);
       for (const e of s.enemies) e.hp=enemyDef(s,e).maxHp;
@@ -815,6 +906,7 @@
       return;
     }
     s.round++;
+    if(weaponRules.enabled(s)) {hunter(s).moveActionsRound=0;delete hunter(s).weaponCharge;}
     s.activation = [];
     s.skipActivation = [];
     s.clinicUsed = false;
@@ -852,8 +944,9 @@
     for (const key of ['skipActivation','activation','spawnQueue','spawnChoices','cardChoices','lootChoice']) s[key]=[];
     for (const key of ['combat','move','interaction','dream','spawnAfter','enemyMove','cardAfter','freeTransform','leap']) s[key]=null;
     delete s.missionExtraQueue;s.lootRemaining=0;s.clinicUsed=false;
-    h.deck=shuffle(s,allCards(h));h.hand=[];h.discard=[];h.slots=[null,null,null];
+    h.deck=shuffle(s,allCards(h));h.hand=[];h.discard=[];h.slots=Array(weapon(s).faces[face].slots.length).fill(null);
     h.position=map.position;h.inDream=false;h.hp=6;h.echoes=0;h.face=face;
+    if(weaponRules.enabled(s)) {h.moveActionsRound=0;delete h.weaponCharge;}
     h.status={poison:false,frenzy:false};h.firearmReady=true;
     delete h.rewardSkipActivation;
     const held=new Map();for (const c of h.deck) held.set(c.kind,(held.get(c.kind)||0)+1);
@@ -912,7 +1005,9 @@
     h.deck = allCards(h);
     h.hand = [];
     h.discard = [];
-    h.slots = [null, null, null];
+    h.slots = Array(slots(s).length).fill(null);
+    delete s.weaponEffects;delete s.weaponAfter;
+    delete s.weaponMoveReturn;
     s.combat = null;
     s.move = null;
     s.interaction = null;
@@ -1054,7 +1149,7 @@
       s,
       `${enemyDef(s, e).name} → ${nameAt(s, to)}${m.drag ? " · 사냥꾼도 이동" : ""}.`,
     );
-    if (!m.drag) firearms.onEnemyStep(s, e, prev, to, firearmHelpers());
+    if (!m.drag) onEnemyEntry(s, e, prev, to);
   }
   function runEnemyMove(s) {
     if (s.firearmEntry) return;
@@ -1076,14 +1171,14 @@
     s.enemyMove = null;
     resume(s, after);
   }
-  function activateEnemy(s, e) {
-    s.activation.push(e.id);
+  function activateEnemy(s, e, reactivation = false) {
+    if(!s.activation.includes(e.id)) s.activation.push(e.id);
     s.enemyMove = {
       enemyId: e.id,
       remaining: enemyDef(s, e).move,
       mode: "toward",
       anchor: hunter(s).position,
-      after: { type: "activation_attack", enemyId: e.id },
+      after: { type: "activation_attack", enemyId: e.id, ...(reactivation ? {extendedReactivation:true} : {}) },
     };
     runEnemyMove(s);
   }
@@ -1125,14 +1220,26 @@
         return;
       }
       chooseCombat(s, e.id, "hunter");
-      commitAttack(s, a.cardId, a.slot, a.itemIds, a.rewardIds);
+      commitAttack(s, a.cardId, a.slot, a.itemIds, a.rewardIds, a.weaponBoost);
       return;
     }
     if (s.phase !== "mission_choice") s.phase = "hunter";
     log(s, "이동과 추격을 마쳤습니다.");
+    if(m.weaponAfter) {
+      if(s.phase==="mission_choice") s.weaponMoveReturn=m.weaponAfter;
+      else resume(s,m.weaponAfter);
+    }
   }
   function resume(s, a) {
     if (!a) return;
+    if (a.type === "weapon_continue") {weaponFlow.continueEffects(s,weaponHelpers());return;}
+    if (a.type === "weapon_phase") {s.phase=a.phase;return;}
+    if (a.type === "weapon_dodge_done") {
+      if(s.mission?.deathPending) {offerDeathReaction(s,a);return;}
+      if(!enemy(s,s.combat?.enemyId) && !a.extra && !a.immediate) {endCombat(s);return;}
+      if(a.freeTransform) {offerTransform(s,a.after);return;}
+      resume(s,a.after);return;
+    }
     if (a.type === "firearm_entry_done") { finishFirearmEntry(s, a.entry); return; }
     if (a.type === "mission_phase") { s.phase = a.phase; return; }
     if (a.type === "mission_hunter") { s.phase = "hunter"; return; }
@@ -1159,9 +1266,10 @@
     }
     if (a.type === "activation_attack") {
       const e = enemy(s, a.enemyId);
-      if (e && e.node === hunter(s).position)
+      if (e && e.node === hunter(s).position) {
         chooseCombat(s, e.id, "activation");
-      else continueActivation(s);
+        if(a.extendedReactivation) s.combat.extendedReactivation=true;
+      } else continueActivation(s);
       return;
     }
     if (a.type === "mission_extra_attack") {
@@ -1238,6 +1346,7 @@
   }
   function kill(s, e) {
     if (e.hp > 0) return;
+    if(e.extendedId && !enemy(s,e.id)) return;
     if (e.componentId) {
       const phases=actualBoss(s,e) ? bosses.specimen.phases : temporary.specimens[e.componentSpec || e.componentId].phases;
       if (e.componentPhase<phases.length) {
@@ -1259,6 +1368,7 @@
       s.provisional.finished = true;
     }
     if (missions.beforeKill(s, e, missionHelpers())) return;
+    extendedEnemyRules.beforeKill(s,e,extendedEnemyHelpers());
     s.enemies = s.enemies.filter((x) => x.id !== e.id);
     const h = hunter(s);
     h.echoes = Math.min(3, h.echoes + 1);
@@ -1272,11 +1382,12 @@
     }
     missions.onKill(s, e, missionHelpers());
     if (s.mission) rewards.onKill(s, rewardHelpers());
+    if(weaponRules.enabled(s)) enqueueWeapon(s,weaponRules.afterKill(weaponFace(s)));
   }
   function place(s, id, index, replacement = null) {
     const h = hunter(s);
     need(
-      Number.isInteger(index) && index >= 0 && index < 3 && !h.slots[index],
+      Number.isInteger(index) && slots(s)[index] && !h.slots[index],
       "빈 공격 슬롯을 선택하세요.",
     );
     const x = take(s, id),
@@ -1319,6 +1430,7 @@
     }
     const a = s.cardAfter;
     s.cardAfter = null;
+    if(drainWeapons(s,a)) return;
     resume(s, a);
   }
   function applyCardChoice(s, value) {
@@ -1370,10 +1482,10 @@
       for (const to of route.slice(1)) stepHunter(s, to);
     } else {
       if (!counter) chooseCombat(s, e.id, "hunter");
-      commitAttack(s, a.cardId, a.slot, a.itemIds, a.rewardIds);
+      commitAttack(s, a.cardId, a.slot, a.itemIds, a.rewardIds, a.weaponBoost);
     }
   }
-  function commitAttack(s, id, index, itemIds, rewardIds) {
+  function commitAttack(s, id, index, itemIds, rewardIds, weaponBoost) {
     const slot = slots(s)[index];
     need(slot, "공격 슬롯을 선택하세요.");
     const rewardBonus = s.mission ? rewards.attackBonus(s, index, rewardIds || [], rewardHelpers()) : {},
@@ -1382,16 +1494,27 @@
       x = place(s, id, index, replacement),
       def = replacement ? { ...replacement, name: card(x).name } : card(x),
       c = s.combat;
+    const wb=weaponRules.attackBonus(s,weaponFace(s),index,def,rewardBonus,weaponBoost);
+    if(wb.selfDamage) {
+      hunter(s).hp=Math.max(0,hunter(s).hp-wb.selfDamage);
+      log(s,`${weapon(s).name} · 추가 공격 효과를 위해 피해 ${wb.selfDamage}.`);
+      if(hunter(s).hp<=0) {enterDream(s,true);return;}
+    }
+    if(wb.heal) hunter(s).hp=Math.min(6,hunter(s).hp+wb.heal);
+    if(wb.consumeCharge) delete hunter(s).weaponCharge;
+    if(wb.immuneInterrupt) c.immune=[...new Set([...c.immune,"interrupt"])];
+    if(wb.noDodge) c.noDodge=true;
     c.attack = {
       name: slot.name,
-      speed: slot.speed + (def.speed || 0) + bonus.speed + (rewardBonus.speed || 0),
-      damage: slot.damage + (def.damage || 0) + bonus.damage + (rewardBonus.damage || 0),
+      speed: slot.speed + (def.speed || 0) + bonus.speed + (rewardBonus.speed || 0) + wb.speed,
+      damage: slot.damage + (def.damage || 0) + bonus.damage + (rewardBonus.damage || 0) + wb.damage,
       interrupt: !!def.interrupt || !!rewardBonus.interrupt,
-      splash: weaponFace(s).splash ? clone(weaponFace(s).splash) : null,
+      splash: wb.splash || (weaponFace(s).splash ? clone(weaponFace(s).splash) : null),
       afterAttackHeal: def.afterAttackHeal || 0,
       onKill: def.onKill || null,
-      freeTransform: !!def.freeTransform || !!rewardBonus.freeTransform,
-      ...(rewardBonus.interruptEqual ? {interruptEqual:true} : {}),
+      freeTransform: !!def.freeTransform || !!rewardBonus.freeTransform || wb.freeTransform,
+      ...(rewardBonus.interruptEqual || wb.interruptEqual ? {interruptEqual:true} : {}),
+      ...(weaponRules.enabled(s) ? {healDealt:wb.healDealt,weaponFace:clone(weaponFace(s))} : {}),
     };
     c.defense += bonus.defense;
     c.removeEnemyAttackEffects = bonus.removeEnemyAttackEffects;
@@ -1460,6 +1583,7 @@
       if (s.setup.rulesVersion >= 9 && c.action.code === "female-fury")
         delete c.action.code;
     }
+    extendedEnemyRules.onReveal(s,c,e,extendedEnemyHelpers());
     s.phase = "combat_react";
   }
   function resolveRevealedAbility(s) {
@@ -1470,6 +1594,7 @@
       return;
     }
     c.abilityPending = false;
+    if(extendedEnemyRules.onReveal(s,c,e,extendedEnemyHelpers())) return;
     if (c.action.code === "cleric-recovery") {
       e.insightTokens = 0; c.enemyDefense = 2;
       bosses.reshuffle(e, s, shuffle);
@@ -1552,6 +1677,7 @@
     if (!["combat_react", "boss_react"].includes(s.phase) || c.dodged ||
       s.phase !== "boss_react" && !enemy(s, c.enemyId))
       return false;
+    if(s.phase==="boss_react" && c.immediate?.unavoidable) return false;
     const speed = s.phase === "boss_react" ? c.immediate?.dodgeSpeed :
       c.action.type === "ability" ? c.action.dodgeSpeed : c.action.speed;
     return (
@@ -1567,9 +1693,14 @@
       canDodge(s, a.cardId, a.slot, extra),
       "회피 가능한 카드·속도·빈 슬롯을 선택하세요.",
     );
+    const speed=slots(s)[a.slot].speed+(card(hunter(s).hand.find(x=>x.id===a.cardId)).speed||0);
     const immediate = s.phase === "boss_react", x = place(s, a.cardId, a.slot),
       def = card(x),
       c = s.combat;
+    const enemySpeed=extra ? c.extra?.dodgeSpeed : immediate ? c.immediate?.dodgeSpeed : c.action?.speed;
+    const weaponDodge=weaponRules.afterDodge(s,weaponFace(s),speed,enemySpeed);
+    if(immediate && c.immediate?.dodgeBlockPerSpeed) c.immediate.dodgeBlock=speed*c.immediate.dodgeBlockPerSpeed;
+    extendedEnemyRules.onDodge(s,{speed},extendedEnemyHelpers());
     if (extra) c.extra = null;
     else { c.dodged = true; if (!immediate) applyDodgeAttackBonus(s); }
     log(
@@ -1584,12 +1715,14 @@
       ...(immediate ? { immediate: true } : {}),
       damage: def.afterDodgeDamage || 0,
       freeTransform: !!def.freeTransform,
+      ...(weaponRules.enabled(s) ? {weaponDodge} : {}),
     });
   }
   function afterDodge(s, a) {
     const c = s.combat,
       e = enemy(s, c.enemyId);
     if (s.mission) rewards.onDodge(s, rewardHelpers());
+    if(a.weaponDodge) enqueueWeapon(s,a.weaponDodge);
     if (a.damage && e) {
       damageEnemy(s,e,a.damage,{kind:'dodge'});
       log(s, `반격 · 적에게 ${a.damage} 피해.`);
@@ -1597,11 +1730,12 @@
     }
     const after = a.extra ? { type: "extra_done" } :
       a.immediate ? { type: "boss_react" } : { type: "react" };
+    if(drainWeapons(s,{type:"weapon_dodge_done",after,freeTransform:a.freeTransform,extra:a.extra,immediate:a.immediate})) return;
     if (a.freeTransform) {
       offerTransform(s, after);
       return;
     }
-    if (!enemy(s, c.enemyId) && !a.extra) {
+    if (!enemy(s, c.enemyId) && !a.extra && !(weaponRules.enabled(s) && a.immediate)) {
       endCombat(s);
       return;
     }
@@ -1611,7 +1745,8 @@
     const c = s.combat, attack = c.attack || c.flame;
     if (c.action?.afterDodgeDamageBonus && attack && !c.dodgeBonusApplied) {
       attack.damage += c.action.afterDodgeDamageBonus; c.dodgeBonusApplied = true;
-      log(s, "파괴적인 내려찍기 회피 · 사냥꾼 공격 피해+1.");
+      log(s, s.setup.rulesVersion>=10 ? `${c.action.name} 회피 · 사냥꾼 공격 피해+${c.action.afterDodgeDamageBonus}.` :
+        "파괴적인 내려찍기 회피 · 사냥꾼 공격 피해+1.");
     }
   }
   function offerTransform(s, after) {
@@ -1672,6 +1807,19 @@
       if (q.type === "next_enemy_card") {
         resume(s, q); return false;
       }
+      if(q.type==="extended_followup") {
+        if(!enemy(s,q.enemyId)) continue;
+        c.action=clone(q.action);c.attack=null;c.flame=null;c.groups=null;c.index=0;
+        c.dodged=false;c.cancelEnemy=false;c.cancelHunter=false;c.noDodge=c.origin==="interaction";
+        c.extendedFollowupQueued=true;delete c.extendedAfterAttackReaction;
+        extendedEnemyRules.onReveal(s,c,enemy(s,q.enemyId),extendedEnemyHelpers());
+        s.phase="combat_react";return false;
+      }
+      if(q.type==="extended_reactivate") {
+        const target=enemy(s,q.enemyId);if(!target) continue;
+        s.combat=null;
+        activateEnemy(s,target,true);return false;
+      }
     }
     return true;
   }
@@ -1692,6 +1840,7 @@
       s.phase = "cheap_shot";
       return;
     }
+    if(extendedEnemyRules.resolveTimed(s,c,e,extendedEnemyHelpers())) return;
     const code = c.action.code;
     c.abilityFrom = e.node;
     c.abilityTargeted = hunter(s).position === e.node;
@@ -1802,6 +1951,7 @@
         enemyTiming = c.action.type === "attack" && c.action.speed === speed,
         ea = enemyTiming && !c.cancelEnemy && !c.dodged,
         shared = e.node === h.position;
+      extendedEnemyRules.beforeAttackGroup(s,c,e,{speed,ha,flame,enemyTiming,ea,shared},extendedEnemyHelpers());
       if (enemyTiming && e.missionId === "shelter" && c.action.kind === "special")
         c.action.damage = (e.hp < enemyDef(s, e).maxHp ? 4 : 2) + c.buff.damage;
       // Snapshot both hits before changes for same-speed combat.
@@ -1809,6 +1959,8 @@
         if (s.setup.rulesVersion >= 9) c.attackResolved = true;
         if (shared) {
           const damage = damageEnemy(s,e,c.attack.damage,{kind:'hunter-attack',action:c.action});
+          if(c.attack.healDealt) c.attack.dealt=damage;
+          extendedEnemyRules.afterHunterAttack(s,c,e,damage,extendedEnemyHelpers());
           if (c.reflectDamage && damage > 0) c.pending.push({type:"immediate", reaction:{
             name: c.action.name, damage, dodgeSpeed: 3, poison: true }});
           log(s, `${c.attack.name} · 적에게 ${s.setup.rulesVersion >= 9 ? damage : c.attack.damage} 피해.`);
@@ -1826,7 +1978,7 @@
             damageEnemy(s,other,c.attack.splash.damage,{kind:'splash'});
             log(
               s,
-              `장송의 칼날 범위 피해 · ${enemyDef(s, other).name}에게 1 피해.`,
+              `${weapon(s).name} 범위 피해 · ${enemyDef(s, other).name}에게 ${c.attack.splash.damage} 피해.`,
             );
           }
         if (
@@ -1844,20 +1996,24 @@
         c.flameResolved = true;
         if (shared) {
           const damage = damageEnemy(s, e, c.flame.damage, {kind:"firearm-attack",action:c.action});
-          log(s, `화염방사기 · ${enemyDef(s,e).name}에게 피해 ${damage}.`);
+          extendedEnemyRules.afterHunterAttack(s,c,e,damage,extendedEnemyHelpers());
+          log(s, `${c.flame.name || "화염방사기"} · ${enemyDef(s,e).name}에게 피해 ${damage}.`);
           if (c.reflectDamage && damage > 0) c.pending.push({type:"immediate",reaction:{
             name:c.action.name,damage,dodgeSpeed:3,poison:true}});
-          for (const other of s.enemies.filter((x) => x.id !== e.id && x.node === h.position)) {
-            damageEnemy(s, other, 1, {kind:"firearm-attack",action:c.action});
-            log(s, `화염방사기 · 같은 칸 ${enemyDef(s,other).name}에게 피해1.`);
+          if(c.flame.splash) for (const other of s.enemies.filter((x) => x.id !== e.id && x.node === h.position)) {
+            damageEnemy(s, other, c.flame.splash, {kind:"firearm-attack",action:c.action});
+            log(s, `${c.flame.name || "화염방사기"} · 같은 칸 ${enemyDef(s,other).name}에게 피해${c.flame.splash}.`);
           }
-          if (c.action.type === "attack" && speed > c.action.speed && !c.action.uninterruptible)
+          if (c.flame.interrupt && c.action.type === "attack" &&
+            (speed > c.action.speed || c.flame.interruptEqual && speed===c.action.speed) && !c.action.uninterruptible)
             c.cancelEnemy = true;
         }
       }
-      if (ea && shared && !(c.attack?.interruptEqual && c.cancelEnemy)) {
+      if (ea && shared && !((c.attack?.interruptEqual || c.flame?.interruptEqual) && c.cancelEnemy)) {
         const incoming = Math.max(0, c.action.damage - (c.action.bossInsightReduction ? e.insightTokens || 0 : 0));
+        const beforeHp=h.hp;
         takeDamage(s, incoming, c.action.name, true);
+        extendedEnemyRules.afterEnemyAttack(s,c,e,extendedEnemyHelpers(),Math.max(0,beforeHp-h.hp));
         if (
           c.action.interrupt &&
           (c.attack && speed > c.attack.speed || c.flame && speed > c.flame.speed) &&
@@ -1890,18 +2046,27 @@
         h.hp = Math.min(6, h.hp + c.attack.afterAttackHeal);
         log(s, `리게인 · 공격 후 치유 ${c.attack.afterAttackHeal}.`);
       }
+      if(ha && c.attack.healDealt && c.attack.dealt) h.hp=Math.min(6,h.hp+c.attack.dealt);
       if (ha && c.attack.freeTransform) c.pending.push({ type: "transform" });
+      if(ha || flame) weaponFlow.pushAfterAttack(s,(ha?c.attack:c.flame).weaponFace,weaponHelpers());
+      if(drainWeapons(s,{type:"combat"})) return;
       if (!pendingCombat(s)) return;
+    }
+    if(extendedEnemyRules.afterAllAttacks(s,c,enemy(s,c.enemyId),extendedEnemyHelpers())) {
+      if(!pendingCombat(s))return;
     }
     endCombat(s);
   }
 
   function transform(s) {
-    for (let i = 0; i < 3; i++) clearSlot(s, i);
+    for (let i = 0; i < hunter(s).slots.length; i++) clearSlot(s, i);
     hunter(s).face = 1 - hunter(s).face;
+    hunter(s).slots=Array(slots(s).length).fill(null);
     log(s, "무기 변형 · 모든 슬롯을 비웠습니다.");
     if (s.mission) rewards.onTransform(s);
     firearms.onTransform(s, firearmHelpers());
+    const charge=weaponRules.afterTransform(s,weaponFace(s));
+    if(charge) hunter(s).weaponCharge=charge;
   }
   function payAction(s, id) {
     const x = pay(s, id),
@@ -2044,7 +2209,8 @@
     const phase = (p) =>
       need(s.phase === p, "현재 단계에서는 사용할 수 없는 행동입니다.");
     const firearmHandled = firearms.dispatch(s, a, firearmHelpers());
-    const handled = firearmHandled || s.mission && rewards.dispatch(s, a, rewardHelpers());
+    const weaponHandled = !firearmHandled && weaponFlow.dispatch(s,a,weaponHelpers());
+    const handled = firearmHandled || weaponHandled || s.mission && rewards.dispatch(s, a, rewardHelpers());
     const missionHandled = !handled && missions.dispatch(s, a, missionHelpers());
     if (!handled && !missionHandled) switch (a.type) {
       case 'ENTER_BETWEEN_CHAPTERS':
@@ -2058,6 +2224,7 @@
       case "MOVE": {
         phase("hunter");
         const x = payAction(s, a.cardId);
+        if(weaponRules.enabled(s)) h.moveActionsRound=(h.moveActionsRound || 0)+1;
         s.move = {
           remaining: card(x).move || 2,
           path: [h.position],
@@ -2210,6 +2377,7 @@
         s.freeTransform = null;
         need(typeof a.accept === "boolean", "변형 여부를 선택하세요.");
         if (a.accept) transform(s);
+        if(drainWeapons(s,after)) break;
         resume(s, after);
         break;
       }
@@ -2337,6 +2505,7 @@
         const x = place(s, a.cardId, a.slot);
         log(s, "포악한 야수의 마지막 공격을 회피했습니다.");
         rewards.onDodge(s, rewardHelpers());
+        if(weaponRules.enabled(s)) enqueueWeapon(s,weaponRules.afterDodge(s,weaponFace(s),slots(s)[a.slot].speed+(card(x).speed || 0),1));
         finishCardChoices(s, { type: "mission_death_done", freeTransform: !!card(x).freeTransform });
         break;
       }
@@ -2376,6 +2545,7 @@
         h.position = a.node;
         h.inDream = false;
         h.face = a.face;
+        h.slots=Array(slots(s).length).fill(null);
         s.phase = "hunter";
         log(s, `${nameAt(s, a.node)}에서 귀환했습니다.`);
         break;
@@ -2415,6 +2585,12 @@
       default:
         fail("알 수 없는 명령입니다.");
     }
+    if(s.weaponMoveReturn && s.phase==="hunter") {
+      const after=s.weaponMoveReturn;delete s.weaponMoveReturn;resume(s,after);
+    }
+    if(weaponRules.enabled(s) && s.weaponEffects?.length && !s.weaponAfter &&
+      !["weapon_choice","weapon_entry","firearm_react"].includes(s.phase))
+      drainWeapons(s,{type:s.combat ? "combat" : "weapon_phase",phase:s.phase});
     if (s.mission?.deathPending && !s.combat && s.phase === "hunter") offerDeathReaction(s, { type: "mission_hunter" });
     flushMissionSpawns(s);
     if (s.mission?.won && !s.combat && !s.mission.deathAfter && s.phase === "hunter") beginChapterDream(s);
@@ -2434,10 +2610,6 @@
     startSpace = "center",
     options = { campaign: false },
   ) {
-    need(
-      weaponId === "burial",
-      "현재 실제 지도 모드는 장송의 칼날을 사용합니다.",
-    );
     need([0, 1].includes(face), "무기 면을 선택하세요.");
     need(Object.hasOwn(D.firearms, firearmId), "지원하는 화기를 선택하세요.");
     need(
@@ -2447,9 +2619,16 @@
     );
     need(options && typeof options.campaign === "boolean", "캠페인 시작 설정을 확인하세요.");
     const rulesVersion = Object.hasOwn(options, "rulesVersion")
-      ? options.rulesVersion : options.legacyReplay ? null : 9;
-    need(rulesVersion === null || [7, 8, 9].includes(rulesVersion),
+      ? options.rulesVersion : options.legacyReplay ? null : 10;
+    need(rulesVersion === null || [7, 8, 9, 10].includes(rulesVersion),
       "지원하는 규칙 버전을 선택하세요.");
+    need(weaponId==="burial" || rulesVersion>=10 && !options.provisional &&
+      Object.hasOwn(D.weapons,weaponId) && weaponId!=="training", "지원하는 장치 무기를 선택하세요.");
+    const defaultGun=D.weapons[weaponId].defaultFirearm || "hunter-pistol";
+    need(!(rulesVersion>=10 && options.campaign && firearmId!==defaultGun && !options.firearmOverride),
+      "기본 화기를 선택하거나 연습용 대체 화기에 명시적으로 동의하세요.");
+    need(!options.practiceTarget || rulesVersion>=10 && !options.campaign && !options.provisional && extendedEnemies.specimens[options.practiceTarget],
+      "실물 적 전투 연습 설정을 확인하세요.");
     const map = M.create(seed, startSpace, 1, { rulesVersion });
     need(!options.provisional || temporary?.specimens[options.provisional] && !options.campaign,
       "임시 구성품 시험 설정을 확인하세요.");
@@ -2459,6 +2638,8 @@
       rng: map.rng,
       initialSeed: map.seed,
       setup: { weaponId, face, startingConsumable, firearmId, startSpace,
+        ...(options.firearmOverride ? {firearmOverride:true} : {}),
+        ...(options.practiceTarget ? {practiceTarget:options.practiceTarget,practiceSide:extendedEnemies.normalizeSide(options.practiceTarget,options.practiceSide,1)} : {}),
         ...(rulesVersion !== null ? { rulesVersion } : {}),
         ...(options.campaign ? { campaign: true } : {}),
         ...(options.provisional ? { provisional: options.provisional } : {}) },
@@ -2525,7 +2706,7 @@
       hand: [],
       deck: shuffle(s, deck),
       discard: [],
-      slots: [null, null, null],
+      slots: Array(D.weapons[weaponId].faces[face].slots.length).fill(null),
       status: { poison: false, frenzy: false },
       firearmId,
       firearmReady: true,
@@ -2562,6 +2743,12 @@
       spawnProvisional(s);
       log(s, temporary.notice);
     }
+    if(options.practiceTarget) {
+      spawnPractice(s);
+      s.loot=[];
+      const d=enemyDef(s,s.enemies[0]);
+      log(s,`${d.name} · 1인용 실물 적 전투 연습을 시작합니다.`);
+    }
     log(
       s,
       options.campaign ? "기나긴 사냥 챕터 1 · 임무와 보상 연결 플레이를 시작합니다." : options.provisional ?
@@ -2570,6 +2757,11 @@
     );
     assertState(s);
     return s;
+  }
+  function spawnPractice(s) {
+    const d=extendedEnemies.definition(s.setup.practiceTarget,{side:s.setup.practiceSide,hunterCount:1,order:4});
+    s.enemies=[{id:"practice-target",kind:"huntsman-mob",figure:1,node:`tile-14:${s.setup.startSpace}`,hp:d.maxHp,
+      extendedId:s.setup.practiceTarget,extendedSide:s.setup.practiceSide}];
   }
   function assertState(s) {
     need(
@@ -2580,7 +2772,7 @@
       Number.isInteger(s.rng) && s.rng > 0 && s.rng <= 4294967295,
       "난수 오류.",
     );
-    need(s.setup.rulesVersion === undefined || [7, 8, 9].includes(s.setup.rulesVersion),
+    need(s.setup.rulesVersion === undefined || [7, 8, 9, 10].includes(s.setup.rulesVersion),
       "지원하지 않는 규칙 버전입니다.");
     need(
       s.activeHunterId === "hunter-1" && Object.keys(s.hunters).length === 1,
@@ -2589,13 +2781,13 @@
     const h = hunter(s),
       all = allCards(h);
     need(
-      s.setup.weaponId === "burial" &&
+      (s.setup.weaponId === "burial" || s.setup.rulesVersion>=10 && !s.provisional && D.weapons[s.setup.weaponId] && s.setup.weaponId!=="training") &&
         h.weaponId === s.setup.weaponId &&
         Object.hasOwn(D.firearms, h.firearmId) &&
         (h.firearmId === s.setup.firearmId || s.mission && h.ownedFirearms.includes(h.firearmId)),
       "장비 설정 오류.",
     );
-    need([0, 1].includes(h.face) && h.slots.length === 3, "무기 상태 오류.");
+    need([0, 1].includes(h.face) && h.slots.length === slots(s).length, "무기 상태 오류.");
     need(
       all.length === 12 &&
         new Set(all.map((c) => c.id)).size === 12 &&
@@ -2659,7 +2851,9 @@
       need(
         D.enemies[e.kind] &&
           [1, 2, 3, 4].includes(e.figure) &&
-          (e.componentId ? e.id===`mission-${e.missionId}` && temporary.specimens[e.componentSpec || e.componentId] : e.id === e.kind + "-" + e.figure) &&
+          (e.extendedId ? s.setup.rulesVersion>=10 && !s.mission && extendedEnemies.specimens[e.extendedId] &&
+            ["practice-target",e.kind+"-"+e.figure].includes(e.id) :
+            e.componentId ? e.id===`mission-${e.missionId}` && temporary.specimens[e.componentSpec || e.componentId] : e.id === e.kind + "-" + e.figure) &&
           node(s, e.node) &&
           Number.isInteger(e.hp) &&
           e.hp > 0 &&
@@ -2729,6 +2923,8 @@
         "boss_react",
         "boss_move",
         "firearm_react",
+        "weapon_entry",
+        "weapon_choice",
         "ability_choice",
         "cheap_shot",
         "card_choice",
@@ -2801,6 +2997,8 @@
       "강제 이동 선택 상태 오류.");
     if (s.phase === "firearm_react") need(s.firearmEntry && firearmEntryView(s),
       "장총 진입 반응 상태 오류.");
+    if(s.phase==="weapon_entry") need(weaponRules.enabled(s) && s.firearmEntry?.weapon && enemy(s,s.firearmEntry.enemyId),"총창 진입 상태 오류.");
+    if(s.phase==="weapon_choice") need(weaponRules.enabled(s) && s.weaponEffects?.length && s.weaponAfter,"무기 효과 선택 상태 오류.");
     for (const e of s.enemies.filter((x) => actualBoss(s, x)))
       need(e.actualComponent === true && bosses.valid(e), "실제 성직자 야수 행동 덱·계몽 상태 오류.");
     if (s.mission) {
@@ -2837,6 +3035,7 @@
     slots,
     weapon,
     weaponFace,
+    weaponChoices,
     firearm,
     canFirearm,
     canBossInsight,

@@ -21,6 +21,16 @@
     upgrades: [],
     campaign,
   };
+  const extended = typeof module !== "undefined" && module.exports
+    ? require("./extended-weapons.js") : root.BBExtendedWeapons;
+  // Keep base data intact for the older training engine and recorded saves.
+  data.weapons = { ...base.weapons };
+  Object.assign(data, extended.applyTo(data));
+  const guns = typeof module !== "undefined" && module.exports
+    ? require("./extended-firearms.js") : root.BBExtendedFirearms;
+  data.firearms={...base.firearms};
+  for(const [id,gun] of Object.entries(guns.firearms))
+    if(!data.firearms[id]) data.firearms[id]={...base.firearm,id,name:gun.name,temporary:true};
   const effects = {
     leap: { damage: 1, leap: true },
     bloodlust: { damage: 1, onKill: { draw: 1, heal: 1 } },

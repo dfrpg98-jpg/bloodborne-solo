@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
   "use strict";
   const E = window.BBHunt,
     M = window.BBChapter,
@@ -45,6 +45,7 @@
     selectedRewards = new Set(),
     nextStartSpace = "",
     nextFace = null,
+    weaponBoost = "none",
     reloadSecondCardId = null,
     restoredPrevious = false,
     startupError = "",
@@ -93,6 +94,7 @@
       pulls.clear();
       selectedRewards.clear();
       reloadSecondCardId = null;
+      weaponBoost = "none";
       inventory.clear();
       save();
       render();
@@ -121,7 +123,8 @@
         state.enemies.find((e) => e.node === h.position)?.id ||
         state.enemies[0]?.id ||
         null;
-    if (h.slots[selectedSlot]) selectedSlot = h.slots.findIndex((x) => !x);
+    const currentSlots = E.slots(state);
+    if (!currentSlots[selectedSlot] || h.slots[selectedSlot]) selectedSlot = currentSlots.findIndex((_, i) => !h.slots[i]);
     const valid = new Set(E.pullCandidates(state).map((e) => e.id));
     pulls = new Set([...pulls].filter((id) => valid.has(id)));
     $("roundLabel").textContent = `라운드 ${state.round} · 처치 ${state.kills}`;
@@ -155,13 +158,19 @@
   function firearmAction() {
     const gun = E.firearm(state), h = E.hunter(state), actual = actualGun();
     if (actual && gun.trigger === "enemy-enters") return "";
-    const attack = actual && gun.trigger === "hunter-turn",
+    const attack = actual && gun.trigger === "hunter-turn", effect = actual && gun.trigger === "hunter-effect",
       targetId = attack && state.phase === "combat_choose" ? state.combat?.enemyId : selectedEnemy,
       target = state.enemies.find((e) => e.id === targetId),
-      allowed = E.canFirearm(state) && (!attack || target?.node === h.position);
+      allowed = E.canFirearm(state) && (!(attack || effect) || target?.node === h.position) && (!effect || target && !E.enemyDef(state, target).boss);
     if (attack && !["hunter", "combat_choose"].includes(state.phase)) return "";
-    return button(attack ? state.phase === "combat_choose" ? "화염방사기로 맞서 공격" : "화염방사기 공격 · 선택한 적" : "화기 사용 · 기본 공격 방해",
-      "FIREARM", attack ? { enemyId: target?.id || null } : {}, !allowed);
+    if (effect && state.phase !== "hunter") return "";
+    const label = attack ? state.phase === "combat_choose" ? `${gun.name}로 맞서 공격` : `${gun.name} 공격 · 선택한 적`
+      : effect ? `${gun.name} · 선택한 적에게 피해 및 이동` : actual && gun.trigger === "enemy-attack" ? "적 공격 속도 -1 · 모든 공격 효과 제거" : "화기 사용 · 기본 공격 방해";
+    const args = attack || effect ? { enemyId: target?.id || null } : {},
+      boostCode = state.setup.rulesVersion >= 10 ? E.weaponFace(state).effect?.code : null;
+    if (attack && boostCode === "attack_sacrifice_damage") args.weaponBoost = weaponBoost === "none" ? 0 : +weaponBoost;
+    if (attack && boostCode === "attack_sacrifice_speed_or_damage") args.weaponBoost = ["speed", "damage"].includes(weaponBoost) ? weaponBoost : "none";
+    return button(label, "FIREARM", args, !allowed);
   }
   function renderFirearm() {
     const h = E.hunter(state), gun = E.firearm(state), actual = actualGun(),
@@ -169,10 +178,10 @@
       description = actual && gun.trigger === "enemy-enters"
         ? "적이 사냥꾼의 칸으로 이동해 들어올 때 소진하여 그 적에게 피해 2를 줍니다."
         : actual && gun.trigger === "hunter-turn"
-          ? "자기 차례에 속도 2 · 피해 2 · 방해 공격을 합니다. 공격 후 같은 칸의 다른 적들에게 피해 1을 줍니다."
+          ? `자기 차례에 속도 ${gun.speed ?? 2} · 피해 ${gun.damage ?? 2}${gun.interrupt === false ? "" : " · 방해"} 공격을 합니다.${gun.splash === 0 ? "" : ` 공격 후 같은 칸의 다른 적들에게 피해 ${gun.splash ?? 1}을 줍니다.`}`
           : "적의 기본 공격을 자동으로 방해합니다.",
       printed = Array.isArray(gun.rules) && gun.rules.length ? gun.rules.map(esc).join("<br>") : esc(description);
-    $("firearm").innerHTML = `<p class="eyebrow">장착 화기${actual ? " · 제공된 실물 카드" : ""}</p><h2>${esc(gun.name)} <small class="${h.firearmReady ? "ready" : "spent"}">${h.firearmReady ? "준비됨" : "소진됨"}</small></h2><p>${printed}</p><p class="muted">사냥꾼 차례에 카드 ${cost}장을 버려 준비 · 꿈에서 회복${actual && gun.prepareOnTransform ? " · 무기를 변형할 때도 준비" : ""}${!actual && h.firearmId !== "hunter-pistol" ? "<br>이 저장/시험에서는 단총과 같은 능력으로 임시 동작" : ""}</p>${firearmAction()}`;
+    $("firearm").innerHTML = `<p class="eyebrow">장착 화기${actual ? " · 제공된 실물 카드" : ""}</p><h2>${esc(gun.name)} <small class="${h.firearmReady ? "ready" : "spent"}">${h.firearmReady ? "준비됨" : "소진됨"}</small></h2><p>${printed}</p><p class="muted">사냥꾼 차례에 카드 ${cost}장을 버려 준비${actual && gun.prepareEchoCost ? ` 또는 피의 유지 ${gun.prepareEchoCost}개로 준비` : ""} · 꿈에서 회복${actual && gun.prepareOnTransform ? " · 무기를 변형할 때도 준비" : ""}${!actual && h.firearmId !== "hunter-pistol" ? "<br>이 저장/시험에서는 단총과 같은 능력으로 임시 동작" : ""}</p>${firearmAction()}`;
     bind($("firearm"));
   }
   function renderComponents() {
@@ -422,7 +431,7 @@
     if (!r) return "";
     const current = view.rewards.filter((x) => x.equipped && x.subtype === r.subtype),
       replace = current.length >= 2 ? current : [null];
-    const opts = replace.flatMap((old) => (r.persistent ? [0, 1, 2] : [null]).map((slot) => {
+    const opts = replace.flatMap((old) => (r.persistent ? E.slots(state).map((_, i) => i) : [null]).map((slot) => {
       const args = { rewardId: r.id };
       if (old) args.replaceId = old.id;
       if (slot !== null) args.slot = slot;
@@ -453,14 +462,15 @@
       );
     $("deckCount").textContent =
       `덱 ${h.deck.length}장 · 버림 ${h.discard.length}장 · 슬롯 ${h.slots.filter(Boolean).length}장 / 총 12장`;
-    $("weaponFace").textContent = h.face ? "뒷면" : "앞면";
-    $("weaponAbility").textContent = h.face
-      ? "공격 전에 2칸 이내의 적을 원하는 만큼 자기 칸으로 이동시킬 수 있습니다."
-      : "공격 속도로 1칸 이내의 다른 모든 적에게 피해 1.";
-    $("slots").innerHTML = E.slots(state)
+    const weapon = E.weapon(state), face = E.weaponFace(state), availableSlots = E.slots(state);
+    $("weaponName").textContent = weapon.name;
+    $("weaponFace").textContent = face.name || (h.face ? "뒷면" : "앞면");
+    $("weaponAbility").textContent = face.text || "";
+    $("slots").style.gridTemplateColumns = `repeat(${availableSlots.length}, minmax(0, 1fr))`;
+    $("slots").innerHTML = availableSlots
       .map(
         (sl, i) =>
-          `<button class="hunt-slot ${selectedSlot === i ? "selected" : ""} ${h.slots[i] ? "occupied" : ""}" data-slot="${i}" aria-pressed="${selectedSlot === i}"><small>${i + 1}번 슬롯 · ${h.slots[i] ? "점유" : "비어 있음"}</small><b>${esc(sl.name)}</b><span>속도 ${sl.speed} · 피해 ${sl.damage}</span><small>${h.slots[i] ? esc(E.card(h.slots[i]).name) : "선택하여 공격 / 회피"}</small></button>`,
+          `<button class="hunt-slot ${selectedSlot === i ? "selected" : ""} ${h.slots[i] ? "occupied" : ""}" data-slot="${i}" aria-pressed="${selectedSlot === i}"><small>${i + 1}번 슬롯 · ${h.slots[i] ? "점유" : "비어 있음"}</small><b>${esc(sl.name)}</b><span>속도 ${sl.speed} · 피해 ${sl.damage}</span>${sl.text ? `<small>${esc(sl.text)}</small>` : ""}<small>${h.slots[i] ? h.slots[i].faceDown ? "뒷면으로 놓은 카드 · 스탯 효과 미적용" : esc(E.card(h.slots[i]).name) : "선택하여 공격 / 회피"}</small></button>`,
       )
       .join("");
     $("slots")
@@ -512,6 +522,8 @@
       mission_choice: "임무의 선택",
       mission_death: "죽음 뒤의 회피",
       between_chapters: "다음 챕터 준비",
+      weapon_choice: "장치 무기 효과 선택",
+      weapon_entry: "장치 무기 · 진입한 적 대응",
       over: "사냥 종료",
     };
     $("phaseTitle").textContent = names[p];
@@ -524,6 +536,9 @@
       pullIds: [...pulls],
       rewardIds: [...selectedRewards],
     };
+    const boostCode = state.setup.rulesVersion >= 10 ? E.weaponFace(state).effect?.code : null;
+    if (boostCode === "attack_sacrifice_damage") actionArgs.weaponBoost = weaponBoost === "none" ? 0 : +weaponBoost;
+    if (boostCode === "attack_sacrifice_speed_or_damage") actionArgs.weaponBoost = ["speed", "damage"].includes(weaponBoost) ? weaponBoost : "none";
     const selectHint = `선택 카드: ${chosen ? E.card(chosen).name : "없음"} · 슬롯: ${slot ? selectedSlot + 1 + "번" + (empty ? "" : " (점유됨)") : "없음"}`;
     const checkPulls = () =>
       E.pullCandidates(state)
@@ -541,6 +556,7 @@
         const second = h.hand.find((card) => card.id === reloadSecondCardId && card.id !== selectedCard);
         html += `<div class="reload-choice"><p class="muted">${esc(gun.name)} 재준비 · 서로 다른 카드 ${reloadCost}장</p><label>두 번째로 버릴 카드<select id="reloadSecondCard"><option value="">카드를 선택하세요</option>${h.hand.filter((card) => card.id !== selectedCard).map((card) => `<option value="${esc(card.id)}" ${card.id === reloadSecondCardId ? "selected" : ""}>${esc(E.card(card).name)}</option>`).join("")}</select></label>${button("화기 다시 준비 · 카드 2장", "RELOAD", { cardIds: [selectedCard, second?.id || null] }, !chosen || !second || h.firearmReady)}</div>`;
       }
+      if (realGun && gun.prepareEchoCost) html += button(`화기 다시 준비 · 피의 유지 ${gun.prepareEchoCost}개`, "RELOAD", { payEcho: true, cardIds: [] }, h.firearmReady || h.echoes < gun.prepareEchoCost);
       const target = state.enemies.find((e) => e.id === selectedEnemy);
       html += checkPulls();
       if (target) {
@@ -652,7 +668,10 @@
     } else if (p === "boss_react") {
       const reaction = E.combatReaction?.(state) || {};
       $("phaseTitle").textContent = reaction.title || "전용 능력 대응";
-      help = `속도 ${reaction.dodgeSpeed ?? 1} 이상 회피 카드와 빈 슬롯을 선택하세요.${reaction.effects?.length ? " " + reaction.effects.join(" · ") : ""}`;
+      const blockPerSpeed = reaction.dodgeBlockPerSpeed || state.combat?.immediate?.dodgeBlockPerSpeed;
+      help = blockPerSpeed
+        ? `회피 속도마다 ${blockPerSpeed}피해를 방어합니다. 회피 카드와 빈 슬롯을 선택하세요.`
+        : `속도 ${reaction.dodgeSpeed ?? 1} 이상 회피 카드와 빈 슬롯을 선택하세요.${reaction.effects?.length ? " " + reaction.effects.join(" · ") : ""}`;
       html = `<p>${esc(selectHint)}</p>${button("이 효과 회피", "DODGE", { cardId: selectedCard, slot: selectedSlot }, !E.canDodge(state, selectedCard, selectedSlot))}${button(reaction.damage ? `피해 ${reaction.damage}와 효과를 받고 계속` : "회피하지 않고 효과 처리", "RESOLVE", {}, false, "primary")}`;
     } else if (p === "combat_react" || p === "combat_extra") {
       const extra = p === "combat_extra";
@@ -813,10 +832,23 @@
       help = "다음 행동 전에 보상의 장착·슬롯·보관을 결정하세요.";
       html = rewardChoiceHTML(rewards);
     }
+    const weaponChoices = E.weaponChoices?.(state, { cardId: selectedCard, slot: selectedSlot, enemyId: selectedEnemy }) || [];
+    if (p.startsWith("weapon_") || p === "entry_weapon") {
+      $("phaseTitle").textContent = p.includes("entry") ? "장치 무기 · 진입한 적 대응" : "장치 무기 효과 선택";
+      help = p.includes("entry") ? "무기 능력을 사용하려면 손에 든 카드와 빈 슬롯을 선택하세요." : "장치 무기의 효과를 처리할 대상이나 이동할 칸을 선택하세요.";
+      html = `<p>${esc(selectHint)}</p>${weaponChoices.map((option) => commandButton(option)).join("")}`;
+    } else if (weaponChoices.length) html += `<div class="weapon-effect-choices"><p class="muted">${esc(E.weapon(state).name)} · 고유 효과</p>${weaponChoices.map((option) => commandButton(option)).join("")}</div>`;
+    if (["hunter", "combat_choose"].includes(p) && ["attack_sacrifice_damage", "attack_sacrifice_speed_or_damage"].includes(boostCode)) {
+      const options = boostCode === "attack_sacrifice_damage"
+        ? [["none", "사용하지 않음"], ["1", "피해 1을 받고 공격 피해 +1"], ["2", "피해 2를 받고 공격 피해 +2"]]
+        : [["none", "사용하지 않음"], ["speed", "피해 1을 받고 공격 속도 +1"], ["damage", "피해 1을 받고 공격 피해 +1"]];
+      html = `<label>공격에 사용할 무기 고유 효과<select id="weaponBoost">${options.map(([value, label]) => `<option value="${value}" ${weaponBoost === value ? "selected" : ""}>${esc(label)}</option>`).join("")}</select></label>` + html;
+    }
     $("phaseHelp").textContent = help;
     $("decisions").innerHTML = html;
     bind($("decisions"));
     bindRewardAttack($("decisions"));
+    if ($("weaponBoost")) $("weaponBoost").onchange = () => { weaponBoost = $("weaponBoost").value; renderFirearm(); renderDecisions(); };
     if ($("reloadSecondCard")) $("reloadSecondCard").onchange = () => {
       reloadSecondCardId = $("reloadSecondCard").value || null;
       renderDecisions();
@@ -831,7 +863,7 @@
       $("startNextChapter").onclick = () => send("START_NEXT_CHAPTER", { startSpace: $("nextChapterStart").value, face: +$("nextChapterFace").value });
     }
     $("combatInfo").innerHTML = c
-      ? `<div class="combat-card"><b>${esc(state.enemies.some((e) => e.id === c.enemyId) ? E.enemyDef(state, state.enemies.find((e) => e.id === c.enemyId)).name : "처치된 적")}</b><p>${c.action ? `${esc(ED.labels[c.action.kind])} · ${esc(c.action.name)}${c.action.speed !== null ? " · 속도 " + c.action.speed : ""}${c.action.damage !== undefined ? " · 피해 " + c.action.damage : ""}` : "적 행동 공개 전"}</p>${c.action?.rules?.length ? `<p>${c.action.rules.map(esc).join("<br>")}</p>` : ""}<small>${c.attack ? `사냥꾼 공격 · 속도 ${c.attack.speed} / 피해 ${c.attack.damage}` : c.flame ? `화염방사기 공격 · 속도 ${c.flame.speed} / 피해 ${c.flame.damage}${c.flame.interrupt ? " · 방해" : ""}${c.flame.splash ? ` · 같은 칸의 다른 적에게 피해 ${c.flame.splash}` : ""}` : "사냥꾼 공격 없음"} · 방어 ${c.defense}${c.dodged ? " · 회피 선택됨" : ""}${c.cancelEnemy ? " · 적 공격 방해됨" : ""}${c.noDodge ? " · 회피 불가" : ""}</small></div>`
+      ? `<div class="combat-card"><b>${esc(state.enemies.some((e) => e.id === c.enemyId) ? E.enemyDef(state, state.enemies.find((e) => e.id === c.enemyId)).name : "처치된 적")}</b><p>${c.action ? `${esc(ED.labels[c.action.kind])} · ${esc(c.action.name)}${c.action.speed !== null ? " · 속도 " + c.action.speed : ""}${c.action.damage !== undefined ? " · 피해 " + c.action.damage : ""}` : "적 행동 공개 전"}</p>${c.action?.rules?.length ? `<p>${c.action.rules.map(esc).join("<br>")}</p>` : ""}<small>${c.attack ? `사냥꾼 공격 · 속도 ${c.attack.speed} / 피해 ${c.attack.damage}` : c.flame ? `${esc(c.flame.name || E.firearm(state).name)} 공격 · 속도 ${c.flame.speed} / 피해 ${c.flame.damage}${c.flame.interrupt ? " · 방해" : ""}${c.flame.splash ? ` · 같은 칸의 다른 적에게 피해 ${c.flame.splash}` : ""}` : "사냥꾼 공격 없음"} · 방어 ${c.defense}${c.dodged ? " · 회피 선택됨" : ""}${c.cancelEnemy ? " · 적 공격 방해됨" : ""}${c.noDodge ? " · 회피 불가" : ""}</small></div>`
       : "";
     $("deckStatus").innerHTML =
       `<p>공용 적 행동 덱 ${state.enemyDeck.length}장 · 버림 ${state.enemyDiscard.length}장<br>마지막 공개: ${ED.labels[state.enemyDiscard.at(-1)] || "없음"}</p>`;
@@ -1076,15 +1108,64 @@
     e.target.value = "";
   };
   function renderSetupGuns() {
-    const selected = $("gun").value || "hunter-pistol", actualMode = ["campaign", "practice"].includes($("playMode").value);
-    $("gun").innerHTML = Object.entries(D.firearms).map(([id, gun]) => {
-      const actual = actualMode && window.BBActualComponents?.firearm(id),
+    const selected = $("gun").value, actualMode = setupActualMode();
+    $("gun").innerHTML = `${actualMode ? '<option value="">화기를 선택하세요</option>' : ""}` + Object.entries(D.firearms).map(([id, gun]) => {
+      const actual = actualMode && (window.BBExtendedFirearms?.firearm(id) || window.BBActualComponents?.firearm(id)),
         label = id === "hunter-pistol" ? "" : actual ? " · 실물 고유 효과" : " · 임시 단총 능력";
       return `<option value="${id}" ${id === selected ? "selected" : ""}>${esc(actual?.name || gun.name)}${label}</option>`;
     }).join("");
-    $("gun").value = selected;
+    $("gun").value = Object.hasOwn(D.firearms, selected) ? selected : actualMode ? "" : "hunter-pistol";
   }
-  renderSetupGuns();
+  const setupActualMode = () => ["campaign", "practice"].includes($("playMode").value);
+  const setupWeapon = () => D.weapons[$("weapon").value || "burial"] || D.weapons.burial;
+  const knownDefaultFirearm = () => Object.hasOwn(D.firearms, setupWeapon().defaultFirearm || "hunter-pistol");
+  function validateSetupLoadout() {
+    const actual = setupActualMode(), weapon = setupWeapon(), expected = weapon.defaultFirearm || "hunter-pistol",
+      selected = $("gun").value, defaultKnown = knownDefaultFirearm(),
+      changed = actual && selected !== expected,
+      gunName = D.firearms[expected]?.name || ({ cannon: "대포", evelyn: "에블린" })[expected] || expected;
+    $("defaultGunNotice").textContent = actual
+      ? `${weapon.name}의 기본 화기: ${gunName}${defaultKnown ? "" : " · 카드 자료 확인이 필요합니다. 제공된 화기를 선택해 대체 연습할 수 있습니다."}`
+      : "별도 임시 구성품 시험에서는 장송의 칼날과 기존 임시 화기 규칙을 사용합니다.";
+    $("firearmOverrideLabel").hidden = $("firearmOverrideNotice").hidden = !changed;
+    const valid = !!selected && (!changed || $("firearmOverride").checked);
+    $("confirmSetup").disabled = !$("start").value || !valid;
+    return valid;
+  }
+  function renderSetupWeaponPreview() {
+    const weapon = setupWeapon(), face = weapon.faces[+$("face").value || 0];
+    $("setupWeaponPreview").innerHTML = `<p><strong>${esc(weapon.name)} · ${esc(face.name)}</strong></p><p>${esc(face.text || "")}</p><div class="setup-slot-preview">${face.slots.map((slot, index) => `<span><b>${index + 1}번 · ${esc(slot.name)}</b><small>속도 ${slot.speed} · 피해 ${slot.damage}</small>${slot.text ? `<small>${esc(slot.text)}</small>` : ""}</span>`).join("")}</div>`;
+  }
+  function renderSetupWeapons(useDefaultGun = false) {
+    const actual = setupActualMode(), selected = actual ? $("weapon").value || "burial" : "burial",
+      face = +$("face").value || 0;
+    $("weapon").innerHTML = Object.entries(D.weapons).filter(([id]) => id !== "training" && (actual || id === "burial"))
+      .map(([id, weapon]) => `<option value="${id}" ${id === selected ? "selected" : ""}>${esc(weapon.name)}</option>`).join("");
+    $("weapon").value = Object.hasOwn(D.weapons, selected) ? selected : "burial";
+    $("weapon").disabled = !actual;
+    $("face").innerHTML = setupWeapon().faces.map((part, index) => `<option value="${index}" ${index === face ? "selected" : ""}>${esc(part.name || (index ? "뒷면" : "앞면"))}</option>`).join("");
+    $("face").value = String(face);
+    renderSetupGuns();
+    if (useDefaultGun) {
+      const expected = setupWeapon().defaultFirearm || "hunter-pistol";
+      $("gun").value = Object.hasOwn(D.firearms, expected) ? expected : "";
+      $("firearmOverride").checked = false;
+    }
+    renderSetupWeaponPreview();
+    validateSetupLoadout();
+  }
+  function renderPracticeTargets() {
+    const source = window.BBExtendedEnemies?.specimens || {},
+      specimens = Array.isArray(source) ? source : Object.values(source), selected = $("practiceTarget").value;
+    $("practiceSetup").hidden = $("playMode").value !== "practice";
+    $("practiceTarget").innerHTML = '<option value="">현재 캠페인의 일반 적 · 지도 탐험</option>' + specimens.map((target) => `<option value="${esc(target.id)}" ${target.id === selected ? "selected" : ""}>${esc(target.name)}</option>`).join("");
+    $("practiceTarget").value = specimens.some((target) => target.id === selected) ? selected : "";
+    const target = specimens.find((part) => part.id === $("practiceTarget").value), variants = target?.faces?.[0]?.sideId === "a";
+    $("practiceSideLabel").hidden = !target || !variants;
+    if (!variants) $("practiceSide").value = "a";
+    $("practiceTargetNotice").textContent = target
+      ? `선택한 실물 적 1개가 사냥꾼과 같은 칸에서 시작합니다.${variants ? " A·B면 중 연습할 면을 고르세요." : " 인원수에 따른 양면 카드로, 1인 사냥에서는 1~2인 면을 사용합니다."}` : "기나긴 사냥의 일반 적 배정으로 탐험과 전투를 연습합니다.";
+  }
   try {
     $("restoreV05").hidden = !localStorage.getItem(oldKey);
     $("restoreV06").hidden = $("loadV06Setup").hidden = !localStorage.getItem(previousKey);
@@ -1118,12 +1199,20 @@
     .map((x) => `<option value="${x.id}">${esc(x.name)}</option>`)
     .join("");
   const startPlacement = window.BBStartPlacement.mount($("startPlacement"), $("start"), $("confirmSetup"));
+  $("start").addEventListener("change", validateSetupLoadout);
+  $("startPlacement").addEventListener("click", validateSetupLoadout);
   function renderSetupStory() {
-    renderSetupGuns();
+    renderSetupWeapons();
+    renderPracticeTargets();
     $("setupStory").hidden = $("playMode").value !== "campaign";
     $("setupStoryText").textContent = window.BBLongHunt.preface.find((entry) => entry.id === "intro")?.narrative || "";
   }
   $("playMode").onchange = renderSetupStory;
+  $("weapon").onchange = () => renderSetupWeapons(true);
+  $("face").onchange = renderSetupWeaponPreview;
+  $("gun").onchange = validateSetupLoadout;
+  $("firearmOverride").onchange = validateSetupLoadout;
+  $("practiceTarget").onchange = renderPracticeTargets;
   function openSetup() {
     $("seed").value = Date.now() % 4294967295;
     $("start").value = "";
@@ -1142,14 +1231,17 @@
   $("cancelSetup").onclick = () => $("setupDialog").close();
   $("confirmSetup").onclick = () => {
     try {
+      if (!validateSetupLoadout()) throw new Error("화기를 선택하세요. 기본 화기를 대신한다면 대체 연습 설정을 확인해야 합니다.");
       state = E.create(
         +$("seed").value,
-        "burial",
+        $("weapon").value,
         +$("face").value,
         $("startingItem").value || null,
         $("gun").value,
         $("start").value,
         { campaign: $("playMode").value === "campaign",
+          ...(setupActualMode() && $("gun").value !== (setupWeapon().defaultFirearm || "hunter-pistol") ? { firearmOverride: true } : {}),
+          ...($("playMode").value === "practice" && $("practiceTarget").value ? { practiceTarget: $("practiceTarget").value, practiceSide: $("practiceSide").value } : {}),
           ...(!["campaign", "practice"].includes($("playMode").value) ? { provisional: $("playMode").value } : {}) },
       );
       resetStoryReading();
@@ -1170,6 +1262,8 @@
       $("setupError").textContent = e.message;
     }
   };
+  renderSetupWeapons(true);
+  renderPracticeTargets();
   render();
   if (startupError) $("error").textContent = startupError;
   else if (!setupRequired) save();

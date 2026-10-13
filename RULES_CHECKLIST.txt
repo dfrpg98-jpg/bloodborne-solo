@@ -1,6 +1,6 @@
-블러드본 규칙 구현 점검표 v0.7.1
-기준: 2026-10-11 KST
-1인용 기나긴 사냥 챕터1~3, 장송의 칼날, 일반 적3종6면, 보상16종, 사용자 전사 성직자 야수와 참고자료 여성 야수 환자·이오세프카·화기3종. 구저장/별도 시험의 임시 구성품은 호환 경로로 구분합니다.
+블러드본 규칙 구현 점검표 v0.7.2
+기준: 2026-10-12 KST
+1인용 기나긴 사냥 챕터1~3, 장치 무기15종(기존 장송의 칼날+추가14종28면), 기존 캠페인 일반 적3종6면, 추가 실물 적12종24면의 독립 전투 연습, 실제 성직자 야수·여성 야수 환자·이오세프카, 추가 화기7종+기본 단총, 실행 보상16종. 다인 실행과 다른 캠페인은 별도 범위입니다.
 
 구현 상태·검증 근거·사용자 직접 점검은 별개입니다. 직접 점검은 모두 미점검입니다.
 최종 테스트 실행 결과는 VERIFICATION.txt를 참고합니다. 전체 규칙 완성률을 계산하지 않습니다.
@@ -13,7 +13,11 @@ manualCheck는 모두 미점검으로 시작합니다. 자동 테스트가 존�
 나머지 보상16종에는 원문 사용불가 임무 물건이 포함됩니다. 임의 사용 효과를 만들지 않습니다.
 후속 임무 테스트에는 유효 상태를 조립한 분기/경계 검증도 있습니다. 실제 새 사냥부터의 전체 명령 완주 근거는 별도 행/VERIFICATION.txt로 구분합니다.
 보스 초기화의 일반 위치 보존, 챕터2 카드20/22의 지정칸 재출현, 챕터3 카드42의 위치 보존은 서로 다른 조건입니다.
-새 v0.7.1 사냥은 rulesVersion9의 실제 구성품을 사용합니다. 기존8/7/무버전 저장과 별도 임시 시험은 저장 당시 효과를 유지하며 저장 형식과 v07 키는 바꾸지 않습니다.
+새 v0.7.2 사냥은 rulesVersion10의 확장 무기·화기·실물 연습 상대를 사용합니다. 규칙9 저장은 v0.7.1의 실제 구성품 효과를, 규칙8/7/무버전 저장과 별도 임시 시험은 저장 당시 효과를 유지합니다. 저장 형식과 v07 키는 유지합니다.
+장치무기 시트의 아랫줄은 반대 면 요약입니다. 현재 면의 두 번째 능력으로 적용하지 않습니다.
+RULES_CHECKLIST.json/TXT/XLSX는 v0.7.2의 동일한91행을 제공합니다.
+새 실물 적12종은 독립 연습에서 선택합니다. 기나긴 사냥의 임무에서 요구하는 기존 적 구성은 해당 임무 지시를 유지합니다.
+규칙10의 실제 구성품으로 장송의 칼날·기본 단총 한 경로를325개 공개 명령만으로 진행하여 챕터1~3 연속 승리와 정확 저장 재생을 검증했습니다. 실제 성직자 야수는 챕터2/3의 체력10/8·양 페이즈 행동 덱을 사용하며 최종 꿈에서 사냥 트랙은 늘지 않습니다. 모든 무기 조합·모든 곁가지 경로의 본편 완주를 검증한 것은 아닙니다.
 
 R01 | 시작 준비 | 규칙 8쪽
 조건: 새 정규 사냥을 시작하면 사냥꾼의 체력이 6이다.
@@ -34,20 +38,25 @@ tests/hunt.test.cjs — actual 12/60/36 supply and independent replay save
 사용자 직접 점검: 미점검
 
 R03 | 시작 준비 | 규칙 8쪽
-조건: 제공된 장송의 칼날의 시작 면을 선택하면 실제 슬롯과 저장의 초기 면에 반영된다.
+조건: 제공된 장치 무기15종의 시작 면을 선택하면 해당 면의 실제 슬롯·고유효과와 저장의 초기 면에 반영된다.
 상태: 구현 | 우선순위: 없음
-검증: 코드 확인 · 기존 브라우저 확인 · 시작 면 전용 테스트는 제한적
-근거: hunt-engine.js create(), weaponFace(); hunt-app.js confirmSetup()
-tests/hunt.test.cjs — actual 12/60/36 supply and independent replay save
+검증: 자동 테스트 근거 있음
+근거: hunt-app.js renderSetupWeapons()/renderSetupWeaponPreview(), hunt-engine.js create()/weaponFace(). 1~3개 슬롯을 원본대로 표시합니다.
+tests/campaign-ui.test.cjs — the new-hunt weapon menu exposes all supplied weapons and previews their real slot counts
+tests/extended-weapon-data.test.cjs — printed speed, damage and one-to-three slot counts are preserved for every supplied face
 남은 조치: —
 사용자 직접 점검: 미점검
 
 R04 | 시작 준비 | 규칙 4~6, 8쪽
-조건: 기본판 네 사냥꾼과 각 장치 무기를 선택하여 고유 효과를 실행할 수 있다.
-상태: 미구현 | 우선순위: 후속
-검증: 코드 확인 · 전용 자동 테스트 없음
-근거: hunt-engine.js create()의 허용 weaponId는 burial; hunt-data.js weapons
-남은 조치: 실물 자료를 연결하고 무기별 선언·범위·효과·저장 검증을 추가합니다.
+조건: 현재 제공된 장치 무기15종(기존 장송의 칼날+추가14종)을 선택하고 각 면의 고유효과를 실행한다.
+상태: 구현 | 우선순위: 없음
+검증: 자동 테스트 근거 있음
+근거: extended-weapons.js, weapon-rules.js, weapon-flow.js, hunt-engine.js, hunt-app.js. 15종 선택 범위와 실제 제공된 양면 효과만 지원합니다. 기본판/확장판의 모든 사냥꾼 구성품 완성을 뜻하지 않습니다.
+tests/extended-weapon-data.test.cjs — all supplied weapon photos form fourteen distinct pairs with traceable source hashes
+tests/weapon-rules.test.cjs — regain, free transforms and destructive hammer restrictions stay on the named slot
+tests/weapon-rules.test.cjs — dodge abilities distinguish all nearby enemies, chosen same-space enemy and matched combat enemy
+tests/campaign-ui.test.cjs — a two-slot weapon keeps its own effect and resets an out-of-range selection after transformation
+남은 조치: —
 사용자 직접 점검: 미점검
 
 R05 | 시작 준비 | 규칙 9, 17쪽
@@ -466,21 +475,25 @@ R46 | 전투 | 규칙 21쪽
 조건: 독/발광 키워드 공격이 회피·취소·면역·마비 안개를 존중해 상태를 부여하고 이후 피해·해제·꿈 제거에 연결된다.
 상태: 구현 | 우선순위: 자료 대기
 검증: 실제 독 공격 + 시험용 발광 키워드 자동 회귀
-근거: hunt-engine.js enemyDef().convert()/resolve()의 독·발광 부여. 새 발광은 해당 타격 이후 적용; 방어만으로 상태를 막지 않음. 일반 적3종6면에는 해당 키워드가 없음. 이오세프카/여성은 실제 독 공격, 발광은 source-shaped 시험 공격으로 확인
+근거: hunt-engine.js enemyDef().convert()/resolve()의 독·발광 부여. 새 발광은 해당 타격 이후 적용; 방어만으로 상태를 막지 않음. 일반 적3종6면에는 해당 키워드가 없음. 이오세프카/여성은 실제 독 공격, 추가 교단의 종복/거인에 실제 발광 공격·능력을 연결
 tests/rule-exceptions.test.cjs — supplied six faces do not claim poison frenzy or white-background ability coverage
 tests/rule-exceptions.test.cjs — status attack keywords apply once after damage and existing frenzy adds one to later attacks
 tests/rule-exceptions.test.cjs — dodged interrupted and immune status attacks cause no poison or frenzy
 tests/rule-exceptions.test.cjs — numbing mist removes status keywords while defense alone does not prevent their application
 tests/rule-exceptions.test.cjs — attack-applied poison deals one at turn end and dreaming clears both statuses
-남은 조치: 현재 출처에는 발광 공격이 없으므로 해당 실제 구성물이 추가되면 인쇄 효과와 대조합니다.
+tests/extended-enemy-rules.test.cjs — horrifying illusion grants Frenzy then queues another shared card
+남은 조치: —
 사용자 직접 점검: 미점검
 
 R47 | 전투 | 규칙 21쪽
-조건: 기본/특수 칸에 인쇄된 흰 배경 전용 능력을 일반 공격과 구분해 실행한다.
-상태: 미구현 | 우선순위: 후속
-검증: 코드 확인 · 전용 자동 테스트 없음
-근거: 현재 일반 적6면에는 흰 배경 기본/특수 능력이 없음. 실제 보스 회복·NPC 권총·여성 피의 질병은 전용 능력으로 처리하며 없는 효과를 창작하지 않음
-남은 조치: 현재 일반 적6면에는 해당 흰 배경 인쇄 능력이 없습니다. 새 보스/NPC 전용 능력은 연결했으며 다른 구성물의 흰 배경 기본/특수 효과는 자료별로 확장합니다.
+조건: 제공된 기본/특수 칸의 흰 배경 전용 능력을 일반 공격과 구분하여 인쇄된 예외를 처리한다.
+상태: 구현 | 우선순위: 없음
+검증: 자동 테스트 근거 있음
+근거: extended-enemies.js action()의 whiteBackground→ability 구분과 extended-enemy-rules.js. 교단 거인의 특수 흰 능력·카인허스트 기사의 하인 받아넘기기 등 실제 제공된 카드 예외를 연결합니다.
+tests/extended-enemy-rules.test.cjs — giant's white ability resolves hunter attack without making a new attack
+tests/extended-enemy-rules.test.cjs — white parry explicit exception allows a declared interrupting attack; otherwise reflects its damage
+tests/extended-enemy-rules.test.cjs — Numbing Mist suppresses extended attack effects but does not remove white abilities
+남은 조치: —
 사용자 직접 점검: 미점검
 
 R48 | 꿈 | 규칙 23~24쪽
@@ -789,7 +802,7 @@ R77 | 챕터3 진료소 | 규칙 12~13, 23 / 임무45~52쪽
 조건: 과거26/28 완료 조합에 따라 분기하며46번에서 공격47/도움49를 선택하고48/50 보상을 각각 완료한다.
 상태: 구현 | 우선순위: 없음
 검증: 임무 분기·도움 완료 및 실제 NPC 전투 회귀
-근거: mission-engine.js owns(), open(45/46/47/49), MISSION_CHOICE, onKill(), onMovementEnd(); 적대 이오세프카 전투는 임시
+근거: mission-engine.js owns(), open(45/46/47/49), MISSION_CHOICE, onKill(), onMovementEnd(); 새 규칙9 이상 적대 이오세프카는 실제1~2인 면을 사용하며, 구저장은 해당 버전의 임시 전투를 유지
 tests/later-missions.test.cjs — chapter three clinic branching reads retained outcomes without awarding prior chapter insight
 tests/later-missions.test.cjs — attacking Iosefka creates a hostile temporary target and help starts a four-step nonexploring escape
 tests/later-missions.test.cjs — helping Iosefka allows an interaction catch and delivery ending 50 instead of hostile ending 48
@@ -865,11 +878,104 @@ tests/campaign-progression.test.cjs — legacy chapter one saves can enter the n
 R84 | 캠페인 종료 | 규칙 12~13, 25 / 임무44쪽
 조건: 챕터3 보스의 최종 처치는44번과 캠페인 승리를 기록하고 최종 꿈 때문에 사냥 트랙을 전진시키지 않는다.
 상태: 구현 | 우선순위: 없음
-검증: 최종 처치·UI 회귀 / 자연 명령 범위는 근거 참조
+검증: 규칙10 공개 명령325개로 3챕터 자연 완주·정확 저장 재생 / 장송의 칼날 한 경로
 근거: mission-engine.js onKill(), complete(44); hunt-engine.js beginChapterDream(), finishDream(); hunt-app.js renderDecisions()
 tests/later-missions.test.cjs — chapter three final boss kill completes 44 and records campaign victory without track advance
 tests/campaign-ui.test.cjs — chapter completion offers equipment preparation and chapter three has a campaign ending
 규칙8 임시 구성품은332명령 자연 완주. 새 규칙9 실제 구성품은276명령 Ch1~2 완료·최종꿈, Ch3 최종 처치는 조립 상태 회귀; 새 구성품으로 전체 캠페인 자연 완주를 검증했다는 의미는 아님.
 tests/actual-boss.test.cjs — an actual phase-two final kill completes card44 and the final dream without advancing the hunt track
+규칙10의 실제 구성품으로 장송의 칼날·기본 단총 한 경로를325개 공개 명령만으로 진행하여 챕터1~3 연속 승리와 정확 저장 재생을 검증했습니다. 실제 성직자 야수는 챕터2/3의 체력10/8·양 페이즈 행동 덱을 사용하며 최종 꿈에서 사냥 트랙은 늘지 않습니다. 모든 무기 조합·모든 곁가지 경로의 본편 완주를 검증한 것은 아닙니다.
+tests/actual-full-campaign-v10.test.cjs — 325 public version-ten commands win all three Long Hunt chapters with actual Cleric Beast and exact save replay
+남은 조치: —
+사용자 직접 점검: 미점검
+
+W01 | 신규 무기 | 규칙 사용자 제공 양면 시트쪽
+조건: 현재 면의 고유효과와 반대 면 요약을 구분하고 각1~3개 슬롯을 유지한다.
+상태: 구현 | 우선순위: 없음
+검증: 직접 판독 자료 + 자동 테스트 근거 있음
+근거: components/extended-weapons.json의28면/해시; hunt-app.js 현재 슬롯 수에 따른 표시 및 보상 장착 슬롯 제한.
+tests/extended-weapon-data.test.cjs — each bottom summary describes the opposite face and never becomes a second active effect
+tests/campaign-ui.test.cjs — weapon panels render only their current slots and offer only legal persistent-reward slots
+남은 조치: —
+사용자 직접 점검: 미점검
+
+W02 | 신규 무기 | 규칙 사용자 제공 양면 시트쪽
+조건: 바퀴/치카게의 선택 비용, 야수 발톱 체력 조건, 토니트루스 라운드 한정 변형 보너스를 인쇄 조건에 맞게 처리한다.
+상태: 구현 | 우선순위: 없음
+검증: 직접 판독 자료 + 자동 테스트 근거 있음
+근거: weapon-rules.js attackBonus()/afterTransform(); hunt-app.js 공격 weaponBoost 선택을 명령에 전달.
+tests/weapon-rules.test.cjs — wheel self-damage choices are bounded integers and calculate equal extra damage
+tests/weapon-rules.test.cjs — chikage permits one self-damage for exactly one speed or damage bonus
+tests/weapon-rules.test.cjs — beast claw low-health threshold includes three health and excludes four
+tests/weapon-rules.test.cjs — tonitrus charge is gained on either transform and expires with its round
+tests/campaign-ui.test.cjs — the chosen optional wheel sacrifice reaches the attack command and leaves the default at zero
+tests/campaign-ui.test.cjs — optional weapon sacrifices reach standalone firearm attacks and firearm counterattacks
+남은 조치: —
+사용자 직접 점검: 미점검
+
+W03 | 신규 무기 | 규칙 사용자 제공 양면 시트쪽
+조건: 무기 추가피해·강제이동·카드 뒷면 놓기 선택은 실제 대상/슬롯을 고르며 이전 저장의 능력을 바꾸지 않는다.
+상태: 구현 | 우선순위: 없음
+검증: 직접 판독 자료 + 자동 테스트 근거 있음
+근거: weapon-flow.js WEAPON_CHOICE/WEAPON_SHOT/ENTRY_WEAPON과 hunt-engine.js 뒷면 카드·선택 재개. source 단계/엔진 통합 검증 결과는 최종 VERIFICATION.txt를 확인합니다.
+tests/weapon-rules.test.cjs — extended weapon rules are isolated from old saves and provisional practice
+tests/weapon-rules.test.cjs — clear and kill callbacks preserve target selection, drawing, healing and movement
+tests/campaign-ui.test.cjs — weapon effect decisions pass the engine-provided command without inventing a target
+tests/weapon-continuations.test.cjs — automatic dodge applies the whip area effect without spending a stat card
+tests/weapon-continuations.test.cjs — automatic dodge applies Chikage healing and its same-space damage
+tests/weapon-continuations.test.cjs — the mission death dodge applies the current weapon effect before resuming the mission
+tests/weapon-continuations.test.cjs — a beast-claw kill movement resumes enemy activation after the survivor mission choice
+tests/weapon-continuations.test.cjs — clearing a face-down weapon card removes its temporary tag before it enters discard
+tests/weapon-continuations.test.cjs — dream collection removes face-down weapon tags before recycling the hunter deck
+tests/campaign-ui.test.cjs — face-down weapon slots hide the printed stat card face and describe the dormant effects
+회피/임무 선택/버림·꿈 정리의 경계는 유효 조립 상태의 회귀 검증입니다. 자연 명령 저장 재생의 근거와 구분합니다.
+남은 조치: —
+사용자 직접 점검: 미점검
+
+E01 | 신규 실물 적 | 규칙 사용자 제공 적 카드쪽
+조건: 신규 일반 적3종과 NPC9종을 독립 연습에서 선택하며 일반A/B와 NPC인원수 면을 구분한다.
+상태: 구현 | 우선순위: 없음
+검증: 직접 판독 자료 + 자동 테스트 근거 있음
+근거: components/extended-enemies.json/extended-enemies.js definition()과 hunt-app.js practiceTarget/practiceSide. 1인 NPC는1~2인 면 고정; 다인 실행 지원을 뜻하지 않습니다.
+tests/extended-enemy-rules.test.cjs — enemy count sides use supplied health and do not become boss phases
+tests/campaign-ui.test.cjs — the new practice target menu distinguishes general variants from hunter-count NPC faces
+tests/weapon-continuations.test.cjs — map reset restores the selected real practice opponent and its side at the chosen start space
+남은 조치: —
+사용자 직접 점검: 미점검
+
+E02 | 신규 실물 적 | 규칙 사용자 제공 적 카드쪽
+조건: 실제 적의 추가 카드·속도/피해 보정·독/발광·회복·다단/반사·부패 토큰 예외를 해당 면에 적용한다.
+상태: 구현 | 우선순위: 없음
+검증: 직접 판독 자료 + 자동 테스트 근거 있음
+근거: extended-enemy-rules.js와 hunt-engine.js의 확장 적 전투 연결. 다른 캠페인의 임무 출현 연결은 이번 독립 연습과 별도입니다.
+tests/extended-enemy-rules.test.cjs — Henryk poison knife, Eileen pistol, Alfred rifle and Djura shotgun offer exact immediate reactions
+tests/extended-enemy-rules.test.cjs — Eileen compares attack speeds and also handles firearm attacks
+tests/extended-enemy-rules.test.cjs — blood knight stores corruption separately, spends one on basic, and gains it only on hit
+tests/extended-enemy-rules.test.cjs — bloodlicker gets speed and damage from echoes and reactivates only once after activation leap
+tests/campaign-ui.test.cjs — arcane barrage describes defense per dodge speed instead of a zero-speed threshold
+남은 조치: —
+사용자 직접 점검: 미점검
+
+G01 | 신규 화기 | 규칙 사용자 제공 사진/TXT쪽
+조건: 추가 화기7종과 기존 기본 단총을 선택하며 무기별 기본 화기 및 기본 제외 공급14장의 원문 수량을 구분한다.
+상태: 구현 | 우선순위: 없음
+검증: 직접 판독 자료 + 자동 테스트 근거 있음
+근거: 칼날 지팡이=대포; 이질적인 성검·말뚝박이=연발총; 성검=에블린; 나머지=기본 단총. 에블린/대포/연발총 각3, 로즈마리누스1, 화염2, 장총1, 산탄총1. 공급수 기록이 다른 캠페인 전체 획득 덱을 실행한다는 뜻은 아닙니다.
+tests/extended-firearms.test.cjs — new firearm photos contain four new firearms and corroborate the three earlier effects
+tests/extended-firearms.test.cjs — firearm stock is recorded separately from starting firearms with exact user supplied counts
+tests/extended-weapon-data.test.cjs — starting firearms follow the user supplied weapon-to-firearm text
+남은 조치: —
+사용자 직접 점검: 미점검
+
+G02 | 신규 화기 | 규칙 사용자 제공 사진쪽
+조건: 대포 단독 공격, 로즈마리누스 비보스 공격효과 제거, 에블린 유지 재준비, 산탄총 비보스 피해/이동을 구분한다.
+상태: 구현 | 우선순위: 없음
+검증: 직접 판독 자료 + 자동 테스트 근거 있음
+근거: extended-firearms.js/firearms-engine.js/hunt-engine.js/hunt-app.js. 산탄총의 이동은 WEAPON_CHOICE로 유효 목적지를 고릅니다.
+tests/extended-firearms.test.cjs — cannon declares one independent attack and cannot join an attack already declared
+tests/extended-firearms.test.cjs — rosmarinus can remove uninterruptible special attack effects but excludes bosses and abilities
+tests/extended-firearms.test.cjs — evelyn can prepare by one echo without discarding a card or prepare by exactly one card
+tests/campaign-ui.test.cjs — the blunderbuss effect selects a colocated non-boss enemy during the hunter turn
+tests/campaign-ui.test.cjs — a cannon counterattack uses its own name and damage without a flamesprayer label
 남은 조치: —
 사용자 직접 점검: 미점검

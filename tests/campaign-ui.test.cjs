@@ -77,8 +77,8 @@ function rewards(items = [], overrides = {}) {
 function boot(state, view = mission(), rewardView = rewards(), options = {}) {
   const document = new Document(fs.readFileSync(path.join(root, "hunt.html"), "utf8"));
   const storage = new Map(Object.entries(options.storage || { "bloodborne-hunt-v07": "fixture" }));
-  const commands = [], imports = [];
-  const engine = { ...E, create: () => structuredClone(state),
+  const commands = [], imports = [], creates = [];
+  const engine = { ...E, create: (...args) => { creates.push(args); return structuredClone(state); },
     importSave: (text) => { imports.push(text); return structuredClone(state); },
     exportSave: (s) => JSON.stringify(s), missionView: () => view,
     rewardsView: () => rewardView, missionActions: () => options.actions || [],
@@ -89,6 +89,8 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
   };
   const window = { BBHunt: engine, BBChapter: M, BBLongHunt: C, BBEnemyDeck: ED, BBTileGeometry: G,
     BBActualComponents: require("../actual-components"),
+    BBExtendedEnemies: require("../extended-enemies"),
+    BBExtendedFirearms: require("../extended-firearms"),
     BBInventory: () => ({ render() {}, clear() {}, ids: () => [], names: () => [] }),
     BBStartPlacement: { mount: (container, select, confirm) => {
       const update = () => { confirm.disabled = !select.value; };
@@ -99,7 +101,7 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
     getItem: (key) => storage.get(key) || null, setItem: (key, value) => storage.set(key, value),
   }, Blob, URL, setTimeout() {}, console });
   vm.runInContext(fs.readFileSync(path.join(root, "hunt-app.js"), "utf8"), context);
-  return { document, commands, storage, imports,
+  return { document, commands, storage, imports, creates,
     el: (id) => document.getElementById(id),
     buttons: (id) => document.getElementById(id).querySelectorAll("[data-command]"),
   };
@@ -201,6 +203,175 @@ test("a stored shard offers legal replacement and slot choices between chapters"
   });
   chosen.click();
   assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "EQUIP_REWARD", rewardId: "shard", replaceId: "tool-a", slot: 2 });
+});
+
+test("the new-hunt weapon menu exposes all supplied weapons and previews their real slot counts", () => {
+  const ui = boot(baseState(), mission(), rewards(), { storage: {} });
+  assert.equal((ui.el("weapon").innerHTML.match(/<option /g) || []).length, 15);
+  assert(!ui.el("weapon").innerHTML.includes('value="training"'));
+  ui.el("weapon").value = "stake-driver"; ui.el("weapon").fire("change");
+  assert.equal(ui.el("gun").value, "repeating-pistol");
+  ui.el("face").value = "1"; ui.el("face").fire("change");
+  assert.match(ui.el("setupWeaponPreview").innerHTML, /폭파/);
+  assert.equal((ui.el("setupWeaponPreview").innerHTML.match(/<span>/g) || []).length, 1);
+  assert.match(ui.el("setupWeaponPreview").innerHTML, /다른 모든 적에게 2피해/);
+  ui.el("playMode").value = "cleric-beast"; ui.el("playMode").fire("change");
+  assert.equal(ui.el("weapon").value, "burial");
+  assert.equal(ui.el("weapon").disabled, true);
+  assert.equal((ui.el("weapon").innerHTML.match(/<option /g) || []).length, 1);
+});
+test("an unavailable default firearm requires an explicitly chosen and recorded practice substitute", () => {
+  const ui = boot(baseState(), mission(), rewards(), { storage: {}, engine: {
+    data: { ...E.data, firearms: Object.fromEntries(Object.entries(E.data.firearms).filter(([id]) => id !== "evelyn")) },
+  } });
+  ui.el("weapon").value = "ludwigs-holy-blade"; ui.el("weapon").fire("change");
+  assert.match(ui.el("defaultGunNotice").textContent, /에블린.*자료 확인/);
+  assert.equal(ui.el("gun").value, "");
+  ui.el("start").value = "center"; ui.el("start").fire("change");
+  assert.equal(ui.el("confirmSetup").disabled, true);
+  ui.el("gun").value = "hunter-pistol"; ui.el("gun").fire("change");
+  assert.equal(ui.el("confirmSetup").disabled, true);
+  ui.el("firearmOverride").checked = true; ui.el("firearmOverride").fire("change");
+  assert.equal(ui.el("confirmSetup").disabled, false);
+  ui.el("confirmSetup").click();
+  const args = ui.creates.at(-1);
+  assert.equal(args[1], "ludwigs-holy-blade");
+  assert.equal(args[4], "hunter-pistol");
+  assert.equal(args[6].firearmOverride, true);
+});
+test("weapon panels render only their current slots and offer only legal persistent-reward slots", () => {
+  const s = baseState(), h = E.hunter(s); h.weaponId = "stake-driver"; h.face = 1; s.phase = "between_chapters";
+  const ui = boot(s, mission(), rewards([{ id: "shard", kind: "bloodstone-shard", name: "혈석", rules: "강화", equipped: false, ready: true, persistent: true, subtype: "tool" }]));
+  assert.equal(ui.el("weaponName").textContent, "말뚝박이");
+  assert.match(ui.el("weaponAbility").textContent, /모든 적을 최대 2칸/);
+  assert.equal(ui.el("slots").querySelectorAll("[data-slot]").length, 1);
+  assert.equal(ui.el("slots").style.gridTemplateColumns, "repeat(1, minmax(0, 1fr))");
+  assert.equal(ui.buttons("rewards").filter((button) => button.dataset.command === "EQUIP_REWARD").length, 1);
+  assert.equal(JSON.parse(ui.buttons("rewards")[0].dataset.args).slot, 0);
+});
+test("a two-slot weapon keeps its own effect and resets an out-of-range selection after transformation", () => {
+  const s = baseState(), h = E.hunter(s); h.weaponId = "kirkhammer"; h.face = 0;
+  const ui = boot(s, mission(), rewards(), { engine: { dispatch: (state, command) => {
+    const next = structuredClone(state); E.hunter(next).face = 1; return next;
+  } } });
+  ui.el("slots").querySelectorAll("[data-slot]")[2].click();
+  ui.el("hand").querySelectorAll("[data-card]")[0].click();
+  option(ui, "decisions", "TRANSFORM").click();
+  assert.equal(ui.el("slots").querySelectorAll("[data-slot]").length, 2);
+  assert.match(ui.el("weaponAbility").textContent, /방해받을 수 없지만/);
+  assert.equal(ui.el("slots").querySelectorAll("[data-slot]")[0].attributes["aria-pressed"], "true");
+});
+test("the new practice target menu distinguishes general variants from hunter-count NPC faces", () => {
+  const ui = boot(baseState(), null, rewards(), { storage: {} });
+  ui.el("playMode").value = "practice"; ui.el("playMode").fire("change");
+  assert.equal(ui.el("practiceSetup").hidden, false);
+  assert.match(ui.el("practiceTarget").innerHTML, /church-servant/);
+  assert.match(ui.el("practiceTarget").innerHTML, /henryk/);
+  ui.el("practiceTarget").value = "church-servant"; ui.el("practiceTarget").fire("change");
+  assert.equal(ui.el("practiceSideLabel").hidden, false);
+  ui.el("practiceSide").value = "b";
+  ui.el("start").value = "center"; ui.el("start").fire("change");
+  ui.el("confirmSetup").click();
+  assert.equal(ui.creates.at(-1)[6].practiceTarget, "church-servant");
+  assert.equal(ui.creates.at(-1)[6].practiceSide, "b");
+  ui.el("practiceTarget").value = "henryk"; ui.el("practiceTarget").fire("change");
+  assert.equal(ui.el("practiceSideLabel").hidden, true);
+  assert.equal(ui.el("practiceSide").value, "a");
+  assert.match(ui.el("practiceTargetNotice").textContent, /1~2인 면/);
+});
+test("weapon effect decisions pass the engine-provided command without inventing a target", () => {
+  const s = baseState(); s.phase = "weapon_choice";
+  const ui = boot(s, mission(), rewards(), { engine: { weaponChoices: () => [
+    { label: "선택한 적에게 피해", command: { type: "WEAPON_CHOICE", enemyId: "specific-enemy" } },
+    { label: "사용하지 않음", command: { type: "WEAPON_CHOICE", accept: false } },
+  ] } });
+  assert.match(ui.el("phaseTitle").textContent, /무기 효과 선택/);
+  option(ui, "decisions", "WEAPON_CHOICE").click();
+  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "WEAPON_CHOICE", enemyId: "specific-enemy" });
+});
+test("the chosen optional wheel sacrifice reaches the attack command and leaves the default at zero", () => {
+  const s = baseState(), h = E.hunter(s); h.weaponId = "logarius-wheel"; h.face = 1;
+  s.setup.rulesVersion = 10;
+  s.enemies = [{ id: "huntsman-mob-1", kind: "huntsman-mob", figure: 1, hp: 3, node: h.position }];
+  const ui = boot(s, mission(), rewards());
+  ui.el("hand").querySelectorAll("[data-card]")[0].click();
+  assert.equal(JSON.parse(option(ui, "decisions", "ATTACK").dataset.args).weaponBoost, 0);
+  ui.el("weaponBoost").value = "2"; ui.el("weaponBoost").fire("change");
+  option(ui, "decisions", "ATTACK").click();
+  assert.equal(ui.commands[0].weaponBoost, 2);
+});
+test("a cannon counterattack uses its own name and damage without a flamesprayer label", () => {
+  const s = baseState(), h = E.hunter(s);
+  s.enemies = [{ id: "huntsman-mob-1", kind: "huntsman-mob", figure: 1, hp: 4, node: h.position }];
+  s.phase = "combat_choose"; s.combat = { enemyId: "huntsman-mob-1", origin: "enemy" };
+  const firearm = require("../extended-firearms").firearm("cannon");
+  const ui = boot(s, mission(), rewards(), { engine: { firearm: () => firearm, canFirearm: () => true } });
+  assert.match(ui.el("decisions").innerHTML, /대포로 맞서 공격/);
+  assert(!ui.el("decisions").innerHTML.includes("화염방사기로"));
+  option(ui, "decisions", "FIREARM").click();
+  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "FIREARM", enemyId: "huntsman-mob-1" });
+  s.phase = "combat_react"; s.combat.flame = { speed: 1, damage: 3, interrupt: false, splash: 0 };
+  const combat = boot(s, mission(), rewards(), { engine: { firearm: () => firearm, canFirearm: () => false } });
+  assert.match(combat.el("combatInfo").innerHTML, /대포 공격 · 속도 1 \/ 피해 3/);
+  assert(!combat.el("combatInfo").innerHTML.includes("화염방사기"));
+});
+test("optional weapon sacrifices reach standalone firearm attacks and firearm counterattacks", () => {
+  for (const [weapon, face, gun, phase, boost] of [
+    ["logarius-wheel", 1, "cannon", "hunter", 2],
+    ["chikage", 0, "flamesprayer", "combat_choose", "speed"],
+  ]) {
+    const s = baseState(), h = E.hunter(s); h.weaponId = weapon; h.face = face;
+    s.setup.rulesVersion = 10; s.phase = phase;
+    s.enemies = [{ id: "huntsman-mob-1", kind: "huntsman-mob", figure: 1, hp: 4, node: h.position }];
+    if (phase === "combat_choose") s.combat = { enemyId: "huntsman-mob-1", origin: "activation" };
+    const ui = boot(s, mission(), rewards(), { engine: {
+      firearm: () => require("../extended-firearms").firearm(gun), canFirearm: () => true,
+    } });
+    ui.el("weaponBoost").value = String(boost); ui.el("weaponBoost").fire("change");
+    option(ui, phase === "hunter" ? "firearm" : "decisions", "FIREARM").click();
+    assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), {
+      type: "FIREARM", enemyId: "huntsman-mob-1", weaponBoost: boost,
+    });
+  }
+});
+test("arcane barrage describes defense per dodge speed instead of a zero-speed threshold", () => {
+  const s = baseState(); s.phase = "boss_react";
+  s.combat = { immediate: { name: "비전 탄막", damage: 6, dodgeSpeed: 0, dodgeBlockPerSpeed: 2 } };
+  const ui = boot(s, mission(), rewards(), { engine: { canDodge: () => true } });
+  assert.equal(ui.el("phaseHelp").textContent, "회피 속도마다 2피해를 방어합니다. 회피 카드와 빈 슬롯을 선택하세요.");
+  assert(!ui.el("phaseHelp").textContent.includes("속도 0 이상"));
+});
+test("face-down weapon slots hide the printed stat card face and describe the dormant effects", () => {
+  const s = baseState(), h = E.hunter(s), placed = h.hand.shift();
+  h.slots[0] = { ...placed, faceDown: true };
+  const ui = boot(s, mission(), rewards());
+  const slot = ui.el("slots").querySelectorAll("[data-slot]").find((e) => e.dataset.slot === "0");
+  assert.match(slot.attributes.title || ui.el("slots").innerHTML, /뒷면으로 놓은 카드/);
+  assert.match(ui.el("slots").innerHTML, /스탯 효과 미적용/);
+  assert(!ui.el("slots").innerHTML.includes(E.card(placed).name));
+});
+test("Evelyn can prepare with one echo without choosing a hand card", () => {
+  const s = baseState(), h = E.hunter(s); h.echoes = 1; h.firearmReady = false;
+  const ui = boot(s, mission(), rewards(), { engine: { firearm: () => require("../extended-firearms").firearm("evelyn"), canFirearm: () => false } });
+  const echo = ui.buttons("decisions").find((button) => button.dataset.command === "RELOAD" && JSON.parse(button.dataset.args).payEcho);
+  assert.equal(echo.disabled, false);
+  echo.click();
+  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "RELOAD", payEcho: true, cardIds: [] });
+  assert.match(ui.el("firearm").innerHTML, /피의 유지 1개/);
+});
+test("the blunderbuss effect selects a colocated non-boss enemy during the hunter turn", () => {
+  const s = baseState(), h = E.hunter(s);
+  s.enemies = [{ id: "huntsman-mob-1", kind: "huntsman-mob", figure: 1, hp: 4, node: h.position }];
+  const firearm = require("../extended-firearms").firearm("hunter-blunderbuss");
+  const ui = boot(s, mission(), rewards(), { engine: { firearm: () => firearm, canFirearm: () => true } });
+  option(ui, "firearm", "FIREARM").click();
+  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "FIREARM", enemyId: "huntsman-mob-1" });
+  const boss = boot(s, mission(), rewards(), { engine: { firearm: () => firearm, canFirearm: () => true,
+    enemyDef: (state, enemy) => ({ ...E.enemyDef(state, enemy), boss: true }) } });
+  assert.equal(option(boss, "firearm", "FIREARM").disabled, true);
+  s.phase = "combat_react"; s.combat = { enemyId: "huntsman-mob-1" };
+  const combat = boot(s, mission(), rewards(), { engine: { firearm: () => firearm, canFirearm: () => true } });
+  assert.equal(option(combat, "firearm", "FIREARM"), undefined);
 });
 
 function storyButton(ui, container, key) {

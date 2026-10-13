@@ -17,7 +17,7 @@
         ></a
       >
       <nav class="top-actions">
-        <span class="badge">v0.7.1</span
+        <span class="badge">v0.7.2</span
         ><a class="button" href="index.html">전투 훈련</a
         ><button id="save">저장 내보내기</button
         ><button id="load">불러오기</button><button id="new">새 사냥</button
@@ -108,7 +108,7 @@
           <p id="deckCount" class="muted"></p>
         </section>
         <section class="panel">
-          <h2>장송의 칼날 <small id="weaponFace"></small></h2>
+          <h2><span id="weaponName">장송의 칼날</span> <small id="weaponFace"></small></h2>
           <p id="weaponAbility"></p>
           <div id="slots" class="hunt-slots"></div>
           <p class="muted">
@@ -160,8 +160,9 @@
           사용합니다. 골수 가루는 소진된 장착 보상 1장을 준비합니다.
           예배당 명칭 칸에서는 소모품 1장을 피의 유지 1개로 교환합니다.
           사냥꾼의 종은 다른 사냥꾼이 없는 1인용에서 사용할 수 없습니다.
-          새 캠페인의 추가 화기는 제공된 고유 효과와 재준비 비용을 사용합니다.
-          이전 저장과 전투 시험의 추가 화기는 기존 단총 대체 효과를 유지합니다.
+          새 사냥에서 제공된 장치 무기를 선택하고 양면의 슬롯·고유 효과를 사용합니다.
+          새 캠페인과 지도 연습의 추가 화기는 제공된 고유 효과와 재준비 비용을 사용합니다.
+          이전 저장과 별도 임시 구성품 시험은 저장 당시의 규칙을 유지합니다.
         </p>
         <p>
           v0.7 사냥·v0.6 사냥·v0.5 사냥·기존 전투 훈련의 자동 저장은 각각 별도입니다.
@@ -179,6 +180,11 @@
       <h2>새 사냥</h2>
       <p id="setupIntro">시작할 칸을 선택한 뒤 사냥을 시작하세요.</p>
       <label>플레이 모드<select id="playMode"><option value="campaign">기나긴 사냥 · 챕터 1</option><option value="practice">실제 지도 전투 연습 · 임무 없음</option><option value="cleric-beast">임시 성직자 야수 시험 · 2페이즈</option><option value="female-patient-a">임시 여성 야수 환자 A 시험</option><option value="female-patient-b">임시 여성 야수 환자 B 시험</option><option value="iosefka">임시 이오세프카 상호작용 시험</option></select></label>
+      <div id="practiceSetup" class="practice-setup" hidden>
+        <label>전투 연습 상대<select id="practiceTarget"><option value="">현재 캠페인의 일반 적 · 지도 탐험</option></select></label>
+        <label id="practiceSideLabel" hidden>연습 상대의 면<select id="practiceSide"><option value="a">A면</option><option value="b">B면</option></select></label>
+        <p id="practiceTargetNotice" class="muted"></p>
+      </div>
       <details id="setupStory" class="setup-story"><summary>기나긴 사냥 도입부 읽기</summary><p id="setupStoryText"></p></details>
       <label
         >준비 시드<input
@@ -197,13 +203,19 @@
       >
       <p class="muted">매 챕터 시작 시 중앙 등불 타일의 어느 칸에서 시작할지 자유롭게 정합니다. 아래 도식에서 칸을 누르거나 목록에서 선택하세요. (규칙서 10쪽)</p>
       <div id="startPlacement"></div>
+      <label>장치 무기<select id="weapon"><option value="burial">장송의 칼날</option></select></label>
       <label
-        >장송의 칼날 형태<select id="face">
+        >시작 무기 형태<select id="face">
           <option value="0">앞면</option>
           <option value="1">뒷면</option>
         </select></label
-      ><label>화기<select id="gun"></select></label
-      ><label
+      >
+      <div id="setupWeaponPreview" class="setup-weapon-preview"></div>
+      <p id="defaultGunNotice" class="muted" role="status"></p>
+      <label>화기<select id="gun"></select></label>
+      <label id="firearmOverrideLabel" class="checkrow" hidden><input id="firearmOverride" type="checkbox">기본 화기를 대신하여 선택한 화기로 연습합니다.</label>
+      <p id="firearmOverrideNotice" class="muted" hidden>장치 무기에 지정된 기본 화기를 대체하는 연습 설정입니다. 선택한 대체 화기를 저장에 기록합니다.</p>
+      <label
         >테스트 시작 소모품<select id="startingItem">
           <option value="">없음 · 정규 시작</option>
         </select></label
@@ -235,14 +247,23 @@
     <script src="start-placement.js"></script>
     <script src="enemy-deck.js"></script>
     <script src="chapter-engine.js"></script>
+    <script src="components/extended-weapons.js"></script>
+    <script src="extended-weapons.js"></script>
+    <script src="components/extended-firearms.js"></script>
+    <script src="extended-firearms.js"></script>
     <script src="hunt-data.js"></script>
     <script src="temporary-components.js"></script>
     <script src="components/supplied-components.js"></script>
     <script src="actual-components.js"></script>
+    <script src="components/extended-enemies.js"></script>
+    <script src="extended-enemies.js"></script>
     <script src="boss-components.js"></script>
     <script src="firearms-engine.js"></script>
     <script src="mission-engine.js"></script>
     <script src="rewards-engine.js"></script>
+    <script src="weapon-rules.js"></script>
+    <script src="weapon-flow.js"></script>
+    <script src="extended-enemy-rules.js"></script>
     <script src="hunt-engine.js"></script>
     <script src="inventory.js"></script>
     <script src="hunt-app.js"></script>
