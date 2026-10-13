@@ -75,63 +75,22 @@
       .join("");
     $("setupSeed").textContent = `시드 ${state.seed}`;
   }
-  const coords = {
-    left: [20, 50],
-    center: [50, 50],
-    right: [80, 50],
-    top: [50, 20],
-    middle: [50, 50],
-    bottom: [50, 80],
-    "upper-left": [28, 25],
-    "upper-right": [73, 25],
-    "lower-left": [28, 75],
-    "lower-right": [73, 75],
-    "middle-left": [26, 50],
-    "middle-right": [74, 50],
-    room: [50, 23],
-    entry: [50, 78],
-    street: [50, 23],
-    house: [50, 78],
-  };
-  function point(id, r) {
-    let [x, y] = coords[id] || [50, 50];
-    for (let i = 0; i < r; i++) [x, y] = [100 - y, x];
-    return [x, y];
-  }
+  const G = window.BBTileGeometry;
   function tileHTML(p, ghost = false) {
-    const def = E.tile(p.tileId),
-      reachable = E.neighbors(state, state.position);
-    const lines = def.adjacency
-      .map(([a, b]) => {
-        const [x, y] = point(a, p.rotation),
-          [xx, yy] = point(b, p.rotation);
-        return `<line x1="${x}" y1="${y}" x2="${xx}" y2="${yy}"/>`;
-      })
-      .join("");
-    return `<div class="tile-cell ${ghost ? "ghost" : ""}" data-tile="${p.tileId}"><img class="tile-photo" src="${photo(def.image)}" alt="" style="transform:rotate(${p.rotation * 90}deg)"><div class="tile-name"><a href="${photo(def.image)}" target="_blank">${esc(def.displayName)} ↗</a><span>${ghost ? "미리보기" : p.rotation * 90 + "°"}</span></div><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${lines}</svg>${def.spaces
-      .map((n) => {
-        const id = `${p.tileId}:${n.id}`,
-          [x, y] = point(n.id, p.rotation),
-          here = id === state.position,
-          reach = !ghost && state.phase === "ready" && reachable.includes(id),
-          loot = state.loot.find((l) => l.node === id)?.count || 0,
-          figures = state.figures.filter((f) => f.node === id);
-        const icons = n.icons.filter((i) => i.kind === "lamp").length
-          ? "✦ "
-          : "";
-        return `<button class="space ${here ? "here" : ""} ${reach ? "reachable" : ""} ${ghost ? "ghost-space" : ""}" style="left:${x}%;top:${26 + y * 2.38}px" data-command="MOVE" data-args="${esc(JSON.stringify({ node: id }))}" ${reach ? "" : "disabled"} title="${esc(n.placeName || n.label)}${ghost ? " · 배치 예정" : ""}">${here ? "● 사냥꾼<br>" : ""}${icons}${esc(n.placeName || n.label)}${loot ? "<small>◇ × " + loot + "</small>" : ""}${figures
-          .map((f) => {
-            const a = state.assignments.find((a) => a.enemyId === f.kind);
-            return `<span class="token" style="--marker:${colors[a.marker]}" title="${esc(E.definition(state, f.kind).name)} #${f.number}">${["①", "②", "③"][a.slot - 1]} #${f.number}</span>`;
-          })
-          .join("")}</button>`;
-      })
-      .join("")}${E.exits(p)
-      .map(
-        (e) =>
-          `<span class="exit-tick exit-${e.edge}" title="${directionNames[e.edge]} 출입구">${{ N: "↑", S: "↓", W: "←", E: "→" }[e.edge]}</span>`,
-      )
-      .join("")}</div>`;
+    const def = E.tile(p.tileId), reachable = E.neighbors(state, state.position);
+    return `<div class="tile-cell ${ghost ? "ghost" : ""}" data-tile="${p.tileId}"><img class="tile-diagram" src="${G.image(p.tileId)}" alt="" style="transform:rotate(${p.rotation * 90}deg)"><div class="tile-name"><a href="${G.image(p.tileId)}" target="_blank">${esc(def.displayName)} ↗</a><span>${ghost ? "미리보기" : p.rotation * 90 + "°"}</span></div>${def.spaces.map((n) => {
+      const id = `${p.tileId}:${n.id}`, [x,y] = G.point(p.tileId,n.id,p.rotation),
+        polygon = G.polygon(p.tileId,n.id,p.rotation).map(([x,y]) => `${x}% ${y}%`).join(","),
+        here = !ghost && id === state.position,
+        reach = !ghost && state.phase === "ready" && reachable.includes(id),
+        loot = ghost ? 0 : state.loot.find((l) => l.node === id)?.count || 0,
+        figures = ghost ? [] : state.figures.filter((f) => f.node === id);
+      const status = `${here ? "● 사냥꾼" : ""}${loot ? `<small>◇ 남은 소모품 ${loot}</small>` : ""}${figures.map((f) => {
+        const a = state.assignments.find((a) => a.enemyId === f.kind);
+        return `<span class="token" style="--marker:${colors[a.marker]}" title="${esc(E.definition(state,f.kind).name)} #${f.number}">${["①","②","③"][a.slot-1]} #${f.number}</span>`;
+      }).join("")}`;
+      return `<button class="space diagram-space ${here ? "here" : ""} ${reach ? "reachable" : ""}" style="clip-path:polygon(${polygon})" data-command="MOVE" data-args="${esc(JSON.stringify({node:id}))}" ${reach ? "" : "disabled"} aria-label="${esc(n.placeName || n.label)}${here ? " · 사냥꾼" : ""}" title="${esc(n.placeName || n.label)}"><span class="space-status" style="left:${x}%;top:${Math.min(90,y+10)}%">${status}</span></button>`;
+    }).join("")}</div>`;
   }
   function preview() {
     if (!state.pending) {
@@ -225,7 +184,7 @@
       const p = state.pending,
         d = E.tile(p.tileId),
         opts = E.placementOptions(state, p.tileId, p.anchor);
-      box.innerHTML = `<p class="eyebrow">타일 공개 · 배치 선택</p><h2>${esc(d.displayName)}</h2><p>연결되는 출입구가 있도록 회전하세요. 점선 타일은 현재 방향의 미리보기입니다. 배치하면 적·소모품이 놓이고 사냥꾼이 연결된 칸으로 진입합니다.</p><div class="rotation-preview"><img src="${photo(d.image)}" style="transform:rotate(${rotation * 90}deg)" alt="공개한 타일"></div><div class="rotation-choices">${[0, 1, 2, 3].map((r) => `<button data-rotation="${r}" ${opts.includes(r) ? "" : "disabled"} class="${r === rotation ? "selected" : ""}" aria-pressed="${r === rotation}">${r * 90}°</button>`).join("")}</div>${button("이 방향으로 배치하고 진입", "PLACE_TILE", { rotation }, false, "primary")}<p class="muted">카드를 공개한 뒤에는 취소하고 다른 타일을 뽑을 수 없습니다.</p>`;
+      box.innerHTML = `<p class="eyebrow">타일 공개 · 배치 선택</p><h2>${esc(d.displayName)}</h2><p>연결되는 출입구가 있도록 회전하세요. 점선 타일은 현재 방향의 미리보기입니다. 배치하면 적·소모품이 놓이고 사냥꾼이 연결된 칸으로 진입합니다.</p><div class="rotation-preview"><img src="${G.image(d.id)}" style="transform:rotate(${rotation * 90}deg)" alt="공개한 타일"></div><div class="rotation-choices">${[0, 1, 2, 3].map((r) => `<button data-rotation="${r}" ${opts.includes(r) ? "" : "disabled"} class="${r === rotation ? "selected" : ""}" aria-pressed="${r === rotation}">${r * 90}°</button>`).join("")}</div>${button("이 방향으로 배치하고 진입", "PLACE_TILE", { rotation }, false, "primary")}<p class="muted">카드를 공개한 뒤에는 취소하고 다른 타일을 뽑을 수 없습니다.</p>`;
       box.querySelectorAll("[data-rotation]").forEach(
         (b) =>
           (b.onclick = () => {
@@ -313,8 +272,11 @@
   $("newMap").onclick = () => {
     $("chapterSeed").value = crypto.getRandomValues(new Uint32Array(1))[0];
     $("setupError").textContent = "";
+    $("startSpace").value = "";
+    startPlacement.update();
     $("setupDialog").showModal();
   };
+  const startPlacement = window.BBStartPlacement.mount($("startPlacement"), $("startSpace"), $("confirmSetup"));
   $("cancelSetup").onclick = () => $("setupDialog").close();
   $("confirmSetup").onclick = () => {
     try {

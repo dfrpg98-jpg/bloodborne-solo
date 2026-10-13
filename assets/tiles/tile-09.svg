@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" role="img" aria-labelledby="tile-title tile-description">
+<title id="tile-title">구역 09: 3칸, 출입구 E/S</title>
+<desc id="tile-description">직접 그린 평면 도식. 흰 선은 칸 경계, 가장자리의 금색 틈은 출입구입니다. 파랑 등불과 초록 보물상자는 등불 및 소모품 기호이며 적 출현은 빨강·황갈색·자주색입니다.</desc>
+<defs>
+  <pattern id="blocked-hatch" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M-9 9L9-9M0 36L36 0M27 45L45 27" stroke="#514a45" stroke-width="3"/></pattern>
+  <g id="icon-lamp" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M-8-21V-28Q0-40 8-28V-21M-15-18H15L20 18H-20ZM-17 22H17M-12-18L-9 18M12-18L9 18"/><path d="M0-11Q10-2 0 12Q-10-2 0-11" fill="currentColor" stroke="none"/></g>
+  <g id="icon-chest" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"><path d="M-24-3Q-24-22-8-22H8Q24-22 24-3V21H-24ZM-24-3H24M-12-21V-4M12-21V-4"/><path d="M-5-7H5V6H-5Z" fill="currentColor"/></g>
+  <g id="icon-red" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"><path d="M0-29V29M-22-17L0-8L22-17M-22-3L0 7L22-3M-17 14L0 23L17 14"/></g>
+  <g id="icon-gold" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"><path d="M-11 25L8-18L20-29L17-12L-2 30ZM-21 15L7 28M-17 30L-9 34"/></g>
+  <g id="icon-purple" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"><path d="M-23 24L-15-18M-8 26L1-29M8 24L17-24M20 17L28-8"/><path d="M-23 24Q0 35 20 17"/></g>
+</defs>
+<rect width="1000" height="1000" fill="#171819"/>
+<polygon data-space-id="upper-left" points="0,0 510,0 510,590 0,590" fill="#2a2a2a"/>
+<polygon data-space-id="upper-right" points="510,0 1000,0 1000,590 510,590" fill="#30302e"/>
+<polygon data-space-id="bottom" points="0,590 1000,590 1000,1000 0,1000" fill="#282c2e"/>
+
+<g fill="none" stroke="#e4dece" stroke-width="9" stroke-linecap="butt"><path d="M510 0 L510 590"/><path d="M0 590 L1000 590"/></g>
+<g fill="none" stroke="#817461" stroke-width="24"><path d="M0 0 L1000 0"/><path d="M1000 0 L1000 440"/><path d="M1000 560 L1000 1000"/><path d="M1000 1000 L560 1000"/><path d="M440 1000 L0 1000"/><path d="M0 1000 L0 0"/></g>
+<g data-exit-edge="E" data-space-id="upper-right" data-x="100" data-y="50" transform="rotate(90 500 500)">
+    <path d="M440 0V68H560V0" fill="#c8b38c" fill-opacity=".2" stroke="#d8c6a1" stroke-width="7"/>
+    <path d="M476 46L500 22L524 46M476 72L500 96L524 72" fill="none" stroke="#eddec0" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+<g data-exit-edge="S" data-space-id="bottom" data-x="50" data-y="100" transform="rotate(180 500 500)">
+    <path d="M440 0V68H560V0" fill="#c8b38c" fill-opacity=".2" stroke="#d8c6a1" stroke-width="7"/>
+    <path d="M476 46L500 22L524 46M476 72L500 96L524 72" fill="none" stroke="#eddec0" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+<g data-space-id="upper-left" data-icon-kind="consumable" data-icon-marker="" data-icon-count="1" data-x="26" data-y="16" transform="translate(260 160)" color="#a8c098"><title>소모품 1개</title><circle r="47" fill="#171819" stroke="currentColor" stroke-width="6"/><circle r="39" fill="none" stroke="currentColor" stroke-width="2" opacity=".55"/><use href="#icon-chest"/></g>
+<g data-space-id="bottom" data-icon-kind="spawn" data-icon-marker="gold" data-icon-count="1" data-x="50" data-y="74" transform="translate(500 740)" color="#c9ae75"><title>황갈색 적 출현 1개</title><circle r="47" fill="#171819" stroke="currentColor" stroke-width="6"/><circle r="39" fill="none" stroke="currentColor" stroke-width="2" opacity=".55"/><use href="#icon-gold"/></g>
+<g font-family="Malgun Gothic,Apple SD Gothic Neo,Arial,sans-serif"><text data-space-label="upper-left" x="250" y="370" text-anchor="middle" dominant-baseline="middle" fill="#e4dfd2" font-size="35" font-weight="600" paint-order="stroke" stroke="#252524" stroke-width="5">왼쪽 위 칸</text>
+<text data-space-label="upper-right" x="760" y="290" text-anchor="middle" dominant-baseline="middle" fill="#e4dfd2" font-size="35" font-weight="600" paint-order="stroke" stroke="#252524" stroke-width="5">오른쪽 위 칸</text>
+<text data-space-label="bottom" x="500" y="880" text-anchor="middle" dominant-baseline="middle" fill="#e4dfd2" font-size="35" font-weight="600" paint-order="stroke" stroke="#252524" stroke-width="5">아래 칸</text></g>
+<text x="26" y="973" fill="#948979" font-family="Arial,sans-serif" font-size="22">TILE-09</text>
+</svg>

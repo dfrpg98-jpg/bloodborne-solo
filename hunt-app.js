@@ -41,10 +41,11 @@
     previewTile = null,
     pulls = new Set(),
     selectedReward = null,
-    startupError = "";
+    startupError = "",
+    setupRequired = true;
   try {
     const saved = localStorage.getItem(key);
-    if (saved) state = E.importSave(saved);
+    if (saved) { state = E.importSave(saved); setupRequired = false; }
   } catch {
     startupError =
       "자동 저장을 읽지 못했습니다. 내보낸 실제 지도 저장 파일을 불러오세요.";
@@ -362,17 +363,14 @@
       const o = E.interactionOptions(state);
       if (o.missionRescue)
         html += button("생존자 구조 · 상호작용", "INTERACT", { cardId: selectedCard, mission: "rescue" }, !chosen, "primary");
-      if (o.loot || o.heal || o.teleport || o.provisionalNpc) {
-        html += `<details><summary>상호작용 · 카드 1장</summary><p class="muted">같은 칸의 적들이 먼저 행동합니다. 이때 맞서 공격하거나 회피할 수 없습니다.</p>${o.provisionalNpc ? button("임시 NPC · 카드 1장을 버려 치유 2", "INTERACT", { cardId: selectedCard, provisionalNpc: true }, !chosen) : ""}${o.loot ? `<label>획득할 소모품 토큰<select id="lootCount">${Array.from({ length: o.loot + 1 }, (_, i) => `<option value="${i}" ${i === o.loot ? "selected" : ""}>${i}개</option>`).join("")}</select></label>` : ""}${o.heal ? '<label class="checkrow"><input id="tileHeal" type="checkbox" checked>대성당 · 치유 2</label>' : ""}${
+      if (o.loot || o.heal || o.teleport || o.provisionalNpc || o.missionRescue) {
+        html += `<details><summary>상호작용 · 카드 1장</summary><p class="muted">같은 칸의 대상 여럿을 카드 1장으로 함께 선택할 수 있습니다. 적들이 먼저 행동하며, 이때 맞서 공격하거나 회피할 수 없습니다.</p>${o.missionRescue ? '<label class="checkrow"><input id="tileRescue" type="checkbox">생존자 구조도 함께 선택</label>' : ""}${o.provisionalNpc ? button("임시 NPC · 카드 1장을 버려 치유 2", "INTERACT", { cardId: selectedCard, provisionalNpc: true }, !chosen) : ""}${o.loot ? `<label>획득할 소모품 토큰<select id="lootCount">${Array.from({ length: o.loot + 1 }, (_, i) => `<option value="${i}" ${i === o.loot ? "selected" : ""}>${i}개</option>`).join("")}</select></label>` : ""}${o.heal ? '<label class="checkrow"><input id="tileHeal" type="checkbox" checked>대성당 · 치유 2</label>' : ""}${
           o.teleport
-            ? `<label>중앙 등불 순간이동<select id="tileLamp"><option value="">사용하지 않음</option>${E.nodes(
-                state,
-              )
-                .filter((n) => n.lamp)
-                .map((n) => `<option value="${n.id}">${esc(n.name)}</option>`)
+            ? `<label>중앙 등불 순간이동 · 등불 또는 안개 안 칸<select id="tileLamp"><option value="">사용하지 않음</option>${E.centralLampDestinations(state)
+                .map((n) => `<option value="${n.id}">${esc(n.name)}${n.lamp ? "" : " · 안개 안"}</option>`)
                 .join("")}</select></label>`
             : ""
-        }${o.loot || o.heal || o.teleport ? `<button id="interact" ${chosen ? "" : "disabled"}>상호작용 실행</button>` : ""}</details>`;
+        }${o.loot || o.heal || o.teleport || o.missionRescue ? `<button id="interact" ${chosen ? "" : "disabled"}>상호작용 실행</button>` : ""}</details>`;
       }
       if (E.node(state, h.position).tile === "tile-20")
         html += button(
@@ -393,7 +391,7 @@
       const q = state.world.pending,
         t = M.tile(q.tileId),
         opts = placementOptions();
-      html = `<h3>${esc(t.displayName)}</h3><div class="rotation-preview"><img src="${photo(t.image)}" style="transform:rotate(${rotation * 90}deg)" alt="새 타일 방향"></div><div class="actions">${[0, 1, 2, 3].map((r) => `<button data-rotation="${r}" class="${rotation === r ? "primary" : ""}" ${opts.includes(r) ? "" : "disabled"}>${r * 90}°</button>`).join("")}</div>${button("이 방향으로 배치하고 진입", "PLACE_TILE", { rotation }, false, "primary")}`;
+      html = `<h3>${esc(t.displayName)}</h3><div class="rotation-preview"><img src="${G.image(t.id)}" style="transform:rotate(${rotation * 90}deg)" alt="새 타일 방향"></div><div class="actions">${[0, 1, 2, 3].map((r) => `<button data-rotation="${r}" class="${rotation === r ? "primary" : ""}" ${opts.includes(r) ? "" : "disabled"}>${r * 90}°</button>`).join("")}</div>${button("이 방향으로 배치하고 진입", "PLACE_TILE", { rotation }, false, "primary")}`;
     } else if (p === "spawn_choice") {
       help =
         "피규어 4개가 모두 사용 중입니다. 가장 먼 적 중 사냥꾼에게 가장 불리한 결과가 되도록 고르세요.";
@@ -630,6 +628,7 @@
           lootCount: +($("lootCount")?.value || 0),
           heal: !!$("tileHeal")?.checked,
           lamp: $("tileLamp")?.value || null,
+          ...($("tileRescue")?.checked ? { mission: "rescue" } : {}),
         });
   }
   function renderEnemies() {
@@ -645,68 +644,27 @@
       })
       .join("");
   }
-  const coords = {
-    left: [20, 50],
-    center: [50, 50],
-    right: [80, 50],
-    top: [50, 20],
-    middle: [50, 50],
-    bottom: [50, 80],
-    "upper-left": [28, 25],
-    "upper-right": [73, 25],
-    "lower-left": [28, 75],
-    "lower-right": [73, 75],
-    "middle-left": [26, 50],
-    "middle-right": [74, 50],
-    room: [50, 23],
-    entry: [50, 78],
-    street: [50, 23],
-    house: [50, 78],
-  };
-  function point(id, r) {
-    let [x, y] = coords[id] || [50, 50];
-    for (let i = 0; i < r; i++) [x, y] = [100 - y, x];
-    return [x, y];
-  }
+  const G = window.BBTileGeometry;
   function tileHTML(p, ghost = false) {
-    const def = M.tile(p.tileId),
-      reachable = E.neighbors(state, E.hunter(state).position),
-      mission = missionView(),
-      currentTile = E.node(state, E.hunter(state).position)?.tile,
+    const def = M.tile(p.tileId), h = E.hunter(state),
+      reachable = E.neighbors(state, h.position), mission = missionView(),
+      currentTile = E.node(state, h.position)?.tile,
       currentFog = !!mission?.fog.includes(currentTile),
       fog = !ghost && !!mission?.fog.includes(p.tileId);
-    const lines = def.adjacency
-      .map(([a, b]) => {
-        const [x, y] = point(a, p.rotation),
-          [xx, yy] = point(b, p.rotation);
-        return `<line x1="${x}" y1="${y}" x2="${xx}" y2="${yy}"/>`;
-      })
-      .join("");
-    return `<div class="tile-cell ${ghost ? "ghost" : ""} ${fog ? "fog-tile" : ""}" data-tile="${p.tileId}"><img class="tile-photo" src="${photo(def.image)}" alt="" style="transform:rotate(${p.rotation * 90}deg)"><div class="tile-name"><a href="${photo(def.image)}" target="_blank">${esc(def.displayName)} ↗</a><span>${ghost ? "미리보기" : fog ? "안개" : p.rotation * 90 + "°"}</span></div><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${lines}</svg>${def.spaces
-      .map((n) => {
-        const id = `${p.tileId}:${n.id}`,
-          [x, y] = point(n.id, p.rotation),
-          here = id === E.hunter(state).position,
-          reach = !ghost && state.phase === "move" && reachable.includes(id) && (!currentFog || p.tileId === currentTile),
-          loot = state.loot.filter((l) => l === id).length,
-          figures = state.enemies.filter((f) => f.node === id),
-          tokens = !ghost ? (mission?.tokens || []).filter((t) => t.node === id || (t.carrierId === state.activeHunterId && here)) : [];
-        const icons = n.icons.filter((i) => i.kind === "lamp").length
-          ? "✦ "
-          : "";
-        return `<button class="space ${here ? "here" : ""} ${reach ? "reachable" : ""} ${ghost ? "ghost-space" : ""}" style="left:${x}%;top:${26 + y * 2.38}px" data-command="STEP" data-args="${esc(JSON.stringify({ node: id }))}" ${reach ? "" : "disabled"} title="${esc(n.placeName || n.label)}${ghost ? " · 배치 예정" : ""}">${here ? "● 사냥꾼<br>" : ""}${icons}${esc(n.placeName || n.label)}${loot ? "<small>◇ × " + loot + "</small>" : ""}${tokens.map((t) => `<small class="map-mission-token">◆ ${esc(t.name)}</small>`).join("")}${figures
-          .map((f) => {
-            const a = state.world.assignments.find((a) => a.enemyId === f.kind);
-            return `<span class="token" style="--marker:${colors[a?.marker] || colors.gold}" title="${esc(E.enemyDef(state, f).name)} #${f.figure}">${f.missionId || f.provisionalKind || !a ? "★" : ["①", "②", "③"][a.slot - 1]} #${f.figure}</span>`;
-          })
-          .join("")}</button>`;
-      })
-      .join("")}${M.exits(p)
-      .map(
-        (e) =>
-          `<span class="exit-tick exit-${e.edge}" title="${directionNames[e.edge]} 출입구">${{ N: "↑", S: "↓", W: "←", E: "→" }[e.edge]}</span>`,
-      )
-      .join("")}</div>`;
+    return `<div class="tile-cell ${ghost ? "ghost" : ""} ${fog ? "fog-tile" : ""}" data-tile="${p.tileId}"><img class="tile-diagram" src="${G.image(p.tileId)}" alt="" style="transform:rotate(${p.rotation * 90}deg)"><div class="tile-name"><a href="${G.image(p.tileId)}" target="_blank">${esc(def.displayName)} ↗</a><span>${ghost ? "미리보기" : fog ? "안개" : p.rotation * 90 + "°"}</span></div>${def.spaces.map((n) => {
+      const id = `${p.tileId}:${n.id}`, [x, y] = G.point(p.tileId, n.id, p.rotation),
+        polygon = G.polygon(p.tileId, n.id, p.rotation).map(([x,y]) => `${x}% ${y}%`).join(","),
+        here = !ghost && id === h.position,
+        reach = !ghost && state.phase === "move" && reachable.includes(id) && (!currentFog || p.tileId === currentTile),
+        loot = ghost ? 0 : state.loot.filter((l) => l === id).length,
+        figures = ghost ? [] : state.enemies.filter((f) => f.node === id),
+        tokens = ghost ? [] : (mission?.tokens || []).filter((t) => t.node === id || (t.carrierId === state.activeHunterId && here));
+      const status = `${here ? "● 사냥꾼" : ""}${loot ? `<small>◇ 남은 소모품 ${loot}</small>` : ""}${tokens.map((t) => `<small class="map-mission-token">◆ ${esc(t.name)}</small>`).join("")}${figures.map((f) => {
+        const a = state.world.assignments.find((a) => a.enemyId === f.kind);
+        return `<span class="token" style="--marker:${colors[a?.marker] || colors.gold}" title="${esc(E.enemyDef(state, f).name)} #${f.figure}">${f.missionId || f.provisionalKind || !a ? "★" : ["①","②","③"][a.slot - 1]} #${f.figure}</span>`;
+      }).join("")}`;
+      return `<button class="space diagram-space ${here ? "here" : ""} ${reach ? "reachable" : ""} ${ghost ? "ghost-space" : ""}" style="clip-path:polygon(${polygon})" data-command="STEP" data-args="${esc(JSON.stringify({node:id}))}" ${reach ? "" : "disabled"} aria-label="${esc(n.placeName || n.label)}${here ? " · 사냥꾼" : ""}${loot ? " · 소모품 " + loot : ""}${figures.length ? " · 적 " + figures.length : ""}" title="${esc(n.placeName || n.label)}"><span class="space-status" style="left:${x}%;top:${Math.min(90,y+10)}%">${status}</span></button>`;
+    }).join("")}</div>`;
   }
   function preview() {
     if (!state.world.pending) {
@@ -832,6 +790,8 @@
     if (!f) return;
     try {
       state = E.importSave(await f.text());
+      setupRequired = false;
+      if ($("setupDialog").open) $("setupDialog").close();
       selectedCard = null;
       selectedReward = null;
       pulls.clear();
@@ -841,6 +801,7 @@
       $("error").textContent = "";
     } catch (x) {
       $("error").textContent = x.message;
+      if ($("setupDialog").open) $("setupError").textContent = x.message;
     }
     e.target.value = "";
   };
@@ -871,11 +832,21 @@
     .filter((x) => x.runtime === "playable")
     .map((x) => `<option value="${x.id}">${esc(x.name)}</option>`)
     .join("");
-  $("new").onclick = () => {
+  const startPlacement = window.BBStartPlacement.mount($("startPlacement"), $("start"), $("confirmSetup"));
+  function openSetup() {
     $("seed").value = Date.now() % 4294967295;
+    $("start").value = "";
+    startPlacement.update();
+    $("cancelSetup").hidden = setupRequired;
+    $("setupIntro").textContent = setupRequired
+      ? "시작할 칸을 선택한 뒤 사냥을 시작하세요. 저장 파일이 있으면 불러올 수도 있습니다."
+      : "현재 진행을 보관하려면 먼저 저장을 내보내세요.";
     $("setupError").textContent = "";
     $("setupDialog").showModal();
-  };
+  }
+  $("new").onclick = openSetup;
+  $("loadSetup").onclick = () => $("file").click();
+  $("setupDialog").addEventListener("cancel", (e) => { if (setupRequired) e.preventDefault(); });
   $("cancelSetup").onclick = () => $("setupDialog").close();
   $("confirmSetup").onclick = () => {
     try {
@@ -889,6 +860,7 @@
         { campaign: $("playMode").value === "campaign",
           ...(!["campaign", "practice"].includes($("playMode").value) ? { provisional: $("playMode").value } : {}) },
       );
+      setupRequired = false;
       selectedCard = null;
       selectedSlot = 0;
       selectedReward = null;
@@ -904,5 +876,6 @@
   };
   render();
   if (startupError) $("error").textContent = startupError;
-  else save();
+  else if (!setupRequired) save();
+  if (setupRequired) openSetup();
 })();

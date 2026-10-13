@@ -133,13 +133,13 @@
     }
     const columns = element("div", undefined, "card-columns");
     const a = element("a", undefined, "photo-link");
-    a.href = base + e.image;
+    a.href = e.tileId ? window.BBTileGeometry.image(e.tileId) : base + e.image;
     a.target = "_blank";
     a.rel = "noopener";
-    a.title = "사진 크게 열기";
+    a.title = e.tileId ? "타일 도식 크게 열기" : "사진 크게 열기";
     const img = element("img", undefined, "photo");
-    img.src = base + e.image;
-    img.alt = e.title + (e.tileId ? " 지도 타일 사진" : " 카드 사진");
+    img.src = a.href;
+    img.alt = e.title + (e.tileId ? " 직접 그린 지도 도식" : " 카드 사진");
     a.append(img);
     columns.append(a);
     const rules = element("section", undefined, "rules");

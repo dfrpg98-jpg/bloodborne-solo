@@ -123,6 +123,29 @@
   height: 100%;
   object-fit: cover;
 }
+.tile-diagram {
+  position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;
+}
+.tile-cell .diagram-space {
+  inset: 0; width: 100%; height: 100%; transform: none; min-height: 0;
+  padding: 0; border: 0; border-radius: 0; background: transparent;
+}
+.tile-cell .diagram-space .space-status {
+  position: absolute; transform: translate(-50%, -50%); width: 84px;
+  background: #0e1b23ee; border-radius: 5px; padding: 3px;
+}
+.tile-cell .diagram-space .space-status:empty { display: none; }
+.tile-cell .diagram-space.here { background: #c7aa4a22; }
+.tile-cell .diagram-space.reachable { background: #60c9d933; cursor: pointer; }
+.tile-cell .diagram-space.reachable:hover { background: #60c9d966; }
+.tile-cell .diagram-space:focus-visible { background: #81d6e966; outline: 3px solid #abeaff; }
+.tile-cell .diagram-space:disabled { opacity: 1; }
+.start-tile { position: relative; width: min(100%, 280px); aspect-ratio: 1; margin: 12px auto; }
+.start-tile img { width: 100%; height: 100%; }
+.start-space { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 0; background: #7dc5d511; padding: 0; }
+.start-space span { position: absolute; transform: translate(-50%,-50%); background: #0e1b23e6; padding: 5px 8px; font-size: 12px; white-space: nowrap; }
+.start-space:hover, .start-space:focus-visible { background: #7dc5d54a; }
+.start-space.selected { background: #d7b56555; color: #ffe4a0; }
 .tile-name {
   position: absolute;
   top: 8px;
@@ -132,7 +155,7 @@
   justify-content: space-between;
   gap: 6px;
   font-size: 12px;
-  z-index: 1;
+  z-index: 4;
   text-shadow: 0 1px 4px #000;
 }
 .tile-name a {

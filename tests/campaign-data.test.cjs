@@ -96,7 +96,8 @@ test("tile atlas has twenty unique sources, connected spaces and valid exits and
   const required = new Set(['중앙 등불', ...data.chapters.flatMap((c) => c.requiredTiles)]);
   for (const name of required) assert.ok(data.tiles.some((t) => t.name === name), name);
   for (const t of data.tiles) {
-    assert.ok(fs.statSync(path.join(root, t.image)).size > 0);
+    const diagram = require("../tile-geometry.js").image(t.id);
+    assert.ok(fs.statSync(path.join(__dirname, "..", diagram)).size > 0);
     assert.match(t.source.sha256, /^[a-f0-9]{64}$/);
     const ids = new Set(t.spaces.map((s) => s.id));
     assert.equal(ids.size, t.spaces.length);

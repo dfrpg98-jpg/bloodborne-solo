@@ -83,9 +83,14 @@
     const a = node(s, from)?.tile, b = node(s, to)?.tile;
     return a !== b && (missions.fogged(s, a) || missions.fogged(s, b));
   }
-  function teleport(s, to) {
+  function centralLampDestinations(s) {
+    return nodes(s).filter((n) => n.lamp || missions.fogged(s, n.tile));
+  }
+  function teleport(s, to, allowFogDestination = false) {
     const h = hunter(s);
-    need(node(s, to)?.lamp, "사용할 수 있는 등불을 선택하세요.");
+    const destination = node(s, to);
+    need(destination && (destination.lamp || allowFogDestination && missions.fogged(s, destination.tile)),
+      "사용할 수 있는 등불 또는 허용된 안개 안 칸을 선택하세요.");
     need(!missions.fogged(s, node(s, h.position)?.tile) || sameTile(s, h.position, to),
       "안개 진입로 안에서는 꿈 이외의 방법으로 탈출할 수 없습니다.");
     missions.onTeleport(s, missionHelpers());
@@ -1540,7 +1545,7 @@
       } else drawConsumable(s);
     }
     if (q.lamp) {
-      teleport(s, q.lamp);
+      teleport(s, q.lamp, true);
       log(s, `중앙 등불 · ${nameAt(s, q.lamp)}(으)로 순간이동.`);
     }
     const rescue = q.mission === "rescue";
@@ -1772,8 +1777,8 @@
         );
         need(!a.heal || opt.heal, "대성당에서 사용할 수 있습니다.");
         need(
-          !a.lamp || (opt.teleport && node(s, a.lamp)?.lamp),
-          "중앙 등불에서 목적지 등불을 선택하세요.",
+          !a.lamp || (opt.teleport && centralLampDestinations(s).some((n) => n.id === a.lamp)),
+          "중앙 등불에서 목적지 등불 또는 안개 안 칸을 선택하세요.",
         );
         need(!a.exchange, "성배 교단 예배당의 교환 효과는 아직 연결 전입니다.");
         need(!a.mission || a.mission === "rescue" && opt.missionRescue, "같은 칸의 구조 토큰을 선택하세요.");
@@ -2305,6 +2310,7 @@
     moveOptions,
     leapPaths,
     interactionOptions,
+    centralLampDestinations,
     canLeave,
     create,
     dispatch,
