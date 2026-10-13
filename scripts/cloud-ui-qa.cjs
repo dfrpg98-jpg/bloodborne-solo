@@ -123,6 +123,10 @@ function firearmReward(){let s=E.create(90,'burial',1,null,'hunter-pistol','cent
         report.observations.push({name:'viewport-'+width,layout,tooltip:await gun.getAttribute('title')});await screenshot('hand-tooltip-'+width);
       }
       await page.setViewportSize({width:1208,height:848});
+      for(const count of [5,4]){const id=E.hunter(s).hand[0].id;await page.locator(`[data-card="${id}"]`).click();
+        await page.locator('#movementControls [data-command=MOVE]').click();s=E.dispatch(s,{type:'MOVE',cardId:id});
+        await page.locator('#movementControls [data-command=STOP_MOVE]').click();s=E.dispatch(s,{type:'STOP_MOVE'});assert.deepEqual(await saved(),s);
+        assert.equal(await page.locator('#hand [data-card]').count(),count);await screenshot('hand-'+count+'-cards');}
       const tile=page.locator('[data-tile-info="tile-14"]');await tile.click();assert.match(await page.locator('#tileInfo').innerText(),/中央|중앙|순간이동/);assert.deepEqual(await saved(),s);
     });
     await attempt('direction-controller-continuity',async()=>{
@@ -203,7 +207,16 @@ function firearmReward(){let s=E.create(90,'burial',1,null,'hunter-pistol','cent
       const command={type:'ATTACK',cardId:E.hunter(s).hand[0].id,slot:0,enemyId:e.id};s=await transition(s,command);
       assert.equal(s.combat.action.speed,0);assert.equal(s.combat.action.name,'달려들어 뜯기');assert.match(await page.locator('#combatInfo').innerText(),/속도 1 → 0/);
       await screenshot('chapel-one-to-zero-combat');s=await transition(s,{type:'RESOLVE'});await acknowledge();await clean();await screenshot('chapel-one-to-zero-after-resolve');
+      const arts=page.locator('#chapterMap [data-tile-art][data-tile-rotation="1"]');assert(await arts.count()>0);
+      for(const img of await arts.all())await page.waitForFunction(el=>el.src.startsWith('blob:')&&el.complete&&el.naturalWidth>0,await img.elementHandle());
       report.observations.push({name:'chapel-zero-normal-command-preparation',seed:7,commands:checkpoint.commands,actualCommands:[checkpoint.step,command,{type:'RESOLVE'}]});
+    });
+    await attempt('real-unnamed-location-cleanup',async()=>{
+      const s=naturalReplay(E.create(90,'beast-claw',0,null,'hunter-pistol','center',{campaign:true,rulesVersion:14,qa:{preset:'custom',startRewards:[],startConsumables:[]}}),
+        require('../tests/fixtures/weapon-campaign-completion/beast-claw-0.json').slice(0,132));
+      assert.match(E.node(s,E.hunter(s).position).name,/명칭 없는/);await load(s);
+      for(const id of ['status','chapterMap','huntLog'])assert.doesNotMatch(await page.locator('#'+id).innerText(),/명칭 없는 타일/);
+      assert.deepEqual(await saved(),s);await screenshot('unnamed-cell-label');
     });
   }catch(e){report.failures.push({name:'browser-run',error:e.stack});}
   finally{if(browser)await browser.close();server.close();fs.writeFileSync(path.join(out,'results.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({browser:report.browser,passed:report.observations.length,failures:report.failures,pageErrors:report.pageErrors},null,2));if(report.failures.length||report.pageErrors.length)process.exitCode=1;}
