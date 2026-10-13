@@ -5,6 +5,12 @@
   const M = local ? require("./chapter-engine.js") : root.BBChapter;
   const missions = local ? require("./mission-engine.js") : root.BBMission;
   const directionNames = { N: "북쪽", E: "동쪽", S: "남쪽", W: "서쪽" };
+  function enemyInsightTokens(state, enemy) {
+    if (!enemy) return null;
+    if (Number.isFinite(enemy.insightTokens)) return enemy.insightTokens;
+    const target = state.mission?.targets?.[enemy.missionId];
+    return target?.enemyId === enemy.id && Number.isFinite(target.tokens) ? target.tokens : null;
+  }
 
   // Context is a public-state description, not a speculative reducer run.
   // In particular no card, tile, enemy-action or reward deck is examined here.
@@ -22,7 +28,9 @@
     const actions = [], result = { kind, title: kind === "enemy" ?
       `${E.enemyDef(state, e).name} #${e.figure}` : kind === "entrance" ?
       `${directionNames[target.edge] || "지도"} 출입구` : n.name,
-      nodeId, enemyId: e?.id || null, actions, hint: "" };
+      nodeId, enemyId: e?.id || null, actions, hint: "",
+      fog: missions.fogged(state, n.tile),
+      brokenLamp: missions.fogged(state, n.tile) && n.icons.some(icon => icon.kind === "lamp") };
     const add = (id, label, cost, reason, command = null, sequence = null) => {
       const problem = locked || reason || "";
       actions.push({ id, label, cost, enabled: !problem, reason: problem, command,
@@ -99,8 +107,8 @@
         phase === "hunter" ? [{ type: "MOVE", cardId: chosen?.id || null }, { type: "EXPLORE", edge: target.edge }] : null);
       result.hint = "탐험을 실행하면 새 타일이 공개됩니다. 회전과 배치는 직접 선택합니다.";
     } else {
-      const distance = h.inDream ? null : E.distance(state, h.position, nodeId);
-      result.hint = `체력 ${e.hp} / ${E.enemyDef(state, e).maxHp}${distance !== null && Number.isFinite(distance) ? ` · ${distance}칸 거리` : ""}`;
+      const distance = h.inDream ? null : E.distance(state, h.position, nodeId), insight = enemyInsightTokens(state, e);
+      result.hint = `체력 ${e.hp} / ${E.enemyDef(state, e).maxHp}${distance !== null && Number.isFinite(distance) ? ` · ${distance}칸 거리` : ""}${insight !== null ? ` · 계몽 토큰 ${insight}개` : ""}`;
       if (["hunter", "combat_choose"].includes(phase)) {
         const counter = phase === "combat_choose", slots = E.slots(state), slot = selection.slot;
         const pulls = selection.pullIds || [], candidates = new Set(E.pullCandidates(state).map(x => x.id));
@@ -148,7 +156,7 @@
     return result;
   }
 
-  const api = { view };
+  const api = { view, enemyInsightTokens };
   if (local) module.exports = api;
   else root.BBHuntContext = api;
 })(typeof globalThis !== "undefined" ? globalThis : this);

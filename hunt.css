@@ -92,6 +92,11 @@
 .hunt-main .map-viewport .space:disabled { opacity: 1; filter: none; }
 .hunt-main .chapter-map .space .token { font-size: 9px; }
 .hunt-main .map-figures { position: absolute; display: flex; gap: 4px; transform: translateX(-50%); pointer-events: none; z-index: 8; }
+.hunt-main .map-figures.lamp-figures { transform: translate(-50%, -50%); }
+.hunt-main .enemy-insight-badge { position: absolute; top: 24px; left: -28px; padding: 2px 4px; border: 1px solid #c7b380; border-radius: 4px; color: #f5dfa4; background: #15222cf5; font-size: 10px; white-space: nowrap; }
+.hunt-main .tile-label { color: #e5d4b3; background: #15242ce6; padding: 2px 5px; }
+.hunt-main .broken-lamp-marker { position: absolute; transform: translate(-50%, -50%); display: grid; place-items: center; width: 28px; height: 28px; border: 2px solid #bd8b7e; border-radius: 50%; color: #f2b8a8; background: #182028f5; font-size: 25px; pointer-events: none; line-height: 1; }
+.hunt-main .broken-lamp-label { color: #e4b4a6; }
 .hunt-main .map-figure { position: relative; display: grid; place-items: center; pointer-events: auto; min-width: 32px; width: 32px; min-height: 32px; height: 32px; padding: 0; border: 1px solid var(--marker, #c9aa70); border-radius: 50%; color: var(--marker, #e0c584); background: #101a22f2; box-shadow: 0 2px 7px #0008; font-size: 20px; line-height: 1; }
 .hunt-main .map-figure small { position: absolute; right: -3px; bottom: -3px; display: grid; place-items: center; width: 13px; height: 13px; border-radius: 50%; color: #172127; background: var(--marker, #c9aa70); font-size: 9px; line-height: 1; letter-spacing: 0; }
 .hunt-main .map-figure.selected { border-color: #ffe2a4; outline: 2px solid #ffe2a4; outline-offset: 2px; background: #4a3c25; }
@@ -515,6 +520,15 @@
 .context-action button { width: 100%; padding: 6px; font-size: 12px; line-height: 1.35; text-align: left; border-color: #a89461; }
 .context-action button small { display: block; font-size: 10px; color: #d6d6c8; line-height: 1.35; letter-spacing: 0; margin-top: 3px; }
 .context-hint, .context-reason { font-size: 10px; line-height: 1.4; margin: 2px 0 5px; color: #bfcbc9; }
+.context-enemy-abilities { margin-top: 12px; padding-top: 10px; border-top: 1px solid #56656b; }
+.context-enemy-abilities h4 { margin: 0 0 8px; color: #e3cc94; font-size: 12px; }
+.context-enemy-abilities dl { margin: 0; }
+.context-enemy-abilities dt { margin: 10px 0 4px; color: #dcc592; font-size: 11px; }
+.context-enemy-abilities dd { margin: 0; font-size: 11px; line-height: 1.5; }
+.context-enemy-abilities dd p { margin: 6px 0 10px; }
+.context-lamp-warning, .context-fog-note { margin: 8px 0; font-size: 10px; line-height: 1.5; }
+.context-lamp-warning { color: #e3b5a6; }
+.context-fog-note { color: #acbec1; }
 .context-reason { margin: 2px 0 0; color: #d8b2a5; }
 
 html[data-phase="combat_choose"] .decision-content:has(.map-context:not([hidden])) .combat-card { padding: 5px; margin: 3px 0; }

@@ -850,8 +850,8 @@
         html += `<details id="contextInteraction" ${mapTarget?.kind === "cell" && mapTarget.node === h.position ? "open" : ""}><summary>상호작용 · 손패 1장</summary><p class="muted">같은 칸의 여러 대상을 손패 1장으로 동시에 상호작용할 수 있습니다. 적들이 먼저 행동하며, 이때 맞서 공격하거나 회피할 수 없습니다.</p>${o.missionRescue ? `<label class="checkrow"><input id="tileRescue" type="checkbox" ${interactionMissionSelected ? "checked" : ""}>임무 상호작용도 함께 선택</label>` : ""}${o.provisionalNpc ? button("임시 NPC · 카드 1장을 버려 치유 2", "INTERACT", { cardId: selectedCard, provisionalNpc: true }, !chosen) : ""}${o.loot ? `<label>획득할 소모품 토큰<select id="lootCount">${Array.from({ length: o.loot + 1 }, (_, i) => `<option value="${i}" ${i === o.loot ? "selected" : ""}>${i}개</option>`).join("")}</select></label>` : ""}${o.heal ? '<label class="checkrow"><input id="tileHeal" type="checkbox" checked>대성당 · 치유 2</label>' : ""}${
           o.teleport
             ? `<label>중앙 등불 순간이동 · 등불 또는 안개 안 칸<select id="tileLamp"><option value="">사용하지 않음</option>${E.centralLampDestinations(state)
-                .map((n) => `<option value="${n.id}">${esc(n.name)}${n.lamp ? "" : " · 안개 안"}</option>`)
-                .join("")}</select></label>`
+                .map((n) => `<option value="${n.id}">${esc(n.name)}${n.lamp ? " · 등불" : " · 안개 진입로 안으로 이동"}</option>`)
+                .join("")}</select></label><p class="muted">중앙 등불의 특수 효과로 안개 진입로 안의 칸에도 들어갈 수 있습니다. 그곳의 망가진 등불은 사용할 수 없고, 꿈에서 돌아오는 목적지로도 선택할 수 없습니다.</p>`
             : ""
         }${o.workshop ? `<label>성배 교단 예배당 · 소모품 1장 교환<select id="tileExchangeItem"><option value="">교환하지 않음</option>${h.consumables.map((item) => `<option value="${esc(item.id)}">${esc(consumableDefinitions()[item.kind].name)}</option>`).join("")}${o.loot ? '<option value="after-loot">소모품 획득 후 교환할 카드 선택</option>' : ""}</select></label><p class="muted">선택한 소모품을 버리고 피의 유지 1개를 얻습니다(최대 3개). 소모품의 일반 사용 효과는 적용하지 않습니다.${h.consumables.length || o.loot ? "" : " 교환할 소모품이 없습니다."}</p>` : ""}${o.loot || o.heal || o.teleport || o.missionRescue || o.workshop ? `<button id="interact" ${chosen ? "" : "disabled"}>상호작용 실행</button>` : ""}</details>`;
       }
@@ -1227,7 +1227,7 @@
       const resourceCost = (["ATTACK", "COUNTER"].includes(type) && inventory.ids().length ? ` · 소모품 ${inventory.ids().length}장 사용` : "")
         + (["ATTACK", "COUNTER", "FIREARM"].includes(type) && selectedRewards.size ? ` · 선택 보상 ${selectedRewards.size}장 소진` : "");
       return `<div class="context-action"><button data-context-id="${esc(action.id)}" ${c ? `data-command="${type}" data-args="${esc(JSON.stringify(args))}"` : `data-context-action="${index}"`} ${action.enabled ? "" : "disabled"}>${esc(action.label)}<small>${esc(action.cost + selfCost + resourceCost)}</small></button>${!action.enabled && action.reason ? `<p class="context-reason">${esc(action.reason)}</p>` : ""}</div>`;
-    }).join("")}</div>`;
+    }).join("")}</div>${view.brokenLamp ? '<p class="context-lamp-warning">망가진 등불 · 사용할 수 없고, 사냥꾼의 꿈에서 돌아오는 목적지로 선택할 수 없습니다.</p>' : ""}${view.fog ? '<p class="context-fog-note">안개가 생길 때 이 타일의 일반 적이 제거됩니다.</p>' : ""}${view.enemyId ? `<section class="context-enemy-abilities" aria-label="선택한 적의 공격과 능력"><h4>공격과 능력</h4>${publicEnemyAbilities(E.enemyDef(state, state.enemies.find(enemy => enemy.id === view.enemyId)), state.enemies.find(enemy => enemy.id === view.enemyId))}</section>` : ""}`;
     bind(box);
     box.querySelectorAll("[data-context-action]").forEach((b) => {
       b.onclick = () => {
@@ -1264,26 +1264,27 @@
         action.otherHunters && `이 칸의 다른 사냥꾼은 회피(속도 ${action.otherHunters.dodgeSpeed})하거나 피해 ${action.otherHunters.damage}를 받습니다.`].filter(Boolean))];
     return `<strong>${esc(uiText(action.name || action.label || "능력"))}</strong>${values.length ? `<span class="enemy-action-stats">${values.join(" · ")}</span>` : ""}${effects.length ? `<p>${effects.map(effect => esc(uiText(effect))).join(" · ")}</p>` : ""}${action.rules?.length ? `<p>${action.rules.map(rule => esc(uiText(rule))).join("<br>")}</p>` : ""}`;
   }
+  function publicEnemyAbilities(d, enemy) {
+    if (d.boss) {
+      // Only the current, already revealed combat action is public. Boss
+      // definitions also contain future actions and must not be enumerated.
+      const c = enemy && state.combat?.enemyId === enemy.id ? state.combat : null,
+        actions = [c?.action, c?.immediate, c?.extra].filter(Boolean),
+        unique = actions.filter((action, index) => actions.findIndex(other => other.name === action.name) === index);
+      return unique.length ? `<dl>${unique.map(action => `<dt>현재 공개된 행동</dt><dd>${publicEnemyAction(action)}</dd>`).join("")}</dl>` : '<p class="muted">아직 공개된 행동이 없습니다.</p>';
+    }
+    const f = d.face, basic = f?.basicAttack || d.basic, special = f?.specialAttack || d.special, ability = f?.ability || d.ability;
+    return `<dl>${[["기본 공격", basic], ["특수 공격", special], ["전용 능력", ability]].filter(([, action]) => action).map(([label, action]) => `<dt>${label}</dt><dd>${publicEnemyAction(action, label !== "전용 능력")}</dd>`).join("")}</dl>`;
+  }
   function openEnemyDetail(button) {
     const assignment = button.dataset.enemyInfo && state.world.assignments.find(a => a.enemyId === button.dataset.enemyInfo),
       enemy = button.dataset.specialInfo && state.enemies.find(e => e.id === button.dataset.specialInfo);
     if (!assignment && !enemy) return;
-    const d = E.enemyDef(state, enemy || assignment.enemyId), f = d.face,
-      stats = `<p class="muted">${enemy ? `체력 ${enemy.hp} / ${d.maxHp}` : `체력 ${d.maxHp ?? d.health}`} · 이동 ${d.move}${d.boss && enemy?.componentPhase ? ` · ${enemy.componentPhase}페이즈` : ""}</p>`;
-    let detail;
-    if (d.boss) {
-      // Only the current, already revealed combat action is public. Boss
-      // definitions also contain future actions and must not be enumerated.
-      const c = state.combat?.enemyId === enemy.id ? state.combat : null,
-        actions = [c?.action, c?.immediate, c?.extra].filter(Boolean),
-        unique = actions.filter((action, index) => actions.findIndex(other => other.name === action.name) === index);
-      detail = `<p>계몽 토큰 ${enemy.insightTokens || 0}개</p>${unique.length ? `<dl>${unique.map(action => `<dt>현재 공개된 행동</dt><dd>${publicEnemyAction(action)}</dd>`).join("")}</dl>` : '<p class="muted">아직 공개된 행동이 없습니다.</p>'}`;
-    } else {
-      const basic = f?.basicAttack || d.basic, special = f?.specialAttack || d.special, ability = f?.ability || d.ability;
-      detail = `<dl>${[["기본 공격", basic], ["특수 공격", special], ["전용 능력", ability]].filter(([, action]) => action).map(([label, action]) => `<dt>${label}</dt><dd>${publicEnemyAction(action, label !== "전용 능력")}</dd>`).join("")}</dl>`;
-    }
+    const d = E.enemyDef(state, enemy || assignment.enemyId), insight = window.BBHuntContext?.enemyInsightTokens(state, enemy),
+      stats = `<p class="muted">${enemy ? `체력 ${enemy.hp} / ${d.maxHp}` : `체력 ${d.maxHp ?? d.health}`} · 이동 ${d.move}${d.boss && enemy?.componentPhase ? ` · ${enemy.componentPhase}페이즈` : ""}</p>`,
+      tokens = Number.isFinite(insight) || d.boss ? `<p>계몽 토큰 ${insight || 0}개</p>` : "";
     $("enemyDetailTitle").textContent = uiText(d.name);
-    $("enemyDetailContent").innerHTML = stats + detail;
+    $("enemyDetailContent").innerHTML = stats + tokens + publicEnemyAbilities(d, enemy);
     historyPopup?.close(); enemyPopup?.open(button);
   }
   function renderEnemies() {
@@ -1309,7 +1310,7 @@
       currentTile = E.node(state, h.position)?.tile,
       currentFog = !!mission?.fog.includes(currentTile),
       fog = !ghost && !!mission?.fog.includes(p.tileId);
-    return `<div class="tile-cell ${ghost ? "ghost" : ""} ${fog ? "fog-tile" : ""}" data-tile="${p.tileId}"><img class="tile-diagram" src="${G.image(p.tileId)}" alt="" style="transform:rotate(${p.rotation * 90}deg)"><div class="tile-name"><a href="${G.image(p.tileId)}" target="_blank">${esc(def.displayName)} ↗</a><span>${ghost ? "미리보기" : fog ? "안개" : p.rotation * 90 + "°"}</span></div>${def.spaces.map((n) => {
+    return `<div class="tile-cell ${ghost ? "ghost" : ""} ${fog ? "fog-tile" : ""}" data-tile="${p.tileId}"><img class="tile-diagram" src="${G.image(p.tileId)}" alt="" style="transform:rotate(${p.rotation * 90}deg)"><div class="tile-name"><span class="tile-label">${esc(def.displayName)}</span>${ghost || fog ? `<span>${ghost ? "미리보기" : "안개"}</span>` : ""}</div>${def.spaces.map((n) => {
       const id = `${p.tileId}:${n.id}`, [x, y] = G.point(p.tileId, n.id, p.rotation),
         outline = G.polygon(p.tileId, n.id, p.rotation),
         left = Math.min(...outline.map(([x]) => x)), top = Math.min(...outline.map(([,y]) => y)),
@@ -1320,17 +1321,22 @@
         reach = !ghost && state.phase === "move" && reachable.includes(id) && (!currentFog || p.tileId === currentTile),
         loot = ghost ? 0 : state.loot.filter((l) => l === id).length,
         figures = ghost ? [] : state.enemies.filter((f) => f.node === id),
-        tokens = ghost ? [] : (mission?.tokens || []).filter((t) => t.node === id || (t.carrierId === state.activeHunterId && here));
-      const status = `${here ? '<span class="hunter-map-marker">● 사냥꾼</span>' : ""}${loot ? `<small>◇ 남은 소모품 ${loot}</small>` : ""}${tokens.map((t) => `<small class="map-mission-token">◆ ${esc(t.name)}</small>`).join("")}`;
-      return `<button class="space diagram-space ${here ? "here" : ""} ${reach ? "reachable" : ""} ${mapTarget?.kind === "cell" && mapTarget.node === id ? "context-selected" : ""} ${ghost ? "ghost-space" : ""}" style="left:${left}%;top:${top}%;width:${width}%;height:${height}%;clip-path:polygon(${polygon})" data-node="${esc(id)}" aria-pressed="${mapTarget?.kind === "cell" && mapTarget.node === id}" ${ghost ? "disabled" : ""} aria-label="${esc(n.placeName || n.label)}${here ? " · 사냥꾼" : ""}${loot ? " · 소모품 " + loot : ""}${figures.length ? " · 적 " + figures.length : ""}" title="${esc(n.placeName || n.label)}"><span class="node-anchor" data-node-anchor="${esc(id)}" style="left:${localX}%;top:${localY}%" aria-hidden="true"></span>${here && !h.inDream ? `<span class="hunter-anchor" data-presentation-id="hunter" data-presentation-kind="hunter" data-presentation-node="${esc(id)}" data-presentation-skin="${esc(hunterVisual().skin)}" style="left:${localX}%;top:${localY}%" aria-hidden="true"></span>` : ""}<span class="space-status" style="left:${localX}%;top:${Math.min(90,localY+10)}%">${status}</span></button>`;
+        tokens = ghost ? [] : (mission?.tokens || []).filter((t) => t.node === id || (t.carrierId === state.activeHunterId && here)),
+        brokenLamp = fog && n.icons.some(icon => icon.kind === "lamp"),
+        lampOccupied = n.icons.some(icon => icon.kind === "lamp") && figures.some(enemy => enemy.missionId),
+        hunterX = lampOccupied ? Math.min(85, localX + 30) : localX;
+      const status = `${here ? '<span class="hunter-map-marker">● 사냥꾼</span>' : ""}${brokenLamp ? '<small class="broken-lamp-label">망가진 등불</small>' : ""}${loot ? `<small>◇ 남은 소모품 ${loot}</small>` : ""}${tokens.map((t) => `<small class="map-mission-token">◆ ${esc(t.name)}</small>`).join("")}`;
+      return `<button class="space diagram-space ${here ? "here" : ""} ${reach ? "reachable" : ""} ${mapTarget?.kind === "cell" && mapTarget.node === id ? "context-selected" : ""} ${ghost ? "ghost-space" : ""}" style="left:${left}%;top:${top}%;width:${width}%;height:${height}%;clip-path:polygon(${polygon})" data-node="${esc(id)}" aria-pressed="${mapTarget?.kind === "cell" && mapTarget.node === id}" ${ghost ? "disabled" : ""} aria-label="${esc(n.placeName || n.label)}${brokenLamp ? " · 망가진 등불" : ""}${here ? " · 사냥꾼" : ""}${loot ? " · 소모품 " + loot : ""}${figures.length ? " · 적 " + figures.length : ""}" title="${esc(n.placeName || n.label)}${brokenLamp ? " · 망가진 등불 · 사용 및 꿈 복귀 불가" : ""}">${brokenLamp ? `<span class="broken-lamp-marker" style="left:${localX}%;top:${localY}%" aria-hidden="true">×</span>` : ""}<span class="node-anchor" data-node-anchor="${esc(id)}" style="left:${localX}%;top:${localY}%" aria-hidden="true"></span>${here && !h.inDream ? `<span class="hunter-anchor" data-presentation-id="hunter" data-presentation-kind="hunter" data-presentation-node="${esc(id)}" data-presentation-skin="${esc(hunterVisual().skin)}" style="left:${hunterX}%;top:${localY}%" aria-hidden="true"></span>` : ""}<span class="space-status" style="left:${localX}%;top:${Math.min(90,localY+10)}%">${status}</span></button>`;
     }).join("")}${ghost ? "" : def.spaces.map((space) => {
       const node = `${p.tileId}:${space.id}`, figures = state.enemies.filter((enemy) => enemy.node === node);
       if (!figures.length) return "";
-      const [x, y] = G.point(p.tileId, space.id, p.rotation);
-      return `<div class="map-figures" style="left:${x}%;top:${Math.min(82, y + 18)}%">${figures.map((enemy) => {
+      const lampMarker = figures.some(enemy => enemy.missionId) && G.definition(p.tileId).markers.find(marker => marker.spaceId === space.id && marker.kind === "lamp"),
+        [x, y] = lampMarker ? G.rotatePoint(lampMarker.point, p.rotation) : G.point(p.tileId, space.id, p.rotation);
+      return `<div class="map-figures ${lampMarker ? "lamp-figures" : ""}" style="left:${x}%;top:${lampMarker ? y : Math.min(82, y + 18)}%">${figures.map((enemy) => {
         const assigned = state.world.assignments.find((assignment) => assignment.enemyId === enemy.kind), d = E.enemyDef(state, enemy),
-          marker = enemy.missionId || enemy.provisionalKind || enemy.componentId || !assigned ? "★" : ["①", "②", "③"][assigned.slot - 1];
-        return `<button type="button" class="map-figure ${selectedEnemy === enemy.id ? "selected" : ""}" data-enemy="${esc(enemy.id)}" data-presentation-id="${esc(enemy.id)}" data-presentation-kind="enemy" data-presentation-node="${esc(node)}" data-presentation-skin="${characterSkin(enemy)}" aria-pressed="${selectedEnemy === enemy.id}" aria-label="${esc(d.name)} ${enemy.figure}번 · 체력 ${enemy.hp} · 대상 선택" title="${esc(d.name)} · 체력 ${enemy.hp}/${d.maxHp}" style="--marker:${colors[assigned?.marker] || colors.gold}">${marker}<small>${enemy.figure}</small></button>`;
+          marker = enemy.missionId || enemy.provisionalKind || enemy.componentId || !assigned ? "★" : ["①", "②", "③"][assigned.slot - 1],
+          insight = window.BBHuntContext?.enemyInsightTokens(state, enemy), tokenLabel = Number.isFinite(insight) ? ` · 계몽 토큰 ${insight}개` : "";
+        return `<button type="button" class="map-figure ${selectedEnemy === enemy.id ? "selected" : ""}" data-enemy="${esc(enemy.id)}" data-presentation-id="${esc(enemy.id)}" data-presentation-kind="enemy" data-presentation-node="${esc(node)}" data-presentation-skin="${characterSkin(enemy)}" aria-pressed="${selectedEnemy === enemy.id}" aria-label="${esc(d.name)} ${enemy.figure}번 · 체력 ${enemy.hp}${tokenLabel} · 대상 선택" title="${esc(d.name)} · 체력 ${enemy.hp}/${d.maxHp}${tokenLabel}" style="--marker:${colors[assigned?.marker] || colors.gold}">${marker}<small>${enemy.figure}</small>${Number.isFinite(insight) ? `<span class="enemy-insight-badge" aria-hidden="true">◇ ${insight}</span>` : ""}</button>`;
       }).join("")}</div>`;
     }).join("")}${ghost ? "" : gateHTML(p)}</div>`;
   }

@@ -1,0 +1,19 @@
+{
+  "initialSeed": 819414940,
+  "setup": {
+    "weaponId": "beast-claw",
+    "face": 0,
+    "startingConsumable": null,
+    "firearmId": "hunter-pistol",
+    "startSpace": "center",
+    "rulesVersion": 13,
+    "campaign": true
+  },
+  "commands": [
+    { "type": "MOVE", "cardId": "card-3" },
+    { "type": "EXPLORE", "edge": "N" },
+    { "type": "PLACE_TILE", "rotation": 1 },
+    { "type": "EXPLORE", "edge": "N" },
+    { "type": "PLACE_TILE", "rotation": 0 }
+  ]
+}

@@ -1,0 +1,718 @@
+{
+  "format": "bloodborne-hunt-save",
+  "version": 1,
+  "state": {
+    "schema": 1,
+    "contentId": "bloodborne-hunt-0.5",
+    "rng": 1085804982,
+    "initialSeed": 819414940,
+    "setup": {
+      "weaponId": "beast-claw",
+      "face": 0,
+      "startingConsumable": null,
+      "firearmId": "hunter-pistol",
+      "startSpace": "center",
+      "rulesVersion": 13,
+      "campaign": true
+    },
+    "revision": 18,
+    "round": 2,
+    "track": 3,
+    "lastRound": false,
+    "phase": "hunter",
+    "result": null,
+    "activeHunterId": "hunter-1",
+    "hunters": {
+      "hunter-1": {
+        "id": "hunter-1",
+        "name": "사냥꾼",
+        "hp": 6,
+        "echoes": 0,
+        "position": "tile-04:center",
+        "inDream": false,
+        "weaponId": "beast-claw",
+        "face": 0,
+        "hand": [
+          {
+            "id": "card-11",
+            "kind": "vitality"
+          }
+        ],
+        "deck": [
+          {
+            "id": "card-9",
+            "kind": "strength"
+          },
+          {
+            "id": "card-2",
+            "kind": "endurance"
+          },
+          {
+            "id": "card-8",
+            "kind": "strength"
+          },
+          {
+            "id": "card-4",
+            "kind": "skill"
+          },
+          {
+            "id": "card-5",
+            "kind": "skill"
+          },
+          {
+            "id": "card-10",
+            "kind": "vitality"
+          },
+          {
+            "id": "card-6",
+            "kind": "skill"
+          },
+          {
+            "id": "card-12",
+            "kind": "vitality"
+          },
+          {
+            "id": "card-3",
+            "kind": "endurance"
+          }
+        ],
+        "discard": [
+          {
+            "id": "card-7",
+            "kind": "strength"
+          },
+          {
+            "id": "card-1",
+            "kind": "endurance"
+          }
+        ],
+        "slots": [
+          null,
+          null,
+          null
+        ],
+        "status": {
+          "poison": false,
+          "frenzy": false
+        },
+        "firearmId": "hunter-pistol",
+        "firearmReady": true,
+        "consumables": [],
+        "rewards": [],
+        "ownedFirearms": [
+          "hunter-pistol"
+        ],
+        "rewardKillWindow": false,
+        "rewardTransformWindow": false,
+        "rewardTurnStartWindow": false,
+        "moveActionsRound": 1
+      }
+    },
+    "world": {
+      "assignments": [
+        {
+          "enemyId": "huntsmans-minion",
+          "sideId": "a",
+          "slot": 1,
+          "marker": "gold"
+        },
+        {
+          "enemyId": "huntsman-mob",
+          "sideId": "a",
+          "slot": 2,
+          "marker": "red"
+        },
+        {
+          "enemyId": "scourge-beast",
+          "sideId": "a",
+          "slot": 3,
+          "marker": "purple"
+        }
+      ],
+      "tilePool": [
+        "tile-14",
+        "tile-04",
+        "tile-11",
+        "tile-17",
+        "tile-03",
+        "tile-16",
+        "tile-06"
+      ],
+      "tileDeck": [
+        "tile-06",
+        "tile-17",
+        "tile-03",
+        "tile-16"
+      ],
+      "tiles": [
+        {
+          "tileId": "tile-14",
+          "x": 0,
+          "y": 0,
+          "rotation": 0
+        },
+        {
+          "tileId": "tile-11",
+          "x": 0,
+          "y": -1,
+          "rotation": 1
+        },
+        {
+          "tileId": "tile-04",
+          "x": 0,
+          "y": -2,
+          "rotation": 0
+        }
+      ],
+      "pending": null
+    },
+    "enemies": [
+      {
+        "id": "huntsman-mob-1",
+        "kind": "huntsman-mob",
+        "figure": 1,
+        "node": "tile-04:center",
+        "hp": 4,
+        "missionId": "mob"
+      }
+    ],
+    "loot": [],
+    "enemyDeck": [
+      "special",
+      "basic"
+    ],
+    "enemyDiscard": [
+      "basic",
+      "basic",
+      "ability",
+      "special"
+    ],
+    "market": [
+      "visceral",
+      "sprint",
+      "sprint",
+      "visceral"
+    ],
+    "upgradeDeck": [
+      "steadfast",
+      "counterstrike",
+      "sprint",
+      "quick",
+      "poised",
+      "agile",
+      "adaptive",
+      "tactical",
+      "cheap-shot",
+      "bloodlust",
+      "energized",
+      "quick",
+      "defensive",
+      "indomitable",
+      "nimble",
+      "tenacious",
+      "nimble",
+      "cheap-shot",
+      "visceral",
+      "bloodlust",
+      "tactical",
+      "poised",
+      "regain",
+      "energized",
+      "rest",
+      "rest",
+      "leap",
+      "bloodlust",
+      "defensive",
+      "energized",
+      "indomitable",
+      "swift-transform",
+      "quick",
+      "indomitable",
+      "regain",
+      "swift-transform",
+      "regain",
+      "agile",
+      "agile",
+      "leap",
+      "tenacious",
+      "steadfast",
+      "leap",
+      "tactical",
+      "defensive",
+      "counterstrike",
+      "rest",
+      "steadfast",
+      "poised",
+      "adaptive",
+      "nimble",
+      "tenacious",
+      "counterstrike",
+      "swift-transform",
+      "cheap-shot",
+      "adaptive"
+    ],
+    "removedCards": [],
+    "consumableDeck": [
+      {
+        "id": "item-coldblood-1",
+        "kind": "coldblood"
+      },
+      {
+        "id": "item-throwing-knife-2",
+        "kind": "throwing-knife"
+      },
+      {
+        "id": "item-pebble-2",
+        "kind": "pebble"
+      },
+      {
+        "id": "item-beast-pellet-2",
+        "kind": "beast-pellet"
+      },
+      {
+        "id": "item-blue-elixir-1",
+        "kind": "blue-elixir"
+      },
+      {
+        "id": "item-bold-mark-1",
+        "kind": "bold-mark"
+      },
+      {
+        "id": "item-sedative-2",
+        "kind": "sedative"
+      },
+      {
+        "id": "item-pungent-blood-1",
+        "kind": "pungent-blood"
+      },
+      {
+        "id": "item-bone-ash-2",
+        "kind": "bone-ash"
+      },
+      {
+        "id": "item-bold-mark-2",
+        "kind": "bold-mark"
+      },
+      {
+        "id": "item-bolt-paper-2",
+        "kind": "bolt-paper"
+      },
+      {
+        "id": "item-throwing-knife-1",
+        "kind": "throwing-knife"
+      },
+      {
+        "id": "item-hunters-bell-1",
+        "kind": "hunters-bell"
+      },
+      {
+        "id": "item-sedative-1",
+        "kind": "sedative"
+      },
+      {
+        "id": "item-beast-pellet-1",
+        "kind": "beast-pellet"
+      },
+      {
+        "id": "item-pungent-blood-2",
+        "kind": "pungent-blood"
+      },
+      {
+        "id": "item-lead-elixir-2",
+        "kind": "lead-elixir"
+      },
+      {
+        "id": "item-blood-vial-2",
+        "kind": "blood-vial"
+      },
+      {
+        "id": "item-fire-paper-1",
+        "kind": "fire-paper"
+      },
+      {
+        "id": "item-numbing-mist-2",
+        "kind": "numbing-mist"
+      },
+      {
+        "id": "item-antidote-2",
+        "kind": "antidote"
+      },
+      {
+        "id": "item-lead-elixir-1",
+        "kind": "lead-elixir"
+      },
+      {
+        "id": "item-blood-vial-1",
+        "kind": "blood-vial"
+      },
+      {
+        "id": "item-bone-ash-1",
+        "kind": "bone-ash"
+      },
+      {
+        "id": "item-blue-elixir-2",
+        "kind": "blue-elixir"
+      },
+      {
+        "id": "item-numbing-mist-1",
+        "kind": "numbing-mist"
+      },
+      {
+        "id": "item-coldblood-2",
+        "kind": "coldblood"
+      },
+      {
+        "id": "item-molotov-2",
+        "kind": "molotov"
+      },
+      {
+        "id": "item-molotov-1",
+        "kind": "molotov"
+      },
+      {
+        "id": "item-quicksilver-bullets-2",
+        "kind": "quicksilver-bullets"
+      },
+      {
+        "id": "item-quicksilver-bullets-1",
+        "kind": "quicksilver-bullets"
+      },
+      {
+        "id": "item-hunters-bell-2",
+        "kind": "hunters-bell"
+      },
+      {
+        "id": "item-antidote-1",
+        "kind": "antidote"
+      },
+      {
+        "id": "item-fire-paper-2",
+        "kind": "fire-paper"
+      },
+      {
+        "id": "item-pebble-1",
+        "kind": "pebble"
+      },
+      {
+        "id": "item-bolt-paper-1",
+        "kind": "bolt-paper"
+      }
+    ],
+    "consumableDiscard": [],
+    "skipActivation": [],
+    "uid": 12,
+    "activation": [],
+    "combat": null,
+    "move": null,
+    "interaction": null,
+    "dream": null,
+    "spawnQueue": [],
+    "spawnChoices": [],
+    "spawnAfter": null,
+    "enemyMove": null,
+    "cardChoices": [],
+    "cardAfter": null,
+    "freeTransform": null,
+    "lootChoice": [],
+    "lootRemaining": 0,
+    "clinicUsed": false,
+    "leap": null,
+    "kills": 0,
+    "events": [
+      {
+        "round": 1,
+        "text": "기나긴 사냥 1 · 재앙의 근원"
+      },
+      {
+        "round": 1,
+        "text": "기나긴 사냥 챕터 1 · 임무와 보상 연결 플레이를 시작합니다."
+      },
+      {
+        "round": 1,
+        "text": "이동 시작 · 최대 2칸."
+      },
+      {
+        "round": 1,
+        "text": "민가 공개 · 회전 방향을 선택하세요."
+      },
+      {
+        "round": 1,
+        "text": "야수 사냥 하인 #1 출현."
+      },
+      {
+        "round": 1,
+        "text": "민가 / 위쪽 거리 칸 이동 · 남은 이동력 1."
+      },
+      {
+        "round": 1,
+        "text": "마당 등불 공개 · 회전 방향을 선택하세요."
+      },
+      {
+        "round": 1,
+        "text": "마당 등불 / 마당 등불 이동 · 남은 이동력 0."
+      },
+      {
+        "round": 1,
+        "text": "야수 사냥 하인 → 마당 등불 / 마당 등불."
+      },
+      {
+        "round": 1,
+        "text": "기나긴 사냥 5 · 사냥을 시작하다"
+      },
+      {
+        "round": 1,
+        "text": "기나긴 사냥 6 · 군중"
+      },
+      {
+        "round": 1,
+        "text": "마당 등불 · 안개 진입로, 등불 파괴, 일반 적 제거."
+      },
+      {
+        "round": 1,
+        "text": "이동과 추격을 마쳤습니다."
+      },
+      {
+        "round": 1,
+        "text": "야수 사냥 무리 #1 출현."
+      },
+      {
+        "round": 1,
+        "text": "기본 활력 → 긋기 (속도 2, 피해 2)."
+      },
+      {
+        "round": 1,
+        "text": "야수 사냥 무리 A면 · 기본 공격: 도끼 휘두르기."
+      },
+      {
+        "round": 1,
+        "text": "야수 사냥의 단총 · 기본 공격 자동 방해, 화기 소진."
+      },
+      {
+        "round": 1,
+        "text": "긋기 · 적에게 2 피해."
+      },
+      {
+        "round": 1,
+        "text": "기본 근력 → 신속한 가르기 (속도 3, 피해 2)."
+      },
+      {
+        "round": 1,
+        "text": "야수 사냥 무리 A면 · 기본 공격: 도끼 휘두르기."
+      },
+      {
+        "round": 1,
+        "text": "신속한 가르기 · 적에게 2 피해."
+      },
+      {
+        "round": 1,
+        "text": "군중 · 토큰 1개 제거, 전치유. 처치가 아니므로 적 공격은 계속됩니다."
+      },
+      {
+        "round": 1,
+        "text": "도끼 휘두르기 · 사냥꾼에게 2 피해."
+      },
+      {
+        "round": 1,
+        "text": "기본 근력 → 광란의 베기 (속도 1, 피해 4)."
+      },
+      {
+        "round": 1,
+        "text": "야수 사냥 무리 A면 · 전용 능력: 발광한 무리."
+      },
+      {
+        "round": 1,
+        "text": "발광한 무리 · 다음 공격 속도 +1, 피해 +1. 다른 행동 카드를 공개합니다."
+      },
+      {
+        "round": 1,
+        "text": "야수 사냥 무리 A면 · 특수 공격: 방패 치기."
+      },
+      {
+        "round": 1,
+        "text": "방패 치기 · 사냥꾼에게 3 피해."
+      },
+      {
+        "round": 1,
+        "text": "적의 방해 · 사냥꾼 공격 취소."
+      },
+      {
+        "round": 1,
+        "text": "기절 · 버릴 카드가 없어 피해 1."
+      },
+      {
+        "round": 1,
+        "text": "처치당했습니다. 모든 피의 유지를 잃고 꿈에 입장합니다."
+      },
+      {
+        "round": 1,
+        "text": "사냥 트랙 2/16 · 사냥꾼의 꿈 입장"
+      },
+      {
+        "round": 1,
+        "text": "사냥꾼의 꿈에서 체력·화기·상태 이상을 회복했습니다."
+      },
+      {
+        "round": 2,
+        "text": "사냥 트랙 3/16 · 새 라운드"
+      },
+      {
+        "round": 2,
+        "text": "손패를 3장까지 보충했습니다."
+      },
+      {
+        "round": 2,
+        "text": "중앙 등불 / 중앙 등불에서 귀환했습니다."
+      },
+      {
+        "round": 2,
+        "text": "이동 시작 · 최대 2칸."
+      },
+      {
+        "round": 2,
+        "text": "민가 / 위쪽 거리 칸 이동 · 남은 이동력 1."
+      },
+      {
+        "round": 2,
+        "text": "중앙 등불 / 중앙 등불 이동 · 남은 이동력 0."
+      },
+      {
+        "round": 2,
+        "text": "이동과 추격을 마쳤습니다."
+      },
+      {
+        "round": 2,
+        "text": "중앙 등불 · 마당 등불 / 마당 등불(으)로 순간이동."
+      }
+    ],
+    "commands": [
+      {
+        "type": "MOVE",
+        "cardId": "card-3"
+      },
+      {
+        "type": "EXPLORE",
+        "edge": "N"
+      },
+      {
+        "type": "PLACE_TILE",
+        "rotation": 1
+      },
+      {
+        "type": "EXPLORE",
+        "edge": "N"
+      },
+      {
+        "type": "PLACE_TILE",
+        "rotation": 0
+      },
+      {
+        "type": "ATTACK",
+        "enemyId": "huntsman-mob-1",
+        "cardId": "card-12",
+        "slot": 1,
+        "itemIds": [],
+        "pullIds": [],
+        "rewardIds": []
+      },
+      {
+        "type": "FIREARM"
+      },
+      {
+        "type": "RESOLVE"
+      },
+      {
+        "type": "ATTACK",
+        "enemyId": "huntsman-mob-1",
+        "cardId": "card-7",
+        "slot": 0,
+        "itemIds": [],
+        "pullIds": [],
+        "rewardIds": []
+      },
+      {
+        "type": "RESOLVE"
+      },
+      {
+        "type": "ATTACK",
+        "cardId": "card-9",
+        "slot": 2,
+        "itemIds": [],
+        "pullIds": [],
+        "rewardIds": [],
+        "enemyId": "huntsman-mob-1"
+      },
+      {
+        "type": "RESOLVE"
+      },
+      {
+        "type": "REFILL",
+        "discardIds": []
+      },
+      {
+        "type": "RETURN",
+        "node": "tile-14:center",
+        "face": 0
+      },
+      {
+        "type": "MOVE",
+        "cardId": "card-7"
+      },
+      {
+        "type": "STEP",
+        "node": "tile-11:street"
+      },
+      {
+        "type": "STEP",
+        "node": "tile-14:center"
+      },
+      {
+        "type": "INTERACT",
+        "cardId": "card-1",
+        "lootCount": 0,
+        "heal": false,
+        "lamp": "tile-04:center"
+      }
+    ],
+    "rewardChoices": [],
+    "mission": {
+      "chapter": 1,
+      "revealed": [
+        1,
+        5,
+        6
+      ],
+      "completed": [],
+      "fog": [
+        "tile-04"
+      ],
+      "targets": {
+        "mob": {
+          "id": "mob",
+          "card": 6,
+          "tile": "tile-04",
+          "node": "tile-04:center",
+          "kind": "huntsman-mob",
+          "initialTokens": 1,
+          "tokens": 0,
+          "complete": false,
+          "enemyId": "huntsman-mob-1"
+        }
+      },
+      "escort": {
+        "node": null,
+        "carrierId": null,
+        "pickup": false
+      },
+      "survivor": {
+        "node": null,
+        "remaining": 0,
+        "exploring": false,
+        "after": null
+      },
+      "choice": false,
+      "won": false,
+      "deathPending": false,
+      "deathAfter": null
+    }
+  }
+}
