@@ -1,7 +1,7 @@
 {
   "title": "블러드본 규칙 구현 점검표",
   "asOf": "2026-10-12 KST",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "scope": "한 명의 사냥꾼으로 기나긴 사냥 챕터 1~3. 제공 장치무기15종 양면·화기8종·실제 보스/NPC·보상32종(사용 효과30종·사용불가 임무 물품2종). 다른 캠페인과 다인/온라인 협동은 사용자가 이후 단계로 지정하여 이번 완료 범위에서 제외한다.",
   "sources": [
     {
@@ -65,12 +65,13 @@
     "공개 명령으로 실제 처음부터 도달한 임무 곁가지와 무기별 본편 승리의 범위는 C01~C10 및 VERIFICATION.txt에서 확인한다.",
     "같은 예배당 이동 종료에서 37 호위가 완료되면 39를 먼저 획득하고 그 결과를 반영하여 56을 판정한다. 사용자 결정으로 채택한 프로젝트 재정이며 공식 FAQ의 고유 판정으로 표시하지 않는다. 플레이어에게 순서 선택이나 아직 공개하지 않은 목표·보상·분기 비교를 보여주지 않는다. 호위가 없는 도착은 56의 일반 조건을 유지한다.",
     "v0.7.3 이전 기록에 적힌 한 승리 경로와 단순 정책의30패배는 당시 검증 범위다. 최신 자연 승리 결과는 VERIFICATION.txt를 기준으로 한다.",
-    "RULES_CHECKLIST.json/TXT/XLSX는 v0.8.0의 같은113항목을 제공한다. 정규 범위110항목, 검증 전용 도구T01, UI 개선U01~U02를 구분한다.",
+    "RULES_CHECKLIST.json/TXT/XLSX는 v0.8.1의 같은114항목을 제공한다. 정규 범위110항목, 검증 전용 도구T01, UI 개선U01~U03을 구분한다.",
     "v0.7.4에서는51/52의 자연 진입만 확인하고 정상 완료 경로는 미확보였다. v0.7.5에서는 원문 조건과 기본 시작 지급을 유지한 공개 명령만으로51의343명령 연구 완료/26/수혈액 장착·사용(체력3·트랙8),52의384명령 새 생존자2개 인도/28/사자 선물 장착(체력6·트랙8)을 추가 확인했다. 해당 임무 완료 기록 자체의 챕터3 최종 보스 승리를 주장하지 않는다.",
     "실제 과거 저장39개와 독립 v0.7.0 111·v0.7.1 277·v0.7.2 326·v0.7.3 326·v0.7.4 326개를 합한1405개가 정확 복원됐다. 최종 실제 검사 수는 VERIFICATION.txt를 확인한다.",
     "T01은 검증용 장비·시작 지급·소모품·별도 자동 저장을 다루는 개발 도구이다. 테스트 전용 장비로 진행한 결과는 정규 규칙의 난이도·정상 완주 근거로 계산하지 않는다. 정규 데이터의15무기·36소모품 공급과 정규 자동 저장은 유지한다.",
-    "U01은 원본 사진 제거와 텍스트 읽기, U02는 지도 중심 HUD와 보조 정보 패널의 화면 구성이다. 대상 직접 행동, 전투 선택/자동 처리, 일지/이야기 연출, 독자 자산/반응 연출은 후속 단계이며 전체 UI 재설계가 끝났다는 뜻이 아니다. 엔진 규칙13과 정규 캠페인의 실행 범위는 유지한다.",
-    "U02의 정보 패널 열기·전환·닫기와 초점 복원은 표시 동작이며 게임 명령이나 저장 상태를 바꾸지 않는다. 패널 안의 실제 소모품·보상 사용은 기존 명령을 실행한다. 화면 크기별 브라우저 결과는 VERIFICATION_v080.txt의 실제 확인 범위로 기록하며 모든 내용을 스크롤 없이 표시한다고 일반화하지 않는다."
+    "U01은 원본 사진 제거와 텍스트 읽기, U02는 지도 중심 HUD와 보조 정보 패널, U03은 지도 대상 직접 선택·공개 비용 표시와 표시 엔진의 첫 연결이다. 전체 전투·이야기 연출과 정식 시각 자산 제작이 끝났다는 뜻은 아니다. 엔진 규칙13과 정규 캠페인의 실행 범위는 유지한다.",
+    "U02의 정보 패널 열기·전환·닫기와 초점 복원은 표시 동작이며 게임 명령이나 저장 상태를 바꾸지 않는다. 패널 안의 실제 소모품·보상 사용은 기존 명령을 실행한다. 화면 크기별 브라우저 결과는 VERIFICATION_v080.txt의 실제 확인 범위로 기록하며 모든 내용을 스크롤 없이 표시한다고 일반화하지 않는다.",
+    "U03의 대상 선택·비용 확인·선택 취소는 게임 명령을 실행하지 않는다. 이동·탐험 실행은 기존 MOVE 다음 STEP/EXPLORE 명령을 사용하고 추가 카드 비용을 만들지 않는다. 보스 정보에는 현재 전투에서 실제로 공개한 행동만 표시한다. Phaser 4.2.1은 공개 좌표와 실제 처리된 행동의 표시만 담당하며 저장과 규칙을 계산하지 않는다. 테스트 파일 존재와 최종 실행 결과를 구분하여 VERIFICATION_v081.txt를 확인한다."
   ],
   "rows": [
     {
@@ -2889,7 +2890,7 @@
           "name": "legacy map exploration keeps enemy attack rules and code-drawn tiles while removing original enemy pictures"
         }
       ],
-      "nextAction": "지도 중심 HUD와 보조 패널의2단계는U02에서 구분합니다. 다음에는 지도 대상 직접 행동, 전투 선택/결과 표시, 이야기·일지·보상 연출, 독자 시각 자산을 단계적으로 개선합니다.",
+      "nextAction": "지도 중심 HUD는U02, 대상 직접 선택과 공개 비용 표시는U03에서 구분합니다. 전투 결과 흐름, 이야기·보상 연출, 정식 독자 시각 자산은 후속 단계입니다.",
       "manualCheck": "미점검"
     },
     {
@@ -2943,7 +2944,133 @@
           "name": "the map HUD completes a normal three-chapter campaign via all 351 enabled public controls with exact saves"
         }
       ],
-      "nextAction": "다음3단계에서 지도 대상 선택과 가능한 행동·비용 표시를 가까운 위치에 연결합니다. 전투 선택과 결과, 이야기·일지·보상 연출, 독자 시각 자산은 후속 단계입니다.",
+      "nextAction": "지도 대상 직접 선택·비용 표시는U03에서 이어집니다. 전투 선택과 결과 흐름, 이야기·일지·보상 연출, 정식 시각 자산은 후속 단계입니다.",
+      "manualCheck": "미점검"
+    },
+    {
+      "id": "U03",
+      "category": "UI·UX 3차",
+      "rulePage": "화면 개선",
+      "criterion": "공개된 칸·출입구·적을 직접 선택하면 현재 가능한 행동, 카드·슬롯·이동력·화기 비용과 불가 이유를 표시한다. 선택만으로 상태나 숨은 정보를 바꾸지 않으며, 실행은 기존 규칙 명령과 공개 순서를 사용한다. 표시 엔진은 공개된 좌표와 실제 행동의 이동·공격 효과만 처리한다.",
+      "status": "구현",
+      "priority": "후속",
+      "verification": "직접 선택·공개 비용·숨은 정보·표시 계층 회귀 근거 있음",
+      "evidence": "hunt-context.js / hunt-app.js: 공개 대상·비용·불가 이유를 표시하며 실행 시 기존 MOVE 다음 STEP/EXPLORE를 사용한다. 공격/화기/회피/필수 보상 선택과 공개 순서를 유지한다. 현재 전투에서 공개한 보스 행동만 표시한다.\nhunt-presentation.js / assets/vendor/phaser-4.2.1.min.js: 공개 좌표와 실제 행동으로 직접 그린 실루엣·이동·공격·초점 효과를 표시한다. 규칙·저장 계산과 원본 사진 사용은 없다.\n회귀 파일3개의28개 이상 근거를JSON testEvidence에 기록했다. 최종 실행과 실제 화면 확인은VERIFICATION_v081.txt를 참조한다. 대표 근거:\ntests/context-actions-v081.test.cjs — a selected adjacent cell reports the existing discard cost and preserves the exact state until confirmed\ntests/context-actions-v081.test.cjs — an open entrance reveals no next tile before the canonical MOVE then EXPLORE command\ntests/direct-map-v081.test.cjs — boss inspection hides all undrawn behavior cards and reveals only the action drawn in the current combat\ntests/presentation-v081.test.cjs — presentation reads only allowlisted public coordinates and ignores all hidden or rule data",
+      "testEvidence": [
+        {
+          "file": "tests/context-actions-v081.test.cjs",
+          "name": "a selected adjacent cell reports the existing discard cost and preserves the exact state until confirmed"
+        },
+        {
+          "file": "tests/context-actions-v081.test.cjs",
+          "name": "movement already paid for uses STEP and no second stat card"
+        },
+        {
+          "file": "tests/context-actions-v081.test.cjs",
+          "name": "an open entrance reveals no next tile before the canonical MOVE then EXPLORE command"
+        },
+        {
+          "file": "tests/context-actions-v081.test.cjs",
+          "name": "connected entrances offer the real public connecting STEP instead of drawing another tile"
+        },
+        {
+          "file": "tests/context-actions-v081.test.cjs",
+          "name": "a distant cell never chooses a route or spends a card automatically"
+        },
+        {
+          "file": "tests/context-actions-v081.test.cjs",
+          "name": "an attack requires the visible target, one hand card and an empty slot; a counter remains tied to its actual encounter"
+        },
+        {
+          "file": "tests/context-actions-v081.test.cjs",
+          "name": "the current cell exposes combined interaction and its discard cost without selecting optional targets"
+        },
+        {
+          "file": "tests/context-actions-v081.test.cjs",
+          "name": "mandatory reward equipment disables map actions and retains the reason"
+        },
+        {
+          "file": "tests/context-actions-v081.test.cjs",
+          "name": "boss forced movement uses the reducer's actual public choices and no paid hunter move"
+        },
+        {
+          "file": "tests/context-actions-v081.test.cjs",
+          "name": "all eight firearms keep their existing public use timing and target restrictions in the context panel"
+        },
+        {
+          "file": "tests/context-actions-v081.test.cjs",
+          "name": "unresolved combat, tile placement and dreams cannot be bypassed by clicking map cells or gates"
+        },
+        {
+          "file": "tests/context-actions-v081.test.cjs",
+          "name": "public context never inspects hidden card or tile order and ignores unknown targets"
+        },
+        {
+          "file": "tests/direct-map-v081.test.cjs",
+          "name": "every revealed cell and entrance can be inspected without consuming a card or revealing the next tile"
+        },
+        {
+          "file": "tests/direct-map-v081.test.cjs",
+          "name": "a cell action spends one selected card and one movement point through the original MOVE then STEP commands"
+        },
+        {
+          "file": "tests/direct-map-v081.test.cjs",
+          "name": "an entrance action combines movement preparation and exploration while revealing only the tile actually drawn"
+        },
+        {
+          "file": "tests/direct-map-v081.test.cjs",
+          "name": "selecting an enemy prepares an attack with its actual card and slot cost before the enemy action is drawn"
+        },
+        {
+          "file": "tests/direct-map-v081.test.cjs",
+          "name": "inspecting a distant enemy cannot make an ordinary melee attack legal"
+        },
+        {
+          "file": "tests/direct-map-v081.test.cjs",
+          "name": "mandatory reward and combat reactions remain blocking while map targets are inspected"
+        },
+        {
+          "file": "tests/direct-map-v081.test.cjs",
+          "name": "boss inspection hides all undrawn behavior cards and reveals only the action drawn in the current combat"
+        },
+        {
+          "file": "tests/presentation-v081.test.cjs",
+          "name": "the bundled Phaser runtime is pinned and matches its provenance digest"
+        },
+        {
+          "file": "tests/presentation-v081.test.cjs",
+          "name": "presentation uses one noninteractive transparent scene and latest preboot public snapshot"
+        },
+        {
+          "file": "tests/presentation-v081.test.cjs",
+          "name": "scrolls, refreshes and target selections do not animate or count as game movement"
+        },
+        {
+          "file": "tests/presentation-v081.test.cjs",
+          "name": "only the declared moving actor is animated when map camera changes every public coordinate"
+        },
+        {
+          "file": "tests/presentation-v081.test.cjs",
+          "name": "an actual resolved attack can mark a defeated public target at its last visible location"
+        },
+        {
+          "file": "tests/presentation-v081.test.cjs",
+          "name": "presentation reads only allowlisted public coordinates and ignores all hidden or rule data"
+        },
+        {
+          "file": "tests/presentation-v081.test.cjs",
+          "name": "reduced motion cancels effects and disables subsequent moves, attacks and focus effects"
+        },
+        {
+          "file": "tests/presentation-v081.test.cjs",
+          "name": "resize cleans old effects, updates the existing canvas and destroy removes listeners"
+        },
+        {
+          "file": "tests/presentation-v081.test.cjs",
+          "name": "renderer failure and missing Phaser leave an inert fallback without touching game rules"
+        }
+      ],
+      "nextAction": "정식 캐릭터·배경 자산, 전체 지도 카메라 확대·이동, 전투 결과의 연속 표시와 이야기·보상 연출을 이어서 개선합니다. 이번 표시 엔진 연결은 전체 지도 Canvas 이전을 뜻하지 않습니다.",
       "manualCheck": "미점검"
     }
   ]

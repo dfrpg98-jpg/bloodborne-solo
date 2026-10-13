@@ -1,9 +1,9 @@
-블러드본 규칙 구현 점검표 v0.8.0
+블러드본 규칙 구현 점검표 v0.8.1
 기준: 2026-10-12 KST
 한 명의 사냥꾼으로 기나긴 사냥 챕터 1~3. 제공 장치무기15종 양면·화기8종·실제 보스/NPC·보상32종(사용 효과30종·사용불가 임무 물품2종). 다른 캠페인과 다인/온라인 협동은 사용자가 이후 단계로 지정하여 이번 완료 범위에서 제외한다.
 
-구현 상태·검증 근거·사용자 직접 점검은 별개입니다. 직접 점검은 모두 미점검입니다.
-정규 범위110항목: 구현106,범위제외4,부분0,미구현0. T01은 검증 도구, U01~U02는 UI 개선1~2단계이며 전체 재설계 완료를 뜻하지 않습니다.
+구현 상태·검증 근거·사용자 직접 점검은 별개입니다. 114항목의 직접 점검은 모두 미점검입니다.
+정규 범위110항목: 구현106,범위제외4,부분0,미구현0. T01은 검증 도구, U01~U03은 UI 개선 단계입니다. 전체 UI 재설계 완료를 뜻하지 않습니다.
 
 status는 구현 여부, verification은 근거 수준, manualCheck는 사용자의 직접 점검 결과입니다. 서로 같은 의미가 아닙니다.
 manualCheck는 모두 미점검으로 시작합니다. 자동 테스트가 존재해도 사용자의 직접 확인을 완료로 표시하지 않습니다.
@@ -23,12 +23,13 @@ v0.7.7는 한 캠페인의 1인 플레이를 완료 기준으로 삼는다. 다�
 공개 명령으로 실제 처음부터 도달한 임무 곁가지와 무기별 본편 승리의 범위는 C01~C10 및 VERIFICATION.txt에서 확인한다.
 같은 예배당 이동 종료에서 37 호위가 완료되면 39를 먼저 획득하고 그 결과를 반영하여 56을 판정한다. 사용자 결정으로 채택한 프로젝트 재정이며 공식 FAQ의 고유 판정으로 표시하지 않는다. 플레이어에게 순서 선택이나 아직 공개하지 않은 목표·보상·분기 비교를 보여주지 않는다. 호위가 없는 도착은 56의 일반 조건을 유지한다.
 v0.7.3 이전 기록에 적힌 한 승리 경로와 단순 정책의30패배는 당시 검증 범위다. 최신 자연 승리 결과는 VERIFICATION.txt를 기준으로 한다.
-RULES_CHECKLIST.json/TXT/XLSX는 v0.8.0의 같은113항목을 제공한다. 정규 범위110항목, 검증 전용 도구T01, UI 개선U01~U02를 구분한다.
+RULES_CHECKLIST.json/TXT/XLSX는 v0.8.1의 같은114항목을 제공한다. 정규 범위110항목, 검증 전용 도구T01, UI 개선U01~U03을 구분한다.
 v0.7.4에서는51/52의 자연 진입만 확인하고 정상 완료 경로는 미확보였다. v0.7.5에서는 원문 조건과 기본 시작 지급을 유지한 공개 명령만으로51의343명령 연구 완료/26/수혈액 장착·사용(체력3·트랙8),52의384명령 새 생존자2개 인도/28/사자 선물 장착(체력6·트랙8)을 추가 확인했다. 해당 임무 완료 기록 자체의 챕터3 최종 보스 승리를 주장하지 않는다.
 실제 과거 저장39개와 독립 v0.7.0 111·v0.7.1 277·v0.7.2 326·v0.7.3 326·v0.7.4 326개를 합한1405개가 정확 복원됐다. 최종 실제 검사 수는 VERIFICATION.txt를 확인한다.
 T01은 검증용 장비·시작 지급·소모품·별도 자동 저장을 다루는 개발 도구이다. 테스트 전용 장비로 진행한 결과는 정규 규칙의 난이도·정상 완주 근거로 계산하지 않는다. 정규 데이터의15무기·36소모품 공급과 정규 자동 저장은 유지한다.
-U01은 원본 사진 제거와 텍스트 읽기, U02는 지도 중심 HUD와 보조 정보 패널의 화면 구성이다. 대상 직접 행동, 전투 선택/자동 처리, 일지/이야기 연출, 독자 자산/반응 연출은 후속 단계이며 전체 UI 재설계가 끝났다는 뜻이 아니다. 엔진 규칙13과 정규 캠페인의 실행 범위는 유지한다.
+U01은 원본 사진 제거와 텍스트 읽기, U02는 지도 중심 HUD와 보조 정보 패널, U03은 지도 대상 직접 선택·공개 비용 표시와 표시 엔진의 첫 연결이다. 전체 전투·이야기 연출과 정식 시각 자산 제작이 끝났다는 뜻은 아니다. 엔진 규칙13과 정규 캠페인의 실행 범위는 유지한다.
 U02의 정보 패널 열기·전환·닫기와 초점 복원은 표시 동작이며 게임 명령이나 저장 상태를 바꾸지 않는다. 패널 안의 실제 소모품·보상 사용은 기존 명령을 실행한다. 화면 크기별 브라우저 결과는 VERIFICATION_v080.txt의 실제 확인 범위로 기록하며 모든 내용을 스크롤 없이 표시한다고 일반화하지 않는다.
+U03의 대상 선택·비용 확인·선택 취소는 게임 명령을 실행하지 않는다. 이동·탐험 실행은 기존 MOVE 다음 STEP/EXPLORE 명령을 사용하고 추가 카드 비용을 만들지 않는다. 보스 정보에는 현재 전투에서 실제로 공개한 행동만 표시한다. Phaser 4.2.1은 공개 좌표와 실제 처리된 행동의 표시만 담당하며 저장과 규칙을 계산하지 않는다. 테스트 파일 존재와 최종 실행 결과를 구분하여 VERIFICATION_v081.txt를 확인한다.
 
 출처
 사용자 제공 한국어 규칙서: C:\Users\GOOD\Desktop\보겜프로젝트\블러드본한국어규칙서_압축.pdf / 28쪽 전체 검토; 플레이 조건은 주로 8~26쪽
@@ -1223,7 +1224,7 @@ tests/photo-free-ui-v079.test.cjs — an existing legacy save still loads its ac
 tests/photo-free-ui-v079.test.cjs — the former full campaign archive now shows only the introduction and playable entry point
 tests/photo-free-ui-v079.test.cjs — the public component catalogue retains basic effects without revealing future quest rewards or source metadata
 tests/photo-free-ui-v079.test.cjs — legacy map exploration keeps enemy attack rules and code-drawn tiles while removing original enemy pictures
-남은 조치: 지도 중심 HUD와 보조 패널의2단계는U02에서 구분합니다. 다음에는 지도 대상 직접 행동, 전투 선택/결과 표시, 이야기·일지·보상 연출, 독자 시각 자산을 단계적으로 개선합니다.
+남은 조치: 지도 중심 HUD는U02, 대상 직접 선택과 공개 비용 표시는U03에서 구분합니다. 전투 결과 흐름, 이야기·보상 연출, 정식 독자 시각 자산은 후속 단계입니다.
 사용자 직접 점검: 미점검
 
 U02 | UI·UX 2차 | 규칙 화면 개선쪽
@@ -1241,5 +1242,19 @@ tests/map-hud-v080.test.cjs — QA consumables remain usable through the invento
 tests/map-hud-v080.test.cjs — a reaction reward can be used during real combat from its overlay without losing the combat decision
 tests/map-hud-v080.test.cjs — mandatory reward decisions remain in the action area while movement and other actions are blocked
 tests/map-hud-v080.test.cjs — the map HUD completes a normal three-chapter campaign via all 351 enabled public controls with exact saves
-남은 조치: 다음3단계에서 지도 대상 선택과 가능한 행동·비용 표시를 가까운 위치에 연결합니다. 전투 선택과 결과, 이야기·일지·보상 연출, 독자 시각 자산은 후속 단계입니다.
+남은 조치: 지도 대상 직접 선택·비용 표시는U03에서 이어집니다. 전투 선택과 결과 흐름, 이야기·일지·보상 연출, 정식 시각 자산은 후속 단계입니다.
+사용자 직접 점검: 미점검
+
+U03 | UI·UX 3차 | 규칙 화면 개선쪽
+조건: 공개된 칸·출입구·적을 직접 선택하면 현재 가능한 행동, 카드·슬롯·이동력·화기 비용과 불가 이유를 표시한다. 선택만으로 상태나 숨은 정보를 바꾸지 않으며, 실행은 기존 규칙 명령과 공개 순서를 사용한다. 표시 엔진은 공개된 좌표와 실제 행동의 이동·공격 효과만 처리한다.
+상태: 구현 | 우선순위: 후속
+검증: 직접 선택·공개 비용·숨은 정보·표시 계층 회귀 근거 있음
+근거: hunt-context.js / hunt-app.js: 공개 대상·비용·불가 이유를 표시하며 실행 시 기존 MOVE 다음 STEP/EXPLORE를 사용한다. 공격/화기/회피/필수 보상 선택과 공개 순서를 유지한다. 현재 전투에서 공개한 보스 행동만 표시한다.
+hunt-presentation.js / assets/vendor/phaser-4.2.1.min.js: 공개 좌표와 실제 행동으로 직접 그린 실루엣·이동·공격·초점 효과를 표시한다. 규칙·저장 계산과 원본 사진 사용은 없다.
+회귀 파일3개의28개 이상 근거를JSON testEvidence에 기록했다. 최종 실행과 실제 화면 확인은VERIFICATION_v081.txt를 참조한다. 대표 근거:
+tests/context-actions-v081.test.cjs — a selected adjacent cell reports the existing discard cost and preserves the exact state until confirmed
+tests/context-actions-v081.test.cjs — an open entrance reveals no next tile before the canonical MOVE then EXPLORE command
+tests/direct-map-v081.test.cjs — boss inspection hides all undrawn behavior cards and reveals only the action drawn in the current combat
+tests/presentation-v081.test.cjs — presentation reads only allowlisted public coordinates and ignores all hidden or rule data
+남은 조치: 정식 캐릭터·배경 자산, 전체 지도 카메라 확대·이동, 전투 결과의 연속 표시와 이야기·보상 연출을 이어서 개선합니다. 이번 표시 엔진 연결은 전체 지도 Canvas 이전을 뜻하지 않습니다.
 사용자 직접 점검: 미점검

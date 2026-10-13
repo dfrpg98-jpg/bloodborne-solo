@@ -1,0 +1,18 @@
+{
+  "name": "phaser",
+  "version": "4.2.1",
+  "license": "MIT",
+  "packageUrl": "https://registry.npmjs.org/phaser/4.2.1",
+  "tarballUrl": "https://registry.npmjs.org/phaser/-/phaser-4.2.1.tgz",
+  "packageSha1": "5512f23d348e6fb5c48ce71a9fbddd200ef919ea",
+  "packageIntegrity": "sha512-WUNwCPJpdjvZiuT6SgCfYVW8Qw/3j0jJ4ws7P2QkhFLFu74sbGuyHJcbFueGkY/AYO4Pi47bNQXn1OCJeLX//w==",
+  "bundledFile": "phaser-4.2.1.min.js",
+  "bundledSha256": "66348b1b5141e49b7d5ebbe688cddcb502eab1cb00f21c538686a5b2c5abe4de",
+  "localRuntime": true,
+  "downloadedOn": "2026-10-12",
+  "sources": [
+    "https://phaser.io/download/phaser4",
+    "https://docs.phaser.io/phaser/concepts/tweens",
+    "https://docs.phaser.io/phaser/concepts/cameras"
+  ]
+}

@@ -1,7 +1,7 @@
 const assert=require('node:assert/strict');
 const E=require('../../hunt-engine'), {boot}=require('./ui-harness.cjs');
 const plain=x=>JSON.parse(JSON.stringify(x));
-const containers=['decisions','missionActions','rewards','firearm','componentCards','chapterMap','explorationActions'];
+const containers=['mapContext','decisions','missionActions','rewards','firearm','componentCards','chapterMap','explorationActions'];
 function matches(actual,wanted){return Object.entries(wanted).every(([k,v])=>JSON.stringify(actual[k])===JSON.stringify(v));}
 function clickCommand(s,command,options={}){
   const ui=boot(s,E.missionView(s),E.rewardsView(s),{realInventory:true,
@@ -31,6 +31,16 @@ function clickCommand(s,command,options={}){
     const target=mapTarget||ui.el('nearEnemies').querySelectorAll('[data-enemy]').find(b=>b.dataset.enemy===command.enemyId);
     assert(target,'enemy selectable');target.click();
     if(!mapTarget)options.afterTarget?.(ui);
+  }
+  if(command.node && ['STEP','BOSS_STEP','ENEMY_STEP'].includes(command.type)){
+    const target=ui.el('chapterMap').querySelectorAll('[data-node]').find(b=>b.dataset.node===command.node&&!b.disabled);
+    if(target)target.click();
+  }
+  if(command.type==='EXPLORE'){
+    const entrance=ui.el('chapterMap').querySelectorAll('[data-entrance]').find(b=>
+      !b.disabled && (b.dataset.edge===command.edge || b.dataset.entrance===command.edge ||
+        b.dataset.entrance?.endsWith(':'+command.edge)));
+    if(entrance)entrance.click();
   }
   for(const id of command.pullIds||[]){
     const input=ui.el('decisions').querySelectorAll('[data-pull]').find(b=>b.dataset.pull===id);

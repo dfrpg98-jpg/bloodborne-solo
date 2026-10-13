@@ -413,3 +413,37 @@
   .story-dialog-heading button { padding: 9px; }
   .story-list button { flex: 1 1 100%; }
 }
+
+/* Direct map targets use the original tile polygons and physical exits. */
+.hunt-main .map-stage { flex: 1; min-height: 0; position: relative; overflow: hidden; }
+.hunt-main .map-stage .map-viewport { height: 100%; }
+.map-effects { position: absolute; inset: 0; pointer-events: none; z-index: 12; overflow: hidden; }
+.map-effects canvas { display: block; pointer-events: none; }
+.hunt-main .diagram-space:not(:disabled) { cursor: pointer; }
+.hunt-main .diagram-space:not(:disabled):hover { background: #89c9d222; }
+.hunt-main .diagram-space.context-selected { background: #d5bc6655; box-shadow: inset 0 0 0 3px #d8c394; }
+.hunter-anchor { position: absolute; width: 18px; height: 18px; transform: translate(-50%,-50%); pointer-events: none; }
+.hunt-main .map-gate { position: absolute; z-index: 9; transform: translate(-50%,-50%); width: 28px; height: 28px; min-height: 28px; padding: 0; border: 1px solid #bea76d; color: #f1d89b; background: #30291df2; font-size: 20px; line-height: 1; border-radius: 4px; }
+.hunt-main .map-gate.connected { color: #a8cfd2; border-color: #789b9d; background: #16272bf2; }
+.hunt-main .map-gate.selected { outline: 2px solid #fff0b4; outline-offset: 2px; }
+.map-context { border: 1px solid #897449; border-radius: 4px; padding: 8px; margin: 0 0 7px; background: #29291ff0; }
+.map-context[hidden] { display: none; }
+.context-heading { display: flex; justify-content: space-between; gap: 5px; align-items: start; }
+.context-heading h3 { margin: 1px 0 4px; color: #f1d7a3; font-size: 14px; line-height: 1.3; }
+.context-heading .eyebrow { margin: 0; font-size: 9px; }
+.context-heading button { padding: 1px 6px; min-height: 22px; line-height: 1; font-size: 18px; }
+.context-actions { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 5px; }
+.context-actions:has(> :only-child) { grid-template-columns: 1fr; }
+.context-action button { width: 100%; padding: 6px; font-size: 12px; line-height: 1.35; text-align: left; border-color: #a89461; }
+.context-action button small { display: block; font-size: 10px; color: #d6d6c8; line-height: 1.35; letter-spacing: 0; margin-top: 3px; }
+.context-hint, .context-reason { font-size: 10px; line-height: 1.4; margin: 2px 0 5px; color: #bfcbc9; }
+.context-reason { margin: 2px 0 0; color: #d8b2a5; }
+
+html[data-phase="combat_choose"] .decision-content:has(.map-context:not([hidden])) .combat-card { padding: 5px; margin: 3px 0; }
+html[data-phase="combat_choose"] .decision-content:has(.map-context:not([hidden])) .combat-card > b,
+html[data-phase="combat_choose"] .decision-content:has(.map-context:not([hidden])) .combat-card > small { display: none; }
+@media (max-height: 760px) {
+ .map-context { padding: 6px; margin-bottom: 4px; }
+ .context-heading h3 { font-size: 13px; }
+ .context-action button { padding: 5px; font-size: 11px; }
+}

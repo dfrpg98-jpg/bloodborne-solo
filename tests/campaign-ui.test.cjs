@@ -807,7 +807,7 @@ test("boss and forced hunter movements expose legal destinations with the BOSS_S
   assert.equal(moves.length, 2); moves[1].click();
   assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "BOSS_STEP", node: "tile-14:right" });
 });
-test("actual special components retain abilities and insight actions while omitting supplied source photos", () => {
+test("actual special components hide unrevealed boss actions while retaining insight and printed NPC rules", () => {
   const s = baseState(), h = E.hunter(s);
   const boss = { id: "mission-boss", kind: "scourge-beast", figure: 1, componentId: "cleric-beast",
     componentPhase: 1, hp: 10, insightTokens: 2, node: h.position };
@@ -826,10 +826,16 @@ test("actual special components retain abilities and insight actions while omitt
   assert.equal(ui.el("componentsPanel").hidden, false);
   const html = ui.el("componentCards").innerHTML;
   assert.match(html, /시트의 계몽 토큰 2개/); assert.match(html, /실제 구성품/);
-  assert.match(html, /현재 페이즈의 행동 카드/); assert.match(html, /내려찍기/);
+  assert.doesNotMatch(html, /현재 페이즈의 행동 카드|내려찍기/);
   assert(!html.includes("참고자료/제공 구성품.jpg"));
   assert(!html.includes("실물 원문"));
   assert.doesNotMatch(html, /<img\b|href=/);
   assert(!html.includes("[object Object]"));
   option(ui, "componentCards", "BOSS_INSIGHT").click(); assert.equal(ui.commands[0].type, "BOSS_INSIGHT");
+  s.combat = { enemyId: boss.id, action: defs[boss.id].slam };
+  const revealed = boot(s, mission(), rewards(), { engine: { canBossInsight: () => true,
+    enemyDef: (state, enemy) => typeof enemy === "object" && defs[enemy.id] ? defs[enemy.id] : E.enemyDef(state, enemy),
+  } });
+  assert.match(revealed.el("componentCards").innerHTML, /내려찍기/);
+  assert.doesNotMatch(revealed.el("componentCards").innerHTML, /참고자료\/|<img\b|href=/);
 });
