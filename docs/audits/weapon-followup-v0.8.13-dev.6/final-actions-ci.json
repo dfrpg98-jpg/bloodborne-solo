@@ -1,0 +1,28 @@
+{
+  "lastProductCommit": "c42c5e32c8ed02b4248b966083e3cceef4a5c6f4",
+  "verifiedSourceCommit": "33c236767d94ea5efa4c75bf1330e41721e91747",
+  "runs": [
+    {
+      "id": 38492083994,
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "33c236767d94ea5efa4c75bf1330e41721e91747",
+      "html_url": "https://github.com/dfrpg98-jpg/bloodborne-solo/actions/runs/38492083994",
+      "updated_at": "2026-10-14T01:02:10Z"
+    },
+    {
+      "id": 38492087248,
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "33c236767d94ea5efa4c75bf1330e41721e91747",
+      "html_url": "https://github.com/dfrpg98-jpg/bloodborne-solo/actions/runs/38492087248",
+      "updated_at": "2026-10-14T01:07:08Z"
+    }
+  ],
+  "localCounts": {
+    "tests": 2665,
+    "pass": 2665,
+    "fail": 0
+  },
+  "documentsOnlyFinalCommit": true
+}

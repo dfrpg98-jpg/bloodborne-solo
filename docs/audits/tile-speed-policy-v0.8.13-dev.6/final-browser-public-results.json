@@ -1,0 +1,231 @@
+{
+  "sourceCommit": "f9523737793c5d5d3b1351a24242977ebd7bdbb7",
+  "node": "v24.21.0",
+  "method": "Actual Chromium UI clicks. Original rules14 QA checkpoints generated with create/dispatch and imported through the product file input; recorded adoption, no hand-assembled state.",
+  "observations": [
+    {
+      "name": "mission-10-numbers-and-reproduction",
+      "initialSeed": 90,
+      "historicalCommandCount": 102,
+      "actualCommands": [
+        {
+          "type": "ATTACK",
+          "cardId": "card-9",
+          "slot": 0,
+          "enemyId": "scourge-beast-1"
+        }
+      ],
+      "legacy": {
+        "phase": "combat_react",
+        "hunterHp": 4,
+        "enemyHp": 2,
+        "action": {
+          "name": "피의 광란",
+          "speed": 3,
+          "damage": 4,
+          "kind": "special",
+          "type": "attack",
+          "stun": false,
+          "interrupt": false,
+          "undodgeable": false,
+          "uninterruptible": false,
+          "poison": false,
+          "frenzy": false,
+          "rules": [],
+          "followup": false
+        },
+        "tokens": 0
+      },
+      "corrected": {
+        "phase": "combat_react",
+        "hunterHp": 4,
+        "enemyHp": 2,
+        "action": {
+          "name": "피의 광란",
+          "speed": 2,
+          "damage": 4,
+          "kind": "special",
+          "type": "attack",
+          "stun": false,
+          "interrupt": false,
+          "undodgeable": false,
+          "uninterruptible": false,
+          "poison": false,
+          "frenzy": false,
+          "rules": [],
+          "followup": false
+        },
+        "policy": "all-attacks",
+        "tokens": 0
+      },
+      "afterResolve": {
+        "phase": "hunter",
+        "hunterHp": 1,
+        "policy": "all-attacks"
+      }
+    },
+    {
+      "name": "mission-10-legacy-safe-import-and-new-chapel-attack",
+      "status": "passed"
+    },
+    {
+      "name": "mission-10-preserved-history",
+      "historicalCommands": 103,
+      "adoptedAfter": [
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "APPLY_TILE_SPEED_RULING"
+        }
+      ],
+      "state": {
+        "phase": "refill",
+        "hunterHp": 6,
+        "policy": "all-attacks"
+      }
+    },
+    {
+      "name": "mission-10-pending-old-save-replay-and-deferred-adoption",
+      "status": "passed"
+    },
+    {
+      "name": "mission-31-numbers-and-reproduction",
+      "initialSeed": 90,
+      "historicalCommandCount": 187,
+      "actualCommands": [
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "COUNTER",
+          "cardId": "card-11",
+          "slot": 1
+        }
+      ],
+      "legacy": {
+        "phase": "combat_react",
+        "hunterHp": 6,
+        "enemyHp": 3,
+        "action": {
+          "name": "갈가리 찢기",
+          "speed": 3,
+          "damage": 3,
+          "keywords": [],
+          "rules": [],
+          "kind": "special",
+          "type": "attack",
+          "poison": false,
+          "stun": true,
+          "interrupt": false,
+          "undodgeable": false,
+          "uninterruptible": false,
+          "followup": false,
+          "frenzy": false
+        },
+        "tokens": 2
+      },
+      "corrected": {
+        "phase": "combat_react",
+        "hunterHp": 6,
+        "enemyHp": 3,
+        "action": {
+          "name": "갈가리 찢기",
+          "speed": 2,
+          "damage": 3,
+          "keywords": [],
+          "rules": [],
+          "kind": "special",
+          "type": "attack",
+          "poison": false,
+          "stun": true,
+          "interrupt": false,
+          "undodgeable": false,
+          "uninterruptible": false,
+          "followup": false,
+          "frenzy": false
+        },
+        "policy": "all-attacks",
+        "tokens": 2
+      },
+      "afterResolve": {
+        "phase": "stun",
+        "hunterHp": 3,
+        "enemyHp": 3,
+        "action": {
+          "name": "갈가리 찢기",
+          "speed": 2,
+          "damage": 3,
+          "keywords": [],
+          "rules": [],
+          "kind": "special",
+          "type": "attack",
+          "poison": false,
+          "stun": true,
+          "interrupt": false,
+          "undodgeable": false,
+          "uninterruptible": false,
+          "followup": false,
+          "frenzy": false
+        },
+        "policy": "all-attacks",
+        "tokens": 2
+      }
+    },
+    {
+      "name": "mission-31-legacy-safe-import-and-new-chapel-attack",
+      "status": "passed"
+    },
+    {
+      "name": "mission-31-preserved-history",
+      "historicalCommands": 189,
+      "adoptedAfter": [
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "STUN_DISCARD",
+          "cardId": "card-10"
+        },
+        {
+          "type": "APPLY_TILE_SPEED_RULING"
+        }
+      ],
+      "state": {
+        "phase": "refill",
+        "hunterHp": 3,
+        "policy": "all-attacks"
+      }
+    },
+    {
+      "name": "mission-31-pending-old-save-replay-and-deferred-adoption",
+      "status": "passed"
+    },
+    {
+      "name": "ordinary-enemy-one-to-zero-attack-and-resolve",
+      "status": "passed"
+    }
+  ],
+  "failures": [],
+  "pageErrors": [],
+  "screenshots": [
+    "mission-10-safe-import.png",
+    "mission-10-corrected-special.png",
+    "mission-10-after-resolve.png",
+    "mission-10-final-kill-reaction.png",
+    "mission-10-pending-old-attack.png",
+    "mission-10-deferred-adoption.png",
+    "mission-31-safe-import.png",
+    "mission-31-corrected-special.png",
+    "mission-31-after-resolve.png",
+    "mission-31-pending-old-attack.png",
+    "mission-31-deferred-adoption.png",
+    "mission-31-subsequent-combat.png",
+    "ordinary-one-to-zero.png",
+    "ordinary-after-resolve.png"
+  ],
+  "limitations": [
+    "Focused Issue32 browser verification; earlier UI1–12 screenshots are not repeated. Reference originals reviewed privately, not uploaded."
+  ],
+  "browser": "151.0.7922.34"
+}

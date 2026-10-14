@@ -1,0 +1,92 @@
+[
+  {
+    "id": "ludwigs-holy-blade-0-free-accept-survive",
+    "original": "branch-artifacts/weapon-effect-branches-2/ludwigs-holy-blade-0-free-accept-survive-final-idle.png",
+    "sha256": "70d3d77f4c6751bb3732f4392c68f3d213d73a1a0d2742f744e8c1678ac1a94a",
+    "capturedAtMs": 18489
+  },
+  {
+    "id": "stake-driver-1-all-push-2",
+    "original": "branch-artifacts/weapon-effect-branches-3/stake-driver-1-all-push-2-final-idle.png",
+    "sha256": "93080bd647e72c9480ecf32c9b9d9021f4dd3af51c0c67122647105fe521a066",
+    "capturedAtMs": 24447
+  },
+  {
+    "id": "beast-claw-1-kill-move-2",
+    "original": "branch-artifacts/weapon-effect-branches-2/beast-claw-1-kill-move-2-final-idle.png",
+    "sha256": "7110ab6d1f758ca67545ff2b0f8197b295447cfb2e9739f1c1c237be3d57a5f2",
+    "capturedAtMs": 32016
+  },
+  {
+    "id": "burial-1-pull-3",
+    "original": "branch-artifacts/weapon-effect-branches-0/burial-1-pull-3-final-idle.png",
+    "sha256": "f2ab616aa69157094f8fa275fb3eb54358ca04238eb1e8075f3d32164ee05196",
+    "capturedAtMs": 17225
+  },
+  {
+    "id": "beast-claw-1-mission-interruption",
+    "original": "branch-rechecks/weapon-effect-branches-0/beast-claw-1-mission-interruption-final-idle.png",
+    "sha256": "799c5f394214258af2d20d6f3836cd53e5261298f0f2dcc02bc8a0e5adeed486",
+    "capturedAtMs": 29478
+  },
+  {
+    "id": "chikage-1-dodge-heal-multi-target",
+    "original": "branch-rechecks/weapon-effect-branches-0/chikage-1-dodge-heal-multi-target-final-idle.png",
+    "sha256": "7056a011e7180a24ba8655e7a125e4141a6e2b08005ee5955505a4c303a4263e",
+    "capturedAtMs": 32226
+  },
+  {
+    "id": "hunter-axe-1-kill-chain",
+    "original": "branch-final/weapon-effect-branches-1/hunter-axe-1-kill-chain-final-idle.png",
+    "sha256": "30495efdf8dd4261f7cf114f1298317cb67074cfce85ac7fc234e33417f4425f",
+    "capturedAtMs": 18000
+  },
+  {
+    "id": "burial-0-actual-area-multikill",
+    "original": "branch-extra-rapid/38490514355-weapon-effect-branches-0/burial-0-actual-area-multikill-final-idle.png",
+    "sha256": "7b66fac6f97091d5540cb41f59e28616fbf0878ba03f14e18561ec23e93794c9",
+    "capturedAtMs": 45602
+  },
+  {
+    "id": "saw-spear-0-isolated-kill-heal-draw",
+    "original": "branch-extra-rapid/38490514355-weapon-effect-branches-1/saw-spear-0-isolated-kill-heal-draw-final-idle.png",
+    "sha256": "140c8d613ebf33f568dfddc0711a41baefb49e1a3cd425c1641de22cdf1e51d6",
+    "capturedAtMs": 15437
+  },
+  {
+    "id": "kirkhammer-1-real-interrupt-immunity",
+    "original": "branch-extra-rapid/38490514355-weapon-effect-branches-2/kirkhammer-1-real-interrupt-immunity-final-idle.png",
+    "sha256": "b43b3299b5eacfd84b3b0dab552272dfc03ebba38749b1e02523a2b8264818ab",
+    "capturedAtMs": 19119
+  },
+  {
+    "id": "tonitrus-0-charge-consumption",
+    "original": "branch-extra-rapid/38490514355-weapon-effect-branches-3/tonitrus-0-charge-consumption-final-idle.png",
+    "sha256": "263089aae48c2ae86782688fae0bdb7025a0fae0f6cfff8c53f581398cdf02df",
+    "capturedAtMs": 15400
+  },
+  {
+    "id": "reiterpallasch-1-shot-then-normal",
+    "original": "branch-artifacts/weapon-effect-branches-1/reiterpallasch-1-shot-then-normal-final-idle.png",
+    "sha256": "d39f34c0b567c45480c21b6db533940080e5e3b83fa710e2d4a869bacce60021",
+    "capturedAtMs": 10853
+  },
+  {
+    "id": "reiterpallasch-0-unmatched-dodge",
+    "original": "branch-final/weapon-effect-branches-2/reiterpallasch-0-unmatched-dodge-final-idle.png",
+    "sha256": "8c128baf38dd1350058f300970ad9deb7be6ea0bec724a812591eb6104098370",
+    "capturedAtMs": 21465
+  },
+  {
+    "id": "logarius-wheel-1-terminal-sacrifice",
+    "original": "branch-rechecks/weapon-effect-branches-2/logarius-wheel-1-terminal-sacrifice-final-idle.png",
+    "sha256": "62a574a6574cf74dfb0f8c19055d4d2c530ab67d882022a724e0705da39aa4fb",
+    "capturedAtMs": 45655
+  },
+  {
+    "id": "threaded-cane-0-dodge-area-kill-human",
+    "original": "branch-artifacts/weapon-effect-branches-0/threaded-cane-0-dodge-area-kill-human-final-idle.png",
+    "sha256": "c8e8609cd424b82090c523eec8fbaad2380708e34f3a2ea9a59291582077368e",
+    "capturedAtMs": 18624
+  }
+]
