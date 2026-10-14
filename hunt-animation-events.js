@@ -135,3 +135,4 @@
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.BBHuntAnimationEvents = api;
 })(typeof globalThis !== "undefined" ? globalThis : this);
+

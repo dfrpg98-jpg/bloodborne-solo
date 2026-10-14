@@ -160,7 +160,7 @@ test("a speed-one attack on Oedon Chapel is presented at speed zero without chan
   assert.equal(Feedback.contextualAction(base, { tileId: "tile-07" }).action.speed, 1, "the Chalice Church does not have Oedon Chapel's slow effect");
 });
 
-test("current engine mission exceptions and abilities retain their speeds and disclose why the tile penalty is absent", () => {
+test("legacy engine mission exceptions and abilities retain their speeds and disclose why the tile penalty is absent", () => {
   const attack = { name: "임무 공격", kind: "special", type: "attack", speed: 3, damage: 3 };
   for (const exception of [{ ignoreTileSpeed: true }, { missionId: "shelter" }]) {
     const prepared = Feedback.contextualAction(attack, { tileId: "tile-17", ...exception });

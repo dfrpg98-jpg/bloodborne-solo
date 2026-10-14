@@ -1,0 +1,402 @@
+{
+  "method": "Normal create/dispatch preparation only; not actual browser evidence.",
+  "count": 66,
+  "cases": [
+    {
+      "id": "ludwigs-holy-blade-0-free-decline-survive",
+      "steps": 10,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "ludwigs-holy-blade-0-free-decline-kill",
+      "steps": 16,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "ludwigs-holy-blade-0-free-accept-survive",
+      "steps": 9,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "ludwigs-holy-blade-0-free-accept-kill",
+      "steps": 13,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "uncanny-ludwigs-holy-blade-1-free-decline-survive",
+      "steps": 9,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "uncanny-ludwigs-holy-blade-1-free-decline-kill",
+      "steps": 16,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "uncanny-ludwigs-holy-blade-1-free-accept-survive",
+      "steps": 9,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "uncanny-ludwigs-holy-blade-1-free-accept-kill",
+      "steps": 13,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "stake-driver-0-free-decline-survive",
+      "steps": 9,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "stake-driver-0-free-decline-kill",
+      "steps": 15,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "stake-driver-0-free-accept-survive",
+      "steps": 11,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "stake-driver-0-free-accept-kill",
+      "steps": 14,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "uncanny-ludwigs-holy-blade-0-clear-1",
+      "steps": 14,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "uncanny-ludwigs-holy-blade-0-clear-2",
+      "steps": 18,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "kirkhammer-0-clear-1",
+      "steps": 14,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "kirkhammer-0-clear-2",
+      "steps": 18,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "ludwigs-holy-blade-1-clear-1",
+      "steps": 14,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "ludwigs-holy-blade-1-clear-2",
+      "steps": 18,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "uncanny-ludwigs-holy-blade-0-clear-kill-rapid",
+      "steps": 18,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "kirkhammer-0-clear-kill-rapid",
+      "steps": 18,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "ludwigs-holy-blade-1-clear-kill-rapid",
+      "steps": 18,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "stake-driver-1-all-push-0",
+      "steps": 10,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "stake-driver-1-all-push-1",
+      "steps": 11,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "stake-driver-1-all-push-2",
+      "steps": 15,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "beast-claw-1-kill-move-0",
+      "steps": 24,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "beast-claw-1-kill-move-1",
+      "steps": 21,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "beast-claw-1-kill-move-2",
+      "steps": 25,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "beast-claw-1-mission-interruption",
+      "steps": 16,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "hunter-axe-1-kill-target-choice",
+      "steps": 13,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "hunter-axe-1-kill-chain",
+      "steps": 18,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "rifle-spear-0-entry-decline",
+      "steps": 10,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "rifle-spear-0-entry-use",
+      "steps": 10,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "rifle-spear-1-move-bonus-0",
+      "steps": 8,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "rifle-spear-1-move-bonus-1",
+      "steps": 11,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "rifle-spear-1-move-bonus-2",
+      "steps": 15,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "chikage-0-sacrifice-none",
+      "steps": 8,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "chikage-0-sacrifice-speed",
+      "steps": 8,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "chikage-0-sacrifice-damage",
+      "steps": 8,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "logarius-wheel-1-sacrifice-0",
+      "steps": 14,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "logarius-wheel-1-sacrifice-1",
+      "steps": 13,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "logarius-wheel-1-sacrifice-2",
+      "steps": 16,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "logarius-wheel-1-lethal-sacrifice",
+      "steps": 15,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "tonitrus-0-round-expiry",
+      "steps": 12,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "tonitrus-1-round-expiry",
+      "steps": 12,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "hunter-axe-0-regain",
+      "steps": 11,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "kirkhammer-1-uninterruptible",
+      "steps": 25,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "blade-of-mercy-1-finishing-combo",
+      "steps": 12,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "saw-spear-0-kill-draw-heal",
+      "steps": 17,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "beast-claw-0-low-health",
+      "steps": 13,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "threaded-cane-0-dodge-area",
+      "steps": 8,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "reiterpallasch-0-matched-dodge",
+      "steps": 8,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "chikage-1-dodge-kill",
+      "steps": 11,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "threaded-cane-1-equal-interrupt",
+      "steps": 11,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "reiterpallasch-1-shot-then-normal",
+      "steps": 6,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "burial-1-pull-0",
+      "steps": 8,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "burial-1-pull-1",
+      "steps": 8,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "burial-1-pull-3",
+      "steps": 8,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "burial-0-area-chain-kill",
+      "steps": 20,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "chikage-1-dodge-heal-multi-target",
+      "steps": 18,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "blade-of-mercy-0-equal-interrupt",
+      "steps": 26,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "logarius-wheel-0-attack-heal",
+      "steps": 10,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "beast-claw-0-high-health",
+      "steps": 9,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "threaded-cane-0-nearby-dodge",
+      "steps": 14,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "saw-spear-1-stagger-damage",
+      "steps": 8,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "threaded-cane-0-dodge-area-kill-human",
+      "steps": 12,
+      "effect": "hunter",
+      "final": "hunter"
+    },
+    {
+      "id": "threaded-cane-0-dodge-area-kill-rapid",
+      "steps": 12,
+      "effect": "hunter",
+      "final": "hunter"
+    }
+  ]
+}

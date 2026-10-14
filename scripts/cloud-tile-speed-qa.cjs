@@ -32,6 +32,7 @@ async function load(s){const expected=E.applyTileSpeedRuling(s);assert.deepEqual
   await clean();assert.deepEqual(await saved(),expected);return expected;}
 async function acknowledge(){if(await page.locator('#missionUpdateDialog').evaluate(x=>x.open)){const before=E.exportSave(await saved());await page.locator('#missionUpdateContinue').click();assert.equal(E.exportSave(await saved()),before,'Acknowledging an alert spent an action');}}
 async function clickCommand(command){
+  if(command.type==='REFILL'){await page.locator('#refill').click();await clean();return;}
   if(command.type==='USE_CONSUMABLE'){
     await page.locator('.top-actions [data-panel=inventory]').click();
     await page.locator(`[data-item="${command.itemId}"]`).click();await page.locator('#useItem').click();await clean();return;
@@ -92,6 +93,7 @@ function summary(s){const e=s.combat&&s.enemies.find(e=>e.id===s.combat.enemyId)
       });
       await attempt('mission-'+card+'-pending-old-save-replay-and-deferred-adoption',async()=>{
         let s=await load(r.legacy);assert.deepEqual(s,r.legacy);assert.equal(s.combat.action.speed,3);
+        assert.match(await page.locator('#combatInfo').innerText(),/기존 저장 판정/);
         await screenshot('mission-'+card+'-pending-old-attack');
         for(const c of r.tail){s=await transition(s,c);await acknowledge();if(s.tileSpeedRuling)break;}
         assert.equal(s.tileSpeedRuling,'all-attacks');assert.deepEqual(E.importSave(E.exportSave(s)),s);

@@ -1129,7 +1129,7 @@
                 .join("");
     } else if (p === "free_transform") {
       help =
-        "카드 효과로 비용 없이 무기를 변형할 수 있습니다. 변형하면 모든 슬롯이 비워집니다.";
+        "효과로 비용 없이 무기를 변형할 수 있습니다. 변형하면 모든 슬롯이 비워집니다.";
       html =
         button("무료로 변형", "FREE_TRANSFORM", { accept: true }) +
         button("현재 형태 유지", "FREE_TRANSFORM", { accept: false });
