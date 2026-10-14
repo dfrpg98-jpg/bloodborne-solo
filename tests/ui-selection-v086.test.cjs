@@ -286,3 +286,104 @@ test("every provided ready firearm retains its exact public effect rules while w
     unchanged(f);
   }
 });
+
+function earnedLongHand(count = 2) {
+  // Normal QA commands: actual kill/echo, Dream purchase, refill/return, then
+  // paid transforms. No hand, deck, RNG, enemy or mission state is fabricated.
+  let s = E.create(5, "burial", 0, null, "hunter-pistol", "center", {
+    campaign: true, rulesVersion: 14, qa: { preset: "custom", startRewards: [],
+      startConsumables: [...Array(10).fill("qa-cards"), ...Array(5).fill("qa-heal"), ...Array(2).fill("qa-travel")] },
+  });
+  const preparation = [
+    { type: "USE_CONSUMABLE", itemId: "item-qa-1-16" }, { type: "EXPLORE", edge: "N" },
+    { type: "PLACE_TILE", rotation: 0 }, { type: "STOP_MOVE" },
+    { type: "USE_CONSUMABLE", itemId: "item-qa-1-1" },
+    { type: "ATTACK", cardId: "card-9", slot: 1, enemyId: "huntsman-mob-1" }, { type: "FIREARM" }, { type: "RESOLVE" },
+    { type: "USE_CONSUMABLE", itemId: "item-qa-1-2" },
+    { type: "ATTACK", cardId: "card-7", slot: 1, enemyId: "huntsman-mob-1" }, { type: "RESOLVE" },
+    { type: "STUN_DISCARD", cardId: "card-4" }, { type: "USE_CONSUMABLE", itemId: "item-qa-1-3" },
+    { type: "USE_CONSUMABLE", itemId: "item-qa-1-11" },
+    { type: "ATTACK", cardId: "card-8", slot: 1, enemyId: "huntsman-mob-1" }, { type: "FIREARM" }, { type: "RESOLVE" },
+    { type: "USE_CONSUMABLE", itemId: "item-qa-1-4" },
+    { type: "ATTACK", cardId: "card-9", slot: 1, enemyId: "huntsman-mob-1" }, { type: "RESOLVE" },
+    { type: "KEEP_FIREARM", firearmId: "ludwig-rifle" }, { type: "DREAM", cardId: "card-2" },
+    { type: "PICK_UPGRADE", index: 2 }, { type: "REPLACE_UPGRADE", replaceId: "card-4" },
+    { type: "REFILL", discardIds: [] }, { type: "RETURN", node: "tile-14:center", face: 0 },
+    ...[5, 6, 7].map(index => ({ type: "USE_CONSUMABLE", itemId: `item-qa-1-${index}` })),
+    ...["card-10", "card-1", "card-12", "card-7", "card-8", "card-9", "card-3", "card-2", "card-5", "card-6"]
+      .slice(0, 12 - count).map(cardId => ({ type: "TRANSFORM", cardId })),
+  ];
+  for (const command of preparation) s = E.dispatch(s, command);
+  assert.equal(s.phase, "hunter"); assert.equal(E.hunter(s).hand.length, count);
+  assert(E.hunter(s).hand.some(card => card.kind === "cheap-shot"));
+  assert.deepEqual(E.importSave(E.exportSave(s)), s);
+  return s;
+}
+
+test("BB030 earned long-card toggles preserve its reading position and focused control without altering save bytes", () => {
+  const f = launch(earnedLongHand(7)), id = E.hunter(f.state).hand.find(card => card.kind === "cheap-shot").id;
+  const find = () => f.ui.el("hand").querySelectorAll("[data-card]").find(card => card.dataset.card === id);
+  const old = find(); old.scrollTop = 50; old.focus();
+  f.ui.el("hand").scrollTop = 18; f.ui.el("slots").scrollTop = 40;
+  old.click();
+  assert.notEqual(find(), old, "the actual controller still replaces the button");
+  assert.equal(find().getAttribute("aria-pressed"), "true");
+  assert.equal(find().scrollTop, 50, "read effect text is not returned to the top");
+  assert.equal(f.ui.document.activeElement, find(), "native activation can reach the newly rendered card");
+  assert.equal(find().lastFocusOptions.preventScroll, true);
+  assert.equal(f.ui.el("hand").scrollTop, 18); assert.equal(f.ui.el("slots").scrollTop, 40);
+  f.ui.document.activeElement.click();
+  assert.equal(find().getAttribute("aria-pressed"), "false");
+  assert.equal(find().scrollTop, 50); assert.equal(f.ui.document.activeElement, find());
+  unchanged(f);
+});
+
+test("BB030 a free-slot toggle preserves focused slot and the reading offsets of both loadout lists", () => {
+  const f = launch(earnedLongHand(7)), cards = f.ui.el("hand").querySelectorAll("[data-card]");
+  const longId = E.hunter(f.state).hand.find(card => card.kind === "cheap-shot").id;
+  cards.find(card => card.dataset.card === longId).scrollTop = 50;
+  const old = slots(f)[1]; old.scrollTop = 12; old.focus();
+  f.ui.el("hand").scrollTop = 18; f.ui.el("slots").scrollTop = 40;
+  old.click();
+  const current = () => slots(f)[1];
+  assert.equal(f.ui.document.activeElement, current()); assert.equal(current().scrollTop, 12);
+  assert.equal(current().lastFocusOptions.preventScroll, true); assert.deepEqual(selected(f), [1]);
+  assert.equal(f.ui.el("hand").scrollTop, 18); assert.equal(f.ui.el("slots").scrollTop, 40);
+  assert.equal(f.ui.el("hand").querySelectorAll("[data-card]").find(card => card.dataset.card === longId).scrollTop, 50);
+  f.ui.document.activeElement.click(); assert.deepEqual(selected(f), []);
+  assert.equal(f.ui.document.activeElement, current()); assert.equal(current().scrollTop, 12);
+  unchanged(f);
+});
+
+test("BB030 a consumed hand card is not refocused or replaced with an unrelated card", () => {
+  const f = launch(checkpoints.get(0)), id = E.hunter(f.state).hand[0].id;
+  clickCard(f, id);
+  f.ui.el("hand").querySelectorAll("[data-card]").find(card => card.dataset.card === id).focus();
+  execute(f, "MOVE", { type: "MOVE", cardId: id });
+  assert(!f.ui.el("hand").querySelectorAll("[data-card]").some(card => card.dataset.card === id));
+  assert.equal(f.ui.document.activeElement, f.ui.document.body);
+});
+
+test("BB030 an attack never restores focus to its newly occupied disabled slot", () => {
+  const f = launch(checkpoints.get(9)), command = commands[9];
+  enemyTarget(f, command.enemyId); clickCard(f, command.cardId); clickSlot(f, command.slot);
+  slots(f).find(slot => +slot.dataset.slot === command.slot).focus();
+  execute(f, "ATTACK", command);
+  const occupied = slots(f).find(slot => +slot.dataset.slot === command.slot);
+  assert(occupied.disabled); assert.notEqual(f.ui.document.activeElement, occupied);
+  assert.equal(f.ui.document.activeElement, f.ui.document.body);
+});
+
+test("BB030 changing to a two-slot weapon does not redirect focus from a removed third slot", () => {
+  const s = E.create(90, "kirkhammer", 0, null, "hunter-pistol", "center", { campaign: true }), f = launch(s);
+  const cardId = E.hunter(s).hand[0].id;
+  clickCard(f, cardId); clickSlot(f, 2); slots(f)[2].focus();
+  execute(f, "TRANSFORM", { type: "TRANSFORM", cardId });
+  assert.equal(slots(f).length, 2); assert.equal(f.ui.document.activeElement, f.ui.document.body);
+});
+
+test("BB030 hand redraws leave an unrelated focused control untouched", () => {
+  const f = launch(checkpoints.get(0)), control = f.ui.el("new");
+  control.focus(); clickCard(f, E.hunter(f.state).hand[0].id);
+  assert.equal(f.ui.document.activeElement, control); unchanged(f);
+});

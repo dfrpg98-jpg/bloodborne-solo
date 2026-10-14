@@ -16,6 +16,7 @@ class Element {
     this.value = attributes.value || ""; this.checked = "checked" in attributes;
     this.disabled = "disabled" in attributes; this.hidden = "hidden" in attributes;
     this.open = false; this._html = ""; this._text = null;
+    this.scrollTop = 0; this.scrollLeft = 0;
     this.classList = {
       contains: (name) => (this.attributes.class || "").split(/\s+/).includes(name),
       add: (...names) => { this.attributes.class = [...new Set([...(this.attributes.class || "").split(/\s+/).filter(Boolean), ...names])].join(" "); },
@@ -26,6 +27,10 @@ class Element {
       this.dataset[key.slice(5).replace(/-([a-z])/g, (_, c) => c.toUpperCase())] = value;
   }
   set innerHTML(html) {
+    // Removing the focused descendant returns native document focus to body.
+    // Scroll offsets belong to the old elements, never their replacements.
+    if (this.document.activeElement !== this && this.contains(this.document.activeElement))
+      this.document.activeElement = this.document.body;
     for (const child of this.children) if (child.attributes.id && this.document.ids.get(child.attributes.id) === child)
       this.document.ids.delete(child.attributes.id);
     this._html = html; this._text = null; this.children = this.document.parse(html);
@@ -59,13 +64,17 @@ class Element {
   replaceChildren(...elements) { this.children = elements; }
   showModal() { this.open = true; }
   close() { this.open = false; this.fire("close"); }
-  focus() { this.document.activeElement = this; }
+  focus(options = {}) {
+    if (this.disabled) return;
+    this.document.activeElement = this; this.lastFocusOptions = { ...options };
+  }
 }
 class Document {
   constructor(html) {
     this.ids = new Map(); this.listeners = {}; this.elements = this.parse(html);
     this.body = this.elements.find(element => element.tagName.toLowerCase() === "body");
     this.documentElement = this.elements.find(element => element.tagName.toLowerCase() === "html");
+    this.activeElement = this.body;
   }
   parse(html) {
     const elements = [];

@@ -1,0 +1,19 @@
+.hand-card-help {
+  position: fixed;
+  z-index: 45;
+  box-sizing: border-box;
+  width: max-content;
+  max-width: min(340px, calc(100vw - 24px));
+  max-height: calc(100dvh - 24px);
+  overflow-y: auto;
+  padding: 12px 14px;
+  border: 1px solid #ac9265;
+  border-radius: 5px;
+  background: #101d24;
+  color: #f1e6d0;
+  box-shadow: 0 8px 26px #000b;
+  font-size: 13px;
+  line-height: 1.7;
+  pointer-events: none;
+}
+.hand-card-help[hidden] { display: none; }

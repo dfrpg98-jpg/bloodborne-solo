@@ -815,6 +815,16 @@
     return `<div class="reward-pending"><h3>${esc(r.name)} ${stored ? "교체 장착" : "획득"}</h3><p>${esc(r.rules)}</p><p class="muted">사냥 도구와 카릴 문자는 각각 2장까지 장착합니다. 보관한 카드는 챕터 사이에 교체할 수 있습니다.</p><div class="choice-grid">${opts}${stored ? "" : button("이 보상 보관", "KEEP_REWARD", { rewardId: r.id })}</div></div>`;
   }
   function renderHand() {
+    // These controls are recreated below. Preserve the user's reading position
+    // and focus only while that same card or usable slot remains available.
+    const focused = document.activeElement,
+      reading = [["hand", "[data-card]", "card"], ["slots", "[data-slot]", "slot"]]
+        .map(([id, selector, key]) => {
+          const container = $(id), controls = Array.from(container.querySelectorAll(selector));
+          return { container, selector, key, scrollTop: container.scrollTop,
+            offsets: new Map(controls.map(control => [control.dataset[key], control.scrollTop])),
+            focusedKey: controls.find(control => control === focused)?.dataset[key] };
+        });
     const h = E.hunter(state);
     if (!h.hand.some(card => card.id === selectedCard)) selectedCard = null;
     if (selectedSlot !== null && (h.slots[selectedSlot] || !E.slots(state)[selectedSlot])) selectedSlot = null;
@@ -865,6 +875,18 @@
             renderDecisions();
           }),
       );
+    for (const previous of reading) {
+      const controls = Array.from(previous.container.querySelectorAll(previous.selector));
+      for (const control of controls) {
+        const offset = previous.offsets.get(control.dataset[previous.key]);
+        if (offset !== undefined) control.scrollTop = offset;
+      }
+      previous.container.scrollTop = previous.scrollTop;
+      if (previous.focusedKey !== undefined) {
+        const control = controls.find(control => !control.disabled && control.dataset[previous.key] === previous.focusedKey);
+        control?.focus({ preventScroll: true });
+      }
+    }
   }
   function renderDecisions() {
     renderFirearm();
