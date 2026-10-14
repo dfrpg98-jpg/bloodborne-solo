@@ -52,3 +52,6 @@ node scripts/qa-smoke.cjs는 검증 초기화·소모품·이동·저장 복원�
 
 예배당 판정 전환 후속(BB-025 / Issue32)
 기존 규칙14 저장은 원래 명령을 완전 일치 재생한 뒤 안전한 단계에서 전환 명령을 기록합니다. 진행 중 공격은 기존 속도로 마치며 이후 예배당 공격은 -1입니다. 임무10/31 특수는3→2, 일반 적1→0, 피해/기절/토큰/최종 처치 반응은 유지합니다. tests/helpers/tile-speed-checkpoints.cjs로 상태를 조립하지 않고 정상 QA 시작점을 생성합니다. scripts/cloud-tile-speed-qa.cjs는 실제 Chromium에서 raw legacy 파일 불러오기·후속 공격·RESOLVE·지연 전환을 확인하며 원본 저장은 결과에 보존하지 않습니다. 실행 완료 여부와 근거는 docs/audits/tile-speed-policy-v0.8.13-dev.6/README.md를 확인합니다. 사용자 로컬8786에는 배포하지 않았습니다.
+
+클라우드 무기 후속 감사(v0.8.13-dev.6): docs/audits/weapon-followup-v0.8.13-dev.6/README.md
+기본32와 추가73 actual UI는 프로필별 공개명령/상태/원본해시/영상표본을 기록합니다. 준비모델/실제클릭/픽셀표본은구분합니다. scripts/cloud-weapon-followup-branches.cjs는 MOTION_CASE_FILTER(빈값=전체73), MOTION_SHARD/MOTION_SHARDS로선택/shard를지원합니다. 현재weapon-followup-branches.yml push는마지막3정향사례이며 workflow_dispatch cases빈값은전체분기입니다. artifact 디렉터리test-results/cloud-weapon-followup-branches,7일보관. MOTION_RAPID_BURST=1의250ms assertion은시험계측조건이며이를넘은경우게임오류로분류하지않습니다. 일반연속검증과원본실제간격을함께읽으세요.

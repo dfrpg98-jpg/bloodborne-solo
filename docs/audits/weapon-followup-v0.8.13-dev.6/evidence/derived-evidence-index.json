@@ -1,0 +1,1762 @@
+[
+  {
+    "derived": "burial-0-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "burial-0-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2680,
+        "capturedAtMs": 3287
+      },
+      {
+        "file": "burial-0-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 4977,
+        "capturedAtMs": 5586
+      },
+      {
+        "file": "burial-0-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7677,
+        "capturedAtMs": 8272
+      },
+      {
+        "file": "burial-0-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 9940,
+        "capturedAtMs": 10540
+      },
+      {
+        "file": "burial-0-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 11808,
+        "capturedAtMs": 12386
+      },
+      {
+        "file": "burial-0-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13373,
+        "capturedAtMs": 14147
+      },
+      {
+        "file": "burial-0-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 17383,
+        "capturedAtMs": 18140
+      },
+      {
+        "file": "burial-0-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 19451,
+        "capturedAtMs": 20372
+      }
+    ],
+    "sha256": "8b86668bf816e9d67a990cba7deaa8c6d77a057ce27963ca8bb721d9244d86f4"
+  },
+  {
+    "derived": "burial-1-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "burial-1-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 3490,
+        "capturedAtMs": 4483
+      },
+      {
+        "file": "burial-1-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 6178,
+        "capturedAtMs": 7058
+      },
+      {
+        "file": "burial-1-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 9387,
+        "capturedAtMs": 9942
+      },
+      {
+        "file": "burial-1-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 11881,
+        "capturedAtMs": 12677
+      },
+      {
+        "file": "burial-1-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 13949,
+        "capturedAtMs": 14466
+      },
+      {
+        "file": "burial-1-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 15400,
+        "capturedAtMs": 15843
+      },
+      {
+        "file": "burial-1-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 17940,
+        "capturedAtMs": 18608
+      },
+      {
+        "file": "burial-1-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 20423,
+        "capturedAtMs": 20993
+      }
+    ],
+    "sha256": "f6d40f91daf0bf25a60f58c55698e5f286d3f5500ff0a735c253c348821f7ec2"
+  },
+  {
+    "derived": "threaded-cane-0-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "threaded-cane-0-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2378,
+        "capturedAtMs": 3115
+      },
+      {
+        "file": "threaded-cane-0-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 4926,
+        "capturedAtMs": 5640
+      },
+      {
+        "file": "threaded-cane-0-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7708,
+        "capturedAtMs": 8367
+      },
+      {
+        "file": "threaded-cane-0-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 10429,
+        "capturedAtMs": 11031
+      },
+      {
+        "file": "threaded-cane-0-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 12453,
+        "capturedAtMs": 13195
+      },
+      {
+        "file": "threaded-cane-0-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 14237,
+        "capturedAtMs": 14827
+      },
+      {
+        "file": "threaded-cane-0-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 17059,
+        "capturedAtMs": 17687
+      },
+      {
+        "file": "threaded-cane-0-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 18968,
+        "capturedAtMs": 19581
+      }
+    ],
+    "sha256": "9aef582855f63d8a48432e8b81292c114d74d997274d6caf31fe81b185f61c47"
+  },
+  {
+    "derived": "threaded-cane-1-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "threaded-cane-1-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2847,
+        "capturedAtMs": 3557
+      },
+      {
+        "file": "threaded-cane-1-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 5424,
+        "capturedAtMs": 6012
+      },
+      {
+        "file": "threaded-cane-1-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 8240,
+        "capturedAtMs": 8886
+      },
+      {
+        "file": "threaded-cane-1-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 10888,
+        "capturedAtMs": 11513
+      },
+      {
+        "file": "threaded-cane-1-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 12795,
+        "capturedAtMs": 13423
+      },
+      {
+        "file": "threaded-cane-1-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 14725,
+        "capturedAtMs": 15289
+      },
+      {
+        "file": "threaded-cane-1-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 17471,
+        "capturedAtMs": 18002
+      },
+      {
+        "file": "threaded-cane-1-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 19301,
+        "capturedAtMs": 19995
+      }
+    ],
+    "sha256": "f1733f5703ac86dbc6a9fca8ecd0230b01ff2134d8023726924fe1a72a4e7e98"
+  },
+  {
+    "derived": "hunter-axe-0-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "hunter-axe-0-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2571,
+        "capturedAtMs": 3186
+      },
+      {
+        "file": "hunter-axe-0-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 4980,
+        "capturedAtMs": 5582
+      },
+      {
+        "file": "hunter-axe-0-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7549,
+        "capturedAtMs": 8068
+      },
+      {
+        "file": "hunter-axe-0-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 9671,
+        "capturedAtMs": 10297
+      },
+      {
+        "file": "hunter-axe-0-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 11592,
+        "capturedAtMs": 12186
+      },
+      {
+        "file": "hunter-axe-0-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13207,
+        "capturedAtMs": 13856
+      },
+      {
+        "file": "hunter-axe-0-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 16014,
+        "capturedAtMs": 16614
+      },
+      {
+        "file": "hunter-axe-0-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 17891,
+        "capturedAtMs": 18441
+      }
+    ],
+    "sha256": "852958e257af788bf0ab77a53b52a597a313ef59e5d3bcc0fd5ae9cdc8420a25"
+  },
+  {
+    "derived": "hunter-axe-1-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "hunter-axe-1-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2625,
+        "capturedAtMs": 3243
+      },
+      {
+        "file": "hunter-axe-1-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 4928,
+        "capturedAtMs": 5470
+      },
+      {
+        "file": "hunter-axe-1-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7408,
+        "capturedAtMs": 7952
+      },
+      {
+        "file": "hunter-axe-1-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 9635,
+        "capturedAtMs": 10185
+      },
+      {
+        "file": "hunter-axe-1-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 11573,
+        "capturedAtMs": 12210
+      },
+      {
+        "file": "hunter-axe-1-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13104,
+        "capturedAtMs": 13729
+      },
+      {
+        "file": "hunter-axe-1-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 16097,
+        "capturedAtMs": 16633
+      },
+      {
+        "file": "hunter-axe-1-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 18477,
+        "capturedAtMs": 18968
+      }
+    ],
+    "sha256": "848f873288829f4f8b836ac7c77374274293d10c6dcf8464980d402069586dfb"
+  },
+  {
+    "derived": "rifle-spear-0-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "rifle-spear-0-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2639,
+        "capturedAtMs": 3375
+      },
+      {
+        "file": "rifle-spear-0-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 5428,
+        "capturedAtMs": 6041
+      },
+      {
+        "file": "rifle-spear-0-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 8272,
+        "capturedAtMs": 8834
+      },
+      {
+        "file": "rifle-spear-0-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 10656,
+        "capturedAtMs": 11338
+      },
+      {
+        "file": "rifle-spear-0-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 12622,
+        "capturedAtMs": 13160
+      },
+      {
+        "file": "rifle-spear-0-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 14207,
+        "capturedAtMs": 14834
+      },
+      {
+        "file": "rifle-spear-0-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 17700,
+        "capturedAtMs": 18227
+      },
+      {
+        "file": "rifle-spear-0-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 19522,
+        "capturedAtMs": 20036
+      }
+    ],
+    "sha256": "11505cc3ef51d8e8a1933c85d15d28767dfb581001ca4a9febc0923a80451efd"
+  },
+  {
+    "derived": "rifle-spear-1-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "rifle-spear-1-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2780,
+        "capturedAtMs": 3331
+      },
+      {
+        "file": "rifle-spear-1-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 5024,
+        "capturedAtMs": 5709
+      },
+      {
+        "file": "rifle-spear-1-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7919,
+        "capturedAtMs": 8509
+      },
+      {
+        "file": "rifle-spear-1-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 10242,
+        "capturedAtMs": 10840
+      },
+      {
+        "file": "rifle-spear-1-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 12153,
+        "capturedAtMs": 12731
+      },
+      {
+        "file": "rifle-spear-1-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13789,
+        "capturedAtMs": 14350
+      },
+      {
+        "file": "rifle-spear-1-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 16553,
+        "capturedAtMs": 17100
+      },
+      {
+        "file": "rifle-spear-1-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 18446,
+        "capturedAtMs": 19038
+      }
+    ],
+    "sha256": "738ce5eba1897cb7a4a116f7bafdb76a1a84aadb115817320346e7330840fd78"
+  },
+  {
+    "derived": "saw-spear-0-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "saw-spear-0-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2741,
+        "capturedAtMs": 3360
+      },
+      {
+        "file": "saw-spear-0-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 5028,
+        "capturedAtMs": 5610
+      },
+      {
+        "file": "saw-spear-0-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7677,
+        "capturedAtMs": 8263
+      },
+      {
+        "file": "saw-spear-0-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 10172,
+        "capturedAtMs": 10823
+      },
+      {
+        "file": "saw-spear-0-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 12101,
+        "capturedAtMs": 12709
+      },
+      {
+        "file": "saw-spear-0-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13723,
+        "capturedAtMs": 14217
+      },
+      {
+        "file": "saw-spear-0-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 16459,
+        "capturedAtMs": 17061
+      },
+      {
+        "file": "saw-spear-0-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 18341,
+        "capturedAtMs": 18891
+      }
+    ],
+    "sha256": "554a99c33b856eb9c7f06fb183bc64c8e7db2aca70774f62a9405cb5b375bffb"
+  },
+  {
+    "derived": "saw-spear-1-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "saw-spear-1-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2912,
+        "capturedAtMs": 3486
+      },
+      {
+        "file": "saw-spear-1-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 5221,
+        "capturedAtMs": 5810
+      },
+      {
+        "file": "saw-spear-1-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7795,
+        "capturedAtMs": 8325
+      },
+      {
+        "file": "saw-spear-1-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 10146,
+        "capturedAtMs": 10769
+      },
+      {
+        "file": "saw-spear-1-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 12117,
+        "capturedAtMs": 12713
+      },
+      {
+        "file": "saw-spear-1-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13558,
+        "capturedAtMs": 14055
+      },
+      {
+        "file": "saw-spear-1-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 16367,
+        "capturedAtMs": 16900
+      },
+      {
+        "file": "saw-spear-1-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 18855,
+        "capturedAtMs": 19448
+      }
+    ],
+    "sha256": "cd4e447ddfc9e52ee83febd52248031632c2ee172ebfd788a8c62998e68df439"
+  },
+  {
+    "derived": "uncanny-ludwigs-holy-blade-0-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "uncanny-ludwigs-holy-blade-0-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2438,
+        "capturedAtMs": 3077
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-0-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 4747,
+        "capturedAtMs": 5448
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-0-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7410,
+        "capturedAtMs": 8010
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-0-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 9920,
+        "capturedAtMs": 10437
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-0-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 11736,
+        "capturedAtMs": 12260
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-0-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13342,
+        "capturedAtMs": 13959
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-0-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 16113,
+        "capturedAtMs": 16717
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-0-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 18582,
+        "capturedAtMs": 19144
+      }
+    ],
+    "sha256": "2b61bbcc80aae9ec97c7b918e5b4ffbf8dac3ffefd1f3cb0549133e08b9901f4"
+  },
+  {
+    "derived": "uncanny-ludwigs-holy-blade-1-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "uncanny-ludwigs-holy-blade-1-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2975,
+        "capturedAtMs": 3712
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-1-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 5365,
+        "capturedAtMs": 5952
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-1-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7869,
+        "capturedAtMs": 8495
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-1-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 10473,
+        "capturedAtMs": 11048
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-1-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 12768,
+        "capturedAtMs": 13272
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-1-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 14183,
+        "capturedAtMs": 14666
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-1-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 17008,
+        "capturedAtMs": 17506
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-1-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 18802,
+        "capturedAtMs": 19374
+      }
+    ],
+    "sha256": "91f406c41d4ed22ecf8fec2d42e8624e195891ea30e2a03866b00dbb4dd53372"
+  },
+  {
+    "derived": "tonitrus-0-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "tonitrus-0-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2622,
+        "capturedAtMs": 3328
+      },
+      {
+        "file": "tonitrus-0-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 5079,
+        "capturedAtMs": 5669
+      },
+      {
+        "file": "tonitrus-0-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7836,
+        "capturedAtMs": 8367
+      },
+      {
+        "file": "tonitrus-0-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 10293,
+        "capturedAtMs": 10797
+      },
+      {
+        "file": "tonitrus-0-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 12160,
+        "capturedAtMs": 12736
+      },
+      {
+        "file": "tonitrus-0-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13889,
+        "capturedAtMs": 14422
+      },
+      {
+        "file": "tonitrus-0-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 16555,
+        "capturedAtMs": 17126
+      },
+      {
+        "file": "tonitrus-0-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 18419,
+        "capturedAtMs": 18973
+      }
+    ],
+    "sha256": "b8ab6f319c8e6ff0559f865bc3fbe90d577c9587745c2222b5e1ed2216b3d2d7"
+  },
+  {
+    "derived": "tonitrus-1-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "tonitrus-1-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2671,
+        "capturedAtMs": 3246
+      },
+      {
+        "file": "tonitrus-1-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 4945,
+        "capturedAtMs": 5539
+      },
+      {
+        "file": "tonitrus-1-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7435,
+        "capturedAtMs": 7970
+      },
+      {
+        "file": "tonitrus-1-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 9740,
+        "capturedAtMs": 10285
+      },
+      {
+        "file": "tonitrus-1-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 11581,
+        "capturedAtMs": 12132
+      },
+      {
+        "file": "tonitrus-1-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13047,
+        "capturedAtMs": 13601
+      },
+      {
+        "file": "tonitrus-1-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 15771,
+        "capturedAtMs": 16328
+      },
+      {
+        "file": "tonitrus-1-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 17632,
+        "capturedAtMs": 18176
+      }
+    ],
+    "sha256": "741836eb7c75a8e90a01a84121a7b0c98fccacf46abc339edbb1088aee5dc1f5"
+  },
+  {
+    "derived": "blade-of-mercy-0-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "blade-of-mercy-0-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2748,
+        "capturedAtMs": 3265
+      },
+      {
+        "file": "blade-of-mercy-0-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 4987,
+        "capturedAtMs": 5514
+      },
+      {
+        "file": "blade-of-mercy-0-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7384,
+        "capturedAtMs": 7931
+      },
+      {
+        "file": "blade-of-mercy-0-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 9601,
+        "capturedAtMs": 10203
+      },
+      {
+        "file": "blade-of-mercy-0-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 11437,
+        "capturedAtMs": 11995
+      },
+      {
+        "file": "blade-of-mercy-0-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 12840,
+        "capturedAtMs": 13421
+      },
+      {
+        "file": "blade-of-mercy-0-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 15731,
+        "capturedAtMs": 16269
+      },
+      {
+        "file": "blade-of-mercy-0-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 17548,
+        "capturedAtMs": 18083
+      }
+    ],
+    "sha256": "13104e508191678696659f6cc2bdd7f9e0d4c4a9bb32b1860ac394958da5c76c"
+  },
+  {
+    "derived": "blade-of-mercy-1-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "blade-of-mercy-1-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2833,
+        "capturedAtMs": 3405
+      },
+      {
+        "file": "blade-of-mercy-1-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 5248,
+        "capturedAtMs": 5933
+      },
+      {
+        "file": "blade-of-mercy-1-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7828,
+        "capturedAtMs": 8431
+      },
+      {
+        "file": "blade-of-mercy-1-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 10187,
+        "capturedAtMs": 10766
+      },
+      {
+        "file": "blade-of-mercy-1-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 12108,
+        "capturedAtMs": 12742
+      },
+      {
+        "file": "blade-of-mercy-1-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13799,
+        "capturedAtMs": 14342
+      },
+      {
+        "file": "blade-of-mercy-1-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 16902,
+        "capturedAtMs": 17595
+      },
+      {
+        "file": "blade-of-mercy-1-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 19569,
+        "capturedAtMs": 20111
+      }
+    ],
+    "sha256": "16be383ad8f2952a887938acce5108ba7a0bf0e433e38cbab10c85541ffe2538"
+  },
+  {
+    "derived": "ludwigs-holy-blade-0-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "ludwigs-holy-blade-0-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2761,
+        "capturedAtMs": 3479
+      },
+      {
+        "file": "ludwigs-holy-blade-0-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 5239,
+        "capturedAtMs": 5757
+      },
+      {
+        "file": "ludwigs-holy-blade-0-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7893,
+        "capturedAtMs": 8497
+      },
+      {
+        "file": "ludwigs-holy-blade-0-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 10467,
+        "capturedAtMs": 11031
+      },
+      {
+        "file": "ludwigs-holy-blade-0-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 12713,
+        "capturedAtMs": 13258
+      },
+      {
+        "file": "ludwigs-holy-blade-0-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 14249,
+        "capturedAtMs": 14801
+      },
+      {
+        "file": "ludwigs-holy-blade-0-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 17231,
+        "capturedAtMs": 17804
+      },
+      {
+        "file": "ludwigs-holy-blade-0-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 19635,
+        "capturedAtMs": 20143
+      }
+    ],
+    "sha256": "4ee3c29291305dce8a2c2cbce6164a04b373c58e9eb5dcad48b1214151364c42"
+  },
+  {
+    "derived": "ludwigs-holy-blade-1-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "ludwigs-holy-blade-1-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2732,
+        "capturedAtMs": 3426
+      },
+      {
+        "file": "ludwigs-holy-blade-1-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 5266,
+        "capturedAtMs": 5904
+      },
+      {
+        "file": "ludwigs-holy-blade-1-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 8000,
+        "capturedAtMs": 8642
+      },
+      {
+        "file": "ludwigs-holy-blade-1-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 10463,
+        "capturedAtMs": 11063
+      },
+      {
+        "file": "ludwigs-holy-blade-1-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 12414,
+        "capturedAtMs": 12954
+      },
+      {
+        "file": "ludwigs-holy-blade-1-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13905,
+        "capturedAtMs": 14370
+      },
+      {
+        "file": "ludwigs-holy-blade-1-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 16568,
+        "capturedAtMs": 17124
+      },
+      {
+        "file": "ludwigs-holy-blade-1-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 18400,
+        "capturedAtMs": 19003
+      }
+    ],
+    "sha256": "1de4e0f26e6fa20b969b5f6811e1f28907a962076ed4ff8839d67664bc8ef7eb"
+  },
+  {
+    "derived": "logarius-wheel-0-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "logarius-wheel-0-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2705,
+        "capturedAtMs": 3436
+      },
+      {
+        "file": "logarius-wheel-0-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 5288,
+        "capturedAtMs": 5805
+      },
+      {
+        "file": "logarius-wheel-0-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 8125,
+        "capturedAtMs": 8650
+      },
+      {
+        "file": "logarius-wheel-0-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 10558,
+        "capturedAtMs": 11124
+      },
+      {
+        "file": "logarius-wheel-0-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 12446,
+        "capturedAtMs": 12950
+      },
+      {
+        "file": "logarius-wheel-0-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13980,
+        "capturedAtMs": 14554
+      },
+      {
+        "file": "logarius-wheel-0-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 16694,
+        "capturedAtMs": 17402
+      },
+      {
+        "file": "logarius-wheel-0-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 19295,
+        "capturedAtMs": 19874
+      }
+    ],
+    "sha256": "b9d535e1e1533c883c37eaa9d00cff5a465d8109f8f7c09bd39be0b49d0a50a3"
+  },
+  {
+    "derived": "logarius-wheel-1-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "logarius-wheel-1-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2436,
+        "capturedAtMs": 3095
+      },
+      {
+        "file": "logarius-wheel-1-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 4790,
+        "capturedAtMs": 5375
+      },
+      {
+        "file": "logarius-wheel-1-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7335,
+        "capturedAtMs": 7895
+      },
+      {
+        "file": "logarius-wheel-1-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 9590,
+        "capturedAtMs": 10160
+      },
+      {
+        "file": "logarius-wheel-1-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 11454,
+        "capturedAtMs": 12028
+      },
+      {
+        "file": "logarius-wheel-1-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13081,
+        "capturedAtMs": 13604
+      },
+      {
+        "file": "logarius-wheel-1-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 15700,
+        "capturedAtMs": 16320
+      },
+      {
+        "file": "logarius-wheel-1-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 18232,
+        "capturedAtMs": 18764
+      }
+    ],
+    "sha256": "792986f90f5aae68c8383581bb1f60936e93203bf4638da06373bc1a79aca625"
+  },
+  {
+    "derived": "kirkhammer-0-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "kirkhammer-0-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2939,
+        "capturedAtMs": 3510
+      },
+      {
+        "file": "kirkhammer-0-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 5293,
+        "capturedAtMs": 5885
+      },
+      {
+        "file": "kirkhammer-0-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 8003,
+        "capturedAtMs": 8564
+      },
+      {
+        "file": "kirkhammer-0-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 10232,
+        "capturedAtMs": 10784
+      },
+      {
+        "file": "kirkhammer-0-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 12082,
+        "capturedAtMs": 12615
+      },
+      {
+        "file": "kirkhammer-0-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13568,
+        "capturedAtMs": 14160
+      },
+      {
+        "file": "kirkhammer-0-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 16310,
+        "capturedAtMs": 16896
+      },
+      {
+        "file": "kirkhammer-0-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 18185,
+        "capturedAtMs": 18774
+      }
+    ],
+    "sha256": "7bb4e25104789342736df78d9e4eb971bd466910a7668b5f42cdae60b8ded218"
+  },
+  {
+    "derived": "kirkhammer-1-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "kirkhammer-1-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2666,
+        "capturedAtMs": 3294
+      },
+      {
+        "file": "kirkhammer-1-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 4972,
+        "capturedAtMs": 5493
+      },
+      {
+        "file": "kirkhammer-1-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7430,
+        "capturedAtMs": 8030
+      },
+      {
+        "file": "kirkhammer-1-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 9748,
+        "capturedAtMs": 10303
+      },
+      {
+        "file": "kirkhammer-1-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 11570,
+        "capturedAtMs": 12150
+      },
+      {
+        "file": "kirkhammer-1-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13222,
+        "capturedAtMs": 13734
+      },
+      {
+        "file": "kirkhammer-1-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 16023,
+        "capturedAtMs": 16557
+      },
+      {
+        "file": "kirkhammer-1-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 17864,
+        "capturedAtMs": 18371
+      }
+    ],
+    "sha256": "6a699f2b58e62085aeaf42858f48754f21aee026cc5e1e89747deea2f18a3b07"
+  },
+  {
+    "derived": "stake-driver-0-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "stake-driver-0-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2451,
+        "capturedAtMs": 3160
+      },
+      {
+        "file": "stake-driver-0-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 5081,
+        "capturedAtMs": 5623
+      },
+      {
+        "file": "stake-driver-0-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7581,
+        "capturedAtMs": 8145
+      },
+      {
+        "file": "stake-driver-0-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 9780,
+        "capturedAtMs": 10365
+      },
+      {
+        "file": "stake-driver-0-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 11594,
+        "capturedAtMs": 12129
+      },
+      {
+        "file": "stake-driver-0-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13162,
+        "capturedAtMs": 13762
+      },
+      {
+        "file": "stake-driver-0-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 16154,
+        "capturedAtMs": 16694
+      },
+      {
+        "file": "stake-driver-0-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 18332,
+        "capturedAtMs": 18782
+      }
+    ],
+    "sha256": "519096e50966f73b0cf6a6dc939721a555605bb85624230b8950620e0e66dd31"
+  },
+  {
+    "derived": "stake-driver-1-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "stake-driver-1-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2715,
+        "capturedAtMs": 3519
+      },
+      {
+        "file": "stake-driver-1-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 5265,
+        "capturedAtMs": 5813
+      },
+      {
+        "file": "stake-driver-1-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7815,
+        "capturedAtMs": 8343
+      },
+      {
+        "file": "stake-driver-1-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 9899,
+        "capturedAtMs": 10382
+      },
+      {
+        "file": "stake-driver-1-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 12059,
+        "capturedAtMs": 12609
+      },
+      {
+        "file": "stake-driver-1-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13466,
+        "capturedAtMs": 14029
+      },
+      {
+        "file": "stake-driver-1-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 16532,
+        "capturedAtMs": 17070
+      },
+      {
+        "file": "stake-driver-1-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 18417,
+        "capturedAtMs": 18945
+      }
+    ],
+    "sha256": "0738e5263bb78d78161bc3fd107153e335df5261bbb1b04fb17ba175672504ee"
+  },
+  {
+    "derived": "chikage-0-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "chikage-0-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2728,
+        "capturedAtMs": 3478
+      },
+      {
+        "file": "chikage-0-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 5080,
+        "capturedAtMs": 5673
+      },
+      {
+        "file": "chikage-0-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7681,
+        "capturedAtMs": 8206
+      },
+      {
+        "file": "chikage-0-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 10045,
+        "capturedAtMs": 10663
+      },
+      {
+        "file": "chikage-0-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 12010,
+        "capturedAtMs": 12628
+      },
+      {
+        "file": "chikage-0-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13716,
+        "capturedAtMs": 14275
+      },
+      {
+        "file": "chikage-0-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 16305,
+        "capturedAtMs": 16906
+      },
+      {
+        "file": "chikage-0-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 18214,
+        "capturedAtMs": 18712
+      }
+    ],
+    "sha256": "2e5257cf62ed626228e8dfac65647976a0771b95efeed0b9042b8c6423df45b7"
+  },
+  {
+    "derived": "chikage-1-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "chikage-1-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2532,
+        "capturedAtMs": 3096
+      },
+      {
+        "file": "chikage-1-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 4809,
+        "capturedAtMs": 5383
+      },
+      {
+        "file": "chikage-1-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7410,
+        "capturedAtMs": 7998
+      },
+      {
+        "file": "chikage-1-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 9916,
+        "capturedAtMs": 10567
+      },
+      {
+        "file": "chikage-1-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 11908,
+        "capturedAtMs": 12489
+      },
+      {
+        "file": "chikage-1-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13482,
+        "capturedAtMs": 13982
+      },
+      {
+        "file": "chikage-1-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 16318,
+        "capturedAtMs": 16907
+      },
+      {
+        "file": "chikage-1-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 18209,
+        "capturedAtMs": 18798
+      }
+    ],
+    "sha256": "c7eff124ef03b89a5dc448778da01383d27be0ffc1712ead830dffee98026d8c"
+  },
+  {
+    "derived": "beast-claw-0-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "beast-claw-0-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2690,
+        "capturedAtMs": 3385
+      },
+      {
+        "file": "beast-claw-0-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 5118,
+        "capturedAtMs": 5677
+      },
+      {
+        "file": "beast-claw-0-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7815,
+        "capturedAtMs": 8449
+      },
+      {
+        "file": "beast-claw-0-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 9976,
+        "capturedAtMs": 10538
+      },
+      {
+        "file": "beast-claw-0-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 11812,
+        "capturedAtMs": 12378
+      },
+      {
+        "file": "beast-claw-0-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13368,
+        "capturedAtMs": 13866
+      },
+      {
+        "file": "beast-claw-0-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 15896,
+        "capturedAtMs": 16463
+      },
+      {
+        "file": "beast-claw-0-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 17757,
+        "capturedAtMs": 18233
+      }
+    ],
+    "sha256": "21b324fccb6778409a624643746c4905ffe5b2c25a7df3e5adb8959bfd069303"
+  },
+  {
+    "derived": "beast-claw-1-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "beast-claw-1-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2493,
+        "capturedAtMs": 3067
+      },
+      {
+        "file": "beast-claw-1-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 4817,
+        "capturedAtMs": 5326
+      },
+      {
+        "file": "beast-claw-1-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7282,
+        "capturedAtMs": 7888
+      },
+      {
+        "file": "beast-claw-1-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 9839,
+        "capturedAtMs": 10413
+      },
+      {
+        "file": "beast-claw-1-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 11704,
+        "capturedAtMs": 12342
+      },
+      {
+        "file": "beast-claw-1-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13188,
+        "capturedAtMs": 13813
+      },
+      {
+        "file": "beast-claw-1-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 16066,
+        "capturedAtMs": 16647
+      },
+      {
+        "file": "beast-claw-1-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 18240,
+        "capturedAtMs": 18810
+      }
+    ],
+    "sha256": "ef686b02cbb89769653669d9d52f695ac2d83913997ef1e22f3d22dfef7740f7"
+  },
+  {
+    "derived": "reiterpallasch-0-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "reiterpallasch-0-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2805,
+        "capturedAtMs": 3535
+      },
+      {
+        "file": "reiterpallasch-0-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 5200,
+        "capturedAtMs": 5835
+      },
+      {
+        "file": "reiterpallasch-0-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7762,
+        "capturedAtMs": 8300
+      },
+      {
+        "file": "reiterpallasch-0-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 10077,
+        "capturedAtMs": 10594
+      },
+      {
+        "file": "reiterpallasch-0-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 11956,
+        "capturedAtMs": 12454
+      },
+      {
+        "file": "reiterpallasch-0-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13363,
+        "capturedAtMs": 13962
+      },
+      {
+        "file": "reiterpallasch-0-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 16257,
+        "capturedAtMs": 16782
+      },
+      {
+        "file": "reiterpallasch-0-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 18051,
+        "capturedAtMs": 18612
+      }
+    ],
+    "sha256": "20ef10d7bcf1dec3e5ddfeee420122875354943145854555ce44eb93e858e56d"
+  },
+  {
+    "derived": "reiterpallasch-1-base.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "reiterpallasch-1-base-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2467,
+        "capturedAtMs": 3217
+      },
+      {
+        "file": "reiterpallasch-1-base-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 4937,
+        "capturedAtMs": 5502
+      },
+      {
+        "file": "reiterpallasch-1-base-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7555,
+        "capturedAtMs": 8124
+      },
+      {
+        "file": "reiterpallasch-1-base-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 9608,
+        "capturedAtMs": 10176
+      },
+      {
+        "file": "reiterpallasch-1-base-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 11484,
+        "capturedAtMs": 12020
+      },
+      {
+        "file": "reiterpallasch-1-base-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 13195,
+        "capturedAtMs": 13784
+      },
+      {
+        "file": "reiterpallasch-1-base-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 15994,
+        "capturedAtMs": 16551
+      },
+      {
+        "file": "reiterpallasch-1-base-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 17835,
+        "capturedAtMs": 18392
+      }
+    ],
+    "sha256": "67742fe626d1bc6c67203b7040b8a22bfee76f9e353b44d1efe6baff73721fc7"
+  },
+  {
+    "derived": "ludwigs-holy-blade-0-free-accept.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "ludwigs-holy-blade-0-free-accept-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2685,
+        "capturedAtMs": 3423
+      },
+      {
+        "file": "ludwigs-holy-blade-0-free-accept-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 5108,
+        "capturedAtMs": 5740
+      },
+      {
+        "file": "ludwigs-holy-blade-0-free-accept-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7939,
+        "capturedAtMs": 8647
+      },
+      {
+        "file": "ludwigs-holy-blade-0-free-accept-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 10749,
+        "capturedAtMs": 11421
+      },
+      {
+        "file": "ludwigs-holy-blade-0-free-accept-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 13068,
+        "capturedAtMs": 13662
+      },
+      {
+        "file": "ludwigs-holy-blade-0-free-accept-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 14650,
+        "capturedAtMs": 15189
+      },
+      {
+        "file": "ludwigs-holy-blade-0-free-accept-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 17472,
+        "capturedAtMs": 18086
+      },
+      {
+        "file": "ludwigs-holy-blade-0-free-accept-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 19361,
+        "capturedAtMs": 19883
+      }
+    ],
+    "sha256": "f35c57bcaa8375f7ade87b200536e296734193db058b07209a740d4004c9c6cc"
+  },
+  {
+    "derived": "uncanny-ludwigs-holy-blade-1-free-accept.jpg",
+    "method": "JPEG cropped contact sheet from 8 original actual PNG; no synthetic frames",
+    "originals": [
+      {
+        "file": "uncanny-ludwigs-holy-blade-1-free-accept-first-movement.png",
+        "label": "first-movement",
+        "requestedAtMs": 2477,
+        "capturedAtMs": 3167
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-1-free-accept-first-pursuit-settled.png",
+        "label": "first-pursuit-settled",
+        "requestedAtMs": 4905,
+        "capturedAtMs": 5497
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-1-free-accept-paid-transform-other.png",
+        "label": "paid-transform-other",
+        "requestedAtMs": 7498,
+        "capturedAtMs": 8015
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-1-free-accept-first-followups-impact.png",
+        "label": "first-followups-impact",
+        "requestedAtMs": 9869,
+        "capturedAtMs": 10435
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-1-free-accept-first-followups-complete.png",
+        "label": "first-followups-complete",
+        "requestedAtMs": 12360,
+        "capturedAtMs": 12934
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-1-free-accept-next-movement.png",
+        "label": "next-movement",
+        "requestedAtMs": 14001,
+        "capturedAtMs": 14623
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-1-free-accept-second-followups-impact.png",
+        "label": "second-followups-impact",
+        "requestedAtMs": 17039,
+        "capturedAtMs": 17562
+      },
+      {
+        "file": "uncanny-ludwigs-holy-blade-1-free-accept-second-followups-complete.png",
+        "label": "second-followups-complete",
+        "requestedAtMs": 18860,
+        "capturedAtMs": 19459
+      }
+    ],
+    "sha256": "18ec80805ab4c3ca7208b42ad8117a9c3103984dee291b3dc588f2720cf363e2"
+  }
+]

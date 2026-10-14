@@ -8,7 +8,7 @@
 
 [browser-results.json](browser-results.json)에 30개 프로필의 단계별 공개 DOM, 최종 스냅샷, 수집한 콘솔 메시지가 있다. 마지막 누적 표시값은 이동 62회·공격 60회·발사 0회이며, Phaser 4.2.1, 캐릭터 `ready`, 움직임 `full` 상태였다. 수집한 콘솔 메시지는 0개다. 표식 `complete`는 이 검증 배치의 지정 단계 실행을 뜻하며 캠페인 완수를 뜻하지 않는다.
 
-말뚝박이 두 번째 형태의 필수 밀치기와 이질적인 루드비히의 성검 두 번째 형태의 무료 변형 후속 선택까지 처리했다. **루드비히의 성검 첫 번째 형태는 무료 무기 변형 선택 화면까지 확인했으며, 이 배치에서 해당 선택을 끝낸 것으로 기록하지 않는다.** 후속 사진은 [말뚝박이](evidence/stake-driver-1-push-complete.jpg), [이질적인 루드비히의 성검](evidence/uncanny-1-free-transform.jpg)에 있다.
+말뚝박이 두 번째 형태의 선택형 밀치기(0·1·2칸 또는 종료)와 이질적인 루드비히의 성검 두 번째 형태의 무료 변형 후속 선택까지 처리했다. **원래 배치에서 루드비히 첫 형태는 무료 변형 선택창 뒤를 실행하지 않았다. 이 누락은 후속 실제32경로(run38486340270)에서 수락/거절 → 선택 종료 → 다음 일반 이동/전투까지 확인하여 해소했다.** [후속30형태 완료표](../weapon-followup-v0.8.13-dev.6/base32-completion-table.md)를 확인한다. 후속 사진은 [말뚝박이](evidence/stake-driver-1-push-complete.jpg), [이질적인 루드비히의 성검](evidence/uncanny-1-free-transform.jpg)에 있다.
 
 프로필마다 추격·다른 형태·전투 표본 사진 3장을 [browser](browser/)에 보관했다. [screenshot-index.json](screenshot-index.json)의 모든 파일은 원본 바이트와 SHA-256을 대조했다. 추격 사진 일부는 적이 이동하는 도중이고, 전투 사진은 특정 순간의 표본이다. 모든 중간 프레임을 촬영했다거나, 정지 사진만으로 순간이동이 전혀 없다고 판정하지 않는다.
 
@@ -34,4 +34,4 @@ node docs/audits/map-motion-ui-qa-v0.8.13-dev.6/fixtures/generate-model.cjs
 
 [intermediate-checks/motion-ci-before-feedback.json](intermediate-checks/motion-ci-before-feedback.json)과 [TAP 로그](intermediate-checks/motion-ci-before-feedback.tap)는 **UI 확장 이전 중간 검사**다. 2,610개 통과·0개 실패이며, 비공개 원본 사진 파일을 필요로 하는 4개 검사는 명시적으로 제외했다. UI 핸들러·배치 계약 테스트는 코드 경로 검증이며 실제 브라우저 렌더링 확인을 대체하지 않는다.
 
-최종 CI 및 사용자 피드백 1–12의 실제 브라우저 확인·추가 결과는 이후 인계 작업에서 이 기록에 보완해야 한다. 현재 완료된 30개 무기 지도 움직임 배치와 아직 남은 새 UI 검증을 구분한다.
+이 문서 최초 작성 뒤 사용자 피드백1–12 실제 UI는 run38427816119, 최신2cd935a 회귀38427821578/38427816398에서 성공했다. 이 원래30개의 complete는 당시 지정 명령 종료만 뜻하며 이후 새 이동/전투 검증은 [별도 후속 audit](../weapon-followup-v0.8.13-dev.6/README.md)에 기록한다. 최신 효과 분기/수정/전체CI의 진행 상태와 완료 증거도 그 후속 문서를 따른다.
