@@ -1,4 +1,4 @@
-기나긴 사냥 검증 도구 · v0.8.13-dev.6
+기나긴 사냥 검증 도구 · v0.8.13-dev.8
 
 시작 방법
 게임 화면에서 ‘새 사냥’ → 플레이 모드 ‘기나긴 사냥 · 검증 전용’을 선택합니다.
@@ -51,7 +51,10 @@ node scripts/qa-smoke.cjs는 검증 초기화·소모품·이동·저장 복원�
 연결 GitHub의 비공개 source artifact로 커밋·ZIP·내부 tar.gz 해시를 확인하여 클라우드 소스를 확보했습니다. scripts/cloud-ui-qa.cjs와 .github/workflows/cloud-ui-qa.yml은 정상 QA 명령으로 시작점을 생성하고 실제 Chromium 클릭·viewport·tooltip 경계·슬롯 스크롤·임무 알림·적 상세·이동/전투를 검사합니다. 원본 사진과 QA 저장은 브라우저 결과 artifact에 넣지 않습니다. 전체CI2648통과 및 실제 브라우저 실행 결과와 원문 근거 미확정 정책은 docs/audits/cloud-ui-qa-v0.8.13-dev.6/README.md에 구분합니다.
 
 예배당 판정 전환 후속(BB-025 / Issue32)
-기존 규칙14 저장은 원래 명령을 완전 일치 재생한 뒤 안전한 단계에서 전환 명령을 기록합니다. 진행 중 공격은 기존 속도로 마치며 이후 예배당 공격은 -1입니다. 임무10/31 특수는3→2, 일반 적1→0, 피해/기절/토큰/최종 처치 반응은 유지합니다. tests/helpers/tile-speed-checkpoints.cjs로 상태를 조립하지 않고 정상 QA 시작점을 생성합니다. scripts/cloud-tile-speed-qa.cjs는 실제 Chromium에서 raw legacy 파일 불러오기·후속 공격·RESOLVE·지연 전환을 확인하며 원본 저장은 결과에 보존하지 않습니다. 실행 완료 여부와 근거는 docs/audits/tile-speed-policy-v0.8.13-dev.6/README.md를 확인합니다. 사용자 로컬8786에는 배포하지 않았습니다.
+기존 규칙14 저장은 원래 명령을 완전 일치 재생한 뒤 안전한 단계에서 전환 명령을 기록합니다. 진행 중 공격은 기존 속도로 마치며 이후 예배당 공격은 -1입니다. 임무10/31 특수는3→2, 일반 적1→0, 피해/기절/토큰/최종 처치 반응은 유지합니다. tests/helpers/tile-speed-checkpoints.cjs로 상태를 조립하지 않고 정상 QA 시작점을 생성합니다. scripts/cloud-tile-speed-qa.cjs는 실제 Chromium에서 raw legacy 파일 불러오기·후속 공격·RESOLVE·지연 전환을 확인하며 원본 저장은 결과에 보존하지 않습니다. 실행 완료 여부와 근거는 docs/audits/tile-speed-policy-v0.8.13-dev.6/README.md를 확인합니다. 이 클라우드 인계 당시에는 로컬8786에 배포하지 않았으며, 이후 현재dev.8로 반환·적용하고 실제 예배당 속도1→0과 기절 후속을 재확인했습니다.
 
 클라우드 무기 후속 감사(v0.8.13-dev.6): docs/audits/weapon-followup-v0.8.13-dev.6/README.md
 기본32와 추가73 actual UI는 프로필별 공개명령/상태/원본해시/영상표본을 기록합니다. 준비모델/실제클릭/픽셀표본은구분합니다. scripts/cloud-weapon-followup-branches.cjs는 MOTION_CASE_FILTER(빈값=전체73), MOTION_SHARD/MOTION_SHARDS로선택/shard를지원합니다. 현재weapon-followup-branches.yml push는마지막3정향사례이며 workflow_dispatch cases빈값은전체분기입니다. artifact 디렉터리test-results/cloud-weapon-followup-branches,7일보관. MOTION_RAPID_BURST=1의250ms assertion은시험계측조건이며이를넘은경우게임오류로분류하지않습니다. 일반연속검증과원본실제간격을함께읽으세요.
+
+로컬dev.8 검증과 Unity 이식 우선순위
+docs/audits/local-final-validation-v0.8.13-dev.8/README.md에 UI1~12 대표 실제 조작, BB-030/031 재현·수정·실제 재검증, 공개 저장32개 정확 대조, 전체CI2676통과·원본사진4검사·최신Unity 준비를 기록합니다. 2026-10-14 사용자가 Unity 이식에 남을 검증을 우선하도록 선택했으므로125개 과거 스프라이트 영상의 남은 전프레임 열람은 보류했습니다. 미열람·창 가림·원본 신체 누락을 통과로 바꾸지 않습니다. 모델 교체 후에는 새 모델 크기·발 기준·공격 대상·이동 정착·변형 전환을 실제 Unity 씬에서 다시 확인해야 합니다.

@@ -62,9 +62,29 @@
       "sha256": "36f7973d860961283b1e4ebb9943699ab1fe27d4d38c2140b7cd6091ffd6bfda"
     },
     {
+      "name": "github-actions-startup-block.json",
+      "bytes": 1929,
+      "sha256": "de136a89bdbd5255d8509c0ccd02b10ade61d5db64d8c881b98ec1569a43c650"
+    },
+    {
       "name": "long-card-wheel-end.jpg",
       "bytes": 171126,
       "sha256": "4c8f199fae093aa1de20a36146eaa047b8fc60d0556a8e1d5c74e293a62eb11f"
+    },
+    {
+      "name": "motion-additional17-deferred.json",
+      "bytes": 17749,
+      "sha256": "fbf8e17833390a1b6b4f453a9dfa85de4ae2c9dda6fb33b8e8061b9145ddacd9"
+    },
+    {
+      "name": "motion-basic42-deferred.json",
+      "bytes": 13443,
+      "sha256": "b94e03a14ef7141cbd6806cff12aad0552a072061299804375e01b51fdccb480"
+    },
+    {
+      "name": "motion-initial66-deferred.json",
+      "bytes": 5004,
+      "sha256": "951ac98589c85f42d241b181659c7dbdeb8d0c4007143b75fb6d4311f66bb809"
     },
     {
       "name": "public-browser-results-dev7.json",

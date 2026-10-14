@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "frozenAt": "2026-10-14T06:33:32.883344+00:00",
+  "status": "paused by explicit user choice; preserve current sprite audit and prioritize migration-persistent validation",
+  "pauseAuthorization": "Parent /root reported user's explicit selection on 2026-10-14: 이식에 남을 검증에 집중하고 스프라이트 전프레임 검토 보류",
+  "workspaceChanges": "Analysis files only. No product, original media, browser UI, Desktop, Git, or sprite pixel edits by this agent.",
+  "assignedScope": {
+    "originalVideos": 42,
+    "recordedFrameOccurrences": 22292,
+    "basic32": {
+      "videos": 32,
+      "recordedFrames": 16048,
+      "sourceCommit": "238b6c1aab8b24373a132c22e93c0afc2e86a848"
+    },
+    "selectedSevenAndRapidThree": {
+      "videos": 10,
+      "recordedFrames": 6244,
+      "sourceCommits": [
+        "33c236767d94ea5efa4c75bf1330e41721e91747",
+        "c42c5e32c8ed02b4248b966083e3cceef4a5c6f4"
+      ]
+    },
+    "decodeAndOriginalPTSMapping": "42 / 42 complete; exact decoded RGB hashes and recorded PTS retained",
+    "currentOriginalHashes": "42 / 42 match recorded original SHA-256",
+    "sourceLimitation": "Historical commits are identified per original ledger. They are not the current dev8 product and do not independently certify current assets or behavior."
+  },
+  "completeRecordedActorRegionReview": {
+    "profiles": [
+      {
+        "id": "burial-0-base",
+        "recordedFrames": 543,
+        "nativeSheetsViewed": 18,
+        "phaseGroupsViewed": 397
+      },
+      {
+        "id": "burial-1-base",
+        "recordedFrames": 546,
+        "nativeSheetsViewed": 21,
+        "phaseGroupsViewed": 450
+      },
+      {
+        "id": "ludwigs-holy-blade-0-base",
+        "recordedFrames": 523,
+        "nativeSheetsViewed": 19,
+        "phaseGroupsViewed": 414
+      },
+      {
+        "id": "ludwigs-holy-blade-1-base",
+        "recordedFrames": 493,
+        "nativeSheetsViewed": 19,
+        "phaseGroupsViewed": 400
+      },
+      {
+        "id": "beast-claw-0-base",
+        "recordedFrames": 482,
+        "nativeSheetsViewed": 19,
+        "phaseGroupsViewed": 406
+      },
+      {
+        "id": "beast-claw-1-base",
+        "recordedFrames": 496,
+        "nativeSheetsViewed": 17,
+        "phaseGroupsViewed": 394
+      },
+      {
+        "id": "ludwigs-holy-blade-0-free-accept",
+        "recordedFrames": 514,
+        "nativeSheetsViewed": 18,
+        "phaseGroupsViewed": 419
+      },
+      {
+        "id": "uncanny-ludwigs-holy-blade-1-free-accept",
+        "recordedFrames": 506,
+        "nativeSheetsViewed": 19,
+        "phaseGroupsViewed": 393
+      }
+    ],
+    "originalVideos": 8,
+    "mappedOriginalOccurrences": 4103,
+    "nativeSheetsActuallyViewed": 150,
+    "phasePixelGroupsActuallyViewed": 3273,
+    "claim": "All recorded actor-region pixel groups plus each corresponding map thumbnail actually read. Modal-hidden motion remains unobservable; 25 fps recording does not cover every 60 fps render frame."
+  },
+  "partialRecordedActorRegionReview": {
+    "originalVideos": 24,
+    "originalOccurrences": 11945,
+    "nativeSheetsActuallyViewed": 236,
+    "nativeSheetsTotal": 380,
+    "exactActorPixelGroupsActuallyViewed": 6726,
+    "exactActorPixelGroupsTotal": 9026,
+    "originalOccurrencesMappedToReadActorGroupsOnly": 9252,
+    "readClasses": [
+      "first settled / paid transformations / first combat (h215)",
+      "second settled combat (h230)",
+      "next movement / pursuit (h350)"
+    ],
+    "unreadClasses": [
+      "initial / first movement (h470): 144 sheets",
+      "separate whole-map context: 116 sheets / 9267 exact map groups"
+    ],
+    "representativeThumbnailLimit": "Read actor sheets include representative map thumbnails, but all additional full-map contexts have not been read. No full-video pass claim for these 24 profiles."
+  },
+  "decodedButFullVideoVisualReviewNotStarted": {
+    "originalVideos": 10,
+    "recordedFrames": 6244,
+    "exactMapPixelGroups": 4956,
+    "claim": "Decode/PTS/hash mapping only; no full-video visual pass claim."
+  },
+  "otherCompletedOverlappingEvidence": {
+    "basic32BoundaryPNGs": {
+      "originalPNGs": 256,
+      "nativeSheetsActuallyViewed": 22,
+      "claim": "Boundary character crops at native pixels with whole-map thumbnails; screenshots do not establish continuous motion."
+    },
+    "oldEightWindowSubset": {
+      "profiles": 8,
+      "windows": 67,
+      "extractedFrameOccurrences": 1971,
+      "previouslyReadOccurrences": 564,
+      "laterReadOccurrences": 1407,
+      "laterReadExactGroups": 1029,
+      "laterNativeSheets": 35,
+      "claim": "Overlaps the same 32 originals; never added to original video/frame totals. Early actor crop could clip the upper enemy; repaired full-profile crops supersede that coverage."
+    },
+    "latestDev8IndependentSpotCheck": {
+      "images": [
+        "../pursuit-after/pursuit-burial-0-stop-02.jpg",
+        "../pursuit-after/pursuit-burial-0-stop-05.jpg",
+        "../pursuit-after/pursuit-burial-0-stop-07.jpg"
+      ],
+      "claim": "Three actual screenshots only: hunter anchor holds; moving minion briefly occludes beast limb edge, final bodies separate. This agent does not claim whole-transition or all eight latest profiles from those three images."
+    }
+  },
+  "occlusion": {
+    "dialogDescription": "Visible inventory / QA recovery-consumable dialog in historical basic32 sequence; this description applies only to these measured rows.",
+    "intervalFormat": "[first visibly masked PTS seconds, last visibly masked PTS seconds, finding]. Recorded samples; not invented subframe exact opening/closing times.",
+    "intervals": {
+      "burial-0-base": [
+        14.88,
+        15.72,
+        "inventory masks post-arrival idle; pursuit arrival visible by 14.76"
+      ],
+      "burial-1-base": [
+        16.12,
+        16.56,
+        "inventory masks post-arrival idle; pursuit arrival visible by 16.08"
+      ],
+      "beast-claw-0-base": [
+        14.2,
+        14.56,
+        "late pursuit arrival hidden"
+      ],
+      "beast-claw-1-base": [
+        14.2,
+        14.64,
+        "late pursuit arrival hidden"
+      ],
+      "ludwigs-holy-blade-0-base": [
+        15.24,
+        15.68,
+        "late pursuit arrival hidden"
+      ],
+      "ludwigs-holy-blade-1-base": [
+        14.64,
+        15,
+        "late pursuit arrival hidden"
+      ],
+      "ludwigs-holy-blade-0-free-accept": [
+        15.48,
+        15.92,
+        "late pursuit arrival hidden"
+      ],
+      "uncanny-ludwigs-holy-blade-1-free-accept": [
+        15.12,
+        15.6,
+        "late pursuit arrival hidden"
+      ],
+      "threaded-cane-0-base": [
+        15.2,
+        15.64,
+        "late pursuit arrival hidden"
+      ],
+      "threaded-cane-1-base": [
+        15.68,
+        16.12,
+        "late pursuit arrival hidden"
+      ],
+      "hunter-axe-0-base": [
+        14.24,
+        14.68,
+        "late pursuit arrival hidden"
+      ],
+      "hunter-axe-1-base": [
+        14.28,
+        14.72,
+        "late pursuit arrival hidden"
+      ],
+      "rifle-spear-0-base": [
+        15.8,
+        16.24,
+        "inventory opens after visible arrival by 15.60"
+      ],
+      "rifle-spear-1-base": [
+        14.68,
+        15.16,
+        "late pursuit arrival hidden"
+      ],
+      "saw-spear-0-base": [
+        14.68,
+        15.08,
+        "late pursuit arrival hidden"
+      ],
+      "saw-spear-1-base": [
+        14.36,
+        14.8,
+        "late pursuit arrival hidden"
+      ],
+      "uncanny-ludwigs-holy-blade-0-base": [
+        14.36,
+        14.68,
+        "late pursuit arrival hidden"
+      ],
+      "uncanny-ludwigs-holy-blade-1-base": [
+        15,
+        15.52,
+        "late pursuit arrival hidden"
+      ],
+      "tonitrus-0-base": [
+        14.72,
+        15.16,
+        "single pursuing enemy; late arrival hidden"
+      ],
+      "tonitrus-1-base": [
+        13.84,
+        14.4,
+        "single pursuing enemy; late arrival hidden"
+      ],
+      "blade-of-mercy-0-base": [
+        13.92,
+        14.36,
+        "late pursuit arrival hidden"
+      ],
+      "blade-of-mercy-1-base": [
+        14.76,
+        15.2,
+        "late pursuit arrival hidden"
+      ],
+      "logarius-wheel-0-base": [
+        14.84,
+        15.16,
+        "late pursuit arrival hidden"
+      ],
+      "logarius-wheel-1-base": [
+        13.88,
+        14.4,
+        "late pursuit arrival hidden"
+      ],
+      "kirkhammer-0-base": [
+        14.56,
+        15,
+        "late pursuit arrival hidden"
+      ],
+      "kirkhammer-1-base": [
+        14.08,
+        14.6,
+        "single pursuing enemy; late arrival hidden"
+      ],
+      "stake-driver-0-base": [
+        14.16,
+        14.56,
+        "late pursuit arrival hidden"
+      ],
+      "stake-driver-1-base": [
+        14.28,
+        14.72,
+        "single pursuing enemy; late arrival hidden"
+      ],
+      "chikage-0-base": [
+        14.56,
+        14.88,
+        "late pursuit arrival hidden"
+      ],
+      "chikage-1-base": [
+        14.32,
+        14.68,
+        "late pursuit arrival hidden"
+      ],
+      "reiterpallasch-0-base": [
+        14.48,
+        14.92,
+        "late pursuit arrival hidden"
+      ],
+      "reiterpallasch-1-base": [
+        14.16,
+        14.6,
+        "late pursuit arrival hidden"
+      ]
+    },
+    "claim": "Actor motion hidden behind the dialog is not visually verified or reconstructed from engine state. Latest unoccluded recordings are separate root evidence."
+  },
+  "recordingAndCropLimits": [
+    "No decode-frame omissions in the retained recorded-frame ledgers were established. Recording at 25 fps inherently omits intermediate 60 fps render samples.",
+    "Full-page screenshot/recentering can change whole-scene capture geometry around 5.12-second multiples; it is distinct from character-only teleporting.",
+    "Burial0 full-source fallback frames 128 / 256 / 512 (5.12 / 10.24 / 20.48 s) were actually read; normal source frame dimensions remain 1458 x 1252. Three native fallback PNG hashes are recorded.",
+    "Other agents found gray letterbox/scaled-page exceptions in other assigned batches. Those findings are not counted as this agent's direct visual review or as confirmed game bugs.",
+    "Pending 24-profile map-context sheets mean outside-crop motion/camera coverage is not fully certified.",
+    "No claim to inspect every background pixel, possible command path, gameplay random seed, or frame lost before recording."
+  ],
+  "findings": {
+    "additionalNewConfirmedProductBugs": 0,
+    "historicalKnownBug": "Historical basic32 first STOP forced hunter reflow through a stationary beast matches BB031, independently reproduced and fixed by root on current source. It is not a newly assigned duplicate bug here.",
+    "visibleObservations": [
+      "Paid/free transformations preserve form identity and foot anchors in viewed intervals",
+      "Visible attacks return to the intended anchor; corpses fade before vacant-place repacking",
+      "Settled living torsos and foot anchors are separated in viewed boundary/settled scenes",
+      "Brief impact/weapon/limb foreground occlusion is kept distinct from persistent torso merging"
+    ],
+    "unconfirmed": "Unread first-movement/map-context/additional-10-video regions and modal-hidden intervals remain unconfirmed."
+  },
+  "migrationPersistentAcceptanceCriteria": [
+    "Rules distinguish tile versus space, mission placement markers and action conditions independently of sprite art.",
+    "Follow-up effect queues resolve before the next normal movement/combat command and use the actual selected target.",
+    "Enemy spawn markers take precedence; hunter preserves a stable free anchor and incoming unanchored actors occupy other free positions.",
+    "Settled living bodies/foot anchors remain separated; attack recoil and normal front/back occlusion are judged separately from forced idle relocation.",
+    "Position, facing, form, attack target, and lifecycle events remain renderer-independent data suitable for a Unity view adapter.",
+    "Mission notices and choices expose authoritative effective statistics and return to playable states after acknowledgement.",
+    "Replacement models/Unity renderer require fresh movement, transform, pursuit, impact, death and crowding visual acceptance checks; current sprite pixel validation does not transfer automatically."
+  ],
+  "countingRules": "Frame occurrences, exact pixel groups, contact sheets and screenshots are different units. Overlapping old subsets and first-eight groups are never added twice. Partial native occurrence coverage is not a complete-frame visual pass.",
+  "resume": "Only on renewed scope instruction. Begin with unread h470 actor sheets, then 24-profile map contexts and fallback exceptions; selected/rapid10 full-video visual review remains not started.",
+  "evidenceManifest": {
+    "path": "frozen-review-manifest.json",
+    "sha256": "3bb0f7acde886ec7efa07f7a564e9b8ffb4ac41cfb65e1ca145552dc6df52be7"
+  },
+  "authoritativeProgressLedgers": [
+    "basic32-native-review-progress.json",
+    "basic32-exact-dedup-progress.json",
+    "basic32-exact-actor-dedup/index.json",
+    "basic32-boundary/boundary-index.json"
+  ],
+  "scopeDecision": {
+    "date": "2026-10-14",
+    "authority": "explicit user selection",
+    "selection": "이식에 남을 검증에 집중하고 스프라이트 전프레임 검토 보류",
+    "remainingFullFrameReview": "deferred, not passed"
+  }
+}
