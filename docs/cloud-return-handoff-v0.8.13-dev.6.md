@@ -10,6 +10,8 @@
 
 `C:/Users/GOOD/Documents/Codex/bloodborne-solo`에서 문서와 실행 코드를 관리하며, 기존 Desktop 실행본의312개 허용 파일은08d의 디스크·HTTP SHA와 일치합니다. 손패 변경은2파일만 교체했고 삭제는0개입니다. 개인 저장·참고자료188개는 이전 SHA와 같습니다. `http://127.0.0.1:8786/bloodborne-solo/hunt.html`은 검증한 실행 파일만 읽는 서버로 연결했습니다. 원본 클라우드 ZIP과 추가 로컬 시각 표본은 별도 로컬 `work/weapon-followup-audit`에 보존하며, 문서 인수가 남은 모션 확인의 완료를 뜻하지 않습니다.
 
+남아 있던 원본 artifact17개도 모두 회수했습니다. 합계402,378,495바이트이며, 공식 GitHub metadata의 크기·SHA-256과17개 모두 일치합니다. 추출 원본481개(381PNG·83WebM·17JSON)를 파일별 해시와 함께 `work/weapon-followup-audit/remaining-final-cloud-evidence/intake-index.json`에 보존했습니다. 최초66의62완료/4과거미완료와 타이밍6의4완료/2계측 실패를 그대로 남겼고 새 실제 검사로 합산하지 않습니다. 회수 실패·미완료는0개입니다. 서명 URL·인증 정보는 저장하지 않았으며 원본 ZIP은 Git에 넣지 않습니다.
+
 ## 코드와 전체CI
 
 - 마지막 제품 수정: c42c5e32c8ed02b4248b966083e3cceef4a5c6f4(BB-027 undefined pending속성 기록 수정).
