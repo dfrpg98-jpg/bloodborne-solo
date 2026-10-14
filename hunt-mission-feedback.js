@@ -121,5 +121,27 @@
     }
     return events;
   }
-  return Object.freeze({ describe });
+  function reconcileTileSpeedAdoption(updates, previous, next, options = {}) {
+    // Adoption is recorded after the accepted gameplay batch. Reconcile only
+    // obsolete effect strings already disclosed by that batch; do not describe
+    // its intermediate mission stages using a later gameplay state.
+    if (!updates?.length || previous?.tileSpeedRuling === next?.tileSpeedRuling ||
+        next?.tileSpeedRuling !== "all-attacks" || !enemyEffects || !options.E) return updates;
+    const current = new Map(enemyEffects.describe(next, options.E).map(change => [change.enemyId, change]));
+    const changes = enemyEffects.describe(previous, options.E).flatMap(prior => {
+      const following = current.get(prior.enemyId);
+      if (!following || prior.objectiveId !== following.objectiveId || prior.card !== following.card ||
+          prior.description !== following.description) return [];
+      const removed = prior.effects.filter(effect => !following.effects.includes(effect));
+      return removed.length ? [{ prior, removed }] : [];
+    });
+    return updates.map(update => {
+      const obsolete = new Set(changes.filter(({ prior }) => update.objectiveId === prior.objectiveId &&
+        (update.description === prior.description || update.effects?.includes(prior.description)))
+        .flatMap(change => change.removed));
+      if (!update.effects?.some(effect => obsolete.has(effect))) return update;
+      return { ...update, effects: update.effects.filter(effect => !obsolete.has(effect)) };
+    });
+  }
+  return Object.freeze({ describe, reconcileTileSpeedAdoption });
 });

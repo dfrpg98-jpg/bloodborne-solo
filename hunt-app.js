@@ -371,9 +371,10 @@
         currentAttackVisual(next, prior);
         observedSteps.push([prior, next]);
       }
-      const updates = observedSteps.flatMap(([prior, following]) => window.BBHuntMissionFeedback?.describe(prior, following,
+      const observedUpdates = observedSteps.flatMap(([prior, following]) => window.BBHuntMissionFeedback?.describe(prior, following,
         { E, publicText: window.BBHuntPublicText, data: window.BBLongHunt }) || []);
       state = E.applyTileSpeedRuling ? E.applyTileSpeedRuling(next) : next;
+      const updates = window.BBHuntMissionFeedback?.reconcileTileSpeedAdoption?.(observedUpdates, next, state, { E }) || observedUpdates;
       recordMissionUpdates(updates);
       for (const [prior, following] of observedSteps) enemyHistory.observe(prior, following);
       presentationActions = window.BBHuntAnimationEvents?.describe(before, animationSnapshot(), commands) || [];

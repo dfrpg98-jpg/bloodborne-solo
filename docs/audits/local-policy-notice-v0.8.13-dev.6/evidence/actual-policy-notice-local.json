@@ -1,0 +1,78 @@
+{
+  "method": "Actual local in-app browser clicks, one public legal QA import and a final public Save Export; independently compared with normal engine commands. UI optional empty command arrays are excluded only from whole-state equality, while command types and full export replay are verified.",
+  "baseCommit": "33c236767d94ea5efa4c75bf1330e41721e91747",
+  "productPatch": "Local mission-notice policy reconciliation, not yet committed",
+  "initialPhase": "move",
+  "initialCommandCount": 110,
+  "actualImports": 1,
+  "commands": [
+    {
+      "type": "END_TURN"
+    },
+    {
+      "type": "NO_ATTACK"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "REFILL"
+    },
+    {
+      "type": "MOVE",
+      "cardId": "card-12"
+    },
+    {
+      "type": "STEP",
+      "node": "tile-17:lower-left"
+    },
+    {
+      "type": "STOP_MOVE"
+    },
+    {
+      "type": "FIREARM_ENTRY",
+      "accept": false
+    },
+    {
+      "type": "ATTACK",
+      "cardId": "card-7",
+      "slot": 0,
+      "enemyId": "mission-patient"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "STUN_DISCARD",
+      "cardId": "card-10"
+    }
+  ],
+  "final": {
+    "phase": "hunter",
+    "round": 2,
+    "hunterHp": 1,
+    "patientHp": 1,
+    "position": "tile-17:lower-left",
+    "hand": 0,
+    "tileSpeedRuling": "all-attacks",
+    "pendingContinuations": false
+  },
+  "exactFinalSaveReplay": true,
+  "gameStateMatchesModel": true,
+  "pageConsoleErrors": 0,
+  "screenshots": [
+    "notice-before.jpg",
+    "detail-before.jpg",
+    "notice-after.jpg",
+    "detail-after.jpg",
+    "next-move.jpg",
+    "next-combat.jpg",
+    "final-play.jpg"
+  ],
+  "rawSavesIncluded": false,
+  "notes": [
+    "Screenshots are original browser JPEGs. The first and fixed tabs used their current viewports; this was a text/flow check, not a viewport geometry comparison.",
+    "Console errors were read using the browser tool, not inferred from this Node script.",
+    "This case does not certify every weapon animation frame."
+  ]
+}
