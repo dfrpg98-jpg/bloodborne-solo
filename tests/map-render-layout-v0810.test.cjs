@@ -194,6 +194,28 @@ function intersectsBox(a,b) {
     Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
 }
 
+test('a pursuing enemy with no marker in the destination does not displace the hunter through a stationary enemy',()=>{
+  for(const rotation of [0,1,2,3]) {
+    const base={tileId:'tile-01',rotation,
+      enemies:[{id:'scourge-beast-1',node:'tile-01:top',markerId:'gold'}],
+      hunter:{id:'hunter',node:'tile-01:top'}};
+    const before=L.layout(frozen(base));
+    const after=L.layout({...base,enemies:[...base.enemies,
+      {id:'huntsmans-minion-1',node:'tile-01:top',markerId:'red'}]});
+    const hunterBefore=before.find(e=>e.id==='hunter'),hunterAfter=after.find(e=>e.id==='hunter');
+    assert.deepEqual(point(hunterAfter),point(hunterBefore),`rotation${rotation}: pursuit must not trigger a cross-body hunter repack`);
+    const beast=after.find(e=>e.id==='scourge-beast-1'),pursuer=after.find(e=>e.id==='huntsmans-minion-1');
+    assert.deepEqual(point(beast),point(before.find(e=>e.id==='scourge-beast-1')));
+    assert.equal(beast.anchorKind,'spawn');assert.equal(pursuer.anchorKind,'space');
+    for(const a of [hunterAfter,beast,pursuer])for(const b of [hunterAfter,beast,pursuer]) {
+      if(a===b)continue;
+      assert.equal(intersectsBox(visualBox(a),visualBox(b)),0,`rotation${rotation}: ${a.id}/${b.id}`);
+    }
+    assert.deepEqual(after,L.layout({...base,enemies:[...base.enemies,
+      {id:'huntsmans-minion-1',node:'tile-01:top',markerId:'red'}].reverse()}));
+  }
+});
+
 test('two or three survivors avoid full upright character and chest rectangles in the crowded real room through all rotations',()=>{
   for(const count of [2,3])for(const rotation of [0,1,2,3]) {
     const result=L.layout({tileId:'tile-03',rotation,

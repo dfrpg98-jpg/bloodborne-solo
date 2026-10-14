@@ -202,10 +202,27 @@
       output(type, value.id, value.node, selected.point, extra);
       occupied.push({ point: selected.point, radius: radii[type], node: value.node, visual });
     }
-    for (const enemy of visibleEnemies) actor("enemy", enemy);
+    const fixedCount = entries.length, deferredEnemies = [], visibleTokens = ordered(tokens);
+    // Printed occupants keep their anchors. A pursuing figure without its own
+    // destination marker uses the remaining space after the hunter, so arriving
+    // enemies do not force an idle hunter to slide through a stationary enemy.
+    for (const enemy of visibleEnemies) {
+      const availableMarker = markers.some(marker => marker.node === enemy.node && !claimed.has(marker.index) &&
+        (enemy.anchorKind === "lamp" ? marker.kind === "lamp" :
+          marker.kind === "spawn" && marker.markerId === enemy.markerId));
+      if (availableMarker) actor("enemy", enemy); else deferredEnemies.push(enemy);
+    }
     if (hunter) actor("hunter", hunter);
-    for (const token of ordered(tokens)) actor("token", token);
-    return entries;
+    for (const enemy of deferredEnemies) actor("enemy", enemy);
+    for (const token of visibleTokens) actor("token", token);
+    // Preserve the public output order used by the DOM and geometry contracts.
+    const actorOrder = new Map([
+      ...visibleEnemies.map(value => `enemy:${value.id}`),
+      ...(hunter ? [`hunter:${hunter.id}`] : []),
+      ...visibleTokens.map(value => `token:${value.id}`)
+    ].map((id, index) => [id, index]));
+    return entries.slice(0, fixedCount).concat(entries.slice(fixedCount).sort((a, b) =>
+      actorOrder.get(`${a.type}:${a.id}`) - actorOrder.get(`${b.type}:${b.id}`)));
   }
   const api = { layout };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
