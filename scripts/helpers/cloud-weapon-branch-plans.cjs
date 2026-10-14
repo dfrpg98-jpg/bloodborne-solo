@@ -120,6 +120,7 @@ function definitions(){const cases=[],put=(spec)=>cases.push(spec),base=(weapon,
  put({...base('saw-spear',0),id:'saw-spear-0-isolated-kill-heal-draw',run:a=>{a.attack('scourge-beast-1',2,'card-8');assert.equal(E.hunter(a.get()).hp,5);assert.equal(E.hunter(a.get()).hand.length,4);assert.equal(a.get().phase,'hunter');}});
  put({id:'kirkhammer-1-real-interrupt-immunity',fixture:'kirkhammer-0',prefix:42,run:a=>{a.add({type:'ATTACK',cardId:'card-11',slot:1,enemyId:'huntsman-mob-1'});assert(a.get().combat.action.interrupt);assert(a.get().combat.immune.includes("interrupt"));assert(a.get().combat.noDodge);a.settle();}});
  for(const face of [0,1])put({...base('tonitrus',face),id:`tonitrus-${face}-charge-consumption`,run:a=>{a.add({type:'ATTACK',cardId:'card-8',slot:0,enemyId:'scourge-beast-1'});assert.equal(a.get().combat.attack.speed,3);assert.equal(a.get().combat.attack.damage,4);assert(!E.hunter(a.get()).weaponCharge);a.settle();}});
+ put({id:'reiterpallasch-0-unmatched-dodge',fixture:'reiterpallasch-0',prefix:77,run:a=>{a.add({type:'DODGE',cardId:'card-2',slot:0});a.settle();}});
  return cases;
 }
 module.exports={definitions,build,pub,ruling};

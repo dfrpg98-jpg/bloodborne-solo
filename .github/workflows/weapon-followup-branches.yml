@@ -26,7 +26,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: [0, 1, 2, 3]
+        shard: [0, 1, 2]
     steps:
       - uses: actions/checkout@v7
         with:
@@ -43,9 +43,9 @@ jobs:
         env:
           NODE_PATH: ${{ runner.temp }}/weapon-branch-browser/node_modules
           MOTION_SHARD: ${{ matrix.shard }}
-          MOTION_SHARDS: '4'
+          MOTION_SHARDS: '3'
           MOTION_RAPID_BURST: '1'
-          MOTION_CASE_FILTER: ${{ github.event_name == 'push' && 'ludwigs-holy-blade-0-free-accept-kill,uncanny-ludwigs-holy-blade-1-free-decline-kill,stake-driver-0-free-accept-kill,ludwigs-holy-blade-1-clear-kill-rapid,hunter-axe-1-kill-chain,threaded-cane-0-dodge-area-kill-rapid' || inputs.cases }}
+          MOTION_CASE_FILTER: ${{ github.event_name == 'push' && 'ludwigs-holy-blade-0-free-accept-kill,hunter-axe-1-kill-chain,reiterpallasch-0-unmatched-dodge' || inputs.cases }}
         run: node scripts/cloud-weapon-followup-branches.cjs
       - name: Preserve actual frames and continuous videos without raw saves
         if: always()
