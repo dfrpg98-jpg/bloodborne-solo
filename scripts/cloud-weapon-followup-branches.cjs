@@ -59,14 +59,23 @@ const report={sourceCommit:process.env.GITHUB_SHA||'local-uncommitted',node:proc
    await shot('initial-public-import');
    async function canvasSample(label,wait=0){if(wait)await page.waitForTimeout(wait);await panelsClosed();const file=`${spec.id}-${label}.png`,started=Date.now()-begun;
     await page.locator('#mapViewport').screenshot({path:path.join(out,file),animations:'allow'});row.screenshots.push({file,label,requestedAtMs:started,capturedAtMs:Date.now()-begun,publicState:pub(await saved()),counters:await counter(),endpointGeometry:await endpoints(),method:'Actual canvas screenshot; endpointGeometry only describes DOM logical anchors.'});}
-   let cameraDone=false;
+   let cameraDone=false;const skipped=new Set();row.rapidBursts=[];
    for(const [index,step]of spec.steps.entries()){
-    const at=Date.now()-begun;if(!spec.fast)await page.waitForTimeout(350);
-    const prior=pub(model);await click(step.command,step.escortChoice==='accept');let expected=model;for(const c of step.expectedBatch)expected=E.dispatch(expected,c);expected=ruling(expected);
+    if(skipped.has(index))continue;const at=Date.now()-begun;if(!spec.fast)await page.waitForTimeout(350);
+    const prior=pub(model);await click(step.command,step.escortChoice==='accept');
+    const following=spec.steps[index+1],burst=process.env.MOTION_RAPID_BURST==='1'&&spec.fast&&following&&((step.command.type==='RESOLVE'&&['FREE_TRANSFORM','WEAPON_CHOICE'].includes(following.command.type))||(step.command.type==='WEAPON_CHOICE'&&following.command.type==='WEAPON_CHOICE')||(step.command.type==='DODGE'&&following.command.type==='RESOLVE'));
+    let intermediatePhase;
+    if(burst){intermediatePhase=await page.locator('#phaseTitle').innerText();const {type,...args}=following.command;const selector=`[data-command="${type}"][data-args=${JSON.stringify(JSON.stringify(args))}]:not([disabled]):visible`;await page.locator(selector).click();skipped.add(index+1);}
+    let expected=model;for(const c of step.expectedBatch)expected=E.dispatch(expected,c);expected=ruling(expected);if(burst){for(const c of following.expectedBatch)expected=E.dispatch(expected,c);expected=ruling(expected);}
+
     const actual=await saved();assert.deepEqual(functional(actual),functional(expected),`${spec.id}: ${step.command.type} result`);
     const actualTypes=actual.commands.slice(model.commands.length).map(c=>c.type),expectedTypes=expected.commands.slice(model.commands.length).map(c=>c.type);
-    assert.deepEqual(actualTypes,expectedTypes,'Only the public action batch and recorded policy adoption may commit');assert.equal(actualTypes.filter(x=>x===step.command.type).length,1,'Public requested command committed once');
-    model=actual;row.steps.push({command:step.command,publicClickEvents:await page.evaluate(()=>window.__qaPublicClicks.splice(0)),actualCommittedTypes:actualTypes,escortChoice:step.escortChoice,stage:step.stage,requestedAtMs:at,completedAtMs:Date.now()-begun,publicState:pub(actual),publicControls:await page.locator('#decisions').innerText(),combatText:await page.locator('#combatInfo').innerText(),counters:await counter()});await acknowledge();
+    assert.deepEqual(actualTypes,expectedTypes,'Only the public action batch and recorded policy adoption may commit');assert.equal(actualTypes.filter(x=>x===step.command.type).length,burst&&step.command.type===following.command.type?2:1,'Each public requested command committed once');
+    const clicks=await page.evaluate(()=>window.__qaPublicClicks.splice(0));model=actual;
+    if(burst){const pair=clicks.filter(x=>[step.command.type,following.command.type].includes(x.command)).slice(-2);assert.equal(pair.length,2);const gap=pair[1].atEpochMs-pair[0].atEpochMs;row.rapidBursts.push({first:step.command,second:following.command,actualClickGapMs:gap,publicClickEvents:pair,intermediatePhaseTitle:intermediatePhase,finalStateExact:true});assert(gap<250,`Timing sample exceeded250ms: ${gap}`);assert.equal(actualTypes.filter(x=>x===following.command.type).length,step.command.type===following.command.type?2:1);row.steps.push({command:step.command,stage:step.stage,requestedAtMs:at,completedAtMs:pair[0].atEpochMs-begun,intermediatePhaseTitle:intermediatePhase,publicState:null,observation:'Intermediate visible phase observed; full saved state checked after both public native clicks. No fabricated intermediate snapshot.'});}
+    row.steps.push({command:burst?following.command:step.command,publicClickEvents:clicks,actualCommittedTypes:actualTypes,escortChoice:step.escortChoice,stage:burst?following.stage:step.stage,requestedAtMs:at,completedAtMs:Date.now()-begun,publicState:pub(actual),publicControls:await page.locator('#decisions').innerText(),combatText:await page.locator('#combatInfo').innerText(),counters:await counter()});await acknowledge();
+    if(burst&&following.effectCompleted){assert.deepEqual(pub(model),spec.effectCompleted);row.effectCompleted=pub(model);}
+
     if(step.effectCompleted){assert.deepEqual(pub(model),spec.effectCompleted);row.effectCompleted=pub(model);if(!spec.fast)await canvasSample('effect-complete',1000);}
     if(!spec.fast&&['FREE_TRANSFORM','TRANSFORM'].includes(step.command.type)){
       const start=Date.now();for(const [frame,offset]of [0,100,300,700].entries())await canvasSample(`transform-${index}-frame${frame}`,Math.max(0,offset-(Date.now()-start)));
