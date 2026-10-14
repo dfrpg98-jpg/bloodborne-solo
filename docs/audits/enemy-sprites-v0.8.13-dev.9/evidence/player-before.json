@@ -1,0 +1,342 @@
+{
+  "root": "local-development-archive/bloodborne-solo",
+  "captured": "2026-10-14T07:09:31.524Z",
+  "files": [
+    {
+      "path": "assets/characters/hunter.atlas.json",
+      "bytes": 67654,
+      "sha256": "e132da8a1ef469062f0fe046b72612809ce96bc1c118032d9d65cee6b2fb0147"
+    },
+    {
+      "path": "assets/characters/hunter.png",
+      "bytes": 1668211,
+      "sha256": "73baa453857a91bc2ac19298f842f3d6bd2a8a3f5def6ed8c6f3f2c06a118a09"
+    },
+    {
+      "path": "assets/characters/w-beast-claw-a.atlas.json",
+      "bytes": 8865,
+      "sha256": "9c13cf30668a6d09f04f970e8c83a954dad8925c4df0a83ae6d54e393f6ea983"
+    },
+    {
+      "path": "assets/characters/w-beast-claw-a.png",
+      "bytes": 2681832,
+      "sha256": "aa971f891386d993ebf062b569102e170f000b82d591607fef0ca700a579926c"
+    },
+    {
+      "path": "assets/characters/w-beast-claw-b-v0810-metadata.json",
+      "bytes": 19246,
+      "sha256": "901c309fc9866bd63368455915531614f68d4c342d9f01a1173bbf16701b772c"
+    },
+    {
+      "path": "assets/characters/w-beast-claw-b-v0810.atlas.json",
+      "bytes": 168404,
+      "sha256": "93bf9609d32d23e8d123febc8a80a4d4ae071e49810c797e50afbbb874341c6d"
+    },
+    {
+      "path": "assets/characters/w-beast-claw-b-v0810.png",
+      "bytes": 2750626,
+      "sha256": "b1e6e0f34c674f27e417f2cb5eecdb651fdc45ee8025f8d08cefd01c3f1d91c2"
+    },
+    {
+      "path": "assets/characters/w-beast-claw-b.atlas.json",
+      "bytes": 105229,
+      "sha256": "cc460fddeb2cc43fb8291b5a186159e1eaeb554a1d6461ad002a583373af6f24"
+    },
+    {
+      "path": "assets/characters/w-beast-claw-b.png",
+      "bytes": 2415282,
+      "sha256": "0b085fcdad90d3c2c8496a78f18bb97e5419d05299f69c9146a3cd7bf11ae6cf"
+    },
+    {
+      "path": "assets/characters/w-blade-of-mercy-a.atlas.json",
+      "bytes": 144504,
+      "sha256": "a377bc779a451fdce5745c73ee3cd9baf17b64451676b287141d503d57031b19"
+    },
+    {
+      "path": "assets/characters/w-blade-of-mercy-a.png",
+      "bytes": 2284545,
+      "sha256": "877d34697f5bb4a5b8c94d5a1a703cde1ce9373050897af37d8be5de0bb663f4"
+    },
+    {
+      "path": "assets/characters/w-blade-of-mercy-b.atlas.json",
+      "bytes": 8866,
+      "sha256": "afe121569751d08e0a5530abb66ba2bef82a998b3ca81f7837b249606c5a2521"
+    },
+    {
+      "path": "assets/characters/w-blade-of-mercy-b.png",
+      "bytes": 2342812,
+      "sha256": "a6451f4ea2c607e2fe820ed0e1f85267e9ac93d8a88bf364d5ee996f42edbc19"
+    },
+    {
+      "path": "assets/characters/w-burial-a.atlas.json",
+      "bytes": 77338,
+      "sha256": "99e04c51ec9cb4523d6798da91b9096fd0241d84b9946e082900f7f802761fb1"
+    },
+    {
+      "path": "assets/characters/w-burial-a.png",
+      "bytes": 2173009,
+      "sha256": "c46b1cb52233e07113eb1e07dafb0fd615fc64f2dacc1f25354c3887934d0225"
+    },
+    {
+      "path": "assets/characters/w-burial-b.atlas.json",
+      "bytes": 8858,
+      "sha256": "e46e1680cb160e1023da919d776cb672bbf175f5462c340283701ab7bfb3b773"
+    },
+    {
+      "path": "assets/characters/w-burial-b.png",
+      "bytes": 2084672,
+      "sha256": "25a975d324b277245c3b83eac1b2cc30669079d41e99b2ac3038977bc0b5fea1"
+    },
+    {
+      "path": "assets/characters/w-chikage-a.atlas.json",
+      "bytes": 130749,
+      "sha256": "757ab5abc036aaa65bd1bc9bff39c59cfca4c3fecdcda898141497672dd9aeb7"
+    },
+    {
+      "path": "assets/characters/w-chikage-a.png",
+      "bytes": 2292371,
+      "sha256": "ebf7e25e563318a0613a13a1e035bc690bfb8cdbf2c3b003c63812560d8c19c6"
+    },
+    {
+      "path": "assets/characters/w-chikage-b.atlas.json",
+      "bytes": 86865,
+      "sha256": "3fd0fe4535546f449352628188fea860293e362a654df64fc8e8c526671d67e0"
+    },
+    {
+      "path": "assets/characters/w-chikage-b.png",
+      "bytes": 2256401,
+      "sha256": "30e2989e13a7be69067267b898b3e6ea1189cc5852e0b08a9c5ca01fd90259db"
+    },
+    {
+      "path": "assets/characters/w-hunter-axe-a.atlas.json",
+      "bytes": 8865,
+      "sha256": "f6cc321cbff8ba3d78761bda3ec0312e1cf25993abff796c9abe90860e8e932f"
+    },
+    {
+      "path": "assets/characters/w-hunter-axe-a.png",
+      "bytes": 2361333,
+      "sha256": "f78c97300c583d5dd8b6579d307fead17a8599debad107cf019da50e1226700a"
+    },
+    {
+      "path": "assets/characters/w-hunter-axe-b.atlas.json",
+      "bytes": 63897,
+      "sha256": "b1b87d4e2d532bffb725e38a895c0b42992424c4341b000ca8f81a17421cd56b"
+    },
+    {
+      "path": "assets/characters/w-hunter-axe-b.png",
+      "bytes": 2291863,
+      "sha256": "87af293062b358411d445a2aa12abf8ae4022336aa44504ec1d2c593459c1b4e"
+    },
+    {
+      "path": "assets/characters/w-kirkhammer-a.atlas.json",
+      "bytes": 81447,
+      "sha256": "d5233ad3be53b5bb06df2986e519ee4297b97a9ff4a8cb374d84a71ad9fba63b"
+    },
+    {
+      "path": "assets/characters/w-kirkhammer-a.png",
+      "bytes": 2352985,
+      "sha256": "478dec9f538a326e9e89844a9c489e1180b5c2e933671c2229c5d3472046ad2b"
+    },
+    {
+      "path": "assets/characters/w-kirkhammer-b.atlas.json",
+      "bytes": 65622,
+      "sha256": "1510368a1cffb417836afb1199784bf63a8dfcc78e4ac2e08b6fcbd9fde4f1e1"
+    },
+    {
+      "path": "assets/characters/w-kirkhammer-b.png",
+      "bytes": 2404197,
+      "sha256": "e9213b424fdc55ff12e64ad3a1f48f531fb12aa1acb4e7002fffcbbeb9e0c2b9"
+    },
+    {
+      "path": "assets/characters/w-logarius-wheel-a.atlas.json",
+      "bytes": 147967,
+      "sha256": "114526a1add2e5a5a8c7cd61e63358d28179b88164a728f9d3b09dea23b00f6a"
+    },
+    {
+      "path": "assets/characters/w-logarius-wheel-a.png",
+      "bytes": 2388381,
+      "sha256": "5de0f60b3d7c0cceee5e0ba1d9cee69583900adbb1f0dd93f922c6c3b53c5980"
+    },
+    {
+      "path": "assets/characters/w-logarius-wheel-b.atlas.json",
+      "bytes": 8871,
+      "sha256": "68f47a41c8b1394adc3dce243155ef1040ce96280e6454db73fbd25e179faac2"
+    },
+    {
+      "path": "assets/characters/w-logarius-wheel-b.png",
+      "bytes": 2592851,
+      "sha256": "53052b9873199b3d6ccfdd8d28a03077578075281c462f712396d4f591299f9d"
+    },
+    {
+      "path": "assets/characters/w-ludwigs-holy-blade-a.atlas.json",
+      "bytes": 8870,
+      "sha256": "da159df7b7a1d7f33964e70e0a1fc00fbc15a0fa7ee13cb4385c02b9f9fc6e15"
+    },
+    {
+      "path": "assets/characters/w-ludwigs-holy-blade-a.png",
+      "bytes": 2330424,
+      "sha256": "54dc9b6c8ddaa9834ab4bbc4bbde6749c2e2144e6e0afd2054a127e745bc8ec2"
+    },
+    {
+      "path": "assets/characters/w-ludwigs-holy-blade-b.atlas.json",
+      "bytes": 8873,
+      "sha256": "3d4b6cb4d579307c908724aed9b79a37ee94e5447bd507876d35dee3e035f0b2"
+    },
+    {
+      "path": "assets/characters/w-ludwigs-holy-blade-b.png",
+      "bytes": 2263577,
+      "sha256": "d57c39903a3e7efbbfb8926d2fabf7ae8b6d2f7b09b38d6c9a8bdda4c8ec5c2f"
+    },
+    {
+      "path": "assets/characters/w-reiterpallasch-a.atlas.json",
+      "bytes": 76459,
+      "sha256": "ba9ea824393a798ef2caf4da6e9daef89f002e38aeebe8ceb297842588bedafa"
+    },
+    {
+      "path": "assets/characters/w-reiterpallasch-a.png",
+      "bytes": 2347443,
+      "sha256": "d8782eb343cda1fcccad250a5220fd7df0c2057500deff8fb6b8bace7c4b2da0"
+    },
+    {
+      "path": "assets/characters/w-reiterpallasch-b.atlas.json",
+      "bytes": 8868,
+      "sha256": "44ff1dbf6b78fc0ffb0bc19f2e943c8676211e247bd036eefe966eb64c57a891"
+    },
+    {
+      "path": "assets/characters/w-reiterpallasch-b.png",
+      "bytes": 2278113,
+      "sha256": "aee1a50762c900736fd02e2039cf5be92c62f202f95422c66c77590a921ef7b8"
+    },
+    {
+      "path": "assets/characters/w-rifle-spear-a.atlas.json",
+      "bytes": 79018,
+      "sha256": "7e4e53df7311eeb404df6f478490a4ac6efc99f4c991a68eda706c8290ac7874"
+    },
+    {
+      "path": "assets/characters/w-rifle-spear-a.png",
+      "bytes": 2177494,
+      "sha256": "18d52671447fb1993211cc01474c78482c4d1eb2df6913eca4c34baef2332839"
+    },
+    {
+      "path": "assets/characters/w-rifle-spear-b.atlas.json",
+      "bytes": 71954,
+      "sha256": "43444bfc64a974f44f9fd638a70878a814e8aae3028b96dc6cc26c8367141cfe"
+    },
+    {
+      "path": "assets/characters/w-rifle-spear-b.png",
+      "bytes": 2226387,
+      "sha256": "0c073913ad861897b9cce950c323f49ca1fde05d3eee28272799e157ff2dc295"
+    },
+    {
+      "path": "assets/characters/w-saw-spear-a.atlas.json",
+      "bytes": 8862,
+      "sha256": "a871998844ae3966c4ac598fd6b7d9056a4984e085290b7dee1a420946dc0658"
+    },
+    {
+      "path": "assets/characters/w-saw-spear-a.png",
+      "bytes": 2245568,
+      "sha256": "5b2655c1890fbb20afdd9e0fc82ca6e331590671f02e7b00647303e5136f5952"
+    },
+    {
+      "path": "assets/characters/w-saw-spear-b.atlas.json",
+      "bytes": 45276,
+      "sha256": "d0d78a9856b61c3c658e52fcda9730c72c8b4b43f0682dec4f25055bfb063225"
+    },
+    {
+      "path": "assets/characters/w-saw-spear-b.png",
+      "bytes": 2357678,
+      "sha256": "6751afc637fa11401928cbb844975230d84098643ef7a9cf9a03c7e846b1a616"
+    },
+    {
+      "path": "assets/characters/w-stake-driver-a.atlas.json",
+      "bytes": 8867,
+      "sha256": "f5f8b7df71613bdf1b1fcf0953598613d1d301889f3aff516221befafd7e1392"
+    },
+    {
+      "path": "assets/characters/w-stake-driver-a.png",
+      "bytes": 2208457,
+      "sha256": "8eea4586b4267cc57b02274a50371f9d0bcad5248352d1e78f93767e132e7feb"
+    },
+    {
+      "path": "assets/characters/w-stake-driver-b.atlas.json",
+      "bytes": 72519,
+      "sha256": "acc40dbf1590c89168046692cebacb7212af2d9f234de7c819260d2a9ebd2053"
+    },
+    {
+      "path": "assets/characters/w-stake-driver-b.png",
+      "bytes": 2158975,
+      "sha256": "9ff3304d9737da3d82278a0ae4c5e99aef97990d05546cf38671c75b3948bf13"
+    },
+    {
+      "path": "assets/characters/w-threaded-cane-a.atlas.json",
+      "bytes": 8868,
+      "sha256": "94c702a7ed1f29912a1b5daf276644d86ce42043af8f3f6b75a56e73e94aed6f"
+    },
+    {
+      "path": "assets/characters/w-threaded-cane-a.png",
+      "bytes": 2182158,
+      "sha256": "37cd3631333511c5469f615229e9cfd916b735af5fb0df314146e4a81c1a2a5b"
+    },
+    {
+      "path": "assets/characters/w-threaded-cane-b.atlas.json",
+      "bytes": 8866,
+      "sha256": "4aca3b74db0381c699e36426c9a58859dbe932115480b831471448cc276925ae"
+    },
+    {
+      "path": "assets/characters/w-threaded-cane-b.png",
+      "bytes": 2107695,
+      "sha256": "2d37e00000104de27c47077640898ec9f5c56b16e550846119339ca924068bf7"
+    },
+    {
+      "path": "assets/characters/w-tonitrus-a.atlas.json",
+      "bytes": 8861,
+      "sha256": "96ce731d14179b327137e2740108ca704f5afe223e60ad27b03f6fe228ae0a2c"
+    },
+    {
+      "path": "assets/characters/w-tonitrus-a.png",
+      "bytes": 2256389,
+      "sha256": "0afe9d0aeddcc1a77a7c611e7886f53b788ab70e58962453bac8f598cb19904e"
+    },
+    {
+      "path": "assets/characters/w-tonitrus-b.atlas.json",
+      "bytes": 8863,
+      "sha256": "c2c12ee796e0abeee8d21ed008bbf04b13d339dcb7fd4add6cfda8c526e0be65"
+    },
+    {
+      "path": "assets/characters/w-tonitrus-b.png",
+      "bytes": 2206519,
+      "sha256": "8f9e15e95672343c3cc1a24735884894e58b52ce9ac78a35513f7a09b54ac1e7"
+    },
+    {
+      "path": "assets/characters/w-uncanny-ludwigs-holy-blade-a.atlas.json",
+      "bytes": 8881,
+      "sha256": "16047a547b426f9d28da43a1e2c58e66d26c0a64ef1c66f73789a3e4dc1b00b7"
+    },
+    {
+      "path": "assets/characters/w-uncanny-ludwigs-holy-blade-a.png",
+      "bytes": 2184940,
+      "sha256": "44c257f76678a56c2216d73badd48375bd95ed8e49a152983262642ffccdf04f"
+    },
+    {
+      "path": "assets/characters/w-uncanny-ludwigs-holy-blade-b.atlas.json",
+      "bytes": 109794,
+      "sha256": "7861aadd5ab456c339f1375db0b86f2c065b6cfdf5d92190e6da1aa58f6fa9f2"
+    },
+    {
+      "path": "assets/characters/w-uncanny-ludwigs-holy-blade-b.png",
+      "bytes": 2278385,
+      "sha256": "ad18541b1420be739b792d08a5f28b57f8ad492316ff1ee4c8625644b0cb367f"
+    },
+    {
+      "path": "assets/characters/weapon-manifest.js",
+      "bytes": 704262,
+      "sha256": "3713d5a71462298c247899ec5126df7629da3b6d0c45ee83b80b632272cf42b9"
+    },
+    {
+      "path": "assets/characters/weapon-manifest.json",
+      "bytes": 2024611,
+      "sha256": "a8580cfef8ef2dca729e5dee6aba5e1aa04dbaf8888fe2d1976ff0dc75887d00"
+    }
+  ],
+  "hunterMetadataSHA256": "ef09018518dbfae8e9cf05e57443fc8de4fdaedd8cc2342032b6cfc440499984"
+}

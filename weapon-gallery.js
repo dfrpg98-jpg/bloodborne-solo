@@ -2,16 +2,19 @@
   "use strict";
   const $=id=>document.getElementById(id),V=window.BBWeaponVisuals;
   const viewport=$("galleryViewport"),host=$("galleryEffects"),select=$("galleryWeapon"),subjectSelect=$("gallerySubject");
-  const subjects={hunter:"공통 사냥꾼",mob:"공통 인간형 적",beast:"공통 야수형 적",boss:"공통 보스",female:"공통 여성 NPC"};
+  const subjects={hunter:"공통 사냥꾼",mob:"공통 인간형 적",beast:"공통 야수형 적",boss:"공통 보스",female:"공통 여성 NPC",
+    ...(window.BBEnemyVisuals?.names||{})};
   let subject="weapon",weaponId=V.ids[0],face=0,revision=0,hp=6,fallen=false,x=.4;
   const presentation=window.BBHuntPresentation({document,Phaser:window.Phaser,viewport,host,
     characters:{...window.BBCharacterAssets,...window.BBWeaponCharacterAssets},onReady:()=>render()});
   for(const id of V.ids){const option=document.createElement("option");option.value=id;option.textContent=V.definition(id).name;select.append(option);}
+  function previewScale(){return subject==="cleric-beast"?Math.min(2.1,viewport.clientWidth/500):2.1;}
   function hunter(){return {id:"hunter",kind:subject==="weapon"||subject==="hunter"?"hunter":"enemy",
     ...(subject==="weapon"?{weaponId,weaponFace:face,skin:V.skin(weaponId,face,weaponId==="tonitrus"&&face===1)}:{skin:subject}),
-    hp,x:viewport.clientWidth*x,y:viewport.clientHeight-60,scale:2.1};}
-  function target(){return {id:"dummy",kind:"enemy",skin:"mob",hp:99,x:viewport.clientWidth*.72,y:viewport.clientHeight-60,scale:1.6};}
+    hp,x:viewport.clientWidth*x,y:viewport.clientHeight-60,scale:previewScale()};}
+  function target(){return {id:"dummy",kind:"enemy",skin:"mob",hp:99,x:viewport.clientWidth*.72,y:viewport.clientHeight-60,scale:previewScale()*1.6/2.1};}
   function render(actions=[]){
+    viewport.dataset.subject=subject;
     const w=V.definition(weaponId),weaponPreview=subject==="weapon";select.value=weaponId;subjectSelect.value=subject;
     select.hidden=!weaponPreview;$("galleryWeaponLabel").hidden=!weaponPreview;$("galleryTransform").disabled=!weaponPreview;
     for(let i=0;i<2;i++){const b=$("galleryForm"+i);b.hidden=!weaponPreview;b.disabled=!weaponPreview;

@@ -107,7 +107,8 @@ function halo(points, width, height) {
 
 test('generic actor source PNGs remain byte-identical and repaired crops preserve pose placement', () => {
   let repaired = 0;
-  for (const [skin, asset] of Object.entries(manifest)) {
+  for (const skin of Object.keys(originalHashes)) {
+    const asset = manifest[skin];
     const raw = fs.readFileSync(path.join(root, asset.path));
     assert.equal(crypto.createHash('sha256').update(raw).digest('hex'), originalHashes[skin], skin);
     assert.equal(asset.sha256, originalHashes[skin]);
@@ -165,7 +166,8 @@ test('actual beast idle paws meet the ground without changing the relative movem
   t.diagnostic('Actual source-pixel lowest paw/body Y values: ' + JSON.stringify(groundPixels));
 });
 
-for (const [skin, asset] of Object.entries(manifest)) {
+for (const skin of Object.keys(originalHashes)) {
+  const asset = manifest[skin];
   test(`${skin}: actual PNG pixels retain all sixteen poses without neighbor fragments or clipped weapons`, () => {
     const png = readPngAlpha(fs.readFileSync(path.join(root, asset.path)));
     const ranges = [[0, 313], [313, 627], [624, 940], [940, 1254]];

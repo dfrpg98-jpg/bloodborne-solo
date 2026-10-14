@@ -700,7 +700,7 @@ test('unsupported native geometry masking falls back per weapon and never loads 
 for (const geometry of [false, 'throw'])
   test(`required shipped bodies retain DOM fallback when native clipping is ${geometry === false ? 'missing' : 'throwing'}`, () => {
     const shipped = require('../assets/characters/manifest.json');
-    assert.equal(Object.keys(shipped).length, 5);
+    assert.deepEqual(Object.keys(shipped).sort(), ['hunter', 'mob', 'beast', 'boss', 'female', ...require('../enemy-visuals').ids].sort());
     const f = fixture({ geometry, custom(characters) { Object.assign(characters, shipped); } });
     const actors = [{ id: 'hunter', kind: 'hunter', skin: 'hunter', x: 80, y: 100, hp: 6 }, enemy()];
     f.adapter.sync({ revision: 1, sceneId: 'required-body-fallback', actors }); f.boot();
@@ -748,6 +748,22 @@ test('normalized display heights up to 256 preserve public actor scale while lar
   assert.equal(f.sprites[0].height, 200);
   f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [{ ...hunter(faceB), scale: 1.5 }, enemy()] });
   assert.equal(f.sprites[0].height, 256 * 1.5);
+});
+
+test('the padded Cleric Beast keeps its large body scale through the real renderer and camera zoom', () => {
+  const data = require('../assets/characters/manifest.json')['cleric-beast'];
+  const f = fixture({ geometry: true, custom(characters) { characters['cleric-beast'] = structuredClone(data); } });
+  f.adapter.sync({ revision: 1, sceneId: 'large-boss', actors: [hunter(), { ...enemy(), skin: 'cleric-beast' }] }); f.boot();
+  const boss = f.sprites.find(sprite => sprite.texture === 'bb-character-cleric-beast');
+  assert(boss); assert.equal(data.displayHeight, 400, 'restore padded boss to an imposing map body');
+  assert.equal(boss.height, 400, 'the previous 256px cap must not silently shrink the named boss');
+  assert.deepEqual(boss.origin, [.5, 460 / 512]);
+  const original = [boss.x, boss.y];
+  f.adapter.sync({ revision: 1, sceneId: 'large-boss', actors: [hunter(), { ...enemy(), skin: 'cleric-beast', scale: .69 }] });
+  assert.equal(boss.height, 400 * .69); assert.deepEqual([boss.x, boss.y], original);
+  boss.advanceFrame('10');
+  assert.equal(boss.mask.graphics.scaleX, 400 * .69 / 512, 'the repaired attack arm scales with its ownership mask');
+  assert.equal(boss.mask.graphics.scaleY, 400 * .69 / 512);
 });
 
 test('all 30 shipped weapon atlases and every one of their 720 poses survive runtime validation with exact required mask coverage', () => {

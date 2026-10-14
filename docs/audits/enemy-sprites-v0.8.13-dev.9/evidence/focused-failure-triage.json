@@ -1,0 +1,118 @@
+{
+  "runtimeVersion": "0.8.13-dev.9",
+  "firstFocusedRun": "focused-before-bounds-fix.json",
+  "firstFocusedCounts": {
+    "tests": 202,
+    "pass": 198,
+    "fail": 4
+  },
+  "measurement": {
+    "alphaThreshold": 32,
+    "idleFrames": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "atlasTrimAndClipRectsApplied": true,
+    "originX": 0.5,
+    "bothHorizontalDirections": true,
+    "pixelEdgesIncluded": true,
+    "tileSizeForReportedPixels": 290
+  },
+  "verifiedAssetReservationMismatches": [
+    {
+      "skin": "huntsmans-minion",
+      "example": "Render idle frames around the actual foot origin in both directions. The furthest foreground pixel edge requires a 52.5 px symmetric reservation, while the real map controller reserves only 52.2 px (18% of a 290 px tile).",
+      "beforeDisplayHeight": 128,
+      "beforeRequiredWidth": 52.5,
+      "reservedWidth": 52.2,
+      "excessWidth": 0.3,
+      "fix": "Reduce metadata displayHeight from 128 to 127 without changing the PNG or gameplay positions.",
+      "afterDisplayHeight": 127,
+      "afterRequiredWidth": 52.08984375,
+      "afterTestPassed": true,
+      "actualBrowserOverlapWasNotAssertedByThisTest": true
+    },
+    {
+      "skin": "scourge-beast",
+      "example": "Render idle paws and body around the foot origin in both directions. Foreground requires a 70.0390625 px symmetric reservation, exceeding the real map controller's 69.6 px (24% of a 290 px tile).",
+      "beforeDisplayHeight": 110,
+      "beforeRequiredWidth": 70.0390625,
+      "reservedWidth": 69.6,
+      "excessWidth": 0.4390625,
+      "fix": "Reduce metadata displayHeight from 110 to 109 while keeping the PNG, paw contact padding and gameplay positions.",
+      "afterDisplayHeight": 109,
+      "afterRequiredWidth": 69.40234375,
+      "afterTestPassed": true,
+      "actualBrowserOverlapWasNotAssertedByThisTest": true
+    }
+  ],
+  "OutdatedTestExpectations": [
+    {
+      "test": "required shipped bodies retain DOM fallback when native clipping is missing",
+      "before": "A historical count assertion required exactly five shipped generic skins and failed before checking masking fallback once six named skins were added.",
+      "actual": 11,
+      "oldExpected": 5,
+      "fix": "Require the exact five legacy IDs plus six named IDs; retain every original fallback assertion.",
+      "afterTestPassed": true,
+      "gameplayBug": false
+    },
+    {
+      "test": "required shipped bodies retain DOM fallback when native clipping is throwing",
+      "before": "The same historical five-skin count assertion rejected the eleven-skin manifest before checking the existing throwing-mask fallback.",
+      "actual": 11,
+      "oldExpected": 5,
+      "fix": "Require the exact five legacy IDs plus six named IDs; retain every original fallback assertion.",
+      "afterTestPassed": true,
+      "gameplayBug": false
+    }
+  ],
+  "additionalMeasurementRegression": "A known alpha matrix independently verifies exclusion at alpha31, inclusion at alpha32, atlas trim translation and removal of a neighboring foreground fragment by clipRects.",
+  "browserVerificationIsSeparate": true,
+  "afterBoundsFixFocusedRun": "before-boss-scale-focused.json",
+  "afterBoundsFixFocusedCounts": {
+    "tests": 203,
+    "pass": 203,
+    "fail": 0
+  },
+  "currentFinalFocusedRun": "focused.json",
+  "currentFinalFocusedCounts": {
+    "tests": 205,
+    "pass": 205,
+    "fail": 0
+  },
+  "laterRequestedBossScaleChange": {
+    "displayHeight": 400,
+    "reservationPercent": [
+      60,
+      56
+    ],
+    "finalMirroredIdleWidth": 165.625,
+    "finalIdleAboveHeight": 150.78125,
+    "previousRun": "before-boss-scale-full-ci.json"
+  },
+  "responsivePreviewCorrection": {
+    "kind": "confirmedGeometryClippingRisk",
+    "unchangedMapDisplayHeight": 400,
+    "oldPreviewScale": 2.1,
+    "fixedPreviewScale": "min(2.1, viewportWidth/500)",
+    "comparatorRatioPreserved": "1.6/2.1",
+    "numericChecks": {
+      "widths": [
+        320,
+        390,
+        800,
+        1050
+      ],
+      "poses": 16,
+      "bothHorizontalDirections": true,
+      "bothWalkingEndpoints": [
+        0.28,
+        0.4
+      ],
+      "boardHeight": 440
+    },
+    "actualMobileBrowserWasNotConfirmed": true
+  }
+}

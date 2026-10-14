@@ -1,0 +1,1528 @@
+{
+  "reviewedAt": "2026-10-14T08:48:48.054Z",
+  "reviewer": "/root/enemy_atlas_contract_qa",
+  "scope": "CUA가 촬영한 QA 전용 2fps 페이지의 89장 원본 PNG 직접 열람",
+  "browserControlledByThisReviewer": false,
+  "productFilesModifiedByThisReviewer": false,
+  "uniqueScreenshotFilesDirectlyViewed": 89,
+  "groupCount": 36,
+  "source96PoseReviewIsSeparate": true,
+  "noNewVisualDefectInVisibleScreenshots": true,
+  "finalCorpseReviewCompletedByThese89Screenshots": false,
+  "normalGameFrameRateChanged": false,
+  "rateProvenance": "Root가 QA 페이지에서만 frameRate를 2fps로 변경했다고 전달함. 이 리뷰는 정상 게임 FPS/규칙/저장 상태를 변경하지 않음.",
+  "limitations": [
+    "연속 영상 시청이 아니라 시간 순서의 원본 스크린샷 직접 열람이다. 모든 중간 렌더 프레임을 확인한 것으로 세지 않는다.",
+    "좌/우 걷기 각 2장뿐이므로 원본 걷기 4포즈 전부가 실제 런타임에서 캡처되었다고 주장하지 않는다. 일부 두 번째 표본은 대기에 가까운 복귀 자세다.",
+    "5종의 death-1은 적 제거 뒤의 빈 공간이다. Root가 전달한 제품 페이드 시간은 delay160ms+duration560ms=720ms이고 정상 death5fps는400ms, QA2fps는1000ms이다. QA 재생만 느려진 표본 한계로 기록하며 제품 오류로 집계하지 않는다.",
+    "피격 표본의 일부 사냥꾼은 공격 준비 자세를 함께 보인다. 이 파일만으로 전투 판정/타이밍을 검증하지 않는다.",
+    "의복/갈기/몸에 자연스럽게 가려진 반대 관절은 모두 노출되거나 존재가 완전히 증명된 것으로 표현하지 않는다."
+  ],
+  "supplementRequired": "Root가 추가 촬영하는 정상5fps death 표본으로 마지막 사체 및 가림을 확인한다.",
+  "groups": [
+    {
+      "label": "slow-minion-attack",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-minion-attack-0.jpg",
+          "path": "../screenshots/slow-minion-attack-0.jpg",
+          "capturedAt": "2026-10-14T08:20:13.060Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "894f16f99dace4fd8e547d4b14c35ed88727f63a1e9bb41cd5ce1b52729d9280"
+        },
+        {
+          "file": "slow-minion-attack-1.jpg",
+          "path": "../screenshots/slow-minion-attack-1.jpg",
+          "capturedAt": "2026-10-14T08:20:13.537Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "d256fa7f03dd443e6bae2ccbbffb0b0a64f890bd57f9bea9ee40f9dc23ee55b0"
+        },
+        {
+          "file": "slow-minion-attack-2.jpg",
+          "path": "../screenshots/slow-minion-attack-2.jpg",
+          "capturedAt": "2026-10-14T08:20:14.021Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "6af2118fa78c007eedd8dde789fffd833ced7caff3b9265d991715b9e9d5e69a"
+        },
+        {
+          "file": "slow-minion-attack-3.jpg",
+          "path": "../screenshots/slow-minion-attack-3.jpg",
+          "capturedAt": "2026-10-14T08:20:14.507Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "6f3e557dbef8cf187d8d309fb004e6810b8b0983d0ab9447f5f2fea817101b5b"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "4장 모두 오른쪽을 바라보고 벽돌 든 넓은 체형·붕대·멜빵이 유지됨.",
+        "벽돌을 들어 준비한 뒤 아래로 내리고 회복함. 두 팔 연결과 양발의 접지 위치가 이어져 보임.",
+        "원점의 좌우 반전, 이웃 포즈 조각, 벽돌/머리/발의 사각형 잘림은 보이지 않음."
+      ]
+    },
+    {
+      "label": "slow-huntsman-mob-idle",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-huntsman-mob-idle-0.jpg",
+          "path": "../screenshots/slow-huntsman-mob-idle-0.jpg",
+          "capturedAt": "2026-10-14T08:21:17.545Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "a6b7d917882de9920f4edbabfb5f7133aaa934d0e78677dfe5fd0abcf1bfc269"
+        },
+        {
+          "file": "slow-huntsman-mob-idle-1.jpg",
+          "path": "../screenshots/slow-huntsman-mob-idle-1.jpg",
+          "capturedAt": "2026-10-14T08:21:18.079Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "a9bafc1af29d88483facd8252d501ab98608afdaec29637122ee608c7609af6b"
+        },
+        {
+          "file": "slow-huntsman-mob-idle-2.jpg",
+          "path": "../screenshots/slow-huntsman-mob-idle-2.jpg",
+          "capturedAt": "2026-10-14T08:21:18.612Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "32d4dd71b025dddce857981840613522eeb71f669ca89faa81e231f26917ea17"
+        },
+        {
+          "file": "slow-huntsman-mob-idle-3.jpg",
+          "path": "../screenshots/slow-huntsman-mob-idle-3.jpg",
+          "capturedAt": "2026-10-14T08:21:19.142Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "40062ba0f7159fb1b95673907feba9841d70a54b762ade589a9cb471262acbcb"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "4장 모두 오른쪽 방향의 검은 모자·긴 외투·도끼·횃불이 유지됨.",
+        "발과 그림자는 같은 바닥 높이에 있으며 작은 몸/횃불 변화가 있음."
+      ]
+    },
+    {
+      "label": "slow-huntsman-mob-walk-left",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-huntsman-mob-walk-left-0.jpg",
+          "path": "../screenshots/slow-huntsman-mob-walk-left-0.jpg",
+          "capturedAt": "2026-10-14T08:21:19.546Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "0bc71f0a9df6e1c7fb71d5887086edc05bd7b7e02daedb61a3c1a55e3774ddc3"
+        },
+        {
+          "file": "slow-huntsman-mob-walk-left-1.jpg",
+          "path": "../screenshots/slow-huntsman-mob-walk-left-1.jpg",
+          "capturedAt": "2026-10-14T08:21:20.080Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "4ca64939f9c646ee2a3d1e1609db75207c16ae6d661b2afea22f3557ba53ba31"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "2장 모두 왼쪽을 바라보며 왼쪽으로 위치가 이동함.",
+        "외투·도끼·횃불이 함께 반전되며 발은 같은 바닥선에 놓임."
+      ]
+    },
+    {
+      "label": "slow-huntsman-mob-walk-right",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-huntsman-mob-walk-right-0.jpg",
+          "path": "../screenshots/slow-huntsman-mob-walk-right-0.jpg",
+          "capturedAt": "2026-10-14T08:21:20.481Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "4b70ce32519bf51745aed40747f66fda4fb424f1bb573bf22f3c2f265ba6dd3d"
+        },
+        {
+          "file": "slow-huntsman-mob-walk-right-1.jpg",
+          "path": "../screenshots/slow-huntsman-mob-walk-right-1.jpg",
+          "capturedAt": "2026-10-14T08:21:21.015Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "64042f4667212291d541325fe965294b1d530a38be2d65d4d41a5c5c5197ed07"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "2장 모두 오른쪽을 바라보며 시작 위치로 돌아옴.",
+        "첫 장은 보폭 자세, 둘째 장은 대기에 가까운 자세. 4개 걷기 포즈 전부를 이 2장으로 검증했다고 세지 않음."
+      ]
+    },
+    {
+      "label": "slow-huntsman-mob-attack",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-huntsman-mob-attack-0.jpg",
+          "path": "../screenshots/slow-huntsman-mob-attack-0.jpg",
+          "capturedAt": "2026-10-14T08:21:21.397Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "e001e9c281782b1392a5727e454fdb76fb1c519f2b1ce7d787518e0e3db8bd02"
+        },
+        {
+          "file": "slow-huntsman-mob-attack-1.jpg",
+          "path": "../screenshots/slow-huntsman-mob-attack-1.jpg",
+          "capturedAt": "2026-10-14T08:21:21.929Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "1444df86df1abe6fbb6b956ae5ed7ebbcb23ac155a4271844885836530ed07d9"
+        },
+        {
+          "file": "slow-huntsman-mob-attack-2.jpg",
+          "path": "../screenshots/slow-huntsman-mob-attack-2.jpg",
+          "capturedAt": "2026-10-14T08:21:22.461Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "41bd4682b9ee693c454a01f10e00e9a50ac8636483791946bc44eeb6223fe0dc"
+        },
+        {
+          "file": "slow-huntsman-mob-attack-3.jpg",
+          "path": "../screenshots/slow-huntsman-mob-attack-3.jpg",
+          "capturedAt": "2026-10-14T08:21:22.993Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "e756de418eee5af29b17cfa37f3ccb0805047cc317f1fa239df93504fe2a28be"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "4장에서 도끼 들기→앞으로 휘두르기→낮게 마무리→회복이 보임.",
+        "오른쪽 방향·횃불 든 팔·모자·외투가 유지됨. 위로 든 도끼와 횃불 끝이 잘리지 않음."
+      ]
+    },
+    {
+      "label": "slow-huntsman-mob-hit",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-huntsman-mob-hit-0.jpg",
+          "path": "../screenshots/slow-huntsman-mob-hit-0.jpg",
+          "capturedAt": "2026-10-14T08:21:23.382Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "40335541c4921f9f24e48828c2e2fcea78502a06d7f45955d0a1f72d36fba8b2"
+        },
+        {
+          "file": "slow-huntsman-mob-hit-1.jpg",
+          "path": "../screenshots/slow-huntsman-mob-hit-1.jpg",
+          "capturedAt": "2026-10-14T08:21:23.911Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "4de39d2c6c4a5609e5704f37fada83eb7e59b5b750f28562e0a97d0298e68c35"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "몸을 낮추는 피격과 다시 일어서는 회복이 보임.",
+        "두 장 모두 오른쪽 방향, 횃불·도끼 유지. 외투 안쪽 다리 관절은 가려져 있으므로 모두 노출된 것으로 판정하지 않음."
+      ]
+    },
+    {
+      "label": "slow-huntsman-mob-death",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-huntsman-mob-death-0.jpg",
+          "path": "../screenshots/slow-huntsman-mob-death-0.jpg",
+          "capturedAt": "2026-10-14T08:21:24.317Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "33864334d43460d710981ea65f08c67cdbfbcc71c3f3ee323969f58aa5e3593b"
+        },
+        {
+          "file": "slow-huntsman-mob-death-1.jpg",
+          "path": "../screenshots/slow-huntsman-mob-death-1.jpg",
+          "capturedAt": "2026-10-14T08:21:24.849Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "a51dc9ff73a7fbd32671a91309bad5872552347c48c5bd8a418f0656aaa0775d"
+        }
+      ],
+      "status": "visible-first-pose-reviewed-final-corpse-not-captured",
+      "observations": [
+        "첫 장은 무릎을 꿇고 도끼를 낮춘 포즈.",
+        "둘째 장에서는 적과 그림자가 제거되어 최종 사체 포즈를 확인할 수 없음."
+      ]
+    },
+    {
+      "label": "slow-huntsman-mob-reset",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-huntsman-mob-reset-0.jpg",
+          "path": "../screenshots/slow-huntsman-mob-reset-0.jpg",
+          "capturedAt": "2026-10-14T08:21:25.244Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "0390c4052f5851e20778bd093ef0fed863b578c7d0e5e863686d0a640fa030b7"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "무리의 초기 오른쪽 대기 자세와 그림자가 원래 위치에 다시 보임."
+      ]
+    },
+    {
+      "label": "slow-scourge-beast-idle",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-scourge-beast-idle-0.jpg",
+          "path": "../screenshots/slow-scourge-beast-idle-0.jpg",
+          "capturedAt": "2026-10-14T08:21:25.351Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "65f751d1331d28107c24deaaa8bbb1332e1daab7184b719da80efc1b6e9fa28d"
+        },
+        {
+          "file": "slow-scourge-beast-idle-1.jpg",
+          "path": "../screenshots/slow-scourge-beast-idle-1.jpg",
+          "capturedAt": "2026-10-14T08:21:25.885Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "1a6ccfffeba16e6bc1fd48a024d6a46dd778e15f2a24a33bc64abd3ad31703bd"
+        },
+        {
+          "file": "slow-scourge-beast-idle-2.jpg",
+          "path": "../screenshots/slow-scourge-beast-idle-2.jpg",
+          "capturedAt": "2026-10-14T08:21:26.417Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "3d2c352e2ec784d384a770d563ef5b583f3dca23462ed86ee4f54abd91747afa"
+        },
+        {
+          "file": "slow-scourge-beast-idle-3.jpg",
+          "path": "../screenshots/slow-scourge-beast-idle-3.jpg",
+          "capturedAt": "2026-10-14T08:21:26.950Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "0bc4875d30c9c6797b0537f67be6bfb488ba3ad586b49b34cf51900bfe9bcf64"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "4장 모두 낮은 늑대 체형·긴 팔·어두운 털·찢어진 천이 유지됨.",
+        "발끝과 그림자는 바닥 부근에 있고 이전 후보의 일정한 6px 부유처럼 보이지 않음."
+      ]
+    },
+    {
+      "label": "slow-scourge-beast-walk-left",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-scourge-beast-walk-left-0.jpg",
+          "path": "../screenshots/slow-scourge-beast-walk-left-0.jpg",
+          "capturedAt": "2026-10-14T08:21:27.353Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "ef4a76ee6454722fa436c4bf4955eef50ba71603775a2014e8ebc8add9ff2cfd"
+        },
+        {
+          "file": "slow-scourge-beast-walk-left-1.jpg",
+          "path": "../screenshots/slow-scourge-beast-walk-left-1.jpg",
+          "capturedAt": "2026-10-14T08:21:27.880Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "77a3f968e1c4f45260e6556ed224396f1fc328c2b6447331503453639f65fff3"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "왼쪽 방향으로 이동하며 긴 앞팔의 굽힘과 내밀기가 보임.",
+        "뒷다리 일부는 털/몸과 겹침. 전체 사지 연결이 모두 드러나는 자세는 아님."
+      ]
+    },
+    {
+      "label": "slow-scourge-beast-walk-right",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-scourge-beast-walk-right-0.jpg",
+          "path": "../screenshots/slow-scourge-beast-walk-right-0.jpg",
+          "capturedAt": "2026-10-14T08:21:28.254Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "e15841dee0a541b3195268d808957356f4e4987160b56baf670c2a63f599ec3c"
+        },
+        {
+          "file": "slow-scourge-beast-walk-right-1.jpg",
+          "path": "../screenshots/slow-scourge-beast-walk-right-1.jpg",
+          "capturedAt": "2026-10-14T08:21:28.782Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "f22d5412d66003a0fb08aba3de6c698a9cbcf8d54537907cb7128b3f8b45b171"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "오른쪽 방향으로 돌아오며 체형/천/털 유지.",
+        "둘째 장은 대기에 가까우므로 4포즈 걷기 전수 재생 표본이라고 세지 않음."
+      ]
+    },
+    {
+      "label": "slow-scourge-beast-attack",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-scourge-beast-attack-0.jpg",
+          "path": "../screenshots/slow-scourge-beast-attack-0.jpg",
+          "capturedAt": "2026-10-14T08:21:29.190Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "7f32460b874f231f1e57d0d49d8a12f73995623d43d6c687c16a00d049ac1253"
+        },
+        {
+          "file": "slow-scourge-beast-attack-1.jpg",
+          "path": "../screenshots/slow-scourge-beast-attack-1.jpg",
+          "capturedAt": "2026-10-14T08:21:29.721Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "ca48811f7397fa9ebb5a488dccd37547fbb93c8941155b2ae762306e9ba263bb"
+        },
+        {
+          "file": "slow-scourge-beast-attack-2.jpg",
+          "path": "../screenshots/slow-scourge-beast-attack-2.jpg",
+          "capturedAt": "2026-10-14T08:21:30.253Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "69c0136dfb947ec9f44e8ee74860b5ca9c99aa317029fce4aa2781b606efb8a1"
+        },
+        {
+          "file": "slow-scourge-beast-attack-3.jpg",
+          "path": "../screenshots/slow-scourge-beast-attack-3.jpg",
+          "capturedAt": "2026-10-14T08:21:30.783Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "20b191e7a09d3186b6c152cd430f374a6175dbe8a856e69bc7f3116c05284a52"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "낮게 준비→몸을 세우기→앞팔 뻗기→낮은 자세 회복이 보임.",
+        "앞으로 뻗는 포즈에서 발이 약간 올라가는 것은 몸을 세우는 동작과 함께 나타남. 원점이 다른 위치로 순간 변경되는 모습은 보이지 않음.",
+        "입/발톱/긴 팔의 잘림이나 이웃 포즈 조각은 보이지 않음."
+      ]
+    },
+    {
+      "label": "slow-scourge-beast-hit",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-scourge-beast-hit-0.jpg",
+          "path": "../screenshots/slow-scourge-beast-hit-0.jpg",
+          "capturedAt": "2026-10-14T08:21:31.189Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "086931a047294fac6f4c6e9964f44ecac01d587aab70dbc1b4f7946fe0f64a68"
+        },
+        {
+          "file": "slow-scourge-beast-hit-1.jpg",
+          "path": "../screenshots/slow-scourge-beast-hit-1.jpg",
+          "capturedAt": "2026-10-14T08:21:31.718Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "45d03c66ef12dc282fb14e668a08da7939e95f2d19306546cc57dae283a750ad"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "피격 시 몸과 머리가 들렸다가 낮은 자세로 회복함. 방향과 천 위치 유지."
+      ]
+    },
+    {
+      "label": "slow-scourge-beast-death",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-scourge-beast-death-0.jpg",
+          "path": "../screenshots/slow-scourge-beast-death-0.jpg",
+          "capturedAt": "2026-10-14T08:21:32.107Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "867d86a6131edeb9f726710f384fb87874822af528392f3813b2bdb036f82004"
+        },
+        {
+          "file": "slow-scourge-beast-death-1.jpg",
+          "path": "../screenshots/slow-scourge-beast-death-1.jpg",
+          "capturedAt": "2026-10-14T08:21:32.637Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "87f49f3222d11cd83d194a7e512307a0c6aae088f669a034e5c2e4dbf456a16a"
+        }
+      ],
+      "status": "visible-first-pose-reviewed-final-corpse-not-captured",
+      "observations": [
+        "첫 장은 낮게 주저앉는 포즈. 둘째 장은 적 제거 상태로 사체 관찰 불가."
+      ]
+    },
+    {
+      "label": "slow-scourge-beast-reset",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-scourge-beast-reset-0.jpg",
+          "path": "../screenshots/slow-scourge-beast-reset-0.jpg",
+          "capturedAt": "2026-10-14T08:21:33.042Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "8a2d52337a438d05d46dca7e23adda6c8cea5aa53ccbf5d6d0daa764ef079826"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "초기 낮은 오른쪽 대기 자세와 그림자가 돌아옴."
+      ]
+    },
+    {
+      "label": "slow-female-patient-idle",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-female-patient-idle-0.jpg",
+          "path": "../screenshots/slow-female-patient-idle-0.jpg",
+          "capturedAt": "2026-10-14T08:21:33.156Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "9ece3e3fc3e54e3e578a9bae1a650fed065e7b9d094302fcb23289ebcd823313"
+        },
+        {
+          "file": "slow-female-patient-idle-1.jpg",
+          "path": "../screenshots/slow-female-patient-idle-1.jpg",
+          "capturedAt": "2026-10-14T08:21:33.686Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "74b0d087ee9bbfd0e368d626332d829e47c945e6dfe9621621b4a20207848242"
+        },
+        {
+          "file": "slow-female-patient-idle-2.jpg",
+          "path": "../screenshots/slow-female-patient-idle-2.jpg",
+          "capturedAt": "2026-10-14T08:21:34.221Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "580a86eb05d883f1b71ea32157a1b01a746073f76763f45f8ad83090ebb45c78"
+        },
+        {
+          "file": "slow-female-patient-idle-3.jpg",
+          "path": "../screenshots/slow-female-patient-idle-3.jpg",
+          "capturedAt": "2026-10-14T08:21:34.755Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "6463a3626a331c9b5fff182c96f9a461837af82a294ef34a26cde3050ed645ce"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "4장 모두 올리브색 베일·어두운 찢어진 드레스·맨손·맨발 유지.",
+        "양팔과 바닥에 놓인 발이 보이고 얼굴은 베일에 가려짐. 바닥에서 일정하게 부유하는 모습은 보이지 않음."
+      ]
+    },
+    {
+      "label": "slow-female-patient-walk-left",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-female-patient-walk-left-0.jpg",
+          "path": "../screenshots/slow-female-patient-walk-left-0.jpg",
+          "capturedAt": "2026-10-14T08:21:35.160Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "3d699911ce81d4d17caf9806a1f23d9ea96a9bdf0b16294c9e190eb3c5f5a083"
+        },
+        {
+          "file": "slow-female-patient-walk-left-1.jpg",
+          "path": "../screenshots/slow-female-patient-walk-left-1.jpg",
+          "capturedAt": "2026-10-14T08:21:35.693Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "10b309718052456e9b691a5e4df5bc7f9239712bdb76e245b670e672cae919f4"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "왼쪽 방향으로 이동, 베일과 드레스가 보폭에 따라 움직임. 손/발의 이웃 조각 없음."
+      ]
+    },
+    {
+      "label": "slow-female-patient-walk-right",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-female-patient-walk-right-0.jpg",
+          "path": "../screenshots/slow-female-patient-walk-right-0.jpg",
+          "capturedAt": "2026-10-14T08:21:36.085Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "ca0a35597f270111a13f474bbfcd952490c8e0dbc81fae78c631cfdf31acb139"
+        },
+        {
+          "file": "slow-female-patient-walk-right-1.jpg",
+          "path": "../screenshots/slow-female-patient-walk-right-1.jpg",
+          "capturedAt": "2026-10-14T08:21:36.628Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "a64a564aff9b065e76589dc9810c91354812bf875c3fa26a2dfd8396501c38c7"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "오른쪽 방향으로 돌아옴. 둘째 장은 대기 자세에 가까움."
+      ]
+    },
+    {
+      "label": "slow-female-patient-attack",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-female-patient-attack-0.jpg",
+          "path": "../screenshots/slow-female-patient-attack-0.jpg",
+          "capturedAt": "2026-10-14T08:21:37.024Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "85989a209b072902ad502ab51f7e3c5d30a2cacfc7d12e69c17aa432837c5d56"
+        },
+        {
+          "file": "slow-female-patient-attack-1.jpg",
+          "path": "../screenshots/slow-female-patient-attack-1.jpg",
+          "capturedAt": "2026-10-14T08:21:37.545Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "f5439025e81c72b779e776c39cad9fb2550efa4e763630cf8198210c141d3d12"
+        },
+        {
+          "file": "slow-female-patient-attack-2.jpg",
+          "path": "../screenshots/slow-female-patient-attack-2.jpg",
+          "capturedAt": "2026-10-14T08:21:38.078Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "dfa6ca1d6f224a2b04ce2c1414fac79412cecd7de083657f84c73067b51cbcd4"
+        },
+        {
+          "file": "slow-female-patient-attack-3.jpg",
+          "path": "../screenshots/slow-female-patient-attack-3.jpg",
+          "capturedAt": "2026-10-14T08:21:38.611Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "8e0a89f4509762b52b0c3c9f57ae8374477eff29188f4b9c839e34150059f624"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "팔을 굽혀 준비→두 팔을 들어 앞으로 뻗기→회복이 보임.",
+        "두 팔의 어깨/팔꿈치/손 연결이 관찰되며 베일·드레스 색과 방향이 유지됨.",
+        "멀리 뻗은 손끝과 흩날리는 드레스 끝이 사각형으로 잘리지 않음."
+      ]
+    },
+    {
+      "label": "slow-female-patient-hit",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-female-patient-hit-0.jpg",
+          "path": "../screenshots/slow-female-patient-hit-0.jpg",
+          "capturedAt": "2026-10-14T08:21:39.014Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "02502745a913fe95b058f054ae96629c59131ba710ca672a0693f2683a54d9e9"
+        },
+        {
+          "file": "slow-female-patient-hit-1.jpg",
+          "path": "../screenshots/slow-female-patient-hit-1.jpg",
+          "capturedAt": "2026-10-14T08:21:39.546Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "8a870a454477eaf1e2c972017a321fa7de7b9b184f25a4a01d20796f84830858"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "상체가 뒤로 꺾였다가 회복함. 베일 때문에 머리 방향을 얼굴로 판정할 수는 없지만 의복/팔 측면 방향은 유지됨."
+      ]
+    },
+    {
+      "label": "slow-female-patient-death",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-female-patient-death-0.jpg",
+          "path": "../screenshots/slow-female-patient-death-0.jpg",
+          "capturedAt": "2026-10-14T08:21:39.940Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "caed0c1488bb3c27caf9038dc1e57a8a8b18a816aea221a58b3ce4caec6ce610"
+        },
+        {
+          "file": "slow-female-patient-death-1.jpg",
+          "path": "../screenshots/slow-female-patient-death-1.jpg",
+          "capturedAt": "2026-10-14T08:21:40.464Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "25d06e34f57e49c353d07265ba59723b4f701f6b8a49c5aaa91de658c15f7311"
+        }
+      ],
+      "status": "visible-first-pose-reviewed-final-corpse-not-captured",
+      "observations": [
+        "첫 장은 손을 낮춰 무릎 꿇는 포즈. 둘째 장은 제거된 상태라 누운 사체 가림 관찰 불가."
+      ]
+    },
+    {
+      "label": "slow-female-patient-reset",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-female-patient-reset-0.jpg",
+          "path": "../screenshots/slow-female-patient-reset-0.jpg",
+          "capturedAt": "2026-10-14T08:21:40.864Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "913ddd5b1efdaf2a3ffe951489cdcded819d462d9fee83320cda65b39116d21c"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "초기 베일/드레스 대기 자세로 복귀."
+      ]
+    },
+    {
+      "label": "slow-iosefka-idle",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-iosefka-idle-0.jpg",
+          "path": "../screenshots/slow-iosefka-idle-0.jpg",
+          "capturedAt": "2026-10-14T08:21:40.979Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "6872e4defffdd6763ff1e821177ffef73396774a966bc18f0f0ba8f0f32bc472"
+        },
+        {
+          "file": "slow-iosefka-idle-1.jpg",
+          "path": "../screenshots/slow-iosefka-idle-1.jpg",
+          "capturedAt": "2026-10-14T08:21:41.507Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "c6df3ed5e8a9881bbc119d14301bb1ddf07ba5a1da4ab324cd221e5204112509"
+        },
+        {
+          "file": "slow-iosefka-idle-2.jpg",
+          "path": "../screenshots/slow-iosefka-idle-2.jpg",
+          "capturedAt": "2026-10-14T08:21:42.032Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "26f8328add61cc9db67765e81a63c3267bc10f0a5b9873e69af18b4c4138e2f6"
+        },
+        {
+          "file": "slow-iosefka-idle-3.jpg",
+          "path": "../screenshots/slow-iosefka-idle-3.jpg",
+          "capturedAt": "2026-10-14T08:21:42.565Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "a0a44c5671b5fb49425ff4211aa14b1d3a4f7630c8eebc07e5a1ac0cceaa238c"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "4장 모두 오른쪽 얼굴·회색 머리·흰 교단 의복·검 1개와 권총 1개 유지.",
+        "흰 드레스 주위에 눈에 띄는 붉은/노란 테두리나 배경 사각형은 보이지 않음."
+      ]
+    },
+    {
+      "label": "slow-iosefka-walk-left",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-iosefka-walk-left-0.jpg",
+          "path": "../screenshots/slow-iosefka-walk-left-0.jpg",
+          "capturedAt": "2026-10-14T08:21:42.958Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "5ee999dd5e0f1382953cede2d9b9edf5dcb552f6c308a64f551844524717e2c6"
+        },
+        {
+          "file": "slow-iosefka-walk-left-1.jpg",
+          "path": "../screenshots/slow-iosefka-walk-left-1.jpg",
+          "capturedAt": "2026-10-14T08:21:43.500Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "2a32b3f2bff1b04919c12a17579961dc3704746c3da070f8acfce93b3fdf236a"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "왼쪽 방향으로 이동하고 검/권총이 각각 유지됨. 드레스 안쪽 다리 관절은 가려져 있음."
+      ]
+    },
+    {
+      "label": "slow-iosefka-walk-right",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-iosefka-walk-right-0.jpg",
+          "path": "../screenshots/slow-iosefka-walk-right-0.jpg",
+          "capturedAt": "2026-10-14T08:21:43.879Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "e57dafd8c6541b2db637ada7073bb8b7e12a11cfd022613bfeadb924630e8e33"
+        },
+        {
+          "file": "slow-iosefka-walk-right-1.jpg",
+          "path": "../screenshots/slow-iosefka-walk-right-1.jpg",
+          "capturedAt": "2026-10-14T08:21:44.412Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "4c63dba9b9aa75df438644f0de04a42c5c3091a426cce81d23498aa79f4e03b2"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "오른쪽으로 돌아오고 초기 위치의 대기 자세로 이어짐."
+      ]
+    },
+    {
+      "label": "slow-iosefka-attack",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-iosefka-attack-0.jpg",
+          "path": "../screenshots/slow-iosefka-attack-0.jpg",
+          "capturedAt": "2026-10-14T08:21:44.811Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "109cfa2aef82b742ea40b679828f6f42afe3f4471c3d610ef8538c6e4e458984"
+        },
+        {
+          "file": "slow-iosefka-attack-1.jpg",
+          "path": "../screenshots/slow-iosefka-attack-1.jpg",
+          "capturedAt": "2026-10-14T08:21:45.335Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "c80c5e893d221b4534427e05a613a84d2bc032e6fb21f235b9038fb2be0175db"
+        },
+        {
+          "file": "slow-iosefka-attack-2.jpg",
+          "path": "../screenshots/slow-iosefka-attack-2.jpg",
+          "capturedAt": "2026-10-14T08:21:45.868Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "5b610a75183dddb89634376694d0836cc8ac638526305cf0e8dd1fc57ae34da8"
+        },
+        {
+          "file": "slow-iosefka-attack-3.jpg",
+          "path": "../screenshots/slow-iosefka-attack-3.jpg",
+          "capturedAt": "2026-10-14T08:21:46.398Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "3e8252e709550bc05b9babd4aa13783c17b2540e0f595bc76b3372eea5da9b90"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "검 들어 준비→앞으로 내밀기→길게 찌르기→검 낮춰 회복이 보임.",
+        "검 끝, 머리, 의복 끝의 사각형 잘림이나 이웃 프레임 잔상 없음.",
+        "세 번째 찌르기 장면에서 반대 손/권총은 몸과 소매 근처에 가려져 있어 전체 손잡이 노출을 이 한 장에서 확정하지 않음. 두 권총으로 바뀌는 모습은 보이지 않음."
+      ]
+    },
+    {
+      "label": "slow-iosefka-hit",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-iosefka-hit-0.jpg",
+          "path": "../screenshots/slow-iosefka-hit-0.jpg",
+          "capturedAt": "2026-10-14T08:21:46.797Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "511ab9edd1fa6eabc924476f6ae0a7f83ffd93d15be3466750bab07477aac928"
+        },
+        {
+          "file": "slow-iosefka-hit-1.jpg",
+          "path": "../screenshots/slow-iosefka-hit-1.jpg",
+          "capturedAt": "2026-10-14T08:21:47.331Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "2f957866ec979cc087bc3aecb9c6aa6abcf468b38dc64f621252a1f976733de3"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "상체 젖힘→오른쪽 회복. 두 무기와 흰 의복 유지."
+      ]
+    },
+    {
+      "label": "slow-iosefka-death",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-iosefka-death-0.jpg",
+          "path": "../screenshots/slow-iosefka-death-0.jpg",
+          "capturedAt": "2026-10-14T08:21:47.720Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "d2ef6ea1446ca77d520fdf0385a7e95dbeee88066e4abff06495ae1766c9041a"
+        },
+        {
+          "file": "slow-iosefka-death-1.jpg",
+          "path": "../screenshots/slow-iosefka-death-1.jpg",
+          "capturedAt": "2026-10-14T08:21:48.249Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "06168f2dc73e0e151de5c8e0ff03aaf1c37a4cb178b78f330ac941732302cc37"
+        }
+      ],
+      "status": "visible-first-pose-reviewed-final-corpse-not-captured",
+      "observations": [
+        "첫 장은 무릎 꿇는 포즈이며 검/권총 부근이 보임. 둘째 장은 제거되어 누운 사체 관찰 불가."
+      ]
+    },
+    {
+      "label": "slow-iosefka-reset",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-iosefka-reset-0.jpg",
+          "path": "../screenshots/slow-iosefka-reset-0.jpg",
+          "capturedAt": "2026-10-14T08:21:48.655Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "0f32d3419d884974f9e18b769a669895a81d3a2302ef606a4dc3cd2234509b7d"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "검 1개+권총 1개의 초기 오른쪽 대기 자세로 복귀."
+      ]
+    },
+    {
+      "label": "slow-cleric-beast-idle",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-cleric-beast-idle-0.jpg",
+          "path": "../screenshots/slow-cleric-beast-idle-0.jpg",
+          "capturedAt": "2026-10-14T08:21:48.790Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "e6845c29d1914bbc68fa91ceada4847c3fb4894bbebdb87620bc6998eb91de3e"
+        },
+        {
+          "file": "slow-cleric-beast-idle-1.jpg",
+          "path": "../screenshots/slow-cleric-beast-idle-1.jpg",
+          "capturedAt": "2026-10-14T08:21:49.339Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "f75438bbb200bc2c2d0b6c2e44200f2af45137e3e47845408a9e6da0827315aa"
+        },
+        {
+          "file": "slow-cleric-beast-idle-2.jpg",
+          "path": "../screenshots/slow-cleric-beast-idle-2.jpg",
+          "capturedAt": "2026-10-14T08:21:49.871Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "3ef3db06b71615dfa867235e2a01778ffd348e515b859515914a3dd1d943c54f"
+        },
+        {
+          "file": "slow-cleric-beast-idle-3.jpg",
+          "path": "../screenshots/slow-cleric-beast-idle-3.jpg",
+          "capturedAt": "2026-10-14T08:21:50.401Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "686ff38032f57bc90246c5e6e454323fe795594c6d51b584bab3eabdc12a4769"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "4장 모두 입을 닫은 오른쪽 사선 자세, 흰 갈기·붉은 뿔·노출 늑골·큰 왼팔/작은 오른팔 유지.",
+        "두 팔과 두 다리가 연결되어 보이며 뿔/갈기 외곽의 사각형 잘림 없음."
+      ]
+    },
+    {
+      "label": "slow-cleric-beast-walk-left",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-cleric-beast-walk-left-0.jpg",
+          "path": "../screenshots/slow-cleric-beast-walk-left-0.jpg",
+          "capturedAt": "2026-10-14T08:21:50.789Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "56c5fddcf4340df8e9fe76241ab9092eaf27bd349c5eb7d82abc147030499e60"
+        },
+        {
+          "file": "slow-cleric-beast-walk-left-1.jpg",
+          "path": "../screenshots/slow-cleric-beast-walk-left-1.jpg",
+          "capturedAt": "2026-10-14T08:21:51.318Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "d345e293b378bfb503e746d5d8b7f49cf7997514c37c402480513689936598a8"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "왼쪽으로 이동하며 큰 팔/작은 팔이 동일 캐릭터의 통째 반전으로 보임.",
+        "걷기 동안 입 닫힘 유지. 보폭과 접지 높이가 이어짐."
+      ]
+    },
+    {
+      "label": "slow-cleric-beast-walk-right",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-cleric-beast-walk-right-0.jpg",
+          "path": "../screenshots/slow-cleric-beast-walk-right-0.jpg",
+          "capturedAt": "2026-10-14T08:21:51.723Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "d44ac53a85fe4e6eb9466a84a7093835e52f8b2bc7cf73c759b0dae2dd105835"
+        },
+        {
+          "file": "slow-cleric-beast-walk-right-1.jpg",
+          "path": "../screenshots/slow-cleric-beast-walk-right-1.jpg",
+          "capturedAt": "2026-10-14T08:21:52.259Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "f1189bdb451906e87cdb43b2dee4d35eddf027bfe016b7f506264a08b70e889b"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "오른쪽으로 이동하며 큰 왼팔·작은 오른팔 배치로 돌아옴. 입 닫힘, 갈기/늑골/색 유지."
+      ]
+    },
+    {
+      "label": "slow-cleric-beast-attack",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-cleric-beast-attack-0.jpg",
+          "path": "../screenshots/slow-cleric-beast-attack-0.jpg",
+          "capturedAt": "2026-10-14T08:21:52.657Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "17d1e3aa0e124fca6da74625187981f2e22b65f0b83f96d757b5eda080e8275d"
+        },
+        {
+          "file": "slow-cleric-beast-attack-1.jpg",
+          "path": "../screenshots/slow-cleric-beast-attack-1.jpg",
+          "capturedAt": "2026-10-14T08:21:53.183Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "38ad5e294a27f7c1f50af752af59d06bcc786a642e4d0253b773afd22d7c850d"
+        },
+        {
+          "file": "slow-cleric-beast-attack-2.jpg",
+          "path": "../screenshots/slow-cleric-beast-attack-2.jpg",
+          "capturedAt": "2026-10-14T08:21:53.708Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "f053f72d8a2f7a64c831ceb735951b58db4be70a6ad26bca68efc7db88b5e956"
+        },
+        {
+          "file": "slow-cleric-beast-attack-3.jpg",
+          "path": "../screenshots/slow-cleric-beast-attack-3.jpg",
+          "capturedAt": "2026-10-14T08:21:54.242Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "e4629409d57cf7d94721f5e5fe811d37ed440e8fdde0a6ff0ea7e5f7ec80d7d4"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "4장 모두 두 팔과 두 다리가 이어져 보임.",
+        "attack-1에서 작은 오른팔을 들어 준비하고 attack-2에서 큰 왼팔을 앞으로 뻗음. 작은 오른팔은 어깨→팔꿈치→몸 옆 작은 손으로 이어져 보임.",
+        "attack-2의 긴 갈기와 앞으로 뻗은 손끝 모두 잘리지 않음. 방향·몸의 중심/바닥 위치가 유지됨."
+      ]
+    },
+    {
+      "label": "slow-cleric-beast-hit",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-cleric-beast-hit-0.jpg",
+          "path": "../screenshots/slow-cleric-beast-hit-0.jpg",
+          "capturedAt": "2026-10-14T08:21:54.623Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "d49f35bd9111e178dfcc8dde939a4581eeadb628b9773923c12fa57cc4a2ada7"
+        },
+        {
+          "file": "slow-cleric-beast-hit-1.jpg",
+          "path": "../screenshots/slow-cleric-beast-hit-1.jpg",
+          "capturedAt": "2026-10-14T08:21:55.156Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "b46b7556a2ad70563f2d878fdb62232b64137e7bef5e35c7cb55a9bc11451b7f"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "몸이 낮아졌다가 초기 중립 자세로 회복. 두 팔 크기 비대칭과 입 닫힘 유지."
+      ]
+    },
+    {
+      "label": "slow-cleric-beast-death",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-cleric-beast-death-0.jpg",
+          "path": "../screenshots/slow-cleric-beast-death-0.jpg",
+          "capturedAt": "2026-10-14T08:21:55.544Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "044786ba666a0e6e126d71a7c34054da1fe81b9643cacf10cdd185fe1f700e2f"
+        },
+        {
+          "file": "slow-cleric-beast-death-1.jpg",
+          "path": "../screenshots/slow-cleric-beast-death-1.jpg",
+          "capturedAt": "2026-10-14T08:21:56.073Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "d9a15ea9d9f1def1b5ab1e9d709566349e5c893b8965f9c0f9a71d07e5727382"
+        }
+      ],
+      "status": "visible-first-pose-reviewed-final-corpse-not-captured",
+      "observations": [
+        "첫 장은 무릎을 꿇고 앞팔을 낮추는 포즈. 두 팔/다리의 연결은 보이나 둘째 장은 제거되어 최종 사체의 반대 팔 가림 관찰 불가."
+      ]
+    },
+    {
+      "label": "slow-cleric-beast-reset",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "slow-cleric-beast-reset-0.jpg",
+          "path": "../screenshots/slow-cleric-beast-reset-0.jpg",
+          "capturedAt": "2026-10-14T08:21:56.477Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "e2158ccb09d595a7ada9706807d1fd60239d62d017e777546df5e513d0a424b4"
+        }
+      ],
+      "status": "no-new-defect-in-visible-stills",
+      "observations": [
+        "초기 큰 체형 대기 자세로 복귀하고 입은 닫혀 있음."
+      ]
+    }
+  ]
+}

@@ -2,13 +2,14 @@
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), vm = require('node:vm');
 const V = require('../weapon-visuals'), { Document } = require('./helpers/ui-harness.cjs');
+const EV = require('../enemy-visuals');
 const root = path.resolve(__dirname, '..');
 
 function fixture({ ready = true } = {}) {
   const document = new Document(fs.readFileSync(path.join(root, 'weapon-gallery.html'), 'utf8'));
   const el = id => document.getElementById(id), snapshots = [], resizeListeners = [];
   el('galleryViewport').clientWidth = 800; el('galleryViewport').clientHeight = 380;
-  const window = { BBWeaponVisuals: V, BBCharacterAssets: {}, BBWeaponCharacterAssets: {},
+  const window = { BBWeaponVisuals: V, BBEnemyVisuals: EV, BBCharacterAssets: {}, BBWeaponCharacterAssets: {},
     addEventListener(type, listener) { if (type === 'resize') resizeListeners.push(listener); },
     BBHuntPresentation(options) { return {
       resize() {}, status() { return { charactersReady: ready }; },
@@ -25,7 +26,39 @@ function fixture({ ready = true } = {}) {
 }
 const subject = f => f.latest().actors.find(actor => actor.id === 'hunter');
 
-for (const skin of ['hunter', 'mob', 'beast', 'boss', 'female'])
+test('the large boss preview fits all real atlas poses at both walk endpoints on narrow screens', () => {
+  const asset = require('../assets/characters/manifest.json')['cleric-beast'];
+  const { readPngAlpha, atlasFrameBounds } = require('./helpers/png-alpha.cjs');
+  const png = readPngAlpha(fs.readFileSync(path.join(root, asset.path)));
+  for (const width of [320, 390, 800, 1050]) {
+    const f = fixture(); f.el('galleryViewport').clientWidth = width; f.el('galleryViewport').clientHeight = 440;
+    f.choose('gallerySubject', 'cleric-beast');
+    assert.equal(f.el('galleryViewport').dataset.subject, 'cleric-beast');
+    for (const walked of [false, true]) {
+      if (walked) f.el('galleryWalk').click();
+      const actor = subject(f), dummy = f.latest().actors.find(value => value.id === 'dummy');
+      assert.ok(Math.abs(actor.scale / dummy.scale - 2.1 / 1.6) < 1e-9, 'responsive camera preserves boss-to-human comparison');
+      const scale = actor.scale * asset.displayHeight / asset.frameHeight;
+      for (const [index, frame] of Object.entries(asset.atlasData.frames)) {
+        const bounds = atlasFrameBounds(png, frame, 32);
+        for (const flip of [false, true]) {
+          const left = actor.x + (flip ? 256 - bounds.maxX : bounds.minX - 256) * scale;
+          const right = actor.x + (flip ? 256 - bounds.minX : bounds.maxX - 256) * scale;
+          assert(left >= 0 && right <= width, `width${width}, walk${walked}, frame${index}, flip${flip}: full body fits horizontally`);
+        }
+        assert(actor.y + (bounds.minY - 460) * scale >= 0, `frame${index}: horns/raised arms fit above the ground`);
+        assert(actor.y + (bounds.maxY - 460) * scale <= 440, `frame${index}: feet/corpse remain on the board`);
+      }
+    }
+  }
+});
+
+test('all six named enemy subjects are offered by the actual preview selector', () => {
+  const f = fixture(), options = [...f.el('gallerySubject').innerHTML.matchAll(/<option\b[^>]*value="([^"]+)"/g)].map(match => match[1]);
+  for (const skin of EV.ids) assert(options.includes(skin), `${skin}: selectable without modifying the DOM`);
+});
+
+for (const skin of ['hunter', 'mob', 'beast', 'boss', 'female', ...EV.ids])
   test(`public preview controls exercise ${skin} idle, walk, attack, hit and death without weapon actions`, () => {
     const f = fixture(); f.choose('gallerySubject', skin);
     assert.equal(subject(f).skin, skin);

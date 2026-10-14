@@ -1,0 +1,280 @@
+{
+  "reviewer": "enemy_atlas_contract_qa",
+  "date": "2026-10-14",
+  "finalSelectedSourceFramesViewed": 96,
+  "finalSourcePNGsViewed": 6,
+  "latestSixSourceFramesDirectlyViewed": 96,
+  "method": "Six original native PNG sheets directly viewed at original detail; all16 poses in each sheet inspected. Pixel analysis supplements but does not replace visual review.",
+  "profiles": [
+    {
+      "skin": "huntsman-mob",
+      "analysis": "mob-candidate1-analysis.json",
+      "status": "source-facing-and-identity-approved",
+      "observed": "마른 체형, 검은 실크햇과 긴 코트, 수염, 도끼와 횃불을16프레임에서 유지한다. 하인의 붕대 거구와 실루엣이 다르다.",
+      "remaining": "idle 수평 등록과 도끼/횃불의 셀 경계 넘김은 수동 앵커 및 component clip으로 처리 후 실제 사이클에서 확인한다.",
+      "sourcePath": "local-generated-image/exec-cba18ec2-df1f-4e57-9e51-c7ef55ad81f4.png",
+      "sha256": "ef50789dbefefbbbd8d34ee7ad6ccd2fd6fbe47f5278affe1245c55d4a65fd38",
+      "dimensions": [
+        1230,
+        1278
+      ],
+      "sourceFramesDirectlyViewed": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "viewDetail": "original",
+      "majorAlpha32Components": 16,
+      "runtimePNG": "local-development-archive/huntsman-mob.png",
+      "runtimeMatchesGeneratedSource": true,
+      "rawPNGModified": false,
+      "atlasProposal": "local-development-archive/huntsman-mob.atlas.json",
+      "manualConfigProposal": "local-development-archive/huntsman-mob-manual-config.proposed.json",
+      "runtimeCycleVerifiedByThisReviewer": false
+    },
+    {
+      "skin": "huntsmans-minion",
+      "analysis": "minion-candidate3-analysis.json",
+      "status": "source-facing-and-identity-approved",
+      "observed": "세 번째 후보는 마지막 회복/쓰러짐까지 오른쪽 기준, 큰 붕대 어깨·옷·돌을 유지한다.",
+      "remaining": "피격/대기 바닥선의 원본 행 차이를 등록 후 실제 사이클에서 확인한다.",
+      "sourcePath": "local-generated-image/exec-0a84d7c6-d21c-4e22-a976-a00d0a9db393.png",
+      "sha256": "dccacb4a1ceea110b7ad6f65aca94a21366cb9d2c50eb463239e832af6dc736b",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sourceFramesDirectlyViewed": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "viewDetail": "original",
+      "majorAlpha32Components": 16,
+      "runtimePNG": "local-development-archive/huntsmans-minion.png",
+      "runtimeMatchesGeneratedSource": true,
+      "rawPNGModified": false,
+      "atlasProposal": "local-development-archive/huntsmans-minion.atlas.json",
+      "manualConfigProposal": "local-development-archive/huntsmans-minion-manual-config.proposed.json",
+      "runtimeCycleVerifiedByThisReviewer": false
+    },
+    {
+      "skin": "scourge-beast",
+      "analysis": "scourge-candidate1-analysis.json",
+      "status": "source-facing-and-identity-approved",
+      "observed": "검고 낮은 늑대형 자세, 긴 앞팔과 발톱, 길고 가는 이빨 주둥이, 찢어진 천을 전16프레임에서 유지한다. 대기/걷기/공격/피격/쓰러짐 모두 오른쪽 기준이다.",
+      "remaining": "긴 팔과 몸을 전체component clip으로 보존한다. Root가 가시성을 위해 예약폭24%,displayHeight110을 선택했다. 원본16개 paw pad 부위를 native 진단 contact에서 재검사해 발톱 끝 기준의 떠 보임을 고쳤으며, 변경된 수동 ground 앵커와 최종 크기/배치는 actual runtime 재검토가 필요하다.",
+      "sourcePath": "local-generated-image/exec-58bb1974-9f7c-4d25-a8e7-8ff5a99f06da.png",
+      "sha256": "de2263e279c0848ac0f0a86c09902bf3b7da9cebe606a28653eb94b41fde077f",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sourceFramesDirectlyViewed": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "viewDetail": "original",
+      "majorAlpha32Components": 16,
+      "runtimePNG": "local-development-archive/scourge-beast.png",
+      "runtimeMatchesGeneratedSource": true,
+      "rawPNGModified": false,
+      "atlasProposal": "local-development-archive/scourge-beast.atlas.json",
+      "manualConfigProposal": "local-development-archive/scourge-beast-manual-config.proposed.json",
+      "runtimeCycleVerifiedByThisReviewer": false
+    },
+    {
+      "skin": "female-patient",
+      "analysis": "female-candidate1-analysis.json",
+      "status": "source-facing-and-identity-approved",
+      "observed": "올리브/황토 긴 베일이 얼굴을 전부 가리며, 어두운 드레스와 긴 발톱·마른 팔·맨발을 전16프레임에서 유지한다. 팔을 뻗는 공격에서도 다른 의상이나 얼굴로 바뀌지 않는다.",
+      "remaining": "공격10의 긴 팔이 다음셀 쪽으로 나가므로 원본 전체 component를 사용한다. 소매와 바닥 천의 부드러운 경계, 피격/쓰러짐 접지점을 실제로 확인한다.",
+      "sourcePath": "local-generated-image/exec-4803e831-b8a6-485c-a173-919380af3736.png",
+      "sha256": "e5083982e32e16568866e2b1f45b139cfce37fb79cff8da59f673589be731c95",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sourceFramesDirectlyViewed": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "viewDetail": "original",
+      "majorAlpha32Components": 16,
+      "runtimePNG": "local-development-archive/female-patient.png",
+      "runtimeMatchesGeneratedSource": true,
+      "rawPNGModified": false,
+      "atlasProposal": "local-development-archive/female-patient.atlas.json",
+      "manualConfigProposal": "local-development-archive/female-patient-manual-config.proposed.json",
+      "runtimeCycleVerifiedByThisReviewer": false
+    },
+    {
+      "skin": "iosefka",
+      "analysis": "iosefka-candidate2-analysis.json",
+      "status": "source-facing-and-identity-approved",
+      "observed": "두 번째 후보는 대기0~3/회복13에서도 검1개와 권총1개를 유지한다. 백색 교단복·맨얼굴·회갈색 머리·맨발을 전16프레임에서 유지하며 반전된 저작 방향을 발견하지 못했다.",
+      "remaining": "긴 검/찌르기 crop과 hit/corpse 등록을 실제 확인한다. 붉은/노란 saturated 가장자리11083/3795픽셀은 전부 alpha<=7; opaque 장식으로 보지 않으며 실제 합성 가시성은 아직 통과 판정하지 않았다.",
+      "sourcePath": "local-generated-image/exec-efa9b1ca-d3f8-4ce5-9628-a41510fae80d.png",
+      "sha256": "05b1c757d02d9aa925c226aec9bb814c1ffb96623155eac00befc11e176a390f",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "sourceFramesDirectlyViewed": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "viewDetail": "original",
+      "majorAlpha32Components": 16,
+      "runtimePNG": "local-development-archive/iosefka.png",
+      "runtimeMatchesGeneratedSource": true,
+      "rawPNGModified": false,
+      "atlasProposal": "local-development-archive/iosefka.atlas.json",
+      "manualConfigProposal": "local-development-archive/iosefka-manual-config.proposed.json",
+      "runtimeCycleVerifiedByThisReviewer": false
+    },
+    {
+      "skin": "cleric-beast",
+      "analysis": "cleric-candidate5-analysis.json",
+      "status": "source-approved-with-corpse-occlusion-note-runtime-review-pending",
+      "observed": "최종 후보5는 중립 입 닫힘, 오른쪽 사선 시점, 큰 왼팔/작은 오른팔과 갈기·늑골을 유지한다. 5/8/9/10/11/15를 native crop으로 추가 확인했다. 작은 오른팔은9에서 머리위로 들리고10에서도 어깨->팔꿈치->작은손으로 이어진다.15의사체에서는한팔일부가몸/갈기로가려지므로완전한관절존재를증명하지않는다.",
+      "remaining": "displayHeight256의 idle core높이96px, 양방향 중앙예약폭106px이44%예약127.6px에 맞는다. 새로운16원본과수동앵커를다시작성했고, Root가actual14->15사체가림/전체cycle/접지/겹침을확인해야한다.",
+      "sourcePath": "local-generated-image/exec-5d3ff4cd-53ee-413b-ab73-d8de4bb0609b.png",
+      "sha256": "9154cebc4dd93ea0fe53a7aaf0c64166a5b200f24888c8ba2792baf3a6be6d43",
+      "dimensions": [
+        1402,
+        1122
+      ],
+      "sourceFramesDirectlyViewed": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "viewDetail": "original",
+      "majorAlpha32Components": 16,
+      "runtimePNG": "local-development-archive/cleric-beast.png",
+      "runtimeMatchesGeneratedSource": true,
+      "rawPNGModified": false,
+      "atlasProposal": "local-development-archive/cleric-beast.atlas.json",
+      "manualConfigProposal": "local-development-archive/cleric-beast-manual-config.proposed.json",
+      "runtimeCycleVerifiedByThisReviewer": false
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "id": "minion1",
+      "reason": "걷기4->5와 대기->공격의 저작 방향 반전"
+    },
+    {
+      "id": "minion2",
+      "reason": "회복13 및 쓰러짐14/15의 저작 방향 반전"
+    },
+    {
+      "id": "iosefka1",
+      "reason": "대기/회복에서 검 대신 두 권총으로 바뀜"
+    },
+    {
+      "id": "cleric1",
+      "reason": "사용자가 보스 위압감과 디자인 품질 부족으로 반려; 외곽/방향 기술검사와 구분"
+    },
+    {
+      "id": "cleric2",
+      "reason": "입을 벌린 대기/걷기/회복 때문에 위압감이 떨어진다는 사용자 피드백으로 디자인 반려"
+    },
+    {
+      "id": "cleric3",
+      "reason": "frame10에서작은오른팔연결이보이지않아소실처럼보임"
+    },
+    {
+      "id": "cleric4",
+      "reason": "원본16posecore가내부에서접촉하여11component로합쳐짐"
+    }
+  ],
+  "earlier125VideosExhaustiveReviewResumed": false,
+  "limitations": [
+    "이96프레임 신규 원본 검사는 보류된 기존125영상 전프레임 검토를 재개한 것이 아니다.",
+    "이 담당자는 제품을 수정하지 않았고 실제 브라우저 애니메이션을 조작하지 않았다. Root가 수동 앵커 제안을 조정하고 실제 맵/갤러리 사이클을 검토해야 한다.",
+    "반려된7개 시트의112프레임 검사와 최종96프레임 검사를 중복된 완료96요건으로 합산하지 않는다."
+  ]
+}

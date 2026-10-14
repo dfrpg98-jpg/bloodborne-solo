@@ -1,0 +1,99 @@
+{
+  "scope": "신규 생성 원본의 반려/등록 결함 목록. 기존 게임 규칙 버그 ID와 섞지 않는다.",
+  "records": [
+    {
+      "id": "SRC-001",
+      "subject": "하인 후보1",
+      "status": "replaced-by-candidate3",
+      "example": "왼쪽을 향한 걷기4 다음에 오른쪽을 향한5가 재생되면 이동 방향을 바꾸지 않았는데 머리와 몸이 갑자기 뒤집힌다.",
+      "finding": "걷기행 내부와 대기->공격 사이 저작 방향 불일치.",
+      "verification": "후보3의 전16원본에서 방향/회복/쓰러짐을 다시 직접 확인했다."
+    },
+    {
+      "id": "SRC-002",
+      "subject": "하인 후보2",
+      "status": "replaced-by-candidate3",
+      "example": "오른쪽을 향한 공격11 이후 피격/회복13과 사망14~15로 바뀌면 왼쪽으로 뒤집혀 보인다.",
+      "finding": "마지막 행의 저작 방향 불일치.",
+      "verification": "후보3 마지막 행도 오른쪽으로 수정됐다."
+    },
+    {
+      "id": "SRC-003",
+      "subject": "이오세프카 후보1",
+      "status": "replaced-by-candidate2",
+      "example": "이동/공격에서는 검+권총을 들고 있지만 대기0~3/회복13으로 돌아가면 검이 없어지고 두 권총으로 바뀐다.",
+      "finding": "상태 전환 중 보유 무기 소실/변형.",
+      "verification": "후보2 전16원본에서 검1개+권총1개를 다시 직접 확인했다."
+    },
+    {
+      "id": "SRC-004",
+      "subject": "성직자 후보1",
+      "status": "design-rejected",
+      "userFeedbackTransferred": "보스의 위압감과 품질이 너무 부족하다.",
+      "example": "기술적으로 프레임/방향/외곽이 유효하더라도 낮은 디자인 품질의 보스 이미지는 플레이어가 기대한 위압감을 주지 못한다.",
+      "finding": "사용자의 디자인 품질 반려를 기술 QA와 별개로 존중한다."
+    },
+    {
+      "id": "SRC-005",
+      "subject": "성직자 후보2",
+      "status": "replaced-by-closed-mouth-candidate",
+      "userFeedbackTransferred": "기본모션에서 계속 입을 벌려 위압감보다 우스워 보인다.",
+      "example": "대기0->1->2->3을 반복하는 동안 계속 입을 벌려, 공격에서만 보여야 할 위협 자세가 중립 상태에서도 유지된다.",
+      "finding": "중립 표현과 공격 표현 구분 부족."
+    },
+    {
+      "id": "SRC-006",
+      "subject": "성직자 후보3 frame10",
+      "status": "runtime-reviewed",
+      "userFeedbackTransferred": "셋째행셋째의 작은 오른팔이 사라져 보인다.",
+      "example": "프레임9에서 오른팔이 있었는데10의 앞으로 뻗는 큰 왼팔 자세로 바뀌면 갈기에 가린 작은 어깨->팔꿈치->손을 확인할 수 없어 팔이 소실된 것처럼 보인다.",
+      "finding": "사지 연결부 가시성 부족. 단순 방향/색 확인과 component 수로는 잡지 못한 원본 문제.",
+      "verification": "후보5 원본8/9/10/11의 두 팔 연결을 native crop으로 확인했고, 기존2fps4공격 및 최종display400의2fps4공격 원본을 직접 열람해 작은 오른팔의 어깨→팔꿈치→손 연결이 유지됨을 확인했다. 사체 반대 관절 가림 한계는 유지한다.",
+      "previousStatus": "source-connection-fixed-in-candidate5-runtime-review-pending",
+      "previousVerification": "후보5에서8/9/10/11의두팔 연결을 native crop으로 독립 확인했다. 실제cycle은 Root가 확인한다.",
+      "runtimeEvidence": [
+        "slow-playback-visual-review.json",
+        "normal-playback-visual-review.json",
+        "boss-scale-final-visual-review.json"
+      ]
+    },
+    {
+      "id": "SRC-007",
+      "subject": "성직자 후보4",
+      "status": "separate-pose-cores-restored-in-candidate5",
+      "example": "대기0의 발과 아래 걷기4의 뿔이 같은 alpha32 component로 붙어, 원본에서 독립된16자세 대신11개의 덩어리가 나온다. 1+5+9는 높이835px의 한 덩어리다.",
+      "finding": "pose 사이 투명 gutter 부족/major core 연결.",
+      "verification": "후보5의16majorcomponent가독립됐고 셀/core외곽접촉0. majorcore384631개전부보존/foreign0으로pack했다."
+    },
+    {
+      "id": "REG-001",
+      "subject": "재앙 발 기준점 제안",
+      "status": "grounded-source-and-runtime-reviewed",
+      "example": "발바닥/손바닥 지지선Y277 대신 아래로 휜 발톱 끝Y292를 기준으로 대기를 등록해 몸이 guide 위에 약6px 떠 보였다(215/512 preview).",
+      "finding": "원본 그림 문제와 구분되는 수동 등록 기준 오류.",
+      "verification": "원본16개 발 부위를 native contact로 보고 휜 발톱 끝 대신 paw-pad Y로 기준을 바꾸었다. 최초표시110은 양방향 예약폭 계산으로 최종109가 되었으며, source/atlas검사와2fps·정상FPS·실제맵 원본의 접지 관찰을 완료했다. 일정한 약6px 부유는 최종자료에서 보이지 않았다.",
+      "previousStatus": "manual-ground-adjusted-awaiting-root-runtime",
+      "previousVerification": "원본16개 발 부위를 native contact로 직접 보고 paw-pad Y로 다시 제안, displayHeight110/예약폭24% 반영했다. Root가 실제 접지 cycle을 재확인한다.",
+      "finalDisplayHeight": 109,
+      "finalFootprintPercent": [
+        24,
+        28
+      ],
+      "runtimeEvidence": [
+        "slow-playback-visual-review.json",
+        "normal-playback-visual-review.json",
+        "installed-atlas-final.json"
+      ]
+    }
+  ],
+  "quoteProvenance": "userFeedbackTransferred는 부모 작업에서 전달된 사용자 피드백 요약이다. 이 담당자가 실제 사용자 원문을 새로 열람했다는 뜻은 아니므로 정확한 직접 인용 문구로 사용하지 않는다.",
+  "limitations": [
+    "최종 후보5 frame15의팔 일부는 자연스러운 사체 자세로 가려져 전체관절 의미를 자동증명하지 않는다. Root의 actual14->15사이클 확인이필요하다.",
+    "실제 게임 버그에 대한 검증/재확인 범위를 원본 생성 반려와 합산하지 않는다."
+  ],
+  "initialLimitations": [
+    "최종 후보5 frame15의팔 일부는 자연스러운 사체 자세로 가려져 전체관절 의미를 자동증명하지 않는다. Root의 actual14->15사이클 확인이필요하다.",
+    "실제 게임 버그에 대한 검증/재확인 범위를 원본 생성 반려와 합산하지 않는다."
+  ],
+  "finalReviewSupplement": "기존 사체14는 저속 자료, 사체15는 정상5fps 자료에서 직접 관찰했다. 갈기/몸에 자연스럽게 가려지는 관절의 의미를 자동증명하지 않는 한계는 유지하며, 최종400사체는 이 새9장의 범위에 포함되지 않는다. 기존 반려 사례와 원본검사 주장은 previousStatus/previousVerification 및 initialLimitations에도 보존했다."
+}

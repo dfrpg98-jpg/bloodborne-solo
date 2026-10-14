@@ -1,0 +1,66 @@
+{
+  "sourcePixelsModified": false,
+  "allEqual": true,
+  "rows": [
+    {
+      "skin": "huntsman-mob",
+      "sourceSHA": "ef50789dbefefbbbd8d34ee7ad6ccd2fd6fbe47f5278affe1245c55d4a65fd38",
+      "targetSHA": "ef50789dbefefbbbd8d34ee7ad6ccd2fd6fbe47f5278affe1245c55d4a65fd38",
+      "equal": true,
+      "manifestSHA": "ef50789dbefefbbbd8d34ee7ad6ccd2fd6fbe47f5278affe1245c55d4a65fd38",
+      "manifestEqual": true,
+      "frames": 16,
+      "displayHeight": 124
+    },
+    {
+      "skin": "huntsmans-minion",
+      "sourceSHA": "dccacb4a1ceea110b7ad6f65aca94a21366cb9d2c50eb463239e832af6dc736b",
+      "targetSHA": "dccacb4a1ceea110b7ad6f65aca94a21366cb9d2c50eb463239e832af6dc736b",
+      "equal": true,
+      "manifestSHA": "dccacb4a1ceea110b7ad6f65aca94a21366cb9d2c50eb463239e832af6dc736b",
+      "manifestEqual": true,
+      "frames": 16,
+      "displayHeight": 127
+    },
+    {
+      "skin": "scourge-beast",
+      "sourceSHA": "de2263e279c0848ac0f0a86c09902bf3b7da9cebe606a28653eb94b41fde077f",
+      "targetSHA": "de2263e279c0848ac0f0a86c09902bf3b7da9cebe606a28653eb94b41fde077f",
+      "equal": true,
+      "manifestSHA": "de2263e279c0848ac0f0a86c09902bf3b7da9cebe606a28653eb94b41fde077f",
+      "manifestEqual": true,
+      "frames": 16,
+      "displayHeight": 109
+    },
+    {
+      "skin": "female-patient",
+      "sourceSHA": "e5083982e32e16568866e2b1f45b139cfce37fb79cff8da59f673589be731c95",
+      "targetSHA": "e5083982e32e16568866e2b1f45b139cfce37fb79cff8da59f673589be731c95",
+      "equal": true,
+      "manifestSHA": "e5083982e32e16568866e2b1f45b139cfce37fb79cff8da59f673589be731c95",
+      "manifestEqual": true,
+      "frames": 16,
+      "displayHeight": 129
+    },
+    {
+      "skin": "iosefka",
+      "sourceSHA": "05b1c757d02d9aa925c226aec9bb814c1ffb96623155eac00befc11e176a390f",
+      "targetSHA": "05b1c757d02d9aa925c226aec9bb814c1ffb96623155eac00befc11e176a390f",
+      "equal": true,
+      "manifestSHA": "05b1c757d02d9aa925c226aec9bb814c1ffb96623155eac00befc11e176a390f",
+      "manifestEqual": true,
+      "frames": 16,
+      "displayHeight": 122
+    },
+    {
+      "skin": "cleric-beast",
+      "sourceSHA": "9154cebc4dd93ea0fe53a7aaf0c64166a5b200f24888c8ba2792baf3a6be6d43",
+      "targetSHA": "9154cebc4dd93ea0fe53a7aaf0c64166a5b200f24888c8ba2792baf3a6be6d43",
+      "equal": true,
+      "manifestSHA": "9154cebc4dd93ea0fe53a7aaf0c64166a5b200f24888c8ba2792baf3a6be6d43",
+      "manifestEqual": true,
+      "frames": 16,
+      "displayHeight": 256
+    }
+  ]
+}

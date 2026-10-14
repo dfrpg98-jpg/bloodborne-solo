@@ -1558,7 +1558,9 @@
           markerId = enemy.missionId && !lamp && spawn.length === 1 ? spawn[0].markerId : assigned;
         return { id: enemy.id, node: enemy.node, markerId,
           ...(lamp ? { anchorKind: "lamp" } : {}),
-          ...(E.enemyDef(state, enemy).boss ? { visualWidth: 36, visualHeight: 40 } : {}),
+          ...(characterSkin(enemy) === "cleric-beast" ? { visualWidth: 60, visualHeight: 56 } :
+            E.enemyDef(state, enemy).boss ? { visualWidth: 36, visualHeight: 40 } :
+            characterSkin(enemy) === "scourge-beast" ? { visualWidth: 24, visualHeight: 28 } : {}),
         };
       }), hunter: !h.inDream && h.position?.startsWith(prefix) ? { id: "hunter", node: h.position } : null,
       loot: state.loot.filter(node => node.startsWith(prefix)), tokens,
@@ -1754,6 +1756,8 @@
   }
   function characterSkin(enemy) {
     const d = E.enemyDef(state, enemy);
+    if (window.BBEnemyVisuals) return window.BBEnemyVisuals.skin(enemy, d);
+    // Keep readable legacy markers if the separate appearance adapter fails.
     if (d.boss) return "boss";
     if (d.npcEnemy || /이오세프카/.test(d.name)) return "female";
     if (/beast|dog|hound|crow|spider|rat/i.test(enemy.kind) || /야수|사냥개|늑대|까마귀|거미|쥐/.test(d.name) && !/야수.?사냥/.test(d.name)) return "beast";
@@ -1791,8 +1795,8 @@
     presentation.sync({ sceneId: sceneId(), revision: state.revision, actors, actions,
       view: { x: (viewport.scrollLeft || 0) - (viewport.clientWidth || 0) / 2,
         y: (viewport.scrollTop || 0) - (viewport.clientHeight || 0) / 2, zoom } });
-    // The v0.8.3 renderer loads its five generic bodies together and uses the
-    // hunter body while an optional weapon sheet is still loading.
+    // Required character bodies load together; an optional weapon sheet can
+    // continue loading while the common hunter body remains visible.
     const charactersReady = presentation.status?.().charactersReady === true;
     for (const marker of $("chapterMap").querySelectorAll(".hunter-map-marker"))
       marker.setAttribute("data-character-ready", String(charactersReady));

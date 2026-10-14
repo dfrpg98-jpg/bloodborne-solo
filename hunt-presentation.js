@@ -36,7 +36,9 @@
       atlasPath: typeof data.atlasPath === "string" && /^assets\/characters\/[a-z0-9_.-]+\.json$/.test(data.atlasPath) ? data.atlasPath : null,
       atlasData, frameClips, needsClips: frameClips.size > 0,
       frameWidth: data.frameWidth, frameHeight: data.frameHeight,
-      displayHeight: Number.isFinite(data.displayHeight) ? Math.max(24, Math.min(256, data.displayHeight)) : skin === "boss" ? 104 : 72,
+      // The named boss uses a generously padded 512px atlas. Compensate its
+      // transparent canvas without changing the size limits of other actors.
+      displayHeight: Number.isFinite(data.displayHeight) ? Math.max(24, Math.min(skin === "cleric-beast" ? 512 : 256, data.displayHeight)) : skin === "boss" ? 104 : 72,
       originY: Number.isFinite(data.originY) ? Math.max(.5, Math.min(1, data.originY)) : .86 });
   }
   let game = null, scene = null, pending = null, destroyed = false, failed = false;
@@ -368,7 +370,7 @@
     const skin = renderSkin(actor), data = sheets.get(skin);
     if (!data) return null;
     const sprite = scene.add.sprite(actor.x, actor.y, data.key, firstFrame(skin)), shadow = scene.add.graphics();
-    shadow.fillStyle?.(0x07080a, .42); shadow.fillEllipse?.(0, 0, actor.skin === "boss" ? 35 : 24, 9);
+    shadow.fillStyle?.(0x07080a, .42); shadow.fillEllipse?.(0, 0, actor.skin === "boss" || actor.skin === "cleric-beast" ? 35 : 24, 9);
     const unit = { actor, skin: safeSpriteSkin(actor, sprite), sprite, shadow, epoch: 0, animation: "", moving: false, dying: false,
       pendingDeath: false, transientSkin: false, mask: null, maskGraphics: null, maskAttached: false, maskFrame: null };
     if (unit.skin !== skin) sprite.setTexture?.(sheets.get(unit.skin).key, firstFrame(unit.skin));

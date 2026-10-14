@@ -1,0 +1,215 @@
+{
+  "reviewedAt": "2026-10-14T08:59:53.434Z",
+  "reviewer": "/root/enemy_atlas_contract_qa",
+  "scope": "최종 display400의 원본 스크린샷9장 직접 열람",
+  "filesDirectlyViewed": 9,
+  "browserControlledByThisReviewer": false,
+  "productFilesModifiedByThisReviewer": false,
+  "noNewVisualDefectInVisibleStills": true,
+  "finalScale": {
+    "installedDisplayHeight": 400,
+    "configDisplayHeight": 400,
+    "descriptorDisplayHeight": 400,
+    "footprintPercent": [
+      60,
+      56
+    ],
+    "sourceSHA256": "9154cebc4dd93ea0fe53a7aaf0c64166a5b200f24888c8ba2792baf3a6be6d43",
+    "historicalAutomaticRecommendation": 256,
+    "historicalRecommendationReferenceBodyHeight": 96,
+    "selectionNote": "자동추천256은 과거 실제몸높이96 보존 기준이다. 사용자 크기 피드백에 따라 수동400을 최종 채택했고 actualIdleMaxDisplayHeight150/centeredWidth165.625 및 예약 적합값은400으로 계산되어 있다."
+  },
+  "sourceAndAtlasVerification": {
+    "installedSkins": 6,
+    "installedPoses": 96,
+    "passed": true,
+    "sourcePNGMatchesAcceptedFinalCandidate": true,
+    "manualFootPointsRemainLogical": [
+      256,
+      460
+    ],
+    "note": "Root가 atlas source좌표를 바꾸지 않았다고 전달했으며, source SHA/수동발좌표/96포즈 core 소유·inline/sidecar 일치를 독립 재검사했다."
+  },
+  "mobileVisualTestCompleted": false,
+  "excludedMislabeledMobileFiles": [
+    "boss-scale-final-mobile-idle.png",
+    "boss-scale-final-mobile-walk.png"
+  ],
+  "mobileProvenance": "Root의 viewport override390 시도 후 기존탭 DOM너비1265/board1050이 유지되어 해당 파일은 desktop이다. 이름으로 mobile검증을 주장하지 않는다. Root가 보고한 숫자 기반16프레임 회귀검사와 시각검사를 구분한다.",
+  "limitations": [
+    "9장의 원본 정지 표본 직접 관찰이며 모든 중간 렌더 프레임/연속 영상 검증을 주장하지 않는다.",
+    "새400 배율의 사망/피격 전환은 이9장에 없으며 이전256 자료와 원본96포즈 검사를 그대로 보존한다.",
+    "실제맵 공격 중 인접타일의 적과 팔이 겹치는 모든 상황을 이 정착 이미지로 보장하지 않는다.",
+    "100%/69%의 카메라 경계 가림은 실제 관찰 결과로 남겼고 전신 판정에는60%와gallery를 사용했다."
+  ],
+  "files": [
+    {
+      "file": "boss-scale-final-gallery-idle.jpg",
+      "path": "../screenshots/boss-scale-final-gallery-idle.jpg",
+      "viewMethod": "view_image(detail=original)",
+      "dimensions": [
+        1265,
+        883
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "sha256": "056a83f14eea6d445b8587c774333efd2853eaa633b20a94bfeb74f616313813",
+      "noNewVisualDefectInVisibleStills": true,
+      "viewport": "desktop-gallery",
+      "observations": [
+        "보스 머리→발의 높이가 약300px이며 오른쪽 사냥꾼 약115px보다 약2.6배 크게 보임.",
+        "입 닫힌 오른쪽 대기, 흰 갈기·뿔·노출 늑골·두 팔 크기 비대칭 유지. 머리/뿔/팔/발 전신이 보임.",
+        "발과 그림자 위치가 이어져 있고 원본 프레임의 이웃 조각/직사각형 절단은 보이지 않음."
+      ]
+    },
+    {
+      "file": "boss-scale-final-slow-attack-0.jpg",
+      "path": "../screenshots/boss-scale-final-slow-attack-0.jpg",
+      "viewMethod": "view_image(detail=original)",
+      "dimensions": [
+        1265,
+        883
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "sha256": "2b44f09a0d87f77e7ca30117ffa31422353d10bb30d7cabc6464029b0ac15bfc",
+      "noNewVisualDefectInVisibleStills": true,
+      "viewport": "desktop-gallery-QA2fps",
+      "observations": [
+        "큰 몸이 낮아지는 준비 자세. 작은 오른팔이 어깨→팔꿈치→손으로 이어져 보임.",
+        "큰 왼팔/양다리와 갈기 외곽이 잘리지 않고 발/그림자 기준점 유지."
+      ]
+    },
+    {
+      "file": "boss-scale-final-slow-attack-1.jpg",
+      "path": "../screenshots/boss-scale-final-slow-attack-1.jpg",
+      "viewMethod": "view_image(detail=original)",
+      "dimensions": [
+        1265,
+        883
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "sha256": "e3bf75063994b20aae1ed29ac3900fbac79f63a933e9c528e15dba6558753765",
+      "noNewVisualDefectInVisibleStills": true,
+      "viewport": "desktop-gallery-QA2fps",
+      "observations": [
+        "작은 오른팔을 들어 올리는 준비 자세. 들어 올린 손이 갈기에 사라지지 않고 팔 연결이 보임.",
+        "다른 큰 팔은 아래에 남아 있고 양발 위치가 같은 바닥 부근에 있음."
+      ]
+    },
+    {
+      "file": "boss-scale-final-slow-attack-2.jpg",
+      "path": "../screenshots/boss-scale-final-slow-attack-2.jpg",
+      "viewMethod": "view_image(detail=original)",
+      "dimensions": [
+        1265,
+        883
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "sha256": "33ac8aa3fec632b65978783df8f305a8ab01d2f0436e4cbd243adeb56b151223",
+      "noNewVisualDefectInVisibleStills": true,
+      "viewport": "desktop-gallery-QA2fps",
+      "observations": [
+        "큰 왼팔을 앞으로 뻗는 타격 자세. 작은 오른팔이 몸 왼쪽 어깨→팔꿈치→몸 옆 손으로 이어져 보임.",
+        "뒤로 뻗은 갈기와 앞으로 뻗은 큰 손끝 모두 캔버스 안에 있으며 이웃 조각/잘린 경계 없음.",
+        "큰 팔의 손끝은 오른쪽 사냥꾼 몸통과 떨어져 있음."
+      ]
+    },
+    {
+      "file": "boss-scale-final-slow-attack-3.jpg",
+      "path": "../screenshots/boss-scale-final-slow-attack-3.jpg",
+      "viewMethod": "view_image(detail=original)",
+      "dimensions": [
+        1265,
+        883
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "sha256": "e1256f864278c69f2c6f363c06075c24082febf8a02e8d2c0bbc5f19058ab016",
+      "noNewVisualDefectInVisibleStills": true,
+      "viewport": "desktop-gallery-QA2fps",
+      "observations": [
+        "큰 팔을 낮추고 작은 팔을 굽히는 회복 자세. 두 팔/다리와 뿔/갈기 색 유지.",
+        "0→1→2→3의 관찰 포즈에서 방향이 뒤집히거나 발 원점이 다른 곳으로 순간 변경되는 모습 없음. 연속 영상 전체를 대신하는 판정은 아님."
+      ]
+    },
+    {
+      "file": "play-cleric-phase2-scale400-final.jpg",
+      "path": "../screenshots/play-cleric-phase2-scale400-final.jpg",
+      "viewMethod": "view_image(detail=original)",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "sha256": "acee13acb46b7d89e991d0ecefcbab2b51b8f6351c3c597aa97a0df23426d31f",
+      "noNewVisualDefectInVisibleStills": true,
+      "viewport": "desktop-map100percent",
+      "cameraClipsHead": true,
+      "observations": [
+        "100% 실제맵에서 보스 하부·발 마커가 유지되고 아래 사냥꾼/옆칸 무리의 몸통과 분리되어 보임.",
+        "머리/뿔은 맵 뷰포트 위 경계 밖이므로 이 파일로 전신 외곽을 판정하지 않음."
+      ]
+    },
+    {
+      "file": "boss-scale-final-map.jpg",
+      "path": "../screenshots/boss-scale-final-map.jpg",
+      "viewMethod": "view_image(detail=original)",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "sha256": "612200848fcb47f22c368cdd2f3cb57e1d584f41ab07ed1ddcd3e910175f7964",
+      "noNewVisualDefectInVisibleStills": true,
+      "viewport": "desktop-map69percent",
+      "cameraClipsHead": true,
+      "observations": [
+        "69% 맵에서 보스가 사냥꾼과 일반 적보다 커지고 몸통은 분리되어 보임.",
+        "머리 일부는 여전히 카메라 상단 경계에 걸림. atlas 원본 절단과 구분함."
+      ]
+    },
+    {
+      "file": "boss-scale-final-map-whole-view.jpg",
+      "path": "../screenshots/boss-scale-final-map-whole-view.jpg",
+      "viewMethod": "view_image(detail=original)",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "sha256": "02f00c48cacc88b6d4901224b1d35a452263a635186957ffa301583d49575b76",
+      "noNewVisualDefectInVisibleStills": true,
+      "viewport": "desktop-map60percent",
+      "cameraClipsHead": false,
+      "observations": [
+        "60% 전체 화면에서 머리·뿔·갈기·두 팔·몸·발 전신이 보임.",
+        "보스 발/원형 마커와 아래 사냥꾼/옆칸 무리의 몸통이 분리되고 이웃 프레임 조각 없음.",
+        "보스 머리 근처의 타일 명칭 라벨은 별도 DOM 정보이며 원본/atlas 절단으로 세지 않음."
+      ]
+    },
+    {
+      "file": "boss-scale-final-gallery-walk.jpg",
+      "path": "../screenshots/boss-scale-final-gallery-walk.jpg",
+      "viewMethod": "view_image(detail=original)",
+      "dimensions": [
+        1265,
+        883
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "sha256": "da193483c4a50a6094d0a49a2c8c023f9f0bf6cee9c8dc1a1f442307af75dc2c",
+      "noNewVisualDefectInVisibleStills": true,
+      "viewport": "desktop-gallery",
+      "observations": [
+        "왼쪽으로 향한 보폭 자세에서 입 닫힘, 큰 팔·작은 팔 비대칭과 두 다리 유지.",
+        "뿔·갈기·손끝·발이 화면 안에 들어옴. 이 한 장을 걷기4포즈 전수 확인으로 세지 않음."
+      ]
+    }
+  ]
+}

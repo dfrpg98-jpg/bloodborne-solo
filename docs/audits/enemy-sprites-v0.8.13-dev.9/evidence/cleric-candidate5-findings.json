@@ -1,0 +1,137 @@
+{
+  "candidate": "cleric-beast-generated-5",
+  "status": "source-approved-with-corpse-occlusion-note-runtime-review-pending",
+  "sourcePath": "local-generated-image/exec-5d3ff4cd-53ee-413b-ab73-d8de4bb0609b.png",
+  "sha256": "9154cebc4dd93ea0fe53a7aaf0c64166a5b200f24888c8ba2792baf3a6be6d43",
+  "sourceFramesDirectlyViewed": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "extraNativeLimbRegionsDirectlyViewed": [
+    5,
+    8,
+    9,
+    10,
+    11,
+    15
+  ],
+  "extraNativeInspectionArtifact": "cleric5-limb-native-inspection.png",
+  "appearance": {
+    "direction": "전16프레임에서 동일한 오른쪽 사선 시점이다. 좌우 방향을 뒤집어 저작한 프레임은 발견하지 못했다.",
+    "mouth": "대기0~3,걷기4~7,피격/회복12~13은 입을 닫는다. 공격행에서 위협 표현이 나타나지만 기본모션 전체에서 계속 크게 벌리고 있지 않다.",
+    "identity": "가지뿔 머리, 드러난 늑골, 큰 왼팔/흰 갈기와 작은 근육질 오른팔, 가는 다리를 유지한다. 후보4 frame10에서 복구한 작은 오른팔이 축소된 후보5에서도 유지된다."
+  },
+  "limbConnectionReview": [
+    {
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "observation": "작은 오른팔의 어깨->상완->팔꿈치->작은 손은 몸의 왼쪽 윤곽에서 이어지고, 큰 왼팔은 반대 어깨/흰갈기에서 큰 손으로 이어진다. 두 다리의 무릎과 별개 발이 보인다."
+    },
+    {
+      "frames": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "observation": "작은 오른팔을 굽혀 아래로 흔드는 걷기 자세다. frame5에서는 앞쪽 굽힌 다리/발이 먼쪽 다리를 일부 가려 멀리 있는 발의 끝은 선명하지 않다. 두 팔의 시작 어깨와 손, 두 다리의 시작/무릎 윤곽은 유지된다.",
+      "frame5Classification": "walking swing / partially occluded far leg, not an attack wind-up or a removed arm"
+    },
+    {
+      "frames": [
+        8
+      ],
+      "observation": "작은 오른팔이 아래로 굽어 이어지고 큰 왼팔/손은 오른쪽 아래에 유지된다. 두 다리는 낮아진 몸을 지지한다."
+    },
+    {
+      "frames": [
+        9
+      ],
+      "observation": "작은 오른팔의 어깨부터 상완/팔꿈치/앞으로 돌아선 손이 머리 위로 이어지는 공격 준비 자세다. 큰 왼팔은 반대쪽 아래로 내려간 흰갈기/큰 손으로 구분된다. 팔의 교환이나 작은 팔 제거로 판정하지 않는다.",
+      "frame9Classification": "right small arm raised for attack preparation; large left arm remains down"
+    },
+    {
+      "frames": [
+        10
+      ],
+      "observation": "이전후보3에서 보이지 않던 작은 오른팔이 몸의 왼쪽 어깨->상완->팔꿈치->작은 손으로 분명하게 이어진다. 큰 왼팔은 반대쪽에서 길게 앞으로 뻗는다. 두 다리/발도 확인된다."
+    },
+    {
+      "frames": [
+        11
+      ],
+      "observation": "작은 오른팔이 가슴 앞쪽으로 모이며 어깨/팔꿈치/작은 손의 연결이 보인다. 큰 왼팔은 반대쪽 아래에 남아 있다. 두 다리는 별개 지지점으로 이어진다."
+    },
+    {
+      "frames": [
+        12,
+        13
+      ],
+      "observation": "피격/회복에서도 작은 팔과 큰 팔의 어깨/손 위치와 두 다리/발이 유지된다."
+    },
+    {
+      "frames": [
+        14
+      ],
+      "observation": "무릎을 꿇는 과정에서 작은 오른팔이 몸 아래에서 바닥을 향하고 큰 왼팔은 더 큰 손으로 반대쪽 바닥에 닿는다. 굽힌다리/뒤쪽발을 구분할 수 있다."
+    },
+    {
+      "frames": [
+        15
+      ],
+      "observation": "옆으로 누운 사체의 앞쪽 팔 연결은 보이고, 다른 팔 일부는 몸/갈기에 가려져 전체 연결을 확정할 수 없다. frame14에서 두 팔을 확인한 뒤15로 쓰러지는 맥락의 자연스러운 가림으로 해석할 수 있지만, 이미지상 보이지 않는 관절을 존재한다고 증명하지 않는다.",
+      "status": "natural-collapse-occlusion-note-root-runtime-review-required"
+    }
+  ],
+  "sourceIntegrity": {
+    "majorAlpha32Components": 16,
+    "gridCoreBoundaryTouches": 0,
+    "externalAlpha32Touches": 0,
+    "externalAlpha128Touches": 0,
+    "externalMaxAlpha": {
+      "top": 0,
+      "right": 0,
+      "bottom": 1,
+      "left": 1
+    }
+  },
+  "packProposal": {
+    "displayHeight": 256,
+    "idleCoreHeight": 96,
+    "idleCenteredWidthForBothFacings": 106,
+    "reservedWidthAndHeight": 127.6,
+    "logicalAnchor": [
+      256,
+      460
+    ],
+    "retainedMajorCore": 384631,
+    "foreignCore": 0,
+    "ignoredMinorCore": 0,
+    "maxClipRects": 210,
+    "sourcePixelsModified": false
+  },
+  "runtimeCycleVerifiedByThisReviewer": false,
+  "limitations": [
+    "색·방향·component count로 사지 의미를 자동 승인하지 않았다.",
+    "사체에서 가려진 팔/발을 모두 보인다고 기록하지 않았다.",
+    "제품적용과 actual cycle/접지/겹침은 Root 검토가 필요하다."
+  ]
+}

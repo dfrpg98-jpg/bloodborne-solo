@@ -1,0 +1,176 @@
+{
+  "runtimeVersion": "0.8.13-dev.9",
+  "focusedReport": "focused.json",
+  "alphaThreshold": 32,
+  "flipDirections": [
+    false,
+    true
+  ],
+  "maxExtentIncludesPixelEdges": true,
+  "namedMetadata": {
+    "huntsman-mob": {
+      "displayHeight": 124,
+      "originY": 0.8984375,
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "pngSha256": "ef50789dbefefbbbd8d34ee7ad6ccd2fd6fbe47f5278affe1245c55d4a65fd38"
+    },
+    "huntsmans-minion": {
+      "displayHeight": 127,
+      "originY": 0.8984375,
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "pngSha256": "dccacb4a1ceea110b7ad6f65aca94a21366cb9d2c50eb463239e832af6dc736b"
+    },
+    "scourge-beast": {
+      "displayHeight": 109,
+      "originY": 0.8984375,
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "pngSha256": "de2263e279c0848ac0f0a86c09902bf3b7da9cebe606a28653eb94b41fde077f"
+    },
+    "female-patient": {
+      "displayHeight": 129,
+      "originY": 0.8984375,
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "pngSha256": "e5083982e32e16568866e2b1f45b139cfce37fb79cff8da59f673589be731c95"
+    },
+    "iosefka": {
+      "displayHeight": 122,
+      "originY": 0.8984375,
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "pngSha256": "05b1c757d02d9aa925c226aec9bb814c1ffb96623155eac00befc11e176a390f"
+    },
+    "cleric-beast": {
+      "displayHeight": 400,
+      "originY": 0.8984375,
+      "frameWidth": 512,
+      "frameHeight": 512,
+      "pngSha256": "9154cebc4dd93ea0fe53a7aaf0c64166a5b200f24888c8ba2792baf3a6be6d43"
+    }
+  },
+  "rows": [
+    {
+      "skin": "huntsman-mob",
+      "alphaThreshold": 32,
+      "idleFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "mapPixelsAt290": {
+        "width": 46.015625,
+        "above": 72.65625,
+        "below": 0
+      },
+      "reservationPixelsAt290": {
+        "width": 52.2,
+        "above": 81.2,
+        "below": 8.7
+      }
+    },
+    {
+      "skin": "huntsmans-minion",
+      "alphaThreshold": 32,
+      "idleFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "mapPixelsAt290": {
+        "width": 52.08984375,
+        "above": 71.4375,
+        "below": 0
+      },
+      "reservationPixelsAt290": {
+        "width": 52.2,
+        "above": 81.2,
+        "below": 8.7
+      }
+    },
+    {
+      "skin": "scourge-beast",
+      "alphaThreshold": 32,
+      "idleFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "mapPixelsAt290": {
+        "width": 69.40234375,
+        "above": 46.8359375,
+        "below": 2.98046875
+      },
+      "reservationPixelsAt290": {
+        "width": 69.6,
+        "above": 81.2,
+        "below": 8.7
+      }
+    },
+    {
+      "skin": "female-patient",
+      "alphaThreshold": 32,
+      "idleFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "mapPixelsAt290": {
+        "width": 45.3515625,
+        "above": 73.318359375,
+        "below": 0
+      },
+      "reservationPixelsAt290": {
+        "width": 52.2,
+        "above": 81.2,
+        "below": 8.7
+      }
+    },
+    {
+      "skin": "iosefka",
+      "alphaThreshold": 32,
+      "idleFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "mapPixelsAt290": {
+        "width": 40.5078125,
+        "above": 73.62890625,
+        "below": 0
+      },
+      "reservationPixelsAt290": {
+        "width": 52.2,
+        "above": 81.2,
+        "below": 8.7
+      }
+    },
+    {
+      "skin": "cleric-beast",
+      "alphaThreshold": 32,
+      "idleFrames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "mapPixelsAt290": {
+        "width": 165.625,
+        "above": 150.78125,
+        "below": 0
+      },
+      "reservationPixelsAt290": {
+        "width": 174,
+        "above": 162.4,
+        "below": 8.7
+      }
+    }
+  ]
+}
