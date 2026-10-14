@@ -1868,7 +1868,7 @@
     }
     const after = a.extra ? { type: "extra_done" } :
       a.immediate ? { type: "boss_react" } : { type: "react" };
-    if(drainWeapons(s,{type:"weapon_dodge_done",after,freeTransform:a.freeTransform,extra:a.extra,immediate:a.immediate})) return;
+    if(drainWeapons(s,{type:"weapon_dodge_done",after,freeTransform:a.freeTransform,extra:a.extra,...(a.immediate ? {immediate:true} : {})})) return;
     if (a.freeTransform) {
       offerTransform(s, after);
       return;

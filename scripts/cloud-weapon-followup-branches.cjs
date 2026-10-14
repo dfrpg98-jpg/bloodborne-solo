@@ -6,7 +6,7 @@ const E=require('../hunt-engine'),U=require('../hunt-map-controls');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'test-results/cloud-weapon-followup-branches');
 const {definitions,build,pub,ruling}=require('./helpers/cloud-weapon-branch-plans.cjs');
 function functional(s){const copy=structuredClone(s);delete copy.commands;return copy;}
-function plans(){const all=definitions(),shard=Number(process.env.MOTION_SHARD||0),total=Number(process.env.MOTION_SHARDS||1);return all.filter((_,i)=>i%total===shard).map(build);}
+function plans(){const wanted=(process.env.MOTION_CASE_FILTER||'').split(',').filter(Boolean),all=definitions().filter(x=>!wanted.length||wanted.includes(x.id)),shard=Number(process.env.MOTION_SHARD||0),total=Number(process.env.MOTION_SHARDS||1);return all.filter((_,i)=>i%total===shard).map(build);}
 if(process.argv.includes('--model-only')){const rows=plans();console.log(JSON.stringify({method:'Normal create/dispatch preparation only; not actual browser evidence.',count:rows.length,cases:rows.map(x=>({id:x.id,steps:x.steps.length,effect:x.effectCompleted.phase,final:x.final.phase}))},null,2));process.exit(0);}
 const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.woff2':'font/woff2'};
 const server=http.createServer((req,res)=>{let p;try{p=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));}catch{res.writeHead(400).end();return;}if(!p.startsWith(root+path.sep)){res.writeHead(403).end();return;}fs.readFile(p,(err,data)=>{if(err){res.writeHead(404).end();return;}res.writeHead(200,{'Content-Type':mime[path.extname(p)]||'application/octet-stream','Cache-Control':'no-store'}).end(data);});});
@@ -25,7 +25,7 @@ const report={sourceCommit:process.env.GITHUB_SHA||'local-uncommitted',node:proc
   async function counter(){return page.locator('[data-presentation-attacks]').first().evaluate(x=>({renderer:x.dataset.presentation,rendererVersion:x.dataset.presentationVersion,moves:Number(x.dataset.presentationMoves||0),attacks:Number(x.dataset.presentationAttacks||0),shots:Number(x.dataset.presentationShots||0),actors:Number(x.dataset.presentationActors||0),characters:x.dataset.presentationCharacters,motion:x.dataset.presentationMotion,weapon:x.dataset.presentationWeapon,weaponReady:x.dataset.presentationWeaponReady}));}
   async function endpoints(){return page.locator('#chapterMap').evaluate(map=>{const bodies=[...map.querySelectorAll('[data-presentation-id]')].map(a=>{const r=a.getBoundingClientRect(),t=a.closest('.tile-cell')?.getBoundingClientRect();if(!t)return null;const x=r.x+r.width/2,y=r.y+r.height/2,boss=a.dataset.presentationSkin==='boss',width=t.width*(boss?.18:.09),height=t.height*(boss?.40:.28);return{id:a.dataset.presentationId,node:a.dataset.presentationNode,skin:a.dataset.presentationSkin,foot:{x,y},box:{left:x-width,right:x+width,top:y-height,bottom:y+t.height*.03}};}).filter(Boolean);const overlaps=[];for(let i=0;i<bodies.length;i++)for(let j=i+1;j<bodies.length;j++){const a=bodies[i],b=bodies[j],w=Math.min(a.box.right,b.box.right)-Math.max(a.box.left,b.box.left),h=Math.min(a.box.bottom,b.box.bottom)-Math.max(a.box.top,b.box.top);if(w>1&&h>1)overlaps.push({a:a.id,b:b.id,width:w,height:h,area:w*h});}return{method:'Public DOM anchor endpoint body-clearance estimate; not rendered pixel or in-flight sprite positions.',bodies,overlaps};});}
   async function shot(label){const wait=['first-movement','next-movement'].includes(label)||label.endsWith('-impact')?120:label.includes('complete')||label.includes('settled')?1200:650;await page.waitForTimeout(wait);await panelsClosed();const file=`${spec.id}-${label}.png`,requestedAtMs=Date.now()-begun;await page.screenshot({path:path.join(out,file),fullPage:true});const counters=await counter();assert.equal(counters.renderer,'phaser');assert.equal(counters.characters,'ready');assert.equal(counters.motion,'full');assert.equal(counters.weaponReady,'true');row.screenshots.push({file,label,requestedAtMs,capturedAtMs:Date.now()-begun,publicState:pub(await saved()),counters,endpointGeometry:await endpoints()});}
-  async function click(command){await acknowledge();await panelsClosed();
+  async function click(command,stepEscortAccept=false){await acknowledge();await panelsClosed();
    if(command.type==='REFILL'){await page.locator('#refill').click();await clean();return;}
    if(command.type==='RETURN'){await page.locator('#returnFace').selectOption(String(command.face));await page.locator(`[data-return="${command.node}"]`).click();await clean();return;}
    if(command.type==='START_NEXT_CHAPTER'){await page.locator('#nextChapterStart').selectOption(command.startSpace);await page.locator('#nextChapterFace').selectOption(String(command.face));await page.locator('#startNextChapter').click();await clean();return;}
@@ -38,9 +38,9 @@ const report={sourceCommit:process.env.GITHUB_SHA||'local-uncommitted',node:proc
    if(command.enemyId&&['ATTACK','COUNTER','WEAPON_SHOT'].includes(command.type)){
     const enemy=page.locator(`#chapterMap [data-enemy="${command.enemyId}"]`).first();assert(await enemy.count(),'Map enemy target missing');if(await enemy.getAttribute('aria-pressed')!=='true')await enemy.click();
    }
-   if(command.weaponBoost!==undefined&&await page.locator('#weaponBoost').count())await page.locator('#weaponBoost').selectOption(String(command.weaponBoost));
+   if(command.weaponBoost!==undefined&&await page.locator('#weaponBoost').count())await page.locator('#weaponBoost').selectOption(command.weaponBoost===0?'none':String(command.weaponBoost));
    for(const id of command.pullIds||[])await page.locator(`[data-pull="${id}"]`).check();
-   for(const id of command.rewardIds||[])await page.locator(`[data-reward-attack="${id}"]`).check();
+   for(const id of command.rewardIds||[])await page.locator(`#decisions [data-reward-attack="${id}"]`).check();
    if(command.type==='STEP'){
     const movement=U.movement(model),dir=movement.directions.find(d=>d.options.some(o=>o.command.node===command.node));assert(dir,'No public movement direction');await page.locator(`[data-move-direction="${dir.edge}"]`).click();
     if(dir.options.filter(o=>o.enabled).length>1){const i=dir.options.findIndex(o=>o.command.node===command.node);await page.locator(`[data-move-option="${i}"]`).click();}
@@ -49,7 +49,7 @@ const report={sourceCommit:process.env.GITHUB_SHA||'local-uncommitted',node:proc
     for(let i=0;i<await candidates.count();i++){const b=candidates.nth(i);if(!await b.isVisible())continue;const args=JSON.parse(await b.getAttribute('data-args')||'{}');if(Object.entries(command).every(([k,v])=>k==='type'||JSON.stringify(args[k])===JSON.stringify(v))){target=b;break;}}
     assert(target,`No public enabled action ${model.phase}: ${JSON.stringify(command)}`);await target.click();
    }
-   if(await page.locator('#escortDialog').evaluate(x=>x.open))await page.locator('#escortDecline').click();await clean();
+   if(await page.locator('#escortDialog').evaluate(x=>x.open))await page.locator(stepEscortAccept?'#escortAccept':'#escortDecline').click();await clean();
   }
   try{
    await page.goto('http://127.0.0.1:8787/hunt.html');await page.locator('#file').setInputFiles({name:'qa-followup-start.json',mimeType:'application/json',buffer:Buffer.from(E.exportSave(spec.checkpoint))});
@@ -61,7 +61,7 @@ const report={sourceCommit:process.env.GITHUB_SHA||'local-uncommitted',node:proc
    let cameraDone=false;
    for(const [index,step]of spec.steps.entries()){
     const at=Date.now()-begun;if(!spec.fast)await page.waitForTimeout(350);
-    const prior=pub(model);await click(step.command);let expected=model;for(const c of step.expectedBatch)expected=E.dispatch(expected,c);expected=ruling(expected);
+    const prior=pub(model);await click(step.command,step.escortChoice==='accept');let expected=model;for(const c of step.expectedBatch)expected=E.dispatch(expected,c);expected=ruling(expected);
     const actual=await saved();assert.deepEqual(functional(actual),functional(expected),`${spec.id}: ${step.command.type} result`);
     const actualTypes=actual.commands.slice(model.commands.length).map(c=>c.type),expectedTypes=expected.commands.slice(model.commands.length).map(c=>c.type);
     assert.deepEqual(actualTypes,expectedTypes,'Only the public action batch and recorded policy adoption may commit');assert.equal(actualTypes.filter(x=>x===step.command.type).length,1,'Public requested command committed once');
@@ -77,7 +77,7 @@ const report={sourceCommit:process.env.GITHUB_SHA||'local-uncommitted',node:proc
     }
    }
    await canvasSample('final-idle',1300);
-   assert.deepEqual(pub(model),spec.final);assert.equal(model.phase,'hunter');row.after=pub(model);row.counterAfter=await counter();row.actualImports=1;row.phaseTitle=await page.locator('#phaseTitle').innerText();row.status='actual-ui-sequence-verified';row.motionReview='Timestamped canvas samples and continuous WebM captured; visual review remains separate';assert(row.counterAfter.moves>row.counterBefore.moves,'No movement rendered');assert(row.counterAfter.attacks>row.counterBefore.attacks,'No real following combat presentation');assert(row.steps.some(x=>x.stage==='next-movement'&&x.command.type==='MOVE'),'No next MOVE');assert(row.steps.some(x=>x.stage==='next-movement'&&x.command.type==='STEP'),'No next STEP');assert(row.steps.some(x=>x.stage==='next-pursuit'&&x.command.type==='STOP_MOVE'),'No next STOP_MOVE');await clean();
+   assert.deepEqual(pub(model),spec.final);if(spec.terminalExpected){assert.equal(model.phase,'over');assert.equal(model.result,'loss');assert.equal(await page.locator('[data-command="MOVE"]:not([disabled])').count(),0);assert.throws(()=>E.dispatch(model,{type:'MOVE',cardId:E.hunter(model).hand[0]?.id}));row.terminal={result:model.result,nextMoveUnavailableInUI:true,modelAlsoRejectsNextAction:true};}else assert.equal(model.phase,'hunter');row.after=pub(model);row.counterAfter=await counter();row.actualImports=1;row.phaseTitle=await page.locator('#phaseTitle').innerText();row.status=spec.terminalExpected?'actual-ui-terminal-verified':'actual-ui-sequence-verified';row.motionReview='Timestamped canvas samples and continuous WebM captured; visual review remains separate';assert(row.counterAfter.moves>row.counterBefore.moves,'No movement rendered');assert(row.counterAfter.attacks>row.counterBefore.attacks,'No real following combat presentation');if(!spec.terminalExpected){assert(row.steps.some(x=>x.stage==='next-movement'&&x.command.type==='MOVE'),'No next MOVE');assert(row.steps.some(x=>x.stage==='next-movement'&&x.command.type==='STEP'),'No next STEP');assert(row.steps.some(x=>x.stage==='next-pursuit'&&x.command.type==='STOP_MOVE'),'No next STOP_MOVE');}await clean();
   }catch(error){row.status='failed';row.error=error.stack;report.failures.push({id:spec.id,error:error.stack});try{await shot('failure');}catch(e){row.failureCaptureError=e.message;}}
   finally{row.finishedAt=new Date().toISOString();await context.close();if(video){row.video=`${spec.id}.webm`;await video.saveAs(path.join(out,row.video));}report.cases.push(row);}
  }

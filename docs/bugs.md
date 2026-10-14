@@ -243,3 +243,14 @@
 - 실제 재검증: 수정 전 [Actions 38483687579](https://github.com/dfrpg98-jpg/bloodborne-solo/actions/runs/38483687579)/`4165f75`에서 타격2회, 수정 후 [Actions 38484278818](https://github.com/dfrpg98-jpg/bloodborne-solo/actions/runs/38484278818)/`415ab0d`에서 타격1회입니다. 세 무기 모두 #1의 체력4·#2의 체력3을 유지하고 플레이어 차례로 복귀했으며 페이지 JavaScript 오류0개입니다. [원본 공개 결과·전후 화면·SHA-256](audits/weapon-followup-target-v0.8.13-dev.6/README.md)을 보존합니다.
 - 검사와 한계: 새 대상 식별9개와 기존 애니메이션39개, 총48개 통과·0개 실패입니다. 이 실제 세 사례 검증을 전체30개 후속 선택·다음 이동·다음 전투, 추가 분기 통합 검사 또는 최종 전체CI 완료로 취급하지 않습니다. 먼저 시도한 검증 서버10080 포트의 `ERR_UNSAFE_PORT`는 도구 설정 실패이며 게임 오류 목록에 추가하지 않습니다.
 - 관리: [Issue #33](https://github.com/dfrpg98-jpg/bloodborne-solo/issues/33), [PR #15](https://github.com/dfrpg98-jpg/bloodborne-solo/pull/15). 개발본 수정·재현·재검증 상태이며 병합·정식 릴리스 완료가 아닙니다.
+
+
+## BB-027 · 치카게 회피 다중 대상 선택 중 정상 저장 재생 거부
+
+- Issue: https://github.com/dfrpg98-jpg/bloodborne-solo/issues/34
+- 실제 수정 전: Actions 38488907921 / shard2 / chikage-1-dodge-heal-multi-target. 원본 artifact11860643450 SHA256 d54fe0e47a033ef92eb874f2e550242dd58809e884394eacc8a3d4cb41de70f5.
+- 정상 QA 준비/공개 UI 가져오기 1회 → 치카게 희생 공격 → 유료 변형 → 공격 → card2/slot0 회피. HP3→4, weapon_choice 다중 대상 선택에서 앱 저장을 importSave로 검증하면 명령 기록 불일치. 수동 상태 조립 없음.
+- 원인: weaponAfter.immediate undefined 속성이 JSON에서 누락되지만 재생으로 다시 생김. immediate 반응 때만 속성을 기록하는 최소 수정. HP/피해/선택/규칙 비용 변경 없음.
+- 중간 단계마다 정상 export/import 및 이후 선택→이동→다음 공격을 검사하는 회귀 추가. 관련10검사 통과. 실제 수정 후 동일 경로/전체CI는 진행 중이며 완료로 세지 않음.
+
+추가 효과 최초66 actual UI 실행은 62성공/4실패. 나머지3실패는 wheel boost0 옵션값, reward checkbox locator 중복, 생존자 동행 공개 경로를 잘못 호출한 도구 문제이며 BB로 세지 않음. 새 정상 종료 분기와 실패 경로를 선택 재실행한다.

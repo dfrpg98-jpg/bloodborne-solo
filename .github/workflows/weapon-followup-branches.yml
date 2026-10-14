@@ -11,6 +11,12 @@ on:
       - weapon-flow.js
       - weapon-rules.js
   workflow_dispatch:
+    inputs:
+      cases:
+        description: "Comma-separated case IDs; empty runs every prepared branch"
+        required: false
+        default: ""
+        type: string
 permissions:
   contents: read
 jobs:
@@ -38,6 +44,7 @@ jobs:
           NODE_PATH: ${{ runner.temp }}/weapon-branch-browser/node_modules
           MOTION_SHARD: ${{ matrix.shard }}
           MOTION_SHARDS: '4'
+          MOTION_CASE_FILTER: ${{ github.event_name == 'push' && 'logarius-wheel-1-sacrifice-0,chikage-1-dodge-heal-multi-target,beast-claw-1-mission-interruption,threaded-cane-1-equal-interrupt,logarius-wheel-1-terminal-sacrifice,chikage-1-dodge-kill,threaded-cane-0-dodge-area-kill-rapid' || inputs.cases }}
         run: node scripts/cloud-weapon-followup-branches.cjs
       - name: Preserve actual frames and continuous videos without raw saves
         if: always()
