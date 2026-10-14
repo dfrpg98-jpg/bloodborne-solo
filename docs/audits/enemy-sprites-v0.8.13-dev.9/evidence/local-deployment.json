@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-14T09:07:59.216Z",
+  "runtimeVersion": "0.8.13-dev.9",
+  "deployedProductCommit": "0557a9c9922f236b0770d1d8a836bc3f96de0e03",
+  "sourceAlias": "canonical-repository",
+  "desktopAlias": "local-desktop-play-project",
+  "backupAlias": "local-dev9-backup-0557a9c",
+  "installation": {
+    "mode": "applied-and-hash-verified",
+    "counts": {
+      "runtime": 324,
+      "documents": 4,
+      "allowlist": 328,
+      "add": 14,
+      "replace": 11,
+      "unchanged": 303,
+      "excludedTracked": 1256
+    },
+    "allAllowlistedFilesVerified": 328,
+    "deletedFiles": 0
+  },
+  "http": {
+    "url": "http://127.0.0.1:8786/bloodborne-solo/hunt.html",
+    "filesVerified": 328,
+    "allHttpHashesMatch": true,
+    "postStatus": 405,
+    "directoryListing": false
+  },
+  "privateFiles": {
+    "files": 188,
+    "bytes": 280557345,
+    "unchanged": true,
+    "contentsUploaded": false
+  },
+  "existingPlay": {
+    "samePhase": true,
+    "sameStatus": true,
+    "sameActorIdsNodesSkins": true,
+    "presentation": "ready",
+    "rawPlayerSaveUploaded": false
+  },
+  "actualVersionScriptReferences": [
+    "enemy-visuals.js?v=0.8.13-dev.9&h=2350a252f8f8",
+    "hunt-app.js?v=0.8.13-dev.9&h=135792a01f22"
+  ],
+  "consoleErrors": {
+    "play": 0,
+    "gallery": 0
+  },
+  "server": {
+    "port": 8786,
+    "verifiedOwnedPreviousPid": 53468,
+    "newPid": 62708,
+    "uploads": false
+  },
+  "released": false,
+  "merged": false,
+  "note": "Later audit-only commits can differ from this installed product commit without changing its tested runtime bytes."
+}

@@ -3,7 +3,7 @@
   "extensionReflectsActualEncoding": true,
   "rawQAExportsUploaded": false,
   "referenceOriginalsUploaded": false,
-  "count": 186,
+  "count": 187,
   "rows": [
     {
       "sourceLocalBasename": "boss-scale-final-gallery-death-0.png",
@@ -2418,6 +2418,19 @@
       "dimensions": [
         1265,
         823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "live-dev9-cleric-preview.jpg",
+      "path": "screenshots/live-dev9-cleric-preview.jpg",
+      "sha256": "056a83f14eea6d445b8587c774333efd2853eaa633b20a94bfeb74f616313813",
+      "bytes": 70725,
+      "dimensions": [
+        1265,
+        883
       ],
       "mimeType": "image/jpeg",
       "actualEncoding": "JPEG",
