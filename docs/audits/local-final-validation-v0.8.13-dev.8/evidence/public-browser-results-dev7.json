@@ -1,0 +1,2342 @@
+{
+  "sourceCommit": "ae1657ef826c9f9dd7339d9aeef355bca5f692ff",
+  "runtimeVersion": "0.8.13-dev.7",
+  "method": "Actual local in-app browser public file imports and UI inputs; read-only DOM observations; normal checkpoints are preparation only.",
+  "rows": [
+    {
+      "id": "bb030-card-keyboard",
+      "viewport": {
+        "width": 1063,
+        "height": 1252
+      },
+      "wheel": {
+        "focused": true,
+        "max": 50,
+        "pressed": "false",
+        "top": 50
+      },
+      "firstEnter": {
+        "focused": true,
+        "max": 52,
+        "pressed": "true",
+        "top": 50
+      },
+      "secondEnter": {
+        "focused": true,
+        "pressed": "false",
+        "top": 50
+      },
+      "space": {
+        "focused": true,
+        "pressed": "true",
+        "top": 50
+      },
+      "escape": {
+        "hidden": true
+      },
+      "status": "passed"
+    },
+    {
+      "id": "bb030-slot-keyboard",
+      "first": {
+        "focused": true,
+        "pressed": "true"
+      },
+      "second": {
+        "focused": true,
+        "pressed": "false"
+      },
+      "status": "passed"
+    },
+    {
+      "id": "ui01-1208",
+      "layout": {
+        "cards": 6,
+        "cardsLayout": [
+          {
+            "card": "card-1",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.",
+            "w": 116.203125
+          },
+          {
+            "card": "card-3",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.",
+            "w": 116.21875
+          },
+          {
+            "card": "card-6",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+            "w": 116.203125
+          },
+          {
+            "card": "card-11",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "활력기본 활력즉시 기술 1개를 뽑습니다.",
+            "w": 116.203125
+          },
+          {
+            "card": "card-5",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+            "w": 116.21875
+          },
+          {
+            "card": "card-8",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "근력기본 근력공격 피해 +1",
+            "w": 116.203125
+          }
+        ],
+        "columns": "116.203px 116.219px 116.203px",
+        "error": "",
+        "hand": {
+          "clientHeight": 168,
+          "clientWidth": 373,
+          "scrollHeight": 286
+        },
+        "rowHeight": "136px",
+        "viewport": {
+          "h": 848,
+          "w": 1208
+        }
+      },
+      "obs": {
+        "controls": [
+          {
+            "args": "{}",
+            "label": "플레이어의 차례 마치기",
+            "type": "END_TURN"
+          }
+        ],
+        "decisions": "다른 행동 · 변형·꿈·화기 준비선택 기술: 없음 · 슬롯: 없음이동무기 변형꿈으로 이동화기 다시 준비 · 손패 1장상호작용 · 손패 1장같은 칸의 여러 대상을 손패 1장으로 동시에 상호작용할 수 있습니다. 적들이 먼저 행동하며, 이때 맞서 공격하거나 회피할 수 없습니다.중앙 등불 순간이동 · 등불 또는 안개 안 칸사용하지 않음중앙 등불 / 중앙 등불 · 등불중앙 등불의 특수 효과로 안개 진입로 안의 칸에도 들어갈 수 있습니다. 그곳의 망가진 등불은 사용할 수 없고, 꿈에서 돌아오는 목적지로도 선택할 수 없습니다.상호작용 실행플레이어의 차례 마치기",
+        "dialogs": [],
+        "directions": [
+          {
+            "disabled": true,
+            "edge": "N",
+            "label": "위 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "E",
+            "label": "오른쪽 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "S",
+            "label": "아래 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "W",
+            "label": "왼쪽 이동"
+          }
+        ],
+        "enemies": [],
+        "error": "",
+        "hand": [
+          {
+            "id": "card-1",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-3",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-6",
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다."
+          },
+          {
+            "id": "card-11",
+            "selected": "false",
+            "text": "활력기본 활력즉시 기술 1개를 뽑습니다."
+          },
+          {
+            "id": "card-5",
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다."
+          },
+          {
+            "id": "card-8",
+            "selected": "false",
+            "text": "근력기본 근력공격 피해 +1"
+          }
+        ],
+        "help": "아래 손패에서 기술을 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.",
+        "phase": "플레이어의 차례",
+        "status": "사냥꾼체력 6 / 6 · 피의 유지 0 / 3중앙 등불 / 중앙 등불독 없음 · 발광 없음"
+      },
+      "slot": "false"
+    },
+    {
+      "id": "ui01-848",
+      "layout": {
+        "cards": 6,
+        "cardsLayout": [
+          {
+            "card": "card-1",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.",
+            "w": 109.5
+          },
+          {
+            "card": "card-3",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.",
+            "w": 109.5
+          },
+          {
+            "card": "card-6",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+            "w": 109.5
+          },
+          {
+            "card": "card-11",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "활력기본 활력즉시 기술 1개를 뽑습니다.",
+            "w": 109.5
+          },
+          {
+            "card": "card-5",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+            "w": 109.5
+          },
+          {
+            "card": "card-8",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "근력기본 근력공격 피해 +1",
+            "w": 109.5
+          }
+        ],
+        "columns": "109.5px 109.5px",
+        "error": "",
+        "hand": {
+          "clientHeight": 168,
+          "clientWidth": 235,
+          "scrollHeight": 430
+        },
+        "rowHeight": "136px",
+        "viewport": {
+          "h": 1252,
+          "w": 848
+        }
+      }
+    },
+    {
+      "id": "ui01-390",
+      "layout": {
+        "cards": 6,
+        "cardsLayout": [
+          {
+            "card": "card-1",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.",
+            "w": 197
+          },
+          {
+            "card": "card-3",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.",
+            "w": 197
+          },
+          {
+            "card": "card-6",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+            "w": 197
+          },
+          {
+            "card": "card-11",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "활력기본 활력즉시 기술 1개를 뽑습니다.",
+            "w": 197
+          },
+          {
+            "card": "card-5",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+            "w": 197
+          },
+          {
+            "card": "card-8",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "근력기본 근력공격 피해 +1",
+            "w": 197
+          }
+        ],
+        "columns": "197px",
+        "error": "",
+        "hand": {
+          "clientHeight": 184,
+          "clientWidth": 205,
+          "scrollHeight": 862
+        },
+        "rowHeight": "136px",
+        "viewport": {
+          "h": 848,
+          "w": 390
+        }
+      },
+      "dom": {
+        "panels": [
+          {
+            "class": "panel hand-panel",
+            "w": 231
+          },
+          {
+            "class": "panel movement-panel",
+            "w": 126
+          },
+          {
+            "class": "panel weapon-panel",
+            "w": 363
+          },
+          {
+            "class": "panel gun-panel",
+            "w": 363
+          }
+        ],
+        "width": [
+          390,
+          375
+        ]
+      }
+    },
+    {
+      "id": "ui01-hand-five-after-move",
+      "commands": [
+        {
+          "type": "MOVE",
+          "cardId": "card-1"
+        },
+        {
+          "type": "STOP_MOVE"
+        }
+      ],
+      "layout": {
+        "cards": 5,
+        "cardsLayout": [
+          {
+            "card": "card-3",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.",
+            "w": 116.203125
+          },
+          {
+            "card": "card-6",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+            "w": 116.21875
+          },
+          {
+            "card": "card-11",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "활력기본 활력즉시 기술 1개를 뽑습니다.",
+            "w": 116.203125
+          },
+          {
+            "card": "card-5",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+            "w": 116.203125
+          },
+          {
+            "card": "card-8",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "근력기본 근력공격 피해 +1",
+            "w": 116.21875
+          }
+        ],
+        "columns": "116.203px 116.219px 116.203px",
+        "error": "",
+        "hand": {
+          "clientHeight": 168,
+          "clientWidth": 373,
+          "scrollHeight": 286
+        },
+        "rowHeight": "136px",
+        "viewport": {
+          "h": 848,
+          "w": 1208
+        }
+      }
+    },
+    {
+      "id": "ui01-hand-four-after-second-move",
+      "commands": [
+        {
+          "type": "MOVE",
+          "cardId": "card-3"
+        },
+        {
+          "type": "STOP_MOVE"
+        }
+      ],
+      "layout": {
+        "cards": 4,
+        "cardsLayout": [
+          {
+            "card": "card-6",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+            "w": 116.203125
+          },
+          {
+            "card": "card-11",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "활력기본 활력즉시 기술 1개를 뽑습니다.",
+            "w": 116.21875
+          },
+          {
+            "card": "card-5",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+            "w": 116.203125
+          },
+          {
+            "card": "card-8",
+            "clientHeight": 134,
+            "h": 136,
+            "scrollHeight": 134,
+            "selected": "false",
+            "text": "근력기본 근력공격 피해 +1",
+            "w": 116.203125
+          }
+        ],
+        "columns": "116.203px 116.219px 116.203px",
+        "error": "",
+        "hand": {
+          "clientHeight": 168,
+          "clientWidth": 373,
+          "scrollHeight": 286
+        },
+        "rowHeight": "136px",
+        "viewport": {
+          "h": 848,
+          "w": 1208
+        }
+      }
+    },
+    {
+      "id": "ui02-complete",
+      "commands": [
+        {
+          "type": "STEP",
+          "node": "tile-01:top"
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "USE_CONSUMABLE",
+          "itemId": "item-qa-1-11"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-8",
+          "slot": 0,
+          "enemyId": "scourge-beast-1"
+        },
+        {
+          "type": "RESOLVE"
+        }
+      ],
+      "combat": {
+        "combat": "재앙의 야수와 전투같은 속도 · 두 공격을 동시에 처리합니다.플레이어 · 장치무기 공격재빠른 저미기속도 3피해 2범위 피해대상 외에 1칸 이내의 다른 적에게 피해 1를 줍니다.사용한 무기의 고유 효과공격 속도로, 1칸 이내에 있는 다른 모든 적에게 1피해를 줍니다.적 · 기본 공격재빠른 휩쓸기속도 3피해 2추가 효과 없음",
+        "slots": [
+          {
+            "aria": "true",
+            "class": "hunt-slot  occupied",
+            "disabled": true,
+            "s": "0",
+            "selected": "false",
+            "text": "1번 슬롯 · 사용됨재빠른 저미기속도 3 · 피해 1기본 근력"
+          },
+          {
+            "aria": "false",
+            "class": "hunt-slot  ",
+            "disabled": false,
+            "s": "1",
+            "selected": "false",
+            "text": "2번 슬롯 · 비어 있음긋기속도 2 · 피해 2선택하여 공격 / 회피"
+          },
+          {
+            "aria": "false",
+            "class": "hunt-slot  ",
+            "disabled": false,
+            "s": "2",
+            "selected": "false",
+            "text": "3번 슬롯 · 비어 있음긋기속도 2 · 피해 2선택하여 공격 / 회피"
+          }
+        ]
+      },
+      "obs": {
+        "controls": [
+          {
+            "args": "{}",
+            "label": "플레이어의 차례 마치기",
+            "type": "END_TURN"
+          }
+        ],
+        "decisions": "선택 기술: 없음 · 슬롯: 없음이동무기 변형꿈으로 이동화기 다시 준비 · 손패 1장공격 대상 · 재앙의 야수 #1 · 체력 2선택한 기술과 슬롯으로 공격플레이어의 차례 마치기",
+        "dialogs": [],
+        "directions": [
+          {
+            "disabled": true,
+            "edge": "N",
+            "label": "위 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "E",
+            "label": "오른쪽 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "S",
+            "label": "아래 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "W",
+            "label": "왼쪽 이동"
+          }
+        ],
+        "enemies": [
+          {
+            "id": "huntsmans-minion-1",
+            "label": "야수 사냥 하인 1번 · 체력 4 · 대상 선택"
+          },
+          {
+            "id": "scourge-beast-1",
+            "label": "재앙의 야수 1번 · 체력 2 · 대상 선택"
+          }
+        ],
+        "error": "",
+        "hand": [
+          {
+            "id": "card-1",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-3",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-6",
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다."
+          },
+          {
+            "id": "card-11",
+            "selected": "false",
+            "text": "활력기본 활력즉시 기술 1개를 뽑습니다."
+          },
+          {
+            "id": "card-5",
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다."
+          }
+        ],
+        "help": "아래 손패에서 기술을 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.",
+        "phase": "플레이어의 차례",
+        "status": "사냥꾼체력 4 / 6 · 피의 유지 0 / 3위 칸독 없음 · 발광 없음"
+      },
+      "save": "local-validation-work/saves/ui02-complete.actual-qa-save.json"
+    },
+    {
+      "id": "ui03-complete",
+      "commands": [
+        {
+          "type": "STEP",
+          "node": "tile-17:top"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-3",
+          "slot": 0,
+          "enemyId": "scourge-beast-1"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "STUN_DISCARD",
+          "cardId": "card-10"
+        }
+      ],
+      "context": {
+        "arts": [
+          {
+            "complete": true,
+            "rotation": "1",
+            "src": "blob:http://",
+            "tile": "tile-17",
+            "width": 1000
+          },
+          {
+            "complete": true,
+            "rotation": "1",
+            "src": "blob:http://",
+            "tile": "tile-03",
+            "width": 1000
+          },
+          {
+            "complete": true,
+            "rotation": "0",
+            "src": "assets/tiles",
+            "tile": "tile-14",
+            "width": 1000
+          }
+        ],
+        "context": "선택한 대상재앙의 야수 #1×체력 4 / 4 · 0칸 거리이 적 공격스탯 카드 1장 배치 · 빈 공격 슬롯 1개하단 손패에서 공격에 놓을 스탯 카드 1장을 선택하세요.공격과 능력기본 공격재빠른 휩쓸기속도 2피해 2적 공격에 적용된 변화오에돈 예배당 · 속도 -1속도 3 → 2 · 피해 2 → 2추가 효과 없음특수 공격달려들어 뜯기속도 0피해 4적 공격에 적용된 변화오에돈 예배당 · 속도 -1속도 1 → 0 · 피해 4 → 4기절효과를 받으면 손패 1장을 버립니다. 버릴 손패가 없으면 피해 1을 받습니다.회피 불가이 공격은 회피할 수 없습니다.전용 능력야수의 포효추가 효과 없음행동 설명[속도 1]로 (사냥꾼과 같은 속도라면, 사냥꾼 공격 전에), 이 칸에 재앙의 야수 하나를 출현시킵니다.",
+        "tileInfo": "오에돈 예배당이 타일에 있는 적의 공격은 -1 [속도]를 받습니다.오에돈 예배당 ● 현재 위치등불 · 꿈에서 돌아올 수 있는 칸재앙의 야수 #1체력 4 / 4왼쪽 아래 칸현재 놓인 대상 없음오른쪽 아래 칸현재 놓인 대상 없음"
+      },
+      "obs": {
+        "controls": [
+          {
+            "args": "{}",
+            "label": "플레이어의 차례 마치기",
+            "type": "END_TURN"
+          }
+        ],
+        "decisions": "선택 기술: 없음 · 슬롯: 1번이동무기 변형꿈으로 이동화기 다시 준비 · 손패 1장공격 대상 · 재앙의 야수 #1 · 체력 3선택한 기술과 슬롯으로 공격플레이어의 차례 마치기",
+        "dialogs": [],
+        "directions": [
+          {
+            "disabled": true,
+            "edge": "N",
+            "label": "위 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "E",
+            "label": "오른쪽 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "S",
+            "label": "아래 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "W",
+            "label": "왼쪽 이동"
+          }
+        ],
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "label": "재앙의 야수 1번 · 체력 3 · 대상 선택"
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "label": "야수 사냥 하인 1번 · 체력 4 · 대상 선택"
+          }
+        ],
+        "error": "",
+        "hand": [
+          {
+            "id": "card-6",
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다."
+          }
+        ],
+        "help": "아래 손패에서 기술을 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.",
+        "phase": "플레이어의 차례",
+        "status": "사냥꾼체력 2 / 6 · 피의 유지 0 / 3오에돈 예배당 / 오에돈 예배당독 없음 · 발광 없음"
+      },
+      "save": "local-validation-work/saves/ui03-complete.actual-qa-save.json"
+    },
+    {
+      "id": "ui04-complete",
+      "commands": [
+        {
+          "type": "STEP",
+          "node": "tile-17:lower-right"
+        },
+        {
+          "type": "STOP_MOVE"
+        }
+      ],
+      "obs": {
+        "controls": [
+          {
+            "args": "{}",
+            "label": "플레이어의 차례 마치기",
+            "type": "END_TURN"
+          }
+        ],
+        "decisions": "선택 기술: 없음 · 슬롯: 없음이동무기 변형꿈으로 이동화기 다시 준비 · 손패 1장공격 대상 · 재앙의 야수 #1 · 체력 4선택한 기술과 슬롯으로 공격플레이어의 차례 마치기",
+        "dialogs": [],
+        "directions": [
+          {
+            "disabled": true,
+            "edge": "N",
+            "label": "위 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "E",
+            "label": "오른쪽 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "S",
+            "label": "아래 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "W",
+            "label": "왼쪽 이동"
+          }
+        ],
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "label": "재앙의 야수 1번 · 체력 4 · 대상 선택"
+          }
+        ],
+        "error": "",
+        "hand": [
+          {
+            "id": "card-8",
+            "selected": "false",
+            "text": "근력기본 근력공격 피해 +1"
+          },
+          {
+            "id": "card-12",
+            "selected": "false",
+            "text": "활력기본 활력즉시 기술 1개를 뽑습니다."
+          }
+        ],
+        "help": "아래 손패에서 기술을 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.",
+        "phase": "플레이어의 차례",
+        "status": "사냥꾼체력 6 / 6 · 피의 유지 0 / 3오에돈 예배당 / 오른쪽 아래 칸독 없음 · 발광 없음"
+      },
+      "save": "local-validation-work/saves/ui04-complete.actual-qa-save.json"
+    },
+    {
+      "id": "ui05-info-tile-11",
+      "text": "민가위쪽 거리 칸현재 놓인 대상 없음민가 ● 현재 위치◆ 호위 생존자"
+    },
+    {
+      "id": "ui05-info-tile-03",
+      "text": "폐가폐가보물상자 · 남은 소모품 2개◆ 구조 생존자야수 사냥 하인 #1체력 5 / 5야수 사냥 무리 #1체력 4 / 4아래쪽 입구 칸현재 놓인 대상 없음"
+    },
+    {
+      "id": "ui05-info-tile-07",
+      "text": "성배 교단 예배당상호작용 했을 때: 1 [소모품]을 사용하면서 피의 유지 1개를 획득할 수 있습니다.성배 교단 예배당보물상자 · 남은 소모품 2개상호작용 · 소모품 1개를 피의 유지 1개로 교환가운데 칸등불 · 꿈에서 돌아올 수 있는 칸아래 칸현재 놓인 대상 없음"
+    },
+    {
+      "id": "ui05-complete",
+      "commands": [
+        {
+          "type": "MOVE",
+          "cardId": "card-1"
+        },
+        {
+          "type": "MISSION_PICKUP"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-11:street"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-17:lower-left"
+        }
+      ],
+      "escortAccepted": {
+        "controls": [
+          {
+            "args": "{}",
+            "label": "여기서 이동 마치기",
+            "type": "STOP_MOVE"
+          },
+          {
+            "args": "{}",
+            "label": "이동 마치기",
+            "type": "STOP_MOVE"
+          }
+        ],
+        "decisions": "여기서 이동 마치기",
+        "dialogs": [],
+        "directions": [
+          {
+            "disabled": false,
+            "edge": "N",
+            "label": "위 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "E",
+            "label": "오른쪽 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "S",
+            "label": "아래 이동"
+          },
+          {
+            "disabled": false,
+            "edge": "W",
+            "label": "왼쪽 이동"
+          }
+        ],
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "label": "재앙의 야수 1번 · 체력 4 · 대상 선택"
+          },
+          {
+            "id": "huntsman-mob-1",
+            "label": "야수 사냥 무리 1번 · 체력 4 · 대상 선택"
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "label": "야수 사냥 하인 1번 · 체력 5 · 대상 선택"
+          }
+        ],
+        "error": "",
+        "hand": [
+          {
+            "id": "card-7",
+            "selected": "false",
+            "text": "근력기본 근력공격 피해 +1"
+          },
+          {
+            "id": "card-3",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          }
+        ],
+        "help": "남은 이동력 1. 밝은 칸 또는 현재 칸의 출입구를 누르세요. 이동을 마치면 적의 추격을 처리합니다.",
+        "phase": "이동과 탐험",
+        "status": "사냥꾼체력 2 / 6 · 피의 유지 1 / 3민가 / 위쪽 거리 칸독 없음 · 발광 없음"
+      },
+      "detail": "체력 4 / 4 · 이동 2계몽 토큰 1개임무로 변경된 능력재앙의 야수 · 임무에 따른 능력 변경재앙의 야수의 특수 공격이 ‘피의 광란’으로 변경되었습니다.피의 광란 · 속도 3 · 피해 2체력이 가득 차 있으면 피해 2, 피해를 입은 상태라면 피해 4입니다.기본 공격재빠른 휩쓸기속도 2피해 2적 공격에 적용된 변화오에돈 예배당 · 속도 -1속도 3 → 2 · 피해 2 → 2추가 효과 없음특수 공격피의 광란속도 2피해 2적 공격에 적용된 변화오에돈 예배당 · 속도 -1속도 3 → 2 · 피해 2 → 2추가 효과 없음전용 능력날것 그대로의 분노추가 효과 없음행동 설명다른 행동 1장을 공개합니다.재앙의 야수의 다음 공격은 +1 피해와 방해를 획득합니다.",
+      "obs": {
+        "controls": [
+          {
+            "args": "{}",
+            "label": "플레이어의 차례 마치기",
+            "type": "END_TURN"
+          }
+        ],
+        "decisions": "선택 기술: 없음 · 슬롯: 없음이동무기 변형꿈으로 이동화기 다시 준비 · 손패 1장공격 전에 끌어오기 · 재앙의 야수 #2공격 대상 · 야수 사냥 하인 #1 · 체력 5선택한 기술과 슬롯으로 공격플레이어의 차례 마치기",
+        "dialogs": [],
+        "directions": [
+          {
+            "disabled": true,
+            "edge": "N",
+            "label": "위 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "E",
+            "label": "오른쪽 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "S",
+            "label": "아래 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "W",
+            "label": "왼쪽 이동"
+          }
+        ],
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "label": "재앙의 야수 1번 · 체력 4 · 대상 선택"
+          },
+          {
+            "id": "scourge-beast-2",
+            "label": "재앙의 야수 2번 · 체력 4 · 계몽 토큰 1개 · 대상 선택"
+          },
+          {
+            "id": "huntsman-mob-1",
+            "label": "야수 사냥 무리 1번 · 체력 4 · 대상 선택"
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "label": "야수 사냥 하인 1번 · 체력 5 · 대상 선택"
+          }
+        ],
+        "error": "",
+        "hand": [
+          {
+            "id": "card-7",
+            "selected": "false",
+            "text": "근력기본 근력공격 피해 +1"
+          },
+          {
+            "id": "card-3",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          }
+        ],
+        "help": "아래 손패에서 기술을 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.",
+        "phase": "플레이어의 차례",
+        "status": "사냥꾼체력 2 / 6 · 피의 유지 1 / 3오에돈 예배당 / 왼쪽 아래 칸독 없음 · 발광 없음"
+      },
+      "save": "local-validation-work/saves/ui05-complete.actual-qa-save.json"
+    },
+    {
+      "id": "ui-mission-10-equivalent",
+      "coveredBy": "ui05-complete",
+      "note": "Same normal trigger path, actual notice acknowledgment and enemy detail verified; no duplicate import counted."
+    },
+    {
+      "id": "ui06-reward-tooltip-1208",
+      "focused": {
+        "display": "block",
+        "focused": true,
+        "h": 100.28125,
+        "hovered": false,
+        "text": "적 하나가 당신이 위치한 칸으로 이동해 들어올 때: 해당 적에게 2 피해를 줍니다.플레이어의 차례: 손패 2장을 버리면서 준비합니다.",
+        "vh": 1252,
+        "vw": 1208,
+        "w": 330,
+        "x": 866,
+        "y": 242.53125
+      },
+      "hovered": {
+        "display": "block",
+        "focused": false,
+        "h": 100.28125,
+        "hovered": true,
+        "text": "적 하나가 당신이 위치한 칸으로 이동해 들어올 때: 해당 적에게 2 피해를 줍니다.플레이어의 차례: 손패 2장을 버리면서 준비합니다.",
+        "vh": 1252,
+        "vw": 1208,
+        "w": 330,
+        "x": 866,
+        "y": 242.53125
+      }
+    },
+    {
+      "id": "ui06-reward-tooltip-390",
+      "focused": {
+        "display": "block",
+        "focused": true,
+        "h": 100.28125,
+        "hovered": false,
+        "text": "적 하나가 당신이 위치한 칸으로 이동해 들어올 때: 해당 적에게 2 피해를 줍니다.플레이어의 차례: 손패 2장을 버리면서 준비합니다.",
+        "vh": 848,
+        "vw": 390,
+        "w": 330,
+        "x": 30,
+        "y": 302.953125
+      },
+      "hovered": {
+        "display": "block",
+        "focused": false,
+        "h": 100.28125,
+        "hovered": true,
+        "text": "적 하나가 당신이 위치한 칸으로 이동해 들어올 때: 해당 적에게 2 피해를 줍니다.플레이어의 차례: 손패 2장을 버리면서 준비합니다.",
+        "vh": 848,
+        "vw": 390,
+        "w": 330,
+        "x": 30,
+        "y": 302.953125
+      }
+    },
+    {
+      "id": "ui06-reward-tooltip-848",
+      "focused": {
+        "display": "block",
+        "focused": true,
+        "h": 100.28125,
+        "hovered": false,
+        "text": "적 하나가 당신이 위치한 칸으로 이동해 들어올 때: 해당 적에게 2 피해를 줍니다.플레이어의 차례: 손패 2장을 버리면서 준비합니다.",
+        "vh": 848,
+        "vw": 848,
+        "w": 330,
+        "x": 506,
+        "y": 260.53125
+      },
+      "hovered": {
+        "display": "block",
+        "focused": false,
+        "h": 100.28125,
+        "hovered": true,
+        "text": "적 하나가 당신이 위치한 칸으로 이동해 들어올 때: 해당 적에게 2 피해를 줍니다.플레이어의 차례: 손패 2장을 버리면서 준비합니다.",
+        "vh": 848,
+        "vw": 848,
+        "w": 330,
+        "x": 506,
+        "y": 260.53125
+      }
+    },
+    {
+      "id": "ui06-equipped-tooltip",
+      "focused": {
+        "display": "block",
+        "focused": true,
+        "h": 100.28125,
+        "hovered": false,
+        "text": "적 하나가 당신이 위치한 칸으로 이동해 들어올 때: 해당 적에게 2 피해를 줍니다.플레이어의 차례: 손패 2장을 버리면서 준비합니다.",
+        "vh": 1252,
+        "vw": 1208,
+        "w": 330,
+        "x": 866,
+        "y": 931.21875
+      },
+      "hovered": {
+        "display": "block",
+        "focused": false,
+        "h": 100.28125,
+        "hovered": true,
+        "text": "적 하나가 당신이 위치한 칸으로 이동해 들어올 때: 해당 적에게 2 피해를 줍니다.플레이어의 차례: 손패 2장을 버리면서 준비합니다.",
+        "vh": 1252,
+        "vw": 1208,
+        "w": 330,
+        "x": 866,
+        "y": 931.21875
+      }
+    },
+    {
+      "id": "ui06-complete",
+      "commands": [
+        {
+          "type": "EQUIP_FIREARM",
+          "firearmId": "ludwig-rifle"
+        }
+      ],
+      "obs": {
+        "controls": [
+          {
+            "args": "{}",
+            "label": "플레이어의 차례 마치기",
+            "type": "END_TURN"
+          }
+        ],
+        "decisions": "선택 기술: 없음 · 슬롯: 없음이동무기 변형꿈으로 이동루드비히의 장총 재준비 · 서로 다른 손패 2장두 번째로 버릴 손패손패를 선택하세요화기 다시 준비 · 손패 2장플레이어의 차례 마치기",
+        "dialogs": [],
+        "directions": [
+          {
+            "disabled": true,
+            "edge": "N",
+            "label": "위 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "E",
+            "label": "오른쪽 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "S",
+            "label": "아래 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "W",
+            "label": "왼쪽 이동"
+          }
+        ],
+        "enemies": [],
+        "error": "",
+        "hand": [],
+        "help": "아래 손패에서 기술을 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.",
+        "phase": "플레이어의 차례",
+        "status": "사냥꾼체력 4 / 6 · 피의 유지 1 / 3마당 등불 / 마당 등불독 없음 · 발광 없음"
+      },
+      "save": "local-validation-work/saves/ui06-complete.actual-qa-save.json"
+    },
+    {
+      "id": "ui-mission3-complete",
+      "detail": "체력 4 / 4 · 이동 2계몽 토큰 1개임무로 변경된 능력재앙의 야수 · 임무에 따른 능력 변경재앙의 야수의 전용 능력이 ‘광포한’으로 변경되었습니다.광포한 · 속도 3 · 피해 3 · 방해 · 기절 · 방해 불가기본 공격재빠른 휩쓸기속도 3피해 2추가 효과 없음특수 공격다단 가르기속도 2피해 2추가 타격첫 공격을 회피하거나 방해해도, 회피 속도 2의 추가 타격에 대응해야 합니다. 피하지 않으면 피해 2를 받습니다.행동 설명이 공격을 회피하거나 방해했더라도, 사냥꾼은 회피([속도 2])하거나 추가로 2 피해를 받아야 합니다.전용 능력광포한속도 3피해 3방해더 느린 플레이어의 공격을 취소합니다. 방해 면역이면 적용되지 않습니다.기절효과를 받으면 손패 1장을 버립니다. 버릴 손패가 없으면 피해 1을 받습니다.방해 불가이 공격은 방해로 취소할 수 없습니다.",
+      "commands": [
+        {
+          "type": "USE_REWARD",
+          "rewardId": "reward-13",
+          "node": "tile-14:center"
+        }
+      ],
+      "obs": {
+        "controls": [
+          {
+            "args": "{}",
+            "label": "플레이어의 차례 마치기",
+            "type": "END_TURN"
+          }
+        ],
+        "decisions": "선택 기술: 없음 · 슬롯: 없음이동무기 변형꿈으로 이동화기 다시 준비 · 손패 1장공격 대상 · 야수 사냥 하인 #1 · 체력 5선택한 기술과 슬롯으로 공격플레이어의 차례 마치기",
+        "dialogs": [],
+        "directions": [
+          {
+            "disabled": true,
+            "edge": "N",
+            "label": "위 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "E",
+            "label": "오른쪽 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "S",
+            "label": "아래 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "W",
+            "label": "왼쪽 이동"
+          }
+        ],
+        "enemies": [
+          {
+            "id": "huntsman-mob-1",
+            "label": "야수 사냥 무리 1번 · 체력 4 · 대상 선택"
+          },
+          {
+            "id": "huntsmans-minion-2",
+            "label": "야수 사냥 하인 2번 · 체력 5 · 대상 선택"
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "label": "야수 사냥 하인 1번 · 체력 5 · 대상 선택"
+          },
+          {
+            "id": "scourge-beast-1",
+            "label": "재앙의 야수 1번 · 체력 4 · 대상 선택"
+          },
+          {
+            "id": "scourge-beast-2",
+            "label": "재앙의 야수 2번 · 체력 4 · 계몽 토큰 1개 · 대상 선택"
+          }
+        ],
+        "error": "",
+        "hand": [
+          {
+            "id": "card-8",
+            "selected": "false",
+            "text": "근력기본 근력공격 피해 +1"
+          },
+          {
+            "id": "card-5",
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다."
+          }
+        ],
+        "help": "아래 손패에서 기술을 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.",
+        "phase": "플레이어의 차례",
+        "status": "사냥꾼체력 2 / 6 · 피의 유지 1 / 3중앙 등불 / 중앙 등불독 없음 · 발광 없음"
+      },
+      "save": "local-validation-work/saves/ui-mission3-complete.actual-qa-save.json"
+    },
+    {
+      "id": "ui-mission31-complete",
+      "notice": "새로운 임무오에돈 예배당 대학살환자의 임무 부활 토큰을 소진시키고 최종 처치 후 속도 1 회피하세요.여성 야수환자의 특수 공격이 ‘갈가리 찢기’로 변경되었습니다.갈가리 찢기 · 속도 3 · 피해 3 · 기절",
+      "detail": "체력 3 / 3 · 이동 1계몽 토큰 2개임무로 변경된 능력여성 야수환자 · 임무에 따른 능력 변경여성 야수환자의 특수 공격이 ‘갈가리 찢기’로 변경되었습니다.갈가리 찢기 · 속도 3 · 피해 3 · 기절기본 공격발톱 가르기속도 1피해 2적 공격에 적용된 변화오에돈 예배당 · 속도 -1속도 2 → 1 · 피해 2 → 2추가 효과 없음특수 공격갈가리 찢기속도 2피해 3적 공격에 적용된 변화오에돈 예배당 · 속도 -1속도 3 → 2 · 피해 3 → 3기절효과를 받으면 손패 1장을 버립니다. 버릴 손패가 없으면 피해 1을 받습니다.전용 능력화혈병추가 효과 없음행동 설명사냥꾼은 공격으로 피해를 준다면, 회피(속도 3)하거나 (또는) 그만큼 피해를 받고 독에 걸려야 합니다.",
+      "commands": [
+        {
+          "type": "EXPLORE",
+          "edge": "N"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 2
+        }
+      ],
+      "obs": {
+        "controls": [
+          {
+            "args": "{\"itemId\":\"item-coldblood-1\"}",
+            "label": "사혈 방울 버려 야수 유인",
+            "type": "MISSION_LURE"
+          },
+          {
+            "args": "{}",
+            "label": "플레이어의 차례 마치기",
+            "type": "END_TURN"
+          }
+        ],
+        "decisions": "선택 기술: 없음 · 슬롯: 없음이동무기 변형꿈으로 이동화기 다시 준비 · 손패 1장공격 대상 · 재앙의 야수 #1 · 체력 4선택한 기술과 슬롯으로 공격플레이어의 차례 마치기",
+        "dialogs": [],
+        "directions": [
+          {
+            "disabled": true,
+            "edge": "N",
+            "label": "위 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "E",
+            "label": "오른쪽 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "S",
+            "label": "아래 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "W",
+            "label": "왼쪽 이동"
+          }
+        ],
+        "enemies": [
+          {
+            "id": "mission-patient",
+            "label": "여성 야수환자 1번 · 체력 3 · 계몽 토큰 2개 · 대상 선택"
+          },
+          {
+            "id": "huntsmans-minion-2",
+            "label": "야수 사냥 하인 2번 · 체력 5 · 계몽 토큰 1개 · 대상 선택"
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "label": "야수 사냥 하인 1번 · 체력 5 · 대상 선택"
+          },
+          {
+            "id": "scourge-beast-2",
+            "label": "재앙의 야수 2번 · 체력 4 · 대상 선택"
+          },
+          {
+            "id": "scourge-beast-3",
+            "label": "재앙의 야수 3번 · 체력 4 · 대상 선택"
+          },
+          {
+            "id": "huntsman-mob-2",
+            "label": "야수 사냥 무리 2번 · 체력 4 · 대상 선택"
+          },
+          {
+            "id": "scourge-beast-1",
+            "label": "재앙의 야수 1번 · 체력 4 · 대상 선택"
+          }
+        ],
+        "error": "",
+        "hand": [
+          {
+            "id": "card-11",
+            "selected": "false",
+            "text": "활력기본 활력즉시 기술 1개를 뽑습니다."
+          }
+        ],
+        "help": "아래 손패에서 기술을 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.",
+        "phase": "플레이어의 차례",
+        "status": "사냥꾼체력 6 / 6 · 피의 유지 0 / 3오에돈 예배당 / 오에돈 예배당독 없음 · 발광 없음"
+      },
+      "save": "local-validation-work/saves/ui-mission31-complete.actual-qa-save.json"
+    },
+    {
+      "id": "ui-mission36-complete",
+      "notice": "새로운 임무아슬아슬한 구조대교의 야수 사냥 하인을 처치하세요.야수 사냥 하인의 특수 공격이 ‘고통 면역’으로 변경되었습니다.고통 면역 · 속도 1 · 피해 4 · 방해 불가 · 방어 2",
+      "detail": "체력 5 / 5 · 이동 1계몽 토큰 1개임무로 변경된 능력야수 사냥 하인 · 임무에 따른 능력 변경야수 사냥 하인의 특수 공격이 ‘고통 면역’으로 변경되었습니다.고통 면역 · 속도 1 · 피해 4 · 방해 불가 · 방어 2기본 공격느릿느릿한 휘두르기속도 1피해 3추가 효과 없음특수 공격고통 면역속도 1피해 4방해 불가이 공격은 방해로 취소할 수 없습니다.적 방어이 적은 플레이어의 공격 피해를 2 방어합니다.전용 능력어깨 돌진추가 효과 없음행동 설명[속도 1]로 (사냥꾼과 같은 속도라면, 사냥꾼 공격 전에) 야수 사냥 하인을 2칸 멀리 이동시킵니다.사냥꾼은 회피([속도 1])하지 않으면, 함께 이동하고 3 피해를 받으며 기절에 걸립니다.",
+      "commands": [
+        {
+          "type": "STOP_MOVE"
+        }
+      ],
+      "obs": {
+        "controls": [
+          {
+            "args": "{}",
+            "label": "플레이어의 차례 마치기",
+            "type": "END_TURN"
+          }
+        ],
+        "decisions": "선택 기술: 없음 · 슬롯: 없음이동무기 변형꿈으로 이동화기 다시 준비 · 손패 1장공격 대상 · 야수 사냥 하인 #2 · 체력 5선택한 기술과 슬롯으로 공격상호작용 · 손패 1장같은 칸의 여러 대상을 손패 1장으로 동시에 상호작용할 수 있습니다. 적들이 먼저 행동하며, 이때 맞서 공격하거나 회피할 수 없습니다.획득할 소모품 토큰0개1개상호작용 실행플레이어의 차례 마치기",
+        "dialogs": [],
+        "directions": [
+          {
+            "disabled": true,
+            "edge": "N",
+            "label": "위 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "E",
+            "label": "오른쪽 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "S",
+            "label": "아래 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "W",
+            "label": "왼쪽 이동"
+          }
+        ],
+        "enemies": [
+          {
+            "id": "huntsmans-minion-2",
+            "label": "야수 사냥 하인 2번 · 체력 5 · 계몽 토큰 1개 · 대상 선택"
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "label": "야수 사냥 하인 1번 · 체력 5 · 대상 선택"
+          },
+          {
+            "id": "scourge-beast-2",
+            "label": "재앙의 야수 2번 · 체력 4 · 대상 선택"
+          },
+          {
+            "id": "scourge-beast-3",
+            "label": "재앙의 야수 3번 · 체력 4 · 대상 선택"
+          },
+          {
+            "id": "huntsman-mob-2",
+            "label": "야수 사냥 무리 2번 · 체력 4 · 대상 선택"
+          },
+          {
+            "id": "scourge-beast-1",
+            "label": "재앙의 야수 1번 · 체력 4 · 대상 선택"
+          }
+        ],
+        "error": "",
+        "hand": [
+          {
+            "id": "card-11",
+            "selected": "false",
+            "text": "활력기본 활력즉시 기술 1개를 뽑습니다."
+          }
+        ],
+        "help": "아래 손패에서 기술을 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.",
+        "phase": "플레이어의 차례",
+        "status": "사냥꾼체력 3 / 6 · 피의 유지 2 / 3대교 / 대교독 없음 · 발광 없음"
+      },
+      "save": "local-validation-work/saves/ui-mission36-complete.actual-qa-save.json"
+    },
+    {
+      "id": "ui11-complete",
+      "publicText": {
+        "info": "왼쪽 위 칸 ● 현재 위치야수 사냥 무리 #1체력 4 / 4오른쪽 위 칸야수 사냥 하인 #1체력 5 / 5아래 칸현재 놓인 대상 없음",
+        "map": "미탐험 구역미탐험 구역미탐험 구역오에돈 예배당→↑↓공동묘지↑←→↓성배 교단 예배당←이오세프카의 진료소→중앙 등불↑←→↓미탐험 구역미탐험 구역ⓘ● 사냥꾼●1■1↑↓←미탐험 구역미탐험 구역오에돈의 지하묘지↑미탐험 구역",
+        "status": "사냥꾼체력 6 / 6 · 피의 유지 1 / 3왼쪽 위 칸독 없음 · 발광 없음",
+        "journal": "라운드 3 왼쪽 위 칸 이동 · 남은 이동력 1.라운드 3 이동 시작 · 최대 2칸.라운드 3 이동과 추격을 마쳤습니다.라운드 3 중앙 등불 / 중앙 등불 이동 · 남은 이동력 0.라운드 3 중앙 등불 / 왼쪽 칸 이동 · 남은 이동력 1.라운드 3 이동 시작 · 최대 2칸.라운드 3 손패를 3장까지 보충했습니다.라운드 3 사냥 트랙 3/16 · 새 라운드라운드 2 차례 종료 · 적 활성화.라운드 2 이동과 추격을 마쳤습니다.라운드 2 기나긴 사냥 · 이오세프카의 연구라운드 2 이오세프카의 진료소 / 아래쪽 입구 칸 이동 · 남은 이동력 0.라운드 2 이오세프카의 진료소 공개 · 회전 방향을 선택하세요.라운드 2 중앙 등불 / 왼쪽 칸 이동 · 남은 이동력 1.라운드 2 이동 시작 · 최대 2칸.라운드 2 이동과 추격을 마쳤습니다.라운드 2 중앙 등불 / 중앙 등불 이동 · 남은 이동력 0.라운드 2 공동묘지 / 아래 칸 이동 · 남은 이동력 1.라운드 2 이동 시작 · 최대 2칸.라운드 2 이동과 추격을 마쳤습니다.라운드 2 공동묘지 / 공동묘지 이동 · 남은 이동력 0.라운드 2 성배 교단 예배당 / 아래 칸 이동 · 남은 이동력 1.라운드 2 성배 교단 예배당 공개 · 회전 방향을 선택하세요.라운드 2 이동 시작 · 최대 2칸.라운드 2 손패를 3장까지 보충했습니다.라운드 2 사냥 트랙 2/16 · 새 라운드라운드 1 차례 종료 · 적 활성화.라운드 1 소모품 획득 · 화염병.라운드 1 이동과 추격을 마쳤습니다.라운드 1 공동묘지 / 공동묘지 이동 · 남은 이동력 0.라운드 1 오에돈 예배당 / 오에돈 예배당 이동 · 남은 이동력 1.라운드 1 오에돈 예배당 공개 · 회전 방향을 선택하세요.라운드 1 야수의 발톱 · 처치 후 최대 2칸 이동.라운드 1 재앙의 야수 시체 토큰 1개 획득.라운드 1 재앙의 야수 처치 · 피의 유지 +1 (최대 3).라운드 1 긋기 · 적에게 4 피해.라운드 1 재빠른 휩쓸기 · 사냥꾼에게 2 피해.라운드 1 재앙의 야수 · 기본 공격: 재빠른 휩쓸기.라운드 1 기본 근력 → 긋기 (속도 2, 피해 4).라운드 1 이동과 추격을 마쳤습니다.라운드 1 공동묘지 / 공동묘지 이동 · 남은 이동력 0.라운드 1 공동묘지 / 아래 칸 이동 · 남은 이동력 1.라운드 1 이동 시작 · 최대 2칸.라운드 1 기나긴 사냥 챕터 2 시작 · 중앙 등불 center칸 · 성장과 소지품을 이어갑니다.라운드 1 야수 사냥 하인 #1 출현.라운드 1 야수 사냥 무리 #1 출현.라운드 1 재앙의 야수 #1 출현.라운드 1 기나긴 사냥 · 재앙의 근원라운드 1 기나긴 사냥 · 특수 준비라운드 7 루드비히의 장총 장착 · 기존 화기는 보관합니다.라운드 7 챕터 2 준비 · 장비를 교체하고 시작 칸을 선택하세요.라운드 7 챕터 1 완료 · 성장·소모품·보상·화기·계몽을 저장해 다음 챕터 준비를 기다립니다.라운드 7 사냥꾼의 꿈에서 체력·화기·상태 이상을 회복했습니다.라운드 7 방어태세을 덱에 넣었습니다. 덱은 12장입니다.라운드 7 혈석의 파편 장착 · 2번 슬롯.라운드 7 사냥꾼의 꿈에 입장합니다.라운드 7 챕터 1 사냥 완수 · 남은 유지로 성장한 뒤 진행 상태를 보관합니다.라운드 7 카릴 문자:달 획득 · 장착.라운드 7 혈석의 파편 획득 · 장착 또는 보관 선택.라운드 7 기나긴 사냥 · 목표 처치: 재앙의 야수 우두머리라운드 7 임무 완수 · 안개를 제거하고 등불을 복원합니다.라운드 7 재앙의 야수 처치 · 피의 유지 +1 (최대 3).라운드 7 광란의 베기 · 적에게 4 피해.라운드 7 회피 · 사냥꾼에게 직접 적용되는 피해와 효과를 피합니다.라운드 7 재앙의 야수 · 전용 능력: 광포한.라운드 7 기본 활력 → 광란의 베기 (속도 2, 피해 4).라운드 7 다단 가르기 추가 피해 · 사냥꾼에게 2 피해.라운드 7 무리의 우두머리 · 토큰 1개 제거, 전치유. 처치가 아니므로 적 공격은 계속됩니다.라운드 7 다단 가르기 · 사냥꾼에게 2 피해.라운드 7 긋기 · 적에게 2 피해.라운드 7 재앙의 야수 · 특수 공격: 다단 가르기.라운드 7 기본 활력 → 긋기 (속도 2, 피해 2).라운드 7 이동과 추격을 마쳤습니다.라운드 7 중앙 등불 / 중앙 등불 이동 · 남은 이동력 1.라운드 7 이동 시작 · 최대 2칸.라운드 7 마당 등불 / 마당 등불에서 귀환했습니다.라운드 7 손패를 3장까지 보충했습니다.라운드 7 사냥 트랙 11/16 · 새 라운드라운드 6 사냥꾼의 꿈에서 체력·화기·상태 이상을 회복했습니다.라운드 6 사냥 트랙 10/16 · 사냥꾼의 꿈 입장라운드 6 처치당했습니다. 모든 피의 유지를 잃고 꿈에 입장합니다.라운드 6 다단 가르기 추가 피해 · 사냥꾼에게 2 피해.라운드 6 다단 가르기 · 사냥꾼에게 2 피해.라운드 6 긋기 · 적에게 3 피해.라운드 6 재앙의 야수 · 특수 공격: 다단 가르기.라운드 6 기본 활력 → 긋기 (속도 3, 피해 3).라운드 6 기절 · 기술 1개를 버렸습니다.라운드 6 적의 방해 · 사냥꾼 공격 취소.라운드 6 광포한 · 사냥꾼에게 3 피해.라운드 6 재앙의 야수 · 전용 능력: 광포한.라운드 6 기본 활력 → 광란의 베기 (속도 1, 피해 3).라운드 6 이동과 추격을 마쳤습니다.라운드 6 중앙 등불 / 중앙 등불 이동 · 남은 이동력 1.라운드 6 이동 시작 · 최대 2칸.라운드 6 마당 등불 / 마당 등불에서 귀환했습니다.라운드 6 손패를 3장까지 보충했습니다.라운드 6 야수 사냥 무리 #1 출현.라운드 6 재앙의 야수 #2 출현.라운드 6 야수 사냥 하인 #2 출현.라운드 6 야수 사냥 하인 #1 출현.라운드 6 재앙의 야수 #1 출현.라운드 6 지도 초기화 · 가까운 출현 지점부터 적과 소모품을 복원합니다. 면·슬롯·행동 덱은 유지합니다.라운드 6 사냥 트랙 9/16 · 새 라운드라운드 5 사냥꾼의 꿈에서 체력·화기·상태 이상을 회복했습니다.라운드 5 사냥 트랙 8/16 · 사냥꾼의 꿈 입장라운드 5 처치당했습니다. 모든 피의 유지를 잃고 꿈에 입장합니다.라운드 5 재빠른 휩쓸기 · 사냥꾼에게 2 피해.라운드 5 재앙의 야수 · 기본 공격: 재빠른 휩쓸기.라운드 5 기본 지구력 → 광란의 베기 (속도 2, 피해 4).라운드 5 무리의 우두머리 · 토큰 1개 제거, 전치유. 처치가 아니므로 적 공격은 계속됩니다.라운드 5 광란의 베기 · 적에게 3 피해.라운드 5 재빠른 휩쓸기 · 사냥꾼에게 2 피해.라운드 5 재앙의 야수 · 기본 공격: 재빠른 휩쓸기.라운드 5 기본 지구력 → 광란의 베기 (속도 1, 피해 3).라운드 5 무기 변형 · 모든 슬롯을 비웠습니다.라운드 5 손패를 3장까지 보충했습니다.라운드 5 사냥 트랙 7/16 · 새 라운드라운드 4 긋기 · 적에게 3 피해.라운드 4 재빠른 휩쓸기 · 사냥꾼에게 2 피해.라운드 4 재앙의 야수 · 기본 공격: 재빠른 휩쓸기.라운드 4 기본 근력 → 긋기 (속도 2, 피해 3).라운드 4 차례 종료 · 적 활성화.라운드 4 재앙의 야수 #2 출현.라운드 4 랜턴 사용 · 소진했습니다.라운드 4 중앙 등불 · 안개 진입로, 등불 파괴, 일반 적 제거.라운드 4 기나긴 사냥 · 무리의 우두머리라운드 4 기나긴 사냥 · 재앙의 근원라운드 4 카릴 문자:피의 기쁨 획득 · 장착.라운드 4 기나긴 사냥 · 자비란 없다라운드 4 이동과 추격을 마쳤습니다.라운드 4 기나긴 사냥 · 구조라운드 4 민가 / 민가 이동 · 남은 이동력 1.라운드 4 야수의 발톱 · 처치 후 최대 2칸 이동.라운드 4 야수 사냥 하인 처치 · 피의 유지 +1 (최대 3).라운드 4 신속한 가르기 · 적에게 2 피해.라운드 4 야수 사냥 하인 · 특수 공격: 내려찍기.라운드 4 기본 근력 → 신속한 가르기 (속도 3, 피해 2).라운드 4 강력한 후리기 · 적에게 3 피해.라운드 4 야수 사냥의 단총 · 기본 공격 자동 방해, 화기 소진.라운드 4 야수 사냥 하인 · 기본 공격: 느릿느릿한 휘두르기.라운드 4 기본 활력 → 강력한 후리기 (속도 1, 피해 3).라운드 4 이동과 추격을 마쳤습니다.라운드 4 기나긴 사냥 · 피신처라운드 4 민가 / 위쪽 거리 칸 이동 · 남은 이동력 0.라운드 4 오에돈 예배당 / 왼쪽 아래 칸 이동 · 남은 이동력 1.라운드 4 이동 시작 · 최대 2칸.라운드 4 오에돈 예배당 / 오에돈 예배당에서 귀환했습니다.라운드 4 손패를 3장까지 보충했습니다.라운드 4 사냥 트랙 6/16 · 새 라운드라운드 3 사냥꾼의 꿈에서 체력·화기·상태 이상을 회복했습니다.라운드 3 야수 사냥 무리 #1 출현.라운드 3 재앙의 야수 #1 출현.라운드 3 야수 사냥 하인 #2 출현.라운드 3 야수 사냥 하인 #1 출현.라운드 3 지도 초기화 · 가까운 출현 지점부터 적과 소모품을 복원합니다. 면·슬롯·행동 덱은 유지합니다.라운드 3 사냥 트랙 5/16 · 사냥꾼의 꿈 입장라운드 3 처치당했습니다. 모든 피의 유지를 잃고 꿈에 입장합니다.라운드 3 재빠른 휩쓸기 · 사냥꾼에게 2 피해.라운드 3 재앙의 야수 · 기본 공격: 재빠른 휩쓸기.라운드 3 재앙의 야수 → 폐가 / 폐가.라운드 3 생존자 이동 · 남은 0칸.라운드 3 차례 종료 · 적 활성화.라운드 3 생존자 이동 · 남은 0칸.라운드 3 야수 사냥 하인 #1 출현.라운드 3 민가 공개 · 회전 방향을 선택하세요.라운드 3 생존자 이동 · 남은 1칸.라운드 3 생존자 이동 · 남은 2칸.라운드 3 생존자 이동 · 남은 3칸.라운드 3 기나긴 사냥 · 구조라운드 3 도끼 휘두르기 · 사냥꾼에게 3 피해.라운드 3 야수 사냥 무리 · 기본 공격: 도끼 휘두르기.라운드 3 발광한 무리 · 다음 공격 속도 +1, 피해 +1. 다른 행동을 공개합니다.라운드 3 야수 사냥 무리 · 전용 능력: 발광한 무리.라운드 3 이동과 추격을 마쳤습니다.라운드 3 야수의 발톱 · 처치 후 최대 2칸 이동.라운드 3 야수 사냥 하인 처치 · 피의 유지 +1 (최대 3).라운드 3 신속한 가르기 · 적에게 2 피해.라운드 3 야수 사냥 하인 · 특수 공격: 내려찍기.라운드 3 기본 근력 → 신속한 가르기 (속도 3, 피해 2).라운드 3 내려찍기 · 사냥꾼에게 4 피해."
+      },
+      "noInventedTitle": true,
+      "commands": [],
+      "save": "local-validation-work/saves/ui11-complete.actual-qa-save.json"
+    },
+    {
+      "id": "ui12-long-card-1208",
+      "size": {
+        "width": 1208,
+        "height": 1252
+      },
+      "keyboard": {
+        "cardMax": 89,
+        "cardScroll": 0,
+        "externalHandOverflow": 0,
+        "focused": true,
+        "h": 92.28125,
+        "hidden": false,
+        "hovered": false,
+        "selected": "false",
+        "text": "비열한 일격 · 방해, (당신이 위치한 칸에 있는 적이 능력을 사용하면, 이 기술을 손에서 버립니다)해당 적에게 2피해를 줍니다.",
+        "vh": 1252,
+        "vw": 1208,
+        "w": 340,
+        "x": 151.203125,
+        "y": 971.109375
+      },
+      "hover": {
+        "cardMax": 89,
+        "cardScroll": 0,
+        "externalHandOverflow": 0,
+        "focused": false,
+        "h": 92.28125,
+        "hidden": false,
+        "hovered": true,
+        "selected": "false",
+        "text": "비열한 일격 · 방해, (당신이 위치한 칸에 있는 적이 능력을 사용하면, 이 기술을 손에서 버립니다)해당 적에게 2피해를 줍니다.",
+        "vh": 1252,
+        "vw": 1208,
+        "w": 340,
+        "x": 151.203125,
+        "y": 971.109375
+      },
+      "wheel": {
+        "cardMax": 89,
+        "cardScroll": 89,
+        "externalHandOverflow": 0,
+        "focused": false,
+        "h": 92.28125,
+        "hidden": false,
+        "hovered": true,
+        "selected": "false",
+        "text": "비열한 일격 · 방해, (당신이 위치한 칸에 있는 적이 능력을 사용하면, 이 기술을 손에서 버립니다)해당 적에게 2피해를 줍니다.",
+        "vh": 1252,
+        "vw": 1208,
+        "w": 340,
+        "x": 151.203125,
+        "y": 971.109375
+      },
+      "escaped": {
+        "cardMax": 89,
+        "cardScroll": 89,
+        "externalHandOverflow": 0,
+        "focused": false,
+        "h": 0,
+        "hidden": true,
+        "hovered": true,
+        "selected": "false",
+        "text": "비열한 일격 · 방해, (당신이 위치한 칸에 있는 적이 능력을 사용하면, 이 기술을 손에서 버립니다)해당 적에게 2피해를 줍니다.",
+        "vh": 1252,
+        "vw": 1208,
+        "w": 0,
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "ui12-long-card-848",
+      "size": {
+        "width": 848,
+        "height": 848
+      },
+      "keyboard": {
+        "cardMax": 130,
+        "cardScroll": 111,
+        "externalHandOverflow": 0,
+        "focused": true,
+        "h": 92.28125,
+        "hidden": false,
+        "hovered": false,
+        "selected": "false",
+        "text": "비열한 일격 · 방해, (당신이 위치한 칸에 있는 적이 능력을 사용하면, 이 기술을 손에서 버립니다)해당 적에게 2피해를 줍니다.",
+        "vh": 848,
+        "vw": 848,
+        "w": 340,
+        "x": 144.5,
+        "y": 567.109375
+      },
+      "hover": {
+        "cardMax": 130,
+        "cardScroll": 111,
+        "externalHandOverflow": 0,
+        "focused": false,
+        "h": 92.28125,
+        "hidden": false,
+        "hovered": true,
+        "selected": "false",
+        "text": "비열한 일격 · 방해, (당신이 위치한 칸에 있는 적이 능력을 사용하면, 이 기술을 손에서 버립니다)해당 적에게 2피해를 줍니다.",
+        "vh": 848,
+        "vw": 848,
+        "w": 340,
+        "x": 144.5,
+        "y": 567.109375
+      },
+      "wheel": {
+        "cardMax": 130,
+        "cardScroll": 130,
+        "externalHandOverflow": 0,
+        "focused": false,
+        "h": 92.28125,
+        "hidden": false,
+        "hovered": true,
+        "selected": "false",
+        "text": "비열한 일격 · 방해, (당신이 위치한 칸에 있는 적이 능력을 사용하면, 이 기술을 손에서 버립니다)해당 적에게 2피해를 줍니다.",
+        "vh": 848,
+        "vw": 848,
+        "w": 340,
+        "x": 144.5,
+        "y": 567.109375
+      },
+      "escaped": {
+        "cardMax": 130,
+        "cardScroll": 130,
+        "externalHandOverflow": 0,
+        "focused": false,
+        "h": 0,
+        "hidden": true,
+        "hovered": true,
+        "selected": "false",
+        "text": "비열한 일격 · 방해, (당신이 위치한 칸에 있는 적이 능력을 사용하면, 이 기술을 손에서 버립니다)해당 적에게 2피해를 줍니다.",
+        "vh": 848,
+        "vw": 848,
+        "w": 0,
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "ui12-long-card-390",
+      "size": {
+        "width": 390,
+        "height": 848
+      },
+      "keyboard": {
+        "cardMax": 11,
+        "cardScroll": 11,
+        "externalHandOverflow": 127,
+        "focused": true,
+        "h": 92.28125,
+        "hidden": false,
+        "hovered": false,
+        "selected": "false",
+        "text": "비열한 일격 · 방해, (당신이 위치한 칸에 있는 적이 능력을 사용하면, 이 기술을 손에서 버립니다)해당 적에게 2피해를 줍니다.",
+        "vh": 848,
+        "vw": 390,
+        "w": 340,
+        "x": 18,
+        "y": 253.5625
+      },
+      "hover": {
+        "cardMax": 11,
+        "cardScroll": 11,
+        "externalHandOverflow": 127,
+        "focused": false,
+        "h": 92.28125,
+        "hidden": false,
+        "hovered": true,
+        "selected": "false",
+        "text": "비열한 일격 · 방해, (당신이 위치한 칸에 있는 적이 능력을 사용하면, 이 기술을 손에서 버립니다)해당 적에게 2피해를 줍니다.",
+        "vh": 848,
+        "vw": 390,
+        "w": 340,
+        "x": 18,
+        "y": 253.5625
+      },
+      "wheel": {
+        "cardMax": 11,
+        "cardScroll": 10,
+        "externalHandOverflow": 127,
+        "focused": false,
+        "h": 92.28125,
+        "hidden": false,
+        "hovered": true,
+        "selected": "false",
+        "text": "비열한 일격 · 방해, (당신이 위치한 칸에 있는 적이 능력을 사용하면, 이 기술을 손에서 버립니다)해당 적에게 2피해를 줍니다.",
+        "vh": 848,
+        "vw": 390,
+        "w": 340,
+        "x": 18,
+        "y": 253.5625
+      },
+      "escaped": {
+        "cardMax": 11,
+        "cardScroll": 10,
+        "externalHandOverflow": 127,
+        "focused": false,
+        "h": 0,
+        "hidden": true,
+        "hovered": true,
+        "selected": "false",
+        "text": "비열한 일격 · 방해, (당신이 위치한 칸에 있는 적이 능력을 사용하면, 이 기술을 손에서 버립니다)해당 적에게 2피해를 줍니다.",
+        "vh": 848,
+        "vw": 390,
+        "w": 0,
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "ui12-complete",
+      "commands": [],
+      "save": "local-validation-work/saves/ui12-complete.actual-qa-save.json",
+      "obs": {
+        "controls": [
+          {
+            "args": "{}",
+            "label": "플레이어의 차례 마치기",
+            "type": "END_TURN"
+          }
+        ],
+        "decisions": "선택 기술: 없음 · 슬롯: 없음이동무기 변형꿈으로 이동화기 다시 준비 · 손패 1장상호작용 · 손패 1장같은 칸의 여러 대상을 손패 1장으로 동시에 상호작용할 수 있습니다. 적들이 먼저 행동하며, 이때 맞서 공격하거나 회피할 수 없습니다.중앙 등불 순간이동 · 등불 또는 안개 안 칸사용하지 않음중앙 등불 / 중앙 등불 · 등불마당 등불 / 마당 등불 · 등불중앙 등불의 특수 효과로 안개 진입로 안의 칸에도 들어갈 수 있습니다. 그곳의 망가진 등불은 사용할 수 없고, 꿈에서 돌아오는 목적지로도 선택할 수 없습니다.상호작용 실행플레이어의 차례 마치기",
+        "dialogs": [],
+        "directions": [
+          {
+            "disabled": true,
+            "edge": "N",
+            "label": "위 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "E",
+            "label": "오른쪽 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "S",
+            "label": "아래 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "W",
+            "label": "왼쪽 이동"
+          }
+        ],
+        "enemies": [],
+        "error": "",
+        "hand": [
+          {
+            "id": "card-11",
+            "selected": "false",
+            "text": "활력기본 활력즉시 기술 1개를 뽑습니다."
+          },
+          {
+            "id": "card-14",
+            "selected": "false",
+            "text": "기술비열한 일격방해, (당신이 위치한 칸에 있는 적이 능력을 사용하면, 이 기술을 손에서 버립니다)해당 적에게 2피해를 줍니다."
+          }
+        ],
+        "help": "아래 손패에서 기술을 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.",
+        "phase": "플레이어의 차례",
+        "status": "사냥꾼체력 6 / 6 · 피의 유지 0 / 3중앙 등불 / 중앙 등불독 없음 · 발광 없음"
+      }
+    },
+    {
+      "id": "pursuit-burial-0-complete",
+      "commands": [
+        {
+          "type": "STEP",
+          "node": "tile-01:top"
+        },
+        {
+          "type": "STOP_MOVE"
+        }
+      ],
+      "save": "local-validation-work/saves/pursuit-burial-0-complete.actual-qa-save.json",
+      "obs": {
+        "controls": [
+          {
+            "args": "{}",
+            "label": "플레이어의 차례 마치기",
+            "type": "END_TURN"
+          }
+        ],
+        "decisions": "선택 기술: 없음 · 슬롯: 없음이동무기 변형꿈으로 이동화기 다시 준비 · 손패 1장공격 대상 · 야수 사냥 하인 #1 · 체력 5선택한 기술과 슬롯으로 공격플레이어의 차례 마치기",
+        "dialogs": [],
+        "directions": [
+          {
+            "disabled": true,
+            "edge": "N",
+            "label": "위 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "E",
+            "label": "오른쪽 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "S",
+            "label": "아래 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "W",
+            "label": "왼쪽 이동"
+          }
+        ],
+        "enemies": [
+          {
+            "id": "huntsmans-minion-1",
+            "label": "야수 사냥 하인 1번 · 체력 5 · 대상 선택"
+          },
+          {
+            "id": "scourge-beast-1",
+            "label": "재앙의 야수 1번 · 체력 4 · 대상 선택"
+          }
+        ],
+        "error": "",
+        "hand": [
+          {
+            "id": "card-1",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-3",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-6",
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다."
+          }
+        ],
+        "help": "아래 손패에서 기술을 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.",
+        "phase": "플레이어의 차례",
+        "status": "사냥꾼체력 6 / 6 · 피의 유지 0 / 3위 칸독 없음 · 발광 없음"
+      }
+    },
+    {
+      "id": "pursuit-burial-1-complete",
+      "commands": [
+        {
+          "type": "STEP",
+          "node": "tile-01:top"
+        },
+        {
+          "type": "STOP_MOVE"
+        }
+      ],
+      "save": "local-validation-work/saves/pursuit-burial-1-complete.actual-qa-save.json",
+      "obs": {
+        "controls": [
+          {
+            "args": "{}",
+            "label": "플레이어의 차례 마치기",
+            "type": "END_TURN"
+          }
+        ],
+        "decisions": "선택 기술: 없음 · 슬롯: 없음이동무기 변형꿈으로 이동화기 다시 준비 · 손패 1장공격 대상 · 야수 사냥 하인 #1 · 체력 5선택한 기술과 슬롯으로 공격플레이어의 차례 마치기",
+        "dialogs": [],
+        "directions": [
+          {
+            "disabled": true,
+            "edge": "N",
+            "label": "위 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "E",
+            "label": "오른쪽 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "S",
+            "label": "아래 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "W",
+            "label": "왼쪽 이동"
+          }
+        ],
+        "enemies": [
+          {
+            "id": "huntsmans-minion-1",
+            "label": "야수 사냥 하인 1번 · 체력 5 · 대상 선택"
+          },
+          {
+            "id": "scourge-beast-1",
+            "label": "재앙의 야수 1번 · 체력 4 · 대상 선택"
+          }
+        ],
+        "error": "",
+        "hand": [
+          {
+            "id": "card-1",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-3",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-6",
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다."
+          }
+        ],
+        "help": "아래 손패에서 기술을 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.",
+        "phase": "플레이어의 차례",
+        "status": "사냥꾼체력 6 / 6 · 피의 유지 0 / 3위 칸독 없음 · 발광 없음"
+      }
+    },
+    {
+      "id": "pursuit-beast-claw-0-complete",
+      "commands": [
+        {
+          "type": "STEP",
+          "node": "tile-01:top"
+        },
+        {
+          "type": "STOP_MOVE"
+        }
+      ],
+      "save": "local-validation-work/saves/pursuit-beast-claw-0-complete.actual-qa-save.json",
+      "obs": {
+        "controls": [
+          {
+            "args": "{}",
+            "label": "플레이어의 차례 마치기",
+            "type": "END_TURN"
+          }
+        ],
+        "decisions": "선택 기술: 없음 · 슬롯: 없음이동무기 변형꿈으로 이동화기 다시 준비 · 손패 1장공격 대상 · 야수 사냥 하인 #1 · 체력 5선택한 기술과 슬롯으로 공격플레이어의 차례 마치기",
+        "dialogs": [],
+        "directions": [
+          {
+            "disabled": true,
+            "edge": "N",
+            "label": "위 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "E",
+            "label": "오른쪽 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "S",
+            "label": "아래 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "W",
+            "label": "왼쪽 이동"
+          }
+        ],
+        "enemies": [
+          {
+            "id": "huntsmans-minion-1",
+            "label": "야수 사냥 하인 1번 · 체력 5 · 대상 선택"
+          },
+          {
+            "id": "scourge-beast-1",
+            "label": "재앙의 야수 1번 · 체력 4 · 대상 선택"
+          }
+        ],
+        "error": "",
+        "hand": [
+          {
+            "id": "card-1",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-3",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-6",
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다."
+          }
+        ],
+        "help": "아래 손패에서 기술을 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.",
+        "phase": "플레이어의 차례",
+        "status": "사냥꾼체력 6 / 6 · 피의 유지 0 / 3위 칸독 없음 · 발광 없음"
+      }
+    },
+    {
+      "id": "pursuit-beast-claw-1-complete",
+      "commands": [
+        {
+          "type": "STEP",
+          "node": "tile-01:top"
+        },
+        {
+          "type": "STOP_MOVE"
+        }
+      ],
+      "save": "local-validation-work/saves/pursuit-beast-claw-1-complete.actual-qa-save.json",
+      "obs": {
+        "controls": [
+          {
+            "args": "{}",
+            "label": "플레이어의 차례 마치기",
+            "type": "END_TURN"
+          }
+        ],
+        "decisions": "선택 기술: 없음 · 슬롯: 없음이동무기 변형꿈으로 이동화기 다시 준비 · 손패 1장공격 대상 · 야수 사냥 하인 #1 · 체력 5선택한 기술과 슬롯으로 공격플레이어의 차례 마치기",
+        "dialogs": [],
+        "directions": [
+          {
+            "disabled": true,
+            "edge": "N",
+            "label": "위 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "E",
+            "label": "오른쪽 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "S",
+            "label": "아래 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "W",
+            "label": "왼쪽 이동"
+          }
+        ],
+        "enemies": [
+          {
+            "id": "huntsmans-minion-1",
+            "label": "야수 사냥 하인 1번 · 체력 5 · 대상 선택"
+          },
+          {
+            "id": "scourge-beast-1",
+            "label": "재앙의 야수 1번 · 체력 4 · 대상 선택"
+          }
+        ],
+        "error": "",
+        "hand": [
+          {
+            "id": "card-1",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-3",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-6",
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다."
+          }
+        ],
+        "help": "아래 손패에서 기술을 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.",
+        "phase": "플레이어의 차례",
+        "status": "사냥꾼체력 6 / 6 · 피의 유지 0 / 3위 칸독 없음 · 발광 없음"
+      }
+    },
+    {
+      "id": "pursuit-ludwigs-holy-blade-0-complete",
+      "commands": [
+        {
+          "type": "STEP",
+          "node": "tile-01:top"
+        },
+        {
+          "type": "STOP_MOVE"
+        }
+      ],
+      "save": "local-validation-work/saves/pursuit-ludwigs-holy-blade-0-complete.actual-qa-save.json",
+      "obs": {
+        "controls": [
+          {
+            "args": "{}",
+            "label": "플레이어의 차례 마치기",
+            "type": "END_TURN"
+          }
+        ],
+        "decisions": "선택 기술: 없음 · 슬롯: 없음이동무기 변형꿈으로 이동화기 다시 준비 · 손패 1장화기 다시 준비 · 피의 유지 1개공격 대상 · 야수 사냥 하인 #1 · 체력 5선택한 기술과 슬롯으로 공격플레이어의 차례 마치기",
+        "dialogs": [],
+        "directions": [
+          {
+            "disabled": true,
+            "edge": "N",
+            "label": "위 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "E",
+            "label": "오른쪽 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "S",
+            "label": "아래 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "W",
+            "label": "왼쪽 이동"
+          }
+        ],
+        "enemies": [
+          {
+            "id": "huntsmans-minion-1",
+            "label": "야수 사냥 하인 1번 · 체력 5 · 대상 선택"
+          },
+          {
+            "id": "scourge-beast-1",
+            "label": "재앙의 야수 1번 · 체력 4 · 대상 선택"
+          }
+        ],
+        "error": "",
+        "hand": [
+          {
+            "id": "card-1",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-3",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-6",
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다."
+          }
+        ],
+        "help": "아래 손패에서 기술을 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.",
+        "phase": "플레이어의 차례",
+        "status": "사냥꾼체력 6 / 6 · 피의 유지 0 / 3위 칸독 없음 · 발광 없음"
+      }
+    },
+    {
+      "id": "pursuit-ludwigs-holy-blade-1-complete",
+      "commands": [
+        {
+          "type": "STEP",
+          "node": "tile-01:top"
+        },
+        {
+          "type": "STOP_MOVE"
+        }
+      ],
+      "save": "local-validation-work/saves/pursuit-ludwigs-holy-blade-1-complete.actual-qa-save.json",
+      "obs": {
+        "controls": [
+          {
+            "args": "{}",
+            "label": "플레이어의 차례 마치기",
+            "type": "END_TURN"
+          }
+        ],
+        "decisions": "선택 기술: 없음 · 슬롯: 없음이동무기 변형꿈으로 이동화기 다시 준비 · 손패 1장화기 다시 준비 · 피의 유지 1개공격 대상 · 야수 사냥 하인 #1 · 체력 5선택한 기술과 슬롯으로 공격플레이어의 차례 마치기",
+        "dialogs": [],
+        "directions": [
+          {
+            "disabled": true,
+            "edge": "N",
+            "label": "위 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "E",
+            "label": "오른쪽 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "S",
+            "label": "아래 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "W",
+            "label": "왼쪽 이동"
+          }
+        ],
+        "enemies": [
+          {
+            "id": "huntsmans-minion-1",
+            "label": "야수 사냥 하인 1번 · 체력 5 · 대상 선택"
+          },
+          {
+            "id": "scourge-beast-1",
+            "label": "재앙의 야수 1번 · 체력 4 · 대상 선택"
+          }
+        ],
+        "error": "",
+        "hand": [
+          {
+            "id": "card-1",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-3",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-6",
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다."
+          }
+        ],
+        "help": "아래 손패에서 기술을 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.",
+        "phase": "플레이어의 차례",
+        "status": "사냥꾼체력 6 / 6 · 피의 유지 0 / 3위 칸독 없음 · 발광 없음"
+      }
+    },
+    {
+      "id": "pursuit-ludwigs-holy-blade-0-free-accept-complete",
+      "commands": [
+        {
+          "type": "STEP",
+          "node": "tile-01:top"
+        },
+        {
+          "type": "STOP_MOVE"
+        }
+      ],
+      "save": "local-validation-work/saves/pursuit-ludwigs-holy-blade-0-free-accept-complete.actual-qa-save.json",
+      "obs": {
+        "controls": [
+          {
+            "args": "{}",
+            "label": "플레이어의 차례 마치기",
+            "type": "END_TURN"
+          }
+        ],
+        "decisions": "선택 기술: 없음 · 슬롯: 없음이동무기 변형꿈으로 이동화기 다시 준비 · 손패 1장화기 다시 준비 · 피의 유지 1개공격 대상 · 야수 사냥 하인 #1 · 체력 5선택한 기술과 슬롯으로 공격플레이어의 차례 마치기",
+        "dialogs": [],
+        "directions": [
+          {
+            "disabled": true,
+            "edge": "N",
+            "label": "위 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "E",
+            "label": "오른쪽 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "S",
+            "label": "아래 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "W",
+            "label": "왼쪽 이동"
+          }
+        ],
+        "enemies": [
+          {
+            "id": "huntsmans-minion-1",
+            "label": "야수 사냥 하인 1번 · 체력 5 · 대상 선택"
+          },
+          {
+            "id": "scourge-beast-1",
+            "label": "재앙의 야수 1번 · 체력 4 · 대상 선택"
+          }
+        ],
+        "error": "",
+        "hand": [
+          {
+            "id": "card-1",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-3",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-6",
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다."
+          }
+        ],
+        "help": "아래 손패에서 기술을 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.",
+        "phase": "플레이어의 차례",
+        "status": "사냥꾼체력 6 / 6 · 피의 유지 0 / 3위 칸독 없음 · 발광 없음"
+      }
+    },
+    {
+      "id": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-complete",
+      "commands": [
+        {
+          "type": "STEP",
+          "node": "tile-01:top"
+        },
+        {
+          "type": "STOP_MOVE"
+        }
+      ],
+      "save": "local-validation-work/saves/pursuit-uncanny-ludwigs-holy-blade-1-free-accept-complete.actual-qa-save.json",
+      "obs": {
+        "controls": [
+          {
+            "args": "{}",
+            "label": "플레이어의 차례 마치기",
+            "type": "END_TURN"
+          }
+        ],
+        "decisions": "선택 기술: 없음 · 슬롯: 없음이동무기 변형꿈으로 이동화기 다시 준비 · 손패 1장공격 대상 · 야수 사냥 하인 #1 · 체력 5선택한 기술과 슬롯으로 공격플레이어의 차례 마치기",
+        "dialogs": [],
+        "directions": [
+          {
+            "disabled": true,
+            "edge": "N",
+            "label": "위 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "E",
+            "label": "오른쪽 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "S",
+            "label": "아래 이동"
+          },
+          {
+            "disabled": true,
+            "edge": "W",
+            "label": "왼쪽 이동"
+          }
+        ],
+        "enemies": [
+          {
+            "id": "huntsmans-minion-1",
+            "label": "야수 사냥 하인 1번 · 체력 5 · 대상 선택"
+          },
+          {
+            "id": "scourge-beast-1",
+            "label": "재앙의 야수 1번 · 체력 4 · 대상 선택"
+          }
+        ],
+        "error": "",
+        "hand": [
+          {
+            "id": "card-1",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-3",
+            "selected": "false",
+            "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다."
+          },
+          {
+            "id": "card-6",
+            "selected": "false",
+            "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다."
+          }
+        ],
+        "help": "아래 손패에서 기술을 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.",
+        "phase": "플레이어의 차례",
+        "status": "사냥꾼체력 6 / 6 · 피의 유지 0 / 3위 칸독 없음 · 발광 없음"
+      }
+    }
+  ],
+  "screenshots": [
+    "bb030-slot-keyboard-after.jpg",
+    "ui01-firearm-keyboard-1208.jpg",
+    "ui01-hand-six-848.jpg",
+    "ui01-firearm-mobile.jpg",
+    "ui02-combat-comparison-used-slot.jpg",
+    "ui03-chapel-combat-applied-zero.jpg",
+    "ui03-chapel-combat-effects.jpg",
+    "ui04-controller-branch-choice.jpg",
+    "ui05-info-tile-11.jpg",
+    "ui05-info-tile-03.jpg",
+    "ui05-info-tile-07.jpg",
+    "ui05-departure-escort-confirmation.jpg",
+    "ui05-mission10-actual-change.jpg",
+    "ui05-mission10-enemy-applied-change.jpg",
+    "ui06-reward-tooltip-1208.jpg",
+    "ui06-reward-tooltip-390.jpg",
+    "ui06-reward-tooltip-848.jpg",
+    "ui06-equipped-tooltip.jpg",
+    "ui-mission3-change-notice.jpg",
+    "ui-mission3-enemy-change.jpg",
+    "ui-mission31-new-notice.jpg",
+    "ui-mission31-enemy-applied-change.jpg",
+    "ui-mission36-new-notice.jpg",
+    "ui-mission36-enemy-change.jpg",
+    "ui11-unnamed-tile-no-title.jpg",
+    "ui12-long-card-1208.jpg",
+    "ui12-long-card-848.jpg",
+    "ui12-long-card-390.jpg"
+  ],
+  "errors": [],
+  "beforeBug": {
+    "id": "BB-030",
+    "sourceCommit": "08d6405178111a11fe437309f4b7563fae84bea2",
+    "viewport": {
+      "width": 1063,
+      "height": 1252
+    },
+    "card": "card-14",
+    "wheelBefore": 0,
+    "wheelAfter": 50,
+    "afterClickScroll": 0,
+    "afterCardEnterActiveTag": "BODY",
+    "afterSlotEnterActiveTag": "BODY",
+    "secondNativeEnterDidNotToggle": true
+  },
+  "updatedAt": "2026-10-14T05:18:17.459Z"
+}
