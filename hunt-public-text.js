@@ -41,6 +41,16 @@
     text = text.replace(/장치무기\s*카드/g, "장치무기").replace(/화기\s*카드/g, "화기")
       .replace(/소모품\s*카드/g, "소모품").replace(/(?:스탯|공격용|공격)\s*카드/g, "기술")
       .replace(/(?:적\s*)?행동\s*카드/g, "행동").replace(/계몽\s*카드/g, "계몽 기록");
+    // Drawing an otherwise unqualified card means drawing from the hunter's
+    // stat deck, including when the instruction appears on an equipment panel.
+    // Keep explicit equipment/consumable/action sources out of this shortcut.
+    text = text.replace(/(^|[\s.,!?;:()[\]])카드(?:\s*(\d+)\s*장(?:을)?|를(?:\s*(\d+)\s*장)?)(?=\s*뽑)/g,
+      (whole, lead, countBefore, countAfter, offset, source) => {
+        const prefix = source.slice(0, offset + lead.length);
+        if (/(?:보상|장비|소모품|화기|장치무기|계몽|행동)(?:\s*덱에서)?\s*$/.test(prefix)) return whole;
+        const count = countBefore || countAfter;
+        return lead + (count ? `기술 ${count}개를` : "기술을");
+      });
     // Never look up an unopened reference's title just to replace its number.
     text = text.replace(/\d+\s*번(?:\s*[,·]\s*\d+\s*번)*\s*카드(?:들)?(?:를)?\s*(?:새로\s*)?공개(?:합니다|했습니다)\.?/g, "새로운 이야기가 이어집니다.");
     text = text.replace(/\d+\s*번(?:을|를)?(?=\s*(?:이번\s*챕터에서\s*)?(?:새로\s*)?공개)/g, "새로운 임무를");
@@ -133,11 +143,26 @@
     const gate = { mob: 5, shelter: 8, rescue: 12, bridge: 35, truth: 46 }[source.id];
     const numbered = source.id?.match(/^card-(\d+)$/);
     if (gate && !known(gate, state) || numbered && !known(Number(numbered[1]), state)) return null;
-    const description = m.chapter === 1 && source.id === "main" && !known(2, state)
+    let description = m.chapter === 1 && source.id === "main" && !known(2, state)
       ? "계몽 2개 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요."
       : source.id === "truth" && known(47, state) && !known(49, state)
         ? "진료소의 이오세프카를 처치하세요." : sentence(source.description);
-    return { ...source, title: clean(source.title), description };
+    const required = source.id === "main", guidance = [], actionTypes = [];
+    const sources = required ? m.chapter === 1 ? [1, 2] : m.chapter === 2 ? [18, 19, 20, 21, 22] : [40, 41, 42, 43]
+      : ({ mob: [5, 6], shelter: [8, 9, 10], rescue: [12, 13, 14], bridge: [35, 36, 37], truth: [46, 47, 49] }[source.id] || (numbered ? [Number(numbered[1])] : []));
+    if (required && m.chapter === 2 && known(18, state) && !known(19, state)) {
+      // The disclosed hunting mission itself states both acquisition and lure.
+      // Do not infer a future boss, reward, or task from this early objective.
+      guidance.push("재앙의 야수를 처치할 때마다 시체 토큰 1개를 얻습니다. 야수 사냥 하인·무리를 처치해도 시체를 얻지 못합니다.",
+        "자기 차례에 소모품 1개를 버리면 자신이 있는 칸에 재앙의 야수를 유인할 수 있습니다.",
+        "공동묘지 타일에서 보유한 시체를 바치세요.");
+      description += " 재앙의 야수를 처치해 시체를 얻으세요. 소모품 1개를 버려 현재 칸에 야수를 유인할 수 있습니다.";
+      actionTypes.push("MISSION_LURE", "MISSION_CORPSES");
+    }
+    return { ...source, title: clean(source.title), description,
+      kind: required ? "required" : "insight", categoryLabel: required ? "필수 목표" : "계몽 선택 임무",
+      reward: required ? null : { kind: "insight", amount: 1, text: "완수 시 계몽 1개" },
+      guidance, actionTypes, sourceCards: sources.filter(number => known(number, state)) };
   }
   function chapter(state, view, sourceData) {
     const m = state?.mission, data = campaign(sourceData);
@@ -152,7 +177,8 @@
     }));
     return { chapter: m.chapter, title: "기나긴 사냥 · 챕터 " + m.chapter, main,
       primary: objectives.find(item => !finished(item)) || objectives[0] || null,
-      objectives, activations, insightObjectives: objectives.filter(item => item.id !== "main"),
+      objectives, activations, insightObjectives: objectives.filter(item => item.kind === "insight"),
+      insightChoiceDescription: "개별 계몽 임무는 선택해서 진행합니다. 필수 목표에서 계몽을 요구하면 필요한 개수만큼 획득하세요.",
       insightDescription: `이번 챕터에서 획득한 계몽 ${view.insight || 0}개`,
       entries: (m.revealed || []).map(number => entry({ number }, state, { data })).filter(Boolean) };
   }

@@ -1,6 +1,6 @@
 (function (root) {
   "use strict";
-  root.BBInventory = function ({ E, getState, send, refresh }) {
+  root.BBInventory = function ({ E, getState, send, refresh, previewLoss }) {
     const D = E.data,
       $ = (id) => document.getElementById(id);
     const enemyDef = (e) => E.enemyDef ? E.enemyDef(e) : D.enemies[e.kind];
@@ -112,7 +112,7 @@
         if (!hint)
           hint = "스탯 카드 비용 없이 사용하며, 사용한 소모품은 버립니다.";
       }
-      detail.innerHTML = `<h3>${esc(d.name)}</h3><p>${esc(d.rules)}</p><div class="item-controls">${controls}</div><p class="muted">${esc(hint)}</p>`;
+      detail.innerHTML = `<h3>${esc(d.name)}</h3><p>${esc(d.rules)}</p><div class="item-controls">${controls}<div id="itemActionLoss"></div></div><p class="muted">${esc(hint)}</p>`;
       if ($("itemEnemy") && f.target === "enemy-destination") {
         const destinations = () => {
           const e = s.enemies.find((x) => x.id === $("itemEnemy").value);
@@ -133,15 +133,22 @@
         $("itemEnemy").onchange = destinations;
         destinations();
       }
-      if ($("useItem"))
-        $("useItem").onclick = () =>
-          send("USE_CONSUMABLE", {
+      const itemCommand = () => ({
             itemId: item.id,
             ...($("itemEnemy") ? { enemyId: $("itemEnemy").value } : {}),
             ...($("itemNode") ? { node: $("itemNode").value } : {}),
             ...($("itemSlot") ? { slot: +$("itemSlot").value } : {}),
             ...($("itemReward") ? { rewardId: $("itemReward").value } : {}),
           });
+      if ($("useItem")) {
+        $("useItem").onclick = () => send("USE_CONSUMABLE", itemCommand());
+        const updateLoss = () => {
+          const summary = previewLoss?.({ type: "USE_CONSUMABLE", ...itemCommand() });
+          $("itemActionLoss").innerHTML = summary ? `<p class="action-loss-warning">⚠ ${esc(summary)}</p>` : "";
+        };
+        $("itemNode")?.addEventListener("change", updateLoss);
+        updateLoss();
+      }
       if ($("toggleAttackItem"))
         $("toggleAttackItem").onclick = () => {
           attackIds.has(item.id)

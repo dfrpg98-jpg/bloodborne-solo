@@ -2727,21 +2727,31 @@
         if(rewardSession(s) && !h.inDream) rewards.onTurnStart(s);
         break;
       }
-      case "RETURN":
+      case "RETURN": {
         phase("return");
         need(
           node(s, a.node)?.lamp && [0, 1].includes(a.face),
           "귀환 등불과 무기 면을 선택하세요.",
         );
+        need(!Object.hasOwn(a, "reassignAttachments") || typeof a.reassignAttachments === "boolean",
+          "귀환 시 슬롯 부착 재배치 여부를 확인하세요.");
+        need(!a.reassignAttachments || a.face !== h.face,
+          "무기의 반대 면으로 귀환할 때 슬롯 부착 보상을 옮길 수 있습니다.");
         h.position = a.node;
         h.inDream = false;
         h.face = a.face;
         h.slots=Array(slots(s).length).fill(null);
         s.phase = "hunter";
         log(s, `${nameAt(s, a.node)}에서 귀환했습니다.`);
-        if(s.setup.rulesVersion>=11) rewards.reconcileSlots(s,rewardHelpers());
+        // Record this new timing explicitly: old RETURN commands must replay
+        // with their original closed window and unchanged saved snapshots.
+        // Choosing the opposite face moves attachments only; it does not run
+        // paid-transform firearm preparation or weapon-charge effects.
+        if(a.reassignAttachments && rewardSession(s)) rewards.onTransform(s,rewardHelpers());
+        else if(s.setup.rulesVersion>=11) rewards.reconcileSlots(s,rewardHelpers());
         if(rewardSession(s)) rewards.onTurnStart(s);
         break;
+      }
       case "PICK_UPGRADE":
         phase("upgrade_pick");
         need(

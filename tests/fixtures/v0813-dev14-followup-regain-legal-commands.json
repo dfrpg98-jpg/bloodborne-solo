@@ -1,0 +1,138 @@
+{
+  "setup": {
+    "seed": 123,
+    "weaponId": "burial",
+    "face": 1,
+    "firearmId": "hunter-pistol",
+    "startSpace": "center",
+    "options": {
+      "campaign": true,
+      "rulesVersion": 14,
+      "qa": {
+        "preset": "custom",
+        "startRewards": [],
+        "startConsumables": [
+          "coldblood",
+          "qa-cards",
+          "qa-cards",
+          "qa-cards",
+          "qa-cards",
+          "qa-cards",
+          "qa-cards",
+          "qa-cards",
+          "qa-cards",
+          "qa-cards",
+          "qa-cards",
+          "qa-travel",
+          "qa-travel",
+          "qa-travel",
+          "qa-travel",
+          "qa-travel",
+          "qa-travel",
+          "qa-travel",
+          "qa-travel",
+          "qa-travel",
+          "qa-travel"
+        ]
+      }
+    }
+  },
+  "commands": [
+    {
+      "type": "USE_CONSUMABLE",
+      "itemId": "item-coldblood-1"
+    },
+    {
+      "type": "DREAM",
+      "cardId": "card-4"
+    },
+    {
+      "type": "PICK_UPGRADE",
+      "index": 0
+    },
+    {
+      "type": "REPLACE_UPGRADE",
+      "replaceId": "card-9"
+    },
+    {
+      "type": "REFILL"
+    },
+    {
+      "type": "RETURN",
+      "node": "tile-14:center",
+      "face": 1
+    },
+    {
+      "type": "USE_CONSUMABLE",
+      "itemId": "item-qa-1-12"
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "N"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 0
+    },
+    {
+      "type": "STOP_MOVE"
+    },
+    {
+      "type": "ATTACK",
+      "cardId": "card-10",
+      "slot": 1,
+      "enemyId": "huntsmans-minion-1"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "USE_CONSUMABLE",
+      "itemId": "item-qa-1-2"
+    },
+    {
+      "type": "ATTACK",
+      "cardId": "card-6",
+      "slot": 0,
+      "enemyId": "huntsmans-minion-1"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "USE_CONSUMABLE",
+      "itemId": "item-qa-1-13"
+    },
+    {
+      "type": "STEP",
+      "node": "tile-06:top"
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "W"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 0
+    },
+    {
+      "type": "STOP_MOVE"
+    },
+    {
+      "type": "USE_CONSUMABLE",
+      "itemId": "item-qa-1-3"
+    },
+    {
+      "type": "ATTACK",
+      "cardId": "card-13",
+      "slot": 1,
+      "enemyId": "scourge-beast-1"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "EXTRA_TAKE"
+    }
+  ]
+}

@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="hunt-card-help.css?v=0.8.13-dev.7&amp;h=049dbeb75df2" />
     <link rel="stylesheet" href="hunt-map-controls.css?v=0.8.13-dev.13&amp;h=0d944385cbb5" />
     <link rel="stylesheet" href="hunt-combat-feedback.css?v=0.8.13-dev.13&amp;h=1e0ad016d33b" />
+    <link rel="stylesheet" href="hunt-combat-controls.css?v=0.8.13-dev.14&amp;h=da492708e6f5" />
+    <link rel="stylesheet" href="hunt-combat-ux.css?v=0.8.13-dev.14&amp;h=1e4e06ff3bcf" />
   </head>
   <body class="hunt-screen">
     <header class="topbar hunt-topbar">
@@ -53,7 +55,8 @@
         </section>
         <section class="panel hunt-decisions" aria-labelledby="phaseTitle">
           <div class="decision-heading"><p class="eyebrow">다음 선택</p><h2 id="phaseTitle"></h2></div>
-          <div class="decision-content" tabindex="0" aria-label="행동과 전투 상세"><p id="phaseHelp"></p><section id="mapContext" class="map-context" aria-label="선택한 대상의 행동과 비용" aria-live="polite" tabindex="-1" hidden></section><div id="combatInfo"></div><div id="missionActions" class="actions"></div><div id="decisions"></div></div>
+          <div class="decision-content" tabindex="0" aria-label="행동과 전투 상세"><div id="chapterProgress" class="chapter-progress" hidden></div><p id="phaseHelp"></p><section id="mapContext" class="map-context" aria-label="선택한 대상의 행동과 비용" aria-live="polite" tabindex="-1" hidden></section><div id="combatInfo"></div><div id="missionActions" class="actions"></div><div id="decisions"></div></div>
+          <div id="combatSelection" class="combat-selection-widget" aria-label="카드와 슬롯 선택" hidden></div>
           <div id="attackConsequences" class="attack-consequences" role="status" hidden></div>
           <div id="decisionActions" class="decision-action-dock" role="group" aria-label="현재 단계의 핵심 행동" hidden></div>
           <p id="error" class="error" role="alert"></p><div id="deckStatus" class="muted"></div>
@@ -107,8 +110,12 @@
     </dialog>
     <dialog id="missionUpdateDialog" class="mission-update-dialog" aria-labelledby="missionUpdateTitle" aria-describedby="missionUpdateSummary">
       <div class="mission-update-heading"><p id="missionUpdateEyebrow" class="eyebrow">임무 변화</p><h2 id="missionUpdateTitle">새로운 임무를 확인하세요</h2></div>
-      <div class="mission-update-content"><p id="missionUpdateSummary" class="mission-update-summary" hidden></p><div id="missionUpdateList" class="mission-update-items"></div></div>
+      <div class="mission-update-content"><p id="missionUpdateSummary" class="mission-update-summary" hidden></p><div id="missionUpdateProgress"></div><div id="missionUpdateList" class="mission-update-items"></div></div>
       <div class="mission-update-footer"><button id="missionUpdateContinue" type="button" class="primary" autofocus>확인하고 계속하기</button></div>
+    </dialog>
+    <dialog id="missionGuideDialog" class="compact-info-dialog" aria-labelledby="missionGuideTitle">
+      <div class="compact-dialog-heading"><h2 id="missionGuideTitle">목표 진행 방법</h2><button id="closeMissionGuide" type="button" autofocus>사냥으로 돌아가기</button></div>
+      <div id="missionGuideContent" class="compact-dialog-content"></div>
     </dialog>
     <dialog id="enemyHistoryDialog" class="compact-info-dialog" aria-labelledby="enemyHistoryTitle">
       <div class="compact-dialog-heading"><h2 id="enemyHistoryTitle">적 행동 이력</h2><button id="closeEnemyHistory" type="button" autofocus>닫기</button></div>
@@ -130,6 +137,10 @@
     <dialog id="escortDialog" class="compact-info-dialog escort-dialog" aria-labelledby="escortPromptTitle" aria-describedby="escortPromptDescription">
       <div class="compact-dialog-heading"><h2 id="escortPromptTitle">생존자와 동행하시겠습니까?</h2><button id="escortCancel" type="button" aria-label="이동 취소">취소</button></div>
       <div class="compact-dialog-content"><p id="escortPromptDescription"></p><div class="actions escort-prompt-actions"><button id="escortAccept" type="button" class="primary">예</button><button id="escortDecline" type="button">아니오</button></div></div>
+    </dialog>
+    <dialog id="actionLossDialog" class="compact-info-dialog action-loss-dialog" aria-labelledby="actionLossTitle" aria-describedby="actionLossDescription">
+      <div class="compact-dialog-heading"><h2 id="actionLossTitle">동행자·생존자 토큰 이탈 확인</h2></div>
+      <div class="compact-dialog-content"><p id="actionLossSummary" class="action-loss-summary"></p><p id="actionLossDescription"></p><ul id="actionLossList"></ul><p class="muted">취소하면 이동하지 않고, 카드·소모품·장비를 소비하지 않습니다.</p><div class="actions"><button id="actionLossCancel" type="button" autofocus>취소 · 현재 상태 유지</button><button id="actionLossAccept" type="button" class="danger">손실을 확인하고 이동</button></div></div>
     </dialog>
     <dialog id="loadDialog" class="compact-info-dialog load-entry-dialog" aria-labelledby="loadEntryTitle">
       <div class="compact-dialog-heading"><h2 id="loadEntryTitle">사냥 불러오기</h2><button id="loadEntryCancel" type="button">타이틀로</button></div>
@@ -247,15 +258,15 @@
     <script src="weapon-flow.js"></script>
     <script src="extended-enemy-rules.js"></script>
     <script src="qa-mode.js"></script>
-    <script src="hunt-engine.js"></script>
-    <script src="hunt-public-text.js"></script>
+    <script src="hunt-engine.js?v=0.8.13-dev.14&amp;h=fdefe48de8cc"></script>
+    <script src="hunt-public-text.js?v=0.8.13-dev.14&amp;h=5b220f801482"></script>
     <script src="hunt-enemy-mission-effects.js?v=0.8.13-dev.6&amp;h=f500fa38d874"></script>
-    <script src="hunt-mission-feedback.js?v=0.8.13-dev.6&amp;h=da34934ff8c6"></script>
+    <script src="hunt-mission-feedback.js?v=0.8.13-dev.14&amp;h=52b138c44a61"></script>
     <script src="hunt-death-feedback.js?v=0.8.13-dev.13&amp;h=d82f5c24b078"></script>
     <script src="enemy-action-history.js"></script>
-    <script src="inventory.js"></script>
+    <script src="inventory.js?v=0.8.13-dev.14&amp;h=8487332ba9e2"></script>
     <script src="hunt-entry.js?v=0.8.13-dev.11&amp;h=1fabaf52aa2d"></script>
-    <script src="game-help.js?v=0.8.13-dev.13&amp;h=4cabc2fe11aa"></script>
+    <script src="game-help.js?v=0.8.13-dev.14&amp;h=7ef06bd7462e"></script>
     <script src="hunt-shell.js?v=0.8.13-dev.11&amp;h=84526fec2add"></script>
     <script src="hunt-context.js"></script>
     <script src="hunt-map-controls.js?v=0.8.13-dev.6&amp;h=c6df79260c04"></script>
@@ -269,7 +280,11 @@
     <script src="enemy-visuals.js?v=0.8.13-dev.9&amp;h=2350a252f8f8"></script>
     <script src="hunt-presentation.js?v=0.8.13-dev.10&amp;h=142a7b648c59"></script>
     <script src="hunt-combat-feedback.js?v=0.8.13-dev.13&amp;h=c188457d1e8d"></script>
+    <script src="hunt-combat-controls.js?v=0.8.13-dev.14&amp;h=d9200f8525b2"></script>
+    <script src="hunt-outcome-preview.js?v=0.8.13-dev.14&amp;h=6e6169ec081f"></script>
+    <script src="hunt-action-availability.js?v=0.8.13-dev.14&amp;h=19955816d7dc"></script>
+    <script src="hunt-action-loss.js?v=0.8.13-dev.14&amp;h=e012b7eabcdc"></script>
     <script src="hunt-card-help.js?v=0.8.13-dev.7&amp;h=d0f40bd41a8e"></script>
-    <script src="hunt-app.js?v=0.8.13-dev.13&amp;h=75ee54bc0d59"></script>
+    <script src="hunt-app.js?v=0.8.13-dev.14&amp;h=d63cc28f28ca"></script>
   </body>
 </html>

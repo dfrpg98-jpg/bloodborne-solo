@@ -1,8 +1,22 @@
 const assert=require('node:assert/strict');
 const E=require('../../hunt-engine'), {boot}=require('./ui-harness.cjs');
+const ActionLoss=require('../../hunt-action-loss');
 const plain=x=>JSON.parse(JSON.stringify(x));
 const containers=['mapContext','decisions','missionActions','rewards','firearm','componentCards','chapterMap','explorationActions'];
 function matches(actual,wanted){return Object.entries(wanted).every(([k,v])=>JSON.stringify(actual[k])===JSON.stringify(v));}
+function controllerCommand(state,command){
+  // Current public RETURN explicitly opens an optional attachment window when
+  // choosing the opposite face. Keep legacy fixture bytes unchanged, and
+  // project only this new, intentional field for actual controller clicks.
+  return command.type==='RETURN'&&command.face!==E.hunter(state).face&&!Object.hasOwn(command,'reassignAttachments')
+    ?{...command,reassignAttachments:true}:command;
+}
+function controllerBatch(state,commands){
+  if(!commands.some(command=>command.type==='RETURN'))return commands;
+  const projected=[];let cursor=state;
+  for(const command of commands){const accepted=controllerCommand(cursor,command);projected.push(accepted);cursor=E.dispatch(cursor,accepted);}
+  return projected;
+}
 function clickCommand(s,command,options={}){
   const ui=boot(s,E.missionView(s),E.rewardsView(s),{realInventory:true,
     storage:{'bloodborne-hunt-v07':E.exportSave(s)},engine:{
@@ -118,7 +132,7 @@ function clickCommand(s,command,options={}){
       assert(reward,'reward use control enabled');reward.click();
     }else assert.fail(`No enabled UI action for ${s.phase}: ${JSON.stringify(command)}`);
   }
-  const departure=ui.el('escortDialog'),expectedCommands=options.expectedCommands||[command];
+  const departure=ui.el('escortDialog'),expectedCommands=controllerBatch(s,options.expectedCommands||[command]);
   assert(Array.isArray(expectedCommands),'the expected public command batch is explicit');
   if(departure?.open){
     assert.equal(ui.storage.get('bloodborne-hunt-v07'),originalSave,'a departure request preserves the exact save before its answer');
@@ -132,11 +146,36 @@ function clickCommand(s,command,options={}){
   }else if(options.departureAnswer){
     assert.fail(`The requested ${options.departureAnswer} departure answer needs a real departure dialog`);
   }
+  const lossDialog=ui.el('actionLossDialog'),lossPlan=ActionLoss.plan(E,s,expectedCommands);
+  if(lossDialog?.open){
+    // This replay explicitly requests the complete historical command batch.
+    // Accept only its independently matched loss plan; never blindly dismiss
+    // an arbitrary modal or add an approval behavior to the product itself.
+    assert(lossPlan,`Unexpected action-loss confirmation for ${JSON.stringify(expectedCommands)}`);
+    assert.deepEqual(plain(lossPlan.commands),plain(expectedCommands),'the loss confirmation belongs to the explicitly requested command batch');
+    assert.equal(ui.storage.get('bloodborne-hunt-v07'),originalSave,'a loss question spends no card, item or companion');
+    assert.equal(ui.el('actionLossSummary').textContent,lossPlan.summary,'the displayed losses match the public requested action');
+    for(const loss of lossPlan.losses)assert(ui.el('actionLossList').textContent.includes(loss.description),'every planned loss is explained before confirmation');
+    options.onActionLossRequest?.(ui,lossPlan);
+    assert.equal(ui.storage.get('bloodborne-hunt-v07'),originalSave,'inspecting the loss question preserves the exact save');
+    const accept=ui.el('actionLossAccept');assert(accept&&!accept.disabled,'scripted transport has an explicit enabled loss confirmation');
+    accept.click();assert.equal(lossDialog.open,false,'the accepted action-loss dialog closes');
+  }else if(lossPlan)assert.fail(`Missing action-loss confirmation for ${JSON.stringify(expectedCommands)}`);
+  if(ui.el('attachmentDialog')?.open){
+    const beforeClose=ui.storage.get('bloodborne-hunt-v07');
+    options.onAttachmentRequest?.(ui);
+    assert.equal(ui.storage.get('bloodborne-hunt-v07'),beforeClose,'inspecting optional attachment destinations changes no slot or resource');
+    const close=ui.el('closeAttachments');assert(close&&!close.disabled,'optional attachment changes can be declined without a command');
+    close.click();assert.equal(ui.el('attachmentDialog').open,false,'the replay explicitly keeps the current attachment slots');
+    assert.equal(ui.storage.get('bloodborne-hunt-v07'),beforeClose,'closing optional reassignment preserves the exact save');
+  }
   assert.equal(ui.el('error').textContent,'',`UI rejected ${JSON.stringify(command)}`);
   const next=E.importSave(ui.storage.get('bloodborne-hunt-v07'));
   assert.equal(next.revision,s.revision+expectedCommands.length,'only the explicitly expected public command batch commits');
   const committed=next.commands.slice(s.commands.length);
   assert.deepEqual(committed.map(c=>c.type),expectedCommands.map(c=>c.type),'the UI records the complete intended reducer batch once');
+  for(const [index,wanted]of expectedCommands.entries())if(wanted.type==='RETURN')
+    assert.deepEqual(plain(committed[index]),plain(wanted),'the return records its exact selected destination, face and explicit current attachment timing');
   const reference=expectedCommands.reduce((state,c)=>E.dispatch(state,c),s),functional=state=>{const copy=plain(state);delete copy.commands;return copy;};
   assert.deepEqual(functional(next),functional(reference),'actual UI commands preserve the intended original-rule result');
   if(!expectedCommands.length)assert.equal(ui.storage.get('bloodborne-hunt-v07'),originalSave,'cancel preserves the exact save');
@@ -144,7 +183,9 @@ function clickCommand(s,command,options={}){
 }
 // Historical traces used MISSION_PICKUP to arm a future departure. The new
 // public controller asks at departure instead. Preserve the original engine
-// stream separately and compare every gameplay field at each checkpoint.
+// stream separately and compare every gameplay field at each checkpoint. The
+// reference adopts only the explicit current RETURN timing when that command
+// is actually clicked through the public controller.
 function traceBehavior(state,ignorePickupReservation=false){
   const copy=plain(state);delete copy.commands;delete copy.revision;delete copy.log;
   if(ignorePickupReservation&&copy.mission?.escort)delete copy.mission.escort.pickup;
@@ -170,6 +211,9 @@ function replayPublicTrace(initial,commands,options={}){
         expectedCommands.push(command);
         clicked=options.shouldClick?!!options.shouldClick(beforeReference,command,reference,index):true;
         if(clicked){
+          expectedCommands=controllerBatch(state,expectedCommands);
+          const projected=controllerCommand(beforeReference,command);
+          if(projected!==command)reference=E.dispatch(beforeReference,projected);
           const clickOptions={...(options.clickOptions||{}),expectedCommands};
           if(eligible)clickOptions.departureAnswer=intent?'accept':'decline';
           state=clickCommand(state,command,clickOptions);
@@ -184,7 +228,7 @@ function replayPublicTrace(initial,commands,options={}){
       options.onCheckpoint?.({state,reference,beforeReference,command,index,clicked,expectedCommands});
     }catch(error){throw new Error(`${options.label||'public trace'} command ${index+1}/${commands.length} (${command.type}): ${error.message}`,{cause:error});}
   }
-  assert.deepEqual(traceBehavior(state),traceBehavior(reference),'final gameplay and pickup state equal the original unmodified trace');
+  assert.deepEqual(traceBehavior(state),traceBehavior(reference),'final gameplay and pickup state equal the trace with only explicitly accepted controller return timing');
   return {state,reference,originalCommandCount:commands.length,uiCommandCount,uiActions,deferredReservations};
 }
 module.exports={clickCommand,replayPublicTrace};

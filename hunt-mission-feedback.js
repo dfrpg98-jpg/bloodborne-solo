@@ -56,7 +56,7 @@
     const events = [], completedIds = new Set();
     function add(kind, objective, title, description, discriminator = "") {
       events.push({ key: `${chapter}:${kind}:${objective.id}:${discriminator || signature(objective, next)}`,
-        kind, title, description, objectiveId: objective.id });
+        kind, title, description, objectiveId: objective.id, chapter });
     }
     // Never infer completions from a historical save or another chapter. Import
     // and reload callers do not invoke this observer; null means a new hunt.
@@ -99,10 +99,14 @@
         if (priorEffects.get(change.enemyId)?.signature === change.signature) continue;
         const existing = events.find(event => event.objectiveId === change.objectiveId);
         const effects = [change.description, ...change.effects];
-        if (existing) existing.effects = [...(existing.effects || []), ...effects];
+        const enemyChange = { enemyId: change.enemyId, title: change.title, description: change.description, effects: [...change.effects] };
+        if (existing) {
+          existing.effects = [...(existing.effects || []), ...effects];
+          existing.enemyChanges = [...(existing.enemyChanges || []), enemyChange];
+        }
         else events.push({ key: `${chapter}:enemy-effect:${change.enemyId}:${change.signature}`,
-          kind: "updated", title: change.title, description: change.description,
-          objectiveId: change.objectiveId, effects: change.effects });
+          kind: "enemy-effect", title: change.title, description: change.description,
+          objectiveId: change.objectiveId, chapter, effects: change.effects, enemyChanges: [enemyChange] });
       }
     }
     // Effects are actual state deltas, attached once even when one command
@@ -120,6 +124,50 @@
       }
     }
     return events;
+  }
+  function chapterProgress(state, options = {}) {
+    if (!state?.mission?.won) return null;
+    const chapter = state.mission.chapter, final = chapter === 3,
+      rewards = options.E?.rewardsView?.(state),
+      pendingRewards = Array.isArray(rewards?.choices) ? rewards.choices.length : list(state.rewardChoices).length,
+      growthDone = ["over", "between_chapters"].includes(state.phase) || ["chapter-win", "campaign-win"].includes(state.result),
+      current = pendingRewards ? "rewards" : growthDone ? final ? "archive" : "next" : "growth";
+    const steps = [
+      { id: "rewards", label: "보상 선택", status: pendingRewards ? "current" : "done",
+        description: pendingRewards ? `대기 중 보상 ${pendingRewards}개를 선택하세요.` : "대기 중인 보상 선택을 마쳤습니다." },
+      { id: "growth", label: "마지막 꿈에서 성장", status: growthDone ? "done" : pendingRewards ? "pending" : "current",
+        description: growthDone ? "마지막 꿈의 선택을 마쳤습니다." : "남은 후속 선택을 마친 뒤 마지막 꿈에서 피의 유지로 성장하세요." },
+      { id: final ? "archive" : "next", label: final ? "캠페인 기록 보관" : `챕터 ${chapter + 1} 준비`,
+        status: !pendingRewards && growthDone ? "current" : "pending",
+        description: final ? "완료한 캠페인을 저장 파일로 내보내세요." : "마지막 꿈을 마친 뒤 장비와 시작 칸을 골라 다음 챕터를 준비하세요." }
+    ];
+    return { chapter, final, current, pendingRewards, growthDone, steps,
+      summary: pendingRewards ? "보상 선택 → 마지막 꿈에서 성장 → " + steps[2].label
+        : growthDone ? final ? "마지막 꿈까지 마쳤습니다. 완료한 캠페인을 보관하세요." : `마지막 꿈까지 마쳤습니다. 챕터 ${chapter + 1}을 준비하세요.`
+          : "마지막 꿈의 성장을 마친 뒤 " + (final ? "완료한 캠페인을 보관하세요." : `챕터 ${chapter + 1}을 준비하세요.`),
+      continueLabel: pendingRewards ? "보상 선택으로" : growthDone ? "완료 결과 확인" : "마지막 꿈의 선택 계속" };
+  }
+  function notice(updates, state, options = {}) {
+    const batch = list(updates);
+    if (!batch.length) return null;
+    // Completion outranks both the simultaneous completed objective and any
+    // other changes in the accepted batch. Acknowledging remains UI-only.
+    const chapter = batch.find(event => event.kind === "chapter"),
+      progress = chapterProgress(state, options),
+      onlyEnemy = batch.every(event => event.kind === "enemy-effect"),
+      completed = batch.every(event => ["completed", "chapter"].includes(event.kind));
+    if (chapter) return { kind: "chapter", eyebrow: "사냥 완수", title: chapter.title,
+      summary: progress?.summary || "챕터의 사냥을 완수했습니다. 남은 보상과 마지막 꿈의 선택을 확인하세요.",
+      continueLabel: progress?.continueLabel || "완료 결과 확인", progress,
+      events: [chapter, ...batch.filter(event => event !== chapter)] };
+    const labels = { new: "새로운 임무", updated: "목표 변경", completed: "임무 완수", "enemy-effect": "적 능력 변화" };
+    return { kind: onlyEnemy ? "enemy-effect" : completed ? "completed" : "new",
+      eyebrow: onlyEnemy ? "적 능력 변화" : "사냥의 변화",
+      title: onlyEnemy ? "적 능력 변화" : batch.length === 1 ? labels[batch[0].kind] || "임무 변화" : "임무가 변경되었습니다",
+      summary: options.E?.rewardsView?.(state)?.choices?.length
+        ? "임무 결과를 확인한 뒤, 행동 패널에서 획득한 보상을 선택하세요."
+        : onlyEnemy ? "바뀐 공격과 효과를 확인한 뒤 사냥을 계속하세요." : "변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.",
+      continueLabel: "확인하고 계속하기", progress: null, events: batch };
   }
   function reconcileTileSpeedAdoption(updates, previous, next, options = {}) {
     // Adoption is recorded after the accepted gameplay batch. Reconcile only
@@ -140,8 +188,10 @@
         (update.description === prior.description || update.effects?.includes(prior.description)))
         .flatMap(change => change.removed));
       if (!update.effects?.some(effect => obsolete.has(effect))) return update;
-      return { ...update, effects: update.effects.filter(effect => !obsolete.has(effect)) };
+      return { ...update, effects: update.effects.filter(effect => !obsolete.has(effect)),
+        ...(update.enemyChanges ? { enemyChanges: update.enemyChanges.map(change => ({ ...change,
+          effects: change.effects.filter(effect => !obsolete.has(effect)) })) } : {}) };
     });
   }
-  return Object.freeze({ describe, reconcileTileSpeedAdoption });
+  return Object.freeze({ describe, chapterProgress, notice, reconcileTileSpeedAdoption });
 });

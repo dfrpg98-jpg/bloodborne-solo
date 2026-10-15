@@ -1,0 +1,35 @@
+.combat-selection-widget { flex: 0 0 auto; min-width: 0; padding: 9px 0 0; margin-top: 8px; border-top: 1px solid #8c7951; background: #182329; font-size: 12px; line-height: 1.5; }
+.combat-selection-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.combat-selection-heading h3 { margin: 0; font-size: 14px; color: #f0d79e; }
+.combat-selection-heading > span { color: #b6c8cd; font-size: 10px; }
+.combat-selection-fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 7px; }
+.combat-selection-fields label { min-width: 0; display: flex; flex-direction: column; gap: 3px; color: #d8c69f; font-size: 11px; }
+.combat-selection-fields select { min-width: 0; width: 100%; margin: 0; padding: 7px 4px; font: inherit; color: #f1e8d4; background: #0f1b22; border: 1px solid #967d4d; border-radius: 4px; }
+.combat-selection-fields select:focus-visible { outline: 2px solid #f0d695; outline-offset: 2px; }
+.combat-selection-effects p { margin: 6px 0 0; font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
+.combat-selection-effects .combat-selected-slot-formula { display: flex; flex-wrap: wrap; gap: 2px 8px; color: #ecd7b0; }
+.combat-selected-card-effect strong { color: #ebd5a2; margin-right: 4px; }
+.combat-selection-hint { color: #b8c7cb; }
+.combat-card-replacement { margin-top: 6px; padding: 6px 8px; border: 1px solid #d59f6c; border-radius: 4px; background: #36271f; }
+.combat-card-replacement p { margin: 0; }
+.combat-card-replacement .combat-suppressed-effect { margin-top: 3px; color: #c9b9aa; }
+.combat-suppressed-effect > span { display: inline-block; margin-right: 4px; padding: 0 4px; border: 1px solid #aa8e7e; font-size: 10px; }
+.combat-card-replacement .combat-replacement-effect { margin-top: 3px; color: #ffe1af; font-weight: 700; }
+.combat-card-replacement small { display: block; margin-top: 3px; font-size: 10px; line-height: 1.4; color: #cfbca8; }
+.combat-selection-extras { margin-top: 6px; font-size: 11px; }
+.combat-selection-extras summary { color: #e5cb94; cursor: pointer; overflow-wrap: anywhere; }
+.combat-selection-extras ul { margin: 6px 0; padding-left: 18px; }
+.combat-selection-extras li + li { margin-top: 6px; }
+.combat-selection-extras p { margin-top: 2px; }
+.combat-selected-attack-stats { color: #ffdf9d; font-weight: 700; }
+.hunt-main .hunt-slot .slot-strength-speed, .hunt-main .hunt-slot .slot-strength-damage { font-size: 11px; line-height: 1.4; }
+.hunt-main .hunt-slot .slot-strength-damage { color: #efd3a0; }
+.hunt-main .hunt-slot .slot-strength-damage b { color: #ffe6af; }
+.attachment-choice .actions > button:has(.attachment-destination-name), .reward-pending button:has(.attachment-destination-name) { display: flex; flex-direction: column; align-items: stretch; gap: 5px; width: 100%; text-align: left; line-height: 1.5; }
+.attachment-destination-name { font-size: 13px; font-weight: 700; color: #f2d7a0; }
+.attachment-destination-stats { font-size: 12px; color: #e7e0ce; }
+.attachment-destination-stats b { color: #ffdfa1; }
+.attachment-destination-formula, .attachment-destination-effects { font-size: 11px; color: #c9c7bb; }
+.attachment-choice button:disabled .attachment-destination-name, .attachment-choice button:disabled .attachment-destination-stats, .attachment-choice button:disabled .attachment-destination-stats b { color: #b9b2a2; }
+@media (max-height: 760px) { .combat-selection-widget { padding-top: 6px; margin-top: 5px; } .combat-selection-heading { margin-bottom: 4px; } .combat-selection-fields select { padding: 5px 3px; } .combat-selection-effects p { margin-top: 4px; } }
+@media (max-width: 480px) { .combat-selection-heading > span { font-size: 9px; } .combat-selection-fields { gap: 5px; } }

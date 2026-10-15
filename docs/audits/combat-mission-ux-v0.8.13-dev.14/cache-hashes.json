@@ -1,0 +1,17 @@
+{
+  "version": "0.8.13-dev.14",
+  "hashes": {
+    "hunt-app.js": "d63cc28f28ca19082b409b46cdd936fd9067b6c15711a93fde2b1e43e0b461bc",
+    "hunt-engine.js": "fdefe48de8cc5b6de3de173e3ac7c49ba1e4a95e973b5dbd94b8d03c0d9c3489",
+    "inventory.js": "8487332ba9e22cf874cc9928b0dbd9e32db4435e33c5eb7fcd018a1e6ac5d003",
+    "hunt-public-text.js": "5b220f8014823c62ba4966df5159b8da60b39499845565e7b451d577944c3537",
+    "hunt-mission-feedback.js": "52b138c44a61e17ff087c13104e962609a89f4691b752bd63bf77cc176094bc6",
+    "hunt-combat-controls.js": "d9200f8525b27c5e402ca49c8d58db4ac5a193e0fff46a80efd4320540dcafb6",
+    "hunt-combat-controls.css": "da492708e6f5b30a4961d243d9d1a9bf4c2f81e13588dfa7a6f60d0a5b9c47e0",
+    "hunt-outcome-preview.js": "6e6169ec081ff95a0884275a701a2ff7d9304ddc6f75e1b22f6f3a8d5791d416",
+    "hunt-combat-ux.css": "1e4e06ff3bcfecf47ffd6426a2e247701e03ee880deacee34dc9d4a2900b4f19",
+    "hunt-action-availability.js": "19955816d7dcf9758ea48fa2e99588ac2cfb82c34bbb8613dc161b7d9d2bad64",
+    "hunt-action-loss.js": "e012b7eabcdca2b8f71277749cc4d2b2189d1d4e99c4748b26bd78eae9dd58e1",
+    "game-help.js": "7ef06bd7462e4d266240ab02ed31c5dd17a18b3f9738dd6adbbddbc2dd3ca442"
+  }
+}

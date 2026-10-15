@@ -1,0 +1,77 @@
+.objective-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+.objective-heading small { font-size: 10px; padding: 1px 5px; border: 1px solid #ac9566; border-radius: 3px; color: #ecd4a4; white-space: nowrap; }
+[data-objective-kind="insight"] .objective-heading small { border-color: #8e9eaf; color: #cbd7ec; }
+.objective-reward { display: block; margin-top: 4px; color: #c4d5e9; font-size: 11px; }
+.mission-insight-note { color: #bdcbd3; font-size: 12px; line-height: 1.6; }
+.mission-guide-trigger { margin-top: 5px; font-size: 11px; padding: 4px 7px; }
+.mission-guide-steps { margin: 0 0 16px; padding-left: 23px; }
+.mission-guide-steps li { padding: 4px 0 8px; font-size: 13px; line-height: 1.7; }
+.chapter-progress { margin-bottom: 12px; padding: 11px; background: #8c6d3226; border: 1px solid #bca267; border-radius: 5px; color: #eddfbe; }
+.chapter-progress h3 { margin: 0 0 7px; font-size: 17px; color: #ffe0a0; }
+.chapter-progress p, .chapter-progress-caption { margin: 6px 0; font-size: 12px; line-height: 1.65; }
+.chapter-progress-steps { display: grid; gap: 7px; list-style: none; padding: 0; margin: 10px 0; }
+.chapter-progress-steps li { padding: 7px 9px; border-left: 3px solid #57656a; background: #0b141866; }
+.chapter-progress-steps li strong, .chapter-progress-steps li span { display: block; }
+.chapter-progress-steps li strong { font-size: 13px; }
+.chapter-progress-steps li span { margin-top: 3px; font-size: 12px; line-height: 1.6; }
+.chapter-progress-steps li[data-status="current"] { border-color: #efd088; background: #b9924430; color: #ffe5b0; }
+.chapter-progress-steps li[data-status="done"] { border-color: #90b6a3; color: #afcabb; }
+#missionUpdateDialog[data-kind="chapter"] { border: 2px solid #e2bf72; }
+#missionUpdateDialog[data-kind="chapter"] .mission-update-heading { background: linear-gradient(110deg, #45371d, #172329); }
+#missionUpdateDialog[data-kind="chapter"] h2 { color: #ffe5a6; font-size: 25px; }
+#missionUpdateDialog[data-kind="enemy-effect"] .mission-update-heading h2 { color: #edc591; }
+#missionUpdateProgress:empty { display: none; }
+.combat-outcome-preview { padding: 11px; margin: 8px 0 14px; border: 1px solid #bf985e; border-radius: 4px; background: #332a1e; color: #f3dfbe; }
+.combat-outcome-preview h3 { margin: 0 0 8px; font-size: 14px; color: #ffe3a7; }
+.outcome-warning { padding: 7px 0; border-top: 1px solid #9d805844; font-size: 12px; line-height: 1.65; }
+.outcome-warning strong { color: #ffe3ad; }
+.outcome-warning p { margin: 5px 0 0; }
+.outcome-warning-critical { padding: 8px; margin: 5px -3px; border: 1px solid #d27e65; background: #632e25; }
+.outcome-warning-critical strong { color: #ffe0cc; }
+.outcome-sequence { margin: 10px 0; padding-left: 22px; font-size: 12px; line-height: 1.65; }
+.outcome-sequence li { margin: 8px 0; }
+.outcome-sequence strong, .outcome-sequence span { display: block; }
+.outcome-unknown, .outcome-conditional { font-size: 11px; color: #d0c5b2; line-height: 1.6; margin: 7px 0 0; }
+.combat-outcome-preview-compact { margin: 6px 0 0; padding: 6px 8px; font-size: 11px; }
+.combat-outcome-preview-compact h3 { margin-bottom: 3px; font-size: 11px; }
+.combat-outcome-preview-compact .outcome-warning { padding: 2px 0; font-size: 11px; line-height: 1.4; border: 0; }
+.combat-outcome-preview-compact .outcome-warning-critical { margin: 0 -3px; padding: 3px; }
+.combat-outcome-preview-compact .outcome-compact-more { margin: 3px 0 0; font-size: 10px; color: #c7bdac; }
+.outcome-compact-list { margin: 0; padding-left: 13px; }
+.combat-outcome-details > summary { margin: 5px 0 9px; color: #efd29d; font-size: 12px; cursor: pointer; }
+html[data-phase="combat_react"] .decision-content,
+html[data-phase="combat_extra"] .decision-content,
+html[data-phase="boss_react"] .decision-content { display: flex; flex-direction: column; }
+html[data-phase="combat_react"] .decision-content > *,
+html[data-phase="combat_extra"] .decision-content > *,
+html[data-phase="boss_react"] .decision-content > * { flex: 0 0 auto; }
+html[data-phase="combat_react"] #combatInfo,
+html[data-phase="combat_extra"] #combatInfo,
+html[data-phase="boss_react"] #combatInfo { order: -1; }
+.combat-reward-options { margin-top: 5px; font-size: 11px; }
+.combat-reward-options summary { color: #e7cd98; cursor: pointer; }
+.combat-reward-options .checkrow { margin: 6px 0 0; }
+.action-loss-warning { display: block; margin-top: 5px; padding: 4px 5px; border: 1px solid #d79873; border-radius: 3px; color: #ffe2bc; background: #6b3026; font-size: 12px; font-weight: 700; line-height: 1.55; }
+.action-loss-dialog { border: 2px solid #d79c76; }
+.action-loss-summary { font-size: 18px; font-weight: 700; color: #ffe0ae; padding: 9px; background: #5b3024; border-left: 4px solid #edbd8a; }
+#actionLossList { padding-left: 21px; line-height: 1.8; font-size: 13px; }
+#actionLossList li + li { margin-top: 9px; }
+/* The detailed comparison keeps scrolling room while the small selection and
+   confirmation group stays together below it. Expanded effect lists scroll. */
+.combat-selection-widget { flex: 0 1 auto; min-height: 72px; max-height: 235px; overflow-y: auto; scrollbar-width: thin; }
+.hunt-decisions .decision-content { flex: 1 1 100px; min-height: 80px; }
+@media (min-width: 721px) and (max-height: 760px) {
+  .combat-selection-widget { max-height: 190px; }
+  .combat-selection-heading h3 { font-size: 12px; }
+  .combat-selection-heading > span { font-size: 9px; }
+  .combat-selection-fields label, .combat-selection-effects p { font-size: 11px; }
+  .combat-selection-effects:has(> .combat-selection-hint:only-child) { display: none; }
+  .hunt-main .hunt-decisions .gun-panel h2 { font-size: 11px; line-height: 1.3; }
+  .hunt-main .hunt-decisions .gun-panel h2 small { display: inline; margin-left: 4px; font-size: 10px; }
+  .hunt-main .hunt-decisions .gun-panel { grid-template-columns: minmax(0, 1fr) minmax(115px, 54%); }
+  .hunt-main .hunt-decisions .gun-panel > button { padding: 4px; }
+}
+@media (max-width: 720px) {
+  .hunt-main .hunt-decisions { height: 640px; }
+  .combat-selection-widget { max-height: 210px; }
+}
