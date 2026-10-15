@@ -1,0 +1,123 @@
+{
+  "startedAt": "2026-10-15T11:01:06.559Z",
+  "completedAt": "2026-10-15T11:09:18.654Z",
+  "nodeVersion": "v24.19.0",
+  "runtimeVersion": "0.8.13-dev.11",
+  "branch": "feat/title-help-dev11",
+  "head": "12c2f2be3b8d58146c708c42e382a060c7d36145",
+  "command": [
+    "node",
+    "scripts/test-ci.cjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "spawnError": null,
+  "durationSeconds": 491.912,
+  "counts": {
+    "tests": 2748,
+    "suites": 0,
+    "pass": 2748,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "sourcePhotoTestsExcluded": [
+    "campaign covers all 67 ordered sources and 60 numbered cards with images",
+    "reference data preserves printed terminology with the confirmed enemy alias and six enemy sides",
+    "default v0.3 state remains without optional firearm fields and photo confirmation retains raw text",
+    "supplied component photos retain their exact bytes, hashes and card provenance"
+  ],
+  "focused": [
+    {
+      "file": "title-help-focused.json",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "tests/title-help-v0813.test.cjs"
+      ],
+      "exitCode": 0,
+      "counts": {
+        "tests": 31,
+        "pass": 31,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "failed": []
+    },
+    {
+      "file": "title-help-related.json",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "tests/hunt-replacement-ui-v0813.test.cjs",
+        "tests/qa-campaign-ui-v078.test.cjs",
+        "tests/info-panels-v087.test.cjs"
+      ],
+      "exitCode": 0,
+      "counts": {
+        "tests": 37,
+        "pass": 37,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "failed": []
+    },
+    {
+      "file": "title-help-map-panels.json",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "--test-name-pattern=screen keeps one map|opening and closing every information panel|Escape closes the active information panel",
+        "tests/map-hud-v080.test.cjs"
+      ],
+      "exitCode": 0,
+      "counts": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "failed": []
+    }
+  ],
+  "focusedTotal": 71,
+  "protectedFilesDefinition": "Tracked runtime/code/assets/scripts/test files plus untracked runtime modules and tests; excludes docs/**, Markdown, root TXT prose, work/ and test-results/. New source paths are re-enumerated after CI to catch additions/removals.",
+  "requiredNewFiles": [
+    "game-help.js",
+    "game-help.css",
+    "hunt-entry.js",
+    "title-screen.js",
+    "title-screen.css",
+    "training.html",
+    "tests/title-help-v0813.test.cjs"
+  ],
+  "checkpoints": [
+    {
+      "label": "before-full-ci",
+      "capturedAt": "2026-10-15T11:01:06.815Z",
+      "fileCount": 565,
+      "aggregateSha256": "c60abae0955fd6825651adb2f4f36708939f5e118730ba0dadbcc55bd0ef6c87"
+    },
+    {
+      "label": "after-full-ci",
+      "capturedAt": "2026-10-15T11:09:18.651Z",
+      "fileCount": 565,
+      "aggregateSha256": "c60abae0955fd6825651adb2f4f36708939f5e118730ba0dadbcc55bd0ef6c87"
+    }
+  ],
+  "allProtectedHashesStable": true,
+  "changedProtectedFiles": [],
+  "remoteCIRunClaimed": false,
+  "sourcePhotographsCopied": false,
+  "validationPassed": true
+}

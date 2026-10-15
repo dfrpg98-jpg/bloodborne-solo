@@ -6,7 +6,8 @@
     <title>블러드본 · 기나긴 사냥 캠페인</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="chapter.css" />
-    <link rel="stylesheet" href="hunt.css" />
+    <link rel="stylesheet" href="hunt.css?v=0.8.13-dev.11&amp;h=c6e93c88d54c" />
+    <link rel="stylesheet" href="game-help.css?v=0.8.13-dev.11&amp;h=a20cdab97671" />
     <link rel="stylesheet" href="hunt-hand-feedback.css?v=0.8.13-dev.6&amp;h=66350354029f" />
     <link rel="stylesheet" href="hunt-card-help.css?v=0.8.13-dev.7&amp;h=049dbeb75df2" />
     <link rel="stylesheet" href="hunt-map-controls.css?v=0.8.13-dev.6" />
@@ -14,12 +15,13 @@
   </head>
   <body class="hunt-screen">
     <header class="topbar hunt-topbar">
-      <a class="brand" href="hunt.html"><span class="sigil" aria-hidden="true">♜</span><span><small>BLOODBORNE · SOLO</small><strong>사냥의 기록</strong></span></a>
+      <a class="brand" href="index.html" aria-label="타이틀로"><span class="sigil" aria-hidden="true">♜</span><span><small>BLOODBORNE · SOLO</small><strong>사냥의 기록</strong></span></a>
       <div class="campaign-heading"><p id="modeLabel" class="eyebrow">기나긴 사냥 · 챕터 1</p><div class="save-line"><span id="qaModeBadge" class="badge" hidden>검증 전용</span><span id="saveStatus" class="save-status" role="status"></span></div></div>
       <nav class="top-actions" aria-label="사냥 도구와 기록">
         <button type="button" data-panel="inventory">소모품</button>
         <button type="button" data-panel="rewards">장비·보상 <span id="rewardPendingBadge" class="toolbar-count" hidden></span></button>
         <button type="button" data-panel="journal">일지 <span id="storyPendingBadge" class="toolbar-count" hidden></span></button>
+        <button type="button" data-panel="guide" aria-haspopup="dialog">도움말</button>
         <button type="button" data-panel="help">메뉴</button>
         <button id="new">새 사냥</button>
       </nav>
@@ -72,7 +74,7 @@
     </main>
     <dialog id="infoDialog" class="info-dialog" aria-labelledby="infoTitle">
       <div class="info-dialog-heading"><div><p class="eyebrow">사냥의 기록</p><h2 id="infoTitle">소모품</h2></div><button id="closeInfo" type="button" autofocus>사냥으로 돌아가기</button></div>
-      <nav class="info-tabs" aria-label="사냥 정보"><button type="button" data-panel="inventory">소모품</button><button type="button" data-panel="rewards">장비·보상</button><button type="button" data-panel="journal">일지</button><button type="button" data-panel="enemies">적 도감</button><button type="button" data-panel="help">메뉴</button></nav>
+      <nav class="info-tabs" aria-label="사냥 정보"><button type="button" data-panel="inventory">소모품</button><button type="button" data-panel="rewards">장비·보상</button><button type="button" data-panel="journal">일지</button><button type="button" data-panel="enemies">적 도감</button><button type="button" data-panel="guide">도움말</button><button type="button" data-panel="help">메뉴</button></nav>
       <p id="infoError" class="error" role="alert"></p>
       <div class="info-content">
         <section class="info-panel inventory-panel" data-info-panel="inventory" aria-label="보유 소모품">
@@ -93,9 +95,11 @@
           <section class="hunt-assignments"><h3>이번 사냥의 적 · 공격과 능력</h3><p id="setupInfo" class="muted"></p><div id="chapterEnemies" class="chapter-enemies"></div></section>
         </section>
         <section class="info-panel help-panel" data-info-panel="help" aria-label="진행 저장과 지도 안내" hidden>
+          <div class="actions menu-navigation"><button type="button" data-panel="guide">처음이라면 · 게임 도움말</button><a class="button" href="index.html">타이틀로</a></div>
           <div class="save-menu"><h3>진행 저장</h3><p class="muted">이 브라우저에 자동 저장됩니다. 진행 파일은 다른 기기에서 불러올 수 있습니다.</p><div class="actions save-actions"><button id="save" type="button">저장 내보내기</button><button id="load" type="button">불러오기</button><button id="resumeNormal" type="button" hidden>일반 사냥 이어하기</button><button id="resumeQa" type="button" hidden>검증 사냥 이어하기</button></div><input id="file" type="file" accept=".json,application/json" hidden /></div>
           <section class="map-key"><h3>지도와 행동</h3><p>칸·출입구·적 토큰을 누르면 오른쪽에 가능한 행동과 비용이 나타납니다. 손패의 기술과 필요한 무기 슬롯을 고른 뒤 행동을 실행하세요. 넓어진 지도는 지도 안에서 이동해 살펴볼 수 있습니다. <strong>현재 위치</strong>를 누르면 사냥꾼에게 돌아옵니다.</p><p>파랑 등불 · 초록 보물상자(소모품) · 흰 선은 칸 경계 · 가장자리 금색 틈은 출입구<br />● 사냥꾼 · ◇ 남은 소모품 · ◆ 임무 토큰 · ★ 특수 적 · ①②③ 적의 활성화 순서</p><a href="assets/tiles/index.html" target="_blank" rel="noopener">타일 도식 20종과 기호 범례 ↗</a></section>
         </section>
+        <section class="info-panel" data-info-panel="guide" aria-label="처음 사냥하는 분을 위한 게임 도움말" hidden><div id="gameHelpContent"></div></section>
       </div>
     </dialog>
     <dialog id="missionUpdateDialog" class="mission-update-dialog" aria-labelledby="missionUpdateTitle" aria-describedby="missionUpdateSummary">
@@ -115,8 +119,12 @@
       <div class="compact-dialog-heading"><h2 id="escortPromptTitle">생존자와 동행하시겠습니까?</h2><button id="escortCancel" type="button" aria-label="이동 취소">취소</button></div>
       <div class="compact-dialog-content"><p id="escortPromptDescription"></p><div class="actions escort-prompt-actions"><button id="escortAccept" type="button" class="primary">예</button><button id="escortDecline" type="button">아니오</button></div></div>
     </dialog>
-    <dialog id="setupDialog">
-      <h2>새 사냥</h2>
+    <dialog id="loadDialog" class="compact-info-dialog load-entry-dialog" aria-labelledby="loadEntryTitle">
+      <div class="compact-dialog-heading"><h2 id="loadEntryTitle">사냥 불러오기</h2><button id="loadEntryCancel" type="button">타이틀로</button></div>
+      <div class="compact-dialog-content"><p>이 브라우저의 진행을 이어가거나 내보낸 저장 파일을 선택하세요.</p><div class="load-entry-actions"><button id="loadEntryNormal" type="button" hidden>일반 사냥 이어하기</button><button id="loadEntryQa" type="button" hidden>검증 사냥 이어하기</button><button id="loadEntryFile" type="button" class="primary">저장 파일 선택</button></div><p id="loadEntryError" class="error" role="alert"></p></div>
+    </dialog>
+    <dialog id="setupDialog" aria-labelledby="setupTitle">
+      <h2 id="setupTitle">새 사냥</h2>
       <p id="setupIntro">시작할 칸을 선택한 뒤 사냥을 시작하세요.</p>
       <label>플레이 모드<select id="playMode"><option value="campaign">기나긴 사냥 · 챕터 1</option><option value="qa-campaign">기나긴 사냥 · 검증 전용</option><option value="practice">실제 지도 전투 연습 · 임무 없음</option><option value="cleric-beast">임시 성직자 야수 시험 · 2페이즈</option><option value="female-patient-a">임시 여성 야수 환자 시험 1</option><option value="female-patient-b">임시 여성 야수 환자 시험 2</option><option value="iosefka">임시 이오세프카 상호작용 시험</option></select></label>
       <div id="practiceSetup" class="practice-setup" hidden>
@@ -188,6 +196,7 @@
         <button id="resumeNormalSetup" hidden>일반 사냥 이어하기</button>
         <button id="resumeQaSetup" hidden>검증 사냥 이어하기</button>
         <button id="loadV06Setup" hidden>v0.6 자동 저장 이어하기</button>
+        <a class="button" href="index.html">타이틀로</a>
       </div>
     </dialog>
     <dialog id="storyDialog" class="story-dialog" aria-labelledby="storyTitle" aria-describedby="storyDescription">
@@ -232,7 +241,9 @@
     <script src="hunt-mission-feedback.js?v=0.8.13-dev.6&amp;h=da34934ff8c6"></script>
     <script src="enemy-action-history.js"></script>
     <script src="inventory.js"></script>
-    <script src="hunt-shell.js"></script>
+    <script src="hunt-entry.js?v=0.8.13-dev.11&amp;h=1fabaf52aa2d"></script>
+    <script src="game-help.js?v=0.8.13-dev.11&amp;h=06872d1403ac"></script>
+    <script src="hunt-shell.js?v=0.8.13-dev.11&amp;h=84526fec2add"></script>
     <script src="hunt-context.js"></script>
     <script src="hunt-map-controls.js?v=0.8.13-dev.6&amp;h=c6df79260c04"></script>
     <script src="hunt-departure.js"></script>
@@ -246,6 +257,6 @@
     <script src="hunt-presentation.js?v=0.8.13-dev.10&amp;h=142a7b648c59"></script>
     <script src="hunt-combat-feedback.js?v=0.8.13-dev.6&amp;h=50d577d1de64"></script>
     <script src="hunt-card-help.js?v=0.8.13-dev.7&amp;h=d0f40bd41a8e"></script>
-    <script src="hunt-app.js?v=0.8.13-dev.9&amp;h=135792a01f22"></script>
+    <script src="hunt-app.js?v=0.8.13-dev.11&amp;h=8094312a6fb9"></script>
   </body>
 </html>

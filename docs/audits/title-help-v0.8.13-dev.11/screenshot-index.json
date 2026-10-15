@@ -1,0 +1,137 @@
+{
+  "screenshots": [
+    {
+      "file": "screenshots/first-turn-finished.jpg",
+      "bytes": 147351,
+      "sha256": "8f2f6adcce4cbffefc45c64f9d09786d7492f3f3b86c8ae9a6a3314d48bed82a",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/game-help-390.jpg",
+      "bytes": 52347,
+      "sha256": "3c20929e11921010b08f3e092ddeb189006e96be9117922b691f98b96c5fb7a9",
+      "dimensions": [
+        375,
+        812
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/game-help-keyboard.jpg",
+      "bytes": 100653,
+      "sha256": "fa097b374d8a1244e85aac999298c2067a9bc991ba8d279c56a5386dcd4dce29",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/load-dialog.jpg",
+      "bytes": 38716,
+      "sha256": "b708c31e8753318c3fb0b21bf66006292838259a01ae0910f49847dc29020d9d",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/load-invalid.jpg",
+      "bytes": 40289,
+      "sha256": "8346fd1fedbcb9dc2cfa3e03318ef9d15155f1461a6249bec374a33616ac91da",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/title-390.jpg",
+      "bytes": 26987,
+      "sha256": "515362ab701fc7cd4d739d7f2fa396845663b76256700773b941286b1ffffb44",
+      "dimensions": [
+        390,
+        844
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/title-empty.jpg",
+      "bytes": 38010,
+      "sha256": "c3518907faec775108d0a9a3173deafb95eb086101c7c7212b3df6062cd7bb22",
+      "dimensions": [
+        1265,
+        712
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/title-help-390.jpg",
+      "bytes": 58466,
+      "sha256": "9a18ccecf392dcd9714a66469fa2d4a846df8f4bef275ebdc456fe49c99fb86a",
+      "dimensions": [
+        390,
+        844
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/title-help-landscape.jpg",
+      "bytes": 30114,
+      "sha256": "d3b74d0a95f43f6a6c0c7edf1d15c288c466bf013e185d1604514e1250fb1458",
+      "dimensions": [
+        785,
+        383
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/title-help.jpg",
+      "bytes": 69082,
+      "sha256": "9bf1a6d6a0b1d6cfd72740f862e558610263e378d6d24a31a45acfbcb3c1a9c7",
+      "dimensions": [
+        1265,
+        712
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/title-two-saves.jpg",
+      "bytes": 39911,
+      "sha256": "401e3dd2baf37bcd09bb12d2347559aaf3649aa8b19432b5f52cb75aaee09211",
+      "dimensions": [
+        1265,
+        712
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    }
+  ],
+  "originalBytes": true
+}

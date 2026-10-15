@@ -1,0 +1,91 @@
+{
+  "checkedAt": "2026-10-15T11:05:45.291Z",
+  "base": "http://127.0.0.1:8811/bloodborne-solo/",
+  "nativeBrowser": "Codex in-app browser",
+  "sourceController": "hunt-app.js?v=0.8.13-dev.11&h=8094312a6fb9",
+  "personal8786PlayStorageInspected": false,
+  "checks": [
+    {
+      "case": "Empty title",
+      "result": "BLOODBORNE / 블러드본 and three primary actions; no continue link before a hunt exists"
+    },
+    {
+      "case": "Title help",
+      "result": "Native dialog, close-button focus, Escape returns focus to titleHelp"
+    },
+    {
+      "case": "New title entry",
+      "result": "Shows existing setup without automatic save; confirmed seed90 ordinary hunt for beginner-walkthrough validation"
+    },
+    {
+      "case": "First-turn tutorial",
+      "result": "Seed90 ordinary campaign: acknowledge mission; discard strength to start move; move left one; stop early; use endurance to explore west; place Yard Lamp at0 degrees and enter; stop; acknowledge mission; end turn; reveal without counterattack; use final endurance in empty fast slot to dodge; resolve; refill. Returns hunter phase, health6, hand3, round2. This ordinary example checks beginner copy, not QA campaign completion."
+    },
+    {
+      "case": "In-game help",
+      "result": "Direct help and Menu→beginner-help share content. Enter opens first detail. Escape closes and returns to Help/Menu opener. No gameplay error."
+    },
+    {
+      "case": "QA mode",
+      "result": "Seed91 QA campaign with qa-test-weapon; acknowledge mission; move left one and stop; export. Title shows QA and normal continue links separately."
+    },
+    {
+      "case": "Normal/QA isolation",
+      "result": "Resume ordinary hunt after QA creation and movement; original ordinary export and new export are byte-identical. Both canonical imports replay successfully.",
+      "saves": [
+        {
+          "name": "normal-before",
+          "bytes": 12033,
+          "sha256": "121dd3624f49c77c80e50e5f4fa0b3ad3cab5a8b52d441f023fecaab264942e1",
+          "seed": 90,
+          "qa": false,
+          "round": 2,
+          "phase": "hunter",
+          "commands": 13
+        },
+        {
+          "name": "normal-after",
+          "bytes": 12033,
+          "sha256": "121dd3624f49c77c80e50e5f4fa0b3ad3cab5a8b52d441f023fecaab264942e1",
+          "seed": 90,
+          "qa": false,
+          "round": 2,
+          "phase": "hunter",
+          "commands": 13
+        },
+        {
+          "name": "qa",
+          "bytes": 11721,
+          "sha256": "599d09295eb2c6cdb2e317e8b77d3e5181750c7a77b3ad82a8b458354757a4db",
+          "seed": 91,
+          "qa": true,
+          "round": 1,
+          "phase": "hunter",
+          "commands": 4
+        }
+      ]
+    },
+    {
+      "case": "Invalid then valid file",
+      "result": "Native chooser invalid format: supported-format error remains in load dialog. Next native chooser accepts exported QA seed91; closes load dialog, shows QA badge and left-cell position, error empty."
+    },
+    {
+      "case": "Direct hunt bookmark",
+      "result": "Direct hunt.html restores active QA seed91, left cell, hunter phase, error empty. Controller query is final8094312a6fb9."
+    },
+    {
+      "case": "390x844 responsive",
+      "result": "Actual innerWidth390. Title and both help dialogs have no horizontal overflow. In-game dialog372px client/scroll; title dialog372px client/scroll and body362px client/scroll. In-game toolbar359px client/scroll."
+    },
+    {
+      "case": "800x390 landscape",
+      "result": "Actual800x390. Help dialog width768 and height358; close button40px high at top38.5..78.5 within viewport. Dialog scrollWidth/clientWidth766. Body can scroll while heading stays reachable."
+    }
+  ],
+  "limitations": [
+    "Async file timing failures are reproduced in isolated handler/UI-harness tests, not by throttling the native file system.",
+    "These native checks are title/help, one ordinary tutorial turn and one QA movement. They are not another whole-campaign, all-weapon, Unity or exhaustive sprite review.",
+    "The browser viewport override was reset after390x844 and800x390 checks.",
+    "At native modal keyboard edge Tab/Shift+Tab can leave focus to browser chrome (document.activeElement BODY); no claim of trapping browser chrome is made. Internal summary Enter/Space, Escape and opener restoration were observed."
+  ]
+}

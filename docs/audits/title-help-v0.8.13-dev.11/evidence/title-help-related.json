@@ -1,0 +1,20 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/hunt-replacement-ui-v0813.test.cjs",
+    "tests/qa-campaign-ui-v078.test.cjs",
+    "tests/info-panels-v087.test.cjs"
+  ],
+  "exitCode": 0,
+  "counts": {
+    "tests": 37,
+    "pass": 37,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "failed": []
+}

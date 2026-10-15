@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-15",
+  "kind": "confirmed-before-fix-import-race",
+  "initialObservation": {
+    "source": "Uncommitted title/help handler read earlier in this chat before importRequest guards were added",
+    "sourceHashRecordedAtThatTime": false,
+    "note": "The first observation was not persisted with a source hash. This report is an honest rerun of the same underlying await race from an immutable Git baseline, rather than assigning a later hash to the earlier observation."
+  },
+  "rerunSource": {
+    "repository": "bloodborne-solo",
+    "revision": "12c2f2be3b8d58146c708c42e382a060c7d36145",
+    "path": "hunt-app.js",
+    "gitBlob": "695314524ef5ffd1142c5fcee561563f2689dc5f",
+    "gitShowUtf8Sha256": "135792a01f2271bfc09270271ce6f99f5fe8c79b636856c3369fdd5aca096971",
+    "extractedHandlerSha256": "9bd75aeae382d728aa184b6be7a985bffc40bb43d7a231f12847652fa3d7071e",
+    "extractedHandlerFirstLine": 1853,
+    "extractedHandlerLastLine": 1878,
+    "engineSourceSha256": "c8483d7821da91bbe9927602c9833c71e33b8bda2d88a81b3c1924baa8d1b48d"
+  },
+  "method": "Exact original file onchange handler and applyLoadedRuling extracted from git show, evaluated in isolated memory with DOM/presentation stubs. Real hunt-engine create/export/import generate and validate the save. An intervening public-state adoption and autosave are modeled while File.text remains pending. This is not a native browser, real file-picker, gameplay, or disk/localStorage run.",
+  "inputs": {
+    "origin": "Generated in memory through actual E.create and E.exportSave, not a user save or hand-built raw state",
+    "initialHuntSeed": 333,
+    "selectedFileASeed": 111,
+    "newerHuntBSeed": 222,
+    "options": {
+      "weapon": "burial",
+      "face": 0,
+      "startingConsumable": null,
+      "firearm": "hunter-pistol",
+      "startSpace": "center",
+      "campaign": true
+    },
+    "selectedFileABytes": 8780,
+    "selectedFileASha256": "c6c4b74cc63e79ad2291b6e350669183211c294ae9eac80f0fb496885be90ffd",
+    "rawSaveInputsPersisted": false
+  },
+  "sequence": [
+    "Start the original onchange handler for selected file A; keep its File.text promise unresolved.",
+    "Adopt valid newer hunt B into the same controller-state variable and autosave B in the isolated map.",
+    "Resolve A's pending read with its valid engine-exported save text.",
+    "Await original handler completion and import the isolated saved output through E.importSave."
+  ],
+  "result": {
+    "afterNewerHuntBSeed": 222,
+    "finalControllerSeed": 111,
+    "finalSavedNormalSeed": 111,
+    "saveOrder": [
+      {
+        "key": "bloodborne-hunt-v07",
+        "initialSeed": 222
+      },
+      {
+        "key": "bloodborne-hunt-v07",
+        "initialSeed": 111
+      }
+    ],
+    "confirmed": "Selected older file A overwrote newer hunt B and then autosaved A.",
+    "assertionsPassed": 4,
+    "nativeBrowserClaim": false,
+    "productionFilesModified": false,
+    "realUserSaveModified": false
+  },
+  "limitation": "This proves the controller's stale asynchronous adoption without a DOM transaction token. It does not measure how often real file I/O overlaps an actual user switch, nor claim that a user save was lost in native QA."
+}

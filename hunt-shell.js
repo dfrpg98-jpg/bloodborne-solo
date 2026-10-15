@@ -4,7 +4,7 @@
 })(typeof window !== "undefined" ? window : globalThis, function (options) {
   "use strict";
   const { document, onCenterMap } = options;
-  const labels = { inventory: "보유 소모품", rewards: "보상과 장비", journal: "현재 목표와 사냥 기록", enemies: "적과 능력", help: "도움말과 저장" },
+  const labels = { inventory: "보유 소모품", rewards: "보상과 장비", journal: "현재 목표와 사냥 기록", enemies: "적과 능력", help: "메뉴 · 저장과 지도 안내", guide: "게임 도움말" },
     get = (id) => document.getElementById(id),
     all = (selector) => document.querySelectorAll ? [...document.querySelectorAll(selector)] : [],
     dialog = get("infoDialog");

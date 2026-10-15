@@ -33,6 +33,9 @@
 .hunt-screen .top-actions button { padding: 7px 10px; font-size: 12px; white-space: nowrap; }
 .toolbar-count { display: inline-grid; place-items: center; min-width: 16px; min-height: 16px; padding: 1px 3px; border-radius: 50%; font-size: 9px; color: #172027; background: #dcc28b; }
 .hunt-screen #new { border-color: #a78d5c; margin-left: 7px; }
+.menu-navigation { margin: 0 0 22px; }
+.load-entry-actions { display: grid; gap: 12px; margin: 22px 0; }
+.load-entry-dialog .compact-dialog-content { font-size: 14px; line-height: 1.7; }
 .hunt-screen .hunt-main {
   width: 100%;
   max-width: none;

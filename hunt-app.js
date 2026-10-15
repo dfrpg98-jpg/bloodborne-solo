@@ -10,6 +10,8 @@
     activeModeKey = "bloodborne-hunt-active-mode",
     previousKey = "bloodborne-hunt-v06",
     oldKey = "bloodborne-hunt-v05";
+  const entry = window.BBHuntEntry?.parse(window.location?.search || "") || null;
+  window.BBGameHelp?.mount($("gameHelpContent"));
   const esc = (x) =>
     String(x ?? "").replace(
       /[&<>"']/g,
@@ -109,7 +111,7 @@
     startupError = "",
     setupRequired = true;
   const practiceRewards = new Map(), qaRewards = new Map(), qaConsumables = new Map();
-  let lastSetupMode = "campaign";
+  let lastSetupMode = "campaign", importRequest = 0;
   // Reading a story is presentation only. No story field is added to replayed
   // game state or saved commands, including when older saves are resumed.
   const readStories = new Set();
@@ -177,7 +179,7 @@
   $("openMissionUpdates").onclick = showMissionUpdates;
   $("missionUpdateContinue").onclick = acknowledgeMissionUpdates;
   $("missionUpdateDialog").addEventListener("cancel", event => { event.preventDefault(); acknowledgeMissionUpdates(); });
-  try {
+  if (!entry) try {
     const current = localStorage.getItem(key), qaSaved = localStorage.getItem(qaKey),
       useQa = localStorage.getItem(activeModeKey) === "qa" && !!qaSaved,
       saved = useQa ? qaSaved : current || localStorage.getItem(previousKey) || qaSaved;
@@ -307,6 +309,7 @@
   function showError(message = "") {
     $("error").textContent = message;
     if ($("infoError")) $("infoError").textContent = message;
+    if ($("loadDialog")?.open) $("loadEntryError").textContent = message;
   }
   function save() {
     try {
@@ -1850,31 +1853,47 @@
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
   $("load").onclick = () => $("file").click();
+  function adoptLoadedState(loaded) {
+    // Validate and adopt policies completely before replacing the current hunt.
+    const adopted = applyLoadedRuling(loaded);
+    state = adopted;
+    resetStoryReading();
+    setupRequired = false;
+    restoredPrevious = false;
+    nextStartSpace = "";
+    nextFace = null;
+    if ($("setupDialog").open) $("setupDialog").close();
+    if ($("loadDialog")?.open) $("loadDialog").close();
+    selectedCard = null;
+    selectedSlot = null;
+    selectedEnemy = null;
+    mapTarget = null;
+    inspectedTile = null;
+    pulls.clear();
+    selectedRewards.clear();
+    inventory.clear();
+  }
   $("file").onchange = async (e) => {
     const f = e.target.files[0];
     if (!f) return;
+    // Retain the File object, but let the same file be selected again even if
+    // this read is cancelled or superseded before it completes.
+    e.target.value = "";
+    const request = ++importRequest;
+    let sourceState = state;
     try {
-      state = applyLoadedRuling(E.importSave(await f.text()));
-      state = applyLoadedRuling(state);
-      resetStoryReading();
-      setupRequired = false;
-      restoredPrevious = false;
-      nextStartSpace = "";
-      nextFace = null;
-      if ($("setupDialog").open) $("setupDialog").close();
-      selectedCard = null;
-      selectedSlot = null;
-      selectedRewards.clear();
-      pulls.clear();
-      inventory.clear();
+      const text = await f.text();
+      if (request !== importRequest || state !== sourceState) return;
+      adoptLoadedState(E.importSave(text));
+      sourceState = state;
       save();
       render();
       showError("");
     } catch (x) {
-      $("error").textContent = x.message;
+      if (request !== importRequest || state !== sourceState) return;
+      showError(x.message);
       if ($("setupDialog").open) $("setupError").textContent = x.message;
     }
-    e.target.value = "";
   };
   function renderSetupGuns() {
     const selected = $("gun").value, actualMode = setupActualMode();
@@ -2011,39 +2030,49 @@
       $("resumeQa").hidden = !qa || isQa();
       $("resumeNormalSetup").hidden = !normal;
       $("resumeQaSetup").hidden = !qa;
+      $("loadEntryNormal").hidden = !normal;
+      $("loadEntryQa").hidden = !qa;
     } catch { /* File save remains available. */ }
   }
   function restoreStored(storageKey, label) {
+    importRequest++;
     try {
       const saved = localStorage.getItem(storageKey);
       if (!saved) throw new Error(`이 브라우저에 ${label} 자동 저장이 없습니다.`);
-      state = applyLoadedRuling(E.importSave(saved));
-      resetStoryReading();
+      adoptLoadedState(E.importSave(saved));
       restoredPrevious = storageKey === previousKey;
-      setupRequired = false;
-      nextStartSpace = "";
-      nextFace = null;
-      if ($("setupDialog").open) $("setupDialog").close();
-      selectedCard = null;
-      selectedSlot = null;
-      selectedRewards.clear();
-      selectedEnemy = null;
-      pulls.clear();
-      inventory.clear();
       save();
       render();
       showError("");
-    } catch (e) { showError(e.message); }
+      return true;
+    } catch (e) { showError(e.message); return false; }
   }
   if ($("restoreV05")) $("restoreV05").onclick = () => restoreStored(oldKey, "v0.5");
   if ($("restoreV06")) $("restoreV06").onclick = () => restoreStored(previousKey, "v0.6");
   $("loadV06Setup").onclick = () => restoreStored(previousKey, "v0.6");
   const restoreNormal = () => {
-    try { restoreStored(localStorage.getItem(key) ? key : previousKey, "일반 사냥"); }
-    catch (error) { showError(error.message); }
+    try { return restoreStored(localStorage.getItem(key) ? key : previousKey, "일반 사냥"); }
+    catch (error) { showError(error.message); return false; }
   };
   $("resumeNormal").onclick = $("resumeNormalSetup").onclick = restoreNormal;
   $("resumeQa").onclick = $("resumeQaSetup").onclick = () => restoreStored(qaKey, "검증 사냥");
+  $("loadEntryNormal").onclick = restoreNormal;
+  $("loadEntryQa").onclick = () => restoreStored(qaKey, "검증 사냥");
+  $("loadEntryFile").onclick = () => $("file").click();
+  function leaveLoadDialog() {
+    importRequest++;
+    if (setupRequired) window.location.assign("index.html");
+    else $("loadDialog").close();
+  }
+  $("loadEntryCancel").onclick = leaveLoadDialog;
+  $("loadDialog").addEventListener("cancel", event => { event.preventDefault(); leaveLoadDialog(); });
+  function openLoadDialog() {
+    shell?.close();
+    renderResumeButtons();
+    $("loadEntryError").textContent = "";
+    $("loadDialog").showModal();
+    $("loadEntryFile").focus?.({ preventScroll: true });
+  }
   $("startingItem").innerHTML += Object.values(D.consumables)
     .filter((x) => x.runtime === "playable")
     .map((x) => `<option value="${x.id}">${esc(x.name)}</option>`)
@@ -2076,6 +2105,7 @@
   $("firearmOverride").onchange = validateSetupLoadout;
   $("practiceTarget").onchange = renderPracticeTargets;
   function openSetup() {
+    importRequest++;
     shell?.close();
     $("seed").value = Date.now() % 4294967295;
     $("start").value = "";
@@ -2091,9 +2121,10 @@
   }
   $("new").onclick = openSetup;
   $("loadSetup").onclick = () => $("file").click();
-  $("setupDialog").addEventListener("cancel", (e) => { if (setupRequired) e.preventDefault(); });
-  $("cancelSetup").onclick = () => $("setupDialog").close();
+  $("setupDialog").addEventListener("cancel", (e) => { importRequest++; if (setupRequired) e.preventDefault(); });
+  $("cancelSetup").onclick = () => { importRequest++; $("setupDialog").close(); };
   $("confirmSetup").onclick = () => {
+    importRequest++;
     try {
       if (setupQaMode() && $("qaPreset").value === "custom" && (selectionCount(qaRewards) > 16 || selectionCount(qaConsumables) > 40)) throw new Error("검증 시작 보상은 총 16장, 소모품은 총 40장까지 지급할 수 있습니다.");
       if (!validateSetupLoadout()) throw new Error("화기를 선택하세요. 기본 화기를 대신한다면 대체 연습 설정을 확인해야 합니다.");
@@ -2139,7 +2170,16 @@
   renderPracticeRewards();
   renderQaSetup();
   render();
-  if (startupError) showError(startupError);
-  else if (!setupRequired) save();
-  if (setupRequired) openSetup();
+  window.BBHuntEntry?.consume(window);
+  if (entry?.action === "load" || entry?.action === "continue") {
+    openLoadDialog();
+    if (entry.action === "continue") {
+      if (entry.mode === "qa") restoreStored(qaKey, "검증 사냥");
+      else restoreNormal();
+    }
+  } else {
+    if (startupError) showError(startupError);
+    else if (!entry && !setupRequired) save();
+    if (setupRequired) openSetup();
+  }
 })();
