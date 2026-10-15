@@ -61,6 +61,18 @@
       "pixelsModified": false
     },
     {
+      "file": "screenshots/runtime-title-8786.jpg",
+      "bytes": 46806,
+      "sha256": "4100852392d48c236a4b15660b9f4b85d9d1b6a56020fb1ad4f4e30fa448bb3b",
+      "dimensions": [
+        1063,
+        1252
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
       "file": "screenshots/title-390.jpg",
       "bytes": 26987,
       "sha256": "515362ab701fc7cd4d739d7f2fa396845663b76256700773b941286b1ffffb44",
