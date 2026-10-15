@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-10-15T15:08:04.595Z",
+  "runtimeVersion": "0.8.13-dev.14",
+  "productCommit": "b2896f818a188ee78407390037e8ef6a450fe6e5",
+  "url": "http://127.0.0.1:8786/bloodborne-solo/hunt.html",
+  "filesVerified": 341,
+  "allHttpHashesMatch": true,
+  "readOnlyPostStatus": 405,
+  "protectedFiles": {
+    "mode": "protected-files-unchanged",
+    "files": 190,
+    "bytes": 280674138,
+    "checkedAt": "2026-10-15T15:07:25.039Z",
+    "rawContentsWritten": false
+  },
+  "activeBrowserSave": {
+    "mode": "verification play",
+    "chapter": 1,
+    "commandCount": 18,
+    "bytes": 14652,
+    "sha256": "f91e14def8d0fc43677cbbf3c514f8b2ec3a8526e2d28f7d7bdc52b4ad70d9ce",
+    "byteIdenticalBeforeAfterReload": true,
+    "personalNormalSaveReplaced": false
+  },
+  "browser": {
+    "freshScriptsVersion": "0.8.13-dev.14",
+    "consoleErrors": [],
+    "menuClosedAfterExport": true
+  },
+  "rawPersonalFilesPublished": false,
+  "deletedFiles": 0
+}
