@@ -1,0 +1,22 @@
+{
+  "version": "0.8.13-dev.13",
+  "productCommit": "c0e2c0cd17f1e22d17bbedb671f829060c24a4f7",
+  "url": "http://127.0.0.1:8786/bloodborne-solo/hunt.html",
+  "liveServerPid": 37900,
+  "filesVerified": 335,
+  "referenceFilesUnchanged": 188,
+  "referenceBytesUnchanged": 280557345,
+  "actual8786Save": {
+    "identicalBeforeAndAfterReload": true,
+    "bytes": 14652,
+    "sha256": "f91e14def8d0fc43677cbbf3c514f8b2ec3a8526e2d28f7d7bdc52b4ad70d9ce",
+    "rawSavePublished": false
+  },
+  "nativeRuntimeScripts": [
+    "hunt-app.js?v=0.8.13-dev.13&h=75ee54bc0d59",
+    "hunt-death-feedback.js?v=0.8.13-dev.13&h=d82f5c24b078"
+  ],
+  "browserErrorsAfterReload": [],
+  "temporaryViewportReset": true,
+  "checkedAt": "2026-10-15T13:43:33.006Z"
+}

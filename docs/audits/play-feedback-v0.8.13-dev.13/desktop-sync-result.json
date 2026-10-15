@@ -1,0 +1,53 @@
+{
+  "mode": "applied-and-hash-verified",
+  "sourceCommit": "c0e2c0cd17f1e22d17bbedb671f829060c24a4f7",
+  "completedAt": "2026-10-15T13:41:54.943Z",
+  "source": "C:\\Users\\GOOD\\Documents\\Codex\\bloodborne-solo",
+  "desktop": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo",
+  "backup": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\work\\play-feedback-20261015\\desktop-backup-c0e2c0c",
+  "counts": {
+    "runtime": 331,
+    "documents": 4,
+    "allowlist": 335,
+    "add": 1,
+    "replace": 12,
+    "unchanged": 322,
+    "excludedTracked": 1361
+  },
+  "copied": [
+    "CHANGELOG.md",
+    "README.md",
+    "game-help.css",
+    "game-help.js",
+    "hunt-app.js",
+    "hunt-combat-feedback.css",
+    "hunt-combat-feedback.js",
+    "hunt-death-feedback.js",
+    "hunt-map-controls.css",
+    "hunt.css",
+    "hunt.html",
+    "index.html",
+    "package.json"
+  ],
+  "allAllowlistedFilesVerified": 335,
+  "preservedAreas": [
+    "참고자료/",
+    "components/images/",
+    "campaigns/long-hunt/images/",
+    ".git/",
+    ".github/",
+    "docs/",
+    "tests/",
+    "scripts/",
+    "unity-port/",
+    "node_modules/",
+    "outputs/",
+    "work/",
+    "dist/",
+    "test-results/",
+    "qa-fixtures*/",
+    "personal saves, environment files, archives, logs and Git-ignored files"
+  ],
+  "deletedFiles": 0,
+  "serverStarted": false
+}
