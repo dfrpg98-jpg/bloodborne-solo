@@ -156,6 +156,30 @@
       "mimeType": "image/jpeg",
       "actualEncoding": "JPEG",
       "pixelsModified": false
+    },
+    {
+      "file": "screenshots/14-runtime-updated-help.jpg",
+      "bytes": 48493,
+      "sha256": "e46f8d7625823eb99b808a0580ad0149b391bdc71297dc88dc54e1cd9684976f",
+      "dimensions": [
+        446,
+        650
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/15-runtime-verified-game.jpg",
+      "bytes": 45113,
+      "sha256": "cedf9de062c6444317722304c338d0d8086368f112cbd5ecf5355ad661f33d43",
+      "dimensions": [
+        446,
+        650
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
     }
   ]
 }
