@@ -1,0 +1,127 @@
+{
+  "version": "0.8.13-dev.15",
+  "checkedAt": "2026-10-15T23:50:20.892Z",
+  "url": "http://127.0.0.1:8815/bloodborne-solo/hunt.html",
+  "browser": "Codex In-App Browser",
+  "method": "Native UI only; legal command-generated QA saves imported through file chooser; no JS game state injection",
+  "cases": [
+    {
+      "id": "terminal-death",
+      "mode": "QA",
+      "checkpointCommands": 55,
+      "action": "RESOLVE, then acknowledge",
+      "observed": "Final-round HP1 takes3, ended background and modal agree; button results confirmation",
+      "screen": "terminal-death-result.jpg"
+    },
+    {
+      "id": "unnamed-three-cell",
+      "mode": "QA fast",
+      "checkpointCommands": 2,
+      "action": "Rotate90 and PLACE_TILE",
+      "observed": "North1 address persists in preview/map/current location; mobs spawn and enter normally",
+      "screen": "unnamed-three-cell-placed.jpg"
+    },
+    {
+      "id": "rifle-fixed-two",
+      "mode": "QA custom empty initial grants",
+      "checkpointCommands": 247,
+      "action": "Strength + shard-attached slot2, ENTRY_WEAPON accept",
+      "observed": "Fixed2, original Strength inactive before confirm; target HP4 to2 and face-down slot consumed",
+      "screen": "rifle-fixed-two-before-confirm.jpg"
+    },
+    {
+      "id": "tonitrus-charge",
+      "mode": "QA custom empty initial grants",
+      "checkpointCommands": 1,
+      "action": "Endurance + heavy slot3 selection only",
+      "observed": "Selected attack2speed4damage, charge1 consumed by next attack/round expiry text",
+      "screen": "tonitrus-charged-selection.jpg",
+      "actualAttackComparedInNative": false
+    },
+    {
+      "id": "claw-low-hp",
+      "mode": "QA custom empty initial grants",
+      "checkpointCommands": 73,
+      "action": "Endurance + slot2, ATTACK",
+      "observed": "HP2 preview3speed3damage and actual disclosed comparison3/3 match",
+      "screen": "claw-low-hp-final-selection.jpg"
+    },
+    {
+      "id": "reiter-fixed-separate",
+      "mode": "QA custom empty initial grants",
+      "checkpointCommands": 30,
+      "action": "Strength + slot2, WEAPON_SHOT",
+      "observed": "Normal attack2speed3damage distinguished from fixed2; shot target HP4 to2, no new action disclosure",
+      "screen": "reiter-normal-vs-fixed-choice.jpg"
+    },
+    {
+      "id": "chikage-self-cost",
+      "mode": "QA custom empty initial grants",
+      "checkpointCommands": 200,
+      "action": "Strength + slot3, set damage boost then ATTACK",
+      "observed": "Preview2speed4damage and HP4to3; actual comparison damage4 matches",
+      "screen": "chikage-payment-final-selection.jpg"
+    },
+    {
+      "id": "alive-time-exhaustion",
+      "mode": "QA fast",
+      "checkpointCommands": 24,
+      "action": "END_TURN",
+      "observed": "Ended hunt with HP6, death dialog remains closed",
+      "screen": "time-exhaustion-alive.jpg"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "screenshots/chikage-payment-final-selection.jpg",
+      "bytes": 164122,
+      "sha256": "74a6b3b5eb69aedef045a6be36fc44fb290cf90e36291d0943af429829a58f64"
+    },
+    {
+      "file": "screenshots/claw-low-hp-final-selection.jpg",
+      "bytes": 159492,
+      "sha256": "6794c3733ed8df531ba4202bf46a04e34f8433d3c9b09a749917604014fd2168"
+    },
+    {
+      "file": "screenshots/reiter-normal-vs-fixed-choice.jpg",
+      "bytes": 166690,
+      "sha256": "e29e08f71a0b8332dd0a8bf3a29d3f931b0eda2aa224af6beb3c507f8ebfea33"
+    },
+    {
+      "file": "screenshots/rifle-fixed-two-before-confirm.jpg",
+      "bytes": 166784,
+      "sha256": "12b9979f8f72ea6dd782560093dc4df715b8359cc9fbec650835e425cb83f013"
+    },
+    {
+      "file": "screenshots/terminal-death-result.jpg",
+      "bytes": 45499,
+      "sha256": "bfa2c29cd0ba2fc0f11e3ef8097c14fad808fb62a7309d9cbd80b36303fb45cb"
+    },
+    {
+      "file": "screenshots/time-exhaustion-alive.jpg",
+      "bytes": 136500,
+      "sha256": "4814828f96f6abf4a1a9a5157cbe7f0cd8a9af584339ada096e26664a0a13c9e"
+    },
+    {
+      "file": "screenshots/tonitrus-charged-selection.jpg",
+      "bytes": 154368,
+      "sha256": "8443fe94f7d78905de3591587690255dfa52e9d7b0dc4f123a866748687f060b"
+    },
+    {
+      "file": "screenshots/unnamed-three-cell-placed.jpg",
+      "bytes": 140640,
+      "sha256": "79c2cb5d37c6589bfcb8dedc7986a98da4c4673ae67cb8e4ca16eddd3fab21d9"
+    },
+    {
+      "file": "screenshots/unnamed-three-cell-preview.jpg",
+      "bytes": 147784,
+      "sha256": "b9cff0d3d3ab56fadb9c9656707f348687a07b11a9f1bbcce258c14e1bca65bb"
+    }
+  ],
+  "consoleErrors": [],
+  "cloudOriginalEvidenceClaimedLocal": false,
+  "axeEqualTargetsNativeClaimed": false,
+  "bossBoneDodgeNativeClaimed": false,
+  "fullCampaignNativeCompletionClaimed": false,
+  "deploymentPerformed": false
+}

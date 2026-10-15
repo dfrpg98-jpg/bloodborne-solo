@@ -67,7 +67,10 @@
       .replace(/(?:앞면|뒷면|[AB]\s*면)(?:으)?로\s*뒤집기/g, "다른 형태로 전환")
       .replace(/(?:앞면|뒷면|[AB]\s*면)(?:으)?로\s*(?:전환|변형)/g, "다른 형태로 전환")
       .replace(/(?:A\s*\/\s*B|앞\s*\/\s*뒷)\s*면/g, "변형 상태")
-      .replace(/(?:앞면|뒷면|[AB]\s*면)/g, "")
+      // A weapon's face label is presentation shorthand, but placing a hand
+      // card face down is an action cost: removing it leaves "으로 놓고" and
+      // hides that the card's stat effects do not execute.
+      .replace(/(?:앞면|뒷면)(?!\s*(?:으)?로\s*(?:놓|두|사용|배치))|[AB]\s*면/g, "")
       .replace(/계몽(을)?\s*(\d+)장/g, "계몽$1 $2개")
       .replace(/계몽(을)?\s*둘\s*이상/g, "계몽$1 2개 이상")
       .replace(/공개된\s*구조\s*임무의\s*선택\s*해결/g, "구조 임무에서 제시한 선택을 해결하세요.")

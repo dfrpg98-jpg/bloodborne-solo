@@ -1,0 +1,12 @@
+{
+  "version": "0.8.13-dev.15",
+  "hashes": {
+    "hunt-app.js": "a4318e0aa73e8f33665b10f086d1d80c302b7c819055a4ad8363322bbf07191e",
+    "hunt-death-feedback.js": "c0fb83d79d1005541d0e8b98737ce9254a70c59ce9bb15f3c0ce9a6683dd2a7e",
+    "hunt-public-text.js": "ceec3f309e15fe201beba7f53e41e1c6cda2ba121e882135ed647008d0d66198",
+    "hunt-combat-controls.js": "79ebf5f0dbf1f8523ed896cbe29a6f7ba25619a95ee013dbe2ab280553f7c435",
+    "hunt-combat-ux.css": "83110e6db54f68da0b726b0415caa25fa89d624342b60b13c6b90f39319d31e1",
+    "hunt-location-labels.js": "050325d0a994cb54d975ad209d103044c8a8d8111afe09430d110025a40e44c0",
+    "hunt-attack-preview.js": "9e672f21de42e66e01012d8659924701f123cc8a8d29e88e4695163fc43b0b24"
+  }
+}

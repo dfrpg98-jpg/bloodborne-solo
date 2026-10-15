@@ -69,7 +69,11 @@
     const held = args.itemId && (E.hunter(state).consumables || []).find(item => item.id === args.itemId),
       item = held && consumableDefinitions()?.[held.kind],
       label = item ? option.label.replace(held.name || held.kind, item.name) : option.label;
-    return button(esc(uiText(label, "mission")), type, args, !!option.disabled, cls);
+    const target = type === "WEAPON_CHOICE" && args.enemyId && state.enemies.find(enemy => enemy.id === args.enemyId),
+      effect = target && state.weaponEffects?.[0],
+      targetLabel = target && effect?.kind === "damage" ? `${E.enemyDef(state, target).name} #${target.figure} · ${nodeName(target.node)} · 체력 ${target.hp} / ${E.enemyDef(state, target).maxHp} · 피해 ${effect.damage}` : label,
+      context = ["WEAPON_SHOT", "ENTRY_WEAPON", "WEAPON_CHOICE"].includes(type) ? "skill" : "mission";
+    return button(esc(uiText(targetLabel, context)), type, args, !!option.disabled, cls);
   };
   const missionView = () => E.missionView ? E.missionView(state) : null;
   const tokenRevival = enemyId => {
@@ -86,7 +90,9 @@
   const saveKey = () => isQa() ? qaKey : key;
   const consumableDefinitions = () => E.consumableDefinitions ? E.consumableDefinitions(state) : D.consumables;
   const attackReplacesCardEffects = () => [...selectedRewards].some((id) => E.hunter(state).rewards?.some((r) => r.id === id && r.kind === "rune-clawmark"));
-  const nodeName = (id) => uiText(E.node(state, id)?.name || "지도 밖", "location");
+  const nodeName = (id) => uiText(window.BBHuntLocationLabels?.node(state, id, E) || E.node(state, id)?.name || "지도 밖", "location");
+  const tileReference = (placed) => window.BBHuntLocationLabels?.tile(state, placed.tileId, placed)?.reference ||
+    (M.tile(placed.tileId)?.named ? M.tile(placed.tileId).displayName : "새 지도 구역");
   const placementOptions = () => E.placementOptions
     ? E.placementOptions(state)
     : M.placementOptions(state.world, state.world.pending.tileId, state.world.pending.anchor);
@@ -205,7 +211,8 @@
     if ($("storyDialog").open) closeStory();
     if ($("missionUpdateDialog").open) $("missionUpdateDialog").close();
     $("deathTitle").textContent = notice.title;
-    $("deathDetails").innerHTML = `<p id="deathSummary" class="death-cause"><span>사망 원인</span><strong>${esc(uiText(notice.summary, "combat"))}</strong></p>${notice.entries.length ? `<ul class="death-damage-list">${notice.entries.map(entry => `<li>${esc(uiText(entry.source, "combat"))}<b>${entry.kind === "health-cost" ? "체력 지불" : "받은 피해"} ${entry.amount}</b></li>`).join("")}</ul><p class="death-damage-total">이번 처리에서 ${[notice.damageTotal > 0 && `받은 피해 ${notice.damageTotal}`, notice.healthCostTotal > 0 && `지불한 체력 ${notice.healthCostTotal}`].filter(Boolean).join(" · ")}</p>` : ""}<p>${esc(notice.consequence)}</p><p class="muted">받은 피해와 꿈 이동은 이미 처리되었습니다. 확인에는 행동 비용이 들지 않습니다.</p>`;
+    $("deathContinue").textContent = notice.continueLabel;
+    $("deathDetails").innerHTML = `<p id="deathSummary" class="death-cause"><span>사망 원인</span><strong>${esc(uiText(notice.summary, "combat"))}</strong></p>${notice.entries.length ? `<ul class="death-damage-list">${notice.entries.map(entry => `<li>${esc(uiText(entry.source, "combat"))}<b>${entry.kind === "health-cost" ? "체력 지불" : "받은 피해"} ${entry.amount}</b></li>`).join("")}</ul><p class="death-damage-total">이번 처리에서 ${[notice.damageTotal > 0 && `받은 피해 ${notice.damageTotal}`, notice.healthCostTotal > 0 && `지불한 체력 ${notice.healthCostTotal}`].filter(Boolean).join(" · ")}</p>` : ""}<p>${esc(notice.consequence)}</p><p class="muted">${esc(notice.footnote)}</p>`;
     $("deathDialog").showModal();
     $("deathContinue").focus?.({ preventScroll: true });
   }
@@ -1150,7 +1157,7 @@
       const q = state.world.pending,
         t = M.tile(q.tileId),
         opts = placementOptions();
-      html = `<h3>${esc(t.displayName)}</h3><p class="muted">지도에 표시된 미리보기에서 방향을 확인하세요.</p><div class="actions">${[0, 1, 2, 3].map((r) => `<button data-rotation="${r}" class="${rotation === r ? "primary" : ""}" ${opts.includes(r) ? "" : "disabled"}>${r * 90}°</button>`).join("")}</div>${button("이 방향으로 배치하고 진입", "PLACE_TILE", { rotation }, false, "primary")}`;
+      html = `<h3>${esc(tileReference(preview() || q))} · ${t.spaces.length}칸 타일 배치</h3><p class="muted">지도에 표시된 미리보기에서 방향을 확인하세요. 구역 표시는 중앙 등불을 기준으로 한 지도상 위치입니다.</p><div class="actions">${[0, 1, 2, 3].map((r) => `<button data-rotation="${r}" class="${rotation === r ? "primary" : ""}" ${opts.includes(r) ? "" : "disabled"}>${r * 90}°</button>`).join("")}</div>${button("이 방향으로 배치하고 진입", "PLACE_TILE", { rotation }, false, "primary")}`;
     } else if (p === "exchange_choice") {
       help = "획득한 소모품도 교환할 수 있습니다. 1장을 버려 피의 유지 1개를 얻거나 교환을 마치세요. 추가 스탯 카드 비용은 없습니다.";
       html = h.consumables.map((item) => button(`${esc(consumableDefinitions()[item.kind].name)} 교환 · 유지 +1`, "EXCHANGE_CHOICE", { itemId: item.id })).join("")
@@ -1197,11 +1204,12 @@
     } else if (p === "boss_react") {
       const reaction = E.combatReaction?.(state) || {};
       $("phaseTitle").textContent = reaction.title || "전용 능력 대응";
-      const blockPerSpeed = reaction.dodgeBlockPerSpeed || state.combat?.immediate?.dodgeBlockPerSpeed;
-      help = blockPerSpeed
+      const blockPerSpeed = reaction.dodgeBlockPerSpeed || state.combat?.immediate?.dodgeBlockPerSpeed,
+        dodged = !!state.combat?.dodged && !blockPerSpeed;
+      help = dodged ? "회피가 적용되었습니다. 계속 버튼으로 회피한 효과의 처리를 마치세요. 이 효과의 피해와 부가효과를 받지 않습니다." : blockPerSpeed
         ? `회피 속도마다 ${blockPerSpeed}피해를 방어합니다. 회피 카드와 빈 슬롯을 고른 뒤 ‘이 효과 회피’를 눌러 확정하세요.`
         : `합계 속도 ${reaction.dodgeSpeed ?? 1} 이상인 회피 카드와 빈 슬롯을 고른 뒤 ‘이 효과 회피’를 눌러 확정하세요.${reaction.effects?.length ? " " + reaction.effects.join(" · ") : ""}`;
-      html = `<p>${esc(selectHint)}</p>${button("이 효과 회피", "DODGE", { cardId: selectedCard, slot: selectedSlot }, !canCommit || !E.canDodge(state, selectedCard, selectedSlot))}${button(reaction.damage ? `피해 ${reaction.damage}와 효과를 받고 계속` : "회피하지 않고 효과 처리", "RESOLVE", {}, false, "primary")}`;
+      html = `<p>${esc(selectHint)}</p>${button("이 효과 회피", "DODGE", { cardId: selectedCard, slot: selectedSlot }, !canCommit || !E.canDodge(state, selectedCard, selectedSlot))}${button(dodged ? "회피 적용 후 계속" : reaction.damage ? `피해 ${reaction.damage}와 효과를 받고 계속` : "회피하지 않고 효과 처리", "RESOLVE", {}, false, "primary")}`;
     } else if (p === "combat_react" || p === "combat_extra") {
       const extra = p === "combat_extra";
       help = extra
@@ -1380,7 +1388,7 @@
     const weaponChoices = E.weaponChoices?.(state, { cardId: selectedCard, slot: selectedSlot, enemyId: selectedEnemy }) || [];
     if (!rewards?.choices.length && (p.startsWith("weapon_") || p === "entry_weapon")) {
       $("phaseTitle").textContent = p.includes("entry") ? "장치 무기 · 진입한 적 대응" : "장치 무기 효과 선택";
-      help = p.includes("entry") ? "무기 능력을 사용하려면 손에 든 카드와 빈 슬롯을 선택하세요." : "장치 무기의 효과를 처리할 대상이나 이동할 칸을 선택하세요.";
+      help = p.includes("entry") ? "손패 1장과 빈 슬롯 1개가 필요합니다. 기술을 뒷면으로 놓고 고정 피해 2를 줍니다. 카드 고유 효과와 공격 강화는 적용되지 않습니다." : `선택할 대상 ${weaponChoices.length}개 · 아래 고정 선택 버튼에서 위치와 번호를 확인하세요.`;
       html = `<p>${esc(selectHint)}</p>${weaponChoices.map((option) => commandButton(option)).join("")}`;
     } else if (!rewards?.choices.length && weaponChoices.length) html += `<div class="weapon-effect-choices"><p class="muted">${esc(E.weapon(state).name)} · 고유 효과</p>${weaponChoices.map((option) => commandButton(option)).join("")}</div>`;
     if (["hunter", "combat_choose"].includes(p) && ["attack_sacrifice_damage", "attack_sacrifice_speed_or_damage"].includes(boostCode)) {
@@ -1519,9 +1527,23 @@
     const dodge = ["combat_react", "combat_extra", "boss_react"].includes(state.phase),
       items = E.hunter(state).consumables.filter(item => inventory.ids().includes(item.id)).map(item => consumableDefinitions()[item.kind]),
       appliedEffects = !dodge && weaponBoost !== "none" ? [{ name: "선택한 무기 고유 효과", text: $("weaponBoost")?.selectedOptions?.[0]?.textContent || weaponBoost }] : [],
+      fixedEntry = state.phase === "weapon_entry",
+      innateShot = E.weaponChoices?.(state, { cardId: selectedCard, slot: selectedSlot, enemyId: selectedEnemy })
+        .some(option => option.command.type === "WEAPON_SHOT"),
+      attackPreview = !dodge && !fixedEntry ? window.BBHuntAttackPreview?.view(state, E, {
+        kind: state.phase === "combat_choose" ? "COUNTER" : "ATTACK",
+        cardId: selectedCard, slot: selectedSlot, rewardIds: [...selectedRewards], itemIds: inventory.ids(),
+        weaponBoost: E.weaponFace(state).effect?.code === "attack_sacrifice_damage" ?
+          weaponBoost === "none" ? 0 : +weaponBoost : weaponBoost,
+      }) : null,
       model = controls.view(state, E, { cardId: selectedCard, slot: selectedSlot, mode: dodge ? "dodge" : "attack",
-        rewardIds: [...selectedRewards], items, appliedEffects });
-    box.innerHTML = controls.renderHTML(model, { clean: text => uiText(text, "combat") });
+        rewardIds: [...selectedRewards], items, appliedEffects,
+        ...(fixedEntry ? { actionKind: "fixed-damage", fixedDamage: 2, actionLabel: "총창 진입 대응" } : {}),
+        ...(innateShot ? { fixedAction: { label: "수은탄 사격", damage: 2,
+          requiredSlot: E.weaponFace(state).effect.parameters.slot } } : {}) });
+    const clean = text => uiText(text, "combat");
+    box.innerHTML = controls.renderHTML(model, { clean }).replace('<div class="combat-selection-effects">',
+      '<div class="combat-selection-effects">' + (window.BBHuntAttackPreview?.renderHTML(attackPreview, { clean }) || ""));
     box.querySelectorAll("[data-combat-select]").forEach(select => select.onchange = () => {
       const focusId = select.getAttribute("id"), value = select.value;
       if (select.dataset.combatSelect === "card") selectedCard = E.hunter(state).hand.some(card => card.id === value) ? value : null;
@@ -1553,9 +1575,9 @@
     // state. Explanations can scroll without duplicating a game command.
     dock.replaceChildren();
     const core = new Set(["MOVE", "END_TURN", "STOP_MOVE",
-      "ATTACK", "COUNTER", "NO_ATTACK", "DODGE", "EXTRA_DODGE", "RESOLVE", "EXTRA_TAKE"]);
+      "ATTACK", "COUNTER", "NO_ATTACK", "DODGE", "EXTRA_DODGE", "RESOLVE", "EXTRA_TAKE", "WEAPON_CHOICE", "ENTRY_WEAPON", "WEAPON_SHOT"]);
     const controls = [...$("decisions").querySelectorAll("[data-command]"), ...$("mapContext").querySelectorAll("[data-command]")];
-    const order = ["ATTACK", "COUNTER", "NO_ATTACK", "DODGE", "EXTRA_DODGE", "RESOLVE", "EXTRA_TAKE", "MOVE", "STOP_MOVE", "END_TURN"];
+    const order = ["WEAPON_CHOICE", "ENTRY_WEAPON", "WEAPON_SHOT", "ATTACK", "COUNTER", "NO_ATTACK", "DODGE", "EXTRA_DODGE", "RESOLVE", "EXTRA_TAKE", "MOVE", "STOP_MOVE", "END_TURN"];
     controls.sort((a, b) => order.indexOf(a.dataset.command) - order.indexOf(b.dataset.command));
     const hasAttack = controls.some(control => ["ATTACK", "COUNTER"].includes(control.dataset.command));
     for (const control of controls) {
@@ -1609,7 +1631,7 @@
     const view = controls.tileInfo(state, inspectedTile);
     const h = E.hunter(state), sameTile = !h.inDream && current === inspectedTile;
     $("tileInspectionStatus").dataset.current = String(sameTile);
-    $("tileInspectionStatus").innerHTML = `<p class="tile-hunter-location"><span>● 사냥꾼의 현재 위치</span><strong>${esc(h.inDream ? "사냥꾼의 꿈" : nodeName(h.position))}</strong></p><p class="tile-inspected-location"><span>살펴보는 타일</span><strong>${esc(view?.name || "선택한 타일")}</strong><small>${sameTile ? "현재 위치가 있는 타일입니다." : "현재 위치와 다른 타일을 살펴보고 있습니다."}</small></p>`;
+    $("tileInspectionStatus").innerHTML = `<p class="tile-hunter-location"><span>● 사냥꾼의 현재 위치</span><strong>${esc(h.inDream ? "사냥꾼의 꿈" : nodeName(h.position))}</strong></p><p class="tile-inspected-location"><span>살펴보는 타일</span><strong>${esc(view?.name || window.BBHuntLocationLabels?.tile(state, inspectedTile)?.reference || "선택한 타일")}</strong><small>${sameTile ? "현재 위치가 있는 타일입니다." : "현재 위치와 다른 타일을 살펴보고 있습니다."}</small></p>`;
     $("inspectCurrentTile").disabled = !current;
     $("inspectCurrentTile").onclick = () => { inspectedTile = current; renderMap(); syncPresentation(); };
     if (!view) { box.innerHTML = '<p class="muted">지도 타일을 선택하면 내용과 특수 규칙을 확인할 수 있습니다.</p>'; return; }
@@ -1787,7 +1809,7 @@
       currentTile = E.node(state, h.position)?.tile,
       currentFog = !!mission?.fog.includes(currentTile),
       fog = !ghost && !!mission?.fog.includes(p.tileId), scene = mapScene(p, ghost, mission, h);
-    return `<div class="tile-cell ${ghost ? "ghost" : ""} ${fog ? "fog-tile" : ""}" data-tile="${p.tileId}" data-inspected="${!ghost && p.tileId === inspectedTile}"><img class="tile-diagram" src="${G.image(p.tileId)}" data-tile-art="${p.tileId}" data-tile-rotation="${p.rotation}" alt="" style="transform:rotate(${p.rotation * 90}deg)"><div class="tile-name">${ghost ? def.named ? `<span class="tile-label">${esc(def.displayName)}</span>` : "" : `<button type="button" class="tile-info-trigger ${def.named ? "" : "anonymous"}" data-tile-info="${p.tileId}" aria-label="${def.named ? esc(def.displayName) + " · " : ""}타일 정보 보기">${def.named ? esc(def.displayName) : "ⓘ"}</button>`}${ghost || fog ? `<span>${ghost ? "미리보기" : "안개"}</span>` : ""}</div>${def.spaces.map((n) => {
+    return `<div class="tile-cell ${ghost ? "ghost" : ""} ${fog ? "fog-tile" : ""}" data-tile="${p.tileId}" data-inspected="${!ghost && p.tileId === inspectedTile}"><img class="tile-diagram" src="${G.image(p.tileId)}" data-tile-art="${p.tileId}" data-tile-rotation="${p.rotation}" alt="" style="transform:rotate(${p.rotation * 90}deg)"><div class="tile-name">${ghost ? def.named ? `<span class="tile-label">${esc(def.displayName)}</span>` : `<span class="tile-reference">${esc(tileReference(p))}</span>` : `<button type="button" class="tile-info-trigger ${def.named ? "" : "anonymous"}" data-tile-info="${p.tileId}" aria-label="${esc(tileReference(p))} · 타일 정보 보기">${def.named ? esc(def.displayName) : `<span class="tile-reference">${esc(tileReference(p))}</span>`}</button>`}${ghost || fog ? `<span>${ghost ? "미리보기" : "안개"}</span>` : ""}</div>${def.spaces.map((n) => {
       const id = `${p.tileId}:${n.id}`, [x, y] = G.point(p.tileId, n.id, p.rotation),
         outline = G.polygon(p.tileId, n.id, p.rotation),
         left = Math.min(...outline.map(([x]) => x)), top = Math.min(...outline.map(([,y]) => y)),
@@ -1891,14 +1913,14 @@
     const n = E.nodes(state).find((n) => n.id === E.hunter(state).position),
       def = n ? M.tile(n.tileId) : null;
     const locationDetail = n
-      ? `<b>현재 위치 · ${esc(uiText(n.name, "location"))}</b>${def.rules.length ? '<p class="muted">' + def.rules.map(rule => esc(uiText(rule))).join(" ") + "</p>" : ""}${def.id === "tile-07" ? '<p class="muted">성배 교단 예배당 칸에서 상호작용하면 소모품 1개를 버리고 피의 유지 1개를 얻습니다. 같은 상호작용에서 획득한 소모품도 교환할 수 있습니다.</p>' : ""}`
+      ? `<b>현재 위치 · ${esc(nodeName(n.id))}</b>${def.rules.length ? '<p class="muted">' + def.rules.map(rule => esc(uiText(rule))).join(" ") + "</p>" : ""}${def.id === "tile-07" ? '<p class="muted">성배 교단 예배당 칸에서 상호작용하면 소모품 1개를 버리고 피의 유지 1개를 얻습니다. 같은 상호작용에서 획득한 소모품도 교환할 수 있습니다.</p>' : ""}`
       : "<b>현재 위치 · 사냥꾼의 꿈</b>";
-    $("locationText").textContent = n ? `현재 위치 · ${uiText(n.name, "location")}` : "현재 위치 · 사냥꾼의 꿈";
+    $("locationText").textContent = n ? `현재 위치 · ${nodeName(n.id)}` : "현재 위치 · 사냥꾼의 꿈";
     if ($("locationDetail")) $("locationDetail").innerHTML = locationDetail;
     $("nearEnemies").innerHTML = state.enemies
       .map(
         (e) =>
-          `<div class="hunt-enemy ${selectedEnemy === e.id ? "selected" : ""}"><span>${esc(E.enemyDef(state, e).name)} #${e.figure} · ${esc(uiText(E.node(state, e.node).name, "location"))}<br>체력 ${e.hp} / ${E.enemyDef(state, e).maxHp} · ${E.hunter(state).inDream ? "" : E.distance(state, E.hunter(state).position, e.node) + "칸 거리"}</span><button data-enemy="${e.id}">대상 선택</button></div>`,
+          `<div class="hunt-enemy ${selectedEnemy === e.id ? "selected" : ""}"><span>${esc(E.enemyDef(state, e).name)} #${e.figure} · ${esc(nodeName(e.node))}<br>체력 ${e.hp} / ${E.enemyDef(state, e).maxHp} · ${E.hunter(state).inDream ? "" : E.distance(state, E.hunter(state).position, e.node) + "칸 거리"}</span><button data-enemy="${e.id}">대상 선택</button></div>`,
       )
       .join("");
     bindEnemyTargets($("nearEnemies"));

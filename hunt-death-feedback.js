@@ -6,7 +6,7 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
   const deathLine = "처치당했습니다. 모든 피의 유지를 잃고 꿈에 입장합니다.";
-  // Only public health and journal entries cross this presentation boundary.
+  // Only public health, end-state flags and journal entries cross this boundary.
   // The engine may recover health within the same command as lethal damage;
   // a net-health comparison therefore cannot establish a death or its cause.
   function snapshot(state) {
@@ -17,6 +17,8 @@
       initialSeed: state.initialSeed,
       hunterId: state.activeHunterId || state.hunterId,
       hunter: h ? { hp: h.hp, inDream: h.inDream } : null,
+      phase: state.phase,
+      result: state.result,
       events: (state.events || []).filter(event => event && typeof event.text === "string")
         .map(event => ({ round: event.round, text: event.text })),
     };
@@ -61,8 +63,12 @@
       .filter(entry => entry && entry.amount > 0), fatal = entries[entries.length - 1];
     const damageTotal = entries.filter(entry => entry.kind === "damage").reduce((sum, entry) => sum + entry.amount, 0),
       healthCostTotal = entries.filter(entry => entry.kind === "health-cost").reduce((sum, entry) => sum + entry.amount, 0);
+    // A lethal command may finish Dream recovery and end the final round in
+    // one dispatch. Restored HP/inDream do not imply that play can continue.
+    const terminal = after.phase === "over";
     return {
-      title: "사냥꾼이 사망했습니다",
+      terminal,
+      title: terminal ? "사냥꾼 사망 · 사냥 종료" : "사냥꾼이 사망했습니다",
       cause: fatal?.source || "체력이 0이 되었습니다",
       fatalAmount: fatal?.amount ?? null,
       fatalKind: fatal?.kind || null,
@@ -71,7 +77,11 @@
       // can exceed remaining HP; never mislabel them as a net-health delta.
       damageTotal, healthCostTotal, entries,
       summary: fatal ? `${fatal.source} · ${fatal.kind === "health-cost" ? "체력 지불" : "피해"} ${fatal.amount}` : "이번 처리에서 체력이 0이 되어 사망했습니다.",
-      consequence: "체력이 0이 되어 사냥꾼의 꿈에 들어왔습니다.",
+      consequence: terminal ? "이번 사냥이 종료되었습니다. 사냥 종료 화면에서 결과를 확인하세요." :
+        "체력이 0이 되어 사냥꾼의 꿈에 들어왔습니다.",
+      continueLabel: terminal ? "사냥 종료 결과 확인" : "확인하고 꿈에서 계속",
+      footnote: terminal ? "받은 피해와 사냥 종료는 이미 처리되었습니다. 확인에는 행동 비용이 들지 않습니다." :
+        "받은 피해와 꿈 이동은 이미 처리되었습니다. 확인에는 행동 비용이 들지 않습니다.",
     };
   }
   return { snapshot, describe };

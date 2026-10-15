@@ -139,6 +139,8 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
     BBEnemyMissionEffects: require("../../hunt-enemy-mission-effects"),
     BBHuntCombatFeedback: fs.existsSync(path.join(root, "hunt-combat-feedback.js")) ? require("../../hunt-combat-feedback") : null,
     BBHuntCombatControls: fs.existsSync(path.join(root, "hunt-combat-controls.js")) ? require("../../hunt-combat-controls") : null,
+    BBHuntLocationLabels: require("../../hunt-location-labels"),
+    BBHuntAttackPreview: require("../../hunt-attack-preview"),
     BBHuntOutcomePreview: fs.existsSync(path.join(root, "hunt-outcome-preview.js")) ? require("../../hunt-outcome-preview") : null,
     BBHuntActionAvailability: fs.existsSync(path.join(root, "hunt-action-availability.js")) ? require("../../hunt-action-availability") : null,
     BBHuntActionLoss: fs.existsSync(path.join(root, "hunt-action-loss.js")) ? require("../../hunt-action-loss") : null,

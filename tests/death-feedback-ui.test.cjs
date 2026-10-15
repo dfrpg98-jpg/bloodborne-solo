@@ -22,6 +22,8 @@ test("a lethal enemy attack keeps its cause and real damage when the same comman
   const after = go(before, "RESOLVE"), originalBefore = structuredClone(before), originalAfter = structuredClone(after);
   assert.equal(E.hunter(after).hp, 6); assert.equal(E.hunter(after).inDream, true);
   const result = Feedback.describe(before, after);
+  assert.equal(result.terminal, false); assert.equal(result.continueLabel, "확인하고 꿈에서 계속");
+  assert.match(result.footnote, /꿈 이동/);
   assert.equal(result.cause, "도끼 휘두르기"); assert.equal(result.fatalAmount, 2);
   assert.equal(result.hpBefore, 1); assert.equal(result.damageTotal, 2); assert.equal(result.healthCostTotal, 0);
   assert.deepEqual(result.entries, [{ source: "도끼 휘두르기", amount: 2, kind: "damage" }]);
@@ -134,9 +136,9 @@ test("reloading the same save, changing hunts or switching hunters cannot replay
     assert.equal(Feedback.describe(before, { ...after, ...change }), null);
   assert.equal(Feedback.describe(after, after), null);
 });
-test("snapshots expose only public health and journal data, never combat plans or hidden decks", () => {
+test("snapshots expose only public health, end-state flags and journal data, never combat plans or hidden decks", () => {
   const s = fixture(), view = Feedback.snapshot(s);
-  assert.deepEqual(Object.keys(view).sort(), ["events", "hunter", "hunterId", "initialSeed", "revision"]);
+  assert.deepEqual(Object.keys(view).sort(), ["events", "hunter", "hunterId", "initialSeed", "phase", "result", "revision"]);
   assert.deepEqual(Object.keys(view.hunter).sort(), ["hp", "inDream"]);
   const clone = structuredClone(view); Feedback.describe(view, view); assert.deepEqual(view, clone);
 });
@@ -178,6 +180,7 @@ test("actual QA RESOLVE opens its death summary before restored Dream play and a
   clickUICommand(ui, "RESOLVE");
   assert.equal(ui.el("deathDialog").open, true); assert.equal(ui.el("missionUpdateDialog").open, false);
   assert.equal(ui.el("deathTitle").textContent, "사냥꾼이 사망했습니다");
+  assert.equal(ui.el("deathContinue").textContent, "확인하고 꿈에서 계속");
   assert.match(ui.el("deathDetails").textContent, /도끼 휘두르기.*피해 2/);
   assert.equal(ui.document.activeElement, ui.el("deathContinue"));
   const saved = ui.storage.get(qaKey), dispatchCount = dispatched.length; assert.deepEqual(E.importSave(saved), expected);
@@ -226,4 +229,89 @@ test("the death modal precedes a queued public mission notice and both acknowled
   ui.el("missionUpdateContinue").click();
   assert.equal(ui.el("missionUpdateDialog").open, false); assert.equal(ui.storage.get(qaKey), saved);
   assert.equal(dispatched.length, dispatchCount);
+});
+
+// Legal QA command replay, not a mutated final-round/health fixture. The last
+// RESOLVE receives the huntsman's printed 3 damage at HP 1 on track 16, and
+// that same dispatch restores Dream health before producing the terminal loss.
+function qaBeforeTerminalDeath() {
+  let s = E.create(4, "qa-test-weapon", 0, null, "hunter-pistol", "center",
+    { campaign: true, qa: { preset: "fast" } });
+  const commands = [
+    { type: "MOVE", cardId: "card-2" }, { type: "STEP", node: "tile-14:left" }, { type: "STOP_MOVE" },
+    { type: "MOVE", cardId: "card-8" }, { type: "EXPLORE", edge: "W" }, { type: "PLACE_TILE", rotation: 0 }, { type: "STOP_MOVE" },
+    { type: "END_TURN" }, { type: "NO_ATTACK" }, { type: "RESOLVE" }, { type: "REFILL" },
+    { type: "END_TURN" }, { type: "NO_ATTACK" }, { type: "RESOLVE" }, { type: "REFILL" },
+    { type: "RETURN", node: "tile-14:center", face: 0 }, { type: "END_TURN" }, { type: "REFILL" },
+    { type: "END_TURN" }, { type: "REFILL" }, { type: "END_TURN" }, { type: "REFILL" },
+    { type: "END_TURN" }, { type: "NO_ATTACK" }, { type: "RESOLVE" },
+    { type: "ENEMY_STEP", node: "tile-14:left" }, { type: "STUN_DISCARD", cardId: "card-8" }, { type: "REFILL" },
+    { type: "END_TURN" }, { type: "NO_ATTACK" }, { type: "RESOLVE" }, { type: "REFILL" },
+    { type: "END_TURN" }, { type: "NO_ATTACK" }, { type: "RESOLVE" }, { type: "REFILL" },
+    { type: "RETURN", node: "tile-14:center", face: 0 }, { type: "END_TURN" }, { type: "REFILL" },
+    { type: "END_TURN" }, { type: "NO_ATTACK" }, { type: "RESOLVE" }, { type: "REFILL" },
+    { type: "END_TURN" }, { type: "REFILL" }, { type: "END_TURN" }, { type: "REFILL" },
+    { type: "END_TURN" }, { type: "NO_ATTACK" }, { type: "RESOLVE" },
+    { type: "ENEMY_STEP", node: "tile-14:left" }, { type: "STUN_DISCARD", cardId: "card-5" }, { type: "REFILL" },
+    { type: "END_TURN" }, { type: "NO_ATTACK" },
+  ];
+  for (const command of commands) s = E.dispatch(s, command);
+  assert.equal(s.track, 16); assert.equal(s.lastRound, true); assert.equal(s.phase, "combat_react");
+  assert.equal(E.hunter(s).hp, 1); assert.equal(E.hunter(s).inDream, false);
+  assert.deepEqual(E.importSave(E.exportSave(s)), s); return s;
+}
+
+test("terminal lethal combat retains the cause while its model describes the actual ended hunt", () => {
+  const before = qaBeforeTerminalDeath(), after = go(before, "RESOLVE"), result = Feedback.describe(before, after);
+  assert.equal(after.phase, "over"); assert.equal(after.result, "loss"); assert.equal(E.hunter(after).hp, 6);
+  assert.equal(result.terminal, true); assert.equal(result.cause, "느릿느릿한 휘두르기");
+  assert.equal(result.fatalAmount, 3); assert.equal(result.damageTotal, 3); assert.equal(result.hpBefore, 1);
+  assert.match(result.title, /사망.*사냥 종료/); assert.equal(result.continueLabel, "사냥 종료 결과 확인");
+  assert.match(result.consequence, /사냥이 종료/); assert.match(result.footnote, /사냥 종료/);
+  assert.doesNotMatch(result.continueLabel + result.consequence + result.footnote, /꿈에서 계속|꿈 이동/);
+  assert.deepEqual(E.importSave(E.exportSave(after)), after);
+});
+
+test("actual final-round QA death agrees with the ended background and acknowledgement cannot resume the Dream", () => {
+  const before = qaBeforeTerminalDeath(), expected = go(before, "RESOLVE"), { ui, normal, dispatched } = realDeathUI(before);
+  clickUICommand(ui, "RESOLVE");
+  assert.equal(ui.el("phaseTitle").textContent, "사냥 종료"); assert.equal(ui.el("deathDialog").open, true);
+  assert.equal(ui.el("deathTitle").textContent, "사냥꾼 사망 · 사냥 종료");
+  assert.equal(ui.el("deathContinue").textContent, "사냥 종료 결과 확인");
+  assert.match(ui.el("deathDetails").textContent, /느릿느릿한 휘두르기.*피해 3/);
+  assert.match(ui.el("deathDetails").textContent, /사냥이 종료/);
+  assert.doesNotMatch(ui.el("deathDetails").textContent, /꿈 이동|꿈에서 계속/);
+  const saved = ui.storage.get(qaKey), count = dispatched.length;
+  assert.deepEqual(E.importSave(saved), expected); assert.equal(ui.storage.get(normalKey), normal);
+  ui.el("deathContinue").click();
+  assert.equal(ui.el("deathDialog").open, false); assert.equal(ui.el("phaseTitle").textContent, "사냥 종료");
+  assert.equal(ui.document.activeElement, ui.el("phaseTitle"));
+  assert.equal(ui.storage.get(qaKey), saved); assert.equal(dispatched.length, count);
+  assert.equal(ui.buttons("decisions").filter(button => !button.disabled).length, 0);
+  assert.equal(realDeathUI(E.importSave(saved)).ui.el("deathDialog").open, false);
+});
+
+test("time exhaustion with living HP ends the hunt without inventing a death dialog or cause", () => {
+  let before = E.create(1061844653, "qa-test-weapon", 0, null, "hunter-pistol", "center",
+    { campaign: true, qa: { preset: "fast" } });
+  // Empty, unexplored starting map: spend legal Dream visits until the final
+  // round, return, and end that round with full health and no enemy damage.
+  for (let count = 0; !before.lastRound && count < 10; count++) {
+    before = go(before, "DREAM", { cardId: E.hunter(before).hand[0].id });
+    before = go(before, "REFILL"); before = go(before, "RETURN", { node: "tile-14:center", face: 0 });
+  }
+  assert.equal(before.phase, "hunter"); assert.equal(before.track, 16); assert.equal(before.lastRound, true);
+  assert.equal(E.hunter(before).hp, 6); assert.equal(E.hunter(before).inDream, false);
+  assert.deepEqual(E.importSave(E.exportSave(before)), before);
+  const expected = go(before, "END_TURN"), { ui, normal, dispatched } = realDeathUI(before);
+  assert.equal(expected.phase, "over"); assert.equal(expected.result, "loss"); assert.equal(E.hunter(expected).hp, 6);
+  assert.equal(Feedback.describe(before, expected), null);
+  clickUICommand(ui, "END_TURN");
+  assert.equal(ui.el("phaseTitle").textContent, "사냥 종료"); assert.equal(ui.el("deathDialog").open, false);
+  const saved = E.importSave(ui.storage.get(qaKey));
+  assert.deepEqual(saved, expected); assert.equal(saved.commands.length, before.commands.length + 1);
+  // Loss planning may evaluate the same public command before committing it;
+  // the persisted replay must still contain exactly one END_TURN.
+  assert(dispatched.length >= 1); assert(dispatched.every(command => command.type === "END_TURN"));
+  assert.equal(ui.storage.get(normalKey), normal);
 });

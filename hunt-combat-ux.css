@@ -75,3 +75,10 @@ html[data-phase="boss_react"] #combatInfo { order: -1; }
   .hunt-main .hunt-decisions { height: 640px; }
   .combat-selection-widget { max-height: 210px; }
 }
+.tile-reference { font-size: 10px; font-weight: normal; color: var(--muted, #afc1c8); }
+.decision-action-dock:has([data-command="WEAPON_CHOICE"]) { max-height: 170px; overflow-y: auto; }
+.decision-action-dock [data-command="WEAPON_CHOICE"] { text-align: left; line-height: 1.5; }
+.attack-selection-preview, .combat-fixed-action { border-left: 3px solid #c7ad68; padding: 5px 8px; margin: 0 0 6px; background: #c7ad680c; }
+.attack-selection-preview > strong { color: #f2d590; }
+.attack-preview-formula, .attack-preview-note, .attack-preview-hp { margin: 3px 0; line-height: 1.45; }
+.attack-preview-warning, .attack-selection-preview.is-danger > strong { color: #ffb5a4; font-weight: bold; }
