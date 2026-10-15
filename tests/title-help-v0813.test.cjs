@@ -98,6 +98,28 @@ test("title help opens and closes by button or Escape with focus restored and no
   assert.deepEqual(title.writes, []); assert.deepEqual(Object.fromEntries(title.values), storage);
 });
 
+test("title and game help begin with the same normal-play movement, attack and committed dodge guide; QA setup stays collapsed at the end", () => {
+  const title = bootTitle({}), { ui } = launch("?entry=new", {}), titleContent = title.el("titleHelpContent"),
+    gameContent = ui.el("gameHelpContent");
+  assert.equal(titleContent.innerHTML, gameContent.innerHTML, "both entry points teach the same controls");
+  for (const content of [titleContent, gameContent]) {
+    const first = content.querySelector("section"), steps = Help.firstHunt,
+      details = content.querySelectorAll("details"), qaSetup = details.at(-1);
+    assert(first.classList.contains("game-help-first"), "the first visible lesson is normal play rather than a test-mode setup");
+    assert(steps[0][1].includes("기나긴 사냥 · 챕터 1"));
+    assert.equal(steps[0][1].includes("검증"), false, "normal setup does not require a QA-mode choice");
+    const movement = steps.findIndex(([title]) => title === "옆 칸으로 이동"),
+      attack = steps.findIndex(([title]) => title === "내 차례에 첫 공격"),
+      response = steps.findIndex(([title]) => title === "적과 처음 조우하면");
+    assert(movement >= 0 && attack > movement && response > attack, "normal move and attack precede the encounter response");
+    assert(steps[response][1].includes("‘회피’를 누르세요"), "choosing a card and slot still requires committing the dodge");
+    assert(steps[response][1].includes("‘속도 순서대로 전투 처리’"));
+    assert(qaSetup.classList.contains("game-help-qa-start"));
+    assert.equal(qaSetup.hasAttribute("open"), false, "QA setup does not expand over the beginner guide by default");
+    assert(content.innerHTML.includes("검증용 장치무기"), "the separate testing workflow remains available");
+  }
+});
+
 test("unavailable title storage still leaves new/load navigation and help usable", () => {
   const title = bootTitle({}, true); assert.equal(title.el("titleSavedHunts").hidden, true);
   assert(title.el("titleStart").getAttribute("href")); assert(title.el("titleLoad").getAttribute("href"));

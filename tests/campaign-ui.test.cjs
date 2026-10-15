@@ -516,7 +516,8 @@ test("arcane barrage describes defense per dodge speed instead of a zero-speed t
   const s = baseState(); s.phase = "boss_react";
   s.combat = { immediate: { name: "비전 탄막", damage: 6, dodgeSpeed: 0, dodgeBlockPerSpeed: 2 } };
   const ui = boot(s, mission(), rewards(), { engine: { canDodge: () => true } });
-  assert.equal(ui.el("phaseHelp").textContent, "회피 속도마다 2피해를 방어합니다. 회피 카드와 빈 슬롯을 선택하세요.");
+  assert.match(ui.el("phaseHelp").textContent, /회피 속도마다 2피해를 방어/);
+  assert.match(ui.el("phaseHelp").textContent, /‘이 효과 회피’를 눌러 확정/);
   assert(!ui.el("phaseHelp").textContent.includes("속도 0 이상"));
 });
 test("face-down weapon slots hide the printed stat card face and describe the dormant effects", () => {

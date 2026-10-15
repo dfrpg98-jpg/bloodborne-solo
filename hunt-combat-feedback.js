@@ -5,7 +5,7 @@
   else root.BBHuntCombatFeedback = api;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
-  // Render only the equipment and resolved action supplied by the controller.
+  // Render only disclosed equipment, target facts and resolved actions supplied by the controller.
   // No rules state, deck, random source, command or save crosses this boundary.
   const esc = value => String(value ?? "").replace(/[&<>"']/g, character =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character]);
@@ -141,7 +141,50 @@
     const { side = "enemy", showStats = true, showDodge = false, clean, removed = false, modifiers = [] } = options;
     return `<strong class="combat-action-name">${esc(cleanText(action.name || action.label || "능력", clean))}</strong>${statsHTML(action, showStats, showDodge)}${modifiersHTML(modifiers, clean)}${effectsHTML(action, side, clean, removed)}${rulesHTML(action, clean, removed)}`;
   }
-  function combatHTML({ combat, enemyName = "적", phase, labels = {}, clean, enemyModifiers = [] } = {}) {
+  function tokenRevival({ enemy, definition, mission, hunterNode } = {}) {
+    if (!enemy || !definition || !mission || !(number(enemy.hp) > 0)) return null;
+    const target = (mission.targets || []).find(target => target.id === enemy.missionId && target.enemyId === enemy.id);
+    if (!target || target.complete || !Number.isInteger(target.tokens) || target.tokens < 1 ||
+        !(mission.revealed || []).includes(target.card) || !(number(definition.maxHp) > 0)) return null;
+    return { enemyId: enemy.id, enemyName: definition.name || "적", hp: enemy.hp, maxHp: definition.maxHp,
+      tokens: target.tokens, ...(hunterNode !== undefined ? { sameNode: hunterNode === enemy.node } : {}) };
+  }
+  function tokenRevivalHTML(revival, { combat, phase, clean, compact = false } = {}) {
+    if (!revival || !Number.isInteger(revival.tokens) || revival.tokens < 1) return "";
+    const current = combat?.enemyId === revival.enemyId ? combat : null,
+      player = current?.attack || current?.flame,
+      interrupts = revival.sameNode === true && !current?.cancelHunter &&
+        !current?.attackResolved && !current?.flameResolved && player?.interrupt &&
+        current?.action?.type === "attack" && !current.action.uninterruptible &&
+        (player.speed > current.action.speed || player.interruptEqual && player.speed === current.action.speed);
+    let consequence = "토큰 소모 후 회복 · 적 공격 계속",
+      detail = "처치로 적 공격이 취소되지 않습니다. 공개된 속도 순서와 회피·방해를 그대로 적용합니다.";
+    if (phase === "combat_extra" && current?.extra) {
+      consequence = "토큰 회복 후에도 별도 추가 타격 대응 필요";
+      detail = "첫 공격의 회피·방해와 관계없이 현재 추가 타격에는 따로 대응합니다.";
+    } else if (phase === "boss_react" && current?.immediate) {
+      consequence = "토큰 회복과 별도로 전용 능력 대응 필요";
+      detail = "공개된 전용 능력의 회피 조건과 피해를 확인하고 별도로 대응합니다.";
+    } else if (current?.cancelEnemy) {
+      consequence = "토큰 소모 후 회복 · 현재 적 공격 취소 유지";
+      detail = "이미 취소한 적 공격은 다시 진행하지 않습니다. 토큰 회복은 처치로 처리되지 않습니다.";
+    } else if (current?.dodged) {
+      consequence = "토큰 소모 후 회복 · 현재 적 공격 회피 선택 유지";
+      detail = "회피를 선택한 현재 적 공격은 그대로 회피합니다. 별도의 추가 타격에는 따로 대응합니다.";
+    } else if (interrupts) {
+      consequence = "토큰 소모 후 회복 · 선택한 공격의 방해 적용";
+      detail = "선택한 공격의 방해로 현재 적 공격을 취소할 수 있습니다. 토큰에 의한 회복은 이 방해를 취소하지 않습니다.";
+    } else if (!current?.action) {
+      detail = "적 행동은 공격 확정 후 공개됩니다. 처치로 취소되지 않으며, 별도의 회피·방해는 적용할 수 있습니다.";
+    } else if (current.action.type === "ability") {
+      consequence = "토큰 소모 후 회복 · 공개된 적 행동 계속";
+      detail = "토큰 회복은 전용 능력을 취소하지 않습니다. 공개된 행동의 지시를 따릅니다.";
+    }
+    const line = `이 적이 처치될 만큼 피해를 받으면 임무 계몽 토큰 1개를 소모하고 체력을 ${revival.maxHp}까지 완전히 회복합니다. 적 처치·처치 보상은 발생하지 않습니다.`;
+    if (compact) return `<section class="combat-token-warning combat-token-warning-compact" role="note" aria-label="처치 대신 회복하는 임무 효과"><p class="combat-token-consequence">토큰 ${esc(revival.tokens)}개 · 처치될 피해 → 체력 ${esc(revival.maxHp)} / ${esc(revival.maxHp)} 회복. <strong>${esc(consequence.replace(/^토큰 소모 후 회복 · /, ""))}</strong> · 회피·방해 별도 적용. 처치 보상 없음.</p></section>`;
+    return `<section class="combat-token-warning" role="note" aria-label="처치 대신 회복하는 임무 효과"><h3>처치 대신 토큰 소모·완전 회복</h3><p class="combat-token-count">${esc(cleanText(revival.enemyName, clean))} · 체력 ${esc(revival.hp)} / ${esc(revival.maxHp)} · 임무 계몽 토큰 ${esc(revival.tokens)}개</p><p class="combat-token-consequence"><strong>${esc(consequence)}</strong></p><p>${esc(cleanText(line, clean))}</p><p>${esc(detail)}</p></section>`;
+  }
+  function combatHTML({ combat, enemyName = "적", phase, labels = {}, clean, enemyModifiers = [], tokenRevival: revival } = {}) {
     if (!combat) return "";
     const player = combat.attack || combat.flame, flame = !combat.attack && !!combat.flame,
       immediate = phase === "boss_react" && combat.immediate,
@@ -166,11 +209,11 @@
       (combat.attackResolved || combat.flameResolved) && "플레이어 공격 처리 완료",
       removed && "적 공격의 모든 부가 효과 제거됨",
       ...(Array.isArray(combat.immune) ? combat.immune.map(value => ({ interrupt: "방해 면역", stun: "기절 면역", poison: "독 면역", frenzy: "발광 면역" })[value]) : [])].filter(Boolean);
-    return `<section class="combat-comparison" aria-label="현재 전투의 공격 비교"><p class="combat-opponent">${esc(cleanText(enemyName, clean))}와 전투</p><p class="combat-order" role="status">${esc(order)}</p><div class="combat-comparison-grid"><article class="combat-side combat-side-hunter"><h3>플레이어 · ${combat.attackResolved || combat.flameResolved ? "처리한 " : ""}${flame ? "화기 공격" : "장치무기 공격"}</h3>${player ? actionDetailsHTML({ ...player, type: "attack" }, { side: "hunter", clean }) : '<p class="combat-empty-action">선택한 공격 없음</p>'}${player?.weaponFace?.text ? `<p class="combat-weapon-effect"><b>사용한 무기의 고유 효과</b><span>${esc(cleanText(player.weaponFace.text, clean))}</span></p>` : ""}</article><article class="combat-side combat-side-enemy"><h3>적 · ${esc(label)}</h3>${action ? actionDetailsHTML(action, { clean, showDodge: !!immediate || !!extra, removed,
+    return `<section class="combat-comparison" aria-label="현재 전투의 공격 비교"><p class="combat-opponent">${esc(cleanText(enemyName, clean))}와 전투</p><p class="combat-order" role="status">${esc(order)}</p>${tokenRevivalHTML(revival, { combat, phase, clean })}<div class="combat-comparison-grid"><article class="combat-side combat-side-hunter"><h3>플레이어 · ${combat.attackResolved || combat.flameResolved ? "처리한 " : ""}${flame ? "화기 공격" : "장치무기 공격"}</h3>${player ? actionDetailsHTML({ ...player, type: "attack" }, { side: "hunter", clean }) : '<p class="combat-empty-action">선택한 공격 없음</p>'}${player?.weaponFace?.text ? `<p class="combat-weapon-effect"><b>사용한 무기의 고유 효과</b><span>${esc(cleanText(player.weaponFace.text, clean))}</span></p>` : ""}</article><article class="combat-side combat-side-enemy"><h3>적 · ${esc(label)}</h3>${action ? actionDetailsHTML(action, { clean, showDodge: !!immediate || !!extra, removed,
       modifiers: immediate || extra ? [] : enemyModifiers }) : '<p class="combat-empty-action">아직 행동을 공개하지 않았습니다.</p>'}</article></div>${status.length ? `<ul class="combat-current-status">${status.map(value => `<li>${esc(value)}</li>`).join("")}</ul>` : ""}</section>`;
   }
   function missionEffectsHTML(entries, clean) {
     return entries?.length ? `<section class="enemy-mission-effects" aria-label="임무로 변경된 적 능력"><h4>임무로 변경된 능력</h4>${entries.map(entry => `<p><strong>${esc(cleanText(entry.title || "현재 임무", clean))}</strong>${entry.description ? `<span>${esc(cleanText(entry.description, clean))}</span>` : ""}</p>${(entry.effects || []).map(effect => `<p>${esc(cleanText(effect, clean))}</p>`).join("")}`).join("")}</section>` : "";
   }
-  return Object.freeze({ firearmRules, firearmNameHTML, installFirearmTooltips, effects, contextualAction, actionDetailsHTML, combatHTML, missionEffectsHTML });
+  return Object.freeze({ firearmRules, firearmNameHTML, installFirearmTooltips, effects, contextualAction, actionDetailsHTML, tokenRevival, tokenRevivalHTML, combatHTML, missionEffectsHTML });
 });

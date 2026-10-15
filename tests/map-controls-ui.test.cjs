@@ -122,6 +122,39 @@ test("unnamed tiles omit their invented display name in both the map and tile pa
   assert(!ui.el("chapterMap").innerHTML.match(/tile-info-trigger[^>]*>명칭 없는/));
 });
 
+test("crossing a tile boundary keeps the inspected tile but updates the separate hunter location, and current-location inspection costs nothing", () => {
+  const index = timeline.findIndex((state, i) => i + 1 < timeline.length && state.phase === "move" &&
+    fixture[i]?.type === "STEP" && E.node(state, E.hunter(state).position).tile !== E.node(timeline[i + 1], E.hunter(timeline[i + 1]).position).tile);
+  assert(index >= 0);
+  const state = timeline[index], to = fixture[index].node, previousTile = E.node(state, E.hunter(state).position).tile, ui = launch(state);
+  ui.el("chapterMap").querySelectorAll("[data-tile-info]").find(b => b.dataset.tileInfo === previousTile).click();
+  const edge = U.movement(state).directions.find(d => d.options.some(o => o.command?.node === to));
+  assert(edge); direction(ui, edge.edge).click();
+  const options = ui.el("movementControls").querySelectorAll("[data-move-option]");
+  if (options.length) {
+    const selected = U.movement(state).directions.find(d => d.edge === edge.edge).options;
+    options.find(b => selected[Number(b.dataset.moveOption)].command.node === to).click();
+  }
+  const reference = timeline[index + 1]; assert.deepEqual(saved(ui), reference);
+  assert.equal(ui.el("tileInspectionStatus").dataset.current, "false");
+  assert.match(ui.el("tileInspectionStatus").textContent, /사냥꾼의 현재 위치.*살펴보는 타일.*현재 위치와 다른 타일/s);
+  assert(ui.el("tileInspectionStatus").textContent.includes(E.node(reference, E.hunter(reference).position).name));
+  const before = ui.storage.get(key); ui.el("inspectCurrentTile").click();
+  assert.equal(ui.storage.get(key), before); assert.equal(ui.el("tileInspectionStatus").dataset.current, "true");
+});
+
+test("fixed core controls retain their original costs, selected card and phase-specific command handlers", () => {
+  const state = initial(), ui = launch(state), dock = ui.el("decisionActions");
+  assert(dock.children.some(b => b.dataset.command === "MOVE" && b.disabled));
+  const cardId = E.hunter(state).hand[0].id; select(ui, cardId);
+  dock.children.find(b => b.dataset.command === "MOVE").click();
+  const moving = E.dispatch(state, { type: "MOVE", cardId }); assert.deepEqual(saved(ui), moving);
+  assert(dock.children.some(b => b.dataset.command === "STOP_MOVE"));
+  assert(!dock.children.some(b => b.dataset.command === "END_TURN"));
+  dock.children.find(b => b.dataset.command === "STOP_MOVE").click();
+  assert.deepEqual(saved(ui), E.dispatch(moving, { type: "STOP_MOVE" }));
+});
+
 test("every tile's printed labels counterrotate at their original local coordinates while boundaries, markers and text remain unchanged", () => {
   for (const tileId of Object.keys(G.tiles)) {
     const source = fs.readFileSync(path.join(root, "assets/tiles", tileId + ".svg"), "utf8");

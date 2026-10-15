@@ -1,0 +1,22 @@
+{
+  "buttons": [
+    {
+      "bottom": 549.71875,
+      "text": "회피",
+      "top": 498.125
+    },
+    {
+      "bottom": 549.71875,
+      "text": "속도 순서대로 전투 처리",
+      "top": 498.125
+    }
+  ],
+  "detailsHeight": 143,
+  "detailsScroll": 747,
+  "handClient": 175,
+  "handScroll": 175,
+  "viewport": [
+    1063,
+    650
+  ]
+}

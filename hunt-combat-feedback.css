@@ -5,6 +5,12 @@
 .firearm-effect-tooltip > span + span { margin-top: 8px; color: #c5d4dd; }
 .firearm-name-tooltip:hover .firearm-effect-tooltip, .firearm-name-tooltip:focus .firearm-effect-tooltip { display: block; }
 .combat-comparison { margin: 9px 0 14px; border: 1px solid #8b7760; border-radius: 5px; padding: 12px; background: #131e24; }
+.attack-consequences { flex: 0 0 auto; }
+.combat-token-warning { margin: 10px 0; padding: 10px 12px; border: 2px solid #d59957; border-radius: 5px; background: #49341f; color: #ffe1af; font-size: 13px; line-height: 1.55; }
+.combat-token-warning strong, .combat-token-warning b { color: #ffe8bd; }
+.combat-token-warning p { margin: 4px 0; }
+.combat-token-warning-compact { margin: 8px 0 0; padding: 8px 10px; font-size: 12px; }
+.combat-token-warning-compact h3 { margin: 0 0 4px; font-size: 13px; }
 .hunt-main #combatInfo .combat-opponent { margin: 0 0 8px; font-size: 15px; font-weight: 700; color: #f1ddb5; }
 .hunt-main #combatInfo .combat-order { margin: 0 0 12px; padding: 8px 10px; border-left: 3px solid #dec079; background: #d9b86b16; color: #f1ddb5; font-size: 13px; line-height: 1.6; }
 .combat-comparison-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }

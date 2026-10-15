@@ -1,0 +1,115 @@
+{
+  "originalImages": true,
+  "files": [
+    {
+      "path": "screenshots/01-normal-help-first.jpg",
+      "bytes": 85978,
+      "sha256": "d50236e655fbd50f1393695b2d66afb7f5c9cd2473b3258b062e2ded34486d7d"
+    },
+    {
+      "path": "screenshots/07-death-cause.jpg",
+      "bytes": 44462,
+      "sha256": "d7bd6cb110ffd1badae053d7cfcf4746a238dfedc05e27ef0a645319aa0b618c"
+    },
+    {
+      "path": "screenshots/08-dream-continue.jpg",
+      "bytes": 154870,
+      "sha256": "c21fdc4473e248c5808ea163fcf2403eaf601becb2f0a74c9b8025ed3a922e2e"
+    },
+    {
+      "path": "screenshots/09-shard-transform-popup.jpg",
+      "bytes": 51443,
+      "sha256": "9b262fa0080f63da8aa9aa062ba102f5d8f91cdc3b8a68ec8f9807f6565b900e"
+    },
+    {
+      "path": "screenshots/11-shard-damage8.jpg",
+      "bytes": 151337,
+      "sha256": "a034719dd18ec4392c48fa6d507cc350912661de0fbe89fce697c5e22706e49b"
+    },
+    {
+      "path": "screenshots/18-details-scrolled-fixed-actions.jpg",
+      "bytes": 120667,
+      "sha256": "0630d2408b20ff286e46edd5599b973e22ca7951af94df4b859c27e85ce99f5f"
+    },
+    {
+      "path": "screenshots/19-mobile-final-full.jpg",
+      "bytes": 139944,
+      "sha256": "43a27b268f298c5c9af8c47e94a77bb992c70361da8be7e267daa2950e19b5a2"
+    },
+    {
+      "path": "screenshots/20-shard-final-desktop.jpg",
+      "bytes": 138971,
+      "sha256": "3ddaddb246552ce75d07ae8f5a9843933a50b1a7a5811b554ea276a90910e4fa"
+    },
+    {
+      "path": "screenshots/21-final-before-attack.jpg",
+      "bytes": 149225,
+      "sha256": "73a76ad259e5a2a93c3890999e119e59a37b42af03f6c0a3eb30b0861e26ff3d"
+    },
+    {
+      "path": "screenshots/22-final-comparison-scroll.jpg",
+      "bytes": 154005,
+      "sha256": "57dd4b7dc8029298b906d6e67345617f32d224edb397646cacab6bc1b2931195"
+    },
+    {
+      "path": "screenshots/25-final-required-slot-first.jpg",
+      "bytes": 146928,
+      "sha256": "c0f946c711d9f73b394cb90bda34a48313404e7c2e00962b7d2b2694c8aeaa95"
+    },
+    {
+      "path": "screenshots/26-final-two-attachments.jpg",
+      "bytes": 135509,
+      "sha256": "4b57be6c5d2283ed0697719cf64e8119e20efa2b5e38c17fcff18dfa6d2da3d2"
+    },
+    {
+      "path": "native-results.json",
+      "bytes": 1198,
+      "sha256": "b8a84d4381b64e7171954450b6e04c889f68709856d30755263a599120773601"
+    },
+    {
+      "path": "desktop-scroll-check.json",
+      "bytes": 347,
+      "sha256": "f1dfd0ae8bccfd247f9f1539e01a33a3740bf17944e5ee89e4381684bcf3731e"
+    },
+    {
+      "path": "cache-hashes.json",
+      "bytes": 793,
+      "sha256": "4f2e010fa592e83dec0d36b25c9ecb77e66041251c87f550ca351cf58ceb6c99"
+    },
+    {
+      "path": "full-ci.json",
+      "bytes": 10220,
+      "sha256": "75b8bab0c1df0f52119e74559ad9617191c5263ff73f0759e21b747ce535cf34"
+    },
+    {
+      "path": "full-ci-result.json",
+      "bytes": 2041,
+      "sha256": "d30ea4802af0278c2806e7dddcac92c9eef4bbb4dc75008170397087ba613070"
+    },
+    {
+      "path": "full-ci-before-hashes.json",
+      "bytes": 86929,
+      "sha256": "fc8b13d52da30062cbd5fe7ab502d8972b6973de2563b6d45cb1863689313706"
+    },
+    {
+      "path": "full-ci-after-hashes.json",
+      "bytes": 86928,
+      "sha256": "5fc2b991b086e28bc3dff7169ad06f37ed39d8f4a93df018b71442edce1def85"
+    },
+    {
+      "path": "final-focused-result.json",
+      "bytes": 950,
+      "sha256": "0403f12202eb4379318faa7d89bf801249ebe35c03afb333c82d0d6561da3c5f"
+    },
+    {
+      "path": "final-focused-before-hashes.json",
+      "bytes": 86771,
+      "sha256": "4ba29a6504a7be652caf12e74a35d2735af5ff1e3dbb5ed0cc89adaf03d4fde0"
+    },
+    {
+      "path": "final-focused-after-hashes.json",
+      "bytes": 86771,
+      "sha256": "4ba29a6504a7be652caf12e74a35d2735af5ff1e3dbb5ed0cc89adaf03d4fde0"
+    }
+  ]
+}

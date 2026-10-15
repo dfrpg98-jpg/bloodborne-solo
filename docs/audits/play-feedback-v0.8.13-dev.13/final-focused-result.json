@@ -1,0 +1,36 @@
+{
+  "version": "0.8.13-dev.13",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/campaign-ui.test.cjs",
+    "tests/map-controls-ui.test.cjs",
+    "tests/context-actions-v081.test.cjs",
+    "tests/combat-token-warning-v0813.test.cjs",
+    "tests/death-feedback-ui.test.cjs",
+    "tests/title-help-v0813.test.cjs",
+    "tests/blood-shard-v0813.test.cjs",
+    "tests/combat-feedback-ui.test.cjs",
+    "tests/qa-campaign-ui-v078.test.cjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "counts": {
+    "tests": 170,
+    "suites": 0,
+    "pass": 170,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "durationSeconds": 2.677,
+  "filesProtected": 569,
+  "allHashesStable": true,
+  "finalFixesAfterFullCI": [
+    "Do not auto-open optional attachment dialog while mandatory placement choices remain",
+    "Bloodstone chunk badge includes its +1 speed as well as +1 damage"
+  ],
+  "validationPassed": true
+}

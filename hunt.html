@@ -6,12 +6,12 @@
     <title>블러드본 · 기나긴 사냥 캠페인</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="chapter.css" />
-    <link rel="stylesheet" href="hunt.css?v=0.8.13-dev.11&amp;h=c6e93c88d54c" />
-    <link rel="stylesheet" href="game-help.css?v=0.8.13-dev.12&amp;h=a01568550d27" />
+    <link rel="stylesheet" href="hunt.css?v=0.8.13-dev.13&amp;h=d50893dc7d74" />
+    <link rel="stylesheet" href="game-help.css?v=0.8.13-dev.13&amp;h=674bb1a324c0" />
     <link rel="stylesheet" href="hunt-hand-feedback.css?v=0.8.13-dev.6&amp;h=66350354029f" />
     <link rel="stylesheet" href="hunt-card-help.css?v=0.8.13-dev.7&amp;h=049dbeb75df2" />
-    <link rel="stylesheet" href="hunt-map-controls.css?v=0.8.13-dev.6" />
-    <link rel="stylesheet" href="hunt-combat-feedback.css?v=0.8.13-dev.6&amp;h=b53e33440185" />
+    <link rel="stylesheet" href="hunt-map-controls.css?v=0.8.13-dev.13&amp;h=0d944385cbb5" />
+    <link rel="stylesheet" href="hunt-combat-feedback.css?v=0.8.13-dev.13&amp;h=1e0ad016d33b" />
   </head>
   <body class="hunt-screen">
     <header class="topbar hunt-topbar">
@@ -43,6 +43,7 @@
       <div class="hunt-layout">
         <section id="tileInfoPanel" class="panel tile-info-panel" aria-labelledby="tileInfoHeading">
           <div class="panel-heading"><h2 id="tileInfoHeading">타일 정보</h2><button id="inspectCurrentTile" type="button" class="quiet" title="사냥꾼이 있는 타일 정보">현재 위치</button></div>
+          <div id="tileInspectionStatus" class="tile-inspection-status" aria-live="polite"></div>
           <div id="tileInfo" class="tile-info-content" aria-live="polite"></div>
         </section>
         <section class="panel hunt-map" aria-labelledby="mapHeading">
@@ -51,9 +52,12 @@
           <div class="map-footer"><div id="locationText"></div><div id="explorationActions" class="actions"></div></div>
         </section>
         <section class="panel hunt-decisions" aria-labelledby="phaseTitle">
-          <div class="decision-heading"><p class="eyebrow">다음 선택</p><h2 id="phaseTitle"></h2><p id="phaseHelp"></p></div>
-          <div class="decision-content"><section id="mapContext" class="map-context" aria-label="선택한 대상의 행동과 비용" aria-live="polite" tabindex="-1" hidden></section><div id="combatInfo"></div><div id="missionActions" class="actions"></div><div id="decisions"></div></div>
+          <div class="decision-heading"><p class="eyebrow">다음 선택</p><h2 id="phaseTitle"></h2></div>
+          <div class="decision-content" tabindex="0" aria-label="행동과 전투 상세"><p id="phaseHelp"></p><section id="mapContext" class="map-context" aria-label="선택한 대상의 행동과 비용" aria-live="polite" tabindex="-1" hidden></section><div id="combatInfo"></div><div id="missionActions" class="actions"></div><div id="decisions"></div></div>
+          <div id="attackConsequences" class="attack-consequences" role="status" hidden></div>
+          <div id="decisionActions" class="decision-action-dock" role="group" aria-label="현재 단계의 핵심 행동" hidden></div>
           <p id="error" class="error" role="alert"></p><div id="deckStatus" class="muted"></div>
+          <section id="firearm" class="panel gun-panel" aria-label="장착 화기"></section>
         </section>
       </div>
       <div class="hunt-loadout" aria-label="손패와 무기">
@@ -66,10 +70,9 @@
           <div id="movementControls" class="movement-controls"></div>
         </section>
         <section class="panel weapon-panel" aria-labelledby="weaponName">
-          <div class="panel-heading"><h2><span id="weaponName">장송의 칼날</span> <small id="weaponFace"></small></h2></div>
+          <div class="panel-heading"><h2><span id="weaponName">장송의 칼날</span> <small id="weaponFace"></small></h2><button id="openAttachments" type="button" class="quiet" aria-haspopup="dialog" aria-controls="attachmentDialog" hidden>슬롯 부착 변경</button></div>
           <section class="weapon-rules" aria-label="무기 고유 효과"><h3>무기 고유 효과</h3><p id="weaponAbility"></p></section><div id="slots" class="hunt-slots"></div><p class="slot-hint muted">공격·회피에는 빈 슬롯이 필요합니다.</p>
         </section>
-        <section id="firearm" class="panel gun-panel" aria-label="장착 화기"></section>
       </div>
     </main>
     <dialog id="infoDialog" class="info-dialog" aria-labelledby="infoTitle">
@@ -110,6 +113,15 @@
     <dialog id="enemyHistoryDialog" class="compact-info-dialog" aria-labelledby="enemyHistoryTitle">
       <div class="compact-dialog-heading"><h2 id="enemyHistoryTitle">적 행동 이력</h2><button id="closeEnemyHistory" type="button" autofocus>닫기</button></div>
       <div class="compact-dialog-content"><ol id="enemyActionHistory" class="enemy-action-history"></ol></div>
+    </dialog>
+    <dialog id="deathDialog" class="compact-info-dialog death-dialog" aria-labelledby="deathTitle" aria-describedby="deathSummary">
+      <div class="compact-dialog-heading"><h2 id="deathTitle">사냥꾼이 사망했습니다</h2></div>
+      <div id="deathDetails" class="compact-dialog-content"></div>
+      <div class="death-dialog-footer"><button id="deathContinue" type="button" class="primary" autofocus>확인하고 꿈에서 계속</button></div>
+    </dialog>
+    <dialog id="attachmentDialog" class="compact-info-dialog" aria-labelledby="attachmentTitle">
+      <div class="compact-dialog-heading"><h2 id="attachmentTitle">무기 변형 · 슬롯 부착 변경</h2><button id="closeAttachments" type="button" autofocus>재배치 마치기</button></div>
+      <div class="compact-dialog-content"><p>변형한 직후, 다음 행동 전에 부착 보상을 옮길 수 있습니다. 현재 슬롯을 유지해도 됩니다. 슬롯 변경에는 손패를 더 쓰지 않습니다.</p><div id="attachmentChoices"></div></div>
     </dialog>
     <dialog id="enemyDetailDialog" class="compact-info-dialog" aria-labelledby="enemyDetailTitle">
       <div class="compact-dialog-heading"><h2 id="enemyDetailTitle">적 정보</h2><button id="closeEnemyDetail" type="button" autofocus>닫기</button></div>
@@ -239,10 +251,11 @@
     <script src="hunt-public-text.js"></script>
     <script src="hunt-enemy-mission-effects.js?v=0.8.13-dev.6&amp;h=f500fa38d874"></script>
     <script src="hunt-mission-feedback.js?v=0.8.13-dev.6&amp;h=da34934ff8c6"></script>
+    <script src="hunt-death-feedback.js?v=0.8.13-dev.13&amp;h=d82f5c24b078"></script>
     <script src="enemy-action-history.js"></script>
     <script src="inventory.js"></script>
     <script src="hunt-entry.js?v=0.8.13-dev.11&amp;h=1fabaf52aa2d"></script>
-    <script src="game-help.js?v=0.8.13-dev.12&amp;h=7627700cd6ca"></script>
+    <script src="game-help.js?v=0.8.13-dev.13&amp;h=4cabc2fe11aa"></script>
     <script src="hunt-shell.js?v=0.8.13-dev.11&amp;h=84526fec2add"></script>
     <script src="hunt-context.js"></script>
     <script src="hunt-map-controls.js?v=0.8.13-dev.6&amp;h=c6df79260c04"></script>
@@ -255,8 +268,8 @@
     <script src="weapon-visuals.js"></script>
     <script src="enemy-visuals.js?v=0.8.13-dev.9&amp;h=2350a252f8f8"></script>
     <script src="hunt-presentation.js?v=0.8.13-dev.10&amp;h=142a7b648c59"></script>
-    <script src="hunt-combat-feedback.js?v=0.8.13-dev.6&amp;h=50d577d1de64"></script>
+    <script src="hunt-combat-feedback.js?v=0.8.13-dev.13&amp;h=c188457d1e8d"></script>
     <script src="hunt-card-help.js?v=0.8.13-dev.7&amp;h=d0f40bd41a8e"></script>
-    <script src="hunt-app.js?v=0.8.13-dev.12&amp;h=5b2a53311318"></script>
+    <script src="hunt-app.js?v=0.8.13-dev.13&amp;h=75ee54bc0d59"></script>
   </body>
 </html>
