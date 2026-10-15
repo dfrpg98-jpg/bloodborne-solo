@@ -1,0 +1,66 @@
+{
+  "version": "0.8.13-dev.12",
+  "checkedAt": "2026-10-15T11:39:20.444Z",
+  "before": {
+    "base": "http://127.0.0.1:8786/bloodborne-solo/",
+    "automaticSeed": 1061844653,
+    "qa": true,
+    "testWeapon": true,
+    "firstRoute": [
+      "Title Start",
+      "QA campaign / fast preset / test weapon / center",
+      "acknowledge mission",
+      "discard strength, begin move, left one, stop",
+      "discard endurance, west exit explore, Alley0 degrees, enter and stop",
+      "end turn",
+      "no counterattack, reveal basic speed2 damage2",
+      "select endurance and empty speed3 slot; deliberately omit unspecified Dodge commit, then Resolve"
+    ],
+    "result": "HP6 to4; refill; sole new engine command RESOLVE"
+  },
+  "after": {
+    "base": "http://127.0.0.1:8811/bloodborne-solo/",
+    "seed": 1061844653,
+    "setup": "Fresh title start following updated manual; same seed set explicitly for reproducibility",
+    "firstRoute": "Repeated first movement, exploration, placement, stop, end turn and encounter through native UI. Fresh checkpoint bytes exactly match original. No checkpoint import skipped this route.",
+    "combat": [
+      "endurance card",
+      "empty speed3 slot",
+      "Dodge button",
+      "Resolve",
+      "Refill",
+      "basic skill in empty slot2",
+      "Attack",
+      "read player speed3 damage12 vs enemy Molotov ability printed speed1",
+      "Resolve"
+    ],
+    "result": "Mob defeated; HP6,echo1,hand2,hunter phase",
+    "save": [
+      "Menu → Export",
+      "Title → Load → Select save file",
+      "wait until load modal closes",
+      "same HP6,echo1,hand2,location restored",
+      "Menu → Export again: exact14214byte equality and complete engine replay",
+      "one further movement right, stop: Central Lamp left cell,HP6,echo1,hunter phase"
+    ]
+  },
+  "finalResume": {
+    "validEngineReplay": true,
+    "bytes": 14652,
+    "sha256": "f91e14def8d0fc43677cbbf3c514f8b2ec3a8526e2d28f7d7bdc52b4ad70d9ce",
+    "phase": "hunter",
+    "round": 2,
+    "commandCount": 18,
+    "hp": 6,
+    "echoes": 1,
+    "handCount": 1,
+    "node": "tile-14:left",
+    "qa": true
+  },
+  "limits": [
+    "Root operated only native browser UI; no evaluate mutations, runtime engine commands, storage injection or handcrafted states were used to play. Export replay checks are separate read-only validation after play.",
+    "One first route, initial dodge and one proactive attack were verified. This is not another all-chapter, all-weapon, all-card or Unity campaign certification.",
+    "The final targeted50 tests are current. The2748 full CI belongs to the prior dev11 audit and was not rerun for these manual/UI wording changes.",
+    "Original QA progress was exported through UI before the new hunt; original backup and raw test save payloads remain local. No raw saves are published."
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "version": "0.8.13-dev.12",
+  "hashes": {
+    "hunt-app.js": "5b2a5331131819ab3140043db5543f34d9684bd97dd756bc5c2b43a1d392ecd0",
+    "game-help.js": "7627700cd6ca786f4a3dfe9bf3d37db1b0e60dc309634b00c3ebfe161b9d4d59",
+    "game-help.css": "a01568550d2721f57bfb1fe8399152e4b21b5d01ee6d193e2f523321ae3d503a"
+  }
+}

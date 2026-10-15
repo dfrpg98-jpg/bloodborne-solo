@@ -1,0 +1,7 @@
+{
+  "sameMarkupAfterGameActions": true,
+  "finalMarkupAfterFileLoadIdentical": true,
+  "finalTitleMarkupLength": 10776,
+  "finalGameMarkupLength": 10776,
+  "method": "DOM-backed innerHTML after native title help and in-game help mount/render; no page source fetching or engine access"
+}

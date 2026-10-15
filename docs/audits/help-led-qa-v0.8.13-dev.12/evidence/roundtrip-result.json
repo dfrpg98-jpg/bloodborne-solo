@@ -1,0 +1,64 @@
+{
+  "checkedAt": "2026-10-15T11:37:32.565Z",
+  "runtimeVersion": "0.8.13-dev.12",
+  "scope": "Explicit root-authorized QA exports only. Read-only engine replay and equality comparison; no browser/storage access, no raw save copies or source paths in this report.",
+  "files": {
+    "beforeLoad": {
+      "bytes": 14214,
+      "sha256": "426c8a466a862a04037c53630af99ce23b2b50240962a0db0647ef84eb01c157",
+      "validEngineReplay": true,
+      "qa": true,
+      "seed": 1061844653,
+      "rulesVersion": 14,
+      "phase": "hunter",
+      "round": 2,
+      "revision": 15,
+      "track": 2,
+      "hp": 6,
+      "echoes": 1,
+      "handCount": 2,
+      "node": "tile-15:right",
+      "commandCount": 15,
+      "lastCommandTypes": [
+        "DODGE",
+        "RESOLVE",
+        "REFILL",
+        "ATTACK",
+        "RESOLVE"
+      ],
+      "canonicalEngineReexportMatchesRawBytes": true,
+      "inputBytesUnchanged": true
+    },
+    "afterTitleChooserLoad": {
+      "bytes": 14214,
+      "sha256": "426c8a466a862a04037c53630af99ce23b2b50240962a0db0647ef84eb01c157",
+      "validEngineReplay": true,
+      "qa": true,
+      "seed": 1061844653,
+      "rulesVersion": 14,
+      "phase": "hunter",
+      "round": 2,
+      "revision": 15,
+      "track": 2,
+      "hp": 6,
+      "echoes": 1,
+      "handCount": 2,
+      "node": "tile-15:right",
+      "commandCount": 15,
+      "lastCommandTypes": [
+        "DODGE",
+        "RESOLVE",
+        "REFILL",
+        "ATTACK",
+        "RESOLVE"
+      ],
+      "canonicalEngineReexportMatchesRawBytes": true,
+      "inputBytesUnchanged": true
+    }
+  },
+  "rawBytesIdentical": true,
+  "replayedStatesIdentical": true,
+  "commandStreamsIdentical": true,
+  "validationPassed": true,
+  "nativeFollowupOutsideThisComparison": "Root separately reports one UI move after loading; that later gameplay state is not one of these two compared exports."
+}

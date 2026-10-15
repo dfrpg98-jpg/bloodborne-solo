@@ -87,6 +87,15 @@
   background: #1f3038;
 }
 .game-help .game-help-section-body { padding: 17px 17px 20px; }
+.game-help .game-help-qa-start {
+  margin: 0 0 22px;
+  border-color: #9a855d;
+}
+.game-help .game-help-qa-start[open] summary {
+  color: #f1dfb9;
+  border-color: #756344;
+  background: #383326;
+}
 @media (max-width: 560px) {
   .game-help { font-size: 14px; }
   .game-help .game-help-screen { padding: 14px; }

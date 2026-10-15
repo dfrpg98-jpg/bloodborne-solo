@@ -50,7 +50,9 @@
     let text;
     while ((text = walker.nextNode())) {
       const parent = text.parentElement;
-      if (!parent || parent.closest("script,style,textarea")) continue;
+      // The shared manual is edited as complete instructions, including exact
+      // button labels. Term shortcuts must not rewrite it after rendering.
+      if (!parent || parent.closest("script,style,textarea,#gameHelpContent")) continue;
       const context = parent.closest("#objectiveDetail,#revealedCards,#storyPanel,#pastChapters,#missionNotices,#storyDialog") ? "mission" :
         parent.closest(".inventory-panel,#startingItemSetup") ? "item" : parent.closest(".rewards-panel") ? "reward" : "skill";
       if (/카드|앞면|뒷면|[AB]\s*면|명칭 없는 타일/.test(text.nodeValue)) text.nodeValue = uiText(text.nodeValue, context);
@@ -1085,14 +1087,14 @@
       $("phaseTitle").textContent = reaction.title || "전용 능력 대응";
       const blockPerSpeed = reaction.dodgeBlockPerSpeed || state.combat?.immediate?.dodgeBlockPerSpeed;
       help = blockPerSpeed
-        ? `회피 속도마다 ${blockPerSpeed}피해를 방어합니다. 회피 카드와 빈 슬롯을 선택하세요.`
-        : `속도 ${reaction.dodgeSpeed ?? 1} 이상 회피 카드와 빈 슬롯을 선택하세요.${reaction.effects?.length ? " " + reaction.effects.join(" · ") : ""}`;
+        ? `회피 속도마다 ${blockPerSpeed}피해를 방어합니다. 회피 카드와 빈 슬롯을 고른 뒤 ‘이 효과 회피’를 눌러 확정하세요.`
+        : `합계 속도 ${reaction.dodgeSpeed ?? 1} 이상인 회피 카드와 빈 슬롯을 고른 뒤 ‘이 효과 회피’를 눌러 확정하세요.${reaction.effects?.length ? " " + reaction.effects.join(" · ") : ""}`;
       html = `<p>${esc(selectHint)}</p>${button("이 효과 회피", "DODGE", { cardId: selectedCard, slot: selectedSlot }, !canCommit || !E.canDodge(state, selectedCard, selectedSlot))}${button(reaction.damage ? `피해 ${reaction.damage}와 효과를 받고 계속` : "회피하지 않고 효과 처리", "RESOLVE", {}, false, "primary")}`;
     } else if (p === "combat_react" || p === "combat_extra") {
       const extra = p === "combat_extra";
       help = extra
-        ? "첫 공격을 피했거나 방해했어도 별도의 속도 2 회피가 필요합니다."
-        : "회피할 경우 손패의 회피 카드와 충분한 속도의 빈 슬롯을 선택하세요.";
+        ? "첫 공격을 피했거나 방해했어도 별도의 속도 2 회피가 필요합니다. 카드와 빈 슬롯을 고른 뒤 ‘추가 타격 회피’를 누르세요. 피하지 않으려면 ‘추가 피해 받기’를 선택합니다."
+        : "회피 카드와 충분한 속도의 빈 슬롯을 고른 뒤 ‘회피’를 눌러 확정하세요. 선택만으로 회피하지 않습니다. 대응을 마쳤거나 회피하지 않으려면 ‘속도 순서대로 전투 처리’를 누르세요.";
       html = `<p>${esc(selectHint)}</p>${button(extra ? "추가 타격 회피" : "회피", extra ? "EXTRA_DODGE" : "DODGE", { cardId: selectedCard, slot: selectedSlot }, !canCommit || !E.canDodge(state, selectedCard, selectedSlot, extra))}`;
       if (!extra) html += firearmAction();
       html += button(

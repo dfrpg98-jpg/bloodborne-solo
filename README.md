@@ -1,10 +1,10 @@
 # Bloodborne Solo · 기나긴 사냥
 
-브라우저에서 기나긴 사냥 챕터 1~3을 한 명의 플레이어로 진행하는 로컬 게임입니다. 현재 개발 버전은 **0.8.13-dev.11**, 마지막 보관 릴리스는 **0.8.12**입니다. 이번 개발본은 정식 릴리스가 아닙니다. 수직 이동·정렬된 공격의 방향 반전 수정은 [하인 방향 재점검](docs/audits/minion-facing-v0.8.13-dev.10/README.md)에, 신규 적6종의 외형·표시 크기·실제 검증 사냥은 [적 외형 점검 기록](docs/audits/enemy-sprites-v0.8.13-dev.9/README.md)에 있습니다. 직전 dev.8의 UI·규칙·저장 점검과 Unity 이식 준비 결과는 [로컬 검증 기록](docs/audits/local-final-validation-v0.8.13-dev.8/README.md)에서 구분합니다.
+브라우저에서 기나긴 사냥 챕터 1~3을 한 명의 플레이어로 진행하는 로컬 게임입니다. 현재 개발 버전은 **0.8.13-dev.12**, 마지막 보관 릴리스는 **0.8.12**입니다. 이번 개발본은 정식 릴리스가 아닙니다. 수직 이동·정렬된 공격의 방향 반전 수정은 [하인 방향 재점검](docs/audits/minion-facing-v0.8.13-dev.10/README.md)에, 신규 적6종의 외형·표시 크기·실제 검증 사냥은 [적 외형 점검 기록](docs/audits/enemy-sprites-v0.8.13-dev.9/README.md)에 있습니다. 직전 dev.8의 UI·규칙·저장 점검과 Unity 이식 준비 결과는 [로컬 검증 기록](docs/audits/local-final-validation-v0.8.13-dev.8/README.md)에서 구분합니다.
 
 ## 실행
 
-타이틀·처음 사냥 도움말과 BB-035 저장 경합 수정은 [dev.11 점검 기록](docs/audits/title-help-v0.8.13-dev.11/README.md)에 있습니다.
+도움말만 따라 검증용 첫 이동·탐험·회피·공격·저장 불러오기를 진행한 결과와 BB-036 안내 보완은 [dev.12 플레이 기록](docs/audits/help-led-qa-v0.8.13-dev.12/README.md)에 있습니다. 타이틀과 BB-035 저장 경합 수정은 [dev.11 점검 기록](docs/audits/title-help-v0.8.13-dev.11/README.md)에 보존합니다.
 
 표시 엔진과 실행 에셋은 저장소에 포함되어 있어 별도의 엔진 설치가 필요하지 않습니다. 저장소를 내려받은 뒤 프로젝트 폴더에서 다음 명령을 실행합니다.
 
