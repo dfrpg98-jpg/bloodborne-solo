@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-15T10:38:22.570Z",
+  "runtimeVersion": "0.8.13-dev.10",
+  "baseCommit": "2c98d0f5e6c5523bb0a03ea323cda7b5369c989a",
+  "branch": "fix/minion-facing-dev10",
+  "unchanged": [
+    {
+      "file": "assets/characters/huntsmans-minion.png",
+      "beforeSHA256": "dccacb4a1ceea110b7ad6f65aca94a21366cb9d2c50eb463239e832af6dc736b",
+      "afterSHA256": "dccacb4a1ceea110b7ad6f65aca94a21366cb9d2c50eb463239e832af6dc736b",
+      "identical": true
+    },
+    {
+      "file": "assets/characters/huntsmans-minion.atlas.json",
+      "beforeSHA256": "5aefc78720d4552be6ca7211e9d06e727a206bc88a442d77aa1ce13007720af1",
+      "afterSHA256": "5aefc78720d4552be6ca7211e9d06e727a206bc88a442d77aa1ce13007720af1",
+      "identical": true
+    },
+    {
+      "file": "assets/characters/manifest.json",
+      "beforeSHA256": "b95eec9e88ed8dcba9d00567e4a4e865df8145f305925b814300d06528889321",
+      "afterSHA256": "b95eec9e88ed8dcba9d00567e4a4e865df8145f305925b814300d06528889321",
+      "identical": true
+    },
+    {
+      "file": "hunt-engine.js",
+      "beforeSHA256": "c8483d7821da91bbe9927602c9833c71e33b8bda2d88a81b3c1924baa8d1b48d",
+      "afterSHA256": "c8483d7821da91bbe9927602c9833c71e33b8bda2d88a81b3c1924baa8d1b48d",
+      "identical": true
+    },
+    {
+      "file": "chapter-engine.js",
+      "beforeSHA256": "40fb02224f705e5b9e291ea9fee18b8c6989a8bd5ee9975069be7b3744212a1b",
+      "afterSHA256": "40fb02224f705e5b9e291ea9fee18b8c6989a8bd5ee9975069be7b3744212a1b",
+      "identical": true
+    },
+    {
+      "file": "mission-engine.js",
+      "beforeSHA256": "013c8613c5c2de420567d366973c72751a8403248f287182377c6440a376b8af",
+      "afterSHA256": "013c8613c5c2de420567d366973c72751a8403248f287182377c6440a376b8af",
+      "identical": true
+    }
+  ],
+  "unchangedDomains": [
+    "assets",
+    "campaigns",
+    "components",
+    "hunt-engine.js",
+    "chapter-engine.js",
+    "mission-engine.js",
+    "unity-port"
+  ],
+  "immutableChanges": [],
+  "ordinaryGameplayExecuted": false,
+  "pairedNativeRendererPreview": true,
+  "rawPlayerSavesCopied": false,
+  "sourcePNGOrAtlasEdits": false,
+  "newGeneratedImages": false,
+  "browserLimitation": "The existing main tab was a browser error document. Reading that tab was denied because its internal protocol is unsupported; it was not read or controlled. Live verification uses allowed HTTP assets and a separate gallery, not a comparison of the personal play state."
+}

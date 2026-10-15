@@ -1,0 +1,281 @@
+{
+  "task": "Huntsman's Minion left/right renderer re-audit",
+  "date": "2026-10-15",
+  "mode": "read-only product source; report output only",
+  "repository": "local-development-archive/bloodborne-solo",
+  "branch": "feat/enemy-sprites-dev9",
+  "head": "2c98d0f5e6c5523bb0a03ea323cda7b5369c989a",
+  "sourceFiles": [
+    "hunt-presentation.js",
+    "weapon-gallery.js",
+    "hunt-app.js",
+    "assets/characters/manifest.json",
+    "tests/weapon-animation-v083.test.cjs",
+    "tests/character-animation-v082.test.cjs",
+    "map-render-layout.js"
+  ],
+  "outcome": {
+    "transitionFacingSnapReproduced": false,
+    "equalHorizontalCoordinateSnapReproduced": true,
+    "userComplaintRootCauseConfirmed": false,
+    "explanation": "No renderer facing reversal was observed solely from advancing named Minion frames, idle/attack/hit completion, death, selection refresh, or an empty later revision. Two facing assignments overwrite an existing left direction with right when their X values are equal."
+  },
+  "facingWriters": [
+    {
+      "file": "hunt-presentation.js",
+      "line": 457,
+      "function": "moveActor",
+      "expression": "unit.sprite.setFlipX?.(after.x < before.x)",
+      "behavior": "leftward sets true; rightward and purely vertical both set false"
+    },
+    {
+      "file": "hunt-presentation.js",
+      "line": 491,
+      "function": "attack",
+      "expression": "unit.sprite.setFlipX?.(to.x < from.x)",
+      "behavior": "left target sets true; right target and vertically aligned target both set false"
+    }
+  ],
+  "preservedPaths": [
+    {
+      "file": "hunt-presentation.js",
+      "line": 323,
+      "function": "idle",
+      "note": "Clears transientSkin and may restore current actor texture, origin, size and mask; never writes flipX."
+    },
+    {
+      "file": "hunt-presentation.js",
+      "line": 337,
+      "function": "pose",
+      "note": "Changes animation and optional requested texture, attaches epoch-guarded completion; never writes flipX."
+    },
+    {
+      "file": "hunt-presentation.js",
+      "line": 354,
+      "function": "updateUnit",
+      "note": "Same actor skin preserves transient attack source skin; origin/size/depth/shadow/mask updates never write flipX."
+    },
+    {
+      "file": "hunt-presentation.js",
+      "line": 416,
+      "function": "runMotionTween",
+      "note": "Completion restores idle while preserving facing."
+    },
+    {
+      "file": "hunt-presentation.js",
+      "line": 433,
+      "function": "rebaseUnitMotion",
+      "note": "Camera rebasing preserves current flipX."
+    },
+    {
+      "file": "hunt-presentation.js",
+      "line": 467,
+      "function": "defeat",
+      "note": "Plays death and fade with current facing."
+    },
+    {
+      "file": "hunt-presentation.js",
+      "line": 495,
+      "function": "attack target reaction",
+      "note": "Target hit/death plays with its prior facing."
+    },
+    {
+      "file": "hunt-presentation.js",
+      "line": 554,
+      "function": "apply interrupted motion continuation",
+      "note": "clearEffects restores idle but does not change flipX; continued walk restores frame and tween while retaining direction."
+    }
+  ],
+  "shippedMinionConfig": {
+    "skin": "huntsmans-minion",
+    "baseFacing": "right",
+    "frameCount": 16,
+    "frameWidth": 512,
+    "frameHeight": 512,
+    "displayHeight": 127,
+    "originY": 0.8984375,
+    "optional": false,
+    "animations": "standardAnimations: idle 0-3; walk 4-7; attack 8-11; hit 12-13; death 14-15",
+    "note": "The renderer does not read baseFacing. Its two comparison writes assume a right-facing source asset. All six named enemy configs declare right, so metadata omission alone is not a current named-Minion defect."
+  },
+  "namedMinionHarness": {
+    "implementation": "Existing fixture from tests/weapon-animation-v083.test.cjs evaluated before test declarations, with actual shipped Minion manifest entry and geometry support. No product source modified.",
+    "steps": [
+      {
+        "step": "initial idle",
+        "position": [
+          200,
+          100
+        ],
+        "flipX": false,
+        "pose": "idle"
+      },
+      {
+        "step": "leftward walk start",
+        "position": [
+          200,
+          100
+        ],
+        "destination": [
+          150,
+          100
+        ],
+        "flipX": true,
+        "pose": "walk",
+        "framesVerified": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "step": "walk completion",
+        "position": [
+          150,
+          100
+        ],
+        "flipX": true,
+        "pose": "idle"
+      },
+      {
+        "step": "same revision selection refresh",
+        "position": [
+          150,
+          100
+        ],
+        "flipX": true,
+        "pose": "idle"
+      },
+      {
+        "step": "empty new revision",
+        "position": [
+          150,
+          100
+        ],
+        "flipX": true,
+        "pose": "idle"
+      },
+      {
+        "step": "attack at unchanged left target [80,100]",
+        "position": [
+          150,
+          100
+        ],
+        "flipX": true,
+        "pose": "attack",
+        "framesVerified": [
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      {
+        "step": "attack completion",
+        "position": [
+          150,
+          100
+        ],
+        "flipX": true,
+        "pose": "idle"
+      },
+      {
+        "step": "hit reaction",
+        "position": [
+          150,
+          100
+        ],
+        "flipX": true,
+        "pose": "hit"
+      },
+      {
+        "step": "hit completion",
+        "position": [
+          150,
+          100
+        ],
+        "flipX": true,
+        "pose": "idle"
+      },
+      {
+        "step": "death",
+        "position": [
+          150,
+          100
+        ],
+        "flipX": true,
+        "pose": "death"
+      }
+    ]
+  },
+  "concreteReproducers": [
+    {
+      "id": "vertical-walk-facing-reset",
+      "source": "hunt-presentation.js:457",
+      "setup": "Actual named Minion starts [200,100], then a move action takes it to [150,100]. Complete the walk. It now has flipX=true.",
+      "trigger": "Next revision contains a Minion move action to [150,150], retaining x=150.",
+      "actual": "flipX becomes false at start of pure vertical walk and remains false on return to idle.",
+      "expectedIfFacingTracksHorizontalDirection": "Keep prior left facing when no horizontal direction is available.",
+      "limitation": "A vertical game movement still occurs. This is not evidence of an autonomous idle flip."
+    },
+    {
+      "id": "stationary-aligned-target-facing-reset",
+      "source": "hunt-presentation.js:491",
+      "setup": "Target is [150,10] throughout. Minion moves [200,100] to [150,100], completes its walk, and is left-facing.",
+      "trigger": "Next revision contains only an attack from Minion to the same target; neither actor position changes.",
+      "actual": "flipX changes true to false at attack start; attack completion keeps false.",
+      "expectedIfFacingTracksHorizontalDirection": "Keep prior left facing when an unchanged target supplies no horizontal direction.",
+      "limitation": "Test demonstrates facing state, not pixel art direction. Whether this is the user-observed issue still needs live visual confirmation."
+    }
+  ],
+  "meaningfulChecks": [
+    {
+      "command": "node --test --test-name-pattern=\"facing|idle frame changes|full four-frame|moving masked|camera zoom|rapid return|combat resolution immediately|attack.*(refresh|complete)\" tests/weapon-animation-v083.test.cjs tests/character-animation-v082.test.cjs",
+      "result": "12 passed, 0 failed"
+    },
+    {
+      "command": "node --test --test-name-pattern=\"camera refreshes preserve a consumed-charge source attack|pinned source-form attack\" tests/weapon-animation-v083.test.cjs",
+      "result": "2 passed, 0 failed; the pinned-source test overlaps the first selection"
+    },
+    {
+      "command": "Named Minion targeted fixture trace and equal-X assertions using shipped manifest",
+      "result": "passed; two equal-X forced-right reproducers confirmed"
+    }
+  ],
+  "possibleRepair": "For each of the two facing assignments, update flipX only when the horizontal delta has a nonzero direction (consider a small tolerance). Preserve existing flipX on vertical moves or vertically aligned attacks. Add targeted equal-X regressions if root elects to repair.",
+  "limitations": [
+    "No native browser, live Phaser instance, image generation, image inspection, or product source edits performed by this investigation.",
+    "Stub fixture verifies renderer state transitions and shipped asset wiring; it does not determine whether artwork inside a frame visually faces the declared direction.",
+    "No full CI run. Existing audit conclusions were not used as proof.",
+    "The common tile-01 pursuit layout sampled at four rotations did not have exact equal-X hunter/Minion coordinates; natural reachability of either equal-X case was not established here."
+  ],
+  "regressionImplementation": {
+    "branch": "fix/minion-facing-dev10",
+    "productionRendererEdited": false,
+    "testFile": "tests/weapon-animation-v083.test.cjs",
+    "newTests": 6,
+    "command": "node --test --test-name-pattern=shipped Minion tests/weapon-animation-v083.test.cjs",
+    "baseline": {
+      "pass": 4,
+      "fail": 2,
+      "exitCode": 1,
+      "rendererUnchangedDuringRun": true
+    },
+    "failingCases": [
+      "left heading on purely vertical walk",
+      "left heading attacking stationary vertically aligned target"
+    ],
+    "passingCases": [
+      "right heading on purely vertical walk",
+      "right heading attacking stationary vertically aligned target",
+      "horizontal movement and opposite-side targets still turn",
+      "either heading preserved through camera/selection/recovery/hit/death with shipped ownership clips"
+    ],
+    "evidenceFiles": [
+      "work/minion-facing-20261015/renderer-regressions-before.txt",
+      "work/minion-facing-20261015/renderer-regressions-before.json"
+    ],
+    "note": "Tests added only after root authorized a fix. Root owns production renderer changes and further validation."
+  }
+}

@@ -789,3 +789,101 @@ test('all 30 shipped weapon atlases and every one of their 720 poses survive run
   assert.equal(clipCount, Object.values(shipped).reduce((sum, data) => sum + Object.values(data.atlasData.frames).filter(frame => frame.clipRects).length, 0));
   f.adapter.destroy(); assert(f.maskGraphics.every(value => value.destroyed));
 });
+
+function namedMinionFacing(flipX, alignedTarget = false) {
+  const data = require('../assets/characters/manifest.json')['huntsmans-minion'];
+  const x = flipX ? 150 : 250, view = { x: 0, y: 0, zoom: 1 };
+  const actor = { id: 'minion', kind: 'enemy', skin: 'huntsmans-minion', node: 'minion-room', x, y: 100, hp: 10 };
+  const target = { id: 'hunter', kind: 'hunter', skin: 'hunter', node: 'minion-room',
+    x: alignedTarget ? x : flipX ? 80 : 350, y: alignedTarget ? 10 : 100, hp: 6 };
+  const f = fixture({ geometry: true, custom(characters) { characters['huntsmans-minion'] = structuredClone(data); } });
+  f.adapter.sync({ revision: 1, sceneId: 'minion-facing', actors: [{ ...actor, x: 200 }, target], view }); f.boot();
+  const sprite = f.sprites.find(value => value.texture === 'bb-character-huntsmans-minion');
+  assert(sprite, 'the actual shipped Minion atlas must render');
+  f.adapter.sync({ revision: 2, sceneId: 'minion-facing', actors: [actor, target], view,
+    actions: [{ type: 'move', fromId: actor.id }] });
+  const movement = f.tweens.findLast(value => value.targets === sprite && value.x === x);
+  assert(movement); f.tween(movement);
+  assert.equal(sprite.flipX, flipX, 'a public horizontal move establishes the heading');
+  return { f, data, sprite, actor, target, view };
+}
+
+function assertMinionHeading(state, flipX) {
+  const { sprite, data } = state, frame = String(typeof sprite.frame === 'object' ? sprite.frame.name : sprite.frame);
+  assert.equal(sprite.flipX, flipX, 'the chosen horizontal heading stays visible');
+  assert(sprite.mask, `shipped Minion frame ${frame} keeps its ownership mask`);
+  assert.equal(sprite.mask.graphics.scaleX, sprite.scaleX * (flipX ? -1 : 1), 'ownership geometry mirrors with its sprite');
+  assert.equal(sprite.mask.graphics.scaleY, sprite.scaleY);
+  assert.deepEqual([sprite.mask.graphics.x, sprite.mask.graphics.y], [sprite.x, sprite.y]);
+  assert.deepEqual(localRects(sprite.mask.graphics), data.atlasData.frames[frame].clipRects.map(rect =>
+    [rect.x - data.frameWidth / 2, rect.y - data.frameHeight * data.originY, rect.w, rect.h]));
+}
+
+for (const flipX of [true, false]) test(`shipped Minion preserves its ${flipX ? 'left' : 'right'} heading on a purely vertical walk`, () => {
+  const state = namedMinionFacing(flipX), { f, sprite, actor, target, view } = state;
+  const destination = { ...actor, y: 180 };
+  f.adapter.sync({ revision: 3, sceneId: 'minion-facing', actors: [destination, target], view,
+    actions: [{ type: 'move', fromId: actor.id }] });
+  const movement = f.tweens.findLast(value => value.targets === sprite && value.y === destination.y);
+  assert.equal(sprite.plays.at(-1), 'bb-huntsmans-minion-walk');
+  for (const frame of [4, 5, 6, 7]) { sprite.advanceFrame(String(frame)); assertMinionHeading(state, flipX); }
+  f.tween(movement);
+  assert.deepEqual([sprite.x, sprite.y], [destination.x, destination.y]);
+  assert.equal(sprite.plays.at(-1), 'bb-huntsmans-minion-idle'); assertMinionHeading(state, flipX);
+});
+
+for (const flipX of [true, false]) test(`shipped Minion preserves its ${flipX ? 'left' : 'right'} heading when attacking a vertically aligned target`, () => {
+  const state = namedMinionFacing(flipX, true), { f, sprite, actor, target, view } = state;
+  assert.equal(actor.x, target.x);
+  f.adapter.sync({ revision: 3, sceneId: 'minion-facing', actors: [actor, target], view,
+    actions: [{ type: 'attack', fromId: actor.id, toId: target.id, damage: 0, skin: actor.skin }] });
+  assert.equal(sprite.plays.at(-1), 'bb-huntsmans-minion-attack');
+  for (const frame of [8, 9, 10, 11]) { sprite.advanceFrame(String(frame)); assertMinionHeading(state, flipX); }
+  sprite.complete('animationcomplete-bb-huntsmans-minion-attack');
+  assert.deepEqual([sprite.x, sprite.y], [actor.x, actor.y]);
+  assert.equal(sprite.plays.at(-1), 'bb-huntsmans-minion-idle'); assertMinionHeading(state, flipX);
+});
+
+test('shipped Minion still turns for horizontal movement and targets on opposite sides', () => {
+  const state = namedMinionFacing(true), { f, sprite, actor, target, view } = state;
+  assertMinionHeading(state, true);
+  const right = { ...actor, x: 250 }, rightTarget = { ...target, id: 'right-target', kind: 'enemy', skin: 'mob', x: 350 };
+  f.adapter.sync({ revision: 3, sceneId: 'minion-facing', actors: [right, target, rightTarget], view,
+    actions: [{ type: 'move', fromId: actor.id }] });
+  assertMinionHeading(state, false);
+  f.tween(f.tweens.findLast(value => value.targets === sprite && value.x === right.x)); assertMinionHeading(state, false);
+  f.adapter.sync({ revision: 4, sceneId: 'minion-facing', actors: [right, target, rightTarget], view,
+    actions: [{ type: 'attack', fromId: actor.id, toId: target.id, damage: 0, skin: actor.skin }] });
+  assertMinionHeading(state, true); sprite.complete('animationcomplete-bb-huntsmans-minion-attack'); assertMinionHeading(state, true);
+  f.adapter.sync({ revision: 5, sceneId: 'minion-facing', actors: [right, target, rightTarget], view,
+    actions: [{ type: 'attack', fromId: actor.id, toId: rightTarget.id, damage: 0, skin: actor.skin }] });
+  assertMinionHeading(state, false); sprite.complete('animationcomplete-bb-huntsmans-minion-attack'); assertMinionHeading(state, false);
+});
+
+test('shipped Minion keeps either heading through camera, selection, recovery, hit and death', () => {
+  for (const flipX of [true, false]) {
+    const state = namedMinionFacing(flipX), { f, sprite, actor, view } = state;
+    const target = state.target;
+    f.adapter.sync({ revision: 3, sceneId: 'minion-facing', actors: [actor, target], view,
+      actions: [{ type: 'attack', fromId: actor.id, toId: target.id, damage: 0, skin: actor.skin }] });
+    sprite.advanceFrame('10'); assertMinionHeading(state, flipX);
+    const zoomedActor = { ...actor, selected: true, x: actor.x * 2 - 20, y: actor.y * 2 - 30, scale: 2 },
+      zoomedTarget = { ...target, x: target.x * 2 - 20, y: target.y * 2 - 30, scale: 2 },
+      zoomedView = { x: 20, y: 30, zoom: 2 };
+    f.adapter.sync({ revision: 3, sceneId: 'minion-facing', actors: [zoomedActor, zoomedTarget], view: zoomedView });
+    assert.equal(sprite.plays.at(-1), 'bb-huntsmans-minion-attack'); assert.equal(sprite.frame, '10'); assertMinionHeading(state, flipX);
+    sprite.complete('animationcomplete-bb-huntsmans-minion-attack');
+    assert.equal(sprite.plays.at(-1), 'bb-huntsmans-minion-idle'); assertMinionHeading(state, flipX);
+    const injured = { ...zoomedActor, selected: false, hp: 9 };
+    f.adapter.sync({ revision: 4, sceneId: 'minion-facing', actors: [injured, zoomedTarget], view: zoomedView });
+    assert.equal(sprite.plays.at(-1), 'bb-huntsmans-minion-hit');
+    for (const frame of [12, 13]) { sprite.advanceFrame(String(frame)); assertMinionHeading(state, flipX); }
+    sprite.complete('animationcomplete-bb-huntsmans-minion-hit');
+    assert.equal(sprite.plays.at(-1), 'bb-huntsmans-minion-idle'); assertMinionHeading(state, flipX);
+    f.adapter.sync({ revision: 5, sceneId: 'minion-facing', actors: [zoomedTarget], view: zoomedView,
+      actions: [{ type: 'attack', fromId: target.id, toId: actor.id, damage: 99 }] });
+    assert.equal(sprite.plays.at(-1), 'bb-huntsmans-minion-death');
+    for (const frame of [14, 15]) { sprite.advanceFrame(String(frame)); assertMinionHeading(state, flipX); }
+    f.adapter.destroy();
+  }
+});

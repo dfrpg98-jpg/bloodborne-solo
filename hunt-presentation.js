@@ -450,11 +450,17 @@
     cancelUnitMotion(unit, !waiting);
     if (waiting) { unit.motion = waiting; unit.moving = true; }
   }
+  function faceHorizontally(unit, fromX, toX) {
+    // A vertical move or aligned target gives no new left/right direction.
+    // Keep the current heading instead of treating equal X as facing right.
+    if (Number.isFinite(fromX) && Number.isFinite(toX) && fromX !== toX)
+      unit.sprite.setFlipX?.(toX < fromX);
+  }
   function moveActor(before, after) {
     const unit = units.get(after.id);
     if (charactersReady && unit) {
       cancelUnitMotion(unit, false); unit.sprite.setPosition(before.x, before.y);
-      unit.sprite.setFlipX?.(after.x < before.x); unit.moving = true; pose(unit, "walk");
+      faceHorizontally(unit, before.x, after.x); unit.moving = true; pose(unit, "walk");
       startUnitMotion(unit, before, after, movementDuration(after), "walk");
     } else {
       const trail = graphic(); trail.lineStyle(3, after.kind === "hunter" ? 0xd8bc78 : 0xaf6458, .6);
@@ -488,7 +494,7 @@
     if (unit?.motion?.mode === "layout-wait") from = { ...from, x: unit.sprite.x, y: unit.sprite.y };
     if (target?.motion?.mode === "layout-wait") to = { ...to, x: target.sprite.x, y: target.sprite.y };
     if (unit && (!shot || action?.attackStyle === "weapon") && !(from?.kind === "hunter" && action?.attackStyle === "other")) {
-      cancelForPose(unit); unit.sprite.setFlipX?.(to.x < from.x);
+      cancelForPose(unit); faceHorizontally(unit, from.x, to.x);
       const skin = readySheets.has(action?.skin) ? action.skin : unit.skin;
       pose(unit, attackPose(skin, from, action), () => idle(unit), skin);
     }

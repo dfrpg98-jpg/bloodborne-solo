@@ -1,0 +1,31 @@
+{
+  "label": "focused",
+  "command": [
+    "local-development-archive/node.exe",
+    "--test",
+    "--test-reporter=tap",
+    "--test-concurrency=2",
+    "tests/presentation-v081.test.cjs",
+    "tests/character-animation-v082.test.cjs",
+    "tests/weapon-animation-v083.test.cjs",
+    "tests/enemy-visuals-v0813.test.cjs",
+    "tests/character-gallery-ui.test.cjs",
+    "tests/character-assets-v082.test.cjs",
+    "tests/animation-camera-ui-v082.test.cjs",
+    "tests/weapon-visual-ui-v083.test.cjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "spawnError": null,
+  "durationSeconds": 3.898,
+  "counts": {
+    "tests": 188,
+    "suites": 0,
+    "pass": 188,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "failedSubtests": []
+}
