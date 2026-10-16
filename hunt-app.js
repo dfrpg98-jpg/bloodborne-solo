@@ -1692,7 +1692,7 @@
     $("tileInspectionStatus").dataset.current = String(sameTile);
     $("tileInspectionStatus").innerHTML = `<p class="tile-hunter-location"><span>● 사냥꾼의 현재 위치</span><strong>${esc(h.inDream ? "사냥꾼의 꿈" : nodeName(h.position))}</strong></p><p class="tile-inspected-location" ${sameTile ? "hidden" : ""}><span>살펴보는 타일</span><strong>${esc(view?.name || window.BBHuntLocationLabels?.tile(state, inspectedTile)?.reference || "선택한 타일")}</strong><small class="target-selection-status">${sameTile ? "현재 위치가 있는 타일입니다." : "현재 위치와 다른 타일을 살펴보고 있습니다."}</small></p>`;
     $("inspectCurrentTile").disabled = !current;
-    $("inspectCurrentTile").onclick = () => { inspectedTile = current; renderMap(); syncPresentation(); };
+    $("inspectCurrentTile").onclick = () => { inspectedTile = current; mapTarget = null; renderMap(); renderDecisions(); syncPresentation(); };
     if (!view) { box.innerHTML = '<p class="muted">지도 타일을 선택하면 내용과 특수 규칙을 확인할 수 있습니다.</p>'; return; }
     box.innerHTML = `${view.name ? `<h3>${esc(view.name)}</h3>` : ""}${view.fog ? '<p class="context-lamp-warning">안개 진입로 · 타일 밖으로 걸어서 나갈 수 없습니다.</p>' : ""}${view.rules.map(rule => `<p class="tile-info-rule">${esc(uiText(rule))}</p>`).join("")}${view.spaces.map(space => `<section class="tile-info-space"><h4>${esc(uiText(space.name))}${space.atHunter ? ' <span class="tile-current-badge">● 현재 위치</span>' : ""}</h4>${space.interactions.map(text => `<p class="tile-info-object">${esc(uiText(text))}</p>`).join("")}${space.tokens.map(token => `<p class="tile-info-companion">◆ ${esc(uiText(token.name))}${token.count > 1 ? ` ${token.count}명` : ""}${token.carrierId === state.activeHunterId ? " · 동행 중" : ""}</p>`).join("")}${space.enemies.map(enemy => `<button type="button" class="tile-info-enemy" data-special-info="${esc(enemy.id)}" aria-label="${esc(enemy.name)} 공격과 능력 보기">${esc(enemyTargetLabel(enemy.id))}<small>체력 ${enemy.hp} / ${enemy.maxHp}${Number.isFinite(enemy.insight) ? ` · 계몽 ${enemy.insight}개` : ""}</small></button>`).join("")}${!space.interactions.length && !space.tokens.length && !space.enemies.length ? '<p class="muted">현재 놓인 대상 없음</p>' : ""}</section>`).join("")}`;
     box.querySelectorAll("[data-special-info]").forEach(button => button.onclick = () => openEnemyDetail(button));
@@ -1737,7 +1737,7 @@
         }
       };
     });
-    $("clearMapTarget").onclick = () => { mapTarget = null; renderMap(); renderDecisions(); };
+    $("clearMapTarget").onclick = () => { mapTarget = null; renderMap(); renderDecisions(); syncPresentation(); };
   }
   function renderEnemyHistory() {
     const history = enemyHistory.view();
@@ -1888,8 +1888,9 @@
       const enemy = state.enemies.find(enemy => enemy.id === entry.id),
         assigned = state.world.assignments.find(assignment => assignment.enemyId === enemy.kind), d = E.enemyDef(state, enemy),
         marker = enemy.missionId || enemy.provisionalKind || enemy.componentId || !assigned ? "★" : ["●", "▲", "■"][assigned.slot - 1],
-        insight = window.BBHuntContext?.enemyInsightTokens(state, enemy), tokenLabel = Number.isFinite(insight) ? ` · 계몽 토큰 ${insight}개` : "";
-      return `<div class="map-figures scene-figure ${entry.anchorKind === "lamp" ? "lamp-figures" : ""}" data-layout-id="${esc(entry.id)}" style="left:${entry.x}%;top:${entry.y}%"><button type="button" class="map-figure ${selectedEnemy === enemy.id ? "selected" : ""}" data-enemy="${esc(enemy.id)}" data-presentation-id="${esc(enemy.id)}" data-presentation-kind="enemy" data-presentation-node="${esc(entry.node)}" data-presentation-skin="${characterSkin(enemy)}" aria-pressed="${selectedEnemy === enemy.id}" aria-label="${esc(enemyTargetLabel(enemy))} · 체력 ${enemy.hp} / ${d.maxHp}${tokenLabel} · 대상 선택" title="${esc(enemyTargetLabel(enemy))} · 체력 ${enemy.hp}/${d.maxHp}${tokenLabel}" style="--marker:${colors[assigned?.marker] || colors.gold}">${marker}${Number.isFinite(insight) ? `<span class="enemy-insight-badge" aria-hidden="true">✧ ${insight}</span>` : ""}</button></div>`;
+        insight = window.BBHuntContext?.enemyInsightTokens(state, enemy), tokenLabel = Number.isFinite(insight) ? ` · 계몽 토큰 ${insight}개` : "",
+        selected = isMapEnemySelected(enemy.id);
+      return `<div class="map-figures scene-figure ${entry.anchorKind === "lamp" ? "lamp-figures" : ""}" data-layout-id="${esc(entry.id)}" style="left:${entry.x}%;top:${entry.y}%"><button type="button" class="map-figure ${selected ? "selected" : ""}" data-enemy="${esc(enemy.id)}" data-presentation-id="${esc(enemy.id)}" data-presentation-kind="enemy" data-presentation-node="${esc(entry.node)}" data-presentation-skin="${characterSkin(enemy)}" aria-pressed="${selected}" aria-label="${esc(enemyTargetLabel(enemy))} · 체력 ${enemy.hp} / ${d.maxHp}${tokenLabel} · 대상 선택" title="${esc(enemyTargetLabel(enemy))} · 체력 ${enemy.hp}/${d.maxHp}${tokenLabel}" style="--marker:${colors[assigned?.marker] || colors.gold}">${marker}${Number.isFinite(insight) ? `<span class="enemy-insight-badge" aria-hidden="true">✧ ${insight}</span>` : ""}</button></div>`;
     }).join("")}${ghost ? "" : gateHTML(p)}</div>`;
   }
   function gateHTML(p) {
@@ -1979,7 +1980,7 @@
     $("nearEnemies").innerHTML = state.enemies
       .map(
         (e) =>
-          `<div class="hunt-enemy ${selectedEnemy === e.id ? "selected" : ""}"><span>${esc(enemyTargetLabel(e))}<br>체력 ${e.hp} / ${E.enemyDef(state, e).maxHp} · ${E.hunter(state).inDream ? "" : E.distance(state, E.hunter(state).position, e.node) + "칸 거리"}</span><button data-enemy="${e.id}">대상 선택</button></div>`,
+          `<div class="hunt-enemy ${isMapEnemySelected(e.id) ? "selected" : ""}"><span>${esc(enemyTargetLabel(e))}<br>체력 ${e.hp} / ${E.enemyDef(state, e).maxHp} · ${E.hunter(state).inDream ? "" : E.distance(state, E.hunter(state).position, e.node) + "칸 거리"}</span><button data-enemy="${e.id}">대상 선택</button></div>`,
       )
       .join("");
     bindEnemyTargets($("nearEnemies"));
@@ -2040,7 +2041,8 @@
   function bindMapTargets() {
     $("chapterMap").querySelectorAll("[data-tile-info]").forEach(button => button.onclick = () => {
       inspectedTile = button.dataset.tileInfo;
-      renderMap(); syncPresentation();
+      mapTarget = null;
+      renderMap(); renderDecisions(); syncPresentation();
     });
     $("chapterMap").querySelectorAll("[data-map-object]").forEach(b => {
       b.onclick = () => {
@@ -2072,14 +2074,17 @@
     if (/beast|dog|hound|crow|spider|rat/i.test(enemy.kind) || /야수|사냥개|늑대|까마귀|거미|쥐/.test(d.name) && !/야수.?사냥/.test(d.name)) return "beast";
     return "mob";
   }
+  function isMapEnemySelected(enemyId) {
+    return mapTarget?.kind === "enemy" && mapTarget.enemyId === enemyId && selectedEnemy === enemyId;
+  }
   function renderEnemyStatuses(actors) {
     const layer = $("enemyStatusLayer");
     if (!layer) return;
     const viewport = $("mapViewport"), width = viewport.clientWidth || 700,
       height = viewport.clientHeight || 400, placed = [];
     enemyStatusOffsets = new Map();
-    layer.innerHTML = actors.filter(a => a.kind === "enemy" && a.x >= -20 && a.x <= width + 20 && a.y >= -20 && a.y <= height + 20)
-      .sort((a,b) => Number(b.id === selectedEnemy) - Number(a.id === selectedEnemy)).map(actor => {
+    layer.innerHTML = actors.filter(a => a.kind === "enemy" && a.selected && a.hp > 0 && a.x >= -20 && a.x <= width + 20 && a.y >= -20 && a.y <= height + 20)
+      .map(actor => {
       const enemy = state.enemies.find(e => e.id === actor.id), definition = E.enemyDef(state, enemy),
         name = enemyTargetLabel(enemy), insight = window.BBHuntContext?.enemyInsightTokens(state, enemy),
         health = Math.max(0, Math.min(100, enemy.hp / definition.maxHp * 100));
@@ -2118,7 +2123,7 @@
         enemy = kind === "enemy" ? state.enemies.find((e) => e.id === id) : null;
       return { id, kind, node: anchor.dataset.presentationNode, skin: anchor.dataset.presentationSkin,
         ...(kind === "hunter" ? hunterVisual() : {}),
-        scale, hp: kind === "hunter" ? h.hp : enemy?.hp, selected: kind === "enemy" && mapTarget?.kind === "enemy" && selectedEnemy === id,
+        scale, hp: kind === "hunter" ? h.hp : enemy?.hp, selected: kind === "enemy" && isMapEnemySelected(id),
         ...point(anchor) };
     });
     const actions = presentationActions.map((action) => {

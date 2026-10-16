@@ -1,5 +1,7 @@
 # 적 대상 선택·지도 연결과 화면 정보 정리 · 0.8.13-dev.18
 
+후속 사용자 피드백으로 지도 정보 카드는 **선택한 적 하나만** 표시하도록 [dev.19에서 수정](../selected-target-hud-v0.8.13-dev.19/README.md)했습니다. 아래 전체 CI·캡처는 수정 전 dev.18의 기록입니다.
+
 같은 칸의 동명 적을 구별하기 어렵고(BB-060), 보상 대상 선택이 UI 재렌더 중 바뀌던 문제(BB-061)를 수정했습니다. 긴 위치·체력 문장을 선택지마다 붙이는 대신, **짧은 이름을 고르면 해당 적이 지도에서 즉시 강조되고 체력·계몽 토큰을 확인하는 방식**으로 정리했습니다.
 
 관리: [Issue #63 · BB-060–061](https://github.com/dfrpg98-jpg/bloodborne-solo/issues/63). `fix/rifle-leap-move-dev17` 위의 `fix/target-selection-clarity-dev18` 개발본입니다. 병합·Desktop 복사·8786 배포 기록이 아닙니다.

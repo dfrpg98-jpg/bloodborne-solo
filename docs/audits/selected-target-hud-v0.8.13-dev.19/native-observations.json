@@ -1,0 +1,60 @@
+{
+  "input": "../target-selection-v0.8.13-dev.18/SYNTHETIC-QA-same-cell-target-reset.json",
+  "browser": "Codex in-app browser, isolated localhost8818",
+  "script": "hunt-app.js?v=0.8.13-dev.19&h=5469e164b9b5",
+  "observations": [
+    {
+      "step": "after-public-file-load",
+      "statuses": [],
+      "selectedMarkers": []
+    },
+    {
+      "step": "select-minion-two",
+      "statuses": [
+        "huntsmans-minion-2"
+      ],
+      "selectedMarkers": [
+        "huntsmans-minion-2"
+      ]
+    },
+    {
+      "step": "close-target",
+      "selectedMarkers": [],
+      "statuses": []
+    },
+    {
+      "step": "select-minion-one",
+      "selectedMarkers": [
+        "huntsmans-minion-1"
+      ],
+      "statuses": [
+        "huntsmans-minion-1"
+      ]
+    },
+    {
+      "step": "inspect-central-lamp-tile",
+      "selectedMarkers": [],
+      "statuses": []
+    },
+    {
+      "step": "reload",
+      "selectedMarkers": [],
+      "statuses": []
+    },
+    {
+      "step": "reward-choice-two",
+      "selectedMarkers": [
+        "huntsmans-minion-2"
+      ],
+      "statuses": [
+        "huntsmans-minion-2"
+      ]
+    }
+  ],
+  "scope": "Normal file chooser and UI only. No game action executed; target display/selection changes only.",
+  "export": "evidence/selection-only-export.json",
+  "savedBytesEqual": true,
+  "exportSha256": "8296ffd68b026bac1fe81ae92e6d3d8a06367542d5abfd0e2c6fc831177361f4",
+  "inputBytes": 15040,
+  "exportBytes": 15040
+}

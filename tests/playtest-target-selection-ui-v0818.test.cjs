@@ -50,9 +50,9 @@ function checkpoint(kind = "tiny") {
   return structuredClone(cache.get(kind));
 }
 function reward(s, kind) { const item = H(s).rewards.find(item => item.kind === kind); assert(item, kind); return item; }
-function launch(s) {
+function launch(s, browserGlobals = {}) {
   const normal = E.exportSave(E.create(722, "burial", 0, null, "hunter-pistol", "center", { campaign: true })),
-    ui = boot(s, E.missionView(s), E.rewardsView(s), { realInventory: true, engine: { ...E },
+    ui = boot(s, E.missionView(s), E.rewardsView(s), { realInventory: true, engine: { ...E }, window: browserGlobals,
       storage: { [qaKey]: E.exportSave(s), [normalKey]: normal, "bloodborne-hunt-active-mode": "qa" } });
   assert.equal(ui.storage.get(qaKey), E.exportSave(s)); return { ui, normal };
 }
@@ -99,6 +99,9 @@ function useReward(ui, id) {
 function selectedMarkers(ui) {
   return ui.el("chapterMap").querySelectorAll("[data-enemy]").filter(button => button.classList.contains("selected")).map(button => button.dataset.enemy);
 }
+function statusIds(ui) {
+  return ui.el("enemyStatusLayer").querySelectorAll("[data-status-enemy]").map(element => element.dataset.statusEnemy);
+}
 function mapStatusMarkup(ui, id) {
   const layer = ui.el("enemyStatusLayer"); assert(layer, "enemy status overlay exists");
   const rows = layer.innerHTML.split(/(?=<div\b[^>]*data-status-enemy=)/),
@@ -106,6 +109,7 @@ function mapStatusMarkup(ui, id) {
   assert(row, "map status for " + id); return row;
 }
 function mapStatus(ui, s, id, tokens = null) {
+  assert.deepEqual(statusIds(ui), [id], "only the explicitly selected living enemy has a name/health overlay");
   const enemy = s.enemies.find(enemy => enemy.id === id), maximum = E.enemyDef(s, enemy).maxHp,
     row = mapStatusMarkup(ui, id), health = row.match(/<span\b[^>]*class="enemy-health-track"[^>]*>/);
   assert(health); assert.match(health[0], /role="progressbar"/);
@@ -162,6 +166,7 @@ test("opening target controls previews a visible choice and reopening rewards pr
     tiny = reward(s, "tiny-tonitrus").id, gloves = reward(s, "executioner-gloves").id;
   panel(ui, "rewards");
   assert.deepEqual(selectedMarkers(ui), [ui.el("rewardEnemy-" + tiny).value]);
+  mapStatus(ui, s, ui.el("rewardEnemy-" + tiny).value);
   change(ui, "rewardEnemy-" + tiny, "huntsmans-minion-2");
   change(ui, "rewardEnemy-" + gloves, "huntsmans-minion-1");
   assert.deepEqual(selectedMarkers(ui), ["huntsmans-minion-1"]);
@@ -169,6 +174,7 @@ test("opening target controls previews a visible choice and reopening rewards pr
   assert.equal(ui.el("rewardEnemy-" + tiny).value, "huntsmans-minion-2");
   assert.equal(ui.el("rewardEnemy-" + gloves).value, "huntsmans-minion-1");
   assert.deepEqual(selectedMarkers(ui), ["huntsmans-minion-1"], "opening the panel does not replace the last chosen target with a different reward's default");
+  mapStatus(ui, s, "huntsmans-minion-1");
   assert.equal(ui.storage.get(qaKey), saved);
 });
 
@@ -178,11 +184,13 @@ test("reward target two previews immediately without closing its panel, remains 
   panel(ui, "rewards"); change(ui, selectId, "huntsmans-minion-2");
   identity(ui.el(summaryId).textContent, s, "huntsmans-minion-2");
   assert.deepEqual(selectedMarkers(ui), ["huntsmans-minion-2"]);
+  mapStatus(ui, s, "huntsmans-minion-2");
   assert.equal(ui.el("infoDialog").open, true); assert.equal(ui.document.activeElement, ui.el(selectId));
   assert.equal(ui.storage.get(qaKey), saved);
   hunterToggle(ui, s); assert.equal(ui.el(selectId).value, "huntsmans-minion-2");
   identity(ui.el(summaryId).textContent, s, "huntsmans-minion-2"); assert.equal(ui.storage.get(qaKey), saved);
   assert.deepEqual(selectedMarkers(ui), ["huntsmans-minion-2"]);
+  mapStatus(ui, s, "huntsmans-minion-2");
   assert.match(ui.el("mapContext").textContent, /#2|2번/); assert.equal(ui.storage.get(qaKey), saved);
   ui.el("closeInfo").click();
   panel(ui, "rewards"); assert.equal(ui.el(selectId).value, "huntsmans-minion-2");
@@ -214,7 +222,10 @@ for (const [setup, kind] of [["gloves", "executioner-gloves"], ["beast", "rune-b
     identity(ui.el("rewardTarget-" + id).textContent, s, "huntsmans-minion-2");
     const actual = useReward(ui, id), expected = E.dispatch(s, { type: "USE_REWARD", rewardId: id, enemyId: "huntsmans-minion-2" });
     assert.deepEqual(actual, expected);
-    if (setup === "gloves") assert(!actual.enemies.some(enemy => enemy.id === "huntsmans-minion-2"));
+    if (setup === "gloves") {
+      assert(!actual.enemies.some(enemy => enemy.id === "huntsmans-minion-2"));
+      assert.deepEqual(statusIds(ui), [], "a dead target does not transfer its overlay to the automatic enemy fallback");
+    }
     else assert.equal(actual.enemies.find(enemy => enemy.id === "huntsmans-minion-2").hp, 1);
     assert.equal(actual.enemies.find(enemy => enemy.id === "huntsmans-minion-1").hp, s.enemies.find(enemy => enemy.id === "huntsmans-minion-1").hp);
   });
@@ -234,12 +245,52 @@ test("Beast Roar sends each identified figure to its own chosen destination with
   assert.equal(actual.enemies.find(enemy => enemy.id === "huntsmans-minion-2").hp, 5);
 });
 
-test("map health bars show each current enemy's real current and maximum HP after a resolved reward effect", () => {
+test("after a reward effect, real HP is shown only for the enemy explicitly inspected on the map", () => {
   let s = checkpoint("tiny"); s = checked(E.dispatch(s, { type: "USE_REWARD", rewardId: reward(s, "tiny-tonitrus").id,
     enemyId: "huntsmans-minion-2" }));
-  const { ui } = launch(s);
+  const { ui } = launch(s), saved = ui.storage.get(qaKey);
   assert.equal(s.enemies.find(enemy => enemy.id === "huntsmans-minion-2").hp, 3);
-  for (const enemy of s.enemies) mapStatus(ui, s, enemy.id);
+  assert.deepEqual(statusIds(ui), [], "loading does not turn the automatic enemy fallback into a visible overlay");
+  for (const enemy of s.enemies) {
+    mapFigure(ui, enemy.id); mapStatus(ui, s, enemy.id); assert.equal(ui.storage.get(qaKey), saved);
+  }
+});
+
+test("initial rendering, refresh and a public file load leave enemy HUD hidden until a map or list target is explicitly selected", async () => {
+  const s = checkpoint("tiny"), { ui, normal } = launch(s), saved = ui.storage.get(qaKey);
+  assert.deepEqual(statusIds(ui), []);
+  panel(ui, "enemies"); assert.deepEqual(statusIds(ui), [], "opening the enemy list does not select its default enemy");
+  const listTarget = ui.el("nearEnemies").querySelectorAll("[data-enemy]").find(button => button.dataset.enemy === "huntsmans-minion-1");
+  assert(listTarget); listTarget.click(); mapStatus(ui, s, "huntsmans-minion-1");
+  mapFigure(ui, "huntsmans-minion-2"); mapStatus(ui, s, "huntsmans-minion-2");
+  assert.equal(ui.storage.get(qaKey), saved); assert.equal(ui.storage.get(normalKey), normal);
+  const reload = launch(E.importSave(saved));
+  assert.deepEqual(statusIds(reload.ui), [], "selection and HUD are not restored from a gameplay save");
+  mapFigure(reload.ui, "huntsmans-minion-2"); mapStatus(reload.ui, s, "huntsmans-minion-2");
+  const input = { files: [{ text: async () => saved }], value: "same-qa-hunt.json" };
+  await reload.ui.el("file").onchange({ target: input });
+  assert.equal(reload.ui.el("error").textContent, ""); assert.deepEqual(statusIds(reload.ui), []);
+  assert.equal(reload.ui.storage.get(qaKey), saved); assert.equal(reload.ui.storage.get(normalKey), normal);
+  assert.deepEqual(current(reload.ui), s);
+});
+
+test("selecting a cell, entrance, tile information or clearing the target removes its HUD without changing the save", () => {
+  const s = checkpoint("tiny"), { ui, normal } = launch(s, { BBHuntMapControls: require("../hunt-map-controls") }), saved = ui.storage.get(qaKey),
+    target = "huntsmans-minion-2", otherNode = E.nodes(s).find(node => node.id !== H(s).position).id,
+    actions = [
+      ["cell", () => ui.el("chapterMap").querySelectorAll("[data-node]").find(button => button.dataset.node === otherNode && !button.dataset.entrance)],
+      ["entrance", () => ui.el("chapterMap").querySelectorAll("[data-entrance]")[0]],
+      ["tile title", () => ui.el("chapterMap").querySelectorAll("[data-tile-info]")[0]],
+      ["current tile information", () => ui.el("inspectCurrentTile")],
+      ["clear target", () => ui.el("clearMapTarget")],
+    ];
+  for (const [name, action] of actions) {
+    mapFigure(ui, target); mapStatus(ui, s, target);
+    const button = action(); assert(button && !button.disabled); button.click();
+    assert.deepEqual(statusIds(ui), [], "the enemy HUD ends with explicit non-enemy selection or cancellation: " + name);
+    assert.equal(ui.storage.get(qaKey), saved); assert.equal(ui.storage.get(normalKey), normal);
+  }
+  assert.deepEqual(current(ui), s);
 });
 
 test("inventory target two previews immediately without a game action or closing its panel and is retained before use", () => {
@@ -248,6 +299,7 @@ test("inventory target two previews immediately without a game action or closing
   targetOptions(ui, "itemEnemy", s);
   change(ui, "itemEnemy", "huntsmans-minion-2"); identity(inventorySummary(ui), s, "huntsmans-minion-2");
   assert.deepEqual(selectedMarkers(ui), ["huntsmans-minion-2"]); assert.equal(ui.storage.get(qaKey), saved);
+  mapStatus(ui, s, "huntsmans-minion-2");
   assert.equal(ui.el("infoDialog").open, true); assert.equal(ui.document.activeElement, ui.el("itemEnemy"));
   ui.el("closeInfo").click();
   panel(ui, "inventory"); assert.equal(ui.el("itemEnemy").value, "huntsmans-minion-2");
@@ -307,7 +359,9 @@ test("current same-name enemies are numbered by array appearance order instead o
     select = ui.el("rewardEnemy-" + id), name = E.enemyDef(s, s.enemies[0]).name;
   assert.equal(option(select, "huntsmans-minion-2"), name + "#1");
   assert.equal(option(select, "huntsmans-minion-1"), name + "#2");
+  assert.deepEqual(statusIds(ui), []);
   for (const enemy of s.enemies) {
+    mapFigure(ui, enemy.id);
     mapStatus(ui, s, enemy.id);
     const marker = ui.el("chapterMap").querySelectorAll("[data-enemy]").find(button => button.dataset.enemy === enemy.id);
     assert(marker.getAttribute("aria-label").startsWith(compactLabel(s, enemy.id) + " ·"),
@@ -320,6 +374,7 @@ test("a single enemy has only its name even when its physical figure number is f
     { ui, calls, saved } = launchConstructed(s), id = reward(s, "tiny-tonitrus").id,
     label = option(ui.el("rewardEnemy-" + id), "huntsmans-minion-4");
   assert.equal(label, E.enemyDef(s, s.enemies[0]).name); assert.doesNotMatch(label, /#|번|체력|중앙 등불/);
+  assert.deepEqual(statusIds(ui), []); mapFigure(ui, "huntsmans-minion-4");
   mapStatus(ui, s, "huntsmans-minion-4");
   assert.equal(ui.storage.get(normalKey), saved); assert.equal(calls.length, 0);
 });
@@ -340,6 +395,7 @@ test("map status shows mission-token counts alongside real HP without adding the
   s.mission.targets.main = { id: "main", card: 3, tile: "tile-14", node: enemy.node, kind: enemy.kind,
     initialTokens: 3, tokens: 2, complete: false, enemyId: enemy.id };
   E.assertState(s); const { ui, calls, saved } = launchConstructed(s);
+  assert.deepEqual(statusIds(ui), []); mapFigure(ui, enemy.id);
   mapStatus(ui, s, enemy.id, 2);
   assert.equal(ui.storage.get(normalKey), saved); assert.equal(calls.length, 0);
 });
@@ -349,6 +405,7 @@ test("an actual boss's explicit zero insight tokens remains visible as zero", ()
       componentId: "cleric-beast", componentSpec: "cleric-beast", componentPhase: 1, missionId: "main",
       actualComponent: true, insightTokens: 0, bossDecks: B.createDecks("cleric-beast", s, (_, deck) => deck) };
   s.enemies = [enemy]; E.assertState(s); const { ui } = launchConstructed(s);
+  assert.deepEqual(statusIds(ui), []); mapFigure(ui, enemy.id);
   mapStatus(ui, s, enemy.id, 0);
 });
 function mapFigure(ui, id) {

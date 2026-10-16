@@ -1,4 +1,4 @@
-기나긴 사냥 검증 도구 · v0.8.13-dev.18
+기나긴 사냥 검증 도구 · v0.8.13-dev.19
 
 전투·임무·손실 확인 점검
 검증용 저장의 체력3·리게인 속도1에서 재앙의 야수의 다단2+2를 공개합니다. 합계4와 회복 전 사망 예고, 첫 피해 뒤 체력1/남은추가2, 추가피해 사망을 대조합니다. 첫 타격 회피만으로 추가 타격이 사라지지 않아야 합니다. 공격 카드·빈 슬롯·룬을 고정 선택기와 원래 손패에서 번갈아 선택하고 동일 상태를 확인합니다.
@@ -83,3 +83,4 @@ docs/audits/local-final-validation-v0.8.13-dev.8/README.md에 UI1~12 대표 실�
 - dev.16 호위 생존자 잔류 안내와 랜턴/꿈 이동 회귀 범위는 docs/audits/escort-teleport-v0.8.13-dev.16/README.md를 참조합니다.
 - dev.17 총창·도약 이동 행동 계산과 과거 저장 호환 범위는 docs/audits/rifle-leap-v0.8.13-dev.17/README.md를 참조합니다.
 - dev.18 다수 적의 대상 식별·선택 보존·지도 확인 및 실제 효과 검증은 docs/audits/target-selection-v0.8.13-dev.18/README.md를 참조합니다.
+- dev.19 지도 위 이름·체력바는 선택한 적 하나만 표시합니다. 기본/불러오기/해제 상태의 숨김과 관련110개 회귀는 docs/audits/selected-target-hud-v0.8.13-dev.19/README.md를 참조합니다.

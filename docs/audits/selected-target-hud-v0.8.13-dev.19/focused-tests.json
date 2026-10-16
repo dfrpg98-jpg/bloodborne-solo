@@ -1,0 +1,49 @@
+{
+  "version": "0.8.13-dev.19",
+  "startedAt": "2026-10-16T04:08:52.234Z",
+  "completedAt": "2026-10-16T04:08:54.915Z",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/playtest-target-selection-ui-v0818.test.cjs",
+    "tests/playtest-location-target-ui-v0815.test.cjs",
+    "tests/target-selection-presentation-v0818.test.cjs",
+    "tests/ui-selection-v086.test.cjs",
+    "tests/map-context-v089.test.cjs",
+    "tests/map-controls-ui.test.cjs",
+    "tests/direct-map-v081.test.cjs",
+    "tests/map-scene-v0810.test.cjs",
+    "tests/ui-phase-contracts-v0818.test.cjs"
+  ],
+  "counts": {
+    "tests": 110,
+    "suites": 0,
+    "pass": 110,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "exitCode": 0,
+  "signal": null,
+  "sourceHashes": {
+    "hunt-app.js": "5469e164b9b5c6d81e3e24540d825b4962aaaaf8e809fcf5d853e52f010b2f18",
+    "hunt.html": "e9d9fe35e0fc25b27a03c89b860540e72336bc1e5adbd78178eb6b757cf027d0",
+    "index.html": "83fb0cedd2da0e0fbc94e11941b36224fc2f253e1e66db7e54410693af0b8704",
+    "package.json": "6224c81deed86d9dd29326791c2cc6147513d40321fe6abb657204006133c59d",
+    "tests/playtest-target-selection-ui-v0818.test.cjs": "671dcd1edb4d7d3a445bc571119938341b3f805236c3a308ee5473961a920e68",
+    "tests/playtest-location-target-ui-v0815.test.cjs": "65f9a7a6bdb523f498775029fdabccf54b6b3b5398f15201d19fb2c75710975a",
+    "tests/target-selection-presentation-v0818.test.cjs": "c9a1beac9d8dade2c012e71db43f5f1f0825daf1c34b01cc11094fcaf83633c8",
+    "tests/ui-selection-v086.test.cjs": "f96c1c087a269a0c54c869eafee01e0a4e029cd71e15a63a4fd5931f8f7c02ba",
+    "tests/map-context-v089.test.cjs": "92f705f49ce90a2d59ed361918b8b479276ee14f2264fe968ea9798b681c48ee",
+    "tests/map-controls-ui.test.cjs": "76ce82a36bb9f6e31db18a3d3dae89c38a36decb6feb63f4484674461e95c4ac",
+    "tests/direct-map-v081.test.cjs": "e9e4fe2aac9d727786186bbe5db12afed8a0c5109e874784d3094db279e944c4",
+    "tests/map-scene-v0810.test.cjs": "5d5c55d9f57b2d0fae87426bd09ad16367580f14944628b628bc8a98ef2d60f0",
+    "tests/ui-phase-contracts-v0818.test.cjs": "e8e1f40bfc9795bb64de3e65169d80b96bfe87645d5d5de16b27270662e0d216"
+  },
+  "changedDuringTest": [],
+  "scope": "Focused regressions for selected-enemy HUD visibility, target retention, map controls and selection, actual UI phase handlers and presentation. This is not a new full CI run or a native full campaign.",
+  "validationPassed": true,
+  "durationSeconds": 2.68
+}
