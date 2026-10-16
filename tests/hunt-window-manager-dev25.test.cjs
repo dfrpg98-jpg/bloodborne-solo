@@ -158,6 +158,29 @@ test("all registered windows block game commands while open or minimized, includ
     dialog.close();
   }
 });
+
+test("mission guide responses reach their close-then-dispatch handler without allowing background actions", () => {
+  const { document, dialogs } = setup(["missionGuideDialog", "infoDialog"]), manager = W.install(document);
+  const guide = dialogs.missionGuideDialog;
+  for (const type of ["MISSION_LURE", "MISSION_CORPSES"]) {
+    const button = document.createElement("button"); button.setAttribute("data-command", type); guide.append(button);
+    guide.showModal();
+    assert.equal(manager.canExecute([{ type }], { notify: false }), false, "a command alone cannot bypass a window");
+    assert.equal(document.fire("click", { target: button }).stopped, undefined, "the guide's explicit response can close its own window");
+    guide.close();
+    assert.equal(manager.canExecute([{ type }]), true, "dispatch is allowed after the handler closes the guide");
+    guide.showModal(); dialogs.infoDialog.showModal();
+    assert.equal(document.fire("click", { target: button }).stopped, true, "a second window must still be resolved first");
+    dialogs.infoDialog.close(); manager.minimize(guide);
+    assert.equal(document.fire("click", { target: button }).stopped, true, "a minimized guide cannot perform an invisible action");
+    manager.restore(guide);
+    const outside = document.createElement("button"); outside.setAttribute("data-command", type); document.body.append(outside);
+    assert.equal(document.fire("click", { target: outside }).stopped, true, "the same mission action outside the guide remains blocked");
+    const move = document.createElement("button"); move.setAttribute("data-command", "MOVE"); guide.append(move);
+    assert.equal(document.fire("click", { target: move }).stopped, true, "unrelated commands inside the guide remain blocked");
+    guide.close();
+  }
+});
 test("menu load, resume and new-hunt responses remain available from the information dialog alone", () => {
   const { document, dialogs } = setup(["infoDialog", "attachmentDialog"]), manager = W.install(document);
   const controls = ["load", "resumeNormal", "resumeQa", "restoreV05", "restoreV06", "new"].map(id => {

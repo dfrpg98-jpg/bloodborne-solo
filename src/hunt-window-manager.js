@@ -16,6 +16,7 @@
     loadEntryNormal: "loadDialog", loadEntryQa: "loadDialog", loadEntryFile: "loadDialog", loadEntryCancel: "loadDialog",
   };
   const passiveResponses = new Set(["missionUpdateContinue", "deathContinue", "closeAttachments", "escortCancel", "actionLossCancel", "cancelSetup", "loadEntryCancel"]);
+  const guideResponses = new Set(["MISSION_LURE", "MISSION_CORPSES"]);
   const actionSelector = "[data-command],[data-reward-use],[data-context-action],[data-return],[data-move-option],#useItem,#new,#load,#resumeNormal,#resumeQa,#restoreV05,#restoreV06,#startNextChapter," +
     Object.keys(responseOwners).map(id => "#" + id).join(",");
   const headerSelectors = [".compact-dialog-heading", ".mission-update-heading", ".info-dialog-heading", ".story-dialog-heading"];
@@ -219,6 +220,10 @@
       if (managementControls.has(actionId) && blockers().every(dialog => (dialog.id || dialog.getAttribute?.("id")) === "infoDialog")) return;
       if (!action.dataset?.command && responseOwners[actionId] === ownerId && owner && records.has(owner) && isBlocking(records.get(owner)) &&
           (passiveResponses.has(actionId) || blockers().every(dialog => dialog === owner))) return;
+      // These handlers close the guide before dispatching. Let only its own
+      // visible responses reach the handler; other open windows still block.
+      if (ownerId === "missionGuideDialog" && guideResponses.has(action.dataset?.command) &&
+          records.has(owner) && !records.get(owner).minimized && blockers().every(dialog => dialog === owner)) return;
       const command = action.dataset?.command ? { type: action.dataset.command } : { type: "__UI_ACTION__" };
       if (canExecute([command])) return;
       event.preventDefault(); event.stopImmediatePropagation?.(); event.stopPropagation?.();

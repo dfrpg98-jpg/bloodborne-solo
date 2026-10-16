@@ -9,13 +9,13 @@ let initial = E.create(90, "burial", 1, null, "hunter-pistol", "center", { campa
   qa: { preset: "custom", startRewards: [], startConsumables: [] } });
 states.push(initial);
 for (const command of commands) { initial = E.dispatch(initial, command); states.push(initial); }
-function at(index, storage) {
+function at(index, storage, options = {}) {
   const state = states[index]; assert(state);
   const ui = boot(state, E.missionView(state), E.rewardsView(state), { realInventory: true,
     // Keep this historical accepted trace's speed ruling. Dedicated adoption
     // tests exercise safe policy migration; these tests concern mission UI.
     engine: { ...E, applyTileSpeedRuling: s => s },
-    storage: storage || { [normalKey]: normalSave, [qaKey]: E.exportSave(state), [activeKey]: "qa" } });
+    storage: storage || { [normalKey]: normalSave, [qaKey]: E.exportSave(state), [activeKey]: "qa" }, ...options });
   assert.equal(ui.el("error").textContent, "");
   assert.equal(ui.el("missionUpdateDialog").open, false, "restoring a save does not replay its old mission popup");
   assert.equal(ui.storage.get(normalKey), normalSave, "QA must preserve the separate normal autosave");
@@ -119,6 +119,23 @@ test("chapter two goal leads directly to an eligible public lure action and only
   const spawned = after.enemies.find(enemy => !prior.enemies.some(old => old.id === enemy.id));
   assert(spawned); assert.equal(spawned.kind, "scourge-beast"); assert.equal(spawned.node, E.hunter(prior).position);
   assert.equal(ui.storage.get(normalKey), normalSave);
+});
+
+test("the floating-window capture guard permits the real mission guide response and preserves the normal save", () => {
+  const W = require("../src/hunt-window-manager"), ui = at(129, null, { window: { BBHuntWindowManager: W } });
+  guideButton(ui).click();
+  const prior = savedState(ui), command = E.missionActions(prior).find(action => action.command.type === "MISSION_LURE").command;
+  const button = ui.buttons("missionGuideContent").find(button => button.dataset.command === command.type);
+  // This flat DOM harness has no ancestry or capture dispatch. Supply the
+  // rendered button's real ownership and run the document listener first.
+  button.closest = selector => selector === "dialog" ? ui.el("missionGuideDialog") : selector.includes("[data-command]") ? button : null;
+  const event = ui.document.fire("click", { target: button, stopImmediatePropagation() { this.stopped = true; } });
+  assert.equal(event.defaultPrevented, false, "the capture phase must reach the actual close-then-send handler");
+  button.click();
+  assert.equal(ui.el("missionGuideDialog").open, false);
+  assert.deepEqual(savedState(ui), E.dispatch(prior, command));
+  assert.equal(E.hunter(savedState(ui)).consumables.length, E.hunter(prior).consumables.length - 1);
+  assert.equal(ui.storage.get(normalKey), normalSave); assert.equal(ui.el("error").textContent, "");
 });
 
 test("the method guide explains unavailable actions without inventing a free lure when the hunter has no consumables", () => {
