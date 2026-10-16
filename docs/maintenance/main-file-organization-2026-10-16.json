@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-16",
+  "scope": "main 기본 브랜치의 순수 파일 정리",
+  "baseCommit": "9ffabb9aa3b03a6d83f87136708a4165af7b919c",
+  "version": "0.8.12",
+  "moves": {
+    "javascript": 39,
+    "styles": 5,
+    "secondaryPages": 5,
+    "documents": 33
+  },
+  "entryPoints": [
+    "index.html",
+    "hunt.html"
+  ],
+  "maps": [
+    "scripts/project-runtime-paths.json",
+    "scripts/project-document-paths.json"
+  ],
+  "preservation": {
+    "packageAssetsFontsCampaignComponentsAndSaveFixtures": {
+      "checked": 332,
+      "identical": 332,
+      "added": 0,
+      "missing": 0
+    },
+    "documents": {
+      "checked": 33,
+      "byteIdentical": 33
+    },
+    "javascript": {
+      "checked": 39,
+      "byteIdentical": 30,
+      "onlyEquivalentRelativeRequirePathChanged": 9,
+      "functionalDifferences": 0
+    },
+    "existingTestCjs": {
+      "checked": 91,
+      "identicalAfterPathNormalization": 91
+    },
+    "dev23FeaturesImported": false,
+    "desktopInstallChanged": false,
+    "newSourceBackupArchivesCreated": 0
+  },
+  "validation": {
+    "localRegression": {
+      "command": "node scripts/test-ci.cjs",
+      "runtimeVersion": "0.8.12",
+      "nodeVersion": "v24.19.0",
+      "testFiles": 86,
+      "counts": {
+        "tests": 2288,
+        "suites": 0,
+        "pass": 2288,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "durationSeconds": 396.017,
+      "sourcePhotoTestsExcluded": [
+        "campaign covers all 67 ordered sources and 60 numbered cards with images",
+        "reference data preserves printed terminology with the confirmed enemy alias and six enemy sides",
+        "default v0.3 state remains without optional firearm fields and photo confirmation retains raw text",
+        "supplied component photos retain their exact bytes, hashes and card provenance"
+      ],
+      "log": "test-results/ci.tap"
+    },
+    "resourceAndCommonJsPathChecks": 2,
+    "releaseInclusionAssertions": 13,
+    "browser": {
+      "url": "http://127.0.0.1:8826/bloodborne-solo/hunt.html",
+      "observed": [
+        "새 사냥 준비 화면",
+        "검증 전용 모드 선택",
+        "중앙 등불 시작",
+        "기존 지도·손패·슬롯·검증 보상 표시"
+      ],
+      "consoleErrors": 0,
+      "consoleWarnings": 0
+    }
+  },
+  "historicalEvidence": "과거 검증 문서의 본문·해시와 assets/campaigns/components/fonts/fixtures는 변경하지 않았습니다.",
+  "generatedDirectoriesExcluded": "브랜치 전환 후 남는 Unity 생성물·캐시 경로만 .gitignore에 명시. Unity 구현·생성물을 main에 추가하지 않음."
+}

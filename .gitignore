@@ -17,6 +17,20 @@ __pycache__/
 *.pyc
 node_modules/
 
+# Local Unity export/cache directories can remain when switching development branches.
+/unity-port/ReferenceEngine/
+/unity-port/MigrationPrivate/
+/unity-port/Validation/
+/unity-port/UnityStarter/Assets/Bloodborne/Art/
+/unity-port/UnityStarter/Assets/Bloodborne/PublicData/
+/unity-port/UnityStarter/Library/
+/unity-port/UnityStarter/Temp/
+/unity-port/UnityStarter/Logs/
+/unity-port/UnityStarter/obj/
+/unity-port/UnityStarter/UserSettings/
+/unity-port/*.csproj
+/unity-port/*.sln
+
 # Local settings and credentials.
 .env
 .env.*
