@@ -1,0 +1,80 @@
+{
+  "format": "reported-independent-cloud-ui-verification-v1",
+  "recordedDateKST": "2026-10-16",
+  "provenance": "독립 클라우드 QA 대화가 전달한 실제 UI 관찰을 문서에 반영; 이 문서 반영 작업에서 브라우저 재실행하지 않음",
+  "sourceThreadId": "01a141e3-d341-70c1-aac6-582a06ec9027",
+  "productCommit": "f97ec6f206826f23d6929ea2c335a340038fe590",
+  "productVersion": "0.8.13-dev.16",
+  "environment": {
+    "kind": "separate independent cloud UI",
+    "port": 8768
+  },
+  "cases": [
+    {
+      "id": "same-space-uncarried-escort-lantern",
+      "mode": "synthetic-QA",
+      "loadedThroughNormalUI": true,
+      "before": {
+        "sameSpaceAsHunter": true,
+        "carried": false
+      },
+      "equipmentButtonWarningMatchesState": true,
+      "confirmationWarningMatchesState": true,
+      "cancel": {
+        "observedPreservedInUI": ["hunter position", "hand", "lantern ready", "escort carrying state"],
+        "saveByteEqualityIndependentlyVerified": false,
+        "fullStateEqualityIndependentlyVerified": false
+      },
+      "acceptedLantern": {
+        "hunterDestination": "오에돈 예배당",
+        "escortOutcome": "remains in the same bridge space",
+        "escortAccompaniesTeleport": false
+      },
+      "campaignCompletionClaimed": false
+    },
+    {
+      "id": "already-carried-escort-lantern",
+      "mode": "synthetic-QA",
+      "loadedThroughNormalUI": true,
+      "before": {
+        "carried": true
+      },
+      "equipmentButtonWarningMatchesState": true,
+      "confirmationWarningMatchesState": true,
+      "cancel": {
+        "observedPreservedInUI": ["hunter position", "hand", "lantern ready", "escort carrying state"],
+        "saveByteEqualityIndependentlyVerified": false,
+        "fullStateEqualityIndependentlyVerified": false
+      },
+      "acceptedLantern": {
+        "hunterDestination": "오에돈 예배당",
+        "escortOutcome": "returns to the original bridge spawn space",
+        "escortAccompaniesTeleport": false
+      },
+      "campaignCompletionClaimed": false
+    }
+  ],
+  "normalSaveCompatibility": {
+    "source": "existing intermediate save obtained through actual dev.15 play",
+    "loadedThroughNormalUIIntoVersion": "0.8.13-dev.16",
+    "restored": true,
+    "reportedResumedPlay": "일반 2장 플레이로 복귀",
+    "classification": "existing progress compatibility and restoration",
+    "newChapterCompletionClaimed": false,
+    "combinedWithSyntheticQAAchievements": false
+  },
+  "limits": {
+    "cancelSaveBytesIndependentlyVerified": false,
+    "pickupArmedThirdSyntheticCaseIndependentlyVerified": false,
+    "dreamEntryAcceptIndependentlyVerified": false,
+    "combinedWithExistingLocalRegressionCounts": false,
+    "combinedWithExistingLocalNativeCaseCounts": false,
+    "originalCloudScreenshotsInspectedLocallyDuringDocumentationUpdate": false
+  },
+  "newDefectsReported": false,
+  "documentationOnlyUpdate": true,
+  "productCodeChanged": false,
+  "behaviorTestsRerunDuringDocumentationUpdate": false,
+  "merged": false,
+  "deployed": false
+}
