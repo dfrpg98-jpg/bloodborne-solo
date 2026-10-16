@@ -1,6 +1,6 @@
 "use strict";
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine.js'),R=require('../rewards-engine.js'),stock=require('../data.js');
+const E=require('../src/hunt-engine.js'),R=require('../src/rewards-engine.js'),stock=require('../src/data.js');
 const normalCommands=require('./fixtures/v077-chapel-escort-first-natural-commands.json');
 const firstFight=require('./fixtures/v078-first-fight.json');
 const H=E.hunter,copy=structuredClone;

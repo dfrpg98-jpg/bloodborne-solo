@@ -2,7 +2,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const geometry = require("../tile-geometry.js");
+const geometry = require("../src/tile-geometry.js");
 const campaign = require("../campaigns/long-hunt/data.json");
 
 // Independently checked against all 20 supplied photographs, not derived from

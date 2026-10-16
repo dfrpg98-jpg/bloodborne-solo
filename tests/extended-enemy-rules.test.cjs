@@ -3,8 +3,8 @@ const assert = require("node:assert/strict");
 const vm = require("node:vm");
 const fs = require("node:fs");
 const path = require("node:path");
-const catalog = require("../extended-enemies.js");
-const rules = require("../extended-enemy-rules.js");
+const catalog = require("../src/extended-enemies.js");
+const rules = require("../src/extended-enemy-rules.js");
 const copy = (x) => JSON.parse(JSON.stringify(x));
 
 function fixture(id, side = "a", kind = "special", opts = {}) {
@@ -32,7 +32,7 @@ function fixture(id, side = "a", kind = "special", opts = {}) {
 test("extended source browser mirror and independent Node import agree", () => {
   const sandbox = {};
   vm.runInNewContext(fs.readFileSync(path.join(__dirname, "../components/extended-enemies.js"), "utf8"), sandbox);
-  vm.runInNewContext(fs.readFileSync(path.join(__dirname, "../extended-enemies.js"), "utf8"), sandbox);
+  vm.runInNewContext(fs.readFileSync(path.join(__dirname, "../src/extended-enemies.js"), "utf8"), sandbox);
   assert.deepEqual(copy(sandbox.BBExtendedEnemies.source), catalog.source);
   assert.equal(catalog.generalIds.length, 3);
   assert.equal(catalog.npcIds.length, 9);

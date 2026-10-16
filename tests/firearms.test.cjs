@@ -1,6 +1,6 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs');
 const {referenceSource}=require('./helpers/reference-source.cjs');
-const E=require('../engine.js'),h=E.hunter;
+const E=require('../src/engine.js'),h=E.hunter;
 const send=(s,type,a={})=>E.dispatch(s,{type,...a});
 test('all named test firearms use pistol rules, spend and reload correctly',()=>{
  for(const id of Object.keys(E.data.firearms)){

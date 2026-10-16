@@ -36,11 +36,27 @@ Remove-Item Env:BB_REFERENCE_ROOT
 
 새 기능이나 수정은 브랜치와 Pull Request에서 검토하고, 관련 Issue에 재현 방법·규칙 근거·변경 내용·실제 점검 결과를 함께 기록합니다. [개발 절차](CONTRIBUTING.md)를 따르고 출시 버전은 `package.json`, 변경 이력, Git 태그를 맞춥니다. 과거 ZIP에서 가져온 버전의 커밋은 이관 시점의 기록이며 과거에 작성한 Git 커밋으로 표시하지 않습니다.
 
-규칙서·임무 원문·공식 FAQ와 프로젝트 재정은 [규칙 결정 기록](docs/decisions.md)에서 구분합니다. 과거 `README.txt`, `DEVELOPMENT.md`, `VERIFICATION_v*.txt` 등의 설명은 작성 당시 기록입니다. 현재 실행 방법과 프로젝트 재정은 이 README와 결정 기록을 우선합니다.
+규칙서·임무 원문·공식 FAQ와 프로젝트 재정은 [규칙 결정 기록](docs/decisions.md)에서 구분합니다. [이전 README](docs/archive/README-legacy.txt), [개발 기록](docs/development/DEVELOPMENT.md), `docs/verification/legacy/VERIFICATION_v*.txt`는 작성 당시 기록입니다. 현재 실행 방법과 프로젝트 재정은 이 README와 결정 기록을 우선합니다.
 
 ## 코드와 자료
 
-`hunt-engine.js`는 명령과 상태 검증, `chapter-engine.js`는 칸·타일·출입구·출현, `mission-engine.js`는 공개된 임무·분기·대상 조건을 처리합니다. UI와 연출은 같은 규칙 엔진을 사용합니다. 카메라와 외형은 규칙 행동이나 비용을 추가하지 않습니다.
+`src/hunt-engine.js`는 명령과 상태 검증, `src/chapter-engine.js`는 칸·타일·출입구·출현, `src/mission-engine.js`는 공개된 임무·분기·대상 조건을 처리합니다. UI와 연출은 같은 규칙 엔진을 사용합니다. 카메라와 외형은 규칙 행동이나 비용을 추가하지 않습니다.
+
+루트에는 `index.html`·`hunt.html`과 기본 설정·프로젝트 안내를 둡니다. 나머지 파일은 다음 폴더로 구분합니다.
+
+| 폴더 | 내용 |
+|---|---|
+| `src/`, `styles/`, `pages/` | 실행 코드·스타일·부속 화면 |
+| `assets/`, `fonts/`, `campaigns/`, `components/` | 게임 에셋·서체·캠페인·구성품 데이터 |
+| `tests/`, `scripts/` | 회귀 검사·빌드·점검 도구 |
+| `docs/verification/` | [검증용 플레이 안내](docs/verification/QA_GUIDE.txt)·이전 검증 기록(`legacy/`) |
+| `docs/guides/` | 지도·HUD·카메라·적·무기 표시 안내 |
+| `docs/rules/checklist/`, `docs/provenance/` | 규칙 대조표·원본 자료 목록 |
+| `docs/audits/`, `docs/history/` | 점검 근거·출시 이력 |
+| `docs/development/`, `docs/archive/` | 개발 설계·입력 양식·이전 안내 |
+| `docs/maintenance/` | 파일 정리의 대조·검증 기록 |
+
+이동 전후 경로는 `scripts/project-runtime-paths.json`과 `scripts/project-document-paths.json`에 기록했습니다. 과거 감사 문서의 당시 경로와 해시는 그대로 보존합니다. `main`의 실행 버전은 0.8.12이며 개발 중인 변경은 각 개발 브랜치와 PR에서 확인합니다.
 
 실행에 필요한 `assets/`, `fonts/`, `campaigns/`, `components/`, `tests/` 및 출처·해시 기록은 버전 관리합니다. 사용자가 제공한 원본 사진 폴더(`참고자료/`, `components/images/`, `campaigns/long-hunt/images/`)와 플레이 저장, 중복 ZIP, 임시 브라우저 QA 페이지는 로컬에 보존합니다. 역사적인 출처 메타데이터의 과거 로컬 경로는 자료 수집 기록이며 실행 경로가 아닙니다.
 

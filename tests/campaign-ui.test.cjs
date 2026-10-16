@@ -1,9 +1,9 @@
 const test = require("node:test"), assert = require("node:assert/strict");
 const fs = require("node:fs"), path = require("node:path"), vm = require("node:vm");
-const E = require("../hunt-engine"), M = require("../chapter-engine");
-const C = require("../campaigns/long-hunt/data.json"), ED = require("../enemy-deck");
+const E = require("../src/hunt-engine"), M = require("../src/chapter-engine");
+const C = require("../campaigns/long-hunt/data.json"), ED = require("../src/enemy-deck");
 const N = require("../campaigns/long-hunt/narrative-text");
-const G = require("../tile-geometry");
+const G = require("../src/tile-geometry");
 const root = path.join(__dirname, "..");
 const decode = (value) => String(value).replace(/&quot;/g, '"').replace(/&#39;/g, "'")
   .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
@@ -88,12 +88,12 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
     dispatch: (s, command) => { commands.push(command); return structuredClone(s); },
     ...options.engine,
   };
-  const window = { BBHunt: engine, BBChapter: M, BBLongHunt: C, BBNarrativeText: N, BBEnemyDeck: ED, BBTileGeometry: G, BBMapRenderLayout: require("../map-render-layout"),
-    BBHuntPublicText: require("../hunt-public-text"), BBEnemyActionHistory: require("../enemy-action-history"),
-    BBActualComponents: require("../actual-components"),
-    BBExtendedEnemies: require("../extended-enemies"),
-    BBExtendedFirearms: require("../extended-firearms"),
-    BBRewards: options.rewardDefinitions ? { definitions: options.rewardDefinitions } : require("../rewards-engine"),
+  const window = { BBHunt: engine, BBChapter: M, BBLongHunt: C, BBNarrativeText: N, BBEnemyDeck: ED, BBTileGeometry: G, BBMapRenderLayout: require("../src/map-render-layout"),
+    BBHuntPublicText: require("../src/hunt-public-text"), BBEnemyActionHistory: require("../src/enemy-action-history"),
+    BBActualComponents: require("../src/actual-components"),
+    BBExtendedEnemies: require("../src/extended-enemies"),
+    BBExtendedFirearms: require("../src/extended-firearms"),
+    BBRewards: options.rewardDefinitions ? { definitions: options.rewardDefinitions } : require("../src/rewards-engine"),
     BBInventory: () => ({ render() {}, clear() {}, ids: () => [], names: () => [] }),
     BBStartPlacement: { mount: (container, select, confirm) => {
       const update = () => { confirm.disabled = !select.value; };
@@ -103,7 +103,7 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
   const context = vm.createContext({ window, document, localStorage: {
     getItem: (key) => storage.get(key) || null, setItem: (key, value) => storage.set(key, value),
   }, Blob, URL, setTimeout() {}, console });
-  vm.runInContext(fs.readFileSync(path.join(root, "hunt-app.js"), "utf8"), context);
+  vm.runInContext(fs.readFileSync(path.join(root, "src/hunt-app.js"), "utf8"), context);
   return { document, commands, storage, imports, creates,
     el: (id) => document.getElementById(id),
     buttons: (id) => document.getElementById(id).querySelectorAll("[data-command]"),
@@ -213,7 +213,7 @@ test("standalone firearm attacks pass broad reward choices and explain the stat-
   s.enemies = [{ id: "target", kind: "huntsman-mob", node: h.position, hp: 8, figure: 1 }];
   h.rewards = [{ id: "shell", kind: "empty-shell", equipped: true, ready: true }, { id: "claw", kind: "rune-clawmark", equipped: true, ready: true }];
   const items = h.rewards.map((r) => ({ ...r, name: r.kind, rules: "공격할 때", subtype: r.kind === "empty-shell" ? "tool" : "rune", attackSelectable: true }));
-  const ui = boot(s, null, rewards(items), { engine: { firearm: () => require("../extended-firearms").firearm("cannon"), canFirearm: () => true } });
+  const ui = boot(s, null, rewards(items), { engine: { firearm: () => require("../src/extended-firearms").firearm("cannon"), canFirearm: () => true } });
   let choice = ui.el("rewards").querySelectorAll("[data-reward-attack]").find((input) => input.dataset.rewardAttack === "shell");
   choice.checked = true; choice.fire("change");
   let gunButton = option(ui, "firearm", "FIREARM");
@@ -244,7 +244,7 @@ test("a torch reacting to a longer entry lets the hunter select a legal one-spac
 test("changing the selected enemy refreshes the standalone firearm target before it is used", () => {
   const s = baseState(), h = E.hunter(s);
   s.enemies = ["first", "second"].map((id, index) => ({ id, kind: "huntsman-mob", node: h.position, hp: 6, figure: index + 1 }));
-  const ui = boot(s, null, rewards(), { engine: { firearm: () => require("../extended-firearms").firearm("cannon"), canFirearm: () => true } });
+  const ui = boot(s, null, rewards(), { engine: { firearm: () => require("../src/extended-firearms").firearm("cannon"), canFirearm: () => true } });
   ui.el("nearEnemies").querySelectorAll("[data-enemy]").find((b) => b.dataset.enemy === "second").click();
   option(ui, "firearm", "FIREARM").click();
   assert.equal(ui.commands[0].enemyId, "second");
@@ -252,11 +252,11 @@ test("changing the selected enemy refreshes the standalone firearm target before
 
 test("the public component catalog keeps ordinary effects and hides undiscovered rewards without changing source data", () => {
   const source = require("../components/cards.json"), before = JSON.stringify(source);
-  const document = new Document(fs.readFileSync(path.join(root, "components.html"), "utf8"));
+  const document = new Document(fs.readFileSync(path.join(root, "pages/components.html"), "utf8"));
   document.getElementById("query").value = "";
   document.getElementById("group").value = "reward";
   const context = vm.createContext({ window: { BBComponents: source }, document });
-  vm.runInContext(fs.readFileSync(path.join(root, "components.js"), "utf8"), context);
+  vm.runInContext(fs.readFileSync(path.join(root, "src/components.js"), "utf8"), context);
   assert.equal(document.getElementById("resultCount").textContent, "0종");
   assert(document.getElementById("cards").children.every((c) => !c.dataset.id));
   document.getElementById("group").value = "consumable"; document.getElementById("group").fire("change");
@@ -264,7 +264,7 @@ test("the public component catalog keeps ordinary effects and hides undiscovered
   assert(texts(document.getElementById("cards")).includes("골수 가루"));
   assert(!texts(document.getElementById("cards")).includes("음악 상자"));
   assert.equal(JSON.stringify(source), before);
-  assert(!fs.readFileSync(path.join(root, "components.html"), "utf8").includes("자료 등록\n        단계"));
+  assert(!fs.readFileSync(path.join(root, "pages/components.html"), "utf8").includes("자료 등록\n        단계"));
 });
 
 test("pending reward equipment choices disable independent firearm attacks and effects in the firearm panel", () => {
@@ -273,7 +273,7 @@ test("pending reward equipment choices disable independent firearm attacks and e
   const reward = { id: "gem", kind: "tear-gem", name: "눈물의 혈정석", rules: "부착", persistent: true, equipped: false, ready: true, subtype: "tool" };
   for (const id of ["cannon", "hunter-blunderbuss"]) {
     const ui = boot(s, null, rewards([reward], { choices: [{ rewardId: reward.id }] }), {
-      engine: { firearm: () => require("../extended-firearms").firearm(id), canFirearm: () => true },
+      engine: { firearm: () => require("../src/extended-firearms").firearm(id), canFirearm: () => true },
     });
     const gun = option(ui, "firearm", "FIREARM");
     assert.equal(gun.disabled, true);
@@ -481,7 +481,7 @@ test("a cannon counterattack uses its own name and damage without a flamesprayer
   const s = baseState(), h = E.hunter(s);
   s.enemies = [{ id: "huntsman-mob-1", kind: "huntsman-mob", figure: 1, hp: 4, node: h.position }];
   s.phase = "combat_choose"; s.combat = { enemyId: "huntsman-mob-1", origin: "enemy" };
-  const firearm = require("../extended-firearms").firearm("cannon");
+  const firearm = require("../src/extended-firearms").firearm("cannon");
   const ui = boot(s, mission(), rewards(), { engine: { firearm: () => firearm, canFirearm: () => true } });
   assert.match(ui.el("decisions").innerHTML, /대포로 맞서 공격/);
   assert(!ui.el("decisions").innerHTML.includes("화염방사기로"));
@@ -502,7 +502,7 @@ test("optional weapon sacrifices reach standalone firearm attacks and firearm co
     s.enemies = [{ id: "huntsman-mob-1", kind: "huntsman-mob", figure: 1, hp: 4, node: h.position }];
     if (phase === "combat_choose") s.combat = { enemyId: "huntsman-mob-1", origin: "activation" };
     const ui = boot(s, mission(), rewards(), { engine: {
-      firearm: () => require("../extended-firearms").firearm(gun), canFirearm: () => true,
+      firearm: () => require("../src/extended-firearms").firearm(gun), canFirearm: () => true,
     } });
     ui.el("weaponBoost").value = String(boost); ui.el("weaponBoost").fire("change");
     option(ui, phase === "hunter" ? "firearm" : "decisions", "FIREARM").click();
@@ -529,7 +529,7 @@ test("face-down weapon slots hide the printed stat card face and describe the do
 });
 test("Evelyn can prepare with one echo without choosing a hand card", () => {
   const s = baseState(), h = E.hunter(s); h.echoes = 1; h.firearmReady = false;
-  const ui = boot(s, mission(), rewards(), { engine: { firearm: () => require("../extended-firearms").firearm("evelyn"), canFirearm: () => false } });
+  const ui = boot(s, mission(), rewards(), { engine: { firearm: () => require("../src/extended-firearms").firearm("evelyn"), canFirearm: () => false } });
   const echo = ui.buttons("decisions").find((button) => button.dataset.command === "RELOAD" && JSON.parse(button.dataset.args).payEcho);
   assert.equal(echo.disabled, false);
   echo.click();
@@ -539,7 +539,7 @@ test("Evelyn can prepare with one echo without choosing a hand card", () => {
 test("the blunderbuss effect selects a colocated non-boss enemy during the hunter turn", () => {
   const s = baseState(), h = E.hunter(s);
   s.enemies = [{ id: "huntsman-mob-1", kind: "huntsman-mob", figure: 1, hp: 4, node: h.position }];
-  const firearm = require("../extended-firearms").firearm("hunter-blunderbuss");
+  const firearm = require("../src/extended-firearms").firearm("hunter-blunderbuss");
   const ui = boot(s, mission(), rewards(), { engine: { firearm: () => firearm, canFirearm: () => true } });
   option(ui, "firearm", "FIREARM").click();
   assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "FIREARM", enemyId: "huntsman-mob-1" });
@@ -669,9 +669,9 @@ test("interaction retaliation offers each pending enemy and sends the selected f
   assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "INTERACTION_ENEMY", enemyId: enemies[1].id });
 });
 test("the campaign introduction preserves its story without providing an unrevealed source archive", () => {
-  const document = new Document(fs.readFileSync(path.join(root, "campaign.html"), "utf8"));
+  const document = new Document(fs.readFileSync(path.join(root, "pages/campaign.html"), "utf8"));
   const context = vm.createContext({ window: { BBLongHunt: C, BBTileGeometry: G }, document, console });
-  vm.runInContext(fs.readFileSync(path.join(root, "campaign.js"), "utf8"), context);
+  vm.runInContext(fs.readFileSync(path.join(root, "src/campaign.js"), "utf8"), context);
   assert.equal(document.getElementById("archive"), null);
   assert.equal(document.getElementById("openArchive"), null);
   assert.equal(document.getElementById("cardDetail"), null);

@@ -1,5 +1,5 @@
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine'),{boot}=require('./helpers/ui-harness.cjs');
+const E=require('../src/hunt-engine'),{boot}=require('./helpers/ui-harness.cjs');
 
 // Literal public wording keeps this integration check independent of the
 // presenter implementation. The raw objective and public save remain intact.

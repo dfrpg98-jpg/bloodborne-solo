@@ -1,5 +1,5 @@
 const test = require('node:test'), assert = require('node:assert/strict');
-const E = require('../hunt-engine'), M = require('../chapter-engine');
+const E = require('../src/hunt-engine'), M = require('../src/chapter-engine');
 const {boot} = require('./helpers/ui-harness.cjs');
 const {clickCommand} = require('./helpers/public-command-ui.cjs');
 const commands = require('./fixtures/v074-first-chapel-warning-natural-commands.json');

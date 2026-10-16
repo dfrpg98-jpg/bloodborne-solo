@@ -1,7 +1,7 @@
 (function (root) {
   "use strict";
   const C = typeof module !== "undefined" && module.exports
-    ? require("./campaigns/long-hunt/data.json") : root.BBLongHunt;
+    ? require("../campaigns/long-hunt/data.json") : root.BBLongHunt;
   const M = typeof module !== "undefined" && module.exports
     ? require("./chapter-engine.js") : root.BBChapter;
   const card = (n) => C.cards.find((c) => c.number === n);

@@ -1,6 +1,6 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine');
+const E=require('../src/hunt-engine');
 const {boot}=require('./helpers/ui-harness.cjs');
 const commands=require('./fixtures/v074-shelter-natural-commands.json');
 const key='bloodborne-hunt-v07';

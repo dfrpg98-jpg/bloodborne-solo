@@ -1,5 +1,5 @@
 const test=require('node:test'),assert=require('node:assert/strict'),path=require('node:path');
-const E=require('../hunt-engine'),{clickCommand}=require('./helpers/public-command-ui.cjs');
+const E=require('../src/hunt-engine'),{clickCommand}=require('./helpers/public-command-ui.cjs');
 const manifest=require('./fixtures/weapon-campaign-completion/manifest.json');
 const important=new Set(['ATTACK','COUNTER','TRANSFORM','FREE_TRANSFORM','ENTRY_WEAPON','WEAPON_SHOT','WEAPON_CHOICE','WEAPON_STEP','FIREARM','FIREARM_ENTRY','EQUIP_REWARD','KEEP_REWARD','KEEP_FIREARM','ENTER_BETWEEN_CHAPTERS','EQUIP_FIREARM','START_NEXT_CHAPTER']);
 function check(fixture,full){

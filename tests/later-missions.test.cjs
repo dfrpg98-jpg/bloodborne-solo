@@ -1,6 +1,6 @@
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), M = require("../chapter-engine");
-const Missions = require("../mission-engine"), D = require("../hunt-data");
+const E = require("../src/hunt-engine"), M = require("../src/chapter-engine");
+const Missions = require("../src/mission-engine"), D = require("../src/hunt-data");
 const H = E.hunter, go = (s, type, args = {}) => E.dispatch(s, { type, ...args });
 function next(s, completed) {
   s.mission.won = true; s.mission.completed = [...completed]; s.phase = "between_chapters";

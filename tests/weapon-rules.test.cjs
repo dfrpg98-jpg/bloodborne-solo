@@ -1,8 +1,8 @@
 "use strict";
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const W = require("../extended-weapons.js");
-const R = require("../weapon-rules.js");
+const W = require("../src/extended-weapons.js");
+const R = require("../src/weapon-rules.js");
 const face = (id, n = 0) => W.definition(id).faces[n];
 function state(extra = {}) {
   return { setup: { rulesVersion: 10 }, round: 3, activeHunterId: "h1",

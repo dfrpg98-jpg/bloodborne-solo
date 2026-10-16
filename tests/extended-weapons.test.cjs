@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine.js"), W = require("../extended-weapons.js");
+const E = require("../src/hunt-engine.js"), W = require("../src/extended-weapons.js");
 const { hand } = require("./actual-combat-helper.cjs");
 const go = (s, type, args = {}) => E.dispatch(s, { type, ...args });
 function fixture(id, face = 0, kinds = ["strength", "endurance", "vitality"], gun = "hunter-pistol") {

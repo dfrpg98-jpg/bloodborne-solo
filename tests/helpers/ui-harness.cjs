@@ -1,8 +1,8 @@
 const test = require("node:test"), assert = require("node:assert/strict");
 const fs = require("node:fs"), path = require("node:path"), vm = require("node:vm");
-const E = require("../../hunt-engine"), M = require("../../chapter-engine");
-const C = require("../../campaigns/long-hunt/data.json"), ED = require("../../enemy-deck");
-const G = require("../../tile-geometry");
+const E = require("../../src/hunt-engine"), M = require("../../src/chapter-engine");
+const C = require("../../campaigns/long-hunt/data.json"), ED = require("../../src/enemy-deck");
+const G = require("../../src/tile-geometry");
 const root = path.join(__dirname, "../..");
 const decode = (value) => String(value).replace(/&quot;/g, '"').replace(/&#39;/g, "'")
   .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
@@ -124,15 +124,15 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
     ...options.engine,
   };
   const window = { BBHunt: engine, BBChapter: M, BBLongHunt: C, BBNarrativeText: require("../../campaigns/long-hunt/narrative-text"), BBEnemyDeck: ED, BBTileGeometry: G,
-    BBHuntPublicText: require("../../hunt-public-text"), BBEnemyActionHistory: require("../../enemy-action-history"),
-    BBMapRenderLayout: require("../../map-render-layout"),
-    BBHuntDeparture: require("../../hunt-departure"),
-    BBHuntContext: fs.existsSync(path.join(root, "hunt-context.js")) ? require("../../hunt-context") : null,
-    BBHuntAnimationEvents: fs.existsSync(path.join(root, "hunt-animation-events.js")) ? require("../../hunt-animation-events") : null,
-    BBActualComponents: require("../../actual-components"),
-    BBExtendedEnemies: require("../../extended-enemies"),
-    BBExtendedFirearms: require("../../extended-firearms"),
-    BBRewards: options.rewardDefinitions ? { definitions: options.rewardDefinitions } : require("../../rewards-engine"),
+    BBHuntPublicText: require("../../src/hunt-public-text"), BBEnemyActionHistory: require("../../src/enemy-action-history"),
+    BBMapRenderLayout: require("../../src/map-render-layout"),
+    BBHuntDeparture: require("../../src/hunt-departure"),
+    BBHuntContext: fs.existsSync(path.join(root, "src/hunt-context.js")) ? require("../../src/hunt-context") : null,
+    BBHuntAnimationEvents: fs.existsSync(path.join(root, "src/hunt-animation-events.js")) ? require("../../src/hunt-animation-events") : null,
+    BBActualComponents: require("../../src/actual-components"),
+    BBExtendedEnemies: require("../../src/extended-enemies"),
+    BBExtendedFirearms: require("../../src/extended-firearms"),
+    BBRewards: options.rewardDefinitions ? { definitions: options.rewardDefinitions } : require("../../src/rewards-engine"),
     BBInventory: () => ({ render() {}, clear() {}, ids: () => [], names: () => [] }),
     BBStartPlacement: { mount: (container, select, confirm) => {
       const update = () => { confirm.disabled = !select.value; };
@@ -144,9 +144,9 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
   const context = vm.createContext({ window, document, localStorage: {
     getItem: (key) => storage.get(key) || null, setItem: (key, value) => storage.set(key, value),
   }, Blob, URL, setTimeout() {}, console });
-  if (options.realInventory) vm.runInContext(fs.readFileSync(path.join(root, "inventory.js"), "utf8"), context);
-  if (fs.existsSync(path.join(root, "hunt-shell.js"))) vm.runInContext(fs.readFileSync(path.join(root, "hunt-shell.js"), "utf8"), context);
-  vm.runInContext(fs.readFileSync(path.join(root, "hunt-app.js"), "utf8"), context);
+  if (options.realInventory) vm.runInContext(fs.readFileSync(path.join(root, "src/inventory.js"), "utf8"), context);
+  if (fs.existsSync(path.join(root, "src/hunt-shell.js"))) vm.runInContext(fs.readFileSync(path.join(root, "src/hunt-shell.js"), "utf8"), context);
+  vm.runInContext(fs.readFileSync(path.join(root, "src/hunt-app.js"), "utf8"), context);
   return { document, window, commands, storage, imports, creates,
     el: (id) => document.getElementById(id),
     buttons: (id) => document.getElementById(id).querySelectorAll("[data-command]"),

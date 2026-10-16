@@ -4,7 +4,7 @@
   // not simulated here. Every exposed command is labelled as a layout test in UI.
   const C =
     typeof module !== "undefined" && module.exports
-      ? require("./campaigns/long-hunt/data.json")
+      ? require("../campaigns/long-hunt/data.json")
       : root.BBLongHunt;
   const ED =
     typeof module !== "undefined" && module.exports

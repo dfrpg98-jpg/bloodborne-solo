@@ -1,6 +1,6 @@
 const test = require("node:test"),
   assert = require("node:assert/strict"),
-  E = require("../hunt-engine"),
+  E = require("../src/hunt-engine"),
   { choose } = require("./hunt-playthrough-helper.cjs");
 test("six complete command-driven hunts preserve quantities and replay including map resets", () => {
   const seen = new Set();

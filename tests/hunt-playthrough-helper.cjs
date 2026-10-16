@@ -1,5 +1,5 @@
-const E = require("../hunt-engine"),
-  M = require("../chapter-engine");
+const E = require("../src/hunt-engine"),
+  M = require("../src/chapter-engine");
 function choose(s) {
   const h = E.hunter(s),
     card = h.hand[0]?.id,

@@ -13,13 +13,21 @@ REFERENCE_PHOTOS = {
     '참고자료/화기/20261011_230950.jpg',
     '참고자료/화기/20261011_231000.jpg',
 }
+RUNTIME_DOCUMENTS = {
+    'docs/guides/WEAPON_VISUAL_GUIDE.txt',
+    'docs/guides/ENEMY_VISUAL_GUIDE.txt',
+    'docs/audits/legacy/WEAPON_REFERENCE_REVIEW.txt',
+    'docs/rules/checklist/RULES_CHECKLIST.xlsx',
+    'docs/verification/legacy/VERIFICATION_v085.txt',
+}
 IGNORED_PARTS = {'.git', 'node_modules', '__pycache__', '.pytest_cache', 'qa-fixtures', 'qa-fixtures-enemies', 'qa-fixtures-map-v0810'}
 
 def included(relative):
     p = Path(relative)
     rel = p.as_posix()
     if any(part in IGNORED_PARTS for part in p.parts): return False
-    if p.parts[0] in {'참고자료', '.github', 'docs', 'test-results', 'dist', 'outputs', 'work'}: return False
+    if p.parts[0] == 'docs': return rel in RUNTIME_DOCUMENTS
+    if p.parts[0] in {'참고자료', '.github', 'scripts', 'tests', 'test-results', 'dist', 'outputs', 'work', 'unity-port'}: return False
     if rel in {'README.md', 'CHANGELOG.md', 'CONTRIBUTING.md', '.gitignore', '.gitattributes', 'scripts/test-ci.cjs'}: return False
     if rel == 'qa-load.html' or p.suffix.lower() in {'.zip', '.pyc'}: return False
     if rel.startswith('campaigns/long-hunt/images/'): return False

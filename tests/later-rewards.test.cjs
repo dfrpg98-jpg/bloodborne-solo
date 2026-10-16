@@ -1,5 +1,5 @@
 const test = require("node:test"), assert = require("node:assert/strict");
-const R = require("../rewards-engine.js"), D = require("../hunt-data.js");
+const R = require("../src/rewards-engine.js"), D = require("../src/hunt-data.js");
 const kinds = ["beast-roar", "iosefka-vial", "messengers-gift", "rune-formless",
   "rune-writhe", "old-hunter-bone", "augur", "executioner-gloves", "rune-hunter", "empty-shell"];
 const H = (s) => s.hunters[s.activeHunterId];
@@ -217,7 +217,7 @@ test("reward view exposes legal targets and displacement destinations without ch
   assert.deepEqual(s, before);
 });
 function combatFixture(face = 0) {
-  const E = require("../hunt-engine.js");
+  const E = require("../src/hunt-engine.js");
   const s = E.create(90, "burial", face, null, "hunter-pistol", "center", { campaign: true }), h = E.hunter(s);
   const pool = [...h.hand, ...h.deck, ...h.discard, ...h.slots.filter(Boolean)];
   const take = (kind) => pool.splice(pool.findIndex((c) => c.kind === kind), 1)[0];

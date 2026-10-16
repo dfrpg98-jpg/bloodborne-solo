@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const create = require('../hunt-presentation.js');
+const create = require('../src/hunt-presentation.js');
 
 const faceA = 'w-threaded-cane-a', faceB = 'w-threaded-cane-b';
 const poseFrames = { idle: [0, 1], walk: [2, 3, 4, 5], 'attack-0': [6, 7, 8, 9],

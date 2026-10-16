@@ -1,7 +1,7 @@
 (function (root) {
   "use strict";
   const source = typeof module !== "undefined" && module.exports
-    ? require("./components/extended-firearms.json") : root.BBExtendedFirearmSource;
+    ? require("../components/extended-firearms.json") : root.BBExtendedFirearmSource;
   if (!source) throw new Error("추가 화기 원본 데이터가 로드되지 않았습니다.");
   const clone = (value) => JSON.parse(JSON.stringify(value));
   const firearms = Object.fromEntries(source.firearms.map((gun) => [gun.id, {

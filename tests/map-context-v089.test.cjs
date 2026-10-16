@@ -1,7 +1,7 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
 const fs = require("node:fs"), path = require("node:path");
-const E = require("../hunt-engine"), B = require("../boss-components"), M = require("../chapter-engine");
+const E = require("../src/hunt-engine"), B = require("../src/boss-components"), M = require("../src/chapter-engine");
 const { boot } = require("./helpers/ui-harness.cjs");
 const userBytes = fs.readFileSync(path.join(__dirname, "fixtures/user-play-fog-v089.json"), "utf8");
 const user = JSON.parse(userBytes).state;

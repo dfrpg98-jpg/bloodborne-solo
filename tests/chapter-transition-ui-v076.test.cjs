@@ -1,5 +1,5 @@
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine'),{boot}=require('./helpers/ui-harness.cjs');
+const E=require('../src/hunt-engine'),{boot}=require('./helpers/ui-harness.cjs');
 const timing=require('./fixtures/v075-chapel-timing-natural-escort-first-commands.json');
 const clinic52=require('./fixtures/v075-clinic52-completed-natural-commands.json');
 // Replay each supplied natural prefix once. These are real public-command

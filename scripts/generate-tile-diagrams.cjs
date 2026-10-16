@@ -3,7 +3,7 @@
 // Playable polygons, entrances and printed marker coordinates are unchanged.
 const fs = require("node:fs");
 const path = require("node:path");
-const G = require("../tile-geometry.js");
+const G = require("../src/tile-geometry.js");
 const C = require("../campaigns/long-hunt/data.json");
 const out = path.resolve(__dirname, "../assets/tiles");
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;" }[c]));

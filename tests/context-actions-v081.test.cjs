@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine.js"), M = require("../chapter-engine.js"), C = require("../hunt-context.js");
+const E = require("../src/hunt-engine.js"), M = require("../src/chapter-engine.js"), C = require("../src/hunt-context.js");
 const commands = require("./fixtures/v077-chapel-escort-first-natural-commands.json");
 const normal = () => E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true });
 const run = (state, action) => (action.sequence || [action.command]).reduce((s, command) => E.dispatch(s, command), state);

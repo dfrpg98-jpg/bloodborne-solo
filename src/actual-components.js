@@ -1,7 +1,7 @@
 (function (root) {
   "use strict";
   const source = typeof module !== "undefined" && module.exports
-    ? require("./components/supplied-components.json") : root.BBSuppliedComponents;
+    ? require("../components/supplied-components.json") : root.BBSuppliedComponents;
   const clone = (value) => JSON.parse(JSON.stringify(value));
   const attack = (printed, kind, extra = {}) => ({
     ...clone(printed), kind, type: "attack", poison: printed.keywords.includes("독"),

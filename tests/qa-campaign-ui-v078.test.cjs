@@ -1,6 +1,6 @@
 "use strict";
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine.js'),{boot}=require('./helpers/ui-harness.cjs');
+const E=require('../src/hunt-engine.js'),{boot}=require('./helpers/ui-harness.cjs');
 const normalKey='bloodborne-hunt-v07',qaKey='bloodborne-hunt-qa-v1',activeKey='bloodborne-hunt-active-mode';
 const normal=()=>E.create(90,'burial',0,null,'hunter-pistol','center',{campaign:true});
 const qa=()=>E.create(90,'qa-test-weapon',0,null,'hunter-pistol','center',{campaign:true,qa:{preset:'fast'}});

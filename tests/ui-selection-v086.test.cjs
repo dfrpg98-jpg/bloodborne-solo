@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), { boot } = require("./helpers/ui-harness.cjs");
+const E = require("../src/hunt-engine"), { boot } = require("./helpers/ui-harness.cjs");
 const commands = require("./fixtures/weapon-campaign-completion/beast-claw-0.json"), key = "bloodborne-hunt-v07";
 const engine = { create: E.create, importSave: E.importSave, exportSave: E.exportSave, dispatch: E.dispatch,
   missionView: E.missionView, rewardsView: E.rewardsView, missionActions: E.missionActions,

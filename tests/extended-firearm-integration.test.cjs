@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine.js");
+const E = require("../src/hunt-engine.js");
 const { hand } = require("./actual-combat-helper.cjs");
 const go = (s, type, args = {}) => E.dispatch(s, { type, ...args });
 function fixture(gun, weapon = "burial", face = 0) {

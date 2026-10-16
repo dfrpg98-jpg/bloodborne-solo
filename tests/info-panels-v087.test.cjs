@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict"), fs = require("node:fs"), path = require("node:path");
-const E = require("../hunt-engine"), B = require("../boss-components"), ED = require("../enemy-deck"), history = require("../enemy-action-history");
+const E = require("../src/hunt-engine"), B = require("../src/boss-components"), ED = require("../src/enemy-deck"), history = require("../src/enemy-action-history");
 const C = require("../campaigns/long-hunt/data.json"), { boot } = require("./helpers/ui-harness.cjs");
 const normalKey = "bloodborne-hunt-v07", qaKey = "bloodborne-hunt-qa-v1";
 const commands = require("./fixtures/weapon-campaign-completion/beast-claw-0.json");

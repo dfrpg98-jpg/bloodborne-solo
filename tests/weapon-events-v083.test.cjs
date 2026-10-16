@@ -1,5 +1,5 @@
 const test = require('node:test'), assert = require('node:assert/strict');
-const events = require('../hunt-animation-events'), visuals = require('../weapon-visuals');
+const events = require('../src/hunt-animation-events'), visuals = require('../src/weapon-visuals');
 const hunter = (weaponId = 'threaded-cane', face = 0, charged = false) => ({ id: 'hunter', kind: 'hunter', node: 'a', hp: 6,
   weaponId, weaponFace: face, skin: visuals.skin(weaponId, face, charged) });
 const enemy = (hp = 5) => ({ id: 'e1', kind: 'enemy', node: 'a', hp, name: '야수 사냥 무리' });

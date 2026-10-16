@@ -1,7 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const E = require("../hunt-engine.js");
-const catalog = require("../extended-enemies.js");
+const E = require("../src/hunt-engine.js");
+const catalog = require("../src/extended-enemies.js");
 const go = (s, type, args = {}) => E.dispatch(s, { type, ...args });
 function roundtrip(s) { assert.deepEqual(E.importSave(E.exportSave(s)), s); }
 function createCase(id, side, kind, stat = "vitality", opts = {}) {
