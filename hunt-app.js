@@ -40,6 +40,19 @@
     });
   };
   const faceName = (face, index = 0) => uiText(face?.name || "").trim() || (index ? "변형 상태" : "기본 형태");
+  function pendingDamageAllocations(effects = []) {
+    const first = effects[0];
+    if (first?.kind !== "damage" || first.all || first.target === "combat") return 0;
+    let count = 0;
+    // Only the current matching batch is public progress. Later movement or
+    // automatic damage may change targets before another choice is needed.
+    for (const effect of effects) {
+      if (effect.kind !== "damage" || effect.all || effect.target !== first.target ||
+          (effect.range || 0) !== (first.range || 0) || effect.damage !== first.damage) break;
+      count++;
+    }
+    return count;
+  }
   const combatFeedback = window.BBHuntCombatFeedback;
   combatFeedback?.installFirearmTooltips?.(document);
   const firearmNameHTML = (gun, context) => combatFeedback?.firearmNameHTML(gun, context,
@@ -1453,8 +1466,10 @@
     const weaponChoices = E.weaponChoices?.(state, { cardId: selectedCard, slot: selectedSlot, enemyId: selectedEnemy }) || [];
     if (!rewards?.choices.length && (p.startsWith("weapon_") || p === "entry_weapon")) {
       $("phaseTitle").textContent = p.includes("entry") ? "장치 무기 · 진입한 적 대응" : "장치 무기 효과 선택";
-      const push = p === "weapon_choice" && state.weaponEffects?.[0]?.kind === "push" ? state.weaponEffects[0] : null;
-      help = p.includes("entry") ? "손패 1장과 빈 슬롯 1개가 필요합니다. 기술을 뒷면으로 놓고 고정 피해 2를 줍니다. 카드 고유 효과와 공격 강화는 적용되지 않습니다." : push ? `이동 선택지 ${weaponChoices.length}개 · 남은 이동 최대 ${push.remaining}칸` : `선택할 대상 ${weaponChoices.length}개 · 아래 고정 선택 버튼에서 위치와 번호를 확인하세요.`;
+      const push = p === "weapon_choice" && state.weaponEffects?.[0]?.kind === "push" ? state.weaponEffects[0] : null,
+        allocations = p === "weapon_choice" && E.weapon(state).id === "uncanny-ludwigs-holy-blade"
+          ? pendingDamageAllocations(state.weaponEffects) : 0;
+      help = p.includes("entry") ? "손패 1장과 빈 슬롯 1개가 필요합니다. 기술을 뒷면으로 놓고 고정 피해 2를 줍니다. 카드 고유 효과와 공격 강화는 적용되지 않습니다." : push ? `이동 선택지 ${weaponChoices.length}개 · 남은 이동 최대 ${push.remaining}칸` : allocations ? `선택할 대상 ${weaponChoices.length}개 · 남은 피해 배분 ${allocations}회` : `선택할 대상 ${weaponChoices.length}개 · 아래 고정 선택 버튼에서 위치와 번호를 확인하세요.`;
       html = `<p class="target-selection-status">${esc(selectHint)}</p>${weaponChoices.map((option) => commandButton(option)).join("")}`;
     } else if (!rewards?.choices.length && weaponChoices.length) html += `<div class="weapon-effect-choices"><p class="muted">${esc(E.weapon(state).name)} · 고유 효과</p>${weaponChoices.map((option) => commandButton(option)).join("")}</div>`;
     if (["hunter", "combat_choose"].includes(p) && ["attack_sacrifice_damage", "attack_sacrifice_speed_or_damage"].includes(boostCode)) {
@@ -1462,6 +1477,11 @@
         ? [["none", "사용하지 않음"], ["1", "피해 1을 받고 공격 피해 +1"], ["2", "피해 2를 받고 공격 피해 +2"]]
         : [["none", "사용하지 않음"], ["speed", "피해 1을 받고 공격 속도 +1"], ["damage", "피해 1을 받고 공격 피해 +1"]];
       html = `<label>공격에 사용할 무기 고유 효과<select id="weaponBoost">${options.map(([value, label]) => `<option value="${value}" ${weaponBoost === value ? "selected" : ""}>${esc(label)}</option>`).join("")}</select></label>` + html;
+    }
+    if (p === "hunter" && !rewards?.choices.length && !state.weaponEffects?.length &&
+        E.weapon(state).id === "uncanny-ludwigs-holy-blade") {
+      const last = state.commands?.findLast(command => !command.type.startsWith("APPLY_"));
+      if (last?.type === "WEAPON_CHOICE" && last.enemyId) help = `피해 배분 완료 · ${help}`;
     }
     $("phaseHelp").textContent = help;
     $("decisions").innerHTML = html;

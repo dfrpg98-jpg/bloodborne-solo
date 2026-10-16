@@ -79,7 +79,7 @@ test("a genuine Chikage dodge damage choice keeps target wording and damages onl
   assert.equal(state.phase, "weapon_choice"); assert.equal(state.weaponEffects[0].kind, "damage");
   const { ui, current } = launch(state);
   assert.match(ui.el("phaseHelp").textContent, /선택할 대상 2개/);
-  assert.doesNotMatch(ui.el("phaseHelp").textContent, /이동 선택지|남은 이동 최대/);
+  assert.doesNotMatch(ui.el("phaseHelp").textContent, /이동 선택지|남은 이동 최대|피해 배분/);
   click(ui, "WEAPON_CHOICE", args => args.enemyId === "huntsmans-minion-2");
   assert.equal(current().enemies.find(enemy => enemy.id === "huntsmans-minion-1").hp, 5);
   assert.equal(current().enemies.find(enemy => enemy.id === "huntsmans-minion-2").hp, 4);
