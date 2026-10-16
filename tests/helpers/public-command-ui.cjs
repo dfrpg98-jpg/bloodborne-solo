@@ -26,6 +26,7 @@ function clickCommand(s,command,options={}){
       // own real-startup tests; adding it here would change each checkpoint.
       applyChapelRuling:state=>state,
       applyCombatReactionRuling:state=>state,
+      applyLeapMoveRuling:state=>state,
       missionView:E.missionView,rewardsView:E.rewardsView,missionActions:E.missionActions,
       interactionEnemies:E.interactionEnemies,provisionalView:E.provisionalView,
     }});

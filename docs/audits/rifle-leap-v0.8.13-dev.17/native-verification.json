@@ -1,0 +1,91 @@
+{
+  "version": "0.8.13-dev.17",
+  "verifiedAt": "2026-10-16T01:47:46.210Z",
+  "environment": "Local Codex In-app Browser, isolated read-only 127.0.0.1:8817 preview",
+  "mode": "synthetic-QA",
+  "normalCampaignCompletionClaimed": false,
+  "sourceCloudFilesInspectedLocally": false,
+  "originalInput": {
+    "file": "SYNTHETIC-QA-before-rifle-leap.json",
+    "commands": 25,
+    "sha256": "c499e895f07b792b180b8782c17133add486c3a70d4c4a227d342c61bc57bb70"
+  },
+  "correctedPreview": {
+    "damage": 5,
+    "formula": {
+      "base": 2,
+      "card": 1,
+      "attachment": 1,
+      "reward": 0,
+      "item": 0,
+      "weapon": 1,
+      "total": 5
+    },
+    "leapMoveActions": 1,
+    "moveActions": 1
+  },
+  "leap": {
+    "file": "evidence/native-after-leap.json",
+    "command": {
+      "type": "ATTACK",
+      "enemyId": "scourge-beast-1",
+      "cardId": "card-15",
+      "slot": 0,
+      "leapPath": [
+        "tile-14:center",
+        "tile-03:entry",
+        "tile-03:room"
+      ],
+      "pullIds": [],
+      "itemIds": [],
+      "rewardIds": []
+    },
+    "damage": 5,
+    "moveActions": 1,
+    "fullStateEqualsReducer": true,
+    "strictReimport": true,
+    "sha256": "4fbf7e3806b81cbb5005a8abf270a168e0f44d18610a18dcfbdf8eb31e4d2c94"
+  },
+  "followup": {
+    "file": "evidence/native-after-followup-move.json",
+    "commands": [
+      {
+        "type": "RESOLVE"
+      },
+      {
+        "type": "MOVE",
+        "cardId": "card-8"
+      },
+      {
+        "type": "STEP",
+        "node": "tile-03:entry"
+      },
+      {
+        "type": "STOP_MOVE"
+      }
+    ],
+    "phase": "hunter",
+    "position": "tile-03:entry",
+    "hp": 4,
+    "moveActions": 2,
+    "fullStateEqualsReducer": true,
+    "strictReimport": true,
+    "sha256": "0d18e00e3b04ec50c58fdc5aa607361ccd27870dc301fc77c725b38815bd92cf"
+  },
+  "pendingHistoricalDeclaration": {
+    "file": "evidence/native-loaded-legacy-attack.json",
+    "exactInputBytesPreserved": true,
+    "damage": 4,
+    "moveActions": 0,
+    "policyDeferred": true,
+    "strictReimport": true,
+    "sha256": "421a9bf36df1ff5918cae392c0845bd534657348cb20a8fd6ecf95a9883c688d"
+  },
+  "observedRuntimeResources": [
+    "hunt-engine.js?v=0.8.13-dev.17&h=9da62acf9369",
+    "hunt-attack-preview.js?v=0.8.13-dev.17&h=04d4d2b19082",
+    "hunt-app.js?v=0.8.13-dev.17&h=3ef642f608af"
+  ],
+  "browserErrorLogsObserved": 0,
+  "internalStateInjectionUsed": false
+}

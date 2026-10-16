@@ -1,0 +1,102 @@
+{
+  "synthetic": true,
+  "normalCampaignProgressClaimed": false,
+  "beforeCommands": 25,
+  "attackCommand": {
+    "type": "ATTACK",
+    "enemyId": "scourge-beast-1",
+    "cardId": "card-15",
+    "slot": 0,
+    "leapPath": [
+      "tile-14:center",
+      "tile-03:entry",
+      "tile-03:room"
+    ],
+    "pullIds": [],
+    "itemIds": [],
+    "rewardIds": [],
+    "weaponBoost": "none"
+  },
+  "legacy": {
+    "damage": 4,
+    "moveActions": 0
+  },
+  "corrected": {
+    "preview": {
+      "kind": "ATTACK",
+      "fixed": false,
+      "ready": true,
+      "attack": {
+        "name": "가르기",
+        "speed": 2,
+        "damage": 5,
+        "interrupt": false,
+        "interruptEqual": false,
+        "afterAttackHeal": 0,
+        "healDealt": false,
+        "freeTransform": false,
+        "noDodge": false,
+        "immuneInterrupt": false,
+        "splash": null,
+        "onKill": null
+      },
+      "warnings": [],
+      "notes": [
+        "도약 선행 이동 1회 포함 · 실행 후 이번 라운드 이동 행동 1회 · 이동한 칸 수와 별도로 계산합니다."
+      ],
+      "requirement": "손패 1장과 빈 공격 슬롯을 선택하세요.",
+      "card": {
+        "id": "card-15",
+        "name": "도약",
+        "text": "+1피해, 이 카드를 공격으로 사용하기 전에 이동 행동 1번을 할 수 있습니다."
+      },
+      "slot": {
+        "index": 0,
+        "name": "가르기"
+      },
+      "speed": 2,
+      "damage": 5,
+      "willAttack": true,
+      "suppressedCardEffects": false,
+      "hp": {
+        "before": 6,
+        "afterCard": 6,
+        "cardHeal": 0,
+        "selfDamage": 0,
+        "afterPayment": 6,
+        "afterDeclaration": 6,
+        "fatal": false,
+        "preventedBy": null,
+        "weaponHeal": 0,
+        "attachmentHeal": 0
+      },
+      "formula": {
+        "speed": {
+          "base": 2,
+          "card": 0,
+          "attachment": 0,
+          "reward": 0,
+          "item": 0,
+          "weapon": 0,
+          "total": 2
+        },
+        "damage": {
+          "base": 2,
+          "card": 1,
+          "attachment": 1,
+          "reward": 0,
+          "item": 0,
+          "weapon": 1,
+          "total": 5
+        }
+      },
+      "moveActions": 1,
+      "leapMoveActions": 1
+    },
+    "damage": 5,
+    "moveActions": 1,
+    "adoptionCommand": {
+      "type": "APPLY_LEAP_MOVE_RULING"
+    }
+  }
+}

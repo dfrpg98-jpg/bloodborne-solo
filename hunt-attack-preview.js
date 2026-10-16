@@ -81,9 +81,16 @@
     // commitAttack places the card before consulting weapon-rules: immediate
     // card healing and clearing affect low-health and occupied-slot conditions.
     // This projection contains only the public scalar inputs that helper reads.
-    const afterCardHp = Math.min(6, h.hp + number(card.heal)), placedSlots = h.slots.map(Boolean);
+    const leapEligible = state.leapMoveRuling === "move-action" && kind === "ATTACK" && state.phase === "hunter" && card.leap,
+      target = leapEligible ? state.enemies?.find(enemy => enemy.id === selection.enemyId) : null,
+      previousMoveActions = typeof h.moveActionsRound === "number" ? h.moveActionsRound :
+        h.moveActionsRound?.round === state.round ? number(h.moveActionsRound.count) : 0,
+      leapMoveActions = leapEligible && target && target.node !== h.position &&
+        engine.leapPaths(state, target.node).some(route => route.length > 1) ? 1 : 0,
+      projectedMoveActions = previousMoveActions + leapMoveActions,
+      afterCardHp = Math.min(6, h.hp + number(card.heal)), placedSlots = h.slots.map(Boolean);
     placedSlots[selection.slot] = !card.clear;
-    const publicHunter = { hp: afterCardHp, slots: placedSlots, moveActionsRound: h.moveActionsRound,
+    const publicHunter = { hp: afterCardHp, slots: placedSlots, moveActionsRound: projectedMoveActions,
       weaponCharge: h.weaponCharge ? { round: h.weaponCharge.round, speed: h.weaponCharge.speed, damage: h.weaponCharge.damage } : undefined },
       publicState = { setup: { rulesVersion: state.setup?.rulesVersion }, provisional: !!state.provisional,
         round: state.round, activeHunterId: "public", hunters: { public: publicHunter } };
@@ -118,11 +125,12 @@
       damage: { base: number(slot.damage), card: number(card.damage), attachment: shardDamage,
         reward: reward.damage - shardDamage, item: itemBonus.damage, weapon: wb.damage, total: damage },
     };
-    model.moveActions = typeof h.moveActionsRound === "number" ? h.moveActionsRound :
-      h.moveActionsRound?.round === state.round ? number(h.moveActionsRound.count) : 0;
+    model.moveActions = projectedMoveActions;
+    model.leapMoveActions = leapMoveActions;
     const effectCode = weaponRules.code(face);
     if (effectCode === "damage_per_move_action_this_round" && weaponRules.enabled(publicState))
-      model.notes.push(`이번 라운드 이동 행동 ${model.moveActions}회 · 이동한 칸 수와 별도로 계산합니다.`);
+      model.notes.push(leapMoveActions ? `도약 선행 이동 1회 포함 · 실행 후 이번 라운드 이동 행동 ${model.moveActions}회 · 이동한 칸 수와 별도로 계산합니다.` :
+        `이번 라운드 이동 행동 ${model.moveActions}회 · 이동한 칸 수와 별도로 계산합니다.`);
     if (effectCode === "transform_next_attack_speed_damage_one" && weaponRules.enabled(publicState)) {
       model.charge = { active: wb.consumeCharge, remainingAttacks: wb.consumeCharge ? 1 : 0,
         consumedOnThisAttack: wb.consumeCharge && !fatal, expires: "이번 라운드가 끝나면 만료", round: state.round };

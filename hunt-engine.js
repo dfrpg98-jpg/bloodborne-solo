@@ -783,6 +783,18 @@
     // attack/interaction; historical commands and already revealed attacks stay exact.
     return canApplyTileSpeedRuling(s) ? dispatch(s, {type:"APPLY_TILE_SPEED_RULING"}) : s;
   }
+  function canApplyLeapMoveRuling(s) {
+    return weaponRules.enabled(s) && s.setup.weaponId === "rifle-spear" && !s.leapMoveRuling &&
+      ["hunter", "move", "tile_place", "refill", "return", "between_chapters"].includes(s.phase) &&
+      !s.combat && !s.leap && !s.killReaction && !s.interaction && !s.weaponAfter &&
+      !s.weaponMoveReturn && !s.weaponEffects?.length && !s.missionArrivalAfter &&
+      !s.mission?.deathPending && !s.mission?.chapelArrival;
+  }
+  function applyLeapMoveRuling(s) {
+    // Preserve exact historical replay and pending declarations. Record the
+    // correction before future actions, without retroactively counting a leap.
+    return canApplyLeapMoveRuling(s) ? dispatch(s, {type:"APPLY_LEAP_MOVE_RULING"}) : s;
+  }
   function enemyTileSpeedPenalty(s, e, d = enemyDef(s, e)) {
     return node(s, e.node).tile === "tile-17" &&
       (s.tileSpeedRuling === "all-attacks" || !d.ignoreTileSpeed && e.missionId !== "shelter") ? 1 : 0;
@@ -1613,6 +1625,10 @@
       need(route && route.length > 1, "도약으로 진입할 경로를 선택하세요.");
       attackConsumables(clone(s), a.itemIds);
       if (rewardSession(s)) rewards.attackBonus(clone(s), a.slot, a.rewardIds || [], rewardHelpers());
+      if (s.leapMoveRuling === "move-action" && weaponRules.enabled(s)) {
+        const count = h.moveActionsRound;
+        h.moveActionsRound = (typeof count === "number" ? count : count?.round === s.round ? count.count || 0 : 0) + 1;
+      }
       s.leap = clone(a);
       s.move = { remaining: route.length - 1, path: [h.position], chasers: [] };
       for (const to of route.slice(1)) stepHunter(s, to);
@@ -2356,7 +2372,7 @@
     const phase = (p) =>
       need(s.phase === p, "현재 단계에서는 사용할 수 없는 행동입니다.");
     // New rules apply reward choices and timing windows before any firearm or weapon command.
-    const policyAdoption = ["APPLY_CHAPEL_RULING","APPLY_COMBAT_REACTION_RULING","APPLY_TILE_SPEED_RULING"].includes(a.type),
+    const policyAdoption = ["APPLY_CHAPEL_RULING","APPLY_COMBAT_REACTION_RULING","APPLY_TILE_SPEED_RULING","APPLY_LEAP_MOVE_RULING"].includes(a.type),
       rewardFirst = s.setup.rulesVersion>=11 && rewardSession(s),
       rewardHandled = !policyAdoption && rewardFirst && rewards.dispatch(s,a,rewardHelpers());
     const firearmHandled = !policyAdoption && !rewardHandled && firearms.dispatch(s, a, firearmHelpers());
@@ -2365,6 +2381,13 @@
       !policyAdoption && !rewardFirst && rewardSession(s) && rewards.dispatch(s, a, rewardHelpers());
     const missionHandled = !policyAdoption && !handled && missions.dispatch(s, a, missionHelpers());
     if (!handled && !missionHandled) switch (a.type) {
+      case "APPLY_LEAP_MOVE_RULING":
+        need(canApplyLeapMoveRuling(s), "진행 중인 공격과 반응을 마친 뒤 총창의 도약 이동 판정을 전환하세요.");
+        s.leapMoveRuling = "move-action";
+        s.revision++;
+        s.commands.push(clone(command));
+        assertState(s);
+        return s;
       case "APPLY_TILE_SPEED_RULING":
         need(canApplyTileSpeedRuling(s), "진행 중인 공격과 반응을 마친 뒤 타일 속도 판정을 전환하세요.");
         s.tileSpeedRuling = "all-attacks";
@@ -3019,6 +3042,8 @@
       !(s.setup.rulesVersion >= 13), "예배당 판정 기록 오류.");
     need(s.tileSpeedRuling === undefined || s.tileSpeedRuling === "all-attacks" &&
       s.setup.rulesVersion >= 9 && !s.provisional, "타일 속도 판정 기록 오류.");
+    need(s.leapMoveRuling === undefined || s.leapMoveRuling === "move-action" &&
+      weaponRules.enabled(s) && s.setup.weaponId === "rifle-spear", "총창 도약 이동 판정 기록 오류.");
     need(s.combatReactionRuling === undefined || s.combatReactionRuling === "immediate" &&
       s.setup.rulesVersion >= 11 && !(s.setup.rulesVersion >= 14) && !s.provisional,"처치 반응 판정 기록 오류.");
     need(
@@ -3290,6 +3315,7 @@
     applyChapelRuling,
     applyCombatReactionRuling,
     applyTileSpeedRuling,
+    applyLeapMoveRuling,
     enemyTileSpeedPenalty,
     killReactionActions,
     hunter,

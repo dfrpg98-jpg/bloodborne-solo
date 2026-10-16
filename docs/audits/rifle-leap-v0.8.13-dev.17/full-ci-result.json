@@ -1,0 +1,59 @@
+{
+  "startedAt": "2026-10-16T01:43:17.900Z",
+  "completedAt": "2026-10-16T01:50:01.851Z",
+  "nodeVersion": "v24.19.0",
+  "runtimeVersion": "0.8.13-dev.17",
+  "branch": "fix/rifle-leap-move-dev17",
+  "head": "b758e5bc051c30982c331754c1086f4b1eb2f746",
+  "command": [
+    "node",
+    "scripts/test-ci.cjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "spawnError": null,
+  "durationSeconds": 403.781,
+  "counts": {
+    "tests": 2980,
+    "suites": 0,
+    "pass": 2980,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "failedSubtests": [],
+  "sourcePhotoTestsExcluded": [
+    "campaign covers all 67 ordered sources and 60 numbered cards with images",
+    "reference data preserves printed terminology with the confirmed enemy alias and six enemy sides",
+    "default v0.3 state remains without optional firearm fields and photo confirmation retains raw text",
+    "supplied component photos retain their exact bytes, hashes and card provenance"
+  ],
+  "protectedFilesDefinition": "Tracked runtime/code/assets/scripts/test files plus untracked runtime modules and tests; excludes docs/**, Markdown, root TXT prose, work/ and ignored test-results/. Paths re-enumerated after CI to catch additions/removals.",
+  "requiredNewPaths": [
+    "hunt-engine.js",
+    "hunt-attack-preview.js",
+    "tests/rifle-leap-move-v0817.test.cjs",
+    "tests/rifle-leap-ui-v0817.test.cjs",
+    "tests/helpers/rifle-leap-checkpoints.cjs"
+  ],
+  "checkpoints": [
+    {
+      "label": "before",
+      "capturedAt": "2026-10-16T01:43:18.132Z",
+      "fileCount": 600,
+      "aggregateSha256": "6f763ff4639d306ee715f390421f89756b8b4638aa0561ad3788a1e947a5b15c"
+    },
+    {
+      "label": "after",
+      "capturedAt": "2026-10-16T01:50:01.849Z",
+      "fileCount": 600,
+      "aggregateSha256": "6f763ff4639d306ee715f390421f89756b8b4638aa0561ad3788a1e947a5b15c"
+    }
+  ],
+  "allProtectedHashesStable": true,
+  "changedProtectedFiles": [],
+  "remoteCIRunClaimed": false,
+  "sourcePhotographsCopied": false,
+  "validationPassed": true
+}

@@ -84,7 +84,8 @@
   const applyLoadedRuling = (loaded) => {
     const chapel = E.applyChapelRuling ? E.applyChapelRuling(loaded) : loaded;
     const combat = E.applyCombatReactionRuling ? E.applyCombatReactionRuling(chapel) : chapel;
-    return E.applyTileSpeedRuling ? E.applyTileSpeedRuling(combat) : combat;
+    const tile = E.applyTileSpeedRuling ? E.applyTileSpeedRuling(combat) : combat;
+    return E.applyLeapMoveRuling ? E.applyLeapMoveRuling(tile) : tile;
   };
   const isQa = () => !!state.setup?.qa;
   const saveKey = () => isQa() ? qaKey : key;
@@ -461,7 +462,8 @@
       const observedUpdates = observedSteps.flatMap(([prior, following]) => window.BBHuntMissionFeedback?.describe(prior, following,
         { E, publicText: window.BBHuntPublicText, data: window.BBLongHunt }) || []);
       const deathNotice = observedSteps.map(([prior, following]) => window.BBHuntDeathFeedback?.describe(prior, following)).find(Boolean);
-      state = E.applyTileSpeedRuling ? E.applyTileSpeedRuling(next) : next;
+      const tileAdopted = E.applyTileSpeedRuling ? E.applyTileSpeedRuling(next) : next;
+      state = E.applyLeapMoveRuling ? E.applyLeapMoveRuling(tileAdopted) : tileAdopted;
       const updates = window.BBHuntMissionFeedback?.reconcileTileSpeedAdoption?.(observedUpdates, next, state, { E }) || observedUpdates;
       recordMissionUpdates(updates);
       for (const [prior, following] of observedSteps) enemyHistory.observe(prior, following);
@@ -1532,7 +1534,8 @@
         .some(option => option.command.type === "WEAPON_SHOT"),
       attackPreview = !dodge && !fixedEntry ? window.BBHuntAttackPreview?.view(state, E, {
         kind: state.phase === "combat_choose" ? "COUNTER" : "ATTACK",
-        cardId: selectedCard, slot: selectedSlot, rewardIds: [...selectedRewards], itemIds: inventory.ids(),
+        cardId: selectedCard, slot: selectedSlot, enemyId: selectedEnemy || state.combat?.enemyId,
+        rewardIds: [...selectedRewards], itemIds: inventory.ids(),
         weaponBoost: E.weaponFace(state).effect?.code === "attack_sacrifice_damage" ?
           weaponBoost === "none" ? 0 : +weaponBoost : weaponBoost,
       }) : null,

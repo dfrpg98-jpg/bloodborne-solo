@@ -123,7 +123,8 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
   const storage = new Map(Object.entries(options.storage || { "bloodborne-hunt-v07": "fixture" }));
   const commands = [], imports = [], creates = [];
   // Historical presentation fixtures keep their original policy; migration has dedicated tests.
-  const engine = { ...E, applyTileSpeedRuling: state => state, create: (...args) => { creates.push(args); return structuredClone(state); },
+  const engine = { ...E, applyTileSpeedRuling: state => state, applyLeapMoveRuling: state => state,
+    create: (...args) => { creates.push(args); return structuredClone(state); },
     importSave: (text) => { imports.push(text); return structuredClone(state); },
     exportSave: (s) => JSON.stringify(s), missionView: () => view,
     applyChapelRuling: (s) => s,
