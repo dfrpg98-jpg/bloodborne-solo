@@ -1,0 +1,718 @@
+TAP version 13
+# Subtest: two held survivors are labelled before cost selection, and Cancel and Escape preserve every saved byte
+ok 1 - two held survivors are labelled before cost selection, and Cancel and Escape preserve every saved byte
+  ---
+  duration_ms: 1254.6616
+  type: 'test'
+  ...
+# Subtest: accepting the loss commits the original Dream command once, preserves the normal save and clears the two tokens
+ok 2 - accepting the loss commits the original Dream command once, preserves the normal save and clears the two tokens
+  ---
+  duration_ms: 362.7574
+  type: 'test'
+  ...
+# Subtest: central-lamp selection shows a drop warning and confirmation precedes a queued enemy response
+ok 3 - central-lamp selection shows a drop warning and confirmation precedes a queued enemy response
+  ---
+  duration_ms: 750.4891
+  type: 'test'
+  ...
+# Subtest: canceling a portable-lantern action returns to the rewards panel and keeps the tool ready
+ok 4 - canceling a portable-lantern action returns to the rewards panel and keeps the tool ready
+  ---
+  duration_ms: 609.3839
+  type: 'test'
+  ...
+# Subtest: a teleport consumable warns inside inventory and cancellation restores the panel without consuming it
+ok 5 - a teleport consumable warns inside inventory and cancellation restores the panel without consuming it
+  ---
+  duration_ms: 22.8095
+  type: 'test'
+  ...
+# Subtest: the historical command replay helper accepts only a matched explicit transport loss request
+ok 6 - the historical command replay helper accepts only a matched explicit transport loss request
+  ---
+  duration_ms: 326.8314
+  type: 'test'
+  ...
+# Subtest: ground: the lantern previews the right escort outcome, Cancel preserves it and Accept commits exactly once
+ok 7 - ground: the lantern previews the right escort outcome, Cancel preserves it and Accept commits exactly once
+  ---
+  duration_ms: 147.4469
+  type: 'test'
+  ...
+# Subtest: armed: the lantern previews the right escort outcome, Cancel preserves it and Accept commits exactly once
+ok 8 - armed: the lantern previews the right escort outcome, Cancel preserves it and Accept commits exactly once
+  ---
+  duration_ms: 90.1272
+  type: 'test'
+  ...
+# Subtest: carried: the lantern previews the right escort outcome, Cancel preserves it and Accept commits exactly once
+ok 9 - carried: the lantern previews the right escort outcome, Cancel preserves it and Accept commits exactly once
+  ---
+  duration_ms: 80.3999
+  type: 'test'
+  ...
+# Subtest: nearby uncarried escort: Dream has a hint before card selection, Escape preserves the save and acceptance leaves the token outside Dream
+ok 10 - nearby uncarried escort: Dream has a hint before card selection, Escape preserves the save and acceptance leaves the token outside Dream
+  ---
+  duration_ms: 95.0874
+  type: 'test'
+  ...
+# Subtest: nearby uncarried escort: bold-mark preview and confirmation preserve the inventory on Cancel
+ok 11 - nearby uncarried escort: bold-mark preview and confirmation preserve the inventory on Cancel
+  ---
+  duration_ms: 55.1623
+  type: 'test'
+  ...
+# Subtest: two naturally collected survivors warn before Dream entry and actually disappear instead of reaching the clinic
+ok 12 - two naturally collected survivors warn before Dream entry and actually disappear instead of reaching the clinic
+  ---
+  duration_ms: 879.4667
+  type: 'test'
+  ...
+# Subtest: invalid targets, missing cost cards and an invalid later command cannot create a partial loss warning
+ok 13 - invalid targets, missing cost cards and an invalid later command cannot create a partial loss warning
+  ---
+  duration_ms: 8.252
+  type: 'test'
+  ...
+# Subtest: walking and normal movement-end delivery preserve their own rules without a teleport-loss confirmation
+ok 14 - walking and normal movement-end delivery preserve their own rules without a teleport-loss confirmation
+  ---
+  duration_ms: 5.058
+  type: 'test'
+  ...
+# Subtest: the carried house escort returns home, while a nearby unpicked survivor stays in place
+ok 15 - the carried house escort returns home, while a nearby unpicked survivor stays in place
+  ---
+  duration_ms: 88.6336
+  type: 'test'
+  ...
+# Subtest: the carried bridge escort returns to its own spawn rather than being discarded like collected survivors
+ok 16 - the carried bridge escort returns to its own spawn rather than being discarded like collected survivors
+  ---
+  duration_ms: 209.6646
+  type: 'test'
+  ...
+# Subtest: dream: captured experiment survivor is dropped at the departure cell, and the warning matches the legal action
+ok 17 - dream: captured experiment survivor is dropped at the departure cell, and the warning matches the legal action
+  ---
+  duration_ms: 1038.9437
+  type: 'test'
+  ...
+# Subtest: central-lamp: captured experiment survivor is dropped at the departure cell, and the warning matches the legal action
+ok 18 - central-lamp: captured experiment survivor is dropped at the departure cell, and the warning matches the legal action
+  ---
+  duration_ms: 324.2364
+  type: 'test'
+  ...
+# Subtest: lantern: captured experiment survivor is dropped at the departure cell, and the warning matches the legal action
+ok 19 - lantern: captured experiment survivor is dropped at the departure cell, and the warning matches the legal action
+  ---
+  duration_ms: 296.4155
+  type: 'test'
+  ...
+# Subtest: an uncaptured experiment survivor and corpses are not reported as lost companions
+ok 20 - an uncaptured experiment survivor and corpses are not reported as lost companions
+  ---
+  duration_ms: 547.9687
+  type: 'test'
+  ...
+# Subtest: a teleport consumable uses the same departure loss rules without changing or consuming the inspected item
+ok 21 - a teleport consumable uses the same departure loss rules without changing or consuming the inspected item
+  ---
+  duration_ms: 3.4162
+  type: 'test'
+  ...
+# Subtest: an accepted lamp interaction warns before its enemy response, without claiming that the delayed teleport has already happened
+ok 22 - an accepted lamp interaction warns before its enemy response, without claiming that the delayed teleport has already happened
+  ---
+  duration_ms: 2.9793
+  type: 'test'
+  ...
+# Subtest: the following salvation NPC is left in place, rather than removed or sent to another survivor's home
+ok 23 - the following salvation NPC is left in place, rather than removed or sent to another survivor's home
+  ---
+  duration_ms: 345.9278
+  type: 'test'
+  ...
+# Subtest: a batch that first picks up an escort and then enters Dream warns about that newly carried companion
+ok 24 - a batch that first picks up an escort and then enters Dream warns about that newly carried companion
+  ---
+  duration_ms: 3.052
+  type: 'test'
+  ...
+# Subtest: a public button hint shows the loss before a cost card is selected and never dispatches a preview command
+ok 25 - a public button hint shows the loss before a cost card is selected and never dispatches a preview command
+  ---
+  duration_ms: 1.628
+  type: 'test'
+  ...
+# Subtest: a public button hint distinguishes a captured survivor drop and an escort return from token destruction
+ok 26 - a public button hint distinguishes a captured survivor drop and an escort return from token destruction
+  ---
+  duration_ms: 0.7917
+  type: 'test'
+  ...
+# Subtest: house ground: dream reports the actual escort outcome before any resource is spent
+ok 27 - house ground: dream reports the actual escort outcome before any resource is spent
+  ---
+  duration_ms: 53.0129
+  type: 'test'
+  ...
+# Subtest: house ground: lantern reports the actual escort outcome before any resource is spent
+ok 28 - house ground: lantern reports the actual escort outcome before any resource is spent
+  ---
+  duration_ms: 9.6582
+  type: 'test'
+  ...
+# Subtest: house ground: bold-mark reports the actual escort outcome before any resource is spent
+ok 29 - house ground: bold-mark reports the actual escort outcome before any resource is spent
+  ---
+  duration_ms: 17.6455
+  type: 'test'
+  ...
+# Subtest: house armed: dream reports the actual escort outcome before any resource is spent
+ok 30 - house armed: dream reports the actual escort outcome before any resource is spent
+  ---
+  duration_ms: 13.9853
+  type: 'test'
+  ...
+# Subtest: house armed: lantern reports the actual escort outcome before any resource is spent
+ok 31 - house armed: lantern reports the actual escort outcome before any resource is spent
+  ---
+  duration_ms: 8.5268
+  type: 'test'
+  ...
+# Subtest: house armed: bold-mark reports the actual escort outcome before any resource is spent
+ok 32 - house armed: bold-mark reports the actual escort outcome before any resource is spent
+  ---
+  duration_ms: 45.2995
+  type: 'test'
+  ...
+# Subtest: house carried: dream reports the actual escort outcome before any resource is spent
+ok 33 - house carried: dream reports the actual escort outcome before any resource is spent
+  ---
+  duration_ms: 13.9787
+  type: 'test'
+  ...
+# Subtest: house carried: lantern reports the actual escort outcome before any resource is spent
+ok 34 - house carried: lantern reports the actual escort outcome before any resource is spent
+  ---
+  duration_ms: 7.6634
+  type: 'test'
+  ...
+# Subtest: house carried: bold-mark reports the actual escort outcome before any resource is spent
+ok 35 - house carried: bold-mark reports the actual escort outcome before any resource is spent
+  ---
+  duration_ms: 12.4333
+  type: 'test'
+  ...
+# Subtest: bridge ground: dream reports the actual escort outcome before any resource is spent
+ok 36 - bridge ground: dream reports the actual escort outcome before any resource is spent
+  ---
+  duration_ms: 736.0007
+  type: 'test'
+  ...
+# Subtest: bridge ground: lantern reports the actual escort outcome before any resource is spent
+ok 37 - bridge ground: lantern reports the actual escort outcome before any resource is spent
+  ---
+  duration_ms: 121.31
+  type: 'test'
+  ...
+# Subtest: bridge ground: bold-mark reports the actual escort outcome before any resource is spent
+ok 38 - bridge ground: bold-mark reports the actual escort outcome before any resource is spent
+  ---
+  duration_ms: 118.9695
+  type: 'test'
+  ...
+# Subtest: bridge armed: dream reports the actual escort outcome before any resource is spent
+ok 39 - bridge armed: dream reports the actual escort outcome before any resource is spent
+  ---
+  duration_ms: 452.4062
+  type: 'test'
+  ...
+# Subtest: bridge armed: lantern reports the actual escort outcome before any resource is spent
+ok 40 - bridge armed: lantern reports the actual escort outcome before any resource is spent
+  ---
+  duration_ms: 112.0901
+  type: 'test'
+  ...
+# Subtest: bridge armed: bold-mark reports the actual escort outcome before any resource is spent
+ok 41 - bridge armed: bold-mark reports the actual escort outcome before any resource is spent
+  ---
+  duration_ms: 109.2686
+  type: 'test'
+  ...
+# Subtest: bridge carried: dream reports the actual escort outcome before any resource is spent
+ok 42 - bridge carried: dream reports the actual escort outcome before any resource is spent
+  ---
+  duration_ms: 392.4611
+  type: 'test'
+  ...
+# Subtest: bridge carried: lantern reports the actual escort outcome before any resource is spent
+ok 43 - bridge carried: lantern reports the actual escort outcome before any resource is spent
+  ---
+  duration_ms: 105.7661
+  type: 'test'
+  ...
+# Subtest: bridge carried: bold-mark reports the actual escort outcome before any resource is spent
+ok 44 - bridge carried: bold-mark reports the actual escort outcome before any resource is spent
+  ---
+  duration_ms: 110.0078
+  type: 'test'
+  ...
+# Subtest: a hint can precede a destination or cost selection, while actionable confirmation still requires a valid complete command
+ok 45 - a hint can precede a destination or cost selection, while actionable confirmation still requires a valid complete command
+  ---
+  duration_ms: 6.6226
+  type: 'test'
+  ...
+# Subtest: a ground escort in another cell of the same tile produces no stay warning or remote pickup
+ok 46 - a ground escort in another cell of the same tile produces no stay warning or remote pickup
+  ---
+  duration_ms: 11.5813
+  type: 'test'
+  ...
+# Subtest: completed bridge escort delivery is not turned into a missing-companion warning
+ok 47 - completed bridge escort delivery is not turned into a missing-companion warning
+  ---
+  duration_ms: 298.6793
+  type: 'test'
+  ...
+# Subtest: the paid house-room rescue and the uncaptured experiment do not gain free escort stay warnings
+ok 48 - the paid house-room rescue and the uncaptured experiment do not gain free escort stay warnings
+  ---
+  duration_ms: 839.2126
+  type: 'test'
+  ...
+# Subtest: a nearby salvation NPC with no follow selection does not gain an escort warning
+ok 49 - a nearby salvation NPC with no follow selection does not gain an escort warning
+  ---
+  duration_ms: 461.2783
+  type: 'test'
+  ...
+# Subtest: carried bridge escort departure through the central lamp retains one return warning
+ok 50 - carried bridge escort departure through the central lamp retains one return warning
+  ---
+  duration_ms: 208.072
+  type: 'test'
+  ...
+# Subtest: walking retains its free departure question without a transport warning or a second question for carried survivors
+ok 51 - walking retains its free departure question without a transport warning or a second question for carried survivors
+  ---
+  duration_ms: 8.0431
+  type: 'test'
+  ...
+# Subtest: Dream entry resets a pickup reservation and RETURN neither picks up remotely nor repeats its warning
+ok 52 - Dream entry resets a pickup reservation and RETURN neither picks up remotely nor repeats its warning
+  ---
+  duration_ms: 5.3466
+  type: 'test'
+  ...
+# Subtest: an unchanged destination cannot produce a false ground stay confirmation
+ok 53 - an unchanged destination cannot produce a false ground stay confirmation
+  ---
+  duration_ms: 0.6448
+  type: 'test'
+  ...
+# Subtest: a selected adjacent cell reports the existing discard cost and preserves the exact state until confirmed
+ok 54 - a selected adjacent cell reports the existing discard cost and preserves the exact state until confirmed
+  ---
+  duration_ms: 9.4578
+  type: 'test'
+  ...
+# Subtest: movement already paid for uses STEP and no second stat card
+ok 55 - movement already paid for uses STEP and no second stat card
+  ---
+  duration_ms: 0.5079
+  type: 'test'
+  ...
+# Subtest: an open entrance reveals no next tile before the canonical MOVE then EXPLORE command
+ok 56 - an open entrance reveals no next tile before the canonical MOVE then EXPLORE command
+  ---
+  duration_ms: 1.5384
+  type: 'test'
+  ...
+# Subtest: connected entrances offer the real public connecting STEP instead of drawing another tile
+ok 57 - connected entrances offer the real public connecting STEP instead of drawing another tile
+  ---
+  duration_ms: 0.9962
+  type: 'test'
+  ...
+# Subtest: a distant cell never chooses a route or spends a card automatically
+ok 58 - a distant cell never chooses a route or spends a card automatically
+  ---
+  duration_ms: 1.2305
+  type: 'test'
+  ...
+# Subtest: an attack requires the visible target, one hand card and an empty slot; a counter remains tied to its actual encounter
+ok 59 - an attack requires the visible target, one hand card and an empty slot; a counter remains tied to its actual encounter
+  ---
+  duration_ms: 2.078
+  type: 'test'
+  ...
+# Subtest: the current cell exposes combined interaction and its discard cost without selecting optional targets
+ok 60 - the current cell exposes combined interaction and its discard cost without selecting optional targets
+  ---
+  duration_ms: 1.0072
+  type: 'test'
+  ...
+# Subtest: mandatory reward equipment disables map actions and retains the reason
+ok 61 - mandatory reward equipment disables map actions and retains the reason
+  ---
+  duration_ms: 0.6543
+  type: 'test'
+  ...
+# Subtest: boss forced movement uses the reducer's actual public choices and no paid hunter move
+ok 62 - boss forced movement uses the reducer's actual public choices and no paid hunter move
+  ---
+  duration_ms: 5.2428
+  type: 'test'
+  ...
+# Subtest: all eight firearms keep their existing public use timing and target restrictions in the context panel
+ok 63 - all eight firearms keep their existing public use timing and target restrictions in the context panel
+  ---
+  duration_ms: 11.3837
+  type: 'test'
+  ...
+# Subtest: unresolved combat, tile placement and dreams cannot be bypassed by clicking map cells or gates
+ok 64 - unresolved combat, tile placement and dreams cannot be bypassed by clicking map cells or gates
+  ---
+  duration_ms: 1.1895
+  type: 'test'
+  ...
+# Subtest: public context never inspects hidden card or tile order and ignores unknown targets
+ok 65 - public context never inspects hidden card or tile order and ignores unknown targets
+  ---
+  duration_ms: 0.7838
+  type: 'test'
+  ...
+# Subtest: short actual seed14: a direct named-house departure asks before moving and offers valid yes/no command batches
+ok 66 - short actual seed14: a direct named-house departure asks before moving and offers valid yes/no command batches
+  ---
+  duration_ms: 35.2335
+  type: 'test'
+  ...
+# Subtest: existing canonical prefix75: a direct named-house departure asks before moving and offers valid yes/no command batches
+ok 67 - existing canonical prefix75: a direct named-house departure asks before moving and offers valid yes/no command batches
+  ---
+  duration_ms: 472.2362
+  type: 'test'
+  ...
+# Subtest: entering the named house from another cell does not pick up its survivor; the later departure of that same MOVE asks
+ok 68 - entering the named house from another cell does not pick up its survivor; the later departure of that same MOVE asks
+  ---
+  duration_ms: 22.3937
+  type: 'test'
+  ...
+# Subtest: an old armed reservation still asks, yes keeps it and no explicitly cancels only that pickup
+ok 69 - an old armed reservation still asks, yes keeps it and no explicitly cancels only that pickup
+  ---
+  duration_ms: 18.8552
+  type: 'test'
+  ...
+# Subtest: an already-carried escort is never asked about or dropped by a later walking request
+ok 70 - an already-carried escort is never asked about or dropped by a later walking request
+  ---
+  duration_ms: 20.4696
+  type: 'test'
+  ...
+# Subtest: MOVE alone, STOP_MOVE, Dream entry and teleport requests never create departure questions
+ok 71 - MOVE alone, STOP_MOVE, Dream entry and teleport requests never create departure questions
+  ---
+  duration_ms: 24.7036
+  type: 'test'
+  ...
+# Subtest: a valid prefix with an invalid later command is rejected without producing a choice or consuming anything
+ok 72 - a valid prefix with an invalid later command is rejected without producing a choice or consuming anything
+  ---
+  duration_ms: 3.0425
+  type: 'test'
+  ...
+# Subtest: actual mission37 asks at EXPLORE while free pickup is legal and stored choice controls entry/completion without a placement question
+ok 73 - actual mission37 asks at EXPLORE while free pickup is legal and stored choice controls entry/completion without a placement question
+  ---
+  duration_ms: 660.1964
+  type: 'test'
+  ...
+# Subtest: being on the other bridge cell is insufficient for the public mission37 pickup
+ok 74 - being on the other bridge cell is insufficient for the public mission37 pickup
+  ---
+  duration_ms: 193.7275
+  type: 'test'
+  ...
+# Subtest: uncaptured mission12 and mission49 survivors remain paid interactions and never gain a free pickup question
+ok 75 - uncaptured mission12 and mission49 survivors remain paid interactions and never gain a free pickup question
+  ---
+  duration_ms: 1040.1808
+  type: 'test'
+  ...
+# Subtest: abstract A/B companionship policy: declining B preserves the already-carried A throughout
+ok 76 - abstract A/B companionship policy: declining B preserves the already-carried A throughout
+  ---
+  duration_ms: 1.2424
+  type: 'test'
+  ...
+# Subtest: abstract A/B companionship policy: accepting B preserves the already-carried A throughout
+ok 77 - abstract A/B companionship policy: accepting B preserves the already-carried A throughout
+  ---
+  duration_ms: 0.6234
+  type: 'test'
+  ...
+# Subtest: departure prompt uses the requested title and only public survivor information
+ok 78 - departure prompt uses the requested title and only public survivor information
+  ---
+  duration_ms: 467.3867
+  type: 'test'
+  ...
+# Subtest: Cancel abandons the entire MOVE plus STEP convenience request without hand, position, random or save changes
+ok 79 - Cancel abandons the entire MOVE plus STEP convenience request without hand, position, random or save changes
+  ---
+  duration_ms: 204.1898
+  type: 'test'
+  ...
+# Subtest: Escape cancels rather than implicitly choosing No and the next departure can ask again
+ok 80 - Escape cancels rather than implicitly choosing No and the next departure can ask again
+  ---
+  duration_ms: 100.1817
+  type: 'test'
+  ...
+# Subtest: a second action while an escort decision is pending cannot spend resources or replace the pending route
+ok 81 - a second action while an escort decision is pending cannot spend resources or replace the pending route
+  ---
+  duration_ms: 141.1643
+  type: 'test'
+  ...
+# Subtest: Yes on a legacy armed checkpoint avoids toggling off its free pickup
+ok 82 - Yes on a legacy armed checkpoint avoids toggling off its free pickup
+  ---
+  duration_ms: 133.1179
+  type: 'test'
+  ...
+# Subtest: entering the named house during a move does not prompt until the hunter leaves that space
+ok 83 - entering the named house during a move does not prompt until the hunter leaves that space
+  ---
+  duration_ms: 201.9002
+  type: 'test'
+  ...
+# Subtest: real mission37 exploration asks before tile reveal; Yes survives placement without a duplicate question
+ok 84 - real mission37 exploration asks before tile reveal; Yes survives placement without a duplicate question
+  ---
+  duration_ms: 552.8523
+  type: 'test'
+  ...
+# Subtest: real mission37 exploration asks before tile reveal; No survives placement without a duplicate question
+ok 85 - real mission37 exploration asks before tile reveal; No survives placement without a duplicate question
+  ---
+  duration_ms: 417.2541
+  type: 'test'
+  ...
+# Subtest: a saved pending exploration retains Yes through reload and acquires only at actual tile entry
+ok 86 - a saved pending exploration retains Yes through reload and acquires only at actual tile entry
+  ---
+  duration_ms: 409.604
+  type: 'test'
+  ...
+# Subtest: new mission08 survivor is revealed on movement end, never during the unfinished exploration step
+ok 87 - new mission08 survivor is revealed on movement end, never during the unfinished exploration step
+  ---
+  duration_ms: 16.7436
+  type: 'test'
+  ...
+# Subtest: the supplied slot attachments permit moving on weapon transformation, rather than on any ordinary action
+ok 88 - the supplied slot attachments permit moving on weapon transformation, rather than on any ordinary action
+  ---
+  duration_ms: 3.087
+  type: 'test'
+  ...
+# Subtest: legacy rules-14 saves before and after a face-changing RETURN retain their exact pre-fix bytes
+ok 89 - legacy rules-14 saves before and after a face-changing RETURN retain their exact pre-fix bytes
+  ---
+  duration_ms: 24.3667
+  type: 'test'
+  ...
+# Subtest: an explicitly recorded opposite-face return opens free optional reassignment without changing RNG, hand, track or attachment defaults
+ok 90 - an explicitly recorded opposite-face return opens free optional reassignment without changing RNG, hand, track or attachment defaults
+  ---
+  duration_ms: 15.3759
+  type: 'test'
+  ...
+# Subtest: returning on the unchanged face offers no new timing window and invalid flags fail atomically
+ok 91 - returning on the unchanged face offers no new timing window and invalid flags fail atomically
+  ---
+  duration_ms: 31.9211
+  type: 'test'
+  ...
+# Subtest: a face with fewer slots resolves a displaced gem before the remaining valid gem's optional move
+ok 92 - a face with fewer slots resolves a displaced gem before the remaining valid gem's optional move
+  ---
+  duration_ms: 12.3056
+  type: 'test'
+  ...
+# Subtest: the return window ends at the next normal action and ordinary paid transforms keep their existing window
+ok 93 - the return window ends at the next normal action and ordinary paid transforms keep their existing window
+  ---
+  duration_ms: 22.2431
+  type: 'test'
+  ...
+# Subtest: choosing the other face on return does not activate Tonitrus's separate weapon-transform charge
+ok 94 - choosing the other face on return does not activate Tonitrus's separate weapon-transform charge
+  ---
+  duration_ms: 7.7671
+  type: 'test'
+  ...
+# Subtest: the next real attack after dream reassignment gains the shard on the new slot exactly once
+ok 95 - the next real attack after dream reassignment gains the shard on the new slot exactly once
+  ---
+  duration_ms: 18.3795
+  type: 'test'
+  ...
+# Subtest: choosing the opposite return face in the actual UI records the new timing and opens a named destination popup
+ok 96 - choosing the opposite return face in the actual UI records the new timing and opens a named destination popup
+  ---
+  duration_ms: 195.3475
+  type: 'test'
+  ...
+# Subtest: the actual return UI resolves mandatory slot repair before automatically opening optional reassignment
+ok 97 - the actual return UI resolves mandatory slot repair before automatically opening optional reassignment
+  ---
+  duration_ms: 63.0731
+  type: 'test'
+  ...
+# Subtest: the actual return UI keeps the unchanged face's legacy command and offers no optional popup
+ok 98 - the actual return UI keeps the unchanged face's legacy command and offers no optional popup
+  ---
+  duration_ms: 41.32
+  type: 'test'
+  ...
+# Subtest: public mission08 token inspection explains the departure prompt without a paid interaction or a manual reservation button
+ok 99 - public mission08 token inspection explains the departure prompt without a paid interaction or a manual reservation button
+  ---
+  duration_ms: 30.3815
+  type: 'test'
+  ...
+# Subtest: ordinary movement still requires an existing hand card without opting into escort inside the context command
+ok 100 - ordinary movement still requires an existing hand card without opting into escort inside the context command
+  ---
+  duration_ms: 37.7368
+  type: 'test'
+  ...
+# Subtest: engine pickup remains free and acquires the token only on actual departure
+ok 101 - engine pickup remains free and acquires the token only on actual departure
+  ---
+  duration_ms: 31.5583
+  type: 'test'
+  ...
+# Subtest: declining a reservation is distinct from dropping an already carried survivor
+ok 102 - declining a reservation is distinct from dropping an already carried survivor
+  ---
+  duration_ms: 57.5781
+  type: 'test'
+  ...
+# Subtest: a survivor in the named house cell cannot be picked up from the street of that tile
+ok 103 - a survivor in the named house cell cannot be picked up from the street of that tile
+  ---
+  duration_ms: 51.8044
+  type: 'test'
+  ...
+# Subtest: an old armed save keeps its engine selection while inspection does not change it
+ok 104 - an old armed save keeps its engine selection while inspection does not change it
+  ---
+  duration_ms: 36.5157
+  type: 'test'
+  ...
+# Subtest: explicit departure escort retains the printed return-home rule for a real teleport and voluntary Dream entry
+ok 105 - explicit departure escort retains the printed return-home rule for a real teleport and voluntary Dream entry
+  ---
+  duration_ms: 99.1958
+  type: 'test'
+  ...
+# Subtest: the independent mission12 rescue token keeps its ordinary paid interaction for both object and cell inspection
+ok 106 - the independent mission12 rescue token keeps its ordinary paid interaction for both object and cell inspection
+  ---
+  duration_ms: 71.421
+  type: 'test'
+  ...
+# Subtest: inspecting the house escort is presentation only and exposes neither paid interaction nor manual pickup
+ok 107 - inspecting the house escort is presentation only and exposes neither paid interaction nor manual pickup
+  ---
+  duration_ms: 492.9984
+  type: 'test'
+  ...
+# Subtest: direct departure asks before spending the ordinary movement card and Yes carries with no interaction
+ok 108 - direct departure asks before spending the ordinary movement card and Yes carries with no interaction
+  ---
+  duration_ms: 229.7544
+  type: 'test'
+  ...
+# Subtest: an already started move asks on departure and No leaves the survivor in its named space
+ok 109 - an already started move asks on departure and No leaves the survivor in its named space
+  ---
+  duration_ms: 253.209
+  type: 'test'
+  ...
+# Subtest: No on an old armed save clears only the not-yet-acquired reservation before normal departure
+ok 110 - No on an old armed save clears only the not-yet-acquired reservation before normal departure
+  ---
+  duration_ms: 209.6999
+  type: 'test'
+  ...
+# Subtest: being in the street of the same tile does not grant pickup from the house cell
+ok 111 - being in the street of the same tile does not grant pickup from the house cell
+  ---
+  duration_ms: 94.2027
+  type: 'test'
+  ...
+# Subtest: the independent room survivor retains its printed paid rescue interaction
+ok 112 - the independent room survivor retains its printed paid rescue interaction
+  ---
+  duration_ms: 62.5029
+  type: 'test'
+  ...
+# Subtest: inspecting a carried escort offers neither pickup nor dropping and never asks again on the next step
+ok 113 - inspecting a carried escort offers neither pickup nor dropping and never asks again on the next step
+  ---
+  duration_ms: 163.9013
+  type: 'test'
+  ...
+# Subtest: public dream return rejects the fog-broken yard lamp without changing the save
+ok 114 - public dream return rejects the fog-broken yard lamp without changing the save
+  ---
+  duration_ms: 59.196
+  type: 'test'
+  ...
+# Subtest: central lamp printed exception enters any fog space even when its lamp is broken
+ok 115 - central lamp printed exception enters any fog space even when its lamp is broken
+  ---
+  duration_ms: 58.9726
+  type: 'test'
+  ...
+# Subtest: issued lantern and mark cannot target a broken lamp from outside the fog
+ok 116 - issued lantern and mark cannot target a broken lamp from outside the fog
+  ---
+  duration_ms: 24.1057
+  type: 'test'
+  ...
+# Subtest: lantern and mark cannot escape a fog encounter while dream entry remains legal
+ok 117 - lantern and mark cannot escape a fog encounter while dream entry remains legal
+  ---
+  duration_ms: 9.0607
+  type: 'test'
+  ...
+# Subtest: normally completing the encounter restores its lamp and permits dream return there
+ok 118 - normally completing the encounter restores its lamp and permits dream return there
+  ---
+  duration_ms: 57.7471
+  type: 'test'
+  ...
+1..118
+# tests 118
+# suites 0
+# pass 118
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4434.033
