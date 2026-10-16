@@ -4,8 +4,9 @@ const E = require("../src/hunt-engine"), { boot } = require("./helpers/ui-harnes
 const normalKey = "bloodborne-hunt-v07", qaKey = "bloodborne-hunt-qa-v1", activeKey = "bloodborne-hunt-active-mode";
 const realEngine = { create: E.create, importSave: E.importSave, exportSave: E.exportSave, dispatch: E.dispatch,
   missionView: E.missionView, rewardsView: E.rewardsView, missionActions: E.missionActions,
-  interactionEnemies: E.interactionEnemies, provisionalView: E.provisionalView, applyChapelRuling: state => state };
-function normal() { return E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true }); }
+  interactionEnemies: E.interactionEnemies, provisionalView: E.provisionalView, applyChapelRuling: state => state,
+  applyCombatReactionRuling: state => state };
+function normal() { return E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 13 }); }
 function qa() { return E.create(90, "qa-test-weapon", 0, null, "hunter-pistol", "center", { campaign: true, qa: { preset: "fast" } }); }
 function realBoot(state, options = {}) {
   const key = state.setup.qa ? qaKey : normalKey;
@@ -38,13 +39,13 @@ test("the screen keeps one map, status, current objective, action area, hand and
   assert(ui.el("hand").querySelectorAll("[data-card]").length, "actual hand cards remain selectable");
   assert(ui.el("slots").querySelectorAll("[data-slot]").length, "weapon slots remain selectable");
   assert(ui.el("status").innerHTML.trim()); assert(ui.el("missionObjectives").innerHTML.trim());
-  for (const name of ["inventory", "rewards", "journal", "enemies", "help"]) panelButton(ui, name);
+  for (const name of ["inventory", "rewards", "journal", "enemies", "guide", "help"]) panelButton(ui, name);
   assert.equal(ui.el("error").textContent, "");
 });
 
 test("opening and closing every information panel preserves the exact game save and returns focus", () => {
   const state = qa(), ui = realBoot(state), before = ui.storage.get(qaKey);
-  for (const name of ["inventory", "rewards", "journal", "enemies", "help"]) {
+  for (const name of ["inventory", "rewards", "journal", "enemies", "guide", "help"]) {
     const opener = openPanel(ui, name);
     assert.equal(ui.commands.length, 0, "browsing never dispatches a game command");
     assert.equal(ui.storage.get(qaKey), before, "browsing leaves exact replay bytes unchanged");

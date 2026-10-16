@@ -1,0 +1,226 @@
+{
+  "review_type": "Independent visual audit of current source; no prior approval reports used",
+  "review_date": "2026-10-15",
+  "source": "local-development-archive/huntsmans-minion.png",
+  "source_sha256": "DCCACB4A1CEEA110B7AD6F65ACA94A21366CB9D2C50EB463239E832AF6DC736B",
+  "inspection": "Entire original-detail 1280x1280 image viewed with view_image. Frames numbered row-major, 4x4. No image edits, runtime edits, browser actions, or prior audit reads.",
+  "overall": {
+    "screen_heading": "Right-biased throughout all 16 poses; the head in hit frame 12 tilts up/back while retaining a rightward facial orientation.",
+    "actual_mirrored_pose_detected": false,
+    "weapon_arm_swap_detected": false,
+    "main_issue": "Perspective changes abruptly in the attack strike and recoil. The chest is open to the viewer in most poses, turns into a hunched rightward side view for frame 10, then opens again in frame 11. The weapon travels from screen-left overhead to screen-right in front as the same foreground arm swings across the torso.",
+    "anatomical_weapon_arm": "Likely anatomical right arm: in the open-chest idle poses the brick-bearing shoulder/arm is screen-left, which is the character's right. That shoulder's broad banded sleeve remains the foreground brick-bearing arm as it crosses in front in attack frame 10. Death frames bring both hands close to the brick, so individual gripping responsibility becomes less distinct.",
+    "confidence": "High that there is no simple horizontal mirror in this sheet; moderate-high that the same anatomical right arm is maintained; moderate in subtle torso yaw and the exact anatomical hand in the collapsed death poses.",
+    "scope_limit": "This is a source-art audit. It cannot establish which runtime facing value, horizontal flip, or frame ordering the UI currently applies. A global runtime flip would reverse every listed screen heading."
+  },
+  "frame_reviews": [
+    {
+      "frame": 0,
+      "animation": "idle",
+      "heading": "right, three-quarter toward viewer",
+      "evidence": "Face/nose project toward the right side of the tile; face is on the right of the shoulder hump. Chest and belt front are broadly visible. Banded foreground arm at screen-left holds the brick below the waist.",
+      "confidence": "high"
+    },
+    {
+      "frame": 1,
+      "animation": "idle",
+      "heading": "right, three-quarter toward viewer",
+      "evidence": "Same face-right, open-chest and belt-front construction as 0; brick remains in screen-left foreground hand. Tiny breathing shifts do not exchange the two arms.",
+      "confidence": "high"
+    },
+    {
+      "frame": 2,
+      "animation": "idle",
+      "heading": "right, slightly more profile than 0/1",
+      "evidence": "Nose and mouth project farther right while less frontal face is exposed; chest/pelvis remain open to the viewer. Brick and broad sleeve remain at screen-left.",
+      "confidence": "high for right heading, moderate for relative yaw"
+    },
+    {
+      "frame": 3,
+      "animation": "idle",
+      "heading": "right, three-quarter toward viewer",
+      "evidence": "Face returns closer to the open three-quarter appearance. Foreground banded arm and brick remain on screen-left, with the empty hand on screen-right.",
+      "confidence": "high"
+    },
+    {
+      "frame": 4,
+      "animation": "walk",
+      "heading": "right, three-quarter toward viewer",
+      "evidence": "Face/nose lead toward screen-right. Front of belt and chest remain visible. Brick hangs from the foreground screen-left arm despite the step changing leg positions.",
+      "confidence": "high"
+    },
+    {
+      "frame": 5,
+      "animation": "walk",
+      "heading": "right, three-quarter toward viewer",
+      "evidence": "Face and chest retain 4's right-facing construction. Foreground screen-left arm holds the brick; empty arm is to the right of the body. Leg stride changes do not imply a facing reversal.",
+      "confidence": "high"
+    },
+    {
+      "frame": 6,
+      "animation": "walk",
+      "heading": "right, three-quarter toward viewer",
+      "evidence": "Head still leads right of the hump. Chest/belt front remain visible, and the brick-bearing sleeve remains screen-left. Foot placement differs without a torso-side exchange.",
+      "confidence": "high"
+    },
+    {
+      "frame": 7,
+      "animation": "walk",
+      "heading": "right, three-quarter toward viewer",
+      "evidence": "Nose and face point right, chest front remains visible. Brick is screen-left, empty hand screen-right, as in the other walk poses.",
+      "confidence": "high"
+    },
+    {
+      "frame": 8,
+      "animation": "attack",
+      "heading": "right, open three-quarter torso",
+      "evidence": "Face/nose remain right. The brick-bearing screen-left foreground arm raises overhead while the empty hand stays screen-right. Chest and belt front are still broadly visible.",
+      "confidence": "high"
+    },
+    {
+      "frame": 9,
+      "animation": "attack",
+      "heading": "right, open three-quarter torso",
+      "evidence": "Brick is farther overhead at screen-left on the same broad foreground sleeve. Face is right of the shoulder hump and nose projects right. Chest and belt front remain open rather than mirrored.",
+      "confidence": "high"
+    },
+    {
+      "frame": 10,
+      "animation": "attack",
+      "heading": "strong rightward lunge, torso closer to side view",
+      "evidence": "Face/nose still point screen-right. Torso hunches and chest front largely disappears; hump and near shoulder dominate. The broad banded weapon sleeve can be traced from the screen-left shoulder diagonally down/right across the front to the hand and brick now ahead on screen-right. This is a swing across the body, not enough evidence of a hand swap.",
+      "confidence": "high for right heading, moderate-high for same anatomical arm"
+    },
+    {
+      "frame": 11,
+      "animation": "attack",
+      "heading": "right, open three-quarter recovery",
+      "evidence": "Returns to the idle-like open chest/belt and face-right configuration. Brick returns to screen-left in the foreground hand, and the empty hand is screen-right.",
+      "confidence": "high"
+    },
+    {
+      "frame": 12,
+      "animation": "hit",
+      "heading": "right/up facial direction with backwards recoil; torso almost frontal",
+      "evidence": "Head is thrown back toward upper-left, but facial features project up/right rather than a leftward nose profile. Chest front opens strongly and pelvis tilts back. Brick remains in screen-left foreground arm and the empty hand is raised on screen-right. Head position alone could be mistaken for facing left; the nose plus torso/arm assignment do not support a mirror.",
+      "confidence": "moderate-high; exact horizontal facial yaw is obscured by upward head tilt"
+    },
+    {
+      "frame": 13,
+      "animation": "hit",
+      "heading": "right, open three-quarter recovery",
+      "evidence": "Returns to face-right, visible chest/belt front and screen-left brick hand. This matches the idle-like construction rather than introducing a reversed side.",
+      "confidence": "high"
+    },
+    {
+      "frame": 14,
+      "animation": "death",
+      "heading": "right, kneeling/hunched side-biased torso",
+      "evidence": "Face and nose are on the right of the hump. Body collapses with knees behind/left of the hands. Banded foreground arm crosses down/right to the brick in front; the other hand approaches its right edge. Both hands being near the brick reduces hand assignment clarity, but there is no visible left-facing face/body reversal.",
+      "confidence": "high for right heading, moderate for exclusive brick-hand identity"
+    },
+    {
+      "frame": 15,
+      "animation": "death",
+      "heading": "right, prone/hunched",
+      "evidence": "Head remains at the right/front of the collapsed body and nose projects right. Legs trail left. Foreground banded arm extends rightward to the brick, with the far hand at the front edge. No mirrored head, costume layout, or arm-side exchange is apparent.",
+      "confidence": "high for right heading, moderate for exclusive brick-hand identity"
+    }
+  ],
+  "transitions": [
+    {
+      "from": 0,
+      "to": 1,
+      "finding": "No facing change; slight breathing movement.",
+      "kind": "continuous"
+    },
+    {
+      "from": 1,
+      "to": 2,
+      "finding": "Face turns slightly farther toward right profile while torso stays more open. No arm or costume-side exchange.",
+      "kind": "minor perspective variation"
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "finding": "Face returns slightly toward viewer. Right heading remains.",
+      "kind": "minor perspective variation"
+    },
+    {
+      "from": 3,
+      "to": 0,
+      "finding": "Idle loop preserves orientation and weapon arm.",
+      "kind": "continuous"
+    },
+    {
+      "from": 4,
+      "to": 5,
+      "finding": "Stride changes; face, torso and brick arm keep the same side.",
+      "kind": "continuous"
+    },
+    {
+      "from": 5,
+      "to": 6,
+      "finding": "Stride changes without a left/right heading flip.",
+      "kind": "continuous"
+    },
+    {
+      "from": 6,
+      "to": 7,
+      "finding": "Stride closes toward idle-like stance; same weapon arm.",
+      "kind": "continuous"
+    },
+    {
+      "from": 7,
+      "to": 4,
+      "finding": "Walk loop retains the open three-quarter right heading.",
+      "kind": "continuous"
+    },
+    {
+      "from": 8,
+      "to": 9,
+      "finding": "Overhead wind-up continues with the brick in the screen-left anatomical-right arm.",
+      "kind": "continuous"
+    },
+    {
+      "from": 9,
+      "to": 10,
+      "finding": "Largest yaw/perspective jump: open frontal chest becomes hunched side view. Brick crosses from overhead screen-left to low screen-right, but sleeve traces to the same near shoulder and nose still points right.",
+      "kind": "abrupt perspective rotation, not proven mirror or weapon swap",
+      "priority": "high visual-review candidate"
+    },
+    {
+      "from": 10,
+      "to": 11,
+      "finding": "Abrupt return from side-biased strike to open chest with brick at screen-left. This can read like a side jump at animation speed even though both faces point right.",
+      "kind": "abrupt perspective recovery",
+      "priority": "high visual-review candidate"
+    },
+    {
+      "from": 11,
+      "to": 12,
+      "finding": "Hit recoil throws head backward/up and opens chest almost front-on. Brick stays in the foreground screen-left arm. It changes pose/yaw, not demonstrably heading.",
+      "kind": "recoil perspective change",
+      "priority": "medium visual-review candidate"
+    },
+    {
+      "from": 12,
+      "to": 13,
+      "finding": "Head and torso snap back to right-facing open three-quarter recovery.",
+      "kind": "recoil recovery"
+    },
+    {
+      "from": 13,
+      "to": 14,
+      "finding": "Idle-like open chest switches to hunched side-biased kneel with weapon arm reaching rightward. No reversed face or costume layout detected.",
+      "kind": "collapse perspective change"
+    },
+    {
+      "from": 14,
+      "to": 15,
+      "finding": "Kneel collapses prone toward the same screen-right front; legs remain trailing left and brick remains ahead.",
+      "kind": "continuous collapse"
+    }
+  ],
+  "recommendation_for_parent": "Compare actual UI facing and flips against the source headings, especially frame 9->10->11 and hit 12. If UI direction is correct but motion still looks odd, the concrete art issue is inconsistent torso yaw and fast pose recovery, not evidence for flipping only one source frame. Do not fix by horizontally mirroring frame 10 or 12 on this evidence alone."
+}

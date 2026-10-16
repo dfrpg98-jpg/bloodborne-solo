@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-10-16T10:18:54.848Z",
+  "baseline": "8d379508aff059d6c4ca05382be44437867db54d",
+  "files": [
+    "tests/damage-allocation-progress-ui-v0822.test.cjs",
+    "tests/stake-push-preview-ui-v0821.test.cjs",
+    "tests/weapon-continuations.test.cjs",
+    "tests/ui-selection-v086.test.cjs",
+    "tests/target-selection-presentation-v0818.test.cjs",
+    "tests/playtest-target-selection-ui-v0818.test.cjs"
+  ],
+  "tests": 75,
+  "pass": 75,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "exitCode": 0,
+  "hashes": {
+    "hunt-engine.js": "9da62acf9369545235b604a18e27374211de9c10d2354d346970eb551ae7065f",
+    "weapon-flow.js": "2e60bbf3a39284bafe560f8ffd62f30b75e9c561228e41173f06c6fbda727499",
+    "weapon-rules.js": "9ec6fc4011daed6ad5b473cfe9555652591bba90a1d91c5bdc793ff1b201f9f9",
+    "chapter-engine.js": "40fb02224f705e5b9e291ea9fee18b8c6989a8bd5ee9975069be7b3744212a1b",
+    "rewards-engine.js": "f999e6a2a8e5c8f623ce44a334d9117df95604cd9bae61cf7f63ccfc0cfc0080",
+    "enemy-deck.js": "b842a5dfad84a10016bc4061f9daf946f74ddac8b134b51d16605a133518a5be",
+    "actual-components.js": "765c73aef0e0fccbea0617a2e8ad6f735428eb23df8123af45350a5fa6a3456c",
+    "hunt-app.js": "d1838668c43758e3675db7df66ded4176860443d27e78e323567c7839764555a",
+    "hunt.html": "e3da2d09da25d0e0ce43fde9ff9862ae341aabf5fb0ea71eb1822c6c1ff3af5d",
+    "package.json": "086517bf5e8dca6aa39bc3c8a5f9ac353f827338c5ad3fd3af63e4f722f60d37",
+    "tests/damage-allocation-progress-ui-v0822.test.cjs": "03d8ceec77304f80aeec42055b27ffd5fc03ae0362efb5ba3e8253a0e2217435",
+    "tests/stake-push-preview-ui-v0821.test.cjs": "4520996c581adc0e145a13491fbc51a6593e5aeff4387876c6e1f234b7530781",
+    "tests/weapon-continuations.test.cjs": "5892ebce032403a7e466e0b980cf78c7e2e1678f015c06c028752da61b21d913",
+    "tests/ui-selection-v086.test.cjs": "f96c1c087a269a0c54c869eafee01e0a4e029cd71e15a63a4fd5931f8f7c02ba",
+    "tests/target-selection-presentation-v0818.test.cjs": "c9a1beac9d8dade2c012e71db43f5f1f0825daf1c34b01cc11094fcaf83633c8",
+    "tests/playtest-target-selection-ui-v0818.test.cjs": "671dcd1edb4d7d3a445bc571119938341b3f805236c3a308ee5473961a920e68",
+    "tests/helpers/damage-allocation-qa.cjs": "90e4a4542682357edd14d16ba46aac64252c7c3084e9e8d0345408b10a93fda6"
+  },
+  "immutableMatchBaseline": [
+    "hunt-engine.js",
+    "weapon-flow.js",
+    "weapon-rules.js",
+    "chapter-engine.js",
+    "rewards-engine.js",
+    "enemy-deck.js",
+    "actual-components.js"
+  ]
+}

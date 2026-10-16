@@ -1,0 +1,104 @@
+{
+  "wide": {
+    "dialogOpen": true,
+    "placement": "right",
+    "scriptRefs": [
+      "hunt-public-text.js?v=0.8.13-dev.18&h=e6652d6ddaea",
+      "inventory.js?v=0.8.13-dev.18&h=1c1fd814229a",
+      "game-help.js?v=0.8.13-dev.18&h=ff81f1f35027",
+      "hunt-shell.js?v=0.8.13-dev.18&h=75914cf977b5",
+      "hunt-presentation.js?v=0.8.13-dev.18&h=af0f92efa733",
+      "hunt-app.js?v=0.8.13-dev.18&h=7a0098565096"
+    ],
+    "statuses": [
+      {
+        "enemyId": "huntsmans-minion-2",
+        "hp": "5",
+        "max": "5",
+        "name": "야수 사냥 하인#2",
+        "rect": {
+          "bottom": 371.515625,
+          "height": 40.296875,
+          "left": 501.890625,
+          "right": 605.890625,
+          "top": 331.21875,
+          "width": 104,
+          "x": 501.890625,
+          "y": 331.21875
+        },
+        "selected": true
+      },
+      {
+        "enemyId": "huntsman-mob-1",
+        "hp": "4",
+        "max": "4",
+        "name": "야수 사냥 무리",
+        "rect": {
+          "bottom": 271.296875,
+          "height": 40.296875,
+          "left": 406.125,
+          "right": 510.125,
+          "top": 231,
+          "width": 104,
+          "x": 406.125,
+          "y": 231
+        },
+        "selected": false
+      },
+      {
+        "enemyId": "huntsmans-minion-1",
+        "hp": "5",
+        "max": "5",
+        "name": "야수 사냥 하인#1",
+        "rect": {
+          "bottom": 271.296875,
+          "height": 40.296875,
+          "left": 550.046875,
+          "right": 654.046875,
+          "top": 231,
+          "width": 104,
+          "x": 550.046875,
+          "y": 231
+        },
+        "selected": false
+      }
+    ],
+    "target": "huntsmans-minion-2",
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    }
+  },
+  "narrow": {
+    "dialog": {
+      "bottom": 844,
+      "height": 382.5,
+      "left": 6,
+      "right": 644,
+      "top": 461.5,
+      "width": 638,
+      "x": 6,
+      "y": 461.5
+    },
+    "placement": "bottom",
+    "selected": [
+      {
+        "enemyId": "huntsmans-minion-2",
+        "rect": {
+          "bottom": 444.265625,
+          "height": 38.296875,
+          "left": 335.390625,
+          "right": 435.390625,
+          "top": 405.96875,
+          "width": 100,
+          "x": 335.390625,
+          "y": 405.96875
+        }
+      }
+    ],
+    "viewport": {
+      "height": 850,
+      "width": 650
+    }
+  }
+}

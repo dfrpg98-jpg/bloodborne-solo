@@ -1,0 +1,693 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "scope": "이번 웹 6종 스프라이트의 Unity 이식 준비 보존 검토. 실제 Unity 식별자 연결과 Importer는 차기 작업으로 남김.",
+  "source": {
+    "root": "local-development-archive/bloodborne-solo",
+    "branch": "feat/enemy-sprites-dev9",
+    "head": "70d5fae4b37d3f413b081d6371dd4fb4b14906ad",
+    "runtimeVersion": "0.8.13-dev.9",
+    "readFiles": {
+      "unity-port/tools/export.cjs": "18df9647e8cf4e6238d06cb8f1b8d58a462bc34571d591aa3a734815c10c976e",
+      "unity-port/tools/public-view.cjs": "affd0daf529859dd65443ae3c0fe69845d2ce40f12ba873c6eb7ee2d0f4502e8",
+      "enemy-visuals.js": "2350a252f8f8122a2f8bb0df958a086d0ce744fd38d404093905d244b858ae68",
+      "assets/characters/manifest.json": "accd927b3b756b4c975f16a58754fbec93b0579700f95f951d2bf0fb6bf529f5",
+      "hunt-presentation.js": "4333fa996f1d5f9ecc489661e99784389e7823f16a02b1eb0f15e5b12230a156"
+    }
+  },
+  "productCodeModified": false,
+  "originalImagesModified": false,
+  "exportExecuted": false,
+  "unityEditorExecuted": false,
+  "csharpGamePortCompleted": false,
+  "preservedOnNextExistingExport": {
+    "method": "기존 export.cjs의 assets 재귀복사 조건을 읽기 전용으로 동일 적용했다. Export를 실행해 생성물을 덮어쓰지는 않았다.",
+    "commonManifestEligible": true,
+    "sixPngAndSixAtlasesEligible": true,
+    "pngHashAndInlineAtlasConsistent": true,
+    "copiedDestinationRoot": "UnityStarter/Assets/Bloodborne/Art/characters/",
+    "copiedManifestRetains": "공통 manifest.json에는 새 6종 ID, PNG/atlas 경로, SHA256, 512 source, originY, baseFacing, displayHeight, bodyNormalization 및 inline atlasData가 함께 보존된다.",
+    "assetManifestProvenance": "기존 MigrationPrivate/assets-manifest-v1.json은 개별 PNG/atlas/manifest 파일의 SHA256과 Unity 경로를 기록한다.",
+    "existingGeneratedExportsRefreshedByThisReview": false
+  },
+  "notYetConnected": {
+    "referenceEngineIncludesEnemyVisuals": false,
+    "enemyVisualsInSourceContentClosure": false,
+    "contentHasDedicatedEnemyVisualsField": false,
+    "publicEnemyActorHasSkin": false,
+    "currentBehavior": "기존 public-view.cjs는 적 actor에 id/kind/node/hp/name만 보내며 새 enemy-visuals.js를 호출하지 않는다. PNG 바이트 보존은 되지만 Unity 공개 actor → 여섯 skin 식별자 연결은 아직 준비 코드에 없다.",
+    "decision": "이번 작업에서는 public-view schema·ContentPackage C# DTO·oracle 연결을 확장하지 않는다. 차기 Importer/공개 시각 계약 작업으로 명시한다.",
+    "schemaNote": "public-view-v1의 actors는 공개 배열 payload라 actor.skin 자체는 현재 root allowlist에 저촉되지 않지만, 새 content-v1.enemyVisuals 필드는 현재 additionalProperties:false이므로 실제 도입할 때 schema/DTO/소스목록/fixture를 함께 버전 검토해야 한다.",
+    "sourceIdentityNote": "sourceContentHash는 ReferenceEngine closure 식별자다. 새 시각 mapping이 closure에 포함되지 않으므로 이 해시 하나만으로 새 renderer mapping까지 이식되었다고 주장하지 않는다."
+  },
+  "assets": [
+    {
+      "id": "huntsman-mob",
+      "pngPath": "assets/characters/huntsman-mob.png",
+      "pngSha256": "ef50789dbefefbbbd8d34ee7ad6ccd2fd6fbe47f5278affe1245c55d4a65fd38",
+      "pngManifestHashMatches": true,
+      "pngDimensions": [
+        1230,
+        1278
+      ],
+      "atlasPath": "assets/characters/huntsman-mob.atlas.json",
+      "atlasSha256": "7a65bd0b25aebfd8a3df3aa89cc6752f08e0aab11fabb27fbb35d196ca89f383",
+      "pngEligibleForRecursiveCopy": true,
+      "atlasEligibleForRecursiveCopy": true,
+      "inlineAtlasMatchesFile": true,
+      "frameCount": 16,
+      "sourceFrameSize": [
+        512,
+        512
+      ],
+      "allSourceFrames512": true,
+      "allFramesTrimmed": true,
+      "anyRotatedFrame": false,
+      "allFramesHaveOwnershipClipRects": true,
+      "ownershipClipRectCount": 4084,
+      "originXEffective": 0.5,
+      "originY": 0.8984375,
+      "footAnchorSourcePixels": [
+        256,
+        460
+      ],
+      "baseFacing": "right",
+      "displayHeight": 124,
+      "bodyNormalization": {
+        "alphaThreshold": 32,
+        "measuredIdleMaxWidth": 166,
+        "measuredIdleMaxHeight": 300,
+        "targetBodyWidth": 52,
+        "targetBodyHeight": 81,
+        "referenceBodyHeight": 73,
+        "recommendedDisplayHeight": 124,
+        "idleRawExtentsFromManualAnchor": [
+          {
+            "frame": 0,
+            "left": 71,
+            "right": 81,
+            "top": 299,
+            "bottom": -1
+          },
+          {
+            "frame": 1,
+            "left": 78,
+            "right": 75,
+            "top": 300,
+            "bottom": -1
+          },
+          {
+            "frame": 2,
+            "left": 86,
+            "right": 66,
+            "top": 298,
+            "bottom": -1
+          },
+          {
+            "frame": 3,
+            "left": 95,
+            "right": 70,
+            "top": 297,
+            "bottom": -1
+          }
+        ],
+        "measuredIdleMaxLeft": 95,
+        "measuredIdleMaxRight": 81,
+        "measuredCenteredWidthForBothFacings": 190,
+        "actualCenteredWidthForBothFacings": 46.015625,
+        "recommendedDisplayHeightForCenteredReservation": 124,
+        "centeredReservationFits": true,
+        "actualIdleMaxDisplayWidth": 40.203125,
+        "actualIdleMaxDisplayHeight": 72.65625,
+        "reservationFits": true,
+        "note": "Alpha32 idle silhouette includes held objects. The default recommendation preserves the former body height when possible and caps idle width/height to the reserved map body. Attack extensions require separate runtime visual review."
+      }
+    },
+    {
+      "id": "huntsmans-minion",
+      "pngPath": "assets/characters/huntsmans-minion.png",
+      "pngSha256": "dccacb4a1ceea110b7ad6f65aca94a21366cb9d2c50eb463239e832af6dc736b",
+      "pngManifestHashMatches": true,
+      "pngDimensions": [
+        1254,
+        1254
+      ],
+      "atlasPath": "assets/characters/huntsmans-minion.atlas.json",
+      "atlasSha256": "5aefc78720d4552be6ca7211e9d06e727a206bc88a442d77aa1ce13007720af1",
+      "pngEligibleForRecursiveCopy": true,
+      "atlasEligibleForRecursiveCopy": true,
+      "inlineAtlasMatchesFile": true,
+      "frameCount": 16,
+      "sourceFrameSize": [
+        512,
+        512
+      ],
+      "allSourceFrames512": true,
+      "allFramesTrimmed": true,
+      "anyRotatedFrame": false,
+      "allFramesHaveOwnershipClipRects": true,
+      "ownershipClipRectCount": 4188,
+      "originXEffective": 0.5,
+      "originY": 0.8984375,
+      "footAnchorSourcePixels": [
+        256,
+        460
+      ],
+      "baseFacing": "right",
+      "displayHeight": 127,
+      "bodyNormalization": {
+        "alphaThreshold": 32,
+        "measuredIdleMaxWidth": 208,
+        "measuredIdleMaxHeight": 288,
+        "targetBodyWidth": 52,
+        "targetBodyHeight": 81,
+        "referenceBodyHeight": 73,
+        "recommendedDisplayHeight": 128,
+        "idleRawExtentsFromManualAnchor": [
+          {
+            "frame": 0,
+            "left": 104,
+            "right": 102,
+            "top": 288,
+            "bottom": -1
+          },
+          {
+            "frame": 1,
+            "left": 103,
+            "right": 103,
+            "top": 287,
+            "bottom": -1
+          },
+          {
+            "frame": 2,
+            "left": 104,
+            "right": 103,
+            "top": 285,
+            "bottom": -1
+          },
+          {
+            "frame": 3,
+            "left": 103,
+            "right": 104,
+            "top": 285,
+            "bottom": -1
+          }
+        ],
+        "measuredIdleMaxLeft": 104,
+        "measuredIdleMaxRight": 104,
+        "measuredCenteredWidthForBothFacings": 208,
+        "actualCenteredWidthForBothFacings": 51.59375,
+        "recommendedDisplayHeightForCenteredReservation": 128,
+        "centeredReservationFits": true,
+        "actualIdleMaxDisplayWidth": 51.59375,
+        "actualIdleMaxDisplayHeight": 71.4375,
+        "reservationFits": true,
+        "note": "Alpha32 idle silhouette includes held objects. The default recommendation preserves the former body height when possible and caps idle width/height to the reserved map body. Attack extensions require separate runtime visual review."
+      }
+    },
+    {
+      "id": "scourge-beast",
+      "pngPath": "assets/characters/scourge-beast.png",
+      "pngSha256": "de2263e279c0848ac0f0a86c09902bf3b7da9cebe606a28653eb94b41fde077f",
+      "pngManifestHashMatches": true,
+      "pngDimensions": [
+        1254,
+        1254
+      ],
+      "atlasPath": "assets/characters/scourge-beast.atlas.json",
+      "atlasSha256": "0d79cf99a9896e0178a0617927b37bec61f06c0d5a1e56ca8da95bacee006754",
+      "pngEligibleForRecursiveCopy": true,
+      "atlasEligibleForRecursiveCopy": true,
+      "inlineAtlasMatchesFile": true,
+      "frameCount": 16,
+      "sourceFrameSize": [
+        512,
+        512
+      ],
+      "allSourceFrames512": true,
+      "allFramesTrimmed": true,
+      "anyRotatedFrame": false,
+      "allFramesHaveOwnershipClipRects": true,
+      "ownershipClipRectCount": 5050,
+      "originXEffective": 0.5,
+      "originY": 0.8984375,
+      "footAnchorSourcePixels": [
+        256,
+        460
+      ],
+      "baseFacing": "right",
+      "displayHeight": 109,
+      "bodyNormalization": {
+        "alphaThreshold": 32,
+        "measuredIdleMaxWidth": 312,
+        "measuredIdleMaxHeight": 234,
+        "targetBodyWidth": 69.6,
+        "targetBodyHeight": 81,
+        "referenceBodyHeight": 57,
+        "recommendedDisplayHeight": 114,
+        "idleRawExtentsFromManualAnchor": [
+          {
+            "frame": 0,
+            "left": 161,
+            "right": 150,
+            "top": 220,
+            "bottom": 13
+          },
+          {
+            "frame": 1,
+            "left": 160,
+            "right": 148,
+            "top": 218,
+            "bottom": 13
+          },
+          {
+            "frame": 2,
+            "left": 163,
+            "right": 144,
+            "top": 219,
+            "bottom": 13
+          },
+          {
+            "frame": 3,
+            "left": 160,
+            "right": 131,
+            "top": 218,
+            "bottom": 13
+          }
+        ],
+        "measuredIdleMaxLeft": 163,
+        "measuredIdleMaxRight": 150,
+        "measuredCenteredWidthForBothFacings": 326,
+        "actualCenteredWidthForBothFacings": 69.40234375,
+        "recommendedDisplayHeightForCenteredReservation": 109,
+        "centeredReservationFits": true,
+        "actualIdleMaxDisplayWidth": 66.421875,
+        "actualIdleMaxDisplayHeight": 49.81640625,
+        "reservationFits": true,
+        "note": "Alpha32 idle silhouette includes held objects. The default recommendation preserves the former body height when possible and caps idle width/height to the reserved map body. Attack extensions require separate runtime visual review."
+      }
+    },
+    {
+      "id": "female-patient",
+      "pngPath": "assets/characters/female-patient.png",
+      "pngSha256": "e5083982e32e16568866e2b1f45b139cfce37fb79cff8da59f673589be731c95",
+      "pngManifestHashMatches": true,
+      "pngDimensions": [
+        1254,
+        1254
+      ],
+      "atlasPath": "assets/characters/female-patient.atlas.json",
+      "atlasSha256": "9af2317ebaa41fa7f9447b74714d9940df6cf60dafe6d25874454354746d1d27",
+      "pngEligibleForRecursiveCopy": true,
+      "atlasEligibleForRecursiveCopy": true,
+      "inlineAtlasMatchesFile": true,
+      "frameCount": 16,
+      "sourceFrameSize": [
+        512,
+        512
+      ],
+      "allSourceFrames512": true,
+      "allFramesTrimmed": true,
+      "anyRotatedFrame": false,
+      "allFramesHaveOwnershipClipRects": true,
+      "ownershipClipRectCount": 4008,
+      "originXEffective": 0.5,
+      "originY": 0.8984375,
+      "footAnchorSourcePixels": [
+        256,
+        460
+      ],
+      "baseFacing": "right",
+      "displayHeight": 129,
+      "bodyNormalization": {
+        "alphaThreshold": 32,
+        "measuredIdleMaxWidth": 177,
+        "measuredIdleMaxHeight": 291,
+        "targetBodyWidth": 52,
+        "targetBodyHeight": 81,
+        "referenceBodyHeight": 73.5,
+        "recommendedDisplayHeight": 129,
+        "idleRawExtentsFromManualAnchor": [
+          {
+            "frame": 0,
+            "left": 90,
+            "right": 86,
+            "top": 291,
+            "bottom": -1
+          },
+          {
+            "frame": 1,
+            "left": 81,
+            "right": 85,
+            "top": 288,
+            "bottom": -2
+          },
+          {
+            "frame": 2,
+            "left": 86,
+            "right": 86,
+            "top": 288,
+            "bottom": -2
+          },
+          {
+            "frame": 3,
+            "left": 90,
+            "right": 85,
+            "top": 289,
+            "bottom": -2
+          }
+        ],
+        "measuredIdleMaxLeft": 90,
+        "measuredIdleMaxRight": 86,
+        "measuredCenteredWidthForBothFacings": 180,
+        "actualCenteredWidthForBothFacings": 45.3515625,
+        "recommendedDisplayHeightForCenteredReservation": 129,
+        "centeredReservationFits": true,
+        "actualIdleMaxDisplayWidth": 44.595703125,
+        "actualIdleMaxDisplayHeight": 73.318359375,
+        "reservationFits": true,
+        "note": "Alpha32 idle silhouette includes held objects. The default recommendation preserves the former body height when possible and caps idle width/height to the reserved map body. Attack extensions require separate runtime visual review."
+      }
+    },
+    {
+      "id": "iosefka",
+      "pngPath": "assets/characters/iosefka.png",
+      "pngSha256": "05b1c757d02d9aa925c226aec9bb814c1ffb96623155eac00befc11e176a390f",
+      "pngManifestHashMatches": true,
+      "pngDimensions": [
+        1254,
+        1254
+      ],
+      "atlasPath": "assets/characters/iosefka.atlas.json",
+      "atlasSha256": "cf5b592f4ac86f5a33de9abecb8c78e82b46d8581ae912b537801e21ff1c3b76",
+      "pngEligibleForRecursiveCopy": true,
+      "atlasEligibleForRecursiveCopy": true,
+      "inlineAtlasMatchesFile": true,
+      "frameCount": 16,
+      "sourceFrameSize": [
+        512,
+        512
+      ],
+      "allSourceFrames512": true,
+      "allFramesTrimmed": true,
+      "anyRotatedFrame": false,
+      "allFramesHaveOwnershipClipRects": true,
+      "ownershipClipRectCount": 3743,
+      "originXEffective": 0.5,
+      "originY": 0.8984375,
+      "footAnchorSourcePixels": [
+        256,
+        460
+      ],
+      "baseFacing": "right",
+      "displayHeight": 122,
+      "bodyNormalization": {
+        "alphaThreshold": 32,
+        "measuredIdleMaxWidth": 161,
+        "measuredIdleMaxHeight": 308,
+        "targetBodyWidth": 52,
+        "targetBodyHeight": 81,
+        "referenceBodyHeight": 73.5,
+        "recommendedDisplayHeight": 122,
+        "idleRawExtentsFromManualAnchor": [
+          {
+            "frame": 0,
+            "left": 79,
+            "right": 79,
+            "top": 309,
+            "bottom": -2
+          },
+          {
+            "frame": 1,
+            "left": 79,
+            "right": 79,
+            "top": 309,
+            "bottom": -2
+          },
+          {
+            "frame": 2,
+            "left": 76,
+            "right": 84,
+            "top": 307,
+            "bottom": -2
+          },
+          {
+            "frame": 3,
+            "left": 76,
+            "right": 83,
+            "top": 308,
+            "bottom": -2
+          }
+        ],
+        "measuredIdleMaxLeft": 79,
+        "measuredIdleMaxRight": 84,
+        "measuredCenteredWidthForBothFacings": 168,
+        "actualCenteredWidthForBothFacings": 40.03125,
+        "recommendedDisplayHeightForCenteredReservation": 122,
+        "centeredReservationFits": true,
+        "actualIdleMaxDisplayWidth": 38.36328125,
+        "actualIdleMaxDisplayHeight": 73.390625,
+        "reservationFits": true,
+        "note": "Alpha32 idle silhouette includes held objects. The default recommendation preserves the former body height when possible and caps idle width/height to the reserved map body. Attack extensions require separate runtime visual review."
+      }
+    },
+    {
+      "id": "cleric-beast",
+      "pngPath": "assets/characters/cleric-beast.png",
+      "pngSha256": "9154cebc4dd93ea0fe53a7aaf0c64166a5b200f24888c8ba2792baf3a6be6d43",
+      "pngManifestHashMatches": true,
+      "pngDimensions": [
+        1402,
+        1122
+      ],
+      "atlasPath": "assets/characters/cleric-beast.atlas.json",
+      "atlasSha256": "3788884e027e9de5ec78468744a2fc924eb1a56aa4a267dfc2593dd84319a474",
+      "pngEligibleForRecursiveCopy": true,
+      "atlasEligibleForRecursiveCopy": true,
+      "inlineAtlasMatchesFile": true,
+      "frameCount": 16,
+      "sourceFrameSize": [
+        512,
+        512
+      ],
+      "allSourceFrames512": true,
+      "allFramesTrimmed": true,
+      "anyRotatedFrame": false,
+      "allFramesHaveOwnershipClipRects": true,
+      "ownershipClipRectCount": 2724,
+      "originXEffective": 0.5,
+      "originY": 0.8984375,
+      "footAnchorSourcePixels": [
+        256,
+        460
+      ],
+      "baseFacing": "right",
+      "displayHeight": 256,
+      "bodyNormalization": {
+        "alphaThreshold": 32,
+        "measuredIdleMaxWidth": 198,
+        "measuredIdleMaxHeight": 192,
+        "targetBodyWidth": 127.6,
+        "targetBodyHeight": 127.6,
+        "referenceBodyHeight": 96,
+        "recommendedDisplayHeight": 256,
+        "idleRawExtentsFromManualAnchor": [
+          {
+            "frame": 0,
+            "left": 99,
+            "right": 96,
+            "top": 190,
+            "bottom": -2
+          },
+          {
+            "frame": 1,
+            "left": 99,
+            "right": 92,
+            "top": 192,
+            "bottom": -2
+          },
+          {
+            "frame": 2,
+            "left": 103,
+            "right": 91,
+            "top": 190,
+            "bottom": -2
+          },
+          {
+            "frame": 3,
+            "left": 106,
+            "right": 91,
+            "top": 193,
+            "bottom": -2
+          }
+        ],
+        "measuredIdleMaxLeft": 106,
+        "measuredIdleMaxRight": 96,
+        "measuredCenteredWidthForBothFacings": 212,
+        "actualCenteredWidthForBothFacings": 106,
+        "recommendedDisplayHeightForCenteredReservation": 256,
+        "centeredReservationFits": true,
+        "actualIdleMaxDisplayWidth": 99,
+        "actualIdleMaxDisplayHeight": 96,
+        "reservationFits": true,
+        "note": "Alpha32 idle silhouette includes held objects. The default recommendation preserves the former body height when possible and caps idle width/height to the reserved map body. Attack extensions require separate runtime visual review."
+      }
+    }
+  ],
+  "projectionExamples": [
+    {
+      "checkpointId": "ordinary-huntsman",
+      "targetId": "huntsman-mob-1",
+      "publicName": "야수 사냥 무리",
+      "expectedWebSkin": "huntsman-mob",
+      "exportedPublicActorHasSkin": false,
+      "publicActorKeys": [
+        "id",
+        "kind",
+        "node",
+        "hp",
+        "name"
+      ],
+      "publicActorReturnedWithoutPrivateDecks": true
+    },
+    {
+      "checkpointId": "ordinary-minion-attack",
+      "targetId": "huntsmans-minion-1",
+      "publicName": "야수 사냥 하인",
+      "expectedWebSkin": "huntsmans-minion",
+      "exportedPublicActorHasSkin": false,
+      "publicActorKeys": [
+        "id",
+        "kind",
+        "node",
+        "hp",
+        "name"
+      ],
+      "publicActorReturnedWithoutPrivateDecks": true
+    },
+    {
+      "checkpointId": "ordinary-scourge-attack",
+      "targetId": "scourge-beast-1",
+      "publicName": "재앙의 야수",
+      "expectedWebSkin": "scourge-beast",
+      "exportedPublicActorHasSkin": false,
+      "publicActorKeys": [
+        "id",
+        "kind",
+        "node",
+        "hp",
+        "name"
+      ],
+      "publicActorReturnedWithoutPrivateDecks": true
+    },
+    {
+      "checkpointId": "female-patient-natural",
+      "targetId": "mission-patient",
+      "publicName": "여성 야수환자",
+      "expectedWebSkin": "female-patient",
+      "exportedPublicActorHasSkin": false,
+      "publicActorKeys": [
+        "id",
+        "kind",
+        "node",
+        "hp",
+        "name"
+      ],
+      "publicActorReturnedWithoutPrivateDecks": true
+    },
+    {
+      "checkpointId": "iosefka-natural",
+      "targetId": "mission-iosefka",
+      "publicName": "이오세프카",
+      "expectedWebSkin": "iosefka",
+      "exportedPublicActorHasSkin": false,
+      "publicActorKeys": [
+        "id",
+        "kind",
+        "node",
+        "hp",
+        "name"
+      ],
+      "publicActorReturnedWithoutPrivateDecks": true
+    },
+    {
+      "checkpointId": "cleric-phase1-natural",
+      "targetId": "mission-main",
+      "publicName": "성직자 야수",
+      "expectedWebSkin": "cleric-beast",
+      "exportedPublicActorHasSkin": false,
+      "publicActorKeys": [
+        "id",
+        "kind",
+        "node",
+        "hp",
+        "name"
+      ],
+      "publicActorReturnedWithoutPrivateDecks": true
+    },
+    {
+      "checkpointId": "cleric-phase2-natural",
+      "targetId": "mission-main",
+      "publicName": "성직자 야수",
+      "expectedWebSkin": "cleric-beast",
+      "exportedPublicActorHasSkin": false,
+      "publicActorKeys": [
+        "id",
+        "kind",
+        "node",
+        "hp",
+        "name"
+      ],
+      "publicActorReturnedWithoutPrivateDecks": true
+    }
+  ],
+  "nextImporterRequirements": [
+    {
+      "id": "identity",
+      "requirement": "공개 enemy actor에 enemy-visuals.skin의 결과인 여섯 문자열 ID를 연결한다. componentId/componentSpec → provisionalKind → extendedId → ordinary kind의 우선순위와 unknown fallback을 유지한다. 여성 A/B는 female-patient, 이오세프카는 iosefka, 보스 1/2단계는 cleric-beast를 공유한다.",
+      "reason": "환자의 rule kind는 huntsman-mob, 이오세프카의 rule kind는 huntsmans-minion, 보스는 scourge-beast를 재사용한다. base kind부터 연결하면 다시 동일 모델 문제가 생긴다."
+    },
+    {
+      "id": "packed-atlas",
+      "requirement": "PNG를 4×4 같은 크기 셀로 자르면 안 된다. 각 atlas frame.x/y/w/h와 rotated/trimmed를 읽고 spriteSourceSize.x/y/w/h를 512×512 sourceSize 캔버스에 복원한다.",
+      "reason": "새 파일은 투명 패딩과 개별 trim을 거친 패킹 atlas다. PNG 전체 크기도 종마다 다르고 원본 생성 시트의 격자와 동일하지 않다."
+    },
+    {
+      "id": "ownership-mask",
+      "requirement": "각 frame.clipRects를 원본 512 source 좌표의 포함 영역 합집합으로 decode한다. 이 영역 바깥을 완전히 투명하게 유지하는 마스크/셰이더 또는 명시적 전처리 결과를 사용한다.",
+      "reason": "crop 사각형에는 인접 포즈의 픽셀이 포함될 수 있다. crop만 가져오면 다른 자세의 팔·발 조각이 다시 나타난다. 새 6종의 16개 모든 frame에 소유 마스크가 있다."
+    },
+    {
+      "id": "ground-pivot",
+      "requirement": "effective originX=0.5와 manifest originY=460/512를 매 frame의 동일 512 source 기준으로 유지한다. y-down을 y-up으로 바꾸는 경우 full source 캔버스의 normalized pivot은 (0.5,1-originY), 즉 (0.5,0.1015625)이다. Trim의 아래 끝이나 visible bbox center를 새 발 기준점으로 삼지 않는다.",
+      "reason": "걷기·피격·공격·죽음에서 trim 경계가 달라져도 세계의 접지 위치가 바뀌지 않아야 한다. 512 source foot anchor는 (256,460)이다."
+    },
+    {
+      "id": "facing-and-scale",
+      "requirement": "baseFacing:right와 개별 displayHeight/bodyNormalization을 함께 읽는다. Unity 픽셀/월드 단위는 프로젝트 스케일에 맞추되 상대적인 실제 몸 높이와 좌우 reservation을 보존한다. PNG packed height를 실제 캐릭터 높이로 취급하지 않는다.",
+      "reason": "sourceHeight 512와 실제 alpha 몸 높이가 다르다. 몸 크기·마커 배치 안전 여백은 packed PNG 크기와 독립이다."
+    },
+    {
+      "id": "animation-contract",
+      "requirement": "현재 16프레임 공통 계약을 별도 명시한다: idle 0–3@3fps loop, walk 4–7@10fps loop, attack 8–11@14fps once, hit 12–13@8fps once, death 14–15@5fps once. 새 모델의 동작 이름이나 프레임 수가 달라지면 새 manifest/animation adapter를 교체하고 규칙 이벤트 계약은 유지한다.",
+      "reason": "현재 6종 manifest에는 animations 항목이 없고 hunt-presentation.js의 공통 정의를 사용한다. 파일만 옮기면 Unity가 각 프레임 의미·fps·loop를 알 수 없다."
+    },
+    {
+      "id": "logical-marker-location",
+      "requirement": "규칙상의 enemy.node, 타일 좌표·회전·칸 polygon, 인쇄된 출현 marker는 이미지 교체와 무관하게 유지한다. map-render-layout의 같은 칸 배치 우선순위(정확히 대응되는 인쇄 marker 점유자 → hunter → 이동해 온 적/추가 점유자 → tokens)를 유지하고 presentation offset은 domain save에 쓰지 않는다.",
+      "reason": "적은 자신의 출현 marker 위에 생성되고 실제 추격/강제 이동 후엔 현재 logical node 안의 별도 visual 자리로 배치된다. 모델이 넓어졌다고 rule node, spawn marker나 이동 경로를 바꾸면 안 된다."
+    },
+    {
+      "id": "verify-after-replacement",
+      "requirement": "새 모델/Importer 적용 후 actual map에서 동일 checkpoint 입력으로 spawn 위치, 두 종 같은 칸의 분리 배치, 하인 추격 bottom→top, 공격/피격/강제 이동과 camera zoom 시 foot anchor를 확인한다. 기존 규칙·저장 exact replay와 UI 후속 phase도 유지해야 한다.",
+      "reason": "이번 읽기 검토와 파일 복사 가능성은 Unity 화면/애니메이션의 실제 검증을 대신하지 않는다."
+    }
+  ],
+  "futureMetadataToAdd": [
+    "공개 enemy visual ID mapping과 aliases/fallback의 버전 있는 데이터 또는 ReferenceEngine 모듈",
+    "여섯 skin의 animation frames/fps/repeat 계약",
+    "coordinate system과 full-source pivot/clipRects 의미를 명시하는 Importer 계약",
+    "PNG SHA256뿐 아니라 atlas/manifest/mapping source hash 및 테스트 checkpoint provenance"
+  ],
+  "findingsClass": "이식 준비 후속 메모. 현재 웹 제품의 새 규칙 오류나 Unity 구현 완료 판정이 아니다."
+}

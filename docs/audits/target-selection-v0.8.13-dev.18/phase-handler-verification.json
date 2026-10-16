@@ -1,0 +1,21 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/ui-phase-contracts-v0818.test.cjs"
+  ],
+  "file": "tests/ui-phase-contracts-v0818.test.cjs",
+  "exitCode": 0,
+  "tests": 7,
+  "pass": 7,
+  "fail": 0,
+  "testSha256": "e8e1f40bfc9795bb64de3e65169d80b96bfe87645d5d5de16b27270662e0d216",
+  "phases": [
+    "spawn_choice",
+    "ability_choice",
+    "cheap_shot",
+    "exchange_choice"
+  ],
+  "scope": "Seven actual UI-handler-to-real-E.dispatch branch checks, distinct from the legacy trace's 43 read-only render samples. First three phases use explicitly constructed supply-valid plain JSON encounters; chapel exchange is reached by current-rules-14 public commands with strict canonical imports."
+}

@@ -1,0 +1,128 @@
+{
+  "baseCommit": "33c236767d94ea5efa4c75bf1330e41721e91747",
+  "productPatch": "Local mission-notice policy reconciliation, not yet committed",
+  "method": "Actual local in-app browser clicks, one public legal QA import and a final public Save Export; independently compared with normal engine commands. UI optional empty command arrays are excluded only from whole-state equality, while command types and full export replay are verified.",
+  "beforeBrowserPort": 8793,
+  "afterBrowserPort": 8794,
+  "files": [
+    {
+      "file": "evidence/actual-policy-notice-local.json",
+      "source": "work/local-cloud-return/actual-policy-notice-local.json",
+      "bytes": 2015,
+      "sha256": "a933e7d35b63aaeb9e30dd99b38e3825802d9017c5df759bd855a46ebf1f6869",
+      "originalBytesMatch": true
+    },
+    {
+      "file": "evidence/notice-before.jpg",
+      "source": "work/local-cloud-return/notice-before.jpg",
+      "bytes": 57631,
+      "sha256": "0ed238e368f2a52c72f6c552146bc5c8b3c576d90ed16cf114e64041d1deff39",
+      "originalBytesMatch": true
+    },
+    {
+      "file": "evidence/detail-before.jpg",
+      "source": "work/local-cloud-return/detail-before.jpg",
+      "bytes": 72020,
+      "sha256": "a5d930ee75755377cc4bca794cc52a9e647b02779f9de0b7b7db722f709f10ae",
+      "originalBytesMatch": true
+    },
+    {
+      "file": "evidence/notice-after.jpg",
+      "source": "work/local-cloud-return/notice-after.jpg",
+      "bytes": 47272,
+      "sha256": "9075213208755463504ab81563c1eca065868fa3a7610ca1a90a8791d7ff7a74",
+      "originalBytesMatch": true
+    },
+    {
+      "file": "evidence/detail-after.jpg",
+      "source": "work/local-cloud-return/detail-after.jpg",
+      "bytes": 49171,
+      "sha256": "0784b01b97f4d43df553063c553a8765663db2b2d39ac34eda30dfd627808872",
+      "originalBytesMatch": true
+    },
+    {
+      "file": "evidence/next-move.jpg",
+      "source": "work/local-cloud-return/next-move.jpg",
+      "bytes": 142011,
+      "sha256": "96c018bcc0c4c68a6793f660cec97f1ab21030af6f9c6efffc1a7316a6e3581a",
+      "originalBytesMatch": true
+    },
+    {
+      "file": "evidence/next-combat.jpg",
+      "source": "work/local-cloud-return/next-combat.jpg",
+      "bytes": 142736,
+      "sha256": "294558034dc8c09713b8c6bb95eaab5fa0d5ddd352d7e4d64a0e42c057a5fe8a",
+      "originalBytesMatch": true
+    },
+    {
+      "file": "evidence/final-play.jpg",
+      "source": "work/local-cloud-return/final-play.jpg",
+      "bytes": 140437,
+      "sha256": "ccdffa9369673b05e80928f18b4729541ef84cf736795887a91a34cd0295e35f",
+      "originalBytesMatch": true
+    },
+    {
+      "file": "evidence/local-ci.json",
+      "source": "test-results/ci.json",
+      "bytes": 9799,
+      "sha256": "6371bf58a7c5fc6dacc47a011e3791b40f3aa9b947cc2d51cd87b893b4a7386e",
+      "originalBytesMatch": true
+    }
+  ],
+  "verifiedProductSource": [
+    {
+      "file": "hunt-app.js",
+      "bytes": 154537,
+      "sha256": "a8088b9578fb9c0b54f2719120804f7d06e9826cbb91ba156bd8850161d453ee"
+    },
+    {
+      "file": "hunt-mission-feedback.js",
+      "bytes": 9450,
+      "sha256": "da34934ff8c62837d217c5d38d6c6cea5d691474bae305ab09589599b5580669"
+    },
+    {
+      "file": "hunt.html",
+      "bytes": 24157,
+      "sha256": "f16e287e990ca00dbd04b62ee519b8342a6b7bdf35bcafffadce55afbc506696"
+    }
+  ],
+  "rawSavesIncluded": false,
+  "sourcePhotographsIncluded": false,
+  "reencodedImages": false,
+  "fullCiStatus": "passed",
+  "fullCi": {
+    "reportFile": "evidence/local-ci.json",
+    "nodeVersion": "v24.19.0",
+    "runtimeVersion": "0.8.13-dev.6",
+    "durationSeconds": 428.541,
+    "exitCode": 0,
+    "counts": {
+      "tests": 2669,
+      "suites": 0,
+      "pass": 2669,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "sourcePhotoTestsExcluded": [
+      "campaign covers all 67 ordered sources and 60 numbered cards with images",
+      "reference data preserves printed terminology with the confirmed enemy alias and six enemy sides",
+      "default v0.3 state remains without optional firearm fields and photo confirmation retains raw text",
+      "supplied component photos retain their exact bytes, hashes and card provenance"
+    ],
+    "scope": "Whole Node CI-runner suite, excluding the four original-photo-only test-name patterns"
+  },
+  "supportingLocalLogs": [
+    {
+      "file": "work/local-cloud-return/local-policy-notice-ci.tap",
+      "source": "test-results/ci.tap",
+      "repositoryFile": false,
+      "bytes": 613365,
+      "sha256": "ec6b77aeed7ea6b796ce440db21ea1a0eb07501f55cc911fe3f5f88141052521",
+      "originalBytesMatch": true,
+      "rawSavePayloadDetected": false,
+      "credentialDetected": false
+    }
+  ]
+}

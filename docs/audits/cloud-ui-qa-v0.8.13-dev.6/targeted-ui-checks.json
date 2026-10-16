@@ -1,0 +1,11 @@
+{
+  "kind": "Node DOM/model checks, not a real browser",
+  "command": "node --test tests/combat-feedback-ui.test.cjs tests/map-controls-ui.test.cjs tests/ui-selection-v086.test.cjs tests/info-panels-v087.test.cjs",
+  "counts": {
+    "tests": 62,
+    "pass": 62,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  }
+}

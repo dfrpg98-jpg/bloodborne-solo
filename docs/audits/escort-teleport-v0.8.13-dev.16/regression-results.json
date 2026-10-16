@@ -1,0 +1,53 @@
+{
+  "startedAt": "2026-10-16T00:52:03.984Z",
+  "completedAt": "2026-10-16T00:52:08.479Z",
+  "runtimeVersion": "0.8.13-dev.16",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/action-loss-v0814.test.cjs",
+    "tests/action-loss-ui-v0814.test.cjs",
+    "tests/action-loss-v0816.test.cjs",
+    "tests/action-loss-ui-v0816.test.cjs",
+    "tests/departure-prompt-v0812.test.cjs",
+    "tests/departure-ui-v0812.test.cjs",
+    "tests/escort-context-v0811.test.cjs",
+    "tests/escort-ui-v0811.test.cjs",
+    "tests/fog-lantern-v089.test.cjs",
+    "tests/context-actions-v081.test.cjs",
+    "tests/dream-attachments-v0814.test.cjs"
+  ],
+  "nodeVersion": "v24.19.0",
+  "exitCode": 0,
+  "counts": {
+    "tests": 118,
+    "suites": 0,
+    "pass": 118,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "failedSubtests": [],
+  "protectedHashes": {
+    "hunt-action-loss.js": "1d3de045c5b3c35b1437964c5e0f5b304d3ccbf2bc2c821571ce41762c880a99",
+    "hunt-context.js": "f05e3272340f3e066d17e69a51b03a275ae6931d5ba5d13fabb79ed09d239b52",
+    "hunt-app.js": "40c5697e981c224e7b554a1bdb3aa29ee9cfb81871dd0fcb1695f82b1f171976",
+    "hunt.html": "55646a076ae5f31ed6f49f0bca9931596e2d9cc0744c0a87aa7113eb90288b2b",
+    "package.json": "bc4150cf5d9e14d6f98403be0dca7edf9205f441c7c89962c071a1145fa356f0",
+    "tests/action-loss-v0814.test.cjs": "cd6df4b9c84468480687e41ab6fe6ea51a4d69933a17f99cf1405a81aada9f57",
+    "tests/action-loss-ui-v0814.test.cjs": "6f67ec80af4433ec9f726b5041c27285b6bb34b841a6752e798eafd34a526baf",
+    "tests/action-loss-v0816.test.cjs": "0dfedca08e032a4c77da57d2a6418896c860d6b5dfcc9809a804ff7bd91e1716",
+    "tests/action-loss-ui-v0816.test.cjs": "f0d990bfe130a1c24379487cbdf8c73de121e87702d6af281c770dfcbbf3d32e",
+    "tests/departure-prompt-v0812.test.cjs": "e220710ea9a44990096c9c2b1e0cdd32e4c2eb77a6331b78f9d56890187a6803",
+    "tests/departure-ui-v0812.test.cjs": "13ebf1e5eb3164ef8f96d83d973877390ab5dfef171c7a864199d0e8d7ae913a",
+    "tests/escort-context-v0811.test.cjs": "eb4b784888cf3fc1d6432a0205d00fccdf2b9ca7a6d2a458f58c4e99c22feba0",
+    "tests/escort-ui-v0811.test.cjs": "483dd35cfbd8fdcc3f1138bba79a4d587aed4b9045d151b8a8271a9e705fd421",
+    "tests/fog-lantern-v089.test.cjs": "5d895c14cbaa8bbecf64981ca39903bc2e6fa9a7c30ef49da1525c124030581f",
+    "tests/context-actions-v081.test.cjs": "0ad14acfd31caad384c02f5bf870539f379fe806b2f0e701cde9b8fd7266b935",
+    "tests/dream-attachments-v0814.test.cjs": "7b2dc6469c1a09596fed4c40fc7bf9763203c49045146c0097de2233486317be"
+  },
+  "unchangedDuringRun": true,
+  "fullSuite": false
+}

@@ -1,0 +1,64 @@
+{
+  "version": "0.8.13-dev.13",
+  "nativeToken": {
+    "commands": 7,
+    "phase": "hunter",
+    "hp": 4,
+    "kills": 0,
+    "position": "tile-04:center",
+    "echoes": 0,
+    "mobTokens": 0,
+    "mob": [
+      {
+        "id": "huntsman-mob-1",
+        "hp": 4
+      }
+    ],
+    "shards": []
+  },
+  "nativeShard": {
+    "commands": 10,
+    "phase": "hunter",
+    "hp": 4,
+    "kills": 0,
+    "position": "tile-04:center",
+    "echoes": 0,
+    "mobTokens": 0,
+    "mob": [
+      {
+        "id": "huntsman-mob-1",
+        "hp": 4
+      }
+    ],
+    "shards": [
+      {
+        "slot": 2,
+        "equipped": true,
+        "ready": true
+      }
+    ]
+  },
+  "roundtrip": {
+    "identical": true,
+    "bytes": 12567,
+    "sha256": "ad5ba6ef12c540f2cee3e60216f00d3e081f7ea19fd4c0f1bc95a5f63a6ab7e3"
+  },
+  "canonicalPrefix": {
+    "commands": 8,
+    "source": "Exact replay of commands from native exported QA save; no snapshot edits",
+    "next": [
+      {
+        "type": "ATTACK",
+        "cardId": "card-7",
+        "slot": 2,
+        "itemIds": [],
+        "pullIds": [],
+        "rewardIds": [],
+        "enemyId": "huntsman-mob-1"
+      },
+      {
+        "type": "RESOLVE"
+      }
+    ]
+  }
+}

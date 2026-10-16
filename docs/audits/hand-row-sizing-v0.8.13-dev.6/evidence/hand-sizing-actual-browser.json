@@ -1,0 +1,594 @@
+{
+  "beforeCommit": "4cbdef417c9810e3c558b78c3a6a8aae970a9ec7",
+  "productCommit": "08d6405178111a11fe437309f4b7563fae84bea2",
+  "url": "http://127.0.0.1:8786/bloodborne-solo/hunt.html",
+  "method": "Actual public UI file imports of legal QA checkpoints; read-only DOM layout measurements and original screenshots",
+  "before": [
+    {
+      "viewport": {
+        "w": 1280,
+        "h": 720
+      },
+      "cards": 2,
+      "columns": 3,
+      "cardHeight": 176,
+      "clientHeight": 153,
+      "scrollHeight": 184
+    },
+    {
+      "viewport": {
+        "w": 848,
+        "h": 1252
+      },
+      "cards": 2,
+      "columns": 1,
+      "cardHeight": 176,
+      "clientHeight": 175,
+      "scrollHeight": 368
+    }
+  ],
+  "after": [
+    {
+      "cards": 2,
+      "cardsLayout": [
+        {
+          "card": "card-3",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.",
+          "w": 126.4375
+        },
+        {
+          "card": "card-6",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+          "w": 126.453125
+        }
+      ],
+      "columns": "126.438px 126.453px 126.438px",
+      "error": "",
+      "hand": {
+        "clientHeight": 153,
+        "clientWidth": 403,
+        "scrollHeight": 153
+      },
+      "rowHeight": "136px",
+      "viewport": {
+        "h": 720,
+        "w": 1280
+      }
+    },
+    {
+      "cards": 3,
+      "cardsLayout": [
+        {
+          "card": "card-1",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.",
+          "w": 126.4375
+        },
+        {
+          "card": "card-3",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.",
+          "w": 126.453125
+        },
+        {
+          "card": "card-6",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+          "w": 126.4375
+        }
+      ],
+      "columns": "126.438px 126.453px 126.438px",
+      "error": "",
+      "hand": {
+        "clientHeight": 153,
+        "clientWidth": 403,
+        "scrollHeight": 153
+      },
+      "rowHeight": "136px",
+      "viewport": {
+        "h": 720,
+        "w": 1280
+      }
+    },
+    {
+      "cards": 4,
+      "cardsLayout": [
+        {
+          "card": "card-6",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+          "w": 126.4375
+        },
+        {
+          "card": "card-11",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "활력기본 활력즉시 기술 1개를 뽑습니다.",
+          "w": 126.453125
+        },
+        {
+          "card": "card-5",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+          "w": 126.4375
+        },
+        {
+          "card": "card-8",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "근력기본 근력공격 피해 +1",
+          "w": 126.4375
+        }
+      ],
+      "columns": "126.438px 126.453px 126.438px",
+      "error": "",
+      "hand": {
+        "clientHeight": 178,
+        "clientWidth": 403,
+        "scrollHeight": 286
+      },
+      "rowHeight": "136px",
+      "viewport": {
+        "h": 720,
+        "w": 1280
+      }
+    },
+    {
+      "cards": 5,
+      "cardsLayout": [
+        {
+          "card": "card-3",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.",
+          "w": 126.4375
+        },
+        {
+          "card": "card-6",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+          "w": 126.453125
+        },
+        {
+          "card": "card-11",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "활력기본 활력즉시 기술 1개를 뽑습니다.",
+          "w": 126.4375
+        },
+        {
+          "card": "card-5",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+          "w": 126.4375
+        },
+        {
+          "card": "card-8",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "근력기본 근력공격 피해 +1",
+          "w": 126.453125
+        }
+      ],
+      "columns": "126.438px 126.453px 126.438px",
+      "error": "",
+      "hand": {
+        "clientHeight": 178,
+        "clientWidth": 403,
+        "scrollHeight": 286
+      },
+      "rowHeight": "136px",
+      "viewport": {
+        "h": 720,
+        "w": 1280
+      }
+    },
+    {
+      "cards": 6,
+      "cardsLayout": [
+        {
+          "card": "card-1",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.",
+          "w": 126.4375
+        },
+        {
+          "card": "card-3",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.",
+          "w": 126.453125
+        },
+        {
+          "card": "card-6",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+          "w": 126.4375
+        },
+        {
+          "card": "card-11",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "활력기본 활력즉시 기술 1개를 뽑습니다.",
+          "w": 126.4375
+        },
+        {
+          "card": "card-5",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+          "w": 126.453125
+        },
+        {
+          "card": "card-8",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "근력기본 근력공격 피해 +1",
+          "w": 126.4375
+        }
+      ],
+      "columns": "126.438px 126.453px 126.438px",
+      "error": "",
+      "hand": {
+        "clientHeight": 178,
+        "clientWidth": 403,
+        "scrollHeight": 286
+      },
+      "rowHeight": "136px",
+      "viewport": {
+        "h": 720,
+        "w": 1280
+      }
+    },
+    {
+      "cards": 7,
+      "cardsLayout": [
+        {
+          "card": "card-6",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+          "w": 126.4375
+        },
+        {
+          "card": "card-11",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "활력기본 활력즉시 기술 1개를 뽑습니다.",
+          "w": 126.453125
+        },
+        {
+          "card": "card-5",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+          "w": 126.4375
+        },
+        {
+          "card": "card-8",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "근력기본 근력공격 피해 +1",
+          "w": 126.4375
+        },
+        {
+          "card": "card-4",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+          "w": 126.453125
+        },
+        {
+          "card": "card-2",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.",
+          "w": 126.4375
+        },
+        {
+          "card": "card-9",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "근력기본 근력공격 피해 +1",
+          "w": 126.4375
+        }
+      ],
+      "columns": "126.438px 126.453px 126.438px",
+      "error": "",
+      "hand": {
+        "clientHeight": 178,
+        "clientWidth": 403,
+        "scrollHeight": 430
+      },
+      "rowHeight": "136px",
+      "viewport": {
+        "h": 720,
+        "w": 1280
+      }
+    },
+    {
+      "cards": 2,
+      "cardsLayout": [
+        {
+          "card": "card-3",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.",
+          "w": 109.5
+        },
+        {
+          "card": "card-6",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+          "w": 109.5
+        }
+      ],
+      "columns": "109.5px 109.5px",
+      "error": "",
+      "hand": {
+        "clientHeight": 143,
+        "clientWidth": 235,
+        "scrollHeight": 143
+      },
+      "rowHeight": "136px",
+      "viewport": {
+        "h": 1252,
+        "w": 848
+      }
+    },
+    {
+      "cards": 3,
+      "cardsLayout": [
+        {
+          "card": "card-1",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.",
+          "w": 109.5
+        },
+        {
+          "card": "card-3",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.",
+          "w": 109.5
+        },
+        {
+          "card": "card-6",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+          "w": 109.5
+        }
+      ],
+      "columns": "109.5px 109.5px",
+      "error": "",
+      "hand": {
+        "clientHeight": 143,
+        "clientWidth": 235,
+        "scrollHeight": 286
+      },
+      "rowHeight": "136px",
+      "viewport": {
+        "h": 1252,
+        "w": 848
+      }
+    },
+    {
+      "cards": 4,
+      "cardsLayout": [
+        {
+          "card": "card-6",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+          "w": 109.5
+        },
+        {
+          "card": "card-11",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "활력기본 활력즉시 기술 1개를 뽑습니다.",
+          "w": 109.5
+        },
+        {
+          "card": "card-5",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+          "w": 109.5
+        },
+        {
+          "card": "card-8",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "근력기본 근력공격 피해 +1",
+          "w": 109.5
+        }
+      ],
+      "columns": "109.5px 109.5px",
+      "error": "",
+      "hand": {
+        "clientHeight": 168,
+        "clientWidth": 235,
+        "scrollHeight": 286
+      },
+      "rowHeight": "136px",
+      "viewport": {
+        "h": 1252,
+        "w": 848
+      }
+    },
+    {
+      "cards": 2,
+      "cardsLayout": [
+        {
+          "card": "card-11",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 134,
+          "selected": "false",
+          "text": "활력기본 활력즉시 기술 1개를 뽑습니다.",
+          "w": 126.4375
+        },
+        {
+          "card": "card-14",
+          "clientHeight": 134,
+          "h": 136,
+          "scrollHeight": 203,
+          "selected": "false",
+          "text": "기술비열한 일격방해, (당신이 위치한 칸에 있는 적이 능력을 사용하면, 이 기술을 손에서 버립니다)해당 적에게 2피해를 줍니다.",
+          "w": 126.453125
+        }
+      ],
+      "columns": "126.438px 126.453px 126.438px",
+      "error": "",
+      "hand": {
+        "clientHeight": 153,
+        "clientWidth": 403,
+        "scrollHeight": 153
+      },
+      "rowHeight": "136px",
+      "viewport": {
+        "h": 720,
+        "w": 1280
+      },
+      "variant": "earned-upgrade"
+    }
+  ],
+  "additionalInteractions": {
+    "lastCardInSevenCardHandSelected": true,
+    "sevenCardHandScrollTop": 252,
+    "secondClickDeselects": true,
+    "longEffectTitleRetainsFullText": true,
+    "longEffectInnerWheelMovementVerified": false
+  },
+  "finalBasicTwoCards": {
+    "cards": 2,
+    "cardsLayout": [
+      {
+        "card": "card-3",
+        "clientHeight": 134,
+        "h": 136,
+        "scrollHeight": 134,
+        "selected": "false",
+        "text": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.",
+        "w": 126.4375
+      },
+      {
+        "card": "card-6",
+        "clientHeight": 134,
+        "h": 136,
+        "scrollHeight": 134,
+        "selected": "false",
+        "text": "기술기본 기술방해 · 더 느린 적의 공격을 취소합니다.",
+        "w": 126.453125
+      }
+    ],
+    "columns": "126.438px 126.453px 126.438px",
+    "error": "",
+    "hand": {
+      "clientHeight": 153,
+      "clientWidth": 403,
+      "scrollHeight": 153
+    },
+    "rowHeight": "136px",
+    "viewport": {
+      "h": 720,
+      "w": 1280
+    }
+  },
+  "rawSavesIncluded": false,
+  "pageConsoleErrors": [],
+  "limits": [
+    "DOM metrics and public title text do not prove native hover-tooltip presentation.",
+    "Long effect cards retain internal overflow and full title; attempted wheel input did not move the inner button scroll in this tool session.",
+    "This is a hand-layout check, not all-weapon motion completion."
+  ]
+}

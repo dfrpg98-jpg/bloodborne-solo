@@ -1,0 +1,9 @@
+{
+  "command": "node --test tests/combat-feedback-ui.test.cjs tests/enemy-mission-effects.test.cjs tests/location-label-ui.test.cjs tests/map-controls-ui.test.cjs tests/ui-selection-v086.test.cjs tests/mission-feedback-ui.test.cjs",
+  "durationMs": 3271.5348,
+  "fail": 0,
+  "runtimeVersion": "0.8.13-dev.6",
+  "pass": 57,
+  "exitCode": 0,
+  "scope": "targeted UI integration only; final full CI and actual new UI browser verification pending"
+}

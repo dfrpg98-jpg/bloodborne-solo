@@ -1,0 +1,1629 @@
+{
+  "reviewedAt": "2026-10-14T08:48:48.810Z",
+  "reviewer": "/root/enemy_atlas_contract_qa",
+  "scope": "normal-35개 그룹의 새 정상 FPS 원본60장 + 기존 하인 원본10장 + 실제맵 원본10장 직접 열람",
+  "browserControlledByThisReviewer": false,
+  "productFilesModifiedByThisReviewer": false,
+  "newNormalScreenshotFilesDirectlyViewed": 60,
+  "legacyMinionScreenshotFilesDirectlyViewed": 10,
+  "actualMapScreenshotFilesDirectlyViewed": 10,
+  "totalScreenshotFilesInThisReport": 80,
+  "source96PoseReviewIsSeparate": true,
+  "noNewVisualDefectInVisibleScreenshots": true,
+  "finalCorpseRenderedForSixSkins": true,
+  "slowDeathScreenshotGapSupplementedForFiveSkins": true,
+  "normalFPSProvenance": "Root가 제품 기본 FPS와 동일한 정상 gallery에서 촬영했다고 전달함. 이 리뷰는 사진을 읽기만 함.",
+  "limitations": [
+    "짧은 정상 attack/hit은 준비·타격·반동을 놓친 회복/대기 표본이므로 단계 이름과 실제 보이는 동작을 구분했다.",
+    "연속 영상 전체가 아니라 원본 스크린샷을 시간 순서로 본 검사다. 모든 중간 렌더 프레임 확인을 주장하지 않는다.",
+    "실제맵10장은 명령 실행 뒤 정착 상태의 외형/분리/마커 검사다. Root의 명령/판정/후속 선택 검증을 이 사진만으로 대신하지 않는다.",
+    "카메라 위 경계 밖에 있는 머리를 atlas 원본 절단으로 기록하지 않았다. 전신 확인에는 gallery와69% whole-view를 사용했다.",
+    "사체/의복/갈기에 가려진 모든 관절을 완전히 증명한 것으로 표현하지 않았다."
+  ],
+  "groups": [
+    {
+      "label": "normal-huntsman-mob-idle",
+      "skin": "huntsman-mob",
+      "phase": "idle",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-huntsman-mob-idle-0.jpg",
+          "path": "../screenshots/normal-huntsman-mob-idle-0.jpg",
+          "capturedAt": "2026-10-14T08:36:48.610Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "c4d549e65afe949ba5561a0966fccd38418aae2f75aa7058f3e5434ac16a71cc"
+        }
+      ],
+      "observations": [
+        "오른쪽을 향하는 초기 대기 모습. 검은 모자·수염·긴 외투·도끼·횃불의 가는 체형이 유지됨."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-huntsman-mob-walk-left",
+      "skin": "huntsman-mob",
+      "phase": "walk-left",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-huntsman-mob-walk-left-0.jpg",
+          "path": "../screenshots/normal-huntsman-mob-walk-left-0.jpg",
+          "capturedAt": "2026-10-14T08:36:48.990Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "7d326426e6fd4d196ded0b69faa0c101a04735bd9b3bfd79fb76d103a9f85719"
+        },
+        {
+          "file": "normal-huntsman-mob-walk-left-1.jpg",
+          "path": "../screenshots/normal-huntsman-mob-walk-left-1.jpg",
+          "capturedAt": "2026-10-14T08:36:49.177Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "e96ad75f1c80df1962b1e395a629a6b9a29024e13107985d198a3cecacf67615"
+        }
+      ],
+      "observations": [
+        "첫 장은 왼쪽을 바라보며 이동한 보폭 자세, 둘째 장은 왼쪽을 향한 이동 종료/대기 부근 자세.",
+        "동작 방향과 이동 방향이 일치하며 바닥 높이/옷/사지 크기가 이어짐. 4개 걷기 포즈 전수 캡처로 세지 않음."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-huntsman-mob-walk-right",
+      "skin": "huntsman-mob",
+      "phase": "walk-right",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-huntsman-mob-walk-right-0.jpg",
+          "path": "../screenshots/normal-huntsman-mob-walk-right-0.jpg",
+          "capturedAt": "2026-10-14T08:36:49.575Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "f70b09dbbac8cf794353ab9cccf8351298ce938b2e8ada625c6546dceb33e6ea"
+        },
+        {
+          "file": "normal-huntsman-mob-walk-right-1.jpg",
+          "path": "../screenshots/normal-huntsman-mob-walk-right-1.jpg",
+          "capturedAt": "2026-10-14T08:36:49.767Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "fda800d1552d16b706cde340fceb14011b0cfe462b2b698b81c45c261606f38d"
+        }
+      ],
+      "observations": [
+        "오른쪽으로 이동 후 초기 위치의 대기 자세에 가까운 상태로 돌아옴. 방향과 외형 유지."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-huntsman-mob-attack",
+      "skin": "huntsman-mob",
+      "phase": "attack",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-huntsman-mob-attack-0.jpg",
+          "path": "../screenshots/normal-huntsman-mob-attack-0.jpg",
+          "capturedAt": "2026-10-14T08:36:50.173Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "bf54b389ed45137be0b516fc34a8170e8ccaf60c66d2cdbcbdf8b380a03b2882"
+        },
+        {
+          "file": "normal-huntsman-mob-attack-1.jpg",
+          "path": "../screenshots/normal-huntsman-mob-attack-1.jpg",
+          "capturedAt": "2026-10-14T08:36:50.354Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "cb0fce78cfaabee2e20689254a32f987e990f065bd0b979418876d1cbcbbd440"
+        }
+      ],
+      "observations": [
+        "두 장 모두 대기 또는 이미 공격을 마친 회복 모습. 준비/타격 포즈 전체는 이 표본에 보이지 않음.",
+        "관찰된 회복→대기에서 방향/색/무기/발 위치가 유지됨. 공격 4포즈의 연결은 별도 2fps 자료로 검토함."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-huntsman-mob-hit",
+      "skin": "huntsman-mob",
+      "phase": "hit",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-huntsman-mob-hit-0.jpg",
+          "path": "../screenshots/normal-huntsman-mob-hit-0.jpg",
+          "capturedAt": "2026-10-14T08:36:50.724Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "e27bcba432c07b6956a3173c2fe22b4e28ae71c275d4e19dd7775eb6d1c25984"
+        },
+        {
+          "file": "normal-huntsman-mob-hit-1.jpg",
+          "path": "../screenshots/normal-huntsman-mob-hit-1.jpg",
+          "capturedAt": "2026-10-14T08:36:50.907Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "fda800d1552d16b706cde340fceb14011b0cfe462b2b698b81c45c261606f38d"
+        }
+      ],
+      "observations": [
+        "두 장은 이미 회복/대기에 가까운 모습. 반동 포즈를 이 짧은 정상 속도 표본에서 전수 확인한 것으로 세지 않음.",
+        "보이는 회복 상태에서 방향/외형/발 위치가 유지됨. 반동→회복 포즈는 별도 2fps 자료로 검토함."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-huntsman-mob-death",
+      "skin": "huntsman-mob",
+      "phase": "death",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-huntsman-mob-death-0.jpg",
+          "path": "../screenshots/normal-huntsman-mob-death-0.jpg",
+          "capturedAt": "2026-10-14T08:36:51.309Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "cb841fd7f820564508724cf8275e5e19cfa47dcc676802299f5f0abcdd54a55d"
+        },
+        {
+          "file": "normal-huntsman-mob-death-1.jpg",
+          "path": "../screenshots/normal-huntsman-mob-death-1.jpg",
+          "capturedAt": "2026-10-14T08:36:51.494Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "f692a678db366953c6b05eb2d915aa7c8eaa92b3a4c7836720cad32c935292da"
+        }
+      ],
+      "observations": [
+        "오른쪽 머리 쪽으로 누운 긴 외투 사체와 도끼·횃불이 바닥에 보임. 반대 팔/다리 일부는 외투와 몸 아래에 가려짐.",
+        "두 장 모두 최종 누운 사체가 보이며 이웃 프레임 조각·사각형 절단·다른 배우와의 겹침은 보이지 않음.",
+        "2fps death-1의 빈 공간 표본 한계를 보완함. 이 두 장만으로 넘어지는 모든 중간 시점을 검증했다고 하지 않음."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": true
+    },
+    {
+      "label": "normal-huntsman-mob-reset",
+      "skin": "huntsman-mob",
+      "phase": "reset",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-huntsman-mob-reset-0.jpg",
+          "path": "../screenshots/normal-huntsman-mob-reset-0.jpg",
+          "capturedAt": "2026-10-14T08:36:51.890Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "a7d0ea48622c5beee22462dd0df3a159609f423e08bbf8fdf77a501055cc34aa"
+        }
+      ],
+      "observations": [
+        "초기 오른쪽 대기 모습/그림자로 복귀. 검은 모자·수염·긴 외투·도끼·횃불의 가는 체형이 유지됨."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-scourge-beast-idle",
+      "skin": "scourge-beast",
+      "phase": "idle",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-scourge-beast-idle-0.jpg",
+          "path": "../screenshots/normal-scourge-beast-idle-0.jpg",
+          "capturedAt": "2026-10-14T08:36:52.026Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "bd3db797f55ba1791e0efad0ba7fbec2db6bfc6fce552895a91d366f0a59928f"
+        }
+      ],
+      "observations": [
+        "오른쪽을 향하는 초기 대기 모습. 어두운 털·긴 앞팔·찢어진 천을 가진 낮은 늑대 체형이 유지됨."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-scourge-beast-walk-left",
+      "skin": "scourge-beast",
+      "phase": "walk-left",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-scourge-beast-walk-left-0.jpg",
+          "path": "../screenshots/normal-scourge-beast-walk-left-0.jpg",
+          "capturedAt": "2026-10-14T08:36:52.392Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "0159852825570ef8e6250a0233abe0fea7078ac6add23b9f80fec2ca56302fd9"
+        },
+        {
+          "file": "normal-scourge-beast-walk-left-1.jpg",
+          "path": "../screenshots/normal-scourge-beast-walk-left-1.jpg",
+          "capturedAt": "2026-10-14T08:36:52.578Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "da354709831264321a3fcffc4af267f5f7544b398f8628e3f89babbd2829f80a"
+        }
+      ],
+      "observations": [
+        "첫 장은 왼쪽을 바라보며 이동한 보폭 자세, 둘째 장은 왼쪽을 향한 이동 종료/대기 부근 자세.",
+        "동작 방향과 이동 방향이 일치하며 바닥 높이/옷/사지 크기가 이어짐. 4개 걷기 포즈 전수 캡처로 세지 않음."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-scourge-beast-walk-right",
+      "skin": "scourge-beast",
+      "phase": "walk-right",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-scourge-beast-walk-right-0.jpg",
+          "path": "../screenshots/normal-scourge-beast-walk-right-0.jpg",
+          "capturedAt": "2026-10-14T08:36:52.961Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "6e0e7c8cbb650f1be6feee3f782a0b583aad961cb8ee6e1f91a0cabe8d712c17"
+        },
+        {
+          "file": "normal-scourge-beast-walk-right-1.jpg",
+          "path": "../screenshots/normal-scourge-beast-walk-right-1.jpg",
+          "capturedAt": "2026-10-14T08:36:53.159Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "69ffac2a071d5eacbd49c5635d9f502e31e4713232703ae034051b4620fd58bf"
+        }
+      ],
+      "observations": [
+        "오른쪽으로 이동 후 초기 위치의 대기 자세에 가까운 상태로 돌아옴. 방향과 외형 유지."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-scourge-beast-attack",
+      "skin": "scourge-beast",
+      "phase": "attack",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-scourge-beast-attack-0.jpg",
+          "path": "../screenshots/normal-scourge-beast-attack-0.jpg",
+          "capturedAt": "2026-10-14T08:36:53.576Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "fa259450836609f42afda8b4b8f0b04a5a7be2c84ebd18150f2a27e3d8ed17a8"
+        },
+        {
+          "file": "normal-scourge-beast-attack-1.jpg",
+          "path": "../screenshots/normal-scourge-beast-attack-1.jpg",
+          "capturedAt": "2026-10-14T08:36:53.759Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "214446e58d7826d147515c5e8676bb9057c6de517b5829c988d1e229c6197738"
+        }
+      ],
+      "observations": [
+        "두 장 모두 대기 또는 이미 공격을 마친 회복 모습. 준비/타격 포즈 전체는 이 표본에 보이지 않음.",
+        "관찰된 회복→대기에서 방향/색/무기/발 위치가 유지됨. 공격 4포즈의 연결은 별도 2fps 자료로 검토함."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-scourge-beast-hit",
+      "skin": "scourge-beast",
+      "phase": "hit",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-scourge-beast-hit-0.jpg",
+          "path": "../screenshots/normal-scourge-beast-hit-0.jpg",
+          "capturedAt": "2026-10-14T08:36:54.158Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "ea2f2a3eca0f7876f14549409eb64c086c02f3b89ba501010920e3e1488e1c78"
+        },
+        {
+          "file": "normal-scourge-beast-hit-1.jpg",
+          "path": "../screenshots/normal-scourge-beast-hit-1.jpg",
+          "capturedAt": "2026-10-14T08:36:54.345Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "b38a606d8a758eba5659c2bf2dc05dd194b0b4f988d3827a8a0f69939a32be4a"
+        }
+      ],
+      "observations": [
+        "두 장은 이미 회복/대기에 가까운 모습. 반동 포즈를 이 짧은 정상 속도 표본에서 전수 확인한 것으로 세지 않음.",
+        "보이는 회복 상태에서 방향/외형/발 위치가 유지됨. 반동→회복 포즈는 별도 2fps 자료로 검토함."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-scourge-beast-death",
+      "skin": "scourge-beast",
+      "phase": "death",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-scourge-beast-death-0.jpg",
+          "path": "../screenshots/normal-scourge-beast-death-0.jpg",
+          "capturedAt": "2026-10-14T08:36:54.725Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "e41a57f4a6cbaccdd7fe29fb4545de33fc8bcc763e7e851782c904e38e4d4b06"
+        },
+        {
+          "file": "normal-scourge-beast-death-1.jpg",
+          "path": "../screenshots/normal-scourge-beast-death-1.jpg",
+          "capturedAt": "2026-10-14T08:36:54.912Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "e10eb064b1b802ef3a93be6771570bf2996a646bae1237d8a1e2a893e88d4a88"
+        }
+      ],
+      "observations": [
+        "오른쪽 주둥이·앞팔을 바닥에 내민 낮은 사체가 보임. 먼 쪽 사지 일부는 몸/털에 겹침.",
+        "두 장 모두 최종 누운 사체가 보이며 이웃 프레임 조각·사각형 절단·다른 배우와의 겹침은 보이지 않음.",
+        "2fps death-1의 빈 공간 표본 한계를 보완함. 이 두 장만으로 넘어지는 모든 중간 시점을 검증했다고 하지 않음."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": true
+    },
+    {
+      "label": "normal-scourge-beast-reset",
+      "skin": "scourge-beast",
+      "phase": "reset",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-scourge-beast-reset-0.jpg",
+          "path": "../screenshots/normal-scourge-beast-reset-0.jpg",
+          "capturedAt": "2026-10-14T08:36:55.292Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "012870f9a7c735c00d3b726c2d99cf186073e4265bdc28c11d91ba7ecdc86f1f"
+        }
+      ],
+      "observations": [
+        "초기 오른쪽 대기 모습/그림자로 복귀. 어두운 털·긴 앞팔·찢어진 천을 가진 낮은 늑대 체형이 유지됨."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-female-patient-idle",
+      "skin": "female-patient",
+      "phase": "idle",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-female-patient-idle-0.jpg",
+          "path": "../screenshots/normal-female-patient-idle-0.jpg",
+          "capturedAt": "2026-10-14T08:36:55.428Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "20ca9564992f2d6ae4087d070da688b53cf826ba223487c4bce3efc62115ecff"
+        }
+      ],
+      "observations": [
+        "오른쪽을 향하는 초기 대기 모습. 올리브색 베일·어두운 드레스·맨손·맨발이 유지됨."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-female-patient-walk-left",
+      "skin": "female-patient",
+      "phase": "walk-left",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-female-patient-walk-left-0.jpg",
+          "path": "../screenshots/normal-female-patient-walk-left-0.jpg",
+          "capturedAt": "2026-10-14T08:36:55.811Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "b20922ec4f7f9ee0c2254a3f219edc1406e2a169eb83db0446d8b57d07a60dd3"
+        },
+        {
+          "file": "normal-female-patient-walk-left-1.jpg",
+          "path": "../screenshots/normal-female-patient-walk-left-1.jpg",
+          "capturedAt": "2026-10-14T08:36:55.995Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "9fbe52da546daba4926a7c035d312811f1d223a4984a2a01cd9a060ec6181e50"
+        }
+      ],
+      "observations": [
+        "첫 장은 왼쪽을 바라보며 이동한 보폭 자세, 둘째 장은 왼쪽을 향한 이동 종료/대기 부근 자세.",
+        "동작 방향과 이동 방향이 일치하며 바닥 높이/옷/사지 크기가 이어짐. 4개 걷기 포즈 전수 캡처로 세지 않음."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-female-patient-walk-right",
+      "skin": "female-patient",
+      "phase": "walk-right",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-female-patient-walk-right-0.jpg",
+          "path": "../screenshots/normal-female-patient-walk-right-0.jpg",
+          "capturedAt": "2026-10-14T08:36:56.411Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "163ddd47f0fb28dddc9142797cc59a5965f04e92422211452c65be104d6abc60"
+        },
+        {
+          "file": "normal-female-patient-walk-right-1.jpg",
+          "path": "../screenshots/normal-female-patient-walk-right-1.jpg",
+          "capturedAt": "2026-10-14T08:36:56.610Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "0150600bd90c0ce855a5b3b952cfb1ff9e2f17750a6308c31b4e4c2f817cbd29"
+        }
+      ],
+      "observations": [
+        "오른쪽으로 이동 후 초기 위치의 대기 자세에 가까운 상태로 돌아옴. 방향과 외형 유지."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-female-patient-attack",
+      "skin": "female-patient",
+      "phase": "attack",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-female-patient-attack-0.jpg",
+          "path": "../screenshots/normal-female-patient-attack-0.jpg",
+          "capturedAt": "2026-10-14T08:36:56.997Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "62556d9074e54b9b69d4d1b13a6f963d825187e06da3de7bdd6044a0ac8d119e"
+        },
+        {
+          "file": "normal-female-patient-attack-1.jpg",
+          "path": "../screenshots/normal-female-patient-attack-1.jpg",
+          "capturedAt": "2026-10-14T08:36:57.176Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "95c578dd5e884efbbdabda70d8d4f78b0ad684662e964dc3cb7469f699e262fc"
+        }
+      ],
+      "observations": [
+        "첫 장은 공격 마지막 회복 자세에 가깝고 둘째 장은 대기 모습. 준비/타격 포즈 전체는 이 표본에 보이지 않음.",
+        "관찰된 회복→대기에서 방향/색/무기/발 위치가 유지됨. 공격 4포즈의 연결은 별도 2fps 자료로 검토함."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-female-patient-hit",
+      "skin": "female-patient",
+      "phase": "hit",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-female-patient-hit-0.jpg",
+          "path": "../screenshots/normal-female-patient-hit-0.jpg",
+          "capturedAt": "2026-10-14T08:36:57.608Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "d35c477e534018544ac99964fb3ae0dfa04269bfafa579ba5a116c671ea8212e"
+        },
+        {
+          "file": "normal-female-patient-hit-1.jpg",
+          "path": "../screenshots/normal-female-patient-hit-1.jpg",
+          "capturedAt": "2026-10-14T08:36:57.796Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "920ab5c5055ec640129b4337bac44cfdeb7eb6547f60fb87e426dbfb43594db2"
+        }
+      ],
+      "observations": [
+        "두 장은 이미 회복/대기에 가까운 모습. 반동 포즈를 이 짧은 정상 속도 표본에서 전수 확인한 것으로 세지 않음.",
+        "보이는 회복 상태에서 방향/외형/발 위치가 유지됨. 반동→회복 포즈는 별도 2fps 자료로 검토함."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-female-patient-death",
+      "skin": "female-patient",
+      "phase": "death",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-female-patient-death-0.jpg",
+          "path": "../screenshots/normal-female-patient-death-0.jpg",
+          "capturedAt": "2026-10-14T08:36:58.194Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "0f9b82ad8236f912aa2e8eca0c8e987eebee071fa06c66b370e13294c8c44a5b"
+        },
+        {
+          "file": "normal-female-patient-death-1.jpg",
+          "path": "../screenshots/normal-female-patient-death-1.jpg",
+          "capturedAt": "2026-10-14T08:36:58.381Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "52c1a1a02c0954bbcacbf549204ac25218cad5191954bdcb32567816cd62f46d"
+        }
+      ],
+      "observations": [
+        "베일·드레스가 유지된 오른쪽 머리 사체, 앞쪽 손과 왼쪽 발이 보임. 반대 관절 일부는 드레스/몸에 가려짐.",
+        "두 장 모두 최종 누운 사체가 보이며 이웃 프레임 조각·사각형 절단·다른 배우와의 겹침은 보이지 않음.",
+        "2fps death-1의 빈 공간 표본 한계를 보완함. 이 두 장만으로 넘어지는 모든 중간 시점을 검증했다고 하지 않음."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": true
+    },
+    {
+      "label": "normal-female-patient-reset",
+      "skin": "female-patient",
+      "phase": "reset",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-female-patient-reset-0.jpg",
+          "path": "../screenshots/normal-female-patient-reset-0.jpg",
+          "capturedAt": "2026-10-14T08:36:58.779Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "6d35dd88044f4ffeb817f334b2a5c2c23b79e499ed68e839d135a9e2e5217b94"
+        }
+      ],
+      "observations": [
+        "초기 오른쪽 대기 모습/그림자로 복귀. 올리브색 베일·어두운 드레스·맨손·맨발이 유지됨."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-iosefka-idle",
+      "skin": "iosefka",
+      "phase": "idle",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-iosefka-idle-0.jpg",
+          "path": "../screenshots/normal-iosefka-idle-0.jpg",
+          "capturedAt": "2026-10-14T08:36:58.919Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "4e077add06bd368d70e0f6681c11acd91f26e3c5be101bf38fbce1bbcae48426"
+        }
+      ],
+      "observations": [
+        "오른쪽을 향하는 초기 대기 모습. 회색 머리·흰 교단 의복·검 1개와 권총 1개이 유지됨.",
+        "관찰된 외곽에 눈에 띄는 붉은/노란 테두리나 배경 사각형 없음."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-iosefka-walk-left",
+      "skin": "iosefka",
+      "phase": "walk-left",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-iosefka-walk-left-0.jpg",
+          "path": "../screenshots/normal-iosefka-walk-left-0.jpg",
+          "capturedAt": "2026-10-14T08:36:59.275Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "becbd691b94d595fa7293305a7b9bf79340e534044fd09758c747f30fcb2d7cc"
+        },
+        {
+          "file": "normal-iosefka-walk-left-1.jpg",
+          "path": "../screenshots/normal-iosefka-walk-left-1.jpg",
+          "capturedAt": "2026-10-14T08:36:59.465Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "4ebca97ebca29b31fea64892b90b6d17da0b4cc3cf080bf536a92fd57c8c0d41"
+        }
+      ],
+      "observations": [
+        "첫 장은 왼쪽을 바라보며 이동한 보폭 자세, 둘째 장은 왼쪽을 향한 이동 종료/대기 부근 자세.",
+        "동작 방향과 이동 방향이 일치하며 바닥 높이/옷/사지 크기가 이어짐. 4개 걷기 포즈 전수 캡처로 세지 않음.",
+        "관찰된 외곽에 눈에 띄는 붉은/노란 테두리나 배경 사각형 없음."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-iosefka-walk-right",
+      "skin": "iosefka",
+      "phase": "walk-right",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-iosefka-walk-right-0.jpg",
+          "path": "../screenshots/normal-iosefka-walk-right-0.jpg",
+          "capturedAt": "2026-10-14T08:36:59.873Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "723f24e752133216d8a7b444a2d9925fec1addb89de7fe975c1551823f7b6f2d"
+        },
+        {
+          "file": "normal-iosefka-walk-right-1.jpg",
+          "path": "../screenshots/normal-iosefka-walk-right-1.jpg",
+          "capturedAt": "2026-10-14T08:37:00.056Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "a0bcb894adb8aa1446ebad4a4d77832d783fd7068d4e996fe3ecdf0770b90ea5"
+        }
+      ],
+      "observations": [
+        "오른쪽으로 이동 후 초기 위치의 대기 자세에 가까운 상태로 돌아옴. 방향과 외형 유지.",
+        "관찰된 외곽에 눈에 띄는 붉은/노란 테두리나 배경 사각형 없음."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-iosefka-attack",
+      "skin": "iosefka",
+      "phase": "attack",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-iosefka-attack-0.jpg",
+          "path": "../screenshots/normal-iosefka-attack-0.jpg",
+          "capturedAt": "2026-10-14T08:37:00.447Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "0ff206f73206441530bd67c41f7d1e77bdbf5e3edb29d1b846fa35fa946a7af5"
+        },
+        {
+          "file": "normal-iosefka-attack-1.jpg",
+          "path": "../screenshots/normal-iosefka-attack-1.jpg",
+          "capturedAt": "2026-10-14T08:37:00.636Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "a1409f8549f86900a7db6effbde5a2788144977a0059d4c534e1049e250f48eb"
+        }
+      ],
+      "observations": [
+        "첫 장은 공격 마지막 회복 자세에 가깝고 둘째 장은 대기 모습. 준비/타격 포즈 전체는 이 표본에 보이지 않음.",
+        "관찰된 회복→대기에서 방향/색/무기/발 위치가 유지됨. 공격 4포즈의 연결은 별도 2fps 자료로 검토함.",
+        "관찰된 외곽에 눈에 띄는 붉은/노란 테두리나 배경 사각형 없음."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-iosefka-hit",
+      "skin": "iosefka",
+      "phase": "hit",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-iosefka-hit-0.jpg",
+          "path": "../screenshots/normal-iosefka-hit-0.jpg",
+          "capturedAt": "2026-10-14T08:37:01.057Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "748e8d5082806236c8979a3f2da0673d3955cf5e08d9de59b094b82ae0851bc3"
+        },
+        {
+          "file": "normal-iosefka-hit-1.jpg",
+          "path": "../screenshots/normal-iosefka-hit-1.jpg",
+          "capturedAt": "2026-10-14T08:37:01.247Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "b176a777c684d232be9c3c6e7d9197af13802ae727675abac7fae18ab1d1188e"
+        }
+      ],
+      "observations": [
+        "두 장은 이미 회복/대기에 가까운 모습. 반동 포즈를 이 짧은 정상 속도 표본에서 전수 확인한 것으로 세지 않음.",
+        "보이는 회복 상태에서 방향/외형/발 위치가 유지됨. 반동→회복 포즈는 별도 2fps 자료로 검토함.",
+        "관찰된 외곽에 눈에 띄는 붉은/노란 테두리나 배경 사각형 없음."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-iosefka-death",
+      "skin": "iosefka",
+      "phase": "death",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-iosefka-death-0.jpg",
+          "path": "../screenshots/normal-iosefka-death-0.jpg",
+          "capturedAt": "2026-10-14T08:37:01.631Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "0d48b95d64364030dcba3cf1592b08cf4bb91508f4ed0d7b6e9ac50ec2162c4a"
+        },
+        {
+          "file": "normal-iosefka-death-1.jpg",
+          "path": "../screenshots/normal-iosefka-death-1.jpg",
+          "capturedAt": "2026-10-14T08:37:01.815Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "a6a831ec6f843061f53510ceaf1b946ac59c5e6e481ec58d9033abacdac3a387"
+        }
+      ],
+      "observations": [
+        "흰 의복과 회색 머리의 사체가 바닥에 보임. 검/권총과 반대 팔 일부는 몸/소매 가까이에 겹치며 모든 손잡이/관절의 노출을 확정하지 않음.",
+        "두 장 모두 최종 누운 사체가 보이며 이웃 프레임 조각·사각형 절단·다른 배우와의 겹침은 보이지 않음.",
+        "2fps death-1의 빈 공간 표본 한계를 보완함. 이 두 장만으로 넘어지는 모든 중간 시점을 검증했다고 하지 않음.",
+        "관찰된 외곽에 눈에 띄는 붉은/노란 테두리나 배경 사각형 없음."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": true
+    },
+    {
+      "label": "normal-iosefka-reset",
+      "skin": "iosefka",
+      "phase": "reset",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-iosefka-reset-0.jpg",
+          "path": "../screenshots/normal-iosefka-reset-0.jpg",
+          "capturedAt": "2026-10-14T08:37:02.217Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "e3abd67a7a2e79ac051ea79899b5bfee6b1aea3d5b39ca7fdd68afb26376686f"
+        }
+      ],
+      "observations": [
+        "초기 오른쪽 대기 모습/그림자로 복귀. 회색 머리·흰 교단 의복·검 1개와 권총 1개이 유지됨.",
+        "관찰된 외곽에 눈에 띄는 붉은/노란 테두리나 배경 사각형 없음."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-cleric-beast-idle",
+      "skin": "cleric-beast",
+      "phase": "idle",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-cleric-beast-idle-0.jpg",
+          "path": "../screenshots/normal-cleric-beast-idle-0.jpg",
+          "capturedAt": "2026-10-14T08:37:02.362Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "39f9a5d6994c46a5c9720cdbd97042e82921a7cf43b1fb8416e439e0ec043a6f"
+        }
+      ],
+      "observations": [
+        "오른쪽을 향하는 초기 대기 모습. 흰 갈기·붉은 뿔·노출 늑골·큰 왼팔과 작은 오른팔의 큰 체형이 유지됨.",
+        "보이는 대기/걷기/회복에서 입이 닫혀 있고 큰 팔/작은 팔 비대칭이 유지됨."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-cleric-beast-walk-left",
+      "skin": "cleric-beast",
+      "phase": "walk-left",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-cleric-beast-walk-left-0.jpg",
+          "path": "../screenshots/normal-cleric-beast-walk-left-0.jpg",
+          "capturedAt": "2026-10-14T08:37:02.743Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "34c080888aa547dd8094db705b08fa7bcd3835e5066bc655f5bb4e39316e0ffd"
+        },
+        {
+          "file": "normal-cleric-beast-walk-left-1.jpg",
+          "path": "../screenshots/normal-cleric-beast-walk-left-1.jpg",
+          "capturedAt": "2026-10-14T08:37:02.931Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "52a3d5d57f09867ffd8e9ef5ee0654dd9a02efe50ab500c2ba6531b82884e365"
+        }
+      ],
+      "observations": [
+        "첫 장은 왼쪽을 바라보며 이동한 보폭 자세, 둘째 장은 왼쪽을 향한 이동 종료/대기 부근 자세.",
+        "동작 방향과 이동 방향이 일치하며 바닥 높이/옷/사지 크기가 이어짐. 4개 걷기 포즈 전수 캡처로 세지 않음.",
+        "보이는 대기/걷기/회복에서 입이 닫혀 있고 큰 팔/작은 팔 비대칭이 유지됨."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-cleric-beast-walk-right",
+      "skin": "cleric-beast",
+      "phase": "walk-right",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-cleric-beast-walk-right-0.jpg",
+          "path": "../screenshots/normal-cleric-beast-walk-right-0.jpg",
+          "capturedAt": "2026-10-14T08:37:03.335Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "2124a85156cd1abb5805c3bb28eba6b9f3b40231b4edf7b10c84028d83711a82"
+        },
+        {
+          "file": "normal-cleric-beast-walk-right-1.jpg",
+          "path": "../screenshots/normal-cleric-beast-walk-right-1.jpg",
+          "capturedAt": "2026-10-14T08:37:03.520Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "127e10e996407bc1022a151e556c74b4ebe160d663722ad33ba71e6d3af4d7c7"
+        }
+      ],
+      "observations": [
+        "오른쪽으로 이동 후 초기 위치의 대기 자세에 가까운 상태로 돌아옴. 방향과 외형 유지.",
+        "보이는 대기/걷기/회복에서 입이 닫혀 있고 큰 팔/작은 팔 비대칭이 유지됨."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-cleric-beast-attack",
+      "skin": "cleric-beast",
+      "phase": "attack",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-cleric-beast-attack-0.jpg",
+          "path": "../screenshots/normal-cleric-beast-attack-0.jpg",
+          "capturedAt": "2026-10-14T08:37:03.920Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "c9a957297b8011098d05799b0de1aafc721c910de5f3fa519c6ffef6e340f8a6"
+        },
+        {
+          "file": "normal-cleric-beast-attack-1.jpg",
+          "path": "../screenshots/normal-cleric-beast-attack-1.jpg",
+          "capturedAt": "2026-10-14T08:37:04.115Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "d44c9c0e65f509462400bdd2240c9c6dbd15c2ae825784e0dd675e96038f0c67"
+        }
+      ],
+      "observations": [
+        "첫 장은 공격 마지막 회복 자세에 가깝고 둘째 장은 대기 모습. 준비/타격 포즈 전체는 이 표본에 보이지 않음.",
+        "관찰된 회복→대기에서 방향/색/무기/발 위치가 유지됨. 공격 4포즈의 연결은 별도 2fps 자료로 검토함.",
+        "보이는 대기/걷기/회복에서 입이 닫혀 있고 큰 팔/작은 팔 비대칭이 유지됨."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-cleric-beast-hit",
+      "skin": "cleric-beast",
+      "phase": "hit",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-cleric-beast-hit-0.jpg",
+          "path": "../screenshots/normal-cleric-beast-hit-0.jpg",
+          "capturedAt": "2026-10-14T08:37:04.516Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "7e62cbba88e3a456fdd50002dba69ad85713a25aaa72ac18d4b6d919d5b656dc"
+        },
+        {
+          "file": "normal-cleric-beast-hit-1.jpg",
+          "path": "../screenshots/normal-cleric-beast-hit-1.jpg",
+          "capturedAt": "2026-10-14T08:37:04.702Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "c75020b3192df56a788f38e8f473e348e3e7ce49f40f606a8e16a9a014797e60"
+        }
+      ],
+      "observations": [
+        "두 장은 이미 회복/대기에 가까운 모습. 반동 포즈를 이 짧은 정상 속도 표본에서 전수 확인한 것으로 세지 않음.",
+        "보이는 회복 상태에서 방향/외형/발 위치가 유지됨. 반동→회복 포즈는 별도 2fps 자료로 검토함.",
+        "보이는 대기/걷기/회복에서 입이 닫혀 있고 큰 팔/작은 팔 비대칭이 유지됨."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    },
+    {
+      "label": "normal-cleric-beast-death",
+      "skin": "cleric-beast",
+      "phase": "death",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-cleric-beast-death-0.jpg",
+          "path": "../screenshots/normal-cleric-beast-death-0.jpg",
+          "capturedAt": "2026-10-14T08:37:05.100Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "c6d6895e0c5d76238a45f12a9b6ed49732a8dd9d91247a7217a0c4520c8e29ac"
+        },
+        {
+          "file": "normal-cleric-beast-death-1.jpg",
+          "path": "../screenshots/normal-cleric-beast-death-1.jpg",
+          "capturedAt": "2026-10-14T08:37:05.307Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "deeb9d5db6f511984e0168b41a15071de8e8e77c3937405397ed69bba07e1e5d"
+        }
+      ],
+      "observations": [
+        "뿔·갈기·늑골·앞으로 놓인 큰 팔과 다리가 유지된 사체가 보임. 작은 반대 팔의 연결부 일부는 몸/갈기 아래에 가려짐. 이 가림을 팔 제거로 단정하지 않으며 모든 관절 노출을 통과로 세지 않음.",
+        "두 장 모두 최종 누운 사체가 보이며 이웃 프레임 조각·사각형 절단·다른 배우와의 겹침은 보이지 않음.",
+        "2fps death-1의 빈 공간 표본 한계를 보완함. 이 두 장만으로 넘어지는 모든 중간 시점을 검증했다고 하지 않음."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": true
+    },
+    {
+      "label": "normal-cleric-beast-reset",
+      "skin": "cleric-beast",
+      "phase": "reset",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "normal-cleric-beast-reset-0.jpg",
+          "path": "../screenshots/normal-cleric-beast-reset-0.jpg",
+          "capturedAt": "2026-10-14T08:37:05.709Z",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "ceb22fd8f93fbf4d2a141706cdb7ad1abd05168cb95b446b8fcfc3fb67a3fe6b"
+        }
+      ],
+      "observations": [
+        "초기 오른쪽 대기 모습/그림자로 복귀. 흰 갈기·붉은 뿔·노출 늑골·큰 왼팔과 작은 오른팔의 큰 체형이 유지됨.",
+        "보이는 대기/걷기/회복에서 입이 닫혀 있고 큰 팔/작은 팔 비대칭이 유지됨."
+      ],
+      "noNewVisualDefectInVisibleStills": true,
+      "completeActionPoseSequenceCaptured": false,
+      "finalCorpseVisible": false
+    }
+  ],
+  "legacyMinionSupplement": [
+    {
+      "label": "gallery-minion-death",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "gallery-minion-death-0.jpg",
+          "path": "../screenshots/gallery-minion-death-0.jpg",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "1be5f435b3775a6b6fcc653faee16bf251fe0bfcac01c45599998ac5b634cae9"
+        },
+        {
+          "file": "gallery-minion-death-1.jpg",
+          "path": "../screenshots/gallery-minion-death-1.jpg",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "c322b474e58586b4ce5f6fc0d363865f1c1887cc7b66f9aa2d3979baea368750"
+        },
+        {
+          "file": "gallery-minion-death-2.jpg",
+          "path": "../screenshots/gallery-minion-death-2.jpg",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "3bcce61aa48293cb109ccf45bf01ed5e89c1afee4c4d9aec6092cc1710aaf242"
+        }
+      ],
+      "observations": [
+        "3장 모두 오른쪽 얼굴·벽돌·붕대가 유지된 최종 누운 하인 사체를 보여줌. 바닥 접점이 유지되고 외곽 잘림/이웃 조각이 보이지 않음.",
+        "반대 다리 일부가 몸 아래에 겹쳐 있어 모든 관절 노출을 주장하지 않음."
+      ]
+    },
+    {
+      "label": "gallery-minion-hit",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "gallery-minion-hit-0.jpg",
+          "path": "../screenshots/gallery-minion-hit-0.jpg",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "6cd7376ff1c6e79e489bc9e981b4c1af9a07f74844f9ad41926f27f194479700"
+        },
+        {
+          "file": "gallery-minion-hit-1.jpg",
+          "path": "../screenshots/gallery-minion-hit-1.jpg",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "bb6598f2024430e448797f8885c87222bee87524968fc9e078773fbd1502f112"
+        },
+        {
+          "file": "gallery-minion-hit-2.jpg",
+          "path": "../screenshots/gallery-minion-hit-2.jpg",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "5cb4285ed6be7ccb84a378cb5b23dd85bcbf8222de4d12084ea2e19752e15e53"
+        }
+      ],
+      "observations": [
+        "3장 모두 이미 회복/대기 부근. 원본 피격 2포즈 전수 런타임 검증으로 세지 않음."
+      ]
+    },
+    {
+      "label": "gallery-minion-walk-left-full",
+      "directlyViewedOriginalFiles": [
+        {
+          "file": "gallery-minion-walk-left-full-0.jpg",
+          "path": "../screenshots/gallery-minion-walk-left-full-0.jpg",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "9c268dc694689f168f1913594e8a6853545206b3eacfea0da25b724821b20b73"
+        },
+        {
+          "file": "gallery-minion-walk-left-full-1.jpg",
+          "path": "../screenshots/gallery-minion-walk-left-full-1.jpg",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "de4c55e33fcad91fc5014017de2de515d0db4551383e9d5c421dc70e127d9f57"
+        },
+        {
+          "file": "gallery-minion-walk-left-full-2.jpg",
+          "path": "../screenshots/gallery-minion-walk-left-full-2.jpg",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "de5d9543fa16e58cae249f29885f5f4f3b37b54623b96f4d73515b5c8214128a"
+        },
+        {
+          "file": "gallery-minion-walk-left-full-3.jpg",
+          "path": "../screenshots/gallery-minion-walk-left-full-3.jpg",
+          "viewMethod": "view_image(detail=original)",
+          "dimensions": [
+            1265,
+            823
+          ],
+          "mimeType": "image/jpeg",
+          "actualEncoding": "JPEG",
+          "sha256": "0604f0b471f49802af500f73b17c330b581701c0363401ea599daae7a084c921"
+        }
+      ],
+      "observations": [
+        "첫 장의 왼쪽 이동과 뒤 3장의 이동 종료 대기에 가까운 자세가 보임.",
+        "모두 전신이 보이나 걷기 4개 서로 다른 포즈가 전부 찍혔다고 세지 않음."
+      ]
+    }
+  ],
+  "actualMapReview": [
+    {
+      "file": "play-ordinary-huntsman-final.jpg",
+      "path": "../screenshots/play-ordinary-huntsman-final.jpg",
+      "viewMethod": "view_image(detail=original)",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "sha256": "4cc710544d5799bac4a4434d5a218ddaab0f0c965ecd951396aa051511c927f9",
+      "wholeOutlinesVisible": false,
+      "observations": [
+        "맵 상단의 검은 모자/긴 외투/횃불 무리와 그 아래 사냥꾼 몸통이 분리되어 보임. 원형 마커가 발 부근에 유지됨.",
+        "맨 위 배우의 머리 일부가 맵 뷰포트 상단 밖에 있어 이 파일로 전체 외곽을 판정하지 않음. 원본 atlas 절단과 구분함."
+      ],
+      "noVisibleTorsoIntersectionInSettledImage": true
+    },
+    {
+      "file": "play-ordinary-minion-attack-final.jpg",
+      "path": "../screenshots/play-ordinary-minion-attack-final.jpg",
+      "viewMethod": "view_image(detail=original)",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "sha256": "bfb1c49b9700d84a75050909cda6c1db3ace3fa9eccafaeb9f56814eb398d896",
+      "wholeOutlinesVisible": true,
+      "observations": [
+        "위 칸 안에서 왼쪽 넓은 붕대 하인, 가운데 낮은 늑대 체형, 오른쪽 사냥꾼이 분리되어 보임.",
+        "번호/원형 마커는 각 배우의 발 부근. 공격 종료 후 대기 몸통이 서로 관통하는 모습 없음."
+      ],
+      "noVisibleTorsoIntersectionInSettledImage": true
+    },
+    {
+      "file": "play-ordinary-minion-pursuit-final.jpg",
+      "path": "../screenshots/play-ordinary-minion-pursuit-final.jpg",
+      "viewMethod": "view_image(detail=original)",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "sha256": "f64c0058afc24609be79c8525feb301e838c3042ec8a911643955fd672b486a0",
+      "wholeOutlinesVisible": true,
+      "observations": [
+        "추격 후 위 칸에 있는 하인·재앙·사냥꾼이 넓은 체형/낮은 체형/외투로 구분됨.",
+        "각 발 마커/번호가 유지되고 몸통은 분리되어 있음."
+      ],
+      "noVisibleTorsoIntersectionInSettledImage": true
+    },
+    {
+      "file": "play-ordinary-scourge-attack-final.jpg",
+      "path": "../screenshots/play-ordinary-scourge-attack-final.jpg",
+      "viewMethod": "view_image(detail=original)",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "sha256": "87d5114fefd6e73000c28060207b59203e7a3501ef66605c98f85fcec6bef1db",
+      "wholeOutlinesVisible": true,
+      "observations": [
+        "재앙 공격 종료 후 낮은 늑대 체형과 하인의 넓은 몸통, 사냥꾼이 같은 위 칸에서 분리되어 보임.",
+        "몸/무기 주변에 이웃 포즈 조각이나 사각형 절단 없음."
+      ],
+      "noVisibleTorsoIntersectionInSettledImage": true
+    },
+    {
+      "file": "play-ordinary-three-species-map-final.jpg",
+      "path": "../screenshots/play-ordinary-three-species-map-final.jpg",
+      "viewMethod": "view_image(detail=original)",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "sha256": "7cddfa0cf6698d1892e484922e15836f1226117e472b96a4f35c63d4ede44dab",
+      "wholeOutlinesVisible": false,
+      "observations": [
+        "69% 맵에서 위쪽 넓은 하인/긴 외투 무리, 아래쪽 낮은 재앙과 사냥꾼을 구별할 수 있음. 발 마커와 번호는 유지됨.",
+        "맨 위 적 일부는 뷰포트 위 경계 밖. 작은 확대율이므로 눈/손 관절 등 세부를 이 파일에서 확정하지 않음."
+      ],
+      "noVisibleTorsoIntersectionInSettledImage": true
+    },
+    {
+      "file": "play-female-patient-natural-final.jpg",
+      "path": "../screenshots/play-female-patient-natural-final.jpg",
+      "viewMethod": "view_image(detail=original)",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "sha256": "bba47b83a07c0ce7086f1fad336563bf185141cec382b29ad3615b43bfe7cf65",
+      "wholeOutlinesVisible": true,
+      "observations": [
+        "예배당 칸의 올리브 베일 여성 환자와 오른쪽 사냥꾼의 몸통이 구분됨. 발 부근 원형 마커/번호 유지.",
+        "맨손의 환자에 다른 적 무기/사체 조각이 섞여 보이지 않음."
+      ],
+      "noVisibleTorsoIntersectionInSettledImage": true
+    },
+    {
+      "file": "play-iosefka-natural-final.jpg",
+      "path": "../screenshots/play-iosefka-natural-final.jpg",
+      "viewMethod": "view_image(detail=original)",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "sha256": "a2bffa7446b45dc33fd4fbed7c1672f1ccd1fb31abc73faa077021cb5d156136",
+      "wholeOutlinesVisible": true,
+      "observations": [
+        "진료소의 흰 의복/회색 머리 이오세프카가 검은 외투 사냥꾼과 구분됨. 이오세프카는 보라색 번호/원형 마커 위에 보임.",
+        "인접 칸의 붕대 하인과도 색/체형이 구분되며 몸통 겹침 없음."
+      ],
+      "noVisibleTorsoIntersectionInSettledImage": true
+    },
+    {
+      "file": "play-cleric-phase1-natural-final.jpg",
+      "path": "../screenshots/play-cleric-phase1-natural-final.jpg",
+      "viewMethod": "view_image(detail=original)",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "sha256": "2c0399b54c4a567049e90f7cdb14fabb521ec3cd459f802d441956e4a6ae38e5",
+      "wholeOutlinesVisible": false,
+      "observations": [
+        "성직자 큰 몸의 하부와 발 마커, 아래 사냥꾼 및 옆 칸 무리가 분리되어 보임.",
+        "100% 확대에서 보스 머리/뿔은 맵 뷰포트 상단 밖. 이 파일로 보스 전체 외곽을 판정하지 않음."
+      ],
+      "noVisibleTorsoIntersectionInSettledImage": true
+    },
+    {
+      "file": "play-cleric-phase2-natural-final.jpg",
+      "path": "../screenshots/play-cleric-phase2-natural-final.jpg",
+      "viewMethod": "view_image(detail=original)",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "sha256": "00d9e86a7856cfc0977d43d79c3ee283349e37d8f8816deeb47ce39084836a77",
+      "wholeOutlinesVisible": false,
+      "observations": [
+        "2페이즈에서도 같은 큰 몸/발 마커 위치 유지. 보스 하부/사냥꾼/옆 적 몸통이 분리되어 보임.",
+        "100% 확대에서 보스 머리/뿔이 뷰포트 상단 밖이며 원본 이미지 잘림과 구분함."
+      ],
+      "noVisibleTorsoIntersectionInSettledImage": true
+    },
+    {
+      "file": "play-cleric-phase2-whole-view.jpg",
+      "path": "../screenshots/play-cleric-phase2-whole-view.jpg",
+      "viewMethod": "view_image(detail=original)",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "sha256": "1f7551b83b03d769a7c1515e9e48af955720a328c4fd8a01a30738e075ab3f6e",
+      "wholeOutlinesVisible": true,
+      "observations": [
+        "현재 위치로 카메라를 맞추고69%로 줄인 화면에서 성직자 머리·뿔·갈기·몸·팔·발 전체가 보임.",
+        "큰 보스, 아래 사냥꾼, 옆 칸 무리의 몸통이 분리되어 보이고 원형 발 마커가 유지됨.",
+        "작은 확대율의 전경 관찰이므로 관절 세부 판정은 원본96포즈 및 저속 공격 표본 기록과 함께 사용함."
+      ],
+      "noVisibleTorsoIntersectionInSettledImage": true
+    }
+  ]
+}

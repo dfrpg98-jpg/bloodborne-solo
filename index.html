@@ -3,242 +3,62 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>블러드본 · 사냥의 기록</title>
-    <link rel="stylesheet" href="styles/style.css" />
+    <meta name="theme-color" content="#0b1013" />
+    <title>BLOODBORNE · 블러드본</title>
+    <link rel="stylesheet" href="styles/title-screen.css?v=0.8.13-dev.11&amp;h=1e61684b3c6c" />
+    <link rel="stylesheet" href="styles/game-help.css?v=0.8.13-dev.13&amp;h=674bb1a324c0" />
   </head>
-  <body>
-    <header class="topbar">
-      <a class="brand" href="index.html"
-        ><span class="sigil">♜</span
-        ><span
-          ><small>BLOODBORNE · RULES LAB</small
-          ><strong>사냥의 기록</strong></span
-        ></a
-      >
-      <div class="top-actions">
-        <a class="button primary" href="hunt.html">실제 지도에서 사냥 →</a>
-        <span class="badge">SOLO / v0.5.0</span
-        ><button id="save">저장 내보내기</button
-        ><button id="load">불러오기</button
-        ><a class="button" href="pages/guide.html" target="_blank">사용 안내 ↗</a
-        ><a class="button" href="pages/campaign.html" target="_blank"
-          >기나긴 사냥 소개 ↗</a
-        ><a class="button" href="pages/components.html" target="_blank">카드 목록 ↗</a
-        ><a class="button" href="pages/chapter.html">챕터 1 준비·탐험 →</a
-        ><button id="new" class="quiet">새 훈련</button
-        ><input type="file" id="file" accept=".json,application/json" hidden />
-      </div>
-    </header>
-    <main>
-      <div class="intro">
-        <div>
-          <p class="eyebrow">첫 번째 사냥 · 규칙 검증용 시나리오</p>
-          <h1>등불로 돌아오는 길</h1>
-          <p>
-            카드를 선택하고, 행동을 결정하세요. 계산과 규칙 처리는 프로그램이
-            맡습니다.
-          </p>
-        </div>
-        <div class="save-status" id="saveStatus">현재 브라우저에 자동 저장</div>
-      </div>
-      <div class="notice">
-        테스트용 콘텐츠
-        <span
-          >장송의 칼날·단총·기본 스탯·소모품 16종은 제공된 효과를 사용합니다.
-          적·지도·임무·업그레이드 시장은 테스트용입니다. 기나긴 사냥 카드 자료는
-          열람할 수 있습니다. ‘실제 지도에서 사냥’에서 실제 적 3종 양면과
-          지도·성장 순환을 플레이할 수 있습니다. 시나리오 임무는 연결
-          전입니다.</span
-        >
-      </div>
-      <section class="track-panel" aria-label="사냥 트랙">
-        <div class="section-label">
-          <span>사냥 트랙</span><b id="roundLabel"></b>
-        </div>
-        <div class="track" id="track"></div>
-        <div class="track-caption">
-          <span>붉은 칸: 지도 초기화</span><span id="lastRound"></span>
-        </div>
+  <body class="title-screen">
+    <div class="title-atmosphere" aria-hidden="true">
+      <div class="title-moon"></div>
+      <svg class="title-skyline" viewBox="0 0 1440 420" preserveAspectRatio="xMidYMax slice" focusable="false">
+        <path d="M0 420V312h37v-62l23-22 23 22v62h33V194h25v-47l13-30 13 30v47h25v94h31v-56h28v-74l15-27 15 27v74h28v71h48V182h25v-47l20-57 20 57v47h25v91h31v-40h24v-63l17-32 17 32v63h24v74h43V217h25v-42l13-32 13 32v42h25v72h47V143h22V83l21-61 21 61v60h22v146h45v-72h24v-43l14-30 14 30v43h24v89h42V185h25v-49l20-57 20 57v49h25v108h46v-63h28v-72l15-27 15 27v72h28v91h37V199h25v-50l13-29 13 29v50h25v106h46v-73l24-24 24 24v73h42v115Z" />
+      </svg>
+    </div>
+    <main class="title-main" aria-labelledby="gameTitle">
+      <div class="title-ornament" aria-hidden="true"><span></span><b>✦</b><span></span></div>
+      <p class="title-eyebrow">기나긴 사냥 · 1인 캠페인</p>
+      <h1 id="gameTitle"><span lang="en">BLOODBORNE</span><small>블러드본</small></h1>
+      <p class="title-intro">야남에 밤이 내렸습니다.<br />당신의 사냥을 시작하세요.</p>
+
+      <nav class="title-actions" aria-label="게임 시작 메뉴">
+        <a id="titleStart" class="title-action title-action-primary" href="hunt.html?entry=new">
+          <span class="title-action-mark" aria-hidden="true">Ⅰ</span>
+          <span><strong>시작하기</strong><small>무기와 시작 위치를 정합니다</small></span>
+          <span class="title-action-arrow" aria-hidden="true">›</span>
+        </a>
+        <a id="titleLoad" class="title-action" href="hunt.html?entry=load">
+          <span class="title-action-mark" aria-hidden="true">Ⅱ</span>
+          <span><strong>불러오기</strong><small>자동 저장 또는 진행 파일에서 이어갑니다</small></span>
+          <span class="title-action-arrow" aria-hidden="true">›</span>
+        </a>
+        <button id="titleHelp" class="title-action" type="button" aria-haspopup="dialog" aria-controls="titleHelpDialog">
+          <span class="title-action-mark" aria-hidden="true">Ⅲ</span>
+          <span><strong>도움말</strong><small>처음이라면, 사냥의 흐름부터 살펴보세요</small></span>
+          <span class="title-action-arrow" aria-hidden="true">›</span>
+        </button>
+      </nav>
+
+      <section id="titleSavedHunts" class="title-saved-hunts" aria-labelledby="titleSavedHeading" hidden>
+        <h2 id="titleSavedHeading">저장된 사냥</h2>
+        <div id="titleContinueLinks" class="title-continue-links"></div>
       </section>
-      <section
-        class="panel firearm-panel"
-        id="firearmPanel"
-        aria-labelledby="firearmTitle"
-      >
-        <div class="firearm-heading">
-          <div>
-            <p class="eyebrow">장착 화기</p>
-            <h2 id="firearmTitle"></h2>
-          </div>
-          <span id="firearmState" class="firearm-state" role="status"></span>
-        </div>
-        <div class="firearm-details">
-          <div>
-            <h3>화기 능력</h3>
-            <p id="firearmAbility"></p>
-            <p id="firearmUseNote" class="muted"></p>
-          </div>
-          <div>
-            <h3>다시 준비하기</h3>
-            <p id="firearmReadyRule"></p>
-            <p id="firearmDreamRule" class="muted"></p>
-          </div>
-        </div>
-        <div class="firearm-controls">
-          <div id="firearmActions" class="actions"></div>
-          <p id="firearmHint" aria-live="polite"></p>
-        </div>
-      </section>
-      <div class="layout">
-        <section class="board-panel panel">
-          <div class="panel-heading">
-            <div>
-              <small>YHARNAM / TRAINING MAP</small>
-              <h2>사냥터</h2>
-            </div>
-            <span id="positionBadge" class="badge"></span>
-          </div>
-          <div class="map" id="map"></div>
-          <div class="map-legend">
-            <span><i class="dot hunter-dot"></i> 사냥꾼</span
-            ><span><i class="dot enemy-dot"></i> 적</span><span>✦ 등불</span
-            ><span>◇ 소모품</span><span>선으로 연결된 칸끼리 이동</span>
-          </div>
-          <div class="enemy-list" id="enemies"></div>
-          <section
-            id="enemyDeckStatus"
-            class="enemy-deck-status"
-            aria-label="적 행동 덱"
-          ></section>
-        </section>
-        <aside class="sidebar">
-          <section class="panel mission">
-            <p class="eyebrow">훈련 임무</p>
-            <h2>돌아올 곳을 기억하라</h2>
-            <ol id="mission"></ol>
-            <p class="muted">
-              파수꾼이 재출현해도 처치 목표의 달성 기록은 유지됩니다. 이 규칙은
-              훈련 임무에만 적용됩니다.
-            </p>
-          </section>
-          <section class="panel status" id="status"></section>
-        </aside>
-      </div>
-      <section class="panel decisions">
-        <div class="panel-heading">
-          <div>
-            <small id="phaseKicker">YOUR TURN</small>
-            <h2 id="phaseTitle">사냥꾼의 차례</h2>
-          </div>
-          <span class="badge" id="costHint">행동당 스탯 카드 1장</span>
-        </div>
-        <p id="phaseHelp" class="help"></p>
-        <div id="weaponOptions"></div>
-        <div id="actions" class="actions"></div>
-        <div id="combat" class="combat"></div>
-        <p id="error" class="error" role="alert"></p>
-      </section>
-      <section class="panel inventory-panel" aria-labelledby="inventoryTitle">
-        <div class="panel-heading">
-          <div>
-            <small>CONSUMABLES</small>
-            <h2 id="inventoryTitle">보유 소모품</h2>
-          </div>
-          <span id="itemCount" class="muted"></span>
-        </div>
-        <p class="muted">
-          카드를 눌러 효과와 사용 조건을 확인하세요. 공격용 소모품은 공격을
-          확정하기 전에 선택합니다.
-        </p>
-        <div id="inventory" class="inventory-grid"></div>
-        <div id="itemDetail" class="item-detail" aria-live="polite"></div>
-      </section>
-      <section class="loadout">
-        <div class="panel hand-panel">
-          <div class="panel-heading">
-            <div>
-              <small>HUNTER DECK</small>
-              <h2>손에 든 스탯 카드 <span id="handCount"></span></h2>
-            </div>
-            <span id="deckCount" class="muted"></span>
-          </div>
-          <p class="muted" id="handHelp">
-            행동에 사용할 카드를 먼저 선택하세요. 카드 효과는 공격·회피 슬롯에
-            놓을 때만 적용됩니다.
-          </p>
-          <div class="cards" id="hand"></div>
-        </div>
-        <div class="panel weapon-panel">
-          <div class="panel-heading">
-            <div>
-              <small>TRICK WEAPON</small>
-              <h2 id="weaponTitle"></h2>
-            </div>
-          </div>
-          <p class="muted">공격·회피에 사용할 빈 슬롯을 선택하세요.</p>
-          <p id="weaponAbility" class="weapon-ability"></p>
-          <div class="slots" id="slots"></div>
-        </div>
-      </section>
-      <details class="panel log-panel" open>
-        <summary>
-          사냥 기록 <span class="muted">자동 처리된 규칙을 확인하세요</span>
-        </summary>
-        <div id="log" class="log" aria-live="polite"></div>
-      </details>
-      <footer>
-        비공식 개인용 개발 프로토타입 · 온라인 멀티플레이 및 실제 캠페인 미포함
-        · 규칙 출처: 업로드한 한국어 규칙서
-      </footer>
+      <p class="title-save-note">사냥의 진행은 이 브라우저에 자동으로 저장됩니다.</p>
     </main>
-    <dialog id="newDialog">
-      <h2>새 훈련을 시작할까요?</h2>
-      <p>
-        <label
-          >장착 화기<select id="startFirearm" class="card-select"></select
-        ></label>
-      </p>
-      <p>현재 진행을 보관하려면 먼저 저장 파일을 내보내세요.</p>
-      <p>
-        <label
-          >장치 무기
-          <select class="card-select" id="startWeapon">
-            <option value="burial">장송의 칼날</option>
-            <option value="training">훈련용 장치 무기</option>
-          </select></label
-        >
-      </p>
-      <p>
-        <label
-          >시작 형태
-          <select class="card-select" id="startFace">
-            <option value="0">앞면</option>
-            <option value="1">뒷면</option>
-          </select></label
-        >
-      </p>
-      <p>
-        <label
-          >훈련 시작 소모품<select
-            id="startConsumable"
-            class="card-select"
-          ></select
-        ></label>
-      </p>
-      <p class="muted">
-        선택한 1장을 전체 소모품 덱에서 꺼내 지급합니다. 정규 캠페인의 시작 지급
-        규칙은 아닙니다.
-      </p>
-      <div class="actions">
-        <button id="cancelNew">돌아가기</button
-        ><button id="confirmNew" class="primary">새 훈련 시작</button>
+    <footer class="title-footer">
+      <span>비공식 개인용 팬 프로젝트</span>
+      <a href="pages/training.html">전투 훈련 <span>(이전 검증 화면)</span></a>
+    </footer>
+
+    <dialog id="titleHelpDialog" class="title-help-dialog" aria-labelledby="titleHelpTitle">
+      <div class="title-dialog-heading">
+        <div><p>처음 사냥하는 분께</p><h2 id="titleHelpTitle">게임 도움말</h2></div>
+        <button id="closeTitleHelp" type="button" autofocus>타이틀로 돌아가기</button>
       </div>
+      <div id="titleHelpContent" class="title-help-content"></div>
     </dialog>
-    <script src="components/cards.js"></script>
-    <script src="src/data.js"></script>
-    <script src="src/enemy-deck.js"></script>
-    <script src="src/engine.js"></script>
-    <script src="src/inventory.js"></script>
-    <script src="src/app.js"></script>
+    <script src="src/hunt-entry.js?v=0.8.13-dev.11&amp;h=1fabaf52aa2d"></script>
+    <script src="src/game-help.js?v=0.8.13-dev.19&amp;h=ff81f1f35027"></script>
+    <script src="src/title-screen.js?v=0.8.13-dev.11&amp;h=3ade18d195e0"></script>
   </body>
 </html>

@@ -79,7 +79,8 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
   const document = new Document(fs.readFileSync(path.join(root, "hunt.html"), "utf8"));
   const storage = new Map(Object.entries(options.storage || { "bloodborne-hunt-v07": "fixture" }));
   const commands = [], imports = [], creates = [];
-  const engine = { ...E, create: (...args) => { creates.push(args); return structuredClone(state); },
+  // Historical presentation fixtures keep their original policy; migration has dedicated tests.
+  const engine = { ...E, applyTileSpeedRuling: state => state, create: (...args) => { creates.push(args); return structuredClone(state); },
     importSave: (text) => { imports.push(text); return structuredClone(state); },
     exportSave: (s) => JSON.stringify(s), missionView: () => view,
     rewardsView: () => rewardView, missionActions: () => options.actions || [],
@@ -515,7 +516,8 @@ test("arcane barrage describes defense per dodge speed instead of a zero-speed t
   const s = baseState(); s.phase = "boss_react";
   s.combat = { immediate: { name: "비전 탄막", damage: 6, dodgeSpeed: 0, dodgeBlockPerSpeed: 2 } };
   const ui = boot(s, mission(), rewards(), { engine: { canDodge: () => true } });
-  assert.equal(ui.el("phaseHelp").textContent, "회피 속도마다 2피해를 방어합니다. 회피 카드와 빈 슬롯을 선택하세요.");
+  assert.match(ui.el("phaseHelp").textContent, /회피 속도마다 2피해를 방어/);
+  assert.match(ui.el("phaseHelp").textContent, /‘이 효과 회피’를 눌러 확정/);
   assert(!ui.el("phaseHelp").textContent.includes("속도 0 이상"));
 });
 test("face-down weapon slots hide the printed stat card face and describe the dormant effects", () => {
@@ -798,6 +800,7 @@ test("the long-rifle entry reaction offers use and skip without showing a later 
 });
 test("a boss or printed enemy ability reaction uses its indicated dodge speed and damage", () => {
   const s = baseState(); s.phase = "boss_react";
+  s.combat = { immediate: { name: "뛰어 내려찍기", dodgeSpeed: 1, damage: 2, effects: ["기절"] } };
   const ui = boot(s, mission(), rewards(), { engine: {
     combatReaction: () => ({ title: "뛰어 내려찍기", dodgeSpeed: 1, damage: 2, effects: ["기절"] }),
     canDodge: (_state, cardId) => !!cardId,

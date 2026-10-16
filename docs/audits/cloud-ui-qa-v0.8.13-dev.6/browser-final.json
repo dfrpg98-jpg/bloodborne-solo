@@ -1,0 +1,314 @@
+{
+  "sourceCommit": "36c0f71d9413a3d7130e94384d75016c184aeae0",
+  "node": "v24.21.0",
+  "method": "Actual Chromium UI clicks. Normal create/dispatch QA checkpoints; no hand-assembled state.",
+  "observations": [
+    {
+      "name": "viewport-1208",
+      "layout": {
+        "cols": 3,
+        "overflow": "auto",
+        "scroll": 368,
+        "height": 199,
+        "cards": [
+          {
+            "w": 114,
+            "h": 174
+          },
+          {
+            "w": 114,
+            "h": 174
+          },
+          {
+            "w": 114,
+            "h": 174
+          },
+          {
+            "w": 114,
+            "h": 174
+          },
+          {
+            "w": 114,
+            "h": 174
+          },
+          {
+            "w": 114,
+            "h": 174
+          }
+        ]
+      },
+      "tooltip": "적 하나가 기본 공격을 할 때 해당 적을 자동으로 방해합니다.\n발사는 직접 선택합니다. 사용하면 소진되며, 특수 공격·전용 능력에는 사용할 수 없습니다.\n플레이어의 차례에 손패 1장을 버리면 다시 준비합니다.\n사냥꾼의 꿈에서 회복할 때도 다시 준비됩니다."
+    },
+    {
+      "name": "viewport-848",
+      "layout": {
+        "cols": 1,
+        "overflow": "auto",
+        "scroll": 1104,
+        "height": 199,
+        "cards": [
+          {
+            "w": 225,
+            "h": 174
+          },
+          {
+            "w": 225,
+            "h": 174
+          },
+          {
+            "w": 225,
+            "h": 174
+          },
+          {
+            "w": 225,
+            "h": 174
+          },
+          {
+            "w": 225,
+            "h": 174
+          },
+          {
+            "w": 225,
+            "h": 174
+          }
+        ]
+      },
+      "tooltip": "적 하나가 기본 공격을 할 때 해당 적을 자동으로 방해합니다.\n발사는 직접 선택합니다. 사용하면 소진되며, 특수 공격·전용 능력에는 사용할 수 없습니다.\n플레이어의 차례에 손패 1장을 버리면 다시 준비합니다.\n사냥꾼의 꿈에서 회복할 때도 다시 준비됩니다."
+    },
+    {
+      "name": "viewport-390",
+      "layout": {
+        "cols": 1,
+        "overflow": "auto",
+        "scroll": 1104,
+        "height": 184,
+        "cards": [
+          {
+            "w": 210,
+            "h": 174
+          },
+          {
+            "w": 210,
+            "h": 174
+          },
+          {
+            "w": 210,
+            "h": 174
+          },
+          {
+            "w": 210,
+            "h": 174
+          },
+          {
+            "w": 210,
+            "h": 174
+          },
+          {
+            "w": 210,
+            "h": 174
+          }
+        ]
+      },
+      "tooltip": "적 하나가 기본 공격을 할 때 해당 적을 자동으로 방해합니다.\n발사는 직접 선택합니다. 사용하면 소진되며, 특수 공격·전용 능력에는 사용할 수 없습니다.\n플레이어의 차례에 손패 1장을 버리면 다시 준비합니다.\n사냥꾼의 꿈에서 회복할 때도 다시 준비됩니다."
+    },
+    {
+      "name": "responsive-hand-selection-and-tooltips",
+      "status": "passed"
+    },
+    {
+      "name": "direction-controller-continuity",
+      "status": "passed"
+    },
+    {
+      "name": "naturally-earned-firearm-tooltip-and-equip",
+      "status": "passed"
+    },
+    {
+      "name": "controller-real-branch-choice",
+      "status": "passed"
+    },
+    {
+      "name": "controller-real-escort-confirmation",
+      "status": "passed"
+    },
+    {
+      "name": "rotated-tile-and-combat-continuity",
+      "status": "passed"
+    },
+    {
+      "name": "mission-3-public-alert",
+      "alert": "목표 변경\n\n재앙의 근원\n\n중앙 등불의 재앙의 야수 우두머리를 처치하세요.\n\n재앙의 야수의 전용 능력이 ‘광포한’으로 변경되었습니다.\n\n광포한 · 속도 3 · 피해 3 · 방해 · 기절 · 방해 불가",
+      "effect": {
+        "enemyId": "scourge-beast-2",
+        "objectiveId": "main",
+        "card": 3,
+        "title": "재앙의 야수 · 임무에 따른 능력 변경",
+        "description": "재앙의 야수의 전용 능력이 ‘광포한’으로 변경되었습니다.",
+        "effects": [
+          "광포한 · 속도 3 · 피해 3 · 방해 · 기절 · 방해 불가"
+        ],
+        "signature": "[3,\"광포한\",[\"속도 3\",\"피해 3\",\"방해\",\"기절\",\"방해 불가\"],false]"
+      }
+    },
+    {
+      "name": "mission-3-actual-trigger",
+      "status": "passed"
+    },
+    {
+      "name": "mission-10-public-alert",
+      "alert": "목표 변경\n\n피신처\n\n오에돈 예배당의 재앙의 야수를 처치하세요.\n\n재앙의 야수의 특수 공격이 ‘피의 광란’으로 변경되었습니다.\n\n피의 광란 · 속도 3 · 피해 2\n\n체력이 가득 차 있으면 피해 2, 피해를 입은 상태라면 피해 4입니다.",
+      "effect": {
+        "enemyId": "scourge-beast-2",
+        "objectiveId": "shelter",
+        "card": 10,
+        "title": "재앙의 야수 · 임무에 따른 능력 변경",
+        "description": "재앙의 야수의 특수 공격이 ‘피의 광란’으로 변경되었습니다.",
+        "effects": [
+          "피의 광란 · 속도 3 · 피해 2",
+          "체력이 가득 차 있으면 피해 2, 피해를 입은 상태라면 피해 4입니다."
+        ],
+        "signature": "[10,\"피의 광란\",[\"속도 3\",\"피해 2\"],false]"
+      }
+    },
+    {
+      "name": "mission-10-actual-trigger",
+      "status": "passed"
+    },
+    {
+      "name": "mission-31-public-alert",
+      "alert": "새로운 임무\n\n오에돈 예배당 대학살\n\n환자의 임무 부활 토큰을 소진시키고 최종 처치 후 속도 1 회피하세요.\n\n여성 야수환자의 특수 공격이 ‘갈가리 찢기’로 변경되었습니다.\n\n갈가리 찢기 · 속도 3 · 피해 3 · 기절\n\n이 적은 임무에 따라 타일의 속도 감소를 받지 않습니다.",
+      "effect": {
+        "enemyId": "mission-patient",
+        "objectiveId": "card-30",
+        "card": 31,
+        "title": "여성 야수환자 · 임무에 따른 능력 변경",
+        "description": "여성 야수환자의 특수 공격이 ‘갈가리 찢기’로 변경되었습니다.",
+        "effects": [
+          "갈가리 찢기 · 속도 3 · 피해 3 · 기절",
+          "이 적은 임무에 따라 타일의 속도 감소를 받지 않습니다."
+        ],
+        "signature": "[31,\"갈가리 찢기\",[\"속도 3\",\"피해 3\",\"기절\"],true]"
+      }
+    },
+    {
+      "name": "mission-31-actual-trigger",
+      "status": "passed"
+    },
+    {
+      "name": "mission-36-public-alert",
+      "alert": "새로운 임무\n\n아슬아슬한 구조\n\n대교의 야수 사냥 하인을 처치하세요.\n\n야수 사냥 하인의 특수 공격이 ‘고통 면역’으로 변경되었습니다.\n\n고통 면역 · 속도 1 · 피해 4 · 방해 불가 · 방어 2",
+      "effect": {
+        "enemyId": "huntsmans-minion-2",
+        "objectiveId": "bridge",
+        "card": 36,
+        "title": "야수 사냥 하인 · 임무에 따른 능력 변경",
+        "description": "야수 사냥 하인의 특수 공격이 ‘고통 면역’으로 변경되었습니다.",
+        "effects": [
+          "고통 면역 · 속도 1 · 피해 4 · 방해 불가 · 방어 2"
+        ],
+        "signature": "[36,\"고통 면역\",[\"속도 1\",\"피해 4\",\"방해 불가\",\"방어 2\"],false]"
+      }
+    },
+    {
+      "name": "mission-36-actual-trigger",
+      "status": "passed"
+    },
+    {
+      "name": "rotated-art-loaded",
+      "tile": "tile-07",
+      "rotation": "2"
+    },
+    {
+      "name": "chapel-zero-speed-and-real-detail",
+      "status": "passed"
+    },
+    {
+      "name": "chapel-zero-normal-command-preparation",
+      "seed": 7,
+      "commands": [
+        {
+          "type": "USE_CONSUMABLE",
+          "itemId": "item-qa-1-21"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "N"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 1
+        },
+        {
+          "type": "STEP",
+          "node": "tile-17:top"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "E"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 1
+        },
+        {
+          "type": "STEP",
+          "node": "tile-03:room"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-03:entry"
+        }
+      ],
+      "actualCommands": [
+        {
+          "type": "STEP",
+          "node": "tile-17:top"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-3",
+          "slot": 0,
+          "enemyId": "scourge-beast-1"
+        },
+        {
+          "type": "RESOLVE"
+        }
+      ]
+    },
+    {
+      "name": "chapel-one-to-zero-actual-pursuit-and-attack",
+      "status": "passed"
+    }
+  ],
+  "failures": [],
+  "pageErrors": [],
+  "screenshots": [
+    "hand-tooltip-1208.png",
+    "hand-tooltip-848.png",
+    "hand-tooltip-390.png",
+    "controller-after-move.png",
+    "earned-firearm-tooltip.png",
+    "earned-firearm-equipped.png",
+    "controller-branch-choice.png",
+    "controller-escort-confirm.png",
+    "current-combat.png",
+    "after-resolve.png",
+    "mission-3-alert.png",
+    "mission-3-detail.png",
+    "mission-10-alert.png",
+    "mission-10-detail.png",
+    "mission-31-alert.png",
+    "mission-31-detail.png",
+    "mission-36-alert.png",
+    "mission-36-detail.png",
+    "chapel-zero-speed.png",
+    "rotated-tiles.png",
+    "chapel-one-to-zero-detail.png",
+    "chapel-one-to-zero-combat.png",
+    "chapel-one-to-zero-after-resolve.png"
+  ],
+  "limitations": [
+    "Original reference photographs absent; official rule exceptions are not certified."
+  ],
+  "browser": "151.0.7922.34"
+}

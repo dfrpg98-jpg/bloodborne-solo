@@ -1,0 +1,218 @@
+{
+  "Status": "prepared-for-user-inspection",
+  "Directory": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제",
+  "MovedFiles": 58605,
+  "MovedBytes": 25172452403,
+  "ExpectedFiles": 58605,
+  "ExpectedBytes": 25172452403,
+  "Method": "Native PowerShell Move-Item on the same volume; no copying, deletion or overwriting.",
+  "GeneratedPngGroups": [
+    {
+      "OriginalRoot": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\work\\local-final-validation\\motion-initial66",
+      "InspectionRoot": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\generated-png\\motion-initial66",
+      "Filter": "*.png",
+      "Files": 31105,
+      "Bytes": 9849513490
+    },
+    {
+      "OriginalRoot": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\work\\local-final-validation\\motion",
+      "InspectionRoot": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\generated-png\\motion",
+      "Filter": "*.png",
+      "Files": 19488,
+      "Bytes": 5952090636
+    },
+    {
+      "OriginalRoot": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\work\\local-final-validation\\motion-additional17",
+      "InspectionRoot": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\generated-png\\motion-additional17",
+      "Filter": "*.png",
+      "Files": 7987,
+      "Bytes": 2735836843
+    }
+  ],
+  "DuplicateZipFiles": [
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.6.1.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.6.1.zip",
+      "Bytes": 36184437,
+      "SHA256": "a4977319eb0966b42253d19e639526b135cb2c458b478842fdeb6406f099f718",
+      "RecoveryTag": "v0.6.0"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.6.2.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.6.2.zip",
+      "Bytes": 36251702,
+      "SHA256": "3557e089ec2a131a04908ca78215a942f398aea410db2951caaca7282dd785a2",
+      "RecoveryTag": "v0.6.1"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.7.0.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.7.0.zip",
+      "Bytes": 36309762,
+      "SHA256": "c54376b9295cd51989f42483a9c96542616a1929f7d8342803734c4bcb634132",
+      "RecoveryTag": "v0.6.2"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.7.1.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.7.1.zip",
+      "Bytes": 57093989,
+      "SHA256": "50c09466b4472db25ee1cd49c1e2bd8cb72a6c73765cb41b53dd1284a3c68684",
+      "RecoveryTag": "v0.7.0"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.7.2.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.7.2.zip",
+      "Bytes": 251091460,
+      "SHA256": "01229b07898aa97eedd3f6802af707aa6cc3a028ec510c4a51d95986ae52ae9a",
+      "RecoveryTag": "v0.7.1"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.7.3.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.7.3.zip",
+      "Bytes": 272062016,
+      "SHA256": "c634a6023fd148dfde137048e7e50596771dc1ac66bd7d6b3b979fa722ff561b",
+      "RecoveryTag": "v0.7.2"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.7.4.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.7.4.zip",
+      "Bytes": 272103018,
+      "SHA256": "800125203257024566d3f6727ac1446fb05d10bc0f755f6c80f6ea1c681bba0e",
+      "RecoveryTag": "v0.7.3"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.7.5.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.7.5.zip",
+      "Bytes": 272193880,
+      "SHA256": "66b3adbe59947d75d04abc083553da3b0fb145f51a2fba29d9951fdf857f7311",
+      "RecoveryTag": "v0.7.4"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.7.6.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.7.6.zip",
+      "Bytes": 272235194,
+      "SHA256": "43f131b76e383e334a254304bf910a265b7dfcb9086f84621f34dc1c5b2d4221",
+      "RecoveryTag": "v0.7.5"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.7.7.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.7.7.zip",
+      "Bytes": 272243061,
+      "SHA256": "8a9ce2f7e253f6f398b1da75ee984ed1a2ff674cebfe7e7d55db2da614656734",
+      "RecoveryTag": "v0.7.6"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.7.8.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.7.8.zip",
+      "Bytes": 272254538,
+      "SHA256": "ffbc0c63f5275e2cc943cf712726abe3452bfa06027a0bb0cbe4552673a70e46",
+      "RecoveryTag": "v0.7.7"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.7.9.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.7.9.zip",
+      "Bytes": 272270842,
+      "SHA256": "1340f68de14931a3b24f50fc73612e62fae378aca45be73611aee66a6f91711e",
+      "RecoveryTag": "v0.7.8"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.8.0.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.8.0.zip",
+      "Bytes": 272286878,
+      "SHA256": "b067a2037763d6e974f34ad5ee71b4f0a50740e5b218acfef33df8b391c2951e",
+      "RecoveryTag": "v0.7.9"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.8.1.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.8.1.zip",
+      "Bytes": 272309166,
+      "SHA256": "0e57d9ec270b7aab5a34a163f1c27c46d69b5e455d967e0efa77245741b31984",
+      "RecoveryTag": "v0.8.0"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.8.10.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.8.10.zip",
+      "Bytes": 359312837,
+      "SHA256": "f11254f29077f1b4d2435d4266d14db94cbcd3949f6e830fc0559ac6de74a359",
+      "RecoveryTag": "v0.8.9"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.8.11.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.8.11.zip",
+      "Bytes": 362474386,
+      "SHA256": "13096f4ad519c3731e34140ab5ba6132538022374c58c4ad1f0a127aaaac8d8d",
+      "RecoveryTag": "v0.8.10"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.8.12.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.8.12.zip",
+      "Bytes": 362480042,
+      "SHA256": "0c58bbc964f986a5e9e891a085916b73fbb9ea274367de82783cc51fc66202c4",
+      "RecoveryTag": "v0.8.11"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.8.2.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.8.2.zip",
+      "Bytes": 272693911,
+      "SHA256": "4b49696ce52deb36eb74f4884e583ea7025e5076b9b63f7ead73f0527ef59cbf",
+      "RecoveryTag": "v0.8.1"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.8.3.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.8.3.zip",
+      "Bytes": 281269218,
+      "SHA256": "3e53b65d08bc04d17afe85147b9b74e66127a60e0c6c29e960abc734d2225dd7",
+      "RecoveryTag": "v0.8.2"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.8.4.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.8.4.zip",
+      "Bytes": 359282592,
+      "SHA256": "b6363e7ce4c4def44349953b2b16d39a356f5e5a33627c1f9263aaf429a0ef58",
+      "RecoveryTag": "v0.8.3"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.8.5.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.8.5.zip",
+      "Bytes": 333427159,
+      "SHA256": "97f84499231ffb13bff936abf81db962988696508432db2aa243a2401aca8e00",
+      "RecoveryTag": "v0.8.4"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.8.6.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.8.6.zip",
+      "Bytes": 359288302,
+      "SHA256": "3910d346f0d1bc5c1489a2f46938bada3f1735092b707a465f290cdf4264f7b6",
+      "RecoveryTag": "v0.8.5"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.8.7.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.8.7.zip",
+      "Bytes": 359292642,
+      "SHA256": "eae2ea1801e8ba23710ac22448fd2b577fb8f5fcc6630ace4368c711f55c6bad",
+      "RecoveryTag": "v0.8.6"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.8.8.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.8.8.zip",
+      "Bytes": 359300301,
+      "SHA256": "2c77b9e6c753d69789241eb3f998dd31553cdd769ecfd1a5589b104abcb83dc3",
+      "RecoveryTag": "v0.8.7"
+    },
+    {
+      "OriginalPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\outputs\\archive\\backups\\bloodborne-solo-before-v0.8.9.zip",
+      "InspectionPath": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제\\duplicate-backup-zip\\bloodborne-solo-before-v0.8.9.zip",
+      "Bytes": 359300101,
+      "SHA256": "78939f7a4b1e61bd6400d2a581b34500114d82f3eea7687fbc6ad12e68659058",
+      "RecoveryTag": "v0.8.8"
+    }
+  ],
+  "PreservationAudit": "storage-audit-2026-10-16.json",
+  "Preserved": [
+    "Current source, runtime sprites and assets",
+    "Desktop original reference photographs and player saves",
+    "Original verification videos, JSON reports and extraction scripts",
+    "Git history and worktrees",
+    "before-v0.6.0.zip and runtime release archives"
+  ],
+  "CompletedAt": "2026-10-16T21:17:52.5899912+09:00"
+}

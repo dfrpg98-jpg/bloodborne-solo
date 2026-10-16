@@ -1,0 +1,242 @@
+[
+  {
+    "file": "evidence/before-hand-tooltip-1208.jpg",
+    "sha256": "196f51f5d8a9d4c1cdd04c71276385d5d5f65b819e0da38eb22936c9c6a3cd5f",
+    "originalPng": "hand-tooltip-1208.png",
+    "originalSha256": "b1695137e110db84bffb437f41cee16c318bb20df7064c509420b8904798e3ab",
+    "artifactRun": 38420643629,
+    "note": "JPEG copy for repository review; original PNG remains in the private Actions artifact."
+  },
+  {
+    "file": "evidence/before-hand-tooltip-848.jpg",
+    "sha256": "e6fdc19dda41243a41977d3bbecab341a3c63d935d22099849b6109579ccfcac",
+    "originalPng": "hand-tooltip-848.png",
+    "originalSha256": "210eda0c01079a309532ea6a4dcd6aed9d61da85939010fbf72a037d1eca26fc",
+    "artifactRun": 38420643629,
+    "note": "JPEG copy for repository review; original PNG remains in the private Actions artifact."
+  },
+  {
+    "file": "evidence/after-hand-tooltip-1208.jpg",
+    "sha256": "2f51ba8cf540ef5dd9f336f681bba69890e2b62444657520a0573d9e0b6cbb0a",
+    "originalPng": "hand-tooltip-1208.png",
+    "originalSha256": "103441142ab9ef7e922c32b2253638b5a996a71a3796dea93a4c2c8f6e8b2325",
+    "artifactRun": 38422110814,
+    "note": "JPEG copy for repository review; original PNG remains in the private Actions artifact."
+  },
+  {
+    "file": "evidence/after-hand-tooltip-848.jpg",
+    "sha256": "fa27a799494b03e06649294dff370ec21aa2060f466754d407d249572bb3aa0f",
+    "originalPng": "hand-tooltip-848.png",
+    "originalSha256": "d1229e2c8dd6c3f9902fc0c16e5923f8da0cca6ab5a3364b651f1ef75eddb594",
+    "artifactRun": 38422110814,
+    "note": "JPEG copy for repository review; original PNG remains in the private Actions artifact."
+  },
+  {
+    "file": "evidence/verified-hand-tooltip-1208.jpg",
+    "sha256": "beaad6ae2e87250f8d40341c4dfc549176b8ffee599a793b87b6acaf9899f2ba",
+    "originalPng": "hand-tooltip-1208.png",
+    "originalSha256": "b3185573d99cdfa16f23e04e22a5482312d2cb12f8c00afedcef732b110e73f2",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-hand-tooltip-848.jpg",
+    "sha256": "823be01ec26869e662d7978d4b7308e5a196884554490ecc428f17e7c64df461",
+    "originalPng": "hand-tooltip-848.png",
+    "originalSha256": "4d34507edc5dae2af5924ff3004ff0aeff83afd7da2b6797750672bcc194ee34",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-hand-tooltip-390.jpg",
+    "sha256": "a0e0d8777ba524d015a9c027e09c458c2bf3c8e8936818b5cb14513506f04ef2",
+    "originalPng": "hand-tooltip-390.png",
+    "originalSha256": "aaffcbb0f6a11a3eb759fcf122e7b9a798c1c56e8fddd4b5210d66a3a7f8ea2e",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-controller-after-move.jpg",
+    "sha256": "854f83b852165f6a87ce1b13f17b255278ad43171185d32756a9502b8239e477",
+    "originalPng": "controller-after-move.png",
+    "originalSha256": "6b68ea5b40c2df207f492a2c3bad9e51656c83a4a4757f455f60b6593857f4df",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-earned-firearm-tooltip.jpg",
+    "sha256": "05c47d887c448585fa0d2fc1e005f656b55931b42c9d50513991c1e8ba7130a4",
+    "originalPng": "earned-firearm-tooltip.png",
+    "originalSha256": "53c8a3b6de88e7027056d8fca44a4346af8f5a7dfdd65ca22eb08d1903e4948d",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-earned-firearm-equipped.jpg",
+    "sha256": "bee13e6851abed0deb0bedfd055bdd5127871616b8466b1464899e263ff19730",
+    "originalPng": "earned-firearm-equipped.png",
+    "originalSha256": "d62d2264a6957cb36860c1c08d13cad74f051a2ba1f2ec875c625d1fbc86517b",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-controller-branch-choice.jpg",
+    "sha256": "835e4b2e54197582dfa8476be5d46d08751ad3ae7ca37e17ca7685f5d2aa0d84",
+    "originalPng": "controller-branch-choice.png",
+    "originalSha256": "ae3652bfd1d3e38d5583cdd23c10284240b90dbaa486b1095b76ca065a5c1361",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-controller-escort-confirm.jpg",
+    "sha256": "a08322181ba9c3937644d91a11ccfba6772c1c812bd7fcedf9f3bbb9556b6af1",
+    "originalPng": "controller-escort-confirm.png",
+    "originalSha256": "5a16ce1cbb85812086800c606a877a359b13f765e6c68c890b707631ece3a04a",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-current-combat.jpg",
+    "sha256": "30df10bebe987634999bdf6101bc9a4680e6b9938c7a7b8908064599fc2a9677",
+    "originalPng": "current-combat.png",
+    "originalSha256": "112305bf803a3758a4e0e8279e1e535f656a0d6125d5a8f45ea944f96e632021",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-after-resolve.jpg",
+    "sha256": "3a91e6bab0f45d25c9681d75fa96f59a7449f2140d7cbb673e4dd5c4019bd4e4",
+    "originalPng": "after-resolve.png",
+    "originalSha256": "9cb23186c373a9de60f5143f94b18391e85f6d0dadeb57620449284240a0605c",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-mission-3-alert.jpg",
+    "sha256": "3d0e2a0b1ffec5b091531d684b1c44c28905252049f272772c774c8b25763b16",
+    "originalPng": "mission-3-alert.png",
+    "originalSha256": "521d1e9c87e040081ae454ad106d1a32aabe791ac79f8963aaddff63a100c8d7",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-mission-3-detail.jpg",
+    "sha256": "fb39d78f05f4d99c3b8a708b8951f2f69e9f70a37425118af14a9716ea1a069e",
+    "originalPng": "mission-3-detail.png",
+    "originalSha256": "6bcdc6e02b4a3bd810d1c7dbf4b8cbf103de74ff32a42df0eaa787ef5f9deb56",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-mission-10-alert.jpg",
+    "sha256": "d58b3ff5cb09291fe1abe8f090a7ee639274a4c9ea4028a26369bc9147bb7983",
+    "originalPng": "mission-10-alert.png",
+    "originalSha256": "bbf4af3a449f52f4a4d3424a5b4160c3739c7511354bef43fbe6938c0b4c56ce",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-mission-10-detail.jpg",
+    "sha256": "f8c845333fa401fbdb5e52e5e6e5ca035f67668d4dc2bafa75308cb4ce9e391c",
+    "originalPng": "mission-10-detail.png",
+    "originalSha256": "c6c925e14afb65ac1bc24a39d4301dc04578d7064af9dcde8d9961a9e098b5f6",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-mission-31-alert.jpg",
+    "sha256": "108a45b28f332ab3f143700ac62b25057b67aa6de21b03b160d3cdc2f4220e7a",
+    "originalPng": "mission-31-alert.png",
+    "originalSha256": "3f35dae1ac34cdb4597cebe64ff8e57a7131683c1ec5e357123c875bd9d48adf",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-mission-31-detail.jpg",
+    "sha256": "971a1e34aca7c3935c74d9ecad08476047be9e16564cc98400381af81b5420a2",
+    "originalPng": "mission-31-detail.png",
+    "originalSha256": "aebdbd1979b4765bbaa91ebbcae2e4df152ae762ac8b3e3ee1a0bf864977b3bc",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-mission-36-alert.jpg",
+    "sha256": "f1daa1118f25ab0c439b9d3db282f13e14be88086b0fabb9c8ea892b6ebea324",
+    "originalPng": "mission-36-alert.png",
+    "originalSha256": "27a94434a8795a634c4203571f434b152a90818d3290a9371597f4a4d343ff04",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-mission-36-detail.jpg",
+    "sha256": "1761a9473426916e8dfd9f103fb318bf486788544c4d076ca77710c861c28887",
+    "originalPng": "mission-36-detail.png",
+    "originalSha256": "648b59feb23a557b7220614b7fa90af023c89cd26a9144a48b190030ab0eae2e",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-chapel-zero-speed.jpg",
+    "sha256": "b3ea52e07e87e5d074f1737538509288b9a703d2d22da7f7b3eabc72bda37b3c",
+    "originalPng": "chapel-zero-speed.png",
+    "originalSha256": "030b407e4989e3fae6a31b582d5cea465eeae04deb56feaab3f6deda2f923f57",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-rotated-tiles.jpg",
+    "sha256": "b3ea52e07e87e5d074f1737538509288b9a703d2d22da7f7b3eabc72bda37b3c",
+    "originalPng": "rotated-tiles.png",
+    "originalSha256": "030b407e4989e3fae6a31b582d5cea465eeae04deb56feaab3f6deda2f923f57",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-chapel-one-to-zero-detail.jpg",
+    "sha256": "b1a684262566daffb8b8dfb958668790122ca8b3ec202c9025556e2f0ed9af80",
+    "originalPng": "chapel-one-to-zero-detail.png",
+    "originalSha256": "1ffbb7d0e1a2bc415016c1ee1788f44743561ae35dfadbc7c910a51be5522bc0",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-chapel-one-to-zero-combat.jpg",
+    "sha256": "f9922ed27d1aab6b5acdf3f9033dccd0be5d67d6c76fcb90e4219bd5a9ccfadd",
+    "originalPng": "chapel-one-to-zero-combat.png",
+    "originalSha256": "21633c7f7031ba6dab028de2791f7d387522d8c735d2a669031d228a0e558ba4",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/verified-chapel-one-to-zero-after-resolve.jpg",
+    "sha256": "c82c6a294196dacc0b809768620931e232b9b4c8ad3d82514437c503987ef5ac",
+    "originalPng": "chapel-one-to-zero-after-resolve.png",
+    "originalSha256": "7609f0c03119f6dfbdc814bcc289b895dfc2a51bda7d61464d7587189340e090",
+    "artifactRun": 38422858865,
+    "note": "JPEG review copy; the original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/latest-hand-4-cards.jpg",
+    "sha256": "383336b7bd1211fcfaac6c618bc2705c3c0f13166457ccbcef65d89b86611b1a",
+    "originalPng": "hand-4-cards.png",
+    "originalSha256": "93b5696f4e40db70a3332e53aabcf3c6b8f9b3e3fead18c88e5701ac6a87f5e1",
+    "artifactRun": 38423767765,
+    "note": "JPEG review copy; original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/latest-hand-5-cards.jpg",
+    "sha256": "bc408f12633011b903a1ffb2729d58dcdf9055dd999f3e9c2687263b5d2ae47b",
+    "originalPng": "hand-5-cards.png",
+    "originalSha256": "9a0a6ac0aafbb3283d427b86ef3c1f955496a9bbd9563a9451bf81da6388d7bc",
+    "artifactRun": 38423767765,
+    "note": "JPEG review copy; original PNG artifact expires 2026-10-20."
+  },
+  {
+    "file": "evidence/latest-unnamed-cell-label.jpg",
+    "sha256": "0af396906c7ff1af14420de0b6c5006b3b0218c8f530aed7d42fb7e448367abb",
+    "originalPng": "unnamed-cell-label.png",
+    "originalSha256": "2d3b42b9d01ce95471671331c5065dfadb3c6e4e0779ffc30a3f1044b14c65f8",
+    "artifactRun": 38423767765,
+    "note": "JPEG review copy; original PNG artifact expires 2026-10-20."
+  }
+]

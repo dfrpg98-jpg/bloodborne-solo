@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bloodborne:original-command:v1",
+  "type": "object",
+  "required": ["type"],
+  "properties": {"type": {"type": "string", "pattern": "^[A-Z][A-Z_]+$"}, "hunterId": {"type": ["string", "null"]}},
+  "additionalProperties": true,
+  "$comment": "Transport shape only. Do not normalize optional, null, boolean, array or nested choices; the versioned authoritative reducer validates each command. The catalogue is handler discovery, not a substitute for reducer validation."
+}

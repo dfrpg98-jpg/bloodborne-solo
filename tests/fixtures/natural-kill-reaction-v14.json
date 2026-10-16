@@ -1,0 +1,201 @@
+{
+  "seed": 1,
+  "commands": [
+    {
+      "type": "MOVE",
+      "cardId": "card-7"
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "N"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 0
+    },
+    {
+      "type": "STEP",
+      "node": "tile-14:center"
+    },
+    {
+      "type": "MOVE",
+      "cardId": "card-1"
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "S"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 2
+    },
+    {
+      "type": "STEP",
+      "node": "tile-14:center"
+    },
+    {
+      "type": "ATTACK",
+      "enemyId": "scourge-beast-1",
+      "cardId": "card-4",
+      "slot": 0
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "EXTRA_TAKE"
+    },
+    {
+      "type": "END_TURN"
+    },
+    {
+      "type": "NO_ATTACK"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "NO_ATTACK"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "REFILL"
+    },
+    {
+      "type": "RETURN",
+      "node": "tile-19:bottom",
+      "face": 1
+    },
+    {
+      "type": "MOVE",
+      "cardId": "card-9"
+    },
+    {
+      "type": "STEP",
+      "node": "tile-14:center"
+    },
+    {
+      "type": "STEP",
+      "node": "tile-14:left"
+    },
+    {
+      "type": "ATTACK",
+      "enemyId": "scourge-beast-1",
+      "cardId": "card-3",
+      "slot": 0
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "ATTACK",
+      "enemyId": "scourge-beast-1",
+      "cardId": "card-4",
+      "slot": 0
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "EXTRA_TAKE"
+    },
+    {
+      "type": "REFILL"
+    },
+    {
+      "type": "RETURN",
+      "node": "tile-19:bottom",
+      "face": 1
+    },
+    {
+      "type": "MOVE",
+      "cardId": "card-7"
+    },
+    {
+      "type": "STEP",
+      "node": "tile-14:center"
+    },
+    {
+      "type": "STEP",
+      "node": "tile-14:left"
+    },
+    {
+      "type": "MOVE",
+      "cardId": "card-12"
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "W"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 0
+    },
+    {
+      "type": "STEP",
+      "node": "tile-04:center"
+    },
+    {
+      "type": "MOVE",
+      "cardId": "card-1"
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "S"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 0
+    },
+    {
+      "type": "STEP",
+      "node": "tile-17:lower-left"
+    },
+    {
+      "type": "END_TURN"
+    },
+    {
+      "type": "REFILL"
+    },
+    {
+      "type": "MOVE",
+      "cardId": "card-9"
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "W"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 0
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "N"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 0
+    },
+    {
+      "type": "ATTACK",
+      "enemyId": "scourge-beast-2",
+      "cardId": "card-11",
+      "slot": 0
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "ATTACK",
+      "enemyId": "scourge-beast-2",
+      "cardId": "card-4",
+      "slot": 1
+    },
+    {
+      "type": "RESOLVE"
+    }
+  ]
+}

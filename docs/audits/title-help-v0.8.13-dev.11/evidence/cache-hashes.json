@@ -1,0 +1,13 @@
+{
+  "version": "0.8.13-dev.11",
+  "hashes": {
+    "hunt-app.js": "8094312a6fb9014e242144b2f47fcbba4c441a1949fe382df3993f6550e9012d",
+    "hunt-shell.js": "84526fec2add91f1a0676893c0d8c39efa581125923f4c31a7de242e306c98ce",
+    "hunt.css": "c6e93c88d54cb9b6de6e052ef0855b9025d1a88bd96df8f8516943609bb5d05b",
+    "hunt-entry.js": "1fabaf52aa2d2ed5860aa430f3d9753fd6ba2df4f91acccdc7c01faad5f45053",
+    "game-help.js": "06872d1403ac944e0cb3a325fec93796e7dab16a7d67dd5745e8c9d0c0913d11",
+    "game-help.css": "a20cdab97671267391b434658fc007b886419e7d4c7ae28edffae08ee1797c4a",
+    "title-screen.js": "3ade18d195e04dcb361c4067fb5fda091e7a986fe1283fe57e33627a5684c101",
+    "title-screen.css": "1e61684b3c6c8df9fed9df324711ce028b0ef564ef804827220670db1a325255"
+  }
+}

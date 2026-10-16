@@ -1,0 +1,2045 @@
+{
+  "sourceCommit": "c0e2c0cd17f1e22d17bbedb671f829060c24a4f7",
+  "checkedAt": "2026-10-15T13:42:17.756Z",
+  "url": "http://127.0.0.1:8786/bloodborne-solo/hunt.html",
+  "filesVerified": 335,
+  "allHttpHashesMatch": true,
+  "directoryListing": false,
+  "postStatus": 405,
+  "denied": [
+    {
+      "path": "참고자료/",
+      "status": 404
+    },
+    {
+      "path": "components/images/",
+      "status": 404
+    },
+    {
+      "path": "../",
+      "status": 404
+    },
+    {
+      "path": "hunt.html/",
+      "status": 404
+    },
+    {
+      "path": "../bloodborne-solo/참고자료/",
+      "status": 404
+    }
+  ],
+  "source": "C:\\Users\\GOOD\\Documents\\Codex\\bloodborne-solo",
+  "desktop": "C:\\Users\\GOOD\\Desktop\\보겜프로젝트\\bloodborne-solo",
+  "results": [
+    {
+      "file": "actual-components.js",
+      "bytes": 2637,
+      "sha256": "765c73aef0e0fccbea0617a2e8ad6f735428eb23df8123af45350a5fa6a3456c",
+      "status": 200
+    },
+    {
+      "file": "app.js",
+      "bytes": 28545,
+      "sha256": "873a5a3f988ebb4025e73b1f55ee12ffc81d835f768b06993324faa74fd7e474",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/beast.atlas.json",
+      "bytes": 35802,
+      "sha256": "00efb6900ed88ba3326774edc5b1a167bcbb9b3d355a71a1651c58196c188211",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/beast.png",
+      "bytes": 2029187,
+      "sha256": "553cb7f423987034ec9a1853a416935090f11cc8d96ff4986ac06f95049f5d61",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/boss.atlas.json",
+      "bytes": 26654,
+      "sha256": "1eb4971bc7dac09ba03ee4f7b1640a60ee6d0213456027528b3da2c609561500",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/boss.png",
+      "bytes": 2117512,
+      "sha256": "3098fff6158fbaf9dd5eeecdc2ad63e58353fcf46d5cc7a05c13cd103e95941a",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/cleric-beast.atlas.json",
+      "bytes": 271816,
+      "sha256": "3788884e027e9de5ec78468744a2fc924eb1a56aa4a267dfc2593dd84319a474",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/cleric-beast.png",
+      "bytes": 1398579,
+      "sha256": "9154cebc4dd93ea0fe53a7aaf0c64166a5b200f24888c8ba2792baf3a6be6d43",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/ENEMY_SPRITES_PROVENANCE.md",
+      "bytes": 8909,
+      "sha256": "228a6f569af36a1c0bb4538c9adbf858cf542020d518c49e0d3953f90b38832d",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/female-patient.atlas.json",
+      "bytes": 396730,
+      "sha256": "9af2317ebaa41fa7f9447b74714d9940df6cf60dafe6d25874454354746d1d27",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/female-patient.png",
+      "bytes": 1547855,
+      "sha256": "e5083982e32e16568866e2b1f45b139cfce37fb79cff8da59f673589be731c95",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/female.atlas.json",
+      "bytes": 20150,
+      "sha256": "86de02adea3b8060ff348217ae51f213d01ed89440ca4c12226005b9fcb41533",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/female.png",
+      "bytes": 1434901,
+      "sha256": "193f1e483b3f35d3c9192704553feb6b11a45eb61546db96e03d9543a810fd90",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/hunter.atlas.json",
+      "bytes": 67654,
+      "sha256": "e132da8a1ef469062f0fe046b72612809ce96bc1c118032d9d65cee6b2fb0147",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/hunter.png",
+      "bytes": 1668211,
+      "sha256": "73baa453857a91bc2ac19298f842f3d6bd2a8a3f5def6ed8c6f3f2c06a118a09",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/huntsman-mob.atlas.json",
+      "bytes": 403485,
+      "sha256": "7a65bd0b25aebfd8a3df3aa89cc6752f08e0aab11fabb27fbb35d196ca89f383",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/huntsman-mob.png",
+      "bytes": 1443925,
+      "sha256": "ef50789dbefefbbbd8d34ee7ad6ccd2fd6fbe47f5278affe1245c55d4a65fd38",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/huntsmans-minion.atlas.json",
+      "bytes": 414075,
+      "sha256": "5aefc78720d4552be6ca7211e9d06e727a206bc88a442d77aa1ce13007720af1",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/huntsmans-minion.png",
+      "bytes": 1849349,
+      "sha256": "dccacb4a1ceea110b7ad6f65aca94a21366cb9d2c50eb463239e832af6dc736b",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/iosefka.atlas.json",
+      "bytes": 371096,
+      "sha256": "cf5b592f4ac86f5a33de9abecb8c78e82b46d8581ae912b537801e21ff1c3b76",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/iosefka.png",
+      "bytes": 1650272,
+      "sha256": "05b1c757d02d9aa925c226aec9bb814c1ffb96623155eac00befc11e176a390f",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/manifest.js",
+      "bytes": 834368,
+      "sha256": "978f595e942fdb457a0728faaad9b75ce0d56a94a3e3479b7714b5d9adff8cef",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/manifest.json",
+      "bytes": 3156771,
+      "sha256": "b95eec9e88ed8dcba9d00567e4a4e865df8145f305925b814300d06528889321",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/mob.atlas.json",
+      "bytes": 27682,
+      "sha256": "c41e9ec1ba5c15c3109d03a8ff3e1790b854f3e2d21e3eff3d87cb7575190b97",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/mob.png",
+      "bytes": 1614055,
+      "sha256": "3c5e3057786e0b9257dce296fd35bded2fba2a5cdabbf901845e531127fdd779",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/provenance.json",
+      "bytes": 2138,
+      "sha256": "39d59884f31ad67e0f67381e045ba8c4fc9b0a4163a2a2ae77b98838c754d549",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/scourge-beast.atlas.json",
+      "bytes": 497253,
+      "sha256": "0d79cf99a9896e0178a0617927b37bec61f06c0d5a1e56ca8da95bacee006754",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/scourge-beast.png",
+      "bytes": 2044227,
+      "sha256": "de2263e279c0848ac0f0a86c09902bf3b7da9cebe606a28653eb94b41fde077f",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-beast-claw-a.atlas.json",
+      "bytes": 8865,
+      "sha256": "9c13cf30668a6d09f04f970e8c83a954dad8925c4df0a83ae6d54e393f6ea983",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-beast-claw-a.png",
+      "bytes": 2681832,
+      "sha256": "aa971f891386d993ebf062b569102e170f000b82d591607fef0ca700a579926c",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-beast-claw-b-v0810-metadata.json",
+      "bytes": 19246,
+      "sha256": "901c309fc9866bd63368455915531614f68d4c342d9f01a1173bbf16701b772c",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-beast-claw-b-v0810.atlas.json",
+      "bytes": 168404,
+      "sha256": "93bf9609d32d23e8d123febc8a80a4d4ae071e49810c797e50afbbb874341c6d",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-beast-claw-b-v0810.png",
+      "bytes": 2750626,
+      "sha256": "b1e6e0f34c674f27e417f2cb5eecdb651fdc45ee8025f8d08cefd01c3f1d91c2",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-beast-claw-b.atlas.json",
+      "bytes": 105229,
+      "sha256": "cc460fddeb2cc43fb8291b5a186159e1eaeb554a1d6461ad002a583373af6f24",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-beast-claw-b.png",
+      "bytes": 2415282,
+      "sha256": "0b085fcdad90d3c2c8496a78f18bb97e5419d05299f69c9146a3cd7bf11ae6cf",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-blade-of-mercy-a.atlas.json",
+      "bytes": 144504,
+      "sha256": "a377bc779a451fdce5745c73ee3cd9baf17b64451676b287141d503d57031b19",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-blade-of-mercy-a.png",
+      "bytes": 2284545,
+      "sha256": "877d34697f5bb4a5b8c94d5a1a703cde1ce9373050897af37d8be5de0bb663f4",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-blade-of-mercy-b.atlas.json",
+      "bytes": 8866,
+      "sha256": "afe121569751d08e0a5530abb66ba2bef82a998b3ca81f7837b249606c5a2521",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-blade-of-mercy-b.png",
+      "bytes": 2342812,
+      "sha256": "a6451f4ea2c607e2fe820ed0e1f85267e9ac93d8a88bf364d5ee996f42edbc19",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-burial-a.atlas.json",
+      "bytes": 77338,
+      "sha256": "99e04c51ec9cb4523d6798da91b9096fd0241d84b9946e082900f7f802761fb1",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-burial-a.png",
+      "bytes": 2173009,
+      "sha256": "c46b1cb52233e07113eb1e07dafb0fd615fc64f2dacc1f25354c3887934d0225",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-burial-b.atlas.json",
+      "bytes": 8858,
+      "sha256": "e46e1680cb160e1023da919d776cb672bbf175f5462c340283701ab7bfb3b773",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-burial-b.png",
+      "bytes": 2084672,
+      "sha256": "25a975d324b277245c3b83eac1b2cc30669079d41e99b2ac3038977bc0b5fea1",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-chikage-a.atlas.json",
+      "bytes": 130749,
+      "sha256": "757ab5abc036aaa65bd1bc9bff39c59cfca4c3fecdcda898141497672dd9aeb7",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-chikage-a.png",
+      "bytes": 2292371,
+      "sha256": "ebf7e25e563318a0613a13a1e035bc690bfb8cdbf2c3b003c63812560d8c19c6",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-chikage-b.atlas.json",
+      "bytes": 86865,
+      "sha256": "3fd0fe4535546f449352628188fea860293e362a654df64fc8e8c526671d67e0",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-chikage-b.png",
+      "bytes": 2256401,
+      "sha256": "30e2989e13a7be69067267b898b3e6ea1189cc5852e0b08a9c5ca01fd90259db",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-hunter-axe-a.atlas.json",
+      "bytes": 8865,
+      "sha256": "f6cc321cbff8ba3d78761bda3ec0312e1cf25993abff796c9abe90860e8e932f",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-hunter-axe-a.png",
+      "bytes": 2361333,
+      "sha256": "f78c97300c583d5dd8b6579d307fead17a8599debad107cf019da50e1226700a",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-hunter-axe-b.atlas.json",
+      "bytes": 63897,
+      "sha256": "b1b87d4e2d532bffb725e38a895c0b42992424c4341b000ca8f81a17421cd56b",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-hunter-axe-b.png",
+      "bytes": 2291863,
+      "sha256": "87af293062b358411d445a2aa12abf8ae4022336aa44504ec1d2c593459c1b4e",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-kirkhammer-a.atlas.json",
+      "bytes": 81447,
+      "sha256": "d5233ad3be53b5bb06df2986e519ee4297b97a9ff4a8cb374d84a71ad9fba63b",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-kirkhammer-a.png",
+      "bytes": 2352985,
+      "sha256": "478dec9f538a326e9e89844a9c489e1180b5c2e933671c2229c5d3472046ad2b",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-kirkhammer-b.atlas.json",
+      "bytes": 65622,
+      "sha256": "1510368a1cffb417836afb1199784bf63a8dfcc78e4ac2e08b6fcbd9fde4f1e1",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-kirkhammer-b.png",
+      "bytes": 2404197,
+      "sha256": "e9213b424fdc55ff12e64ad3a1f48f531fb12aa1acb4e7002fffcbbeb9e0c2b9",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-logarius-wheel-a.atlas.json",
+      "bytes": 147967,
+      "sha256": "114526a1add2e5a5a8c7cd61e63358d28179b88164a728f9d3b09dea23b00f6a",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-logarius-wheel-a.png",
+      "bytes": 2388381,
+      "sha256": "5de0f60b3d7c0cceee5e0ba1d9cee69583900adbb1f0dd93f922c6c3b53c5980",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-logarius-wheel-b.atlas.json",
+      "bytes": 8871,
+      "sha256": "68f47a41c8b1394adc3dce243155ef1040ce96280e6454db73fbd25e179faac2",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-logarius-wheel-b.png",
+      "bytes": 2592851,
+      "sha256": "53052b9873199b3d6ccfdd8d28a03077578075281c462f712396d4f591299f9d",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-ludwigs-holy-blade-a.atlas.json",
+      "bytes": 8870,
+      "sha256": "da159df7b7a1d7f33964e70e0a1fc00fbc15a0fa7ee13cb4385c02b9f9fc6e15",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-ludwigs-holy-blade-a.png",
+      "bytes": 2330424,
+      "sha256": "54dc9b6c8ddaa9834ab4bbc4bbde6749c2e2144e6e0afd2054a127e745bc8ec2",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-ludwigs-holy-blade-b.atlas.json",
+      "bytes": 8873,
+      "sha256": "3d4b6cb4d579307c908724aed9b79a37ee94e5447bd507876d35dee3e035f0b2",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-ludwigs-holy-blade-b.png",
+      "bytes": 2263577,
+      "sha256": "d57c39903a3e7efbbfb8926d2fabf7ae8b6d2f7b09b38d6c9a8bdda4c8ec5c2f",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-reiterpallasch-a.atlas.json",
+      "bytes": 76459,
+      "sha256": "ba9ea824393a798ef2caf4da6e9daef89f002e38aeebe8ceb297842588bedafa",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-reiterpallasch-a.png",
+      "bytes": 2347443,
+      "sha256": "d8782eb343cda1fcccad250a5220fd7df0c2057500deff8fb6b8bace7c4b2da0",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-reiterpallasch-b.atlas.json",
+      "bytes": 8868,
+      "sha256": "44ff1dbf6b78fc0ffb0bc19f2e943c8676211e247bd036eefe966eb64c57a891",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-reiterpallasch-b.png",
+      "bytes": 2278113,
+      "sha256": "aee1a50762c900736fd02e2039cf5be92c62f202f95422c66c77590a921ef7b8",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-rifle-spear-a.atlas.json",
+      "bytes": 79018,
+      "sha256": "7e4e53df7311eeb404df6f478490a4ac6efc99f4c991a68eda706c8290ac7874",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-rifle-spear-a.png",
+      "bytes": 2177494,
+      "sha256": "18d52671447fb1993211cc01474c78482c4d1eb2df6913eca4c34baef2332839",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-rifle-spear-b.atlas.json",
+      "bytes": 71954,
+      "sha256": "43444bfc64a974f44f9fd638a70878a814e8aae3028b96dc6cc26c8367141cfe",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-rifle-spear-b.png",
+      "bytes": 2226387,
+      "sha256": "0c073913ad861897b9cce950c323f49ca1fde05d3eee28272799e157ff2dc295",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-saw-spear-a.atlas.json",
+      "bytes": 8862,
+      "sha256": "a871998844ae3966c4ac598fd6b7d9056a4984e085290b7dee1a420946dc0658",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-saw-spear-a.png",
+      "bytes": 2245568,
+      "sha256": "5b2655c1890fbb20afdd9e0fc82ca6e331590671f02e7b00647303e5136f5952",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-saw-spear-b.atlas.json",
+      "bytes": 45276,
+      "sha256": "d0d78a9856b61c3c658e52fcda9730c72c8b4b43f0682dec4f25055bfb063225",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-saw-spear-b.png",
+      "bytes": 2357678,
+      "sha256": "6751afc637fa11401928cbb844975230d84098643ef7a9cf9a03c7e846b1a616",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-stake-driver-a.atlas.json",
+      "bytes": 8867,
+      "sha256": "f5f8b7df71613bdf1b1fcf0953598613d1d301889f3aff516221befafd7e1392",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-stake-driver-a.png",
+      "bytes": 2208457,
+      "sha256": "8eea4586b4267cc57b02274a50371f9d0bcad5248352d1e78f93767e132e7feb",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-stake-driver-b.atlas.json",
+      "bytes": 72519,
+      "sha256": "acc40dbf1590c89168046692cebacb7212af2d9f234de7c819260d2a9ebd2053",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-stake-driver-b.png",
+      "bytes": 2158975,
+      "sha256": "9ff3304d9737da3d82278a0ae4c5e99aef97990d05546cf38671c75b3948bf13",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-threaded-cane-a.atlas.json",
+      "bytes": 8868,
+      "sha256": "94c702a7ed1f29912a1b5daf276644d86ce42043af8f3f6b75a56e73e94aed6f",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-threaded-cane-a.png",
+      "bytes": 2182158,
+      "sha256": "37cd3631333511c5469f615229e9cfd916b735af5fb0df314146e4a81c1a2a5b",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-threaded-cane-b.atlas.json",
+      "bytes": 8866,
+      "sha256": "4aca3b74db0381c699e36426c9a58859dbe932115480b831471448cc276925ae",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-threaded-cane-b.png",
+      "bytes": 2107695,
+      "sha256": "2d37e00000104de27c47077640898ec9f5c56b16e550846119339ca924068bf7",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-tonitrus-a.atlas.json",
+      "bytes": 8861,
+      "sha256": "96ce731d14179b327137e2740108ca704f5afe223e60ad27b03f6fe228ae0a2c",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-tonitrus-a.png",
+      "bytes": 2256389,
+      "sha256": "0afe9d0aeddcc1a77a7c611e7886f53b788ab70e58962453bac8f598cb19904e",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-tonitrus-b.atlas.json",
+      "bytes": 8863,
+      "sha256": "c2c12ee796e0abeee8d21ed008bbf04b13d339dcb7fd4add6cfda8c526e0be65",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-tonitrus-b.png",
+      "bytes": 2206519,
+      "sha256": "8f9e15e95672343c3cc1a24735884894e58b52ce9ac78a35513f7a09b54ac1e7",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-uncanny-ludwigs-holy-blade-a.atlas.json",
+      "bytes": 8881,
+      "sha256": "16047a547b426f9d28da43a1e2c58e66d26c0a64ef1c66f73789a3e4dc1b00b7",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-uncanny-ludwigs-holy-blade-a.png",
+      "bytes": 2184940,
+      "sha256": "44c257f76678a56c2216d73badd48375bd95ed8e49a152983262642ffccdf04f",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-uncanny-ludwigs-holy-blade-b.atlas.json",
+      "bytes": 109794,
+      "sha256": "7861aadd5ab456c339f1375db0b86f2c065b6cfdf5d92190e6da1aa58f6fa9f2",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/w-uncanny-ludwigs-holy-blade-b.png",
+      "bytes": 2278385,
+      "sha256": "ad18541b1420be739b792d08a5f28b57f8ad492316ff1ee4c8625644b0cb367f",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/weapon-manifest.js",
+      "bytes": 704262,
+      "sha256": "3713d5a71462298c247899ec5126df7629da3b6d0c45ee83b80b632272cf42b9",
+      "status": 200
+    },
+    {
+      "file": "assets/characters/weapon-manifest.json",
+      "bytes": 2024611,
+      "sha256": "a8580cfef8ef2dca729e5dee6aba5e1aa04dbaf8888fe2d1976ff0dc75887d00",
+      "status": 200
+    },
+    {
+      "file": "assets/objects/broken-lamp.svg",
+      "bytes": 1805,
+      "sha256": "0ad5cfd2ef19f6bd4ad7d96fc06092db9172174ff78453679be994a7f691e8f2",
+      "status": 200
+    },
+    {
+      "file": "assets/objects/chest.svg",
+      "bytes": 1462,
+      "sha256": "f3418f51b65bc2d465305d9d15b34a10d53208218f1d7d811adba5aafb1e46a3",
+      "status": 200
+    },
+    {
+      "file": "assets/objects/lamp.svg",
+      "bytes": 1750,
+      "sha256": "4682e85ce906f49fc696d54c9498e55cb5dac040474540da1067b9d88cbbb820",
+      "status": 200
+    },
+    {
+      "file": "assets/objects/survivor.svg",
+      "bytes": 1935,
+      "sha256": "05d51220ba0b186cd8a5c8e0bf826ea03c3294f9d171b781d2fa9f186cbcf3e4",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/index.html",
+      "bytes": 4462,
+      "sha256": "f1013c867fdef408bbf205dfc6e24d501c32e37e2b14828941747411184150fd",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/legend.svg",
+      "bytes": 4298,
+      "sha256": "a221d00e5226b69b9bf822d771ee9e6366144ffddb891cc519a0036d7fa021a5",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-01.svg",
+      "bytes": 82902,
+      "sha256": "31357ec5596fc67f4dd56cd94258e7554b51026f843e1eae30ad4e699e93cb2a",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-02.svg",
+      "bytes": 74831,
+      "sha256": "f7f9d135a86fc16d7ac51a72be70f003495734ba4dad08afa098b80a2d420968",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-03.svg",
+      "bytes": 66677,
+      "sha256": "724b82876cfba688c93a90897b404e7fc11775681cfed8894f87e84bd9908966",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-04.svg",
+      "bytes": 82296,
+      "sha256": "10bd99c7b9f4cb001223c4c29f0cbae982a078c3ffb93ce5ae634a00e195d989",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-05.svg",
+      "bytes": 80142,
+      "sha256": "a4e2c21a5c370b5abd4d293c13cf9e01d9a4305e18a0cfe98eca49a8fdda8be4",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-06.svg",
+      "bytes": 78488,
+      "sha256": "b2d83cf56ab439929ce53f7ebf373c267f627344af4d83a71c9631bdf4b062e9",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-07.svg",
+      "bytes": 54022,
+      "sha256": "b7077503c47d971bc3659ea308c60d72a3ce504234ad259321f9c898376d5883",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-08.svg",
+      "bytes": 71790,
+      "sha256": "76368d87dc1fe50749fc6e0fb9b685a1710656914d730fbbb45313968b6ec97d",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-09.svg",
+      "bytes": 80397,
+      "sha256": "5c4f9e5d87ffa84109880b541b4e6c7ba1e3bc10455665cedd6e53cbb922ba09",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-10.svg",
+      "bytes": 95901,
+      "sha256": "c36d4ae03cb4ca1afbd9284f155f579d4b79c58d636c859277c552e93525e4ff",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-11.svg",
+      "bytes": 83422,
+      "sha256": "648e61d03cafc115bfc60c57607e8de0b417d33bed882fe5f873251541e36bd2",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-12.svg",
+      "bytes": 54015,
+      "sha256": "2bce93dd93a60cc68532699165081b6aaaac259a46b1e2521ca84068e3b1302a",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-13.svg",
+      "bytes": 83295,
+      "sha256": "bc501536440ca5c40e9d9b4e33a87c2ede5b85ae35fcb58dab5f8cad9166f62e",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-14.svg",
+      "bytes": 88471,
+      "sha256": "135b608623ba060690ab88d0152a8a931a878adf44a2e638bc50b5efb133ca1c",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-15.svg",
+      "bytes": 78345,
+      "sha256": "87acee97398c1856586fb37f4d7001704b0e3dc95cece6d4e2c6f3176fe9de2c",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-16.svg",
+      "bytes": 83213,
+      "sha256": "eb597b8d4106e4481716e22972b247ed0c0110a2f45575cca81657738860e404",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-17.svg",
+      "bytes": 49137,
+      "sha256": "ce7a25615ba3ff6b1495e9d5b9fdcdb83b3ac0b2a04301565be662863b172381",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-18.svg",
+      "bytes": 81217,
+      "sha256": "7186cebe0441fef8148723419559d4d7f49a429497b8072e6d9283f14ce0a366",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-19.svg",
+      "bytes": 84563,
+      "sha256": "e861ed7532461bfccc64a6e29db3d1dc3a2139e731b34c69fefc7be8fb68945f",
+      "status": 200
+    },
+    {
+      "file": "assets/tiles/tile-20.svg",
+      "bytes": 51158,
+      "sha256": "826ad26ee41b9f17d4b78cadc95868c73e3086c482cc99fe18be0eab0d4ea933",
+      "status": 200
+    },
+    {
+      "file": "assets/vendor/phaser-4.2.1.min.js",
+      "bytes": 1375976,
+      "sha256": "66348b1b5141e49b7d5ebbe688cddcb502eab1cb00f21c538686a5b2c5abe4de",
+      "status": 200
+    },
+    {
+      "file": "assets/vendor/phaser-LICENSE.md",
+      "bytes": 1120,
+      "sha256": "d59c20a9deb5dc240614b428dce5246ae561d15efeeebea0e069d73f0a78fbff",
+      "status": 200
+    },
+    {
+      "file": "assets/vendor/phaser-provenance.json",
+      "bytes": 747,
+      "sha256": "d4e960233c1bc32f9b1128f72c6e8110e793358b2d3655c2038c597571ebe133",
+      "status": 200
+    },
+    {
+      "file": "boss-components.js",
+      "bytes": 4561,
+      "sha256": "d2b957504530ba2729e0668cb6a812895692722f602edc13c14cc9875abc7d92",
+      "status": 200
+    },
+    {
+      "file": "campaign.css",
+      "bytes": 4817,
+      "sha256": "e39170843fe81547a1da7c8fe65b1ea198fead9c3f74c955929e1cbb406a50d4",
+      "status": 200
+    },
+    {
+      "file": "campaign.html",
+      "bytes": 1635,
+      "sha256": "9a8418b885cc559d0a9f9389e706e640f03fa2d24c8c35d12a71243abf44deb4",
+      "status": 200
+    },
+    {
+      "file": "campaign.js",
+      "bytes": 399,
+      "sha256": "2477718b9010e8f2a07f665425bd3bcedd3db136b29cb853fbb6ba044afb1e86",
+      "status": 200
+    },
+    {
+      "file": "campaigns/long-hunt/data.js",
+      "bytes": 108442,
+      "sha256": "d1e4bb3ac201d4fb008e5a79db1ae0c0c6bc6faf66e6a0575b9732a35d7bd769",
+      "status": 200
+    },
+    {
+      "file": "campaigns/long-hunt/data.json",
+      "bytes": 108421,
+      "sha256": "15a190a5c56ad18abe71be9caeaffedabca5b48ff41976589b293d9d4fbaed52",
+      "status": 200
+    },
+    {
+      "file": "campaigns/long-hunt/narrative-text.js",
+      "bytes": 19290,
+      "sha256": "4a64341a07632447d97367324fb676a82299ab23c8e8ff28512cc04304624647",
+      "status": 200
+    },
+    {
+      "file": "campaigns/long-hunt/READ_ME.txt",
+      "bytes": 9460,
+      "sha256": "19a2cfb5683ee16debf634b115c17ac52095968cb8f6dea97c98fefa4a1210cf",
+      "status": 200
+    },
+    {
+      "file": "CHANGELOG.md",
+      "bytes": 22156,
+      "sha256": "fa20636e7ff4f1de32ba79f8dfee526f99301bc5c080a09d8b475c2b58d83f85",
+      "status": 200
+    },
+    {
+      "file": "chapter-app.js",
+      "bytes": 16169,
+      "sha256": "30bd6735f0a9e91c088afe92edb9e4bb2d8a562494e37b18b999dc7f55bc3efb",
+      "status": 200
+    },
+    {
+      "file": "chapter-engine.js",
+      "bytes": 19898,
+      "sha256": "40fb02224f705e5b9e291ea9fee18b8c6989a8bd5ee9975069be7b3744212a1b",
+      "status": 200
+    },
+    {
+      "file": "chapter.css",
+      "bytes": 9171,
+      "sha256": "ad4e398439e2be8d778226157c637e1cab2b42d8628efd5fe29d7808d65c36c5",
+      "status": 200
+    },
+    {
+      "file": "chapter.html",
+      "bytes": 8812,
+      "sha256": "d3ec89b8684290d4fd9fc153e431f7b868eb24f7329bc8a231de3d643f00e7df",
+      "status": 200
+    },
+    {
+      "file": "components.css",
+      "bytes": 3819,
+      "sha256": "7cfcca8c2874218a5093fc5049c8f2e6a229273c320b610a5dca5203da1e4f26",
+      "status": 200
+    },
+    {
+      "file": "components.html",
+      "bytes": 1382,
+      "sha256": "30d5e4e49b123fd2ab81283b4852d4c822dfe7e8191f870651f117321f8d783a",
+      "status": 200
+    },
+    {
+      "file": "components.js",
+      "bytes": 1695,
+      "sha256": "e307b2dab1e84d2c68b7d5cc655940dc676498c43269e2fd7f5f4c9ea5dc0ce7",
+      "status": 200
+    },
+    {
+      "file": "components/cards.js",
+      "bytes": 56978,
+      "sha256": "a46234a29ee3d606895c23cda44303da4b16a648e430f1b0d468fecbd604b851",
+      "status": 200
+    },
+    {
+      "file": "components/cards.json",
+      "bytes": 56803,
+      "sha256": "682f746a2d976e2510a6695fb45fe6005eb2e6a906d055528947531f4b2e27c6",
+      "status": 200
+    },
+    {
+      "file": "components/cleric-beast-source.txt",
+      "bytes": 3208,
+      "sha256": "3fb53e6179d445f00ec699efe0829565274f0fe68838a3f3c90757787c0b3ed2",
+      "status": 200
+    },
+    {
+      "file": "components/extended-enemies.js",
+      "bytes": 43643,
+      "sha256": "c02c5a006584af616e7efed6ff3c8970c86dc2ddeea9a1602bd1f3281d33ccdc",
+      "status": 200
+    },
+    {
+      "file": "components/extended-enemies.json",
+      "bytes": 43410,
+      "sha256": "451c9051e66a5f7ba2b9b457a99402c832e331481940f50f3f2625dca59c9534",
+      "status": 200
+    },
+    {
+      "file": "components/extended-firearms.js",
+      "bytes": 14527,
+      "sha256": "c7bbc96ee71bdb6377f0d885a7bdef869524a4a6ec3e697eea828f4166203b7e",
+      "status": 200
+    },
+    {
+      "file": "components/extended-firearms.json",
+      "bytes": 14289,
+      "sha256": "ea9565f7391e87b10f3b09cd8a7469ceae326c59d022a1ea143c4387dbabc435",
+      "status": 200
+    },
+    {
+      "file": "components/extended-weapons.js",
+      "bytes": 61465,
+      "sha256": "ebe9755ae5103ffbfe69fff7a129d71e5eeb8f3b5a50cd88ecde68965e72f747",
+      "status": 200
+    },
+    {
+      "file": "components/extended-weapons.json",
+      "bytes": 61228,
+      "sha256": "4b39d0ae1ccb17c2a77c8c2de7a36cc39c43c31caa2fa6063095848776e266be",
+      "status": 200
+    },
+    {
+      "file": "components/supplied-components.js",
+      "bytes": 10165,
+      "sha256": "47130b146716fceb3edf0792ce3f5b93195f5be63e6ed8561a7532899b788d42",
+      "status": 200
+    },
+    {
+      "file": "components/supplied-components.json",
+      "bytes": 9894,
+      "sha256": "ba0bfdd0b3c4af34eca04ffb24d9477048c5b40771c8e03bea263a51061fdee0",
+      "status": 200
+    },
+    {
+      "file": "components/weapon-visuals.json",
+      "bytes": 17349,
+      "sha256": "4ed12e7a0471ad0eaa4f2960467ed338deaf4cecfbff298570f63562763dab19",
+      "status": 200
+    },
+    {
+      "file": "CONTRIBUTING.md",
+      "bytes": 2443,
+      "sha256": "d940948243d22465991eeb1faadabc551f5f38719632847f4b2d87efaa785ad3",
+      "status": 200
+    },
+    {
+      "file": "data.js",
+      "bytes": 7045,
+      "sha256": "57a9565f39b6c383ffb0e8ac937b4b414e421596fae113ac3033fdf97e43951c",
+      "status": 200
+    },
+    {
+      "file": "enemy-action-history.js",
+      "bytes": 4916,
+      "sha256": "6bfe60ce2ac110c303ee0fb21ac0c2619331be28680372ea7fb6ee1a8d0015f4",
+      "status": 200
+    },
+    {
+      "file": "enemy-deck.js",
+      "bytes": 1705,
+      "sha256": "b842a5dfad84a10016bc4061f9daf946f74ddac8b134b51d16605a133518a5be",
+      "status": 200
+    },
+    {
+      "file": "enemy-visuals.js",
+      "bytes": 2184,
+      "sha256": "2350a252f8f8122a2f8bb0df958a086d0ce744fd38d404093905d244b858ae68",
+      "status": 200
+    },
+    {
+      "file": "engine.js",
+      "bytes": 37975,
+      "sha256": "3ceef22e40f70b12edf86cfc87299880e88c28400d1f94cb61b68aace8aa08a3",
+      "status": 200
+    },
+    {
+      "file": "extended-enemies.js",
+      "bytes": 3079,
+      "sha256": "0228e33d72958c26ea65ba0f2a4d76c0e7ac69a9b2272375c9503371a5f07eb0",
+      "status": 200
+    },
+    {
+      "file": "extended-enemy-rules.js",
+      "bytes": 10298,
+      "sha256": "3faab9be409155467d4b71caa36b06481bb116b4262497a9dba2884786b4d0b8",
+      "status": 200
+    },
+    {
+      "file": "extended-firearms.js",
+      "bytes": 909,
+      "sha256": "f0ca399d3b2809b1bdc508c33ba8e7e661894a1de3682c3fd0db376cae280435",
+      "status": 200
+    },
+    {
+      "file": "extended-rewards.js",
+      "bytes": 10485,
+      "sha256": "e7afb418749fde7777634e407a83aafefa6ecb983af0214fc5359d5c3ca14215",
+      "status": 200
+    },
+    {
+      "file": "extended-weapons.js",
+      "bytes": 980,
+      "sha256": "e05be4ca746aa8442e1234046ab7c619b90d8cfa62c381d237a92ae089b13aea",
+      "status": 200
+    },
+    {
+      "file": "firearms-engine.js",
+      "bytes": 8716,
+      "sha256": "7685621aeb8cf24fa30eced22a27e38c16977472da31d3174ad75d941beb40ce",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-0-400-normal.woff2",
+      "bytes": 18176,
+      "sha256": "d26dc00bf3ef751ddcaf4e9aaeae8beb6decf9c19c94ba470837387de6fd88df",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-1-400-normal.woff2",
+      "bytes": 29640,
+      "sha256": "296be7fca256a675d2cc868d8d7928ef2127f2860d41179e1c5741d6ea2f6ca4",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-10-400-normal.woff2",
+      "bytes": 10972,
+      "sha256": "627dd667a438c87086b815811506cb96df87f991eeabc334bbf4a87e6aec2883",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-100-400-normal.woff2",
+      "bytes": 14216,
+      "sha256": "cd2c8427158fe8090f5987b8aa37a09a32f8cd9412f8709c276d817b01c2c479",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-101-400-normal.woff2",
+      "bytes": 14284,
+      "sha256": "12e9d93f880c7cd776672a7f9d0acc21a7f6d30cbc519d3bb966b92a02c06a06",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-102-400-normal.woff2",
+      "bytes": 13924,
+      "sha256": "b48e9ad5e28aa9e8f11d157ef80af56854d861a09ad6974e0f1ede46eed1c6f7",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-103-400-normal.woff2",
+      "bytes": 13448,
+      "sha256": "dff2d35b7fe340191062170bb9fae8ed37fda855ea6b49ad74f4dfe68f0526ea",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-104-400-normal.woff2",
+      "bytes": 15488,
+      "sha256": "63097515d979a76c3df8837d799ee0402d3b410cc7ba0d65c894dcd8e5ab544c",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-105-400-normal.woff2",
+      "bytes": 13924,
+      "sha256": "e8707face74d19eb921da50df66427d26fb2b925de679434fd7f4365cac8c86e",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-106-400-normal.woff2",
+      "bytes": 13400,
+      "sha256": "d089b9d9c8bdbc162780dba5dc46df0fbae5912451456ecc5cb14630a02f1c6a",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-107-400-normal.woff2",
+      "bytes": 10456,
+      "sha256": "8a14ec033b1d9fd4eb9ca25d75d69aeededd9bdcf445f3cc16a0e97654f9d798",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-108-400-normal.woff2",
+      "bytes": 10764,
+      "sha256": "7820ee2d081a60b9ff9be3ff4fa9e8194e2a116cb190af829a17906df80c0931",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-109-400-normal.woff2",
+      "bytes": 9824,
+      "sha256": "07a9ecf9647264a3086217865f87bf095e3ea4006c4ec0bca1831f3ed58002fa",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-11-400-normal.woff2",
+      "bytes": 10644,
+      "sha256": "9a58539f4fcd6b5ad704b4806e7ddac7e7a13e80fe82955781f9e5ef2be8263f",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-110-400-normal.woff2",
+      "bytes": 9540,
+      "sha256": "6e81af779c53181988a0c4bfc4863293f26af6c9e4330a634d318c55ac0485ff",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-111-400-normal.woff2",
+      "bytes": 9592,
+      "sha256": "0f84ea32e2098a5f820a34ec37a6a27f1d0d5390a98342adef289e627d7ec6ff",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-112-400-normal.woff2",
+      "bytes": 9076,
+      "sha256": "66684ad1664916aafd6a2129357016bdda482390fa3ab67b997d60968ee78eff",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-113-400-normal.woff2",
+      "bytes": 9012,
+      "sha256": "3a9fc2618d7c46686ad58f8ff700f7a0993b4de51a0c2ab419d47e70903ee67f",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-114-400-normal.woff2",
+      "bytes": 9040,
+      "sha256": "c6d1b81a5f4434c20f1a7dde01078ed851c94b67febf950678e0f6d06ad0da4f",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-115-400-normal.woff2",
+      "bytes": 8928,
+      "sha256": "cd99dc78104d80043fbcedcfa72da4d6d24cce01286c4405e5aa3c3019a322d0",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-116-400-normal.woff2",
+      "bytes": 8888,
+      "sha256": "baff29f850aa4df33fc0f945f84d952ceb28ff540462c705cf72a721a69195b2",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-117-400-normal.woff2",
+      "bytes": 7940,
+      "sha256": "ca1c5808c82088daf6aa97105fa05b9e8c68fad1dc8f1a548169a6f705ea8a6e",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-118-400-normal.woff2",
+      "bytes": 7944,
+      "sha256": "6a56ab9b34f5341cad56549d6bfa436f672dc57a94d4960050c6fa51c023ea24",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-119-400-normal.woff2",
+      "bytes": 8988,
+      "sha256": "56f2dfa908c1d4dfe31956f1af2a1230eac959361825ff527d24b85e0c88c3e3",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-12-400-normal.woff2",
+      "bytes": 11932,
+      "sha256": "196278b73fa98c97d529697fae9880f14d5f4f11011cdca34744eaedaaaae54e",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-13-400-normal.woff2",
+      "bytes": 11760,
+      "sha256": "8575100e22e9f8f4c7f33a47feb00f57a689742b35e1a51f4942663de22e8f54",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-14-400-normal.woff2",
+      "bytes": 11388,
+      "sha256": "0943ba9f92b583e6ae7bd7ddf2a2eb4d214b0f6864ffa8a71538a270eadeb92a",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-15-400-normal.woff2",
+      "bytes": 11668,
+      "sha256": "bffa56ffdd90e4a63ba1566e3da7d8197adc58a66b674e4ad6e0b73f3c906f22",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-16-400-normal.woff2",
+      "bytes": 10852,
+      "sha256": "15955ce301627fc8128a5bfd7bccfafee8f663fd2845138b615031782dc6fe4f",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-17-400-normal.woff2",
+      "bytes": 11944,
+      "sha256": "ff1ab58f1a2cbac3b52aeebbb6b1de2f8c76f7ef99fcf871260548aeed1af00e",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-18-400-normal.woff2",
+      "bytes": 10868,
+      "sha256": "ca965840a96c3a0efdd0b0768a8ccfe33b29fa40366537a8cb2f70b352f19611",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-19-400-normal.woff2",
+      "bytes": 12660,
+      "sha256": "ee42a324654d8fc75c70f1b7b2893efcac9334f5da9449bfbcb5e0af4d0e87d6",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-2-400-normal.woff2",
+      "bytes": 18980,
+      "sha256": "154e6bfb87592d083855c70af2efca9af58fd4fcab14cb918b7f27ee9443b8db",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-20-400-normal.woff2",
+      "bytes": 13244,
+      "sha256": "1cab83bf2b3286879a543c4637fa27261fbe99eabe3d93cc160cf9d98cb25499",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-21-400-normal.woff2",
+      "bytes": 11516,
+      "sha256": "f4a10649b3728de7cf8224b7127ed14555989e7ce04aa671a9dff03507d90b5e",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-22-400-normal.woff2",
+      "bytes": 12228,
+      "sha256": "560562679f939b1f2fdf9b273aaec6a9f37ea23ffbcb48a07fd9a7e917e1a0a0",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-23-400-normal.woff2",
+      "bytes": 12280,
+      "sha256": "f344625f1fa10238fd24d269490e465e71a35ec86d751c0811c2175a1b3919fe",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-24-400-normal.woff2",
+      "bytes": 12960,
+      "sha256": "720d25f42229da2c5f8eff210b17f02718d98d475e9b655cb7ffcbabf4f4a099",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-25-400-normal.woff2",
+      "bytes": 10188,
+      "sha256": "84e60687f250c46d8db520bf990f339419b8d2a0befb1d59589c966589959dcb",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-26-400-normal.woff2",
+      "bytes": 13028,
+      "sha256": "416a8df1de43ac8c7de5b488517a6b604de1585db2c71322ed70d4f5f4e09f69",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-27-400-normal.woff2",
+      "bytes": 12472,
+      "sha256": "704894924eb098770e2c7a98190414a3c89295d12112c9f61a0a2329d2c8dc52",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-28-400-normal.woff2",
+      "bytes": 11120,
+      "sha256": "1e70a08ac2b44f17cab60bd7bac6a909ed6b456cc0ebf3efa640686dee087a2f",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-29-400-normal.woff2",
+      "bytes": 12040,
+      "sha256": "9c1b59aed4cf3be2d9d660df789ac820ac306c002e3f28b4b37514c36ed2fce4",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-3-400-normal.woff2",
+      "bytes": 12764,
+      "sha256": "20ca4aac44745b45cc0e417418f8627d45666dd50449a86f58bc274767f31e94",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-30-400-normal.woff2",
+      "bytes": 12272,
+      "sha256": "fe934ccfb9e01965fcf964dabba6a3ef46ab698b9bf2ce53758842eea1a4711b",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-31-400-normal.woff2",
+      "bytes": 12024,
+      "sha256": "4bb13fae9ec64d31dd67c1c34c71f4de90ae2b5347729523c9137b9dfcc67cfc",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-32-400-normal.woff2",
+      "bytes": 13684,
+      "sha256": "655427e3a4277bf016709374c4f9c177b9753a114e4648428cee7781ad28bdaa",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-33-400-normal.woff2",
+      "bytes": 12848,
+      "sha256": "79e925f1c07f95cdf51fdb710e6327b69d433092a429b1114653de34afa6babc",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-34-400-normal.woff2",
+      "bytes": 11216,
+      "sha256": "50bb19f86efaf9b2538ba8dcd8a0b5864bf09ea5a29acff2d51f0dfa213e35a0",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-35-400-normal.woff2",
+      "bytes": 11164,
+      "sha256": "bbaedc949384470957156e4e39cd1a73ba1947763d447f1fbebd4a06a9ac5216",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-36-400-normal.woff2",
+      "bytes": 11632,
+      "sha256": "7f6b43135bafcd0eb7ea249ce8b6ab69a46ac9928e19df1a16742625de833aae",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-37-400-normal.woff2",
+      "bytes": 11536,
+      "sha256": "409735ada0f488957b7e23a708034a9dc646f56a1e8403fe118496d1a7dbdc8e",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-38-400-normal.woff2",
+      "bytes": 9460,
+      "sha256": "598febdb9a6da016524d4580eacf756978ade54ad64d197426e9905f724f1208",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-39-400-normal.woff2",
+      "bytes": 11476,
+      "sha256": "4bacc8af77c3b56c40520496b9d46489643a080326c6c898033e4852b1dfcd57",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-4-400-normal.woff2",
+      "bytes": 12072,
+      "sha256": "4f8388400f953019bce096c04381faa37927c03cc582d5f2dc8c7a039bfb52d3",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-40-400-normal.woff2",
+      "bytes": 11244,
+      "sha256": "667dbda124cee915774f38e65c52e146861734bfceb1e0721715d20cd4c6fac8",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-41-400-normal.woff2",
+      "bytes": 9952,
+      "sha256": "d76add111eafdefc59ab1f878c8c138fdbe92d16a359fb7c6464b1e5ae957c21",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-42-400-normal.woff2",
+      "bytes": 10860,
+      "sha256": "2f2dfb6c9f2ffe7be7981b2b72c5f66e8bde8f509c8586b2ea6cd3602d015bff",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-43-400-normal.woff2",
+      "bytes": 11260,
+      "sha256": "b5b3a8c52c160f3e62e98e36ef066e2992c5b7781db98a85abd493efec3387bb",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-44-400-normal.woff2",
+      "bytes": 9960,
+      "sha256": "73b4fe620d24640f596809aa0409afb445cc8563b2c85f20e51c03cfd6d1e1a2",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-45-400-normal.woff2",
+      "bytes": 10516,
+      "sha256": "00e13d409cc47f94b27226a83b5167a3153ac37ed47ea6d57090df28dbcd99da",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-46-400-normal.woff2",
+      "bytes": 11232,
+      "sha256": "04d538eb7b2a67f79088d88ab891dfa529b3a2d7a8549e3cb8852f93d754aeca",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-47-400-normal.woff2",
+      "bytes": 11612,
+      "sha256": "fd25058981f44f5ea26016f2b2d1f4707911751ecebe30da172c402295be97e2",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-48-400-normal.woff2",
+      "bytes": 11464,
+      "sha256": "5f3829487595e069d56ca1706416854f9eda49987536ded870aefcaebf293b0a",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-49-400-normal.woff2",
+      "bytes": 11612,
+      "sha256": "3756a35768450b433a10431cbeb47ae6254bb0ecdd154b8c8e916e4d6d4ef4d6",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-5-400-normal.woff2",
+      "bytes": 10692,
+      "sha256": "567bb3013af2fbc942a69d050b793159583050a98d14834af2d7846bebef4716",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-50-400-normal.woff2",
+      "bytes": 10968,
+      "sha256": "5e8d6230efc4801529ea792ffdb755de9601aa53e8e5b5b149b474294c2a7a83",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-51-400-normal.woff2",
+      "bytes": 10140,
+      "sha256": "0e6140608b8b8adf8c332e2c9ce4712ab7e18d73446f2ce72e1de2efe7e5c383",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-52-400-normal.woff2",
+      "bytes": 11520,
+      "sha256": "a2ab359fc46bd6dce7335dab52157d3b8eaf803fe8ff19419420d8794afeeaae",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-53-400-normal.woff2",
+      "bytes": 11212,
+      "sha256": "41da35a325bfe427c816536d8649c56dc4197ffe04964b4e514aab4ce343743c",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-54-400-normal.woff2",
+      "bytes": 11056,
+      "sha256": "6f7f6d270bb9cbc4422e21976826c23f3e7621cce1986d2a973c3238a4f8badc",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-55-400-normal.woff2",
+      "bytes": 10836,
+      "sha256": "1dba5364736b062f998b10e4338c649624eedd936822bbc4b608fcd873fca629",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-56-400-normal.woff2",
+      "bytes": 11220,
+      "sha256": "645116e5bf52d3f060e8a0b2e5ac898a289fdae2d50a0d5ad5fd7952016c3388",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-57-400-normal.woff2",
+      "bytes": 11280,
+      "sha256": "a149b3060139cf4b89663ef220005067ed86c7afeae1faeae6b8297d3b08d23b",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-58-400-normal.woff2",
+      "bytes": 11680,
+      "sha256": "21c6e13160523d6c15a4190d6f266560484eb7c95420b2220f0f6c1e3c863995",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-59-400-normal.woff2",
+      "bytes": 13084,
+      "sha256": "f94ce24e3ce649ce3458937f69eac84300008e9488c8d5279ddbbb34a52df84b",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-6-400-normal.woff2",
+      "bytes": 10908,
+      "sha256": "901495065aae91db7f497ca8c8acc55748f2b78faa89996b17993467352188b3",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-60-400-normal.woff2",
+      "bytes": 12592,
+      "sha256": "244dc0cd81fe4fa7b725a232bb6581f08011d91a96aafe8f50da42785f6fe1aa",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-61-400-normal.woff2",
+      "bytes": 12432,
+      "sha256": "1db83080303c6df3401ae4be7e35f40b4d82a1cd8685f68f0e5288e245015bb8",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-62-400-normal.woff2",
+      "bytes": 11408,
+      "sha256": "cdd71f1fb67fe1cc57a8ff7bd345d0973ac09b8941362b0cad84c4fec5876a36",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-63-400-normal.woff2",
+      "bytes": 11040,
+      "sha256": "3d4f0c241e76f83def0971cda266c6941be47135da77ebe2959278599a7a6e1a",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-64-400-normal.woff2",
+      "bytes": 9744,
+      "sha256": "164340579dbbd54fc061ab7c1072b4ab0c63537eb27b42347975b86d4f0da583",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-65-400-normal.woff2",
+      "bytes": 34040,
+      "sha256": "5cb305bbcab7a7f0ad5050192ce8b932d15d5fb6e6eca60291268cd7d1f36d0e",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-66-400-normal.woff2",
+      "bytes": 30004,
+      "sha256": "bb262a73d8183c78befaf825ddc92b94a3be72edb79159a0ce9666e92a7bf17f",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-67-400-normal.woff2",
+      "bytes": 25848,
+      "sha256": "a0c76de72f045a08bfc89a903bcdb60c5303d757cdf63f5e8d2b0904c2295f1c",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-68-400-normal.woff2",
+      "bytes": 27504,
+      "sha256": "24055e6a1dc467287b2ae991e4f9aa01403e1ff75552cc134e65a246b28e3b1a",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-69-400-normal.woff2",
+      "bytes": 25900,
+      "sha256": "941274b71d4defdafdf12cb87650231b9152712b086a5b8c201e19df78ae2601",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-7-400-normal.woff2",
+      "bytes": 10972,
+      "sha256": "8d8664e0529cabd78986f145bcb9c4c2d4b3b47a558dafc4f50d65300da53de7",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-70-400-normal.woff2",
+      "bytes": 25356,
+      "sha256": "268a212ee6e0c5cac318c1e43ae5f9e5ee220f1c3ac4025a39817ecb04db50c8",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-71-400-normal.woff2",
+      "bytes": 30268,
+      "sha256": "35f8d91712bd7b7b43306241752d8cafb585e8d265420c6bb48112dba8f452a4",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-72-400-normal.woff2",
+      "bytes": 24408,
+      "sha256": "0f44b91a018e550c21555f528f9eb7476374527d044e59e48a5e5de5dd193bbd",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-73-400-normal.woff2",
+      "bytes": 26756,
+      "sha256": "981b37b3d890d7a9bd85210bcb2b943529a4c71cbcf6ad47aae15113f73d7134",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-74-400-normal.woff2",
+      "bytes": 28652,
+      "sha256": "4534e218cbf3873df6e43390e9addf9dc2776df2eabd9d22b0163c544337e7a1",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-75-400-normal.woff2",
+      "bytes": 30196,
+      "sha256": "f0238d00070394fe30432ce7c3c6aad031f8e0f06a7cc3b28f72f44b2b492062",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-76-400-normal.woff2",
+      "bytes": 25808,
+      "sha256": "74ad088fe4264e7a86b3dcd7491dfb1d8e767f7b7e3174436dc013fce9d091ce",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-77-400-normal.woff2",
+      "bytes": 27952,
+      "sha256": "f759454da8695a28be46be00d2937502c0feba48cf0ea504d5620131a6013633",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-78-400-normal.woff2",
+      "bytes": 25864,
+      "sha256": "69d3f74edab031aa523f6cbf713ad29367d2f5c6ba504ced55d4e7f12abf2b5a",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-79-400-normal.woff2",
+      "bytes": 32212,
+      "sha256": "d1760c8c793a201e5080c0be8e397df1e3296cfd99f9538396736f2556654d00",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-8-400-normal.woff2",
+      "bytes": 10228,
+      "sha256": "0ed10e62937c127f05161f149b1e8d29419fe3a1892c15a40c4e117164fa4c60",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-80-400-normal.woff2",
+      "bytes": 27020,
+      "sha256": "3037e9380677478115dfb97a4d46def4097af0220b508d0641ccb64e8165fa59",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-81-400-normal.woff2",
+      "bytes": 25576,
+      "sha256": "281c3a5968212cbe81b52f9ee3e349a0b89c8b334643ace8f21ee7c1e0268aff",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-82-400-normal.woff2",
+      "bytes": 26696,
+      "sha256": "26b4425b6b9c50f61e2610485dc2e7ed844a1ead4cc59e53f9ebd52c08a98e55",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-83-400-normal.woff2",
+      "bytes": 21856,
+      "sha256": "83d506c830f743aa14f81ed98d5c43b8c9df2b12cbe35eaf463ea2368a6c5d46",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-84-400-normal.woff2",
+      "bytes": 28908,
+      "sha256": "e1cb94dfeef05bcf8449afc5fe342badc4719e60deab5a5f690a4923ac997d24",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-85-400-normal.woff2",
+      "bytes": 27820,
+      "sha256": "9aa104dbeb7aef279fd8837e6a608d02be25dc55416952dfbfcfabc6f43a33a8",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-86-400-normal.woff2",
+      "bytes": 27412,
+      "sha256": "2e8c3fc5b8e8b5b4e9e0166be4d4a7f085858a218d2e8c69a3e938e19abfcd80",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-87-400-normal.woff2",
+      "bytes": 23980,
+      "sha256": "c9aa78a204c8a837fe854c71697e110f5b144d7a68cf139aab59497c78fb0d66",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-88-400-normal.woff2",
+      "bytes": 24656,
+      "sha256": "efbd0d684ebe3307ca093a710d5c2a1eef7c508d4cc7e1463266735f6d2fc4fb",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-89-400-normal.woff2",
+      "bytes": 24364,
+      "sha256": "3a43a5cb5727c6221559e61904b58f2fb244cf01734e20357d80d7e3d2c372c6",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-9-400-normal.woff2",
+      "bytes": 11924,
+      "sha256": "240e1e492d27ed4ea27942ead6c5380bd1219768c43f02c39603e16b0d9b72eb",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-90-400-normal.woff2",
+      "bytes": 22380,
+      "sha256": "a818711acb065fae0c6883dcc295a236e86cab618ccefd7b39357298038dcce3",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-91-400-normal.woff2",
+      "bytes": 23740,
+      "sha256": "1a3de0bbb50bde5862ec7db3ec5806cbc11b9b07b09fa419c95a6d36cbf938a3",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-92-400-normal.woff2",
+      "bytes": 22656,
+      "sha256": "70f5c4bd2d827e787053714943afd96727f90894bf4c82af25a4f18c3d3963e2",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-93-400-normal.woff2",
+      "bytes": 15524,
+      "sha256": "95a7a446d65669814df692f2e8671bb4ee5135ded28ef76b241068b23c42119f",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-94-400-normal.woff2",
+      "bytes": 10196,
+      "sha256": "24712ec1701c78070c58b7fb66531c5c792e4f6665a7714c76a11c55bb99323f",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-95-400-normal.woff2",
+      "bytes": 28428,
+      "sha256": "8c7b78a102ffcf86fb538d8471e764b8edec8ba7a6280ccbb930c5fcd08f1497",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-96-400-normal.woff2",
+      "bytes": 12276,
+      "sha256": "db0a9826f47eb12729464fcda46703c337a246c632d265b3f2c4817ff19726bb",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-97-400-normal.woff2",
+      "bytes": 7500,
+      "sha256": "5b59fa9290f23c80ee8bc1fb25ac98e3e32ac02011c1d343f6691996e9724a57",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-98-400-normal.woff2",
+      "bytes": 6560,
+      "sha256": "fb4548bf37c551e4ee01cd62ec2b81980347a0f18ca465512e92c25cb65ee82b",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-99-400-normal.woff2",
+      "bytes": 9060,
+      "sha256": "f81d45a2f40fcbdfde5f66ca4efb3f2af6217b2bb830b6f29a3e3256f7170e6d",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-cyrillic-400-normal.woff2",
+      "bytes": 5344,
+      "sha256": "da47ed0766e6715dde5f74eb15d3853cf23ba4a2a3d62092839ab82fe3902f45",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-latin-400-normal.woff2",
+      "bytes": 13716,
+      "sha256": "f5b09bfccde07555802c5c990acb7f0d6bf349362f406ed89769958d3e607b82",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-latin-ext-400-normal.woff2",
+      "bytes": 4516,
+      "sha256": "0fea49522d92fc679a74d609711413267b59219a01d0f247cc0a73b6599e8bca",
+      "status": 200
+    },
+    {
+      "file": "fonts/files/noto-sans-kr-vietnamese-400-normal.woff2",
+      "bytes": 4724,
+      "sha256": "b8b0740b00d1c367f5f0902a0b12e9cc4dd7c026f2a085d03b2a99e10e946c32",
+      "status": 200
+    },
+    {
+      "file": "fonts/LICENSE.txt",
+      "bytes": 4314,
+      "sha256": "18aabf190848725e2576eefb5c29ba06aac1029d02132252a7f312eac2e50cf3",
+      "status": 200
+    },
+    {
+      "file": "fonts/noto-sans-kr.css",
+      "bytes": 84610,
+      "sha256": "d453b673ce3ce60484e4fd12a157175007a65ebef299e72288c2b449c3567f70",
+      "status": 200
+    },
+    {
+      "file": "game-help.css",
+      "bytes": 2466,
+      "sha256": "674bb1a324c0a6a6ac71c0a84b722dd93398e563a3ad2ecdf10483e27118148b",
+      "status": 200
+    },
+    {
+      "file": "game-help.js",
+      "bytes": 21191,
+      "sha256": "4cabc2fe11aa4d3aa163e364209f812ba0db5ad2c3630d9bcc4bdd46ab3b803f",
+      "status": 200
+    },
+    {
+      "file": "guide.html",
+      "bytes": 5396,
+      "sha256": "d8bce783eaebfef6ab0aac14504402856795551d05099b5b25f27b3591ffe8ac",
+      "status": 200
+    },
+    {
+      "file": "hunt-animation-events.js",
+      "bytes": 9979,
+      "sha256": "abcf14285100a172420f326f85b0d9dc9045086a0b697fa3fde733bcf7445eaa",
+      "status": 200
+    },
+    {
+      "file": "hunt-app.js",
+      "bytes": 164905,
+      "sha256": "75ee54bc0d597b0aab59546aae47630cba2e03afbef2ef6377d2be746dda6ba7",
+      "status": 200
+    },
+    {
+      "file": "hunt-camera.js",
+      "bytes": 7521,
+      "sha256": "03ba8d1dcd8f6f4adcc50abdead481fef73ba82cb12d4acd9535492a18d05961",
+      "status": 200
+    },
+    {
+      "file": "hunt-card-help.css",
+      "bytes": 454,
+      "sha256": "049dbeb75df211450173dd0f064f0ad5e8eaf625ec07ed5afa14ba38abbf8c10",
+      "status": 200
+    },
+    {
+      "file": "hunt-card-help.js",
+      "bytes": 3381,
+      "sha256": "d0f40bd41a8e4c2227e8fc414da60307c34cf636ae9bbcfce268476434543e15",
+      "status": 200
+    },
+    {
+      "file": "hunt-combat-feedback.css",
+      "bytes": 5523,
+      "sha256": "1e0ad016d33bc15239486a3d059b37ab8b506c126ffcb6e70e4284558ac8e7d8",
+      "status": 200
+    },
+    {
+      "file": "hunt-combat-feedback.js",
+      "bytes": 21723,
+      "sha256": "c188457d1e8dbdfef7e682202e20d66cd6101bd31033d81c57e24a31b165a314",
+      "status": 200
+    },
+    {
+      "file": "hunt-context.js",
+      "bytes": 14185,
+      "sha256": "2830040333fc4492ede95acf08f4c6237e71c7f0e562c1d03ebe23fd61581039",
+      "status": 200
+    },
+    {
+      "file": "hunt-data.js",
+      "bytes": 2922,
+      "sha256": "1cb34a372ba2dceaed2523a3942af9140101f743d110f605214ebe346450f823",
+      "status": 200
+    },
+    {
+      "file": "hunt-death-feedback.js",
+      "bytes": 4788,
+      "sha256": "d82f5c24b07827397334a8d7ba9729dafc9bc4945a04f1d740d080d3aee6f545",
+      "status": 200
+    },
+    {
+      "file": "hunt-departure.js",
+      "bytes": 4333,
+      "sha256": "6ab904f88a33e4cc5c1800c509996e8d801512fb3ac68f91bad7e5df6f54b1bd",
+      "status": 200
+    },
+    {
+      "file": "hunt-enemy-mission-effects.js",
+      "bytes": 2671,
+      "sha256": "f500fa38d87458a232fd7a5b18b934878ee72a16417da0cd4400a9da0c965d1d",
+      "status": 200
+    },
+    {
+      "file": "hunt-engine.js",
+      "bytes": 135907,
+      "sha256": "c8483d7821da91bbe9927602c9833c71e33b8bda2d88a81b3c1924baa8d1b48d",
+      "status": 200
+    },
+    {
+      "file": "hunt-entry.js",
+      "bytes": 1777,
+      "sha256": "1fabaf52aa2d2ed5860aa430f3d9753fd6ba2df4f91acccdc7c01faad5f45053",
+      "status": 200
+    },
+    {
+      "file": "hunt-hand-feedback.css",
+      "bytes": 4104,
+      "sha256": "66350354029ff72e8108b4a6e03175aae3f21d28ba605eb135bd2d1888db99b9",
+      "status": 200
+    },
+    {
+      "file": "hunt-map-controls.css",
+      "bytes": 9859,
+      "sha256": "0d944385cbb528e64b46985289db7550b53a7bab004cb43de62bc8dc63116436",
+      "status": 200
+    },
+    {
+      "file": "hunt-map-controls.js",
+      "bytes": 8505,
+      "sha256": "c6df79260c041d5c406ea76291c485ca7915919055d72a1b16b28743be5e7c2d",
+      "status": 200
+    },
+    {
+      "file": "hunt-mission-feedback.js",
+      "bytes": 9450,
+      "sha256": "da34934ff8c62837d217c5d38d6c6cea5d691474bae305ab09589599b5580669",
+      "status": 200
+    },
+    {
+      "file": "hunt-presentation.js",
+      "bytes": 45128,
+      "sha256": "142a7b648c59a96232727945e7cf355ca027d110f964a062473a45387c96e966",
+      "status": 200
+    },
+    {
+      "file": "hunt-public-text.js",
+      "bytes": 12271,
+      "sha256": "407574f5191cb5599471ad3e64b700a57e72d27df286e912fe55a6d5d2d942fb",
+      "status": 200
+    },
+    {
+      "file": "hunt-shell.js",
+      "bytes": 2954,
+      "sha256": "84526fec2add91f1a0676893c0d8c39efa581125923f4c31a7de242e306c98ce",
+      "status": 200
+    },
+    {
+      "file": "hunt.css",
+      "bytes": 56467,
+      "sha256": "d50893dc7d74a581beb3b83f1f042326d190a71a6adafd8956d45d6a28c97fa5",
+      "status": 200
+    },
+    {
+      "file": "hunt.html",
+      "bytes": 27838,
+      "sha256": "9c5dcb06bf07723d68a907eb0d2c4bfec9bc852272f91bdf084628b4d73d10d2",
+      "status": 200
+    },
+    {
+      "file": "index.html",
+      "bytes": 3984,
+      "sha256": "642826196dd15a1f5a9941d60b2e3a0d86a61068e8dbcf68d0f241fa8b17ddd9",
+      "status": 200
+    },
+    {
+      "file": "inventory.js",
+      "bytes": 7899,
+      "sha256": "6f289bdc028c5582b1e794a12caea38bfdd0e7a4f68903dc3fa53ba023c1cdde",
+      "status": 200
+    },
+    {
+      "file": "map-render-layout.js",
+      "bytes": 14203,
+      "sha256": "34fb4a324b7db4c24f886ceca741050a91a01be0f2218df179e2690b74a48e37",
+      "status": 200
+    },
+    {
+      "file": "mission-engine.js",
+      "bytes": 41114,
+      "sha256": "013c8613c5c2de420567d366973c72751a8403248f287182377c6440a376b8af",
+      "status": 200
+    },
+    {
+      "file": "package.json",
+      "bytes": 370,
+      "sha256": "7ce24326bf43cea159f0b6d43fd5af0afb29f3b7aee899629d6eb6de4394a6b8",
+      "status": 200
+    },
+    {
+      "file": "QA_GUIDE.txt",
+      "bytes": 10692,
+      "sha256": "fd2d8bfee8a86e41ad3619a9910d093796a8661f345855a5811de68c85ea2c5c",
+      "status": 200
+    },
+    {
+      "file": "qa-mode.js",
+      "bytes": 4099,
+      "sha256": "b7cf4a82fa95f62f0df507c5d3b1033590d400f2029c5acb074633c8fc573283",
+      "status": 200
+    },
+    {
+      "file": "README.md",
+      "bytes": 6674,
+      "sha256": "75340d78250e8d86f1005ad6d49b9575440ed99e306773da3b6002199957cea7",
+      "status": 200
+    },
+    {
+      "file": "rewards-engine.js",
+      "bytes": 28017,
+      "sha256": "f999e6a2a8e5c8f623ce44a334d9117df95604cd9bae61cf7f63ccfc0cfc0080",
+      "status": 200
+    },
+    {
+      "file": "start-placement.js",
+      "bytes": 1262,
+      "sha256": "18fcbd6ec227829865e2ad4e399e71d1c3315f8d2d37c1b10e9004e6384e64d0",
+      "status": 200
+    },
+    {
+      "file": "style.css",
+      "bytes": 17516,
+      "sha256": "00b99428c369265cc0e39595dcf0757cdb3bd96a557122ae1d165c935ff293fd",
+      "status": 200
+    },
+    {
+      "file": "temporary-components.js",
+      "bytes": 3834,
+      "sha256": "69323bc29715e5f9c3f17e77b7e8118ceb6782b9aaf818384e01560c9ce8c1d7",
+      "status": 200
+    },
+    {
+      "file": "tile-geometry.js",
+      "bytes": 10285,
+      "sha256": "cec94f8fabb41cef6f36b45b6b27be88fe1fe9b85e8b416face133f7e4f01ae5",
+      "status": 200
+    },
+    {
+      "file": "title-screen.css",
+      "bytes": 7619,
+      "sha256": "1e61684b3c6c8df9fed9df324711ce028b0ef564ef804827220670db1a325255",
+      "status": 200
+    },
+    {
+      "file": "title-screen.js",
+      "bytes": 1852,
+      "sha256": "3ade18d195e04dcb361c4067fb5fda091e7a986fe1283fe57e33627a5684c101",
+      "status": 200
+    },
+    {
+      "file": "training.html",
+      "bytes": 9632,
+      "sha256": "ab167216a825b1497d9dc3292b74d48602508a9d7eb5a72ca4f337a0b5406ab2",
+      "status": 200
+    },
+    {
+      "file": "weapon-flow.js",
+      "bytes": 7871,
+      "sha256": "2e60bbf3a39284bafe560f8ffd62f30b75e9c561228e41173f06c6fbda727499",
+      "status": 200
+    },
+    {
+      "file": "weapon-gallery.html",
+      "bytes": 4459,
+      "sha256": "970ce4349fdd76bc1a090ac72a2797fced0bd094de33433240a4b60bf735013a",
+      "status": 200
+    },
+    {
+      "file": "weapon-gallery.js",
+      "bytes": 4375,
+      "sha256": "06338be2fd76a2d7403c51854b6dd7e6008ddb47b10c33b61b13243ebf4c961d",
+      "status": 200
+    },
+    {
+      "file": "weapon-rules.js",
+      "bytes": 4831,
+      "sha256": "9ec6fc4011daed6ad5b473cfe9555652591bba90a1d91c5bdc793ff1b201f9f9",
+      "status": 200
+    },
+    {
+      "file": "weapon-visuals.js",
+      "bytes": 10188,
+      "sha256": "009c249487e4527f4c20b121a4ef4c98d15e9b3942a1986bda7c6b2e193ce074",
+      "status": 200
+    }
+  ]
+}

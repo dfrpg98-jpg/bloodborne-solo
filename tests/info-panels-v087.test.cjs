@@ -6,9 +6,10 @@ const normalKey = "bloodborne-hunt-v07", qaKey = "bloodborne-hunt-qa-v1";
 const commands = require("./fixtures/weapon-campaign-completion/beast-claw-0.json");
 const engine = { create: E.create, importSave: E.importSave, exportSave: E.exportSave, dispatch: E.dispatch,
   missionView: E.missionView, rewardsView: E.rewardsView, missionActions: E.missionActions,
-  interactionEnemies: E.interactionEnemies, provisionalView: E.provisionalView, applyChapelRuling: state => state };
+  interactionEnemies: E.interactionEnemies, provisionalView: E.provisionalView, applyChapelRuling: state => state,
+  applyCombatReactionRuling: state => state };
 const checkpoints = new Map();
-let state = E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true });
+let state = E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 13 });
 checkpoints.set(0, state);
 for (let i = 0; i < 218; i++) {
   state = E.dispatch(state, commands[i]);
@@ -110,7 +111,7 @@ for (const [spec, file, count] of [
   ["female-patient-a", "v074-patient-natural-commands.json", 187],
   ["iosefka-hostile", "v074-attack-iosefka-natural-commands.json", 297],
 ]) test(`${spec} roster detail contains its actual public abilities without another enemy or future mission`, () => {
-  let state = E.create(90, "burial", 1, null, "hunter-pistol", "center", { campaign: true });
+  let state = E.create(90, "burial", 1, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 13 });
   for (const command of require("./fixtures/" + file).slice(0, count)) state = E.dispatch(state, command);
   const enemy = state.enemies.find(enemy => enemy.componentSpec === spec); assert(enemy);
   const f = launch(state), definition = E.enemyDef(state, enemy), opener = detail(f, enemy.id, true), text = f.ui.el("enemyDetailContent").textContent;
@@ -169,18 +170,18 @@ for (const [count, id] of [[242, "dash-sweep"], [260, "leap-slam"], [264, "destr
     assert.equal(action.id, id); assert.deepEqual(E.importSave(f.saved), f.state);
     const boss = f.state.enemies.find(enemy => enemy.id === f.state.combat.enemyId); assert(boss);
     const opener = detail(f, boss.id, true), text = f.ui.el("enemyDetailContent").textContent, html = f.ui.el("enemyDetailContent").innerHTML;
-    const visibleNames = [...html.matchAll(/<strong>([^<]*)<\/strong>/g)].map(match => decode(match[1]));
+    const visibleNames = [...html.matchAll(/<strong class="combat-action-name">([^<]*)<\/strong>/g)].map(match => decode(match[1]));
     const publicNames = [...new Set([f.state.combat.action, f.state.combat.immediate, f.state.combat.extra].filter(Boolean).map(action => action.name))];
     assert.deepEqual(visibleNames, publicNames, "only these already-public combat objects are described");
     for (const rule of action.rules) assert(text.includes(clean(f, rule)), `${id}: the original public rule survives same-name immediate effects`);
     if (action.damage > 0) assert(text.includes(`피해 ${action.damage}`));
     if (action.dodgeSpeed) assert(text.includes(`회피 속도 ${action.dodgeSpeed}`));
     if (action.afterAttackMove) assert(text.includes(`공격 후 이 적을 ${action.afterAttackMove}칸 멀리 이동합니다.`));
-    if (action.afterDodgeDamageBonus) assert(text.includes(`회피하면 사냥꾼의 공격 피해 +${action.afterDodgeDamageBonus}`));
-    if (action.otherHunters) assert(text.includes(`이 칸의 다른 사냥꾼은 회피(속도 ${action.otherHunters.dodgeSpeed})하거나 피해 ${action.otherHunters.damage}를 받습니다.`));
+    if (action.afterDodgeDamageBonus) assert(text.includes(`회피하면 플레이어의 공격 피해가 ${action.afterDodgeDamageBonus} 증가합니다.`));
+    if (action.otherHunters) assert(text.includes(`이 칸의 다른 사냥꾼은 회피 속도 ${action.otherHunters.dodgeSpeed}로 회피하거나 피해 ${action.otherHunters.damage}를 받습니다.`));
     if (action.allHunters) assert(text.includes("이 칸의 모든 사냥꾼을 대상으로 합니다."));
-    if (action.bossInsight) assert(text.includes("공격 전에 화기를 소진하여 보스에게 계몽 토큰 1개를 놓을 수 있습니다."));
-    if (action.bossInsightReduction) assert(text.includes("계몽 토큰마다 피해 -1"));
+    if (action.bossInsight) assert(text.includes("공격 전에 준비된 화기를 소진하여 보스에게 계몽 토큰 1개를 놓을 수 있습니다."));
+    if (action.bossInsightReduction) assert(text.includes("보스의 계몽 토큰 1개마다 이 공격의 피해가 1 감소합니다."));
     hiddenSources(html); futureMissions(f, text); unchanged(f); closeDetail(f, opener);
   });
 

@@ -1,0 +1,47 @@
+{
+  "sourceCommit": "b594de4a90f453cc16ab0468a3c81e02b298a5f3",
+  "version": "0.8.13-dev.8",
+  "checkpoint": "ui-06-earned-firearm",
+  "actualCommand": {
+    "type": "EQUIP_FIREARM",
+    "firearmId": "ludwig-rifle"
+  },
+  "earnedHover": {
+    "dialogs": [],
+    "display": "block",
+    "focused": false,
+    "hovered": true,
+    "rect": {
+      "height": 100.28125,
+      "width": 330,
+      "x": 866,
+      "y": 242.53125
+    },
+    "selectedText": 0,
+    "text": "적 하나가 당신이 위치한 칸으로 이동해 들어올 때: 해당 적에게 2 피해를 줍니다.플레이어의 차례: 손패 2장을 버리면서 준비합니다.",
+    "viewport": [
+      1208,
+      1252
+    ]
+  },
+  "equippedHover": {
+    "dialogs": [],
+    "display": "block",
+    "focused": false,
+    "hovered": true,
+    "rect": {
+      "height": 100.28125,
+      "width": 330,
+      "x": 866,
+      "y": 931.21875
+    },
+    "selectedText": 0,
+    "text": "적 하나가 당신이 위치한 칸으로 이동해 들어올 때: 해당 적에게 2 피해를 줍니다.플레이어의 차례: 손패 2장을 버리면서 준비합니다.",
+    "viewport": [
+      1208,
+      1252
+    ]
+  },
+  "saveLocalOnly": "local-validation-work/saves/dev8-firearm-complete.actual-qa-save.json",
+  "captureNote": "An earlier drag began at a header text position after layout changed and selected text. Retained original; new capture uses fresh button bounds and selection is0. No game command emitted."
+}

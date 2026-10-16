@@ -89,13 +89,13 @@ test('public QA consumable actions use normal effect timing and preserve stock s
   assert.equal(stockCount(s),stockItems);assert.equal(stockItems,36);roundtrip(s);
 });
 
-// This follows an already verified public normal command trace using the same
+// This follows a frozen historical rules13 public normal command trace using the same
 // normal weapon. It checks QA persistence and replay, not QA weapon balance or
 // a new normal-campaign completion proof. Reward ids are resolved from inventory
 // because an explicitly granted QA starting card changes subsequently issued ids.
-test('QA starting reward persists once and spent QA supplies renew at both natural chapter transitions',()=>{
-  let normal=E.create(90,'beast-claw',0,null,'hunter-pistol','center',{campaign:true}),
-    qa=create(custom(['music-box'],['qa-heal']),'beast-claw');
+test('historical rules13 QA starting reward persists once and spent QA supplies renew at both natural chapter transitions',()=>{
+  let normal=E.create(90,'beast-claw',0,null,'hunter-pistol','center',{campaign:true,rulesVersion:13}),
+    qa=create(custom(['music-box'],['qa-heal']),'beast-claw',{rulesVersion:13});
   const initialReward=H(qa).rewards.find(r=>r.qaStart),initialItem=H(qa).consumables.find(i=>i.kind==='qa-heal');
   qa=E.dispatch(qa,{type:'USE_CONSUMABLE',itemId:initialItem.id});
   assert(!H(qa).consumables.some(i=>i.kind==='qa-heal'));roundtrip(qa);
@@ -120,9 +120,9 @@ test('QA starting reward persists once and spent QA supplies renew at both natur
 
 // The selected natural trace earns a lantern. An explicitly issued QA lantern
 // is tracked separately from that stock reward and must not exhaust its supply.
-test('a QA starting lantern does not block the actual chapter-one lantern reward',()=>{
-  let normal=E.create(90,'beast-claw',0,null,'hunter-pistol','center',{campaign:true}),
-    qa=create(custom(['lantern'],[]),'beast-claw'),found=false;
+test('historical rules13 QA starting lantern does not block the actual chapter-one lantern reward',()=>{
+  let normal=E.create(90,'beast-claw',0,null,'hunter-pistol','center',{campaign:true,rulesVersion:13}),
+    qa=create(custom(['lantern'],[]),'beast-claw',{rulesVersion:13}),found=false;
   for(const command of normalCommands){
     qa=E.dispatch(qa,remapRewardCommand(command,normal,qa));normal=E.dispatch(normal,command);
     if(H(normal).rewards.some(r=>r.kind==='lantern')){found=true;

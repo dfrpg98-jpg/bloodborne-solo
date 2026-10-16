@@ -1,0 +1,2440 @@
+{
+  "sourceScreenshotBytesUnchanged": true,
+  "extensionReflectsActualEncoding": true,
+  "rawQAExportsUploaded": false,
+  "referenceOriginalsUploaded": false,
+  "count": 187,
+  "rows": [
+    {
+      "sourceLocalBasename": "boss-scale-final-gallery-death-0.png",
+      "path": "screenshots/boss-scale-final-gallery-death-0.jpg",
+      "sha256": "a87756e080e2beaf9bfba93e57e20b6e2369df0308971da0628cae2ef8af8dd8",
+      "bytes": 68958,
+      "dimensions": [
+        1265,
+        883
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "boss-scale-final-gallery-death-1.png",
+      "path": "screenshots/boss-scale-final-gallery-death-1.jpg",
+      "sha256": "0c36b077bc804d1895bd00d6e4cdf693111999fc9b9b6df0c1ba7acbaf7b4e34",
+      "bytes": 68664,
+      "dimensions": [
+        1265,
+        883
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "boss-scale-final-gallery-idle.png",
+      "path": "screenshots/boss-scale-final-gallery-idle.jpg",
+      "sha256": "056a83f14eea6d445b8587c774333efd2853eaa633b20a94bfeb74f616313813",
+      "bytes": 70725,
+      "dimensions": [
+        1265,
+        883
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "boss-scale-final-gallery-walk.png",
+      "path": "screenshots/boss-scale-final-gallery-walk.jpg",
+      "sha256": "da193483c4a50a6094d0a49a2c8c023f9f0bf6cee9c8dc1a1f442307af75dc2c",
+      "bytes": 69984,
+      "dimensions": [
+        1265,
+        883
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "boss-scale-final-map-whole-view.png",
+      "path": "screenshots/boss-scale-final-map-whole-view.jpg",
+      "sha256": "02f00c48cacc88b6d4901224b1d35a452263a635186957ffa301583d49575b76",
+      "bytes": 150200,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "boss-scale-final-map.png",
+      "path": "screenshots/boss-scale-final-map.jpg",
+      "sha256": "612200848fcb47f22c368cdd2f3cb57e1d584f41ab07ed1ddcd3e910175f7964",
+      "bytes": 150782,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "boss-scale-final-slow-attack-0.png",
+      "path": "screenshots/boss-scale-final-slow-attack-0.jpg",
+      "sha256": "2b44f09a0d87f77e7ca30117ffa31422353d10bb30d7cabc6464029b0ac15bfc",
+      "bytes": 72803,
+      "dimensions": [
+        1265,
+        883
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "boss-scale-final-slow-attack-1.png",
+      "path": "screenshots/boss-scale-final-slow-attack-1.jpg",
+      "sha256": "e3bf75063994b20aae1ed29ac3900fbac79f63a933e9c528e15dba6558753765",
+      "bytes": 72211,
+      "dimensions": [
+        1265,
+        883
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "boss-scale-final-slow-attack-2.png",
+      "path": "screenshots/boss-scale-final-slow-attack-2.jpg",
+      "sha256": "33ac8aa3fec632b65978783df8f305a8ab01d2f0436e4cbd243adeb56b151223",
+      "bytes": 73163,
+      "dimensions": [
+        1265,
+        883
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "boss-scale-final-slow-attack-3.png",
+      "path": "screenshots/boss-scale-final-slow-attack-3.jpg",
+      "sha256": "e1256f864278c69f2c6f363c06075c24082febf8a02e8d2c0bbc5f19058ab016",
+      "bytes": 71189,
+      "dimensions": [
+        1265,
+        883
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "frames-cleric-beast-final-right.png",
+      "path": "screenshots/frames-cleric-beast-final-right.jpg",
+      "sha256": "7805a5ab6ac68a10447c8ee067816329063e700cbe3e0653b38416ae3e8081a2",
+      "bytes": 89174,
+      "dimensions": [
+        1265,
+        1265
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "frames-female-patient-right.png",
+      "path": "screenshots/frames-female-patient-right.jpg",
+      "sha256": "b98841243749ff0b276cf70b5064cff2d59a9ec76946cac59b79fdde7822e69f",
+      "bytes": 89409,
+      "dimensions": [
+        1265,
+        1265
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "frames-huntsman-mob-right.png",
+      "path": "screenshots/frames-huntsman-mob-right.jpg",
+      "sha256": "cd470486cbdb011480877a8a3b081da40135875c43d94ff122e9473dc8d0696a",
+      "bytes": 89305,
+      "dimensions": [
+        1265,
+        1265
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "frames-huntsmans-minion-right.png",
+      "path": "screenshots/frames-huntsmans-minion-right.jpg",
+      "sha256": "f909ef29461d1f6d59d591205490f2721bf8c4b2602feb0c1ddc56c5095ce3e8",
+      "bytes": 103099,
+      "dimensions": [
+        1265,
+        1265
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "frames-iosefka-right.png",
+      "path": "screenshots/frames-iosefka-right.jpg",
+      "sha256": "8410c66adeefd68ce03e264553abdaef61e263753e40469aab242200d093e3c0",
+      "bytes": 97558,
+      "dimensions": [
+        1265,
+        1265
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "frames-scourge-beast-ground-corrected.png",
+      "path": "screenshots/frames-scourge-beast-ground-corrected.jpg",
+      "sha256": "5efa5fc44305257b70ae07c77c218ca529beb5f9a972dbc4417b1641fd979045",
+      "bytes": 87635,
+      "dimensions": [
+        1265,
+        1265
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "gallery-minion-death-0.png",
+      "path": "screenshots/gallery-minion-death-0.jpg",
+      "sha256": "1be5f435b3775a6b6fcc653faee16bf251fe0bfcac01c45599998ac5b634cae9",
+      "bytes": 59815,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "gallery-minion-death-1.png",
+      "path": "screenshots/gallery-minion-death-1.jpg",
+      "sha256": "c322b474e58586b4ce5f6fc0d363865f1c1887cc7b66f9aa2d3979baea368750",
+      "bytes": 59414,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "gallery-minion-death-2.png",
+      "path": "screenshots/gallery-minion-death-2.jpg",
+      "sha256": "3bcce61aa48293cb109ccf45bf01ed5e89c1afee4c4d9aec6092cc1710aaf242",
+      "bytes": 59327,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "gallery-minion-hit-0.png",
+      "path": "screenshots/gallery-minion-hit-0.jpg",
+      "sha256": "6cd7376ff1c6e79e489bc9e981b4c1af9a07f74844f9ad41926f27f194479700",
+      "bytes": 61307,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "gallery-minion-hit-1.png",
+      "path": "screenshots/gallery-minion-hit-1.jpg",
+      "sha256": "bb6598f2024430e448797f8885c87222bee87524968fc9e078773fbd1502f112",
+      "bytes": 60842,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "gallery-minion-hit-2.png",
+      "path": "screenshots/gallery-minion-hit-2.jpg",
+      "sha256": "5cb4285ed6be7ccb84a378cb5b23dd85bcbf8222de4d12084ea2e19752e15e53",
+      "bytes": 60754,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "gallery-minion-walk-left-full-0.png",
+      "path": "screenshots/gallery-minion-walk-left-full-0.jpg",
+      "sha256": "9c268dc694689f168f1913594e8a6853545206b3eacfea0da25b724821b20b73",
+      "bytes": 60839,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "gallery-minion-walk-left-full-1.png",
+      "path": "screenshots/gallery-minion-walk-left-full-1.jpg",
+      "sha256": "de4c55e33fcad91fc5014017de2de515d0db4551383e9d5c421dc70e127d9f57",
+      "bytes": 60745,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "gallery-minion-walk-left-full-2.png",
+      "path": "screenshots/gallery-minion-walk-left-full-2.jpg",
+      "sha256": "de5d9543fa16e58cae249f29885f5f4f3b37b54623b96f4d73515b5c8214128a",
+      "bytes": 60682,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "gallery-minion-walk-left-full-3.png",
+      "path": "screenshots/gallery-minion-walk-left-full-3.jpg",
+      "sha256": "0604f0b471f49802af500f73b17c330b581701c0363401ea599daae7a084c921",
+      "bytes": 60714,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-cleric-beast-attack-0.png",
+      "path": "screenshots/normal-cleric-beast-attack-0.jpg",
+      "sha256": "c9a957297b8011098d05799b0de1aafc721c910de5f3fa519c6ffef6e340f8a6",
+      "bytes": 64078,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-cleric-beast-attack-1.png",
+      "path": "screenshots/normal-cleric-beast-attack-1.jpg",
+      "sha256": "d44c9c0e65f509462400bdd2240c9c6dbd15c2ae825784e0dd675e96038f0c67",
+      "bytes": 63966,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-cleric-beast-death-0.png",
+      "path": "screenshots/normal-cleric-beast-death-0.jpg",
+      "sha256": "c6d6895e0c5d76238a45f12a9b6ed49732a8dd9d91247a7217a0c4520c8e29ac",
+      "bytes": 63389,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-cleric-beast-death-1.png",
+      "path": "screenshots/normal-cleric-beast-death-1.jpg",
+      "sha256": "deeb9d5db6f511984e0168b41a15071de8e8e77c3937405397ed69bba07e1e5d",
+      "bytes": 63164,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-cleric-beast-hit-0.png",
+      "path": "screenshots/normal-cleric-beast-hit-0.jpg",
+      "sha256": "7e62cbba88e3a456fdd50002dba69ad85713a25aaa72ac18d4b6d919d5b656dc",
+      "bytes": 64452,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-cleric-beast-hit-1.png",
+      "path": "screenshots/normal-cleric-beast-hit-1.jpg",
+      "sha256": "c75020b3192df56a788f38e8f473e348e3e7ce49f40f606a8e16a9a014797e60",
+      "bytes": 64082,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-cleric-beast-idle-0.png",
+      "path": "screenshots/normal-cleric-beast-idle-0.jpg",
+      "sha256": "39f9a5d6994c46a5c9720cdbd97042e82921a7cf43b1fb8416e439e0ec043a6f",
+      "bytes": 64028,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-cleric-beast-reset-0.png",
+      "path": "screenshots/normal-cleric-beast-reset-0.jpg",
+      "sha256": "ceb22fd8f93fbf4d2a141706cdb7ad1abd05168cb95b446b8fcfc3fb67a3fe6b",
+      "bytes": 64036,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-cleric-beast-walk-left-0.png",
+      "path": "screenshots/normal-cleric-beast-walk-left-0.jpg",
+      "sha256": "34c080888aa547dd8094db705b08fa7bcd3835e5066bc655f5bb4e39316e0ffd",
+      "bytes": 63535,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-cleric-beast-walk-left-1.png",
+      "path": "screenshots/normal-cleric-beast-walk-left-1.jpg",
+      "sha256": "52a3d5d57f09867ffd8e9ef5ee0654dd9a02efe50ab500c2ba6531b82884e365",
+      "bytes": 63987,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-cleric-beast-walk-right-0.png",
+      "path": "screenshots/normal-cleric-beast-walk-right-0.jpg",
+      "sha256": "2124a85156cd1abb5805c3bb28eba6b9f3b40231b4edf7b10c84028d83711a82",
+      "bytes": 63757,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-cleric-beast-walk-right-1.png",
+      "path": "screenshots/normal-cleric-beast-walk-right-1.jpg",
+      "sha256": "127e10e996407bc1022a151e556c74b4ebe160d663722ad33ba71e6d3af4d7c7",
+      "bytes": 63991,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-female-patient-attack-0.png",
+      "path": "screenshots/normal-female-patient-attack-0.jpg",
+      "sha256": "62556d9074e54b9b69d4d1b13a6f963d825187e06da3de7bdd6044a0ac8d119e",
+      "bytes": 59862,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-female-patient-attack-1.png",
+      "path": "screenshots/normal-female-patient-attack-1.jpg",
+      "sha256": "95c578dd5e884efbbdabda70d8d4f78b0ad684662e964dc3cb7469f699e262fc",
+      "bytes": 59430,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-female-patient-death-0.png",
+      "path": "screenshots/normal-female-patient-death-0.jpg",
+      "sha256": "0f9b82ad8236f912aa2e8eca0c8e987eebee071fa06c66b370e13294c8c44a5b",
+      "bytes": 58988,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-female-patient-death-1.png",
+      "path": "screenshots/normal-female-patient-death-1.jpg",
+      "sha256": "52c1a1a02c0954bbcacbf549204ac25218cad5191954bdcb32567816cd62f46d",
+      "bytes": 58798,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-female-patient-hit-0.png",
+      "path": "screenshots/normal-female-patient-hit-0.jpg",
+      "sha256": "d35c477e534018544ac99964fb3ae0dfa04269bfafa579ba5a116c671ea8212e",
+      "bytes": 59947,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-female-patient-hit-1.png",
+      "path": "screenshots/normal-female-patient-hit-1.jpg",
+      "sha256": "920ab5c5055ec640129b4337bac44cfdeb7eb6547f60fb87e426dbfb43594db2",
+      "bytes": 59565,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-female-patient-idle-0.png",
+      "path": "screenshots/normal-female-patient-idle-0.jpg",
+      "sha256": "20ca9564992f2d6ae4087d070da688b53cf826ba223487c4bce3efc62115ecff",
+      "bytes": 59499,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-female-patient-reset-0.png",
+      "path": "screenshots/normal-female-patient-reset-0.jpg",
+      "sha256": "6d35dd88044f4ffeb817f334b2a5c2c23b79e499ed68e839d135a9e2e5217b94",
+      "bytes": 59479,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-female-patient-walk-left-0.png",
+      "path": "screenshots/normal-female-patient-walk-left-0.jpg",
+      "sha256": "b20922ec4f7f9ee0c2254a3f219edc1406e2a169eb83db0446d8b57d07a60dd3",
+      "bytes": 59273,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-female-patient-walk-left-1.png",
+      "path": "screenshots/normal-female-patient-walk-left-1.jpg",
+      "sha256": "9fbe52da546daba4926a7c035d312811f1d223a4984a2a01cd9a060ec6181e50",
+      "bytes": 59503,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-female-patient-walk-right-0.png",
+      "path": "screenshots/normal-female-patient-walk-right-0.jpg",
+      "sha256": "163ddd47f0fb28dddc9142797cc59a5965f04e92422211452c65be104d6abc60",
+      "bytes": 59284,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-female-patient-walk-right-1.png",
+      "path": "screenshots/normal-female-patient-walk-right-1.jpg",
+      "sha256": "0150600bd90c0ce855a5b3b952cfb1ff9e2f17750a6308c31b4e4c2f817cbd29",
+      "bytes": 59460,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-huntsman-mob-attack-0.png",
+      "path": "screenshots/normal-huntsman-mob-attack-0.jpg",
+      "sha256": "bf54b389ed45137be0b516fc34a8170e8ccaf60c66d2cdbcbdf8b380a03b2882",
+      "bytes": 59425,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-huntsman-mob-attack-1.png",
+      "path": "screenshots/normal-huntsman-mob-attack-1.jpg",
+      "sha256": "cb0fce78cfaabee2e20689254a32f987e990f065bd0b979418876d1cbcbbd440",
+      "bytes": 59065,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-huntsman-mob-death-0.png",
+      "path": "screenshots/normal-huntsman-mob-death-0.jpg",
+      "sha256": "cb841fd7f820564508724cf8275e5e19cfa47dcc676802299f5f0abcdd54a55d",
+      "bytes": 59142,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-huntsman-mob-death-1.png",
+      "path": "screenshots/normal-huntsman-mob-death-1.jpg",
+      "sha256": "f692a678db366953c6b05eb2d915aa7c8eaa92b3a4c7836720cad32c935292da",
+      "bytes": 58773,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-huntsman-mob-hit-0.png",
+      "path": "screenshots/normal-huntsman-mob-hit-0.jpg",
+      "sha256": "e27bcba432c07b6956a3173c2fe22b4e28ae71c275d4e19dd7775eb6d1c25984",
+      "bytes": 59368,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-huntsman-mob-hit-1.png",
+      "path": "screenshots/normal-huntsman-mob-hit-1.jpg",
+      "sha256": "fda800d1552d16b706cde340fceb14011b0cfe462b2b698b81c45c261606f38d",
+      "bytes": 59122,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-huntsman-mob-idle-0.png",
+      "path": "screenshots/normal-huntsman-mob-idle-0.jpg",
+      "sha256": "c4d549e65afe949ba5561a0966fccd38418aae2f75aa7058f3e5434ac16a71cc",
+      "bytes": 59014,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-huntsman-mob-reset-0.png",
+      "path": "screenshots/normal-huntsman-mob-reset-0.jpg",
+      "sha256": "a7d0ea48622c5beee22462dd0df3a159609f423e08bbf8fdf77a501055cc34aa",
+      "bytes": 59048,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-huntsman-mob-walk-left-0.png",
+      "path": "screenshots/normal-huntsman-mob-walk-left-0.jpg",
+      "sha256": "7d326426e6fd4d196ded0b69faa0c101a04735bd9b3bfd79fb76d103a9f85719",
+      "bytes": 59006,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-huntsman-mob-walk-left-1.png",
+      "path": "screenshots/normal-huntsman-mob-walk-left-1.jpg",
+      "sha256": "e96ad75f1c80df1962b1e395a629a6b9a29024e13107985d198a3cecacf67615",
+      "bytes": 59011,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-huntsman-mob-walk-right-0.png",
+      "path": "screenshots/normal-huntsman-mob-walk-right-0.jpg",
+      "sha256": "f70b09dbbac8cf794353ab9cccf8351298ce938b2e8ada625c6546dceb33e6ea",
+      "bytes": 58959,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-huntsman-mob-walk-right-1.png",
+      "path": "screenshots/normal-huntsman-mob-walk-right-1.jpg",
+      "sha256": "fda800d1552d16b706cde340fceb14011b0cfe462b2b698b81c45c261606f38d",
+      "bytes": 59122,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-iosefka-attack-0.png",
+      "path": "screenshots/normal-iosefka-attack-0.jpg",
+      "sha256": "0ff206f73206441530bd67c41f7d1e77bdbf5e3edb29d1b846fa35fa946a7af5",
+      "bytes": 58991,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-iosefka-attack-1.png",
+      "path": "screenshots/normal-iosefka-attack-1.jpg",
+      "sha256": "a1409f8549f86900a7db6effbde5a2788144977a0059d4c534e1049e250f48eb",
+      "bytes": 58328,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-iosefka-death-0.png",
+      "path": "screenshots/normal-iosefka-death-0.jpg",
+      "sha256": "0d48b95d64364030dcba3cf1592b08cf4bb91508f4ed0d7b6e9ac50ec2162c4a",
+      "bytes": 58626,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-iosefka-death-1.png",
+      "path": "screenshots/normal-iosefka-death-1.jpg",
+      "sha256": "a6a831ec6f843061f53510ceaf1b946ac59c5e6e481ec58d9033abacdac3a387",
+      "bytes": 58423,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-iosefka-hit-0.png",
+      "path": "screenshots/normal-iosefka-hit-0.jpg",
+      "sha256": "748e8d5082806236c8979a3f2da0673d3955cf5e08d9de59b094b82ae0851bc3",
+      "bytes": 58792,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-iosefka-hit-1.png",
+      "path": "screenshots/normal-iosefka-hit-1.jpg",
+      "sha256": "b176a777c684d232be9c3c6e7d9197af13802ae727675abac7fae18ab1d1188e",
+      "bytes": 58441,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-iosefka-idle-0.png",
+      "path": "screenshots/normal-iosefka-idle-0.jpg",
+      "sha256": "4e077add06bd368d70e0f6681c11acd91f26e3c5be101bf38fbce1bbcae48426",
+      "bytes": 58390,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-iosefka-reset-0.png",
+      "path": "screenshots/normal-iosefka-reset-0.jpg",
+      "sha256": "e3abd67a7a2e79ac051ea79899b5bfee6b1aea3d5b39ca7fdd68afb26376686f",
+      "bytes": 58385,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-iosefka-walk-left-0.png",
+      "path": "screenshots/normal-iosefka-walk-left-0.jpg",
+      "sha256": "becbd691b94d595fa7293305a7b9bf79340e534044fd09758c747f30fcb2d7cc",
+      "bytes": 58970,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-iosefka-walk-left-1.png",
+      "path": "screenshots/normal-iosefka-walk-left-1.jpg",
+      "sha256": "4ebca97ebca29b31fea64892b90b6d17da0b4cc3cf080bf536a92fd57c8c0d41",
+      "bytes": 58378,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-iosefka-walk-right-0.png",
+      "path": "screenshots/normal-iosefka-walk-right-0.jpg",
+      "sha256": "723f24e752133216d8a7b444a2d9925fec1addb89de7fe975c1551823f7b6f2d",
+      "bytes": 58655,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-iosefka-walk-right-1.png",
+      "path": "screenshots/normal-iosefka-walk-right-1.jpg",
+      "sha256": "a0bcb894adb8aa1446ebad4a4d77832d783fd7068d4e996fe3ecdf0770b90ea5",
+      "bytes": 58356,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-scourge-beast-attack-0.png",
+      "path": "screenshots/normal-scourge-beast-attack-0.jpg",
+      "sha256": "fa259450836609f42afda8b4b8f0b04a5a7be2c84ebd18150f2a27e3d8ed17a8",
+      "bytes": 58481,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-scourge-beast-attack-1.png",
+      "path": "screenshots/normal-scourge-beast-attack-1.jpg",
+      "sha256": "214446e58d7826d147515c5e8676bb9057c6de517b5829c988d1e229c6197738",
+      "bytes": 58057,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-scourge-beast-death-0.png",
+      "path": "screenshots/normal-scourge-beast-death-0.jpg",
+      "sha256": "e41a57f4a6cbaccdd7fe29fb4545de33fc8bcc763e7e851782c904e38e4d4b06",
+      "bytes": 58268,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-scourge-beast-death-1.png",
+      "path": "screenshots/normal-scourge-beast-death-1.jpg",
+      "sha256": "e10eb064b1b802ef3a93be6771570bf2996a646bae1237d8a1e2a893e88d4a88",
+      "bytes": 58090,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-scourge-beast-hit-0.png",
+      "path": "screenshots/normal-scourge-beast-hit-0.jpg",
+      "sha256": "ea2f2a3eca0f7876f14549409eb64c086c02f3b89ba501010920e3e1488e1c78",
+      "bytes": 58558,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-scourge-beast-hit-1.png",
+      "path": "screenshots/normal-scourge-beast-hit-1.jpg",
+      "sha256": "b38a606d8a758eba5659c2bf2dc05dd194b0b4f988d3827a8a0f69939a32be4a",
+      "bytes": 58186,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-scourge-beast-idle-0.png",
+      "path": "screenshots/normal-scourge-beast-idle-0.jpg",
+      "sha256": "bd3db797f55ba1791e0efad0ba7fbec2db6bfc6fce552895a91d366f0a59928f",
+      "bytes": 58132,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-scourge-beast-reset-0.png",
+      "path": "screenshots/normal-scourge-beast-reset-0.jpg",
+      "sha256": "012870f9a7c735c00d3b726c2d99cf186073e4265bdc28c11d91ba7ecdc86f1f",
+      "bytes": 58097,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-scourge-beast-walk-left-0.png",
+      "path": "screenshots/normal-scourge-beast-walk-left-0.jpg",
+      "sha256": "0159852825570ef8e6250a0233abe0fea7078ac6add23b9f80fec2ca56302fd9",
+      "bytes": 58063,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-scourge-beast-walk-left-1.png",
+      "path": "screenshots/normal-scourge-beast-walk-left-1.jpg",
+      "sha256": "da354709831264321a3fcffc4af267f5f7544b398f8628e3f89babbd2829f80a",
+      "bytes": 58047,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-scourge-beast-walk-right-0.png",
+      "path": "screenshots/normal-scourge-beast-walk-right-0.jpg",
+      "sha256": "6e0e7c8cbb650f1be6feee3f782a0b583aad961cb8ee6e1f91a0cabe8d712c17",
+      "bytes": 58108,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "normal-scourge-beast-walk-right-1.png",
+      "path": "screenshots/normal-scourge-beast-walk-right-1.jpg",
+      "sha256": "69ffac2a071d5eacbd49c5635d9f502e31e4713232703ae034051b4620fd58bf",
+      "bytes": 58093,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "play-cleric-phase1-natural-final.png",
+      "path": "screenshots/play-cleric-phase1-natural-final.jpg",
+      "sha256": "2c0399b54c4a567049e90f7cdb14fabb521ec3cd459f802d441956e4a6ae38e5",
+      "bytes": 152173,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "play-cleric-phase2-natural-final.png",
+      "path": "screenshots/play-cleric-phase2-natural-final.jpg",
+      "sha256": "00d9e86a7856cfc0977d43d79c3ee283349e37d8f8816deeb47ce39084836a77",
+      "bytes": 151351,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "play-cleric-phase2-scale400-final.png",
+      "path": "screenshots/play-cleric-phase2-scale400-final.jpg",
+      "sha256": "acee13acb46b7d89e991d0ecefcbab2b51b8f6351c3c597aa97a0df23426d31f",
+      "bytes": 151399,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "play-cleric-phase2-whole-view.png",
+      "path": "screenshots/play-cleric-phase2-whole-view.jpg",
+      "sha256": "1f7551b83b03d769a7c1515e9e48af955720a328c4fd8a01a30738e075ab3f6e",
+      "bytes": 150486,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "play-female-patient-natural-final.png",
+      "path": "screenshots/play-female-patient-natural-final.jpg",
+      "sha256": "bba47b83a07c0ce7086f1fad336563bf185141cec382b29ad3615b43bfe7cf65",
+      "bytes": 143025,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "play-iosefka-natural-final.png",
+      "path": "screenshots/play-iosefka-natural-final.jpg",
+      "sha256": "a2bffa7446b45dc33fd4fbed7c1672f1ccd1fb31abc73faa077021cb5d156136",
+      "bytes": 159105,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "play-ordinary-huntsman-final.png",
+      "path": "screenshots/play-ordinary-huntsman-final.jpg",
+      "sha256": "4cc710544d5799bac4a4434d5a218ddaab0f0c965ecd951396aa051511c927f9",
+      "bytes": 141121,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "play-ordinary-minion-attack-final.png",
+      "path": "screenshots/play-ordinary-minion-attack-final.jpg",
+      "sha256": "bfb1c49b9700d84a75050909cda6c1db3ace3fa9eccafaeb9f56814eb398d896",
+      "bytes": 136973,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "play-ordinary-minion-pursuit-final.png",
+      "path": "screenshots/play-ordinary-minion-pursuit-final.jpg",
+      "sha256": "f64c0058afc24609be79c8525feb301e838c3042ec8a911643955fd672b486a0",
+      "bytes": 136021,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "play-ordinary-scourge-attack-final.png",
+      "path": "screenshots/play-ordinary-scourge-attack-final.jpg",
+      "sha256": "87d5114fefd6e73000c28060207b59203e7a3501ef66605c98f85fcec6bef1db",
+      "bytes": 136943,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "play-ordinary-three-species-map-final.png",
+      "path": "screenshots/play-ordinary-three-species-map-final.jpg",
+      "sha256": "7cddfa0cf6698d1892e484922e15836f1226117e472b96a4f35c63d4ede44dab",
+      "bytes": 140509,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-cleric-beast-attack-0.png",
+      "path": "screenshots/slow-cleric-beast-attack-0.jpg",
+      "sha256": "17d1e3aa0e124fca6da74625187981f2e22b65f0b83f96d757b5eda080e8275d",
+      "bytes": 65907,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-cleric-beast-attack-1.png",
+      "path": "screenshots/slow-cleric-beast-attack-1.jpg",
+      "sha256": "38ad5e294a27f7c1f50af752af59d06bcc786a642e4d0253b773afd22d7c850d",
+      "bytes": 65307,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-cleric-beast-attack-2.png",
+      "path": "screenshots/slow-cleric-beast-attack-2.jpg",
+      "sha256": "f053f72d8a2f7a64c831ceb735951b58db4be70a6ad26bca68efc7db88b5e956",
+      "bytes": 65935,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-cleric-beast-attack-3.png",
+      "path": "screenshots/slow-cleric-beast-attack-3.jpg",
+      "sha256": "e4629409d57cf7d94721f5e5fe811d37ed440e8fdde0a6ff0ea7e5f7ec80d7d4",
+      "bytes": 64695,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-cleric-beast-death-0.png",
+      "path": "screenshots/slow-cleric-beast-death-0.jpg",
+      "sha256": "044786ba666a0e6e126d71a7c34054da1fe81b9643cacf10cdd185fe1f700e2f",
+      "bytes": 65635,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-cleric-beast-death-1.png",
+      "path": "screenshots/slow-cleric-beast-death-1.jpg",
+      "sha256": "d9a15ea9d9f1def1b5ab1e9d709566349e5c893b8965f9c0f9a71d07e5727382",
+      "bytes": 57675,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-cleric-beast-hit-0.png",
+      "path": "screenshots/slow-cleric-beast-hit-0.jpg",
+      "sha256": "d49f35bd9111e178dfcc8dde939a4581eeadb628b9773923c12fa57cc4a2ada7",
+      "bytes": 65521,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-cleric-beast-hit-1.png",
+      "path": "screenshots/slow-cleric-beast-hit-1.jpg",
+      "sha256": "b46b7556a2ad70563f2d878fdb62232b64137e7bef5e35c7cb55a9bc11451b7f",
+      "bytes": 65047,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-cleric-beast-idle-0.png",
+      "path": "screenshots/slow-cleric-beast-idle-0.jpg",
+      "sha256": "e6845c29d1914bbc68fa91ceada4847c3fb4894bbebdb87620bc6998eb91de3e",
+      "bytes": 65214,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-cleric-beast-idle-1.png",
+      "path": "screenshots/slow-cleric-beast-idle-1.jpg",
+      "sha256": "f75438bbb200bc2c2d0b6c2e44200f2af45137e3e47845408a9e6da0827315aa",
+      "bytes": 65035,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-cleric-beast-idle-2.png",
+      "path": "screenshots/slow-cleric-beast-idle-2.jpg",
+      "sha256": "3ef3db06b71615dfa867235e2a01778ffd348e515b859515914a3dd1d943c54f",
+      "bytes": 64923,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-cleric-beast-idle-3.png",
+      "path": "screenshots/slow-cleric-beast-idle-3.jpg",
+      "sha256": "686ff38032f57bc90246c5e6e454323fe795594c6d51b584bab3eabdc12a4769",
+      "bytes": 65079,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-cleric-beast-reset-0.png",
+      "path": "screenshots/slow-cleric-beast-reset-0.jpg",
+      "sha256": "e2158ccb09d595a7ada9706807d1fd60239d62d017e777546df5e513d0a424b4",
+      "bytes": 65198,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-cleric-beast-walk-left-0.png",
+      "path": "screenshots/slow-cleric-beast-walk-left-0.jpg",
+      "sha256": "56c5fddcf4340df8e9fe76241ab9092eaf27bd349c5eb7d82abc147030499e60",
+      "bytes": 65175,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-cleric-beast-walk-left-1.png",
+      "path": "screenshots/slow-cleric-beast-walk-left-1.jpg",
+      "sha256": "d345e293b378bfb503e746d5d8b7f49cf7997514c37c402480513689936598a8",
+      "bytes": 65116,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-cleric-beast-walk-right-0.png",
+      "path": "screenshots/slow-cleric-beast-walk-right-0.jpg",
+      "sha256": "d44ac53a85fe4e6eb9466a84a7093835e52f8b2bc7cf73c759b0dae2dd105835",
+      "bytes": 65068,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-cleric-beast-walk-right-1.png",
+      "path": "screenshots/slow-cleric-beast-walk-right-1.jpg",
+      "sha256": "f1189bdb451906e87cdb43b2dee4d35eddf027bfe016b7f506264a08b70e889b",
+      "bytes": 65086,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-female-patient-attack-0.png",
+      "path": "screenshots/slow-female-patient-attack-0.jpg",
+      "sha256": "85989a209b072902ad502ab51f7e3c5d30a2cacfc7d12e69c17aa432837c5d56",
+      "bytes": 61131,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-female-patient-attack-1.png",
+      "path": "screenshots/slow-female-patient-attack-1.jpg",
+      "sha256": "f5439025e81c72b779e776c39cad9fb2550efa4e763630cf8198210c141d3d12",
+      "bytes": 60786,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-female-patient-attack-2.png",
+      "path": "screenshots/slow-female-patient-attack-2.jpg",
+      "sha256": "dfa6ca1d6f224a2b04ce2c1414fac79412cecd7de083657f84c73067b51cbcd4",
+      "bytes": 61101,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-female-patient-attack-3.png",
+      "path": "screenshots/slow-female-patient-attack-3.jpg",
+      "sha256": "8e0a89f4509762b52b0c3c9f57ae8374477eff29188f4b9c839e34150059f624",
+      "bytes": 60436,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-female-patient-death-0.png",
+      "path": "screenshots/slow-female-patient-death-0.jpg",
+      "sha256": "caed0c1488bb3c27caf9038dc1e57a8a8b18a816aea221a58b3ce4caec6ce610",
+      "bytes": 61235,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-female-patient-death-1.png",
+      "path": "screenshots/slow-female-patient-death-1.jpg",
+      "sha256": "25d06e34f57e49c353d07265ba59723b4f701f6b8a49c5aaa91de658c15f7311",
+      "bytes": 57888,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-female-patient-hit-0.png",
+      "path": "screenshots/slow-female-patient-hit-0.jpg",
+      "sha256": "02502745a913fe95b058f054ae96629c59131ba710ca672a0693f2683a54d9e9",
+      "bytes": 61369,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-female-patient-hit-1.png",
+      "path": "screenshots/slow-female-patient-hit-1.jpg",
+      "sha256": "8a870a454477eaf1e2c972017a321fa7de7b9b184f25a4a01d20796f84830858",
+      "bytes": 60475,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-female-patient-idle-0.png",
+      "path": "screenshots/slow-female-patient-idle-0.jpg",
+      "sha256": "9ece3e3fc3e54e3e578a9bae1a650fed065e7b9d094302fcb23289ebcd823313",
+      "bytes": 60649,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-female-patient-idle-1.png",
+      "path": "screenshots/slow-female-patient-idle-1.jpg",
+      "sha256": "74b0d087ee9bbfd0e368d626332d829e47c945e6dfe9621621b4a20207848242",
+      "bytes": 60386,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-female-patient-idle-2.png",
+      "path": "screenshots/slow-female-patient-idle-2.jpg",
+      "sha256": "580a86eb05d883f1b71ea32157a1b01a746073f76763f45f8ad83090ebb45c78",
+      "bytes": 60509,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-female-patient-idle-3.png",
+      "path": "screenshots/slow-female-patient-idle-3.jpg",
+      "sha256": "6463a3626a331c9b5fff182c96f9a461837af82a294ef34a26cde3050ed645ce",
+      "bytes": 60602,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-female-patient-reset-0.png",
+      "path": "screenshots/slow-female-patient-reset-0.jpg",
+      "sha256": "913ddd5b1efdaf2a3ffe951489cdcded819d462d9fee83320cda65b39116d21c",
+      "bytes": 60653,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-female-patient-walk-left-0.png",
+      "path": "screenshots/slow-female-patient-walk-left-0.jpg",
+      "sha256": "3d699911ce81d4d17caf9806a1f23d9ea96a9bdf0b16294c9e190eb3c5f5a083",
+      "bytes": 60477,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-female-patient-walk-left-1.png",
+      "path": "screenshots/slow-female-patient-walk-left-1.jpg",
+      "sha256": "10b309718052456e9b691a5e4df5bc7f9239712bdb76e245b670e672cae919f4",
+      "bytes": 60603,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-female-patient-walk-right-0.png",
+      "path": "screenshots/slow-female-patient-walk-right-0.jpg",
+      "sha256": "ca0a35597f270111a13f474bbfcd952490c8e0dbc81fae78c631cfdf31acb139",
+      "bytes": 60432,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-female-patient-walk-right-1.png",
+      "path": "screenshots/slow-female-patient-walk-right-1.jpg",
+      "sha256": "a64a564aff9b065e76589dc9810c91354812bf875c3fa26a2dfd8396501c38c7",
+      "bytes": 60530,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-huntsman-mob-attack-0.png",
+      "path": "screenshots/slow-huntsman-mob-attack-0.jpg",
+      "sha256": "e001e9c281782b1392a5727e454fdb76fb1c519f2b1ce7d787518e0e3db8bd02",
+      "bytes": 60471,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-huntsman-mob-attack-1.png",
+      "path": "screenshots/slow-huntsman-mob-attack-1.jpg",
+      "sha256": "1444df86df1abe6fbb6b956ae5ed7ebbcb23ac155a4271844885836530ed07d9",
+      "bytes": 60028,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-huntsman-mob-attack-2.png",
+      "path": "screenshots/slow-huntsman-mob-attack-2.jpg",
+      "sha256": "41bd4682b9ee693c454a01f10e00e9a50ac8636483791946bc44eeb6223fe0dc",
+      "bytes": 59938,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-huntsman-mob-attack-3.png",
+      "path": "screenshots/slow-huntsman-mob-attack-3.jpg",
+      "sha256": "e756de418eee5af29b17cfa37f3ccb0805047cc317f1fa239df93504fe2a28be",
+      "bytes": 59991,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-huntsman-mob-death-0.png",
+      "path": "screenshots/slow-huntsman-mob-death-0.jpg",
+      "sha256": "33864334d43460d710981ea65f08c67cdbfbcc71c3f3ee323969f58aa5e3593b",
+      "bytes": 60559,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-huntsman-mob-death-1.png",
+      "path": "screenshots/slow-huntsman-mob-death-1.jpg",
+      "sha256": "a51dc9ff73a7fbd32671a91309bad5872552347c48c5bd8a418f0656aaa0775d",
+      "bytes": 57842,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-huntsman-mob-hit-0.png",
+      "path": "screenshots/slow-huntsman-mob-hit-0.jpg",
+      "sha256": "40335541c4921f9f24e48828c2e2fcea78502a06d7f45955d0a1f72d36fba8b2",
+      "bytes": 60624,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-huntsman-mob-hit-1.png",
+      "path": "screenshots/slow-huntsman-mob-hit-1.jpg",
+      "sha256": "4de39d2c6c4a5609e5704f37fada83eb7e59b5b750f28562e0a97d0298e68c35",
+      "bytes": 60056,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-huntsman-mob-idle-0.png",
+      "path": "screenshots/slow-huntsman-mob-idle-0.jpg",
+      "sha256": "a6b7d917882de9920f4edbabfb5f7133aaa934d0e78677dfe5fd0abcf1bfc269",
+      "bytes": 60111,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-huntsman-mob-idle-1.png",
+      "path": "screenshots/slow-huntsman-mob-idle-1.jpg",
+      "sha256": "a9bafc1af29d88483facd8252d501ab98608afdaec29637122ee608c7609af6b",
+      "bytes": 60163,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-huntsman-mob-idle-2.png",
+      "path": "screenshots/slow-huntsman-mob-idle-2.jpg",
+      "sha256": "32d4dd71b025dddce857981840613522eeb71f669ca89faa81e231f26917ea17",
+      "bytes": 60051,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-huntsman-mob-idle-3.png",
+      "path": "screenshots/slow-huntsman-mob-idle-3.jpg",
+      "sha256": "40062ba0f7159fb1b95673907feba9841d70a54b762ade589a9cb471262acbcb",
+      "bytes": 60204,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-huntsman-mob-reset-0.png",
+      "path": "screenshots/slow-huntsman-mob-reset-0.jpg",
+      "sha256": "0390c4052f5851e20778bd093ef0fed863b578c7d0e5e863686d0a640fa030b7",
+      "bytes": 60229,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-huntsman-mob-walk-left-0.png",
+      "path": "screenshots/slow-huntsman-mob-walk-left-0.jpg",
+      "sha256": "0bc71f0a9df6e1c7fb71d5887086edc05bd7b7e02daedb61a3c1a55e3774ddc3",
+      "bytes": 60180,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-huntsman-mob-walk-left-1.png",
+      "path": "screenshots/slow-huntsman-mob-walk-left-1.jpg",
+      "sha256": "4ca64939f9c646ee2a3d1e1609db75207c16ae6d661b2afea22f3557ba53ba31",
+      "bytes": 60072,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-huntsman-mob-walk-right-0.png",
+      "path": "screenshots/slow-huntsman-mob-walk-right-0.jpg",
+      "sha256": "4b70ce32519bf51745aed40747f66fda4fb424f1bb573bf22f3c2f265ba6dd3d",
+      "bytes": 60098,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-huntsman-mob-walk-right-1.png",
+      "path": "screenshots/slow-huntsman-mob-walk-right-1.jpg",
+      "sha256": "64042f4667212291d541325fe965294b1d530a38be2d65d4d41a5c5c5197ed07",
+      "bytes": 60193,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-iosefka-attack-0.png",
+      "path": "screenshots/slow-iosefka-attack-0.jpg",
+      "sha256": "109cfa2aef82b742ea40b679828f6f42afe3f4471c3d610ef8538c6e4e458984",
+      "bytes": 60601,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-iosefka-attack-1.png",
+      "path": "screenshots/slow-iosefka-attack-1.jpg",
+      "sha256": "c80c5e893d221b4534427e05a613a84d2bc032e6fb21f235b9038fb2be0175db",
+      "bytes": 59615,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-iosefka-attack-2.png",
+      "path": "screenshots/slow-iosefka-attack-2.jpg",
+      "sha256": "5b610a75183dddb89634376694d0836cc8ac638526305cf0e8dd1fc57ae34da8",
+      "bytes": 60114,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-iosefka-attack-3.png",
+      "path": "screenshots/slow-iosefka-attack-3.jpg",
+      "sha256": "3e8252e709550bc05b9babd4aa13783c17b2540e0f595bc76b3372eea5da9b90",
+      "bytes": 59603,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-iosefka-death-0.png",
+      "path": "screenshots/slow-iosefka-death-0.jpg",
+      "sha256": "d2ef6ea1446ca77d520fdf0385a7e95dbeee88066e4abff06495ae1766c9041a",
+      "bytes": 60274,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-iosefka-death-1.png",
+      "path": "screenshots/slow-iosefka-death-1.jpg",
+      "sha256": "06168f2dc73e0e151de5c8e0ff03aaf1c37a4cb178b78f330ac941732302cc37",
+      "bytes": 57589,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-iosefka-hit-0.png",
+      "path": "screenshots/slow-iosefka-hit-0.jpg",
+      "sha256": "511ab9edd1fa6eabc924476f6ae0a7f83ffd93d15be3466750bab07477aac928",
+      "bytes": 60573,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-iosefka-hit-1.png",
+      "path": "screenshots/slow-iosefka-hit-1.jpg",
+      "sha256": "2f957866ec979cc087bc3aecb9c6aa6abcf468b38dc64f621252a1f976733de3",
+      "bytes": 59989,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-iosefka-idle-0.png",
+      "path": "screenshots/slow-iosefka-idle-0.jpg",
+      "sha256": "6872e4defffdd6763ff1e821177ffef73396774a966bc18f0f0ba8f0f32bc472",
+      "bytes": 59506,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-iosefka-idle-1.png",
+      "path": "screenshots/slow-iosefka-idle-1.jpg",
+      "sha256": "c6df3ed5e8a9881bbc119d14301bb1ddf07ba5a1da4ab324cd221e5204112509",
+      "bytes": 59426,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-iosefka-idle-2.png",
+      "path": "screenshots/slow-iosefka-idle-2.jpg",
+      "sha256": "26f8328add61cc9db67765e81a63c3267bc10f0a5b9873e69af18b4c4138e2f6",
+      "bytes": 59595,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-iosefka-idle-3.png",
+      "path": "screenshots/slow-iosefka-idle-3.jpg",
+      "sha256": "a0a44c5671b5fb49425ff4211aa14b1d3a4f7630c8eebc07e5a1ac0cceaa238c",
+      "bytes": 59882,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-iosefka-reset-0.png",
+      "path": "screenshots/slow-iosefka-reset-0.jpg",
+      "sha256": "0f32d3419d884974f9e18b769a669895a81d3a2302ef606a4dc3cd2234509b7d",
+      "bytes": 59552,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-iosefka-walk-left-0.png",
+      "path": "screenshots/slow-iosefka-walk-left-0.jpg",
+      "sha256": "5ee999dd5e0f1382953cede2d9b9edf5dcb552f6c308a64f551844524717e2c6",
+      "bytes": 60051,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-iosefka-walk-left-1.png",
+      "path": "screenshots/slow-iosefka-walk-left-1.jpg",
+      "sha256": "2a32b3f2bff1b04919c12a17579961dc3704746c3da070f8acfce93b3fdf236a",
+      "bytes": 59479,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-iosefka-walk-right-0.png",
+      "path": "screenshots/slow-iosefka-walk-right-0.jpg",
+      "sha256": "e57dafd8c6541b2db637ada7073bb8b7e12a11cfd022613bfeadb924630e8e33",
+      "bytes": 59820,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-iosefka-walk-right-1.png",
+      "path": "screenshots/slow-iosefka-walk-right-1.jpg",
+      "sha256": "4c63dba9b9aa75df438644f0de04a42c5c3091a426cce81d23498aa79f4e03b2",
+      "bytes": 59404,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-minion-attack-0.png",
+      "path": "screenshots/slow-minion-attack-0.jpg",
+      "sha256": "894f16f99dace4fd8e547d4b14c35ed88727f63a1e9bb41cd5ce1b52729d9280",
+      "bytes": 62174,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-minion-attack-1.png",
+      "path": "screenshots/slow-minion-attack-1.jpg",
+      "sha256": "d256fa7f03dd443e6bae2ccbbffb0b0a64f890bd57f9bea9ee40f9dc23ee55b0",
+      "bytes": 61883,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-minion-attack-2.png",
+      "path": "screenshots/slow-minion-attack-2.jpg",
+      "sha256": "6af2118fa78c007eedd8dde789fffd833ced7caff3b9265d991715b9e9d5e69a",
+      "bytes": 61247,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-minion-attack-3.png",
+      "path": "screenshots/slow-minion-attack-3.jpg",
+      "sha256": "6f3e557dbef8cf187d8d309fb004e6810b8b0983d0ab9447f5f2fea817101b5b",
+      "bytes": 61718,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-scourge-beast-attack-0.png",
+      "path": "screenshots/slow-scourge-beast-attack-0.jpg",
+      "sha256": "7f32460b874f231f1e57d0d49d8a12f73995623d43d6c687c16a00d049ac1253",
+      "bytes": 59441,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-scourge-beast-attack-1.png",
+      "path": "screenshots/slow-scourge-beast-attack-1.jpg",
+      "sha256": "ca48811f7397fa9ebb5a488dccd37547fbb93c8941155b2ae762306e9ba263bb",
+      "bytes": 59175,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-scourge-beast-attack-2.png",
+      "path": "screenshots/slow-scourge-beast-attack-2.jpg",
+      "sha256": "69c0136dfb947ec9f44e8ee74860b5ca9c99aa317029fce4aa2781b606efb8a1",
+      "bytes": 59182,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-scourge-beast-attack-3.png",
+      "path": "screenshots/slow-scourge-beast-attack-3.jpg",
+      "sha256": "20b191e7a09d3186b6c152cd430f374a6175dbe8a856e69bc7f3116c05284a52",
+      "bytes": 59027,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-scourge-beast-death-0.png",
+      "path": "screenshots/slow-scourge-beast-death-0.jpg",
+      "sha256": "867d86a6131edeb9f726710f384fb87874822af528392f3813b2bdb036f82004",
+      "bytes": 59982,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-scourge-beast-death-1.png",
+      "path": "screenshots/slow-scourge-beast-death-1.jpg",
+      "sha256": "87f49f3222d11cd83d194a7e512307a0c6aae088f669a034e5c2e4dbf456a16a",
+      "bytes": 57754,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-scourge-beast-hit-0.png",
+      "path": "screenshots/slow-scourge-beast-hit-0.jpg",
+      "sha256": "086931a047294fac6f4c6e9964f44ecac01d587aab70dbc1b4f7946fe0f64a68",
+      "bytes": 59581,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-scourge-beast-hit-1.png",
+      "path": "screenshots/slow-scourge-beast-hit-1.jpg",
+      "sha256": "45d03c66ef12dc282fb14e668a08da7939e95f2d19306546cc57dae283a750ad",
+      "bytes": 59314,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-scourge-beast-idle-0.png",
+      "path": "screenshots/slow-scourge-beast-idle-0.jpg",
+      "sha256": "65f751d1331d28107c24deaaa8bbb1332e1daab7184b719da80efc1b6e9fa28d",
+      "bytes": 59242,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-scourge-beast-idle-1.png",
+      "path": "screenshots/slow-scourge-beast-idle-1.jpg",
+      "sha256": "1a6ccfffeba16e6bc1fd48a024d6a46dd778e15f2a24a33bc64abd3ad31703bd",
+      "bytes": 59144,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-scourge-beast-idle-2.png",
+      "path": "screenshots/slow-scourge-beast-idle-2.jpg",
+      "sha256": "3d2c352e2ec784d384a770d563ef5b583f3dca23462ed86ee4f54abd91747afa",
+      "bytes": 59165,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-scourge-beast-idle-3.png",
+      "path": "screenshots/slow-scourge-beast-idle-3.jpg",
+      "sha256": "0bc4875d30c9c6797b0537f67be6bfb488ba3ad586b49b34cf51900bfe9bcf64",
+      "bytes": 59032,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-scourge-beast-reset-0.png",
+      "path": "screenshots/slow-scourge-beast-reset-0.jpg",
+      "sha256": "8a2d52337a438d05d46dca7e23adda6c8cea5aa53ccbf5d6d0daa764ef079826",
+      "bytes": 59278,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-scourge-beast-walk-left-0.png",
+      "path": "screenshots/slow-scourge-beast-walk-left-0.jpg",
+      "sha256": "ef4a76ee6454722fa436c4bf4955eef50ba71603775a2014e8ebc8add9ff2cfd",
+      "bytes": 59167,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-scourge-beast-walk-left-1.png",
+      "path": "screenshots/slow-scourge-beast-walk-left-1.jpg",
+      "sha256": "77a3f968e1c4f45260e6556ed224396f1fc328c2b6447331503453639f65fff3",
+      "bytes": 59186,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-scourge-beast-walk-right-0.png",
+      "path": "screenshots/slow-scourge-beast-walk-right-0.jpg",
+      "sha256": "e15841dee0a541b3195268d808957356f4e4987160b56baf670c2a63f599ec3c",
+      "bytes": 59164,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "slow-scourge-beast-walk-right-1.png",
+      "path": "screenshots/slow-scourge-beast-walk-right-1.jpg",
+      "sha256": "f22d5412d66003a0fb08aba3de6c698a9cbcf8d54537907cb7128b3f8b45b171",
+      "bytes": 59170,
+      "dimensions": [
+        1265,
+        823
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "sourceLocalBasename": "live-dev9-cleric-preview.jpg",
+      "path": "screenshots/live-dev9-cleric-preview.jpg",
+      "sha256": "056a83f14eea6d445b8587c774333efd2853eaa633b20a94bfeb74f616313813",
+      "bytes": 70725,
+      "dimensions": [
+        1265,
+        883
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    }
+  ]
+}

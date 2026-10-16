@@ -1,0 +1,47 @@
+{
+  "generatedAt": "2026-10-16T10:18:53.106Z",
+  "normalSource": "Parent cloud 8773 normal UI exports; original ZIP SHA256 f8a2fcef2c7ac87e33bcd0e81e106ffdd380415216a40908c23c7720fa815134",
+  "normal": [
+    {
+      "file": "inputs/normal-parent-before-transform.json",
+      "bytes": 30883,
+      "sha256": "c1ff939c356ba49e668d0ef0945f53c00ade03d9235c92d69677027dd1410508",
+      "commands": 81
+    },
+    {
+      "file": "native/normal-two-remaining.json",
+      "bytes": 31542,
+      "sha256": "937808852d929cf9cf575645ef46fab9523e586c1a2a2e478f163f49f5be2110",
+      "commands": 82
+    },
+    {
+      "file": "native/normal-one-remaining.json",
+      "bytes": 31645,
+      "sha256": "92e807632cb5ffce098f9fd65e6a312fe0cb321754a19e5f7fd1c625c2771926",
+      "commands": 83
+    },
+    {
+      "file": "native/normal-complete.json",
+      "bytes": 31629,
+      "sha256": "03f80d4f5dde02c2fbfbb506529f5047632e6825f6793eb446e4068b260610ab",
+      "commands": 84
+    }
+  ],
+  "normalBytesMatchOriginals": true,
+  "synthetic": [
+    {
+      "file": "inputs/SYNTHETIC-QA-auto-final.json",
+      "bytes": 12678,
+      "sha256": "14b05cb2372b74b7053a6d6ae3d5d66970877bb5f8edeb9fd3e0b105d82a1d09",
+      "commands": 10
+    },
+    {
+      "file": "native/SYNTHETIC-QA-auto-complete.json",
+      "bytes": 12804,
+      "sha256": "fcd51d4c6aa045ade75dc7018199728d3297a9178de94315772690f82763f412",
+      "commands": 12
+    }
+  ],
+  "syntheticDeferredMigration": "APPLY_TILE_SPEED_RULING after the final choice",
+  "scope": "Local UI replay of the transferred normal checkpoint and one SYNTHETIC-QA automatic-resolution boundary; not a new campaign run"
+}

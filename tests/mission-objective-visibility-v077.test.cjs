@@ -5,18 +5,18 @@ const E=require('../src/hunt-engine'),{boot}=require('./helpers/ui-harness.cjs')
 // presenter implementation. The raw objective and public save remain intact.
 const publicDescriptions=new Map([
  ['계몽 임무 2개 완료 후 중앙 등불에서 이동 종료','계몽 2개 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요.'],
- ['중앙 등불의 재앙의 야수 우두머리 처치','중앙 등불의 재앙의 야수 우두머리 처치하세요.'],
- ['마당 등불의 야수 사냥 무리 처치','마당 등불의 야수 사냥 무리 처치하세요.'],
+ ['중앙 등불의 재앙의 야수 우두머리 처치','중앙 등불의 재앙의 야수 우두머리를 처치하세요.'],
+ ['마당 등불의 야수 사냥 무리 처치','마당 등불의 야수 사냥 무리를 처치하세요.'],
  ['민가 생존자를 오에돈 예배당으로 호위','민가 생존자를 오에돈 예배당으로 호위하세요.'],
- ['오에돈 예배당의 재앙의 야수 처치','오에돈 예배당의 재앙의 야수 처치하세요.'],
+ ['오에돈 예배당의 재앙의 야수 처치','오에돈 예배당의 재앙의 야수를 처치하세요.'],
  ['폐가 생존자 토큰과 상호작용','폐가 생존자 토큰과 상호작용하세요.'],
  ['생존자가 있는 칸에서 적의 추격 없이 이동 종료','생존자가 있는 칸에서 적의 추격 없이 이동을 마치세요.'],
  ['공개된 구조 카드의 선택 해결','구조 임무에서 제시한 선택을 해결하세요.'],
- ['공동묘지에 시체 2개를 바치기','공동묘지에 시체 2개를 바치세요.'],
- ['진료소에서 야수 사냥 무리 또는 야수 사냥 하인 처치','진료소에서 야수 사냥 무리 또는 야수 사냥 하인 처치하세요.'],
- ['진료소에서 재앙의 야수 처치','진료소에서 재앙의 야수 처치하세요.'],
+ ['공동묘지에 시체 2개를 바치기','공동묘지에 시체 2개를 바치세요. 재앙의 야수를 처치해 시체를 얻으세요. 소모품 1개를 버려 현재 칸에 야수를 유인할 수 있습니다.'],
+ ['진료소에서 야수 사냥 무리 또는 야수 사냥 하인 처치','진료소에서 야수 사냥 무리 또는 야수 사냥 하인을 처치하세요.'],
+ ['진료소에서 재앙의 야수 처치','진료소에서 재앙의 야수를 처치하세요.'],
  ['소모품 수집으로 얻은 생존자 2개를 진료소에 인도','소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.'],
- ['대교의 야수 사냥 하인 처치','대교의 야수 사냥 하인 처치하세요.'],
+ ['대교의 야수 사냥 하인 처치','대교의 야수 사냥 하인을 처치하세요.'],
  ['대교의 생존자를 진료소 또는 예배당으로 호위','대교의 생존자를 진료소 또는 예배당으로 호위하세요.'],
 ]);
 function publicDescription(objective){
@@ -81,9 +81,10 @@ function at(number){
 function renderedDescriptions(ui,id){
  const decode=value=>value.replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<')
   .replace(/&gt;/g,'>').replace(/&amp;/g,'&');
- return [...ui.el(id).innerHTML.matchAll(/<article class="mission-objective\b[^"\n]*">([\s\S]*?)<\/article>/g)]
-  .map(match=>{const description=match[1].match(/<span class="muted">([\s\S]*?)<\/span>/);
-   assert(description,'each rendered objective has its actual description');return decode(description[1]);});
+ return [...ui.el(id).innerHTML.matchAll(/<article\b([^>]*\bdata-objective-kind="(?:required|insight)"[^>]*)>([\s\S]*?)<\/article>/g)]
+  .map(match=>{assert.match(match[1],/\bclass="[^"]*\bmission-objective\b/,'the marked article is an actual objective');
+   const description=match[2].match(/<(span|p)\b[^>]*class="[^"]*\bmuted\b[^"]*"[^>]*>([\s\S]*?)<\/\1>/);
+   assert(description,'each rendered objective has its actual description');return decode(description[2]);});
 }
 function objective(number,id){
  const result=at(number);result.objective=result.view.objectives.find(o=>o.id===id);
@@ -102,7 +103,7 @@ test('a fresh hunt names and describes only the already-revealed main mission',(
  }
 });
 test('card 2 makes the revealed main boss objective visible',()=>{
- const {objective:o}=objective(2,'main');assert.match(o.description,/재앙의 야수 우두머리 처치/);
+ const {objective:o}=objective(2,'main');assert.match(o.description,/재앙의 야수 우두머리를 처치/);
 });
 test('card 8 shows escort instructions without the unrevealed chapel beast',()=>{
  const {s,objective:o}=objective(8,'shelter');assert(!s.mission.revealed.includes(9));
@@ -111,7 +112,7 @@ test('card 8 shows escort instructions without the unrevealed chapel beast',()=>
 });
 test('card 9 reveals the chapel beast objective only after the escort arrival',()=>{
  const {s,objective:o}=objective(9,'shelter');assert(s.mission.revealed.includes(10));
- assert.match(o.description,/오에돈 예배당의 재앙의 야수 처치/);
+ assert.match(o.description,/오에돈 예배당의 재앙의 야수를 처치/);
  assert.doesNotMatch(o.description,/보상|손톱자국/);
 });
 test('card 12 shows interaction without predicting a chase or later choice',()=>{
@@ -128,14 +129,17 @@ test('card 14 permits its disclosed choice while future rune rewards stay absent
  const {objective:o}=objective(14,'rescue');assert.match(o.description,/제시한 선택을 해결하세요/);
  assert.doesNotMatch(o.description,/피의 기쁨|카릴 문자|보상/);
 });
-test('card 18 shows only corpse deposits before card 19 adds an insight requirement',()=>{
- const {s,objective:o}=objective(18,'main');assert.deepEqual(s.mission.revealed,[17,18]);
+test('card 18 shows its disclosed corpse acquisition, lure and deposits before card 19 adds an insight requirement',()=>{
+ const {s,objective:o,ui}=objective(18,'main');assert.deepEqual(s.mission.revealed,[17,18]);
  assert.match(o.description,/공동묘지에 시체 2개를 바치세요/);
+ assert.match(o.description,/재앙의 야수를 처치해 시체.*소모품 1개를 버려 현재 칸에 야수를 유인/);
+ assert(ui.el('missionObjectives').querySelectorAll('[data-mission-guide]').some(button=>button.dataset.missionGuide==='main'),
+  'the already disclosed acquisition method has a direct guide entry in the fixed HUD');
  assert.doesNotMatch(o.description,/계몽|성직자|페이즈|지하묘지/);
 });
 test('card 24 does not reveal the later scourge beast objective and the clinic still draws a hand skill',()=>{
  const {s,objective:o,ui}=objective(24,'card-24');assert(!s.mission.revealed.includes(25));
- assert.match(o.description,/야수 사냥 무리 또는 야수 사냥 하인 처치/);
+ assert.match(o.description,/야수 사냥 무리 또는 야수 사냥 하인을 처치/);
  assert.doesNotMatch(o.description,/재앙의 야수|수혈액|보상/);
  assert.match(ui.el('locationDetail').textContent,/이오세프카의 진료소/);
  assert.match(ui.el('locationDetail').textContent,/1 피해를 받으면서 기술 1개를 뽑을 수 있습니다/);
@@ -143,12 +147,12 @@ test('card 24 does not reveal the later scourge beast objective and the clinic s
   'opening the mission journal cannot change a location skill-draw rule into a mission reveal');
 });
 test('card 25 permits the now-disclosed scourge beast objective without its reward',()=>{
- const {objective:o}=objective(25,'card-24');assert.match(o.description,/재앙의 야수 처치/);
+ const {objective:o}=objective(25,'card-24');assert.match(o.description,/재앙의 야수를 처치/);
  assert.doesNotMatch(o.description,/수혈액|보상/);
 });
 test('card 35 shows the bridge minion fight without predicting the rescued escort',()=>{
  const {s,objective:o}=objective(35,'bridge');assert(!s.mission.revealed.includes(37));
- assert.match(o.description,/대교의 야수 사냥 하인 처치/);
+ assert.match(o.description,/대교의 야수 사냥 하인을 처치/);
  assert.doesNotMatch(o.description,/생존자|호위|진료소|예배당|연발총|유골/);
 });
 test('card 37 shows its disclosed destinations without predicting either reward',()=>{
@@ -163,7 +167,7 @@ test('the won main mission stays on the fixed HUD beside the current disclosed s
  assert.equal(view.objectives.find(o=>o.id==='main').status,'완료');
  assert.equal(view.objectives.find(o=>o.id==='shelter').status,'진행 중');
  assert.deepEqual(renderedDescriptions(ui,'missionObjectives'),[
-  '중앙 등불의 재앙의 야수 우두머리 처치하세요.',
+  '중앙 등불의 재앙의 야수 우두머리를 처치하세요.',
   '민가 생존자를 오에돈 예배당으로 호위하세요.',
  ],'completed main is retained instead of being replaced by the unfinished secondary');
  assert.doesNotMatch(ui.el('missionObjectives').textContent,/예배당의 재앙의 야수|성직자|페이즈|보상/,

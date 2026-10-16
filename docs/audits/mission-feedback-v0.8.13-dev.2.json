@@ -1,0 +1,42 @@
+{
+  "version": "0.8.13-dev.2",
+  "date": "2026-10-13",
+  "baselineCommit": "24a2b74e3af3b0ff686166dd1ce8d8f07c09efd9",
+  "branch": "ui/mission-change-feedback",
+  "changes": [
+    "Explicit mission activation, stage update, completion and chapter completion acknowledgement",
+    "Recent HUD summary, changed objective highlight and session-only journal history",
+    "Current Iosefka attack objective corrected; issue BB-008",
+    "Presentation module included in Unity preparation source exports"
+  ],
+  "validation": {
+    "relatedUiAndMissionSuite": { "tests": 386, "pass": 386, "fail": 0, "durationMs": 106511.3323 },
+    "latestUiSummaryCheck": { "tests": 5, "pass": 5, "fail": 0 },
+    "newModelTests": 15,
+    "newUiTests": 5,
+    "independentReview": "No actionable blocker found; model and actual DOM handlers reviewed",
+    "syntaxAndWhitespace": "passed",
+    "browserVisualQa": {
+      "report": "mission-browser-qa-v0.8.13-dev.2/results.json",
+      "method": "Actual browser controls on the regular campaign; no engine-state injection or saved-game fixture loading",
+      "scope": "Chapter 1 complete and transition to chapter 2; mission activation, objective updates, completion, grouped chapter result, acknowledgement, reward selection, escort confirmation, journal history, reload and new hunt",
+      "viewport": { "width": 938, "height": 1252 },
+      "checks": 23,
+      "pass": 23,
+      "fail": 0,
+      "consoleWarningsAndErrors": 0,
+      "notVerified": [
+        "Other chapter 2 and chapter 3 mission branches, including BB-008 Iosefka",
+        "Alternate small or short viewports",
+        "Browser import/export restoration"
+      ]
+    }
+  },
+  "compatibility": {
+    "engineRulesChanged": false,
+    "saveFormatChanged": false,
+    "acknowledgementAddsReplayCommand": false,
+    "notificationHistory": "current session only, reset on load or new hunt"
+  },
+  "status": "development only; not merged or formally released"
+}

@@ -119,6 +119,11 @@ test('public log and transition labels omit internal identifiers without looking
 test('task infinitives end as instructions while their original values and choices stay intact', () => {
   assert.equal(P.sentence('소모품 수집으로 얻은 생존자 2개를 진료소에 인도'),'소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.');
   assert.equal(P.sentence('이오세프카를 공격하거나 실험을 돕기'),'이오세프카를 공격하거나 실험을 돕세요.');
+  assert.equal(P.sentence('진료소에서 야수 사냥 무리 또는 야수 사냥 하인 처치'),'진료소에서 야수 사냥 무리 또는 야수 사냥 하인을 처치하세요.');
+  assert.equal(P.sentence('재앙의 야수를 처치해 계몽 토큰 제거'),'재앙의 야수를 처치해 계몽 토큰을 제거하세요.');
+  assert.equal(P.sentence('이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인'),'이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수를 봉인해 두세요.');
+  assert.equal(P.sentence('예배당에서 이동을 마친 직후 소모품 기부'),'예배당에서 이동을 마친 직후 소모품을 기부하세요.');
+  assert.equal(P.sentence('진료소의 이오세프카를 처치하세요.'),'진료소의 이오세프카를 처치하세요.');
 });
 for (const item of require('./fixtures/v075-clinic-completion-manifest.json').records) {
   test(`normal public-command clinic ${item.card} route retains its result through completion and save replay`, () => {

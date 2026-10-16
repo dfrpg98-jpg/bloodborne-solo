@@ -1,0 +1,566 @@
+{
+  "algorithm": "SHA-256",
+  "screenshotBytesUnchanged": true,
+  "files": [
+    {
+      "file": "checks/ci.json",
+      "bytes": 8795,
+      "sha256": "6f3844d4485a4fd90a3904c4cad1135f9dfacc1838254a8ed44ce227de3c498d"
+    },
+    {
+      "file": "checks/ci.tap",
+      "bytes": 586086,
+      "sha256": "3e7dde69fe444295c692654e8046030f954f41b644646a20df4e282ba4f830c8"
+    },
+    {
+      "file": "fixtures/initial-dev3-commands.json",
+      "bytes": 15531,
+      "sha256": "8087068757330c1a661f782c41b6950aa1339bf06f3922b1edd0715879e7d18d"
+    },
+    {
+      "file": "fixtures/qa-setup.json",
+      "bytes": 1022,
+      "sha256": "c0e68fdaf7c3321613331ad921c3bedfc9cc1c00cce321f15ab0d71fc8670cb7"
+    },
+    {
+      "file": "fixtures/recheck-dev4-commands.json",
+      "bytes": 15531,
+      "sha256": "8087068757330c1a661f782c41b6950aa1339bf06f3922b1edd0715879e7d18d"
+    },
+    {
+      "file": "model-expectations.json",
+      "bytes": 58295,
+      "sha256": "b2de041c0088ccfd85eaee5d7b785a66b9869e8b88b932e22e5c18f93e4a5a01"
+    },
+    {
+      "file": "README.md",
+      "bytes": 2064,
+      "sha256": "008ef8745e3ef854d2a398d245121a7feeccbeaef0ad62c9a8ddce4d5697daac"
+    },
+    {
+      "file": "results.json",
+      "bytes": 39303,
+      "sha256": "33614ba97b2a39856a227f50b468fe79462ec1718bfd6c62f7c08ca016052e3b"
+    },
+    {
+      "file": "root-completion-evidence.json",
+      "bytes": 2750,
+      "sha256": "434931190666109790ef221e4d95a40a7be22bc5c836eb61a1c72055698761cd"
+    },
+    {
+      "file": "runs/initial-dev3/BB011-after-normal-restore.json",
+      "bytes": 981,
+      "sha256": "5c4ddce8859feb8849cd6fd0db579580cf9933bdba03d65beb6b084d3088a3db"
+    },
+    {
+      "file": "runs/initial-dev3/BB011-before-proof.json",
+      "bytes": 2400,
+      "sha256": "8740efbc8bac63ae50927d0040f165e3f86e724a0d7b6ea8be724d578569bf16"
+    },
+    {
+      "file": "runs/initial-dev3/browser-actions.json",
+      "bytes": 363252,
+      "sha256": "f59de84bc3ef06cede1a67ca603d30280e90e6b981ee6b3e1d68680561626aff"
+    },
+    {
+      "file": "runs/initial-dev3/browser-notices.json",
+      "bytes": 104991,
+      "sha256": "5b9f2d95147538f0a3cfe878b9867f3baeda8a6a52f3fcd9b891997e45eb4115"
+    },
+    {
+      "file": "runs/initial-dev3/engine-replay-proof.json",
+      "bytes": 59132,
+      "sha256": "84617f22aa69826d61a76191d2a2a009288431e7a3a5253f4389876fbe89c792"
+    },
+    {
+      "file": "runs/initial-dev3/independent-review.json",
+      "bytes": 5995,
+      "sha256": "41015f3f91d37d347f5e6ad63f5d333a11608048c5de86435c2769d78920ecc9"
+    },
+    {
+      "file": "runs/initial-dev3/live-install-dev4.json",
+      "bytes": 989,
+      "sha256": "fee1093365b1a2793c27e4048717b909c4cc124f279a740212847bd5992e039b"
+    },
+    {
+      "file": "runs/initial-dev3/normal-hunt-restored.json",
+      "bytes": 1440,
+      "sha256": "ea37af8d2b8ba41d9405a900df64ecbcf86f5d33161dc7cf5bc7768bbac951a0"
+    },
+    {
+      "file": "runs/initial-dev3/recent-notice-escape-check.json",
+      "bytes": 2743,
+      "sha256": "ea046c32f14f19dffc3b1233608e262ef697a4377bf8b8e4a924ef2f5826b786"
+    },
+    {
+      "file": "runs/recheck-dev4/BB011-after-file-import.json",
+      "bytes": 2480,
+      "sha256": "350c09885044d31783bdaa071eded291a1b64c974c491ceac1d09f85c9fa8afc"
+    },
+    {
+      "file": "runs/recheck-dev4/browser-actions.json",
+      "bytes": 365407,
+      "sha256": "e456f09b84f35e127ab36fccb91ff0d36643390cb9bc80ab854fc29c63dfe749"
+    },
+    {
+      "file": "runs/recheck-dev4/browser-console.json",
+      "bytes": 23,
+      "sha256": "3318be658b84bd79d9321eaeddd10ae46fc0b8e73c180762030f566b501ac771"
+    },
+    {
+      "file": "runs/recheck-dev4/browser-notices.json",
+      "bytes": 104991,
+      "sha256": "a886c14d425025ff156989662732d4d8f95879a046f9758f910b10b11ec4f51d"
+    },
+    {
+      "file": "runs/recheck-dev4/engine-replay-proof.json",
+      "bytes": 59132,
+      "sha256": "3a6ac4d0f989c665770bc439c988447614b6dfc0a35626f25e152e390ad45378"
+    },
+    {
+      "file": "runs/recheck-dev4/independent-review.json",
+      "bytes": 7548,
+      "sha256": "7336517a339080b2a13fb2c59b68c01658c9c412862449e55ea8ca8dcef99293"
+    },
+    {
+      "file": "runs/recheck-dev4/live-install-final.json",
+      "bytes": 2425,
+      "sha256": "6aa1b7aef473a14ee913c041b0bdfcc81cf71781e565b6a6595a6f5256888ad9"
+    },
+    {
+      "file": "runs/recheck-dev4/new-game-initialization.json",
+      "bytes": 2478,
+      "sha256": "f589bfb855f425054d544164d599663ff44f10f541a4ea20dc368ba6574baee6"
+    },
+    {
+      "file": "runs/recheck-dev4/normal-hunt-restored.json",
+      "bytes": 1465,
+      "sha256": "9074b21f23e8c8b8e8f5db4c681f1185d3604154ebbd41da7b300f01721473b9"
+    },
+    {
+      "file": "runs/recheck-dev4/recent-notice-escape-check.json",
+      "bytes": 2675,
+      "sha256": "5fdb24480210ffbaf28a89b8f578634b052d86205fc9941958afa90752226878"
+    },
+    {
+      "file": "screenshots/initial-dev3/00-new-qa-mission.jpg",
+      "bytes": 47153,
+      "sha256": "ed76dbc5a52b2afa434f9a9cedd8818ba437c257497422704d3c91668cf1b6d0"
+    },
+    {
+      "file": "screenshots/initial-dev3/BB011-after-normal-restore.jpg",
+      "bytes": 151303,
+      "sha256": "dcc442edffb4dbde961a23b49158c35677d0a4a2364cf17d882b04ab52fb05ff"
+    },
+    {
+      "file": "screenshots/initial-dev3/BB011-before-stale-selection.jpg",
+      "bytes": 151508,
+      "sha256": "e45da7f2f613fa53c372e07a8aff06b9c7ca2f22d6e82578bdbf6c38c0e5bc83"
+    },
+    {
+      "file": "screenshots/initial-dev3/chapter3-recent-notice-reopened.jpg",
+      "bytes": 51164,
+      "sha256": "c15026c805a6d7e7f4f82bf69829f736f914ccaca17f203347defedc30c90bcd"
+    },
+    {
+      "file": "screenshots/initial-dev3/final-campaign-win.jpg",
+      "bytes": 174107,
+      "sha256": "1eb6c34ee1c1ef545f5ce847715e975e2e55d54641ddf89b115a89e4d0a182fc"
+    },
+    {
+      "file": "screenshots/initial-dev3/normal-hunt-restored.jpg",
+      "bytes": 73255,
+      "sha256": "2c8626d9e46e8ff45d1d63989d1acec78414c5e6d60a6971ebd230b896c2790f"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-102-chapter-2.jpg",
+      "bytes": 53427,
+      "sha256": "8d1c47bb38867a4bd5d3cfa970d57601c53742326341d7c5488378ba1f8add0e"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-108-chapter-2.jpg",
+      "bytes": 44335,
+      "sha256": "a07a8498467be95796b64b7ca0ab6202968edbabec621b99803462f99553eafd"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-111-chapter-2.jpg",
+      "bytes": 47390,
+      "sha256": "74c5c737a52884c8bbd4b690913ba2b458beb3a68db9904cf1132af64117fb65"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-121-chapter-2.jpg",
+      "bytes": 45532,
+      "sha256": "d400b368892b7ab28d9afa2d856d7b781d9b7cd66c09eadd528decdff338f3c7"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-130-chapter-2.jpg",
+      "bytes": 52752,
+      "sha256": "fd801246fdbafa28fd8a0cd8d121169dbe2c64b897efb293da9b4674df3ac016"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-132-escort-confirm.jpg",
+      "bytes": 45934,
+      "sha256": "c6509b33278e6b115f4c4f0156021375e2702dc6d086e5b2b5cc7f44af60ff72"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-141-chapter-2.jpg",
+      "bytes": 57010,
+      "sha256": "348838a33e201506b95c02165da03e7d7ecd1d5af1e5745c890457d3226731ba"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-142-reward-resumed.jpg",
+      "bytes": 169040,
+      "sha256": "305365ef0be7d8e4546854797dbcd5c83442faeddd1a29d6081979ac63bd9ca2"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-143-reward-resumed.jpg",
+      "bytes": 192457,
+      "sha256": "3d27e26f1b1723ed5bddd725e1c96161284982653d8c849ee98f3cbec26f7b46"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-157-chapter-2.jpg",
+      "bytes": 58660,
+      "sha256": "9e214a13c924591fab88806cfa0dff0b2602c701463aba4b552aae3bce70c6ff"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-158-chapter-transition.jpg",
+      "bytes": 174771,
+      "sha256": "45a04fc3a7fd029db2e3dcd091342c5cc30ae193cb2a09e9a766f61a7ca84124"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-165-chapter-transition.jpg",
+      "bytes": 193038,
+      "sha256": "05bb346866c6495bd7cbcd4d830e75c916b0c4d7d33e47d1ebe6980bf4d16697"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-166-chapter-3.jpg",
+      "bytes": 51293,
+      "sha256": "cd2bf1feb2c42750a01d24eae4553ea698cb2d4a1273ac7dcd0f499fc4d28e51"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-166-chapter-transition.jpg",
+      "bytes": 51293,
+      "sha256": "cd2bf1feb2c42750a01d24eae4553ea698cb2d4a1273ac7dcd0f499fc4d28e51"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-173-chapter-3.jpg",
+      "bytes": 41089,
+      "sha256": "cd94dbb5df9a600e976d1ec831fa54fabdd3d4f99676340b1843facc447f34e3"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-195-chapter-3.jpg",
+      "bytes": 49041,
+      "sha256": "b5aec78136504b502bdff89f8acb3825a3a19604463a2d8f5e564f5c4198f000"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-196-chapter-3.jpg",
+      "bytes": 48293,
+      "sha256": "fc68c88c889bc507621fe65c68a2610e91e09b05c684f9a74f35334acaaa6539"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-201-chapter-3.jpg",
+      "bytes": 46999,
+      "sha256": "75953e5e4ab6c7daa33583b8261dbd1b4207d1825e48b10121212228dd7c49ed"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-210-chapter-3.jpg",
+      "bytes": 45472,
+      "sha256": "58c51db4205675ff241415dba1979df65215a895aa6e8a71eb2d47ea8d5ab826"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-237-chapter-3.jpg",
+      "bytes": 53427,
+      "sha256": "53f47a578a4408060217194194ceb2abe3015c4fce57f30d5389f150b45d5f4a"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-254-chapter-3.jpg",
+      "bytes": 56201,
+      "sha256": "e19acdba9879ad67715e2f0c950d291921a97b5d0e1a5564f4f7cbf504403b7c"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-33-chapter-1.jpg",
+      "bytes": 47009,
+      "sha256": "bda3d602f369a83c6f8dfa91a9b647a2f8b35e91930e0987d54446ff87f13635"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-36-escort-confirm.jpg",
+      "bytes": 46279,
+      "sha256": "20f163bd36a2d7c6414fbeddc538650826a1b3e190ee3450bacc81f1da463b22"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-4-chapter-1.jpg",
+      "bytes": 47333,
+      "sha256": "18771467cfa000fdb321a694812303438be61f2fb52ca81660d000295315d3b7"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-40-chapter-1.jpg",
+      "bytes": 47769,
+      "sha256": "9b5a0205e133cafe324bcd8454cdff71acf50b11aa07879477fadc44ca82eebd"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-45-chapter-1.jpg",
+      "bytes": 51211,
+      "sha256": "12fadeeff26e634d6122ab435d1f82fbc59d2ad3e8b1d344893752ed98f5c0de"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-48-chapter-1.jpg",
+      "bytes": 49289,
+      "sha256": "eece9d70926a73d56980ee0183762dd258cd9bedbf307697f2619d572377e10c"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-54-chapter-1.jpg",
+      "bytes": 63031,
+      "sha256": "1a37910900488b62ef509485ce75962c1217217e2ebd4754bd5e223526a757c5"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-55-pending-resumed.jpg",
+      "bytes": 197684,
+      "sha256": "2848e227814cf382556b421fc96d6d6a4923a972b50e8fe7322b0c2b656de700"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-56-pending-resumed.jpg",
+      "bytes": 186647,
+      "sha256": "23ba7766f6305059c322001d8c9ae1200f0a79162fc2bb7667184bf7d80d57fb"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-64-chapter-2.jpg",
+      "bytes": 49848,
+      "sha256": "23f486de917a062e40ef6af053e080a59a234c322936178e625a408acc6d708f"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-70-chapter-2.jpg",
+      "bytes": 50718,
+      "sha256": "263cd303c5fc7307d380556c8c6b3b11be2ff06974b4efad5a7223104f508a6e"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-74-chapter-2.jpg",
+      "bytes": 61820,
+      "sha256": "acfd2d074d549b5b6e85eeadd851d2f023edee375446b5297e8c554871fd069e"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-77-chapter-2.jpg",
+      "bytes": 50235,
+      "sha256": "b38a6f56b6b0cdd4b914ab6cf4907d5ff72b5322358488cde5414bd4f754261e"
+    },
+    {
+      "file": "screenshots/initial-dev3/step-8-chapter-1.jpg",
+      "bytes": 49511,
+      "sha256": "91daf2101350394e7ee843ccb17878e0602a2006aa927b9ba1b588ca7cc8c02a"
+    },
+    {
+      "file": "screenshots/recheck-dev4/00-new-qa-mission.jpg",
+      "bytes": 39498,
+      "sha256": "55557d9a7961cfda18d633f5792c3673fd51b6467641d9e92b4e6e63d99de144"
+    },
+    {
+      "file": "screenshots/recheck-dev4/BB011-after-file-import.jpg",
+      "bytes": 73211,
+      "sha256": "1175769d5ee9a0370f4a373a9f644e58f6a8d5d373c32c0018136c07902e6977"
+    },
+    {
+      "file": "screenshots/recheck-dev4/final-campaign-win.jpg",
+      "bytes": 174105,
+      "sha256": "14a7d1044ebf433dc8e1ce3b5a5aa9e8dbaf4eddc332748a7fa9692e16a34bdc"
+    },
+    {
+      "file": "screenshots/recheck-dev4/normal-hunt-restored.jpg",
+      "bytes": 149523,
+      "sha256": "4bce321c6a4d2343d4cb422555fac42d45f60f1de4a03b0c32029fe5f03ed033"
+    },
+    {
+      "file": "screenshots/recheck-dev4/recent-notice-reopened.jpg",
+      "bytes": 203203,
+      "sha256": "43b984f1bd37954fbb5aa1167d1b34d08c5a08a5963e1677147f2cad5ed66b47"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-102-chapter-2.jpg",
+      "bytes": 47446,
+      "sha256": "fa92f96103c7cb069d41d1f22ae7b44cc4e9541f4fe19723704def518dbf8da1"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-108-chapter-2.jpg",
+      "bytes": 42667,
+      "sha256": "b390b74ed15733fffd70284c0715ee0e6721d77496f0c257e90db49cf054183e"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-111-chapter-2.jpg",
+      "bytes": 47429,
+      "sha256": "b3684e16824abd0526b46740ad402807fbf20de89c69710caca12916a450050a"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-121-chapter-2.jpg",
+      "bytes": 41841,
+      "sha256": "5381e7e58f71448989240f9c4db29607bd3c378f7204d5f2f15077fc30342606"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-130-chapter-2.jpg",
+      "bytes": 47005,
+      "sha256": "773e85a2f9710186e2716d83d6ed1c26722e284f3e373aa4c81c33851539cbd2"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-132-escort-confirm.jpg",
+      "bytes": 45882,
+      "sha256": "6114e7c12d1d59a6e0ef31370aadbed1fa7c5eae9d0595a020559d3a82c874ac"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-141-chapter-2.jpg",
+      "bytes": 54261,
+      "sha256": "8c075bc966871d18378988eb465f0c0aee215058cbb1151ed8803124497d4da4"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-142-continuation.jpg",
+      "bytes": 169031,
+      "sha256": "b7f3afa3284e3654ff3c492a020e31c553288b70aff3d81a6cd7255265d38b5f"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-143-continuation.jpg",
+      "bytes": 192514,
+      "sha256": "bfe4df8e6474f8288fc60e60084fcf5d125be6228780a1924043983256dd9358"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-157-chapter-2.jpg",
+      "bytes": 47982,
+      "sha256": "b2dc0c4a18a34f5254430b1df3fa018df1964ba59d5a35a989fa34795c1cba93"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-158-continuation.jpg",
+      "bytes": 174788,
+      "sha256": "eaa7fbffbf955324fc8d2e7f31369ca5e4044bca9c8347370948ac2b95d66bb9"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-165-continuation.jpg",
+      "bytes": 192859,
+      "sha256": "369b07866134969dc8e28e3562a62b4c88771debc451cfeb5eb785ffbd5717ed"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-166-chapter-3.jpg",
+      "bytes": 45930,
+      "sha256": "0f6ea28f1c1511981ff589d4528834a1a9539d9b946989d1baaf9a28d07cabff"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-166-continuation.jpg",
+      "bytes": 51298,
+      "sha256": "148758cf7bc9a1cce7b45b918a4281516388f28f490291fa3ed1d9b1955b088b"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-173-chapter-3.jpg",
+      "bytes": 44665,
+      "sha256": "16068823e00a9817f9c4b80ab0c931d9a760a729e758f4702380692dc65a08a6"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-195-chapter-3.jpg",
+      "bytes": 42769,
+      "sha256": "91532c50b82fc59f231114b18bcf80744452d8c83eb612255226cc4333e10a06"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-196-chapter-3.jpg",
+      "bytes": 42712,
+      "sha256": "9b09779abf87b37c602c59b2a7a933e2e7383f22de38173925e1a20fcea2bd08"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-201-chapter-3.jpg",
+      "bytes": 44726,
+      "sha256": "4c0f4efd15ebd6401bae2830b073f740506d7c967342016a52a2a0541b193235"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-210-chapter-3.jpg",
+      "bytes": 39987,
+      "sha256": "5abb7a250f124bec8af0849cff1071480c0c0b753edf7e9837bc9628158f489f"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-237-chapter-3.jpg",
+      "bytes": 53427,
+      "sha256": "53f47a578a4408060217194194ceb2abe3015c4fce57f30d5389f150b45d5f4a"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-254-chapter-3.jpg",
+      "bytes": 45735,
+      "sha256": "afceee2315c9c64f37521d00603f6392beb47b01f6d4aa64a43f268e3f918af8"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-254-continuation.jpg",
+      "bytes": 180302,
+      "sha256": "c8d026f60cac1398c955664f2367ec6c73afffa0876be643e5905a6252f36649"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-260-continuation.jpg",
+      "bytes": 174085,
+      "sha256": "c82853ec3a6f936003ed935144f64f8727a7934c4c76935079e08db2f85ad454"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-33-chapter-1.jpg",
+      "bytes": 40733,
+      "sha256": "9cf8a9dbec0c33aed0ffc9d31450abdb74355a67d77ca232291070b4fcfbad16"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-36-escort-confirm.jpg",
+      "bytes": 46346,
+      "sha256": "038516298af96f5cf1cdba919da0402068b2134cc18914176d547c526ed99f9e"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-4-chapter-1.jpg",
+      "bytes": 40096,
+      "sha256": "2edaad314c72331ee86b348cddaec31e9c83760926d40254294134c008597c01"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-40-chapter-1.jpg",
+      "bytes": 38613,
+      "sha256": "debee9a278c55417adde83aec2eee262d3b00be34f68d0bb4523436f6e324bca"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-45-chapter-1.jpg",
+      "bytes": 43578,
+      "sha256": "5531f85df890f64dd642098081b2cef1b77124efd452ac4a03cc3938ed210413"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-48-chapter-1.jpg",
+      "bytes": 42752,
+      "sha256": "a357d277da5ac8712d1c3fe78ce7b82f8c69c2f9fc1431cc86d2e3a1d8d984e9"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-54-chapter-1.jpg",
+      "bytes": 52067,
+      "sha256": "476c14fb49f0e3a9c3961071fcdbf83902c4e6db35eaac4842ade657eff50618"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-55-continuation.jpg",
+      "bytes": 197680,
+      "sha256": "c586d1336db83f37a33d0f096b678fa9eaae02390a7c7ebfaa6212bf5178ab5b"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-56-continuation.jpg",
+      "bytes": 186460,
+      "sha256": "08b26cd14080f93fcf5f63751063097086bcb330a7733b21576dea0025ee0280"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-64-chapter-2.jpg",
+      "bytes": 46868,
+      "sha256": "28faf9fc1c4fc973d641e9c47e0dd392193ecb07192b437952c7405bd4d9d48b"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-70-chapter-2.jpg",
+      "bytes": 44342,
+      "sha256": "312662bc5371504e24c256e7e2c1cc79201618a53f699e182cbd0b9a5366faea"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-74-chapter-2.jpg",
+      "bytes": 54073,
+      "sha256": "0cb73a6543e6aeed8ec89dbf6c7c602e300ba414b66294900aeb56d069b8274f"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-77-chapter-2.jpg",
+      "bytes": 43759,
+      "sha256": "9bdccfc3a5e6c9ddab33b6687af8b9f9468dd852fa26d793414d6a8880717343"
+    },
+    {
+      "file": "screenshots/recheck-dev4/step-8-chapter-1.jpg",
+      "bytes": 41157,
+      "sha256": "537c4781b87bc9807687e399c88ace23eb8c172a03ad4a906cbf0ab6fc73aea6"
+    },
+    {
+      "file": "scripts/replay-continuous-qa.cjs",
+      "bytes": 2088,
+      "sha256": "a558569630c0f49f3dd09f5a8e155973bc13e4fb4a46435a1b7652b756fc9da1"
+    }
+  ]
+}

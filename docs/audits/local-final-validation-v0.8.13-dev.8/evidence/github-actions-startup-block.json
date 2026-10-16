@@ -1,0 +1,55 @@
+{
+  "readOnly": true,
+  "repository": "dfrpg98-jpg/bloodborne-solo",
+  "headSha": "263b8136fe8685e0329ee55ae8646bb8a24fbe54",
+  "runId": 38520241755,
+  "checkedAtUtc": "2026-10-14T06:38:52.291056+00:00",
+  "credentialMaterialWritten": false,
+  "jobs": [
+    {
+      "id": 115708042394,
+      "name": "unity-preparation",
+      "status": "completed",
+      "conclusion": "failure",
+      "headSha": "263b8136fe8685e0329ee55ae8646bb8a24fbe54",
+      "startedAt": "2026-10-14T06:06:01Z",
+      "completedAt": "2026-10-14T06:06:02Z",
+      "runnerId": 0,
+      "runnerName": "",
+      "stepsCount": 0,
+      "annotationsCount": 1,
+      "annotations": [
+        {
+          "annotation_level": "failure",
+          "title": "",
+          "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+          "path": ".github"
+        }
+      ],
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/actions/runs/38520241755/job/115708042394"
+    },
+    {
+      "id": 115708042764,
+      "name": "regression",
+      "status": "completed",
+      "conclusion": "failure",
+      "headSha": "263b8136fe8685e0329ee55ae8646bb8a24fbe54",
+      "startedAt": "2026-10-14T06:06:01Z",
+      "completedAt": "2026-10-14T06:06:02Z",
+      "runnerId": 0,
+      "runnerName": "",
+      "stepsCount": 0,
+      "annotationsCount": 1,
+      "annotations": [
+        {
+          "annotation_level": "failure",
+          "title": "",
+          "message": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+          "path": ".github"
+        }
+      ],
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/actions/runs/38520241755/job/115708042764"
+    }
+  ],
+  "status": "diagnosed"
+}

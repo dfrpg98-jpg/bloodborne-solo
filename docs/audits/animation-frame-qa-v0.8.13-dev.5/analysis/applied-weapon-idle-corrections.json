@@ -1,0 +1,158 @@
+{
+  "sourcePixelsEdited": false,
+  "changedFrames": 15,
+  "nonIdleFramesUnchanged": true,
+  "commonSkinOffsetsApplied": false,
+  "corrections": [
+    {
+      "skin": "w-threaded-cane-a",
+      "frame": 0,
+      "previousSourceX": 211,
+      "sourceX": 204,
+      "offsetX": -7,
+      "cropUnchanged": true,
+      "sourcePngSha256": "37cd3631333511c5469f615229e9cfd916b735af5fb0df314146e4a81c1a2a5b",
+      "sourcePngMatchesProvenance": true
+    },
+    {
+      "skin": "w-hunter-axe-a",
+      "frame": 0,
+      "previousSourceX": 184,
+      "sourceX": 178,
+      "offsetX": -6,
+      "cropUnchanged": true,
+      "sourcePngSha256": "f78c97300c583d5dd8b6579d307fead17a8599debad107cf019da50e1226700a",
+      "sourcePngMatchesProvenance": true
+    },
+    {
+      "skin": "w-rifle-spear-a",
+      "frame": 0,
+      "previousSourceX": 166,
+      "sourceX": 151,
+      "offsetX": -15,
+      "cropUnchanged": true,
+      "sourcePngSha256": "18d52671447fb1993211cc01474c78482c4d1eb2df6913eca4c34baef2332839",
+      "sourcePngMatchesProvenance": true
+    },
+    {
+      "skin": "w-rifle-spear-b",
+      "frame": 0,
+      "previousSourceX": 171,
+      "sourceX": 143,
+      "offsetX": -28,
+      "cropUnchanged": true,
+      "sourcePngSha256": "0c073913ad861897b9cce950c323f49ca1fde05d3eee28272799e157ff2dc295",
+      "sourcePngMatchesProvenance": true
+    },
+    {
+      "skin": "w-saw-spear-a",
+      "frame": 0,
+      "previousSourceX": 206,
+      "sourceX": 193,
+      "offsetX": -13,
+      "cropUnchanged": true,
+      "sourcePngSha256": "5b2655c1890fbb20afdd9e0fc82ca6e331590671f02e7b00647303e5136f5952",
+      "sourcePngMatchesProvenance": true
+    },
+    {
+      "skin": "w-ludwigs-holy-blade-b",
+      "frame": 0,
+      "previousSourceX": 194,
+      "sourceX": 184,
+      "offsetX": -10,
+      "cropUnchanged": true,
+      "sourcePngSha256": "d57c39903a3e7efbbfb8926d2fabf7ae8b6d2f7b09b38d6c9a8bdda4c8ec5c2f",
+      "sourcePngMatchesProvenance": true
+    },
+    {
+      "skin": "w-logarius-wheel-a",
+      "frame": 0,
+      "previousSourceX": 166,
+      "sourceX": 148,
+      "offsetX": -18,
+      "cropUnchanged": true,
+      "sourcePngSha256": "5de0f60b3d7c0cceee5e0ba1d9cee69583900adbb1f0dd93f922c6c3b53c5980",
+      "sourcePngMatchesProvenance": true
+    },
+    {
+      "skin": "w-kirkhammer-b",
+      "frame": 0,
+      "previousSourceX": 201,
+      "sourceX": 193,
+      "offsetX": -8,
+      "cropUnchanged": true,
+      "sourcePngSha256": "e9213b424fdc55ff12e64ad3a1f48f531fb12aa1acb4e7002fffcbbeb9e0c2b9",
+      "sourcePngMatchesProvenance": true
+    },
+    {
+      "skin": "w-stake-driver-a",
+      "frame": 0,
+      "previousSourceX": 210,
+      "sourceX": 202,
+      "offsetX": -8,
+      "cropUnchanged": true,
+      "sourcePngSha256": "8eea4586b4267cc57b02274a50371f9d0bcad5248352d1e78f93767e132e7feb",
+      "sourcePngMatchesProvenance": true
+    },
+    {
+      "skin": "w-chikage-a",
+      "frame": 0,
+      "previousSourceX": 141,
+      "sourceX": 129,
+      "offsetX": -12,
+      "cropUnchanged": true,
+      "sourcePngSha256": "ebf7e25e563318a0613a13a1e035bc690bfb8cdbf2c3b003c63812560d8c19c6",
+      "sourcePngMatchesProvenance": true
+    },
+    {
+      "skin": "w-beast-claw-a",
+      "frame": 0,
+      "previousSourceX": 187,
+      "sourceX": 176,
+      "offsetX": -11,
+      "cropUnchanged": true,
+      "sourcePngSha256": "aa971f891386d993ebf062b569102e170f000b82d591607fef0ca700a579926c",
+      "sourcePngMatchesProvenance": true
+    },
+    {
+      "skin": "w-beast-claw-b",
+      "frame": 0,
+      "previousSourceX": 179,
+      "sourceX": 172,
+      "offsetX": -7,
+      "cropUnchanged": true,
+      "sourcePngSha256": "b1e6e0f34c674f27e417f2cb5eecdb651fdc45ee8025f8d08cefd01c3f1d91c2",
+      "sourcePngMatchesProvenance": true
+    },
+    {
+      "skin": "w-reiterpallasch-a",
+      "frame": 0,
+      "previousSourceX": 174,
+      "sourceX": 161,
+      "offsetX": -13,
+      "cropUnchanged": true,
+      "sourcePngSha256": "d8782eb343cda1fcccad250a5220fd7df0c2057500deff8fb6b8bace7c4b2da0",
+      "sourcePngMatchesProvenance": true
+    },
+    {
+      "skin": "w-reiterpallasch-b",
+      "frame": 0,
+      "previousSourceX": 190,
+      "sourceX": 180,
+      "offsetX": -10,
+      "cropUnchanged": true,
+      "sourcePngSha256": "aee1a50762c900736fd02e2039cf5be92c62f202f95422c66c77590a921ef7b8",
+      "sourcePngMatchesProvenance": true
+    },
+    {
+      "skin": "w-burial-a",
+      "frame": 0,
+      "previousSourceX": 234,
+      "sourceX": 200,
+      "offsetX": -34,
+      "cropUnchanged": true,
+      "sourcePngSha256": "c46b1cb52233e07113eb1e07dafb0fd615fc64f2dacc1f25354c3887934d0225",
+      "sourcePngMatchesProvenance": true
+    }
+  ]
+}

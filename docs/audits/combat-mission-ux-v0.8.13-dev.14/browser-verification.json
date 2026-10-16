@@ -1,0 +1,201 @@
+{
+  "runtimeVersion": "0.8.13-dev.14",
+  "capturedAt": "2026-10-15T14:49:25.287Z",
+  "nativeBrowser": "Codex In-App Browser",
+  "previewOrigin": "http://127.0.0.1:8811",
+  "liveOrigin": "http://127.0.0.1:8786",
+  "screenshots": [
+    {
+      "file": "screenshots/attachment-destination-attacks.jpg",
+      "bytes": 64301,
+      "sha256": "5280a17e091de55dc33eeb382f5eaae067d2ae2a507c9a4a91bfb83ae9e3cc6c",
+      "originalBrowserBytes": true
+    },
+    {
+      "file": "screenshots/chapter-first-completion-stages.jpg",
+      "bytes": 58900,
+      "sha256": "de369c4ca8e857f7012413e61f93db10b4b188ebf046fee9d3c6c7ea133ac731",
+      "originalBrowserBytes": true
+    },
+    {
+      "file": "screenshots/chapter2-corpse-lure-guide.jpg",
+      "bytes": 49285,
+      "sha256": "66c12415fa3c95d44cc2715e37a217654294559e6d4869e7941e4dfa190b7027",
+      "originalBrowserBytes": true
+    },
+    {
+      "file": "screenshots/compact-combat-1063x650.jpg",
+      "bytes": 133982,
+      "sha256": "00642bb0ff58ab93100732d565811272f7bdffd4dbea6a11171a07984f81cee8",
+      "originalBrowserBytes": true
+    },
+    {
+      "file": "screenshots/dodged-basic-firearm-protected.jpg",
+      "bytes": 148617,
+      "sha256": "6da32d5879a94d0e1923f84956dfd7c86b7aa4c8a61250d0586426dfe3cd88d7",
+      "originalBrowserBytes": true
+    },
+    {
+      "file": "screenshots/dream-return-attachment-options.jpg",
+      "bytes": 64523,
+      "sha256": "02874f2d65caed6a7195b5f379fab2d502d6a0e583a374d73a9cd0866fb55b07",
+      "originalBrowserBytes": true
+    },
+    {
+      "file": "screenshots/followup-death-cause.jpg",
+      "bytes": 44518,
+      "sha256": "e19a66b6e8982600c81e75af1bfe7b1bc14a27ba79890145aff630c1dcf140d1",
+      "originalBrowserBytes": true
+    },
+    {
+      "file": "screenshots/followup-regain-before-resolve.jpg",
+      "bytes": 155700,
+      "sha256": "628f96a591889e9a0f21906753b08572e420e23313a6baa43160632c5563df46",
+      "originalBrowserBytes": true
+    },
+    {
+      "file": "screenshots/mobile-combat-446x650.jpg",
+      "bytes": 39936,
+      "sha256": "e8140e55e3a99fa5f2aa0ca422e0730e4dbaeb859ec512f0f1a8fa4533c5512f",
+      "originalBrowserBytes": true
+    },
+    {
+      "file": "screenshots/reward-draw-wording-after.jpg",
+      "bytes": 80170,
+      "sha256": "02057aa6a58c68b8522c94acd977aeea19f0dcaeac7ae5f77f54e50910fc3bf6",
+      "originalBrowserBytes": true
+    },
+    {
+      "file": "screenshots/reward-draw-wording-before.jpg",
+      "bytes": 80171,
+      "sha256": "4023ee21f2b32d6d8112660cbffb4114cf347c9571c74a5d787cbae7debd4e4b",
+      "originalBrowserBytes": true
+    },
+    {
+      "file": "screenshots/survivor-two-loss-confirmation.jpg",
+      "bytes": 50774,
+      "sha256": "4252db770dff23408503c360640c0a2e2fc0c4b3bcca1bee045fb067a737db31",
+      "originalBrowserBytes": true
+    }
+  ],
+  "verifiedNativeCases": [
+    {
+      "case": "menu-import",
+      "successClosesMenu": true,
+      "invalidFileKeepsMenu": true,
+      "invalidMessage": "지원하지 않는 저장 형식입니다."
+    },
+    {
+      "case": "attachment-destinations",
+      "weapon": "장송의 칼날",
+      "from": 1,
+      "to": 2,
+      "attack": "원호 가르기",
+      "beforeSlotDamage": 3,
+      "afterSlotDamage": 4
+    },
+    {
+      "case": "dream-opposite-face",
+      "weapon": "교단의 돌망치",
+      "mandatoryDisplacedChunkFirst": true,
+      "thenOptionalShardPopup": true,
+      "chunkTarget": "파괴적인 내려찍기",
+      "damageBeforeShard": 5,
+      "damageWithShard": 6
+    },
+    {
+      "case": "followup-regain",
+      "setup": "legal QA trace seed123 burial face1",
+      "hpBefore": 3,
+      "firstDamage": 2,
+      "hpAfterFirst": 1,
+      "followupDamage": 2,
+      "healBeforeDeath": false,
+      "deathCause": "다단 가르기 추가 피해 · 피해 2"
+    },
+    {
+      "case": "chapter-first-completion",
+      "title": "챕터 1 완수",
+      "stages": [
+        "보상 선택",
+        "마지막 꿈에서 성장",
+        "챕터 2 준비"
+      ],
+      "pendingRewardRestoredAfterReload": true
+    },
+    {
+      "case": "chapter2-corpse-guide",
+      "method": "소모품1개로 재앙의야수 유인→처치→시체 획득",
+      "nativeLureClicked": true,
+      "scourgeBeastAtHunter": true
+    },
+    {
+      "case": "story-destination",
+      "closeLabel": "일지로 돌아가기",
+      "returnedPanel": "현재 목표와 사냥 기록",
+      "browserErrorLogs": []
+    },
+    {
+      "case": "dodge-resource-protection",
+      "gun": "야수 사냥의 단총",
+      "duplicateButtonsDisabled": 2,
+      "firearmRemainedReadyAfterResolve": true
+    },
+    {
+      "case": "dodge-useful-effect-removal",
+      "gun": "로즈마리누스",
+      "usableAfterDodge": true,
+      "followupRemoved": true,
+      "hpAfterResolve": 5
+    },
+    {
+      "case": "two-survivors-dream",
+      "publicCommands": 157,
+      "warning": "생존자 2명 상실",
+      "survivorsBefore": 2,
+      "survivorsAfterCancel": 2,
+      "handAfterCancel": 1,
+      "survivorsAfterConfirm": 0
+    },
+    {
+      "case": "lantern-captured-survivor",
+      "warning": "실험 생존자 현재 칸에 남김",
+      "cancelRestoredRewardsPanel": true,
+      "lossIsDropRatherThanTokenDestruction": true
+    },
+    {
+      "case": "reward-draw-wording",
+      "reward": "카릴 문자:피의 기쁨",
+      "before": "장비 1개를 뽑습니다",
+      "after": "기술 1개를 뽑습니다"
+    },
+    {
+      "case": "short-desktop-selected-dodge",
+      "viewport": {
+        "width": 1063,
+        "height": 650
+      },
+      "decisionBottom": 646,
+      "firearmBottom": 643.984375,
+      "detailHeight": 80,
+      "selectionHeight": 72,
+      "selectionContentHeight": 118,
+      "selectionEffectsScrollable": true
+    },
+    {
+      "case": "mobile",
+      "viewport": {
+        "width": 446,
+        "height": 650
+      },
+      "documentWidth": 431,
+      "detailHeight": 251.984375,
+      "horizontalOverflow": false,
+      "viewportOverrideReset": true
+    }
+  ],
+  "privatePlayerSavesPublished": false,
+  "rawReferencePhotosPublished": false,
+  "animationAllFramesClaimed": false,
+  "regularCampaignFullPlaythroughClaimed": false
+}

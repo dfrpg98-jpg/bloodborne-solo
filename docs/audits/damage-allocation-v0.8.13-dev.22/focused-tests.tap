@@ -1,0 +1,460 @@
+TAP version 13
+# Subtest: SYNTHETIC-QA: real transform and UI allocations show 2 → 1 → complete with unchanged eligible count
+ok 1 - SYNTHETIC-QA: real transform and UI allocations show 2 → 1 → complete with unchanged eligible count
+  ---
+  duration_ms: 192.1483
+  type: 'test'
+  ...
+# Subtest: SYNTHETIC-QA: killing the first target can auto-resolve the last allocation without another click
+ok 2 - SYNTHETIC-QA: killing the first target can auto-resolve the last allocation without another click
+  ---
+  duration_ms: 60.2089
+  type: 'test'
+  ...
+# Subtest: SYNTHETIC component scope: progress stops at a different effect instead of counting the entire queue
+ok 3 - SYNTHETIC component scope: progress stops at a different effect instead of counting the entire queue
+  ---
+  duration_ms: 85.5654
+  type: 'test'
+  ...
+# Subtest: SYNTHETIC-QA: Uncanny with an overridden blunderbuss finishes a push without claiming damage allocation completion
+ok 4 - SYNTHETIC-QA: Uncanny with an overridden blunderbuss finishes a push without claiming damage allocation completion
+  ---
+  duration_ms: 43.3017
+  type: 'test'
+  ...
+# Subtest: tiny-tonitrus: same-cell enemies with the same name and HP have individually identifiable target options
+ok 5 - tiny-tonitrus: same-cell enemies with the same name and HP have individually identifiable target options
+  ---
+  duration_ms: 114.9224
+  type: 'test'
+  ...
+# Subtest: augur: same-cell enemies with the same name and HP have individually identifiable target options
+ok 6 - augur: same-cell enemies with the same name and HP have individually identifiable target options
+  ---
+  duration_ms: 50.5012
+  type: 'test'
+  ...
+# Subtest: executioner-gloves: same-cell enemies with the same name and HP have individually identifiable target options
+ok 7 - executioner-gloves: same-cell enemies with the same name and HP have individually identifiable target options
+  ---
+  duration_ms: 42.2105
+  type: 'test'
+  ...
+# Subtest: rune-beast: same-cell enemies with the same name and HP have individually identifiable target options
+ok 8 - rune-beast: same-cell enemies with the same name and HP have individually identifiable target options
+  ---
+  duration_ms: 50.8825
+  type: 'test'
+  ...
+# Subtest: Beast Roar identifies each enemy before assigning separate destinations to same-name figures
+ok 9 - Beast Roar identifies each enemy before assigning separate destinations to same-name figures
+  ---
+  duration_ms: 41.9017
+  type: 'test'
+  ...
+# Subtest: a reward's eligible subset keeps the same-name numbering used throughout the map
+ok 10 - a reward's eligible subset keeps the same-name numbering used throughout the map
+  ---
+  duration_ms: 35.3862
+  type: 'test'
+  ...
+# Subtest: opening target controls previews a visible choice and reopening rewards preserves the most recently changed reward target
+ok 11 - opening target controls previews a visible choice and reopening rewards preserves the most recently changed reward target
+  ---
+  duration_ms: 50.3518
+  type: 'test'
+  ...
+# Subtest: reward target two previews immediately without closing its panel, remains selected across a rune toggle and only that target takes damage
+ok 12 - reward target two previews immediately without closing its panel, remains selected across a rune toggle and only that target takes damage
+  ---
+  duration_ms: 64.3612
+  type: 'test'
+  ...
+# Subtest: Augur retains target two and its destination across an unrelated rune toggle and moves only that enemy
+ok 13 - Augur retains target two and its destination across an unrelated rune toggle and moves only that enemy
+  ---
+  duration_ms: 52.7285
+  type: 'test'
+  ...
+# Subtest: executioner-gloves: selecting figure two applies the real effect to that target and preserves figure one
+ok 14 - executioner-gloves: selecting figure two applies the real effect to that target and preserves figure one
+  ---
+  duration_ms: 45.7259
+  type: 'test'
+  ...
+# Subtest: rune-beast: selecting figure two applies the real effect to that target and preserves figure one
+ok 15 - rune-beast: selecting figure two applies the real effect to that target and preserves figure one
+  ---
+  duration_ms: 50.105
+  type: 'test'
+  ...
+# Subtest: Beast Roar sends each identified figure to its own chosen destination without damaging either one
+ok 16 - Beast Roar sends each identified figure to its own chosen destination without damaging either one
+  ---
+  duration_ms: 57.0656
+  type: 'test'
+  ...
+# Subtest: after a reward effect, real HP is shown only for the enemy explicitly inspected on the map
+ok 17 - after a reward effect, real HP is shown only for the enemy explicitly inspected on the map
+  ---
+  duration_ms: 40.7613
+  type: 'test'
+  ...
+# Subtest: initial rendering, refresh and a public file load leave enemy HUD hidden until a map or list target is explicitly selected
+ok 18 - initial rendering, refresh and a public file load leave enemy HUD hidden until a map or list target is explicitly selected
+  ---
+  duration_ms: 76.4842
+  type: 'test'
+  ...
+# Subtest: selecting a cell, entrance, tile information or clearing the target removes its HUD without changing the save
+ok 19 - selecting a cell, entrance, tile information or clearing the target removes its HUD without changing the save
+  ---
+  duration_ms: 65.6733
+  type: 'test'
+  ...
+# Subtest: inventory target two previews immediately without a game action or closing its panel and is retained before use
+ok 20 - inventory target two previews immediately without a game action or closing its panel and is retained before use
+  ---
+  duration_ms: 54.3631
+  type: 'test'
+  ...
+# Subtest: a pebble's identified enemy and destination move only figure two while figure one remains in the original cell
+ok 21 - a pebble's identified enemy and destination move only figure two while figure one remains in the original cell
+  ---
+  duration_ms: 53.0106
+  type: 'test'
+  ...
+# Subtest: current same-name enemies are numbered by array appearance order instead of their reusable figure numbers
+ok 22 - current same-name enemies are numbered by array appearance order instead of their reusable figure numbers
+  ---
+  duration_ms: 15.1471
+  type: 'test'
+  ...
+# Subtest: a single enemy has only its name even when its physical figure number is four
+ok 23 - a single enemy has only its name even when its physical figure number is four
+  ---
+  duration_ms: 11.036
+  type: 'test'
+  ...
+# Subtest: a special component and an ordinary enemy sharing a base kind keep separate public names without extra numbers
+ok 24 - a special component and an ordinary enemy sharing a base kind keep separate public names without extra numbers
+  ---
+  duration_ms: 10.5634
+  type: 'test'
+  ...
+# Subtest: map status shows mission-token counts alongside real HP without adding the token data to compact target names
+ok 25 - map status shows mission-token counts alongside real HP without adding the token data to compact target names
+  ---
+  duration_ms: 12.4248
+  type: 'test'
+  ...
+# Subtest: an actual boss's explicit zero insight tokens remains visible as zero
+ok 26 - an actual boss's explicit zero insight tokens remains visible as zero
+  ---
+  duration_ms: 17.3928
+  type: 'test'
+  ...
+# Subtest: a fixed rifle-entry reaction identifies incoming figure two even while figure one is selected on the map
+ok 27 - a fixed rifle-entry reaction identifies incoming figure two even while figure one is selected on the map
+  ---
+  duration_ms: 21.3733
+  type: 'test'
+  ...
+# Subtest: a torch-entry reaction identifies and inspects fixed figure two without retargeting the actual one-damage effect
+ok 28 - a torch-entry reaction identifies and inspects fixed figure two without retargeting the actual one-damage effect
+  ---
+  duration_ms: 28.0237
+  type: 'test'
+  ...
+# Subtest: the real Stake Driver attack shows movement choices, then decrements remaining push distance through its handlers
+ok 29 - the real Stake Driver attack shows movement choices, then decrements remaining push distance through its handlers
+  ---
+  duration_ms: 97.7947
+  type: 'test'
+  ...
+# Subtest: a genuine Chikage dodge damage choice keeps target wording and damages only the chosen enemy
+ok 30 - a genuine Chikage dodge damage choice keeps target wording and damages only the chosen enemy
+  ---
+  duration_ms: 32.2915
+  type: 'test'
+  ...
+# Subtest: filling the Stake Driver's sole slot warns about normal dodge capacity without claiming all dodge effects are forbidden
+ok 31 - filling the Stake Driver's sole slot warns about normal dodge capacity without claiming all dodge effects are forbidden
+  ---
+  duration_ms: 1.2119
+  type: 'test'
+  ...
+# Subtest: a clear-slot card leaves the single slot empty and produces no empty-dodge-slot warning
+ok 32 - a clear-slot card leaves the single slot empty and produces no empty-dodge-slot warning
+  ---
+  duration_ms: 0.871
+  type: 'test'
+  ...
+# Subtest: Clawmark replacing a clear-slot card restores the sole-slot warning and matches the occupied real slot
+ok 33 - Clawmark replacing a clear-slot card restores the sole-slot warning and matches the occupied real slot
+  ---
+  duration_ms: 1.2866
+  type: 'test'
+  ...
+# Subtest: an attack leaving other weapon slots empty does not produce the capacity warning
+ok 34 - an attack leaving other weapon slots empty does not produce the capacity warning
+  ---
+  duration_ms: 0.9892
+  type: 'test'
+  ...
+# Subtest: only the selected enemy pulses, stays visible, and never changes its position or pose
+ok 35 - only the selected enemy pulses, stays visible, and never changes its position or pose
+  ---
+  duration_ms: 5.2171
+  type: 'test'
+  ...
+# Subtest: changing or clearing a target restores the old sprite immediately without restarting animations
+ok 36 - changing or clearing a target restores the old sprite immediately without restarting animations
+  ---
+  duration_ms: 1.0608
+  type: 'test'
+  ...
+# Subtest: selected enemy walking and damage reaction keep their own tweens and animation completions
+ok 37 - selected enemy walking and damage reaction keep their own tweens and animation completions
+  ---
+  duration_ms: 1.7435
+  type: 'test'
+  ...
+# Subtest: selection never overwrites a defeated enemy fade and removal leaves no pulse work
+ok 38 - selection never overwrites a defeated enemy fade and removal leaves no pulse work
+  ---
+  duration_ms: 0.6106
+  type: 'test'
+  ...
+# Subtest: reduced motion uses a fixed tint, and preference or target changes clean it up
+ok 39 - reduced motion uses a fixed tint, and preference or target changes clean it up
+  ---
+  duration_ms: 0.6014
+  type: 'test'
+  ...
+# Subtest: an initially reduced-motion selection is static from the first visible frame
+ok 40 - an initially reduced-motion selection is static from the first visible frame
+  ---
+  duration_ms: 0.2296
+  type: 'test'
+  ...
+# Subtest: status overlays receive only living enemy identifiers and actual tween coordinates
+ok 41 - status overlays receive only living enemy identifiers and actual tween coordinates
+  ---
+  duration_ms: 0.6666
+  type: 'test'
+  ...
+# Subtest: overlay callbacks remain safe under reduced motion and their failure cannot disable the renderer
+ok 42 - overlay callbacks remain safe under reduced motion and their failure cannot disable the renderer
+  ---
+  duration_ms: 0.4013
+  type: 'test'
+  ...
+# Subtest: a restored hunter turn starts without a selected weapon slot and uses the requested player labels
+ok 43 - a restored hunter turn starts without a selected weapon slot and uses the requested player labels
+  ---
+  duration_ms: 52.0796
+  type: 'test'
+  ...
+# Subtest: slot clicks select, cancel the same slot, and replace another selection without saving
+ok 44 - slot clicks select, cancel the same slot, and replace another selection without saving
+  ---
+  duration_ms: 28.2303
+  type: 'test'
+  ...
+# Subtest: reclicking a selected hand card deselects it after target and slot redraws and disables the pending attack
+ok 45 - reclicking a selected hand card deselects it after target and slot redraws and disables the pending attack
+  ---
+  duration_ms: 47.1819
+  type: 'test'
+  ...
+# Subtest: switching hand cards leaves only the latest card selected and clicking it again disables movement
+ok 46 - switching hand cards leaves only the latest card selected and clicking it again disables movement
+  ---
+  duration_ms: 12.9881
+  type: 'test'
+  ...
+# Subtest: occupied slots are readable disabled controls and cannot replace a valid empty slot selection
+ok 47 - occupied slots are readable disabled controls and cannot replace a valid empty slot selection
+  ---
+  duration_ms: 15.2713
+  type: 'test'
+  ...
+# Subtest: an attack spends its card and disables the filled slot, including clicks on a stale preattack control
+ok 48 - an attack spends its card and disables the filled slot, including clicks on a stale preattack control
+  ---
+  duration_ms: 34.7776
+  type: 'test'
+  ...
+# Subtest: a card beyond the first hand row remains selectable and toggles off without spending a QA command
+ok 49 - a card beyond the first hand row remains selectable and toggles off without spending a QA command
+  ---
+  duration_ms: 20.9387
+  type: 'test'
+  ...
+# Subtest: a card and target cannot activate an attack until a slot is explicitly selected, and deselection disables it again
+ok 50 - a card and target cannot activate an attack until a slot is explicitly selected, and deselection disables it again
+  ---
+  duration_ms: 42.0292
+  type: 'test'
+  ...
+# Subtest: counterattacks require an explicit slot and preserve the exact selected command
+ok 51 - counterattacks require an explicit slot and preserve the exact selected command
+  ---
+  duration_ms: 27.574
+  type: 'test'
+  ...
+# Subtest: loaded occupied slots do not cause another empty slot to be selected, and dodging still needs an explicit legal slot
+ok 52 - loaded occupied slots do not cause another empty slot to be selected, and dodging still needs an explicit legal slot
+  ---
+  duration_ms: 29.7462
+  type: 'test'
+  ...
+# Subtest: a two-slot transformation clears a now-invalid selected slot without choosing slot zero
+ok 53 - a two-slot transformation clears a now-invalid selected slot without choosing slot zero
+  ---
+  duration_ms: 18.9737
+  type: 'test'
+  ...
+# Subtest: resuming the stored hunt and starting a new hunt both clear a previous explicit slot selection
+ok 54 - resuming the stored hunt and starting a new hunt both clear a previous explicit slot selection
+  ---
+  duration_ms: 33.5214
+  type: 'test'
+  ...
+# Subtest: importing a different actual replay clears an existing slot selection and preserves the imported save exactly
+ok 55 - importing a different actual replay clears an existing slot selection and preserves the imported save exactly
+  ---
+  duration_ms: 17.8551
+  type: 'test'
+  ...
+# Subtest: the Reiterpallasch weapon choice preserves null and requires its exact explicitly selected aiming slot
+ok 56 - the Reiterpallasch weapon choice preserves null and requires its exact explicitly selected aiming slot
+  ---
+  duration_ms: 418.6621
+  type: 'test'
+  ...
+# Subtest: hunter-pistol hides preparation guidance while ready and preserves its printed effect
+ok 57 - hunter-pistol hides preparation guidance while ready and preserves its printed effect
+  ---
+  duration_ms: 10.5096
+  type: 'test'
+  ...
+# Subtest: hunter-pistol shows the exact 1-card player-turn preparation cost only while spent and prepares through the original command
+ok 58 - hunter-pistol shows the exact 1-card player-turn preparation cost only while spent and prepares through the original command
+  ---
+  duration_ms: 26.0484
+  type: 'test'
+  ...
+# Subtest: flamesprayer hides preparation guidance while ready and preserves its printed effect
+ok 59 - flamesprayer hides preparation guidance while ready and preserves its printed effect
+  ---
+  duration_ms: 10.635
+  type: 'test'
+  ...
+# Subtest: flamesprayer shows the exact 2-card player-turn preparation cost only while spent and prepares through the original command
+ok 60 - flamesprayer shows the exact 2-card player-turn preparation cost only while spent and prepares through the original command
+  ---
+  duration_ms: 27.6034
+  type: 'test'
+  ...
+# Subtest: every provided ready firearm retains its exact public effect rules while withholding preparation instructions
+ok 61 - every provided ready firearm retains its exact public effect rules while withholding preparation instructions
+  ---
+  duration_ms: 78.3713
+  type: 'test'
+  ...
+# Subtest: BB030 earned long-card toggles preserve its reading position and focused control without altering save bytes
+ok 62 - BB030 earned long-card toggles preserve its reading position and focused control without altering save bytes
+  ---
+  duration_ms: 51.9384
+  type: 'test'
+  ...
+# Subtest: BB030 a free-slot toggle preserves focused slot and the reading offsets of both loadout lists
+ok 63 - BB030 a free-slot toggle preserves focused slot and the reading offsets of both loadout lists
+  ---
+  duration_ms: 45.0751
+  type: 'test'
+  ...
+# Subtest: BB030 a consumed hand card is not refocused or replaced with an unrelated card
+ok 64 - BB030 a consumed hand card is not refocused or replaced with an unrelated card
+  ---
+  duration_ms: 19.2607
+  type: 'test'
+  ...
+# Subtest: BB030 an attack never restores focus to its newly occupied disabled slot
+ok 65 - BB030 an attack never restores focus to its newly occupied disabled slot
+  ---
+  duration_ms: 25.935
+  type: 'test'
+  ...
+# Subtest: BB030 changing to a two-slot weapon does not redirect focus from a removed third slot
+ok 66 - BB030 changing to a two-slot weapon does not redirect focus from a removed third slot
+  ---
+  duration_ms: 17.1469
+  type: 'test'
+  ...
+# Subtest: BB030 hand redraws leave an unrelated focused control untouched
+ok 67 - BB030 hand redraws leave an unrelated focused control untouched
+  ---
+  duration_ms: 8.6053
+  type: 'test'
+  ...
+# Subtest: automatic dodge applies the whip area effect without spending a stat card
+ok 68 - automatic dodge applies the whip area effect without spending a stat card
+  ---
+  duration_ms: 14.1593
+  type: 'test'
+  ...
+# Subtest: automatic dodge applies Chikage healing and its same-space damage
+ok 69 - automatic dodge applies Chikage healing and its same-space damage
+  ---
+  duration_ms: 2.4816
+  type: 'test'
+  ...
+# Subtest: the mission death dodge applies the current weapon effect before resuming the mission
+ok 70 - the mission death dodge applies the current weapon effect before resuming the mission
+  ---
+  duration_ms: 2.9192
+  type: 'test'
+  ...
+# Subtest: a mission death dodge uses card speed bonuses for matching-speed weapon effects
+ok 71 - a mission death dodge uses card speed bonuses for matching-speed weapon effects
+  ---
+  duration_ms: 1.6894
+  type: 'test'
+  ...
+# Subtest: a beast-claw kill movement resumes enemy activation after the survivor mission choice
+ok 72 - a beast-claw kill movement resumes enemy activation after the survivor mission choice
+  ---
+  duration_ms: 6.6187
+  type: 'test'
+  ...
+# Subtest: clearing a face-down weapon card removes its temporary tag before it enters discard
+ok 73 - clearing a face-down weapon card removes its temporary tag before it enters discard
+  ---
+  duration_ms: 1.8592
+  type: 'test'
+  ...
+# Subtest: dream collection removes face-down weapon tags before recycling the hunter deck
+ok 74 - dream collection removes face-down weapon tags before recycling the hunter deck
+  ---
+  duration_ms: 1.7206
+  type: 'test'
+  ...
+# Subtest: map reset restores the selected real practice opponent and its side at the chosen start space
+ok 75 - map reset restores the selected real practice opponent and its side at the chosen start space
+  ---
+  duration_ms: 3.4076
+  type: 'test'
+  ...
+1..75
+# tests 75
+# suites 0
+# pass 75
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1302.654

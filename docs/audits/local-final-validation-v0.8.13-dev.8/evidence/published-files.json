@@ -1,0 +1,130 @@
+{
+  "scope": "Public QA observations, summaries and selected captured game screenshots; no raw QA save, user save, original reference photo or credentials.",
+  "files": [
+    {
+      "name": "actual-save-comparison.json",
+      "bytes": 11291,
+      "sha256": "99b83546bda605da1d2859f6e11df7dd1d4b20629669c9461aa5107fbc094197"
+    },
+    {
+      "name": "bb030-slot-keyboard-after.jpg",
+      "bytes": 177289,
+      "sha256": "062d267dd284eb00c595eca89145513557960261487f0d4dedadae58a910183c"
+    },
+    {
+      "name": "bb031-after-native-maps.png",
+      "bytes": 605789,
+      "sha256": "2ac177be62e7d4fb1ea0bd8f798d83837f97839f0ce67848146efd6b52b10318"
+    },
+    {
+      "name": "bb031-before-native-maps.png",
+      "bytes": 562022,
+      "sha256": "3fb57b9549b1475bc91ec32a8cf715397b2a404565bcdabf1abdf21627d36da5"
+    },
+    {
+      "name": "bb031-before-reproduced-native-maps.png",
+      "bytes": 352580,
+      "sha256": "bcc675d6967abfc2492a5783682abd2303433f7e99fb20b7ed2a7cad50405e55"
+    },
+    {
+      "name": "before-reproduced-review-index.json",
+      "bytes": 5997,
+      "sha256": "91af803df50c038c9dfbe607d64f71d5f496beda1b32f77cca20066b70dd38fb"
+    },
+    {
+      "name": "card-help-keyboard-after.jpg",
+      "bytes": 175387,
+      "sha256": "adcfcf1fb6335edbb560b98327a05395225d98b2d341ca61b7c1d3f2b5789a0d"
+    },
+    {
+      "name": "card-keyboard-focus-before.jpg",
+      "bytes": 170391,
+      "sha256": "aca8af8f4ea58eb1bf13cce6c8d6367910855bd867be8bd408438635cb0a406a"
+    },
+    {
+      "name": "ci-dev8.json",
+      "bytes": 9799,
+      "sha256": "72df958396f8ca84c5cf2c9f0c68ab4871d3d2e333479e80ef6970e28af71f48"
+    },
+    {
+      "name": "dev8-earned-firearm-hover.jpg",
+      "bytes": 187731,
+      "sha256": "c1bb01620e6cc8d70065b1c82cede163a529890c7c91a27804207de891fc2ed6"
+    },
+    {
+      "name": "dev8-equipped-firearm-hover-clean.jpg",
+      "bytes": 188835,
+      "sha256": "bb431bf2ab8f1724d4eb158095e9f1cb5bf093a39dd597a6fd1c1a1af0fa32da"
+    },
+    {
+      "name": "dev8-firearm-actual.json",
+      "bytes": 1477,
+      "sha256": "36f7973d860961283b1e4ebb9943699ab1fe27d4d38c2140b7cd6091ffd6bfda"
+    },
+    {
+      "name": "github-actions-startup-block.json",
+      "bytes": 1929,
+      "sha256": "de136a89bdbd5255d8509c0ccd02b10ade61d5db64d8c881b98ec1569a43c650"
+    },
+    {
+      "name": "long-card-wheel-end.jpg",
+      "bytes": 171126,
+      "sha256": "4c8f199fae093aa1de20a36146eaa047b8fc60d0556a8e1d5c74e293a62eb11f"
+    },
+    {
+      "name": "motion-additional17-deferred.json",
+      "bytes": 17749,
+      "sha256": "fbf8e17833390a1b6b4f453a9dfa85de4ae2c9dda6fb33b8e8061b9145ddacd9"
+    },
+    {
+      "name": "motion-basic42-deferred.json",
+      "bytes": 13443,
+      "sha256": "b94e03a14ef7141cbd6806cff12aad0552a072061299804375e01b51fdccb480"
+    },
+    {
+      "name": "motion-initial66-deferred.json",
+      "bytes": 5004,
+      "sha256": "951ac98589c85f42d241b181659c7dbdeb8d0c4007143b75fb6d4311f66bb809"
+    },
+    {
+      "name": "public-browser-results-dev7.json",
+      "bytes": 90902,
+      "sha256": "442a2e7df0b8da7bff2eaf9227319374e37df418b9ce275fc5b749afb0e2f53a"
+    },
+    {
+      "name": "pursuit-after-review-index.json",
+      "bytes": 65003,
+      "sha256": "1f7db09a3f550d4fca6b58896cbcfa1a7eeea445a65540e2626c70a15f73c469"
+    },
+    {
+      "name": "pursuit-before-review-index.json",
+      "bytes": 63568,
+      "sha256": "f835d3d9a1850d53e69aea6b50f6a63e2f5c33faa028cec66d1493574faaec1d"
+    },
+    {
+      "name": "slot-keyboard-focus-before.jpg",
+      "bytes": 171105,
+      "sha256": "ff2fba4c30b6cd0dc4c29e8c8307f6c9fe71f3013d8d745c2e2e065765c453b5"
+    },
+    {
+      "name": "ui03-chapel-combat-effects.jpg",
+      "bytes": 193463,
+      "sha256": "ab4ef381ed0f5cab13ab2dc58bfd474757a2908075280660808648a6c98f321c"
+    },
+    {
+      "name": "ui05-departure-escort-confirmation.jpg",
+      "bytes": 49943,
+      "sha256": "35b942d49623925abad57c0942b7ab756b661778afe7818700b49a0b2d2584a8"
+    },
+    {
+      "name": "ui05-mission10-enemy-applied-change.jpg",
+      "bytes": 68785,
+      "sha256": "4a7f09c0a6cfd8c7325609b79075c7d3a9d4f0b1306814fa7e39f88f3dbd8f6f"
+    },
+    {
+      "name": "unity-preparation.json",
+      "bytes": 13959,
+      "sha256": "1e048f64b44d873523e681aa75519b01b2d3e4aeef57b512916a1610217c8ad0"
+    }
+  ]
+}

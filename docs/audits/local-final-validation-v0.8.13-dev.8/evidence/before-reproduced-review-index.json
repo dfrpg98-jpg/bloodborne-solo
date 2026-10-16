@@ -1,0 +1,165 @@
+{
+  "sourceCommit": "ae1657ef826c9f9dd7339d9aeef355bca5f692ff",
+  "sourceScreenshots": 22,
+  "viewport": [
+    1280,
+    720
+  ],
+  "crop": [
+    247,
+    253,
+    933,
+    431
+  ],
+  "method": "Supplementary actual frozen before replay. Native686x178 map crops, no resize. Current8786 remained dev8. Original199 larger native map derivatives remain primary defect evidence.",
+  "sheets": [
+    {
+      "file": "before-map-00.png",
+      "sha256": "870bb2e23a0b34c6a6872102163c248b7e73f93ab8516ad0c6f6340396c749bb",
+      "entries": [
+        {
+          "file": "pursuit-burial-0-step-before.jpg",
+          "afterClickMs": "before",
+          "segment": "step",
+          "sha256": "e28d8c5c5daa6e4bbb9ee6dfe21b36260d58476a5a1970c6a0bbc14fc781430e"
+        },
+        {
+          "file": "pursuit-burial-0-step-00.jpg",
+          "afterClickMs": 51,
+          "segment": "step",
+          "sha256": "08c76b71b58b920b6665e3dd47c6a041ad3933d33b2dba8f1fe4139ea735f1f0"
+        },
+        {
+          "file": "pursuit-burial-0-step-01.jpg",
+          "afterClickMs": 106,
+          "segment": "step",
+          "sha256": "b99eb8c14db5443f5e2eeae512eadf3dd7039c21ef9a32a8f6b19281c6700971"
+        },
+        {
+          "file": "pursuit-burial-0-step-02.jpg",
+          "afterClickMs": 152,
+          "segment": "step",
+          "sha256": "7572e84a210f0f5b01ecf2b1f8adf9e14fbee493f665e07c441f7419267b0c81"
+        },
+        {
+          "file": "pursuit-burial-0-step-03.jpg",
+          "afterClickMs": 208,
+          "segment": "step",
+          "sha256": "9ec0f6ed21ce7c07d91e68a8968cbc889323d49763f99477225806c1f8d96471"
+        },
+        {
+          "file": "pursuit-burial-0-step-04.jpg",
+          "afterClickMs": 251,
+          "segment": "step",
+          "sha256": "feba1f3ae7cbb19f6acb477a0f19fee6da36d2c9d63f44ef7e6f73cad2088cc9"
+        },
+        {
+          "file": "pursuit-burial-0-step-05.jpg",
+          "afterClickMs": 302,
+          "segment": "step",
+          "sha256": "feba1f3ae7cbb19f6acb477a0f19fee6da36d2c9d63f44ef7e6f73cad2088cc9"
+        },
+        {
+          "file": "pursuit-burial-0-step-06.jpg",
+          "afterClickMs": 351,
+          "segment": "step",
+          "sha256": "feba1f3ae7cbb19f6acb477a0f19fee6da36d2c9d63f44ef7e6f73cad2088cc9"
+        },
+        {
+          "file": "pursuit-burial-0-step-07.jpg",
+          "afterClickMs": 400,
+          "segment": "step",
+          "sha256": "feba1f3ae7cbb19f6acb477a0f19fee6da36d2c9d63f44ef7e6f73cad2088cc9"
+        },
+        {
+          "file": "pursuit-burial-0-step-08.jpg",
+          "afterClickMs": 458,
+          "segment": "step",
+          "sha256": "feba1f3ae7cbb19f6acb477a0f19fee6da36d2c9d63f44ef7e6f73cad2088cc9"
+        },
+        {
+          "file": "pursuit-burial-0-step-09.jpg",
+          "afterClickMs": 502,
+          "segment": "step",
+          "sha256": "feba1f3ae7cbb19f6acb477a0f19fee6da36d2c9d63f44ef7e6f73cad2088cc9"
+        },
+        {
+          "file": "pursuit-burial-0-stop-before.jpg",
+          "afterClickMs": "before",
+          "segment": "stop",
+          "sha256": "3749790410d0910fff24f836486721b3b739b091fc28cdf24f5d8a1b2fa0a89b"
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "before-map-01.png",
+      "sha256": "bcc675d6967abfc2492a5783682abd2303433f7e99fb20b7ed2a7cad50405e55",
+      "entries": [
+        {
+          "file": "pursuit-burial-0-stop-00.jpg",
+          "afterClickMs": 54,
+          "segment": "stop",
+          "sha256": "af788cee2265b7fbb97f081df3ea579a3a3727213ac80fdb162398086673d767"
+        },
+        {
+          "file": "pursuit-burial-0-stop-01.jpg",
+          "afterClickMs": 101,
+          "segment": "stop",
+          "sha256": "07c26feca87a9f6306ab6e57415d3da65c98678687ff6de4c065ec6425984f85"
+        },
+        {
+          "file": "pursuit-burial-0-stop-02.jpg",
+          "afterClickMs": 151,
+          "segment": "stop",
+          "sha256": "6b406a7ff113b8ad3bbc77eac801e814244d4bc555318311dfc55af2adeb2d6a"
+        },
+        {
+          "file": "pursuit-burial-0-stop-03.jpg",
+          "afterClickMs": 202,
+          "segment": "stop",
+          "sha256": "6df21455c59f2f4d1b1827fc021d44e77d7f0ce545c9e13725ca066b0af0facc"
+        },
+        {
+          "file": "pursuit-burial-0-stop-04.jpg",
+          "afterClickMs": 251,
+          "segment": "stop",
+          "sha256": "59b330eb7f93d80a6157a4a17b83ab5e18d927f1dc5a93ac8666aeac4cb512c6"
+        },
+        {
+          "file": "pursuit-burial-0-stop-05.jpg",
+          "afterClickMs": 302,
+          "segment": "stop",
+          "sha256": "8c680da0effd04d0767a5c75c7f09055056c4d8eb5642463fff5762eb97c2407"
+        },
+        {
+          "file": "pursuit-burial-0-stop-06.jpg",
+          "afterClickMs": 352,
+          "segment": "stop",
+          "sha256": "8c680da0effd04d0767a5c75c7f09055056c4d8eb5642463fff5762eb97c2407"
+        },
+        {
+          "file": "pursuit-burial-0-stop-07.jpg",
+          "afterClickMs": 409,
+          "segment": "stop",
+          "sha256": "8c680da0effd04d0767a5c75c7f09055056c4d8eb5642463fff5762eb97c2407"
+        },
+        {
+          "file": "pursuit-burial-0-stop-08.jpg",
+          "afterClickMs": 450,
+          "segment": "stop",
+          "sha256": "8c680da0effd04d0767a5c75c7f09055056c4d8eb5642463fff5762eb97c2407"
+        },
+        {
+          "file": "pursuit-burial-0-stop-09.jpg",
+          "afterClickMs": 501,
+          "segment": "stop",
+          "sha256": "8c680da0effd04d0767a5c75c7f09055056c4d8eb5642463fff5762eb97c2407"
+        }
+      ],
+      "actuallyViewed": true
+    }
+  ],
+  "actualScreenshotsVisuallyInspected": 22,
+  "finding": "Before STEP hunter at lower-left; after STEP hunter right of beast; after STOP hunter repositions left while unmatched pursuer takes right. This smaller1280x720 supplemental replay confirms changed placements; primary199 native crops document transient body crossing. No modal. Exact publicly exported saved state matches normal STEP and STOP commands."
+}

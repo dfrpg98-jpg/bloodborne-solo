@@ -1,0 +1,1655 @@
+{
+  "sourceCommit": "ae1657ef826c9f9dd7339d9aeef355bca5f692ff",
+  "method": "Analysis derivative: each actual full screenshot preserved; exact 593x686 map crop at original pixels, no resizing; six maps per sheet. Only mark viewed after actual image inspection.",
+  "crop": [
+    250,
+    276,
+    843,
+    962
+  ],
+  "sourceScreenshots": 199,
+  "sheets": [
+    {
+      "file": "map-sheet-000.png",
+      "sha256": "9cd82656b846b69af5fc8bbc89c4f10579ce860e10dc8f4528111be25f3dfe1c",
+      "entries": [
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-before.jpg",
+          "sha256": "c00191943798ada6869fcf9c2b6dfa873cb6fb84b3245a593325edf355957900",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-00.jpg",
+          "sha256": "923a9bb7dd18ec4ee33e2868d0dfaf0b25b2237fc5bdeff77ab8dc192e6c592a",
+          "afterClickMs": 60
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-01.jpg",
+          "sha256": "f3ed32f3c002060b1484f15eb649d3b7d3d03870087e6b7be0557753570b098a",
+          "afterClickMs": 104
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-02.jpg",
+          "sha256": "8491407de655daddf74be63485118c50f782506575bc1ab5ca462b95957d951c",
+          "afterClickMs": 149
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-03.jpg",
+          "sha256": "0022b05b3215a08affca7c7ab92e23dd6c97e04e85b21fe16b8484923d42100d",
+          "afterClickMs": 204
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-04.jpg",
+          "sha256": "e9dd9eec06766052843140c6b143b0bfc1eef2eaca99331644d259c7e65694c0",
+          "afterClickMs": 254
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-001.png",
+      "sha256": "530be4c60d98970e146561c72a274310f99ced04f3073aae44b834a6d63b0f79",
+      "entries": [
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-05.jpg",
+          "sha256": "aadf9d3e10a84604ecaf40a9e28ababb3aa138901cea07f8f138eeec905ea99a",
+          "afterClickMs": 305
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-06.jpg",
+          "sha256": "fb93f4548d99376da6a17e586109f057b7ccb6925694ec47f9d18c20a03112b0",
+          "afterClickMs": 356
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-07.jpg",
+          "sha256": "f56bbc546b13bd6ad59cada1fc9ef9a179e418c6b214446ef0e657fbb5d5e794",
+          "afterClickMs": 402
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-08.jpg",
+          "sha256": "ebd76b8b778e18f3fcd802db1482ae870f8924d4a96e248c68f40feccd07ab39",
+          "afterClickMs": 449
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-09.jpg",
+          "sha256": "ebd76b8b778e18f3fcd802db1482ae870f8924d4a96e248c68f40feccd07ab39",
+          "afterClickMs": 503
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-before.jpg",
+          "sha256": "ebd76b8b778e18f3fcd802db1482ae870f8924d4a96e248c68f40feccd07ab39",
+          "afterClickMs": "before"
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-002.png",
+      "sha256": "3fb57b9549b1475bc91ec32a8cf715397b2a404565bcdabf1abdf21627d36da5",
+      "entries": [
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-00.jpg",
+          "sha256": "e49a8a43a3c44c12bb45f6a4cd77fff4c9abcbb08153364be2022325e3a1f5f3",
+          "afterClickMs": 65
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-01.jpg",
+          "sha256": "cca07981075f71a91422b78b7170552955e91a509dd8f11e96bf58f77309c5af",
+          "afterClickMs": 124
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-02.jpg",
+          "sha256": "fbf186e51b7341ed85d8ce55d8eb972995b272692165bee727e2299399be9613",
+          "afterClickMs": 170
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-03.jpg",
+          "sha256": "e1721ca83a1f7c176a6651370743823ee04de634ef3fd3894ba1d72a2c8326c0",
+          "afterClickMs": 219
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-04.jpg",
+          "sha256": "4a2d8069f6e22046254874d844f843c0d19c28c2fe6230e081cbd9f8d86d5a4f",
+          "afterClickMs": 273
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-05.jpg",
+          "sha256": "6f52ccf762ef7f1b50f63a845c0ca476fe5b85d2ed1c7a43c062a76b4a6e112b",
+          "afterClickMs": 325
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-003.png",
+      "sha256": "88feb589de26ba581f351fdf4d49abde85520c5d8ee95be582702cd6a7665899",
+      "entries": [
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-06.jpg",
+          "sha256": "c2257d685682b39ab51f22a58b8e4eab3bfd6a5292cd84685b5fe1bb2f1d8311",
+          "afterClickMs": 374
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-07.jpg",
+          "sha256": "01bbd823e9092fda47520246d6c6cd5224de8b9abba60b337149593a364e60b8",
+          "afterClickMs": 422
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-08.jpg",
+          "sha256": "3b91d3a871927a50ea14d7ebb515a9846053ee2f13b82c6e963301849b210636",
+          "afterClickMs": 472
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-09.jpg",
+          "sha256": "3b91d3a871927a50ea14d7ebb515a9846053ee2f13b82c6e963301849b210636",
+          "afterClickMs": 523
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-before.jpg",
+          "sha256": "53ecd47727af45ef633e48a36f0ef9fbd01a0c644e6ff82c93982c36458f3941",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-00.jpg",
+          "sha256": "30bb1aec21ba6c9039a119c0598441387855ac48d63bc5d97f06143562b265dc",
+          "afterClickMs": 56
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-004.png",
+      "sha256": "62b3e8e65b5a05222d56af98cdfbf4754dfa3e4bf132cc630e8834d76b511bdf",
+      "entries": [
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-01.jpg",
+          "sha256": "3cc48cdc2b086878a8ea7426912b7be1ee54c537e3a0e219d083e800b5bd619b",
+          "afterClickMs": 106
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-02.jpg",
+          "sha256": "754ee1e8b906728aa97421b736991e66b73cf6779416d5a2fe4fb6d826e1d3a9",
+          "afterClickMs": 156
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-03.jpg",
+          "sha256": "848324c92aa06ff2d4bb8bef7777f9ce29d2082747e7f43d6732c978033392f1",
+          "afterClickMs": 206
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-04.jpg",
+          "sha256": "79914ac5e1618c0a0abb163275330bfa82d3fad51568a72b92e71f46bda914b9",
+          "afterClickMs": 254
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-05.jpg",
+          "sha256": "1a1916a89b4e17ea4f2a8c407f1f74d74e12a457487d7998813c2982ec8267d1",
+          "afterClickMs": 304
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-06.jpg",
+          "sha256": "c608c6220a93bd23841700a56f6861bf7276565a8c638e7e692d23998330de27",
+          "afterClickMs": 354
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-005.png",
+      "sha256": "b2bffdd694243e6d7f488fdf73ee3dfd7e0386529d178a994461ee56c1c6d09a",
+      "entries": [
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-07.jpg",
+          "sha256": "f17853e63e043eb41587b0a3a04c82d95ff379d1cc6c9ac3c1994b048e92a3ef",
+          "afterClickMs": 407
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-08.jpg",
+          "sha256": "fa5ee2680817a344c7884e723470f83cb60ba50a3e40d4a08017f88e7ee2011f",
+          "afterClickMs": 456
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-09.jpg",
+          "sha256": "fa5ee2680817a344c7884e723470f83cb60ba50a3e40d4a08017f88e7ee2011f",
+          "afterClickMs": 509
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-before.jpg",
+          "sha256": "89b22fe9783f6ba402a05fce6620ddb3a0a296684f6c6b5070d3b2b319963709",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-00.jpg",
+          "sha256": "1132bb5faab7cd27c8d23814024f5d7e60b11972d59b80944865c33a5a50775f",
+          "afterClickMs": 54
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-01.jpg",
+          "sha256": "d9afb4ee57c89548df4721e412cf7a134ed4bfa2292c01678489ec3ddaff1eef",
+          "afterClickMs": 104
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-006.png",
+      "sha256": "0177c0a7c5fa6b9104be1cfb4ccce098e8dcb56f6e45d2d29e3b99c4b5e1777e",
+      "entries": [
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-02.jpg",
+          "sha256": "7eae7ebb5123f08637dbf65a831951f5099412a417294a965fffc35927a221b0",
+          "afterClickMs": 153
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-03.jpg",
+          "sha256": "6930cdf2fafad0efdf2007b4704600e9cb036f017280d3f633edf88994097a76",
+          "afterClickMs": 204
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-04.jpg",
+          "sha256": "ce0b9fefdd1362abe41689e6d2ef6aa6651bb84bf60c373eabf6c731eed6a761",
+          "afterClickMs": 250
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-05.jpg",
+          "sha256": "ef3198fe1922ae943da8829352a64c6ad16ea4168c6ee97466a606cf74977d55",
+          "afterClickMs": 304
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-06.jpg",
+          "sha256": "38c64c9c7b13a32e6c97477b60882b34edb370da2ebf74af3ccefcd7f2f045be",
+          "afterClickMs": 354
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-07.jpg",
+          "sha256": "c65a19908e58b158de9a3c36a387fdce7eeba0eb56b21d1a2727443d051fb2b1",
+          "afterClickMs": 405
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-007.png",
+      "sha256": "ada5b3846ac7f1373e3965a4db76c658d5c2ce2673d1a1d8890e8bdab93904c0",
+      "entries": [
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-08.jpg",
+          "sha256": "bf2c0a6f67e227bbf173097cd1df0eb7293f537e9ab6ce0df776719cfebfe693",
+          "afterClickMs": 453
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-09.jpg",
+          "sha256": "9414daefce99904c012dd0f0006e9b14d0d25e73522ce34b6b511a0cebb197e3",
+          "afterClickMs": 499
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-before.jpg",
+          "sha256": "7c94688c0e4f582d327d7f79fd0028bc379f0fcf51cb680c3d0977ee94efec74",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-00.jpg",
+          "sha256": "cb25eb50b5f7c5ada849f8a55b8468120fe23e3e92bdf8f5bba5d7e32f49308f",
+          "afterClickMs": 53
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-01.jpg",
+          "sha256": "4be5b4328441f2f802e41960645679468273fbc36410cf04ddd4eb70ea75bcff",
+          "afterClickMs": 103
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-02.jpg",
+          "sha256": "ae3a9015278dd572b17b7f9ffaeb387054d3fa9f50021f27238058fbc15050ea",
+          "afterClickMs": 159
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-008.png",
+      "sha256": "d5a9ef573501a8f2b97c0e009edaceb96282a367449a62c5f7bcc9c6d520e5fb",
+      "entries": [
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-03.jpg",
+          "sha256": "3fd0da1235d0771304e248cce76d30b594f29602d34877d267967e1818e339ed",
+          "afterClickMs": 232
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-04.jpg",
+          "sha256": "6bf669effa15cf7be1430e4a2c01d7aa738494c3d6c1d3c132eb3756ba7f119f",
+          "afterClickMs": 290
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-05.jpg",
+          "sha256": "44371ea2f5f3163e30eab158343be0519ed7789c33fecf0ff2afe6414254aae4",
+          "afterClickMs": 349
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-06.jpg",
+          "sha256": "ad36de2c2d260d73699e9aa20108c6f797073129c4ec13bcff8cc383ffcdaa75",
+          "afterClickMs": 401
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-07.jpg",
+          "sha256": "ca049046544259e21f34017f433e83d8355c960dab6d44ad6c16bc916bced03c",
+          "afterClickMs": 451
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-08.jpg",
+          "sha256": "ef3c18b550044d2ce27adaf616a14633404016ae1447d9c90de2389ecd993cf9",
+          "afterClickMs": 504
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-009.png",
+      "sha256": "922ed264c4e9442921223174db8f2abec2a3261434ed66b40610b40dba784dfa",
+      "entries": [
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-09.jpg",
+          "sha256": "4bbda7bc4b6391ec3baec2ca045bbb1e6145bb4481c2ee7255568d75a7ed250c",
+          "afterClickMs": 555
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-before.jpg",
+          "sha256": "39f9e05212cd3596f72bfa193cf206149ea2fc62ecce980f92196706554cb0fb",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-00.jpg",
+          "sha256": "0f979c2b85338dd75aa421d0f3f3517f1041d113cdfb2d72eac394fc8355f60c",
+          "afterClickMs": 54
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-01.jpg",
+          "sha256": "866fb09c226ed9fd5d1a28801f5737f4682ca9ce825a6fcf69677e999e0c51c9",
+          "afterClickMs": 102
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-02.jpg",
+          "sha256": "9900f0badf967cfa5003c99e666268b3c9883371d9759bf2bdaffc7413494b19",
+          "afterClickMs": 155
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-03.jpg",
+          "sha256": "af86e7d46d41380063ca8b5af94d3c43acf4eb0f61c0cbc6c5ddf2ff188c046d",
+          "afterClickMs": 206
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-010.png",
+      "sha256": "fd1df8b428dd04d544b4ec68b239a5fa4b93a59100a2d9c70659351fe61f116f",
+      "entries": [
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-04.jpg",
+          "sha256": "5071603722a710f4e6c70eec789a5cb6e265ff7be8ea27f670c47f424841947e",
+          "afterClickMs": 256
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-05.jpg",
+          "sha256": "86eed850328bff23a011810bf6984f0d80f0116df5772a1ded1292513dd7f2e2",
+          "afterClickMs": 306
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-06.jpg",
+          "sha256": "42bd1c30702c65a6d1a52bb84b617e89d5f51fe44cc2292820d4bac1fd99b24e",
+          "afterClickMs": 352
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-07.jpg",
+          "sha256": "46fac42aaf5f22bb5a6a95b6a30d64f33d06fe10de915e42201f19aeb52f38a2",
+          "afterClickMs": 399
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-08.jpg",
+          "sha256": "e265028adfbab91cd27ca5b4697ef286f7ee6b51c93b92d1870d369e4c4f83e1",
+          "afterClickMs": 456
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-09.jpg",
+          "sha256": "adf7b50c09fcc5d053b264f778c0f74b381440b67a7e269c5e5a7d8db9047101",
+          "afterClickMs": 505
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-011.png",
+      "sha256": "cf7e1fcb1c496588708f038836b08e9e246bea98906f44c6a2c1778d8780da4a",
+      "entries": [
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-before.jpg",
+          "sha256": "9ac187bbf03dbed8bc139e0ef10dd6bc40d721d9fe72e20f39b3085f6a5d8060",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-00.jpg",
+          "sha256": "ba1823947e569c465d073b75b3f20d9ee745aea2dacdabf37922a3646a815414",
+          "afterClickMs": 72
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-01.jpg",
+          "sha256": "7a1125b422f758fe6904a2ddc86f2c71f727117360c466104ee3b10c964ce570",
+          "afterClickMs": 122
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-02.jpg",
+          "sha256": "7826cc4eba3e01add8a66b97c7a3fb2aa3179512809dc5bd11940056cefa2810",
+          "afterClickMs": 172
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-03.jpg",
+          "sha256": "67cb8419f738e81d6d5627275f9ef73457fb354bfa28ae6b441a643a3aba3d25",
+          "afterClickMs": 223
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-04.jpg",
+          "sha256": "34e7531c18f29eef6a3b9332da82abced4302df43f0ae1d45733cf9514fa4eb9",
+          "afterClickMs": 273
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-012.png",
+      "sha256": "586c5ea9f6be8fc83162bfe132a16c7a0b076b3d8af0da402266f63817c5f55d",
+      "entries": [
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-05.jpg",
+          "sha256": "0ff5de8488048edabe8820a0415eb8260dd0aaf6c15e1c449ad4f0271362d257",
+          "afterClickMs": 325
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-06.jpg",
+          "sha256": "20aff71aee2293cad1f948ffefdcabff496e28012c481278402bf0d3a35dcf2e",
+          "afterClickMs": 372
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-07.jpg",
+          "sha256": "fb1cf5364e164252a6a7d48312cb8e3646dd591e39d2e31071e9c1b32504744f",
+          "afterClickMs": 419
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-08.jpg",
+          "sha256": "6e0e8064d7db594217b9b4d8b5c349f08017a0ea4cc0dc2a56162e6504cbcc40",
+          "afterClickMs": 473
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-09.jpg",
+          "sha256": "6e0e8064d7db594217b9b4d8b5c349f08017a0ea4cc0dc2a56162e6504cbcc40",
+          "afterClickMs": 523
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-before.jpg",
+          "sha256": "326c0890c6de58e0cc3358d9586f96809aaa22debba6486e4891aa1e436277e7",
+          "afterClickMs": "before"
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-013.png",
+      "sha256": "2ae21cc8768acca233b66c33c3f8f2a44fad7b5649471b540b0f80770442b0a2",
+      "entries": [
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-00.jpg",
+          "sha256": "0c47f15006aca70439819f21b325c6497c8222d1cf175fabcee9c968db775269",
+          "afterClickMs": 59
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-01.jpg",
+          "sha256": "2f0fe425c00a8fb035fe3552005a531b692c4e91d58a9655722fc4472c5f93f6",
+          "afterClickMs": 107
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-02.jpg",
+          "sha256": "803bd231df58d4728830f18af48a672aac81b5ee79c50b33fcee653980cce4bf",
+          "afterClickMs": 157
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-03.jpg",
+          "sha256": "9b62972113dc55ee630c5b0afd175bdc8bcc571816dc6a5f4150c600c712061a",
+          "afterClickMs": 208
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-04.jpg",
+          "sha256": "aa349edc0303e2ca79b30dab3c36854a804b767897afee2e1dfc78ed30b846fb",
+          "afterClickMs": 258
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-05.jpg",
+          "sha256": "b7e93915fe5dd679fadb71828cadcc9ceef8888393e6b4f9d00c422a1741f815",
+          "afterClickMs": 308
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-014.png",
+      "sha256": "260fe39c41f33b4ab1252cd836eab0aa3a984f3a3ac300c22920c2739ca0ce0b",
+      "entries": [
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-06.jpg",
+          "sha256": "b18e28b62b636ed6fe930b8c604409ccd22ae7df3c826e4ee6db089d7ad086f4",
+          "afterClickMs": 360
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-07.jpg",
+          "sha256": "11316790d45e19bf6638f7232971f8eb43111cdf0d7e8d77e28f8de98676315b",
+          "afterClickMs": 404
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-08.jpg",
+          "sha256": "ce6daf7f9e1dd20447a1f24bda656d6d7361b0ca10f94b00d26e06cd74eacfaa",
+          "afterClickMs": 450
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-09.jpg",
+          "sha256": "e07a02be491d6d10feab540f878048acb833ff253df97f53f243efa818d10eb5",
+          "afterClickMs": 508
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-before.jpg",
+          "sha256": "2fbc06a81395281398492998bb7e2f9eaf1a81fd8fbe8adf2fb68b5cca792961",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-00.jpg",
+          "sha256": "0e7e2c9db547a177f5fece01077bb6018a78393729aac77ce6802aca553a1700",
+          "afterClickMs": 68
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-015.png",
+      "sha256": "c4e70e9aaae4b45997e7b30181d03b46c3cb952f6e87bbe4307a5d97dfa3bd99",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-01.jpg",
+          "sha256": "56873ba0333cefad2bc257ddcad7d001aa0631551668e74a623f3f7453098d6a",
+          "afterClickMs": 121
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-02.jpg",
+          "sha256": "1aafc0f02f20fecb3b9390ff8aca02ac9219750d32a96e5bb3e9a50904651ba0",
+          "afterClickMs": 165
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-03.jpg",
+          "sha256": "5aa596b72b6eff5df06bef0299d9c853d2203c31a81b56934d490615e4fae7c9",
+          "afterClickMs": 221
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-04.jpg",
+          "sha256": "bc269b06c8eba5cb39e507da95917c7c65f12a2da97511aee9f2674405560285",
+          "afterClickMs": 272
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-05.jpg",
+          "sha256": "418341760ea4dcd3ab4b756866ada7efc3fecdcf142264ef2231082cf0976806",
+          "afterClickMs": 322
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-06.jpg",
+          "sha256": "a0e773441743566a6fd162c78ece30074dd1b0f0475e3222951389d932edcee1",
+          "afterClickMs": 371
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-016.png",
+      "sha256": "526ac5aaf83987d43cf454d19bc3de3a6cc54110a950ca84d442c2c3524ef659",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-07.jpg",
+          "sha256": "a46de375b03d42f57da803ca8c6d7fc5590cfd2c857e1d8279a6b41fd09c0d94",
+          "afterClickMs": 424
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-08.jpg",
+          "sha256": "662a87e9c52897d51eddb806a4cca82de8103a79d52c093ee14da1dc93de6be9",
+          "afterClickMs": 467
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-09.jpg",
+          "sha256": "662a87e9c52897d51eddb806a4cca82de8103a79d52c093ee14da1dc93de6be9",
+          "afterClickMs": 520
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-before.jpg",
+          "sha256": "67d7c54c1732c92571dc508d5ef81252d7f2e425c5972f509ad37d93f111d4c7",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-00.jpg",
+          "sha256": "48622d2069a3e94558ccd40fef36fbafbcc79ad37a8032bc4e1ea2efb3e65e45",
+          "afterClickMs": 56
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-01.jpg",
+          "sha256": "2d1b97b7641a0c5c96870bdcbca21d4044b3b7816afe9841cc0e2bbadfc75445",
+          "afterClickMs": 106
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-017.png",
+      "sha256": "ef2acbfc700a77c619f1f3d7d9f77f15fec189f87876c3dd263a559baa54bf7f",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-02.jpg",
+          "sha256": "1671a8036d98682402d902087ff6ae1357c54dbd3b77fa15a2ede44b9beaf52d",
+          "afterClickMs": 155
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-03.jpg",
+          "sha256": "bb4d5a22cc7c4c5b2d9acfbbdacfc037e30c5d3c4e39a8df0a6ce9ce338daa75",
+          "afterClickMs": 206
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-04.jpg",
+          "sha256": "973ebd1b1bf4a0b6a1d6bd44449c62c29b99315e51416119fe841a601370c384",
+          "afterClickMs": 256
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-05.jpg",
+          "sha256": "04129f30579df9fc3bd8b8a37d6dd747b402a355295d425eb9e6fbec62f01937",
+          "afterClickMs": 306
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-06.jpg",
+          "sha256": "e29cabc7c7ebc7350da37690c51a5ce688e25dffc569ec6f4d488ed2fc83a77d",
+          "afterClickMs": 351
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-07.jpg",
+          "sha256": "882000b9f167e94be41582520ee2948bec3af899c87212eb0aa4b6ffb0cb80a2",
+          "afterClickMs": 408
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-018.png",
+      "sha256": "bc218c44deaa04dd0591b0deefd628ff08be132e841d8079a221769748858c5c",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-08.jpg",
+          "sha256": "98bb49338caa31ad0aaf8a9371d472cfe86cd4b745ead45aaef541fd7f0eb1d7",
+          "afterClickMs": 459
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-09.jpg",
+          "sha256": "a8ab4e766120479eaf81634ab5d9d12ade7299b20824ca830219b84881b24272",
+          "afterClickMs": 507
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-before.jpg",
+          "sha256": "3f3964f6d78fc3f12d7682d3c2525d8b5ec8663685785c8a7953b4ff98bb0243",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-00.jpg",
+          "sha256": "1ad359b3bbb7a56ec6d9ff54452b68772613779a4e401b4ae201a94bc3dff31d",
+          "afterClickMs": 56
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-01.jpg",
+          "sha256": "f7dfe07d262328f1ed767ca7a3381847f629146f9a51a49abc0b128075e59b33",
+          "afterClickMs": 106
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-02.jpg",
+          "sha256": "589f032b131452702db047457d27e44432e405b0ba79243ba114acba3d897e40",
+          "afterClickMs": 155
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-019.png",
+      "sha256": "b83151402650dd95201d0982878a3c5ea2689efc8c74a0de4d0730ecc19613f3",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-03.jpg",
+          "sha256": "dbd4e496cbdb9e6cdd6557ee30e58b5a135c40ca3fddeb39480f13c3f03b73ad",
+          "afterClickMs": 204
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-04.jpg",
+          "sha256": "94b202e266f9c153f2c562f0b05bde3da829dd9ec6a4358fe60654f028527cd5",
+          "afterClickMs": 254
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-05.jpg",
+          "sha256": "3c23846b39801d399d4313a5499c3d67102fc6cab50fe5d0c934f000555d4f87",
+          "afterClickMs": 301
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-06.jpg",
+          "sha256": "0ee27c951d2fe161c5b82945eb058473e8e6787552265a7aa5240d7016c96fc0",
+          "afterClickMs": 357
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-07.jpg",
+          "sha256": "a76b347358b1ec0589638ec06e196bb395af388a284f9259846a515dfdb8b51e",
+          "afterClickMs": 411
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-08.jpg",
+          "sha256": "79c0937ccc6b8c53b3dbd17d40b701544cbed2c75669f3902ed7e4e909c6f532",
+          "afterClickMs": 475
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-020.png",
+      "sha256": "2cfa3a678334a6e3405e2ac4f6635934301703f8850bb987b0413de0ed8252e9",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-09.jpg",
+          "sha256": "79c0937ccc6b8c53b3dbd17d40b701544cbed2c75669f3902ed7e4e909c6f532",
+          "afterClickMs": 541
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-before.jpg",
+          "sha256": "1fa41cc221747bfabfd4da2daa288213a9a539a8dc66f6f7e56ebac99e239ed6",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-00.jpg",
+          "sha256": "1abf7383874ca6df1c069aeb24930e1f9a5aa5c18c58aef3a4c34ff45728965e",
+          "afterClickMs": 92
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-01.jpg",
+          "sha256": "8816f60f0f688ba9080a848130a39ed8b44cdd624dd3d9634c53f301048b0e14",
+          "afterClickMs": 167
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-02.jpg",
+          "sha256": "948242dc6cd8fbcf6850c13542524ecfd3f8dcef8fe3c710103a52f2d0ddadd6",
+          "afterClickMs": 232
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-03.jpg",
+          "sha256": "55bfe07f6bf570aaaae2137c51ce546dd4ed0152d99537fbcbd1ffdea5cf61e9",
+          "afterClickMs": 312
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-021.png",
+      "sha256": "382adf56b34abdf87cb656f649b7c5d5ae543a1e21a4a395b06ec4773c5bf7a3",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-04.jpg",
+          "sha256": "b523c492e7fa11933d0df6b9e2476625f161fc536bf97b89dc56a9ff81b347cc",
+          "afterClickMs": 363
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-05.jpg",
+          "sha256": "26f8b4798d49cdd86239ea690e18b2c44096a2e6c0734d18a03de0642fe0851d",
+          "afterClickMs": 444
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-06.jpg",
+          "sha256": "bb881ab1c3cf1116070d7f79decdb6dfd426265bfb55c42047f19f20211ad578",
+          "afterClickMs": 531
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-07.jpg",
+          "sha256": "bb881ab1c3cf1116070d7f79decdb6dfd426265bfb55c42047f19f20211ad578",
+          "afterClickMs": 603
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-08.jpg",
+          "sha256": "45571135a1f1a2a682f671d47294ab8a1d2d07d04db7b8d6115231d625b81772",
+          "afterClickMs": 685
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-09.jpg",
+          "sha256": "d5b51e53de39581c1fd95e7427fd671cfb54f2320e6c668bb203660009f87588",
+          "afterClickMs": 756
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-022.png",
+      "sha256": "54bb7898ae31d95904b67fe392804f016788ac51b05f0a98384c7dc5b51a1fb2",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-before.jpg",
+          "sha256": "4081d754d49e8a291b8b213eb601c191d402421ad62dc92727dbd4076f9fe127",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-00.jpg",
+          "sha256": "60bdc71ca4138a1d576f482ea66027823cf41b89b2a8acdc8651729d6bc7db50",
+          "afterClickMs": 51
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-01.jpg",
+          "sha256": "3b688ddf26218365486c5f63e5e79235b602ed978bfe6f6fa703b78aceba3781",
+          "afterClickMs": 98
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-02.jpg",
+          "sha256": "1b01c3e3ea23f1bd96f97ffd5db13c4a0619164984ea5687c1af40d0b5e4957d",
+          "afterClickMs": 149
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-03.jpg",
+          "sha256": "e0b1109c52b68bd644faa4d7c6028eff75e858941b174a7b8f56a44ab75a24d0",
+          "afterClickMs": 198
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-04.jpg",
+          "sha256": "cb18091caa4dd7f4c2494d6974778c747fb304bbb7bbfe2c1e62f4bd7ab0f6a2",
+          "afterClickMs": 248
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-023.png",
+      "sha256": "b0c12cfc263670d61ba8680407541d3ef5b483eec2b2dbeb89a8cdc9236396ba",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-05.jpg",
+          "sha256": "5838b32632cf634743754d6c8433864ae2c72000cf8d2dbabe61b8380612130b",
+          "afterClickMs": 299
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-06.jpg",
+          "sha256": "b93c9d404b75165c5afb84cf09fd8455aba6b3b2b37fa9d3ace8f4a2200b0063",
+          "afterClickMs": 351
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-07.jpg",
+          "sha256": "0d06db41f97a354f9d8126347cf432e1a8a1b8d268b702c1a60d0a826fab5394",
+          "afterClickMs": 399
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-08.jpg",
+          "sha256": "e4466debcb69055e1535ca159defe25d42c3f78f178ec9d72e646daf1228b172",
+          "afterClickMs": 449
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-09.jpg",
+          "sha256": "662a87e9c52897d51eddb806a4cca82de8103a79d52c093ee14da1dc93de6be9",
+          "afterClickMs": 499
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-before.jpg",
+          "sha256": "5808d9f42024224ca063a42c1b02cda4ba8f9d015f480a9869531dc5023b6752",
+          "afterClickMs": "before"
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-024.png",
+      "sha256": "c4db784a83e25618d04d93732e3050e611b284d7ead447908683a2cde7fd766d",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-00.jpg",
+          "sha256": "eae03521076019cbb3a0c4623a97db7aa71f439e8db4362d6424f36c87859857",
+          "afterClickMs": 50
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-01.jpg",
+          "sha256": "df9644b2bbb8da5d8eeff1d0f0531e8a327e680baaab1856bf279c71aafc1fa7",
+          "afterClickMs": 100
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-02.jpg",
+          "sha256": "1438db2599fa7c6a96aaf525aa1c996b72adc0bca2290cf47693c623af3f73c4",
+          "afterClickMs": 147
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-03.jpg",
+          "sha256": "df2b36e1b5ccc4d8f9eba1c92a2eee78941224dc8e3d18136efd8f86d3c4e3f1",
+          "afterClickMs": 197
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-04.jpg",
+          "sha256": "d0b945193e82212ef1615b3961b52ed84b13903c3ae5b415a60a6e55527a07e6",
+          "afterClickMs": 246
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-05.jpg",
+          "sha256": "a556f24bf2d8a7a9fbb1b1a7b1a12080fbabb00ca0726ab99e92ef5672df9232",
+          "afterClickMs": 299
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-025.png",
+      "sha256": "7594433056c5e2fcd5a78491c6b873d0919d67f893b7e51caf9dce690f780b43",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-06.jpg",
+          "sha256": "ca976ce7eabcbbf0b261ef87df50a158fb922142906ef6d5f79f9de33e3dc21c",
+          "afterClickMs": 350
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-07.jpg",
+          "sha256": "55274abeac7cf99ef33e0859afe0ab653abb8eba220d5531e1e7da86e80bb97b",
+          "afterClickMs": 399
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-08.jpg",
+          "sha256": "4a5710367107f865bdc8f60488de86db35f24f3dd231fee6e7df292dee30dfab",
+          "afterClickMs": 450
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-09.jpg",
+          "sha256": "62e8b5e1355e85ca12c981c63db0848064addacb00f890a305010448f3ca97a3",
+          "afterClickMs": 497
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-before.jpg",
+          "sha256": "c1645542d32edf3aa27e3996e04ade89b4c4e5dddeb56b546751a42287bf6c3b",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-00.jpg",
+          "sha256": "af1d5508c66cdf922cb9e411ed4878619f83ae18806df9e982d5a2671b4668e6",
+          "afterClickMs": 52
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-026.png",
+      "sha256": "bbb4e178a3212cb36905e1cd5be2738f54c0454ebb5f6ed97e1df6ba421d0da0",
+      "entries": [
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-01.jpg",
+          "sha256": "6961e8d31dd3807657331c2338c5d7171016cb75cbdbd0ba58795867d1d18d03",
+          "afterClickMs": 99
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-02.jpg",
+          "sha256": "75e46ee8c163c774e6adc8c297fc26e4197ea50726ac0086de98dab92b62b0c7",
+          "afterClickMs": 149
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-03.jpg",
+          "sha256": "58f19aa716638aa78ebcbc9dc51e64ec48dbd2c47f4ee824adee443e786b823c",
+          "afterClickMs": 199
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-04.jpg",
+          "sha256": "3865c7c9bb0a7655ea5b4e6f1fab0d3f8f6b1f4b971af8ecdf6af437bf4d2f4b",
+          "afterClickMs": 249
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-05.jpg",
+          "sha256": "d46d2a67478ec9b4f96d588b79f35e76a2603c8cdc4031f43ab87459722c313f",
+          "afterClickMs": 300
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-06.jpg",
+          "sha256": "465724aa659f6250b7a3989c97b5384d2aa026523b98a56426e4c9ee72d39bb0",
+          "afterClickMs": 349
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-027.png",
+      "sha256": "4e2aac0588a275b2b78b32271a37bcaaa2eb6313bc349133507ad9fa1c87a042",
+      "entries": [
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-07.jpg",
+          "sha256": "6146e55e6fbfa15a75809e56bd26de3adb029b9ac8560eda786536da101fd404",
+          "afterClickMs": 397
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-08.jpg",
+          "sha256": "0aedd0f268e5225d70a16930a75a743f70b0f2d78000095ab5e5cd1f0c4726da",
+          "afterClickMs": 447
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-09.jpg",
+          "sha256": "e5322391a91aa7fb90fb9b66f1b21d998002c58777ee68c1e9ea5e2354179627",
+          "afterClickMs": 499
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-before.jpg",
+          "sha256": "0124b08d0b384e85d4ebaecbeb7c8ea3f69885c67bad518e8caa163c69b13469",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-00.jpg",
+          "sha256": "de60254c8a616ec6c504f01f79ed1f48a2edee30b91974dace79c220edb63422",
+          "afterClickMs": 51
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-01.jpg",
+          "sha256": "d976cb390b1236ecc5f7824b63dcb53f49a51cafd244d66bbf1b59f16b15b0ec",
+          "afterClickMs": 99
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-028.png",
+      "sha256": "cbc6314cd59495a5579460fb37a27e3237ee600ad5e412fbfedeac0fcca91886",
+      "entries": [
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-02.jpg",
+          "sha256": "6c136c2d9740e1a232407ba4f0986a880e1e27d75aad6eb4bc18945895ba42b1",
+          "afterClickMs": 151
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-03.jpg",
+          "sha256": "6568462f007f1c48659406add7e9024626e121cdca3f9d569ec745060ae65611",
+          "afterClickMs": 200
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-04.jpg",
+          "sha256": "de8ecb04f8c06eb9e9ba1651500961c8f2078b303f3b4bd7b61fdb95a8b2ef45",
+          "afterClickMs": 250
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-05.jpg",
+          "sha256": "64e01965182dbb6f2cdbff734862aa9605d679d00918d8315791179cfb830b67",
+          "afterClickMs": 307
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-06.jpg",
+          "sha256": "86f42592e31256d357bcf893696d4ce7db16e021cd30e3b159a4c7b153d5acc6",
+          "afterClickMs": 350
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-07.jpg",
+          "sha256": "cd2670b05f94b7055a8d3facba049a9d04f1db5d413047dbb0086174c3222cb7",
+          "afterClickMs": 402
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-029.png",
+      "sha256": "50960a008be6521312bb03bab0ad706a91998d9bb452dc54d17f11f32b6bad7f",
+      "entries": [
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-08.jpg",
+          "sha256": "37feb92fa92a05b3c71163929b2651cfb2d2e94f20f4905ea49a5fffff7d644c",
+          "afterClickMs": 449
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-09.jpg",
+          "sha256": "88c98426f89c9d19af0bab56a63a03bb8a90dc0d689e1e9c3bf4fe21f13bca75",
+          "afterClickMs": 500
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-step",
+          "file": "pursuit-burial-0-native-step-00.jpg",
+          "sha256": "a1a430c195f905b7ec7779e4f1d72b35ae632307cb8a2f010e77452fc3bb87e6",
+          "afterClickMs": 317
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-step",
+          "file": "pursuit-burial-0-native-step-01.jpg",
+          "sha256": "ebd76b8b778e18f3fcd802db1482ae870f8924d4a96e248c68f40feccd07ab39",
+          "afterClickMs": 614
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-step",
+          "file": "pursuit-burial-0-native-step-02.jpg",
+          "sha256": "387c85a7344cfd66b1e2085fd46f9e436ce08e4cef18fd2f58ff5944b2091d86",
+          "afterClickMs": 915
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-step",
+          "file": "pursuit-burial-0-native-step-03.jpg",
+          "sha256": "98dafa110c975559d5423bb2e7d3e1e84c76970575ddd4d65fe9b5b91af40a36",
+          "afterClickMs": 1216
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-030.png",
+      "sha256": "b72beec48e8c6674e09e918634530f310d27fef86b858e5d5e4c862dadeafb69",
+      "entries": [
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-step",
+          "file": "pursuit-burial-0-native-step-04.jpg",
+          "sha256": "c5dee0825a7b57817a5ed8652e49eb5c113c739594645eb6c42d259daabaf640",
+          "afterClickMs": 1533
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-step",
+          "file": "pursuit-burial-0-native-step-05.jpg",
+          "sha256": "ebd76b8b778e18f3fcd802db1482ae870f8924d4a96e248c68f40feccd07ab39",
+          "afterClickMs": 1835
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-step",
+          "file": "pursuit-burial-0-native-step-06.jpg",
+          "sha256": "ac22e2d343d6785bf71245705a9a0b2974da2bcbaa59ad59f2964f4eb8c20c2e",
+          "afterClickMs": 2132
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-step",
+          "file": "pursuit-burial-0-native-step-07.jpg",
+          "sha256": "d3224feec7d87db765a164a1aaca6bb13d3bc474cb562ac4620688e93b99eaf8",
+          "afterClickMs": 2432
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-step",
+          "file": "pursuit-burial-0-native-step-08.jpg",
+          "sha256": "03d015d84796ae5c9d1407d9d9150c0ca9c7b8e8ba4917fb9e3ea814ef323f98",
+          "afterClickMs": 2733
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-step",
+          "file": "pursuit-burial-0-native-step-09.jpg",
+          "sha256": "ce9f3cc5fbe8f0ee46b3c40148e0b114bdbef4d8f0d7d80c3a2702dc2bde37e5",
+          "afterClickMs": 3053
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-031.png",
+      "sha256": "4f956d815517e7c4d153300af90f379f2582386b838c3d54632407574cf133a7",
+      "entries": [
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-step",
+          "file": "pursuit-burial-0-native-step-10.jpg",
+          "sha256": "ac22e2d343d6785bf71245705a9a0b2974da2bcbaa59ad59f2964f4eb8c20c2e",
+          "afterClickMs": 3352
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-step",
+          "file": "pursuit-burial-0-native-step-11.jpg",
+          "sha256": "d3224feec7d87db765a164a1aaca6bb13d3bc474cb562ac4620688e93b99eaf8",
+          "afterClickMs": 3650
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-stop",
+          "file": "pursuit-burial-0-native-stop-before.jpg",
+          "sha256": "d3224feec7d87db765a164a1aaca6bb13d3bc474cb562ac4620688e93b99eaf8",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-stop",
+          "file": "pursuit-burial-0-native-stop-00.jpg",
+          "sha256": "3967c9a6c3afefc87cab4ebb9d8fd962ef7452452e2e310950e8f5f307630c0b",
+          "afterClickMs": 52
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-stop",
+          "file": "pursuit-burial-0-native-stop-01.jpg",
+          "sha256": "0dcaa0e221b74dfab79a4ee4d3f10d84860c441eae261535f1bac898865403c8",
+          "afterClickMs": 98
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-stop",
+          "file": "pursuit-burial-0-native-stop-02.jpg",
+          "sha256": "d8563543d72ae9bb916107896e2223d24b3003293a1c90d07fa1b54d311e0bc5",
+          "afterClickMs": 149
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-032.png",
+      "sha256": "41336278e2cc6c8d2bc72d862fb7051e3b7d115fafc4ae11bd73084895b88dde",
+      "entries": [
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-stop",
+          "file": "pursuit-burial-0-native-stop-03.jpg",
+          "sha256": "27740cdd4a9bb64d7d4dad90f30331dd192db0b7212fb3649fe8adc90b9bd6ed",
+          "afterClickMs": 198
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-stop",
+          "file": "pursuit-burial-0-native-stop-04.jpg",
+          "sha256": "06e132e20721afa200ac3f75894d835108135e520328dc7ed13baa3336066914",
+          "afterClickMs": 258
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-stop",
+          "file": "pursuit-burial-0-native-stop-05.jpg",
+          "sha256": "c261835f6ef1691e7946405e63f3ea6fbaa0f7d809f928cd90009c607ee75776",
+          "afterClickMs": 319
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-stop",
+          "file": "pursuit-burial-0-native-stop-06.jpg",
+          "sha256": "7e2f8946fa76f685f6a2bd68edcc025b6a82bacf597cf6dd4c0c75f1c2ab9a3b",
+          "afterClickMs": 372
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-stop",
+          "file": "pursuit-burial-0-native-stop-07.jpg",
+          "sha256": "8054649518708b13e3b663085ca93ed97e0af09b229b25c640e7ad34ed3a598d",
+          "afterClickMs": 418
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-stop",
+          "file": "pursuit-burial-0-native-stop-08.jpg",
+          "sha256": "9878c8c48d7b9dc5a910ba8fa4146f804719680a794f3c29f8f91dc0ae864b22",
+          "afterClickMs": 469
+        }
+      ],
+      "actuallyViewed": true
+    },
+    {
+      "file": "map-sheet-033.png",
+      "sha256": "4250b67f026bdbc9e33cc384b7eb3724a6185d712a22fb361bf40ed811869e54",
+      "entries": [
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "native-stop",
+          "file": "pursuit-burial-0-native-stop-09.jpg",
+          "sha256": "9878c8c48d7b9dc5a910ba8fa4146f804719680a794f3c29f8f91dc0ae864b22",
+          "afterClickMs": 513
+        }
+      ],
+      "actuallyViewed": true
+    }
+  ],
+  "actuallyViewedSourceScreenshots": 199,
+  "finding": "All 199 actual map screenshots viewed at native pixels. Continuous movement and pursuit observed, settled actors distinct. Reflow crossing of stationary scourge-beast by hunter during 2-to-3 occupancy is under independent root/agent diagnosis; not declared fixed or passed.",
+  "confirmedFinding": "BB-031: on STOP_MOVE an unmatched pursuing enemy claims a free spot before hunter placement, moving the idle hunter across the stationary beast body. Fixed and actually retested in b594de4/dev8.",
+  "originalFileAvailability": {
+    "sourceCommit": "ae1657ef826c9f9dd7339d9aeef355bca5f692ff",
+    "nativeMapDerivatives": "review-sheets/review-index.json",
+    "originalNativeMapScreenshots": 199,
+    "originalFullPageFilesPreserved": 177,
+    "firstProfileFullPageFilesReplaced": 22,
+    "supplementaryFrozenBefore": "../bb031-before-reproduced/actual-before-repro-index.json"
+  }
+}

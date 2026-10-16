@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bloodborne:hunt-save:v1",
+  "type": "object",
+  "required": ["format", "version", "state"],
+  "properties": {
+    "format": {"const": "bloodborne-hunt-save"},
+    "version": {"const": 1},
+    "state": {"type": "object", "required": ["schema", "initialSeed", "setup", "commands"], "properties": {
+      "schema": {"const": 1},
+      "initialSeed": {"type": "integer", "minimum": 0, "maximum": 4294967295},
+      "setup": {"type": "object", "properties": {"rulesVersion": {"type": "integer", "minimum": 7}}, "additionalProperties": true},
+      "commands": {"type": "array", "items": {"$ref": "urn:bloodborne:original-command:v1"}}
+    }, "additionalProperties": true}
+  },
+  "additionalProperties": true,
+  "$comment": "Structural candidate only. Source string length must be less than 2,000,000 UTF-16 code units. Missing rulesVersion means legacy, never current. Import must assert the original state, recreate exact setup, replay every original command, compare canonical full state, and only then record project-policy adoption."
+}

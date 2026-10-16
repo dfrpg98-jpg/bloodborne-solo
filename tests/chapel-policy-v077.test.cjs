@@ -62,7 +62,7 @@ test('rules13 natural 315th command completes39 before revealing56 and57 without
 });
 
 test('317 original natural rules13 commands project through real controls with exact save restoration and no adjudication button',t=>{
-  let s=E.create(90,'beast-claw',0,null,'hunter-pistol','center',{campaign:true});
+  let s=E.create(90,'beast-claw',0,null,'hunter-pistol','center',{campaign:true,rulesVersion:13});
   assert.equal(s.setup.rulesVersion,13);
   const replay=replayPublicTrace(s,naturalCommands,{label:'natural chapel',onCheckpoint({state,index}){
     if(index===314){checkAutomaticArrival(state);assert.equal(state.rewardChoices.length,2);}
@@ -79,6 +79,7 @@ test('legacy importer remains exact and fallback controller offers only escort-f
   const view=E.missionView(restored),ui=boot(restored,view,E.rewardsView(restored),{realInventory:true,
     storage:{'bloodborne-hunt-v07':saved},engine:{importSave:E.importSave,exportSave:E.exportSave,
       applyChapelRuling:state=>state,
+      applyCombatReactionRuling:state=>state,
       dispatch:E.dispatch,missionView:E.missionView,rewardsView:E.rewardsView,missionActions:E.missionActions}});
   const buttons=ui.buttons('decisions').filter(b=>b.dataset.command==='MISSION_CHOICE');
   assert.equal(buttons.length,1);assert.equal(JSON.parse(buttons[0].dataset.args).choice,'escort-first');
@@ -149,7 +150,10 @@ test('assembled leap attack resumes once with mandatory39 rewards before combat 
   assert.equal([...H(after).hand,...H(after).deck,...H(after).discard,...H(after).slots.filter(Boolean)]
     .filter(c=>c.id===cardId).length,1);
   assert.equal(after.rewardChoices.length,2);
-  const ui=boot(after,E.missionView(after),E.rewardsView(after),{realInventory:true});
+  // This controller boundary isolates historical chapel reward precedence;
+  // combat-reaction adoption has its own natural startup/migration tests.
+  const ui=boot(after,E.missionView(after),E.rewardsView(after),{realInventory:true,
+    engine:{applyCombatReactionRuling:state=>state}});
   assert(ui.buttons('decisions').some(b=>b.dataset.command==='KEEP_REWARD'));
   assert(!ui.buttons('decisions').some(b=>b.dataset.command==='RESOLVE'));
   const ready=settle(after);assert.equal(ready.combat.enemyId,target.id);assert.equal(H(ready).slots[0].id,cardId);
@@ -162,7 +166,8 @@ test('assembled weapon movement continuation starts once and rewards block the n
   const after=E.dispatch(s,{type:'STOP_MOVE'});checkAutomaticArrival(after);
   assert.equal(after.phase,'move');assert.equal(after.move.source,'weapon');assert.equal(after.move.remaining,1);
   assert.deepEqual(after.weaponEffects,[]);assert.equal(after.rewardChoices.length,2);
-  const ui=boot(after,E.missionView(after),E.rewardsView(after),{realInventory:true});
+  const ui=boot(after,E.missionView(after),E.rewardsView(after),{realInventory:true,
+    engine:{applyCombatReactionRuling:state=>state}});
   assert(ui.buttons('decisions').some(b=>b.dataset.command==='KEEP_REWARD'));
   assert(!ui.buttons('decisions').some(b=>b.dataset.command==='STOP_MOVE'));
   const done=E.dispatch(settle(after),{type:'STOP_MOVE'});checkGrant(done);

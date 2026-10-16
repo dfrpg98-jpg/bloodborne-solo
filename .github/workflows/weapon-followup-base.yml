@@ -1,0 +1,39 @@
+name: Weapon followup and next battle evidence
+on:
+  push:
+    branches: [qa/weapon-followup-base-20261014]
+    paths:
+      - .github/workflows/weapon-followup-base.yml
+      - scripts/cloud-weapon-followup-base.cjs
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Install exact browser runtime
+        run: |
+          npm install --prefix "$RUNNER_TEMP/weapon-browser" --no-audit --no-fund playwright@1.62.1
+          node "$RUNNER_TEMP/weapon-browser/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: Play every weapon form through followups and the next battle
+        env:
+          NODE_PATH: ${{ runner.temp }}/weapon-browser/node_modules
+        run: node scripts/cloud-weapon-followup-base.cjs
+      - name: Preserve actual clicks and timed original frames
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: weapon-followup-base-evidence
+          path: test-results/cloud-weapon-followup-base/
+          retention-days: 7
+          if-no-files-found: error
+

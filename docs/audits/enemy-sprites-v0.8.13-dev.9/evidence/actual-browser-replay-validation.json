@@ -1,0 +1,3194 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "method": "Read actual public browser exports; normal E.importSave validates source/prepared-raw-final/actual/policy-adopted-expected saves by authoritative create-and-command replay. Replay each actual UI command suffix from the unchanged checkpoint. Separately construct the current public import workflow with explicit engine applyChapelRuling/applyCombatReactionRuling/applyTileSpeedRuling commands, then replay the planned UI actions. Compare entire policy-adopted state after only empty optional ATTACK/COUNTER command-record arrays normalization, plus full gameplay facts and public DOM routing.",
+  "engineSha256": "c8483d7821da91bbe9927602c9833c71e33b8bda2d88a81b3c1924baa8d1b48d",
+  "engineMatchesPreparation": true,
+  "currentRuntimeVersion": "0.8.13-dev.9",
+  "normalImportCount": 36,
+  "actualBrowserScenarios": 9,
+  "expectedScenarios": 9,
+  "passed": 9,
+  "failed": 0,
+  "rawFilesIdentical": 0,
+  "policyAdoptedRawFilesIdentical": 2,
+  "knownEmptyOptionalCommandRecordDifferences": 7,
+  "explicitImportPolicyAdoptions": 9,
+  "normalizedWholeStatesIdentical": 9,
+  "actorRoutingCoverage": {
+    "required": [
+      "huntsman-mob",
+      "huntsmans-minion",
+      "scourge-beast",
+      "female-patient",
+      "iosefka",
+      "cleric-beast"
+    ],
+    "observed": [
+      "cleric-beast",
+      "female-patient",
+      "huntsman-mob",
+      "huntsmans-minion",
+      "iosefka",
+      "scourge-beast"
+    ],
+    "allSixVerified": true
+  },
+  "normalizationBoundary": "Only remove empty itemIds/pullIds/rewardIds arrays on recorded ATTACK or COUNTER commands. No authoritative rule-state field, mission, event, RNG, deck, combat or pending followup is normalized, ignored or edited. Import policy is applied as an accepted recorded engine command, not ignored or hidden.",
+  "preparationCorrection": "Original checkpoint expectation helper used raw E.importSave and omitted hunt-app applyLoadedRuling. All nine actual public imports added APPLY_TILE_SPEED_RULING; this legitimately adds one revision and tileSpeedRuling=all-attacks. Original expected files were retained. A separate policy-adopted expected file is replayed and validated for each scenario. This is an expectation-preparation difference, not a demonstrated game defect.",
+  "rootPerformedActualBrowser": true,
+  "thisReviewerOperatedBrowser": false,
+  "rawQAExportsLocalOnly": true,
+  "rawQAExportsUploaded": false,
+  "privatePlayerSavesUsed": false,
+  "rows": [
+    {
+      "id": "ordinary-huntsman",
+      "status": "passed",
+      "sourceCheckpoint": {
+        "path": "local-qa-save/ordinary-huntsman.local-qa-save.json",
+        "sha256": "94123aa560ea2e13ba82214bfd86e35373fb4372c1d15d2b60c97a5bbea2bde4"
+      },
+      "preparedRawExpectedExport": {
+        "path": "local-qa-save/ordinary-huntsman-expected-after.local-qa-save.json",
+        "sha256": "6b816e7f35ee210c465a5ce6b6d5733f72e009f1dda8c27dd84c8c31c065471c",
+        "retainedWithoutOverwrite": true
+      },
+      "policyAdoptedExpectedExport": {
+        "path": "local-qa-save/ordinary-huntsman-policy-adopted-expected.local-qa-save.json",
+        "sha256": "e956d1d200c17253f3ff6aab3f948bcbe8b45aba09813475c767c34c1a2dcf1b"
+      },
+      "actualBrowserExport": {
+        "path": "local-qa-save/play-ordinary-huntsman-actual-save.json",
+        "sha256": "67fd537a013b98a42381bf7cb45641f9c3d5bc0282f691370039718cf41efe91"
+      },
+      "normalImportPassed": true,
+      "exactPreparedPrefix": true,
+      "importPolicyAdoption": {
+        "commandPrefix": [
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          }
+        ],
+        "actualMatches": true,
+        "policyExpectedImportExact": true,
+        "preparedRawRevision": 8,
+        "policyExpectedRevision": 9,
+        "actualRevision": 9,
+        "rawExpectedTileSpeedRuling": "[absent]",
+        "policyExpectedTileSpeedRuling": "all-attacks",
+        "actualTileSpeedRuling": "all-attacks"
+      },
+      "actualSuffixReplayExact": true,
+      "preparedRawExpectationReplayExact": true,
+      "rawFileBytesExact": false,
+      "policyAdoptedFileBytesExact": false,
+      "rawWholeStateExact": false,
+      "rawSuffixCommandsExact": false,
+      "normalizedSuffixCommandsExact": true,
+      "normalizedWholeStateExact": true,
+      "gameplayFactsExact": true,
+      "commandRecordOnlyDifferences": [
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "itemIds",
+          "expected": "absent",
+          "actual": []
+        },
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "pullIds",
+          "expected": "absent",
+          "actual": []
+        },
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "rewardIds",
+          "expected": "absent",
+          "actual": []
+        }
+      ],
+      "acceptedActualCommandSuffix": [
+        {
+          "type": "APPLY_TILE_SPEED_RULING"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-1",
+          "slot": 0,
+          "itemIds": [],
+          "pullIds": [],
+          "rewardIds": [],
+          "enemyId": "huntsman-mob-1"
+        },
+        {
+          "type": "RESOLVE"
+        }
+      ],
+      "expectedFactSummary": {
+        "seed": 90,
+        "rulesVersion": 14,
+        "revision": 9,
+        "phase": "hunter",
+        "chapter": 1,
+        "hunter": {
+          "id": "hunter-1",
+          "position": "tile-04:center",
+          "hp": 4,
+          "echoes": 0,
+          "hand": [
+            {
+              "id": "card-7",
+              "kind": "strength"
+            },
+            {
+              "id": "card-11",
+              "kind": "vitality"
+            },
+            {
+              "id": "card-12",
+              "kind": "vitality"
+            },
+            {
+              "id": "card-6",
+              "kind": "skill"
+            }
+          ],
+          "occupiedSlots": [],
+          "slots": [
+            null,
+            null,
+            null
+          ],
+          "status": {
+            "poison": false,
+            "frenzy": false
+          },
+          "weaponId": "burial",
+          "face": 1,
+          "firearmId": "hunter-pistol",
+          "firearmReady": true,
+          "inDream": false
+        },
+        "enemies": [
+          {
+            "id": "huntsman-mob-1",
+            "node": "tile-04:center",
+            "hp": 2,
+            "kind": "huntsman-mob",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsman-mob",
+            "skin": "huntsman-mob",
+            "name": "야수 사냥 무리"
+          }
+        ],
+        "missionExact": true,
+        "combat": null,
+        "pendingFollowups": {
+          "combat": null,
+          "move": null,
+          "enemyMove": null,
+          "interaction": null,
+          "killReaction": "[absent]",
+          "weaponAfter": "[absent]",
+          "weaponMoveReturn": "[absent]",
+          "missionArrivalAfter": "[absent]",
+          "freeTransform": null,
+          "firearmEntry": "[absent]",
+          "leap": null,
+          "lootChoice": [],
+          "rewardChoices": [],
+          "cardChoices": [],
+          "spawnQueue": [],
+          "spawnAfter": null
+        }
+      },
+      "actualFactSummary": {
+        "seed": 90,
+        "rulesVersion": 14,
+        "revision": 9,
+        "phase": "hunter",
+        "chapter": 1,
+        "hunter": {
+          "id": "hunter-1",
+          "position": "tile-04:center",
+          "hp": 4,
+          "echoes": 0,
+          "hand": [
+            {
+              "id": "card-7",
+              "kind": "strength"
+            },
+            {
+              "id": "card-11",
+              "kind": "vitality"
+            },
+            {
+              "id": "card-12",
+              "kind": "vitality"
+            },
+            {
+              "id": "card-6",
+              "kind": "skill"
+            }
+          ],
+          "occupiedSlots": [],
+          "slots": [
+            null,
+            null,
+            null
+          ],
+          "status": {
+            "poison": false,
+            "frenzy": false
+          },
+          "weaponId": "burial",
+          "face": 1,
+          "firearmId": "hunter-pistol",
+          "firearmReady": true,
+          "inDream": false
+        },
+        "enemies": [
+          {
+            "id": "huntsman-mob-1",
+            "node": "tile-04:center",
+            "hp": 2,
+            "kind": "huntsman-mob",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsman-mob",
+            "skin": "huntsman-mob",
+            "name": "야수 사냥 무리"
+          }
+        ],
+        "missionExact": true,
+        "combat": null,
+        "pendingFollowups": {
+          "combat": null,
+          "move": null,
+          "enemyMove": null,
+          "interaction": null,
+          "killReaction": "[absent]",
+          "weaponAfter": "[absent]",
+          "weaponMoveReturn": "[absent]",
+          "missionArrivalAfter": "[absent]",
+          "freeTransform": null,
+          "firearmEntry": "[absent]",
+          "leap": null,
+          "lootChoice": [],
+          "rewardChoices": [],
+          "cardChoices": [],
+          "spawnQueue": [],
+          "spawnAfter": null
+        }
+      },
+      "domRouting": {
+        "actorListExact": true,
+        "actorChecks": [
+          {
+            "id": "hunter",
+            "expectedNode": "tile-04:center",
+            "actualNode": "tile-04:center",
+            "expectedSkin": "w-burial-b",
+            "actualSkin": "w-burial-b",
+            "passed": true
+          },
+          {
+            "id": "huntsman-mob-1",
+            "expectedNode": "tile-04:center",
+            "actualNode": "tile-04:center",
+            "expectedSkin": "huntsman-mob",
+            "actualSkin": "huntsman-mob",
+            "passed": true
+          }
+        ],
+        "domHpMatches": true,
+        "domPhaseMatches": true
+      },
+      "issues": [],
+      "stateDifferences": []
+    },
+    {
+      "id": "ordinary-minion-pursuit",
+      "status": "passed",
+      "sourceCheckpoint": {
+        "path": "local-qa-save/ordinary-minion-pursuit.local-qa-save.json",
+        "sha256": "bf6d05a333dc0e013bdf85019230ba558c2286c9b1290e87f998eb5a0aae4aac"
+      },
+      "preparedRawExpectedExport": {
+        "path": "local-qa-save/ordinary-minion-pursuit-expected-after.local-qa-save.json",
+        "sha256": "488a9782f9c78acd3cf0893212021a76755427dbf97baf00ecced47aeb5c5fb6",
+        "retainedWithoutOverwrite": true
+      },
+      "policyAdoptedExpectedExport": {
+        "path": "local-qa-save/ordinary-minion-pursuit-policy-adopted-expected.local-qa-save.json",
+        "sha256": "a062b65f2f57810852ea87a19063bb135afa165789b07a7d3d80f924cc500fe3"
+      },
+      "actualBrowserExport": {
+        "path": "local-qa-save/play-ordinary-minion-pursuit-actual-save.json",
+        "sha256": "a062b65f2f57810852ea87a19063bb135afa165789b07a7d3d80f924cc500fe3"
+      },
+      "normalImportPassed": true,
+      "exactPreparedPrefix": true,
+      "importPolicyAdoption": {
+        "commandPrefix": [
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          }
+        ],
+        "actualMatches": true,
+        "policyExpectedImportExact": true,
+        "preparedRawRevision": 5,
+        "policyExpectedRevision": 6,
+        "actualRevision": 6,
+        "rawExpectedTileSpeedRuling": "[absent]",
+        "policyExpectedTileSpeedRuling": "all-attacks",
+        "actualTileSpeedRuling": "all-attacks"
+      },
+      "actualSuffixReplayExact": true,
+      "preparedRawExpectationReplayExact": true,
+      "rawFileBytesExact": false,
+      "policyAdoptedFileBytesExact": true,
+      "rawWholeStateExact": false,
+      "rawSuffixCommandsExact": true,
+      "normalizedSuffixCommandsExact": true,
+      "normalizedWholeStateExact": true,
+      "gameplayFactsExact": true,
+      "commandRecordOnlyDifferences": [],
+      "acceptedActualCommandSuffix": [
+        {
+          "type": "APPLY_TILE_SPEED_RULING"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-01:top"
+        },
+        {
+          "type": "STOP_MOVE"
+        }
+      ],
+      "expectedFactSummary": {
+        "seed": 140,
+        "rulesVersion": 14,
+        "revision": 6,
+        "phase": "hunter",
+        "chapter": 1,
+        "hunter": {
+          "id": "hunter-1",
+          "position": "tile-01:top",
+          "hp": 6,
+          "echoes": 0,
+          "hand": [
+            {
+              "id": "card-1",
+              "kind": "endurance"
+            },
+            {
+              "id": "card-3",
+              "kind": "endurance"
+            },
+            {
+              "id": "card-6",
+              "kind": "skill"
+            }
+          ],
+          "occupiedSlots": [],
+          "slots": [
+            null,
+            null,
+            null
+          ],
+          "status": {
+            "poison": false,
+            "frenzy": false
+          },
+          "weaponId": "burial",
+          "face": 0,
+          "firearmId": "hunter-pistol",
+          "firearmReady": true,
+          "inDream": false
+        },
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "node": "tile-01:top",
+            "hp": 4,
+            "kind": "scourge-beast",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "scourge-beast",
+            "skin": "scourge-beast",
+            "name": "재앙의 야수"
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-01:top",
+            "hp": 5,
+            "kind": "huntsmans-minion",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsmans-minion",
+            "skin": "huntsmans-minion",
+            "name": "야수 사냥 하인"
+          }
+        ],
+        "missionExact": true,
+        "combat": null,
+        "pendingFollowups": {
+          "combat": null,
+          "move": null,
+          "enemyMove": null,
+          "interaction": null,
+          "killReaction": "[absent]",
+          "weaponAfter": "[absent]",
+          "weaponMoveReturn": "[absent]",
+          "missionArrivalAfter": "[absent]",
+          "freeTransform": null,
+          "firearmEntry": "[absent]",
+          "leap": null,
+          "lootChoice": [],
+          "rewardChoices": [],
+          "cardChoices": [],
+          "spawnQueue": [],
+          "spawnAfter": null
+        }
+      },
+      "actualFactSummary": {
+        "seed": 140,
+        "rulesVersion": 14,
+        "revision": 6,
+        "phase": "hunter",
+        "chapter": 1,
+        "hunter": {
+          "id": "hunter-1",
+          "position": "tile-01:top",
+          "hp": 6,
+          "echoes": 0,
+          "hand": [
+            {
+              "id": "card-1",
+              "kind": "endurance"
+            },
+            {
+              "id": "card-3",
+              "kind": "endurance"
+            },
+            {
+              "id": "card-6",
+              "kind": "skill"
+            }
+          ],
+          "occupiedSlots": [],
+          "slots": [
+            null,
+            null,
+            null
+          ],
+          "status": {
+            "poison": false,
+            "frenzy": false
+          },
+          "weaponId": "burial",
+          "face": 0,
+          "firearmId": "hunter-pistol",
+          "firearmReady": true,
+          "inDream": false
+        },
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "node": "tile-01:top",
+            "hp": 4,
+            "kind": "scourge-beast",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "scourge-beast",
+            "skin": "scourge-beast",
+            "name": "재앙의 야수"
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-01:top",
+            "hp": 5,
+            "kind": "huntsmans-minion",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsmans-minion",
+            "skin": "huntsmans-minion",
+            "name": "야수 사냥 하인"
+          }
+        ],
+        "missionExact": true,
+        "combat": null,
+        "pendingFollowups": {
+          "combat": null,
+          "move": null,
+          "enemyMove": null,
+          "interaction": null,
+          "killReaction": "[absent]",
+          "weaponAfter": "[absent]",
+          "weaponMoveReturn": "[absent]",
+          "missionArrivalAfter": "[absent]",
+          "freeTransform": null,
+          "firearmEntry": "[absent]",
+          "leap": null,
+          "lootChoice": [],
+          "rewardChoices": [],
+          "cardChoices": [],
+          "spawnQueue": [],
+          "spawnAfter": null
+        }
+      },
+      "domRouting": {
+        "actorListExact": true,
+        "actorChecks": [
+          {
+            "id": "hunter",
+            "expectedNode": "tile-01:top",
+            "actualNode": "tile-01:top",
+            "expectedSkin": "w-burial-a",
+            "actualSkin": "w-burial-a",
+            "passed": true
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "expectedNode": "tile-01:top",
+            "actualNode": "tile-01:top",
+            "expectedSkin": "huntsmans-minion",
+            "actualSkin": "huntsmans-minion",
+            "passed": true
+          },
+          {
+            "id": "scourge-beast-1",
+            "expectedNode": "tile-01:top",
+            "actualNode": "tile-01:top",
+            "expectedSkin": "scourge-beast",
+            "actualSkin": "scourge-beast",
+            "passed": true
+          }
+        ],
+        "domHpMatches": true,
+        "domPhaseMatches": true
+      },
+      "issues": [],
+      "stateDifferences": []
+    },
+    {
+      "id": "ordinary-minion-attack",
+      "status": "passed",
+      "sourceCheckpoint": {
+        "path": "local-qa-save/ordinary-minion-attack.local-qa-save.json",
+        "sha256": "07a43acef4c1864b5b8c1b8cf907a99495008d170a66e31dffd468f5d1f9496a"
+      },
+      "preparedRawExpectedExport": {
+        "path": "local-qa-save/ordinary-minion-attack-expected-after.local-qa-save.json",
+        "sha256": "c834e40780ea6f48774c009ba48e14dea891858534fced7d7d69e19babd3d14c",
+        "retainedWithoutOverwrite": true
+      },
+      "policyAdoptedExpectedExport": {
+        "path": "local-qa-save/ordinary-minion-attack-policy-adopted-expected.local-qa-save.json",
+        "sha256": "9bcce79a921352627e966843d5b85728a3f939e4973ade7296489a433aedd00f"
+      },
+      "actualBrowserExport": {
+        "path": "local-qa-save/play-ordinary-minion-attack-actual-save.json",
+        "sha256": "971daee2c93faaba6549ad9c56f12e02ae1fc7825d6ce764abd3716f8ff61305"
+      },
+      "normalImportPassed": true,
+      "exactPreparedPrefix": true,
+      "importPolicyAdoption": {
+        "commandPrefix": [
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          }
+        ],
+        "actualMatches": true,
+        "policyExpectedImportExact": true,
+        "preparedRawRevision": 8,
+        "policyExpectedRevision": 9,
+        "actualRevision": 9,
+        "rawExpectedTileSpeedRuling": "[absent]",
+        "policyExpectedTileSpeedRuling": "all-attacks",
+        "actualTileSpeedRuling": "all-attacks"
+      },
+      "actualSuffixReplayExact": true,
+      "preparedRawExpectationReplayExact": true,
+      "rawFileBytesExact": false,
+      "policyAdoptedFileBytesExact": false,
+      "rawWholeStateExact": false,
+      "rawSuffixCommandsExact": false,
+      "normalizedSuffixCommandsExact": true,
+      "normalizedWholeStateExact": true,
+      "gameplayFactsExact": true,
+      "commandRecordOnlyDifferences": [
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "itemIds",
+          "expected": "absent",
+          "actual": []
+        },
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "pullIds",
+          "expected": "absent",
+          "actual": []
+        },
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "rewardIds",
+          "expected": "absent",
+          "actual": []
+        }
+      ],
+      "acceptedActualCommandSuffix": [
+        {
+          "type": "APPLY_TILE_SPEED_RULING"
+        },
+        {
+          "type": "ATTACK",
+          "enemyId": "huntsmans-minion-1",
+          "cardId": "card-1",
+          "slot": 0,
+          "itemIds": [],
+          "pullIds": [],
+          "rewardIds": []
+        },
+        {
+          "type": "RESOLVE"
+        }
+      ],
+      "expectedFactSummary": {
+        "seed": 140,
+        "rulesVersion": 14,
+        "revision": 9,
+        "phase": "hunter",
+        "chapter": 1,
+        "hunter": {
+          "id": "hunter-1",
+          "position": "tile-01:top",
+          "hp": 3,
+          "echoes": 0,
+          "hand": [
+            {
+              "id": "card-3",
+              "kind": "endurance"
+            },
+            {
+              "id": "card-6",
+              "kind": "skill"
+            },
+            {
+              "id": "card-11",
+              "kind": "vitality"
+            },
+            {
+              "id": "card-5",
+              "kind": "skill"
+            },
+            {
+              "id": "card-8",
+              "kind": "strength"
+            }
+          ],
+          "occupiedSlots": [],
+          "slots": [
+            null,
+            null,
+            null
+          ],
+          "status": {
+            "poison": false,
+            "frenzy": false
+          },
+          "weaponId": "burial",
+          "face": 0,
+          "firearmId": "hunter-pistol",
+          "firearmReady": true,
+          "inDream": false
+        },
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "node": "tile-01:top",
+            "hp": 3,
+            "kind": "scourge-beast",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "scourge-beast",
+            "skin": "scourge-beast",
+            "name": "재앙의 야수"
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-01:top",
+            "hp": 4,
+            "kind": "huntsmans-minion",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsmans-minion",
+            "skin": "huntsmans-minion",
+            "name": "야수 사냥 하인"
+          }
+        ],
+        "missionExact": true,
+        "combat": null,
+        "pendingFollowups": {
+          "combat": null,
+          "move": null,
+          "enemyMove": null,
+          "interaction": null,
+          "killReaction": "[absent]",
+          "weaponAfter": "[absent]",
+          "weaponMoveReturn": "[absent]",
+          "missionArrivalAfter": "[absent]",
+          "freeTransform": null,
+          "firearmEntry": "[absent]",
+          "leap": null,
+          "lootChoice": [],
+          "rewardChoices": [],
+          "cardChoices": [],
+          "spawnQueue": [],
+          "spawnAfter": null
+        }
+      },
+      "actualFactSummary": {
+        "seed": 140,
+        "rulesVersion": 14,
+        "revision": 9,
+        "phase": "hunter",
+        "chapter": 1,
+        "hunter": {
+          "id": "hunter-1",
+          "position": "tile-01:top",
+          "hp": 3,
+          "echoes": 0,
+          "hand": [
+            {
+              "id": "card-3",
+              "kind": "endurance"
+            },
+            {
+              "id": "card-6",
+              "kind": "skill"
+            },
+            {
+              "id": "card-11",
+              "kind": "vitality"
+            },
+            {
+              "id": "card-5",
+              "kind": "skill"
+            },
+            {
+              "id": "card-8",
+              "kind": "strength"
+            }
+          ],
+          "occupiedSlots": [],
+          "slots": [
+            null,
+            null,
+            null
+          ],
+          "status": {
+            "poison": false,
+            "frenzy": false
+          },
+          "weaponId": "burial",
+          "face": 0,
+          "firearmId": "hunter-pistol",
+          "firearmReady": true,
+          "inDream": false
+        },
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "node": "tile-01:top",
+            "hp": 3,
+            "kind": "scourge-beast",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "scourge-beast",
+            "skin": "scourge-beast",
+            "name": "재앙의 야수"
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-01:top",
+            "hp": 4,
+            "kind": "huntsmans-minion",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsmans-minion",
+            "skin": "huntsmans-minion",
+            "name": "야수 사냥 하인"
+          }
+        ],
+        "missionExact": true,
+        "combat": null,
+        "pendingFollowups": {
+          "combat": null,
+          "move": null,
+          "enemyMove": null,
+          "interaction": null,
+          "killReaction": "[absent]",
+          "weaponAfter": "[absent]",
+          "weaponMoveReturn": "[absent]",
+          "missionArrivalAfter": "[absent]",
+          "freeTransform": null,
+          "firearmEntry": "[absent]",
+          "leap": null,
+          "lootChoice": [],
+          "rewardChoices": [],
+          "cardChoices": [],
+          "spawnQueue": [],
+          "spawnAfter": null
+        }
+      },
+      "domRouting": {
+        "actorListExact": true,
+        "actorChecks": [
+          {
+            "id": "hunter",
+            "expectedNode": "tile-01:top",
+            "actualNode": "tile-01:top",
+            "expectedSkin": "w-burial-a",
+            "actualSkin": "w-burial-a",
+            "passed": true
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "expectedNode": "tile-01:top",
+            "actualNode": "tile-01:top",
+            "expectedSkin": "huntsmans-minion",
+            "actualSkin": "huntsmans-minion",
+            "passed": true
+          },
+          {
+            "id": "scourge-beast-1",
+            "expectedNode": "tile-01:top",
+            "actualNode": "tile-01:top",
+            "expectedSkin": "scourge-beast",
+            "actualSkin": "scourge-beast",
+            "passed": true
+          }
+        ],
+        "domHpMatches": true,
+        "domPhaseMatches": true
+      },
+      "issues": [],
+      "stateDifferences": []
+    },
+    {
+      "id": "ordinary-scourge-attack",
+      "status": "passed",
+      "sourceCheckpoint": {
+        "path": "local-qa-save/ordinary-scourge-attack.local-qa-save.json",
+        "sha256": "07a43acef4c1864b5b8c1b8cf907a99495008d170a66e31dffd468f5d1f9496a"
+      },
+      "preparedRawExpectedExport": {
+        "path": "local-qa-save/ordinary-scourge-attack-expected-after.local-qa-save.json",
+        "sha256": "80b8d9790f568f6cc655d6b9e866e9ddbc66d846d7ab95a2f7161ff5d25f0ea2",
+        "retainedWithoutOverwrite": true
+      },
+      "policyAdoptedExpectedExport": {
+        "path": "local-qa-save/ordinary-scourge-attack-policy-adopted-expected.local-qa-save.json",
+        "sha256": "5e08201d76d4902410cfe03367a3463fdc3f07867e0d841b4f39d2383208df3b"
+      },
+      "actualBrowserExport": {
+        "path": "local-qa-save/play-ordinary-scourge-attack-actual-save.json",
+        "sha256": "70c64318c8820a396e3b64ce5fd2301d2a799ff976a1b463329688132748ed4a"
+      },
+      "normalImportPassed": true,
+      "exactPreparedPrefix": true,
+      "importPolicyAdoption": {
+        "commandPrefix": [
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          }
+        ],
+        "actualMatches": true,
+        "policyExpectedImportExact": true,
+        "preparedRawRevision": 8,
+        "policyExpectedRevision": 9,
+        "actualRevision": 9,
+        "rawExpectedTileSpeedRuling": "[absent]",
+        "policyExpectedTileSpeedRuling": "all-attacks",
+        "actualTileSpeedRuling": "all-attacks"
+      },
+      "actualSuffixReplayExact": true,
+      "preparedRawExpectationReplayExact": true,
+      "rawFileBytesExact": false,
+      "policyAdoptedFileBytesExact": false,
+      "rawWholeStateExact": false,
+      "rawSuffixCommandsExact": false,
+      "normalizedSuffixCommandsExact": true,
+      "normalizedWholeStateExact": true,
+      "gameplayFactsExact": true,
+      "commandRecordOnlyDifferences": [
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "itemIds",
+          "expected": "absent",
+          "actual": []
+        },
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "pullIds",
+          "expected": "absent",
+          "actual": []
+        },
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "rewardIds",
+          "expected": "absent",
+          "actual": []
+        }
+      ],
+      "acceptedActualCommandSuffix": [
+        {
+          "type": "APPLY_TILE_SPEED_RULING"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-1",
+          "slot": 0,
+          "itemIds": [],
+          "pullIds": [],
+          "rewardIds": [],
+          "enemyId": "scourge-beast-1"
+        },
+        {
+          "type": "RESOLVE"
+        }
+      ],
+      "expectedFactSummary": {
+        "seed": 140,
+        "rulesVersion": 14,
+        "revision": 9,
+        "phase": "hunter",
+        "chapter": 1,
+        "hunter": {
+          "id": "hunter-1",
+          "position": "tile-01:top",
+          "hp": 4,
+          "echoes": 0,
+          "hand": [
+            {
+              "id": "card-3",
+              "kind": "endurance"
+            },
+            {
+              "id": "card-6",
+              "kind": "skill"
+            },
+            {
+              "id": "card-11",
+              "kind": "vitality"
+            },
+            {
+              "id": "card-5",
+              "kind": "skill"
+            },
+            {
+              "id": "card-8",
+              "kind": "strength"
+            }
+          ],
+          "occupiedSlots": [],
+          "slots": [
+            null,
+            null,
+            null
+          ],
+          "status": {
+            "poison": false,
+            "frenzy": false
+          },
+          "weaponId": "burial",
+          "face": 0,
+          "firearmId": "hunter-pistol",
+          "firearmReady": true,
+          "inDream": false
+        },
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "node": "tile-01:top",
+            "hp": 3,
+            "kind": "scourge-beast",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "scourge-beast",
+            "skin": "scourge-beast",
+            "name": "재앙의 야수"
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-01:top",
+            "hp": 4,
+            "kind": "huntsmans-minion",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsmans-minion",
+            "skin": "huntsmans-minion",
+            "name": "야수 사냥 하인"
+          }
+        ],
+        "missionExact": true,
+        "combat": null,
+        "pendingFollowups": {
+          "combat": null,
+          "move": null,
+          "enemyMove": null,
+          "interaction": null,
+          "killReaction": "[absent]",
+          "weaponAfter": "[absent]",
+          "weaponMoveReturn": "[absent]",
+          "missionArrivalAfter": "[absent]",
+          "freeTransform": null,
+          "firearmEntry": "[absent]",
+          "leap": null,
+          "lootChoice": [],
+          "rewardChoices": [],
+          "cardChoices": [],
+          "spawnQueue": [],
+          "spawnAfter": null
+        }
+      },
+      "actualFactSummary": {
+        "seed": 140,
+        "rulesVersion": 14,
+        "revision": 9,
+        "phase": "hunter",
+        "chapter": 1,
+        "hunter": {
+          "id": "hunter-1",
+          "position": "tile-01:top",
+          "hp": 4,
+          "echoes": 0,
+          "hand": [
+            {
+              "id": "card-3",
+              "kind": "endurance"
+            },
+            {
+              "id": "card-6",
+              "kind": "skill"
+            },
+            {
+              "id": "card-11",
+              "kind": "vitality"
+            },
+            {
+              "id": "card-5",
+              "kind": "skill"
+            },
+            {
+              "id": "card-8",
+              "kind": "strength"
+            }
+          ],
+          "occupiedSlots": [],
+          "slots": [
+            null,
+            null,
+            null
+          ],
+          "status": {
+            "poison": false,
+            "frenzy": false
+          },
+          "weaponId": "burial",
+          "face": 0,
+          "firearmId": "hunter-pistol",
+          "firearmReady": true,
+          "inDream": false
+        },
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "node": "tile-01:top",
+            "hp": 3,
+            "kind": "scourge-beast",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "scourge-beast",
+            "skin": "scourge-beast",
+            "name": "재앙의 야수"
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-01:top",
+            "hp": 4,
+            "kind": "huntsmans-minion",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsmans-minion",
+            "skin": "huntsmans-minion",
+            "name": "야수 사냥 하인"
+          }
+        ],
+        "missionExact": true,
+        "combat": null,
+        "pendingFollowups": {
+          "combat": null,
+          "move": null,
+          "enemyMove": null,
+          "interaction": null,
+          "killReaction": "[absent]",
+          "weaponAfter": "[absent]",
+          "weaponMoveReturn": "[absent]",
+          "missionArrivalAfter": "[absent]",
+          "freeTransform": null,
+          "firearmEntry": "[absent]",
+          "leap": null,
+          "lootChoice": [],
+          "rewardChoices": [],
+          "cardChoices": [],
+          "spawnQueue": [],
+          "spawnAfter": null
+        }
+      },
+      "domRouting": {
+        "actorListExact": true,
+        "actorChecks": [
+          {
+            "id": "hunter",
+            "expectedNode": "tile-01:top",
+            "actualNode": "tile-01:top",
+            "expectedSkin": "w-burial-a",
+            "actualSkin": "w-burial-a",
+            "passed": true
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "expectedNode": "tile-01:top",
+            "actualNode": "tile-01:top",
+            "expectedSkin": "huntsmans-minion",
+            "actualSkin": "huntsmans-minion",
+            "passed": true
+          },
+          {
+            "id": "scourge-beast-1",
+            "expectedNode": "tile-01:top",
+            "actualNode": "tile-01:top",
+            "expectedSkin": "scourge-beast",
+            "actualSkin": "scourge-beast",
+            "passed": true
+          }
+        ],
+        "domHpMatches": true,
+        "domPhaseMatches": true
+      },
+      "issues": [],
+      "stateDifferences": []
+    },
+    {
+      "id": "female-patient-natural",
+      "status": "passed",
+      "sourceCheckpoint": {
+        "path": "local-qa-save/female-patient-natural.local-qa-save.json",
+        "sha256": "73d0aa80b5fe1a1ef4ae565cce47e8bf107aa1b1ce6bccd953dfe540ed4b97ee"
+      },
+      "preparedRawExpectedExport": {
+        "path": "local-qa-save/female-patient-natural-expected-after.local-qa-save.json",
+        "sha256": "e8d08c37eacd8726f88537331b7bf7748a82be5d47b7ff3ba0e7a2843229ab7a",
+        "retainedWithoutOverwrite": true
+      },
+      "policyAdoptedExpectedExport": {
+        "path": "local-qa-save/female-patient-natural-policy-adopted-expected.local-qa-save.json",
+        "sha256": "ec0ae1840bf736bdfa91b43571b7dc2c7eab4ece01abcd85ff90f595ffd18cc7"
+      },
+      "actualBrowserExport": {
+        "path": "local-qa-save/play-female-patient-natural-actual-save.json",
+        "sha256": "c65482fab9c0c08d72a0fb80fc2478bc89465570ad22d6619ee16510b3b5090c"
+      },
+      "normalImportPassed": true,
+      "exactPreparedPrefix": true,
+      "importPolicyAdoption": {
+        "commandPrefix": [
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          }
+        ],
+        "actualMatches": true,
+        "policyExpectedImportExact": true,
+        "preparedRawRevision": 192,
+        "policyExpectedRevision": 193,
+        "actualRevision": 193,
+        "rawExpectedTileSpeedRuling": "[absent]",
+        "policyExpectedTileSpeedRuling": "all-attacks",
+        "actualTileSpeedRuling": "all-attacks"
+      },
+      "actualSuffixReplayExact": true,
+      "preparedRawExpectationReplayExact": true,
+      "rawFileBytesExact": false,
+      "policyAdoptedFileBytesExact": false,
+      "rawWholeStateExact": false,
+      "rawSuffixCommandsExact": false,
+      "normalizedSuffixCommandsExact": true,
+      "normalizedWholeStateExact": true,
+      "gameplayFactsExact": true,
+      "commandRecordOnlyDifferences": [
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "itemIds",
+          "expected": "absent",
+          "actual": []
+        },
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "pullIds",
+          "expected": "absent",
+          "actual": []
+        },
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "rewardIds",
+          "expected": "absent",
+          "actual": []
+        }
+      ],
+      "acceptedActualCommandSuffix": [
+        {
+          "type": "APPLY_TILE_SPEED_RULING"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-11",
+          "slot": 0,
+          "itemIds": [],
+          "pullIds": [],
+          "rewardIds": [],
+          "enemyId": "mission-patient"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "STUN_DISCARD",
+          "cardId": "card-10"
+        }
+      ],
+      "expectedFactSummary": {
+        "seed": 90,
+        "rulesVersion": 14,
+        "revision": 193,
+        "phase": "hunter",
+        "chapter": 2,
+        "hunter": {
+          "id": "hunter-1",
+          "position": "tile-17:top",
+          "hp": 3,
+          "echoes": 0,
+          "hand": [
+            {
+              "id": "card-9",
+              "kind": "strength"
+            },
+            {
+              "id": "card-12",
+              "kind": "vitality"
+            },
+            {
+              "id": "card-8",
+              "kind": "strength"
+            }
+          ],
+          "occupiedSlots": [
+            0
+          ],
+          "slots": [
+            {
+              "id": "card-11",
+              "kind": "vitality"
+            },
+            null,
+            null
+          ],
+          "status": {
+            "poison": false,
+            "frenzy": false
+          },
+          "weaponId": "burial",
+          "face": 1,
+          "firearmId": "hunter-pistol",
+          "firearmReady": true,
+          "inDream": false
+        },
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "node": "tile-01:top",
+            "hp": 4,
+            "kind": "scourge-beast",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "scourge-beast",
+            "skin": "scourge-beast",
+            "name": "재앙의 야수"
+          },
+          {
+            "id": "huntsman-mob-2",
+            "node": "tile-01:bottom",
+            "hp": 4,
+            "kind": "huntsman-mob",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "b",
+            "profile": "huntsman-mob",
+            "skin": "huntsman-mob",
+            "name": "야수 사냥 무리"
+          },
+          {
+            "id": "scourge-beast-2",
+            "node": "tile-03:room",
+            "hp": 4,
+            "kind": "scourge-beast",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "scourge-beast",
+            "skin": "scourge-beast",
+            "name": "재앙의 야수"
+          },
+          {
+            "id": "scourge-beast-3",
+            "node": "tile-09:bottom",
+            "hp": 4,
+            "kind": "scourge-beast",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "scourge-beast",
+            "skin": "scourge-beast",
+            "name": "재앙의 야수"
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-03:room",
+            "hp": 5,
+            "kind": "huntsmans-minion",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsmans-minion",
+            "skin": "huntsmans-minion",
+            "name": "야수 사냥 하인"
+          },
+          {
+            "id": "huntsmans-minion-2",
+            "node": "tile-18:top",
+            "hp": 5,
+            "kind": "huntsmans-minion",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsmans-minion",
+            "skin": "huntsmans-minion",
+            "name": "야수 사냥 하인"
+          },
+          {
+            "id": "mission-patient",
+            "node": "tile-17:top",
+            "hp": 1,
+            "kind": "huntsman-mob",
+            "componentId": "female-patient",
+            "componentSpec": "female-patient-a",
+            "componentPhase": 1,
+            "side": "a",
+            "profile": "female-patient-a",
+            "skin": "female-patient",
+            "name": "여성 야수환자"
+          }
+        ],
+        "missionExact": true,
+        "combat": null,
+        "pendingFollowups": {
+          "combat": null,
+          "move": null,
+          "enemyMove": null,
+          "interaction": null,
+          "killReaction": "[absent]",
+          "weaponAfter": "[absent]",
+          "weaponMoveReturn": "[absent]",
+          "missionArrivalAfter": "[absent]",
+          "freeTransform": null,
+          "firearmEntry": "[absent]",
+          "leap": null,
+          "lootChoice": [],
+          "rewardChoices": [],
+          "cardChoices": [],
+          "spawnQueue": [],
+          "spawnAfter": null
+        }
+      },
+      "actualFactSummary": {
+        "seed": 90,
+        "rulesVersion": 14,
+        "revision": 193,
+        "phase": "hunter",
+        "chapter": 2,
+        "hunter": {
+          "id": "hunter-1",
+          "position": "tile-17:top",
+          "hp": 3,
+          "echoes": 0,
+          "hand": [
+            {
+              "id": "card-9",
+              "kind": "strength"
+            },
+            {
+              "id": "card-12",
+              "kind": "vitality"
+            },
+            {
+              "id": "card-8",
+              "kind": "strength"
+            }
+          ],
+          "occupiedSlots": [
+            0
+          ],
+          "slots": [
+            {
+              "id": "card-11",
+              "kind": "vitality"
+            },
+            null,
+            null
+          ],
+          "status": {
+            "poison": false,
+            "frenzy": false
+          },
+          "weaponId": "burial",
+          "face": 1,
+          "firearmId": "hunter-pistol",
+          "firearmReady": true,
+          "inDream": false
+        },
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "node": "tile-01:top",
+            "hp": 4,
+            "kind": "scourge-beast",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "scourge-beast",
+            "skin": "scourge-beast",
+            "name": "재앙의 야수"
+          },
+          {
+            "id": "huntsman-mob-2",
+            "node": "tile-01:bottom",
+            "hp": 4,
+            "kind": "huntsman-mob",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "b",
+            "profile": "huntsman-mob",
+            "skin": "huntsman-mob",
+            "name": "야수 사냥 무리"
+          },
+          {
+            "id": "scourge-beast-2",
+            "node": "tile-03:room",
+            "hp": 4,
+            "kind": "scourge-beast",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "scourge-beast",
+            "skin": "scourge-beast",
+            "name": "재앙의 야수"
+          },
+          {
+            "id": "scourge-beast-3",
+            "node": "tile-09:bottom",
+            "hp": 4,
+            "kind": "scourge-beast",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "scourge-beast",
+            "skin": "scourge-beast",
+            "name": "재앙의 야수"
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-03:room",
+            "hp": 5,
+            "kind": "huntsmans-minion",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsmans-minion",
+            "skin": "huntsmans-minion",
+            "name": "야수 사냥 하인"
+          },
+          {
+            "id": "huntsmans-minion-2",
+            "node": "tile-18:top",
+            "hp": 5,
+            "kind": "huntsmans-minion",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsmans-minion",
+            "skin": "huntsmans-minion",
+            "name": "야수 사냥 하인"
+          },
+          {
+            "id": "mission-patient",
+            "node": "tile-17:top",
+            "hp": 1,
+            "kind": "huntsman-mob",
+            "componentId": "female-patient",
+            "componentSpec": "female-patient-a",
+            "componentPhase": 1,
+            "side": "a",
+            "profile": "female-patient-a",
+            "skin": "female-patient",
+            "name": "여성 야수환자"
+          }
+        ],
+        "missionExact": true,
+        "combat": null,
+        "pendingFollowups": {
+          "combat": null,
+          "move": null,
+          "enemyMove": null,
+          "interaction": null,
+          "killReaction": "[absent]",
+          "weaponAfter": "[absent]",
+          "weaponMoveReturn": "[absent]",
+          "missionArrivalAfter": "[absent]",
+          "freeTransform": null,
+          "firearmEntry": "[absent]",
+          "leap": null,
+          "lootChoice": [],
+          "rewardChoices": [],
+          "cardChoices": [],
+          "spawnQueue": [],
+          "spawnAfter": null
+        }
+      },
+      "domRouting": {
+        "actorListExact": true,
+        "actorChecks": [
+          {
+            "id": "hunter",
+            "expectedNode": "tile-17:top",
+            "actualNode": "tile-17:top",
+            "expectedSkin": "w-burial-b",
+            "actualSkin": "w-burial-b",
+            "passed": true
+          },
+          {
+            "id": "mission-patient",
+            "expectedNode": "tile-17:top",
+            "actualNode": "tile-17:top",
+            "expectedSkin": "female-patient",
+            "actualSkin": "female-patient",
+            "passed": true
+          },
+          {
+            "id": "huntsmans-minion-2",
+            "expectedNode": "tile-18:top",
+            "actualNode": "tile-18:top",
+            "expectedSkin": "huntsmans-minion",
+            "actualSkin": "huntsmans-minion",
+            "passed": true
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "expectedNode": "tile-03:room",
+            "actualNode": "tile-03:room",
+            "expectedSkin": "huntsmans-minion",
+            "actualSkin": "huntsmans-minion",
+            "passed": true
+          },
+          {
+            "id": "scourge-beast-2",
+            "expectedNode": "tile-03:room",
+            "actualNode": "tile-03:room",
+            "expectedSkin": "scourge-beast",
+            "actualSkin": "scourge-beast",
+            "passed": true
+          },
+          {
+            "id": "scourge-beast-3",
+            "expectedNode": "tile-09:bottom",
+            "actualNode": "tile-09:bottom",
+            "expectedSkin": "scourge-beast",
+            "actualSkin": "scourge-beast",
+            "passed": true
+          },
+          {
+            "id": "huntsman-mob-2",
+            "expectedNode": "tile-01:bottom",
+            "actualNode": "tile-01:bottom",
+            "expectedSkin": "huntsman-mob",
+            "actualSkin": "huntsman-mob",
+            "passed": true
+          },
+          {
+            "id": "scourge-beast-1",
+            "expectedNode": "tile-01:top",
+            "actualNode": "tile-01:top",
+            "expectedSkin": "scourge-beast",
+            "actualSkin": "scourge-beast",
+            "passed": true
+          }
+        ],
+        "domHpMatches": true,
+        "domPhaseMatches": true
+      },
+      "issues": [],
+      "stateDifferences": []
+    },
+    {
+      "id": "iosefka-natural",
+      "status": "passed",
+      "sourceCheckpoint": {
+        "path": "local-qa-save/iosefka-natural.local-qa-save.json",
+        "sha256": "a6048d9babb26aa4eedba7d844e5c2986f1e09a23da5e6299089bc2b762dc7ce"
+      },
+      "preparedRawExpectedExport": {
+        "path": "local-qa-save/iosefka-natural-expected-after.local-qa-save.json",
+        "sha256": "7c4d4a0bb290132887c3d41a49e064a2c5ef0efcb887fbb59391732e449140db",
+        "retainedWithoutOverwrite": true
+      },
+      "policyAdoptedExpectedExport": {
+        "path": "local-qa-save/iosefka-natural-policy-adopted-expected.local-qa-save.json",
+        "sha256": "bb6ce1f386920f702e532ea965f0f3c3b88a5a7721306808ea4bb74c282f79b1"
+      },
+      "actualBrowserExport": {
+        "path": "local-qa-save/play-iosefka-natural-actual-save.json",
+        "sha256": "56db373fcfe430432da9496d6d2417304a7c9855f37b6133736dd63dd7093b0d"
+      },
+      "normalImportPassed": true,
+      "exactPreparedPrefix": true,
+      "importPolicyAdoption": {
+        "commandPrefix": [
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          }
+        ],
+        "actualMatches": true,
+        "policyExpectedImportExact": true,
+        "preparedRawRevision": 306,
+        "policyExpectedRevision": 307,
+        "actualRevision": 307,
+        "rawExpectedTileSpeedRuling": "[absent]",
+        "policyExpectedTileSpeedRuling": "all-attacks",
+        "actualTileSpeedRuling": "all-attacks"
+      },
+      "actualSuffixReplayExact": true,
+      "preparedRawExpectationReplayExact": true,
+      "rawFileBytesExact": false,
+      "policyAdoptedFileBytesExact": false,
+      "rawWholeStateExact": false,
+      "rawSuffixCommandsExact": false,
+      "normalizedSuffixCommandsExact": true,
+      "normalizedWholeStateExact": true,
+      "gameplayFactsExact": true,
+      "commandRecordOnlyDifferences": [
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "itemIds",
+          "expected": "absent",
+          "actual": []
+        },
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "pullIds",
+          "expected": "absent",
+          "actual": []
+        },
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "rewardIds",
+          "expected": "absent",
+          "actual": []
+        }
+      ],
+      "acceptedActualCommandSuffix": [
+        {
+          "type": "APPLY_TILE_SPEED_RULING"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-2",
+          "slot": 0,
+          "itemIds": [],
+          "pullIds": [],
+          "rewardIds": [],
+          "enemyId": "mission-iosefka"
+        },
+        {
+          "type": "RESOLVE"
+        }
+      ],
+      "expectedFactSummary": {
+        "seed": 90,
+        "rulesVersion": 14,
+        "revision": 307,
+        "phase": "hunter",
+        "chapter": 3,
+        "hunter": {
+          "id": "hunter-1",
+          "position": "tile-20:entry",
+          "hp": 3,
+          "echoes": 0,
+          "hand": [
+            {
+              "id": "card-18",
+              "kind": "quick"
+            },
+            {
+              "id": "card-17",
+              "kind": "defensive"
+            },
+            {
+              "id": "card-10",
+              "kind": "vitality"
+            }
+          ],
+          "occupiedSlots": [],
+          "slots": [
+            null,
+            null,
+            null
+          ],
+          "status": {
+            "poison": false,
+            "frenzy": false
+          },
+          "weaponId": "burial",
+          "face": 1,
+          "firearmId": "hunter-pistol",
+          "firearmReady": true,
+          "inDream": false
+        },
+        "enemies": [
+          {
+            "id": "mission-main",
+            "node": "tile-19:bottom",
+            "hp": 10,
+            "kind": "scourge-beast",
+            "componentId": "cleric-beast",
+            "componentSpec": "cleric-beast",
+            "componentPhase": 1,
+            "side": "actual",
+            "profile": "cleric-beast",
+            "skin": "cleric-beast",
+            "name": "성직자 야수"
+          },
+          {
+            "id": "huntsman-mob-1",
+            "node": "tile-13:middle",
+            "hp": 4,
+            "kind": "huntsman-mob",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsman-mob",
+            "skin": "huntsman-mob",
+            "name": "야수 사냥 무리"
+          },
+          {
+            "id": "huntsman-mob-2",
+            "node": "tile-10:left",
+            "hp": 4,
+            "kind": "huntsman-mob",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsman-mob",
+            "skin": "huntsman-mob",
+            "name": "야수 사냥 무리"
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-18:top",
+            "hp": 1,
+            "kind": "huntsmans-minion",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsmans-minion",
+            "skin": "huntsmans-minion",
+            "name": "야수 사냥 하인"
+          },
+          {
+            "id": "mission-iosefka",
+            "node": "tile-20:room",
+            "hp": 8,
+            "kind": "huntsmans-minion",
+            "componentId": "iosefka",
+            "componentSpec": "iosefka-hostile",
+            "componentPhase": 1,
+            "side": "1-2",
+            "profile": "iosefka-hostile",
+            "skin": "iosefka",
+            "name": "이오세프카"
+          }
+        ],
+        "missionExact": true,
+        "combat": null,
+        "pendingFollowups": {
+          "combat": null,
+          "move": null,
+          "enemyMove": null,
+          "interaction": null,
+          "killReaction": "[absent]",
+          "weaponAfter": "[absent]",
+          "weaponMoveReturn": "[absent]",
+          "missionArrivalAfter": "[absent]",
+          "freeTransform": null,
+          "firearmEntry": "[absent]",
+          "leap": null,
+          "lootChoice": [],
+          "rewardChoices": [],
+          "cardChoices": [],
+          "spawnQueue": [],
+          "spawnAfter": null
+        }
+      },
+      "actualFactSummary": {
+        "seed": 90,
+        "rulesVersion": 14,
+        "revision": 307,
+        "phase": "hunter",
+        "chapter": 3,
+        "hunter": {
+          "id": "hunter-1",
+          "position": "tile-20:entry",
+          "hp": 3,
+          "echoes": 0,
+          "hand": [
+            {
+              "id": "card-18",
+              "kind": "quick"
+            },
+            {
+              "id": "card-17",
+              "kind": "defensive"
+            },
+            {
+              "id": "card-10",
+              "kind": "vitality"
+            }
+          ],
+          "occupiedSlots": [],
+          "slots": [
+            null,
+            null,
+            null
+          ],
+          "status": {
+            "poison": false,
+            "frenzy": false
+          },
+          "weaponId": "burial",
+          "face": 1,
+          "firearmId": "hunter-pistol",
+          "firearmReady": true,
+          "inDream": false
+        },
+        "enemies": [
+          {
+            "id": "mission-main",
+            "node": "tile-19:bottom",
+            "hp": 10,
+            "kind": "scourge-beast",
+            "componentId": "cleric-beast",
+            "componentSpec": "cleric-beast",
+            "componentPhase": 1,
+            "side": "actual",
+            "profile": "cleric-beast",
+            "skin": "cleric-beast",
+            "name": "성직자 야수"
+          },
+          {
+            "id": "huntsman-mob-1",
+            "node": "tile-13:middle",
+            "hp": 4,
+            "kind": "huntsman-mob",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsman-mob",
+            "skin": "huntsman-mob",
+            "name": "야수 사냥 무리"
+          },
+          {
+            "id": "huntsman-mob-2",
+            "node": "tile-10:left",
+            "hp": 4,
+            "kind": "huntsman-mob",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsman-mob",
+            "skin": "huntsman-mob",
+            "name": "야수 사냥 무리"
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-18:top",
+            "hp": 1,
+            "kind": "huntsmans-minion",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsmans-minion",
+            "skin": "huntsmans-minion",
+            "name": "야수 사냥 하인"
+          },
+          {
+            "id": "mission-iosefka",
+            "node": "tile-20:room",
+            "hp": 8,
+            "kind": "huntsmans-minion",
+            "componentId": "iosefka",
+            "componentSpec": "iosefka-hostile",
+            "componentPhase": 1,
+            "side": "1-2",
+            "profile": "iosefka-hostile",
+            "skin": "iosefka",
+            "name": "이오세프카"
+          }
+        ],
+        "missionExact": true,
+        "combat": null,
+        "pendingFollowups": {
+          "combat": null,
+          "move": null,
+          "enemyMove": null,
+          "interaction": null,
+          "killReaction": "[absent]",
+          "weaponAfter": "[absent]",
+          "weaponMoveReturn": "[absent]",
+          "missionArrivalAfter": "[absent]",
+          "freeTransform": null,
+          "firearmEntry": "[absent]",
+          "leap": null,
+          "lootChoice": [],
+          "rewardChoices": [],
+          "cardChoices": [],
+          "spawnQueue": [],
+          "spawnAfter": null
+        }
+      },
+      "domRouting": {
+        "actorListExact": true,
+        "actorChecks": [
+          {
+            "id": "huntsman-mob-1",
+            "expectedNode": "tile-13:middle",
+            "actualNode": "tile-13:middle",
+            "expectedSkin": "huntsman-mob",
+            "actualSkin": "huntsman-mob",
+            "passed": true
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "expectedNode": "tile-18:top",
+            "actualNode": "tile-18:top",
+            "expectedSkin": "huntsmans-minion",
+            "actualSkin": "huntsmans-minion",
+            "passed": true
+          },
+          {
+            "id": "hunter",
+            "expectedNode": "tile-20:entry",
+            "actualNode": "tile-20:entry",
+            "expectedSkin": "w-burial-b",
+            "actualSkin": "w-burial-b",
+            "passed": true
+          },
+          {
+            "id": "mission-iosefka",
+            "expectedNode": "tile-20:room",
+            "actualNode": "tile-20:room",
+            "expectedSkin": "iosefka",
+            "actualSkin": "iosefka",
+            "passed": true
+          },
+          {
+            "id": "mission-main",
+            "expectedNode": "tile-19:bottom",
+            "actualNode": "tile-19:bottom",
+            "expectedSkin": "cleric-beast",
+            "actualSkin": "cleric-beast",
+            "passed": true
+          },
+          {
+            "id": "huntsman-mob-2",
+            "expectedNode": "tile-10:left",
+            "actualNode": "tile-10:left",
+            "expectedSkin": "huntsman-mob",
+            "actualSkin": "huntsman-mob",
+            "passed": true
+          }
+        ],
+        "domHpMatches": true,
+        "domPhaseMatches": true
+      },
+      "issues": [],
+      "stateDifferences": []
+    },
+    {
+      "id": "cleric-phase1-natural",
+      "status": "passed",
+      "sourceCheckpoint": {
+        "path": "local-qa-save/cleric-phase1-natural.local-qa-save.json",
+        "sha256": "ce5d303e9c2183f4aca27fa5cba780ea967fe408b91264fa3f6085b9a6b47102"
+      },
+      "preparedRawExpectedExport": {
+        "path": "local-qa-save/cleric-phase1-natural-expected-after.local-qa-save.json",
+        "sha256": "df2ee6b5f8a3d41f8ac7eba140f435aa94c001c2246904d4ea105f3488d4331b",
+        "retainedWithoutOverwrite": true
+      },
+      "policyAdoptedExpectedExport": {
+        "path": "local-qa-save/cleric-phase1-natural-policy-adopted-expected.local-qa-save.json",
+        "sha256": "208dc558be1b061ea7758379ca7b48ddebbf855535d963673861ad87dc745dbb"
+      },
+      "actualBrowserExport": {
+        "path": "local-qa-save/play-cleric-phase1-natural-actual-save.json",
+        "sha256": "24d77b625ed7eb6ef42a467250b2bee2f4be451a8b39e80b9b8d777695bf4b1c"
+      },
+      "normalImportPassed": true,
+      "exactPreparedPrefix": true,
+      "importPolicyAdoption": {
+        "commandPrefix": [
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          }
+        ],
+        "actualMatches": true,
+        "policyExpectedImportExact": true,
+        "preparedRawRevision": 321,
+        "policyExpectedRevision": 322,
+        "actualRevision": 322,
+        "rawExpectedTileSpeedRuling": "[absent]",
+        "policyExpectedTileSpeedRuling": "all-attacks",
+        "actualTileSpeedRuling": "all-attacks"
+      },
+      "actualSuffixReplayExact": true,
+      "preparedRawExpectationReplayExact": true,
+      "rawFileBytesExact": false,
+      "policyAdoptedFileBytesExact": false,
+      "rawWholeStateExact": false,
+      "rawSuffixCommandsExact": false,
+      "normalizedSuffixCommandsExact": true,
+      "normalizedWholeStateExact": true,
+      "gameplayFactsExact": true,
+      "commandRecordOnlyDifferences": [
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "itemIds",
+          "expected": "absent",
+          "actual": []
+        },
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "pullIds",
+          "expected": "absent",
+          "actual": []
+        },
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "rewardIds",
+          "expected": "absent",
+          "actual": []
+        }
+      ],
+      "acceptedActualCommandSuffix": [
+        {
+          "type": "APPLY_TILE_SPEED_RULING"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-3",
+          "slot": 0,
+          "itemIds": [],
+          "pullIds": [],
+          "rewardIds": [],
+          "enemyId": "mission-main"
+        },
+        {
+          "type": "RESOLVE"
+        }
+      ],
+      "expectedFactSummary": {
+        "seed": 90,
+        "rulesVersion": 14,
+        "revision": 322,
+        "phase": "hunter",
+        "chapter": 3,
+        "hunter": {
+          "id": "hunter-1",
+          "position": "tile-19:bottom",
+          "hp": 2,
+          "echoes": 0,
+          "hand": [
+            {
+              "id": "card-20",
+              "kind": "adaptive"
+            },
+            {
+              "id": "card-1",
+              "kind": "endurance"
+            },
+            {
+              "id": "card-10",
+              "kind": "vitality"
+            },
+            {
+              "id": "card-21",
+              "kind": "sprint"
+            }
+          ],
+          "occupiedSlots": [],
+          "slots": [
+            null,
+            null,
+            null
+          ],
+          "status": {
+            "poison": false,
+            "frenzy": false
+          },
+          "weaponId": "burial",
+          "face": 1,
+          "firearmId": "hunter-pistol",
+          "firearmReady": true,
+          "inDream": false
+        },
+        "enemies": [
+          {
+            "id": "mission-main",
+            "node": "tile-19:bottom",
+            "hp": 5,
+            "kind": "scourge-beast",
+            "componentId": "cleric-beast",
+            "componentSpec": "cleric-beast",
+            "componentPhase": 1,
+            "side": "actual",
+            "profile": "cleric-beast",
+            "skin": "cleric-beast",
+            "name": "성직자 야수"
+          },
+          {
+            "id": "huntsman-mob-1",
+            "node": "tile-13:middle",
+            "hp": 4,
+            "kind": "huntsman-mob",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsman-mob",
+            "skin": "huntsman-mob",
+            "name": "야수 사냥 무리"
+          },
+          {
+            "id": "huntsman-mob-2",
+            "node": "tile-10:left",
+            "hp": 3,
+            "kind": "huntsman-mob",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsman-mob",
+            "skin": "huntsman-mob",
+            "name": "야수 사냥 무리"
+          }
+        ],
+        "missionExact": true,
+        "combat": null,
+        "pendingFollowups": {
+          "combat": null,
+          "move": null,
+          "enemyMove": null,
+          "interaction": null,
+          "killReaction": "[absent]",
+          "weaponAfter": "[absent]",
+          "weaponMoveReturn": "[absent]",
+          "missionArrivalAfter": "[absent]",
+          "freeTransform": null,
+          "firearmEntry": "[absent]",
+          "leap": null,
+          "lootChoice": [],
+          "rewardChoices": [],
+          "cardChoices": [],
+          "spawnQueue": [],
+          "spawnAfter": null
+        }
+      },
+      "actualFactSummary": {
+        "seed": 90,
+        "rulesVersion": 14,
+        "revision": 322,
+        "phase": "hunter",
+        "chapter": 3,
+        "hunter": {
+          "id": "hunter-1",
+          "position": "tile-19:bottom",
+          "hp": 2,
+          "echoes": 0,
+          "hand": [
+            {
+              "id": "card-20",
+              "kind": "adaptive"
+            },
+            {
+              "id": "card-1",
+              "kind": "endurance"
+            },
+            {
+              "id": "card-10",
+              "kind": "vitality"
+            },
+            {
+              "id": "card-21",
+              "kind": "sprint"
+            }
+          ],
+          "occupiedSlots": [],
+          "slots": [
+            null,
+            null,
+            null
+          ],
+          "status": {
+            "poison": false,
+            "frenzy": false
+          },
+          "weaponId": "burial",
+          "face": 1,
+          "firearmId": "hunter-pistol",
+          "firearmReady": true,
+          "inDream": false
+        },
+        "enemies": [
+          {
+            "id": "mission-main",
+            "node": "tile-19:bottom",
+            "hp": 5,
+            "kind": "scourge-beast",
+            "componentId": "cleric-beast",
+            "componentSpec": "cleric-beast",
+            "componentPhase": 1,
+            "side": "actual",
+            "profile": "cleric-beast",
+            "skin": "cleric-beast",
+            "name": "성직자 야수"
+          },
+          {
+            "id": "huntsman-mob-1",
+            "node": "tile-13:middle",
+            "hp": 4,
+            "kind": "huntsman-mob",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsman-mob",
+            "skin": "huntsman-mob",
+            "name": "야수 사냥 무리"
+          },
+          {
+            "id": "huntsman-mob-2",
+            "node": "tile-10:left",
+            "hp": 3,
+            "kind": "huntsman-mob",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsman-mob",
+            "skin": "huntsman-mob",
+            "name": "야수 사냥 무리"
+          }
+        ],
+        "missionExact": true,
+        "combat": null,
+        "pendingFollowups": {
+          "combat": null,
+          "move": null,
+          "enemyMove": null,
+          "interaction": null,
+          "killReaction": "[absent]",
+          "weaponAfter": "[absent]",
+          "weaponMoveReturn": "[absent]",
+          "missionArrivalAfter": "[absent]",
+          "freeTransform": null,
+          "firearmEntry": "[absent]",
+          "leap": null,
+          "lootChoice": [],
+          "rewardChoices": [],
+          "cardChoices": [],
+          "spawnQueue": [],
+          "spawnAfter": null
+        }
+      },
+      "domRouting": {
+        "actorListExact": true,
+        "actorChecks": [
+          {
+            "id": "huntsman-mob-1",
+            "expectedNode": "tile-13:middle",
+            "actualNode": "tile-13:middle",
+            "expectedSkin": "huntsman-mob",
+            "actualSkin": "huntsman-mob",
+            "passed": true
+          },
+          {
+            "id": "hunter",
+            "expectedNode": "tile-19:bottom",
+            "actualNode": "tile-19:bottom",
+            "expectedSkin": "w-burial-b",
+            "actualSkin": "w-burial-b",
+            "passed": true
+          },
+          {
+            "id": "mission-main",
+            "expectedNode": "tile-19:bottom",
+            "actualNode": "tile-19:bottom",
+            "expectedSkin": "cleric-beast",
+            "actualSkin": "cleric-beast",
+            "passed": true
+          },
+          {
+            "id": "huntsman-mob-2",
+            "expectedNode": "tile-10:left",
+            "actualNode": "tile-10:left",
+            "expectedSkin": "huntsman-mob",
+            "actualSkin": "huntsman-mob",
+            "passed": true
+          }
+        ],
+        "domHpMatches": true,
+        "domPhaseMatches": true
+      },
+      "issues": [],
+      "stateDifferences": []
+    },
+    {
+      "id": "cleric-phase2-natural",
+      "status": "passed",
+      "sourceCheckpoint": {
+        "path": "local-qa-save/cleric-phase2-natural.local-qa-save.json",
+        "sha256": "4e5f27217db7e22f46876eee2a5efb178d8a8ef4333a4d09328ea96812fe5660"
+      },
+      "preparedRawExpectedExport": {
+        "path": "local-qa-save/cleric-phase2-natural-expected-after.local-qa-save.json",
+        "sha256": "494025c3974ad187d41134ce3a6fc9df2d5cd449482f9783d83d343b08926f80",
+        "retainedWithoutOverwrite": true
+      },
+      "policyAdoptedExpectedExport": {
+        "path": "local-qa-save/cleric-phase2-natural-policy-adopted-expected.local-qa-save.json",
+        "sha256": "97e2deaafeeb910b78a77b07e72fca495c394c67c0a26ae12f6ac53941de0759"
+      },
+      "actualBrowserExport": {
+        "path": "local-qa-save/play-cleric-phase2-natural-actual-save.json",
+        "sha256": "2c072480dbe0e9aa607fd1fb30d1934c22325c2e7653a15f704cbf4fe320080d"
+      },
+      "normalImportPassed": true,
+      "exactPreparedPrefix": true,
+      "importPolicyAdoption": {
+        "commandPrefix": [
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          }
+        ],
+        "actualMatches": true,
+        "policyExpectedImportExact": true,
+        "preparedRawRevision": 330,
+        "policyExpectedRevision": 331,
+        "actualRevision": 331,
+        "rawExpectedTileSpeedRuling": "[absent]",
+        "policyExpectedTileSpeedRuling": "all-attacks",
+        "actualTileSpeedRuling": "all-attacks"
+      },
+      "actualSuffixReplayExact": true,
+      "preparedRawExpectationReplayExact": true,
+      "rawFileBytesExact": false,
+      "policyAdoptedFileBytesExact": false,
+      "rawWholeStateExact": false,
+      "rawSuffixCommandsExact": false,
+      "normalizedSuffixCommandsExact": true,
+      "normalizedWholeStateExact": true,
+      "gameplayFactsExact": true,
+      "commandRecordOnlyDifferences": [
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "itemIds",
+          "expected": "absent",
+          "actual": []
+        },
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "pullIds",
+          "expected": "absent",
+          "actual": []
+        },
+        {
+          "gameplaySuffixIndex": 0,
+          "type": "ATTACK",
+          "field": "rewardIds",
+          "expected": "absent",
+          "actual": []
+        }
+      ],
+      "acceptedActualCommandSuffix": [
+        {
+          "type": "APPLY_TILE_SPEED_RULING"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-2",
+          "slot": 0,
+          "itemIds": [],
+          "pullIds": [],
+          "rewardIds": [],
+          "enemyId": "mission-main"
+        },
+        {
+          "type": "RESOLVE"
+        }
+      ],
+      "expectedFactSummary": {
+        "seed": 90,
+        "rulesVersion": 14,
+        "revision": 331,
+        "phase": "hunter",
+        "chapter": 3,
+        "hunter": {
+          "id": "hunter-1",
+          "position": "tile-19:bottom",
+          "hp": 2,
+          "echoes": 0,
+          "hand": [
+            {
+              "id": "card-11",
+              "kind": "vitality"
+            },
+            {
+              "id": "card-8",
+              "kind": "strength"
+            },
+            {
+              "id": "card-10",
+              "kind": "vitality"
+            }
+          ],
+          "occupiedSlots": [],
+          "slots": [
+            null,
+            null,
+            null
+          ],
+          "status": {
+            "poison": false,
+            "frenzy": false
+          },
+          "weaponId": "burial",
+          "face": 1,
+          "firearmId": "hunter-pistol",
+          "firearmReady": true,
+          "inDream": false
+        },
+        "enemies": [
+          {
+            "id": "mission-main",
+            "node": "tile-19:bottom",
+            "hp": 6,
+            "kind": "scourge-beast",
+            "componentId": "cleric-beast",
+            "componentSpec": "cleric-beast",
+            "componentPhase": 2,
+            "side": "actual",
+            "profile": "cleric-beast",
+            "skin": "cleric-beast",
+            "name": "성직자 야수"
+          },
+          {
+            "id": "huntsman-mob-1",
+            "node": "tile-13:middle",
+            "hp": 4,
+            "kind": "huntsman-mob",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsman-mob",
+            "skin": "huntsman-mob",
+            "name": "야수 사냥 무리"
+          },
+          {
+            "id": "huntsman-mob-2",
+            "node": "tile-10:left",
+            "hp": 2,
+            "kind": "huntsman-mob",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsman-mob",
+            "skin": "huntsman-mob",
+            "name": "야수 사냥 무리"
+          }
+        ],
+        "missionExact": true,
+        "combat": null,
+        "pendingFollowups": {
+          "combat": null,
+          "move": null,
+          "enemyMove": null,
+          "interaction": null,
+          "killReaction": "[absent]",
+          "weaponAfter": "[absent]",
+          "weaponMoveReturn": "[absent]",
+          "missionArrivalAfter": "[absent]",
+          "freeTransform": null,
+          "firearmEntry": "[absent]",
+          "leap": null,
+          "lootChoice": [],
+          "rewardChoices": [],
+          "cardChoices": [],
+          "spawnQueue": [],
+          "spawnAfter": null
+        }
+      },
+      "actualFactSummary": {
+        "seed": 90,
+        "rulesVersion": 14,
+        "revision": 331,
+        "phase": "hunter",
+        "chapter": 3,
+        "hunter": {
+          "id": "hunter-1",
+          "position": "tile-19:bottom",
+          "hp": 2,
+          "echoes": 0,
+          "hand": [
+            {
+              "id": "card-11",
+              "kind": "vitality"
+            },
+            {
+              "id": "card-8",
+              "kind": "strength"
+            },
+            {
+              "id": "card-10",
+              "kind": "vitality"
+            }
+          ],
+          "occupiedSlots": [],
+          "slots": [
+            null,
+            null,
+            null
+          ],
+          "status": {
+            "poison": false,
+            "frenzy": false
+          },
+          "weaponId": "burial",
+          "face": 1,
+          "firearmId": "hunter-pistol",
+          "firearmReady": true,
+          "inDream": false
+        },
+        "enemies": [
+          {
+            "id": "mission-main",
+            "node": "tile-19:bottom",
+            "hp": 6,
+            "kind": "scourge-beast",
+            "componentId": "cleric-beast",
+            "componentSpec": "cleric-beast",
+            "componentPhase": 2,
+            "side": "actual",
+            "profile": "cleric-beast",
+            "skin": "cleric-beast",
+            "name": "성직자 야수"
+          },
+          {
+            "id": "huntsman-mob-1",
+            "node": "tile-13:middle",
+            "hp": 4,
+            "kind": "huntsman-mob",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsman-mob",
+            "skin": "huntsman-mob",
+            "name": "야수 사냥 무리"
+          },
+          {
+            "id": "huntsman-mob-2",
+            "node": "tile-10:left",
+            "hp": 2,
+            "kind": "huntsman-mob",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsman-mob",
+            "skin": "huntsman-mob",
+            "name": "야수 사냥 무리"
+          }
+        ],
+        "missionExact": true,
+        "combat": null,
+        "pendingFollowups": {
+          "combat": null,
+          "move": null,
+          "enemyMove": null,
+          "interaction": null,
+          "killReaction": "[absent]",
+          "weaponAfter": "[absent]",
+          "weaponMoveReturn": "[absent]",
+          "missionArrivalAfter": "[absent]",
+          "freeTransform": null,
+          "firearmEntry": "[absent]",
+          "leap": null,
+          "lootChoice": [],
+          "rewardChoices": [],
+          "cardChoices": [],
+          "spawnQueue": [],
+          "spawnAfter": null
+        }
+      },
+      "domRouting": {
+        "actorListExact": true,
+        "actorChecks": [
+          {
+            "id": "huntsman-mob-1",
+            "expectedNode": "tile-13:middle",
+            "actualNode": "tile-13:middle",
+            "expectedSkin": "huntsman-mob",
+            "actualSkin": "huntsman-mob",
+            "passed": true
+          },
+          {
+            "id": "hunter",
+            "expectedNode": "tile-19:bottom",
+            "actualNode": "tile-19:bottom",
+            "expectedSkin": "w-burial-b",
+            "actualSkin": "w-burial-b",
+            "passed": true
+          },
+          {
+            "id": "mission-main",
+            "expectedNode": "tile-19:bottom",
+            "actualNode": "tile-19:bottom",
+            "expectedSkin": "cleric-beast",
+            "actualSkin": "cleric-beast",
+            "passed": true
+          },
+          {
+            "id": "huntsman-mob-2",
+            "expectedNode": "tile-10:left",
+            "actualNode": "tile-10:left",
+            "expectedSkin": "huntsman-mob",
+            "actualSkin": "huntsman-mob",
+            "passed": true
+          }
+        ],
+        "domHpMatches": true,
+        "domPhaseMatches": true
+      },
+      "issues": [],
+      "stateDifferences": []
+    },
+    {
+      "id": "ordinary-three-species-map",
+      "status": "passed",
+      "sourceCheckpoint": {
+        "path": "local-qa-save/ordinary-three-species-map.local-qa-save.json",
+        "sha256": "4c4b1b92d948b93ffd67aedd16913bd2f02447a2198a6a74092e9512618c9237"
+      },
+      "preparedRawExpectedExport": {
+        "path": "local-qa-save/ordinary-three-species-map-expected-after.local-qa-save.json",
+        "sha256": "f29e8e155cbd437f15c939cd9f566e1dde52dcf51d3332a6d39fbb2cc643891f",
+        "retainedWithoutOverwrite": true
+      },
+      "policyAdoptedExpectedExport": {
+        "path": "local-qa-save/ordinary-three-species-map-policy-adopted-expected.local-qa-save.json",
+        "sha256": "55debc78583ce3d63c33f61aa839185b3f080843852cd8a20e469630597db145"
+      },
+      "actualBrowserExport": {
+        "path": "local-qa-save/play-ordinary-three-species-map-actual-save.json",
+        "sha256": "55debc78583ce3d63c33f61aa839185b3f080843852cd8a20e469630597db145"
+      },
+      "normalImportPassed": true,
+      "exactPreparedPrefix": true,
+      "importPolicyAdoption": {
+        "commandPrefix": [
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          }
+        ],
+        "actualMatches": true,
+        "policyExpectedImportExact": true,
+        "preparedRawRevision": 52,
+        "policyExpectedRevision": 53,
+        "actualRevision": 53,
+        "rawExpectedTileSpeedRuling": "[absent]",
+        "policyExpectedTileSpeedRuling": "all-attacks",
+        "actualTileSpeedRuling": "all-attacks"
+      },
+      "actualSuffixReplayExact": true,
+      "preparedRawExpectationReplayExact": true,
+      "rawFileBytesExact": false,
+      "policyAdoptedFileBytesExact": true,
+      "rawWholeStateExact": false,
+      "rawSuffixCommandsExact": true,
+      "normalizedSuffixCommandsExact": true,
+      "normalizedWholeStateExact": true,
+      "gameplayFactsExact": true,
+      "commandRecordOnlyDifferences": [],
+      "acceptedActualCommandSuffix": [
+        {
+          "type": "APPLY_TILE_SPEED_RULING"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-11"
+        },
+        {
+          "type": "STOP_MOVE"
+        }
+      ],
+      "expectedFactSummary": {
+        "seed": 90,
+        "rulesVersion": 14,
+        "revision": 53,
+        "phase": "hunter",
+        "chapter": 1,
+        "hunter": {
+          "id": "hunter-1",
+          "position": "tile-03:entry",
+          "hp": 4,
+          "echoes": 1,
+          "hand": [
+            {
+              "id": "card-8",
+              "kind": "strength"
+            }
+          ],
+          "occupiedSlots": [
+            1,
+            2
+          ],
+          "slots": [
+            null,
+            {
+              "id": "card-12",
+              "kind": "vitality"
+            },
+            {
+              "id": "card-10",
+              "kind": "vitality"
+            }
+          ],
+          "status": {
+            "poison": false,
+            "frenzy": false
+          },
+          "weaponId": "burial",
+          "face": 1,
+          "firearmId": "hunter-pistol",
+          "firearmReady": false,
+          "inDream": false
+        },
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "node": "tile-03:entry",
+            "hp": 4,
+            "kind": "scourge-beast",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "b",
+            "profile": "scourge-beast",
+            "skin": "scourge-beast",
+            "name": "재앙의 야수"
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-03:room",
+            "hp": 5,
+            "kind": "huntsmans-minion",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "b",
+            "profile": "huntsmans-minion",
+            "skin": "huntsmans-minion",
+            "name": "야수 사냥 하인"
+          },
+          {
+            "id": "huntsman-mob-1",
+            "node": "tile-03:room",
+            "hp": 4,
+            "kind": "huntsman-mob",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsman-mob",
+            "skin": "huntsman-mob",
+            "name": "야수 사냥 무리"
+          }
+        ],
+        "missionExact": true,
+        "combat": null,
+        "pendingFollowups": {
+          "combat": null,
+          "move": null,
+          "enemyMove": null,
+          "interaction": null,
+          "killReaction": "[absent]",
+          "weaponAfter": "[absent]",
+          "weaponMoveReturn": "[absent]",
+          "missionArrivalAfter": "[absent]",
+          "freeTransform": null,
+          "firearmEntry": "[absent]",
+          "leap": null,
+          "lootChoice": [],
+          "rewardChoices": [],
+          "cardChoices": [],
+          "spawnQueue": [],
+          "spawnAfter": null
+        }
+      },
+      "actualFactSummary": {
+        "seed": 90,
+        "rulesVersion": 14,
+        "revision": 53,
+        "phase": "hunter",
+        "chapter": 1,
+        "hunter": {
+          "id": "hunter-1",
+          "position": "tile-03:entry",
+          "hp": 4,
+          "echoes": 1,
+          "hand": [
+            {
+              "id": "card-8",
+              "kind": "strength"
+            }
+          ],
+          "occupiedSlots": [
+            1,
+            2
+          ],
+          "slots": [
+            null,
+            {
+              "id": "card-12",
+              "kind": "vitality"
+            },
+            {
+              "id": "card-10",
+              "kind": "vitality"
+            }
+          ],
+          "status": {
+            "poison": false,
+            "frenzy": false
+          },
+          "weaponId": "burial",
+          "face": 1,
+          "firearmId": "hunter-pistol",
+          "firearmReady": false,
+          "inDream": false
+        },
+        "enemies": [
+          {
+            "id": "scourge-beast-1",
+            "node": "tile-03:entry",
+            "hp": 4,
+            "kind": "scourge-beast",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "b",
+            "profile": "scourge-beast",
+            "skin": "scourge-beast",
+            "name": "재앙의 야수"
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "node": "tile-03:room",
+            "hp": 5,
+            "kind": "huntsmans-minion",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "b",
+            "profile": "huntsmans-minion",
+            "skin": "huntsmans-minion",
+            "name": "야수 사냥 하인"
+          },
+          {
+            "id": "huntsman-mob-1",
+            "node": "tile-03:room",
+            "hp": 4,
+            "kind": "huntsman-mob",
+            "componentId": null,
+            "componentSpec": null,
+            "componentPhase": null,
+            "side": "a",
+            "profile": "huntsman-mob",
+            "skin": "huntsman-mob",
+            "name": "야수 사냥 무리"
+          }
+        ],
+        "missionExact": true,
+        "combat": null,
+        "pendingFollowups": {
+          "combat": null,
+          "move": null,
+          "enemyMove": null,
+          "interaction": null,
+          "killReaction": "[absent]",
+          "weaponAfter": "[absent]",
+          "weaponMoveReturn": "[absent]",
+          "missionArrivalAfter": "[absent]",
+          "freeTransform": null,
+          "firearmEntry": "[absent]",
+          "leap": null,
+          "lootChoice": [],
+          "rewardChoices": [],
+          "cardChoices": [],
+          "spawnQueue": [],
+          "spawnAfter": null
+        }
+      },
+      "domRouting": {
+        "actorListExact": true,
+        "actorChecks": [
+          {
+            "id": "hunter",
+            "expectedNode": "tile-03:entry",
+            "actualNode": "tile-03:entry",
+            "expectedSkin": "w-burial-b",
+            "actualSkin": "w-burial-b",
+            "passed": true
+          },
+          {
+            "id": "huntsman-mob-1",
+            "expectedNode": "tile-03:room",
+            "actualNode": "tile-03:room",
+            "expectedSkin": "huntsman-mob",
+            "actualSkin": "huntsman-mob",
+            "passed": true
+          },
+          {
+            "id": "huntsmans-minion-1",
+            "expectedNode": "tile-03:room",
+            "actualNode": "tile-03:room",
+            "expectedSkin": "huntsmans-minion",
+            "actualSkin": "huntsmans-minion",
+            "passed": true
+          },
+          {
+            "id": "scourge-beast-1",
+            "expectedNode": "tile-03:entry",
+            "actualNode": "tile-03:entry",
+            "expectedSkin": "scourge-beast",
+            "actualSkin": "scourge-beast",
+            "passed": true
+          }
+        ],
+        "domHpMatches": true,
+        "domPhaseMatches": true
+      },
+      "issues": [],
+      "stateDifferences": []
+    }
+  ],
+  "acceptedGameplayCommandCount": 19,
+  "recordedImportPolicyCommandCount": 9,
+  "publicDomActorChecks": 37,
+  "presentationCounterInterpretation": "Public DOM host presentationAttacks/presentationMoves are cumulative adapter counters across imports; they were not treated as per-scenario motion totals. Routing validation uses exact actor IDs, skin IDs and logical nodes. Root owns visual frame inspection.",
+  "finalScaleFollowup": {
+    "id": "cleric-phase2-scale400",
+    "date": "2026-10-14",
+    "status": "passed",
+    "normalImportCount": 4,
+    "acceptedGameplayCommandCount": 2,
+    "recordedImportPolicyCommandCount": 1,
+    "separateFromOriginalNine": true,
+    "method": "Normal E.importSave validates source, original actual export, final-size actual export and a normal policy-adopted planned replay export. Replay actual suffix with E.dispatch; compare entire states and preserve original nine-scenario totals.",
+    "actualExport": {
+      "path": "local-qa-save/play-cleric-phase2-scale400-actual-save.json",
+      "sha256": "2c072480dbe0e9aa607fd1fb30d1934c22325c2e7653a15f704cbf4fe320080d",
+      "rawSaveLocalOnly": true
+    },
+    "originalActualExport": {
+      "path": "local-qa-save/play-cleric-phase2-natural-actual-save.json",
+      "sha256": "2c072480dbe0e9aa607fd1fb30d1934c22325c2e7653a15f704cbf4fe320080d"
+    },
+    "runtimeMetadata": {
+      "displayHeight": 400,
+      "mapFootprintPercent": [
+        60,
+        56
+      ],
+      "source": "Parent performed final-size browser replay; current atlas/manifest and named-boss renderer contain the display metadata. These fields are presentation metadata, not save-state edits."
+    },
+    "checks": {
+      "sourceCheckpointUnchanged": true,
+      "exactPreparedPrefix": true,
+      "importAdoptionExact": true,
+      "replayedExpectedSaveImportExact": true,
+      "actualSuffixReplayExact": true,
+      "originalActualFileBytesExact": true,
+      "originalActualWholeStateExact": true,
+      "normalPlannedReplayWholeStateExact": true,
+      "bossSkinMatches": true,
+      "originalNineCountPreserved": true
+    },
+    "facts": {
+      "seed": 90,
+      "rulesVersion": 14,
+      "revision": 331,
+      "phase": "hunter",
+      "hunterHP": 2,
+      "hunterNode": "tile-19:bottom",
+      "hand": [
+        {
+          "id": "card-11",
+          "kind": "vitality"
+        },
+        {
+          "id": "card-8",
+          "kind": "strength"
+        },
+        {
+          "id": "card-10",
+          "kind": "vitality"
+        }
+      ],
+      "occupiedSlots": [],
+      "boss": {
+        "id": "mission-main",
+        "node": "tile-19:bottom",
+        "hp": 6,
+        "componentPhase": 2,
+        "side": "actual",
+        "skin": "cleric-beast"
+      },
+      "missionWholeObjectExact": true,
+      "combatWholeObjectExact": true,
+      "allOtherRuleFieldsCompared": true
+    },
+    "acceptedActualCommandSuffix": [
+      {
+        "type": "APPLY_TILE_SPEED_RULING"
+      },
+      {
+        "type": "ATTACK",
+        "cardId": "card-2",
+        "slot": 0,
+        "itemIds": [],
+        "pullIds": [],
+        "rewardIds": [],
+        "enemyId": "mission-main"
+      },
+      {
+        "type": "RESOLVE"
+      }
+    ],
+    "additionalDOMActorChecksClaimed": 0,
+    "visualMeasurementsOwnedByParent": true,
+    "normalizationBoundary": "Only remove empty itemIds/pullIds/rewardIds arrays on recorded ATTACK or COUNTER commands. No authoritative rule-state field, mission, event, RNG, deck, combat or pending followup is normalized, ignored or edited. Import policy is applied as an accepted recorded engine command, not ignored or hidden.",
+    "issues": []
+  }
+}

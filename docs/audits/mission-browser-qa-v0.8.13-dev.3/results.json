@@ -1,0 +1,4699 @@
+{
+  "version": "0.8.13-dev.3",
+  "date": "2026-10-13",
+  "sourceBaseCommit": "5e2aa6a2f8f989cbb0bd4982a4798de3ad6ba8b3",
+  "branch": "ui/mission-change-feedback",
+  "targetUrl": "http://127.0.0.1:8786/bloodborne-solo/hunt.html",
+  "mode": "기나긴 사냥 · 검증 전용",
+  "setup": {
+    "seed": 90,
+    "weapon": "qa-test-weapon",
+    "face": 0,
+    "firearm": "hunter-pistol",
+    "qa": {
+      "preset": "custom",
+      "startRewards": [],
+      "startConsumables": {
+        "qa-heal": 10,
+        "qa-cards": 10,
+        "qa-travel": 10
+      }
+    }
+  },
+  "method": "Actual browser UI in existing QA playmode. The first 20 commands were exported by the product UI. Branch checkpoints extended that valid QA replay using accepted engine commands only and were imported through the normal file chooser. The browser performed each recorded trigger, verified its visible notification and acknowledged it. This is checkpoint-based UI verification, not a claim of a continuous normal-equipment campaign playthrough.",
+  "scope": [
+    "Chapter2: research24/25/26, clinic27/28, patient30/32, chapel33/34, bridge35/37/38/39, main18/19/20/21/23",
+    "Chapter3: main40/42/44, truth46/47/48 and49/50, clinic51/52 and26/28, cull54/55, salvation57/58, donation59/60",
+    "Simultaneous new/update/complete/chapter events, actual insight/fog effects, focus and no-cost acknowledgement, reward/pending-combat continuation",
+    "BB010 actual hit testing and mouse selection of boss and two summoned enemies; mouse attack to final completion",
+    "Regular save restored through normal resume UI, same prior phase/round/status/goal"
+  ],
+  "summary": {
+    "noticeDisplayAndAcknowledgementCycles": 54,
+    "chapter1PreparationCycles": 5,
+    "chapter2And3CyclesIncludingRechecks": 49,
+    "pass": 54,
+    "fail": 0,
+    "additionalChecks": 3,
+    "additionalChecksPass": 3
+  },
+  "bugs": [
+    {
+      "id": "BB-009",
+      "severity": "P3",
+      "issue": 16,
+      "before": "재앙의 야수를 처치해 계몽 토큰 제거.",
+      "after": "재앙의 야수를 처치해 계몽 토큰을 제거하세요.",
+      "fixedVersion": "0.8.13-dev.3",
+      "actualBrowserRetest": true
+    },
+    {
+      "id": "BB-010",
+      "severity": "P2",
+      "issue": 17,
+      "before": "Boss marker center hit scourge-beast-2 because its transparent 66x88 pseudo-element covered the boss marker",
+      "after": "All three 32x32 markers receive their own mouse selection; pointer selection then boss attack reaches final completion",
+      "fixedVersion": "0.8.13-dev.3",
+      "actualBrowserRetest": true
+    }
+  ],
+  "automatedChecks": {
+    "publicMissionCopy": {
+      "pass": 107,
+      "fail": 0,
+      "durationMs": 3767.0806
+    },
+    "mapSelectionPresentation": {
+      "pass": 60,
+      "fail": 0,
+      "durationMs": 2567.5079
+    },
+    "note": "Separate targeted runs, not an assertion of a unique combined full-suite count; CSS hit testing is demonstrated by actual browser observations."
+  },
+  "notices": [
+    {
+      "label": "ch1-yard-new",
+      "file": "screenshots/01-ch1-yard-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n계몽 2개 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요.\n사냥을 시작하다 진행 중 · 새로운 임무\n마당 등불의 야수 사냥 무리 처치하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n마당 등불 / 마당 등불\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n사냥을 시작하다\n\n마당 등불의 야수 사냥 무리 처치하세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n마당 등불 / 마당 등불\n\n독 없음 · 발광 없음"
+      },
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/01-ch1-yard-new.jpg",
+        "sha256": "20477d9275f665ccd19e5837075684f26726aa4c01ec5cd5bdec7203c589da1e",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "01-ch1-yard-new.png"
+    },
+    {
+      "label": "ch1-yard-complete",
+      "file": "screenshots/02-ch1-yard-complete.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 2장 · 슬롯 0장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n계몽 2개 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요.\n✓ 사냥을 시작하다 완료 · 임무 완수\n마당 등불의 야수 사냥 무리 처치하세요.",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 4 / 6 · 피의 유지 1 / 3\n\n마당 등불 / 마당 등불\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무 완수\n\n임무 결과를 확인한 뒤, 행동 패널에서 획득한 보상을 선택하세요.\n\n임무 완수\n\n사냥을 시작하다\n\n마당 등불의 야수 사냥 무리를 처치했습니다.\n\n이번 챕터 계몽 +1 · 현재 1개\n\n마당 등불의 안개가 걷혔습니다.\n\n확인하고 계속하기",
+        "title": "임무 완수"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 2장 · 슬롯 0장 / 총 12장",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 4 / 6 · 피의 유지 1 / 3\n\n마당 등불 / 마당 등불\n\n독 없음 · 발광 없음"
+      },
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/02-ch1-yard-complete.jpg",
+        "sha256": "ea770e88311a53a7fdefb53d41103f93d36b6c64c33406fa88d05b575501fea9",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "02-ch1-yard-complete.png"
+    },
+    {
+      "label": "ch1-shelter-new",
+      "file": "screenshots/03-ch1-shelter-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 6장 · 버림 2장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n계몽 2개 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요.\n피신처 진행 중 · 새로운 임무\n민가 생존자를 오에돈 예배당으로 호위하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 2",
+        "status": "사냥꾼\n\n체력 4 / 6 · 피의 유지 2 / 3\n\n민가 / 위쪽 거리 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n피신처\n\n민가 생존자를 오에돈 예배당으로 호위하세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 6장 · 버림 2장 · 슬롯 1장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 2",
+        "status": "사냥꾼\n\n체력 4 / 6 · 피의 유지 2 / 3\n\n민가 / 위쪽 거리 칸\n\n독 없음 · 발광 없음"
+      },
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/03-ch1-shelter-new.jpg",
+        "sha256": "7b09b77e1af2191ba3503e1c73b67a0de247c325552119a92e97dff13f2ed866",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "03-ch1-shelter-new.png"
+    },
+    {
+      "label": "ch1-shelter-update",
+      "file": "screenshots/04-ch1-shelter-update.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 6장 · 버림 2장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n계몽 2개 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요.\n피신처 진행 중 · 목표 변경\n오에돈 예배당의 재앙의 야수 처치하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 2",
+        "status": "사냥꾼\n\n체력 4 / 6 · 피의 유지 2 / 3\n\n오에돈 예배당 / 오에돈 예배당\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n목표 변경\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n목표 변경\n\n피신처\n\n오에돈 예배당의 재앙의 야수 처치하세요.\n\n확인하고 계속하기",
+        "title": "목표 변경"
+      },
+      "after": {
+        "deck": "덱 6장 · 버림 2장 · 슬롯 1장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 2",
+        "status": "사냥꾼\n\n체력 4 / 6 · 피의 유지 2 / 3\n\n오에돈 예배당 / 오에돈 예배당\n\n독 없음 · 발광 없음"
+      },
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/04-ch1-shelter-update.jpg",
+        "sha256": "f9e6c9a1cce34098cc1083f0331ef45c80be5900d48a1c9ba3b0a9ebcbf40623",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "04-ch1-shelter-update.png"
+    },
+    {
+      "label": "ch1-shelter-complete",
+      "file": "screenshots/05-ch1-shelter-complete.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 5장 · 버림 2장 · 슬롯 3장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n계몽 2개 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요.\n✓ 피신처 완료 · 임무 완수\n오에돈 예배당의 재앙의 야수 처치하세요.",
+        "phase": "죽음 뒤의 회피",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 4 / 6 · 피의 유지 3 / 3\n\n오에돈 예배당 / 오에돈 예배당\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무 완수\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n임무 완수\n\n무사히 밤을 넘기다\n\n오에돈 예배당의 재앙의 야수를 처치했습니다.\n\n이번 챕터 계몽 +1 · 현재 2개\n\n오에돈 예배당의 안개가 걷혔습니다.\n\n확인하고 계속하기",
+        "title": "임무 완수"
+      },
+      "after": {
+        "deck": "덱 5장 · 버림 2장 · 슬롯 3장 / 총 12장",
+        "phase": "죽음 뒤의 회피",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 4 / 6 · 피의 유지 3 / 3\n\n오에돈 예배당 / 오에돈 예배당\n\n독 없음 · 발광 없음"
+      },
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/05-ch1-shelter-complete.jpg",
+        "sha256": "440ac5348144391f74342f35f07afce1813c82683b447482ebc3a38347c6aea9",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "05-ch1-shelter-complete.png"
+    },
+    {
+      "label": "ch2-main-new",
+      "file": "screenshots/06-ch2-main-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중 · 새로운 임무\n공동묘지에 시체 2개를 바치세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n중앙 등불 / 중앙 등불\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n재앙의 근원\n\n공동묘지에 시체 2개를 바치세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n중앙 등불 / 중앙 등불\n\n독 없음 · 발광 없음"
+      },
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/06-ch2-main-new.jpg",
+        "sha256": "349bb3341da540583b3ed0983198543b1381ec60e0f33b65290c4d89980cf4de",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "06-ch2-main-new.png"
+    },
+    {
+      "label": "ch2-clinic-new",
+      "file": "screenshots/07-ch2-clinic-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n공동묘지에 시체 2개를 바치세요.\n이오세프카의 연구 진행 중 · 새로운 임무\n진료소에서 야수 사냥 무리 또는 야수 사냥 하인 처치하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n이오세프카의 연구\n\n진료소에서 야수 사냥 무리 또는 야수 사냥 하인 처치하세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음"
+      },
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/07-ch2-clinic-new.jpg",
+        "sha256": "aca0a9e11a6f21c602a9a357c8ce547e776aa0f3afb2f5314b48ae6b52a74baf",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "07-ch2-clinic-new.png"
+    },
+    {
+      "label": "ch2-research-update-sanctuary-new",
+      "file": "screenshots/08-ch2-research-update-sanctuary-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 1장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n공동묘지에 시체 2개를 바치세요.\n이오세프카의 진료소를 피신처 삼아 진행 중 · 새로운 임무\n소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무가 변경되었습니다\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n목표 변경\n\n이오세프카의 연구\n\n진료소에서 재앙의 야수 처치하세요.\n\n새로운 임무\n\n이오세프카의 진료소를 피신처 삼아\n\n소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.\n\n확인하고 계속하기",
+        "title": "임무가 변경되었습니다"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 1장 · 슬롯 1장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음"
+      },
+      "driverNote": "Corrected an erroneous expected-text literal in the test driver; observed UI and no-cost acknowledgement matched the intended two events.",
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/08-ch2-research-update-sanctuary-new.jpg",
+        "sha256": "c72ad4965b0cec33cd6f686d2c04cb54ddc954cea0a47bc59020e31f50d6f143",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "08-ch2-research-update-sanctuary-new.png"
+    },
+    {
+      "label": "ch2-research-completed",
+      "file": "screenshots/09-ch2-research-completed.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 2장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n공동묘지에 시체 2개를 바치세요.\n✓ 이오세프카의 연구 완료 · 임무 완수\n진료소에서 재앙의 야수 처치하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 2",
+        "status": "사냥꾼\n\n체력 4 / 6 · 피의 유지 2 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무 완수\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n임무 완수\n\n이오세프카의 연구\n\n진료소의 재앙의 야수를 처치했습니다.\n\n이번 챕터 계몽 +1 · 현재 1개\n\n확인하고 계속하기",
+        "title": "임무 완수"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 2장 · 슬롯 1장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 2",
+        "status": "사냥꾼\n\n체력 4 / 6 · 피의 유지 2 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음"
+      },
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/09-ch2-research-completed.jpg",
+        "sha256": "fc2023143af352a81be1500bbd222c3f22211879a3415ba5c7ccbeb35881f5be",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "09-ch2-research-completed.png"
+    },
+    {
+      "label": "ch2-clinic-survivors-completed",
+      "file": "screenshots/10-ch2-clinic-survivors-completed.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 6장 · 버림 5장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n공동묘지에 시체 2개를 바치세요.\n✓ 이오세프카의 진료소를 피신처 삼아 완료 · 임무 완수\n소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 2 / 6 · 피의 유지 3 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무 완수\n\n임무 결과를 확인한 뒤, 행동 패널에서 획득한 보상을 선택하세요.\n\n임무 완수\n\n안전한 피신처: 이오세프카의 진료소\n\n필요한 생존자들을 이오세프카의 진료소로 인도했습니다.\n\n이번 챕터 계몽 +1 · 현재 2개\n\n확인하고 계속하기",
+        "title": "임무 완수"
+      },
+      "after": {
+        "deck": "덱 6장 · 버림 5장 · 슬롯 1장 / 총 12장",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 2 / 6 · 피의 유지 3 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음"
+      },
+      "driverNote": "Corrected an erroneous expected-text literal; actual mission outcome, reward phase and unchanged acknowledgement costs were verified.",
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/10-ch2-clinic-survivors-completed.jpg",
+        "sha256": "c64ae686d97a94ef9dcd994a3f94dafdeefa9e43d075a495c7a475d63f4d3f62",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "10-ch2-clinic-survivors-completed.png"
+    },
+    {
+      "label": "ch2-patient-new",
+      "file": "screenshots/11-ch2-patient-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 1장 · 슬롯 2장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n공동묘지에 시체 2개를 바치세요.\n오에돈 예배당 대학살 진행 중 · 새로운 임무\n환자의 임무 부활 토큰을 소진시키고 최종 처치 후 속도 1 회피하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n오에돈 예배당 / 왼쪽 아래 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n오에돈 예배당 대학살\n\n환자의 임무 부활 토큰을 소진시키고 최종 처치 후 속도 1 회피하세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 1장 · 슬롯 2장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n오에돈 예배당 / 왼쪽 아래 칸\n\n독 없음 · 발광 없음"
+      },
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/11-ch2-patient-new.jpg",
+        "sha256": "2cd7af2077895b8a6246df029dd819fb9d811ff8c73a9d2631041301d9f9d917",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "11-ch2-patient-new.png"
+    },
+    {
+      "label": "ch2-patient-completed",
+      "file": "screenshots/12-ch2-patient-completed.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 3장 · 버림 6장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n공동묘지에 시체 2개를 바치세요.\n✓ 오에돈 예배당 대학살 완료 · 임무 완수\n환자의 임무 부활 토큰을 소진시키고 최종 처치 후 속도 1 회피하세요.",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 2",
+        "status": "사냥꾼\n\n체력 3 / 6 · 피의 유지 2 / 3\n\n오에돈 예배당 / 오에돈 예배당\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무 완수\n\n임무 결과를 확인한 뒤, 행동 패널에서 획득한 보상을 선택하세요.\n\n임무 완수\n\n마음이 약해진 대가\n\n오에돈 예배당의 여성 야수 환자를 처치했습니다.\n\n이번 챕터 계몽 +1 · 현재 1개\n\n오에돈 예배당의 안개가 걷혔습니다.\n\n확인하고 계속하기",
+        "title": "임무 완수"
+      },
+      "after": {
+        "deck": "덱 3장 · 버림 6장 · 슬롯 1장 / 총 12장",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 2",
+        "status": "사냥꾼\n\n체력 3 / 6 · 피의 유지 2 / 3\n\n오에돈 예배당 / 오에돈 예배당\n\n독 없음 · 발광 없음"
+      },
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/12-ch2-patient-completed.jpg",
+        "sha256": "5fdec6f492553b9d1d2117ed588d82d85de5e4272966431188c5b6156c091de6",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "12-ch2-patient-completed.png"
+    },
+    {
+      "label": "ch2-main-boss-unsealed",
+      "file": "screenshots/13-ch2-main-boss-unsealed.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 6장 · 버림 5장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중 · 목표 변경\n성직자 야수를 2페이즈로 전환하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n공동묘지 / 공동묘지\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n목표 변경\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n목표 변경\n\n재앙의 근원\n\n성직자 야수를 2페이즈로 전환하세요.\n\n확인하고 계속하기",
+        "title": "목표 변경"
+      },
+      "after": {
+        "deck": "덱 6장 · 버림 5장 · 슬롯 1장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n공동묘지 / 공동묘지\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter2/c2-before-notice-108.json",
+      "nextCommand": {
+        "type": "MISSION_CORPSES",
+        "count": 2
+      },
+      "expected": [
+        {
+          "kind": "updated",
+          "title": "재앙의 근원",
+          "description": "성직자 야수를 2페이즈로 전환하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 139,
+          "right": 799,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "성직자 야수를 2페이즈로 전환하세요.",
+            "effects": [],
+            "kind": "updated",
+            "title": "재앙의 근원"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "driverNote": "Object field order from the browser backend is irrelevant; comparisons now check each event field and effect value.",
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/13-ch2-main-boss-unsealed.jpg",
+        "sha256": "2b0de5fee2d7be067ced47f019867db46fc1a4840ee8be0ae9ff974a3aac3fab",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "13-ch2-main-boss-unsealed.png"
+    },
+    {
+      "label": "ch2-main-lure-objective",
+      "file": "screenshots/14-ch2-main-lure-objective.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 3장 · 버림 6장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중 · 목표 변경\n피해를 입지 않는 성직자 야수를 지하묘지로 유인하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 2 / 6 · 피의 유지 3 / 3\n\n공동묘지 / 공동묘지\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n목표 변경\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n목표 변경\n\n재앙의 근원\n\n피해를 입지 않는 성직자 야수를 지하묘지로 유인하세요.\n\n공동묘지의 안개가 걷혔습니다.\n\n확인하고 계속하기",
+        "title": "목표 변경"
+      },
+      "after": {
+        "deck": "덱 3장 · 버림 6장 · 슬롯 1장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 2 / 6 · 피의 유지 3 / 3\n\n공동묘지 / 공동묘지\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter2/c2-before-notice-111.json",
+      "nextCommand": {
+        "type": "RESOLVE"
+      },
+      "expected": [
+        {
+          "kind": "updated",
+          "title": "재앙의 근원",
+          "description": "피해를 입지 않는 성직자 야수를 지하묘지로 유인하세요.",
+          "effects": [
+            "공동묘지의 안개가 걷혔습니다."
+          ]
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 835.359375,
+          "left": 139,
+          "right": 799,
+          "top": 416.625
+        },
+        "events": [
+          {
+            "description": "피해를 입지 않는 성직자 야수를 지하묘지로 유인하세요.",
+            "effects": [
+              "공동묘지의 안개가 걷혔습니다."
+            ],
+            "kind": "updated",
+            "title": "재앙의 근원"
+          }
+        ],
+        "footer": {
+          "bottom": 817.359375,
+          "top": 773.359375
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/14-ch2-main-lure-objective.jpg",
+        "sha256": "0d1c8319fa8aa3d870c8abd436be5d3fd5da6583e5b15dc653de84aba68de191",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "14-ch2-main-lure-objective.png"
+    },
+    {
+      "label": "ch2-bridge-new",
+      "file": "screenshots/15-ch2-bridge-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 3장 · 버림 6장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n피해를 입지 않는 성직자 야수를 지하묘지로 유인하세요.\n아슬아슬한 구조 진행 중 · 새로운 임무\n대교의 야수 사냥 하인 처치하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n대교 / 아래 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n아슬아슬한 구조\n\n대교의 야수 사냥 하인 처치하세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 3장 · 버림 6장 · 슬롯 1장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n대교 / 아래 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter2/c2-before-notice-121.json",
+      "nextCommand": {
+        "type": "STOP_MOVE"
+      },
+      "expected": [
+        {
+          "kind": "new",
+          "title": "아슬아슬한 구조",
+          "description": "대교의 야수 사냥 하인 처치하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 139,
+          "right": 799,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "대교의 야수 사냥 하인 처치하세요.",
+            "effects": [],
+            "kind": "new",
+            "title": "아슬아슬한 구조"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/15-ch2-bridge-new.jpg",
+        "sha256": "fe165964cfb4d74c150079d6db539c3caf08d5bb15345f0d84ec7b7c84856bc4",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "15-ch2-bridge-new.png"
+    },
+    {
+      "label": "ch2-bridge-objective-update",
+      "file": "screenshots/16-ch2-bridge-objective-update.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 3장 · 버림 7장 · 슬롯 2장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n피해를 입지 않는 성직자 야수를 지하묘지로 유인하세요.\n아슬아슬한 구조 진행 중 · 목표 변경\n대교의 생존자를 진료소 또는 예배당으로 호위하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 4",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n대교 / 대교\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n목표 변경\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n목표 변경\n\n아슬아슬한 구조\n\n대교의 생존자를 진료소 또는 예배당으로 호위하세요.\n\n대교의 안개가 걷혔습니다.\n\n확인하고 계속하기",
+        "title": "목표 변경"
+      },
+      "after": {
+        "deck": "덱 3장 · 버림 7장 · 슬롯 2장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 4",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n대교 / 대교\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter2/c2-before-notice-130.json",
+      "nextCommand": {
+        "type": "RESOLVE"
+      },
+      "expected": [
+        {
+          "kind": "updated",
+          "title": "아슬아슬한 구조",
+          "description": "대교의 생존자를 진료소 또는 예배당으로 호위하세요.",
+          "effects": [
+            "대교의 안개가 걷혔습니다."
+          ]
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 835.359375,
+          "left": 139,
+          "right": 799,
+          "top": 416.625
+        },
+        "events": [
+          {
+            "description": "대교의 생존자를 진료소 또는 예배당으로 호위하세요.",
+            "effects": [
+              "대교의 안개가 걷혔습니다."
+            ],
+            "kind": "updated",
+            "title": "아슬아슬한 구조"
+          }
+        ],
+        "footer": {
+          "bottom": 817.359375,
+          "top": 773.359375
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/16-ch2-bridge-objective-update.jpg",
+        "sha256": "384ac6583a156abdc43dc7d0e0f1ed1a594171a923829b3a424e98f0bd284a6a",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "16-ch2-bridge-objective-update.png"
+    },
+    {
+      "label": "ch2-chapel-sanctuary-new",
+      "file": "screenshots/17-ch2-chapel-sanctuary-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 6장 · 버림 4장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n공동묘지에 시체 2개를 바치세요.\n오에돈 예배당을 피신처로 삼아 진행 중 · 새로운 임무\n소모품 수집으로 얻은 생존자 2개를 예배당에 인도하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n오에돈 예배당 / 왼쪽 아래 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n오에돈 예배당을 피신처로 삼아\n\n소모품 수집으로 얻은 생존자 2개를 예배당에 인도하세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 6장 · 버림 4장 · 슬롯 1장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n오에돈 예배당 / 왼쪽 아래 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapel-donation/chapel-before-notice-96.json",
+      "nextCommand": {
+        "type": "STOP_MOVE"
+      },
+      "expected": [
+        {
+          "kind": "new",
+          "title": "오에돈 예배당을 피신처로 삼아",
+          "description": "소모품 수집으로 얻은 생존자 2개를 예배당에 인도하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 139,
+          "right": 799,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "소모품 수집으로 얻은 생존자 2개를 예배당에 인도하세요.",
+            "effects": [],
+            "kind": "new",
+            "title": "오에돈 예배당을 피신처로 삼아"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/17-ch2-chapel-sanctuary-new.jpg",
+        "sha256": "bfd17af7abe0a9100e3f429133caa9125e4dc9f8b0cb3712c13e181f8569a469",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "17-ch2-chapel-sanctuary-new.png"
+    },
+    {
+      "label": "ch2-chapel-sanctuary-completed",
+      "file": "screenshots/18-ch2-chapel-sanctuary-completed.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 2장 · 버림 8장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n공동묘지에 시체 2개를 바치세요.\n✓ 오에돈 예배당을 피신처로 삼아 완료 · 임무 완수\n소모품 수집으로 얻은 생존자 2개를 예배당에 인도하세요.",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n오에돈 예배당 / 오에돈 예배당\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무 완수\n\n임무 결과를 확인한 뒤, 행동 패널에서 획득한 보상을 선택하세요.\n\n임무 완수\n\n안전한 피신처: 오에돈 예배당\n\n필요한 생존자들을 오에돈 예배당으로 인도했습니다.\n\n이번 챕터 계몽 +1 · 현재 1개\n\n확인하고 계속하기",
+        "title": "임무 완수"
+      },
+      "after": {
+        "deck": "덱 2장 · 버림 8장 · 슬롯 1장 / 총 12장",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n오에돈 예배당 / 오에돈 예배당\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapel-donation/chapel-before-notice-134.json",
+      "nextCommand": {
+        "type": "STOP_MOVE"
+      },
+      "expected": [
+        {
+          "kind": "completed",
+          "title": "안전한 피신처: 오에돈 예배당",
+          "description": "필요한 생존자들을 오에돈 예배당으로 인도했습니다.",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 1개"
+          ]
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 835.359375,
+          "left": 139,
+          "right": 799,
+          "top": 416.625
+        },
+        "events": [
+          {
+            "description": "필요한 생존자들을 오에돈 예배당으로 인도했습니다.",
+            "effects": [
+              "이번 챕터 계몽 +1 · 현재 1개"
+            ],
+            "kind": "completed",
+            "title": "안전한 피신처: 오에돈 예배당"
+          }
+        ],
+        "footer": {
+          "bottom": 817.359375,
+          "top": 773.359375
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/18-ch2-chapel-sanctuary-completed.jpg",
+        "sha256": "ce77876a7dc0499d21713781d8eaec1f536c283c440bc758fe6c40d0f33dff40",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "18-ch2-chapel-sanctuary-completed.png"
+    },
+    {
+      "label": "ch2-bridge-clinic-completed",
+      "file": "screenshots/19-ch2-bridge-clinic-completed.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 2장 · 버림 8장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n공동묘지에 시체 2개를 바치세요.\n✓ 아슬아슬한 구조 완료 · 임무 완수\n대교의 생존자를 진료소 또는 예배당으로 호위하세요.",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무 완수\n\n임무 결과를 확인한 뒤, 행동 패널에서 획득한 보상을 선택하세요.\n\n임무 완수\n\n사냥에서 살아남다\n\n대교의 생존자를 이오세프카의 진료소로 호위했습니다.\n\n이번 챕터 계몽 +1 · 현재 2개\n\n확인하고 계속하기",
+        "title": "임무 완수"
+      },
+      "after": {
+        "deck": "덱 2장 · 버림 8장 · 슬롯 1장 / 총 12장",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapel-donation/chapel-before-notice-150.json",
+      "nextCommand": {
+        "type": "STOP_MOVE"
+      },
+      "expected": [
+        {
+          "kind": "completed",
+          "title": "사냥에서 살아남다",
+          "description": "대교의 생존자를 이오세프카의 진료소로 호위했습니다.",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 2개"
+          ]
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 835.359375,
+          "left": 139,
+          "right": 799,
+          "top": 416.625
+        },
+        "events": [
+          {
+            "description": "대교의 생존자를 이오세프카의 진료소로 호위했습니다.",
+            "effects": [
+              "이번 챕터 계몽 +1 · 현재 2개"
+            ],
+            "kind": "completed",
+            "title": "사냥에서 살아남다"
+          }
+        ],
+        "footer": {
+          "bottom": 817.359375,
+          "top": 773.359375
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/19-ch2-bridge-clinic-completed.jpg",
+        "sha256": "1b592f3323c49c7ab12a8b4b4eaa63e49a56e3c1bcb34890022409d230ab1f10",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "19-ch2-bridge-clinic-completed.png"
+    },
+    {
+      "label": "ch2-bridge-chapel-completed-locked-sanctuary",
+      "file": "screenshots/20-ch2-bridge-chapel-completed-locked-sanctuary.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 3장 · 버림 7장 · 슬롯 2장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n피해를 입지 않는 성직자 야수를 지하묘지로 유인하세요.\n오에돈 예배당을 피신처로 삼아 진행 중 · 새로운 임무\n진료소 피신처 완료로 이 임무를 완수할 수 없습니다.",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 4",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n오에돈 예배당 / 오에돈 예배당\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무가 변경되었습니다\n\n임무 결과를 확인한 뒤, 행동 패널에서 획득한 보상을 선택하세요.\n\n임무 완수\n\n불길한 경고\n\n대교의 생존자를 오에돈 예배당으로 호위했습니다.\n\n이번 챕터 계몽 +1 · 현재 3개\n\n새로운 임무\n\n오에돈 예배당을 피신처로 삼아\n\n진료소 피신처 완료로 이 임무를 완수할 수 없습니다.\n\n확인하고 계속하기",
+        "title": "임무가 변경되었습니다"
+      },
+      "after": {
+        "deck": "덱 3장 · 버림 7장 · 슬롯 2장 / 총 12장",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 4",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n오에돈 예배당 / 오에돈 예배당\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter2/c2-before-notice-141.json",
+      "nextCommand": {
+        "type": "STOP_MOVE"
+      },
+      "expected": [
+        {
+          "kind": "completed",
+          "title": "불길한 경고",
+          "description": "대교의 생존자를 오에돈 예배당으로 호위했습니다.",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 3개"
+          ]
+        },
+        {
+          "kind": "new",
+          "title": "오에돈 예배당을 피신처로 삼아",
+          "description": "진료소 피신처 완료로 이 임무를 완수할 수 없습니다.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 905.390625,
+          "left": 139,
+          "right": 799,
+          "top": 346.59375
+        },
+        "events": [
+          {
+            "description": "대교의 생존자를 오에돈 예배당으로 호위했습니다.",
+            "effects": [
+              "이번 챕터 계몽 +1 · 현재 3개"
+            ],
+            "kind": "completed",
+            "title": "불길한 경고"
+          },
+          {
+            "description": "진료소 피신처 완료로 이 임무를 완수할 수 없습니다.",
+            "effects": [],
+            "kind": "new",
+            "title": "오에돈 예배당을 피신처로 삼아"
+          }
+        ],
+        "footer": {
+          "bottom": 887.390625,
+          "top": 843.390625
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/20-ch2-bridge-chapel-completed-locked-sanctuary.jpg",
+        "sha256": "8c976484e8db6ca3ffa04a6d0a700caf481504c3604709b5a1c77b9632bd7631",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "20-ch2-bridge-chapel-completed-locked-sanctuary.png"
+    },
+    {
+      "label": "ch2-main-chapter-completed",
+      "file": "screenshots/21-ch2-main-chapter-completed.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 12장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "✓ 재앙의 근원 완료 · 챕터 완수\n피해를 입지 않는 성직자 야수를 지하묘지로 유인하세요.\n오에돈 예배당을 피신처로 삼아 진행 중\n진료소 피신처 완료로 이 임무를 완수할 수 없습니다.",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 3 · 처치 4",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n사냥꾼의 꿈\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무가 변경되었습니다\n\n임무 결과를 확인한 뒤, 행동 패널에서 획득한 보상을 선택하세요.\n\n임무 완수\n\n야수를 가두었다\n\n성직자 야수를 오에돈의 지하묘지로 유인했습니다.\n\n챕터 완수\n\n챕터 2 완수\n\n챕터 2의 사냥을 완수했습니다.\n\n확인하고 계속하기",
+        "title": "임무가 변경되었습니다"
+      },
+      "after": {
+        "deck": "덱 12장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 3 · 처치 4",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n사냥꾼의 꿈\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter2/c2-before-notice-157.json",
+      "nextCommand": {
+        "type": "RESOLVE"
+      },
+      "expected": [
+        {
+          "kind": "completed",
+          "title": "야수를 가두었다",
+          "description": "성직자 야수를 오에돈의 지하묘지로 유인했습니다.",
+          "effects": []
+        },
+        {
+          "kind": "chapter",
+          "title": "챕터 2 완수",
+          "description": "챕터 2의 사냥을 완수했습니다.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 892.5,
+          "left": 139,
+          "right": 799,
+          "top": 359.5
+        },
+        "events": [
+          {
+            "description": "성직자 야수를 오에돈의 지하묘지로 유인했습니다.",
+            "effects": [],
+            "kind": "completed",
+            "title": "야수를 가두었다"
+          },
+          {
+            "description": "챕터 2의 사냥을 완수했습니다.",
+            "effects": [],
+            "kind": "chapter",
+            "title": "챕터 2 완수"
+          }
+        ],
+        "footer": {
+          "bottom": 874.5,
+          "top": 830.5
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/21-ch2-main-chapter-completed.jpg",
+        "sha256": "e456d2b4ec5fb91a332ed8fd8bee21c15b29809651685cc39291a8f9093f8299",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "21-ch2-main-chapter-completed.png"
+    },
+    {
+      "label": "ch3-main-new",
+      "file": "screenshots/22-ch3-main-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중 · 새로운 임무\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인해 두세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n중앙 등불 / 중앙 등불\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n재앙의 근원\n\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인해 두세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n중앙 등불 / 중앙 등불\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter2/c2-before-notice-166.json",
+      "nextCommand": {
+        "type": "START_NEXT_CHAPTER",
+        "startSpace": "center",
+        "face": 0
+      },
+      "expected": [
+        {
+          "kind": "new",
+          "title": "재앙의 근원",
+          "description": "이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인해 두세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 139,
+          "right": 799,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인해 두세요.",
+            "effects": [],
+            "kind": "new",
+            "title": "재앙의 근원"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/22-ch3-main-new.jpg",
+        "sha256": "5a092484b3c29d38d9393606e469c426562173d70716ea3deb56da6a5548deb2",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "22-ch3-main-new.png"
+    },
+    {
+      "label": "ch3-cull-new",
+      "file": "screenshots/23-ch3-cull-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 1장 · 슬롯 0장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인해 두세요.\n무리를 정리하다 진행 중 · 새로운 임무\n재앙의 야수를 처치해 계몽 토큰 제거.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n대교 / 대교\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n무리를 정리하다\n\n재앙의 야수를 처치해 계몽 토큰 제거.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 1장 · 슬롯 0장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n대교 / 대교\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapel-donation/chapel-before-notice-197.json",
+      "nextCommand": {
+        "type": "PLACE_TILE",
+        "rotation": 1
+      },
+      "expected": [
+        {
+          "kind": "new",
+          "title": "무리를 정리하다",
+          "description": "재앙의 야수를 처치해 계몽 토큰 제거.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 139,
+          "right": 799,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "재앙의 야수를 처치해 계몽 토큰 제거.",
+            "effects": [],
+            "kind": "new",
+            "title": "무리를 정리하다"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/23-ch3-cull-new.jpg",
+        "sha256": "8da387621da1e3ab2617318957f5981d3aed9662677d8e8ecb41e521a6641da8",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "23-ch3-cull-new.png"
+    },
+    {
+      "label": "ch3-clinic-research-continuation-new",
+      "file": "screenshots/24-ch3-clinic-research-continuation-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 2장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인해 두세요.\n이오세프카의 연구 진행 중 · 새로운 임무\n진료소에서 야수 사냥 무리 또는 야수 사냥 하인 처치하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n이오세프카의 연구\n\n진료소에서 야수 사냥 무리 또는 야수 사냥 하인 처치하세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 2장 · 슬롯 1장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapel-donation/chapel-before-notice-212.json",
+      "nextCommand": {
+        "type": "PLACE_TILE",
+        "rotation": 1
+      },
+      "expected": [
+        {
+          "kind": "new",
+          "title": "이오세프카의 연구",
+          "description": "진료소에서 야수 사냥 무리 또는 야수 사냥 하인 처치하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 139,
+          "right": 799,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "진료소에서 야수 사냥 무리 또는 야수 사냥 하인 처치하세요.",
+            "effects": [],
+            "kind": "new",
+            "title": "이오세프카의 연구"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/24-ch3-clinic-research-continuation-new.jpg",
+        "sha256": "c842624dd633a0e3bc86352d2594cee472432a497ca0f0f38c1035c0bd18431e",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "24-ch3-clinic-research-continuation-new.png"
+    },
+    {
+      "label": "ch3-truth-new",
+      "file": "screenshots/25-ch3-truth-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인해 두세요.\n진실이 드러나다 진행 중 · 새로운 임무\n이오세프카를 공격하거나 실험을 돕세요.",
+        "phase": "임무의 선택",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n진실이 드러나다\n\n이오세프카를 공격하거나 실험을 돕세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 1장 / 총 12장",
+        "phase": "임무의 선택",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter3/entry/before-clinic-truth.json",
+      "nextCommand": {
+        "type": "STOP_MOVE"
+      },
+      "expected": [
+        {
+          "kind": "new",
+          "title": "진실이 드러나다",
+          "description": "이오세프카를 공격하거나 실험을 돕세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 139,
+          "right": 799,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "이오세프카를 공격하거나 실험을 돕세요.",
+            "effects": [],
+            "kind": "new",
+            "title": "진실이 드러나다"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/25-ch3-truth-new.jpg",
+        "sha256": "e57559e84fb7339c27149544cb41732284b3341a8aa017c289feea321bdea373",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "25-ch3-truth-new.png"
+    },
+    {
+      "label": "ch3-truth-attack-updated",
+      "file": "screenshots/26-ch3-truth-attack-updated.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인해 두세요.\n진실이 드러나다 진행 중 · 목표 변경\n진료소의 이오세프카를 처치하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n목표 변경\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n목표 변경\n\n진실이 드러나다\n\n진료소의 이오세프카를 처치하세요.\n\n확인하고 계속하기",
+        "title": "목표 변경"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 1장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter3/attack/before-iosefka-attack.json",
+      "nextCommand": {
+        "type": "MISSION_CHOICE",
+        "choice": "attack-iosefka"
+      },
+      "expected": [
+        {
+          "kind": "updated",
+          "title": "진실이 드러나다",
+          "description": "진료소의 이오세프카를 처치하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 139,
+          "right": 799,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "진료소의 이오세프카를 처치하세요.",
+            "effects": [],
+            "kind": "updated",
+            "title": "진실이 드러나다"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/26-ch3-truth-attack-updated.jpg",
+        "sha256": "f742ebe5a11995c6c58d88648eb4863f3e69215a6a36e18011c50ddf9c32fe0f",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "26-ch3-truth-attack-updated.png"
+    },
+    {
+      "label": "ch3-truth-attack-completed",
+      "file": "screenshots/27-ch3-truth-attack-completed.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 2장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인해 두세요.\n✓ 진실이 드러나다 완료 · 임무 완수\n진료소의 이오세프카를 처치하세요.",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 2",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 2 / 3\n\n이오세프카의 진료소 / 이오세프카의 진료소\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무 완수\n\n임무 결과를 확인한 뒤, 행동 패널에서 획득한 보상을 선택하세요.\n\n임무 완수\n\n목표 처치: 이오세프카\n\n진료소의 이오세프카를 처치했습니다.\n\n이번 챕터 계몽 +1 · 현재 1개\n\n이오세프카의 진료소의 안개가 걷혔습니다.\n\n확인하고 계속하기",
+        "title": "임무 완수"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 2장 / 총 12장",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 2",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 2 / 3\n\n이오세프카의 진료소 / 이오세프카의 진료소\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter3/attack/before-iosefka-completion.json",
+      "nextCommand": {
+        "type": "RESOLVE"
+      },
+      "expected": [
+        {
+          "kind": "completed",
+          "title": "목표 처치: 이오세프카",
+          "description": "진료소의 이오세프카를 처치했습니다.",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 1개",
+            "이오세프카의 진료소의 안개가 걷혔습니다."
+          ]
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 848.265625,
+          "left": 139,
+          "right": 799,
+          "top": 403.734375
+        },
+        "events": [
+          {
+            "description": "진료소의 이오세프카를 처치했습니다.",
+            "effects": [
+              "이번 챕터 계몽 +1 · 현재 1개",
+              "이오세프카의 진료소의 안개가 걷혔습니다."
+            ],
+            "kind": "completed",
+            "title": "목표 처치: 이오세프카"
+          }
+        ],
+        "footer": {
+          "bottom": 830.265625,
+          "top": 786.265625
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/27-ch3-truth-attack-completed.jpg",
+        "sha256": "7319ebd6a59f7491ef6a0b4ad05c25272741ccbea0ae360bcf6837ca8cea2a3e",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "27-ch3-truth-attack-completed.png"
+    },
+    {
+      "label": "ch3-truth-help-updated",
+      "file": "screenshots/28-ch3-truth-help-updated.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인해 두세요.\n진실이 드러나다 진행 중 · 목표 변경\n도망친 생존자와 상호작용해 붙잡고 진료소로 호위하세요.",
+        "phase": "구조한 생존자 이동",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n목표 변경\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n목표 변경\n\n진실이 드러나다\n\n도망친 생존자와 상호작용해 붙잡고 진료소로 호위하세요.\n\n확인하고 계속하기",
+        "title": "목표 변경"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 1장 / 총 12장",
+        "phase": "구조한 생존자 이동",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter3/help/before-iosefka-help.json",
+      "nextCommand": {
+        "type": "MISSION_CHOICE",
+        "choice": "help-iosefka"
+      },
+      "expected": [
+        {
+          "kind": "updated",
+          "title": "진실이 드러나다",
+          "description": "도망친 생존자와 상호작용해 붙잡고 진료소로 호위하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 139,
+          "right": 799,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "도망친 생존자와 상호작용해 붙잡고 진료소로 호위하세요.",
+            "effects": [],
+            "kind": "updated",
+            "title": "진실이 드러나다"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/28-ch3-truth-help-updated.jpg",
+        "sha256": "cddd947370f24f99834d31877d76edef821651e8590da30c4e8e4533df3ea886",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "28-ch3-truth-help-updated.png"
+    },
+    {
+      "label": "ch3-truth-help-completed",
+      "file": "screenshots/29-ch3-truth-help-completed.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 1장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인해 두세요.\n✓ 진실이 드러나다 완료 · 임무 완수\n도망친 생존자와 상호작용해 붙잡고 진료소로 호위하세요.",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 2 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무 완수\n\n임무 결과를 확인한 뒤, 행동 패널에서 획득한 보상을 선택하세요.\n\n임무 완수\n\n계속되는 실험\n\n붙잡은 실험 생존자를 이오세프카의 진료소로 호위했습니다.\n\n이번 챕터 계몽 +1 · 현재 1개\n\n확인하고 계속하기",
+        "title": "임무 완수"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 1장 · 슬롯 1장 / 총 12장",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 2 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter3/help/before-experiment-completion.json",
+      "nextCommand": {
+        "type": "STOP_MOVE"
+      },
+      "expected": [
+        {
+          "kind": "completed",
+          "title": "계속되는 실험",
+          "description": "붙잡은 실험 생존자를 이오세프카의 진료소로 호위했습니다.",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 1개"
+          ]
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 835.359375,
+          "left": 139,
+          "right": 799,
+          "top": 416.625
+        },
+        "events": [
+          {
+            "description": "붙잡은 실험 생존자를 이오세프카의 진료소로 호위했습니다.",
+            "effects": [
+              "이번 챕터 계몽 +1 · 현재 1개"
+            ],
+            "kind": "completed",
+            "title": "계속되는 실험"
+          }
+        ],
+        "footer": {
+          "bottom": 817.359375,
+          "top": 773.359375
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/29-ch3-truth-help-completed.jpg",
+        "sha256": "9c757b179dcfdead9eb9dec32a97b3604c55e086eb610968b233d111edb8b74b",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "29-ch3-truth-help-completed.png"
+    },
+    {
+      "label": "ch3-salvation-new",
+      "file": "screenshots/30-ch3-salvation-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 2장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인해 두세요.\n구원 진행 중 · 새로운 임무\nNPC와 같은 칸에서 사냥 무리/하수인을 처치하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 2",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 2 / 3\n\n오에돈 예배당 / 왼쪽 아래 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n구원\n\nNPC와 같은 칸에서 사냥 무리/하수인을 처치하세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 2장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 2",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 2 / 3\n\n오에돈 예배당 / 왼쪽 아래 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter3/main/before-chapel-npc.json",
+      "nextCommand": {
+        "type": "STOP_MOVE"
+      },
+      "expected": [
+        {
+          "kind": "new",
+          "title": "구원",
+          "description": "NPC와 같은 칸에서 사냥 무리/하수인을 처치하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 139,
+          "right": 799,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "NPC와 같은 칸에서 사냥 무리/하수인을 처치하세요.",
+            "effects": [],
+            "kind": "new",
+            "title": "구원"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/30-ch3-salvation-new.jpg",
+        "sha256": "95c3110dfa2ee50d17620245d3f168830d608fa80e0a7a0abccdd2542482eb02",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "30-ch3-salvation-new.png"
+    },
+    {
+      "label": "ch3-donation-new",
+      "file": "screenshots/31-ch3-donation-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 2장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인해 두세요.\n생존자를 위한 물자 진행 중 · 새로운 임무\n예배당에서 이동을 마친 직후 소모품 기부하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n오에돈 예배당 / 오른쪽 아래 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n생존자를 위한 물자\n\n예배당에서 이동을 마친 직후 소모품 기부하세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 2장 · 슬롯 1장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n오에돈 예배당 / 오른쪽 아래 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapel-donation/chapel-before-notice-220.json",
+      "nextCommand": {
+        "type": "STOP_MOVE"
+      },
+      "expected": [
+        {
+          "kind": "new",
+          "title": "생존자를 위한 물자",
+          "description": "예배당에서 이동을 마친 직후 소모품 기부하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 139,
+          "right": 799,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "예배당에서 이동을 마친 직후 소모품 기부하세요.",
+            "effects": [],
+            "kind": "new",
+            "title": "생존자를 위한 물자"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/31-ch3-donation-new.jpg",
+        "sha256": "b37ccc545ee21c0d8c77c13bbdd88dd2821e8249298c82fc4aae31a830148a17",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "31-ch3-donation-new.png"
+    },
+    {
+      "label": "ch3-donation-completed",
+      "file": "screenshots/32-ch3-donation-completed.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 6장 · 버림 4장 · 슬롯 0장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인해 두세요.\n✓ 생존자를 위한 물자 완료 · 임무 완수\n예배당에서 이동을 마친 직후 소모품 기부하세요.",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n오에돈 예배당 / 오에돈 예배당\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무 완수\n\n임무 결과를 확인한 뒤, 행동 패널에서 획득한 보상을 선택하세요.\n\n임무 완수\n\n생존자를 지켜내다\n\n생존자를 위한 소모품 기부를 마쳤습니다.\n\n이번 챕터 계몽 +1 · 현재 1개\n\n확인하고 계속하기",
+        "title": "임무 완수"
+      },
+      "after": {
+        "deck": "덱 6장 · 버림 4장 · 슬롯 0장 / 총 12장",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n오에돈 예배당 / 오에돈 예배당\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapel-donation/chapel-before-notice-226.json",
+      "nextCommand": {
+        "type": "MISSION_DONATE",
+        "itemId": "item-qa-3-2"
+      },
+      "expected": [
+        {
+          "kind": "completed",
+          "title": "생존자를 지켜내다",
+          "description": "생존자를 위한 소모품 기부를 마쳤습니다.",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 1개"
+          ]
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 835.359375,
+          "left": 139,
+          "right": 799,
+          "top": 416.625
+        },
+        "events": [
+          {
+            "description": "생존자를 위한 소모품 기부를 마쳤습니다.",
+            "effects": [
+              "이번 챕터 계몽 +1 · 현재 1개"
+            ],
+            "kind": "completed",
+            "title": "생존자를 지켜내다"
+          }
+        ],
+        "footer": {
+          "bottom": 817.359375,
+          "top": 773.359375
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/32-ch3-donation-completed.jpg",
+        "sha256": "0a39dc609a25632eb44d05ee2c40c291a8ce80e921e5715083d8e87d5a1633d2",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "32-ch3-donation-completed.png"
+    },
+    {
+      "label": "ch2-supplement-research-update",
+      "file": "screenshots/33-ch2-supplement-research-update.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 1장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n공동묘지에 시체 2개를 바치세요.\n이오세프카의 진료소를 피신처 삼아 진행 중 · 새로운 임무\n소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무가 변경되었습니다\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n목표 변경\n\n이오세프카의 연구\n\n진료소에서 재앙의 야수 처치하세요.\n\n새로운 임무\n\n이오세프카의 진료소를 피신처 삼아\n\n소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.\n\n확인하고 계속하기",
+        "title": "임무가 변경되었습니다"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 1장 · 슬롯 1장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-74.json",
+      "nextCommand": {
+        "type": "RESOLVE"
+      },
+      "expected": [
+        {
+          "kind": "updated",
+          "title": "이오세프카의 연구",
+          "description": "진료소에서 재앙의 야수 처치하세요.",
+          "effects": []
+        },
+        {
+          "kind": "new",
+          "title": "이오세프카의 진료소를 피신처 삼아",
+          "description": "소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 892.5,
+          "left": 139,
+          "right": 799,
+          "top": 359.5
+        },
+        "events": [
+          {
+            "description": "진료소에서 재앙의 야수 처치하세요.",
+            "effects": [],
+            "kind": "updated",
+            "title": "이오세프카의 연구"
+          },
+          {
+            "description": "소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.",
+            "effects": [],
+            "kind": "new",
+            "title": "이오세프카의 진료소를 피신처 삼아"
+          }
+        ],
+        "footer": {
+          "bottom": 874.5,
+          "top": 830.5
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "driverNote": "Checkpoint selection used an earlier supplementary chapter-2 entry; this is not counted as chapter-3 clinic51/52 coverage.",
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/33-ch2-supplement-research-update.jpg",
+        "sha256": "c72ad4965b0cec33cd6f686d2c04cb54ddc954cea0a47bc59020e31f50d6f143",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "33-ch3-clinic51-new.png"
+    },
+    {
+      "label": "ch2-supplement-clinic-sanctuary-completed",
+      "file": "screenshots/34-ch2-supplement-clinic-sanctuary-completed.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 2장 · 버림 8장 · 슬롯 0장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n공동묘지에 시체 2개를 바치세요.\n✓ 이오세프카의 진료소를 피신처 삼아 완료 · 임무 완수\n소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 4",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무 완수\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n임무 완수\n\n안전한 피신처: 이오세프카의 진료소\n\n필요한 생존자들을 이오세프카의 진료소로 인도했습니다.\n\n이번 챕터 계몽 +1 · 현재 1개\n\n확인하고 계속하기",
+        "title": "임무 완수"
+      },
+      "after": {
+        "deck": "덱 2장 · 버림 8장 · 슬롯 0장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 4",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-104.json",
+      "nextCommand": {
+        "type": "STOP_MOVE"
+      },
+      "expected": [
+        {
+          "kind": "completed",
+          "title": "안전한 피신처: 이오세프카의 진료소",
+          "description": "필요한 생존자들을 이오세프카의 진료소로 인도했습니다.",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 1개"
+          ]
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 835.359375,
+          "left": 139,
+          "right": 799,
+          "top": 416.625
+        },
+        "events": [
+          {
+            "description": "필요한 생존자들을 이오세프카의 진료소로 인도했습니다.",
+            "effects": [
+              "이번 챕터 계몽 +1 · 현재 1개"
+            ],
+            "kind": "completed",
+            "title": "안전한 피신처: 이오세프카의 진료소"
+          }
+        ],
+        "footer": {
+          "bottom": 817.359375,
+          "top": 773.359375
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "driverNote": "Checkpoint selection used an earlier supplementary chapter-2 entry; this is not counted as chapter-3 clinic51/52 coverage.",
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/34-ch2-supplement-clinic-sanctuary-completed.jpg",
+        "sha256": "bafc2d08dddbeca8fc0886536345af015f96445ffbc0faab4ffa8d27584eadd8",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "34-ch3-clinic51-completed.png"
+    },
+    {
+      "label": "ch2-main-awaits-insight-update",
+      "file": "screenshots/35-ch2-main-awaits-insight-update.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 3장 · 버림 7장 · 슬롯 0장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중 · 목표 변경\n이번 챕터에서 계몽 2개를 획득하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n공동묘지 / 공동묘지\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n목표 변경\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n목표 변경\n\n재앙의 근원\n\n이번 챕터에서 계몽 2개를 획득하세요.\n\n확인하고 계속하기",
+        "title": "목표 변경"
+      },
+      "after": {
+        "deck": "덱 3장 · 버림 7장 · 슬롯 0장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n공동묘지 / 공동묘지\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/clinic51-52/clinic52/clinic52-before-notice-109.json",
+      "nextCommand": {
+        "type": "MISSION_CORPSES",
+        "count": 2
+      },
+      "expected": [
+        {
+          "kind": "updated",
+          "title": "재앙의 근원",
+          "description": "이번 챕터에서 계몽 2개를 획득하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 139,
+          "right": 799,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "이번 챕터에서 계몽 2개를 획득하세요.",
+            "effects": [],
+            "kind": "updated",
+            "title": "재앙의 근원"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "driverNote": "Checkpoint selection used an earlier supplementary chapter-2 entry; this is not counted as chapter-3 clinic51/52 coverage.",
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/35-ch2-main-awaits-insight-update.jpg",
+        "sha256": "e64c6127ede05827ed1aaff064e4b680506495a7c415ab851d29498cc0a9990a",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "35-ch3-clinic52-new.png"
+    },
+    {
+      "label": "ch2-supplement-bridge-new",
+      "file": "screenshots/36-ch2-supplement-bridge-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 3장 · 버림 7장 · 슬롯 0장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n이번 챕터에서 계몽 2개를 획득하세요.\n아슬아슬한 구조 진행 중 · 새로운 임무\n대교의 야수 사냥 하인 처치하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n대교 / 아래 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n아슬아슬한 구조\n\n대교의 야수 사냥 하인 처치하세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 3장 · 버림 7장 · 슬롯 0장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n대교 / 아래 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/clinic51-52/clinic52/clinic52-before-notice-118.json",
+      "nextCommand": {
+        "type": "STOP_MOVE"
+      },
+      "expected": [
+        {
+          "kind": "new",
+          "title": "아슬아슬한 구조",
+          "description": "대교의 야수 사냥 하인 처치하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 139,
+          "right": 799,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "대교의 야수 사냥 하인 처치하세요.",
+            "effects": [],
+            "kind": "new",
+            "title": "아슬아슬한 구조"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "driverNote": "Checkpoint selection used an earlier supplementary chapter-2 entry; this is not counted as chapter-3 clinic51/52 coverage.",
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/36-ch2-supplement-bridge-new.jpg",
+        "sha256": "3f9e20810e6c7076c9407cca26b2e2a8a5fdad1b91dc69801bf3a3709d0888dc",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "36-ch3-clinic52-completed.png"
+    },
+    {
+      "label": "ch3-clinic51-new",
+      "file": "screenshots/37-ch3-clinic51-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 2장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인해 두세요.\n이오세프카의 연구 진행 중 · 새로운 임무\n진료소에서 재앙의 야수 처치하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n이오세프카의 연구\n\n진료소에서 재앙의 야수 처치하세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 2장 · 슬롯 1장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-196.json",
+      "nextCommand": {
+        "type": "PLACE_TILE",
+        "rotation": 1
+      },
+      "expected": [
+        {
+          "kind": "new",
+          "title": "이오세프카의 연구",
+          "description": "진료소에서 재앙의 야수 처치하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 139,
+          "right": 799,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "진료소에서 재앙의 야수 처치하세요.",
+            "effects": [],
+            "kind": "new",
+            "title": "이오세프카의 연구"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/37-ch3-clinic51-new.jpg",
+        "sha256": "2a3a9518a94419f8d079c729dc12bd3f0f25b3654efc6e7b7f9a0dd61ebfdd83",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "37-ch3-clinic51-new.png"
+    },
+    {
+      "label": "ch3-clinic51-completed",
+      "file": "screenshots/38-ch3-clinic51-completed.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 3장 · 버림 6장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인해 두세요.\n✓ 이오세프카의 연구 완료 · 임무 완수\n진료소에서 재앙의 야수 처치하세요.",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 2",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 2 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무 완수\n\n임무 결과를 확인한 뒤, 행동 패널에서 획득한 보상을 선택하세요.\n\n임무 완수\n\n이오세프카의 연구\n\n진료소의 재앙의 야수를 처치했습니다.\n\n이번 챕터 계몽 +1 · 현재 1개\n\n확인하고 계속하기",
+        "title": "임무 완수"
+      },
+      "after": {
+        "deck": "덱 3장 · 버림 6장 · 슬롯 1장 / 총 12장",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 2",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 2 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-214.json",
+      "nextCommand": {
+        "type": "RESOLVE"
+      },
+      "expected": [
+        {
+          "kind": "completed",
+          "title": "이오세프카의 연구",
+          "description": "진료소의 재앙의 야수를 처치했습니다.",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 1개"
+          ]
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 835.359375,
+          "left": 139,
+          "right": 799,
+          "top": 416.625
+        },
+        "events": [
+          {
+            "description": "진료소의 재앙의 야수를 처치했습니다.",
+            "effects": [
+              "이번 챕터 계몽 +1 · 현재 1개"
+            ],
+            "kind": "completed",
+            "title": "이오세프카의 연구"
+          }
+        ],
+        "footer": {
+          "bottom": 817.359375,
+          "top": 773.359375
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/38-ch3-clinic51-completed.jpg",
+        "sha256": "cff72fc224ed1407f4acf966bdb6aff89e76f0951ddbd8c70f4a89c6ed778457",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "38-ch3-clinic51-completed.png"
+    },
+    {
+      "label": "ch3-clinic52-new",
+      "file": "screenshots/39-ch3-clinic52-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 1장 · 슬롯 0장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인해 두세요.\n이오세프카의 진료소를 피신처 삼아 진행 중 · 새로운 임무\n소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n이오세프카의 진료소를 피신처 삼아\n\n소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 1장 · 슬롯 0장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/clinic51-52/clinic52/clinic52-before-notice-191.json",
+      "nextCommand": {
+        "type": "PLACE_TILE",
+        "rotation": 3
+      },
+      "expected": [
+        {
+          "kind": "new",
+          "title": "이오세프카의 진료소를 피신처 삼아",
+          "description": "소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 139,
+          "right": 799,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.",
+            "effects": [],
+            "kind": "new",
+            "title": "이오세프카의 진료소를 피신처 삼아"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/39-ch3-clinic52-new.jpg",
+        "sha256": "4fec1a50a5f6b8eefba1c05fc1c9f961c64c6382b9e12e9e1c3ad391d1eb6cc7",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "39-ch3-clinic52-new.png"
+    },
+    {
+      "label": "ch3-clinic52-completed",
+      "file": "screenshots/40-ch3-clinic52-completed.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 6장 · 버림 4장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수 봉인해 두세요.\n✓ 이오세프카의 진료소를 피신처 삼아 완료 · 임무 완수\n소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 2",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 2 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무 완수\n\n임무 결과를 확인한 뒤, 행동 패널에서 획득한 보상을 선택하세요.\n\n임무 완수\n\n안전한 피신처: 이오세프카의 진료소\n\n필요한 생존자들을 이오세프카의 진료소로 인도했습니다.\n\n이번 챕터 계몽 +1 · 현재 1개\n\n확인하고 계속하기",
+        "title": "임무 완수"
+      },
+      "after": {
+        "deck": "덱 6장 · 버림 4장 · 슬롯 1장 / 총 12장",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 2",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 2 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/clinic51-52/clinic52/clinic52-before-notice-218.json",
+      "nextCommand": {
+        "type": "STOP_MOVE"
+      },
+      "expected": [
+        {
+          "kind": "completed",
+          "title": "안전한 피신처: 이오세프카의 진료소",
+          "description": "필요한 생존자들을 이오세프카의 진료소로 인도했습니다.",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 1개"
+          ]
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 835.359375,
+          "left": 139,
+          "right": 799,
+          "top": 416.625
+        },
+        "events": [
+          {
+            "description": "필요한 생존자들을 이오세프카의 진료소로 인도했습니다.",
+            "effects": [
+              "이번 챕터 계몽 +1 · 현재 1개"
+            ],
+            "kind": "completed",
+            "title": "안전한 피신처: 이오세프카의 진료소"
+          }
+        ],
+        "footer": {
+          "bottom": 817.359375,
+          "top": 773.359375
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/40-ch3-clinic52-completed.jpg",
+        "sha256": "79cdbca6a4819ebd7a5d7dfd8327ee819f49ad4b67bae26ea2bcd00067b91c23",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "40-ch3-clinic52-completed.png"
+    },
+    {
+      "label": "ch3-main-timed-release",
+      "file": "screenshots/41-ch3-main-timed-release.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 5장 · 버림 1장 · 슬롯 3장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중 · 목표 변경\n풀려난 성직자 야수를 최종 처치하세요.",
+        "phase": "다음 차례 · 손패 보충",
+        "round": "라운드 9 · 처치 4",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n명칭 없는 타일 09 / 아래 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n목표 변경\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n목표 변경\n\n재앙의 근원\n\n풀려난 성직자 야수를 최종 처치하세요.\n\n오에돈의 지하묘지의 안개가 걷혔습니다.\n\n확인하고 계속하기",
+        "title": "목표 변경"
+      },
+      "after": {
+        "deck": "덱 5장 · 버림 1장 · 슬롯 3장 / 총 12장",
+        "phase": "다음 차례 · 손패 보충",
+        "round": "라운드 9 · 처치 4",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n명칭 없는 타일 09 / 아래 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter3/cull/before-boss-release.json",
+      "nextCommand": {
+        "type": "END_TURN"
+      },
+      "expected": [
+        {
+          "kind": "updated",
+          "title": "재앙의 근원",
+          "description": "풀려난 성직자 야수를 최종 처치하세요.",
+          "effects": [
+            "오에돈의 지하묘지의 안개가 걷혔습니다."
+          ]
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 835.359375,
+          "left": 139,
+          "right": 799,
+          "top": 416.625
+        },
+        "events": [
+          {
+            "description": "풀려난 성직자 야수를 최종 처치하세요.",
+            "effects": [
+              "오에돈의 지하묘지의 안개가 걷혔습니다."
+            ],
+            "kind": "updated",
+            "title": "재앙의 근원"
+          }
+        ],
+        "footer": {
+          "bottom": 817.359375,
+          "top": 773.359375
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/41-ch3-main-timed-release.jpg",
+        "sha256": "a72d02bd168c9b49491d1afbbe9e826ba11df4d1908cacaa39bf28772bd4b020",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "41-ch3-main-timed-release.png"
+    },
+    {
+      "label": "ch3-cull-completed",
+      "file": "screenshots/42-ch3-cull-completed.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 2장 · 버림 4장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n풀려난 성직자 야수를 최종 처치하세요.\n✓ 무리를 정리하다 완료 · 임무 완수\n재앙의 야수를 처치해 계몽 토큰 제거.",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 9 · 처치 5",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n명칭 없는 타일 09 / 아래 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무 완수\n\n임무 결과를 확인한 뒤, 행동 패널에서 획득한 보상을 선택하세요.\n\n임무 완수\n\n무리를 정리하다\n\n무리를 정리하는 임무를 완수했습니다.\n\n이번 챕터 계몽 +1 · 현재 2개\n\n확인하고 계속하기",
+        "title": "임무 완수"
+      },
+      "after": {
+        "deck": "덱 2장 · 버림 4장 · 슬롯 1장 / 총 12장",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 9 · 처치 5",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n명칭 없는 타일 09 / 아래 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter3/cull/before-cull-completion.json",
+      "nextCommand": {
+        "type": "RESOLVE"
+      },
+      "expected": [
+        {
+          "kind": "completed",
+          "title": "무리를 정리하다",
+          "description": "무리를 정리하는 임무를 완수했습니다.",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 2개"
+          ]
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 835.359375,
+          "left": 139,
+          "right": 799,
+          "top": 416.625
+        },
+        "events": [
+          {
+            "description": "무리를 정리하는 임무를 완수했습니다.",
+            "effects": [
+              "이번 챕터 계몽 +1 · 현재 2개"
+            ],
+            "kind": "completed",
+            "title": "무리를 정리하다"
+          }
+        ],
+        "footer": {
+          "bottom": 817.359375,
+          "top": 773.359375
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/42-ch3-cull-completed.jpg",
+        "sha256": "b7f6e26f5d8301a3b7165b823c7f7d5abebfb0b24c5e5c497c7bfa590b992a81",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "42-ch3-cull-completed.png"
+    },
+    {
+      "label": "ch3-salvation-completed-main-release",
+      "file": "screenshots/43-ch3-salvation-completed-main-release.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 3장 · 버림 5장 · 슬롯 2장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중 · 목표 변경\n풀려난 성직자 야수를 최종 처치하세요.\n✓ 구원 완료 · 임무 완수\nNPC와 같은 칸에서 사냥 무리/하수인을 처치하세요.",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 5 · 처치 4",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n명칭 없는 타일 08 / 아래 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무가 변경되었습니다\n\n임무 결과를 확인한 뒤, 행동 패널에서 획득한 보상을 선택하세요.\n\n임무 완수\n\n사냥의 짜릿함\n\n구원 임무를 완수했습니다.\n\n이번 챕터 계몽 +1 · 현재 2개\n\n오에돈의 지하묘지의 안개가 걷혔습니다.\n\n목표 변경\n\n재앙의 근원\n\n풀려난 성직자 야수를 최종 처치하세요.\n\n확인하고 계속하기",
+        "title": "임무가 변경되었습니다"
+      },
+      "after": {
+        "deck": "덱 3장 · 버림 5장 · 슬롯 2장 / 총 12장",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 5 · 처치 4",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n명칭 없는 타일 08 / 아래 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter3/main/before-salvation-completion.json",
+      "nextCommand": {
+        "type": "RESOLVE"
+      },
+      "expected": [
+        {
+          "kind": "completed",
+          "title": "사냥의 짜릿함",
+          "description": "구원 임무를 완수했습니다.",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 2개",
+            "오에돈의 지하묘지의 안개가 걷혔습니다."
+          ]
+        },
+        {
+          "kind": "updated",
+          "title": "재앙의 근원",
+          "description": "풀려난 성직자 야수를 최종 처치하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 918.296875,
+          "left": 139,
+          "right": 799,
+          "top": 333.703125
+        },
+        "events": [
+          {
+            "description": "구원 임무를 완수했습니다.",
+            "effects": [
+              "이번 챕터 계몽 +1 · 현재 2개",
+              "오에돈의 지하묘지의 안개가 걷혔습니다."
+            ],
+            "kind": "completed",
+            "title": "사냥의 짜릿함"
+          },
+          {
+            "description": "풀려난 성직자 야수를 최종 처치하세요.",
+            "effects": [],
+            "kind": "updated",
+            "title": "재앙의 근원"
+          }
+        ],
+        "footer": {
+          "bottom": 900.296875,
+          "top": 856.296875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 938
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/43-ch3-salvation-completed-main-release.jpg",
+        "sha256": "29026ccaf74db5f0a1beeac01be4c1660db30c79dec588a4ccc0c80b5a185ba8",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "43-ch3-salvation-completed-main-release.png"
+    },
+    {
+      "label": "ch3-main-final-completed-keyboard-workaround",
+      "file": "screenshots/44-ch3-main-final-completed-keyboard-workaround.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 12장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "✓ 재앙의 근원 완료 · 챕터 완수\n풀려난 성직자 야수를 최종 처치하세요.\n무리를 정리하다 진행 중\n재앙의 야수를 처치해 계몽 토큰 제거.",
+        "phase": "꿈 · 업그레이드 획득",
+        "round": "라운드 5 · 처치 5",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n사냥꾼의 꿈\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무가 변경되었습니다\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n임무 완수\n\n사냥 완수\n\n성직자 야수를 최종 처치했습니다.\n\n챕터 완수\n\n챕터 3 완수\n\n챕터 3의 사냥을 완수했습니다.\n\n확인하고 계속하기",
+        "title": "임무가 변경되었습니다"
+      },
+      "after": {
+        "deck": "덱 12장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "phase": "꿈 · 업그레이드 획득",
+        "round": "라운드 5 · 처치 5",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n사냥꾼의 꿈\n\n독 없음 · 발광 없음"
+      },
+      "version": "0.8.13-dev.2",
+      "screenshot": {
+        "file": "screenshots/44-ch3-main-final-completed-keyboard-workaround.jpg",
+        "sha256": "fc95aa29f3126d6e0170fa31133da7e8bf03e8b8c4d2090b33249d6a861dfd93",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 938
+      },
+      "originalScreenshotFile": "44-ch3-main-final-completed-keyboard-workaround.png"
+    },
+    {
+      "label": "ch3-main-final-completed-pointer-fixed",
+      "file": "screenshots/45-ch3-main-final-completed-pointer-fixed.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 12장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "✓ 재앙의 근원 완료 · 챕터 완수\n풀려난 성직자 야수를 최종 처치하세요.\n무리를 정리하다 진행 중\n재앙의 야수를 처치해 계몽 토큰을 제거하세요.",
+        "phase": "꿈 · 업그레이드 획득",
+        "round": "라운드 5 · 처치 5",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n사냥꾼의 꿈\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무가 변경되었습니다\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n임무 완수\n\n사냥 완수\n\n성직자 야수를 최종 처치했습니다.\n\n챕터 완수\n\n챕터 3 완수\n\n챕터 3의 사냥을 완수했습니다.\n\n확인하고 계속하기",
+        "title": "임무가 변경되었습니다"
+      },
+      "after": {
+        "deck": "덱 12장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "phase": "꿈 · 업그레이드 획득",
+        "round": "라운드 5 · 처치 5",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n사냥꾼의 꿈\n\n독 없음 · 발광 없음"
+      },
+      "version": "0.8.13-dev.3",
+      "screenshot": {
+        "file": "screenshots/45-ch3-main-final-completed-pointer-fixed.jpg",
+        "sha256": "fbd8d58dcb26a26a844c54c679117bb14f93ac66f4ffed954b74ddcfda9c8e6d",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 1194
+      },
+      "originalScreenshotFile": "45-ch3-main-final-completed-pointer-fixed.png"
+    },
+    {
+      "label": "ch3-cull-route-final-completed",
+      "file": "screenshots/46-ch3-cull-route-final-completed.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 12장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "✓ 재앙의 근원 완료 · 챕터 완수\n풀려난 성직자 야수를 최종 처치하세요.",
+        "phase": "꿈 · 업그레이드 획득",
+        "round": "라운드 9 · 처치 6",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n사냥꾼의 꿈\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무가 변경되었습니다\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n임무 완수\n\n사냥 완수\n\n성직자 야수를 최종 처치했습니다.\n\n챕터 완수\n\n챕터 3 완수\n\n챕터 3의 사냥을 완수했습니다.\n\n확인하고 계속하기",
+        "title": "임무가 변경되었습니다"
+      },
+      "after": {
+        "deck": "덱 12장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "phase": "꿈 · 업그레이드 획득",
+        "round": "라운드 9 · 처치 6",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n사냥꾼의 꿈\n\n독 없음 · 발광 없음"
+      },
+      "version": "0.8.13-dev.3",
+      "screenshot": {
+        "file": "screenshots/46-ch3-cull-route-final-completed.jpg",
+        "sha256": "77f62cbb7cce61824221b1acbf533b3871ad36e87cb8b303f0b0f2d4c71bd6aa",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 1194
+      },
+      "originalScreenshotFile": "46-ch3-cull-route-final-completed.png"
+    },
+    {
+      "label": "fixed-ch2-research-new",
+      "file": "screenshots/47-fixed-ch2-research-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n공동묘지에 시체 2개를 바치세요.\n이오세프카의 연구 진행 중 · 새로운 임무\n진료소에서 야수 사냥 무리 또는 야수 사냥 하인을 처치하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n이오세프카의 연구\n\n진료소에서 야수 사냥 무리 또는 야수 사냥 하인을 처치하세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter2/c2-before-notice-070.json",
+      "nextCommand": {
+        "type": "STOP_MOVE"
+      },
+      "expected": [
+        {
+          "kind": "new",
+          "title": "이오세프카의 연구",
+          "description": "진료소에서 야수 사냥 무리 또는 야수 사냥 하인을 처치하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 267,
+          "right": 927,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "진료소에서 야수 사냥 무리 또는 야수 사냥 하인을 처치하세요.",
+            "effects": [],
+            "kind": "new",
+            "title": "이오세프카의 연구"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 1194
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.3",
+      "screenshot": {
+        "file": "screenshots/47-fixed-ch2-research-new.jpg",
+        "sha256": "263cd303c5fc7307d380556c8c6b3b11be2ff06974b4efad5a7223104f508a6e",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 1194
+      },
+      "originalScreenshotFile": "47-fixed-ch2-research-new.png"
+    },
+    {
+      "label": "fixed-ch2-research-update-and-sanctuary-new",
+      "file": "screenshots/48-fixed-ch2-research-update-and-sanctuary-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 1장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n공동묘지에 시체 2개를 바치세요.\n이오세프카의 진료소를 피신처 삼아 진행 중 · 새로운 임무\n소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무가 변경되었습니다\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n목표 변경\n\n이오세프카의 연구\n\n진료소에서 재앙의 야수를 처치하세요.\n\n새로운 임무\n\n이오세프카의 진료소를 피신처 삼아\n\n소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.\n\n확인하고 계속하기",
+        "title": "임무가 변경되었습니다"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 1장 · 슬롯 1장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter2/c2-before-notice-074.json",
+      "nextCommand": {
+        "type": "RESOLVE"
+      },
+      "expected": [
+        {
+          "kind": "updated",
+          "title": "이오세프카의 연구",
+          "description": "진료소에서 재앙의 야수를 처치하세요.",
+          "effects": []
+        },
+        {
+          "kind": "new",
+          "title": "이오세프카의 진료소를 피신처 삼아",
+          "description": "소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 892.5,
+          "left": 267,
+          "right": 927,
+          "top": 359.5
+        },
+        "events": [
+          {
+            "description": "진료소에서 재앙의 야수를 처치하세요.",
+            "effects": [],
+            "kind": "updated",
+            "title": "이오세프카의 연구"
+          },
+          {
+            "description": "소모품 수집으로 얻은 생존자 2개를 진료소에 인도하세요.",
+            "effects": [],
+            "kind": "new",
+            "title": "이오세프카의 진료소를 피신처 삼아"
+          }
+        ],
+        "footer": {
+          "bottom": 874.5,
+          "top": 830.5
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 1194
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.3",
+      "screenshot": {
+        "file": "screenshots/48-fixed-ch2-research-update-and-sanctuary-new.jpg",
+        "sha256": "0a48d4aa199bff2084e87b18b71e392b53a0e770bccacfe68f1269be62952977",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 1194
+      },
+      "originalScreenshotFile": "48-fixed-ch2-research-update-and-sanctuary-new.png"
+    },
+    {
+      "label": "fixed-ch2-bridge-new",
+      "file": "screenshots/49-fixed-ch2-bridge-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 3장 · 버림 6장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n피해를 입지 않는 성직자 야수를 지하묘지로 유인하세요.\n아슬아슬한 구조 진행 중 · 새로운 임무\n대교의 야수 사냥 하인을 처치하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n대교 / 아래 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n아슬아슬한 구조\n\n대교의 야수 사냥 하인을 처치하세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 3장 · 버림 6장 · 슬롯 1장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 3",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n대교 / 아래 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter2/c2-before-notice-121.json",
+      "nextCommand": {
+        "type": "STOP_MOVE"
+      },
+      "expected": [
+        {
+          "kind": "new",
+          "title": "아슬아슬한 구조",
+          "description": "대교의 야수 사냥 하인을 처치하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 267,
+          "right": 927,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "대교의 야수 사냥 하인을 처치하세요.",
+            "effects": [],
+            "kind": "new",
+            "title": "아슬아슬한 구조"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 1194
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.3",
+      "screenshot": {
+        "file": "screenshots/49-fixed-ch2-bridge-new.jpg",
+        "sha256": "ab6c791fec459d68d6ee02fa001662f7371263c7faf939a28414b23efccc4017",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 1194
+      },
+      "originalScreenshotFile": "49-fixed-ch2-bridge-new.png"
+    },
+    {
+      "label": "fixed-ch3-main-new",
+      "file": "screenshots/50-fixed-ch3-main-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중 · 새로운 임무\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수를 봉인해 두세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n중앙 등불 / 중앙 등불\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n재앙의 근원\n\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수를 봉인해 두세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n중앙 등불 / 중앙 등불\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter2/c2-before-notice-166.json",
+      "nextCommand": {
+        "type": "START_NEXT_CHAPTER",
+        "startSpace": "center",
+        "face": 0
+      },
+      "expected": [
+        {
+          "kind": "new",
+          "title": "재앙의 근원",
+          "description": "이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수를 봉인해 두세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 267,
+          "right": 927,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수를 봉인해 두세요.",
+            "effects": [],
+            "kind": "new",
+            "title": "재앙의 근원"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 1194
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.3",
+      "screenshot": {
+        "file": "screenshots/50-fixed-ch3-main-new.jpg",
+        "sha256": "cd2bf1feb2c42750a01d24eae4553ea698cb2d4a1273ac7dcd0f499fc4d28e51",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 1194
+      },
+      "originalScreenshotFile": "50-fixed-ch3-main-new.png"
+    },
+    {
+      "label": "fixed-ch3-cull-new",
+      "file": "screenshots/51-fixed-ch3-cull-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수를 봉인해 두세요.\n무리를 정리하다 진행 중 · 새로운 임무\n재앙의 야수를 처치해 계몽 토큰을 제거하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n대교 / 대교\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n무리를 정리하다\n\n재앙의 야수를 처치해 계몽 토큰을 제거하세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n대교 / 대교\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapter3/entry/before-bridge-cull.json",
+      "nextCommand": {
+        "type": "STOP_MOVE"
+      },
+      "expected": [
+        {
+          "kind": "new",
+          "title": "무리를 정리하다",
+          "description": "재앙의 야수를 처치해 계몽 토큰을 제거하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 267,
+          "right": 927,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "재앙의 야수를 처치해 계몽 토큰을 제거하세요.",
+            "effects": [],
+            "kind": "new",
+            "title": "무리를 정리하다"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 1194
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.3",
+      "screenshot": {
+        "file": "screenshots/51-fixed-ch3-cull-new.jpg",
+        "sha256": "6899e0d16b2e6c9d0490b36469fec6c5e9db2e477cf572179b61fee2ca8a1c24",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 1194
+      },
+      "originalScreenshotFile": "51-fixed-ch3-cull-new.png"
+    },
+    {
+      "label": "fixed-ch3-donation-new",
+      "file": "screenshots/52-fixed-ch3-donation-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 2장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수를 봉인해 두세요.\n생존자를 위한 물자 진행 중 · 새로운 임무\n예배당에서 이동을 마친 직후 소모품을 기부하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n오에돈 예배당 / 오른쪽 아래 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n생존자를 위한 물자\n\n예배당에서 이동을 마친 직후 소모품을 기부하세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 2장 · 슬롯 1장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n오에돈 예배당 / 오른쪽 아래 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/chapel-donation/chapel-before-notice-220.json",
+      "nextCommand": {
+        "type": "STOP_MOVE"
+      },
+      "expected": [
+        {
+          "kind": "new",
+          "title": "생존자를 위한 물자",
+          "description": "예배당에서 이동을 마친 직후 소모품을 기부하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 267,
+          "right": 927,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "예배당에서 이동을 마친 직후 소모품을 기부하세요.",
+            "effects": [],
+            "kind": "new",
+            "title": "생존자를 위한 물자"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 1194
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.3",
+      "screenshot": {
+        "file": "screenshots/52-fixed-ch3-donation-new.jpg",
+        "sha256": "4b02c5c0fe8c5a9e1247ed65c385004f8f15ac5d22f720b71a3340a07b3e57a1",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 1194
+      },
+      "originalScreenshotFile": "52-fixed-ch3-donation-new.png"
+    },
+    {
+      "label": "fixed-ch3-clinic51-new",
+      "file": "screenshots/53-fixed-ch3-clinic51-new.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 2장 · 슬롯 1장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중\n이번 챕터 계몽 2개 또는 두 번째 초기화까지 성직자 야수를 봉인해 두세요.\n이오세프카의 연구 진행 중 · 새로운 임무\n진료소에서 재앙의 야수를 처치하세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n새로운 임무\n\n변경된 목표와 결과를 확인한 뒤 사냥을 계속하세요.\n\n새로운 임무\n\n이오세프카의 연구\n\n진료소에서 재앙의 야수를 처치하세요.\n\n확인하고 계속하기",
+        "title": "새로운 임무"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 2장 · 슬롯 1장 / 총 12장",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 1",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 1 / 3\n\n이오세프카의 진료소 / 아래쪽 입구 칸\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-196.json",
+      "nextCommand": {
+        "type": "PLACE_TILE",
+        "rotation": 1
+      },
+      "expected": [
+        {
+          "kind": "new",
+          "title": "이오세프카의 연구",
+          "description": "진료소에서 재앙의 야수를 처치하세요.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 822.46875,
+          "left": 267,
+          "right": 927,
+          "top": 429.53125
+        },
+        "events": [
+          {
+            "description": "진료소에서 재앙의 야수를 처치하세요.",
+            "effects": [],
+            "kind": "new",
+            "title": "이오세프카의 연구"
+          }
+        ],
+        "footer": {
+          "bottom": 804.46875,
+          "top": 760.46875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 1194
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.3",
+      "screenshot": {
+        "file": "screenshots/53-fixed-ch3-clinic51-new.jpg",
+        "sha256": "9618f509e9cd486255cd9af0cafe3e77aff22f002f1f87b60c686d9f23cbb74e",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 1194
+      },
+      "originalScreenshotFile": "53-fixed-ch3-clinic51-new.png"
+    },
+    {
+      "label": "ch2-three-simultaneous-results",
+      "file": "screenshots/54-ch2-three-simultaneous-results.jpg",
+      "pass": true,
+      "observed": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 2장 / 총 12장",
+        "dialogs": [
+          "missionUpdateDialog"
+        ],
+        "focused": "missionUpdateContinue",
+        "nativeModal": true,
+        "objectives": "재앙의 근원 진행 중 · 목표 변경\n성직자 야수를 2페이즈로 전환하세요.\n오에돈 예배당을 피신처로 삼아 진행 중 · 새로운 임무\n진료소 피신처 완료로 이 임무를 완수할 수 없습니다.",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 5",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n오에돈 예배당 / 오에돈 예배당\n\n독 없음 · 발광 없음",
+        "text": "사냥의 변화\n\n임무가 변경되었습니다\n\n임무 결과를 확인한 뒤, 행동 패널에서 획득한 보상을 선택하세요.\n\n임무 완수\n\n불길한 경고\n\n대교의 생존자를 오에돈 예배당으로 호위했습니다.\n\n이번 챕터 계몽 +1 · 현재 2개\n\n목표 변경\n\n재앙의 근원\n\n성직자 야수를 2페이즈로 전환하세요.\n\n새로운 임무\n\n오에돈 예배당을 피신처로 삼아\n\n진료소 피신처 완료로 이 임무를 완수할 수 없습니다.\n\n확인하고 계속하기",
+        "title": "임무가 변경되었습니다"
+      },
+      "after": {
+        "deck": "덱 9장 · 버림 0장 · 슬롯 2장 / 총 12장",
+        "phase": "획득한 보상 선택",
+        "round": "라운드 1 · 처치 5",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 3 / 3\n\n오에돈 예배당 / 오에돈 예배당\n\n독 없음 · 발광 없음"
+      },
+      "checkpoint": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-137.json",
+      "nextCommand": {
+        "type": "STOP_MOVE"
+      },
+      "expected": [
+        {
+          "kind": "completed",
+          "title": "불길한 경고",
+          "description": "대교의 생존자를 오에돈 예배당으로 호위했습니다.",
+          "effects": [
+            "이번 챕터 계몽 +1 · 현재 2개"
+          ]
+        },
+        {
+          "kind": "updated",
+          "title": "재앙의 근원",
+          "description": "성직자 야수를 2페이즈로 전환하세요.",
+          "effects": []
+        },
+        {
+          "kind": "new",
+          "title": "오에돈 예배당을 피신처로 삼아",
+          "description": "진료소 피신처 완료로 이 임무를 완수할 수 없습니다.",
+          "effects": []
+        }
+      ],
+      "actual": {
+        "bounds": {
+          "bottom": 975.421875,
+          "left": 267,
+          "right": 927,
+          "top": 276.5625
+        },
+        "events": [
+          {
+            "description": "대교의 생존자를 오에돈 예배당으로 호위했습니다.",
+            "effects": [
+              "이번 챕터 계몽 +1 · 현재 2개"
+            ],
+            "kind": "completed",
+            "title": "불길한 경고"
+          },
+          {
+            "description": "성직자 야수를 2페이즈로 전환하세요.",
+            "effects": [],
+            "kind": "updated",
+            "title": "재앙의 근원"
+          },
+          {
+            "description": "진료소 피신처 완료로 이 임무를 완수할 수 없습니다.",
+            "effects": [],
+            "kind": "new",
+            "title": "오에돈 예배당을 피신처로 삼아"
+          }
+        ],
+        "footer": {
+          "bottom": 957.421875,
+          "top": 913.421875
+        },
+        "viewport": {
+          "h": 1252,
+          "w": 1194
+        }
+      },
+      "eventPass": true,
+      "layoutPass": true,
+      "version": "0.8.13-dev.3",
+      "screenshot": {
+        "file": "screenshots/54-ch2-three-simultaneous-results.jpg",
+        "sha256": "5ec5eb43f8419d50cbddf4a4f2bcbcdf00a7a3c155333489bda2326d44df3786",
+        "mimeType": "image/jpeg",
+        "height": 1252,
+        "width": 1194
+      },
+      "originalScreenshotFile": "54-ch2-three-simultaneous-results.png"
+    }
+  ],
+  "checks": [
+    {
+      "name": "patient-completion-retains-pending-combat-cost",
+      "pass": true,
+      "observation": "보상 보관 뒤 기절 손패 버리기와 죽음 뒤 회피(3피해 선택) 단계가 모두 유지됨",
+      "after": "다음 차례 · 손패 보충"
+    },
+    {
+      "name": "BB010-pointer-target-selection-after-fix",
+      "version": "0.8.13-dev.3",
+      "pass": true,
+      "before": {
+        "boss": {
+          "node": "tile-19:bottom",
+          "rect": {
+            "h": 32,
+            "w": 32,
+            "x": 284.390625,
+            "y": 587
+          }
+        },
+        "hitAtBossCenter": "scourge-beast-2",
+        "neighbors": [
+          {
+            "id": "mission-main",
+            "rect": {
+              "h": 32,
+              "w": 32,
+              "x": 284.390625,
+              "y": 587
+            }
+          },
+          {
+            "id": "scourge-beast-1",
+            "rect": {
+              "h": 32,
+              "w": 32,
+              "x": 244.078125,
+              "y": 587
+            }
+          },
+          {
+            "id": "scourge-beast-2",
+            "rect": {
+              "h": 32,
+              "w": 32,
+              "x": 284.390625,
+              "y": 627.3125
+            }
+          }
+        ]
+      },
+      "after": [
+        {
+          "hit": "mission-main",
+          "id": "mission-main",
+          "pseudoPointerEvents": "none"
+        },
+        {
+          "hit": "scourge-beast-1",
+          "id": "scourge-beast-1",
+          "pseudoPointerEvents": "none"
+        },
+        {
+          "hit": "scourge-beast-2",
+          "id": "scourge-beast-2",
+          "pseudoPointerEvents": "none"
+        }
+      ],
+      "clicks": [
+        {
+          "requested": "mission-main",
+          "actual": "mission-main",
+          "context": "성직자 야수 #1"
+        },
+        {
+          "requested": "scourge-beast-1",
+          "actual": "scourge-beast-1",
+          "context": "재앙의 야수 #1"
+        },
+        {
+          "requested": "scourge-beast-2",
+          "actual": "scourge-beast-2",
+          "context": "재앙의 야수 #2"
+        },
+        {
+          "requested": "mission-main",
+          "actual": "mission-main",
+          "context": "성직자 야수 #1"
+        }
+      ]
+    },
+    {
+      "name": "regular-save-resumed-after-QA-without-progress-change",
+      "pass": true,
+      "before": {
+        "notice": false,
+        "objectives": "재앙의 근원 진행 중\n계몽 2개 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n중앙 등불 / 중앙 등불\n\n독 없음 · 발광 없음",
+        "url": "http://127.0.0.1:8786/bloodborne-solo/hunt.html",
+        "versionText": null,
+        "viewport": {
+          "height": 1252,
+          "width": 938
+        }
+      },
+      "after": {
+        "banner": "♜\nBLOODBORNE · SOLO\n사냥의 기록\n\n기나긴 사냥 · 챕터 1\n\n자동 저장됨\n소모품\n장비·보상\n일지 1\n메뉴\n새 사냥",
+        "dialogs": [],
+        "objectives": "재앙의 근원 진행 중\n계몽 2개 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요.",
+        "phase": "플레이어의 차례",
+        "round": "라운드 1 · 처치 0",
+        "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n중앙 등불 / 중앙 등불\n\n독 없음 · 발광 없음",
+        "weapon": "장송의 칼날\n칼날 형태\n무기 고유 효과\n\n공격 속도로, 1칸 이내에 있는 다른 모든 적에게 1피해를 줍니다.\n\n1번 슬롯 · 비어 있음\n재빠른 저미기\n속도 3 · 피해 1\n선택하여 공격 / 회피\n2번 슬롯 · 비어 있음\n긋기\n속도 2 · 피해 2\n선택하여 공격 / 회피\n3번 슬롯 · 비어 있음\n긋기\n속도 2 · 피해 2\n선택하여 공격 / 회피\n\n공격·회피에는 빈 슬롯이 필요합니다."
+      }
+    }
+  ],
+  "actionLog": [
+    {
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-1-21"
+      },
+      "button": "검증용 이동 사용"
+    },
+    {
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-1-11"
+      },
+      "button": "검증용 손패 보충 사용"
+    },
+    {
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-1-22"
+      },
+      "button": "검증용 이동 사용"
+    },
+    {
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-1-23"
+      },
+      "button": "검증용 이동 사용"
+    },
+    {
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-1-24"
+      },
+      "button": "검증용 이동 사용"
+    },
+    {
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-qa-1-1"
+      },
+      "button": "검증용 회복약 사용"
+    },
+    {
+      "import": "qa-before-chapter2.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 1\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 11\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "다음 챕터 준비"
+    },
+    {
+      "command": {
+        "type": "START_NEXT_CHAPTER",
+        "startSpace": "center",
+        "face": 0
+      },
+      "button": "챕터 2 시작"
+    },
+    {
+      "import": "chapter2/c2-before-stop-clinic24.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 2\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    },
+    {
+      "import": "chapter2/c2-before-notice-074.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 3\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "전투 대응"
+    },
+    {
+      "import": "chapter2/c2-before-notice-077.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 5\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "전투 대응"
+    },
+    {
+      "import": "chapter2/c2-before-notice-102.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 6\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    },
+    {
+      "import": "release-patient/patient-before-notice-99.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 6\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    },
+    {
+      "import": "release-patient/patient-before-notice-113.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 9\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "전투 대응"
+    },
+    {
+      "import": "chapter2/c2-before-notice-108.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 7\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "플레이어의 차례"
+    },
+    {
+      "import": "chapter2/c2-before-notice-111.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 9\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "전투 대응"
+    },
+    {
+      "import": "chapter2/c2-before-notice-121.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 11\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    },
+    {
+      "import": "chapter2/c2-before-notice-130.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 13\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "전투 대응"
+    },
+    {
+      "import": "chapel-donation/chapel-before-notice-96.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 6\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    },
+    {
+      "import": "chapel-donation/chapel-before-notice-134.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 8\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    },
+    {
+      "import": "chapel-donation/chapel-before-notice-150.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 9\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    },
+    {
+      "import": "chapter2/c2-before-notice-141.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 14\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    },
+    {
+      "import": "chapter2/c2-before-notice-157.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 17\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "전투 대응"
+    },
+    {
+      "import": "chapter2/c2-before-notice-166.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 18\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "다음 챕터 준비"
+    },
+    {
+      "import": "chapter2/c2-before-notice-166.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 18\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "다음 챕터 준비"
+    },
+    {
+      "command": {
+        "type": "START_NEXT_CHAPTER",
+        "startSpace": "center",
+        "face": 0
+      },
+      "button": "챕터 3 시작",
+      "error": "",
+      "notice": true,
+      "phase": "플레이어의 차례",
+      "round": "라운드 1 · 처치 0"
+    },
+    {
+      "import": "chapel-donation/chapel-before-notice-197.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 3\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "새 타일 배치"
+    },
+    {
+      "import": "chapel-donation/chapel-before-notice-212.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 5\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "새 타일 배치"
+    },
+    {
+      "import": "chapter3/entry/before-clinic-truth.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 5\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    },
+    {
+      "import": "chapter3/attack/before-iosefka-attack.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 7\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "임무의 선택"
+    },
+    {
+      "import": "chapter3/attack/before-iosefka-completion.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 8\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "전투 대응"
+    },
+    {
+      "import": "chapter3/help/before-iosefka-help.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 7\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "임무의 선택"
+    },
+    {
+      "import": "chapter3/help/before-experiment-completion.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 8\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    },
+    {
+      "import": "chapter3/main/before-chapel-npc.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 9\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    },
+    {
+      "import": "chapel-donation/chapel-before-notice-220.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 7\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    },
+    {
+      "import": "chapel-donation/chapel-before-notice-226.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 9\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "플레이어의 차례"
+    },
+    {
+      "import": "clinic51-52/clinic51/clinic51-before-notice-74.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 3\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "전투 대응"
+    },
+    {
+      "import": "clinic51-52/clinic51/clinic51-before-notice-104.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 5\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    },
+    {
+      "import": "clinic51-52/clinic52/clinic52-before-notice-109.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 6\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "플레이어의 차례"
+    },
+    {
+      "import": "clinic51-52/clinic52/clinic52-before-notice-118.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 7\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    },
+    {
+      "import": "clinic51-52/clinic51/clinic51-before-notice-196.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 5\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "새 타일 배치"
+    },
+    {
+      "import": "clinic51-52/clinic51/clinic51-before-notice-214.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 7\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "전투 대응"
+    },
+    {
+      "import": "clinic51-52/clinic52/clinic52-before-notice-191.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 3\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "새 타일 배치"
+    },
+    {
+      "import": "clinic51-52/clinic52/clinic52-before-notice-218.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 5\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    },
+    {
+      "import": "chapter3/cull/before-boss-release.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 9\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "플레이어의 차례"
+    },
+    {
+      "import": "chapter3/cull/before-cull-completion.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 11\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "전투 대응"
+    },
+    {
+      "import": "chapter3/main/before-salvation-completion.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 11\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "전투 대응"
+    },
+    {
+      "import": "chapter3/main/before-final-win.json",
+      "banner": "♜\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 14\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "플레이어의 차례"
+    },
+    {
+      "import": "chapter3/main/before-final-win.json",
+      "banner": "♜\nBLOODBORNE · SOLO\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 14\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "플레이어의 차례"
+    },
+    {
+      "import": "chapter3/cull/before-final-win.json",
+      "banner": "♜\nBLOODBORNE · SOLO\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 12\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "플레이어의 차례"
+    },
+    {
+      "import": "chapter2/c2-before-notice-070.json",
+      "banner": "♜\nBLOODBORNE · SOLO\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 2\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    },
+    {
+      "import": "chapter2/c2-before-notice-074.json",
+      "banner": "♜\nBLOODBORNE · SOLO\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 3\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "전투 대응"
+    },
+    {
+      "import": "chapter2/c2-before-notice-121.json",
+      "banner": "♜\nBLOODBORNE · SOLO\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 11\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    },
+    {
+      "import": "chapter2/c2-before-notice-166.json",
+      "banner": "♜\nBLOODBORNE · SOLO\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 18\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "다음 챕터 준비"
+    },
+    {
+      "command": {
+        "type": "START_NEXT_CHAPTER",
+        "startSpace": "center",
+        "face": 0
+      },
+      "button": "챕터 3 시작",
+      "error": "",
+      "notice": true,
+      "phase": "플레이어의 차례",
+      "round": "라운드 1 · 처치 0"
+    },
+    {
+      "import": "chapter3/entry/before-bridge-cull.json",
+      "banner": "♜\nBLOODBORNE · SOLO\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 3\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    },
+    {
+      "import": "chapel-donation/chapel-before-notice-220.json",
+      "banner": "♜\nBLOODBORNE · SOLO\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 7\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    },
+    {
+      "import": "clinic51-52/clinic51/clinic51-before-notice-196.json",
+      "banner": "♜\nBLOODBORNE · SOLO\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 3\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 5\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "새 타일 배치"
+    },
+    {
+      "import": "clinic51-52/clinic51/clinic51-before-notice-137.json",
+      "banner": "♜\nBLOODBORNE · SOLO\n사냥의 기록\n\n검증 전용 · 기나긴 사냥 · 챕터 2\n\n검증 전용\n검증 전용 진행 · 별도 자동 저장됨\n소모품\n장비·보상\n일지 10\n메뉴\n새 사냥",
+      "dialogs": [
+        "infoDialog"
+      ],
+      "error": "",
+      "phase": "이동과 탐험"
+    }
+  ],
+  "consoleWarningsAndErrors": [],
+  "limitations": [
+    "No small/short viewport override or content-scroll accessibility test",
+    "QA weapons and supplies intentionally change combat duration and resources; this is not normal-equipment balance evidence",
+    "Narrative story dialogs and every equipment/reward combination were not reviewed",
+    "Engine replay preparation and actual browser trigger verification are recorded separately",
+    "No Unity Editor or C# gameplay run"
+  ],
+  "finalState": {
+    "banner": "♜\nBLOODBORNE · SOLO\n사냥의 기록\n\n기나긴 사냥 · 챕터 1\n\n자동 저장됨\n소모품\n장비·보상\n일지 1\n메뉴\n새 사냥",
+    "dialogs": [],
+    "objectives": "재앙의 근원 진행 중\n계몽 2개 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요.",
+    "phase": "플레이어의 차례",
+    "round": "라운드 1 · 처치 0",
+    "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n중앙 등불 / 중앙 등불\n\n독 없음 · 발광 없음",
+    "weapon": "장송의 칼날\n칼날 형태\n무기 고유 효과\n\n공격 속도로, 1칸 이내에 있는 다른 모든 적에게 1피해를 줍니다.\n\n1번 슬롯 · 비어 있음\n재빠른 저미기\n속도 3 · 피해 1\n선택하여 공격 / 회피\n2번 슬롯 · 비어 있음\n긋기\n속도 2 · 피해 2\n선택하여 공격 / 회피\n3번 슬롯 · 비어 있음\n긋기\n속도 2 · 피해 2\n선택하여 공격 / 회피\n\n공격·회피에는 빈 슬롯이 필요합니다."
+  },
+  "additionalScreenshots": [
+    {
+      "file": "screenshots/BB010-before-overlapping-boss-target.jpg",
+      "sha256": "96987aa2016b000ac0cc46b171507f854d1c4aa027926896a15e088db1816857",
+      "mimeType": "image/jpeg",
+      "height": 1252,
+      "width": 938
+    },
+    {
+      "file": "screenshots/BB010-after-boss-target-selected.jpg",
+      "sha256": "73dbca7f6c55c9a7a78bab29ab0bef62be9282b07717ba7f7646fd05ccdf1be0",
+      "mimeType": "image/jpeg",
+      "height": 1252,
+      "width": 1194
+    },
+    {
+      "file": "screenshots/final-normal-game-preserved.jpg",
+      "sha256": "895d20f0ff3734f7741becb1641dc400112f7afe7c8eef2046c96177d38e0d86",
+      "mimeType": "image/jpeg",
+      "height": 1252,
+      "width": 1194
+    }
+  ],
+  "preparedCheckpoints": [
+    {
+      "file": "checkpoints/qa-browser-current.json",
+      "sha256": "e2802bbd501286340f760bd1d024408de4ab977e4822faf6271d04947a033ced",
+      "chapter": 1,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapel-donation/chapel-before-notice-68.json",
+      "sha256": "092ae9bee4102ed7f06d23771823b8f65c75ab52b009225f929d62f977f16969",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapel-donation/chapel-before-notice-75.json",
+      "sha256": "be6b2f8bc435e198ca4e6b9a454a68024812a0b64d979d5d6f55fd0781d419a0",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapel-donation/chapel-before-notice-84.json",
+      "sha256": "a8d080b37d3462da44fef4b82de71d746b23a99be4524543ae5032446d652981",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapel-donation/chapel-before-notice-96.json",
+      "sha256": "d18be49703d08470ee2ca0f0179c955ada1f9047521eadc39df03684bd114059",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapel-donation/chapel-before-notice-134.json",
+      "sha256": "ecc3c06448753a9d678cdefd653d1a5dd10762a1415d4c89523e4bf7ee1a600c",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapel-donation/chapel-before-notice-150.json",
+      "sha256": "5d6bf0480b2bd1ede5c40d7cedefd4d41e2eda51c13f67763e937ad62cbb0577",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapel-donation/chapel-before-notice-165.json",
+      "sha256": "eb723bf906ba621d68c0d22b1a28f7c57e55e49efc11d675ea8ab31887b65418",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapel-donation/chapel-before-notice-168.json",
+      "sha256": "ce6f4cc0d6982e4be347369693ad2a7f80183fefa2a1a0ccbe9f0d0715e68c5b",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapel-donation/chapel-before-notice-184.json",
+      "sha256": "6456c1855923bb6293f89d2b435e52d72013b1ddbd7d57b31f061a65b86cd92a",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapel-donation/chapel-before-notice-193.json",
+      "sha256": "8d9d6de769e0f00d135259e698aaa4853bc46ca753eb30d90089b5c76251e204",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapel-donation/chapel-before-notice-197.json",
+      "sha256": "23c2ffb20d46eddec35689d2928028d261b90daa1578d4cfae93fcbc37470e5a",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapel-donation/chapel-before-notice-212.json",
+      "sha256": "4d604ecb57d43c89d7ba109f5c67437652ce7d6fdc3362ed28e18d6b92afb526",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapel-donation/chapel-before-notice-220.json",
+      "sha256": "27a0ab0f6ca94caf0797cff39ab923a0c3e0411f1193fdd437c85a7fea5371c6",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapel-donation/chapel-before-notice-226.json",
+      "sha256": "0d9da405e40ac7244be7e5e53921baded9c40fc23d9ef2619dfd5b0cfcf281d4",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter2/c2-before-notice-070.json",
+      "sha256": "05d60ab4a0dd4d3cedef9e6c5445f4c605657b9a86158dad171355a98d9a8382",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter2/c2-before-notice-074.json",
+      "sha256": "3e814770a2b6dd5f23ce157acbefbbfd32d9743f1f3b6a1d7ccc3b2af2f8f87b",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter2/c2-before-notice-077.json",
+      "sha256": "2f4817c86c1713c9ccb16e62edc332e4864c3f433676367dfae9374568f0b0bf",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter2/c2-before-notice-102.json",
+      "sha256": "159ab5974b063a89aba38cff5c1ef5e67eda6ee06074fa96c49969070766c372",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter2/c2-before-notice-108.json",
+      "sha256": "1fb2579ea3c18fac25e921a3866378d6d0aad589db48f3099557833ffad0a46b",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter2/c2-before-notice-111.json",
+      "sha256": "fdb9ea582ad1c14da143be3df437cebd3c63f45a71597c7737e75acf68890198",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter2/c2-before-notice-121.json",
+      "sha256": "908caaeee2fb4830bc395f18b38af897d8fd36b5932f08e6f3c57301ca9034e7",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter2/c2-before-notice-130.json",
+      "sha256": "548ba16c72058b02cb11fab2f4972171731c2fc1b489fc338af10db060af0297",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter2/c2-before-notice-141.json",
+      "sha256": "600e57dd8a5b609afd4549d8e50cd7b22e38da01ad63a1f43f1dc9fc27878557",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter2/c2-before-notice-157.json",
+      "sha256": "1d1b286f3d0234a355908cb703ca2d859703e7e9992c686ff7b696df10d0f697",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter2/c2-before-notice-166.json",
+      "sha256": "d323d5bb5f39beb811a34894698b2950f2fc662ff448c2a146539b4b1dd29436",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter3/attack/before-iosefka-attack.json",
+      "sha256": "7fc44e2580d1ce131d5c359f059ec86f8cc7d82b1a6817dc9ed547d4fc883653",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter3/attack/before-iosefka-completion.json",
+      "sha256": "188d04cbbae5261f01d97ffe50662a318605e2dca98c61ce21aa817233bd154a",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter3/entry/before-bridge-cull.json",
+      "sha256": "2467de4f5ed135230476e921e4582d97035e707aaf4c72a16f01dbcae1298d55",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter3/entry/before-clinic-truth.json",
+      "sha256": "cfdf88a70436da77050fc09dc45a9b367f276bb72e65b970084488b598af2d99",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter3/help/before-experiment-completion.json",
+      "sha256": "304851b08bb0f32ffc03a863097711692fc06b910c1f80e2a5960a6ab5269201",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter3/help/before-iosefka-help.json",
+      "sha256": "7fc44e2580d1ce131d5c359f059ec86f8cc7d82b1a6817dc9ed547d4fc883653",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter3/main/before-chapel-npc.json",
+      "sha256": "d58c228700f1c0f9f564ce91fe5e1edb242a6bf3e57bce6c5b36b2bbeea676ea",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter3/cull/before-boss-release.json",
+      "sha256": "b5ae5ba661204cc64085b138ec69c364d5db216e87c719d4c34ee5251aebaf5a",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter3/cull/before-cull-completion.json",
+      "sha256": "176644f72d331fd803db2a81eb2bb21b28c35568d924b7a1d933cccc0521b549",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter3/cull/before-final-win.json",
+      "sha256": "8e6c9a1c80f9495f65badc381f99b2b0637f1937bf9113be571cad99b82befd1",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter3/main/before-boss-release.json",
+      "sha256": "385cbcfe902f44d347ba1ad6af67b8a7492d3cad259c73a761bdf78b873a9521",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter3/main/before-final-win.json",
+      "sha256": "0f9a9798a02fbc655af85a4d165cda7d71c6be768e6f92764d70d01b9af60881",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/chapter3/main/before-salvation-completion.json",
+      "sha256": "385cbcfe902f44d347ba1ad6af67b8a7492d3cad259c73a761bdf78b873a9521",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-74.json",
+      "sha256": "3e814770a2b6dd5f23ce157acbefbbfd32d9743f1f3b6a1d7ccc3b2af2f8f87b",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-104.json",
+      "sha256": "b63552914c2ecbb51b352df039226a25192fedefbb69f5649d00d3864e9f9ca3",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-108.json",
+      "sha256": "8b72194fcf1d553372544243436ccc40d445530c55f3e6fbf8868067fc7806ab",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-117.json",
+      "sha256": "c4f99dce68405767e1d8f2697fd9809c95d78649935e6e8d1dda2e0756c3da5e",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-126.json",
+      "sha256": "05110f3d80ac9720d13073dbbe196f2256d42ebb80a57a870f882abfd4dfff3f",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-137.json",
+      "sha256": "31d1019692f74c57ccb30b609b446dc4670f173bbc79f42a537464ba242b00fe",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-154.json",
+      "sha256": "8764ad43640bde2966ec1c6a25a0ebe1566ca947abdf2660f6d83232153e98b8",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-168.json",
+      "sha256": "4e15b1ac6d842bae4802d69a6a6268343c3ec0e7c101cd982203e262b7b6c3fd",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-177.json",
+      "sha256": "5f4965cf8a852671dfd91e1c402926fc0cf5e073cecdead26aef3dc8099c4338",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-181.json",
+      "sha256": "f5ebbaa09e445a26eca1143b63cb08fbbd0376a8e8b8077659fbc8c0ed644869",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-196.json",
+      "sha256": "5862bccf295ce147a4b8d9740e58d44ef81cc951eb68a726e1241a5c7776cdee",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic51/clinic51-before-notice-214.json",
+      "sha256": "68600f916aa85ad7fa9b66974ca1e3e09086152259aa26d5554bfa034ce92e66",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic52/clinic52-before-notice-109.json",
+      "sha256": "3208d9fc0bcb4049ca3d12030a4ac5d0469b446bbd707ed517bc54b59af7b74f",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic52/clinic52-before-notice-118.json",
+      "sha256": "d26fac699bb2fb531bbab8064f93e7e65e1ff6db7571386ceabf5e282924fc2b",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic52/clinic52-before-notice-127.json",
+      "sha256": "8b54d8cd07f913839a1b175a0632200de02c5e31c8b268450f703161749721fd",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic52/clinic52-before-notice-138.json",
+      "sha256": "03c2a79225382a5198e31532f8889ceecd77d2e5c27f543fcc937e8e924a27a0",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic52/clinic52-before-notice-155.json",
+      "sha256": "04f06452674864f5b25f768485f170a65cfb9cfac69c3b78741557c099e5ed7c",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic52/clinic52-before-notice-178.json",
+      "sha256": "c454d70676a9f54c2d0312a40fc8f03d2a82e5c72653c884f03cfb76c14a98b4",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic52/clinic52-before-notice-187.json",
+      "sha256": "98561ad46b01bb4f214cdb0a4b62ef8777c68fb8e1d4f25828682e7f6933e9a2",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic52/clinic52-before-notice-191.json",
+      "sha256": "cadb6667042de3ae8f4c7c428139e07e89b19d3df95e6b68281dd6ee92170172",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/clinic51-52/clinic52/clinic52-before-notice-218.json",
+      "sha256": "e37b7309fc062821a8b920fc84d545336431aab33a51fb88a698c0d20c4c06d8",
+      "chapter": 3,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/release-patient/patient-before-notice-70.json",
+      "sha256": "f0bab49da256e956b0bae442f56f09a96593b981d53220da4ec7280c982f9757",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/release-patient/patient-before-notice-77.json",
+      "sha256": "805f84b26b48fc2a47d196f228322dd579ef8513e3fc8c97a4c916a751855665",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/release-patient/patient-before-notice-86.json",
+      "sha256": "2eaf0eff08177d4c2c97d2faa3497ea69fab4a2fe9028224bb8bed9fd6361eb2",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/release-patient/patient-before-notice-99.json",
+      "sha256": "71db12c574cc90575599e2ea25d03312a8d4979335c16e95702a5b0fd2186201",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    },
+    {
+      "file": "checkpoints/release-patient/patient-before-notice-113.json",
+      "sha256": "2ef5b9d11610c71d3098b86185413b51f7eda04dd211b2336d50a50fd264e9a0",
+      "chapter": 2,
+      "method": "QA replay prepared from accepted engine commands; product UI import for targeted browser verification"
+    }
+  ],
+  "modelPreparation": {
+    "file": "model-replay-proof.json",
+    "summary": {
+      "manifests": 6,
+      "entriesBefore": 64,
+      "entriesAfter": 64,
+      "eventsBefore": 79,
+      "eventsAfter": 79,
+      "changedEntries": 19,
+      "uniqueSaveFiles": 64,
+      "saveBytesPreserved": true,
+      "triggerCommandsPreserved": true,
+      "uniqueExecutionInputs": 62,
+      "engineModulesUnchanged": 26
+    },
+    "note": "64 engine checkpoint rows / 62 distinct inputs are preparation validation, not 64 browser tests; actual browser observations are separately listed."
+  },
+  "runtimeFiles": [
+    {
+      "file": "package.json",
+      "sha256": "72d0fca8b3607862a326d98be683cf235e8b9a1e6ea9a6384a222b339f976a39",
+      "matchesLive": true
+    },
+    {
+      "file": "hunt-app.js",
+      "sha256": "ca012c6e216db0127789a5b8c3f37779f40a27a31e54913b39a54ded00a8c2a3",
+      "matchesLive": true
+    },
+    {
+      "file": "hunt.html",
+      "sha256": "b16883405154add0ebfb63000a03c024d449cbe363d14b605fae2b1bea8a7ebb",
+      "matchesLive": true
+    },
+    {
+      "file": "hunt.css",
+      "sha256": "a76ff16d8e316923b619bb2bc6808d769bc0d4bca34bd828e0162130b67e9da9",
+      "matchesLive": true
+    },
+    {
+      "file": "hunt-public-text.js",
+      "sha256": "407574f5191cb5599471ad3e64b700a57e72d27df286e912fe55a6d5d2d942fb",
+      "matchesLive": true
+    },
+    {
+      "file": "hunt-mission-feedback.js",
+      "sha256": "d94e38c3e3f2487fad6b328fc6ce5af8df2ee80592048da675dbc347a74e0d06",
+      "matchesLive": true
+    }
+  ],
+  "nativeViewports": [
+    "938x1252",
+    "1194x1252"
+  ],
+  "browserVerificationCounts": {
+    "allCycles": 54,
+    "chapter1Preparation": 5,
+    "chapter2And3IncludingFixRechecks": 49,
+    "pass": 54,
+    "fail": 0
+  }
+}

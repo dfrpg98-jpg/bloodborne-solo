@@ -1,0 +1,1159 @@
+{
+  "scope": "Installed six PNGs and all96 atlas poses: source bytes, inline/sidecar equality, major pose ownership and manual anchor registration",
+  "productFilesModified": false,
+  "sourcePixelsModified": false,
+  "rows": [
+    {
+      "skin": "huntsman-mob",
+      "sourceSHA256": "ef50789dbefefbbbd8d34ee7ad6ccd2fd6fbe47f5278affe1245c55d4a65fd38",
+      "dimensions": [
+        1230,
+        1278
+      ],
+      "displayHeight": 124,
+      "reviewedConfigDisplayHeight": 124,
+      "descriptorMatchesReviewedConfig": true,
+      "majorComponents": 16,
+      "poses": [
+        {
+          "frame": 0,
+          "retainedMajorCore": 25034,
+          "expectedMajorCore": 25034,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 221
+        },
+        {
+          "frame": 1,
+          "retainedMajorCore": 26100,
+          "expectedMajorCore": 26100,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 228
+        },
+        {
+          "frame": 2,
+          "retainedMajorCore": 25746,
+          "expectedMajorCore": 25746,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 226
+        },
+        {
+          "frame": 3,
+          "retainedMajorCore": 26226,
+          "expectedMajorCore": 26226,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 244
+        },
+        {
+          "frame": 4,
+          "retainedMajorCore": 25094,
+          "expectedMajorCore": 25094,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 282
+        },
+        {
+          "frame": 5,
+          "retainedMajorCore": 24673,
+          "expectedMajorCore": 24673,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 298
+        },
+        {
+          "frame": 6,
+          "retainedMajorCore": 25061,
+          "expectedMajorCore": 25061,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 263
+        },
+        {
+          "frame": 7,
+          "retainedMajorCore": 24997,
+          "expectedMajorCore": 24997,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 289
+        },
+        {
+          "frame": 8,
+          "retainedMajorCore": 24514,
+          "expectedMajorCore": 24514,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 324
+        },
+        {
+          "frame": 9,
+          "retainedMajorCore": 24977,
+          "expectedMajorCore": 24977,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 320
+        },
+        {
+          "frame": 10,
+          "retainedMajorCore": 24330,
+          "expectedMajorCore": 24330,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 314
+        },
+        {
+          "frame": 11,
+          "retainedMajorCore": 23362,
+          "expectedMajorCore": 23362,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 238
+        },
+        {
+          "frame": 12,
+          "retainedMajorCore": 24543,
+          "expectedMajorCore": 24543,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 261
+        },
+        {
+          "frame": 13,
+          "retainedMajorCore": 23589,
+          "expectedMajorCore": 23589,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 221
+        },
+        {
+          "frame": 14,
+          "retainedMajorCore": 19318,
+          "expectedMajorCore": 19318,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 195
+        },
+        {
+          "frame": 15,
+          "retainedMajorCore": 18265,
+          "expectedMajorCore": 18265,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 160
+        }
+      ],
+      "errors": []
+    },
+    {
+      "skin": "huntsmans-minion",
+      "sourceSHA256": "dccacb4a1ceea110b7ad6f65aca94a21366cb9d2c50eb463239e832af6dc736b",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "displayHeight": 127,
+      "reviewedConfigDisplayHeight": 127,
+      "descriptorMatchesReviewedConfig": true,
+      "majorComponents": 16,
+      "poses": [
+        {
+          "frame": 0,
+          "retainedMajorCore": 38913,
+          "expectedMajorCore": 38913,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 249
+        },
+        {
+          "frame": 1,
+          "retainedMajorCore": 39297,
+          "expectedMajorCore": 39297,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 250
+        },
+        {
+          "frame": 2,
+          "retainedMajorCore": 38954,
+          "expectedMajorCore": 38954,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 244
+        },
+        {
+          "frame": 3,
+          "retainedMajorCore": 39075,
+          "expectedMajorCore": 39075,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 251
+        },
+        {
+          "frame": 4,
+          "retainedMajorCore": 39435,
+          "expectedMajorCore": 39435,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 293
+        },
+        {
+          "frame": 5,
+          "retainedMajorCore": 39854,
+          "expectedMajorCore": 39854,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 304
+        },
+        {
+          "frame": 6,
+          "retainedMajorCore": 38737,
+          "expectedMajorCore": 38737,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 290
+        },
+        {
+          "frame": 7,
+          "retainedMajorCore": 39583,
+          "expectedMajorCore": 39583,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 252
+        },
+        {
+          "frame": 8,
+          "retainedMajorCore": 39062,
+          "expectedMajorCore": 39062,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 314
+        },
+        {
+          "frame": 9,
+          "retainedMajorCore": 40161,
+          "expectedMajorCore": 40161,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 306
+        },
+        {
+          "frame": 10,
+          "retainedMajorCore": 34807,
+          "expectedMajorCore": 34807,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 251
+        },
+        {
+          "frame": 11,
+          "retainedMajorCore": 38628,
+          "expectedMajorCore": 38628,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 255
+        },
+        {
+          "frame": 12,
+          "retainedMajorCore": 39227,
+          "expectedMajorCore": 39227,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 317
+        },
+        {
+          "frame": 13,
+          "retainedMajorCore": 38460,
+          "expectedMajorCore": 38460,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 246
+        },
+        {
+          "frame": 14,
+          "retainedMajorCore": 35130,
+          "expectedMajorCore": 35130,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 223
+        },
+        {
+          "frame": 15,
+          "retainedMajorCore": 23519,
+          "expectedMajorCore": 23519,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 143
+        }
+      ],
+      "errors": []
+    },
+    {
+      "skin": "scourge-beast",
+      "sourceSHA256": "de2263e279c0848ac0f0a86c09902bf3b7da9cebe606a28653eb94b41fde077f",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "displayHeight": 109,
+      "reviewedConfigDisplayHeight": 109,
+      "descriptorMatchesReviewedConfig": true,
+      "majorComponents": 16,
+      "poses": [
+        {
+          "frame": 0,
+          "retainedMajorCore": 35697,
+          "expectedMajorCore": 35697,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 322
+        },
+        {
+          "frame": 1,
+          "retainedMajorCore": 35437,
+          "expectedMajorCore": 35437,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 297
+        },
+        {
+          "frame": 2,
+          "retainedMajorCore": 35271,
+          "expectedMajorCore": 35271,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 301
+        },
+        {
+          "frame": 3,
+          "retainedMajorCore": 32995,
+          "expectedMajorCore": 32995,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 281
+        },
+        {
+          "frame": 4,
+          "retainedMajorCore": 34934,
+          "expectedMajorCore": 34934,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 358
+        },
+        {
+          "frame": 5,
+          "retainedMajorCore": 36500,
+          "expectedMajorCore": 36500,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 341
+        },
+        {
+          "frame": 6,
+          "retainedMajorCore": 36018,
+          "expectedMajorCore": 36018,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 362
+        },
+        {
+          "frame": 7,
+          "retainedMajorCore": 32810,
+          "expectedMajorCore": 32810,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 359
+        },
+        {
+          "frame": 8,
+          "retainedMajorCore": 33958,
+          "expectedMajorCore": 33958,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 283
+        },
+        {
+          "frame": 9,
+          "retainedMajorCore": 36528,
+          "expectedMajorCore": 36528,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 368
+        },
+        {
+          "frame": 10,
+          "retainedMajorCore": 36800,
+          "expectedMajorCore": 36800,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 343
+        },
+        {
+          "frame": 11,
+          "retainedMajorCore": 34783,
+          "expectedMajorCore": 34783,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 350
+        },
+        {
+          "frame": 12,
+          "retainedMajorCore": 34373,
+          "expectedMajorCore": 34373,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 349
+        },
+        {
+          "frame": 13,
+          "retainedMajorCore": 35448,
+          "expectedMajorCore": 35448,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 304
+        },
+        {
+          "frame": 14,
+          "retainedMajorCore": 31815,
+          "expectedMajorCore": 31815,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 243
+        },
+        {
+          "frame": 15,
+          "retainedMajorCore": 26642,
+          "expectedMajorCore": 26642,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 189
+        }
+      ],
+      "errors": []
+    },
+    {
+      "skin": "female-patient",
+      "sourceSHA256": "e5083982e32e16568866e2b1f45b139cfce37fb79cff8da59f673589be731c95",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "displayHeight": 129,
+      "reviewedConfigDisplayHeight": 129,
+      "descriptorMatchesReviewedConfig": true,
+      "majorComponents": 16,
+      "poses": [
+        {
+          "frame": 0,
+          "retainedMajorCore": 30538,
+          "expectedMajorCore": 30538,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 238
+        },
+        {
+          "frame": 1,
+          "retainedMajorCore": 28952,
+          "expectedMajorCore": 28952,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 210
+        },
+        {
+          "frame": 2,
+          "retainedMajorCore": 30051,
+          "expectedMajorCore": 30051,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 227
+        },
+        {
+          "frame": 3,
+          "retainedMajorCore": 30190,
+          "expectedMajorCore": 30190,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 222
+        },
+        {
+          "frame": 4,
+          "retainedMajorCore": 28287,
+          "expectedMajorCore": 28287,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 291
+        },
+        {
+          "frame": 5,
+          "retainedMajorCore": 27838,
+          "expectedMajorCore": 27838,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 284
+        },
+        {
+          "frame": 6,
+          "retainedMajorCore": 28306,
+          "expectedMajorCore": 28306,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 309
+        },
+        {
+          "frame": 7,
+          "retainedMajorCore": 28770,
+          "expectedMajorCore": 28770,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 235
+        },
+        {
+          "frame": 8,
+          "retainedMajorCore": 32429,
+          "expectedMajorCore": 32429,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 256
+        },
+        {
+          "frame": 9,
+          "retainedMajorCore": 33231,
+          "expectedMajorCore": 33231,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 297
+        },
+        {
+          "frame": 10,
+          "retainedMajorCore": 34821,
+          "expectedMajorCore": 34821,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 340
+        },
+        {
+          "frame": 11,
+          "retainedMajorCore": 30047,
+          "expectedMajorCore": 30047,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 250
+        },
+        {
+          "frame": 12,
+          "retainedMajorCore": 31666,
+          "expectedMajorCore": 31666,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 286
+        },
+        {
+          "frame": 13,
+          "retainedMajorCore": 28517,
+          "expectedMajorCore": 28517,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 224
+        },
+        {
+          "frame": 14,
+          "retainedMajorCore": 27726,
+          "expectedMajorCore": 27726,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 217
+        },
+        {
+          "frame": 15,
+          "retainedMajorCore": 17446,
+          "expectedMajorCore": 17446,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 122
+        }
+      ],
+      "errors": []
+    },
+    {
+      "skin": "iosefka",
+      "sourceSHA256": "05b1c757d02d9aa925c226aec9bb814c1ffb96623155eac00befc11e176a390f",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "displayHeight": 122,
+      "reviewedConfigDisplayHeight": 122,
+      "descriptorMatchesReviewedConfig": true,
+      "majorComponents": 16,
+      "poses": [
+        {
+          "frame": 0,
+          "retainedMajorCore": 28210,
+          "expectedMajorCore": 28210,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 219
+        },
+        {
+          "frame": 1,
+          "retainedMajorCore": 27961,
+          "expectedMajorCore": 27961,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 215
+        },
+        {
+          "frame": 2,
+          "retainedMajorCore": 28332,
+          "expectedMajorCore": 28332,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 225
+        },
+        {
+          "frame": 3,
+          "retainedMajorCore": 28064,
+          "expectedMajorCore": 28064,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 215
+        },
+        {
+          "frame": 4,
+          "retainedMajorCore": 31987,
+          "expectedMajorCore": 31987,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 248
+        },
+        {
+          "frame": 5,
+          "retainedMajorCore": 33064,
+          "expectedMajorCore": 33064,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 264
+        },
+        {
+          "frame": 6,
+          "retainedMajorCore": 31321,
+          "expectedMajorCore": 31321,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 258
+        },
+        {
+          "frame": 7,
+          "retainedMajorCore": 31023,
+          "expectedMajorCore": 31023,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 240
+        },
+        {
+          "frame": 8,
+          "retainedMajorCore": 34826,
+          "expectedMajorCore": 34826,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 328
+        },
+        {
+          "frame": 9,
+          "retainedMajorCore": 31064,
+          "expectedMajorCore": 31064,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 263
+        },
+        {
+          "frame": 10,
+          "retainedMajorCore": 33782,
+          "expectedMajorCore": 33782,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 243
+        },
+        {
+          "frame": 11,
+          "retainedMajorCore": 26395,
+          "expectedMajorCore": 26395,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 241
+        },
+        {
+          "frame": 12,
+          "retainedMajorCore": 30930,
+          "expectedMajorCore": 30930,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 238
+        },
+        {
+          "frame": 13,
+          "retainedMajorCore": 27636,
+          "expectedMajorCore": 27636,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 219
+        },
+        {
+          "frame": 14,
+          "retainedMajorCore": 22456,
+          "expectedMajorCore": 22456,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 197
+        },
+        {
+          "frame": 15,
+          "retainedMajorCore": 20324,
+          "expectedMajorCore": 20324,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 130
+        }
+      ],
+      "errors": []
+    },
+    {
+      "skin": "cleric-beast",
+      "sourceSHA256": "9154cebc4dd93ea0fe53a7aaf0c64166a5b200f24888c8ba2792baf3a6be6d43",
+      "dimensions": [
+        1402,
+        1122
+      ],
+      "displayHeight": 400,
+      "reviewedConfigDisplayHeight": 400,
+      "descriptorMatchesReviewedConfig": true,
+      "majorComponents": 16,
+      "poses": [
+        {
+          "frame": 0,
+          "retainedMajorCore": 24404,
+          "expectedMajorCore": 24404,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 157
+        },
+        {
+          "frame": 1,
+          "retainedMajorCore": 24215,
+          "expectedMajorCore": 24215,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 158
+        },
+        {
+          "frame": 2,
+          "retainedMajorCore": 24150,
+          "expectedMajorCore": 24150,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 164
+        },
+        {
+          "frame": 3,
+          "retainedMajorCore": 24324,
+          "expectedMajorCore": 24324,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 161
+        },
+        {
+          "frame": 4,
+          "retainedMajorCore": 24144,
+          "expectedMajorCore": 24144,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 169
+        },
+        {
+          "frame": 5,
+          "retainedMajorCore": 23058,
+          "expectedMajorCore": 23058,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 191
+        },
+        {
+          "frame": 6,
+          "retainedMajorCore": 23337,
+          "expectedMajorCore": 23337,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 210
+        },
+        {
+          "frame": 7,
+          "retainedMajorCore": 23569,
+          "expectedMajorCore": 23569,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 189
+        },
+        {
+          "frame": 8,
+          "retainedMajorCore": 25690,
+          "expectedMajorCore": 25690,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 170
+        },
+        {
+          "frame": 9,
+          "retainedMajorCore": 25313,
+          "expectedMajorCore": 25313,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 182
+        },
+        {
+          "frame": 10,
+          "retainedMajorCore": 27692,
+          "expectedMajorCore": 27692,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 204
+        },
+        {
+          "frame": 11,
+          "retainedMajorCore": 23615,
+          "expectedMajorCore": 23615,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 187
+        },
+        {
+          "frame": 12,
+          "retainedMajorCore": 24218,
+          "expectedMajorCore": 24218,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 157
+        },
+        {
+          "frame": 13,
+          "retainedMajorCore": 23806,
+          "expectedMajorCore": 23806,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 164
+        },
+        {
+          "frame": 14,
+          "retainedMajorCore": 23346,
+          "expectedMajorCore": 23346,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 145
+        },
+        {
+          "frame": 15,
+          "retainedMajorCore": 19750,
+          "expectedMajorCore": 19750,
+          "foreignMajorCore": 0,
+          "logicalManualAnchor": [
+            256,
+            460
+          ],
+          "clipRects": 116
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "failures": [],
+  "passed": true,
+  "limitations": [
+    "This verifies alpha32 major-component preservation, not every isolated alpha32 point or every alpha1 feather.",
+    "Facing, anatomy and runtime cycles require the separately recorded direct visual review."
+  ]
+}

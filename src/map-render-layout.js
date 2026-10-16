@@ -88,7 +88,7 @@
     return (rect.right - rect.left) * (rect.bottom - rect.top) - intersection(rect,
       { left: 0, top: 0, right: 100, bottom: 100 });
   }
-  function placeToken(preferred, polygon, occupied, radius, rotation, visual) {
+  function placeBody(preferred, polygon, occupied, radius, rotation, visual) {
     const bodies = occupied.map(other => bodyRect(other.point, other.visual, rotation));
     const [preferredX, preferredY] = G.rotatePoint(preferred, rotation);
     const xEdges = new Set([preferredX, visual.visualWidth / 2 + 1, 99 - visual.visualWidth / 2]);
@@ -129,7 +129,7 @@
   function layout({ tileId, rotation = 0, enemies = [], hunter = null, loot = [], tokens = [] } = {}) {
     const definition = G.definition(tileId);
     G.rotatePoint([0, 0], rotation); // Validate rotation before producing objects.
-    const entries = [], occupied = [], claimed = new Set();
+    const entries = [], occupied = [], claimed = new Set(), visibleEnemies = ordered(enemies);
     const spaces = definition.spaces;
     const markers = definition.markers.map((marker, index) => ({ ...marker, index,
       node: `${tileId}:${marker.spaceId}` }));
@@ -148,8 +148,14 @@
     };
     // Empty printed spawn markers are still reserved against survivor placement.
     for (const marker of markers) {
+      // Reserve a future occupant's upright body before packing moved enemies.
+      // This keeps its exact printed anchor available even if its id sorts last.
+      const occupant = visibleEnemies.find(enemy => enemy.node === marker.node &&
+        typeof enemy.id === "string" && (enemy.anchorKind === "lamp"
+          ? marker.kind === "lamp" : marker.kind === "spawn" && enemy.markerId === marker.markerId));
       occupied.push({ point: marker.point, radius: radii.marker, markerIndex: marker.index, node: marker.node,
-        visual: dimensions(marker.kind === "consumable" ? "chest" : marker.kind) });
+        visual: occupant ? dimensions("enemy", occupant)
+          : dimensions(marker.kind === "consumable" ? "chest" : marker.kind) });
       if (marker.kind === "lamp") output("lamp", `lamp-${marker.index}`, marker.node, marker.point,
         { markerIndex: marker.index, count: 1 });
     }
@@ -178,12 +184,16 @@
           marker.kind === "spawn" && marker.markerId === value.markerId)) : [];
       const preferredMarker = preferredMarkers.find(marker => !claimed.has(marker.index)) || preferredMarkers[0];
       const preferred = preferredMarker?.point || space.point;
-      const collisionSet = occupied.filter(item => item.node === value.node &&
+      // Bodies remain upright across tile rotations and can reach into an
+      // adjacent cell, so collision checks include every visible tile object.
+      const collisionSet = occupied.filter(item =>
         !(preferredMarker && item.markerIndex === preferredMarker.index));
       const visual = dimensions(type, value);
-      const selected = type === "token"
-        ? placeToken(preferred, space.polygon, occupied, radii[type], rotation, visual)
-        : place(preferred, space.polygon, collisionSet, radii[type]);
+      // Printed spawns take precedence over packing. Later figures sharing
+      // that marker and moved enemies/hunters avoid the full visible bodies.
+      const selected = preferredMarker && !claimed.has(preferredMarker.index)
+        ? { point: preferred, crowded: false }
+        : placeBody(preferred, space.polygon, collisionSet, radii[type], rotation, visual);
       const markerExact = preferredMarker && distance(selected.point, preferredMarker.point) < 0.000001;
       const extra = { radius: radii[type], ...visual, anchorKind: preferredMarker?.kind || "space",
         ...(preferredMarker ? { markerIndex: preferredMarker.index, ...(preferredMarker.markerId ? { markerId: preferredMarker.markerId } : {}) } : {}),
@@ -192,10 +202,27 @@
       output(type, value.id, value.node, selected.point, extra);
       occupied.push({ point: selected.point, radius: radii[type], node: value.node, visual });
     }
-    for (const enemy of ordered(enemies)) actor("enemy", enemy);
+    const fixedCount = entries.length, deferredEnemies = [], visibleTokens = ordered(tokens);
+    // Printed occupants keep their anchors. A pursuing figure without its own
+    // destination marker uses the remaining space after the hunter, so arriving
+    // enemies do not force an idle hunter to slide through a stationary enemy.
+    for (const enemy of visibleEnemies) {
+      const availableMarker = markers.some(marker => marker.node === enemy.node && !claimed.has(marker.index) &&
+        (enemy.anchorKind === "lamp" ? marker.kind === "lamp" :
+          marker.kind === "spawn" && marker.markerId === enemy.markerId));
+      if (availableMarker) actor("enemy", enemy); else deferredEnemies.push(enemy);
+    }
     if (hunter) actor("hunter", hunter);
-    for (const token of ordered(tokens)) actor("token", token);
-    return entries;
+    for (const enemy of deferredEnemies) actor("enemy", enemy);
+    for (const token of visibleTokens) actor("token", token);
+    // Preserve the public output order used by the DOM and geometry contracts.
+    const actorOrder = new Map([
+      ...visibleEnemies.map(value => `enemy:${value.id}`),
+      ...(hunter ? [`hunter:${hunter.id}`] : []),
+      ...visibleTokens.map(value => `token:${value.id}`)
+    ].map((id, index) => [id, index]));
+    return entries.slice(0, fixedCount).concat(entries.slice(fixedCount).sort((a, b) =>
+      actorOrder.get(`${a.type}:${a.id}`) - actorOrder.get(`${b.type}:${b.id}`)));
   }
   const api = { layout };
   if (typeof module !== "undefined" && module.exports) module.exports = api;

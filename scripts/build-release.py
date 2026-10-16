@@ -20,6 +20,7 @@ RUNTIME_DOCUMENTS = {
     'docs/rules/checklist/RULES_CHECKLIST.xlsx',
     'docs/verification/legacy/VERIFICATION_v085.txt',
 }
+
 IGNORED_PARTS = {'.git', 'node_modules', '__pycache__', '.pytest_cache', 'qa-fixtures', 'qa-fixtures-enemies', 'qa-fixtures-map-v0810'}
 
 def included(relative):

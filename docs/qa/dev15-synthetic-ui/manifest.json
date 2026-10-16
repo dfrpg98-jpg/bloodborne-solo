@@ -1,0 +1,34 @@
+{
+  "format": "synthetic-qa-save-packet-v1",
+  "notice": "합성 재현 전용. 실제 플레이 캠페인 진행·완주 성과가 아닙니다. 정상 저장 불러오기 UI로 직접 사용합니다.",
+  "productVersion": "0.8.13-dev.15",
+  "productCommit": "179afaefd273e2e386714ed7ec80d217ef1e676e",
+  "productLogicChanged": false,
+  "productFilesHashVerified": 595,
+  "files": [
+    {
+      "id": "axe-target-choice",
+      "file": "SYNTHETIC-QA-axe-target-choice.json",
+      "synthetic": true,
+      "realPlayerCampaign": false,
+      "bytes": 17176,
+      "sha256": "906fa9cd59b4adcc8f124ab928375bd033d844d52745c26569928efb0f913722",
+      "commandCount": 15,
+      "phase": "weapon_choice",
+      "seed": 3,
+      "hunterHp": 6
+    },
+    {
+      "id": "bone-leap-slam",
+      "file": "SYNTHETIC-QA-bone-leap-slam.json",
+      "synthetic": true,
+      "realPlayerCampaign": false,
+      "bytes": 63053,
+      "sha256": "d8ea54d1161b44d23a126e11c706a5ff08594a6cd37a33462781b25ae7e0d553",
+      "commandCount": 350,
+      "phase": "boss_react",
+      "seed": 90,
+      "hunterHp": 6
+    }
+  ]
+}

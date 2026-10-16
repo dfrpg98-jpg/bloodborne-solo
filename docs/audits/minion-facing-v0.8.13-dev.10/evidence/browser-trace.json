@@ -1,0 +1,91 @@
+{
+  "mode": "paired-native-Phaser-preview",
+  "ordinaryGameplay": false,
+  "rows": [
+    {
+      "phase": "before",
+      "step": "left-walk-started",
+      "visible": "왼쪽 · frame 4 · X 420.00 / Y 438.00"
+    },
+    {
+      "phase": "after",
+      "step": "left-walk-started",
+      "visible": "왼쪽 · frame 4 · X 420.00 / Y 438.00"
+    },
+    {
+      "phase": "before",
+      "step": "left-heading-before-vertical",
+      "visible": "왼쪽 · frame 0 · X 294.00 / Y 438.00",
+      "screenshot": "resume-before-left.jpg"
+    },
+    {
+      "phase": "before",
+      "step": "vertical-move-started",
+      "visible": "오른쪽 · frame 4 · X 294.00 / Y 438.00",
+      "screenshot": "resume-before-vertical.jpg"
+    },
+    {
+      "phase": "after",
+      "step": "left-heading-before-vertical",
+      "visible": "왼쪽 · frame 0 · X 294.00 / Y 438.00",
+      "screenshot": "resume-after-left.jpg"
+    },
+    {
+      "phase": "after",
+      "step": "vertical-move-started",
+      "visible": "왼쪽 · frame 4 · X 294.00 / Y 438.00",
+      "screenshot": "resume-after-vertical.jpg"
+    },
+    {
+      "phase": "before",
+      "step": "vertical-rest-observed",
+      "visible": "오른쪽 · frame 3 · X 294.00 / Y 358.00",
+      "screenshot": "resume-before-vertical-rest.jpg"
+    },
+    {
+      "phase": "after",
+      "step": "vertical-rest-observed",
+      "visible": "왼쪽 · frame 3 · X 294.00 / Y 358.00",
+      "screenshot": "resume-after-vertical-rest.jpg"
+    },
+    {
+      "phase": "before",
+      "step": "before-aligned-attack",
+      "visible": "왼쪽 · frame 2 · X 294.00 / Y 438.00"
+    },
+    {
+      "phase": "before",
+      "step": "aligned-attack-started",
+      "visible": "오른쪽 · frame 8 · X 294.00 / Y 438.00",
+      "screenshot": "resume-before-aligned-attack.jpg"
+    },
+    {
+      "phase": "after",
+      "step": "before-aligned-attack",
+      "visible": "왼쪽 · frame 2 · X 294.00 / Y 438.00"
+    },
+    {
+      "phase": "after",
+      "step": "aligned-attack-started",
+      "visible": "왼쪽 · frame 8 · X 294.00 / Y 438.00",
+      "screenshot": "resume-after-aligned-attack.jpg"
+    },
+    {
+      "phase": "before",
+      "step": "aligned-attack-rest-observed",
+      "visible": "오른쪽 · frame 2 · X 294.00 / Y 438.00",
+      "screenshot": "resume-before-attack-rest.jpg"
+    },
+    {
+      "phase": "after",
+      "step": "aligned-attack-rest-observed",
+      "visible": "왼쪽 · frame 2 · X 294.00 / Y 438.00",
+      "screenshot": "resume-after-attack-rest.jpg"
+    },
+    {
+      "phase": "after",
+      "step": "horizontal-right-turn",
+      "visible": "오른쪽 · frame 4 · X 294.00 / Y 438.00"
+    }
+  ]
+}

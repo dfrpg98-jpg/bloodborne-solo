@@ -1,0 +1,62 @@
+{
+  "startedAt": "2026-10-15T23:47:06.558Z",
+  "completedAt": "2026-10-15T23:53:55.685Z",
+  "nodeVersion": "v24.19.0",
+  "runtimeVersion": "0.8.13-dev.15",
+  "branch": "fix/playtest-ui-dev15",
+  "head": "2b02a420462f8f3f6caa9b084271fcb201761bf0",
+  "command": [
+    "node",
+    "scripts/test-ci.cjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "spawnError": null,
+  "durationSeconds": 408.953,
+  "counts": {
+    "tests": 2928,
+    "suites": 0,
+    "pass": 2928,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "failedSubtests": [],
+  "sourcePhotoTestsExcluded": [
+    "campaign covers all 67 ordered sources and 60 numbered cards with images",
+    "reference data preserves printed terminology with the confirmed enemy alias and six enemy sides",
+    "default v0.3 state remains without optional firearm fields and photo confirmation retains raw text",
+    "supplied component photos retain their exact bytes, hashes and card provenance"
+  ],
+  "protectedFilesDefinition": "Tracked runtime/code/assets/scripts/test files plus untracked runtime modules and tests; excludes docs/**, Markdown, root TXT prose, work/ and ignored test-results/. Paths re-enumerated after CI to catch additions/removals.",
+  "requiredNewPaths": [
+    "hunt-attack-preview.js",
+    "hunt-location-labels.js",
+    "tests/attack-selection-preview-v0815.test.cjs",
+    "tests/fixed-weapon-action-ui-v0815.test.cjs",
+    "tests/playtest-location-target-ui-v0815.test.cjs",
+    "tests/playtest-fixed-action-integration-v0815.test.cjs",
+    "tests/playtest-attack-preview-integration-v0815.test.cjs",
+    "tests/automatic-dodge-continue-ui-v0815.test.cjs"
+  ],
+  "checkpoints": [
+    {
+      "label": "before",
+      "capturedAt": "2026-10-15T23:47:06.799Z",
+      "fileCount": 595,
+      "aggregateSha256": "394d9d6bbf51f78538bf7f0b326461c74891309be7febbc445df766f27e82413"
+    },
+    {
+      "label": "after",
+      "capturedAt": "2026-10-15T23:53:55.683Z",
+      "fileCount": 595,
+      "aggregateSha256": "394d9d6bbf51f78538bf7f0b326461c74891309be7febbc445df766f27e82413"
+    }
+  ],
+  "allProtectedHashesStable": true,
+  "changedProtectedFiles": [],
+  "remoteCIRunClaimed": false,
+  "sourcePhotographsCopied": false,
+  "validationPassed": true
+}

@@ -237,7 +237,7 @@ test('idle, walk, three attacks, hurt, defeat and transformation occupy distinct
 
 test('weapon metadata adds a separate global and keeps the five existing actor skins available', () => {
   const existing = JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8'));
-  assert.deepEqual(Object.keys(existing).sort(), ['hunter', 'mob', 'beast', 'boss', 'female'].sort());
+  assert.deepEqual(Object.keys(existing).sort(), ['hunter', 'mob', 'beast', 'boss', 'female', ...require('../src/enemy-visuals').ids].sort());
   const script = fs.readFileSync(path.join(dir, 'weapon-manifest.js'), 'utf8');
   const previous = Object.freeze({keep: true});
   const context = {window: {BBCharacterAssets: previous}};

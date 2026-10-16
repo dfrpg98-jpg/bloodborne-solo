@@ -1,0 +1,99 @@
+{
+  "scope": "Only two root-authorized QA test exports; no browser or storage access, no raw save copies.",
+  "files": {
+    "before": {
+      "source": "local-development-archive/bloodborne-v07-qa-campaign-ch1-1061844653-r1.json",
+      "bytes": 14066,
+      "sha256": "7e60aa34d44761e7d5f9970b5ee0fd6e5ef8105387283a5d9c99d7a24800ab68",
+      "validReplay": true,
+      "seed": 1061844653,
+      "qa": true,
+      "qaPreset": "fast",
+      "phase": "combat_react",
+      "round": 1,
+      "revision": 10,
+      "track": 1,
+      "hunterHp": 6,
+      "handCount": 1,
+      "node": "tile-15:right",
+      "commandCount": 10,
+      "lastCommands": [
+        {
+          "type": "MOVE",
+          "cardId": "card-2"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "W"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "NO_ATTACK"
+        }
+      ],
+      "dodgeCommandCount": 0,
+      "inputBytesUnchanged": true
+    },
+    "after": {
+      "source": "local-development-archive/bloodborne-v07-qa-campaign-ch1-1061844653-r2.json",
+      "bytes": 13356,
+      "sha256": "10a9d57fb1950de54a7147b41e1286576235b4aa5afa1f187277c97454fc9603",
+      "validReplay": true,
+      "seed": 1061844653,
+      "qa": true,
+      "qaPreset": "fast",
+      "phase": "refill",
+      "round": 2,
+      "revision": 11,
+      "track": 2,
+      "hunterHp": 4,
+      "handCount": 1,
+      "node": "tile-15:right",
+      "commandCount": 11,
+      "lastCommands": [
+        {
+          "type": "EXPLORE",
+          "edge": "W"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "NO_ATTACK"
+        },
+        {
+          "type": "RESOLVE"
+        }
+      ],
+      "dodgeCommandCount": 0,
+      "inputBytesUnchanged": true
+    }
+  },
+  "gameplayAdvanced": true,
+  "rawByteEqualityExpected": false,
+  "beforeCommandsAreExactPrefix": true,
+  "appendedCommands": [
+    {
+      "type": "RESOLVE"
+    }
+  ],
+  "dodgeAbsentFromAppendedCommands": true,
+  "resolvePresentInAppendedCommands": true,
+  "hpChange": -2
+}

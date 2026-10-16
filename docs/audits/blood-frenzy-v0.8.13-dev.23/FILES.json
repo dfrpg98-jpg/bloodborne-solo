@@ -1,0 +1,132 @@
+[
+  {
+    "file": "evidence/QA-HISTORICAL-fast-warning.jpg",
+    "bytes": 147507,
+    "sha256": "3ef9c48da8c816bf9673ef612186e3eaa7e17f8a7ffcda72dc94a8883fccb3c1"
+  },
+  {
+    "file": "evidence/QA-HISTORICAL-four-damage-death.jpg",
+    "bytes": 42141,
+    "sha256": "5ad5eb362c3a51b7e91d12aaa8d79218bf07c15f106b79844c9cc1edb5345442"
+  },
+  {
+    "file": "evidence/SYNTHETIC-QA-health-condition-notice.jpg",
+    "bytes": 48027,
+    "sha256": "d9acbe62eb331f1fc5086ff435841ea65ba724cc018eb96fb9a6f1d912a0a884"
+  },
+  {
+    "file": "evidence/SYNTHETIC-QA-mist-warning.jpg",
+    "bytes": 158471,
+    "sha256": "066f9da13a3b21f0b7ad894c03ca3a4ef6a6f9772c643546302375baebc1fc84"
+  },
+  {
+    "file": "evidence/SYNTHETIC-QA-tie-no-increase-warning.jpg",
+    "bytes": 157622,
+    "sha256": "2fa0f6299be4aec238dfd11bbf50d165443fa312e73690414e324e254d88efe1"
+  },
+  {
+    "file": "focused-tests.json",
+    "bytes": 2791,
+    "sha256": "ec00a1fd25aba3a4570de0660aa196825943b31f174ee551f29044c313b747ee"
+  },
+  {
+    "file": "focused-tests.tap",
+    "bytes": 19104,
+    "sha256": "42d37162453e3df7bc5304b349e866cc1d07979faaf9e8a0070dd744f002f762"
+  },
+  {
+    "file": "inputs/dev22-normal-frenzy-preview-death-save.json",
+    "bytes": 40253,
+    "sha256": "1326f5ce7134602ab94539202ec3e98ca26373344042db2f142bdd8e296365e1"
+  },
+  {
+    "file": "inputs/QA-HISTORICAL-dev22-frenzy-before-attack-prefix132-save.json",
+    "bytes": 39996,
+    "sha256": "002c2e0f7a1753242e1feeacebd4067028cadd696cac31838212ab93d4d41cf7"
+  },
+  {
+    "file": "inputs/QA-HISTORICAL-dev22-frenzy-declared-before-resolve-prefix133-save.json",
+    "bytes": 43052,
+    "sha256": "24f754c6c2b4725ed2f19220588a0f89e7a78bb878591879ea3a0492d1d312a2"
+  },
+  {
+    "file": "inputs/SYNTHETIC-QA-fast-before.json",
+    "bytes": 37214,
+    "sha256": "ad6588c9c56a5e1b856ff8ddf0fdaf9e18b903364329e2439fb040105fc4d0be"
+  },
+  {
+    "file": "inputs/SYNTHETIC-QA-interrupt-before.json",
+    "bytes": 37484,
+    "sha256": "d1264c9715c005b8d39f910644b5963215d36f34da196efb8a0bbfca4aa68c95"
+  },
+  {
+    "file": "inputs/SYNTHETIC-QA-mist-before.json",
+    "bytes": 37272,
+    "sha256": "054fc512a76e8d00e1357ca583cd65b95e65a55299f5e6fba5e0f691c904f03d"
+  },
+  {
+    "file": "inputs/SYNTHETIC-QA-mist-declared.json",
+    "bytes": 39551,
+    "sha256": "a66a9e8244ff62a9f9350a0784dc8e16d486167aa46c254da6b018f8296734a0"
+  },
+  {
+    "file": "inputs/SYNTHETIC-QA-tie-before.json",
+    "bytes": 37214,
+    "sha256": "ad6588c9c56a5e1b856ff8ddf0fdaf9e18b903364329e2439fb040105fc4d0be"
+  },
+  {
+    "file": "inputs/SYNTHETIC-QA-token-before.json",
+    "bytes": 36803,
+    "sha256": "ce763e2682ce27c34a2817e6f348f2206f5c0e5a096cb2dcdb2b089a49166b10"
+  },
+  {
+    "file": "native/QA-HISTORICAL-direct-death-result.json",
+    "bytes": 40253,
+    "sha256": "1326f5ce7134602ab94539202ec3e98ca26373344042db2f142bdd8e296365e1"
+  },
+  {
+    "file": "native/QA-HISTORICAL-direct-declared.json",
+    "bytes": 43052,
+    "sha256": "24f754c6c2b4725ed2f19220588a0f89e7a78bb878591879ea3a0492d1d312a2"
+  },
+  {
+    "file": "native/QA-HISTORICAL-map-target-death-result.json",
+    "bytes": 40253,
+    "sha256": "32f1b183d376e08f81b6b91c2a9f08d2e29c1b7e70df25f81d695a20807c8b94"
+  },
+  {
+    "file": "native/QA-HISTORICAL-map-target-declared.json",
+    "bytes": 43052,
+    "sha256": "1d87c7660d932be9689a107f69943342aa80999ab88c7bf8ed15bff3daab5305"
+  },
+  {
+    "file": "native/SYNTHETIC-QA-mist-result.json",
+    "bytes": 37420,
+    "sha256": "cb065388e6edbfa4054522ae8c30bbc9f806cb6e52a8ecde91cfec5e1ed80881"
+  },
+  {
+    "file": "native/SYNTHETIC-QA-tie-result.json",
+    "bytes": 37350,
+    "sha256": "d137842233cdacf31575336ea615adb8b74d76864f77298ff1aa705efe318477"
+  },
+  {
+    "file": "native-verification.json",
+    "bytes": 3128,
+    "sha256": "ede058f97d8443cf9b16129d7786af178de105c6ba083dec823b5234169b85b2"
+  },
+  {
+    "file": "README.md",
+    "bytes": 10099,
+    "sha256": "93540bc92dcd13a6f5050372a7faf7c6a8460ca97373d631ad51f18c1a6d0c88"
+  },
+  {
+    "file": "run-focused.cjs",
+    "bytes": 2116,
+    "sha256": "809c80bc99040d36c170bccf80a393f483a82c908ebf733bccca8a2b99e40a1e"
+  },
+  {
+    "file": "verify-native.cjs",
+    "bytes": 4225,
+    "sha256": "38d88a81950f02fd2f71e31e5b313224f749a33a1fa9724cb7cd2359a98b9f09"
+  }
+]

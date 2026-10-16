@@ -1,0 +1,162 @@
+[
+  {
+    "path": "CHANGELOG.md",
+    "sha256": "F0FFF76225B4EA823557FFC3D0EE6445FC1C9C6E85227245F221A7D1D4A253CE",
+    "liveMatches": true
+  },
+  {
+    "path": "QA_GUIDE.txt",
+    "sha256": "F148107C42AB5231A780ACBA26437838BFF99FC24BD91D7970F3EA2FBD0F6FB6",
+    "liveMatches": true
+  },
+  {
+    "path": "README.md",
+    "sha256": "F1E1AC30A3556622983B847D395124C7266B2CF40662E5026763EC9DF69A701C",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/beast.atlas.json",
+    "sha256": "00EFB6900ED88BA3326774EDC5B1A167BCBB9B3D355A71A1651C58196C188211",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/boss.atlas.json",
+    "sha256": "1EB4971BC7DAC09BA03EE4F7B1640A60EE6D0213456027528B3DA2C609561500",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/female.atlas.json",
+    "sha256": "86DE02ADEA3B8060FF348217AE51F213D01ED89440CA4C12226005B9FCB41533",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/hunter.atlas.json",
+    "sha256": "E132DA8A1EF469062F0FE046B72612809CE96BC1C118032D9D65CEE6B2FB0147",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/manifest.js",
+    "sha256": "FC5309EED25A266C8D4A362EA65A5AFCE8F4BD99A5E6219E4AB2B12D97B0B8F7",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/manifest.json",
+    "sha256": "9276D526093BDA24C0A2793D6A34850D2502F8A991CF920C13EE718B27260442",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/mob.atlas.json",
+    "sha256": "C41E9EC1BA5C15C3109D03A8FF3E1790B854F3E2D21E3EFF3D87CB7575190B97",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/w-beast-claw-a.atlas.json",
+    "sha256": "9C13CF30668A6D09F04F970E8C83A954DAD8925C4DF0A83AE6D54E393F6EA983",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/w-beast-claw-b-v0810.atlas.json",
+    "sha256": "93BF9609D32D23E8D123FEBC8A80A4D4AE071E49810C797E50AFBBB874341C6D",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/w-burial-a.atlas.json",
+    "sha256": "99E04C51EC9CB4523D6798DA91B9096FD0241D84B9946E082900F7F802761FB1",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/w-chikage-a.atlas.json",
+    "sha256": "757AB5ABC036AAA65BD1BC9BFF39C59CFCA4C3FECDCDA898141497672DD9AEB7",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/w-hunter-axe-a.atlas.json",
+    "sha256": "F6CC321CBFF8BA3D78761BDA3EC0312E1CF25993ABFF796C9ABE90860E8E932F",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/w-kirkhammer-b.atlas.json",
+    "sha256": "1510368A1CFFB417836AFB1199784BF63A8DFCC78E4AC2E08B6FCBD9FDE4F1E1",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/w-logarius-wheel-a.atlas.json",
+    "sha256": "114526A1ADD2E5A5A8C7CD61E63358D28179B88164A728F9D3B09DEA23B00F6A",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/w-ludwigs-holy-blade-b.atlas.json",
+    "sha256": "3D4B6CB4D579307C908724AED9B79A37EE94E5447BD507876D35DEE3E035F0B2",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/w-reiterpallasch-a.atlas.json",
+    "sha256": "BA9EA824393A798EF2CAF4DA6E9DAEF89F002E38AEEBE8CEB297842588BEDAFA",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/w-reiterpallasch-b.atlas.json",
+    "sha256": "44FF1DBF6B78FC0FFB0BC19F2E943C8676211E247BD036EEFE966EB64C57A891",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/w-rifle-spear-a.atlas.json",
+    "sha256": "7E4E53DF7311EEB404DF6F478490A4AC6EFC99F4C991A68EDA706C8290AC7874",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/w-rifle-spear-b.atlas.json",
+    "sha256": "43444BFC64A974F44F9FD638A70878A814E8AAE3028B96DC6CC26C8367141CFE",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/w-saw-spear-a.atlas.json",
+    "sha256": "A871998844AE3966C4AC598FD6B7D9056A4984E085290B7DEE1A420946DC0658",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/w-stake-driver-a.atlas.json",
+    "sha256": "F5F8B7DF71613BDF1B1FCF0953598613D1D301889F3AFF516221BEFAFD7E1392",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/w-threaded-cane-a.atlas.json",
+    "sha256": "94C702A7ED1F29912A1B5DAF276644D86CE42043AF8F3F6B75A56E73E94AED6F",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/weapon-manifest.js",
+    "sha256": "3713D5A71462298C247899EC5126DF7629DA3B6D0C45EE83B80B632272CF42B9",
+    "liveMatches": true
+  },
+  {
+    "path": "assets/characters/weapon-manifest.json",
+    "sha256": "A8580CFEF8EF2DCA729E5DEE6ABA5E1AA04DBAF8888FE2D1976FF0DC75887D00",
+    "liveMatches": true
+  },
+  {
+    "path": "hunt-presentation.js",
+    "sha256": "8DB79C576CB9CB8F3E47EDAA788CB64D909EE22C58CF29840BC358ED67310CF5",
+    "liveMatches": true
+  },
+  {
+    "path": "hunt.html",
+    "sha256": "42309F898FA13EA628B33AC1AA7C8D7D03FB45F6576F93B967212E7EB0A9D01E",
+    "liveMatches": true
+  },
+  {
+    "path": "package.json",
+    "sha256": "62E86E7A672B33CCFC649131173189CF592DC1FDEE82DCE501120C4F30F76B56",
+    "liveMatches": true
+  },
+  {
+    "path": "weapon-gallery.html",
+    "sha256": "8CABDB53EA1BB633704BCE5732ECA9B21900C17B413D3316A1C27FC4C9A64DE8",
+    "liveMatches": true
+  },
+  {
+    "path": "weapon-gallery.js",
+    "sha256": "83061B33990F1511706FDE91F18C32D087FAF11EC45D728391329F2CCA9267CD",
+    "liveMatches": true
+  }
+]

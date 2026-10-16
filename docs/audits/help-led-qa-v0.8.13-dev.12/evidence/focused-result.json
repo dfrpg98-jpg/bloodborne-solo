@@ -1,0 +1,116 @@
+{
+  "runtimeVersion": "0.8.13-dev.12",
+  "nodeVersion": "v24.19.0",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/title-help-v0813.test.cjs",
+    "tests/context-actions-v081.test.cjs",
+    "tests/qa-campaign-ui-v078.test.cjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "durationSeconds": 0.749,
+  "counts": {
+    "tests": 50,
+    "suites": 0,
+    "pass": 50,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "failedSubtests": [],
+  "checkpoints": [
+    {
+      "label": "before-focused",
+      "capturedAt": "2026-10-15T11:36:32.750Z",
+      "fileCount": 565,
+      "aggregateSha256": "488f6836fdfe713601d3c7a49741e3b05679086afc40c7b4348bc8905657f038"
+    },
+    {
+      "label": "after-focused",
+      "capturedAt": "2026-10-15T11:36:34.279Z",
+      "fileCount": 565,
+      "aggregateSha256": "488f6836fdfe713601d3c7a49741e3b05679086afc40c7b4348bc8905657f038"
+    }
+  ],
+  "protectedFilesDefinition": "Tracked runtime/code/assets/scripts/tests plus untracked runtime modules and tests; excludes docs/**, Markdown, root TXT prose, work/ and test-results/. Paths re-enumerated after run.",
+  "allProtectedHashesStable": true,
+  "changedProtectedFiles": [],
+  "immutableScopeBefore": {
+    "workingEngineBlob": "407af9c4e9d0142b49e01a7edfac56257afef5dc",
+    "workingEngineSHA256": "c8483d7821da91bbe9927602c9833c71e33b8bda2d88a81b3c1924baa8d1b48d",
+    "references": [
+      {
+        "ref": "12c2f2b",
+        "commit": "12c2f2be3b8d58146c708c42e382a060c7d36145",
+        "changedImmutableFiles": [],
+        "engineBlob": "407af9c4e9d0142b49e01a7edfac56257afef5dc",
+        "workingEngineMatchesReference": true
+      },
+      {
+        "ref": "ca0abda",
+        "commit": "ca0abdacb4800c5e32e38f6d5c563ac9de06cb57",
+        "changedImmutableFiles": [],
+        "engineBlob": "407af9c4e9d0142b49e01a7edfac56257afef5dc",
+        "workingEngineMatchesReference": true
+      },
+      {
+        "ref": "2ce990f",
+        "commit": "2ce990fadbbd3256f48aeabfeaa732bb9da1932b",
+        "changedImmutableFiles": [],
+        "engineBlob": "407af9c4e9d0142b49e01a7edfac56257afef5dc",
+        "workingEngineMatchesReference": true
+      }
+    ]
+  },
+  "immutableScopeAfter": {
+    "workingEngineBlob": "407af9c4e9d0142b49e01a7edfac56257afef5dc",
+    "workingEngineSHA256": "c8483d7821da91bbe9927602c9833c71e33b8bda2d88a81b3c1924baa8d1b48d",
+    "references": [
+      {
+        "ref": "12c2f2b",
+        "commit": "12c2f2be3b8d58146c708c42e382a060c7d36145",
+        "changedImmutableFiles": [],
+        "engineBlob": "407af9c4e9d0142b49e01a7edfac56257afef5dc",
+        "workingEngineMatchesReference": true
+      },
+      {
+        "ref": "ca0abda",
+        "commit": "ca0abdacb4800c5e32e38f6d5c563ac9de06cb57",
+        "changedImmutableFiles": [],
+        "engineBlob": "407af9c4e9d0142b49e01a7edfac56257afef5dc",
+        "workingEngineMatchesReference": true
+      },
+      {
+        "ref": "2ce990f",
+        "commit": "2ce990fadbbd3256f48aeabfeaa732bb9da1932b",
+        "changedImmutableFiles": [],
+        "engineBlob": "407af9c4e9d0142b49e01a7edfac56257afef5dc",
+        "workingEngineMatchesReference": true
+      }
+    ]
+  },
+  "frozenProducts": [
+    {
+      "path": "hunt-app.js",
+      "sha256": "5b2a5331131819ab3140043db5543f34d9684bd97dd756bc5c2b43a1d392ecd0",
+      "rootExpectedPrefix": "5b2a53311318",
+      "matchesRootStamp": true
+    },
+    {
+      "path": "game-help.js",
+      "sha256": "7627700cd6ca786f4a3dfe9bf3d37db1b0e60dc309634b00c3ebfe161b9d4d59",
+      "rootExpectedPrefix": "7627700cd6ca",
+      "matchesRootStamp": true
+    }
+  ],
+  "fullCIRun": false,
+  "remoteCIRun": false,
+  "newTestsAdded": false,
+  "browserOrStorageAccessed": false,
+  "authoritativeRun": "Final50 after observed attack-button label correction; supersedes earlier focused result, not an additional50 to aggregate.",
+  "validationPassed": true
+}

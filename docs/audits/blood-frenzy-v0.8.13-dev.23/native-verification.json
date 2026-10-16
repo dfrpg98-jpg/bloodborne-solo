@@ -1,0 +1,91 @@
+{
+  "generatedAt": "2026-10-16T11:03:05.044Z",
+  "sourceZip": {
+    "bytes": 19092,
+    "sha256": "500b6f5fe71f14118c8cee2c074583fcce79414059535f3358154c1f1e3d830e"
+  },
+  "normalOriginal": {
+    "file": "inputs/dev22-normal-frenzy-preview-death-save.json",
+    "bytes": 40253,
+    "sha256": "1326f5ce7134602ab94539202ec3e98ca26373344042db2f142bdd8e296365e1",
+    "commands": 134
+  },
+  "historicalPrefixes": [
+    {
+      "file": "inputs/QA-HISTORICAL-dev22-frenzy-before-attack-prefix132-save.json",
+      "bytes": 39996,
+      "sha256": "002c2e0f7a1753242e1feeacebd4067028cadd696cac31838212ab93d4d41cf7",
+      "commands": 132
+    },
+    {
+      "file": "inputs/QA-HISTORICAL-dev22-frenzy-declared-before-resolve-prefix133-save.json",
+      "bytes": 43052,
+      "sha256": "24f754c6c2b4725ed2f19220588a0f89e7a78bb878591879ea3a0492d1d312a2",
+      "commands": 133
+    }
+  ],
+  "originalCommandReplayByteExact": true,
+  "nativeMapTarget": {
+    "files": [
+      {
+        "file": "native/QA-HISTORICAL-map-target-declared.json",
+        "bytes": 43052,
+        "sha256": "1d87c7660d932be9689a107f69943342aa80999ab88c7bf8ed15bff3daab5305",
+        "commands": 133
+      },
+      {
+        "file": "native/QA-HISTORICAL-map-target-death-result.json",
+        "bytes": 40253,
+        "sha256": "32f1b183d376e08f81b6b91c2a9f08d2e29c1b7e70df25f81d695a20807c8b94",
+        "commands": 134
+      }
+    ],
+    "semanticStateAndCommandsEqual": true,
+    "rawBytesEqual": false,
+    "reason": "Existing map-target ATTACK button serializes enemyId before cardId; original general ATTACK serializes enemyId last. No value or game-state difference."
+  },
+  "nativeDirectPrefix133": {
+    "files": [
+      {
+        "file": "native/QA-HISTORICAL-direct-declared.json",
+        "bytes": 43052,
+        "sha256": "24f754c6c2b4725ed2f19220588a0f89e7a78bb878591879ea3a0492d1d312a2",
+        "commands": 133
+      },
+      {
+        "file": "native/QA-HISTORICAL-direct-death-result.json",
+        "bytes": 40253,
+        "sha256": "1326f5ce7134602ab94539202ec3e98ca26373344042db2f142bdd8e296365e1",
+        "commands": 134
+      }
+    ],
+    "rawBytesEqualOriginals": true
+  },
+  "synthetic": [
+    {
+      "file": "inputs/SYNTHETIC-QA-tie-before.json",
+      "bytes": 37214,
+      "sha256": "ad6588c9c56a5e1b856ff8ddf0fdaf9e18b903364329e2439fb040105fc4d0be",
+      "commands": 105
+    },
+    {
+      "file": "native/SYNTHETIC-QA-tie-result.json",
+      "bytes": 37350,
+      "sha256": "d137842233cdacf31575336ea615adb8b74d76864f77298ff1aa705efe318477",
+      "commands": 107
+    },
+    {
+      "file": "inputs/SYNTHETIC-QA-mist-before.json",
+      "bytes": 37272,
+      "sha256": "054fc512a76e8d00e1357ca583cd65b95e65a55299f5e6fba5e0f691c904f03d",
+      "commands": 105
+    },
+    {
+      "file": "native/SYNTHETIC-QA-mist-result.json",
+      "bytes": 37420,
+      "sha256": "cb065388e6edbfa4054522ae8c30bbc9f806cb6e52a8ecde91cfec5e1ed80881",
+      "commands": 107
+    }
+  ],
+  "scope": "Normal UI death original, QA-HISTORICAL exact earned-history prefixes, and separate SYNTHETIC-QA. Not a new campaign run. No previous test counts added."
+}

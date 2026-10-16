@@ -1,0 +1,99 @@
+{
+  "publicBefore": {
+    "deckCount": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+    "hand": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.지구력기본 지구력회피 · 이 슬롯을 비웁니다.근력기본 근력공격 피해 +1",
+    "locationText": "현재 위치 · 중앙 등불 / 중앙 등불",
+    "modeLabel": "기나긴 사냥 · 챕터 1",
+    "phaseTitle": "플레이어의 차례",
+    "roundLabel": "라운드 1 · 처치 0",
+    "status": "사냥꾼체력 6 / 6 · 피의 유지 0 / 3중앙 등불 / 중앙 등불독 없음 · 발광 없음",
+    "weaponFace": "칼날 형태",
+    "weaponName": "장송의 칼날"
+  },
+  "publicAfter": {
+    "deckCount": "덱 9장 · 버림 0장 · 슬롯 0장 / 총 12장",
+    "hand": "지구력기본 지구력회피 · 이 슬롯을 비웁니다.지구력기본 지구력회피 · 이 슬롯을 비웁니다.근력기본 근력공격 피해 +1",
+    "locationText": "현재 위치 · 중앙 등불 / 중앙 등불",
+    "modeLabel": "기나긴 사냥 · 챕터 1",
+    "phaseTitle": "플레이어의 차례",
+    "roundLabel": "라운드 1 · 처치 0",
+    "status": "사냥꾼체력 6 / 6 · 피의 유지 0 / 3중앙 등불 / 중앙 등불독 없음 · 발광 없음",
+    "weaponFace": "칼날 형태",
+    "weaponName": "장송의 칼날"
+  },
+  "sameVisibleProgress": true,
+  "scripts": [
+    "components/cards.js",
+    "data.js",
+    "campaigns/long-hunt/data.js",
+    "campaigns/long-hunt/narrative-text.js",
+    "tile-geometry.js",
+    "map-render-layout.js",
+    "start-placement.js",
+    "enemy-deck.js",
+    "chapter-engine.js",
+    "components/extended-weapons.js",
+    "extended-weapons.js",
+    "components/extended-firearms.js",
+    "extended-firearms.js",
+    "hunt-data.js",
+    "temporary-components.js",
+    "components/supplied-components.js",
+    "actual-components.js",
+    "components/extended-enemies.js",
+    "extended-enemies.js",
+    "boss-components.js",
+    "firearms-engine.js",
+    "mission-engine.js",
+    "extended-rewards.js",
+    "rewards-engine.js",
+    "weapon-rules.js",
+    "weapon-flow.js",
+    "extended-enemy-rules.js",
+    "qa-mode.js",
+    "hunt-engine.js",
+    "hunt-public-text.js",
+    "hunt-mission-feedback.js",
+    "enemy-action-history.js",
+    "inventory.js",
+    "hunt-shell.js",
+    "hunt-context.js",
+    "hunt-departure.js",
+    "hunt-camera.js",
+    "hunt-animation-events.js",
+    "assets/vendor/phaser-4.2.1.min.js",
+    "assets/characters/manifest.js?v=0.8.13-dev.5&h=fc5309eed25a",
+    "assets/characters/weapon-manifest.js?v=0.8.13-dev.5",
+    "weapon-visuals.js",
+    "hunt-presentation.js?v=0.8.13-dev.5",
+    "hunt-app.js"
+  ],
+  "presentation": {
+    "presentation": "phaser",
+    "presentationActors": "1",
+    "presentationAttacks": "0",
+    "presentationCharacters": "ready",
+    "presentationMotion": "full",
+    "presentationMoves": "0",
+    "presentationShots": "0",
+    "presentationVersion": "4.2.1",
+    "presentationWeapon": "w-burial-a",
+    "presentationWeaponReady": "true"
+  },
+  "console": [],
+  "screens": [
+    {
+      "file": "regular-game-after-0.jpg",
+      "time": "2026-10-13T13:27:26.559Z"
+    },
+    {
+      "file": "regular-game-after-1.jpg",
+      "time": "2026-10-13T13:27:27.026Z"
+    },
+    {
+      "file": "regular-game-after-2.jpg",
+      "time": "2026-10-13T13:27:27.489Z"
+    }
+  ],
+  "stage": "Final beast origin correction loaded through content-hash script reference."
+}

@@ -1,0 +1,13 @@
+{
+  "genericOriginalPngCount": 5,
+  "genericFramesInspected": 80,
+  "framesRepaired": 12,
+  "primaryPixelsRecovered": 6095,
+  "foreignPrimaryPixelsAfter": 0,
+  "missingPrimaryPixelsAfter": 0,
+  "unambiguousFeatherPixelsWithin3pxRetained": 66502,
+  "unambiguousFeatherPixelsWithin3pxMissing": 0,
+  "sourceTransformsPreserved": true,
+  "originalPngHashesMatch": true,
+  "allGenericFacingInspected": "All eighty poses face right in source; walking weight transfer, attack reach, hit recoil and death collapse are intentional and preserved. Idle clothing/feet pixel medians are not actor roots; no unsupported center-of-mass recentering was applied."
+}

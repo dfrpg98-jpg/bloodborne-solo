@@ -1,0 +1,298 @@
+{
+  "method": "New independently selected seed13 legal QA route. This is not an assertion of the root browser session original seed, which is unknown. Only E.create/E.dispatch and exact export/import were used.",
+  "setup": {
+    "seed": 13,
+    "weaponId": "burial",
+    "face": 0,
+    "firearmId": "hunter-pistol",
+    "startSpace": "center",
+    "options": {
+      "campaign": true,
+      "rulesVersion": 14,
+      "qa": {
+        "preset": "custom",
+        "startRewards": [],
+        "startConsumables": [
+          "qa-heal",
+          "qa-heal",
+          "qa-heal",
+          "qa-heal",
+          "qa-heal",
+          "qa-heal",
+          "qa-heal",
+          "qa-heal",
+          "qa-heal",
+          "qa-heal",
+          "qa-cards",
+          "qa-cards",
+          "qa-cards",
+          "qa-cards",
+          "qa-cards",
+          "qa-cards",
+          "qa-cards",
+          "qa-cards",
+          "qa-cards",
+          "qa-cards",
+          "qa-travel",
+          "qa-travel",
+          "qa-travel",
+          "qa-travel",
+          "qa-travel",
+          "qa-travel",
+          "qa-travel",
+          "qa-travel",
+          "qa-travel",
+          "qa-travel"
+        ]
+      }
+    }
+  },
+  "commands": [
+    {
+      "type": "USE_CONSUMABLE",
+      "itemId": "item-qa-1-21"
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "N"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 0
+    },
+    {
+      "type": "STOP_MOVE"
+    },
+    {
+      "type": "TRANSFORM",
+      "cardId": "card-5"
+    },
+    {
+      "type": "ATTACK",
+      "cardId": "card-3",
+      "slot": 1,
+      "enemyId": "huntsman-mob-1",
+      "pullIds": [
+        "huntsman-mob-1",
+        "scourge-beast-1"
+      ]
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "ATTACK",
+      "cardId": "card-1",
+      "slot": 0,
+      "enemyId": "huntsman-mob-1"
+    },
+    {
+      "type": "RESOLVE"
+    }
+  ],
+  "checkpoints": [
+    {
+      "commandCount": 3,
+      "phase": "move",
+      "hp": 6,
+      "position": "tile-03:entry",
+      "face": 0,
+      "hand": [
+        {
+          "id": "card-5",
+          "kind": "skill"
+        },
+        {
+          "id": "card-3",
+          "kind": "endurance"
+        },
+        {
+          "id": "card-1",
+          "kind": "endurance"
+        }
+      ],
+      "enemies": [
+        {
+          "id": "huntsman-mob-1",
+          "kind": "huntsman-mob",
+          "node": "tile-03:room",
+          "hp": 4
+        },
+        {
+          "id": "scourge-beast-1",
+          "kind": "scourge-beast",
+          "node": "tile-03:room",
+          "hp": 4
+        }
+      ],
+      "nextCommands": [
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-5"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-3",
+          "slot": 1,
+          "enemyId": "huntsman-mob-1",
+          "pullIds": [
+            "huntsman-mob-1",
+            "scourge-beast-1"
+          ]
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-1",
+          "slot": 0,
+          "enemyId": "huntsman-mob-1"
+        },
+        {
+          "type": "RESOLVE"
+        }
+      ]
+    },
+    {
+      "commandCount": 5,
+      "phase": "hunter",
+      "hp": 6,
+      "position": "tile-03:entry",
+      "face": 1,
+      "hand": [
+        {
+          "id": "card-3",
+          "kind": "endurance"
+        },
+        {
+          "id": "card-1",
+          "kind": "endurance"
+        }
+      ],
+      "enemies": [
+        {
+          "id": "huntsman-mob-1",
+          "kind": "huntsman-mob",
+          "node": "tile-03:room",
+          "hp": 4
+        },
+        {
+          "id": "scourge-beast-1",
+          "kind": "scourge-beast",
+          "node": "tile-03:room",
+          "hp": 4
+        }
+      ],
+      "nextCommands": [
+        {
+          "type": "ATTACK",
+          "cardId": "card-3",
+          "slot": 1,
+          "enemyId": "huntsman-mob-1",
+          "pullIds": [
+            "huntsman-mob-1",
+            "scourge-beast-1"
+          ]
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-1",
+          "slot": 0,
+          "enemyId": "huntsman-mob-1"
+        },
+        {
+          "type": "RESOLVE"
+        }
+      ]
+    },
+    {
+      "commandCount": 7,
+      "phase": "hunter",
+      "hp": 4,
+      "position": "tile-03:entry",
+      "face": 1,
+      "hand": [
+        {
+          "id": "card-1",
+          "kind": "endurance"
+        }
+      ],
+      "enemies": [
+        {
+          "id": "huntsman-mob-1",
+          "kind": "huntsman-mob",
+          "node": "tile-03:entry",
+          "hp": 1
+        },
+        {
+          "id": "scourge-beast-1",
+          "kind": "scourge-beast",
+          "node": "tile-03:entry",
+          "hp": 4
+        }
+      ],
+      "nextCommands": [
+        {
+          "type": "ATTACK",
+          "cardId": "card-1",
+          "slot": 0,
+          "enemyId": "huntsman-mob-1"
+        },
+        {
+          "type": "RESOLVE"
+        }
+      ]
+    },
+    {
+      "commandCount": 8,
+      "phase": "combat_react",
+      "hp": 4,
+      "position": "tile-03:entry",
+      "face": 1,
+      "hand": [],
+      "enemies": [
+        {
+          "id": "huntsman-mob-1",
+          "kind": "huntsman-mob",
+          "node": "tile-03:entry",
+          "hp": 1
+        },
+        {
+          "id": "scourge-beast-1",
+          "kind": "scourge-beast",
+          "node": "tile-03:entry",
+          "hp": 4
+        }
+      ],
+      "nextCommands": [
+        {
+          "type": "RESOLVE"
+        }
+      ]
+    },
+    {
+      "commandCount": 9,
+      "phase": "hunter",
+      "hp": 1,
+      "position": "tile-03:entry",
+      "face": 1,
+      "hand": [],
+      "enemies": [
+        {
+          "id": "scourge-beast-1",
+          "kind": "scourge-beast",
+          "node": "tile-03:entry",
+          "hp": 4
+        }
+      ],
+      "nextCommands": []
+    }
+  ]
+}

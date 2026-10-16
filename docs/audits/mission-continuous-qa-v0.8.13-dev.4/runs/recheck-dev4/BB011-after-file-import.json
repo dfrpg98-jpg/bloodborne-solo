@@ -1,0 +1,66 @@
+{
+  "method": "After the continuous campaign finished, imported its actual product export through the normal chooser. No checkpoint imports occurred during either continuous run.",
+  "before": {
+    "context": "선택한 대상\n\n재앙의 야수 #3\n×\n\n체력 4 / 4 · 현재 단계의 선택은 행동 패널에서 진행하세요.\n\n공격과 능력\n기본 공격\n재빠른 휩쓸기\n속도 3 · 피해 2\n특수 공격\n달려들어 뜯기\n속도 1 · 피해 4\n\n기절 · 회피할 수 없습니다.\n\n전용 능력\n야수의 포효\n\n[속도 1]로 (사냥꾼과 같은 속도라면, 사냥꾼 공격 전에), 이 칸에 재앙의 야수 하나를 출현시킵니다.",
+    "decision": "완료한 사냥 저장 내보내기",
+    "dialog": [],
+    "error": "",
+    "hand": [],
+    "help": "기나긴 사냥 챕터 1~3을 모두 완수했습니다. 전체 캠페인의 기록과 보상을 파일로 보관하세요.",
+    "infoError": "",
+    "location": "현재 위치 · 사냥꾼의 꿈",
+    "mission": "",
+    "mode": "검증 전용 · 기나긴 사냥 · 챕터 3",
+    "notice": false,
+    "phase": "기나긴 사냥 캠페인 완수",
+    "round": "라운드 5 · 처치 5",
+    "slots": [
+      {
+        "occupied": false,
+        "slot": 0
+      },
+      {
+        "occupied": false,
+        "slot": 1
+      },
+      {
+        "occupied": false,
+        "slot": 2
+      }
+    ],
+    "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n사냥꾼의 꿈\n\n독 없음 · 발광 없음"
+  },
+  "after": {
+    "context": "",
+    "decision": "완료한 사냥 저장 내보내기",
+    "dialog": [],
+    "error": "",
+    "hand": [],
+    "help": "기나긴 사냥 챕터 1~3을 모두 완수했습니다. 전체 캠페인의 기록과 보상을 파일로 보관하세요.",
+    "infoError": "",
+    "location": "현재 위치 · 사냥꾼의 꿈",
+    "mission": "",
+    "mode": "검증 전용 · 기나긴 사냥 · 챕터 3",
+    "notice": false,
+    "phase": "기나긴 사냥 캠페인 완수",
+    "round": "라운드 5 · 처치 5",
+    "slots": [
+      {
+        "occupied": false,
+        "slot": 0
+      },
+      {
+        "occupied": false,
+        "slot": 1
+      },
+      {
+        "occupied": false,
+        "slot": 2
+      }
+    ],
+    "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n사냥꾼의 꿈\n\n독 없음 · 발광 없음"
+  },
+  "targetCleared": true,
+  "costsPreserved": true,
+  "noReplayedNotice": true
+}

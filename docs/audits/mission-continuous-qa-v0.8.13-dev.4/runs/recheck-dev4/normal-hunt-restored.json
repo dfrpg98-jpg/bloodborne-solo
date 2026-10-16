@@ -1,0 +1,53 @@
+{
+  "baselineSource": "Initial visible DOM snapshot before QA setup",
+  "expected": {
+    "phase": "플레이어의 차례",
+    "hp": 6,
+    "echoes": 0,
+    "round": 1,
+    "kills": 0,
+    "hand": [
+      "card-3",
+      "card-1",
+      "card-7"
+    ],
+    "location": "현재 위치 · 중앙 등불 / 중앙 등불",
+    "mode": "기나긴 사냥 · 챕터 1"
+  },
+  "after": {
+    "context": "",
+    "decision": "선택 기술: 없음 · 슬롯: 없음\n\n이동\n무기 변형\n꿈으로 이동\n화기 다시 준비 · 손패 1장\n상호작용 · 손패 1장\n플레이어의 차례 마치기",
+    "dialog": [],
+    "error": "",
+    "hand": [
+      "card-3",
+      "card-1",
+      "card-7"
+    ],
+    "help": "아래 손패에서 기술을 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.",
+    "infoError": "",
+    "location": "현재 위치 · 중앙 등불 / 중앙 등불",
+    "mission": "",
+    "mode": "기나긴 사냥 · 챕터 1",
+    "notice": false,
+    "phase": "플레이어의 차례",
+    "round": "라운드 1 · 처치 0",
+    "slots": [
+      {
+        "occupied": false,
+        "slot": 0
+      },
+      {
+        "occupied": false,
+        "slot": 1
+      },
+      {
+        "occupied": false,
+        "slot": 2
+      }
+    ],
+    "status": "사냥꾼\n\n체력 6 / 6 · 피의 유지 0 / 3\n\n중앙 등불 / 중앙 등불\n\n독 없음 · 발광 없음"
+  },
+  "targetCleared": true,
+  "utilityCount": 0
+}

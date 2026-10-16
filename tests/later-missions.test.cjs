@@ -387,7 +387,8 @@ test("crypt captivity rejects real steps and central-lamp teleport attempts unti
   assert.deepEqual(s, unchanged);
   s = go(s, "STOP_MOVE"); H(s).position = "tile-14:center"; hand(s);
   assert(E.interactionOptions(s).teleport);
-  assert.throws(() => go(s, "INTERACT", { cardId: H(s).hand[0].id, lamp: entry }), /진입할 수 없는/);
+  assert(!E.centralLampDestinations(s).some(n=>n.id===entry), "locked crypt is absent from legal destinations");
+  assert.throws(() => go(s, "INTERACT", { cardId: H(s).hand[0].id, lamp: entry }), /중앙 등불에서 목적지/);
   assert(!s.mission.revealed.includes(42)); assert.equal(E.missionView(s).insight, 0);
   s = moveEnd(s, "tile-18");
   for (let i = 0; i < 3; i++) s = attack(s, ordinary(s, "scourge-beast", "tile-14:center"));

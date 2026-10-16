@@ -1,0 +1,9 @@
+{
+  "phase": "before",
+  "sourceRendererSHA256": "da06c066ad08d564caaf58fe9077d58aab7c9f3e667344de69d3b82069402907",
+  "debugRendererSHA256": "e052f2611e5af3b28b78cbd42b8826ed30ddb378626c97de93bd6df1a0d345a1",
+  "productionFilesModified": false,
+  "debugDifference": "Only public visual heading/frame/position text emitted from updateMask",
+  "rulesEngineUsed": false,
+  "playerStorageUsed": false
+}

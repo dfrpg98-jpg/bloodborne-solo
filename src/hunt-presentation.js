@@ -36,7 +36,9 @@
       atlasPath: typeof data.atlasPath === "string" && /^assets\/characters\/[a-z0-9_.-]+\.json$/.test(data.atlasPath) ? data.atlasPath : null,
       atlasData, frameClips, needsClips: frameClips.size > 0,
       frameWidth: data.frameWidth, frameHeight: data.frameHeight,
-      displayHeight: Number.isFinite(data.displayHeight) ? Math.max(24, Math.min(256, data.displayHeight)) : skin === "boss" ? 104 : 72,
+      // The named boss uses a generously padded 512px atlas. Compensate its
+      // transparent canvas without changing the size limits of other actors.
+      displayHeight: Number.isFinite(data.displayHeight) ? Math.max(24, Math.min(skin === "cleric-beast" ? 512 : 256, data.displayHeight)) : skin === "boss" ? 104 : 72,
       originY: Number.isFinite(data.originY) ? Math.max(.5, Math.min(1, data.originY)) : .86 });
   }
   let game = null, scene = null, pending = null, destroyed = false, failed = false;
@@ -95,6 +97,7 @@
     return list.slice(0, 100).filter(a => a && typeof a.id === "string" &&
       (a.kind === "hunter" || a.kind === "enemy") && Number.isFinite(a.x) && Number.isFinite(a.y))
       .map(a => ({ id: a.id.slice(0, 100), kind: a.kind, x: a.x, y: a.y,
+        node: typeof a.node === "string" ? a.node.slice(0, 100) : null,
         skin: typeof a.skin === "string" && sheets.has(a.skin) ? a.skin : a.kind === "hunter" ? "hunter" : "mob",
         scale: Number.isFinite(a.scale) ? Math.max(.25, Math.min(4, a.scale)) : 1,
         hp: Number.isFinite(a.hp) ? Math.max(0, a.hp) : null,
@@ -146,7 +149,7 @@
     scene?.tweens?.killTweensOf?.(unit.sprite);
     unit.sprite?.removeAllListeners?.("animationcomplete-" + unit.animation);
     if (snap && unit.actor) unit.sprite?.setPosition?.(unit.actor.x, unit.actor.y);
-    unit.moving = false;
+    unit.moving = false; unit.motion = null;
   }
   function removeUnit(id) {
     const unit = units.get(id);
@@ -260,7 +263,9 @@
       }
       readySheets.add(skin);
     }
-    setReady(true);
+    // Required bodies may load successfully but still need unsupported native
+    // clipping. Keep their DOM markers visible until every required body can draw.
+    setReady([...sheets].filter(([, data]) => !data.optional).every(([skin]) => readySheets.has(skin)));
   }
   function renderSkin(actor) {
     if (readySheets.has(actor.skin)) return actor.skin;
@@ -346,6 +351,36 @@
       if (units.get(unit.actor.id) === unit && unit.epoch === epoch && !unit.dying) complete();
     });
   }
+  function publishActorPositions() {
+    if (destroyed || failed || !scene || !charactersReady || typeof options.onActorPositions !== "function") return;
+    const visible = [...units.values()].filter(unit => unit.actor.kind === "enemy" && !unit.dying && !unit.pendingDeath);
+    try { options.onActorPositions(visible.map(unit => ({ id: unit.actor.id, x: unit.sprite.x, y: unit.sprite.y }))); }
+    catch (_) { /* A DOM status overlay cannot interrupt rendering or game rules. */ }
+  }
+  function updateSelection(unit, delta = 0) {
+    // Selection is a presentation-only alpha layer, independent of movement and
+    // hit tweens. A dying actor keeps its own fade until it is removed.
+    const active = unit.actor.kind === "enemy" && unit.actor.selected && !unit.dying && !unit.pendingDeath;
+    if (!active) {
+      if (unit.selectionActive && !unit.dying) unit.sprite.alpha = 1;
+      if (unit.selectionTint) unit.sprite.clearTint?.();
+      unit.selectionActive = false; unit.selectionTint = false; unit.selectionElapsed = 0;
+      return;
+    }
+    if (!unit.selectionActive) unit.selectionElapsed = 0;
+    unit.selectionActive = true;
+    if (motionReduced) {
+      unit.sprite.alpha = 1;
+      if (!unit.selectionTint && typeof unit.sprite.setTint === "function") {
+        unit.sprite.setTint(0xffe5a0); unit.selectionTint = true;
+      }
+      return;
+    }
+    if (unit.selectionTint) { unit.sprite.clearTint?.(); unit.selectionTint = false; }
+    // A slow, shallow pulse leaves the selected character visible throughout.
+    unit.selectionElapsed = (unit.selectionElapsed + Math.max(0, Math.min(250, Number.isFinite(delta) ? delta : 0))) % 1600;
+    unit.sprite.alpha = .86 + .14 * Math.cos(unit.selectionElapsed * Math.PI / 800);
+  }
   function updateUnit(unit, actor) {
     const prior = unit.actor; unit.actor = actor;
     // A consumed charge may leave the live equipment uncharged while its
@@ -359,15 +394,15 @@
     applySkinSize(unit); unit.sprite.setDepth?.(100 + actor.y);
     unit.shadow?.setPosition?.(unit.moving ? unit.sprite.x : actor.x, (unit.moving ? unit.sprite.y : actor.y) + 2);
     unit.shadow?.setScale?.(actor.scale); unit.shadow?.setDepth?.(actor.y);
-    updateMask(unit);
+    updateMask(unit); updateSelection(unit);
   }
   function createUnit(actor) {
     const skin = renderSkin(actor), data = sheets.get(skin);
     if (!data) return null;
     const sprite = scene.add.sprite(actor.x, actor.y, data.key, firstFrame(skin)), shadow = scene.add.graphics();
-    shadow.fillStyle?.(0x07080a, .42); shadow.fillEllipse?.(0, 0, actor.skin === "boss" ? 35 : 24, 9);
+    shadow.fillStyle?.(0x07080a, .42); shadow.fillEllipse?.(0, 0, actor.skin === "boss" || actor.skin === "cleric-beast" ? 35 : 24, 9);
     const unit = { actor, skin: safeSpriteSkin(actor, sprite), sprite, shadow, epoch: 0, animation: "", moving: false, dying: false,
-      pendingDeath: false, transientSkin: false, mask: null, maskGraphics: null, maskAttached: false, maskFrame: null };
+      pendingDeath: false, transientSkin: false, selectionActive: false, selectionTint: false, selectionElapsed: 0, mask: null, maskGraphics: null, maskAttached: false, maskFrame: null };
     if (unit.skin !== skin) sprite.setTexture?.(sheets.get(unit.skin).key, firstFrame(unit.skin));
     units.set(actor.id, unit);
     sprite.on?.("animationupdate", () => { if (!destroyed && !failed && units.get(actor.id) === unit) {
@@ -389,16 +424,74 @@
     }
     return g;
   }
+  function movementDuration(actor) {
+    const animation = sheets.get(renderSkin(actor))?.animations.walk;
+    // A visible walk finishes one footfall cycle before returning to idle.
+    // Keep short/fallback walks readable and bound unusually long optional clips.
+    return animation ? Math.max(340, Math.min(600, Math.ceil(animation.frames.length * 1000 / animation.frameRate))) : 340;
+  }
+  function setUnitPoint(unit, point) {
+    unit.sprite.setPosition(point.x, point.y); unit.sprite.setDepth?.(100 + point.y);
+    unit.shadow?.setPosition?.(point.x, point.y + 2); updateMask(unit);
+  }
+  const easedProgress = value => (1 - Math.cos(Math.PI * value)) / 2;
+  function observedProgress(unit) {
+    const motion = unit.motion, dx = motion.to.x - motion.from.x, dy = motion.to.y - motion.from.y;
+    const length = dx * dx + dy * dy;
+    if (!length) return motion.progress;
+    const fraction = Math.max(0, Math.min(1,
+      ((unit.sprite.x - motion.from.x) * dx + (unit.sprite.y - motion.from.y) * dy) / length));
+    return Math.acos(1 - 2 * fraction) / Math.PI;
+  }
+  function runMotionTween(unit, motion, remaining) {
+    const epoch = ++unit.epoch, start = motion.progress, easedStart = easedProgress(start);
+    scene.tweens.add({ targets: unit.sprite, x: motion.to.x, y: motion.to.y, duration: Math.max(1, remaining),
+      ease: start ? value => (easedProgress(start + (1 - start) * value) - easedStart) / (1 - easedStart || 1) : "Sine.easeInOut",
+      onUpdate: () => { if (unit.motion !== motion) return; motion.progress = observedProgress(unit);
+        unit.shadow?.setPosition?.(unit.sprite.x, unit.sprite.y + 2); unit.sprite.setDepth?.(100 + unit.sprite.y);
+        try { updateMask(unit); } catch (_) { fail(); } },
+      onComplete: () => { if (unit.epoch === epoch && units.get(unit.actor.id) === unit && unit.motion === motion) {
+        setUnitPoint(unit, motion.to); unit.moving = false; unit.motion = null; idle(unit);
+      } } });
+  }
+  function startUnitMotion(unit, from, to, duration, mode) {
+    const motion = { from: { x: from.x, y: from.y }, to: { x: to.x, y: to.y }, duration, mode,
+      progress: 0, startedAt: Number.isFinite(scene.time?.now) ? scene.time.now : null };
+    unit.moving = true; unit.motion = motion; setUnitPoint(unit, from); runMotionTween(unit, motion, duration);
+  }
+  function rebaseUnitMotion(unit, actor, nextView) {
+    const motion = unit.motion;
+    if (!motion) return false;
+    const progress = motion.mode === "layout-wait" ? 0 : observedProgress(unit);
+    const translate = point => lastView && nextView ? adjusted(point, nextView) :
+      { x: point.x + actor.x - motion.to.x, y: point.y + actor.y - motion.to.y };
+    const point = translate({ x: unit.sprite.x, y: unit.sprite.y });
+    motion.from = translate(motion.from); motion.to = { x: actor.x, y: actor.y };
+    motion.progress = progress; setUnitPoint(unit, point);
+    if (motion.mode !== "layout-wait") {
+      scene.tweens.killTweensOf?.(unit.sprite);
+      const elapsed = motion.startedAt !== null && Number.isFinite(scene.time?.now) ? scene.time.now - motion.startedAt : motion.duration * progress;
+      runMotionTween(unit, motion, Math.ceil(motion.duration - elapsed));
+    }
+    return true;
+  }
+  function cancelForPose(unit) {
+    const waiting = unit.motion?.mode === "layout-wait" ? unit.motion : null;
+    cancelUnitMotion(unit, !waiting);
+    if (waiting) { unit.motion = waiting; unit.moving = true; }
+  }
+  function faceHorizontally(unit, fromX, toX) {
+    // A vertical move or aligned target gives no new left/right direction.
+    // Keep the current heading instead of treating equal X as facing right.
+    if (Number.isFinite(fromX) && Number.isFinite(toX) && fromX !== toX)
+      unit.sprite.setFlipX?.(toX < fromX);
+  }
   function moveActor(before, after) {
     const unit = units.get(after.id);
     if (charactersReady && unit) {
       cancelUnitMotion(unit, false); unit.sprite.setPosition(before.x, before.y);
-      unit.sprite.setFlipX?.(after.x < before.x); unit.moving = true; pose(unit, "walk");
-      const epoch = unit.epoch;
-      scene.tweens.add({ targets: unit.sprite, x: after.x, y: after.y, duration: 340, ease: "Sine.easeInOut",
-        onUpdate: () => { unit.shadow?.setPosition?.(unit.sprite.x, unit.sprite.y + 2); unit.sprite.setDepth?.(100 + unit.sprite.y);
-          try { updateMask(unit); } catch (_) { fail(); } },
-        onComplete: () => { if (unit.epoch === epoch && units.get(after.id) === unit) { unit.moving = false; idle(unit); } } });
+      faceHorizontally(unit, before.x, after.x); unit.moving = true; pose(unit, "walk");
+      startUnitMotion(unit, before, after, movementDuration(after), "walk");
     } else {
       const trail = graphic(); trail.lineStyle(3, after.kind === "hunter" ? 0xd8bc78 : 0xaf6458, .6);
       trail.lineBetween(before.x, before.y, after.x, after.y); tween(trail, { alpha: 0, duration: 420 });
@@ -411,7 +504,7 @@
     if (!unit || unit.dying) return;
     cancelUnitMotion(unit, false); unit.dying = true; unit.pendingDeath = false; unit.animation = animationKey(unit.skin, "death");
     if (sheets.get(unit.skin)?.animations.death) unit.sprite.play?.(unit.animation);
-    updateMask(unit); const epoch = unit.epoch;
+    updateMask(unit); updateSelection(unit); const epoch = unit.epoch;
     scene.tweens.add({ targets: unit.sprite, alpha: 0, duration: 560, delay: 160, ease: "Sine.easeIn",
       onComplete: () => { if (unit.epoch === epoch && units.get(unit.actor.id) === unit) { removeUnit(unit.actor.id); publish(); } } });
   }
@@ -428,12 +521,14 @@
   function attack(from, to, damaged, defeated, shot, action) {
     if (!to) return;
     const unit = units.get(from?.id), target = units.get(to.id);
+    if (unit?.motion?.mode === "layout-wait") from = { ...from, x: unit.sprite.x, y: unit.sprite.y };
+    if (target?.motion?.mode === "layout-wait") to = { ...to, x: target.sprite.x, y: target.sprite.y };
     if (unit && (!shot || action?.attackStyle === "weapon") && !(from?.kind === "hunter" && action?.attackStyle === "other")) {
-      cancelUnitMotion(unit, true); unit.sprite.setFlipX?.(to.x < from.x);
+      cancelForPose(unit); faceHorizontally(unit, from.x, to.x);
       const skin = readySheets.has(action?.skin) ? action.skin : unit.skin;
       pose(unit, attackPose(skin, from, action), () => idle(unit), skin);
     }
-    if (target) { if (defeated) defeat(target); else if (damaged) { cancelUnitMotion(target, true); pose(target, "hit", () => idle(target)); } }
+    if (target) { if (defeated) defeat(target); else if (damaged) { cancelForPose(target); pose(target, "hit", () => idle(target)); } }
     const g = graphic(), color = from?.kind === "enemy" ? 0xd98370 :
       action?.motion === "electric" ? 0xafcfff : action?.motion === "spirit" ? 0x93c8c5 : action?.motion === "blood" ? 0xca6574 : 0xf4d28c;
     g.lineStyle(shot ? 2 : 3, color, .95);
@@ -482,7 +577,8 @@
   function adjusted(actor, nextView) {
     if (!lastView || !nextView) return actor;
     const ratio = nextView.zoom / lastView.zoom;
-    return Object.assign({}, actor, { x: (actor.x + lastView.x) * ratio - nextView.x, y: (actor.y + lastView.y) * ratio - nextView.y });
+    return Object.assign({}, actor, { x: (actor.x + lastView.x) * ratio - nextView.x, y: (actor.y + lastView.y) * ratio - nextView.y,
+      ...(Number.isFinite(actor.scale) ? { scale: actor.scale * ratio } : {}) });
   }
   function apply(snapshot) {
     latestSnapshot = snapshot; requestSkins(snapshot); loadRequested();
@@ -490,10 +586,19 @@
     const reset = lastRevision !== null && (snapshot.revision < lastRevision || snapshot.sceneId !== lastSceneId);
     const changedRevision = !reset && lastRevision !== null && snapshot.revision > lastRevision;
     const beforeActors = new Map([...actors].map(([id, a]) => [id, adjusted(a, snapshot.view)]));
+    const interrupted = new Map();
+    if (changedRevision && !motionReduced) for (const [id, unit] of units) if (unit.moving && unit.motion) {
+      const motion = unit.motion, elapsed = motion.startedAt !== null && Number.isFinite(scene.time?.now)
+        ? scene.time.now - motion.startedAt : motion.duration * observedProgress(unit);
+      interrupted.set(id, { point: adjusted({ x: unit.sprite.x, y: unit.sprite.y }, snapshot.view),
+        mode: motion.mode, remaining: Math.max(1, Math.ceil(motion.duration - elapsed)),
+        animation: unit.animation, frame: typeof unit.sprite.frame === "object" ? unit.sprite.frame?.name : unit.sprite.frame });
+    }
     if (reset || changedRevision) clearEffects();
     if (reset) for (const id of [...units.keys()]) removeUnit(id);
     const actions = changedRevision ? snapshot.actions : [], deathIds = new Set();
     if (!motionReduced) for (const action of actions) if (["attack", "shot"].includes(action.type) && !current.has(action.toId) && beforeActors.has(action.toId)) deathIds.add(action.toId);
+    const repacks = [], continuations = [];
     if (charactersReady) {
       for (const actor of current.values()) {
         let unit = units.get(actor.id);
@@ -501,29 +606,57 @@
         if (!unit) createUnit(actor);
         else {
           const moving = unit.moving, oldActor = unit.actor; updateUnit(unit, actor);
-          // Camera or selection refreshes snap coordinates and never count as walks.
-          if (!changedRevision && moving && Math.hypot(oldActor.x - actor.x, oldActor.y - actor.y) > 2) { cancelUnitMotion(unit, true); idle(unit); }
-          else if (!moving || changedRevision) unit.sprite.setPosition(actor.x, actor.y);
+          const previous = beforeActors.get(actor.id), repack = changedRevision && !motionReduced && previous?.node &&
+            previous.node === actor.node && Math.hypot(previous.x - actor.x, previous.y - actor.y) > 2 &&
+            !actions.some(action => action.type === "move" && (!action.fromId || action.fromId === actor.id));
+          const priorMotion = interrupted.get(actor.id), hasMove = actions.some(action => action.type === "move" && (!action.fromId || action.fromId === actor.id));
+          if (priorMotion && !hasMove && ["walk", "layout", "layout-wait"].includes(priorMotion.mode)) {
+            setUnitPoint(unit, priorMotion.point);
+            if (Math.hypot(priorMotion.point.x - actor.x, priorMotion.point.y - actor.y) > .01) {
+              if (priorMotion.mode === "walk") {
+                unit.animation = animationKey(unit.skin, "walk"); unit.sprite.play?.(unit.animation, true);
+                const frames = sheets.get(unit.skin)?.animations.walk?.frames || [];
+                unit.sprite.setFrame?.(frames.includes(Number(priorMotion.frame)) ? priorMotion.frame : firstFrame(unit.skin, "walk"));
+              }
+              startUnitMotion(unit, priorMotion.point, actor, priorMotion.remaining,
+                priorMotion.mode === "layout-wait" ? "layout" : priorMotion.mode);
+              continuations.push(priorMotion.remaining);
+            }
+          } else if (repack) {
+            unit.moving = true; unit.motion = { mode: "layout-wait", from: previous, to: actor, duration: 240, progress: 0, startedAt: null };
+            setUnitPoint(unit, previous); repacks.push(unit);
+          } else if (!changedRevision && moving && Math.hypot(oldActor.x - actor.x, oldActor.y - actor.y) > .01) {
+            if (!rebaseUnitMotion(unit, actor, snapshot.view)) { cancelUnitMotion(unit, true); idle(unit); }
+          } else if (!moving || changedRevision) unit.sprite.setPosition(actor.x, actor.y);
         }
       }
       for (const [id, unit] of units) {
         if (!current.has(id) && !deathIds.has(id) && !unit.dying && !unit.pendingDeath) removeUnit(id);
         else if (deathIds.has(id) && beforeActors.has(id)) {
           unit.pendingDeath = true; unit.actor = beforeActors.get(id);
-          unit.sprite.setPosition(unit.actor.x, unit.actor.y); unit.shadow?.setPosition?.(unit.actor.x, unit.actor.y + 2);
         } else if (!current.has(id) && (unit.dying || unit.pendingDeath)) {
           unit.actor = adjusted(unit.actor, snapshot.view);
-          unit.sprite.setPosition(unit.actor.x, unit.actor.y); unit.shadow?.setPosition?.(unit.actor.x, unit.actor.y + 2);
+        }
+        if (!current.has(id) && (unit.dying || unit.pendingDeath)) {
+          applySkinSize(unit); unit.shadow?.setScale?.(unit.actor.scale); setUnitPoint(unit, unit.actor);
         }
       }
     }
     actors.clear(); for (const actor of current.values()) actors.set(actor.id, actor);
-    const hasMovement = actions.some(action => action.type === "move");
-    let attackDelay = hasMovement ? 350 : 0;
+    const movingActors = actions.filter(action => action.type === "move").flatMap(action =>
+      [...current.values()].filter(actor => !action.fromId || action.fromId === actor.id));
+    const repackDelay = repacks.length && !deathIds.size ? 250 : 0,
+      movementDelay = Math.max(repackDelay, movingActors.length ? Math.max(...movingActors.map(movementDuration)) + 10 : 0,
+        continuations.length ? Math.max(...continuations) + 10 : 0);
+    let attackDelay = movementDelay;
+    let lastDeathStart = 0;
+    if (!deathIds.size) for (const unit of repacks) startUnitMotion(unit, unit.sprite, unit.actor, 240, "layout");
     if (scene && !failed && !motionReduced && changedRevision) for (const action of actions) {
       if (action.type === "move") for (const actor of current.values()) {
         if (action.fromId && action.fromId !== actor.id) continue;
-        const cached = beforeActors.get(actor.id), before = cached && action.from ? Object.assign({}, cached, action.from) : cached;
+        const cached = beforeActors.get(actor.id), visible = interrupted.get(actor.id)?.point,
+          before = cached && visible ? { ...cached, x: visible.x + (action.from ? action.from.x - cached.x : 0),
+            y: visible.y + (action.from ? action.from.y - cached.y : 0) } : cached && action.from ? Object.assign({}, cached, action.from) : cached;
         if (before && Math.hypot(before.x - actor.x, before.y - actor.y) > 2) moveActor(before, actor);
       }
       if (action.type === "attack" || action.type === "shot") {
@@ -531,6 +664,7 @@
         const to = cached && action.to ? Object.assign({}, cached, action.to) : cached;
         const damaged = action.damage > 0 || (to?.hp !== null && old?.hp !== null && to?.hp < old?.hp);
         const from = current.get(action.fromId) || beforeActors.get(action.fromId);
+        if (deathIds.has(action.toId)) lastDeathStart = attackDelay;
         later(() => attack(actors.get(action.fromId) || units.get(action.fromId)?.actor || from,
           actors.get(action.toId) || units.get(action.toId)?.actor || to,
           damaged, deathIds.has(action.toId), action.type === "shot", action),
@@ -540,7 +674,7 @@
       if (action.type === "transform") {
         const actor = current.get(action.fromId), old = beforeActors.get(action.fromId), unit = units.get(action.fromId);
         if (unit && actor?.kind === "hunter" && old && (old.skin !== actor.skin || old.weaponFace !== actor.weaponFace)) {
-          cancelUnitMotion(unit, true); pose(unit, "transform", () => idle(unit));
+          later(() => { cancelForPose(unit); pose(unit, "transform", () => idle(unit)); }, movementDelay);
         }
       }
     }
@@ -549,10 +683,13 @@
       if (!unit || old?.hp === null || actor.hp === null || !(actor.hp < old?.hp) ||
         actions.some(action => ["attack", "shot"].includes(action.type) && action.toId === actor.id)) continue;
       // Poison, mission damage and other observed HP losses need no guessed attack.
-      later(() => { cancelUnitMotion(unit, true); pose(unit, "hit", () => idle(unit)); }, hasMovement ? 350 : 0);
+      later(() => { cancelForPose(unit); pose(unit, "hit", () => idle(unit)); }, movementDelay);
     }
-    for (const unit of units.values()) updateMask(unit);
-    lastRevision = snapshot.revision; lastSceneId = snapshot.sceneId; lastView = snapshot.view; publish();
+    if (deathIds.size) for (const unit of repacks) later(() => {
+      if (units.get(unit.actor.id) === unit && !unit.dying) startUnitMotion(unit, unit.sprite, unit.actor, 240, "layout");
+    }, lastDeathStart + 750);
+    for (const unit of units.values()) { updateMask(unit); updateSelection(unit); }
+    lastRevision = snapshot.revision; lastSceneId = snapshot.sceneId; lastView = snapshot.view; publishActorPositions(); publish();
   }
   function sync(snapshot) {
     if (destroyed) return;
@@ -583,6 +720,7 @@
   function onMotion(event) {
     motionReduced = !!event.matches;
     if (motionReduced) clearEffects(); else for (const unit of units.values()) idle(unit);
+    for (const unit of units.values()) updateSelection(unit);
     publish();
   }
   function destroy() {
@@ -609,10 +747,15 @@
           if (destroyed) return;
           scene = this; fitLoadedCanvas(); registerAnimations(); publish();
           if (pending) { const latest = pending; pending = null; apply(latest); }
-        }, update: function () {
+        }, update: function (_time, delta) {
           if (destroyed || failed) return;
-          try { for (const unit of units.values()) if (unit.maskGraphics || sheets.get(unit.skin)?.needsClips) updateMask(unit); }
-          catch (_) { fail(); }
+          try {
+            for (const unit of units.values()) {
+              if (unit.maskGraphics || sheets.get(unit.skin)?.needsClips) updateMask(unit);
+              updateSelection(unit, delta);
+            }
+            publishActorPositions();
+          } catch (_) { fail(); }
         } }
       }); configureCanvas();
     } catch (_) { fail(); }

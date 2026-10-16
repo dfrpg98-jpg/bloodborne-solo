@@ -1,0 +1,68 @@
+{
+  "method": "Original public browser results and original first-impact PNG bytes, copied and SHA-256 verified; no raw QA saves.",
+  "archiveSources": [
+    {
+      "id": "before",
+      "run": 38483687579,
+      "commit": "4165f7540bee713da66f0b8b9a7a792ce15b4333",
+      "zipSha256": "f9818552739427a320ec85d420890c651d46bd79eb78b7bfd942bf8e2df8fa6d"
+    },
+    {
+      "id": "after",
+      "run": 38484278818,
+      "commit": "415ab0d8812f88dacaecf45796dc023e1f0336bb",
+      "zipSha256": "533f107196442e194368a54a77bf8eeacb6b56d0eccd0acf7fc81c5e1d920b50"
+    }
+  ],
+  "includedScreenshotCount": 6,
+  "files": [
+    {
+      "path": "before/results.json",
+      "bytes": 11221,
+      "sha256": "19917da7ff466c90d18809552ade6b8d73aeb258c8ca800957971fcf09c841b1",
+      "sourceArtifactRun": 38483687579
+    },
+    {
+      "path": "before/ludwigs-holy-blade-first-impact.png",
+      "bytes": 971542,
+      "sha256": "757ed9afb554eb8c9b2b6aa9fd6cd9576533a277a827d488285fa9b35345b5ba",
+      "sourceArtifactRun": 38483687579
+    },
+    {
+      "path": "before/uncanny-ludwigs-holy-blade-first-impact.png",
+      "bytes": 971879,
+      "sha256": "ffc9ccaf9b68f2d6c87bc40a1fe15f912c9d99658aa5951bed10ee2fe37723a1",
+      "sourceArtifactRun": 38483687579
+    },
+    {
+      "path": "before/kirkhammer-first-impact.png",
+      "bytes": 968831,
+      "sha256": "da1f3a1dc7dcc5ae581533061eecf62dbac270b9e4cd26a371ce41be9242a892",
+      "sourceArtifactRun": 38483687579
+    },
+    {
+      "path": "after/results.json",
+      "bytes": 11220,
+      "sha256": "4cd553dd957afd11b7703c70a64977178a8724cf996600992072711164cea25a",
+      "sourceArtifactRun": 38484278818
+    },
+    {
+      "path": "after/ludwigs-holy-blade-first-impact.png",
+      "bytes": 971303,
+      "sha256": "edbf22844e743dcc36b86eeea3b2c0c74597000e29a1ccf3145955f27202db98",
+      "sourceArtifactRun": 38484278818
+    },
+    {
+      "path": "after/uncanny-ludwigs-holy-blade-first-impact.png",
+      "bytes": 971305,
+      "sha256": "19f5f61b93654f2e92d3382104bd5b3199011e6fb7d5eb09d28f3cb0774a6b22",
+      "sourceArtifactRun": 38484278818
+    },
+    {
+      "path": "after/kirkhammer-first-impact.png",
+      "bytes": 968015,
+      "sha256": "02946607d310a8e6815d5e33b57ed88e71000e88dc851a2c6975b29ce501f722",
+      "sourceArtifactRun": 38484278818
+    }
+  ]
+}

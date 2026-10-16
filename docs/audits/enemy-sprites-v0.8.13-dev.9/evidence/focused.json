@@ -1,0 +1,51 @@
+{
+  "nodeVersion": "v24.19.0",
+  "runtimeVersion": "0.8.13-dev.9",
+  "sourceCommit": "70d5fae4b37d3f413b081d6371dd4fb4b14906ad",
+  "branch": "feat/enemy-sprites-dev9",
+  "workingTreeChangesPresent": true,
+  "sourceSnapshot": {
+    "fileCount": 391,
+    "sha256": "e9cd360ab9f681a970eacbe13aa30216e4a6c483d1ab0c069816cfa888ea86da"
+  },
+  "namedAssetHashes": {
+    "huntsman-mob": "ef50789dbefefbbbd8d34ee7ad6ccd2fd6fbe47f5278affe1245c55d4a65fd38",
+    "huntsmans-minion": "dccacb4a1ceea110b7ad6f65aca94a21366cb9d2c50eb463239e832af6dc736b",
+    "scourge-beast": "de2263e279c0848ac0f0a86c09902bf3b7da9cebe606a28653eb94b41fde077f",
+    "female-patient": "e5083982e32e16568866e2b1f45b139cfce37fb79cff8da59f673589be731c95",
+    "iosefka": "05b1c757d02d9aa925c226aec9bb814c1ffb96623155eac00befc11e176a390f",
+    "cleric-beast": "9154cebc4dd93ea0fe53a7aaf0c64166a5b200f24888c8ba2792baf3a6be6d43"
+  },
+  "startedAt": "2026-10-14T08:54:18.528Z",
+  "durationSeconds": 2.629,
+  "exitCode": 0,
+  "signal": null,
+  "spawnError": null,
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/enemy-visuals-v0813.test.cjs",
+    "tests/character-assets-v082.test.cjs",
+    "tests/generic-asset-frame-regression.test.cjs",
+    "tests/character-gallery-ui.test.cjs",
+    "tests/character-animation-v082.test.cjs",
+    "tests/animation-events-v082.test.cjs",
+    "tests/animation-camera-ui-v082.test.cjs",
+    "tests/weapon-character-assets-v083.test.cjs",
+    "tests/weapon-animation-v083.test.cjs",
+    "tests/map-render-layout-v0810.test.cjs",
+    "tests/map-scene-v0810.test.cjs"
+  ],
+  "counts": {
+    "tests": 205,
+    "suites": 0,
+    "pass": 205,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "failedSubtests": [],
+  "log": "focused.tap"
+}

@@ -4,7 +4,8 @@ const E=require("../src/hunt-engine"),{boot}=require("./helpers/ui-harness.cjs")
 const key="bloodborne-hunt-v07",cache=new Map();
 function natural(file,count,weapon="burial",face=1){
  const id=[file,count,weapon,face].join(":");
- if(!cache.has(id)){let s=E.create(90,weapon,face,null,"hunter-pistol","center",{campaign:true});
+ // Frozen fixture prefixes are historical rules13 controller boundaries.
+ if(!cache.has(id)){let s=E.create(90,weapon,face,null,"hunter-pistol","center",{campaign:true,rulesVersion:13});
  for(const c of require("./fixtures/"+file).slice(0,count))s=E.dispatch(s,c);cache.set(id,s);}
  return structuredClone(cache.get(id));
 }
@@ -12,7 +13,8 @@ const house=()=>natural("v074-shelter-natural-commands.json",75);
 const bridge=()=>natural("v074-clinic-escort-chapter-two-natural-commands.json",125);
 function run(s,...commands){return commands.reduce((x,c)=>E.dispatch(x,c),s);}
 function launch(s){return boot(s,E.missionView(s),E.rewardsView(s),{realInventory:true,
- storage:{[key]:E.exportSave(s)},engine:{...E,applyChapelRuling:x=>x}});}
+ storage:{[key]:E.exportSave(s)},engine:{...E,applyTileSpeedRuling:state=>state,applyChapelRuling:x=>x,
+  applyCombatReactionRuling:x=>x}});}
 function saved(ui){assert.equal(ui.el("error").textContent,"");return E.importSave(ui.storage.get(key));}
 function action(ui,id){const b=ui.el("mapContext").querySelectorAll("[data-context-id]").find(b=>b.dataset.contextId===id);assert(b,"missing "+id);return b;}
 function command(ui,type){const b=ui.buttons("decisions").find(b=>b.dataset.command===type);assert(b,"missing "+type);return b;}

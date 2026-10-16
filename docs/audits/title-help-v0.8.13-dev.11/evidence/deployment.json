@@ -1,0 +1,88 @@
+{
+  "version": "0.8.13-dev.11",
+  "productCommit": "ca0abdacb4800c5e32e38f6d5c563ac9de06cb57",
+  "copied": [
+    "CHANGELOG.md",
+    "QA_GUIDE.txt",
+    "README.md",
+    "game-help.css",
+    "game-help.js",
+    "hunt-app.js",
+    "hunt-entry.js",
+    "hunt-presentation.js",
+    "hunt-shell.js",
+    "hunt.css",
+    "hunt.html",
+    "index.html",
+    "package.json",
+    "title-screen.css",
+    "title-screen.js",
+    "training.html",
+    "weapon-gallery.html"
+  ],
+  "addedFiles": 6,
+  "replacedFiles": 11,
+  "unchangedFiles": 317,
+  "deletedFiles": 0,
+  "backup": "local-development-archive/desktop-backup-ca0abda",
+  "allAllowlistedFilesVerified": 334,
+  "http": {
+    "checkedAt": "2026-10-15T11:12:07.392Z",
+    "filesVerified": 334,
+    "allHashesMatch": true,
+    "hashLedgerSHA256": "5f6a2ecee07ada850b6df9dceb0c6cfc6ed112b0d765776e16ca2fbc56d8b2a0",
+    "postStatus": 405,
+    "denied": [
+      {
+        "path": "참고자료/",
+        "status": 404
+      },
+      {
+        "path": "components/images/",
+        "status": 404
+      },
+      {
+        "path": "../",
+        "status": 404
+      },
+      {
+        "path": "hunt.html/",
+        "status": 404
+      },
+      {
+        "path": "../bloodborne-solo/참고자료/",
+        "status": 404
+      }
+    ]
+  },
+  "protectedFiles": {
+    "mode": "protected-files-unchanged",
+    "files": 188,
+    "bytes": 280557345,
+    "checkedAt": "2026-10-15T11:12:07.291Z",
+    "rawContentsWritten": false
+  },
+  "nativeBrowser": {
+    "url": "http://127.0.0.1:8786/bloodborne-solo/index.html",
+    "delivered": true,
+    "screenshot": "screenshots/runtime-title-8786.jpg",
+    "title": "BLOODBORNE / 블러드본",
+    "primaryActions": [
+      "시작하기",
+      "불러오기",
+      "도움말"
+    ],
+    "visibleContinueLinks": [
+      "검증 사냥 이어하기",
+      "일반 사냥 이어하기"
+    ],
+    "helpNativeModal": true,
+    "helpSections": 9,
+    "helpOpenerFocus": "closeTitleHelp",
+    "personalPlayResumedOrReplaced": false
+  },
+  "rendererSHA256": "142a7b648c59a96232727945e7cf355ca027d110f964a062473a45387c96e966",
+  "merged": false,
+  "releaseTagged": false,
+  "remoteCiClaimed": false
+}

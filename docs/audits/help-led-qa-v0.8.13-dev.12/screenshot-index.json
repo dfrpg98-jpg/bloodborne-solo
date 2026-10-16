@@ -1,0 +1,185 @@
+{
+  "originalBytes": true,
+  "screenshots": [
+    {
+      "file": "screenshots/01-original-help.jpg",
+      "bytes": 145033,
+      "sha256": "3fdff3f48f9db5f0891fa439780fcde779dc966e47cbb12d7c0067877e725ed1",
+      "dimensions": [
+        1063,
+        1252
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/02-qa-setup.jpg",
+      "bytes": 134534,
+      "sha256": "027efe7594bd55318c91ffaf982c9867d83a15a846290c37b7fe5d497a23bc78",
+      "dimensions": [
+        1063,
+        1252
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/03-first-move.jpg",
+      "bytes": 168767,
+      "sha256": "2e2c0a3eb9917f2b1f3325fbfecf119bcc457599acd6f9a6c0452de5d59eeee0",
+      "dimensions": [
+        1063,
+        1252
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/04-first-exploration.jpg",
+      "bytes": 180978,
+      "sha256": "afe584da3dbb97486f6c8d4edd8351f0a8b0c49b2a5ab29c30356f5f31293686",
+      "dimensions": [
+        1063,
+        1252
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/05-selected-but-not-dodged.jpg",
+      "bytes": 190646,
+      "sha256": "4e9ed24f5cbe93504ce53e0c396996aca0b3502044bf82cf6067671110dbe207",
+      "dimensions": [
+        1063,
+        1252
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/06-uncommitted-dodge-damage.jpg",
+      "bytes": 170993,
+      "sha256": "25ff6450c515d0678f54fd4ee3d4c17f15511ed60bb0c6335939e7ef3b680a97",
+      "dimensions": [
+        1063,
+        1252
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/07-updated-qa-instructions.jpg",
+      "bytes": 67370,
+      "sha256": "6555a9e359b6261b051f0a161a42bc4587dd929f0d06473a3654bd1435843eaf",
+      "dimensions": [
+        1265,
+        712
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/08-dodge-committed.jpg",
+      "bytes": 167995,
+      "sha256": "6707fbb2e9f9e4b2507eeb2b9d3eab0b90705f0ff7de24cd4c263d8bc717f34f",
+      "dimensions": [
+        1063,
+        1068
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/09-dodge-no-damage.jpg",
+      "bytes": 143799,
+      "sha256": "1b8fcc0fbedf14189519dc81c477a0ff44092b324e19feee1103b70a16824781",
+      "dimensions": [
+        1063,
+        1068
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/10-attack-comparison.jpg",
+      "bytes": 174116,
+      "sha256": "9dae9eb204d2d58b69e6bc83e8948d2934d261e96a28226134a1fae9c83baad6",
+      "dimensions": [
+        1063,
+        1068
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/11-first-enemy-defeated.jpg",
+      "bytes": 149184,
+      "sha256": "7aed43a19d3603e0204d1cfee6d54848744463ae3826d29b13426c2e9a1544cb",
+      "dimensions": [
+        1063,
+        1068
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/12-title-file-restored.jpg",
+      "bytes": 140010,
+      "sha256": "a66f011becc142334482c990e7e1476c1a69acbe3eda18240a31c4efafe25934",
+      "dimensions": [
+        1063,
+        1068
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/13-move-after-load.jpg",
+      "bytes": 139602,
+      "sha256": "96d8b48dbe6466c0ae2c4066f96d65bb3b40d82fe4c6f5a296e201fb03914850",
+      "dimensions": [
+        1063,
+        1068
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/14-runtime-updated-help.jpg",
+      "bytes": 48493,
+      "sha256": "e46f8d7625823eb99b808a0580ad0149b391bdc71297dc88dc54e1cd9684976f",
+      "dimensions": [
+        446,
+        650
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    },
+    {
+      "file": "screenshots/15-runtime-verified-game.jpg",
+      "bytes": 45113,
+      "sha256": "cedf9de062c6444317722304c338d0d8086368f112cbd5ecf5355ad661f33d43",
+      "dimensions": [
+        446,
+        650
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "pixelsModified": false
+    }
+  ]
+}

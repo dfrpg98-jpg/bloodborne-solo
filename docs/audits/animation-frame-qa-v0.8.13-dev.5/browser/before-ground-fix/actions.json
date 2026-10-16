@@ -1,0 +1,842 @@
+{
+  "generic": [
+    {
+      "subject": "hunter",
+      "idle": {
+        "canvasCount": 1,
+        "form0": "false",
+        "form1": "false",
+        "presentation": {
+          "presentation": "phaser",
+          "presentationActors": "2",
+          "presentationAttacks": "144",
+          "presentationCharacters": "ready",
+          "presentationMotion": "full",
+          "presentationMoves": "60",
+          "presentationShots": "1",
+          "presentationVersion": "4.2.1",
+          "presentationWeapon": "hunter",
+          "presentationWeaponReady": "true"
+        },
+        "status": "공통 사냥꾼 · 동작 미리보기",
+        "subject": "hunter",
+        "weapon": "burial"
+      },
+      "actions": [
+        {
+          "action": "attack",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "145",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "60",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "hunter",
+              "presentationWeaponReady": "true"
+            },
+            "status": "공통 사냥꾼 · 동작 미리보기",
+            "subject": "hunter",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "145",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "61",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "hunter",
+              "presentationWeaponReady": "true"
+            },
+            "status": "공통 사냥꾼 · 동작 미리보기",
+            "subject": "hunter",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "145",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "62",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "hunter",
+              "presentationWeaponReady": "true"
+            },
+            "status": "공통 사냥꾼 · 동작 미리보기",
+            "subject": "hunter",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "hit",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "146",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "62",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "hunter",
+              "presentationWeaponReady": "true"
+            },
+            "status": "공통 사냥꾼 · 동작 미리보기",
+            "subject": "hunter",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "death",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "1",
+              "presentationAttacks": "147",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "62",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+            "subject": "hunter",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "idle",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "147",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "62",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "hunter",
+              "presentationWeaponReady": "true"
+            },
+            "status": "공통 사냥꾼 · 동작 미리보기",
+            "subject": "hunter",
+            "weapon": "burial"
+          }
+        }
+      ],
+      "idleScreen": "generic-hunter-idle.jpg",
+      "attackScreen": "generic-hunter-attack-sample.jpg"
+    },
+    {
+      "subject": "mob",
+      "idle": {
+        "canvasCount": 1,
+        "form0": "false",
+        "form1": "false",
+        "presentation": {
+          "presentation": "phaser",
+          "presentationActors": "2",
+          "presentationAttacks": "147",
+          "presentationCharacters": "ready",
+          "presentationMotion": "full",
+          "presentationMoves": "62",
+          "presentationShots": "1",
+          "presentationVersion": "4.2.1",
+          "presentationWeapon": "",
+          "presentationWeaponReady": "false"
+        },
+        "status": "공통 인간형 적 · 동작 미리보기",
+        "subject": "mob",
+        "weapon": "burial"
+      },
+      "actions": [
+        {
+          "action": "attack",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "148",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "62",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 인간형 적 · 동작 미리보기",
+            "subject": "mob",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "148",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "63",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 인간형 적 · 동작 미리보기",
+            "subject": "mob",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "148",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "64",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 인간형 적 · 동작 미리보기",
+            "subject": "mob",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "hit",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "149",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "64",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 인간형 적 · 동작 미리보기",
+            "subject": "mob",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "death",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "1",
+              "presentationAttacks": "150",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "64",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+            "subject": "mob",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "idle",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "150",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "64",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 인간형 적 · 동작 미리보기",
+            "subject": "mob",
+            "weapon": "burial"
+          }
+        }
+      ],
+      "idleScreen": "generic-mob-idle.jpg",
+      "attackScreen": "generic-mob-attack-sample.jpg"
+    },
+    {
+      "subject": "beast",
+      "idle": {
+        "canvasCount": 1,
+        "form0": "false",
+        "form1": "false",
+        "presentation": {
+          "presentation": "phaser",
+          "presentationActors": "2",
+          "presentationAttacks": "150",
+          "presentationCharacters": "ready",
+          "presentationMotion": "full",
+          "presentationMoves": "64",
+          "presentationShots": "1",
+          "presentationVersion": "4.2.1",
+          "presentationWeapon": "",
+          "presentationWeaponReady": "false"
+        },
+        "status": "공통 야수형 적 · 동작 미리보기",
+        "subject": "beast",
+        "weapon": "burial"
+      },
+      "actions": [
+        {
+          "action": "attack",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "151",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "64",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 야수형 적 · 동작 미리보기",
+            "subject": "beast",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "151",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "65",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 야수형 적 · 동작 미리보기",
+            "subject": "beast",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "151",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "66",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 야수형 적 · 동작 미리보기",
+            "subject": "beast",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "hit",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "152",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "66",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 야수형 적 · 동작 미리보기",
+            "subject": "beast",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "death",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "1",
+              "presentationAttacks": "153",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "66",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+            "subject": "beast",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "idle",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "153",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "66",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 야수형 적 · 동작 미리보기",
+            "subject": "beast",
+            "weapon": "burial"
+          }
+        }
+      ],
+      "idleScreen": "generic-beast-idle.jpg",
+      "attackScreen": "generic-beast-attack-sample.jpg"
+    },
+    {
+      "subject": "boss",
+      "idle": {
+        "canvasCount": 1,
+        "form0": "false",
+        "form1": "false",
+        "presentation": {
+          "presentation": "phaser",
+          "presentationActors": "2",
+          "presentationAttacks": "153",
+          "presentationCharacters": "ready",
+          "presentationMotion": "full",
+          "presentationMoves": "66",
+          "presentationShots": "1",
+          "presentationVersion": "4.2.1",
+          "presentationWeapon": "",
+          "presentationWeaponReady": "false"
+        },
+        "status": "공통 보스 · 동작 미리보기",
+        "subject": "boss",
+        "weapon": "burial"
+      },
+      "actions": [
+        {
+          "action": "attack",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "154",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "66",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 보스 · 동작 미리보기",
+            "subject": "boss",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "154",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "67",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 보스 · 동작 미리보기",
+            "subject": "boss",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "154",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "68",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 보스 · 동작 미리보기",
+            "subject": "boss",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "hit",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "155",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "68",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 보스 · 동작 미리보기",
+            "subject": "boss",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "death",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "1",
+              "presentationAttacks": "156",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "68",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+            "subject": "boss",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "idle",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "156",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "68",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 보스 · 동작 미리보기",
+            "subject": "boss",
+            "weapon": "burial"
+          }
+        }
+      ],
+      "idleScreen": "generic-boss-idle.jpg",
+      "attackScreen": "generic-boss-attack-sample.jpg"
+    },
+    {
+      "subject": "female",
+      "idle": {
+        "canvasCount": 1,
+        "form0": "false",
+        "form1": "false",
+        "presentation": {
+          "presentation": "phaser",
+          "presentationActors": "2",
+          "presentationAttacks": "156",
+          "presentationCharacters": "ready",
+          "presentationMotion": "full",
+          "presentationMoves": "68",
+          "presentationShots": "1",
+          "presentationVersion": "4.2.1",
+          "presentationWeapon": "",
+          "presentationWeaponReady": "false"
+        },
+        "status": "공통 여성 NPC · 동작 미리보기",
+        "subject": "female",
+        "weapon": "burial"
+      },
+      "actions": [
+        {
+          "action": "attack",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "157",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "68",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 여성 NPC · 동작 미리보기",
+            "subject": "female",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "157",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "69",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 여성 NPC · 동작 미리보기",
+            "subject": "female",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "walk",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "157",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "70",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 여성 NPC · 동작 미리보기",
+            "subject": "female",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "hit",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "158",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "70",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 여성 NPC · 동작 미리보기",
+            "subject": "female",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "death",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "1",
+              "presentationAttacks": "159",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "70",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "쓰러짐 · 대기로 돌아가 다시 확인하세요.",
+            "subject": "female",
+            "weapon": "burial"
+          }
+        },
+        {
+          "action": "idle",
+          "state": {
+            "canvasCount": 1,
+            "form0": "false",
+            "form1": "false",
+            "presentation": {
+              "presentation": "phaser",
+              "presentationActors": "2",
+              "presentationAttacks": "159",
+              "presentationCharacters": "ready",
+              "presentationMotion": "full",
+              "presentationMoves": "70",
+              "presentationShots": "1",
+              "presentationVersion": "4.2.1",
+              "presentationWeapon": "",
+              "presentationWeaponReady": "false"
+            },
+            "status": "공통 여성 NPC · 동작 미리보기",
+            "subject": "female",
+            "weapon": "burial"
+          }
+        }
+      ],
+      "idleScreen": "generic-female-idle.jpg",
+      "attackScreen": "generic-female-attack-sample.jpg"
+    }
+  ],
+  "presentation": {
+    "presentation": "phaser",
+    "presentationActors": "2",
+    "presentationAttacks": "159",
+    "presentationCharacters": "ready",
+    "presentationMotion": "full",
+    "presentationMoves": "70",
+    "presentationShots": "1",
+    "presentationVersion": "4.2.1",
+    "presentationWeapon": "",
+    "presentationWeaponReady": "false"
+  },
+  "stage": "All frame clipping and idle-registration fixes, before beast origin correction."
+}

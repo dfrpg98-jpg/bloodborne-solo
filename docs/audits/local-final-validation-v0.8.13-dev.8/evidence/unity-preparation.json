@@ -1,0 +1,408 @@
+{
+  "format": "bloodborne-local-preparation-validation",
+  "startedAtUtc": "2026-10-14T05:46:48.636Z",
+  "fixedSourceCommit": "b594de4a90f453cc16ab0468a3c81e02b298a5f3",
+  "runtimeVersion": "0.8.13-dev.8",
+  "sourceArchiveSha256": "9567adbcc4527b46c7e449bee4bed54813613b91835666162350566ced6dac8b",
+  "originalTrackedFiles": 527,
+  "sourceSnapshotContainsGit": false,
+  "sourceCommitProvenance": "git archive from the explicit fixed commit; exporter leaves sourceCommit null because this isolated extracted snapshot has no .git. File hashes and this archive commit are authoritative.",
+  "schemaDependency": {
+    "version": "8.20.0",
+    "method": "read-only NODE_PATH to existing pinned local development dependency"
+  },
+  "photosCopied": 0,
+  "stages": [
+    {
+      "label": "source-photo-four",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "--test-name-pattern=^(?:campaign covers all 67 ordered sources and 60 numbered cards with images|reference data preserves printed terminology with the confirmed enemy alias and six enemy sides|default v0\\.3 state remains without optional firearm fields and photo confirmation retains raw text|supplied component photos retain their exact bytes, hashes and card provenance)$",
+        "tests/campaign-data.test.cjs",
+        "tests/firearms.test.cjs",
+        "tests/supplied-component-data.test.cjs"
+      ],
+      "cwd": "local-validation-work\\unity-dev8\\source",
+      "exitCode": 0,
+      "signal": null,
+      "spawnError": null,
+      "durationSeconds": 0.214,
+      "log": "source-photo-four.log",
+      "logSha256": "00e01e3bd086abbe8a5f842cd7fd7ba76f893a09e7a16a42faccc4f181a93fa1",
+      "counts": {
+        "tests": 4,
+        "suites": 0,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "failedSubtests": []
+    },
+    {
+      "label": "unity-export",
+      "command": [
+        "node",
+        "tools/export.cjs",
+        "local-validation-work\\unity-dev8\\source"
+      ],
+      "cwd": "local-validation-work\\unity-dev8\\source\\unity-port",
+      "exitCode": 0,
+      "signal": null,
+      "spawnError": null,
+      "durationSeconds": 0.355,
+      "log": "unity-export.log",
+      "logSha256": "c43472acea2e5c2ee972eef699912d173fd36b27e7bd66f951e7715f46d63be4",
+      "counts": {},
+      "failedSubtests": []
+    },
+    {
+      "label": "unity-fixtures",
+      "command": [
+        "node",
+        "tools/generate-fixtures.cjs",
+        "local-validation-work\\unity-dev8\\source"
+      ],
+      "cwd": "local-validation-work\\unity-dev8\\source\\unity-port",
+      "exitCode": 0,
+      "signal": null,
+      "spawnError": null,
+      "durationSeconds": 121.489,
+      "log": "unity-fixtures.log",
+      "logSha256": "22552f5e7734e420e43f8e7a901b4057cba16bc91cc1c58046193f2e510b4efe",
+      "counts": {},
+      "failedSubtests": []
+    },
+    {
+      "label": "unity-current-campaigns",
+      "command": [
+        "node",
+        "tools/check-current-campaigns.cjs",
+        "local-validation-work\\unity-dev8\\source"
+      ],
+      "cwd": "local-validation-work\\unity-dev8\\source\\unity-port",
+      "exitCode": 0,
+      "signal": null,
+      "spawnError": null,
+      "durationSeconds": 7.815,
+      "log": "unity-current-campaigns.log",
+      "logSha256": "758213f21028917905a1431b6fdfda45a70d3f4ab55772b498c4a4de14269d78",
+      "counts": {},
+      "failedSubtests": []
+    },
+    {
+      "label": "unity-validate",
+      "command": [
+        "node",
+        "tools/validate.cjs"
+      ],
+      "cwd": "local-validation-work\\unity-dev8\\source\\unity-port",
+      "exitCode": 0,
+      "signal": null,
+      "spawnError": null,
+      "durationSeconds": 36.314,
+      "log": "unity-validate.log",
+      "logSha256": "294ab6db5d1fba71c287d6a107cf8e941afade4ff6dd9dfb0405b0f7d42b87ed",
+      "counts": {},
+      "failedSubtests": []
+    }
+  ],
+  "limits": [
+    "No actual Unity Editor execution",
+    "No full C# reducer implementation or parity",
+    "No scene/render/all-frame animation completion",
+    "Source-photo tests validate the exact declared assertions; four tests are not a new manual audit of all text"
+  ],
+  "trackedSnapshotChanged": [],
+  "completedAtUtc": "2026-10-14T05:49:35.024Z",
+  "status": "passed",
+  "generatedReports": [
+    {
+      "path": "source/unity-port/MigrationPrivate/export-report.json",
+      "bytes": 843,
+      "sha256": "71d4d8307df868cbb7b3dc955c02383ee8389c78ea1d1298fd8de270de6d2818",
+      "report": {
+        "sourceGameVersion": "0.8.13-dev.8",
+        "sourceCommit": null,
+        "sourceGitStatus": null,
+        "sourceContentHash": "07babb3d61742303c9909f951a245b37e40b227edaa05422d59bd33fc454608b",
+        "currentRulesVersion": 14,
+        "sourceModuleCount": 39,
+        "contentModuleCount": 14,
+        "weaponCount": 15,
+        "weaponFaceCount": 30,
+        "tileCount": 20,
+        "enemyCount": 3,
+        "extendedEnemyCount": 12,
+        "bossCount": 1,
+        "npcIds": [
+          "bloody-crow-cainhurst",
+          "henryk",
+          "eileen",
+          "djuras-ally",
+          "alfred",
+          "djura",
+          "blood-knight",
+          "cainhurst-knight-servant",
+          "bloodlicker-starved"
+        ],
+        "rewardCount": 32,
+        "firearmCount": 7,
+        "missionCardCount": 60,
+        "commandTypeCount": 65,
+        "assetCount": 101,
+        "assetBytes": 85967777,
+        "rawReferencePhotoFilesCopied": 0,
+        "exporterModifiedSource": false,
+        "unityEditorCompiled": false
+      }
+    },
+    {
+      "path": "source/unity-port/Validation/current14-campaigns-report.json",
+      "bytes": 3013,
+      "sha256": "d810497e3e98ad18232743a68e5fca6ce6edeb736bc1342294e28b1979091af2",
+      "report": {
+        "status": "passed",
+        "count": 15,
+        "method": "original campaign commands plus recorded deliberate PASS_KILL_REACTION after pending rewards settle",
+        "results": [
+          {
+            "weaponId": "beast-claw",
+            "rulesVersion": 14,
+            "originalCommands": 351,
+            "insertedReactionPasses": 10,
+            "acceptedCommands": 361,
+            "finalHp": 6
+          },
+          {
+            "weaponId": "blade-of-mercy",
+            "rulesVersion": 14,
+            "originalCommands": 345,
+            "insertedReactionPasses": 6,
+            "acceptedCommands": 351,
+            "finalHp": 6
+          },
+          {
+            "weaponId": "burial",
+            "rulesVersion": 14,
+            "originalCommands": 276,
+            "insertedReactionPasses": 3,
+            "acceptedCommands": 279,
+            "finalHp": 6
+          },
+          {
+            "weaponId": "chikage",
+            "rulesVersion": 14,
+            "originalCommands": 306,
+            "insertedReactionPasses": 8,
+            "acceptedCommands": 314,
+            "finalHp": 6
+          },
+          {
+            "weaponId": "hunter-axe",
+            "rulesVersion": 14,
+            "originalCommands": 294,
+            "insertedReactionPasses": 4,
+            "acceptedCommands": 298,
+            "finalHp": 6
+          },
+          {
+            "weaponId": "kirkhammer",
+            "rulesVersion": 14,
+            "originalCommands": 263,
+            "insertedReactionPasses": 2,
+            "acceptedCommands": 265,
+            "finalHp": 6
+          },
+          {
+            "weaponId": "logarius-wheel",
+            "rulesVersion": 14,
+            "originalCommands": 289,
+            "insertedReactionPasses": 2,
+            "acceptedCommands": 291,
+            "finalHp": 6
+          },
+          {
+            "weaponId": "ludwigs-holy-blade",
+            "rulesVersion": 14,
+            "originalCommands": 308,
+            "insertedReactionPasses": 7,
+            "acceptedCommands": 315,
+            "finalHp": 6
+          },
+          {
+            "weaponId": "reiterpallasch",
+            "rulesVersion": 14,
+            "originalCommands": 295,
+            "insertedReactionPasses": 8,
+            "acceptedCommands": 303,
+            "finalHp": 6
+          },
+          {
+            "weaponId": "rifle-spear",
+            "rulesVersion": 14,
+            "originalCommands": 308,
+            "insertedReactionPasses": 6,
+            "acceptedCommands": 314,
+            "finalHp": 6
+          },
+          {
+            "weaponId": "saw-spear",
+            "rulesVersion": 14,
+            "originalCommands": 375,
+            "insertedReactionPasses": 9,
+            "acceptedCommands": 384,
+            "finalHp": 6
+          },
+          {
+            "weaponId": "stake-driver",
+            "rulesVersion": 14,
+            "originalCommands": 272,
+            "insertedReactionPasses": 10,
+            "acceptedCommands": 282,
+            "finalHp": 6
+          },
+          {
+            "weaponId": "threaded-cane",
+            "rulesVersion": 14,
+            "originalCommands": 349,
+            "insertedReactionPasses": 6,
+            "acceptedCommands": 355,
+            "finalHp": 6
+          },
+          {
+            "weaponId": "tonitrus",
+            "rulesVersion": 14,
+            "originalCommands": 374,
+            "insertedReactionPasses": 7,
+            "acceptedCommands": 381,
+            "finalHp": 6
+          },
+          {
+            "weaponId": "uncanny-ludwigs-holy-blade",
+            "rulesVersion": 14,
+            "originalCommands": 322,
+            "insertedReactionPasses": 3,
+            "acceptedCommands": 325,
+            "finalHp": 6
+          }
+        ]
+      }
+    },
+    {
+      "path": "source/unity-port/Validation/preparation-report.json",
+      "bytes": 744,
+      "sha256": "167f064b5eb647601af87b6d8b8c01b2a163ae65ca92f54de4aae00fdadf58de",
+      "report": {
+        "status": "passed",
+        "checkedAtUtc": "2026-10-14T05:49:34.886Z",
+        "sourceGameVersion": "0.8.13-dev.8",
+        "currentRulesVersion": 14,
+        "sourceContentHash": "07babb3d61742303c9909f951a245b37e40b227edaa05422d59bd33fc454608b",
+        "nodeTests": 10,
+        "parityTraces": 76,
+        "originalCommands": 14477,
+        "historicalFullCampaignRulesVersion": 13,
+        "currentFullCampaignRulesVersion": 14,
+        "currentReactionRulesVersion": 14,
+        "csharpPrimitiveAssertions": 2337,
+        "csharpContractAssertions": 21,
+        "csharpContractCompiler": "PowerShell Add-Type (Roslyn)",
+        "jsonSchemaAssertions": 15863,
+        "jsonSchemaValidator": "8.20.0",
+        "fullCSharpReducerParity": "not implemented",
+        "unityEditorCompile": "not run",
+        "unitySceneAndAnimations": "not run"
+      }
+    },
+    {
+      "path": "source/unity-port/Validation/schema-report.json",
+      "bytes": 1003,
+      "sha256": "a39591a0a9964d0785b9809ecc72b5f9e59c34ba59d276991aa40db307cbb44f",
+      "report": {
+        "status": "passed",
+        "assertions": 15863,
+        "validator": "Ajv draft 2020-12",
+        "validatorVersion": "8.20.0",
+        "schemaIds": [
+          "urn:bloodborne:original-command:v1",
+          "urn:bloodborne:hunt-save:v1",
+          "urn:bloodborne:unity-content:v1",
+          "urn:bloodborne:public-view:v1"
+        ],
+        "previousRelativeReferenceFailure": "URN without nid cannot be serialized",
+        "parityTraces": 76,
+        "originalCommands": 14477,
+        "publicCheckpoints": 1300,
+        "scope": [
+          "all schemas compiled in an explicit ID registry",
+          "all captured final save candidates, original commands and public checkpoints",
+          "actual current and legacy source save candidates",
+          "actual oracle public view and exported content",
+          "source-accepted null hunterId and nested optional payloads",
+          "invalid format versions and unapproved public root fields"
+        ],
+        "excluded": [
+          "authoritative reducer replay validation by JSON Schema",
+          "nested public privacy by JSON Schema",
+          "Unity Editor compilation"
+        ]
+      }
+    },
+    {
+      "path": "source/unity-port/Validation/csharp-primitives-report.json",
+      "bytes": 597,
+      "sha256": "6af64d077936aafff7ddfe9c4f7f6f660e73cb5ee992843daf5840fb4af05e04",
+      "report": {
+        "status": "passed",
+        "assertions": 2337,
+        "compiler": "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/csc.exe",
+        "compilerVersion": "Microsoft .NET Framework C# compiler (local)",
+        "scope": [
+          "unsigned xorshift32",
+          "seed avalanche",
+          "Fisher-Yates order and RNG advancement",
+          "20-tile points and all polygon vertices under eight signed/wrapped quarter turns",
+          "Unity y-up conversion"
+        ],
+        "excluded": [
+          "full C# reducers",
+          "Unity Editor compilation",
+          "Newtonsoft DTO compilation",
+          "sprite rendering",
+          "animations",
+          "map scene execution"
+        ]
+      }
+    },
+    {
+      "path": "source/unity-port/Validation/csharp-contracts-report.json",
+      "bytes": 714,
+      "sha256": "38f3de34f75ca84c4dcecd65883e5cb77528092c991e927aa7889b5bea85ae19",
+      "report": {
+        "status": "passed",
+        "assertions": 21,
+        "compiler": "PowerShell Add-Type (Roslyn)",
+        "powerShellVersion": "7.6.5",
+        "newtonsoftAssembly": "bundled-local-runtime\\codex-primary-runtime\\dependencies\\native\\powershell\\Newtonsoft.Json.dll",
+        "newtonsoftVersion": "13.0.0.0",
+        "scope": [
+          "PortContracts.cs actual compilation",
+          "ISO strings and opaque save candidate fidelity",
+          "duplicate and trailing JSON rejection",
+          "public payload private-key rejection and deep clone",
+          "exported content DTO read"
+        ],
+        "excluded": [
+          "Unity Editor compilation",
+          "Unity package-specific Newtonsoft compile",
+          "full C# reducers",
+          "Unity scenes and animations"
+        ]
+      }
+    }
+  ]
+}

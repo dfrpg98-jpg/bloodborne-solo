@@ -1,0 +1,93 @@
+{
+  "classification": "Engine-only legal QA preparation and predicted outcome",
+  "preparationCommands": [
+    {
+      "type": "USE_CONSUMABLE",
+      "itemId": "item-qa-1-1"
+    },
+    {
+      "type": "USE_CONSUMABLE",
+      "itemId": "item-qa-1-12"
+    }
+  ],
+  "nextCommands": [
+    {
+      "type": "ATTACK",
+      "cardId": "card-9",
+      "slot": 0,
+      "enemyId": "scourge-beast-1"
+    },
+    {
+      "type": "RESOLVE"
+    }
+  ],
+  "before": {
+    "hp": 6,
+    "hand": [
+      {
+        "id": "card-6",
+        "kind": "skill"
+      },
+      {
+        "id": "card-11",
+        "kind": "vitality"
+      },
+      {
+        "id": "card-5",
+        "kind": "skill"
+      },
+      {
+        "id": "card-4",
+        "kind": "skill"
+      },
+      {
+        "id": "card-2",
+        "kind": "endurance"
+      },
+      {
+        "id": "card-9",
+        "kind": "strength"
+      }
+    ],
+    "enemies": [
+      {
+        "id": "scourge-beast-1",
+        "kind": "scourge-beast",
+        "figure": 1,
+        "node": "tile-01:top",
+        "hp": 2
+      },
+      {
+        "id": "huntsmans-minion-1",
+        "kind": "huntsmans-minion",
+        "figure": 1,
+        "node": "tile-01:top",
+        "hp": 4
+      }
+    ]
+  },
+  "after": {
+    "phase": "hunter",
+    "hp": 6,
+    "enemies": [
+      {
+        "id": "huntsmans-minion-1",
+        "kind": "huntsmans-minion",
+        "figure": 1,
+        "node": "tile-01:top",
+        "hp": 3
+      }
+    ],
+    "commands": [
+      {
+        "type": "ATTACK",
+        "cardId": "card-9",
+        "slot": 0,
+        "enemyId": "scourge-beast-1"
+      },
+      {
+        "type": "RESOLVE"
+      }
+    ]
+  }
+}

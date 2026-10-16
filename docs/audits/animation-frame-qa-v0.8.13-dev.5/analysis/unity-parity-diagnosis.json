@@ -1,0 +1,207 @@
+{
+  "name": "current14-campaign-beast-claw",
+  "referenceGameVersion": "0.8.13-dev.1",
+  "currentExportVersion": "0.8.13-dev.5",
+  "commandCount": 361,
+  "stateMismatch": 0,
+  "oldPublicMismatch": 0,
+  "publicMismatch": 299,
+  "eventMismatch": 0,
+  "changedPaths": [
+    "/chapter/insightObjectives/0/description",
+    "/chapter/main/description",
+    "/chapter/objectives/0/description",
+    "/chapter/objectives/1/description",
+    "/chapter/primary/description"
+  ],
+  "finalSaveSame": true,
+  "points": [
+    {
+      "checkpoint": 4,
+      "command": {
+        "type": "STOP_MOVE"
+      },
+      "expectedHash": "17c5002263b300320dd11beff564ec8563d85b79b6dec19cf10e1d7dd951395b",
+      "oldHash": "17c5002263b300320dd11beff564ec8563d85b79b6dec19cf10e1d7dd951395b",
+      "dev2Hash": "17c5002263b300320dd11beff564ec8563d85b79b6dec19cf10e1d7dd951395b",
+      "actualHash": "000e3a1c9eee8c721af72c4ed9aee6aaa3ec7604ea83621ec14fae0b0fbf0d7b",
+      "changes": [
+        {
+          "path": "/chapter/objectives/1/description",
+          "before": "마당 등불의 야수 사냥 무리 처치하세요.",
+          "after": "마당 등불의 야수 사냥 무리를 처치하세요."
+        },
+        {
+          "path": "/chapter/insightObjectives/0/description",
+          "before": "마당 등불의 야수 사냥 무리 처치하세요.",
+          "after": "마당 등불의 야수 사냥 무리를 처치하세요."
+        }
+      ]
+    },
+    {
+      "checkpoint": 5,
+      "command": {
+        "type": "END_TURN"
+      },
+      "expectedHash": "b336aa69cb54986ba8593bc4b814a38ad5781687183ce9fb85bfd147e1ceeab7",
+      "oldHash": "b336aa69cb54986ba8593bc4b814a38ad5781687183ce9fb85bfd147e1ceeab7",
+      "dev2Hash": "b336aa69cb54986ba8593bc4b814a38ad5781687183ce9fb85bfd147e1ceeab7",
+      "actualHash": "149f33d893322fec6dd243b566c38893aae1424a3fa1a2fd8e5a7f470eea0cb8",
+      "changes": [
+        {
+          "path": "/chapter/objectives/1/description",
+          "before": "마당 등불의 야수 사냥 무리 처치하세요.",
+          "after": "마당 등불의 야수 사냥 무리를 처치하세요."
+        },
+        {
+          "path": "/chapter/insightObjectives/0/description",
+          "before": "마당 등불의 야수 사냥 무리 처치하세요.",
+          "after": "마당 등불의 야수 사냥 무리를 처치하세요."
+        }
+      ]
+    },
+    {
+      "checkpoint": 6,
+      "command": {
+        "type": "COUNTER",
+        "cardId": "card-7",
+        "slot": 2,
+        "boost": "none"
+      },
+      "expectedHash": "693da1677bc02787273a983a350187abf4258a6b6e96a4e8c7ecd600b96380c6",
+      "oldHash": "693da1677bc02787273a983a350187abf4258a6b6e96a4e8c7ecd600b96380c6",
+      "dev2Hash": "693da1677bc02787273a983a350187abf4258a6b6e96a4e8c7ecd600b96380c6",
+      "actualHash": "dda943d77d47eb78f81288adeda151f1f054192d92a45f0dc0e08427403c9b80",
+      "changes": [
+        {
+          "path": "/chapter/objectives/1/description",
+          "before": "마당 등불의 야수 사냥 무리 처치하세요.",
+          "after": "마당 등불의 야수 사냥 무리를 처치하세요."
+        },
+        {
+          "path": "/chapter/insightObjectives/0/description",
+          "before": "마당 등불의 야수 사냥 무리 처치하세요.",
+          "after": "마당 등불의 야수 사냥 무리를 처치하세요."
+        }
+      ]
+    },
+    {
+      "checkpoint": 7,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "expectedHash": "6e70272091aef8c9f4392702499fb31278f62aa2a81fde2bd56a39ff31bbc30f",
+      "oldHash": "6e70272091aef8c9f4392702499fb31278f62aa2a81fde2bd56a39ff31bbc30f",
+      "dev2Hash": "6e70272091aef8c9f4392702499fb31278f62aa2a81fde2bd56a39ff31bbc30f",
+      "actualHash": "4681564ceb5c11b7fbde1f44e8d7857ee50f538141b8e0390a95af071d8fc625",
+      "changes": [
+        {
+          "path": "/chapter/objectives/1/description",
+          "before": "마당 등불의 야수 사냥 무리 처치하세요.",
+          "after": "마당 등불의 야수 사냥 무리를 처치하세요."
+        },
+        {
+          "path": "/chapter/insightObjectives/0/description",
+          "before": "마당 등불의 야수 사냥 무리 처치하세요.",
+          "after": "마당 등불의 야수 사냥 무리를 처치하세요."
+        }
+      ]
+    },
+    {
+      "checkpoint": 8,
+      "command": {
+        "type": "REFILL",
+        "discardIds": [
+          "card-1"
+        ]
+      },
+      "expectedHash": "30f0c77b51c74a74d027103e00a425c5f161106441361c44a3965686161e03ef",
+      "oldHash": "30f0c77b51c74a74d027103e00a425c5f161106441361c44a3965686161e03ef",
+      "dev2Hash": "30f0c77b51c74a74d027103e00a425c5f161106441361c44a3965686161e03ef",
+      "actualHash": "f1284ae6610ecd1dadec11234566a16b2943f882e6439c4a8db8b89d2aea3500",
+      "changes": [
+        {
+          "path": "/chapter/objectives/1/description",
+          "before": "마당 등불의 야수 사냥 무리 처치하세요.",
+          "after": "마당 등불의 야수 사냥 무리를 처치하세요."
+        },
+        {
+          "path": "/chapter/insightObjectives/0/description",
+          "before": "마당 등불의 야수 사냥 무리 처치하세요.",
+          "after": "마당 등불의 야수 사냥 무리를 처치하세요."
+        }
+      ]
+    },
+    {
+      "checkpoint": 9,
+      "command": {
+        "type": "TRANSFORM",
+        "cardId": "card-6"
+      },
+      "expectedHash": "e8f40faaffbac63e80a350dfdcb2f05c10410276fd63230e994a1d6e4a8aa06c",
+      "oldHash": "e8f40faaffbac63e80a350dfdcb2f05c10410276fd63230e994a1d6e4a8aa06c",
+      "dev2Hash": "e8f40faaffbac63e80a350dfdcb2f05c10410276fd63230e994a1d6e4a8aa06c",
+      "actualHash": "ed03dc901dec17cfee80ff38fd048b56f2b309c1f604e38dafb02270cfa110d6",
+      "changes": [
+        {
+          "path": "/chapter/objectives/1/description",
+          "before": "마당 등불의 야수 사냥 무리 처치하세요.",
+          "after": "마당 등불의 야수 사냥 무리를 처치하세요."
+        },
+        {
+          "path": "/chapter/insightObjectives/0/description",
+          "before": "마당 등불의 야수 사냥 무리 처치하세요.",
+          "after": "마당 등불의 야수 사냥 무리를 처치하세요."
+        }
+      ]
+    },
+    {
+      "checkpoint": 10,
+      "command": {
+        "type": "ATTACK",
+        "enemyId": "huntsman-mob-1",
+        "cardId": "card-11",
+        "slot": 2,
+        "boost": "none"
+      },
+      "expectedHash": "1fe4654c1205616a9f1829cef8464d4af99c7cac6655147a060fdd6de64d6985",
+      "oldHash": "1fe4654c1205616a9f1829cef8464d4af99c7cac6655147a060fdd6de64d6985",
+      "dev2Hash": "1fe4654c1205616a9f1829cef8464d4af99c7cac6655147a060fdd6de64d6985",
+      "actualHash": "d17a22edd1e706473a9c6ab7511fc5e845eb0b8d6494a1b78762e95afe1803a1",
+      "changes": [
+        {
+          "path": "/chapter/objectives/1/description",
+          "before": "마당 등불의 야수 사냥 무리 처치하세요.",
+          "after": "마당 등불의 야수 사냥 무리를 처치하세요."
+        },
+        {
+          "path": "/chapter/insightObjectives/0/description",
+          "before": "마당 등불의 야수 사냥 무리 처치하세요.",
+          "after": "마당 등불의 야수 사냥 무리를 처치하세요."
+        }
+      ]
+    },
+    {
+      "checkpoint": 11,
+      "command": {
+        "type": "RESOLVE"
+      },
+      "expectedHash": "3ac60beb4d8c63a5882ccfd092eb367b200c3ed86ee2fbe9dc15761e029e199f",
+      "oldHash": "3ac60beb4d8c63a5882ccfd092eb367b200c3ed86ee2fbe9dc15761e029e199f",
+      "dev2Hash": "3ac60beb4d8c63a5882ccfd092eb367b200c3ed86ee2fbe9dc15761e029e199f",
+      "actualHash": "e7a19df7319402c0d39625eb6e5d1576b500cd93152158729937c82cf7b1bb80",
+      "changes": [
+        {
+          "path": "/chapter/objectives/1/description",
+          "before": "마당 등불의 야수 사냥 무리 처치하세요.",
+          "after": "마당 등불의 야수 사냥 무리를 처치하세요."
+        },
+        {
+          "path": "/chapter/insightObjectives/0/description",
+          "before": "마당 등불의 야수 사냥 무리 처치하세요.",
+          "after": "마당 등불의 야수 사냥 무리를 처치하세요."
+        }
+      ]
+    }
+  ]
+}

@@ -1,10 +1,11 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../src/hunt-engine"), { boot } = require("./helpers/ui-harness.cjs");
+const E = require("../src/hunt-engine"), { boot, Document } = require("./helpers/ui-harness.cjs");
 const commands = require("./fixtures/weapon-campaign-completion/beast-claw-0.json"), key = "bloodborne-hunt-v07";
 const engine = { create: E.create, importSave: E.importSave, exportSave: E.exportSave, dispatch: E.dispatch,
   missionView: E.missionView, rewardsView: E.rewardsView, missionActions: E.missionActions,
-  interactionEnemies: E.interactionEnemies, provisionalView: E.provisionalView, applyChapelRuling: s => s };
+  interactionEnemies: E.interactionEnemies, provisionalView: E.provisionalView, applyChapelRuling: s => s,
+  applyCombatReactionRuling: s => s };
 const checkpoints = new Map();
 let state = E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true });
 checkpoints.set(0, state);
@@ -64,6 +65,71 @@ test("slot clicks select, cancel the same slot, and replace another selection wi
   enemyTarget(f, f.state.enemies[0].id); assert.deepEqual(selected(f), [1]);
   clickSlot(f, 1); assert.deepEqual(selected(f), []);
   unchanged(f);
+});
+
+test("reclicking a selected hand card deselects it after target and slot redraws and disables the pending attack", () => {
+  const f = launch(checkpoints.get(9)), command = commands[9];
+  clickCard(f, command.cardId); clickSlot(f, command.slot); enemyTarget(f, command.enemyId);
+  assert(actions(f, "ATTACK").some(button => !button.disabled));
+  clickCard(f, command.cardId);
+  assert(f.ui.el("hand").querySelectorAll("[data-card]").every(card => card.getAttribute("aria-pressed") === "false"));
+  assert.deepEqual(selected(f), [command.slot], "card deselection preserves an explicitly chosen free slot");
+  assert.equal(f.ui.el("mapContext").hidden, false, "the inspected target remains available");
+  assert(actions(f, "ATTACK").every(button => button.disabled)); unchanged(f);
+  clickCard(f, command.cardId); assert(actions(f, "ATTACK").some(button => !button.disabled));
+  execute(f, "ATTACK", command);
+});
+
+test("switching hand cards leaves only the latest card selected and clicking it again disables movement", () => {
+  const f = launch(checkpoints.get(0)), cards = E.hunter(f.state).hand;
+  clickCard(f, cards[0].id); clickCard(f, cards[1].id);
+  const highlighted = f.ui.el("hand").querySelectorAll("[data-card]").filter(card => card.getAttribute("aria-pressed") === "true");
+  assert.deepEqual(highlighted.map(card => card.dataset.card), [cards[1].id]);
+  assert.equal(JSON.parse(actions(f, "MOVE").find(button => !button.disabled).dataset.args).cardId, cards[1].id);
+  clickCard(f, cards[1].id); assert(actions(f, "MOVE").every(button => button.disabled));
+  for (const button of actions(f, "MOVE")) button.click(); unchanged(f);
+});
+
+test("occupied slots are readable disabled controls and cannot replace a valid empty slot selection", () => {
+  const f = launch(checkpoints.get(6)), h = E.hunter(f.state), occupiedIndex = h.slots.findIndex(Boolean),
+    emptyIndex = E.slots(f.state).findIndex((_, index) => !h.slots[index]);
+  assert(occupiedIndex >= 0 && emptyIndex >= 0);
+  clickSlot(f, emptyIndex);
+  const occupied = slots(f).find(slot => +slot.dataset.slot === occupiedIndex);
+  assert.equal(occupied.disabled, true); assert.equal(occupied.getAttribute("aria-disabled"), "true");
+  assert.equal(occupied.getAttribute("aria-pressed"), "false");
+  assert.match(f.ui.el("slots").innerHTML, new RegExp(`data-slot="${occupiedIndex}"[^>]*>[\\s\\S]*?${occupiedIndex + 1}번 슬롯 · 사용됨`));
+  occupied.click(); assert.deepEqual(selected(f), [emptyIndex]); unchanged(f);
+});
+
+test("an attack spends its card and disables the filled slot, including clicks on a stale preattack control", () => {
+  const f = launch(checkpoints.get(9)), command = commands[9];
+  enemyTarget(f, command.enemyId); clickCard(f, command.cardId); clickSlot(f, command.slot);
+  const previousSlot = slots(f).find(slot => +slot.dataset.slot === command.slot), actual = execute(f, "ATTACK", command),
+    saved = f.ui.storage.get(key), occupied = slots(f).find(slot => +slot.dataset.slot === command.slot);
+  assert(E.hunter(actual).slots[command.slot]); assert.equal(occupied.disabled, true);
+  assert.equal(occupied.getAttribute("aria-pressed"), "false");
+  assert(!f.ui.el("hand").querySelectorAll("[data-card]").some(card => card.dataset.card === command.cardId));
+  assert(f.ui.el("hand").querySelectorAll("[data-card]").every(card => card.getAttribute("aria-pressed") === "false"));
+  previousSlot.click(); assert.deepEqual(selected(f), []); assert.equal(f.ui.storage.get(key), saved);
+  assert.equal(f.ui.el("error").textContent, "");
+});
+
+test("a card beyond the first hand row remains selectable and toggles off without spending a QA command", () => {
+  const qaKey = "bloodborne-hunt-qa-v1";
+  let s = E.create(90, "qa-test-weapon", 0, null, "hunter-pistol", "center",
+    { campaign: true, qa: { preset: "custom", startRewards: [], startConsumables: ["qa-cards"] } });
+  s = E.dispatch(s, { type: "USE_CONSUMABLE", itemId: E.hunter(s).consumables[0].id });
+  const saved = E.exportSave(s), ui = boot(s, E.missionView(s), E.rewardsView(s), { engine, realInventory: true,
+    storage: { [qaKey]: saved, "bloodborne-hunt-active-mode": "qa" } });
+  const cards = E.hunter(s).hand; assert(cards.length > 3);
+  const laterId = cards.at(-1).id;
+  const find = () => ui.el("hand").querySelectorAll("[data-card]").find(card => card.dataset.card === laterId);
+  assert.equal(ui.el("hand").querySelectorAll("[data-card]").length, cards.length);
+  find().click(); assert.equal(find().getAttribute("aria-pressed"), "true");
+  assert(find().getAttribute("title").includes(ui.window.BBHuntPublicText.clean(E.card(cards.at(-1)).text)));
+  find().click(); assert.equal(find().getAttribute("aria-pressed"), "false");
+  assert.equal(ui.storage.get(qaKey), saved); assert.equal(ui.el("error").textContent, "");
 });
 
 test("a card and target cannot activate an attack until a slot is explicitly selected, and deselection disables it again", () => {
@@ -167,6 +233,12 @@ function firearmState(id, spent) {
   assert.equal(s.phase, "hunter"); assert.equal(E.hunter(s).firearmReady, false);
   assert.deepEqual(E.importSave(E.exportSave(s)), s); return s;
 }
+function printedFirearmText(f) {
+  const section = f.ui.el("firearm").innerHTML.match(/<section class="firearm-rules"[^>]*>([\s\S]*?)<\/section>/);
+  assert(section, "the ready/spent effect paragraph is separate from the hover rules");
+  const body = new Document('<div id="printed-firearm"></div>').getElementById("printed-firearm");
+  body.innerHTML = section[1]; return body.textContent;
+}
 for (const [id, cost] of [["hunter-pistol", 1], ["flamesprayer", 2]]) {
   test(`${id} hides preparation guidance while ready and preserves its printed effect`, () => {
     const f = launch(firearmState(id, false));
@@ -174,8 +246,12 @@ for (const [id, cost] of [["hunter-pistol", 1], ["flamesprayer", 2]]) {
     assert.match(f.ui.el("firearm").textContent, /준비됨/);
     assert(f.ui.el("firearm").textContent.includes(E.firearm(f.state).name));
     assert.match(f.ui.el("firearm").innerHTML, /firearm-rules/);
-    assert.match(f.ui.el("firearm").textContent, id === "hunter-pistol" ? /기본 공격.*방해/ : /속도 2.*피해 2.*방해/);
-    assert.doesNotMatch(f.ui.el("firearm").textContent, /차례.{0,30}(?:버리|버려).*준비/, "a printed preparation rule cannot leak into the ready-only effect paragraph");
+    const printed = printedFirearmText(f), hover = f.ui.el("firearm").querySelectorAll("[data-firearm-info]")[0];
+    assert.match(printed, id === "hunter-pistol" ? /기본 공격.*방해/ : /속도 2.*피해 2.*방해/);
+    assert.doesNotMatch(printed, /차례.{0,30}(?:버리|버려).*준비/, "ready-only effects omit preparation guidance");
+    assert(hover, "full firearm rules remain available on hover and keyboard focus");
+    assert.equal(hover.getAttribute("tabindex"), "0"); assert.match(hover.getAttribute("title"), /준비/);
+    assert(f.ui.document.getElementById(hover.getAttribute("aria-describedby")), "the full-rule tooltip has an accessible target");
     assert.deepEqual(selected(f), []); unchanged(f);
   });
   test(`${id} shows the exact ${cost}-card player-turn preparation cost only while spent and prepares through the original command`, () => {
@@ -201,7 +277,7 @@ for (const [id, cost] of [["hunter-pistol", 1], ["flamesprayer", 2]]) {
 
 test("every provided ready firearm retains its exact public effect rules while withholding preparation instructions", () => {
   for (const id of Object.keys(E.data.firearms)) {
-    const f = launch(firearmState(id, false)), gun = E.firearm(f.state), text = f.ui.el("firearm").textContent;
+    const f = launch(firearmState(id, false)), gun = E.firearm(f.state), text = printedFirearmText(f);
     assert.equal(f.ui.el("firearm").querySelectorAll("[data-firearm-preparation]").length, 0, `${id}: no preparation paragraph`);
     assert.doesNotMatch(text, /차례.{0,30}(?:버리|버려).*준비/, `${id}: no preparation instruction in effect paragraph`);
     const preparations = new Set([gun.prepareText, gun.readyRule]);
@@ -209,4 +285,105 @@ test("every provided ready firearm retains its exact public effect rules while w
       assert(text.includes(f.ui.window.BBHuntPublicText.clean(rule)), `${id}: its original public effect rule remains visible`);
     unchanged(f);
   }
+});
+
+function earnedLongHand(count = 2) {
+  // Normal QA commands: actual kill/echo, Dream purchase, refill/return, then
+  // paid transforms. No hand, deck, RNG, enemy or mission state is fabricated.
+  let s = E.create(5, "burial", 0, null, "hunter-pistol", "center", {
+    campaign: true, rulesVersion: 14, qa: { preset: "custom", startRewards: [],
+      startConsumables: [...Array(10).fill("qa-cards"), ...Array(5).fill("qa-heal"), ...Array(2).fill("qa-travel")] },
+  });
+  const preparation = [
+    { type: "USE_CONSUMABLE", itemId: "item-qa-1-16" }, { type: "EXPLORE", edge: "N" },
+    { type: "PLACE_TILE", rotation: 0 }, { type: "STOP_MOVE" },
+    { type: "USE_CONSUMABLE", itemId: "item-qa-1-1" },
+    { type: "ATTACK", cardId: "card-9", slot: 1, enemyId: "huntsman-mob-1" }, { type: "FIREARM" }, { type: "RESOLVE" },
+    { type: "USE_CONSUMABLE", itemId: "item-qa-1-2" },
+    { type: "ATTACK", cardId: "card-7", slot: 1, enemyId: "huntsman-mob-1" }, { type: "RESOLVE" },
+    { type: "STUN_DISCARD", cardId: "card-4" }, { type: "USE_CONSUMABLE", itemId: "item-qa-1-3" },
+    { type: "USE_CONSUMABLE", itemId: "item-qa-1-11" },
+    { type: "ATTACK", cardId: "card-8", slot: 1, enemyId: "huntsman-mob-1" }, { type: "FIREARM" }, { type: "RESOLVE" },
+    { type: "USE_CONSUMABLE", itemId: "item-qa-1-4" },
+    { type: "ATTACK", cardId: "card-9", slot: 1, enemyId: "huntsman-mob-1" }, { type: "RESOLVE" },
+    { type: "KEEP_FIREARM", firearmId: "ludwig-rifle" }, { type: "DREAM", cardId: "card-2" },
+    { type: "PICK_UPGRADE", index: 2 }, { type: "REPLACE_UPGRADE", replaceId: "card-4" },
+    { type: "REFILL", discardIds: [] }, { type: "RETURN", node: "tile-14:center", face: 0 },
+    ...[5, 6, 7].map(index => ({ type: "USE_CONSUMABLE", itemId: `item-qa-1-${index}` })),
+    ...["card-10", "card-1", "card-12", "card-7", "card-8", "card-9", "card-3", "card-2", "card-5", "card-6"]
+      .slice(0, 12 - count).map(cardId => ({ type: "TRANSFORM", cardId })),
+  ];
+  for (const command of preparation) s = E.dispatch(s, command);
+  assert.equal(s.phase, "hunter"); assert.equal(E.hunter(s).hand.length, count);
+  assert(E.hunter(s).hand.some(card => card.kind === "cheap-shot"));
+  assert.deepEqual(E.importSave(E.exportSave(s)), s);
+  return s;
+}
+
+test("BB030 earned long-card toggles preserve its reading position and focused control without altering save bytes", () => {
+  const f = launch(earnedLongHand(7)), id = E.hunter(f.state).hand.find(card => card.kind === "cheap-shot").id;
+  const find = () => f.ui.el("hand").querySelectorAll("[data-card]").find(card => card.dataset.card === id);
+  const old = find(); old.scrollTop = 50; old.focus();
+  f.ui.el("hand").scrollTop = 18; f.ui.el("slots").scrollTop = 40;
+  old.click();
+  assert.notEqual(find(), old, "the actual controller still replaces the button");
+  assert.equal(find().getAttribute("aria-pressed"), "true");
+  assert.equal(find().scrollTop, 50, "read effect text is not returned to the top");
+  assert.equal(f.ui.document.activeElement, find(), "native activation can reach the newly rendered card");
+  assert.equal(find().lastFocusOptions.preventScroll, true);
+  assert.equal(f.ui.el("hand").scrollTop, 18); assert.equal(f.ui.el("slots").scrollTop, 40);
+  f.ui.document.activeElement.click();
+  assert.equal(find().getAttribute("aria-pressed"), "false");
+  assert.equal(find().scrollTop, 50); assert.equal(f.ui.document.activeElement, find());
+  unchanged(f);
+});
+
+test("BB030 a free-slot toggle preserves focused slot and the reading offsets of both loadout lists", () => {
+  const f = launch(earnedLongHand(7)), cards = f.ui.el("hand").querySelectorAll("[data-card]");
+  const longId = E.hunter(f.state).hand.find(card => card.kind === "cheap-shot").id;
+  cards.find(card => card.dataset.card === longId).scrollTop = 50;
+  const old = slots(f)[1]; old.scrollTop = 12; old.focus();
+  f.ui.el("hand").scrollTop = 18; f.ui.el("slots").scrollTop = 40;
+  old.click();
+  const current = () => slots(f)[1];
+  assert.equal(f.ui.document.activeElement, current()); assert.equal(current().scrollTop, 12);
+  assert.equal(current().lastFocusOptions.preventScroll, true); assert.deepEqual(selected(f), [1]);
+  assert.equal(f.ui.el("hand").scrollTop, 18); assert.equal(f.ui.el("slots").scrollTop, 40);
+  assert.equal(f.ui.el("hand").querySelectorAll("[data-card]").find(card => card.dataset.card === longId).scrollTop, 50);
+  f.ui.document.activeElement.click(); assert.deepEqual(selected(f), []);
+  assert.equal(f.ui.document.activeElement, current()); assert.equal(current().scrollTop, 12);
+  unchanged(f);
+});
+
+test("BB030 a consumed hand card is not refocused or replaced with an unrelated card", () => {
+  const f = launch(checkpoints.get(0)), id = E.hunter(f.state).hand[0].id;
+  clickCard(f, id);
+  f.ui.el("hand").querySelectorAll("[data-card]").find(card => card.dataset.card === id).focus();
+  execute(f, "MOVE", { type: "MOVE", cardId: id });
+  assert(!f.ui.el("hand").querySelectorAll("[data-card]").some(card => card.dataset.card === id));
+  assert.equal(f.ui.document.activeElement, f.ui.document.body);
+});
+
+test("BB030 an attack never restores focus to its newly occupied disabled slot", () => {
+  const f = launch(checkpoints.get(9)), command = commands[9];
+  enemyTarget(f, command.enemyId); clickCard(f, command.cardId); clickSlot(f, command.slot);
+  slots(f).find(slot => +slot.dataset.slot === command.slot).focus();
+  execute(f, "ATTACK", command);
+  const occupied = slots(f).find(slot => +slot.dataset.slot === command.slot);
+  assert(occupied.disabled); assert.notEqual(f.ui.document.activeElement, occupied);
+  assert.equal(f.ui.document.activeElement, f.ui.document.body);
+});
+
+test("BB030 changing to a two-slot weapon does not redirect focus from a removed third slot", () => {
+  const s = E.create(90, "kirkhammer", 0, null, "hunter-pistol", "center", { campaign: true }), f = launch(s);
+  const cardId = E.hunter(s).hand[0].id;
+  clickCard(f, cardId); clickSlot(f, 2); slots(f)[2].focus();
+  execute(f, "TRANSFORM", { type: "TRANSFORM", cardId });
+  assert.equal(slots(f).length, 2); assert.equal(f.ui.document.activeElement, f.ui.document.body);
+});
+
+test("BB030 hand redraws leave an unrelated focused control untouched", () => {
+  const f = launch(checkpoints.get(0)), control = f.ui.el("new");
+  control.focus(); clickCard(f, E.hunter(f.state).hand[0].id);
+  assert.equal(f.ui.document.activeElement, control); unchanged(f);
 });

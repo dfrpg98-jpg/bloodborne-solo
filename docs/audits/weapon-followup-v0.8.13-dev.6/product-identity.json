@@ -1,0 +1,399 @@
+{
+  "lastProductCommit": "c42c5e32c8ed02b4248b966083e3cceef4a5c6f4",
+  "verifiedQACommit": "33c236767d94ea5efa4c75bf1330e41721e91747",
+  "changedRootEntries": [
+    ".github",
+    "scripts"
+  ],
+  "rootProductFiles": [
+    {
+      "path": ".gitattributes",
+      "sha": "cdfaf6650fe4b5429bebcd2176620d91d22ed59b"
+    },
+    {
+      "path": ".gitignore",
+      "sha": "8b5debcb2cb6389b2b85865df8b6afa25da302e3"
+    },
+    {
+      "path": "ANIMATION_CAMERA_GUIDE.txt",
+      "sha": "f916c529df587c0026cbb678259589e959107347"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha": "4b49398d397c3931a6e8e59bf5ef6be6215418ba"
+    },
+    {
+      "path": "CHAPTER_TRANSITION_REVIEW.txt",
+      "sha": "ed4266b3fe3b087f594b23edaaa71109b377083c"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha": "80ab518ae4af794bf174a68403c527dd10166f4e"
+    },
+    {
+      "path": "DEVELOPMENT.md",
+      "sha": "1b7cf623550a940b0da5e8bf081975afe9f35692"
+    },
+    {
+      "path": "DIRECT_MAP_GUIDE.txt",
+      "sha": "f228ab2e35fec93515d854ea1a37dbdac4eaeb05"
+    },
+    {
+      "path": "ENEMY_REFERENCE_REVIEW.txt",
+      "sha": "08bdf171a2e77cb7053bdbd607821e3d726cdca8"
+    },
+    {
+      "path": "ENEMY_VISUAL_GUIDE.txt",
+      "sha": "fd43ba52594fed00124a0c7d0a18fe4f3f623822"
+    },
+    {
+      "path": "ENGINE_STRATEGY.txt",
+      "sha": "6c0cdad033fe494f94c4711d32d23999a9b66ae5"
+    },
+    {
+      "path": "HUD_GUIDE.txt",
+      "sha": "02bfeb5d50fdb32bd9b887a040dd3b13be48cee7"
+    },
+    {
+      "path": "INPUT_TEMPLATE.txt",
+      "sha": "b93f9ecf1bd66d3c121d4282cbec3a302fe2f5fc"
+    },
+    {
+      "path": "PRESENTATION_ENGINE.txt",
+      "sha": "7b0bd7d345afea25f9ee9f3c04eafe0fb284b8bb"
+    },
+    {
+      "path": "QA_GUIDE.txt",
+      "sha": "d49800cdf71e48b23b068f14d9981b0effe2123e"
+    },
+    {
+      "path": "README.md",
+      "sha": "274aa0a86e5281ed94474394d603ad4447ef7afc"
+    },
+    {
+      "path": "README.txt",
+      "sha": "e4a52c5780db6711012c1485ee8bc071d7b5160a"
+    },
+    {
+      "path": "RULE56_REVIEW.txt",
+      "sha": "e3e8e3103b81ab53455fa47f2c3cc7f07efd2137"
+    },
+    {
+      "path": "RULES_AUDIT.txt",
+      "sha": "a36815e5db4452b7330c1af2cc03ffbbc5bfe614"
+    },
+    {
+      "path": "RULES_CHECKLIST.json",
+      "sha": "202c08dc88ec4692e1435f6e761992874b4a50c2"
+    },
+    {
+      "path": "RULES_CHECKLIST.txt",
+      "sha": "4bf5614439b4ebb3f08c29060200ede24e06ded3"
+    },
+    {
+      "path": "RULES_CHECKLIST.xlsx",
+      "sha": "37a90fe804d501c65286513a1f5722a9014f66ed"
+    },
+    {
+      "path": "SOURCE_INVENTORY.json",
+      "sha": "b842960c5995ceefa62e5916f77636c7ff02acec"
+    },
+    {
+      "path": "SOURCE_REVIEW.txt",
+      "sha": "ab6a90381a98b9ce7715af51f1133027b44a8aac"
+    },
+    {
+      "path": "UIUX_ROADMAP.txt",
+      "sha": "d640e94fcb9dbccb7407818645e469a091233eec"
+    },
+    {
+      "path": "VERIFICATION.txt",
+      "sha": "138fce4d16abd3a1b2414f5a21d806a9a2674bbe"
+    },
+    {
+      "path": "VERIFICATION_v076.txt",
+      "sha": "321c974ab0ec07954dde91d5c62281023e70832d"
+    },
+    {
+      "path": "VERIFICATION_v077.txt",
+      "sha": "05bd3f582d484d3b942bc11ede0931807272fdef"
+    },
+    {
+      "path": "VERIFICATION_v078.txt",
+      "sha": "605fdc18773fb3b9306b937be57b6614344a5785"
+    },
+    {
+      "path": "VERIFICATION_v079.txt",
+      "sha": "9e2addd156c9fcb945c23604b5d2f558772717aa"
+    },
+    {
+      "path": "VERIFICATION_v080.txt",
+      "sha": "cca3d9aadfa839b4b05a165816f0892abe03304c"
+    },
+    {
+      "path": "VERIFICATION_v081.txt",
+      "sha": "a4a268b91ef2e4c139da0a594de12e39fa7e4d80"
+    },
+    {
+      "path": "VERIFICATION_v082.txt",
+      "sha": "69173e8b86079074804785c60b06ee2afd7c5faa"
+    },
+    {
+      "path": "VERIFICATION_v083.txt",
+      "sha": "e016fcbae6934fb5b51a801279017a96eaa539fa"
+    },
+    {
+      "path": "VERIFICATION_v084.txt",
+      "sha": "138fce4d16abd3a1b2414f5a21d806a9a2674bbe"
+    },
+    {
+      "path": "VERIFICATION_v085.txt",
+      "sha": "e4303d78015321597fdd7ba361de7aff4a12ef34"
+    },
+    {
+      "path": "WEAPON_REFERENCE_REVIEW.txt",
+      "sha": "e287189fdb060c504a77ccc3e53972f2753ca7cc"
+    },
+    {
+      "path": "WEAPON_VISUAL_GUIDE.txt",
+      "sha": "314dc6d752b5ed68831d9eaa3670c822789604ad"
+    },
+    {
+      "path": "actual-components.js",
+      "sha": "30dec8dcfc7ac1d5ad882665fdc05ef0d57a165e"
+    },
+    {
+      "path": "app.js",
+      "sha": "78fec1098e7116b58f12547f31c01204d1ab8283"
+    },
+    {
+      "path": "boss-components.js",
+      "sha": "02c466510f80f8a883a859bffecc7990e9e212a4"
+    },
+    {
+      "path": "campaign.css",
+      "sha": "96e32d45c9bf70841b550029aa85b5ab2dbb372f"
+    },
+    {
+      "path": "campaign.html",
+      "sha": "a39550f95e315d46f0d886a243149ce8e28da5e0"
+    },
+    {
+      "path": "campaign.js",
+      "sha": "aa4a2bd5d1b5896402d5a02353d1855e341deffe"
+    },
+    {
+      "path": "chapter-app.js",
+      "sha": "7c26d0b6901fd4ba764ce9508af7be94f7be457a"
+    },
+    {
+      "path": "chapter-engine.js",
+      "sha": "4dcaf13c236fa110f683e26c3a434e15d1156bb5"
+    },
+    {
+      "path": "chapter.css",
+      "sha": "c34305a36c1378016f1ec60aeb53ece797a8b7f9"
+    },
+    {
+      "path": "chapter.html",
+      "sha": "adf636bd38c7b2717b118ffc9acb267c3828c209"
+    },
+    {
+      "path": "components.css",
+      "sha": "52cd72eb7e9d35124808346e62346e75700f017b"
+    },
+    {
+      "path": "components.html",
+      "sha": "398c848cd2a72a97de542319e3b3961943fa81b9"
+    },
+    {
+      "path": "components.js",
+      "sha": "9c07f0f2adcca0e47a70489413ca8624f97b07c4"
+    },
+    {
+      "path": "data.js",
+      "sha": "054ba549b68be3d4e8e18b82ab1430fc75ed3859"
+    },
+    {
+      "path": "enemy-action-history.js",
+      "sha": "5f253fdf4c069261fbdb247f7669940a028e22ed"
+    },
+    {
+      "path": "enemy-deck.js",
+      "sha": "20533bcda7c7949ac928b7c4f3cea8a63a76115b"
+    },
+    {
+      "path": "engine.js",
+      "sha": "1fad1e22c81be245bbbad1f8eaeb5a4ac2f15a5a"
+    },
+    {
+      "path": "extended-enemies.js",
+      "sha": "0a9271d9da73e7703c008f782d36f47d3a508d28"
+    },
+    {
+      "path": "extended-enemy-rules.js",
+      "sha": "29025b06ddfd33385240aef16f3282527f4b7e07"
+    },
+    {
+      "path": "extended-firearms.js",
+      "sha": "dcb03255cb34c05221f9cd3c35b3c4c872071804"
+    },
+    {
+      "path": "extended-rewards.js",
+      "sha": "6199f32e77817e4aa875fe6b4a61c9910dc67fc0"
+    },
+    {
+      "path": "extended-weapons.js",
+      "sha": "c936026c8b396fec7a4efa0c19591c14460450bf"
+    },
+    {
+      "path": "firearms-engine.js",
+      "sha": "9c962c713253b3a3083469f0db6165b78f95b453"
+    },
+    {
+      "path": "guide.html",
+      "sha": "9b000104c39bd23425d4c1b11d46bf05371dd70e"
+    },
+    {
+      "path": "hunt-animation-events.js",
+      "sha": "eda7a501c4aafaaf243267a0ed48f4823e41405b"
+    },
+    {
+      "path": "hunt-app.js",
+      "sha": "ea4a763b28c07c6cdac61f715ee4dfe09f8431e2"
+    },
+    {
+      "path": "hunt-camera.js",
+      "sha": "da584a507ad42040b8ee80fe7c8775a56b27e633"
+    },
+    {
+      "path": "hunt-combat-feedback.css",
+      "sha": "ba7f92b63545aedf699dd5e0d68a507218c0aeae"
+    },
+    {
+      "path": "hunt-combat-feedback.js",
+      "sha": "4fd04ed16f52ee2488485731d4a65f0a4fd379ef"
+    },
+    {
+      "path": "hunt-context.js",
+      "sha": "efdad765ba883544edc9c08e520c6ff0f57960c7"
+    },
+    {
+      "path": "hunt-data.js",
+      "sha": "45c903d17cc504d76ed82feab0232e15cefb652b"
+    },
+    {
+      "path": "hunt-departure.js",
+      "sha": "3df2cba6a33020d317aab7fc3a749af417a1f023"
+    },
+    {
+      "path": "hunt-enemy-mission-effects.js",
+      "sha": "14a31fa51c907cd9035d846f69ba047559f55825"
+    },
+    {
+      "path": "hunt-engine.js",
+      "sha": "407af9c4e9d0142b49e01a7edfac56257afef5dc"
+    },
+    {
+      "path": "hunt-hand-feedback.css",
+      "sha": "3f371c9342269d77f481795993b6f1b4ab683aa1"
+    },
+    {
+      "path": "hunt-map-controls.css",
+      "sha": "9f673e06d0b9cd979b73192ad6217b37f39bfb37"
+    },
+    {
+      "path": "hunt-map-controls.js",
+      "sha": "ba2afcc544721ca2da18f03ed321703413c4db31"
+    },
+    {
+      "path": "hunt-mission-feedback.js",
+      "sha": "d060b53706daecdd636461b67b39428f31da5b1f"
+    },
+    {
+      "path": "hunt-presentation.js",
+      "sha": "5fea1b3de0fbe36fff6f91b3068eec1e0af22e9a"
+    },
+    {
+      "path": "hunt-public-text.js",
+      "sha": "b1febdd5317c2c16b7c6b17eb5c937d9bc9c25dd"
+    },
+    {
+      "path": "hunt-shell.js",
+      "sha": "985351d42bf40ebab13adf89353976ba18a11178"
+    },
+    {
+      "path": "hunt.css",
+      "sha": "2f7c086ded60c9c86df62f9636dbb72637035041"
+    },
+    {
+      "path": "hunt.html",
+      "sha": "241a35a56557f142ea3c53ee0eac006127699dbe"
+    },
+    {
+      "path": "index.html",
+      "sha": "58241a765e15319a94ff83f0c6e529d911e2fa9c"
+    },
+    {
+      "path": "inventory.js",
+      "sha": "51a92e44bd6669d4a923c6cba3cf5b3319d455f6"
+    },
+    {
+      "path": "map-render-layout.js",
+      "sha": "94ab552665057f5773ce785e396d44359242f33d"
+    },
+    {
+      "path": "mission-engine.js",
+      "sha": "1aeb317d0d0a000e9040907c5e0fab10ab9d64ac"
+    },
+    {
+      "path": "package.json",
+      "sha": "05025dcadbb23da27e8b90a29338527ed75f85db"
+    },
+    {
+      "path": "qa-mode.js",
+      "sha": "9e42b913a77c7138eb58bfb70ad6e9dc4d43c8c9"
+    },
+    {
+      "path": "rewards-engine.js",
+      "sha": "3ac0651cd244b42d9003b4d919a502fbb42dd727"
+    },
+    {
+      "path": "start-placement.js",
+      "sha": "a8450778b504a8429f052dfb4499b09e3cf017b9"
+    },
+    {
+      "path": "style.css",
+      "sha": "08285ff3af8d91728279e8e3a6adffca312a6868"
+    },
+    {
+      "path": "temporary-components.js",
+      "sha": "c446ca937c79754b0b72b7da35ac0796a6248867"
+    },
+    {
+      "path": "tile-geometry.js",
+      "sha": "824cf8cb37778de7b85e6bffda0aa49c8ff3e93f"
+    },
+    {
+      "path": "weapon-flow.js",
+      "sha": "3e8955af116eb2bfca0546eab33317a10a56df43"
+    },
+    {
+      "path": "weapon-gallery.html",
+      "sha": "f1a540fba08de17c729a7da125f7a846490177f4"
+    },
+    {
+      "path": "weapon-gallery.js",
+      "sha": "aa47a64a9b85680a57ac7265dd9e75b277f609db"
+    },
+    {
+      "path": "weapon-rules.js",
+      "sha": "74ecd6e95b18e00c88bed80b239757270bd6e07d"
+    },
+    {
+      "path": "weapon-visuals.js",
+      "sha": "7c9043228e22a006e24403659c815ebb72215851"
+    }
+  ],
+  "testsTreeSHA": "5fa4af1ac7032176501384ae1fdfc09cba7167aa"
+}

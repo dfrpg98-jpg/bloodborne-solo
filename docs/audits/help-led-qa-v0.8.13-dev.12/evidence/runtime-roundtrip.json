@@ -1,0 +1,13 @@
+{
+  "version": "0.8.13-dev.12",
+  "url": "http://127.0.0.1:8786/bloodborne-solo/hunt.html",
+  "bytes": 14652,
+  "exactBytesEqual": true,
+  "qa": true,
+  "hp": 6,
+  "echoes": 1,
+  "phase": "hunter",
+  "location": "중앙 등불 / 왼쪽 칸",
+  "controllerQuery": "5b2a53311318",
+  "helpQuery": "7627700cd6ca"
+}

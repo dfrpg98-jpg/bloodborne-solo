@@ -62,13 +62,15 @@ function fixture({ reduced = false, missing = [], incomplete = null, custom = nu
       killAll() { for (const tween of tweens) tween.killed = true; } },
     time: { delayedCall(delay, callback) { const timer = { delay, callback, remove() { this.removed = true; } }; timers.push(timer); return timer; } }
   };
+  scene.time.now = 0;
   if (geometry) scene.make = { graphics(options) {
     assert.equal(options.add, false, 'mask paths are never added to the display list');
     const graphic = object(); graphic.commands = []; graphic.clearCount = 0;
     graphic.clear = () => { graphic.commands = []; graphic.clearCount++; return graphic; };
     graphic.fillStyle = (...args) => { graphic.commands.push(['fillStyle', ...args]); return graphic; };
     graphic.fillRect = (...args) => { graphic.commands.push(['fillRect', ...args]); return graphic; };
-    graphic.createGeometryMask = () => { const mask = { graphics: graphic, destroyed: false, destroy() { this.destroyed = true; } };
+    graphic.createGeometryMask = () => { if (geometry === 'throw') throw Error('native clipping unavailable');
+      const mask = { graphics: graphic, destroyed: false, destroy() { this.destroyed = true; } };
       masks.push(mask); return mask; };
     maskGraphics.push(graphic); return graphic;
   } };
@@ -82,6 +84,7 @@ function fixture({ reduced = false, missing = [], incomplete = null, custom = nu
     finishLoad() { finishAssets(); const callback = completeLoad; completeLoad = null; callback?.(); },
     frame() { config.scene.update?.call(scene); },
     starts() { return starts; }, motion(value) { mediaChange({ matches: value }); },
+    time(value) { scene.time.now = value; },
     timer(timer) { if (!timer.removed) timer.callback(); },
     tween(tween) { if (!tween.killed) { Object.assign(tween.targets, { x: tween.x ?? tween.targets.x, y: tween.y ?? tween.targets.y }); tween.onComplete?.(); } } };
 }
@@ -365,6 +368,9 @@ test('a newer rule revision cancels a deferred equipped-weapon attack', () => {
   f.adapter.sync({ revision: 3, sceneId: 'hunt', actors: [hunter(faceB, 6, 100), enemy(9)], actions: [{ type: 'transform', fromId: 'hunter' }] });
   f.timer(timer);
   assert.equal(f.sprites[0].texture, 'bb-character-' + faceB);
+  assert.equal(f.sprites[0].plays.at(-1), `bb-${faceB}-walk`);
+  f.tween(f.tweens.findLast(tween => tween.targets === f.sprites[0] && tween.x === 100));
+  f.timer(f.timers.at(-1));
   assert.equal(f.sprites[0].plays.at(-1), `bb-${faceB}-transform`);
   assert.equal(f.adapter.status().attacks, 0);
 });
@@ -381,6 +387,199 @@ test('a heavy attack completes its full four-frame 9 fps follow-through before t
   f.timer(f.timers[0]);
   assert.equal(f.sprites[0].plays.at(-1), `bb-${faceA}-hit`);
   assert.equal(f.sprites[1].plays.at(-1), 'bb-mob-attack');
+});
+
+test('a full four-frame walking cycle completes before the next attack and returns to stable idle', () => {
+  const f = equipped({ custom(characters) { characters[faceA].animations.walk.frameRate = 10; } });
+  const snapshot = { revision: 2, sceneId: 'hunt', actors: [hunter(faceA, 6, 20), enemy(9)], actions: [
+    { type: 'move', fromId: 'hunter' }, hit(0)
+  ] }, unchanged = JSON.stringify(snapshot);
+  f.adapter.sync(snapshot);
+  const sprite = f.sprites[0], movement = f.tweens.find(tween => tween.targets === sprite && tween.x === 20);
+  const walk = f.definitions.find(definition => definition.key === `bb-${faceA}-walk`);
+  assert.equal(movement.duration, 400);
+  assert.equal(movement.duration, walk.frames.length * 1000 / walk.frameRate);
+  assert.equal(f.timers[0].delay, 410, 'the attack starts after the complete walk cycle');
+  for (const frame of poseFrames.walk) {
+    sprite.advanceFrame(String(frame));
+    assert.equal(sprite.plays.at(-1), `bb-${faceA}-walk`);
+    assert.equal(sprite.flipX, true);
+  }
+  sprite.x = 20; movement.onUpdate(); f.tween(movement);
+  assert.equal(sprite.x, 20); assert.equal(sprite.y, 100);
+  assert.equal(sprite.frame, '0'); assert.equal(sprite.plays.at(-1), `bb-${faceA}-idle`);
+  assert.equal(f.graphics[0].x, 20); assert.equal(f.graphics[0].y, 102);
+  f.timer(f.timers[0]);
+  assert.equal(sprite.plays.at(-1), `bb-${faceA}-attack-0`);
+  assert.equal(JSON.stringify(snapshot), unchanged, 'visual timing never changes the public input');
+});
+
+for (const [frameRate, duration] of [[20, 340], [2, 600]])
+  test(`walk pacing remains bounded for optional ${frameRate} fps clips`, () => {
+    const f = equipped({ custom(characters) { characters[faceA].animations.walk.frameRate = frameRate; } });
+    f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [hunter(faceA, 5, 20), enemy()], actions: [{ type: 'move', fromId: 'hunter' }] });
+    const movement = f.tweens.find(tween => tween.targets === f.sprites[0] && tween.x === 20);
+    assert.equal(movement.duration, duration);
+    assert.equal(f.timers[0].delay, duration + 10, 'a nonattack HP reaction uses the same movement boundary');
+    f.tween(movement); f.timer(f.timers[0]);
+    assert.equal(f.sprites[0].plays.at(-1), `bb-${faceA}-hit`);
+  });
+
+test('idle frame changes and same-state refreshes preserve position, facing, origin, scale and shadow', () => {
+  const f = equipped(), sprite = f.sprites[0], shadow = f.graphics[0];
+  sprite.setFlipX(true);
+  const properties = () => [sprite.x, sprite.y, sprite.flipX, ...sprite.origin,
+    sprite.scaleX, sprite.scaleY, shadow.x, shadow.y];
+  const before = properties(), plays = sprite.plays.length;
+  for (let index = 0; index < 8; index++) {
+    sprite.advanceFrame(String(index % 2)); f.frame();
+    f.adapter.sync({ revision: 1, sceneId: 'hunt', actors: [hunter(), { ...enemy(), selected: !!(index % 2) }] });
+    assert.deepEqual(properties(), before);
+    assert.equal(sprite.frame, String(index % 2), 'refresh does not restart idle');
+    assert.equal(sprite.plays.length, plays);
+  }
+  assert.equal(f.adapter.status().moves, 0); assert.equal(f.adapter.status().attacks, 0);
+});
+
+test('zoom and pan preserve a walking actors half-cycle progress, remaining time and shadow', () => {
+  const f = equipped({ custom(characters) { characters[faceA].animations.walk.frameRate = 10; } });
+  f.adapter.sync({ revision: 1, sceneId: 'hunt', actors: [hunter(), enemy()], view: { x: 0, y: 0, zoom: 1 } });
+  f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [hunter(faceA, 6, 180), enemy()], actions: [{ type: 'move', fromId: 'hunter' }], view: { x: 0, y: 0, zoom: 1 } });
+  const sprite = f.sprites[0], movement = f.tweens.find(tween => tween.targets === sprite && tween.x === 180);
+  sprite.x = 130; movement.onUpdate(); f.time(200);
+  const plays = sprite.plays.length;
+  f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [{ ...hunter(faceA, 6, 340), y: 170, scale: 2 }, enemy()], view: { x: 20, y: 30, zoom: 2 } });
+  const resumed = f.tweens.at(-1);
+  assert.equal(movement.killed, true); assert.equal(sprite.x, 240); assert.equal(sprite.y, 170);
+  assert.equal(resumed.x, 340); assert.equal(resumed.duration, 200);
+  assert.equal(resumed.ease(0), 0); assert.equal(resumed.ease(1), 1);
+  assert.equal(sprite.plays.length, plays); assert.equal(sprite.plays.at(-1), `bb-${faceA}-walk`);
+  assert.equal(f.graphics[0].x, 240); assert.equal(f.graphics[0].y, 172);
+  f.tween(movement); assert.equal(sprite.x, 240);
+  f.tween(resumed); assert.equal(sprite.x, 340); assert.equal(sprite.plays.at(-1), `bb-${faceA}-idle`);
+  assert.equal(f.adapter.status().moves, 1);
+});
+
+test('a rapid return step starts at the visible midwalk position instead of the previous logical destination', () => {
+  const f = equipped({ custom(characters) { characters[faceA].animations.walk.frameRate = 10; } });
+  f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [hunter(faceA, 6, 180), enemy()], actions: [{ type: 'move', fromId: 'hunter' }] });
+  const sprite = f.sprites[0], outward = f.tweens.find(tween => tween.targets === sprite && tween.x === 180);
+  sprite.x = 130; outward.onUpdate(); f.time(200);
+  const snapshot = { revision: 3, sceneId: 'hunt', actors: [hunter(), enemy()], actions: [{ type: 'move', fromId: 'hunter', from: { x: 180, y: 100 } }] }, unchanged = JSON.stringify(snapshot);
+  f.adapter.sync(snapshot);
+  const returning = f.tweens.findLast(tween => tween.targets === sprite && tween.x === 80);
+  assert.equal(outward.killed, true); assert.equal(sprite.x, 130); assert.equal(sprite.flipX, true);
+  assert.equal(returning.duration, 400); f.tween(outward); assert.equal(sprite.x, 130);
+  f.tween(returning); assert.equal(sprite.x, 80); assert.equal(sprite.plays.at(-1), `bb-${faceA}-idle`);
+  assert.equal(f.adapter.status().moves, 2); assert.equal(JSON.stringify(snapshot), unchanged);
+});
+
+test('a combat resolution immediately after movement completes the visible arrival before swinging', () => {
+  const f = equipped({ custom(characters) { characters[faceA].animations.walk.frameRate = 10; } });
+  f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [hunter(faceA, 6, 180), enemy()], actions: [{ type: 'move', fromId: 'hunter' }] });
+  const sprite = f.sprites[0], outward = f.tweens.find(tween => tween.targets === sprite && tween.x === 180);
+  sprite.x = 130; outward.onUpdate(); f.time(200);
+  f.adapter.sync({ revision: 3, sceneId: 'hunt', actors: [hunter(faceA, 6, 180), enemy(9)], actions: [hit(0)] });
+  const arrival = f.tweens.findLast(tween => tween.targets === sprite && tween.x === 180), attack = f.timers.at(-1);
+  assert.equal(sprite.x, 130); assert.equal(arrival.duration, 200); assert.equal(attack.delay, 210);
+  assert.equal(sprite.plays.at(-1), `bb-${faceA}-walk`); assert.equal(f.adapter.status().attacks, 0);
+  f.tween(arrival); f.timer(attack);
+  assert.equal(sprite.x, 180); assert.equal(sprite.plays.at(-1), `bb-${faceA}-attack-0`);
+  assert.equal(f.adapter.status().moves, 1); assert.equal(f.adapter.status().attacks, 1);
+});
+
+test('a removed enemy death body and shadow scale with the same camera zoom as living bodies', () => {
+  const f = equipped();
+  f.adapter.sync({ revision: 1, sceneId: 'hunt', actors: [hunter(), enemy()], view: { x: 0, y: 0, zoom: 1 } });
+  f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [hunter()], actions: [hit(0, { damage: 99 })], view: { x: 0, y: 0, zoom: 1 } });
+  const corpse = f.sprites[1], initialHeight = corpse.height;
+  f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [{ ...hunter(faceA, 6, 160), y: 200, scale: 2 }], view: { x: 0, y: 0, zoom: 2 } });
+  assert.equal(corpse.height, initialHeight * 2); assert.equal(corpse.x, 300); assert.equal(corpse.y, 200);
+  assert.equal(f.graphics[1].scaleX, 2); assert.equal(f.graphics[1].x, 300); assert.equal(f.graphics[1].y, 202);
+  const death = f.tweens.find(tween => tween.targets === corpse && tween.alpha === 0); f.tween(death);
+  assert.equal(corpse.destroyed, true); assert.equal(f.adapter.status().characters, 1);
+});
+
+test('same-node packing changes settle smoothly without becoming extra rule movement', () => {
+  const f = equipped(), sprite = f.sprites[0];
+  f.adapter.sync({ revision: 1, sceneId: 'hunt', actors: [{ ...hunter(), node: 'tile-03:room' }, enemy()] });
+  f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [{ ...hunter(faceA, 6, 120), node: 'tile-03:room' }, enemy(9)], actions: [hit(0)] });
+  const packing = f.tweens.find(tween => tween.targets === sprite && tween.x === 120);
+  assert.equal(sprite.x, 80, 'the new packing does not teleport the body'); assert.equal(packing.duration, 240);
+  assert.equal(f.timers[0].delay, 250, 'attack waits until the living packing settles');
+  f.tween(packing); assert.equal(sprite.x, 120); f.timer(f.timers[0]);
+  assert.equal(sprite.plays.at(-1), `bb-${faceA}-attack-0`);
+  assert.equal(f.adapter.status().moves, 0); assert.equal(f.adapter.status().attacks, 1);
+});
+
+test('killing one of two same-cell enemies retains the strike and death positions before survivor packing', () => {
+  const f = fixture(), node = 'tile-14:left';
+  const h = { ...hunter(), node, x: 49, y: 186 }, a = { ...enemy(), id: 'a', node, x: 49, y: 145 },
+    b = { ...enemy(), id: 'b', node, x: 49, y: 104 };
+  f.adapter.sync({ revision: 1, sceneId: 'hunt', actors: [h, a, b], view: { x: 0, y: 0, zoom: 1 } }); f.boot();
+  const [hs, as, bs] = f.sprites;
+  f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [{ ...h, y: 104 }, { ...b, y: 145 }],
+    actions: [{ ...hit(0), toId: 'a', damage: 5 }], view: { x: 0, y: 0, zoom: 1 } });
+  assert.equal(hs.y, 186); assert.equal(bs.y, 104); assert.equal(as.y, 145);
+  const death = f.tweens.find(tween => tween.targets === as && tween.alpha === 0);
+  const settlements = f.timers.filter(timer => timer.delay === 750);
+  assert.equal(settlements.length, 2, 'both survivors wait until the defeated body fades');
+  assert(f.graphics.some(graphic => graphic.commands.some(command => command[0] === 'lineBetween' &&
+    command[1] === 49 && command[2] === 186 && command[3] === 49 && command[4] === 145)));
+  // While death plays, camera movement also keeps the waiting bodies at their old map points.
+  f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [{ ...h, y: 74 }, { ...b, y: 115 }], view: { x: 0, y: 30, zoom: 1 } });
+  assert.equal(hs.y, 156); assert.equal(bs.y, 74); assert.equal(as.y, 115);
+  f.tween(death); assert.equal(as.destroyed, true);
+  for (const timer of settlements) f.timer(timer);
+  for (const sprite of [hs, bs]) f.tween(f.tweens.findLast(tween => tween.targets === sprite && tween.y !== undefined));
+  assert.equal(hs.y, 74); assert.equal(bs.y, 115);
+  assert.equal(f.adapter.status().moves, 0); assert.equal(f.adapter.status().attacks, 1);
+});
+
+test('a newer rule revision cancels stale death waiting but settles continuously without resurrecting the enemy', () => {
+  const f = fixture(), node = 'tile-14:left', h = { ...hunter(), node }, a = { ...enemy(), id: 'a', node };
+  f.adapter.sync({ revision: 1, sceneId: 'hunt', actors: [h, a] }); f.boot();
+  const [hs, as] = f.sprites;
+  f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [{ ...h, x: 120 }], actions: [{ ...hit(0), toId: 'a', damage: 5 }] });
+  const waiting = f.timers.find(timer => timer.delay === 750);
+  assert.equal(hs.x, 80); assert.equal(as.destroyed, false);
+  f.adapter.sync({ revision: 3, sceneId: 'hunt', actors: [{ ...h, x: 120 }] });
+  assert.equal(waiting.removed, true); assert.equal(as.destroyed, true);
+  const tweenCount = f.tweens.length; f.timer(waiting);
+  assert.equal(f.tweens.length, tweenCount); assert.equal(hs.x, 80, 'new input keeps the actual visible old point');
+  const settling = f.tweens.findLast(tween => tween.targets === hs && tween.x === 120);
+  assert.equal(settling.duration, 240); f.tween(settling); assert.equal(hs.x, 120);
+  assert.equal(f.adapter.status().characters, 1); assert.equal(f.adapter.status().moves, 0);
+});
+
+for (const nextAction of ['transform', 'heal'])
+  test(`early ${nextAction} input after a kill preserves the visible foot point until packing settles`, () => {
+    const f = fixture(), node = 'tile-14:left', h = { ...hunter(), node, hp: 4 }, a = { ...enemy(), id: 'a', node };
+    f.adapter.sync({ revision: 1, sceneId: 'hunt', actors: [h, a] }); f.boot();
+    const [hs, as] = f.sprites;
+    f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [{ ...h, x: 120 }], actions: [{ ...hit(0), toId: 'a', damage: 5 }] });
+    const changed = nextAction === 'transform' ? { ...hunter(faceB, 4, 120), node } : { ...h, x: 120, hp: 6 };
+    f.adapter.sync({ revision: 3, sceneId: 'hunt', actors: [changed], actions: nextAction === 'transform' ? [{ type: 'transform', fromId: 'hunter' }] : [] });
+    assert.equal(hs.x, 80); assert.equal(as.destroyed, true);
+    const settling = f.tweens.findLast(tween => tween.targets === hs && tween.x === 120);
+    assert.equal(settling.duration, 240); f.tween(settling); assert.equal(hs.x, 120);
+    if (nextAction === 'transform') {
+      const transform = f.timers.findLast(timer => !timer.removed);
+      assert.equal(transform.delay, 250); f.timer(transform);
+      assert.equal(hs.plays.at(-1), `bb-${faceB}-transform`);
+      hs.complete(`animationcomplete-bb-${faceB}-transform`);
+    }
+    assert.equal(hs.plays.at(-1), `bb-${nextAction === 'transform' ? faceB : faceA}-idle`);
+    assert.equal(f.adapter.status().moves, 0); assert.equal(f.adapter.status().attacks, 1);
+  });
+
+test('camera-only projection on a newer revision does not invent a same-node packing adjustment', () => {
+  const f = fixture(), node = 'tile-14:left', h = { ...hunter(), node };
+  f.adapter.sync({ revision: 1, sceneId: 'hunt', actors: [h], view: { x: 0, y: 0, zoom: 1 } }); f.boot();
+  f.adapter.sync({ revision: 2, sceneId: 'hunt', actors: [{ ...h, x: 140, y: 170, scale: 2 }], view: { x: 20, y: 30, zoom: 2 } });
+  assert.equal(f.sprites[0].x, 140); assert.equal(f.sprites[0].y, 170);
+  assert.equal(f.tweens.length, 0); assert.equal(f.timers.length, 0);
+  assert.equal(f.adapter.status().moves, 0);
 });
 
 test('a quick four-frame weapon attack preserves the old 300 ms minimum combat spacing', () => {
@@ -498,6 +697,25 @@ test('unsupported native geometry masking falls back per weapon and never loads 
   assert.equal(f.sprites[0].texture, 'bb-character-hunter'); assert.equal(f.sprites[0].plays.at(-1), 'bb-hunter-attack');
 });
 
+for (const geometry of [false, 'throw'])
+  test(`required shipped bodies retain DOM fallback when native clipping is ${geometry === false ? 'missing' : 'throwing'}`, () => {
+    const shipped = require('../assets/characters/manifest.json');
+    assert.deepEqual(Object.keys(shipped).sort(), ['hunter', 'mob', 'beast', 'boss', 'female', ...require('../src/enemy-visuals').ids].sort());
+    const f = fixture({ geometry, custom(characters) { Object.assign(characters, shipped); } });
+    const actors = [{ id: 'hunter', kind: 'hunter', skin: 'hunter', x: 80, y: 100, hp: 6 }, enemy()];
+    f.adapter.sync({ revision: 1, sceneId: 'required-body-fallback', actors }); f.boot();
+    assert.equal(f.adapter.status().charactersReady, false);
+    assert.equal(f.host.dataset.presentationCharacters, 'fallback', 'the game keeps DOM markers visible');
+    assert.equal(f.sprites.length, 0, 'unmasked contaminated required PNGs never draw');
+    assert.ok(!f.notifications.includes(true), 'the UI never receives a false ready notification');
+    f.adapter.sync({ revision: 2, sceneId: 'required-body-fallback', actors: [hunter(), enemy(9)], actions: [hit(0)] });
+    f.finishLoad(); f.adapter.resize({ width: 500, height: 300 });
+    assert.equal(f.adapter.status().charactersReady, false);
+    assert.equal(f.host.dataset.presentationCharacters, 'fallback');
+    assert.equal(f.sprites.length, 0, 'optional weapon loading cannot hide unavailable required bodies');
+    f.adapter.destroy(); assert.equal(f.adapter.status().characters, 0);
+  });
+
 test('a sprite implementation without setMask rejects clipped forms before drawing their pixels', () => {
   const f = equipped({ geometry: true, noSpriteMask: true, custom: clippedCharacters });
   assert.equal(f.sprites[0].texture, 'bb-character-hunter'); assert.equal(f.host.dataset.presentationWeaponReady, 'false');
@@ -532,6 +750,22 @@ test('normalized display heights up to 256 preserve public actor scale while lar
   assert.equal(f.sprites[0].height, 256 * 1.5);
 });
 
+test('the padded Cleric Beast keeps its large body scale through the real renderer and camera zoom', () => {
+  const data = require('../assets/characters/manifest.json')['cleric-beast'];
+  const f = fixture({ geometry: true, custom(characters) { characters['cleric-beast'] = structuredClone(data); } });
+  f.adapter.sync({ revision: 1, sceneId: 'large-boss', actors: [hunter(), { ...enemy(), skin: 'cleric-beast' }] }); f.boot();
+  const boss = f.sprites.find(sprite => sprite.texture === 'bb-character-cleric-beast');
+  assert(boss); assert.equal(data.displayHeight, 400, 'restore padded boss to an imposing map body');
+  assert.equal(boss.height, 400, 'the previous 256px cap must not silently shrink the named boss');
+  assert.deepEqual(boss.origin, [.5, 460 / 512]);
+  const original = [boss.x, boss.y];
+  f.adapter.sync({ revision: 1, sceneId: 'large-boss', actors: [hunter(), { ...enemy(), skin: 'cleric-beast', scale: .69 }] });
+  assert.equal(boss.height, 400 * .69); assert.deepEqual([boss.x, boss.y], original);
+  boss.advanceFrame('10');
+  assert.equal(boss.mask.graphics.scaleX, 400 * .69 / 512, 'the repaired attack arm scales with its ownership mask');
+  assert.equal(boss.mask.graphics.scaleY, 400 * .69 / 512);
+});
+
 test('all 30 shipped weapon atlases and every one of their 720 poses survive runtime validation with exact required mask coverage', () => {
   const shipped = require('../assets/characters/weapon-manifest.json');
   assert.equal(Object.keys(shipped).length, 30);
@@ -554,4 +788,102 @@ test('all 30 shipped weapon atlases and every one of their 720 poses survive run
   assert.equal(frameCount, 720); assert(clipCount > 0, 'the real shipped assets exercise the vector mask path');
   assert.equal(clipCount, Object.values(shipped).reduce((sum, data) => sum + Object.values(data.atlasData.frames).filter(frame => frame.clipRects).length, 0));
   f.adapter.destroy(); assert(f.maskGraphics.every(value => value.destroyed));
+});
+
+function namedMinionFacing(flipX, alignedTarget = false) {
+  const data = require('../assets/characters/manifest.json')['huntsmans-minion'];
+  const x = flipX ? 150 : 250, view = { x: 0, y: 0, zoom: 1 };
+  const actor = { id: 'minion', kind: 'enemy', skin: 'huntsmans-minion', node: 'minion-room', x, y: 100, hp: 10 };
+  const target = { id: 'hunter', kind: 'hunter', skin: 'hunter', node: 'minion-room',
+    x: alignedTarget ? x : flipX ? 80 : 350, y: alignedTarget ? 10 : 100, hp: 6 };
+  const f = fixture({ geometry: true, custom(characters) { characters['huntsmans-minion'] = structuredClone(data); } });
+  f.adapter.sync({ revision: 1, sceneId: 'minion-facing', actors: [{ ...actor, x: 200 }, target], view }); f.boot();
+  const sprite = f.sprites.find(value => value.texture === 'bb-character-huntsmans-minion');
+  assert(sprite, 'the actual shipped Minion atlas must render');
+  f.adapter.sync({ revision: 2, sceneId: 'minion-facing', actors: [actor, target], view,
+    actions: [{ type: 'move', fromId: actor.id }] });
+  const movement = f.tweens.findLast(value => value.targets === sprite && value.x === x);
+  assert(movement); f.tween(movement);
+  assert.equal(sprite.flipX, flipX, 'a public horizontal move establishes the heading');
+  return { f, data, sprite, actor, target, view };
+}
+
+function assertMinionHeading(state, flipX) {
+  const { sprite, data } = state, frame = String(typeof sprite.frame === 'object' ? sprite.frame.name : sprite.frame);
+  assert.equal(sprite.flipX, flipX, 'the chosen horizontal heading stays visible');
+  assert(sprite.mask, `shipped Minion frame ${frame} keeps its ownership mask`);
+  assert.equal(sprite.mask.graphics.scaleX, sprite.scaleX * (flipX ? -1 : 1), 'ownership geometry mirrors with its sprite');
+  assert.equal(sprite.mask.graphics.scaleY, sprite.scaleY);
+  assert.deepEqual([sprite.mask.graphics.x, sprite.mask.graphics.y], [sprite.x, sprite.y]);
+  assert.deepEqual(localRects(sprite.mask.graphics), data.atlasData.frames[frame].clipRects.map(rect =>
+    [rect.x - data.frameWidth / 2, rect.y - data.frameHeight * data.originY, rect.w, rect.h]));
+}
+
+for (const flipX of [true, false]) test(`shipped Minion preserves its ${flipX ? 'left' : 'right'} heading on a purely vertical walk`, () => {
+  const state = namedMinionFacing(flipX), { f, sprite, actor, target, view } = state;
+  const destination = { ...actor, y: 180 };
+  f.adapter.sync({ revision: 3, sceneId: 'minion-facing', actors: [destination, target], view,
+    actions: [{ type: 'move', fromId: actor.id }] });
+  const movement = f.tweens.findLast(value => value.targets === sprite && value.y === destination.y);
+  assert.equal(sprite.plays.at(-1), 'bb-huntsmans-minion-walk');
+  for (const frame of [4, 5, 6, 7]) { sprite.advanceFrame(String(frame)); assertMinionHeading(state, flipX); }
+  f.tween(movement);
+  assert.deepEqual([sprite.x, sprite.y], [destination.x, destination.y]);
+  assert.equal(sprite.plays.at(-1), 'bb-huntsmans-minion-idle'); assertMinionHeading(state, flipX);
+});
+
+for (const flipX of [true, false]) test(`shipped Minion preserves its ${flipX ? 'left' : 'right'} heading when attacking a vertically aligned target`, () => {
+  const state = namedMinionFacing(flipX, true), { f, sprite, actor, target, view } = state;
+  assert.equal(actor.x, target.x);
+  f.adapter.sync({ revision: 3, sceneId: 'minion-facing', actors: [actor, target], view,
+    actions: [{ type: 'attack', fromId: actor.id, toId: target.id, damage: 0, skin: actor.skin }] });
+  assert.equal(sprite.plays.at(-1), 'bb-huntsmans-minion-attack');
+  for (const frame of [8, 9, 10, 11]) { sprite.advanceFrame(String(frame)); assertMinionHeading(state, flipX); }
+  sprite.complete('animationcomplete-bb-huntsmans-minion-attack');
+  assert.deepEqual([sprite.x, sprite.y], [actor.x, actor.y]);
+  assert.equal(sprite.plays.at(-1), 'bb-huntsmans-minion-idle'); assertMinionHeading(state, flipX);
+});
+
+test('shipped Minion still turns for horizontal movement and targets on opposite sides', () => {
+  const state = namedMinionFacing(true), { f, sprite, actor, target, view } = state;
+  assertMinionHeading(state, true);
+  const right = { ...actor, x: 250 }, rightTarget = { ...target, id: 'right-target', kind: 'enemy', skin: 'mob', x: 350 };
+  f.adapter.sync({ revision: 3, sceneId: 'minion-facing', actors: [right, target, rightTarget], view,
+    actions: [{ type: 'move', fromId: actor.id }] });
+  assertMinionHeading(state, false);
+  f.tween(f.tweens.findLast(value => value.targets === sprite && value.x === right.x)); assertMinionHeading(state, false);
+  f.adapter.sync({ revision: 4, sceneId: 'minion-facing', actors: [right, target, rightTarget], view,
+    actions: [{ type: 'attack', fromId: actor.id, toId: target.id, damage: 0, skin: actor.skin }] });
+  assertMinionHeading(state, true); sprite.complete('animationcomplete-bb-huntsmans-minion-attack'); assertMinionHeading(state, true);
+  f.adapter.sync({ revision: 5, sceneId: 'minion-facing', actors: [right, target, rightTarget], view,
+    actions: [{ type: 'attack', fromId: actor.id, toId: rightTarget.id, damage: 0, skin: actor.skin }] });
+  assertMinionHeading(state, false); sprite.complete('animationcomplete-bb-huntsmans-minion-attack'); assertMinionHeading(state, false);
+});
+
+test('shipped Minion keeps either heading through camera, selection, recovery, hit and death', () => {
+  for (const flipX of [true, false]) {
+    const state = namedMinionFacing(flipX), { f, sprite, actor, view } = state;
+    const target = state.target;
+    f.adapter.sync({ revision: 3, sceneId: 'minion-facing', actors: [actor, target], view,
+      actions: [{ type: 'attack', fromId: actor.id, toId: target.id, damage: 0, skin: actor.skin }] });
+    sprite.advanceFrame('10'); assertMinionHeading(state, flipX);
+    const zoomedActor = { ...actor, selected: true, x: actor.x * 2 - 20, y: actor.y * 2 - 30, scale: 2 },
+      zoomedTarget = { ...target, x: target.x * 2 - 20, y: target.y * 2 - 30, scale: 2 },
+      zoomedView = { x: 20, y: 30, zoom: 2 };
+    f.adapter.sync({ revision: 3, sceneId: 'minion-facing', actors: [zoomedActor, zoomedTarget], view: zoomedView });
+    assert.equal(sprite.plays.at(-1), 'bb-huntsmans-minion-attack'); assert.equal(sprite.frame, '10'); assertMinionHeading(state, flipX);
+    sprite.complete('animationcomplete-bb-huntsmans-minion-attack');
+    assert.equal(sprite.plays.at(-1), 'bb-huntsmans-minion-idle'); assertMinionHeading(state, flipX);
+    const injured = { ...zoomedActor, selected: false, hp: 9 };
+    f.adapter.sync({ revision: 4, sceneId: 'minion-facing', actors: [injured, zoomedTarget], view: zoomedView });
+    assert.equal(sprite.plays.at(-1), 'bb-huntsmans-minion-hit');
+    for (const frame of [12, 13]) { sprite.advanceFrame(String(frame)); assertMinionHeading(state, flipX); }
+    sprite.complete('animationcomplete-bb-huntsmans-minion-hit');
+    assert.equal(sprite.plays.at(-1), 'bb-huntsmans-minion-idle'); assertMinionHeading(state, flipX);
+    f.adapter.sync({ revision: 5, sceneId: 'minion-facing', actors: [zoomedTarget], view: zoomedView,
+      actions: [{ type: 'attack', fromId: target.id, toId: actor.id, damage: 99 }] });
+    assert.equal(sprite.plays.at(-1), 'bb-huntsmans-minion-death');
+    for (const frame of [14, 15]) { sprite.advanceFrame(String(frame)); assertMinionHeading(state, flipX); }
+    f.adapter.destroy();
+  }
 });

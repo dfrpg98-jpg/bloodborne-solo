@@ -1,0 +1,381 @@
+{
+  "seed": 140,
+  "commands": [
+    {
+      "type": "MOVE",
+      "cardId": "card-1"
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "N"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 0
+    },
+    {
+      "type": "STEP",
+      "node": "tile-14:center"
+    },
+    {
+      "type": "ATTACK",
+      "enemyId": "huntsmans-minion-1",
+      "cardId": "card-3",
+      "slot": 0
+    },
+    {
+      "type": "FIREARM"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "ATTACK",
+      "enemyId": "huntsmans-minion-1",
+      "cardId": "card-6",
+      "slot": 0
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "END_TURN"
+    },
+    {
+      "type": "NO_ATTACK"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "NO_ATTACK"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "REFILL"
+    },
+    {
+      "type": "RETURN",
+      "node": "tile-14:center",
+      "face": 0
+    },
+    {
+      "type": "ATTACK",
+      "enemyId": "huntsmans-minion-1",
+      "cardId": "card-3",
+      "slot": 0
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "ATTACK",
+      "enemyId": "huntsmans-minion-1",
+      "cardId": "card-7",
+      "slot": 0
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "PASS_KILL_REACTION"
+    },
+    {
+      "type": "MOVE",
+      "cardId": "card-12"
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "S"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 0
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "W"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 0
+    },
+    {
+      "type": "END_TURN"
+    },
+    {
+      "type": "NO_ATTACK"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "REFILL"
+    },
+    {
+      "type": "RETURN",
+      "node": "tile-14:center",
+      "face": 0
+    },
+    {
+      "type": "MOVE",
+      "cardId": "card-4"
+    },
+    {
+      "type": "STEP",
+      "node": "tile-14:left"
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "W"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 0
+    },
+    {
+      "type": "MOVE",
+      "cardId": "card-6"
+    },
+    {
+      "type": "STEP",
+      "node": "tile-04:center"
+    },
+    {
+      "type": "STEP",
+      "node": "tile-04:left"
+    },
+    {
+      "type": "MOVE",
+      "cardId": "card-2"
+    },
+    {
+      "type": "EXPLORE",
+      "edge": "W"
+    },
+    {
+      "type": "PLACE_TILE",
+      "rotation": 3
+    },
+    {
+      "type": "STEP",
+      "node": "tile-04:left"
+    },
+    {
+      "type": "END_TURN"
+    },
+    {
+      "type": "NO_ATTACK"
+    },
+    {
+      "type": "FIREARM"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "NO_ATTACK"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "ENEMY_STEP",
+      "node": "tile-04:center"
+    },
+    {
+      "type": "REFILL"
+    },
+    {
+      "type": "ATTACK",
+      "enemyId": "scourge-beast-3",
+      "cardId": "card-3",
+      "slot": 0
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "ATTACK",
+      "enemyId": "scourge-beast-3",
+      "cardId": "card-7",
+      "slot": 0
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "REFILL"
+    },
+    {
+      "type": "RETURN",
+      "node": "tile-04:center",
+      "face": 0
+    },
+    {
+      "type": "ATTACK",
+      "enemyId": "huntsman-mob-1",
+      "cardId": "card-12",
+      "slot": 0
+    },
+    {
+      "type": "FIREARM"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "PASS_KILL_REACTION"
+    },
+    {
+      "type": "ATTACK",
+      "enemyId": "huntsman-mob-1",
+      "cardId": "card-3",
+      "slot": 1
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "PASS_KILL_REACTION"
+    },
+    {
+      "type": "MOVE",
+      "cardId": "card-7"
+    },
+    {
+      "type": "STEP",
+      "node": "tile-13:top"
+    },
+    {
+      "type": "STEP",
+      "node": "tile-13:middle"
+    },
+    {
+      "type": "ATTACK",
+      "enemyId": "huntsmans-minion-2",
+      "cardId": "card-4",
+      "slot": 1
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "END_TURN"
+    },
+    {
+      "type": "NO_ATTACK"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "NO_ATTACK"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "REFILL"
+    },
+    {
+      "type": "ATTACK",
+      "enemyId": "huntsmans-minion-1",
+      "cardId": "card-2",
+      "slot": 2
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "REFILL"
+    },
+    {
+      "type": "RETURN",
+      "node": "tile-04:center",
+      "face": 0
+    },
+    {
+      "type": "MOVE",
+      "cardId": "card-10"
+    },
+    {
+      "type": "STEP",
+      "node": "tile-13:top"
+    },
+    {
+      "type": "STEP",
+      "node": "tile-13:middle"
+    },
+    {
+      "type": "ATTACK",
+      "enemyId": "huntsmans-minion-1",
+      "cardId": "card-12",
+      "slot": 0
+    },
+    {
+      "type": "FIREARM"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "ATTACK",
+      "enemyId": "huntsmans-minion-1",
+      "cardId": "card-4",
+      "slot": 1
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "ATTACK",
+      "enemyId": "huntsmans-minion-1",
+      "cardId": "card-11",
+      "slot": 2
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "PASS_KILL_REACTION"
+    },
+    {
+      "type": "TRANSFORM",
+      "cardId": "card-9"
+    },
+    {
+      "type": "END_TURN"
+    },
+    {
+      "type": "NO_ATTACK"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "NO_ATTACK"
+    },
+    {
+      "type": "RESOLVE"
+    },
+    {
+      "type": "REFILL"
+    },
+    {
+      "type": "TRANSFORM",
+      "cardId": "card-6"
+    },
+    {
+      "type": "ATTACK",
+      "enemyId": "scourge-beast-4",
+      "cardId": "card-1",
+      "slot": 0
+    },
+    {
+      "type": "RESOLVE"
+    }
+  ]
+}

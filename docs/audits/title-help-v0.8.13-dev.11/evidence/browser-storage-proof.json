@@ -1,0 +1,8 @@
+{
+  "normalBeforeAfterBytesEqual": true,
+  "normalSaveBytes": 12033,
+  "method": "Native UI exports before and after QA creation, movement, title navigation and normal continue",
+  "normalSeed": 90,
+  "qaSeed": 91,
+  "personal8786StorageInspected": false
+}

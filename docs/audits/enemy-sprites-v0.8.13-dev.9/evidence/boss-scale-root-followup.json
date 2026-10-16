@@ -1,0 +1,42 @@
+{
+  "reviewer": "root",
+  "date": "2026-10-14T09:01:37.375Z",
+  "normalRuntimeFrameRate": true,
+  "displayHeight": 400,
+  "sourcePixelsModified": false,
+  "directNativeScreenshotCount": 2,
+  "distinctDeathSourcePosesClaimed": 1,
+  "rows": [
+    {
+      "file": "boss-scale-final-gallery-death-0.jpg",
+      "path": "../screenshots/boss-scale-final-gallery-death-0.jpg",
+      "sha256": "a87756e080e2beaf9bfba93e57e20b6e2369df0308971da0628cae2ef8af8dd8",
+      "dimensions": [
+        1265,
+        883
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "directlyViewed": true,
+      "observed": "Final horizontal corpse visible head-to-feet at displayHeight400, base right-facing head, unchanged horns/fur/cloth and no neighbor fragment; both samples already show final corpse, not two different source poses."
+    },
+    {
+      "file": "boss-scale-final-gallery-death-1.jpg",
+      "path": "../screenshots/boss-scale-final-gallery-death-1.jpg",
+      "sha256": "0c36b077bc804d1895bd00d6e4cdf693111999fc9b9b6df0c1ba7acbaf7b4e34",
+      "dimensions": [
+        1265,
+        883
+      ],
+      "mimeType": "image/jpeg",
+      "actualEncoding": "JPEG",
+      "directlyViewed": true,
+      "observed": "Final horizontal corpse visible head-to-feet at displayHeight400, base right-facing head, unchanged horns/fur/cloth and no neighbor fragment; both samples already show final corpse, not two different source poses."
+    }
+  ],
+  "limitations": [
+    "These are two still samples of the final corpse; the initial collapse was not captured.",
+    "The naturally occluded opposite arm and every intermediate animation frame are not fully proven.",
+    "No actual mobile visual check: viewport390 attempt left DOM1265 and board1050. The all16pose two-endpoint both-facing responsive fit is an automated numerical check."
+  ]
+}

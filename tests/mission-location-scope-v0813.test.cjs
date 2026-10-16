@@ -13,7 +13,7 @@ for(const spec of [
  {file:'v074-clinic-escort-chapter-two-natural-commands.json',points:[124,125],weapon:'burial',face:1},
  {file:'v074-help-iosefka-natural-commands.json',points:[317],weapon:'burial',face:1},
 ]) {
- let s=E.create(90,spec.weapon,spec.face,null,'hunter-pistol','center',{campaign:true});
+ let s=E.create(90,spec.weapon,spec.face,null,'hunter-pistol','center',{campaign:true,rulesVersion:13});
  const commands=require('./fixtures/'+spec.file);
  for(let i=0;i<Math.max(...spec.points);i++) {
   s=command(s,commands[i]);

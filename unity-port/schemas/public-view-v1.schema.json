@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:bloodborne:public-view:v1",
+  "type": "object",
+  "required": ["format", "version", "sceneId", "revision", "phase", "hunter", "tiles", "nodes", "edges", "actors", "events", "chapter", "rewards"],
+  "properties": {
+    "format": {"const": "bloodborne-public-view"}, "version": {"const": 1},
+    "sceneId": {"type": "string"}, "revision": {"type": "integer", "minimum": 0},
+    "phase": {"type": "string"}, "result": {"type": ["string", "null"]},
+    "round": {"type": "integer"}, "track": {"type": "integer"}, "firearmReady": {"type": "boolean"},
+    "hunter": {"type": "object"}, "tiles": {"type": "array"}, "nodes": {"type": "array"},
+    "edges": {"type": "array"}, "actors": {"type": "array"}, "events": {"type": "array"},
+    "combat": {"type": ["object", "null"]}, "weaponShot": {"type": ["object", "null"]},
+    "firearmEntry": {"type": ["object", "null"]}, "chapter": {"type": ["object", "null"]}, "rewards": {"type": ["object", "array", "null"]}, "reactionActions": {"type": "array"}
+  },
+  "additionalProperties": false,
+  "$comment": "Public transport allowlist; recursively reject private deck/state keys. Chapter entries are constructed by hunt-public-text from only already-revealed missions. Private saves/content are never bound directly to presentation components."
+}

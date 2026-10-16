@@ -8,7 +8,8 @@ const user = JSON.parse(userBytes).state;
 const key = "bloodborne-hunt-v07";
 const engine = { create: E.create, importSave: E.importSave, exportSave: E.exportSave, dispatch: E.dispatch,
   missionView: E.missionView, rewardsView: E.rewardsView, missionActions: E.missionActions,
-  interactionEnemies: E.interactionEnemies, provisionalView: E.provisionalView, applyChapelRuling: state => state };
+  interactionEnemies: E.interactionEnemies, provisionalView: E.provisionalView, applyChapelRuling: state => state,
+  applyCombatReactionRuling: state => state };
 function launch(state, bytes = E.exportSave(state)) {
   const ui = boot(state, E.missionView(state), E.rewardsView(state), { engine, realInventory: true,
     storage: { [key]: bytes, "bloodborne-hunt-active-mode": "normal" } });
@@ -21,7 +22,7 @@ function userAt(count) {
   return s;
 }
 function ordinaryAt(count) {
-  let s = E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true });
+  let s = E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 13 });
   const commands = require("./fixtures/weapon-campaign-completion/beast-claw-0.json");
   for (const command of commands.slice(0, count)) s = E.dispatch(s, command);
   return s;
@@ -142,7 +143,7 @@ for (const [spec, file, count] of [
   ["female-patient-a", "v074-patient-natural-commands.json", 187],
   ["iosefka-hostile", "v074-attack-iosefka-natural-commands.json", 297],
 ]) test(`${spec} map inspection retains the current public component abilities without copying another enemy's abilities`, () => {
-  let state = E.create(90, "burial", 1, null, "hunter-pistol", "center", { campaign: true });
+  let state = E.create(90, "burial", 1, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 13 });
   for (const cmd of require("./fixtures/" + file).slice(0, count)) state = E.dispatch(state, cmd);
   const enemy = state.enemies.find(enemy => enemy.componentSpec === spec); assert(enemy);
   const f = launch(state), box = inspect(f, "enemy", enemy.id); fullPublicAbilities(f, enemy, box);

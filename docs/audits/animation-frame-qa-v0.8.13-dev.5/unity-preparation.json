@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "checkedAtUtc": "2026-10-13T13:57:34.917Z",
+  "sourceGameVersion": "0.8.13-dev.5",
+  "currentRulesVersion": 14,
+  "sourceContentHash": "76d953a965c92486ed3ad306f2e68d4b953c5b8f108739cca02c6f28f26174da",
+  "nodeTests": 10,
+  "parityTraces": 76,
+  "originalCommands": 14477,
+  "historicalFullCampaignRulesVersion": 13,
+  "currentFullCampaignRulesVersion": 14,
+  "currentReactionRulesVersion": 14,
+  "csharpPrimitiveAssertions": 2337,
+  "csharpContractAssertions": 21,
+  "csharpContractCompiler": "PowerShell Add-Type (Roslyn)",
+  "jsonSchemaAssertions": 15863,
+  "jsonSchemaValidator": "8.20.0",
+  "fullCSharpReducerParity": "not implemented",
+  "unityEditorCompile": "not run",
+  "unitySceneAndAnimations": "not run"
+}

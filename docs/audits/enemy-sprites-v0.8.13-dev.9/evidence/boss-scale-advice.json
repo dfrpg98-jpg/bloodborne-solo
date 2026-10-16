@@ -1,0 +1,545 @@
+{
+  "recommendation": {
+    "displayHeight": 400,
+    "mapFootprintPercent": [
+      60,
+      56
+    ],
+    "sourcePNGAndManualAnchorsChanged": false
+  },
+  "actualRaw": [
+    {
+      "frame": 0,
+      "width": 196,
+      "height": 189,
+      "centeredWidthBothFacings": 198,
+      "aboveFoot": 190,
+      "belowFoot": 0
+    },
+    {
+      "frame": 1,
+      "width": 192,
+      "height": 191,
+      "centeredWidthBothFacings": 198,
+      "aboveFoot": 192,
+      "belowFoot": 0
+    },
+    {
+      "frame": 2,
+      "width": 195,
+      "height": 189,
+      "centeredWidthBothFacings": 206,
+      "aboveFoot": 190,
+      "belowFoot": 0
+    },
+    {
+      "frame": 3,
+      "width": 198,
+      "height": 192,
+      "centeredWidthBothFacings": 212,
+      "aboveFoot": 193,
+      "belowFoot": 0
+    },
+    {
+      "frame": 4,
+      "width": 205,
+      "height": 183,
+      "centeredWidthBothFacings": 212,
+      "aboveFoot": 184,
+      "belowFoot": 0
+    },
+    {
+      "frame": 5,
+      "width": 202,
+      "height": 187,
+      "centeredWidthBothFacings": 208,
+      "aboveFoot": 188,
+      "belowFoot": 0
+    },
+    {
+      "frame": 6,
+      "width": 198,
+      "height": 186,
+      "centeredWidthBothFacings": 204,
+      "aboveFoot": 187,
+      "belowFoot": 0
+    },
+    {
+      "frame": 7,
+      "width": 201,
+      "height": 186,
+      "centeredWidthBothFacings": 212,
+      "aboveFoot": 187,
+      "belowFoot": 0
+    },
+    {
+      "frame": 8,
+      "width": 216,
+      "height": 182,
+      "centeredWidthBothFacings": 218,
+      "aboveFoot": 183,
+      "belowFoot": 0
+    },
+    {
+      "frame": 9,
+      "width": 205,
+      "height": 193,
+      "centeredWidthBothFacings": 214,
+      "aboveFoot": 194,
+      "belowFoot": 0
+    },
+    {
+      "frame": 10,
+      "width": 290,
+      "height": 175,
+      "centeredWidthBothFacings": 314,
+      "aboveFoot": 176,
+      "belowFoot": 0
+    },
+    {
+      "frame": 11,
+      "width": 205,
+      "height": 181,
+      "centeredWidthBothFacings": 218,
+      "aboveFoot": 182,
+      "belowFoot": 0
+    },
+    {
+      "frame": 12,
+      "width": 206,
+      "height": 183,
+      "centeredWidthBothFacings": 208,
+      "aboveFoot": 184,
+      "belowFoot": 0
+    },
+    {
+      "frame": 13,
+      "width": 204,
+      "height": 181,
+      "centeredWidthBothFacings": 210,
+      "aboveFoot": 182,
+      "belowFoot": 0
+    },
+    {
+      "frame": 14,
+      "width": 213,
+      "height": 161,
+      "centeredWidthBothFacings": 250,
+      "aboveFoot": 162,
+      "belowFoot": 0
+    },
+    {
+      "frame": 15,
+      "width": 286,
+      "height": 101,
+      "centeredWidthBothFacings": 316,
+      "aboveFoot": 102,
+      "belowFoot": 0
+    }
+  ],
+  "proposed": [
+    {
+      "displayHeight": 256,
+      "idleBodyHeight": 96,
+      "idleCenteredWidthBothFacings": 106,
+      "idleAboveFoot": 96.5,
+      "idleBelowFoot": 0,
+      "approximateMapHeightRatioToHuman72_5": 1.3241379310344827,
+      "approximateGalleryHeightWithScale2": 192,
+      "requiredReservationPercentAt290": {
+        "width": 36.55172413793103,
+        "height": 33.275862068965516
+      },
+      "phaseMaxCenteredWidth": {
+        "idle": 106,
+        "walk": 106,
+        "attack": 157,
+        "hit": 105,
+        "death": 158
+      }
+    },
+    {
+      "displayHeight": 352,
+      "idleBodyHeight": 132,
+      "idleCenteredWidthBothFacings": 145.75,
+      "idleAboveFoot": 132.6875,
+      "idleBelowFoot": 0,
+      "approximateMapHeightRatioToHuman72_5": 1.8206896551724139,
+      "approximateGalleryHeightWithScale2": 264,
+      "requiredReservationPercentAt290": {
+        "width": 50.258620689655174,
+        "height": 45.75431034482759
+      },
+      "phaseMaxCenteredWidth": {
+        "idle": 145.75,
+        "walk": 145.75,
+        "attack": 215.875,
+        "hit": 144.375,
+        "death": 217.25
+      }
+    },
+    {
+      "displayHeight": 384,
+      "idleBodyHeight": 144,
+      "idleCenteredWidthBothFacings": 159,
+      "idleAboveFoot": 144.75,
+      "idleBelowFoot": 0,
+      "approximateMapHeightRatioToHuman72_5": 1.986206896551724,
+      "approximateGalleryHeightWithScale2": 288,
+      "requiredReservationPercentAt290": {
+        "width": 54.82758620689655,
+        "height": 49.91379310344828
+      },
+      "phaseMaxCenteredWidth": {
+        "idle": 159,
+        "walk": 159,
+        "attack": 235.5,
+        "hit": 157.5,
+        "death": 237
+      }
+    },
+    {
+      "displayHeight": 400,
+      "idleBodyHeight": 150,
+      "idleCenteredWidthBothFacings": 165.625,
+      "idleAboveFoot": 150.78125,
+      "idleBelowFoot": 0,
+      "approximateMapHeightRatioToHuman72_5": 2.0689655172413794,
+      "approximateGalleryHeightWithScale2": 300,
+      "requiredReservationPercentAt290": {
+        "width": 57.11206896551724,
+        "height": 51.99353448275862
+      },
+      "phaseMaxCenteredWidth": {
+        "idle": 165.625,
+        "walk": 165.625,
+        "attack": 245.3125,
+        "hit": 164.0625,
+        "death": 246.875
+      }
+    },
+    {
+      "displayHeight": 416,
+      "idleBodyHeight": 156,
+      "idleCenteredWidthBothFacings": 172.25,
+      "idleAboveFoot": 156.8125,
+      "idleBelowFoot": 0,
+      "approximateMapHeightRatioToHuman72_5": 2.1517241379310343,
+      "approximateGalleryHeightWithScale2": 312,
+      "requiredReservationPercentAt290": {
+        "width": 59.396551724137936,
+        "height": 54.07327586206897
+      },
+      "phaseMaxCenteredWidth": {
+        "idle": 172.25,
+        "walk": 172.25,
+        "attack": 255.125,
+        "hit": 170.625,
+        "death": 256.75
+      }
+    },
+    {
+      "displayHeight": 448,
+      "idleBodyHeight": 168,
+      "idleCenteredWidthBothFacings": 185.5,
+      "idleAboveFoot": 168.875,
+      "idleBelowFoot": 0,
+      "approximateMapHeightRatioToHuman72_5": 2.317241379310345,
+      "approximateGalleryHeightWithScale2": 336,
+      "requiredReservationPercentAt290": {
+        "width": 63.96551724137931,
+        "height": 58.23275862068965
+      },
+      "phaseMaxCenteredWidth": {
+        "idle": 185.5,
+        "walk": 185.5,
+        "attack": 274.75,
+        "hit": 183.75,
+        "death": 276.5
+      }
+    },
+    {
+      "displayHeight": 480,
+      "idleBodyHeight": 180,
+      "idleCenteredWidthBothFacings": 198.75,
+      "idleAboveFoot": 180.9375,
+      "idleBelowFoot": 0,
+      "approximateMapHeightRatioToHuman72_5": 2.4827586206896552,
+      "approximateGalleryHeightWithScale2": 360,
+      "requiredReservationPercentAt290": {
+        "width": 68.53448275862068,
+        "height": 62.39224137931034
+      },
+      "phaseMaxCenteredWidth": {
+        "idle": 198.75,
+        "walk": 198.75,
+        "attack": 294.375,
+        "hit": 196.875,
+        "death": 296.25
+      }
+    },
+    {
+      "displayHeight": 512,
+      "idleBodyHeight": 192,
+      "idleCenteredWidthBothFacings": 212,
+      "idleAboveFoot": 193,
+      "idleBelowFoot": 0,
+      "approximateMapHeightRatioToHuman72_5": 2.6482758620689655,
+      "approximateGalleryHeightWithScale2": 384,
+      "requiredReservationPercentAt290": {
+        "width": 73.10344827586206,
+        "height": 66.55172413793103
+      },
+      "phaseMaxCenteredWidth": {
+        "idle": 212,
+        "walk": 212,
+        "attack": 314,
+        "hit": 210,
+        "death": 316
+      }
+    }
+  ],
+  "visibleBoundarySafety": {
+    "displayHeight": 400,
+    "includesOwnedTranslucentHalo": true,
+    "idleCenteredWidthBothFacings": 171.875,
+    "idleAboveFoot": 152.34375,
+    "reservationWidth": 174,
+    "reservationHeight": 162.4,
+    "galleryScale2AboveFoot": 304.6875,
+    "note": "400 fits the owned translucent halo as well as alpha32 core. This is a pixel/geometry calculation, not a new screenshot review."
+  },
+  "samples": [
+    {
+      "sample": "play-cleric-phase1-natural-actual-save.json",
+      "bossSizePercent": [
+        44,
+        44
+      ],
+      "tile": {
+        "tileId": "tile-19",
+        "x": -1,
+        "y": 1,
+        "rotation": 3
+      },
+      "actors": [
+        {
+          "id": "mission-main",
+          "node": "tile-19:bottom",
+          "foot": [
+            80,
+            50
+          ],
+          "body": {
+            "left": 58,
+            "right": 102,
+            "top": 6,
+            "bottom": 53
+          },
+          "crowded": false,
+          "reason": null,
+          "anchorKind": "lamp"
+        },
+        {
+          "id": "hunter",
+          "node": "tile-19:bottom",
+          "foot": [
+            80,
+            82
+          ],
+          "body": {
+            "left": 71,
+            "right": 89,
+            "top": 54,
+            "bottom": 85
+          },
+          "crowded": false,
+          "reason": null,
+          "anchorKind": "space"
+        }
+      ],
+      "actorPairReservedIntersections": [
+        {
+          "a": "mission-main",
+          "b": "hunter",
+          "area": 0
+        }
+      ]
+    },
+    {
+      "sample": "play-cleric-phase1-natural-actual-save.json",
+      "bossSizePercent": [
+        60,
+        56
+      ],
+      "tile": {
+        "tileId": "tile-19",
+        "x": -1,
+        "y": 1,
+        "rotation": 3
+      },
+      "actors": [
+        {
+          "id": "mission-main",
+          "node": "tile-19:bottom",
+          "foot": [
+            80,
+            50
+          ],
+          "body": {
+            "left": 50,
+            "right": 110,
+            "top": -6,
+            "bottom": 53
+          },
+          "crowded": false,
+          "reason": null,
+          "anchorKind": "lamp"
+        },
+        {
+          "id": "hunter",
+          "node": "tile-19:bottom",
+          "foot": [
+            80,
+            82
+          ],
+          "body": {
+            "left": 71,
+            "right": 89,
+            "top": 54,
+            "bottom": 85
+          },
+          "crowded": false,
+          "reason": null,
+          "anchorKind": "space"
+        }
+      ],
+      "actorPairReservedIntersections": [
+        {
+          "a": "mission-main",
+          "b": "hunter",
+          "area": 0
+        }
+      ]
+    },
+    {
+      "sample": "play-cleric-phase2-natural-actual-save.json",
+      "bossSizePercent": [
+        44,
+        44
+      ],
+      "tile": {
+        "tileId": "tile-19",
+        "x": -1,
+        "y": 1,
+        "rotation": 3
+      },
+      "actors": [
+        {
+          "id": "mission-main",
+          "node": "tile-19:bottom",
+          "foot": [
+            80,
+            50
+          ],
+          "body": {
+            "left": 58,
+            "right": 102,
+            "top": 6,
+            "bottom": 53
+          },
+          "crowded": false,
+          "reason": null,
+          "anchorKind": "lamp"
+        },
+        {
+          "id": "hunter",
+          "node": "tile-19:bottom",
+          "foot": [
+            80,
+            82
+          ],
+          "body": {
+            "left": 71,
+            "right": 89,
+            "top": 54,
+            "bottom": 85
+          },
+          "crowded": false,
+          "reason": null,
+          "anchorKind": "space"
+        }
+      ],
+      "actorPairReservedIntersections": [
+        {
+          "a": "mission-main",
+          "b": "hunter",
+          "area": 0
+        }
+      ]
+    },
+    {
+      "sample": "play-cleric-phase2-natural-actual-save.json",
+      "bossSizePercent": [
+        60,
+        56
+      ],
+      "tile": {
+        "tileId": "tile-19",
+        "x": -1,
+        "y": 1,
+        "rotation": 3
+      },
+      "actors": [
+        {
+          "id": "mission-main",
+          "node": "tile-19:bottom",
+          "foot": [
+            80,
+            50
+          ],
+          "body": {
+            "left": 50,
+            "right": 110,
+            "top": -6,
+            "bottom": 53
+          },
+          "crowded": false,
+          "reason": null,
+          "anchorKind": "lamp"
+        },
+        {
+          "id": "hunter",
+          "node": "tile-19:bottom",
+          "foot": [
+            80,
+            82
+          ],
+          "body": {
+            "left": 71,
+            "right": 89,
+            "top": 54,
+            "bottom": 85
+          },
+          "crowded": false,
+          "reason": null,
+          "anchorKind": "space"
+        }
+      ],
+      "actorPairReservedIntersections": [
+        {
+          "a": "mission-main",
+          "b": "hunter",
+          "area": 0
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "60×56% reserves idle silhouette at both facings; attack10 and corpse15 can extend beyond that idle reservation.",
+    "The current allocator prioritizes exact printed spawn/lamp feet. That branch bypasses body overflow/overlap selection, so oversized bosses can extend beyond a tile without crowded=true.",
+    "Only objects from the same tile are used in collision packing. Cross-tile bodies near a fixed boss marker require actual map inspection.",
+    "Non-marker bodies use placeBody() and may move to avoid the larger reservation. Feet stay inside their logical space; changing visual scale does not change rule nodes.",
+    "These measurements are read-only geometry/pixel calculations, not new visual signoff of400-scale screenshots. Root should review the new runtime body, camera framing, attack extension and death pose."
+  ]
+}

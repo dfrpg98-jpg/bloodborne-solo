@@ -5,12 +5,13 @@ const {boot}=require('./helpers/ui-harness.cjs');
 const rootKey='bloodborne-hunt-v07';
 const engine={create:E.create,importSave:E.importSave,exportSave:E.exportSave,dispatch:E.dispatch,
   missionView:E.missionView,rewardsView:E.rewardsView,missionActions:E.missionActions,
-  interactionEnemies:E.interactionEnemies,provisionalView:E.provisionalView,applyChapelRuling:s=>s};
+  interactionEnemies:E.interactionEnemies,provisionalView:E.provisionalView,applyChapelRuling:s=>s,
+  applyCombatReactionRuling:s=>s};
 const prefixes=new Map();
 function natural(file,count,weapon='beast-claw',face=0) {
   const key=`${file}/${count}/${weapon}/${face}`;
   if(!prefixes.has(key)) {
-    let s=E.create(90,weapon,face,null,'hunter-pistol','center',{campaign:true});
+    let s=E.create(90,weapon,face,null,'hunter-pistol','center',{campaign:true,rulesVersion:13});
     for(const command of require('./fixtures/'+file).slice(0,count))s=E.dispatch(s,command);
     assert.deepEqual(E.importSave(E.exportSave(s)),s);prefixes.set(key,s);
   }

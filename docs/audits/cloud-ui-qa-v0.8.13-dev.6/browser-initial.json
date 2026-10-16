@@ -1,0 +1,229 @@
+{
+  "sourceCommit": "e8133ec71fd2645f72425fa2449e73de1d684ea7",
+  "node": "v24.21.0",
+  "method": "Actual Chromium UI clicks. Normal create/dispatch QA checkpoints; no hand-assembled state.",
+  "observations": [
+    {
+      "name": "viewport-1208",
+      "layout": {
+        "cols": 3,
+        "overflow": "auto",
+        "scroll": 368,
+        "height": 199,
+        "cards": [
+          {
+            "w": 114,
+            "h": 174
+          },
+          {
+            "w": 114,
+            "h": 174
+          },
+          {
+            "w": 114,
+            "h": 174
+          },
+          {
+            "w": 114,
+            "h": 174
+          },
+          {
+            "w": 114,
+            "h": 174
+          },
+          {
+            "w": 114,
+            "h": 174
+          }
+        ]
+      },
+      "tooltip": "적 하나가 기본 공격을 할 때 해당 적을 자동으로 방해합니다.\n발사는 직접 선택합니다. 사용하면 소진되며, 특수 공격·전용 능력에는 사용할 수 없습니다.\n플레이어의 차례에 손패 1장을 버리면 다시 준비합니다.\n사냥꾼의 꿈에서 회복할 때도 다시 준비됩니다."
+    },
+    {
+      "name": "viewport-848",
+      "layout": {
+        "cols": 1,
+        "overflow": "auto",
+        "scroll": 1104,
+        "height": 199,
+        "cards": [
+          {
+            "w": 225,
+            "h": 174
+          },
+          {
+            "w": 225,
+            "h": 174
+          },
+          {
+            "w": 225,
+            "h": 174
+          },
+          {
+            "w": 225,
+            "h": 174
+          },
+          {
+            "w": 225,
+            "h": 174
+          },
+          {
+            "w": 225,
+            "h": 174
+          }
+        ]
+      },
+      "tooltip": "적 하나가 기본 공격을 할 때 해당 적을 자동으로 방해합니다.\n발사는 직접 선택합니다. 사용하면 소진되며, 특수 공격·전용 능력에는 사용할 수 없습니다.\n플레이어의 차례에 손패 1장을 버리면 다시 준비합니다.\n사냥꾼의 꿈에서 회복할 때도 다시 준비됩니다."
+    },
+    {
+      "name": "viewport-390",
+      "layout": {
+        "cols": 1,
+        "overflow": "auto",
+        "scroll": 1104,
+        "height": 184,
+        "cards": [
+          {
+            "w": 210,
+            "h": 174
+          },
+          {
+            "w": 210,
+            "h": 174
+          },
+          {
+            "w": 210,
+            "h": 174
+          },
+          {
+            "w": 210,
+            "h": 174
+          },
+          {
+            "w": 210,
+            "h": 174
+          },
+          {
+            "w": 210,
+            "h": 174
+          }
+        ]
+      },
+      "tooltip": "적 하나가 기본 공격을 할 때 해당 적을 자동으로 방해합니다.\n발사는 직접 선택합니다. 사용하면 소진되며, 특수 공격·전용 능력에는 사용할 수 없습니다.\n플레이어의 차례에 손패 1장을 버리면 다시 준비합니다.\n사냥꾼의 꿈에서 회복할 때도 다시 준비됩니다."
+    },
+    {
+      "name": "responsive-hand-selection-and-tooltips",
+      "status": "passed"
+    },
+    {
+      "name": "direction-controller-continuity",
+      "status": "passed"
+    },
+    {
+      "name": "rotated-tile-and-combat-continuity",
+      "status": "passed"
+    },
+    {
+      "name": "mission-3-public-alert",
+      "alert": "목표 변경\n\n재앙의 근원\n\n중앙 등불의 재앙의 야수 우두머리를 처치하세요.\n\n재앙의 야수의 전용 능력이 ‘광포한’으로 변경되었습니다.\n\n광포한 · 속도 3 · 피해 3 · 방해 · 기절 · 방해 불가",
+      "effect": {
+        "enemyId": "scourge-beast-2",
+        "objectiveId": "main",
+        "card": 3,
+        "title": "재앙의 야수 · 임무에 따른 능력 변경",
+        "description": "재앙의 야수의 전용 능력이 ‘광포한’으로 변경되었습니다.",
+        "effects": [
+          "광포한 · 속도 3 · 피해 3 · 방해 · 기절 · 방해 불가"
+        ],
+        "signature": "[3,\"광포한\",[\"속도 3\",\"피해 3\",\"방해\",\"기절\",\"방해 불가\"],false]"
+      }
+    },
+    {
+      "name": "mission-3-actual-trigger",
+      "status": "passed"
+    },
+    {
+      "name": "mission-10-public-alert",
+      "alert": "목표 변경\n\n피신처\n\n오에돈 예배당의 재앙의 야수를 처치하세요.\n\n재앙의 야수의 특수 공격이 ‘피의 광란’으로 변경되었습니다.\n\n피의 광란 · 속도 3 · 피해 2\n\n체력이 가득 차 있으면 피해 2, 피해를 입은 상태라면 피해 4입니다.",
+      "effect": {
+        "enemyId": "scourge-beast-2",
+        "objectiveId": "shelter",
+        "card": 10,
+        "title": "재앙의 야수 · 임무에 따른 능력 변경",
+        "description": "재앙의 야수의 특수 공격이 ‘피의 광란’으로 변경되었습니다.",
+        "effects": [
+          "피의 광란 · 속도 3 · 피해 2",
+          "체력이 가득 차 있으면 피해 2, 피해를 입은 상태라면 피해 4입니다."
+        ],
+        "signature": "[10,\"피의 광란\",[\"속도 3\",\"피해 2\"],false]"
+      }
+    },
+    {
+      "name": "mission-10-actual-trigger",
+      "status": "passed"
+    },
+    {
+      "name": "mission-31-public-alert",
+      "alert": "새로운 임무\n\n오에돈 예배당 대학살\n\n환자의 임무 부활 토큰을 소진시키고 최종 처치 후 속도 1 회피하세요.\n\n여성 야수환자의 특수 공격이 ‘갈가리 찢기’로 변경되었습니다.\n\n갈가리 찢기 · 속도 3 · 피해 3 · 기절\n\n이 적은 임무에 따라 타일의 속도 감소를 받지 않습니다.",
+      "effect": {
+        "enemyId": "mission-patient",
+        "objectiveId": "card-30",
+        "card": 31,
+        "title": "여성 야수환자 · 임무에 따른 능력 변경",
+        "description": "여성 야수환자의 특수 공격이 ‘갈가리 찢기’로 변경되었습니다.",
+        "effects": [
+          "갈가리 찢기 · 속도 3 · 피해 3 · 기절",
+          "이 적은 임무에 따라 타일의 속도 감소를 받지 않습니다."
+        ],
+        "signature": "[31,\"갈가리 찢기\",[\"속도 3\",\"피해 3\",\"기절\"],true]"
+      }
+    },
+    {
+      "name": "mission-31-actual-trigger",
+      "status": "passed"
+    },
+    {
+      "name": "mission-36-public-alert",
+      "alert": "새로운 임무\n\n아슬아슬한 구조\n\n대교의 야수 사냥 하인을 처치하세요.\n\n야수 사냥 하인의 특수 공격이 ‘고통 면역’으로 변경되었습니다.\n\n고통 면역 · 속도 1 · 피해 4 · 방해 불가 · 방어 2",
+      "effect": {
+        "enemyId": "huntsmans-minion-2",
+        "objectiveId": "bridge",
+        "card": 36,
+        "title": "야수 사냥 하인 · 임무에 따른 능력 변경",
+        "description": "야수 사냥 하인의 특수 공격이 ‘고통 면역’으로 변경되었습니다.",
+        "effects": [
+          "고통 면역 · 속도 1 · 피해 4 · 방해 불가 · 방어 2"
+        ],
+        "signature": "[36,\"고통 면역\",[\"속도 1\",\"피해 4\",\"방해 불가\",\"방어 2\"],false]"
+      }
+    },
+    {
+      "name": "mission-36-actual-trigger",
+      "status": "passed"
+    }
+  ],
+  "failures": [
+    {
+      "name": "chapel-zero-speed-and-real-detail",
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /속도 1 → 0/. Input:\n\n'재앙의 야수와 전투\\n' +\n  '\\n' +\n  '공개된 행동의 지시를 확인하세요.\\n' +\n  '\\n' +\n  '플레이어 · 장치무기 공격\\n' +\n  '\\n' +\n  '선택한 공격 없음\\n' +\n  '\\n' +\n  '적 · 특수 공격\\n' +\n  '다단 가르기\\n' +\n  '속도 1\\n' +\n  '피해 3\\n' +\n  '\\n' +\n  '적 공격에 적용된 변화\\n' +\n  '\\n' +\n  '오에돈 예배당 · 속도 -1\\n' +\n  '날것 그대로의 분노 · 피해 +1\\n' +\n  '날것 그대로의 분노 · 방해 추가\\n' +\n  '속도 2 → 1 · 피해 2 → 3\\n' +\n  '방해\\n' +\n  '더 느린 플레이어의 공격을 취소합니다. 방해 면역이면 적용되지 않습니다.\\n' +\n  '추가 타격\\n' +\n  '첫 공격을 회피하거나 방해해도, 회피 속도 2의 추가 타격에 대응해야 합니다. 피하지 않으면 피해 2를 받습니다.\\n' +\n  '\\n' +\n  '행동 설명\\n' +\n  '\\n' +\n  '이 공격을 회피하거나 방해했더라도, 사냥꾼은 회피([속도 2])하거나 추가로 2 피해를 받아야 합니다.'\n\n    at /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:140:14\n    at async attempt (/home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:60:37)\n    at async /home/runner/work/bloodborne-solo/bloodborne-solo/scripts/cloud-ui-qa.cjs:136:5"
+    }
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    "hand-tooltip-1208.png",
+    "hand-tooltip-848.png",
+    "hand-tooltip-390.png",
+    "controller-after-move.png",
+    "current-combat.png",
+    "after-resolve.png",
+    "mission-3-alert.png",
+    "mission-10-alert.png",
+    "mission-31-alert.png",
+    "mission-36-alert.png",
+    "chapel-zero-speed-and-real-detail-failure.png"
+  ],
+  "limitations": [
+    "Original reference photographs absent; official rule exceptions are not certified."
+  ],
+  "browser": "151.0.7922.34"
+}

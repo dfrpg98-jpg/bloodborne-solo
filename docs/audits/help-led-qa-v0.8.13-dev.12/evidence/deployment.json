@@ -1,0 +1,76 @@
+{
+  "version": "0.8.13-dev.12",
+  "productCommit": "17d23b8bb8164dd53b29c6d0b4016d2ac0c62067",
+  "copied": [
+    "CHANGELOG.md",
+    "QA_GUIDE.txt",
+    "README.md",
+    "game-help.css",
+    "game-help.js",
+    "hunt-app.js",
+    "hunt.html",
+    "index.html",
+    "package.json"
+  ],
+  "replacedFiles": 9,
+  "addedFiles": 0,
+  "unchangedFiles": 325,
+  "deletedFiles": 0,
+  "backup": "local-development-archive/desktop-backup-17d23b8",
+  "http": {
+    "checkedAt": "2026-10-15T11:41:10.405Z",
+    "filesVerified": 334,
+    "allHashesMatch": true,
+    "postStatus": 405,
+    "denied": [
+      {
+        "path": "참고자료/",
+        "status": 404
+      },
+      {
+        "path": "components/images/",
+        "status": 404
+      },
+      {
+        "path": "../",
+        "status": 404
+      },
+      {
+        "path": "hunt.html/",
+        "status": 404
+      },
+      {
+        "path": "../bloodborne-solo/참고자료/",
+        "status": 404
+      }
+    ],
+    "hashLedgerSHA256": "5e596277fbf175bc8663f8aa8d72e3a63812e0c3945bbc4486d1e57083ecbbaf"
+  },
+  "protectedFiles": {
+    "mode": "protected-files-unchanged",
+    "files": 188,
+    "bytes": 280557345,
+    "checkedAt": "2026-10-15T11:41:09.773Z",
+    "rawContentsWritten": false
+  },
+  "nativeFinalRoundtrip": {
+    "version": "0.8.13-dev.12",
+    "url": "http://127.0.0.1:8786/bloodborne-solo/hunt.html",
+    "bytes": 14652,
+    "exactBytesEqual": true,
+    "qa": true,
+    "hp": 6,
+    "echoes": 1,
+    "phase": "hunter",
+    "location": "중앙 등불 / 왼쪽 칸",
+    "controllerQuery": "5b2a53311318",
+    "helpQuery": "7627700cd6ca"
+  },
+  "sourceImageEdits": false,
+  "gameRulesChanged": false,
+  "saveFormatChanged": false,
+  "originalQaBackup": "Exported through UI before starting this test and retained locally, not published.",
+  "merged": false,
+  "releaseTagged": false,
+  "fullCiClaimedForThisCopyChange": false
+}

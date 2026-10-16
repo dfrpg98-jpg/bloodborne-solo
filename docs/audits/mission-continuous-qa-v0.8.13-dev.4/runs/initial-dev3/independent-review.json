@@ -1,0 +1,131 @@
+{
+  "reviewVersion": 1,
+  "reviewedBuild": "0.8.13-dev.3",
+  "reviewedAt": "2026-10-13T12:01:16.983Z",
+  "reviewer": "continuous_qa_risk_review",
+  "method": "Read-only independent comparison of recorded actual-browser DOM observations, acknowledgement snapshots, offline route expectations, and a fresh engine replay of the actual product export. This reviewer did not control the browser or edit production source.",
+  "sources": [
+    {
+      "name": "browser-actions.json",
+      "sha256": "d6966395d45255e59cf22747e2a42b5fe108ea173386e83f6709394439b9c4a6"
+    },
+    {
+      "name": "browser-notices.json",
+      "sha256": "2b9072b2f1060486b00fa37d17cab4c08075f0859d177c103ccd5cd7cc984b9f"
+    },
+    {
+      "name": "actual-continuous-campaign-save.json",
+      "sha256": "91a8d82cb41292ea7b2034d6ce026e916b9b6a1632277806d808228ebdbc2e56"
+    },
+    {
+      "name": "recent-notice-escape-check.json",
+      "sha256": "658144bb4bce252bf9f7ed030b14ad12848fd6956d28b570798243a38b985118"
+    },
+    {
+      "name": "BB011-before-proof.json",
+      "sha256": "239599ccd71ba4f470590a8ac8cb1fd30864f0834fa59151f66c32a68e73e582"
+    }
+  ],
+  "planningSource": "../continuous-qa-chapters123/continuous-route-plan.json",
+  "counts": {
+    "acceptedReplayCommands": 260,
+    "actionRecords": 260,
+    "actionRecordsWithDomObservation": 258,
+    "initialManualActionRecordsWithoutDomObservation": 2,
+    "notificationBatches": 26,
+    "notificationEvents": 32,
+    "notificationExpectedArraysCompared": 26,
+    "notificationTitleDescriptionAndEffectStringsCompared": 78,
+    "acknowledgementStableFieldsPerBatch": 9,
+    "acknowledgementStableFieldComparisons": 234,
+    "domHandIdComparisons": 258,
+    "domSlotOccupancyComparisons": 258,
+    "domHpComparisons": 258,
+    "domEchoesComparisons": 258,
+    "domRoundComparisons": 258,
+    "domChapterComparisons": 258,
+    "domErrorComparisons": 258,
+    "recentNoticeEscapeStableFieldComparisons": 9
+  },
+  "outcomes": {
+    "actualExportFreshReplayExactFinalState": true,
+    "domModelMismatches": [],
+    "acknowledgementCostOrPhaseChanges": [],
+    "missingExpectedNotificationStrings": [],
+    "recentNoticeEscapeChangedFields": [],
+    "final": {
+      "phase": "over",
+      "result": "campaign-win",
+      "hp": 6,
+      "rewardChoices": []
+    },
+    "mainCampaignResumeFlowNewConfirmedBugs": []
+  },
+  "criticalObservedFollowups": [
+    {
+      "steps": [
+        54,
+        55,
+        56
+      ],
+      "observed": "Completion notice, pending reward storage, retained stun discard, then final dream upgrade selection."
+    },
+    {
+      "steps": [
+        141,
+        142,
+        143
+      ],
+      "observed": "Completion notice, first pending reward storage, second pending firearm storage, then player turn."
+    },
+    {
+      "steps": [
+        157,
+        158
+      ],
+      "observed": "Chapter-two completion notice, pending reward storage, then the retained final-dream upgrade selection."
+    },
+    {
+      "steps": [
+        64,
+        166
+      ],
+      "observed": "New chapter player turn with three hand cards and empty slots. Independent replay confirms current insight zero, previous completion history and rewards retained, and thirty QA consumables issued."
+    },
+    {
+      "steps": [
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260
+      ],
+      "observed": "Final completion notice, three upgrade purchases and three replacement decisions, then campaign-win."
+    }
+  ],
+  "observationLimits": [
+    "Steps 1 and 2 are recorded manual UI actions without per-action DOM snapshots. The final product export verifies they were accepted engine commands.",
+    "Steps 36 and 37, and steps 132 and 133, are each one escort confirmation that commits two convenience-action engine commands. Their DOM evidence is the combined post-action state, not two individually observed intermediate UI states. Comparisons for steps 36 and 132 therefore use the following command state.",
+    "The 258 observed action records are a record count, not 258 distinct independently observed engine intermediate states.",
+    "The initial setup mission briefing is separate from the 26 post-command notification batches and is not counted here.",
+    "Expected titles, descriptions and effects are each present in recorded dialog text; this is not an exact full HTML or full-dialog-text equality assertion.",
+    "The fresh engine replay corroborates saved commands and resulting state, but does not alone prove UI continuity. Browser execution continuity is documented by the root operator.",
+    "This is one uninterrupted QA campaign route using the verification weapon and QA supplies. It does not establish every mutually exclusive branch, normal equipment balance, every reward equip combination, or all viewport sizes."
+  ],
+  "driverErrorsExcludedFromProductBugs": [
+    "A navigation selector was corrected before continuing.",
+    "A notification was requested at step 36 although the accepted command produced none.",
+    "A no-argument REPLACE_UPGRADE request initially matched more than one UI choice; the driver selected the intended no-replacement control."
+  ],
+  "separateRestoreBoundaryFinding": {
+    "id": "BB-011",
+    "source": "BB011-before-proof.json",
+    "status": "Confirmed by root operator; fix and dev.4 browser recheck were pending when this read-only review was written.",
+    "observed": "Returning from the finished QA campaign to the normal hunt retained a stale map-target panel despite no enemies being present. Clearing the target restored the direct player action presentation.",
+    "scope": "A save or mode restoration boundary problem, distinct from notification acknowledgement and the uninterrupted 260-command QA campaign."
+  },
+  "productionFilesEditedByReviewer": [],
+  "futureValidation": "A separate dev.4 uninterrupted browser run is planned by the root after the BB-011 fix; this report does not claim that later verification has passed."
+}

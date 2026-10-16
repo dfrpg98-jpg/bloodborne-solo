@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "scope": "Long Hunt's six distinct enemy character designs; static and sampled original-game reference review only",
+  "reviewer": "enemy_design_references",
+  "sourcePixelsModified": false,
+  "sourceImagesUploaded": false,
+  "videoPlaybackInThisReview": false,
+  "commonRenderConstraints": [
+    "Create new painted transparent sprites using the reference design. Do not bake reference card text, HUD, scenery, player character, or existing photographed pixels into the runtime art.",
+    "Use one fixed three-quarter screen-right camera direction and a stable planted-foot anchor and body scale across the sequence.",
+    "Preserve creature anatomy, garments, weapons, handedness and distinguishing silhouette through idle, walk, attack, hit and defeat.",
+    "The rules engine owns world displacement, damage, summons, statuses and combat timing. A rendered gesture must not change any rule.",
+    "Keep generous empty alpha around the widest attack pose, full feet, head, horns, claws and held weapons.",
+    "Readable silhouettes at actual map display size are required; color and marker tint alone do not distinguish species."
+  ],
+  "profiles": [
+    {
+      "id": "huntsman-mob",
+      "name": "야수 사냥 무리",
+      "appearancePrompt": "A gaunt, weathered bearded Yharnam townsman, with a tattered dark long coat or short cape over grimy old civilian clothes, a worn broad-brimmed or tall hat, narrow shoulders and long thin limbs, rough partly beastlike face. The representative carries a plain wood-handled axe; board-game side-specific gestures may use a crude wooden shield, long hunting rifle or bottle. This is a thin villager, never the broad bandaged brick brute.",
+      "varietyNote": "Huntsman is a family of individual variants. Hat, hood, coat, hair and weapons vary. The supplied hooded pitchfork and hat-and-torch men are not a reference identity error. Select a consistent representative for a sheet; do not change his identity mid-animation.",
+      "referencePages": [
+        "https://bloodborne.fandom.com/wiki/Huntsman",
+        "https://bloodborne.wikidot.com/hunter-mob",
+        "https://www.bloodborne-wiki.com/2024/08/huntsman-torch-axe-gallery.html"
+      ],
+      "visuallyReviewedPaths": [
+        "local-reference-original/Huntsman_concept_art.webp",
+        "local-reference-original/Huntsman4.webp",
+        "local-reference-original/Huntsman12.png",
+        "local-reference-original/Huntsman_%3F22.webp"
+      ],
+      "bestInputPath": "local-reference-original/Huntsman_concept_art.webp",
+      "gestures": [
+        "axe wind-up, diagonal chop and recover",
+        "brace and thrust rough wooden shield",
+        "shoulder period rifle and recoil",
+        "overhand bottle throw",
+        "agitated rally gesture"
+      ]
+    },
+    {
+      "id": "huntsmans-minion",
+      "name": "야수 사냥 하인",
+      "appearancePrompt": "An enormous deformed Yharnam brick brute, a small low bandage-wrapped human head, hunching broad thick shoulders and an almost equally broad heavy waist. Dirty off-white torn shirt, brown braces, patched brown trousers, bandages around head, forearms and legs, heavy worn footwear. Huge hands with a solid rectangular grey stone brick. No tall hat, no thin civilian silhouette, no axe, no fantasy armor. He should be immediately recognizable as much heavier and wider than a Huntsman.",
+      "referencePages": [
+        "https://bloodborne.fandom.com/wiki/Huntsman%27s_Minion",
+        "https://www.bloodborne-wiki.com/2015/03/brick-troll.html",
+        "https://www.bloodborne-wiki.com/2024/08/huntsmans-minion-brick-gallery.html"
+      ],
+      "visuallyReviewedPaths": [
+        "local-reference-original/Huntsman's Minion (6).png"
+      ],
+      "bestInputPath": "local-reference-original/Huntsman's Minion (6).png",
+      "sourceTrap": "The older work/qa/original-pixels/huntsmans-minion.png compilation contains the stone-statue club variant; use the provided (6).png for the board game's brick gestures.",
+      "gestures": [
+        "slow heavy hip-to-body brick sweep",
+        "short quick chest-height brick combo",
+        "drop bandaged head and lead with shoulder",
+        "raise brick overhead and slam",
+        "short close-range brick bash"
+      ]
+    },
+    {
+      "id": "scourge-beast",
+      "name": "재앙의 야수",
+      "appearancePrompt": "A gaunt low-hunched shaggy charcoal wolf beast with pointed ears and elongated snarling muzzle, very long clawed forearms, exposed rib structure, narrow torso, digitigrade bent hind legs and tattered grey-brown cloth around the waist and torso. Near-quadrupedal crouching silhouette that can rear for a swipe. No antlers, no large human hat, no held weapon, no muscular upright generic werewolf.",
+      "referencePages": [
+        "https://bloodborne.fandom.com/wiki/Scourge_Beast",
+        "https://bloodborne.wikidot.com/scourge-beast",
+        "https://www.bloodborne-wiki.com/2024/08/scourge-beast-gallery.html"
+      ],
+      "visuallyReviewedPaths": [
+        "local-development-archive/enemy-140159.jpg",
+        "local-development-archive/scourge-beast-fullbody-preview.png",
+        "local-development-archive/scourge-beast-side-preview.png"
+      ],
+      "bestInputPath": "local-development-archive/scourge-beast-side-preview.png",
+      "sourceTrap": "The fullbody-preview filename is a rear-view preview. Prefer the side-preview for design. The old generated prompt's 'no clothes' is inaccurate: the original model visibly has torn cloth.",
+      "gestures": [
+        "low long-claw sweep",
+        "compress then jaw-open lunge",
+        "alternating two-arm cuts",
+        "rear slightly and roar"
+      ]
+    },
+    {
+      "id": "female-patient",
+      "name": "여성 야수환자",
+      "appearancePrompt": "A thin, hunched female beast patient under a long ragged ochre-olive veil completely concealing the face and head. Torn dark long dress, pale wiry forearms and very long black claw fingers emerging from the drape, sickly angular posture, bare feet. Keep the covered-head bell-shaped drape silhouette distinct from white-garbed Iosefka and the bulky brick brute. No weapon, nun headpiece, visible pretty face or wolf muzzle.",
+      "referencePages": [
+        "https://www.bloodborne-wiki.com/2015/06/beast-patient-female.html"
+      ],
+      "originalImageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi4K0au_Tex78buYQ-ANjsh-nCEiNCzJdcVdOuehSAQG7mXAomXzmcj4PpjZz3wRZqNgwrNaHu487L04DCJXV5psXQdWJLw1cQo_Fx1ty3rVR0T-uLr0Lu6WIoerKT6fcFSxdBVs0HasJo/s1600/Beast+Patient+%2528Female%2529.png",
+      "visuallyReviewedPaths": [
+        "local-reference-original/Beast Patient (Female).png"
+      ],
+      "bestInputPath": "local-reference-original/Beast Patient (Female).png",
+      "gestures": [
+        "thin claw arm lash",
+        "contorted alternating claw strikes",
+        "two-claw reach then bend forward and retch",
+        "curl and recoil sickly"
+      ]
+    },
+    {
+      "id": "iosefka-hostile",
+      "name": "이오세프카",
+      "appearancePrompt": "The hostile impostor Iosefka as shown in the supplied original-game image: pale adult woman with tied ash-blond/light-brown hair and uncovered face, long off-white White Church skirt and fitted waist, a pale fringed short shoulder shawl, gloves and bare feet. Slender one-handed cane sword and old period pistol. Same white garments and hair in every pose. No hood, nun headwear, generic monster, armor or staff.",
+      "referencePages": [
+        "https://bloodborne.fandom.com/wiki/Imposter_Iosefka",
+        "https://bloodborne.wikidot.com/impostor-doctor",
+        "https://www.bloodborne-wiki.com/2015/07/impostor-iosefka.html"
+      ],
+      "visuallyReviewedPaths": [
+        "local-reference-original/image_Impostor_Iosefka.png"
+      ],
+      "bestInputPath": "local-reference-original/image_Impostor_Iosefka.png",
+      "sourceTrap": "Fandom's live article URL uses Imposter_Iosefka. Secondary sources disagree on Hunter Pistol versus Repeating Pistol. The board-game card and current product command determine the firearm attack; the supplied appearance image depicts a bulky repeating-style gun. Do not silently change the rule weapon because of a wiki.",
+      "gestures": [
+        "quick one-handed cane slash/thrust",
+        "plant feet and extend open hand for pale tentacle fan",
+        "raise one-handed pistol, short flash/recoil and lower"
+      ]
+    },
+    {
+      "id": "cleric-beast",
+      "name": "성직자 야수",
+      "appearancePrompt": "Towering thin Cleric Beast with small narrow branch-antlered skull, exposed horizontal ribs and sinewy narrow torso, huge extremely shaggy LEFT arm and shoulder in long tangled white-grey strands, much smaller lean RIGHT arm, long bent digitigrade legs and clawed feet. Preserve this gross left/right asymmetry. Threatening forward crouch, not an upright symmetric ogre. No armor, robes, held weapons or fire-body design from Laurence.",
+      "referencePages": [
+        "https://www.bloodborne-wiki.com/2015/03/cleric-beast.html",
+        "https://www.bloodborne-wiki.com/2024/08/cleric-beast-gallery.html"
+      ],
+      "visuallyReviewedPaths": [
+        "local-reference-original/boss_cleric-beast.png",
+        "local-development-archive/cleric-body-preview.png",
+        "local-development-archive/cleric-design-reference.png",
+        "local-development-archive/cleric-130.png"
+      ],
+      "bestInputPath": "local-development-archive/cleric-body-preview.png",
+      "video": {
+        "url": "https://www.youtube.com/watch?v=v98DFCw3KQs",
+        "title": "Cleric Beast Boss Fight (No Damage) [Bloodborne]",
+        "creator": "Esoterickk",
+        "currentlyReviewedSavedTimestamp": "2:10",
+        "observed": "Both feet airborne and huge shaggy arm drawn outward during a leap. Same asymmetric grey mane, antlers and ribbed torso as the static model.",
+        "notEstablished": "This one sampled frame does not establish every start/contact/recovery pose or full grab-and-throw sequence."
+      },
+      "gestures": [
+        "raise giant left arm and vertical slam",
+        "hunch and wide heavy left-arm sweep",
+        "open/close huge claw for grab",
+        "compress legs, jump and land into deep crouch",
+        "draw arms in and chest up for roar/recovery"
+      ]
+    }
+  ],
+  "officialGameplayContext": [
+    {
+      "article": "https://blog.playstation.com/2014/08/12/bloodborne-gamescom-ps4-gameplay-trailer/",
+      "video": "https://www.youtube.com/watch?v=Hdzpy5UXT0Y",
+      "verified": "Official PlayStation article opened, embedded video ID confirmed by thumbnail link; trailer not newly played in this subtask."
+    },
+    {
+      "article": "https://blog.br.playstation.com/2015/02/02/assista-os-primeiros-18-minutos-de-bloodborne/",
+      "video": "https://www.youtube.com/watch?v=Tvi51MDOZTQ",
+      "verified": "Official PlayStation-hosted IGN first-18-minutes article opened and video ID verified by thumbnail link. Article explicitly describes an earlier unfinished build; do not prioritize it over supplied final model images."
+    }
+  ],
+  "accessLimitations": [
+    "Several Fandom direct opens returned 402 or unavailable. Search results returned Huntsman/Minion/Iosefka descriptions, and provided local files were visually inspected. No blocked source was bypassed.",
+    "Several bloodborne-wiki direct opens returned Google redirect or 429. The brick-minion main article and its gallery opened successfully; old local source-link manifests retained exact URLs for other supplied assets.",
+    "No new whole-video playback was done by this subtask. Saved original-game stills and their provenance were reviewed."
+  ],
+  "additionalImplementedEnemyCardTypesNotVisuallyResearchedInThisReport": [
+    "church-servant",
+    "male-beast-patient",
+    "church-giant",
+    "bloody-crow-cainhurst",
+    "henryk",
+    "eileen",
+    "djuras-ally",
+    "alfred",
+    "djura",
+    "blood-knight",
+    "cainhurst-knight-servant",
+    "bloodlicker-starved"
+  ],
+  "legalAndPolicyScope": "Creating new images of fictional copyrighted game characters is permitted by the image-generation policy. This statement is not a claim that reference wiki licenses license Sony/FromSoftware game artwork or authorize redistribution of extracted original model pixels. The requested new drawings should be original generated art, with provenance retained."
+}

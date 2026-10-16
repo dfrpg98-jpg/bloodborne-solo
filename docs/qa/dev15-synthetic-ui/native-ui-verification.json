@@ -1,0 +1,72 @@
+{
+  "checkedAt": "2026-10-16T00:10:11.236Z",
+  "url": "http://127.0.0.1:8815/bloodborne-solo/hunt.html",
+  "method": "Native public load UI, normal file chooser, unmodified dev15 product",
+  "syntheticReproductionOnly": true,
+  "realCampaignAchievementClaimed": false,
+  "productLogicChanged": false,
+  "productFilesHashVerified": 595,
+  "cases": [
+    {
+      "file": "SYNTHETIC-QA-axe-target-choice.json",
+      "importAccepted": true,
+      "choiceOne": {
+        "selectedHp": 3,
+        "otherHp": 5,
+        "hunterHp": 6
+      },
+      "choiceTwo": {
+        "selectedHp": 3,
+        "otherHp": 5,
+        "hunterHp": 6
+      },
+      "nativeExportStrictImport": true,
+      "nativeExportStateMatchesReducer": true
+    },
+    {
+      "file": "SYNTHETIC-QA-bone-leap-slam.json",
+      "importAccepted": true,
+      "initialTitle": "뛰어 내려찍기",
+      "automaticDodgeButton": "고대 사냥꾼의 유골 · 자동 회피",
+      "afterDodgeContinue": "회피 적용 후 계속",
+      "afterContinueHp": 6,
+      "handUnchanged": true,
+      "nextPhase": "combat_choose",
+      "nativeExportStrictImport": true,
+      "nativeExportStateMatchesReducer": true
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "evidence/axe-imported-choice.jpg",
+      "bytes": 158330,
+      "sha256": "38b70b00c6d5aaf3ef059654f66bbd829c3ee397e4e7882ca5b5425ac4c93e1e"
+    },
+    {
+      "file": "evidence/axe-target-one-result.jpg",
+      "bytes": 156439,
+      "sha256": "86a82d28afe06a3188359353290743fb7e49956c30bd7cc680e678b50c1cf511"
+    },
+    {
+      "file": "evidence/axe-target-two-result.jpg",
+      "bytes": 156586,
+      "sha256": "f56800a2743658f19a2e11abdbd35d49cd297a8171a4c1fb34c306e764cc5bfa"
+    },
+    {
+      "file": "evidence/bone-after-continue.jpg",
+      "bytes": 162808,
+      "sha256": "281fd38ea25038f059987dc9f558a83df55af29deae69e836969fea564ef09b4"
+    },
+    {
+      "file": "evidence/bone-dodge-selected.jpg",
+      "bytes": 161306,
+      "sha256": "5d1c19492935f612a6d74724b3fcabd7341393d74153435e1accf4ee79c21e14"
+    },
+    {
+      "file": "evidence/bone-imported-before-dodge.jpg",
+      "bytes": 163659,
+      "sha256": "f1a8e787883a42c609e629ac1677fad7fbe7b2a35266a6a2618e654ff19ece92"
+    }
+  ],
+  "consoleErrors": []
+}

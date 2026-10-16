@@ -1,0 +1,13 @@
+{
+  "version": "0.8.13-dev.13",
+  "hashes": {
+    "hunt-app.js": "75ee54bc0d597b0aab59546aae47630cba2e03afbef2ef6377d2be746dda6ba7",
+    "hunt.css": "d50893dc7d74a581beb3b83f1f042326d190a71a6adafd8956d45d6a28c97fa5",
+    "hunt-map-controls.css": "0d944385cbb528e64b46985289db7550b53a7bab004cb43de62bc8dc63116436",
+    "hunt-combat-feedback.js": "c188457d1e8dbdfef7e682202e20d66cd6101bd31033d81c57e24a31b165a314",
+    "hunt-combat-feedback.css": "1e0ad016d33bc15239486a3d059b37ab8b506c126ffcb6e70e4284558ac8e7d8",
+    "hunt-death-feedback.js": "d82f5c24b07827397334a8d7ba9729dafc9bc4945a04f1d740d080d3aee6f545",
+    "game-help.js": "4cabc2fe11aa4d3aa163e364209f812ba0db5ad2c3630d9bcc4bdd46ab3b803f",
+    "game-help.css": "674bb1a324c0a6a6ac71c0a84b722dd93398e563a3ad2ecdf10483e27118148b"
+  }
+}

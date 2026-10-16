@@ -1,0 +1,2572 @@
+{
+  "date": "2026-10-13",
+  "version": "0.8.13-dev.3",
+  "baselineCommit": "fc673208f5a452ba0f268fcc63d6d23fe8bf067d",
+  "method": "Fresh Node process: import validated QA checkpoint, dispatch its unchanged public trigger, describe current public mission notices. Only expected event arrays updated; no checkpoint saves or trigger commands changed. This is engine validation, not actual browser verification.",
+  "sourceHashes": {
+    "actual-components.js": "765c73aef0e0fccbea0617a2e8ad6f735428eb23df8123af45350a5fa6a3456c",
+    "boss-components.js": "d2b957504530ba2729e0668cb6a812895692722f602edc13c14cc9875abc7d92",
+    "campaigns/long-hunt/data.json": "15a190a5c56ad18abe71be9caeaffedabca5b48ff41976589b293d9d4fbaed52",
+    "chapter-engine.js": "40fb02224f705e5b9e291ea9fee18b8c6989a8bd5ee9975069be7b3744212a1b",
+    "components/cards.js": "a46234a29ee3d606895c23cda44303da4b16a648e430f1b0d468fecbd604b851",
+    "components/extended-enemies.json": "451c9051e66a5f7ba2b9b457a99402c832e331481940f50f3f2625dca59c9534",
+    "components/extended-firearms.json": "ea9565f7391e87b10f3b09cd8a7469ceae326c59d022a1ea143c4387dbabc435",
+    "components/extended-weapons.json": "4b39d0ae1ccb17c2a77c8c2de7a36cc39c43c31caa2fa6063095848776e266be",
+    "components/supplied-components.json": "ba0bfdd0b3c4af34eca04ffb24d9477048c5b40771c8e03bea263a51061fdee0",
+    "data.js": "57a9565f39b6c383ffb0e8ac937b4b414e421596fae113ac3033fdf97e43951c",
+    "enemy-deck.js": "b842a5dfad84a10016bc4061f9daf946f74ddac8b134b51d16605a133518a5be",
+    "extended-enemies.js": "0228e33d72958c26ea65ba0f2a4d76c0e7ac69a9b2272375c9503371a5f07eb0",
+    "extended-enemy-rules.js": "3faab9be409155467d4b71caa36b06481bb116b4262497a9dba2884786b4d0b8",
+    "extended-firearms.js": "f0ca399d3b2809b1bdc508c33ba8e7e661894a1de3682c3fd0db376cae280435",
+    "extended-rewards.js": "e7afb418749fde7777634e407a83aafefa6ecb983af0214fc5359d5c3ca14215",
+    "extended-weapons.js": "e05be4ca746aa8442e1234046ab7c619b90d8cfa62c381d237a92ae089b13aea",
+    "firearms-engine.js": "7685621aeb8cf24fa30eced22a27e38c16977472da31d3174ad75d941beb40ce",
+    "hunt-data.js": "1cb34a372ba2dceaed2523a3942af9140101f743d110f605214ebe346450f823",
+    "hunt-engine.js": "cd0a790a3af2b4190bea4f9a8baee8631d9e1adb6d90f115e349b193eddd7cf1",
+    "hunt-mission-feedback.js": "d94e38c3e3f2487fad6b328fc6ce5af8df2ee80592048da675dbc347a74e0d06",
+    "mission-engine.js": "b9e001130e884969219167d087a62c5d9a417005171bdd01e6a0140014cb73ed",
+    "qa-mode.js": "b7cf4a82fa95f62f0df507c5d3b1033590d400f2029c5acb074633c8fc573283",
+    "rewards-engine.js": "f999e6a2a8e5c8f623ce44a334d9117df95604cd9bae61cf7f63ccfc0cfc0080",
+    "temporary-components.js": "69323bc29715e5f9c3f17e77b7e8118ceb6782b9aaf818384e01560c9ce8c1d7",
+    "weapon-flow.js": "2e60bbf3a39284bafe560f8ffd62f30b75e9c561228e41173f06c6fbda727499",
+    "weapon-rules.js": "9ec6fc4011daed6ad5b473cfe9555652591bba90a1d91c5bdc793ff1b201f9f9",
+    "hunt-public-text.js": "407574f5191cb5599471ad3e64b700a57e72d27df286e912fe55a6d5d2d942fb",
+    "hunt.css": "a76ff16d8e316923b619bb2bc6808d769bc0d4bca34bd828e0162130b67e9da9",
+    "package.json": "72d0fca8b3607862a326d98be683cf235e8b9a1e6ea9a6384a222b339f976a39"
+  },
+  "engineAndRawDataReview": {
+    "unchanged": true,
+    "modules": [
+      {
+        "file": "actual-components.js",
+        "baselineBlob": "30dec8dcfc7ac1d5ad882665fdc05ef0d57a165e",
+        "currentBlob": "30dec8dcfc7ac1d5ad882665fdc05ef0d57a165e",
+        "sha256": "765c73aef0e0fccbea0617a2e8ad6f735428eb23df8123af45350a5fa6a3456c",
+        "unchanged": true
+      },
+      {
+        "file": "boss-components.js",
+        "baselineBlob": "02c466510f80f8a883a859bffecc7990e9e212a4",
+        "currentBlob": "02c466510f80f8a883a859bffecc7990e9e212a4",
+        "sha256": "d2b957504530ba2729e0668cb6a812895692722f602edc13c14cc9875abc7d92",
+        "unchanged": true
+      },
+      {
+        "file": "campaigns/long-hunt/data.json",
+        "baselineBlob": "b014457d099d6e04da75a28b1ab091f1509ae106",
+        "currentBlob": "b014457d099d6e04da75a28b1ab091f1509ae106",
+        "sha256": "15a190a5c56ad18abe71be9caeaffedabca5b48ff41976589b293d9d4fbaed52",
+        "unchanged": true
+      },
+      {
+        "file": "chapter-engine.js",
+        "baselineBlob": "4dcaf13c236fa110f683e26c3a434e15d1156bb5",
+        "currentBlob": "4dcaf13c236fa110f683e26c3a434e15d1156bb5",
+        "sha256": "40fb02224f705e5b9e291ea9fee18b8c6989a8bd5ee9975069be7b3744212a1b",
+        "unchanged": true
+      },
+      {
+        "file": "components/cards.js",
+        "baselineBlob": "48ff7fbb4b03fb95cb4d3f9b5e6c762889f408a5",
+        "currentBlob": "48ff7fbb4b03fb95cb4d3f9b5e6c762889f408a5",
+        "sha256": "a46234a29ee3d606895c23cda44303da4b16a648e430f1b0d468fecbd604b851",
+        "unchanged": true
+      },
+      {
+        "file": "components/extended-enemies.json",
+        "baselineBlob": "febed516c62c8ab97d961ea8cf38491cc0551ea2",
+        "currentBlob": "febed516c62c8ab97d961ea8cf38491cc0551ea2",
+        "sha256": "451c9051e66a5f7ba2b9b457a99402c832e331481940f50f3f2625dca59c9534",
+        "unchanged": true
+      },
+      {
+        "file": "components/extended-firearms.json",
+        "baselineBlob": "34f1e3c5a00b20eb5f9f38118bf888fd4e055e0a",
+        "currentBlob": "34f1e3c5a00b20eb5f9f38118bf888fd4e055e0a",
+        "sha256": "ea9565f7391e87b10f3b09cd8a7469ceae326c59d022a1ea143c4387dbabc435",
+        "unchanged": true
+      },
+      {
+        "file": "components/extended-weapons.json",
+        "baselineBlob": "967e528e7684255aa3ca9ebe4be608410c4cf0f6",
+        "currentBlob": "967e528e7684255aa3ca9ebe4be608410c4cf0f6",
+        "sha256": "4b39d0ae1ccb17c2a77c8c2de7a36cc39c43c31caa2fa6063095848776e266be",
+        "unchanged": true
+      },
+      {
+        "file": "components/supplied-components.json",
+        "baselineBlob": "28e695c63ef3a319648292261d60d769e74d7c43",
+        "currentBlob": "28e695c63ef3a319648292261d60d769e74d7c43",
+        "sha256": "ba0bfdd0b3c4af34eca04ffb24d9477048c5b40771c8e03bea263a51061fdee0",
+        "unchanged": true
+      },
+      {
+        "file": "data.js",
+        "baselineBlob": "054ba549b68be3d4e8e18b82ab1430fc75ed3859",
+        "currentBlob": "054ba549b68be3d4e8e18b82ab1430fc75ed3859",
+        "sha256": "57a9565f39b6c383ffb0e8ac937b4b414e421596fae113ac3033fdf97e43951c",
+        "unchanged": true
+      },
+      {
+        "file": "enemy-deck.js",
+        "baselineBlob": "20533bcda7c7949ac928b7c4f3cea8a63a76115b",
+        "currentBlob": "20533bcda7c7949ac928b7c4f3cea8a63a76115b",
+        "sha256": "b842a5dfad84a10016bc4061f9daf946f74ddac8b134b51d16605a133518a5be",
+        "unchanged": true
+      },
+      {
+        "file": "extended-enemies.js",
+        "baselineBlob": "0a9271d9da73e7703c008f782d36f47d3a508d28",
+        "currentBlob": "0a9271d9da73e7703c008f782d36f47d3a508d28",
+        "sha256": "0228e33d72958c26ea65ba0f2a4d76c0e7ac69a9b2272375c9503371a5f07eb0",
+        "unchanged": true
+      },
+      {
+        "file": "extended-enemy-rules.js",
+        "baselineBlob": "29025b06ddfd33385240aef16f3282527f4b7e07",
+        "currentBlob": "29025b06ddfd33385240aef16f3282527f4b7e07",
+        "sha256": "3faab9be409155467d4b71caa36b06481bb116b4262497a9dba2884786b4d0b8",
+        "unchanged": true
+      },
+      {
+        "file": "extended-firearms.js",
+        "baselineBlob": "dcb03255cb34c05221f9cd3c35b3c4c872071804",
+        "currentBlob": "dcb03255cb34c05221f9cd3c35b3c4c872071804",
+        "sha256": "f0ca399d3b2809b1bdc508c33ba8e7e661894a1de3682c3fd0db376cae280435",
+        "unchanged": true
+      },
+      {
+        "file": "extended-rewards.js",
+        "baselineBlob": "6199f32e77817e4aa875fe6b4a61c9910dc67fc0",
+        "currentBlob": "6199f32e77817e4aa875fe6b4a61c9910dc67fc0",
+        "sha256": "e7afb418749fde7777634e407a83aafefa6ecb983af0214fc5359d5c3ca14215",
+        "unchanged": true
+      },
+      {
+        "file": "extended-weapons.js",
+        "baselineBlob": "c936026c8b396fec7a4efa0c19591c14460450bf",
+        "currentBlob": "c936026c8b396fec7a4efa0c19591c14460450bf",
+        "sha256": "e05be4ca746aa8442e1234046ab7c619b90d8cfa62c381d237a92ae089b13aea",
+        "unchanged": true
+      },
+      {
+        "file": "firearms-engine.js",
+        "baselineBlob": "9c962c713253b3a3083469f0db6165b78f95b453",
+        "currentBlob": "9c962c713253b3a3083469f0db6165b78f95b453",
+        "sha256": "7685621aeb8cf24fa30eced22a27e38c16977472da31d3174ad75d941beb40ce",
+        "unchanged": true
+      },
+      {
+        "file": "hunt-data.js",
+        "baselineBlob": "45c903d17cc504d76ed82feab0232e15cefb652b",
+        "currentBlob": "45c903d17cc504d76ed82feab0232e15cefb652b",
+        "sha256": "1cb34a372ba2dceaed2523a3942af9140101f743d110f605214ebe346450f823",
+        "unchanged": true
+      },
+      {
+        "file": "hunt-engine.js",
+        "baselineBlob": "2cb5eda1f2e2a47236c44cdc1295dd2bc15dfd5b",
+        "currentBlob": "2cb5eda1f2e2a47236c44cdc1295dd2bc15dfd5b",
+        "sha256": "cd0a790a3af2b4190bea4f9a8baee8631d9e1adb6d90f115e349b193eddd7cf1",
+        "unchanged": true
+      },
+      {
+        "file": "hunt-mission-feedback.js",
+        "baselineBlob": "ea3615529d08626a3a56ef4c886cd97953cab8a1",
+        "currentBlob": "ea3615529d08626a3a56ef4c886cd97953cab8a1",
+        "sha256": "d94e38c3e3f2487fad6b328fc6ce5af8df2ee80592048da675dbc347a74e0d06",
+        "unchanged": true
+      },
+      {
+        "file": "mission-engine.js",
+        "baselineBlob": "369b06ba0c77a0717c94f3716a432356cf75785f",
+        "currentBlob": "369b06ba0c77a0717c94f3716a432356cf75785f",
+        "sha256": "b9e001130e884969219167d087a62c5d9a417005171bdd01e6a0140014cb73ed",
+        "unchanged": true
+      },
+      {
+        "file": "qa-mode.js",
+        "baselineBlob": "9e42b913a77c7138eb58bfb70ad6e9dc4d43c8c9",
+        "currentBlob": "9e42b913a77c7138eb58bfb70ad6e9dc4d43c8c9",
+        "sha256": "b7cf4a82fa95f62f0df507c5d3b1033590d400f2029c5acb074633c8fc573283",
+        "unchanged": true
+      },
+      {
+        "file": "rewards-engine.js",
+        "baselineBlob": "3ac0651cd244b42d9003b4d919a502fbb42dd727",
+        "currentBlob": "3ac0651cd244b42d9003b4d919a502fbb42dd727",
+        "sha256": "f999e6a2a8e5c8f623ce44a334d9117df95604cd9bae61cf7f63ccfc0cfc0080",
+        "unchanged": true
+      },
+      {
+        "file": "temporary-components.js",
+        "baselineBlob": "c446ca937c79754b0b72b7da35ac0796a6248867",
+        "currentBlob": "c446ca937c79754b0b72b7da35ac0796a6248867",
+        "sha256": "69323bc29715e5f9c3f17e77b7e8118ceb6782b9aaf818384e01560c9ce8c1d7",
+        "unchanged": true
+      },
+      {
+        "file": "weapon-flow.js",
+        "baselineBlob": "3e8955af116eb2bfca0546eab33317a10a56df43",
+        "currentBlob": "3e8955af116eb2bfca0546eab33317a10a56df43",
+        "sha256": "2e60bbf3a39284bafe560f8ffd62f30b75e9c561228e41173f06c6fbda727499",
+        "unchanged": true
+      },
+      {
+        "file": "weapon-rules.js",
+        "baselineBlob": "74ecd6e95b18e00c88bed80b239757270bd6e07d",
+        "currentBlob": "74ecd6e95b18e00c88bed80b239757270bd6e07d",
+        "sha256": "9ec6fc4011daed6ad5b473cfe9555652591bba90a1d91c5bdc793ff1b201f9f9",
+        "unchanged": true
+      }
+    ]
+  },
+  "summary": {
+    "manifests": 6,
+    "entriesBefore": 64,
+    "entriesAfter": 64,
+    "eventsBefore": 79,
+    "eventsAfter": 79,
+    "changedEntries": 19,
+    "uniqueSaveFiles": 64,
+    "saveBytesPreserved": true,
+    "triggerCommandsPreserved": true,
+    "uniqueExecutionInputs": 62,
+    "engineModulesUnchanged": 26
+  },
+  "skipped": [
+    {
+      "file": "clinic51-52/validated-notification-checkpoints.json",
+      "reason": "historical validation report; not an expected-event manifest"
+    }
+  ],
+  "manifests": [
+    {
+      "file": "chapel-donation/notification-checkpoints.json",
+      "manifestSha256Before": "ea72608f76da29c0cb8a50c1824ad300461ea0943b7addfc9237150cfd9fe03b",
+      "manifestSha256After": "7d56e0655801417cdce5f46bd7536d887113e5b77449585ffd13ead0c0913a29",
+      "entriesBefore": 14,
+      "entriesAfter": 14,
+      "changedEntries": 6,
+      "entries": [
+        {
+          "index": 0,
+          "name": null,
+          "checkpoint": "chapel-donation/chapel-before-notice-68.json",
+          "checkpointSha256Before": "092ae9bee4102ed7f06d23771823b8f65c75ab52b009225f929d62f977f16969",
+          "checkpointSha256After": "092ae9bee4102ed7f06d23771823b8f65c75ab52b009225f929d62f977f16969",
+          "chapter": 2,
+          "phase": "tile_place",
+          "commandsBefore": 67,
+          "commandsAfter": 68,
+          "nextCommand": {
+            "type": "PLACE_TILE",
+            "rotation": 3
+          },
+          "triggerCommandSha256": "ad13bdea154e8111a419ee0618e207b19cd7f1541e8e14ba35b3d89355f6b081",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "22feef59b3c69baa29726022a92985de063fd39e39f67b024b0c19ab5514b923",
+          "eventSha256After": "9c4bb2df7638383c86ef9f9efe4f6301b5b719a13cbf3c97622addf50b46a69b",
+          "copyChanged": true,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 1,
+          "name": null,
+          "checkpoint": "chapel-donation/chapel-before-notice-75.json",
+          "checkpointSha256Before": "be6b2f8bc435e198ca4e6b9a454a68024812a0b64d979d5d6f55fd0781d419a0",
+          "checkpointSha256After": "be6b2f8bc435e198ca4e6b9a454a68024812a0b64d979d5d6f55fd0781d419a0",
+          "chapter": 2,
+          "phase": "move",
+          "commandsBefore": 74,
+          "commandsAfter": 75,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "f14f898ff4a03fe5380fab58b2b459c39988dffe5d6dbe8602b0cf408e94202f",
+          "eventSha256After": "d54c320c3b95e81cc9a8d8623d11c1b9ab8d1f5dff86ab2be793ff7349fa281e",
+          "copyChanged": true,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 2,
+          "name": null,
+          "checkpoint": "chapel-donation/chapel-before-notice-84.json",
+          "checkpointSha256Before": "a8d080b37d3462da44fef4b82de71d746b23a99be4524543ae5032446d652981",
+          "checkpointSha256After": "a8d080b37d3462da44fef4b82de71d746b23a99be4524543ae5032446d652981",
+          "chapter": 2,
+          "phase": "combat_react",
+          "commandsBefore": 83,
+          "commandsAfter": 84,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "fa933038f9a8e49749c21acdd402a1ced5bc3d237e2dd1b3363cbbcfd8cf7f31",
+          "eventSha256After": "fa933038f9a8e49749c21acdd402a1ced5bc3d237e2dd1b3363cbbcfd8cf7f31",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 3,
+          "name": null,
+          "checkpoint": "chapel-donation/chapel-before-notice-96.json",
+          "checkpointSha256Before": "d18be49703d08470ee2ca0f0179c955ada1f9047521eadc39df03684bd114059",
+          "checkpointSha256After": "d18be49703d08470ee2ca0f0179c955ada1f9047521eadc39df03684bd114059",
+          "chapter": 2,
+          "phase": "move",
+          "commandsBefore": 95,
+          "commandsAfter": 96,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "46faca26badbc3a60241fc13bb17e3f73e8dc3d5b945250d522610af1d91a1ad",
+          "eventSha256After": "46faca26badbc3a60241fc13bb17e3f73e8dc3d5b945250d522610af1d91a1ad",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 4,
+          "name": null,
+          "checkpoint": "chapel-donation/chapel-before-notice-134.json",
+          "checkpointSha256Before": "ecc3c06448753a9d678cdefd653d1a5dd10762a1415d4c89523e4bf7ee1a600c",
+          "checkpointSha256After": "ecc3c06448753a9d678cdefd653d1a5dd10762a1415d4c89523e4bf7ee1a600c",
+          "chapter": 2,
+          "phase": "move",
+          "commandsBefore": 133,
+          "commandsAfter": 134,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "534e123fa9b3cc817daaba9f4436ad7aab9ecb2cc8d0c4f1fef96ff9fabae43a",
+          "eventSha256After": "534e123fa9b3cc817daaba9f4436ad7aab9ecb2cc8d0c4f1fef96ff9fabae43a",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 5,
+          "name": null,
+          "checkpoint": "chapel-donation/chapel-before-notice-150.json",
+          "checkpointSha256Before": "5d6bf0480b2bd1ede5c40d7cedefd4d41e2eda51c13f67763e937ad62cbb0577",
+          "checkpointSha256After": "5d6bf0480b2bd1ede5c40d7cedefd4d41e2eda51c13f67763e937ad62cbb0577",
+          "chapter": 2,
+          "phase": "move",
+          "commandsBefore": 149,
+          "commandsAfter": 150,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "57a14e34b7a1fff44a939943a33adce242141d3b7eb25fc21073a996fda24d2a",
+          "eventSha256After": "57a14e34b7a1fff44a939943a33adce242141d3b7eb25fc21073a996fda24d2a",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 6,
+          "name": null,
+          "checkpoint": "chapel-donation/chapel-before-notice-165.json",
+          "checkpointSha256Before": "eb723bf906ba621d68c0d22b1a28f7c57e55e49efc11d675ea8ab31887b65418",
+          "checkpointSha256After": "eb723bf906ba621d68c0d22b1a28f7c57e55e49efc11d675ea8ab31887b65418",
+          "chapter": 2,
+          "phase": "hunter",
+          "commandsBefore": 164,
+          "commandsAfter": 165,
+          "nextCommand": {
+            "type": "MISSION_CORPSES",
+            "count": 2
+          },
+          "triggerCommandSha256": "a316e58f4d268d371c92c7f84bc62e74dc02558ddaa1e583de2042a98ac4b954",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "234b0c9244742b66c03d6353fb482174d276ba23c3edf9106365d1a05eecd87f",
+          "eventSha256After": "234b0c9244742b66c03d6353fb482174d276ba23c3edf9106365d1a05eecd87f",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 7,
+          "name": null,
+          "checkpoint": "chapel-donation/chapel-before-notice-168.json",
+          "checkpointSha256Before": "ce6f4cc0d6982e4be347369693ad2a7f80183fefa2a1a0ccbe9f0d0715e68c5b",
+          "checkpointSha256After": "ce6f4cc0d6982e4be347369693ad2a7f80183fefa2a1a0ccbe9f0d0715e68c5b",
+          "chapter": 2,
+          "phase": "combat_react",
+          "commandsBefore": 167,
+          "commandsAfter": 168,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "fb77fa7021f76fcb08839ef9c4ef0e5367acabf678b5991249c409189a6390c0",
+          "eventSha256After": "fb77fa7021f76fcb08839ef9c4ef0e5367acabf678b5991249c409189a6390c0",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 8,
+          "name": null,
+          "checkpoint": "chapel-donation/chapel-before-notice-184.json",
+          "checkpointSha256Before": "6456c1855923bb6293f89d2b435e52d72013b1ddbd7d57b31f061a65b86cd92a",
+          "checkpointSha256After": "6456c1855923bb6293f89d2b435e52d72013b1ddbd7d57b31f061a65b86cd92a",
+          "chapter": 2,
+          "phase": "hunter",
+          "commandsBefore": 183,
+          "commandsAfter": 184,
+          "nextCommand": {
+            "type": "END_TURN"
+          },
+          "triggerCommandSha256": "321657fbce0c377fe0f23c267cecb904e4253588710fe7b09cae3e76d6e3d4cd",
+          "eventCountBefore": 2,
+          "eventCountAfter": 2,
+          "eventSha256Before": "f85440fc42b5cc3da69126431d087a0cadd31efb3010d12ac76a612905c926ef",
+          "eventSha256After": "f85440fc42b5cc3da69126431d087a0cadd31efb3010d12ac76a612905c926ef",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 9,
+          "name": null,
+          "checkpoint": "chapel-donation/chapel-before-notice-193.json",
+          "checkpointSha256Before": "8d9d6de769e0f00d135259e698aaa4853bc46ca753eb30d90089b5c76251e204",
+          "checkpointSha256After": "8d9d6de769e0f00d135259e698aaa4853bc46ca753eb30d90089b5c76251e204",
+          "chapter": 2,
+          "phase": "between_chapters",
+          "commandsBefore": 192,
+          "commandsAfter": 193,
+          "nextCommand": {
+            "type": "START_NEXT_CHAPTER",
+            "startSpace": "center",
+            "face": 0
+          },
+          "triggerCommandSha256": "a75edba06f56f407b47c7d4a167d6470abb4320050115c835437d9c120efa1bb",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "629520acbf047724b99119f6708e65fe55ed1265fa8790721d3bcd395d68b194",
+          "eventSha256After": "96ba16cf29a440204592dc9cca45c49591f80bf1e0d99f51001f9c99b202bd6a",
+          "copyChanged": true,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 10,
+          "name": null,
+          "checkpoint": "chapel-donation/chapel-before-notice-197.json",
+          "checkpointSha256Before": "23c2ffb20d46eddec35689d2928028d261b90daa1578d4cfae93fcbc37470e5a",
+          "checkpointSha256After": "23c2ffb20d46eddec35689d2928028d261b90daa1578d4cfae93fcbc37470e5a",
+          "chapter": 3,
+          "phase": "tile_place",
+          "commandsBefore": 196,
+          "commandsAfter": 197,
+          "nextCommand": {
+            "type": "PLACE_TILE",
+            "rotation": 1
+          },
+          "triggerCommandSha256": "23f8e10928634e7ddee858433a642dc36bf058a58036d32990d2829ffff28aed",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "2a6bbab159f13f47f2de4ce42fe996c5c748969a843a6add4d261438b8e3aef1",
+          "eventSha256After": "ca0b204368fb08854bc4a9b1e3ff32d4accfa30c982eb1da5617390dbb514192",
+          "copyChanged": true,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 11,
+          "name": null,
+          "checkpoint": "chapel-donation/chapel-before-notice-212.json",
+          "checkpointSha256Before": "4d604ecb57d43c89d7ba109f5c67437652ce7d6fdc3362ed28e18d6b92afb526",
+          "checkpointSha256After": "4d604ecb57d43c89d7ba109f5c67437652ce7d6fdc3362ed28e18d6b92afb526",
+          "chapter": 3,
+          "phase": "tile_place",
+          "commandsBefore": 211,
+          "commandsAfter": 212,
+          "nextCommand": {
+            "type": "PLACE_TILE",
+            "rotation": 1
+          },
+          "triggerCommandSha256": "23f8e10928634e7ddee858433a642dc36bf058a58036d32990d2829ffff28aed",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "d212f7f518e368920540bf86027ef506344e044dc83f1ea9530cf21cefa4fc52",
+          "eventSha256After": "678660a3aa17f9fff72e05f07bb692ec2d98a755273f091b93e57222712e5771",
+          "copyChanged": true,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 12,
+          "name": null,
+          "checkpoint": "chapel-donation/chapel-before-notice-220.json",
+          "checkpointSha256Before": "27a0ab0f6ca94caf0797cff39ab923a0c3e0411f1193fdd437c85a7fea5371c6",
+          "checkpointSha256After": "27a0ab0f6ca94caf0797cff39ab923a0c3e0411f1193fdd437c85a7fea5371c6",
+          "chapter": 3,
+          "phase": "move",
+          "commandsBefore": 219,
+          "commandsAfter": 220,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "1b96e87173c9d2cb944364058fd74f2df9c82218360506c486bac7a895f2d7b2",
+          "eventSha256After": "27f5f3c66fdf455496a6aac9b773f99784678ea28d1d7f4a5bf62760d9fb67b3",
+          "copyChanged": true,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 13,
+          "name": null,
+          "checkpoint": "chapel-donation/chapel-before-notice-226.json",
+          "checkpointSha256Before": "0d9da405e40ac7244be7e5e53921baded9c40fc23d9ef2619dfd5b0cfcf281d4",
+          "checkpointSha256After": "0d9da405e40ac7244be7e5e53921baded9c40fc23d9ef2619dfd5b0cfcf281d4",
+          "chapter": 3,
+          "phase": "hunter",
+          "commandsBefore": 225,
+          "commandsAfter": 226,
+          "nextCommand": {
+            "type": "MISSION_DONATE",
+            "itemId": "item-qa-3-2"
+          },
+          "triggerCommandSha256": "99a3bd8d69c748937bde20bb07a7a87ef20a23094ebd01a375833a6acca05edc",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "02153cde34e265a9703760534a131abcc0bce46119e65451c5fd69639a837e39",
+          "eventSha256After": "02153cde34e265a9703760534a131abcc0bce46119e65451c5fd69639a837e39",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        }
+      ]
+    },
+    {
+      "file": "chapter2/notification-checkpoints.json",
+      "manifestSha256Before": "f9a1467cd4374f819af259d3be2d3e185fd4ebe55cfa32371fc025f612c6db9a",
+      "manifestSha256After": "622387696f4ff69578e826f59ce232b44528d6855abf2a37b0e433ea40eaff0f",
+      "entriesBefore": 11,
+      "entriesAfter": 11,
+      "changedEntries": 4,
+      "entries": [
+        {
+          "index": 0,
+          "name": null,
+          "checkpoint": "chapter2/c2-before-notice-070.json",
+          "checkpointSha256Before": "05d60ab4a0dd4d3cedef9e6c5445f4c605657b9a86158dad171355a98d9a8382",
+          "checkpointSha256After": "05d60ab4a0dd4d3cedef9e6c5445f4c605657b9a86158dad171355a98d9a8382",
+          "chapter": 2,
+          "phase": "move",
+          "commandsBefore": 69,
+          "commandsAfter": 70,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "22feef59b3c69baa29726022a92985de063fd39e39f67b024b0c19ab5514b923",
+          "eventSha256After": "9c4bb2df7638383c86ef9f9efe4f6301b5b719a13cbf3c97622addf50b46a69b",
+          "copyChanged": true,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 1,
+          "name": null,
+          "checkpoint": "chapter2/c2-before-notice-074.json",
+          "checkpointSha256Before": "3e814770a2b6dd5f23ce157acbefbbfd32d9743f1f3b6a1d7ccc3b2af2f8f87b",
+          "checkpointSha256After": "3e814770a2b6dd5f23ce157acbefbbfd32d9743f1f3b6a1d7ccc3b2af2f8f87b",
+          "chapter": 2,
+          "phase": "combat_react",
+          "commandsBefore": 73,
+          "commandsAfter": 74,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 2,
+          "eventCountAfter": 2,
+          "eventSha256Before": "758e5a984364faba3a8829b56dab5933c219a6027277d55b4cb6a34d4969aad9",
+          "eventSha256After": "5eb653d6758044134d66d2283c92e38eb91c91029d9461bd5ee0cc10717399ef",
+          "copyChanged": true,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 2,
+          "name": null,
+          "checkpoint": "chapter2/c2-before-notice-077.json",
+          "checkpointSha256Before": "2f4817c86c1713c9ccb16e62edc332e4864c3f433676367dfae9374568f0b0bf",
+          "checkpointSha256After": "2f4817c86c1713c9ccb16e62edc332e4864c3f433676367dfae9374568f0b0bf",
+          "chapter": 2,
+          "phase": "combat_react",
+          "commandsBefore": 76,
+          "commandsAfter": 77,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "64f9a17443c6a282193ecf50827becc955f396a0fef278343c7185d19ccb0365",
+          "eventSha256After": "64f9a17443c6a282193ecf50827becc955f396a0fef278343c7185d19ccb0365",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 3,
+          "name": null,
+          "checkpoint": "chapter2/c2-before-notice-102.json",
+          "checkpointSha256Before": "159ab5974b063a89aba38cff5c1ef5e67eda6ee06074fa96c49969070766c372",
+          "checkpointSha256After": "159ab5974b063a89aba38cff5c1ef5e67eda6ee06074fa96c49969070766c372",
+          "chapter": 2,
+          "phase": "move",
+          "commandsBefore": 101,
+          "commandsAfter": 102,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "d622fe6ff7b1dd6c0d5eaf00be6c7871d8fa2102352a62e1adcc44a9e59863da",
+          "eventSha256After": "d622fe6ff7b1dd6c0d5eaf00be6c7871d8fa2102352a62e1adcc44a9e59863da",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 4,
+          "name": null,
+          "checkpoint": "chapter2/c2-before-notice-108.json",
+          "checkpointSha256Before": "1fb2579ea3c18fac25e921a3866378d6d0aad589db48f3099557833ffad0a46b",
+          "checkpointSha256After": "1fb2579ea3c18fac25e921a3866378d6d0aad589db48f3099557833ffad0a46b",
+          "chapter": 2,
+          "phase": "hunter",
+          "commandsBefore": 107,
+          "commandsAfter": 108,
+          "nextCommand": {
+            "type": "MISSION_CORPSES",
+            "count": 2
+          },
+          "triggerCommandSha256": "a316e58f4d268d371c92c7f84bc62e74dc02558ddaa1e583de2042a98ac4b954",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "234b0c9244742b66c03d6353fb482174d276ba23c3edf9106365d1a05eecd87f",
+          "eventSha256After": "234b0c9244742b66c03d6353fb482174d276ba23c3edf9106365d1a05eecd87f",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 5,
+          "name": null,
+          "checkpoint": "chapter2/c2-before-notice-111.json",
+          "checkpointSha256Before": "fdb9ea582ad1c14da143be3df437cebd3c63f45a71597c7737e75acf68890198",
+          "checkpointSha256After": "fdb9ea582ad1c14da143be3df437cebd3c63f45a71597c7737e75acf68890198",
+          "chapter": 2,
+          "phase": "combat_react",
+          "commandsBefore": 110,
+          "commandsAfter": 111,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "fb77fa7021f76fcb08839ef9c4ef0e5367acabf678b5991249c409189a6390c0",
+          "eventSha256After": "fb77fa7021f76fcb08839ef9c4ef0e5367acabf678b5991249c409189a6390c0",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 6,
+          "name": null,
+          "checkpoint": "chapter2/c2-before-notice-121.json",
+          "checkpointSha256Before": "908caaeee2fb4830bc395f18b38af897d8fd36b5932f08e6f3c57301ca9034e7",
+          "checkpointSha256After": "908caaeee2fb4830bc395f18b38af897d8fd36b5932f08e6f3c57301ca9034e7",
+          "chapter": 2,
+          "phase": "move",
+          "commandsBefore": 120,
+          "commandsAfter": 121,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "f14f898ff4a03fe5380fab58b2b459c39988dffe5d6dbe8602b0cf408e94202f",
+          "eventSha256After": "d54c320c3b95e81cc9a8d8623d11c1b9ab8d1f5dff86ab2be793ff7349fa281e",
+          "copyChanged": true,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 7,
+          "name": null,
+          "checkpoint": "chapter2/c2-before-notice-130.json",
+          "checkpointSha256Before": "548ba16c72058b02cb11fab2f4972171731c2fc1b489fc338af10db060af0297",
+          "checkpointSha256After": "548ba16c72058b02cb11fab2f4972171731c2fc1b489fc338af10db060af0297",
+          "chapter": 2,
+          "phase": "combat_react",
+          "commandsBefore": 129,
+          "commandsAfter": 130,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "fa933038f9a8e49749c21acdd402a1ced5bc3d237e2dd1b3363cbbcfd8cf7f31",
+          "eventSha256After": "fa933038f9a8e49749c21acdd402a1ced5bc3d237e2dd1b3363cbbcfd8cf7f31",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 8,
+          "name": null,
+          "checkpoint": "chapter2/c2-before-notice-141.json",
+          "checkpointSha256Before": "600e57dd8a5b609afd4549d8e50cd7b22e38da01ad63a1f43f1dc9fc27878557",
+          "checkpointSha256After": "600e57dd8a5b609afd4549d8e50cd7b22e38da01ad63a1f43f1dc9fc27878557",
+          "chapter": 2,
+          "phase": "move",
+          "commandsBefore": 140,
+          "commandsAfter": 141,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 2,
+          "eventCountAfter": 2,
+          "eventSha256Before": "a9bb64ba5731ad2ff877a1676e512b07237fe935b226b9df3a5ed7f8e63708d1",
+          "eventSha256After": "a9bb64ba5731ad2ff877a1676e512b07237fe935b226b9df3a5ed7f8e63708d1",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 9,
+          "name": null,
+          "checkpoint": "chapter2/c2-before-notice-157.json",
+          "checkpointSha256Before": "1d1b286f3d0234a355908cb703ca2d859703e7e9992c686ff7b696df10d0f697",
+          "checkpointSha256After": "1d1b286f3d0234a355908cb703ca2d859703e7e9992c686ff7b696df10d0f697",
+          "chapter": 2,
+          "phase": "combat_react",
+          "commandsBefore": 156,
+          "commandsAfter": 157,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 2,
+          "eventCountAfter": 2,
+          "eventSha256Before": "f85440fc42b5cc3da69126431d087a0cadd31efb3010d12ac76a612905c926ef",
+          "eventSha256After": "f85440fc42b5cc3da69126431d087a0cadd31efb3010d12ac76a612905c926ef",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 10,
+          "name": null,
+          "checkpoint": "chapter2/c2-before-notice-166.json",
+          "checkpointSha256Before": "d323d5bb5f39beb811a34894698b2950f2fc662ff448c2a146539b4b1dd29436",
+          "checkpointSha256After": "d323d5bb5f39beb811a34894698b2950f2fc662ff448c2a146539b4b1dd29436",
+          "chapter": 2,
+          "phase": "between_chapters",
+          "commandsBefore": 165,
+          "commandsAfter": 166,
+          "nextCommand": {
+            "type": "START_NEXT_CHAPTER",
+            "startSpace": "center",
+            "face": 0
+          },
+          "triggerCommandSha256": "a75edba06f56f407b47c7d4a167d6470abb4320050115c835437d9c120efa1bb",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "629520acbf047724b99119f6708e65fe55ed1265fa8790721d3bcd395d68b194",
+          "eventSha256After": "96ba16cf29a440204592dc9cca45c49591f80bf1e0d99f51001f9c99b202bd6a",
+          "copyChanged": true,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        }
+      ]
+    },
+    {
+      "file": "chapter3/notification-checkpoints.json",
+      "manifestSha256Before": "23acd4a406c728593bf84a88d0febdb96a14e4d5431c097ed04a5dfb8561c3bd",
+      "manifestSha256After": "23acd4a406c728593bf84a88d0febdb96a14e4d5431c097ed04a5dfb8561c3bd",
+      "entriesBefore": 13,
+      "entriesAfter": 13,
+      "changedEntries": 0,
+      "entries": [
+        {
+          "index": 0,
+          "name": "attack/before-iosefka-attack",
+          "checkpoint": "chapter3/attack/before-iosefka-attack.json",
+          "checkpointSha256Before": "7fc44e2580d1ce131d5c359f059ec86f8cc7d82b1a6817dc9ed547d4fc883653",
+          "checkpointSha256After": "7fc44e2580d1ce131d5c359f059ec86f8cc7d82b1a6817dc9ed547d4fc883653",
+          "chapter": 3,
+          "phase": "mission_choice",
+          "commandsBefore": 195,
+          "commandsAfter": 196,
+          "nextCommand": {
+            "type": "MISSION_CHOICE",
+            "choice": "attack-iosefka"
+          },
+          "triggerCommandSha256": "73f4443b55cdb8a4faa9be4a2b1cd19e6d9d60efaec5cc2512126cbdae39bc8d",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "ffe8257fb678d7aafd49674c1cb378110eb03e5895ee73e1c301afb024fcb4e0",
+          "eventSha256After": "ffe8257fb678d7aafd49674c1cb378110eb03e5895ee73e1c301afb024fcb4e0",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 1,
+          "name": "attack/before-iosefka-completion",
+          "checkpoint": "chapter3/attack/before-iosefka-completion.json",
+          "checkpointSha256Before": "188d04cbbae5261f01d97ffe50662a318605e2dca98c61ce21aa817233bd154a",
+          "checkpointSha256After": "188d04cbbae5261f01d97ffe50662a318605e2dca98c61ce21aa817233bd154a",
+          "chapter": 3,
+          "phase": "combat_react",
+          "commandsBefore": 200,
+          "commandsAfter": 201,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "4347f7801ee58d9ebd2c706c038992b1b9ddec550a08348f130420b10c63cb2c",
+          "eventSha256After": "4347f7801ee58d9ebd2c706c038992b1b9ddec550a08348f130420b10c63cb2c",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 2,
+          "name": "entry/before-bridge-cull",
+          "checkpoint": "chapter3/entry/before-bridge-cull.json",
+          "checkpointSha256Before": "2467de4f5ed135230476e921e4582d97035e707aaf4c72a16f01dbcae1298d55",
+          "checkpointSha256After": "2467de4f5ed135230476e921e4582d97035e707aaf4c72a16f01dbcae1298d55",
+          "chapter": 3,
+          "phase": "move",
+          "commandsBefore": 172,
+          "commandsAfter": 173,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "ca0b204368fb08854bc4a9b1e3ff32d4accfa30c982eb1da5617390dbb514192",
+          "eventSha256After": "ca0b204368fb08854bc4a9b1e3ff32d4accfa30c982eb1da5617390dbb514192",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 3,
+          "name": "entry/before-clinic-truth",
+          "checkpoint": "chapter3/entry/before-clinic-truth.json",
+          "checkpointSha256Before": "cfdf88a70436da77050fc09dc45a9b367f276bb72e65b970084488b598af2d99",
+          "checkpointSha256After": "cfdf88a70436da77050fc09dc45a9b367f276bb72e65b970084488b598af2d99",
+          "chapter": 3,
+          "phase": "move",
+          "commandsBefore": 194,
+          "commandsAfter": 195,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "485a9cfcf2dc5c4d62602944d144a04581439182ccccd1cc6e9918594a7f35fb",
+          "eventSha256After": "485a9cfcf2dc5c4d62602944d144a04581439182ccccd1cc6e9918594a7f35fb",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 4,
+          "name": "help/before-experiment-completion",
+          "checkpoint": "chapter3/help/before-experiment-completion.json",
+          "checkpointSha256Before": "304851b08bb0f32ffc03a863097711692fc06b910c1f80e2a5960a6ab5269201",
+          "checkpointSha256After": "304851b08bb0f32ffc03a863097711692fc06b910c1f80e2a5960a6ab5269201",
+          "chapter": 3,
+          "phase": "move",
+          "commandsBefore": 204,
+          "commandsAfter": 205,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "8b7ebbda83c97df2b36d150e319dbb18c926159425c299abbce2d0d03ca4682b",
+          "eventSha256After": "8b7ebbda83c97df2b36d150e319dbb18c926159425c299abbce2d0d03ca4682b",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 5,
+          "name": "help/before-iosefka-help",
+          "checkpoint": "chapter3/help/before-iosefka-help.json",
+          "checkpointSha256Before": "7fc44e2580d1ce131d5c359f059ec86f8cc7d82b1a6817dc9ed547d4fc883653",
+          "checkpointSha256After": "7fc44e2580d1ce131d5c359f059ec86f8cc7d82b1a6817dc9ed547d4fc883653",
+          "chapter": 3,
+          "phase": "mission_choice",
+          "commandsBefore": 195,
+          "commandsAfter": 196,
+          "nextCommand": {
+            "type": "MISSION_CHOICE",
+            "choice": "help-iosefka"
+          },
+          "triggerCommandSha256": "4d096f5e73a0872de5874aa12c06b76f53415754a0e4a95023867c91bf5f3ca2",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "80c733a4c2e0ae74b4dd0e25758e8b51b69e020090ed23617523fee71b4e6ad0",
+          "eventSha256After": "80c733a4c2e0ae74b4dd0e25758e8b51b69e020090ed23617523fee71b4e6ad0",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 6,
+          "name": "main/before-chapel-npc",
+          "checkpoint": "chapter3/main/before-chapel-npc.json",
+          "checkpointSha256Before": "d58c228700f1c0f9f564ce91fe5e1edb242a6bf3e57bce6c5b36b2bbeea676ea",
+          "checkpointSha256After": "d58c228700f1c0f9f564ce91fe5e1edb242a6bf3e57bce6c5b36b2bbeea676ea",
+          "chapter": 3,
+          "phase": "move",
+          "commandsBefore": 209,
+          "commandsAfter": 210,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "195254315907b2a575f57141cd23f5070bcc4c56e7a48fd92d04e5cfbd7008fc",
+          "eventSha256After": "195254315907b2a575f57141cd23f5070bcc4c56e7a48fd92d04e5cfbd7008fc",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 7,
+          "name": "cull/before-boss-release",
+          "checkpoint": "chapter3/cull/before-boss-release.json",
+          "checkpointSha256Before": "b5ae5ba661204cc64085b138ec69c364d5db216e87c719d4c34ee5251aebaf5a",
+          "checkpointSha256After": "b5ae5ba661204cc64085b138ec69c364d5db216e87c719d4c34ee5251aebaf5a",
+          "chapter": 3,
+          "phase": "hunter",
+          "commandsBefore": 228,
+          "commandsAfter": 229,
+          "nextCommand": {
+            "type": "END_TURN"
+          },
+          "triggerCommandSha256": "321657fbce0c377fe0f23c267cecb904e4253588710fe7b09cae3e76d6e3d4cd",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "76ff76eeb8a54733f7b216219d24b4edc9c455b4c04251ad427d7838ce4ea736",
+          "eventSha256After": "76ff76eeb8a54733f7b216219d24b4edc9c455b4c04251ad427d7838ce4ea736",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 8,
+          "name": "cull/before-cull-completion",
+          "checkpoint": "chapter3/cull/before-cull-completion.json",
+          "checkpointSha256Before": "176644f72d331fd803db2a81eb2bb21b28c35568d924b7a1d933cccc0521b549",
+          "checkpointSha256After": "176644f72d331fd803db2a81eb2bb21b28c35568d924b7a1d933cccc0521b549",
+          "chapter": 3,
+          "phase": "combat_react",
+          "commandsBefore": 233,
+          "commandsAfter": 234,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "4835934c685dd5518256ba1a3df6a475d2c0a0d1eec6f37e54a66300d59900b0",
+          "eventSha256After": "4835934c685dd5518256ba1a3df6a475d2c0a0d1eec6f37e54a66300d59900b0",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 9,
+          "name": "cull/before-final-win",
+          "checkpoint": "chapter3/cull/before-final-win.json",
+          "checkpointSha256Before": "8e6c9a1c80f9495f65badc381f99b2b0637f1937bf9113be571cad99b82befd1",
+          "checkpointSha256After": "8e6c9a1c80f9495f65badc381f99b2b0637f1937bf9113be571cad99b82befd1",
+          "chapter": 3,
+          "phase": "hunter",
+          "commandsBefore": 240,
+          "commandsAfter": 241,
+          "nextCommand": {
+            "type": "ATTACK",
+            "enemyId": "mission-main",
+            "cardId": "card-11",
+            "slot": 2
+          },
+          "triggerCommandSha256": "88ad0139145545b24870c09db2a33e182657ba64c774862616d51017d49a4f4d",
+          "eventCountBefore": 2,
+          "eventCountAfter": 2,
+          "eventSha256Before": "be95d3afbabbdbc9bcfc3137c703441b432a1f57d38980b6e843db9678ef3fbf",
+          "eventSha256After": "be95d3afbabbdbc9bcfc3137c703441b432a1f57d38980b6e843db9678ef3fbf",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 10,
+          "name": "main/before-boss-release",
+          "checkpoint": "chapter3/main/before-boss-release.json",
+          "checkpointSha256Before": "385cbcfe902f44d347ba1ad6af67b8a7492d3cad259c73a761bdf78b873a9521",
+          "checkpointSha256After": "385cbcfe902f44d347ba1ad6af67b8a7492d3cad259c73a761bdf78b873a9521",
+          "chapter": 3,
+          "phase": "combat_react",
+          "commandsBefore": 236,
+          "commandsAfter": 237,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 2,
+          "eventCountAfter": 2,
+          "eventSha256Before": "6623045073b3ce10cfb612dd192d25e155300bc53ed4c2c8924ffaa9f5fb7c89",
+          "eventSha256After": "6623045073b3ce10cfb612dd192d25e155300bc53ed4c2c8924ffaa9f5fb7c89",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 11,
+          "name": "main/before-final-win",
+          "checkpoint": "chapter3/main/before-final-win.json",
+          "checkpointSha256Before": "0f9a9798a02fbc655af85a4d165cda7d71c6be768e6f92764d70d01b9af60881",
+          "checkpointSha256After": "0f9a9798a02fbc655af85a4d165cda7d71c6be768e6f92764d70d01b9af60881",
+          "chapter": 3,
+          "phase": "hunter",
+          "commandsBefore": 253,
+          "commandsAfter": 254,
+          "nextCommand": {
+            "type": "ATTACK",
+            "enemyId": "mission-main",
+            "cardId": "card-7",
+            "slot": 0
+          },
+          "triggerCommandSha256": "4557864eb6dc4e054bee59cbcb408174bc443740cb4c9e5d9b862bb26af5a3d1",
+          "eventCountBefore": 2,
+          "eventCountAfter": 2,
+          "eventSha256Before": "be95d3afbabbdbc9bcfc3137c703441b432a1f57d38980b6e843db9678ef3fbf",
+          "eventSha256After": "be95d3afbabbdbc9bcfc3137c703441b432a1f57d38980b6e843db9678ef3fbf",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 12,
+          "name": "main/before-salvation-completion",
+          "checkpoint": "chapter3/main/before-salvation-completion.json",
+          "checkpointSha256Before": "385cbcfe902f44d347ba1ad6af67b8a7492d3cad259c73a761bdf78b873a9521",
+          "checkpointSha256After": "385cbcfe902f44d347ba1ad6af67b8a7492d3cad259c73a761bdf78b873a9521",
+          "chapter": 3,
+          "phase": "combat_react",
+          "commandsBefore": 236,
+          "commandsAfter": 237,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 2,
+          "eventCountAfter": 2,
+          "eventSha256Before": "6623045073b3ce10cfb612dd192d25e155300bc53ed4c2c8924ffaa9f5fb7c89",
+          "eventSha256After": "6623045073b3ce10cfb612dd192d25e155300bc53ed4c2c8924ffaa9f5fb7c89",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        }
+      ]
+    },
+    {
+      "file": "clinic51-52/clinic51/notification-checkpoints.json",
+      "manifestSha256Before": "9bcd9ae020c9776d8f4636ed9f045657663d3c2d60ebbe57d479c037f70e8d07",
+      "manifestSha256After": "0191bc53dc323103750174102c865e83829e99c72cb4a18d5a821980a4e7a54b",
+      "entriesBefore": 12,
+      "entriesAfter": 12,
+      "changedEntries": 5,
+      "entries": [
+        {
+          "index": 0,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic51/clinic51-before-notice-74.json",
+          "checkpointSha256Before": "3e814770a2b6dd5f23ce157acbefbbfd32d9743f1f3b6a1d7ccc3b2af2f8f87b",
+          "checkpointSha256After": "3e814770a2b6dd5f23ce157acbefbbfd32d9743f1f3b6a1d7ccc3b2af2f8f87b",
+          "chapter": 2,
+          "phase": "combat_react",
+          "commandsBefore": 73,
+          "commandsAfter": 74,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 2,
+          "eventCountAfter": 2,
+          "eventSha256Before": "758e5a984364faba3a8829b56dab5933c219a6027277d55b4cb6a34d4969aad9",
+          "eventSha256After": "5eb653d6758044134d66d2283c92e38eb91c91029d9461bd5ee0cc10717399ef",
+          "copyChanged": true,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 1,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic51/clinic51-before-notice-104.json",
+          "checkpointSha256Before": "b63552914c2ecbb51b352df039226a25192fedefbb69f5649d00d3864e9f9ca3",
+          "checkpointSha256After": "b63552914c2ecbb51b352df039226a25192fedefbb69f5649d00d3864e9f9ca3",
+          "chapter": 2,
+          "phase": "move",
+          "commandsBefore": 103,
+          "commandsAfter": 104,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "625d61fadb6f79bf669657c08a6edabc99c5c86ec03c943d15787d20f14bfcb8",
+          "eventSha256After": "625d61fadb6f79bf669657c08a6edabc99c5c86ec03c943d15787d20f14bfcb8",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 2,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic51/clinic51-before-notice-108.json",
+          "checkpointSha256Before": "8b72194fcf1d553372544243436ccc40d445530c55f3e6fbf8868067fc7806ab",
+          "checkpointSha256After": "8b72194fcf1d553372544243436ccc40d445530c55f3e6fbf8868067fc7806ab",
+          "chapter": 2,
+          "phase": "hunter",
+          "commandsBefore": 107,
+          "commandsAfter": 108,
+          "nextCommand": {
+            "type": "MISSION_CORPSES",
+            "count": 2
+          },
+          "triggerCommandSha256": "a316e58f4d268d371c92c7f84bc62e74dc02558ddaa1e583de2042a98ac4b954",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "047664dfc38cde8820c3d08b5325109bcbf86ecccf80b1be0f7abde7c37419ed",
+          "eventSha256After": "047664dfc38cde8820c3d08b5325109bcbf86ecccf80b1be0f7abde7c37419ed",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 3,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic51/clinic51-before-notice-117.json",
+          "checkpointSha256Before": "c4f99dce68405767e1d8f2697fd9809c95d78649935e6e8d1dda2e0756c3da5e",
+          "checkpointSha256After": "c4f99dce68405767e1d8f2697fd9809c95d78649935e6e8d1dda2e0756c3da5e",
+          "chapter": 2,
+          "phase": "move",
+          "commandsBefore": 116,
+          "commandsAfter": 117,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "f14f898ff4a03fe5380fab58b2b459c39988dffe5d6dbe8602b0cf408e94202f",
+          "eventSha256After": "d54c320c3b95e81cc9a8d8623d11c1b9ab8d1f5dff86ab2be793ff7349fa281e",
+          "copyChanged": true,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 4,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic51/clinic51-before-notice-126.json",
+          "checkpointSha256Before": "05110f3d80ac9720d13073dbbe196f2256d42ebb80a57a870f882abfd4dfff3f",
+          "checkpointSha256After": "05110f3d80ac9720d13073dbbe196f2256d42ebb80a57a870f882abfd4dfff3f",
+          "chapter": 2,
+          "phase": "combat_react",
+          "commandsBefore": 125,
+          "commandsAfter": 126,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "fa933038f9a8e49749c21acdd402a1ced5bc3d237e2dd1b3363cbbcfd8cf7f31",
+          "eventSha256After": "fa933038f9a8e49749c21acdd402a1ced5bc3d237e2dd1b3363cbbcfd8cf7f31",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 5,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic51/clinic51-before-notice-137.json",
+          "checkpointSha256Before": "31d1019692f74c57ccb30b609b446dc4670f173bbc79f42a537464ba242b00fe",
+          "checkpointSha256After": "31d1019692f74c57ccb30b609b446dc4670f173bbc79f42a537464ba242b00fe",
+          "chapter": 2,
+          "phase": "move",
+          "commandsBefore": 136,
+          "commandsAfter": 137,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 3,
+          "eventCountAfter": 3,
+          "eventSha256Before": "56e1896793fcdbe081eb57d1b9d87b222ab9258a9993f331e8af4cb75d40eae1",
+          "eventSha256After": "56e1896793fcdbe081eb57d1b9d87b222ab9258a9993f331e8af4cb75d40eae1",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 6,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic51/clinic51-before-notice-154.json",
+          "checkpointSha256Before": "8764ad43640bde2966ec1c6a25a0ebe1566ca947abdf2660f6d83232153e98b8",
+          "checkpointSha256After": "8764ad43640bde2966ec1c6a25a0ebe1566ca947abdf2660f6d83232153e98b8",
+          "chapter": 2,
+          "phase": "combat_react",
+          "commandsBefore": 153,
+          "commandsAfter": 154,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "fb77fa7021f76fcb08839ef9c4ef0e5367acabf678b5991249c409189a6390c0",
+          "eventSha256After": "fb77fa7021f76fcb08839ef9c4ef0e5367acabf678b5991249c409189a6390c0",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 7,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic51/clinic51-before-notice-168.json",
+          "checkpointSha256Before": "4e15b1ac6d842bae4802d69a6a6268343c3ec0e7c101cd982203e262b7b6c3fd",
+          "checkpointSha256After": "4e15b1ac6d842bae4802d69a6a6268343c3ec0e7c101cd982203e262b7b6c3fd",
+          "chapter": 2,
+          "phase": "hunter",
+          "commandsBefore": 167,
+          "commandsAfter": 168,
+          "nextCommand": {
+            "type": "END_TURN"
+          },
+          "triggerCommandSha256": "321657fbce0c377fe0f23c267cecb904e4253588710fe7b09cae3e76d6e3d4cd",
+          "eventCountBefore": 2,
+          "eventCountAfter": 2,
+          "eventSha256Before": "f85440fc42b5cc3da69126431d087a0cadd31efb3010d12ac76a612905c926ef",
+          "eventSha256After": "f85440fc42b5cc3da69126431d087a0cadd31efb3010d12ac76a612905c926ef",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 8,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic51/clinic51-before-notice-177.json",
+          "checkpointSha256Before": "5f4965cf8a852671dfd91e1c402926fc0cf5e073cecdead26aef3dc8099c4338",
+          "checkpointSha256After": "5f4965cf8a852671dfd91e1c402926fc0cf5e073cecdead26aef3dc8099c4338",
+          "chapter": 2,
+          "phase": "between_chapters",
+          "commandsBefore": 176,
+          "commandsAfter": 177,
+          "nextCommand": {
+            "type": "START_NEXT_CHAPTER",
+            "startSpace": "center",
+            "face": 0
+          },
+          "triggerCommandSha256": "a75edba06f56f407b47c7d4a167d6470abb4320050115c835437d9c120efa1bb",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "629520acbf047724b99119f6708e65fe55ed1265fa8790721d3bcd395d68b194",
+          "eventSha256After": "96ba16cf29a440204592dc9cca45c49591f80bf1e0d99f51001f9c99b202bd6a",
+          "copyChanged": true,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 9,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic51/clinic51-before-notice-181.json",
+          "checkpointSha256Before": "f5ebbaa09e445a26eca1143b63cb08fbbd0376a8e8b8077659fbc8c0ed644869",
+          "checkpointSha256After": "f5ebbaa09e445a26eca1143b63cb08fbbd0376a8e8b8077659fbc8c0ed644869",
+          "chapter": 3,
+          "phase": "tile_place",
+          "commandsBefore": 180,
+          "commandsAfter": 181,
+          "nextCommand": {
+            "type": "PLACE_TILE",
+            "rotation": 1
+          },
+          "triggerCommandSha256": "23f8e10928634e7ddee858433a642dc36bf058a58036d32990d2829ffff28aed",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "2a6bbab159f13f47f2de4ce42fe996c5c748969a843a6add4d261438b8e3aef1",
+          "eventSha256After": "ca0b204368fb08854bc4a9b1e3ff32d4accfa30c982eb1da5617390dbb514192",
+          "copyChanged": true,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 10,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic51/clinic51-before-notice-196.json",
+          "checkpointSha256Before": "5862bccf295ce147a4b8d9740e58d44ef81cc951eb68a726e1241a5c7776cdee",
+          "checkpointSha256After": "5862bccf295ce147a4b8d9740e58d44ef81cc951eb68a726e1241a5c7776cdee",
+          "chapter": 3,
+          "phase": "tile_place",
+          "commandsBefore": 195,
+          "commandsAfter": 196,
+          "nextCommand": {
+            "type": "PLACE_TILE",
+            "rotation": 1
+          },
+          "triggerCommandSha256": "23f8e10928634e7ddee858433a642dc36bf058a58036d32990d2829ffff28aed",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "879a4f4ae3d2ca016575cb3fc9e2c9f875409d41f36797cb891b60e68575cb7e",
+          "eventSha256After": "7dd9744cbb6e5b11d538b9a3c79223929ac7f8c98ae11c6045fdf42370deb070",
+          "copyChanged": true,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 11,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic51/clinic51-before-notice-214.json",
+          "checkpointSha256Before": "68600f916aa85ad7fa9b66974ca1e3e09086152259aa26d5554bfa034ce92e66",
+          "checkpointSha256After": "68600f916aa85ad7fa9b66974ca1e3e09086152259aa26d5554bfa034ce92e66",
+          "chapter": 3,
+          "phase": "combat_react",
+          "commandsBefore": 213,
+          "commandsAfter": 214,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "4febf5ad3f8ee98fffa2a95172aa7dcee2c1256a7d59f5a17c8f39151de418c4",
+          "eventSha256After": "4febf5ad3f8ee98fffa2a95172aa7dcee2c1256a7d59f5a17c8f39151de418c4",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        }
+      ]
+    },
+    {
+      "file": "clinic51-52/clinic52/notification-checkpoints.json",
+      "manifestSha256Before": "a470e864ae011472d32a550d6039c8c599a8956e8db633c78d199cf50a68f50b",
+      "manifestSha256After": "f48f75b66aae99065a137c7b9e8707098873767da9e53c59254a9de7b85339b2",
+      "entriesBefore": 9,
+      "entriesAfter": 9,
+      "changedEntries": 2,
+      "entries": [
+        {
+          "index": 0,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic52/clinic52-before-notice-109.json",
+          "checkpointSha256Before": "3208d9fc0bcb4049ca3d12030a4ac5d0469b446bbd707ed517bc54b59af7b74f",
+          "checkpointSha256After": "3208d9fc0bcb4049ca3d12030a4ac5d0469b446bbd707ed517bc54b59af7b74f",
+          "chapter": 2,
+          "phase": "hunter",
+          "commandsBefore": 108,
+          "commandsAfter": 109,
+          "nextCommand": {
+            "type": "MISSION_CORPSES",
+            "count": 2
+          },
+          "triggerCommandSha256": "a316e58f4d268d371c92c7f84bc62e74dc02558ddaa1e583de2042a98ac4b954",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "047664dfc38cde8820c3d08b5325109bcbf86ecccf80b1be0f7abde7c37419ed",
+          "eventSha256After": "047664dfc38cde8820c3d08b5325109bcbf86ecccf80b1be0f7abde7c37419ed",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 1,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic52/clinic52-before-notice-118.json",
+          "checkpointSha256Before": "d26fac699bb2fb531bbab8064f93e7e65e1ff6db7571386ceabf5e282924fc2b",
+          "checkpointSha256After": "d26fac699bb2fb531bbab8064f93e7e65e1ff6db7571386ceabf5e282924fc2b",
+          "chapter": 2,
+          "phase": "move",
+          "commandsBefore": 117,
+          "commandsAfter": 118,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "f14f898ff4a03fe5380fab58b2b459c39988dffe5d6dbe8602b0cf408e94202f",
+          "eventSha256After": "d54c320c3b95e81cc9a8d8623d11c1b9ab8d1f5dff86ab2be793ff7349fa281e",
+          "copyChanged": true,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 2,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic52/clinic52-before-notice-127.json",
+          "checkpointSha256Before": "8b54d8cd07f913839a1b175a0632200de02c5e31c8b268450f703161749721fd",
+          "checkpointSha256After": "8b54d8cd07f913839a1b175a0632200de02c5e31c8b268450f703161749721fd",
+          "chapter": 2,
+          "phase": "combat_react",
+          "commandsBefore": 126,
+          "commandsAfter": 127,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "fa933038f9a8e49749c21acdd402a1ced5bc3d237e2dd1b3363cbbcfd8cf7f31",
+          "eventSha256After": "fa933038f9a8e49749c21acdd402a1ced5bc3d237e2dd1b3363cbbcfd8cf7f31",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 3,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic52/clinic52-before-notice-138.json",
+          "checkpointSha256Before": "03c2a79225382a5198e31532f8889ceecd77d2e5c27f543fcc937e8e924a27a0",
+          "checkpointSha256After": "03c2a79225382a5198e31532f8889ceecd77d2e5c27f543fcc937e8e924a27a0",
+          "chapter": 2,
+          "phase": "move",
+          "commandsBefore": 137,
+          "commandsAfter": 138,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 3,
+          "eventCountAfter": 3,
+          "eventSha256Before": "7d0309c936e1e56349f3722cbaf20d7d1716e7d57cb122f6fa523cf9eb03a343",
+          "eventSha256After": "7d0309c936e1e56349f3722cbaf20d7d1716e7d57cb122f6fa523cf9eb03a343",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 4,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic52/clinic52-before-notice-155.json",
+          "checkpointSha256Before": "04f06452674864f5b25f768485f170a65cfb9cfac69c3b78741557c099e5ed7c",
+          "checkpointSha256After": "04f06452674864f5b25f768485f170a65cfb9cfac69c3b78741557c099e5ed7c",
+          "chapter": 2,
+          "phase": "combat_react",
+          "commandsBefore": 154,
+          "commandsAfter": 155,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "fb77fa7021f76fcb08839ef9c4ef0e5367acabf678b5991249c409189a6390c0",
+          "eventSha256After": "fb77fa7021f76fcb08839ef9c4ef0e5367acabf678b5991249c409189a6390c0",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 5,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic52/clinic52-before-notice-178.json",
+          "checkpointSha256Before": "c454d70676a9f54c2d0312a40fc8f03d2a82e5c72653c884f03cfb76c14a98b4",
+          "checkpointSha256After": "c454d70676a9f54c2d0312a40fc8f03d2a82e5c72653c884f03cfb76c14a98b4",
+          "chapter": 2,
+          "phase": "combat_react",
+          "commandsBefore": 177,
+          "commandsAfter": 178,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 2,
+          "eventCountAfter": 2,
+          "eventSha256Before": "f85440fc42b5cc3da69126431d087a0cadd31efb3010d12ac76a612905c926ef",
+          "eventSha256After": "f85440fc42b5cc3da69126431d087a0cadd31efb3010d12ac76a612905c926ef",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 6,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic52/clinic52-before-notice-187.json",
+          "checkpointSha256Before": "98561ad46b01bb4f214cdb0a4b62ef8777c68fb8e1d4f25828682e7f6933e9a2",
+          "checkpointSha256After": "98561ad46b01bb4f214cdb0a4b62ef8777c68fb8e1d4f25828682e7f6933e9a2",
+          "chapter": 2,
+          "phase": "between_chapters",
+          "commandsBefore": 186,
+          "commandsAfter": 187,
+          "nextCommand": {
+            "type": "START_NEXT_CHAPTER",
+            "startSpace": "center",
+            "face": 0
+          },
+          "triggerCommandSha256": "a75edba06f56f407b47c7d4a167d6470abb4320050115c835437d9c120efa1bb",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "629520acbf047724b99119f6708e65fe55ed1265fa8790721d3bcd395d68b194",
+          "eventSha256After": "96ba16cf29a440204592dc9cca45c49591f80bf1e0d99f51001f9c99b202bd6a",
+          "copyChanged": true,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 7,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic52/clinic52-before-notice-191.json",
+          "checkpointSha256Before": "cadb6667042de3ae8f4c7c428139e07e89b19d3df95e6b68281dd6ee92170172",
+          "checkpointSha256After": "cadb6667042de3ae8f4c7c428139e07e89b19d3df95e6b68281dd6ee92170172",
+          "chapter": 3,
+          "phase": "tile_place",
+          "commandsBefore": 190,
+          "commandsAfter": 191,
+          "nextCommand": {
+            "type": "PLACE_TILE",
+            "rotation": 3
+          },
+          "triggerCommandSha256": "ad13bdea154e8111a419ee0618e207b19cd7f1541e8e14ba35b3d89355f6b081",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "c534e97a1a9e2ade064b826067f9501903dce32f9e106eef3f650b106f4193b1",
+          "eventSha256After": "c534e97a1a9e2ade064b826067f9501903dce32f9e106eef3f650b106f4193b1",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 8,
+          "name": null,
+          "checkpoint": "clinic51-52/clinic52/clinic52-before-notice-218.json",
+          "checkpointSha256Before": "e37b7309fc062821a8b920fc84d545336431aab33a51fb88a698c0d20c4c06d8",
+          "checkpointSha256After": "e37b7309fc062821a8b920fc84d545336431aab33a51fb88a698c0d20c4c06d8",
+          "chapter": 3,
+          "phase": "move",
+          "commandsBefore": 217,
+          "commandsAfter": 218,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "6224b6e0de4752f8fc37b2f168ba69db7ea71057c581ea416cb515f86950de9f",
+          "eventSha256After": "6224b6e0de4752f8fc37b2f168ba69db7ea71057c581ea416cb515f86950de9f",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        }
+      ]
+    },
+    {
+      "file": "release-patient/patient-notification-checkpoints.json",
+      "manifestSha256Before": "04251afc5a3c73b4b3d4cda34e93e632815b53d49c53d038b9442f14a53f045c",
+      "manifestSha256After": "bdf9fbc52fccdbdfa9e502dd77383a428e6a9e037d18cc18ace5828f68708681",
+      "entriesBefore": 5,
+      "entriesAfter": 5,
+      "changedEntries": 2,
+      "entries": [
+        {
+          "index": 0,
+          "name": null,
+          "checkpoint": "release-patient/patient-before-notice-70.json",
+          "checkpointSha256Before": "f0bab49da256e956b0bae442f56f09a96593b981d53220da4ec7280c982f9757",
+          "checkpointSha256After": "f0bab49da256e956b0bae442f56f09a96593b981d53220da4ec7280c982f9757",
+          "chapter": 2,
+          "phase": "move",
+          "commandsBefore": 69,
+          "commandsAfter": 70,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "22feef59b3c69baa29726022a92985de063fd39e39f67b024b0c19ab5514b923",
+          "eventSha256After": "9c4bb2df7638383c86ef9f9efe4f6301b5b719a13cbf3c97622addf50b46a69b",
+          "copyChanged": true,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 1,
+          "name": null,
+          "checkpoint": "release-patient/patient-before-notice-77.json",
+          "checkpointSha256Before": "805f84b26b48fc2a47d196f228322dd579ef8513e3fc8c97a4c916a751855665",
+          "checkpointSha256After": "805f84b26b48fc2a47d196f228322dd579ef8513e3fc8c97a4c916a751855665",
+          "chapter": 2,
+          "phase": "move",
+          "commandsBefore": 76,
+          "commandsAfter": 77,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "f14f898ff4a03fe5380fab58b2b459c39988dffe5d6dbe8602b0cf408e94202f",
+          "eventSha256After": "d54c320c3b95e81cc9a8d8623d11c1b9ab8d1f5dff86ab2be793ff7349fa281e",
+          "copyChanged": true,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 2,
+          "name": null,
+          "checkpoint": "release-patient/patient-before-notice-86.json",
+          "checkpointSha256Before": "2eaf0eff08177d4c2c97d2faa3497ea69fab4a2fe9028224bb8bed9fd6361eb2",
+          "checkpointSha256After": "2eaf0eff08177d4c2c97d2faa3497ea69fab4a2fe9028224bb8bed9fd6361eb2",
+          "chapter": 2,
+          "phase": "combat_react",
+          "commandsBefore": 85,
+          "commandsAfter": 86,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "fa933038f9a8e49749c21acdd402a1ced5bc3d237e2dd1b3363cbbcfd8cf7f31",
+          "eventSha256After": "fa933038f9a8e49749c21acdd402a1ced5bc3d237e2dd1b3363cbbcfd8cf7f31",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 3,
+          "name": null,
+          "checkpoint": "release-patient/patient-before-notice-99.json",
+          "checkpointSha256Before": "71db12c574cc90575599e2ea25d03312a8d4979335c16e95702a5b0fd2186201",
+          "checkpointSha256After": "71db12c574cc90575599e2ea25d03312a8d4979335c16e95702a5b0fd2186201",
+          "chapter": 2,
+          "phase": "move",
+          "commandsBefore": 98,
+          "commandsAfter": 99,
+          "nextCommand": {
+            "type": "STOP_MOVE"
+          },
+          "triggerCommandSha256": "72da6e9b2765b6aee54231eec875f7a73cb5a4c4663c9ce5ce79012c98e2df15",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "7bfecd97f4936f2ae2bb0f5d04ed979a53c99121d7a4159d705b7d6e80f00dfd",
+          "eventSha256After": "7bfecd97f4936f2ae2bb0f5d04ed979a53c99121d7a4159d705b7d6e80f00dfd",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        },
+        {
+          "index": 4,
+          "name": null,
+          "checkpoint": "release-patient/patient-before-notice-113.json",
+          "checkpointSha256Before": "2ef5b9d11610c71d3098b86185413b51f7eda04dd211b2336d50a50fd264e9a0",
+          "checkpointSha256After": "2ef5b9d11610c71d3098b86185413b51f7eda04dd211b2336d50a50fd264e9a0",
+          "chapter": 2,
+          "phase": "combat_react",
+          "commandsBefore": 112,
+          "commandsAfter": 113,
+          "nextCommand": {
+            "type": "RESOLVE"
+          },
+          "triggerCommandSha256": "78f1b636573f54a0501380b757fbbc2c8ef579e7fe2f5f8d4c45e11c610e8ee1",
+          "eventCountBefore": 1,
+          "eventCountAfter": 1,
+          "eventSha256Before": "60f48c0ae29c4786dcf6a7a737392c2ac6034cd851a5eb6dfe17b04ffbb96f24",
+          "eventSha256After": "60f48c0ae29c4786dcf6a7a737392c2ac6034cd851a5eb6dfe17b04ffbb96f24",
+          "copyChanged": false,
+          "qa": {
+            "enabled": true,
+            "preset": "custom",
+            "version": 1,
+            "weaponId": "qa-test-weapon",
+            "rulesVersion": 14,
+            "startRewards": [],
+            "startConsumableCounts": {
+              "qa-heal": 10,
+              "qa-cards": 10,
+              "qa-travel": 10
+            }
+          },
+          "validReplay": true,
+          "commandsPreserved": true
+        }
+      ]
+    }
+  ]
+}

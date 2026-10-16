@@ -1,0 +1,112 @@
+{
+  "checkedAtUtc": "2026-10-13T07:18:17.769Z",
+  "gameVersion": "0.8.13-dev.1",
+  "currentRulesVersion": 14,
+  "scope": "pre-release-development-audit",
+  "releasePublished": false,
+  "releaseTagCreated": false,
+  "gameRegression": {
+    "counts": {
+      "tests": 2548,
+      "suites": 0,
+      "pass": 2548,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "testFiles": 88,
+    "durationSeconds": 417.22414069999996,
+    "referencePhotosIncluded": true,
+    "command": "BB_REFERENCE_ROOT=<local-reference-project> node --test --test-concurrency=2 --test-reporter=tap tests/*.test.cjs",
+    "tapSha256": "c2583686821ac65c9733cef508701808931f8e65d2fa8982f355a5c01c191a63"
+  },
+  "runtimeFileSha256": {
+    "hunt-engine.js": "cd0a790a3af2b4190bea4f9a8baee8631d9e1adb6d90f115e349b193eddd7cf1",
+    "rewards-engine.js": "f999e6a2a8e5c8f623ce44a334d9117df95604cd9bae61cf7f63ccfc0cfc0080",
+    "chapter-engine.js": "40fb02224f705e5b9e291ea9fee18b8c6989a8bd5ee9975069be7b3744212a1b",
+    "hunt-app.js": "2a50b3d28c8ea4adaeac0fc5e61d56d6b38240c515bbe17ac3a26581236357e3",
+    "package.json": "ae58e42e03b5f621c8f90cf68d019da495aaa376e34d40fac91846f80dd48259"
+  },
+  "unityPreparation": {
+    "status": "passed",
+    "checkedAtUtc": "2026-10-13T07:16:47.631Z",
+    "sourceGameVersion": "0.8.13-dev.1",
+    "currentRulesVersion": 14,
+    "sourceContentHash": "209a253ee66fb4802fbc436f212240bf2fe50da828d23900fd310e48657d1141",
+    "nodeTests": 10,
+    "parityTraces": 76,
+    "originalCommands": 14477,
+    "historicalFullCampaignRulesVersion": 13,
+    "currentFullCampaignRulesVersion": 14,
+    "currentReactionRulesVersion": 14,
+    "csharpPrimitiveAssertions": 2337,
+    "csharpContractAssertions": 21,
+    "csharpContractCompiler": "PowerShell Add-Type (Roslyn)",
+    "jsonSchemaAssertions": 15863,
+    "jsonSchemaValidator": "8.20.0",
+    "fullCSharpReducerParity": "not implemented",
+    "unityEditorCompile": "not run",
+    "unitySceneAndAnimations": "not run"
+  },
+  "currentCampaigns": {
+    "count": 15,
+    "insertedReactionPasses": 91,
+    "legacyCampaigns": 15
+  },
+  "independentReview": {
+    "combatContinuationBranches": 46,
+    "rulebookPages": [
+      12,
+      14,
+      15,
+      16,
+      19,
+      20,
+      21,
+      24,
+      26
+    ],
+    "sourceMissionPhotos": 60,
+    "sourceChapterPhotos": 6,
+    "sourceTilePhotos": 20
+  },
+  "browser": {
+    "origin": "http://127.0.0.1:8792",
+    "method": "valid public replay save plus actual UI buttons",
+    "verified": [
+      "kill reaction offered",
+      "Rapture heal4to5",
+      "slower hit5to1",
+      "stun discard",
+      "player turn"
+    ],
+    "screenshotSha256": "78332cd2a6e67dd32325f4c8d56acdfe2d9aa9c073ee2d86b6da5c179a4b9567",
+    "reloadAfterPermissionChange": "not run: saved browser permission still blocked after user reported unblocking",
+    "lockedCryptBrowser": "not run; natural engine and controller regressions used",
+    "userOriginStorageModified": false
+  },
+  "packageValidation": {
+    "purpose": "verification archive, not release",
+    "files": 515,
+    "sourcePhotos": 0,
+    "unityPortGeneratedFiles": 0,
+    "zipSha256": "b70f07ca5d8264d402d8d000b76653beba1a789f7734a20ae310c3997152268c"
+  },
+  "confirmedIssues": [
+    "BB-001",
+    "BB-002",
+    "BB-003",
+    "BB-004",
+    "BB-005",
+    "BB-006",
+    "BB-007"
+  ],
+  "remoteCi": "See exact-head PR/Actions run; this local report does not claim remote success",
+  "limitations": [
+    "not proof of all gameplay paths",
+    "user rulings18/21/41 and chapel timing not official FAQ",
+    "full Unity C# reducer not implemented",
+    "Unity Editor/package compile and scenes not run"
+  ]
+}

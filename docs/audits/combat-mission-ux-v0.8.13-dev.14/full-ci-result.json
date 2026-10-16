@@ -1,0 +1,66 @@
+{
+  "startedAt": "2026-10-15T14:51:03.887Z",
+  "completedAt": "2026-10-15T15:04:04.984Z",
+  "nodeVersion": "v24.19.0",
+  "runtimeVersion": "0.8.13-dev.14",
+  "branch": "fix/combat-mission-ux-dev14",
+  "head": "97f2c0c119bf3f33f8145f0c0de9990f263ae162",
+  "command": [
+    "node",
+    "scripts/test-ci.cjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "spawnError": null,
+  "durationSeconds": 780.698,
+  "counts": {
+    "tests": 2885,
+    "suites": 0,
+    "pass": 2885,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "failedSubtests": [],
+  "sourcePhotoTestsExcluded": [
+    "campaign covers all 67 ordered sources and 60 numbered cards with images",
+    "reference data preserves printed terminology with the confirmed enemy alias and six enemy sides",
+    "default v0.3 state remains without optional firearm fields and photo confirmation retains raw text",
+    "supplied component photos retain their exact bytes, hashes and card provenance"
+  ],
+  "protectedFilesDefinition": "Tracked runtime/code/assets/scripts/test files plus untracked runtime modules and tests; excludes docs/**, Markdown, root TXT prose, work/ and ignored test-results/. Paths re-enumerated after CI to catch additions/removals.",
+  "requiredNewPaths": [
+    "hunt-combat-controls.js",
+    "hunt-outcome-preview.js",
+    "hunt-action-loss.js",
+    "hunt-action-availability.js",
+    "tests/combat-selection-controls-v0814.test.cjs",
+    "tests/dream-attachments-v0814.test.cjs",
+    "tests/action-loss-ui-v0814.test.cjs",
+    "tests/action-availability-v0814.test.cjs",
+    "tests/mission-guidance-ui-v0814.test.cjs",
+    "tests/reward-draw-wording-v0814.test.cjs",
+    "tests/bridge-fog-branch-v0814.test.cjs",
+    "tests/return-replay-projection-v0814.test.cjs"
+  ],
+  "checkpoints": [
+    {
+      "label": "before",
+      "capturedAt": "2026-10-15T14:51:04.383Z",
+      "fileCount": 587,
+      "aggregateSha256": "4420d2ba86ee775e3a4379748d28baa24fca9632f64e75a52aaff3da4535edcb"
+    },
+    {
+      "label": "after",
+      "capturedAt": "2026-10-15T15:04:04.981Z",
+      "fileCount": 587,
+      "aggregateSha256": "4420d2ba86ee775e3a4379748d28baa24fca9632f64e75a52aaff3da4535edcb"
+    }
+  ],
+  "allProtectedHashesStable": true,
+  "changedProtectedFiles": [],
+  "remoteCIRunClaimed": false,
+  "sourcePhotographsCopied": false,
+  "validationPassed": true
+}

@@ -1,0 +1,57 @@
+name: Weapon effect branches and rapid motion QA
+on:
+  push:
+    branches: [ui/mission-change-feedback]
+    paths:
+      - .github/workflows/weapon-followup-branches.yml
+      - scripts/cloud-weapon-followup-branches.cjs
+      - scripts/helpers/cloud-weapon-branch-plans.cjs
+      - hunt-animation-events.js
+      - hunt-presentation.js
+      - weapon-flow.js
+      - weapon-rules.js
+  workflow_dispatch:
+    inputs:
+      cases:
+        description: "Comma-separated case IDs; empty runs every prepared branch"
+        required: false
+        default: ""
+        type: string
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2]
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Install pinned actual browser
+        run: |
+          npm install --prefix "$RUNNER_TEMP/weapon-branch-browser" --no-audit --no-fund playwright@1.62.1
+          node "$RUNNER_TEMP/weapon-branch-browser/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: Complete each independent effect and following movement/battle
+        env:
+          NODE_PATH: ${{ runner.temp }}/weapon-branch-browser/node_modules
+          MOTION_SHARD: ${{ matrix.shard }}
+          MOTION_SHARDS: '3'
+          MOTION_RAPID_BURST: '1'
+          MOTION_CASE_FILTER: ${{ github.event_name == 'push' && 'ludwigs-holy-blade-0-free-accept-kill,hunter-axe-1-kill-chain,reiterpallasch-0-unmatched-dodge' || inputs.cases }}
+        run: node scripts/cloud-weapon-followup-branches.cjs
+      - name: Preserve actual frames and continuous videos without raw saves
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: weapon-effect-branches-${{ matrix.shard }}
+          path: test-results/cloud-weapon-followup-branches/
+          retention-days: 7
+          if-no-files-found: error

@@ -1,0 +1,52 @@
+{
+  "generatedAt": "2026-10-16T11:03:07.367Z",
+  "baseline": "9c690be61bd51f64f4e0d3f11ca3c5ccb12bf7b7",
+  "files": [
+    "tests/blood-frenzy-preview-v0823.test.cjs",
+    "tests/outcome-preview-v0813.test.cjs",
+    "tests/combat-feedback-ui.test.cjs",
+    "tests/enemy-mission-effects.test.cjs",
+    "tests/death-feedback-ui.test.cjs",
+    "tests/mission-guidance-v0813-dev14.test.cjs"
+  ],
+  "tests": 71,
+  "pass": 71,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "exitCode": 0,
+  "hashes": {
+    "hunt-engine.js": "9da62acf9369545235b604a18e27374211de9c10d2354d346970eb551ae7065f",
+    "mission-engine.js": "013c8613c5c2de420567d366973c72751a8403248f287182377c6440a376b8af",
+    "weapon-flow.js": "2e60bbf3a39284bafe560f8ffd62f30b75e9c561228e41173f06c6fbda727499",
+    "weapon-rules.js": "9ec6fc4011daed6ad5b473cfe9555652591bba90a1d91c5bdc793ff1b201f9f9",
+    "hunt-app.js": "d1838668c43758e3675db7df66ded4176860443d27e78e323567c7839764555a",
+    "hunt-enemy-mission-effects.js": "f500fa38d87458a232fd7a5b18b934878ee72a16417da0cd4400a9da0c965d1d",
+    "hunt-mission-feedback.js": "52b138c44a61e17ff087c13104e962609a89f4691b752bd63bf77cc176094bc6",
+    "rewards-engine.js": "f999e6a2a8e5c8f623ce44a334d9117df95604cd9bae61cf7f63ccfc0cfc0080",
+    "chapter-engine.js": "40fb02224f705e5b9e291ea9fee18b8c6989a8bd5ee9975069be7b3744212a1b",
+    "actual-components.js": "765c73aef0e0fccbea0617a2e8ad6f735428eb23df8123af45350a5fa6a3456c",
+    "hunt-outcome-preview.js": "945fed0872482c83a6b8b5569f45153c9632909ed15b04d5fe66d889b0ea468a",
+    "hunt.html": "5487974c2baae60cfddb0145569a7a887452836c512a5e39e6eeec0d64fe0f56",
+    "package.json": "5f63b31f71c33789345326be58b4f08b206f608233c89b271b4229d16e400d4c",
+    "tests/blood-frenzy-preview-v0823.test.cjs": "5019e12486065ca73a582a05d29d2d6b3907be936acb6cedc8926a9d98265452",
+    "tests/outcome-preview-v0813.test.cjs": "f499503c78092fdaa0a78e6de7e17f93622404b6f5d4fe249e1090f8f4225bcd",
+    "tests/combat-feedback-ui.test.cjs": "e73170b5690cb033ce0d47035c6f6b3b2ce457183b7a954859d9864b7abc5c77",
+    "tests/enemy-mission-effects.test.cjs": "66131c69e50b3d87ea6e68deabf542ca5e213d8f5d8c6a4d9284ba013d369abd",
+    "tests/death-feedback-ui.test.cjs": "c39ec81f3613658ac5b64ea121288ca68cc05edd638b277f810f50f14b75b855",
+    "tests/mission-guidance-v0813-dev14.test.cjs": "400b3e67b2397b7069319d40cefa819e77586b16910db4dbbd1ba55372e54eb5",
+    "tests/helpers/blood-frenzy-qa.cjs": "fccc7dd3ecb532569f8cb65a2f770e30b43f43e5fbcb8d3679e1936fbadf184f"
+  },
+  "immutableMatchBaseline": [
+    "hunt-engine.js",
+    "mission-engine.js",
+    "weapon-flow.js",
+    "weapon-rules.js",
+    "hunt-app.js",
+    "hunt-enemy-mission-effects.js",
+    "hunt-mission-feedback.js",
+    "rewards-engine.js",
+    "chapter-engine.js",
+    "actual-components.js"
+  ]
+}

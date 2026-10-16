@@ -1,0 +1,1517 @@
+{
+  "sourceCommit": "b594de4a90f453cc16ab0468a3c81e02b298a5f3",
+  "method": "Analysis derivative: each actual full screenshot preserved; exact 593x686 map crop at original pixels, no resizing; six maps per sheet. Only mark viewed after actual image inspection.",
+  "crop": [
+    250,
+    276,
+    843,
+    962
+  ],
+  "sourceScreenshots": 176,
+  "sheets": [
+    {
+      "file": "map-sheet-000.png",
+      "sha256": "1e6b0eface99ec1dc320de182af303c478b5e815993e4eebd178fc2d5541af4b",
+      "entries": [
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-before.jpg",
+          "sha256": "6f22fbd40a995b7835afafedc1a3635202a2b6ace93e8bff4976d7e3af5a316d",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-00.jpg",
+          "sha256": "ce4435b82980128b0dda168ca62af6c66e85158c579a3bff2c274f5f9d892da3",
+          "afterClickMs": 54
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-01.jpg",
+          "sha256": "e57efe88047054f083f637f637ee9cbd691156a534907f2c1b76e6da0a518214",
+          "afterClickMs": 105
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-02.jpg",
+          "sha256": "a64182e272d869ab701a2a3168454d199803d5180ba867eeacbb0e5243d427fb",
+          "afterClickMs": 166
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-03.jpg",
+          "sha256": "43474cfdf44c9320c6ac7fb8bab78aca5d122fe9f7c573366f8abae769037981",
+          "afterClickMs": 211
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-04.jpg",
+          "sha256": "cfe6387e763e2178f956d4f5eb8ff9ba9e17953b421194eeb1af938964dcf8f0",
+          "afterClickMs": 257
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-001.png",
+      "sha256": "c828f27eb1f67f36aad07034fd27f7563781d7f066d92b580f02391688e0412d",
+      "entries": [
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-05.jpg",
+          "sha256": "5083878e41cfd8cd4334b2e73e02763b80c499c72ad6845c6a65d77a42f39e27",
+          "afterClickMs": 312
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-06.jpg",
+          "sha256": "2dadb0d69b3fe11abbf44917a59a4b88fa433d3900a8e78aa51fa6c000887efc",
+          "afterClickMs": 362
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-07.jpg",
+          "sha256": "7767d6eb65ec1e8ca4c2ec9cfdf46bb085bc303e42a1d5c0d77a156fb83176b8",
+          "afterClickMs": 409
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-08.jpg",
+          "sha256": "65d6cfa2c0254befa547abd2169ba66014da6aa04d76837a57b61a6a08755fa9",
+          "afterClickMs": 460
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "step",
+          "file": "pursuit-burial-0-step-09.jpg",
+          "sha256": "19be1e410a54ef14cd1fefc74eb86f9b804b8965950e6a13d244dd6f1a726bc3",
+          "afterClickMs": 511
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-before.jpg",
+          "sha256": "dbf1c5ed2a59991341060580550aa75a5d971fe5347759f04925d0f5ac4cc588",
+          "afterClickMs": "before"
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-002.png",
+      "sha256": "2ac177be62e7d4fb1ea0bd8f798d83837f97839f0ce67848146efd6b52b10318",
+      "entries": [
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-00.jpg",
+          "sha256": "62d910f21ca3494e9e223d6d7a209d711f11a76ce5684ff0092b07874697101d",
+          "afterClickMs": 53
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-01.jpg",
+          "sha256": "090935d0fa20628afeb533a066702dc2283edceb8d0fce01ca1bd05ffdce19b2",
+          "afterClickMs": 108
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-02.jpg",
+          "sha256": "90e19a06dc2ba2a1583620354f48df30f7f0903afd552c720a7a5e3deb8d5925",
+          "afterClickMs": 162
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-03.jpg",
+          "sha256": "fcef5cdd7d2816e93d4c0a50b78d10c3943d84fb5cbe3a5b803497262277abe6",
+          "afterClickMs": 206
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-04.jpg",
+          "sha256": "34d6e77e87aee3d5d15ca04dab2df16ff7846be2562831bfd9d8cacaa4d5b52d",
+          "afterClickMs": 258
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-05.jpg",
+          "sha256": "395bf8f17dcb2d491be3ed3fe9e3920d7e457c1b54aa0732d05349683122656d",
+          "afterClickMs": 307
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-003.png",
+      "sha256": "56acd21313e19745a2bbf0099c285dc59544cccb0ced99dd5340291f7fae4e89",
+      "entries": [
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-06.jpg",
+          "sha256": "680aec8509d053fa7ee1ebb91c11d63537d85ea6028b87b029662a086490f0f8",
+          "afterClickMs": 357
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-07.jpg",
+          "sha256": "e35da583f1c2949c3c5d38ba5976b476d2cadec9bfa4680e5616bcf9c655ccc9",
+          "afterClickMs": 406
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-08.jpg",
+          "sha256": "85657bb2e355e3a37340bd16b4a25f079752fe2ecccd5c4f8545b25047b6cf2f",
+          "afterClickMs": 455
+        },
+        {
+          "profile": "pursuit-burial-0",
+          "segment": "stop",
+          "file": "pursuit-burial-0-stop-09.jpg",
+          "sha256": "a70f24a31b0f435c4843aaee96491280bada10c313aa4bd4637d08cb0e5519ab",
+          "afterClickMs": 507
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-before.jpg",
+          "sha256": "5f5a7381576f83c4f1810d4c89010c21b6e847a441b52a6c0f638853763dd33e",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-00.jpg",
+          "sha256": "2fcbb02a425af39d69dcdaf827e01b54af48afac7f5c9723db495836d4707b4c",
+          "afterClickMs": 50
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-004.png",
+      "sha256": "d1dc4f2dc72575ab2354acccddf39d3dc960715c8d88b3cadd00905f385c7025",
+      "entries": [
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-01.jpg",
+          "sha256": "7039accaa3b7e1278d3e80bb3fe46e351fe38248921b01080e1ae076337966aa",
+          "afterClickMs": 97
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-02.jpg",
+          "sha256": "ba4f871a19645662477ffe702017654c3fb38035f342f7ec01e7f7d5eb799a3a",
+          "afterClickMs": 145
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-03.jpg",
+          "sha256": "77235537c31cff1d2e901888a3f25ed643d2125f1107b6bec794ae08e24a9a31",
+          "afterClickMs": 197
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-04.jpg",
+          "sha256": "d711c9ed1c402b0313d49d07dd295241c38a7fabee64f32b9d4c27aa16ab629d",
+          "afterClickMs": 247
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-05.jpg",
+          "sha256": "4b7acf628aca6dd586d2361aa6b9ab17c823786b615f4056360a7df87b1e7b5e",
+          "afterClickMs": 294
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-06.jpg",
+          "sha256": "38e4a2ce7efec1a08353636f49a8efa38c83308d6acdd845e48a834d4cec4f46",
+          "afterClickMs": 346
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-005.png",
+      "sha256": "1987d4a1caabdffcc6fb8a2f41e2987e243b19f404ae3e40c8b7de92d61603c2",
+      "entries": [
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-07.jpg",
+          "sha256": "710209515213d5768fe5d3cc289215f561fe95fd96067edce5609cb2eb6dd40e",
+          "afterClickMs": 395
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-08.jpg",
+          "sha256": "0ca14806f24667f4f7f9d5c4273430a0d400e87a6779e490ad8d82f2d50a86c8",
+          "afterClickMs": 444
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "step",
+          "file": "pursuit-burial-1-step-09.jpg",
+          "sha256": "0c1ea8aefbb0ace87c57bff5a1a40689ee67cff460fcc18e774e74262abae103",
+          "afterClickMs": 494
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-before.jpg",
+          "sha256": "911e0649a020b2ae8afddedf4612a96be67e1fd6c0c5daeb854e3a689f4f6fb3",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-00.jpg",
+          "sha256": "337067960eb911d6bfc199708066f0ea5fe09ebe9bbe3e31cdfa3f15fb690fe6",
+          "afterClickMs": 53
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-01.jpg",
+          "sha256": "b0dd6ed7bb1d4357b6264cee433788f2d1e5de1f8aa8151da7004bf8f9be52be",
+          "afterClickMs": 100
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-006.png",
+      "sha256": "e2acb56feb4ed5830a0662cfb2e0bc1a18b0bb7a05af85a5007a71c3b44c8903",
+      "entries": [
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-02.jpg",
+          "sha256": "0149d1b3702f646a39073ea189aa42ba63b0171095e44a4487ec36981b21ed11",
+          "afterClickMs": 148
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-03.jpg",
+          "sha256": "60d15f772942d40fbf41a3f72d90484b3b606909406327e680c989d4bcb59d1e",
+          "afterClickMs": 196
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-04.jpg",
+          "sha256": "9d191e7085785a6041e2a581dfe85dc97fe2d9b1b56f3b2c6417b9a4c1761a79",
+          "afterClickMs": 245
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-05.jpg",
+          "sha256": "cad51cfed9325d83ba765f8334f4ddffada442ce78dd10d46e0b58a0db8b2803",
+          "afterClickMs": 295
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-06.jpg",
+          "sha256": "62d483a5949e72f5b247b432b55b47811f6f23bb8f51acddd651d666fe0d9064",
+          "afterClickMs": 345
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-07.jpg",
+          "sha256": "034359167e4e6afb15abcb58ac6a43d5aed609bb06344242f8983f1502957cdd",
+          "afterClickMs": 395
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-007.png",
+      "sha256": "da1ae9bc3e5261960c8154aa863dbb54b30046099ac4b03fad5eadb1f1a9f105",
+      "entries": [
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-08.jpg",
+          "sha256": "1b152571c7345098cf08f0ba4fd4112464d407c759d0504e5f745367cf30f9cd",
+          "afterClickMs": 448
+        },
+        {
+          "profile": "pursuit-burial-1",
+          "segment": "stop",
+          "file": "pursuit-burial-1-stop-09.jpg",
+          "sha256": "34f7ed71527aeeb57913b70a498ad0a8b79c1b445238cbda92f3192c99aabcd4",
+          "afterClickMs": 503
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-before.jpg",
+          "sha256": "5b6c19d0efe12387c117850d3b58cd09a88313822388f07c047c84d1a88fbe93",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-00.jpg",
+          "sha256": "94499b9626c16a407bc0df55a22ad65e40046552f1c7594a63711ad2014cac86",
+          "afterClickMs": 53
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-01.jpg",
+          "sha256": "aba64cc656c198cecbd5d0b4a0b6bd6597258ff8a3c1d6bcb4e037651d2b0733",
+          "afterClickMs": 97
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-02.jpg",
+          "sha256": "4896a1ed640547e5ac9ca4dc37eb423195d1f02ba150bcd5d2b20b3fc4b5e448",
+          "afterClickMs": 147
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-008.png",
+      "sha256": "e7d16a442326ac9b57f992aa5b974b8e5b5817799f217f5b36ad736d5eaa7feb",
+      "entries": [
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-03.jpg",
+          "sha256": "9e1f9c5ae8fe1b21c0a9bb3c24e450748dc292e631148ef327639883d8a26a71",
+          "afterClickMs": 197
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-04.jpg",
+          "sha256": "b624f58cac27de2651b3442502a4ab88a28c196c39a81f0bab166cf693cb1fc9",
+          "afterClickMs": 246
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-05.jpg",
+          "sha256": "1744f7a05d1b6108a972ed58d85b442004d6786cae9f58c3840f598d501c9d77",
+          "afterClickMs": 296
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-06.jpg",
+          "sha256": "1a0a6f55909db959d0cef5c27141f66016eba3549917e594b626f5f7e20b4636",
+          "afterClickMs": 346
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-07.jpg",
+          "sha256": "39f131e097898c4be35505d00f83a64700239c611c7636adcff4c8b66a22785e",
+          "afterClickMs": 397
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-08.jpg",
+          "sha256": "639a020752b1722e2912a314ff333b0e96a81dc1aa288cbb58aa0a46d7e4d48f",
+          "afterClickMs": 446
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-009.png",
+      "sha256": "33cd08755c862d7425ae486259ee80ab85132a9bda42e09892a7b178fa03a81a",
+      "entries": [
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "step",
+          "file": "pursuit-beast-claw-0-step-09.jpg",
+          "sha256": "5afe935c04a8996211729f252c6e1f55421f5e992e170836600b32f52bcac669",
+          "afterClickMs": 496
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-before.jpg",
+          "sha256": "bcdefdb7560adbd7c9684064099debaacda092a54e02c3d03ec116f99e7d907e",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-00.jpg",
+          "sha256": "47c377f79110d39a7741397eadcc31f055da0b661f55a6dba5486e04c5b87589",
+          "afterClickMs": 52
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-01.jpg",
+          "sha256": "dfb779c84ff86f421a063286dc2d20e5bd727fca941e040de1e58d220f4cedde",
+          "afterClickMs": 98
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-02.jpg",
+          "sha256": "0395286bd46a95885ff3a336be20dfcd988feed6ab9d7bdbdee77b27522f93e6",
+          "afterClickMs": 150
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-03.jpg",
+          "sha256": "5333d56d65ae39d5790d4bbaf617bd493e4662412d86ae46eaeb997af66b243b",
+          "afterClickMs": 201
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-010.png",
+      "sha256": "489f39d309d8e159fd138e213a29835559ae03efa0833c93a19885ea2478c4e6",
+      "entries": [
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-04.jpg",
+          "sha256": "90f914e266ed13ba6355535ab0d438a84e12fe821d572864ccb499eea8ba39d4",
+          "afterClickMs": 249
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-05.jpg",
+          "sha256": "377de1cfb360b4cb7847a262a39320c7ac1f59d2d0307a714ae6b871ccea3bf0",
+          "afterClickMs": 299
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-06.jpg",
+          "sha256": "5d9fbba654d5e82fa7e6228b83ffd95ebb8aa9e321c84daa5d429076d49551e1",
+          "afterClickMs": 348
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-07.jpg",
+          "sha256": "f249e501324f47fd16b1465509a36478e45ccee3ffad6616b1a039a9d2a8a190",
+          "afterClickMs": 398
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-08.jpg",
+          "sha256": "d27c9eed40339faa84eb9fc20e7c4365548fe31432a350acc89a0b4c2adbf6be",
+          "afterClickMs": 449
+        },
+        {
+          "profile": "pursuit-beast-claw-0",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-0-stop-09.jpg",
+          "sha256": "103c2917e184836771b276be272bbbea5c69bfcce4e038409a91282d08ea812f",
+          "afterClickMs": 499
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-011.png",
+      "sha256": "ec1add1a5e46d6f8f8b8a3f48e20fed3d22e2943d8ef51becd79ce86012aa772",
+      "entries": [
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-before.jpg",
+          "sha256": "df514936984800f7abe90e5e7030dd990ee634edb6b2dd4e4aba203ef6c7e826",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-00.jpg",
+          "sha256": "0bad6d24dbe08b072ad7a520c45840bd6a12419b6ad2fdbea602f87d25be1ebb",
+          "afterClickMs": 50
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-01.jpg",
+          "sha256": "41ea07f500b8b5a78005c3c12c70affe41338cf723a95e8cd80eb5e80318deb4",
+          "afterClickMs": 97
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-02.jpg",
+          "sha256": "0d7ad9f591369aaf1c48851c057c6f0d7be051efdab344c782a8330968e077b7",
+          "afterClickMs": 147
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-03.jpg",
+          "sha256": "b641973d2e9347b3db945751d1c1af0064b9a440d59188905006012d139c25ee",
+          "afterClickMs": 196
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-04.jpg",
+          "sha256": "80b9c6c290146b339a29176f67f2b82c059e305546eaa591db9b3df38a2376e8",
+          "afterClickMs": 246
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-012.png",
+      "sha256": "55a9d02da6775818694229e4d8ae3f1254d6413fee035601e9ad7a9ef0a32b35",
+      "entries": [
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-05.jpg",
+          "sha256": "e063c4dcae3620a536f735b2e2e8587d0e5bf7ddbe8221764489c836cb6d93aa",
+          "afterClickMs": 297
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-06.jpg",
+          "sha256": "c184d1647e18a67710543d06635f7ea13f3bf67ea2436dc06a0a6a40e1d2f7da",
+          "afterClickMs": 347
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-07.jpg",
+          "sha256": "717de6b1845b745a3ba0a041f8288cff888e3e179a0c0cf6f296e576b072c108",
+          "afterClickMs": 396
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-08.jpg",
+          "sha256": "d5695c0238776a48f0f673484fc58bf829d2fae52a78161fa20b5940d572b558",
+          "afterClickMs": 447
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "step",
+          "file": "pursuit-beast-claw-1-step-09.jpg",
+          "sha256": "c0eef068d514656ee4df196e19e71359ddebd8a6f6c42fbf4f095722b8553200",
+          "afterClickMs": 498
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-before.jpg",
+          "sha256": "25a1dc1b1cb563597f139d4ca4f7399dbc99dd19adec25966f861720be7ddcd3",
+          "afterClickMs": "before"
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-013.png",
+      "sha256": "35e4161eafd5794de32f96f2409d0044cd35d90282fcabeabc8bdd41852f82f1",
+      "entries": [
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-00.jpg",
+          "sha256": "d22316f242fa824c83e253345712d8ab1a0eafa7ab7bed2e22f4c4f25344546d",
+          "afterClickMs": 52
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-01.jpg",
+          "sha256": "04ed89d865c070e24464d9368fb3793cb0788790d1abe0aa029b76ed8c0f3897",
+          "afterClickMs": 98
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-02.jpg",
+          "sha256": "34408b0a6da3f351f4e44da7c65705c65edbd6f5846d79b951e501807c2e329c",
+          "afterClickMs": 148
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-03.jpg",
+          "sha256": "cd8386b8112391dbea2ab078db5c69e4d17fd1717b5af215931d70272ae5b675",
+          "afterClickMs": 198
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-04.jpg",
+          "sha256": "dc501322c94aafae8b1950ff8b0dba0f4ea3cb0f399fb09587027460f301a267",
+          "afterClickMs": 246
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-05.jpg",
+          "sha256": "f883cefbbd4d9ec23dd55d4ca536c2531c9c1f1c5bcbcbacf565e0b838631b81",
+          "afterClickMs": 296
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-014.png",
+      "sha256": "a08b9dbf7a024218116b2d199abd12cbee0bf4224a046b32ac7e9cef8d594b0b",
+      "entries": [
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-06.jpg",
+          "sha256": "ee0db480b9ef7807c33bb8f4fb6a773fb70427e9267c328313272f63d497bbf9",
+          "afterClickMs": 346
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-07.jpg",
+          "sha256": "ff403ed9efd6ffc05e02a88130931f5006831c5bdf5de6089df8c56ad0903c8a",
+          "afterClickMs": 396
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-08.jpg",
+          "sha256": "17871fd5dc246413ab98472909ebe89d4ac930cb33d76fd876a8973ac007be87",
+          "afterClickMs": 447
+        },
+        {
+          "profile": "pursuit-beast-claw-1",
+          "segment": "stop",
+          "file": "pursuit-beast-claw-1-stop-09.jpg",
+          "sha256": "6600beb050996ef0b21cd2bf86150d59f21595ebb2b4ff00c62bb86f5cf75ce8",
+          "afterClickMs": 498
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-before.jpg",
+          "sha256": "2e523c71956d4c51016c571f149442e3413034bbe1ef5684b279c136990d86a1",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-00.jpg",
+          "sha256": "dc65c7eca0a569db6a11b187f49baf65e4cd5609e9c461e34b5cc2d87d1d3114",
+          "afterClickMs": 47
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-015.png",
+      "sha256": "f13ee3e8ec8541a8c8716c781029a5480eb619befc2bb3bad3825380487fc562",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-01.jpg",
+          "sha256": "a3f5b70a32fc0292802e31a7a00af35d954dd8ed706ffd8094538aeace36f6d7",
+          "afterClickMs": 95
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-02.jpg",
+          "sha256": "921c8e5159d0977b23991b9e38723e639e6c9c5488762ee12c19a7f4495e953a",
+          "afterClickMs": 145
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-03.jpg",
+          "sha256": "965f5973f032bde07b1cc1da20df49d0ecfa5508caefbcbd0a0cd39ee46796f7",
+          "afterClickMs": 196
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-04.jpg",
+          "sha256": "77a2d222c246c33ed6607c5700fe0ae60fc0ad9a0807dd1934aa8a520e09945f",
+          "afterClickMs": 245
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-05.jpg",
+          "sha256": "c6ffaf9248a55a218e606b1d937b7890bfc827ff61bb2268d60df5f6ded2f0af",
+          "afterClickMs": 296
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-06.jpg",
+          "sha256": "4a440816ffcd18a13e2b1a206a32c16a408a3d14d10e7822a1698423a316f57d",
+          "afterClickMs": 345
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-016.png",
+      "sha256": "c881a47b5d9fc7d4dcd5a80605ff25bdf6e0b3530b7170bf3ba878ecb53daf2b",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-07.jpg",
+          "sha256": "f1e9020392bceb54b7f1760ec516df1cdd071988f3f65fc6c7b91f14ea6680d7",
+          "afterClickMs": 396
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-08.jpg",
+          "sha256": "df4e4854014646149a0b8f760d2001492f89b79de51b5faea265b5a6ac9eac47",
+          "afterClickMs": 447
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-step-09.jpg",
+          "sha256": "e982c755473c91f820a81da635ab720cacf930467db73d76243915ac2e97fff2",
+          "afterClickMs": 495
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-before.jpg",
+          "sha256": "a0f64249b89bd700a679767937e5e0ae08db07eecc1c025045bc37856a1f6c52",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-00.jpg",
+          "sha256": "d9f3591f3a4d4dbae1f9459f880079c55ecbf1a1a6bde8479a6eae37760a0988",
+          "afterClickMs": 52
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-01.jpg",
+          "sha256": "70c37cbf4fbd562b611b49819c87464c9c66401608a53812e0cffeb0e49fe157",
+          "afterClickMs": 102
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-017.png",
+      "sha256": "8751dbafe58bdc82dfb7bf9b2839590cf067fa04a155026cdddf9ace1b0d9d91",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-02.jpg",
+          "sha256": "a573d0abf9a52a1d257da59c857d0b2672b141f9422b5130200e7f23cdc6fb36",
+          "afterClickMs": 147
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-03.jpg",
+          "sha256": "3fd681ee9f739b9737ce1783c12147a056c301d083b1d4bebcf18d3468dc1b20",
+          "afterClickMs": 198
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-04.jpg",
+          "sha256": "faf348de39a5a94298be5ae468715038745949438e6a5052f8d9deeed251af0e",
+          "afterClickMs": 246
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-05.jpg",
+          "sha256": "14e99ae4582cfd97f052252fa1e9703e249dd87c629d7fdaa4ed7359260f0447",
+          "afterClickMs": 296
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-06.jpg",
+          "sha256": "a82b25690d78576661884971df6fc819344d1a53f2e064ce35eac8f07e4ed699",
+          "afterClickMs": 348
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-07.jpg",
+          "sha256": "a7c0e984e67e4705fd0fd2be31a846604902bf4bae13cc484858321fc5df51c1",
+          "afterClickMs": 398
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-018.png",
+      "sha256": "c00b5cd7de54104f03b940f818c7b940695744ea4b695d2fcd111d8cac222b26",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-08.jpg",
+          "sha256": "7d1620fb1f7442abb82b9062e503aaee79d3ee8d72c67352a0017f1436b95315",
+          "afterClickMs": 447
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-stop-09.jpg",
+          "sha256": "6026ebcc50dba4bbf0212b96b937e950b7e6ff8daf00ea5b152933053168e5ca",
+          "afterClickMs": 498
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-before.jpg",
+          "sha256": "5effd19335cf606d156890e2e202d22352106fc6df98373d9c50ed1154860ef5",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-00.jpg",
+          "sha256": "aa42717581a27a891b3ef725746873d2f0879185acdd98655c8852445b27140c",
+          "afterClickMs": 57
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-01.jpg",
+          "sha256": "e9dcec9541921ec5eaed4e508c135d4256de70fa6f16c59532b592528be4ade6",
+          "afterClickMs": 99
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-02.jpg",
+          "sha256": "eb5e4d8f37ca48ec1c305377a280f4886b659d0e820eb0bf71989da313726dbd",
+          "afterClickMs": 151
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-019.png",
+      "sha256": "cd1e8d5d7f3f77e39a825f43937eb5644d5ce7e0ffb12d371407d8e3e338e967",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-03.jpg",
+          "sha256": "75ebc74debc38271e204314724ecffb509bf5748b54b8aacd9ad4db0192c916f",
+          "afterClickMs": 206
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-04.jpg",
+          "sha256": "d4f5758aa281864bc53caa77fe1595b04ebb320544c0f5a1204156a0e154625f",
+          "afterClickMs": 261
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-05.jpg",
+          "sha256": "c7948c183375efaae35dfe8aa78e09a5036d4d19c30ec85f9cc38c6eb18c40d3",
+          "afterClickMs": 324
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-06.jpg",
+          "sha256": "24b21332ba25788232599ee5f58438911f6da97b760cfcdbf1c50cf077f6434c",
+          "afterClickMs": 371
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-07.jpg",
+          "sha256": "ac83be0326dd5244c11569c5ebcd5a1da6679970247cb382a6f5c99238e91046",
+          "afterClickMs": 434
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-08.jpg",
+          "sha256": "ed4d40b2da923dcda6fb0ea00840b9a4a6a6ccd663016d47e4e65e487f0685e5",
+          "afterClickMs": 481
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-020.png",
+      "sha256": "ca607b62199eb669106547f2637a6d750fe52ccc15d64e2db8e5e00efdb276b8",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-1-step-09.jpg",
+          "sha256": "ed4d40b2da923dcda6fb0ea00840b9a4a6a6ccd663016d47e4e65e487f0685e5",
+          "afterClickMs": 530
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-before.jpg",
+          "sha256": "8a82a81d2aa02ea8c3d4a02a5b9ea529b95e2cab2715ba7865c455305cc8f93f",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-00.jpg",
+          "sha256": "8764cd35a448f0a3798a1d968d29961e1b83a6ef994f288ce5e9372970454bef",
+          "afterClickMs": 50
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-01.jpg",
+          "sha256": "ea99ba6619cec6708438dbf8362cd16b5ffa5f171fb5e07d2c190eafba1042fe",
+          "afterClickMs": 97
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-02.jpg",
+          "sha256": "a1b699f3424f12ebe1d863df7d39fc8533f79a4788f273dad9a6a48519eae34d",
+          "afterClickMs": 148
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-03.jpg",
+          "sha256": "0f4749309ad0f1a8e57d0dc7ea414187c06f4656d7cc5f01b098ebfb20f57f52",
+          "afterClickMs": 198
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-021.png",
+      "sha256": "7985bacf484e9e7d4d3d73b1f68905184c3d2a6e3605bad5244dc55ea7e30a4b",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-04.jpg",
+          "sha256": "0a3c2baab5f3d08920dc065174b370ebe8c6cc008aaf5186596410f605a5026d",
+          "afterClickMs": 249
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-05.jpg",
+          "sha256": "32e38d22c543164e6e0088cf7c3882f0f976946d2bb8f4265b2c00ae1bc90ea7",
+          "afterClickMs": 297
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-06.jpg",
+          "sha256": "075a96faec8263cb7ccf84592a78b95c14068b9bcc84d6358d0f18cb6391f7f2",
+          "afterClickMs": 346
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-07.jpg",
+          "sha256": "cafd6e433c8d43b6d82beed4ebca5869f9690bd6f63ca87f9f11b61fb115f143",
+          "afterClickMs": 396
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-08.jpg",
+          "sha256": "74e5a2736e18e3c8d834a75f8fa629cb9e32004d9db6b6116ad947d147918284",
+          "afterClickMs": 449
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-1",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-1-stop-09.jpg",
+          "sha256": "4b3be910df2c84c9aeb40e55e655d2973883ee2f8f577e86b7d7bab2649e26fd",
+          "afterClickMs": 500
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-022.png",
+      "sha256": "1bb7264b283545a26a604b38f84af1d8ce9c391d09b8eb71c9cd22865dfd2882",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-before.jpg",
+          "sha256": "2e523c71956d4c51016c571f149442e3413034bbe1ef5684b279c136990d86a1",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-00.jpg",
+          "sha256": "dc65c7eca0a569db6a11b187f49baf65e4cd5609e9c461e34b5cc2d87d1d3114",
+          "afterClickMs": 53
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-01.jpg",
+          "sha256": "198c578881d11d135e33a9fcfc7dd91bda34109361d9e873f843b1d29fdd5bd0",
+          "afterClickMs": 100
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-02.jpg",
+          "sha256": "c8e92933c5132cfead9729bec95d7f9b72624d4e6eafd0f9df951f7a4c020298",
+          "afterClickMs": 149
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-03.jpg",
+          "sha256": "f7aa20cc7d3f82002b7d0277531b44b0b6c8a02c6df1ef4c3fa64df0cacad708",
+          "afterClickMs": 198
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-04.jpg",
+          "sha256": "51c8e8a4d2301fdab42e9084e37f18ec4d04ad0b441d321bcf34fdf893761194",
+          "afterClickMs": 249
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-023.png",
+      "sha256": "888dcaf84a8ce9cae24e3a9fc00e1d0b9cad54d9f1840cb4c0b40ae3082fa543",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-05.jpg",
+          "sha256": "c6ffaf9248a55a218e606b1d937b7890bfc827ff61bb2268d60df5f6ded2f0af",
+          "afterClickMs": 298
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-06.jpg",
+          "sha256": "4a440816ffcd18a13e2b1a206a32c16a408a3d14d10e7822a1698423a316f57d",
+          "afterClickMs": 347
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-07.jpg",
+          "sha256": "f1e9020392bceb54b7f1760ec516df1cdd071988f3f65fc6c7b91f14ea6680d7",
+          "afterClickMs": 397
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-08.jpg",
+          "sha256": "df4e4854014646149a0b8f760d2001492f89b79de51b5faea265b5a6ac9eac47",
+          "afterClickMs": 448
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "step",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-step-09.jpg",
+          "sha256": "e982c755473c91f820a81da635ab720cacf930467db73d76243915ac2e97fff2",
+          "afterClickMs": 498
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-before.jpg",
+          "sha256": "a0f64249b89bd700a679767937e5e0ae08db07eecc1c025045bc37856a1f6c52",
+          "afterClickMs": "before"
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-024.png",
+      "sha256": "7366094d3b3c24a390507711061dd427b3ee099a4fb35643e4034b264b208a1d",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-00.jpg",
+          "sha256": "d9f3591f3a4d4dbae1f9459f880079c55ecbf1a1a6bde8479a6eae37760a0988",
+          "afterClickMs": 49
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-01.jpg",
+          "sha256": "24098cf2c2a86d9d5c7d02917ce5924893af9b3b78860efb5215919fbd371b5c",
+          "afterClickMs": 96
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-02.jpg",
+          "sha256": "7cde4539e71f9d7f69fae9034f27ac0cd9b9a16eee5f5eb2a54d3fdd5455cf5b",
+          "afterClickMs": 146
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-03.jpg",
+          "sha256": "16d858304924d52cb299cd4611397d751892604f97979cb62527faa1b4884cf0",
+          "afterClickMs": 195
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-04.jpg",
+          "sha256": "6fe507a0a74b7d829a5f45912917de25f3b83a49db2ea8a50f72c14592fb2849",
+          "afterClickMs": 248
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-05.jpg",
+          "sha256": "6c785f97d72d261f627756a235aedebd9cbbbabb2eaa1ba3be3bcdb83a079303",
+          "afterClickMs": 295
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-025.png",
+      "sha256": "fcb9f5b3470282337d14a96b16cdb9ee335396573d983cdcfb8eaf28642a11d7",
+      "entries": [
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-06.jpg",
+          "sha256": "17a856485905d105f81b53396e086a5104a470cf14c421a80a7552ed3009fea4",
+          "afterClickMs": 344
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-07.jpg",
+          "sha256": "ba4f3f4741de5c60fcb58a561303030163ce978be9aa3d03cdb5eca56ba6e84e",
+          "afterClickMs": 395
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-08.jpg",
+          "sha256": "2635227fb0575515780a65e45716af8396fc63c2a55563d41e4b4474dfb232f4",
+          "afterClickMs": 444
+        },
+        {
+          "profile": "pursuit-ludwigs-holy-blade-0-free-accept",
+          "segment": "stop",
+          "file": "pursuit-ludwigs-holy-blade-0-free-accept-stop-09.jpg",
+          "sha256": "6026ebcc50dba4bbf0212b96b937e950b7e6ff8daf00ea5b152933053168e5ca",
+          "afterClickMs": 496
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-before.jpg",
+          "sha256": "de68869c62d671184c590310eae7b7e932a85d494f2fb13d9f9e92a29913f8a3",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-00.jpg",
+          "sha256": "69535df77a8ef457c1032c571655fbf19572912b2b9a2e20e71a2dc6741b4f1e",
+          "afterClickMs": 49
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-026.png",
+      "sha256": "6c24e20eff65ef7b2fc71fea83acb0b54a0762a8531261ddd752ba89b76c3de1",
+      "entries": [
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-01.jpg",
+          "sha256": "b955de049a072c6646fc9001bbb585312a5176b2e32b92c47ffd57937b1b9b65",
+          "afterClickMs": 96
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-02.jpg",
+          "sha256": "ec20062f80b7c2a34d4298b85b4a7327c8e57d79dc8a861c22cfb1ca235b587c",
+          "afterClickMs": 147
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-03.jpg",
+          "sha256": "9fcb58527b611380b2a57daf7b01b337941e643a930f7b7aa6773ad22b6d4312",
+          "afterClickMs": 198
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-04.jpg",
+          "sha256": "5efc137707ed2b0a3289a1a4fd5a96e9e00148ee99d552560fdf32ea341387a4",
+          "afterClickMs": 246
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-05.jpg",
+          "sha256": "513fbc95378f063e5434aa7a2b66bf47a08c99149cbbd68e9b77535fa8b20982",
+          "afterClickMs": 296
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-06.jpg",
+          "sha256": "22efc852684a18da4fe211ecb35902b5daf3430e85bc37f4d9a9924ed9882f59",
+          "afterClickMs": 346
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-027.png",
+      "sha256": "e1bc36bb78b61b16f02cc3af2ac04a19549bd1ab0a5d4999319b3ad4438f52f2",
+      "entries": [
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-07.jpg",
+          "sha256": "f33f0acb1cabc6431d90e9787be38ebf7fe927943abe2b0988cc21174ab382a4",
+          "afterClickMs": 396
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-08.jpg",
+          "sha256": "8237c861c4631cbf815c5284ce3a59017741c4fa243254e2c8ad759479002cef",
+          "afterClickMs": 445
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "step",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-step-09.jpg",
+          "sha256": "35db1897d5e5a5659f8a9a8d78c41aeecd7187f37dc7ac28b6eb490b5334e860",
+          "afterClickMs": 496
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-before.jpg",
+          "sha256": "88e2fccc907b1189dbf89c51e5e307861a1e9cd4ab199d6a4529f212c55ec4cf",
+          "afterClickMs": "before"
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-00.jpg",
+          "sha256": "0603518993d4da7081c092aa6535ed2100de3431db2d8e1aa14fdd68b3ab6355",
+          "afterClickMs": 51
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-01.jpg",
+          "sha256": "6340ced46916e9d227e1280c4990a2ff873779fa3aa76fca7a7b1d123af99369",
+          "afterClickMs": 96
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-028.png",
+      "sha256": "8fb1ea252015a36cedfafac4fdee52855360398fa47d1b5de3f02963061b971e",
+      "entries": [
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-02.jpg",
+          "sha256": "6dd5af6c71b246c4620d8e3ef4c393f0b2a8116785452ee522faeefb278eac0b",
+          "afterClickMs": 145
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-03.jpg",
+          "sha256": "c135960d9f734261e3b40e688c5c6c93c55c691fc863d7f29a64eb58b1f2b901",
+          "afterClickMs": 196
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-04.jpg",
+          "sha256": "8f50dd9da337efa939d47f28a4de97ca9716bd24b15100f3d3aec604b1db34be",
+          "afterClickMs": 245
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-05.jpg",
+          "sha256": "58f218e518a6f6adc6043572838d88da29870e4ba2e8237ff970a689d7b315c5",
+          "afterClickMs": 295
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-06.jpg",
+          "sha256": "4aa1e61cc783c363675e744bdc70b4782fac01da1b13f1a64c3f4513aa3cf7b1",
+          "afterClickMs": 345
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-07.jpg",
+          "sha256": "e05d0c9a65e180154b4a84db487e1d5a1b20565d391509329a9ab9320bed09de",
+          "afterClickMs": 397
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    },
+    {
+      "file": "map-sheet-029.png",
+      "sha256": "c0421c48c0e53ec067a16cf118cd79a63bda75a32d707131d94b371419836d1e",
+      "entries": [
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-08.jpg",
+          "sha256": "37e36f2e1a6a425c0eb1525c4d5f294c0bc0cac74a202e834297ec8598bcb396",
+          "afterClickMs": 445
+        },
+        {
+          "profile": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept",
+          "segment": "stop",
+          "file": "pursuit-uncanny-ludwigs-holy-blade-1-free-accept-stop-09.jpg",
+          "sha256": "8efce023b1e54cac0682c6b37784ec58f60f4104d5983cba215787c0bad2f7cf",
+          "afterClickMs": 495
+        }
+      ],
+      "actuallyViewed": true,
+      "reviewer": "root",
+      "finding": "Actual native map pixels inspected. Hunter retains right-hand placement while an unmatched pursuing enemy takes the left free position; settled bodies separate. Brief front-leg occlusion during real walking is depth ordering, not the previous hunter body crossing."
+    }
+  ],
+  "actualSourceScreenshotsVisuallyInspected": 176,
+  "reviewedAtUtc": "2026-10-14T06:04:57.693Z"
+}

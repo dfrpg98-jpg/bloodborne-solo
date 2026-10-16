@@ -1,0 +1,160 @@
+{
+  "bugId": "BB-029",
+  "issue": "https://github.com/dfrpg98-jpg/bloodborne-solo/issues/38",
+  "runtimeVersion": "0.8.13-dev.6",
+  "beforeCommit": "4cbdef417c9810e3c558b78c3a6a8aae970a9ec7",
+  "productCommit": "08d6405178111a11fe437309f4b7563fae84bea2",
+  "url": "http://127.0.0.1:8786/bloodborne-solo/hunt.html",
+  "method": "Actual local in-app browser public imports of checkpoints prepared through legal create/dispatch commands; read-only DOM layout measurements; original screenshots and actual card selection/deselection. Engine preparation is not counted as actual gameplay.",
+  "actualAfterConfigurations": 10,
+  "pageConsoleErrorCount": 0,
+  "files": [
+    {
+      "file": "evidence/hand-sizing-actual-browser.json",
+      "source": "work/local-cloud-return/hand-sizing-actual-browser.json",
+      "bytes": 15848,
+      "sha256": "5e4553da15d5d196944604fa0441c475e1ce9c36fbdfa8326a959ec522d787a0",
+      "originalBytesMatch": true
+    },
+    {
+      "file": "evidence/hand-before-2-1280.jpg",
+      "source": "work/local-cloud-return/hand-before-2-1280.jpg",
+      "bytes": 140072,
+      "sha256": "7766a7e47a0ff2e4953bf70e25b06c91c1e0af7b780de62aa05bc771e4d92a41",
+      "originalBytesMatch": true
+    },
+    {
+      "file": "evidence/hand-before-2-848.jpg",
+      "source": "work/local-cloud-return/hand-before-2-848.jpg",
+      "bytes": 42040,
+      "sha256": "4215ab58ee1e5348af5a1d7d48b800119e6950b4379e814f9930cbe192206a35",
+      "originalBytesMatch": true,
+      "evidenceLimit": "848x477 partial screenshot without the hand panel; before hand layout is supported by actual DOM metrics, not this image.",
+      "imageDimensions": {
+        "width": 848,
+        "height": 477
+      },
+      "showsHandPanel": false
+    },
+    {
+      "file": "evidence/hand-after-2-1280.jpg",
+      "source": "work/local-cloud-return/hand-after-2-1280.jpg",
+      "bytes": 141959,
+      "sha256": "c13bcc5670b3a6f0facf41083374500165bd4e0e134757fc4fec7a120cc9c0c3",
+      "originalBytesMatch": true
+    },
+    {
+      "file": "evidence/hand-after-2-848.jpg",
+      "source": "work/local-cloud-return/hand-after-2-848.jpg",
+      "bytes": 153996,
+      "sha256": "b9216a24156d94760d5cbe2bae88e04f137f864f42b3aafbda530306530db889",
+      "originalBytesMatch": true
+    },
+    {
+      "file": "evidence/hand-after-3-1280.jpg",
+      "source": "work/local-cloud-return/hand-after-3-1280.jpg",
+      "bytes": 143503,
+      "sha256": "38f9eeffc0a73e46b39d6b3cf8cd3368595e753bc65a4711e5aa54547a078bb8",
+      "originalBytesMatch": true
+    },
+    {
+      "file": "evidence/hand-after-4-1280.jpg",
+      "source": "work/local-cloud-return/hand-after-4-1280.jpg",
+      "bytes": 143936,
+      "sha256": "47406a58c27a32dc3680946e8479987f1445967650a9ac83627d9aecc21aac81",
+      "originalBytesMatch": true
+    },
+    {
+      "file": "evidence/hand-after-7-1280.jpg",
+      "source": "work/local-cloud-return/hand-after-7-1280.jpg",
+      "bytes": 145080,
+      "sha256": "78bd143c29d7cdefccbd7dbcb7ee5c479d46c813c19f4c7c4eba0310d9cc501c",
+      "originalBytesMatch": true
+    },
+    {
+      "file": "evidence/hand-after-7-scrolled.jpg",
+      "source": "work/local-cloud-return/hand-after-7-scrolled.jpg",
+      "bytes": 138292,
+      "sha256": "293a30e63c73e43d0036b59b4757a8edcd568fbe59583f53c38709b88351865b",
+      "originalBytesMatch": true
+    },
+    {
+      "file": "evidence/hand-after-4-848.jpg",
+      "source": "work/local-cloud-return/hand-after-4-848.jpg",
+      "bytes": 152718,
+      "sha256": "6b5ad287cd7bc3586240d71a258d23722a488677dbc7693659ea9381dff45374",
+      "originalBytesMatch": true
+    },
+    {
+      "file": "evidence/local-ci.json",
+      "source": "test-results/ci.json",
+      "bytes": 9799,
+      "sha256": "b42755cbac71974bea64f9b98357412d5d9db09c8525ace50147916f98c80dc4",
+      "originalBytesMatch": true
+    }
+  ],
+  "verifiedProductSource": [
+    {
+      "file": "hunt-hand-feedback.css",
+      "bytes": 4104,
+      "sha256": "66350354029ff72e8108b4a6e03175aae3f21d28ba605eb135bd2d1888db99b9"
+    },
+    {
+      "file": "hunt.html",
+      "bytes": 24157,
+      "sha256": "a951821af4f284fc78d0a8168a6cc236e7ee12e6ff992662eb112efc369953a0"
+    }
+  ],
+  "rawSavesIncluded": false,
+  "privateBackupsIncluded": false,
+  "sourcePhotographsIncluded": false,
+  "reencodedImages": false,
+  "fullCiStatus": "passed",
+  "fullCiCommand": "node scripts/test-ci.cjs",
+  "fullCiScope": "Whole Node CI-runner suite, excluding the four original-photo-only test-name patterns; prior product results are not this product result.",
+  "limits": [
+    "The narrow 848px viewport has two columns, so its third card starts a second row.",
+    "The <=220px phone container was not covered by this actual UI run.",
+    "Full long-effect DOM/title text and internal overflow were verified; native wheel movement and native hover presentation were not verified.",
+    "The long-content-scrolled screenshot was not copied because attempted inner wheel movement was not observed.",
+    "This hand-layout check is not all-weapon motion or campaign completion.",
+    "The before 848px screenshot is an 848x477 partial image with no hand panel; before measurements are DOM-only while after measurements have screenshots and DOM, so it is not a visual before/after hand comparison."
+  ],
+  "fullCi": {
+    "sourceCommit": "08d6405178111a11fe437309f4b7563fae84bea2",
+    "reportFile": "evidence/local-ci.json",
+    "nodeVersion": "v24.19.0",
+    "runtimeVersion": "0.8.13-dev.6",
+    "durationSeconds": 436.217,
+    "exitCode": 0,
+    "counts": {
+      "tests": 2669,
+      "suites": 0,
+      "pass": 2669,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "reportLastWriteTimeUtc": "2026-10-14T03:33:22.5540340Z",
+    "sourcePhotoTestsExcluded": [
+      "campaign covers all 67 ordered sources and 60 numbered cards with images",
+      "reference data preserves printed terminology with the confirmed enemy alias and six enemy sides",
+      "default v0.3 state remains without optional firearm fields and photo confirmation retains raw text",
+      "supplied component photos retain their exact bytes, hashes and card provenance"
+    ],
+    "scope": "Whole Node CI-runner suite, excluding the four original-photo-only test-name patterns"
+  },
+  "supportingLocalLogs": [
+    {
+      "file": "work/local-cloud-return/hand-sizing-ci.tap",
+      "source": "test-results/ci.tap",
+      "repositoryFile": false,
+      "bytes": 613314,
+      "sha256": "2e69a17754be538bd5a3fbb142a379df64f132d8e4d387331748b577b546363a",
+      "originalBytesMatch": true,
+      "rawSavePayloadDetected": false,
+      "credentialDetected": false
+    }
+  ]
+}

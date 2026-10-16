@@ -1,0 +1,47 @@
+{
+  "bugId": "BB-016",
+  "originBefore": 0.8984375,
+  "originAfter": 0.84375,
+  "sourcePixelLowestY": [
+    432,
+    432,
+    432,
+    432,
+    421,
+    421,
+    421,
+    422,
+    423,
+    420,
+    421,
+    422,
+    414,
+    405,
+    395,
+    404
+  ],
+  "normalIdleGapBeforePx": 7,
+  "normalIdleGapAfterPx": 0,
+  "galleryIdleGapBeforePx": 14.7,
+  "galleryIdleGapAfterPx": 0,
+  "atlasSemanticSha256": "244e03e87225776d774e49771d5c7f8505f3698a1c74ee5eed4eb38abfe7dbce",
+  "sourceSha256": "553cb7f423987034ec9a1853a416935090f11cc8d96ff4986ac06f95049f5d61",
+  "otherSkinOrigins": {
+    "hunter": 0.8984375,
+    "mob": 0.8984375,
+    "boss": 0.8984375,
+    "female": 0.8984375
+  },
+  "targetedTestRun": {
+    "tests": 94,
+    "pass": 94,
+    "fail": 0,
+    "durationMs": 1474.3734,
+    "files": [
+      "tests/generic-asset-frame-regression.test.cjs",
+      "tests/character-assets-v082.test.cjs",
+      "tests/character-animation-v082.test.cjs",
+      "tests/weapon-animation-v083.test.cjs"
+    ]
+  }
+}

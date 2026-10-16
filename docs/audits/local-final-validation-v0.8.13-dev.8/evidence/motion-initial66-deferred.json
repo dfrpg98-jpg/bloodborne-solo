@@ -1,0 +1,71 @@
+{
+  "상태": "현재 스프라이트 전프레임 추가 열람 보류; 실제 완료 및 미확인 범위 보존",
+  "과거_원본_커밋": "f9523737793c5d5d3b1351a24242977ebd7bdbb7",
+  "범위": "원본 WebM의 25fps로 기록된 배우 영역 및 지도 문맥. 최신 dev.8 전체 재생, 게임 전 60fps, 장식·UI 전체 픽셀 전수로 확대하지 않음.",
+  "준비와_실제열람_구분": {
+    "원본_영상": 66,
+    "추출한_기록_프레임": 31371,
+    "정확_RGB_전체지도_그룹": 26395,
+    "준비한_native_배우_그룹_프로필별": 25609,
+    "실제_열람한_native_배우_정확그룹": 3319,
+    "실제_넓힌_배우_정확그룹": 105,
+    "실제_전체지도_추가확장_정확그룹": 65,
+    "보수적으로_전체_보이는_배우영역을_검토한_기록프레임": 3877,
+    "범위가_기록된_프로필": 11,
+    "native_전페이지_열람_프로필": 10,
+    "가림이나_원본누락_없이_기록범위를_완료한_프로필": 3,
+    "미열람_프로필": 55,
+    "주의": "원본 프레임·배우 그룹·지도 그룹·확장 그룹은 같은 장면의 서로 다른 표현이다. 독립 시나리오나 프레임 총수로 서로 더하지 않는다."
+  },
+  "가림_및_원본누락": {
+    "알려진_모달_가림_프레임": 100,
+    "원본이_배우몸을_잘라_누락한_프레임": 26,
+    "사례": "threaded-cane-0-dodge-area 283–308: 녹화 페이지 경계 아래 사냥꾼 하반신 누락. 넓은 크롭으로 복구할 수 없으며 게임 순간이동 버그로 분류하지 않음.",
+    "부분열람_주의": "logarius-wheel-0-attack-heal은 native 3/6페이지와 context 4/4페이지만 열람. 모달 32프레임 중 7프레임은 context로 식별했으나 native 열람 전이다."
+  },
+  "루트_독립열람_합류": {
+    "포함": [
+      "ludwigs-holy-blade-0-free-accept-kill",
+      "ludwigs-holy-blade-0-free-accept-survive",
+      "ludwigs-holy-blade-0-free-decline-kill"
+    ],
+    "미확인_7프로필": [
+      "ludwigs-holy-blade-0-free-decline-survive",
+      "uncanny-ludwigs-holy-blade-1-free-accept-kill",
+      "uncanny-ludwigs-holy-blade-1-free-accept-survive",
+      "uncanny-ludwigs-holy-blade-1-free-decline-kill",
+      "uncanny-ludwigs-holy-blade-1-free-decline-survive",
+      "tonitrus-0-round-expiry",
+      "tonitrus-1-round-expiry"
+    ],
+    "성검_생존_예외": "ludwigs-holy-blade-0-free-accept-survive의 원본 지도 38프레임, 무축소 접촉표 10장 실제 열람 포함. 좁은 manual000은 실제 표시됐지만 전체 배우가 빠져 있어 검증 근거로 단독 사용하지 않으며 넓은 자료로 보완함."
+  },
+  "확정한_신규_제품버그": 0,
+  "기록원칙": "신규 오류 0은 실제 열람한 범위의 결과다. 미확인 55프로필이나 가림·잘림을 정상 통과로 바꾸지 않는다. 역사 BB027·도구 실패·일시적 이동 잔상은 새 버그로 합산하지 않는다.",
+  "이식에도_남길_판정기준": [
+    "이동·추격·전투는 게임 상태의 출발 칸과 도착 칸에 대응해야 하며 모션 종료 뒤 발 위치가 도착 기준에 정착해야 한다.",
+    "타일 회전이나 카메라 재정렬은 좌표 표현만 바꾸고 게임 대상·칸 판정을 바꾸지 않아야 한다. 녹화 도형 변화는 별도 증거 한계로 기록한다.",
+    "공격·피격·사망의 시각 대상은 엔진의 실제 대상과 일치하고 여러 배우의 서로 다른 위치가 계속 구분되어야 한다.",
+    "무기 변형과 선택 후속은 최종 무기 면·미결 선택·다음 일반 이동/전투의 가능 여부와 일치해야 한다. 시각 검토만으로 명령 흐름 검증을 대신하지 않는다.",
+    "공격 돌진과 이동 잔상은 종료 후 제거되어야 하며 정착한 몸통의 지속 겹침이나 이전 위치에 살아 있는 복제처럼 남는 현상은 별도 재현 대상으로 삼는다.",
+    "모달로 덮이거나 원본 밖에서 기록되지 않은 배우는 미확인으로 유지한다. 기존 스프라이트의 심미적 프레임 조정은 새 모델·Unity 모션 검증과 분리한다."
+  ],
+  "산출물": [
+    "profile-review-notes.json",
+    "reviewer-root-notes.json",
+    "review-ledger.json",
+    "review-v3/*.index.json",
+    "ludwigs-holy-blade-0-free-accept-survive.recorder-whole-map.json"
+  ],
+  "제품파일_변경": false,
+  "원본영상_변경": false,
+  "Git_변경": false,
+  "66영상_전수_시각검토_완료": false,
+  "보류_근거": "사용자가 이식에 남을 검증에 집중하고 스프라이트 전프레임 검토를 보류하도록 명시적으로 선택했습니다. 실제 열람 범위와 미확인 기준은 유지합니다.",
+  "scopeDecision": {
+    "date": "2026-10-14",
+    "authority": "explicit user selection",
+    "selection": "이식에 남을 검증에 집중하고 스프라이트 전프레임 검토 보류",
+    "remainingFullFrameReview": "deferred, not passed"
+  }
+}

@@ -1,0 +1,852 @@
+{
+  "files": 169,
+  "invalid": [],
+  "imageBytesModified": false,
+  "checks": [
+    {
+      "file": "slow-minion-attack-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-minion-attack-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-minion-attack-2.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-minion-attack-3.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-huntsman-mob-idle-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-huntsman-mob-idle-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-huntsman-mob-idle-2.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-huntsman-mob-idle-3.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-huntsman-mob-walk-left-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-huntsman-mob-walk-left-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-huntsman-mob-walk-right-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-huntsman-mob-walk-right-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-huntsman-mob-attack-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-huntsman-mob-attack-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-huntsman-mob-attack-2.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-huntsman-mob-attack-3.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-huntsman-mob-hit-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-huntsman-mob-hit-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-huntsman-mob-death-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-huntsman-mob-death-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-huntsman-mob-reset-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-scourge-beast-idle-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-scourge-beast-idle-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-scourge-beast-idle-2.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-scourge-beast-idle-3.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-scourge-beast-walk-left-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-scourge-beast-walk-left-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-scourge-beast-walk-right-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-scourge-beast-walk-right-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-scourge-beast-attack-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-scourge-beast-attack-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-scourge-beast-attack-2.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-scourge-beast-attack-3.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-scourge-beast-hit-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-scourge-beast-hit-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-scourge-beast-death-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-scourge-beast-death-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-scourge-beast-reset-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-female-patient-idle-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-female-patient-idle-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-female-patient-idle-2.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-female-patient-idle-3.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-female-patient-walk-left-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-female-patient-walk-left-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-female-patient-walk-right-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-female-patient-walk-right-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-female-patient-attack-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-female-patient-attack-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-female-patient-attack-2.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-female-patient-attack-3.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-female-patient-hit-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-female-patient-hit-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-female-patient-death-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-female-patient-death-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-female-patient-reset-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-iosefka-idle-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-iosefka-idle-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-iosefka-idle-2.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-iosefka-idle-3.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-iosefka-walk-left-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-iosefka-walk-left-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-iosefka-walk-right-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-iosefka-walk-right-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-iosefka-attack-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-iosefka-attack-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-iosefka-attack-2.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-iosefka-attack-3.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-iosefka-hit-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-iosefka-hit-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-iosefka-death-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-iosefka-death-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-iosefka-reset-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-cleric-beast-idle-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-cleric-beast-idle-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-cleric-beast-idle-2.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-cleric-beast-idle-3.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-cleric-beast-walk-left-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-cleric-beast-walk-left-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-cleric-beast-walk-right-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-cleric-beast-walk-right-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-cleric-beast-attack-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-cleric-beast-attack-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-cleric-beast-attack-2.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-cleric-beast-attack-3.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-cleric-beast-hit-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-cleric-beast-hit-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-cleric-beast-death-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-cleric-beast-death-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "slow-cleric-beast-reset-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-huntsman-mob-idle-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-huntsman-mob-walk-left-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-huntsman-mob-walk-left-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-huntsman-mob-walk-right-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-huntsman-mob-walk-right-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-huntsman-mob-attack-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-huntsman-mob-attack-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-huntsman-mob-hit-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-huntsman-mob-hit-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-huntsman-mob-death-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-huntsman-mob-death-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-huntsman-mob-reset-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-scourge-beast-idle-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-scourge-beast-walk-left-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-scourge-beast-walk-left-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-scourge-beast-walk-right-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-scourge-beast-walk-right-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-scourge-beast-attack-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-scourge-beast-attack-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-scourge-beast-hit-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-scourge-beast-hit-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-scourge-beast-death-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-scourge-beast-death-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-scourge-beast-reset-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-female-patient-idle-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-female-patient-walk-left-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-female-patient-walk-left-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-female-patient-walk-right-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-female-patient-walk-right-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-female-patient-attack-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-female-patient-attack-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-female-patient-hit-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-female-patient-hit-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-female-patient-death-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-female-patient-death-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-female-patient-reset-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-iosefka-idle-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-iosefka-walk-left-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-iosefka-walk-left-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-iosefka-walk-right-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-iosefka-walk-right-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-iosefka-attack-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-iosefka-attack-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-iosefka-hit-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-iosefka-hit-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-iosefka-death-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-iosefka-death-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-iosefka-reset-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-cleric-beast-idle-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-cleric-beast-walk-left-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-cleric-beast-walk-left-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-cleric-beast-walk-right-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-cleric-beast-walk-right-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-cleric-beast-attack-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-cleric-beast-attack-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-cleric-beast-hit-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-cleric-beast-hit-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-cleric-beast-death-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-cleric-beast-death-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "normal-cleric-beast-reset-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "gallery-minion-death-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "gallery-minion-death-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "gallery-minion-death-2.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "gallery-minion-hit-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "gallery-minion-hit-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "gallery-minion-hit-2.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "gallery-minion-walk-left-full-0.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "gallery-minion-walk-left-full-1.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "gallery-minion-walk-left-full-2.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "gallery-minion-walk-left-full-3.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "play-ordinary-huntsman-final.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "play-ordinary-minion-attack-final.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "play-ordinary-minion-pursuit-final.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "play-ordinary-scourge-attack-final.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "play-ordinary-three-species-map-final.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "play-female-patient-natural-final.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "play-iosefka-natural-final.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "play-cleric-phase1-natural-final.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "play-cleric-phase2-natural-final.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    },
+    {
+      "file": "play-cleric-phase2-whole-view.jpg",
+      "parserMatchesSharp": true,
+      "sourceSHAMatches": true
+    }
+  ]
+}

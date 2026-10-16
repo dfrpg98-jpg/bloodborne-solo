@@ -1,0 +1,45 @@
+{
+  "verification": "Adopted project ruling: mist on ability-followed-by-attack",
+  "command": "node --test tests/numbing-mist-followup-v0820.test.cjs",
+  "startedAt": "2026-10-16T05:13:16.719Z",
+  "endedAt": "2026-10-16T05:13:16.965Z",
+  "exitCode": 0,
+  "tests": 3,
+  "pass": 3,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "independentResult": true,
+  "previous139Combined": false,
+  "construction": "Three supply-valid constructed checkpoints using real unchanged definitions/reducer and actual UI handlers; E.assertState checked. Not strict-importable natural-campaign saves.",
+  "scope": [
+    "Cleric Beast phase 2 leap ability retains immediate damage/stun; actual UI dodge then next grab-throw attack strips effects, keeps 3 speed/3 damage, resolves to hunter; mist paid once.",
+    "Huntsman mob ability keeps +1 speed/+1 damage while next attack loses interrupt/stun; a new separate combat has neither the mist flag nor old numerical buffs and keeps printed interrupt/stun.",
+    "Scourge beast ability keeps +1 damage while its granted interrupt is removed from the next basic attack."
+  ],
+  "limits": [
+    "No new campaign completion or original normal-campaign-save replay is claimed by these tests.",
+    "No poison/frenzy card data was fabricated; these ordinary fixtures cover their actual interrupt/stun keywords.",
+    "No runtime or existing test edit was performed; this result is separate from the earlier 139-test verification."
+  ],
+  "hashesBefore": {
+    "hunt-engine.js": "9da62acf9369545235b604a18e27374211de9c10d2354d346970eb551ae7065f",
+    "hunt-combat-feedback.js": "8c97ed1a9b6b819e5d0f69d6078d1ec9b8c5cbb55229bec53a2abff56e0be7a9",
+    "hunt-app.js": "5469e164b9b5c6d81e3e24540d825b4962aaaaf8e809fcf5d853e52f010b2f18",
+    "tests/actual-combat-helper.cjs": "0c225a9a7f8f5b0657fd21034a5077290399295d9bc0ddedc6618f7e2e39cbd5",
+    "tests/helpers/ui-harness.cjs": "a84d00e996728b3c9f3ace7e22447eef12df565d1847828e338d60776e385ab2",
+    "tests/mist-recovery-ui-v0820.test.cjs": "0c55cb35b8d5a3e1e5c23350dc243e98930e77f6125553922638de3d1f93b756",
+    "tests/numbing-mist-followup-v0820.test.cjs": "5abd041822772465c56b886ee79443b4fbe273ba94aac00ca35c8fb72683fe2a"
+  },
+  "hashesAfter": {
+    "hunt-engine.js": "9da62acf9369545235b604a18e27374211de9c10d2354d346970eb551ae7065f",
+    "hunt-combat-feedback.js": "8c97ed1a9b6b819e5d0f69d6078d1ec9b8c5cbb55229bec53a2abff56e0be7a9",
+    "hunt-app.js": "5469e164b9b5c6d81e3e24540d825b4962aaaaf8e809fcf5d853e52f010b2f18",
+    "tests/actual-combat-helper.cjs": "0c225a9a7f8f5b0657fd21034a5077290399295d9bc0ddedc6618f7e2e39cbd5",
+    "tests/helpers/ui-harness.cjs": "a84d00e996728b3c9f3ace7e22447eef12df565d1847828e338d60776e385ab2",
+    "tests/mist-recovery-ui-v0820.test.cjs": "0c55cb35b8d5a3e1e5c23350dc243e98930e77f6125553922638de3d1f93b756",
+    "tests/numbing-mist-followup-v0820.test.cjs": "5abd041822772465c56b886ee79443b4fbe273ba94aac00ca35c8fb72683fe2a"
+  },
+  "observedFilesStableDuringRun": true,
+  "reporter": "Node default spec reporter: observed 3 tests / 3 pass / 0 fail, exit 0; no second execution."
+}
