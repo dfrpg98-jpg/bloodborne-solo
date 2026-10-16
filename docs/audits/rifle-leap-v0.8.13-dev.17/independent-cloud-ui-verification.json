@@ -1,0 +1,90 @@
+{
+  "format": "reported-independent-cloud-ui-verification-v1",
+  "recordedDateKST": "2026-10-16",
+  "provenance": "독립 클라우드 QA 대화가 전달한 실제 UI 관찰을 문서에 반영; 이 문서 반영 작업에서 브라우저나 행동 검사를 재실행하지 않음",
+  "sourceThreadId": "01a141e3-d341-70c1-aac6-582a06ec9027",
+  "productCommit": "aa511226e9d9dedf462a383c21c28d94f9f9bb13",
+  "productVersion": "0.8.13-dev.17",
+  "environment": {
+    "kind": "separate independent cloud UI",
+    "port": 8769
+  },
+  "cases": [
+    {
+      "id": "normal-save-prior-move-one-leap",
+      "mode": "existing normal-play save reproduction",
+      "source": "before-leap save obtained through actual dev.16 play",
+      "loadedThroughNormalUI": true,
+      "priorMoveActions": 1,
+      "preview": {
+        "baseDamage": 2,
+        "cardDamage": 1,
+        "attachmentDamage": 1,
+        "moveActionsIncludingLeap": 2,
+        "weaponDamage": 2,
+        "totalDamage": 6
+      },
+      "resolvedAttack": {
+        "enemyDefense": 2,
+        "enemyHPBefore": 10,
+        "enemyHPAfter": 6
+      },
+      "dev16SameCaseEnemyHPAfter": 7,
+      "followupBloodlustAttackMoveActions": 2,
+      "newCampaignCompletionClaimed": false
+    },
+    {
+      "id": "synthetic-legacy-declaration-preserved",
+      "mode": "synthetic-QA",
+      "loadedThroughNormalUI": true,
+      "attackDamagePreserved": 4,
+      "policyDeferredDuringCombat": true,
+      "reexport": {
+        "exportedThroughNormalUI": true,
+        "exactInputBytesPreservedReportedByIndependentQA": true,
+        "newCloudExportOpenedLocally": false,
+        "existingLocalEvidenceRecord": "native-verification.json#pendingHistoricalDeclaration.sha256",
+        "existingReferenceSHA256": "421a9bf36df1ff5918cae392c0845bd534657348cb20a8fd6ecf95a9883c688d",
+        "referenceScope": "full hash from the pre-existing local evidence record; equality of the new cloud export to its input is the parent QA report"
+      },
+      "afterCombat": {
+        "phase": "hunter",
+        "recordedAdoptionCommand": "APPLY_LEAP_MOVE_RULING"
+      },
+      "newCampaignCompletionClaimed": false
+    },
+    {
+      "id": "separate-prior-move-zero-two-space-leap",
+      "mode": "separate reproduction; not counted as normal campaign progress",
+      "priorMoveActions": 0,
+      "previewDamage": 5,
+      "declaredDamage": 5,
+      "leapSpaces": 2,
+      "moveActionsAfterLeap": 1,
+      "moveActionsAfterNextNormalMove": 2,
+      "newCampaignCompletionClaimed": false
+    }
+  ],
+  "normalSaveCompatibility": {
+    "source": "existing round-six save obtained through actual normal play",
+    "restoredThroughNormalUI": true,
+    "resumedActualPlay": true,
+    "classification": "existing progress compatibility and restoration",
+    "newChapterCompletionClaimed": false,
+    "combinedWithSyntheticQAAchievements": false
+  },
+  "limits": {
+    "combinedWithLocal2980RegressionTests": false,
+    "combinedWithExistingLocalNativeObservations": false,
+    "syntheticReproductionCountedAsNormalProgress": false,
+    "originalCloudFilesInspectedLocallyDuringDocumentationUpdate": false,
+    "remoteGitHubCIPassedClaimed": false,
+    "additionalCampaignCompletionClaimed": false
+  },
+  "newDefectsReported": false,
+  "documentationOnlyUpdate": true,
+  "productCodeChanged": false,
+  "behaviorTestsRerunDuringDocumentationUpdate": false,
+  "merged": false,
+  "deployed": false
+}
