@@ -1,0 +1,83 @@
+{
+  "version": "0.8.13-dev.16",
+  "verifiedAt": "2026-10-16T00:54:32.110Z",
+  "environment": "Local native Codex In-app Browser, isolated read-only 127.0.0.1:8816 preview; normal file chooser and actual UI controls",
+  "synthetic": true,
+  "normalCampaignMilestoneClaimed": false,
+  "cases": [
+    {
+      "case": "ground",
+      "input": "SYNTHETIC-QA-bridge-ground-before-lantern.json",
+      "exported": "evidence/native-ground-after-lantern.json",
+      "command": {
+        "type": "USE_REWARD",
+        "rewardId": "reward-13",
+        "node": "tile-17:top"
+      },
+      "effect": "stay",
+      "inputCommands": 134,
+      "finalCommands": 135,
+      "exportedSha256": "3bc14fe4d4b29a1888c29d2d6e6073caab7541c94758783461888bf2ef9af788",
+      "fullStateMatchesReducer": true,
+      "strictReimport": true
+    },
+    {
+      "case": "armed",
+      "input": "SYNTHETIC-QA-bridge-armed-before-lantern.json",
+      "exported": "evidence/native-armed-after-lantern.json",
+      "command": {
+        "type": "USE_REWARD",
+        "rewardId": "reward-13",
+        "node": "tile-17:top"
+      },
+      "effect": "stay",
+      "inputCommands": 135,
+      "finalCommands": 136,
+      "exportedSha256": "d0e17f713169a60d797a830fdcd18ba81d195f7877bf01e04a0b3677914f1377",
+      "fullStateMatchesReducer": true,
+      "strictReimport": true
+    },
+    {
+      "case": "carried",
+      "input": "SYNTHETIC-QA-bridge-carried-before-lantern.json",
+      "exported": "evidence/native-carried-after-lantern.json",
+      "command": {
+        "type": "USE_REWARD",
+        "rewardId": "reward-13",
+        "node": "tile-17:top"
+      },
+      "effect": "return",
+      "inputCommands": 135,
+      "finalCommands": 136,
+      "exportedSha256": "d1f9918b093fcf3b287d0d2e06f3ddf9d651b6ac3692b8b58fdb02e80f21261a",
+      "fullStateMatchesReducer": true,
+      "strictReimport": true
+    }
+  ],
+  "cancel": {
+    "exported": "evidence/native-ground-after-cancel.json",
+    "exactInputBytesPreserved": true,
+    "sha256": "19adbffa8eadb50b225ce79ae33b3acaa35a4d56219a63dc55f5444a7503bd69"
+  },
+  "dream": {
+    "input": "SYNTHETIC-QA-bridge-ground-before-lantern.json",
+    "exported": "evidence/native-ground-after-dream.json",
+    "command": {
+      "type": "DREAM",
+      "cardId": "card-5"
+    },
+    "fullStateMatchesReducer": true,
+    "strictReimport": true,
+    "sha256": "20dbd7eac67412ee74427e48a240739fd3b9ac95b12c03476a1d4547cb52b26a"
+  },
+  "nativeAcceptedActions": 4,
+  "nativeCancelChecks": 1,
+  "nativeReturnOrBoldMarkClaimed": false,
+  "parentCloudScreenshotInspectedLocally": false,
+  "notes": [
+    "The parent cloud report's carrierId was not established. Either carried or uncarried escort does not accompany teleportation.",
+    "Same-space ground, pickup-armed and carried outcomes were independently reproduced with strict replay-importable QA saves.",
+    "No browser app-state injection or storage writes were used. Source DOM showed all three changed JS resources with dev.16 hashes.",
+    "Dream return and bold-mark were covered by automated regressions, not counted as new native-browser cases."
+  ]
+}

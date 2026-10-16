@@ -161,12 +161,13 @@
       if (escort?.carrierId === state.activeHunterId && nodeId === h.position)
         result.hint = "생존자를 데리고 이동 중입니다. 순간이동하거나 사냥꾼의 꿈에 입장하면 원래 칸으로 돌아갑니다.";
       else if (escort?.node === nodeId && nodeId !== h.position)
-        result.hint = "생존자가 있는 칸으로 이동한 뒤, 그 칸에서 나갈 때 동행 여부를 확인합니다. 추가 비용은 없습니다.";
+        result.hint = "생존자가 있는 칸으로 이동한 뒤, 그 칸에서 걸어서 이동해 나갈 때 동행 여부를 확인합니다. 추가 비용은 없습니다.";
       else if (escortHere)
-        result.hint = "이 칸에서 이동해 나갈 때 생존자와 동행할지 확인합니다. 이동에 쓰는 손패 외에 추가 비용은 없습니다.";
+        result.hint = "이 칸에서 걸어서 이동해 나갈 때 생존자와 동행할지 확인합니다. 이동에 쓰는 손패 외에 추가 비용은 없습니다.";
+      if (!escort?.carrierId) result.hint += " 순간이동·꿈 입장에는 생존자가 함께 이동하지 않습니다.";
       result.hint += " 별도 상호작용은 필요하지 않습니다.";
     } else if (showEscortChoice) {
-      result.hint += (result.hint ? " " : "") + "이 칸에서 나갈 때 생존자와 동행할지 확인합니다. 추가 비용은 없습니다.";
+      result.hint += (result.hint ? " " : "") + "이 칸에서 걸어서 이동해 나갈 때 생존자와 동행할지 확인합니다. 추가 비용은 없습니다. 순간이동·꿈 입장에는 생존자가 함께 이동하지 않습니다.";
     }
     return result;
   }

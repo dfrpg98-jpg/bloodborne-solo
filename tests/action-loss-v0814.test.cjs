@@ -44,9 +44,10 @@ test("walking and normal movement-end delivery preserve their own rules without 
   assert.equal(next.mission.heldSurvivors[next.activeHunterId], 2);
   assert.equal(plan(next, [{ type: "STOP_MOVE" }]), null);
 });
-test("the carried house escort returns to its specific home, while an unpicked survivor does not cause a warning", () => {
+test("the carried house escort returns home, while a nearby unpicked survivor stays in place", () => {
   let s = natural("v074-shelter-natural-commands.json", 75);
-  assert.equal(plan(s, [dream(s)]), null);
+  const unpicked = plan(s, [dream(s)]); assert(unpicked);
+  assert.equal(unpicked.losses[0].effect, "stay"); assert.equal(unpicked.losses[0].destinationNode, H(s).position);
   for (const command of [{ type: "MOVE", cardId: H(s).hand[0].id }, { type: "MISSION_PICKUP" },
     { type: "STEP", node: "tile-11:street" }, { type: "STOP_MOVE" }]) s = E.dispatch(s, command);
   const result = plan(s, [dream(s)]); assert(result);

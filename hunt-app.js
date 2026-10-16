@@ -1149,7 +1149,7 @@
     } else if (p === "move") {
       help = `남은 이동력 ${state.move.remaining}. 밝은 칸 또는 현재 칸의 출입구를 누르세요. 이동을 마치면 적의 추격을 처리합니다.`;
       const carry = (E.missionActions ? E.missionActions(state) : []).find(action => action.command.type === "MISSION_PICKUP");
-      if (carry) help += "이 칸에서 나갈 때 생존자와 동행할지 확인합니다. 추가 비용은 없습니다.";
+      if (carry) help += "이 칸에서 걸어서 이동해 나갈 때 생존자와 동행할지 확인합니다. 추가 비용은 없습니다. 순간이동·꿈 입장에는 생존자가 함께 이동하지 않습니다.";
       html = button("여기서 이동 마치기", "STOP_MOVE");
     } else if (p === "tile_place") {
       help =

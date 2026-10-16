@@ -12,7 +12,7 @@
       return { kind: "teleport", name: "사냥꾼이라는 뚜렷한 증거 순간이동" };
     return null;
   }
-  function companionLosses(E, state) {
+  function companionLosses(E, state, command) {
     const h = E.hunter(state), view = E.missionView?.(state), mission = state.mission;
     if (!h || h.inDream || !h.position || !view || !mission) return [];
     const losses = [], owner = state.activeHunterId,
@@ -27,6 +27,16 @@
         ruleCard: house ? 8 : 37,
         description: `${name} 1명은 ${destination}으로 돌아갑니다. 다시 그 칸에서 데리고 나와야 합니다.`,
         summary: `${house ? "민가" : "대교"} 생존자 원위치 복귀` });
+    } else if ((view.tokens || []).some(token => token.id === "escort" && !token.carrierId && token.node === h.position) &&
+      (command.type === "DREAM" || (command.lamp || command.node) !== h.position)) {
+      // Free escort pickup belongs to walking departure, not teleportation.
+      // An uncarried token stays put; do not describe it as lost or returned.
+      const house = view.chapter === 1, name = house ? "민가의 호위 생존자" : "대교의 호위 생존자",
+        travel = command.type === "DREAM" ? "꿈에 함께 들어가지 않고" : "함께 순간이동하지 않고";
+      losses.push({ id: "escort", name, count: 1, effect: "stay", destinationNode: h.position,
+        ruleCard: house ? 8 : 37,
+        description: `${name} 1명은 ${travel} 현재 칸에 남습니다. 동행하려면 생존자가 있는 칸에서 걸어서 이동해 나가야 합니다.`,
+        summary: "생존자 함께 이동 불가 · 현재 칸에 남음" });
     }
     if (view.chapter > 1 && Number.isInteger(held) && held > 0) {
       const ruleCard = [52, 27, 33].find(card => revealed.has(card) && !(view.discarded || []).includes(card));
@@ -53,11 +63,11 @@
     try {
       const requested = copy(commands), losses = [], actionNames = [];
       if (!requested.some(command => command && ["DREAM", "INTERACT", "USE_REWARD", "USE_CONSUMABLE"].includes(command.type))) return null;
-      if (requested.length === 1 && (!intent(E, state, requested[0]) || !companionLosses(E, state).length)) return null;
+      if (requested.length === 1 && (!intent(E, state, requested[0]) || !companionLosses(E, state, requested[0]).length)) return null;
       let preview = copy(state);
       for (let index = 0; index < requested.length; index++) {
         const command = requested[index], action = intent(E, preview, command),
-          candidates = action ? companionLosses(E, preview) : [];
+          candidates = action ? companionLosses(E, preview, command) : [];
         // The reducer validates the whole requested batch on disposable copies.
         // No preview state, drawn card or random outcome is exposed or committed.
         preview = E.dispatch(preview, copy(command));
@@ -67,8 +77,8 @@
         }
       }
       if (!losses.length) return null;
-      return { title: "동행자·생존자 토큰 이탈 확인",
-        description: `${actionNames.join(" · ")}이 실행되면 임무 규칙에 따라 다음 동행 상태가 바뀝니다. 계속하시겠습니까?`,
+      return { title: "생존자·동행자 이동 결과 확인",
+        description: `${actionNames.join(" · ")}이 실행되면 다음과 같이 처리됩니다. 계속하시겠습니까?`,
         losses, summary: losses.map(loss => loss.summary).join(" · "),
         commands: copy(requested), sourceRevision: state.revision };
     } catch (_) {
@@ -83,10 +93,10 @@
     // plan() may authorize displaying the actionable confirmation dialog.
     if (!E || typeof E.hunter !== "function" || !state || !command || typeof command !== "object") return null;
     try {
-      const action = intent(E, state, command), losses = action && companionLosses(E, state);
+      const action = intent(E, state, command), losses = action && companionLosses(E, state, command);
       if (!losses?.length) return null;
-      return { title: "동행자·생존자 토큰 이탈 주의",
-        description: `${action.name}이 실행되면 임무 규칙에 따라 다음 동행 상태가 바뀝니다.`,
+      return { title: "생존자·동행자 이동 결과 주의",
+        description: `${action.name}이 실행되면 다음과 같이 처리됩니다.`,
         losses, summary: losses.map(loss => loss.summary).join(" · "), sourceRevision: state.revision };
     } catch (_) { return null; }
   }
