@@ -1624,8 +1624,12 @@
             : $("tileExchangeItem")?.value ? { exchange: true, exchangeItemId: $("tileExchangeItem").value } : {}),
         });
     renderContext(actionArgs);
-    const outcome = !rewards?.choices.length && ["hunter", "combat_choose", "combat_react", "combat_extra", "boss_react"].includes(p)
-      ? combatOutcome(c?.enemyId || selectedEnemy) : null,
+    // An internal default target is not an inspected or prepared attack.
+    const preparedAttack = p === "hunter" && [$("decisions"), $("mapContext")].some(box =>
+      [...(box?.querySelectorAll("[data-command]") || [])].some(button => button.dataset.command === "ATTACK" && !button.disabled)),
+      outcomeEnemyId = p === "hunter" ? (isMapEnemySelected(selectedEnemy) || preparedAttack ? selectedEnemy : null) : c?.enemyId || selectedEnemy,
+      outcome = !rewards?.choices.length && outcomeEnemyId && ["hunter", "combat_choose", "combat_react", "combat_extra", "boss_react"].includes(p)
+        ? combatOutcome(outcomeEnemyId) : null,
       outcomeOptions = { clean: text => uiText(text, "combat") },
       compactOutcome = window.BBHuntOutcomePreview?.renderHTML(outcome, { ...outcomeOptions, compact: true }) || "";
     $("attackConsequences").hidden = !compactOutcome;
