@@ -46,6 +46,8 @@ Remove-Item Env:BB_REFERENCE_ROOT
 
 ## 개발과 이력
 
+`main`에 최신 개발본 0.8.13-dev.23을 통합했습니다. [통합 PR #76](https://github.com/dfrpg98-jpg/bloodborne-solo/pull/76), [검증·브랜치·PR 정리 목록](docs/maintenance/git-integration-2026-10-16.json)에서 포함된 커밋과 과거 이력의 보존 태그를 확인할 수 있습니다. 정식 릴리스와 개발 버전은 구분합니다.
+
 새 기능이나 수정은 브랜치와 Pull Request에서 검토하고, 관련 Issue에 재현 방법·규칙 근거·변경 내용·실제 점검 결과를 함께 기록합니다. [개발 절차](CONTRIBUTING.md)를 따르고 출시 버전은 `package.json`, 변경 이력, Git 태그를 맞춥니다. 과거 ZIP에서 가져온 버전의 커밋은 이관 시점의 기록이며 과거에 작성한 Git 커밋으로 표시하지 않습니다.
 
 규칙서·임무 원문·공식 FAQ와 프로젝트 재정은 [규칙 결정 기록](docs/decisions.md)에서 구분합니다. 과거 설명은 [이전 README](docs/archive/README-legacy.txt), [개발 기록](docs/development/DEVELOPMENT.md), `docs/verification/legacy/VERIFICATION_v*.txt`에 원문을 보존합니다. 현재 실행 방법과 프로젝트 재정은 이 README와 결정 기록을 우선합니다.

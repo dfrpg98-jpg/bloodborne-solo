@@ -1,0 +1,1019 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-16",
+  "status": "main 병합과 완료 브랜치·PR 정리 완료",
+  "repository": "dfrpg98-jpg/bloodborne-solo",
+  "integrationPullRequest": 76,
+  "oldMain": "7f0887ee95df1c4fbdc54418185fd1f57f7cb18a",
+  "latestDevelopment": "1aad4a174b1bf9e6af2a41c66507a9ef955bd97c",
+  "testedIntegration": "fcc46eca4b85f3141e4c3393a23a2531ce4ca03e",
+  "version": "0.8.13-dev.23",
+  "retainedMainChanges": [
+    ".gitignore의 Unity 생성물·캐시 제외 규칙",
+    "docs/maintenance/main-file-organization-2026-10-16.json",
+    "CONTRIBUTING.md의 대량 추출 방지·대표 화면 보존 지침"
+  ],
+  "fidelity": {
+    "identicalFiles": 603,
+    "baseline": "1aad4a1",
+    "paths": [
+      "src",
+      "styles",
+      "assets",
+      "fonts",
+      "campaigns",
+      "components",
+      "tests",
+      "index.html",
+      "hunt.html",
+      "pages",
+      "package.json",
+      "unity-port"
+    ]
+  },
+  "validation": {
+    "regression": {
+      "command": "node scripts/test-ci.cjs",
+      "testedCommit": "fcc46eca4b85f3141e4c3393a23a2531ce4ca03e",
+      "node": "v24.19.0",
+      "testFiles": 142,
+      "durationSeconds": 473.684,
+      "counts": {
+        "tests": 3074,
+        "suites": 0,
+        "pass": 3074,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "sourcePhotoTestsExcluded": [
+        "campaign covers all 67 ordered sources and 60 numbered cards with images",
+        "reference data preserves printed terminology with the confirmed enemy alias and six enemy sides",
+        "default v0.3 state remains without optional firearm fields and photo confirmation retains raw text",
+        "supplied component photos retain their exact bytes, hashes and card provenance"
+      ],
+      "outputHashes": [
+        {
+          "file": "ci.json",
+          "sha256": "35c2b1a843da379c4f0ce836721619f1bca2f62782b89e1149a8c039d3872313"
+        },
+        {
+          "file": "ci.tap",
+          "sha256": "e8db8ca2f6cdab5440b1505424db9dffefa8d912cbc2a9c8bc031edb85f228b0"
+        }
+      ]
+    },
+    "unitySourceLayout": {
+      "pass": 3
+    },
+    "unityExistingSnapshotBoundaries": {
+      "pass": 4,
+      "scope": "기존 스냅샷의 공개 필드·장면 토큰·출처 SHA 경계만 검사. Unity Editor 검증 아님."
+    },
+    "browser": {
+      "url": "http://127.0.0.1:8827",
+      "mode": "검증 전용",
+      "checks": [
+        "타이틀 도움말",
+        "검증용 무기·중앙 등불에서 새 사냥",
+        "임무 알림 확인",
+        "손패 선택→이동 시작→왼쪽 칸 이동→이동 종료",
+        "새로고침 후 위치·손패2장·버림1장 복구"
+      ],
+      "warnings": 0,
+      "errors": 0,
+      "screenshot": "dev23-main-browser-2026-10-16.jpg"
+    },
+    "remoteCI": {
+      "workflow_runs": [
+        {
+          "id": 38908216627,
+          "name": "Game regression checks",
+          "status": "in_progress",
+          "conclusion": null,
+          "run_number": 124,
+          "jobs_url": "https://api.github.com/repos/dfrpg98-jpg/bloodborne-solo/actions/runs/38908216627/jobs",
+          "logs_url": "https://api.github.com/repos/dfrpg98-jpg/bloodborne-solo/actions/runs/38908216627/logs",
+          "workflow_id": 382851615
+        }
+      ],
+      "note": "기록 시 조회 결과이며 실행 중을 성공으로 표시하지 않음. 로컬 전체 CI와 구분."
+    }
+  },
+  "archives": [
+    {
+      "tag": "archive/qa-weapon-followup-20261014",
+      "sha": "238b6c1aab8b24373a132c22e93c0afc2e86a848",
+      "reason": "QA base4커밋과 repro3커밋 보존. BB-026 제품 수정·9회귀·증거10파일은 최신본에 포함. 구형 격리 재현 도구2개는 현재 UI와 경로가 달라 재적용하지 않음.",
+      "historicalOnlyFiles": [
+        ".github/workflows/weapon-animation-repro.yml",
+        "scripts/cloud-weapon-animation-repro.cjs"
+      ]
+    },
+    {
+      "tag": "archive/cloud-ui-handoff-20261014",
+      "sha": "dcb6172288b126356081d7146862694666bf8efe",
+      "reason": "원래 클라우드 인수 문서 커밋 보존. 81파일 중77개 blob동일, 나머지4개는 후속 인수 설명과 새 오류 기록을 추가한 최신 문서로 대체됨."
+    }
+  ],
+  "branchAudit": [
+    {
+      "ref": "audit/local-cloud-final-intake",
+      "sha": "d8521f62c2c033f51e644e61a82983b5c228e069",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "audit/release-readiness-unity-prep",
+      "sha": "24a2b74e3af3b0ff686166dd1ce8d8f07c09efd9",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "backup/local-before-return-20261014-1200",
+      "sha": "4ecb68c01662310375f8fb0bdd7b672a56e2075c",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "chore/integrate-dev23-main",
+      "sha": "fcc46eca4b85f3141e4c3393a23a2531ce4ca03e",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "chore/project-file-organization",
+      "sha": "1aad4a174b1bf9e6af2a41c66507a9ef955bd97c",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "feat/enemy-sprites-dev9",
+      "sha": "2c98d0f5e6c5523bb0a03ea323cda7b5369c989a",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "feat/title-help-dev11",
+      "sha": "2ce990fadbbd3256f48aeabfeaa732bb9da1932b",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "fix/attack-position-preview-dev21",
+      "sha": "8d379508aff059d6c4ca05382be44437867db54d",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "fix/blood-frenzy-preview-dev23",
+      "sha": "d503246e42e7112b13af9eff119e08cbd909a6f2",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "fix/combat-mission-ux-dev14",
+      "sha": "2b02a420462f8f3f6caa9b084271fcb201761bf0",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "fix/damage-allocation-progress-dev22",
+      "sha": "9c690be61bd51f64f4e0d3f11ca3c5ccb12bf7b7",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "fix/escort-teleport-warning-dev16",
+      "sha": "9ee11c2de691917233901e970067aeedbdc66693",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "fix/hand-one-row-sizing",
+      "sha": "9972cefea8117d0e6febf1c7535400d0753a541b",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "fix/help-first-hunt-dev12",
+      "sha": "6982383b19b2cbfc40fbefeb3ec5f3d6635d7d30",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "fix/minion-facing-dev10",
+      "sha": "12c2f2be3b8d58146c708c42e382a060c7d36145",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "fix/mission-notice-policy-transition",
+      "sha": "4cbdef417c9810e3c558b78c3a6a8aae970a9ec7",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "fix/mist-ability-feedback-dev20",
+      "sha": "2879241efd60a54d8abd9ef310d9ca0dc2ba419b",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "fix/play-feedback-dev13",
+      "sha": "97f2c0c119bf3f33f8145f0c0de9990f263ae162",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "fix/playtest-ui-dev15",
+      "sha": "9628c395bd05e6c94378f3fe0678e9466863a147",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "fix/rifle-leap-move-dev17",
+      "sha": "2aa0ce7eb0f4da7894e24bd03c4af95313adaf57",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "fix/target-selection-clarity-dev18",
+      "sha": "16addd138df750b522c4046df91d82baf764a340",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "main",
+      "sha": "7f0887ee95df1c4fbdc54418185fd1f57f7cb18a",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "qa/local-final-validation",
+      "sha": "70d5fae4b37d3f413b081d6371dd4fb4b14906ad",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "qa/weapon-followup-base-20261014",
+      "sha": "238b6c1aab8b24373a132c22e93c0afc2e86a848",
+      "includedInIntegration": false,
+      "preservation": "archive/qa-weapon-followup-20261014"
+    },
+    {
+      "ref": "qa/weapon-followup-repro-20261014",
+      "sha": "415ab0d8812f88dacaecf45796dc023e1f0336bb",
+      "includedInIntegration": false,
+      "preservation": "archive/qa-weapon-followup-20261014"
+    },
+    {
+      "ref": "ui/mission-change-feedback",
+      "sha": "4cbdef417c9810e3c558b78c3a6a8aae970a9ec7",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin",
+      "sha": "7f0887ee95df1c4fbdc54418185fd1f57f7cb18a",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/audit/local-cloud-final-intake",
+      "sha": "d8521f62c2c033f51e644e61a82983b5c228e069",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/audit/release-readiness-unity-prep",
+      "sha": "24a2b74e3af3b0ff686166dd1ce8d8f07c09efd9",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/chore/integrate-dev23-main",
+      "sha": "fcc46eca4b85f3141e4c3393a23a2531ce4ca03e",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/chore/project-file-organization",
+      "sha": "1aad4a174b1bf9e6af2a41c66507a9ef955bd97c",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/feat/enemy-sprites-dev9",
+      "sha": "2c98d0f5e6c5523bb0a03ea323cda7b5369c989a",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/feat/title-help-dev11",
+      "sha": "2ce990fadbbd3256f48aeabfeaa732bb9da1932b",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/fix/attack-position-preview-dev21",
+      "sha": "8d379508aff059d6c4ca05382be44437867db54d",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/fix/blood-frenzy-preview-dev23",
+      "sha": "d503246e42e7112b13af9eff119e08cbd909a6f2",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/fix/combat-mission-ux-dev14",
+      "sha": "2b02a420462f8f3f6caa9b084271fcb201761bf0",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/fix/damage-allocation-progress-dev22",
+      "sha": "9c690be61bd51f64f4e0d3f11ca3c5ccb12bf7b7",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/fix/escort-teleport-warning-dev16",
+      "sha": "9ee11c2de691917233901e970067aeedbdc66693",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/fix/hand-one-row-sizing",
+      "sha": "9972cefea8117d0e6febf1c7535400d0753a541b",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/fix/help-first-hunt-dev12",
+      "sha": "6982383b19b2cbfc40fbefeb3ec5f3d6635d7d30",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/fix/minion-facing-dev10",
+      "sha": "12c2f2be3b8d58146c708c42e382a060c7d36145",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/fix/mission-notice-policy-transition",
+      "sha": "4cbdef417c9810e3c558b78c3a6a8aae970a9ec7",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/fix/mist-ability-feedback-dev20",
+      "sha": "2879241efd60a54d8abd9ef310d9ca0dc2ba419b",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/fix/play-feedback-dev13",
+      "sha": "97f2c0c119bf3f33f8145f0c0de9990f263ae162",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/fix/playtest-ui-dev15",
+      "sha": "9628c395bd05e6c94378f3fe0678e9466863a147",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/fix/rifle-leap-move-dev17",
+      "sha": "2aa0ce7eb0f4da7894e24bd03c4af95313adaf57",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/fix/target-selection-clarity-dev18",
+      "sha": "16addd138df750b522c4046df91d82baf764a340",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/main",
+      "sha": "7f0887ee95df1c4fbdc54418185fd1f57f7cb18a",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/qa/local-final-validation",
+      "sha": "70d5fae4b37d3f413b081d6371dd4fb4b14906ad",
+      "includedInIntegration": true,
+      "preservation": "통합 커밋 조상"
+    },
+    {
+      "ref": "origin/qa/weapon-followup-base-20261014",
+      "sha": "238b6c1aab8b24373a132c22e93c0afc2e86a848",
+      "includedInIntegration": false,
+      "preservation": "archive/qa-weapon-followup-20261014"
+    },
+    {
+      "ref": "origin/qa/weapon-followup-repro-20261014",
+      "sha": "415ab0d8812f88dacaecf45796dc023e1f0336bb",
+      "includedInIntegration": false,
+      "preservation": "archive/qa-weapon-followup-20261014"
+    },
+    {
+      "ref": "origin/ui/mission-change-feedback",
+      "sha": "dcb6172288b126356081d7146862694666bf8efe",
+      "includedInIntegration": false,
+      "preservation": "archive/cloud-ui-handoff-20261014"
+    }
+  ],
+  "pullRequests": [
+    {
+      "number": 74,
+      "title": "프로젝트 코드·화면·검증 자료 폴더 정리",
+      "head": "chore/project-file-organization",
+      "headSha": "1aad4a174b1bf9e6af2a41c66507a9ef955bd97c",
+      "base": "fix/blood-frenzy-preview-dev23",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/74",
+      "cleanup": {
+        "number": 74,
+        "state": "closed",
+        "merged": false,
+        "headSha": "1aad4a174b1bf9e6af2a41c66507a9ef955bd97c",
+        "linksRewritten": 0
+      }
+    },
+    {
+      "number": 73,
+      "title": "피의 광란의 선행 부상 반격 위험을 처리 버튼 옆에 표시 (dev.23)",
+      "head": "fix/blood-frenzy-preview-dev23",
+      "headSha": "d503246e42e7112b13af9eff119e08cbd909a6f2",
+      "base": "fix/damage-allocation-progress-dev22",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/73",
+      "cleanup": {
+        "number": 73,
+        "state": "closed",
+        "merged": false,
+        "headSha": "d503246e42e7112b13af9eff119e08cbd909a6f2",
+        "linksRewritten": 0
+      }
+    },
+    {
+      "number": 70,
+      "title": "피해 배분의 대상 수와 남은 횟수 구분 (dev.22)",
+      "head": "fix/damage-allocation-progress-dev22",
+      "headSha": "9c690be61bd51f64f4e0d3f11ca3c5ccb12bf7b7",
+      "base": "fix/attack-position-preview-dev21",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/70",
+      "cleanup": {
+        "number": 70,
+        "state": "closed",
+        "merged": false,
+        "headSha": "9c690be61bd51f64f4e0d3f11ca3c5ccb12bf7b7",
+        "linksRewritten": 0
+      }
+    },
+    {
+      "number": 68,
+      "title": "공격 전 도착 지형·범위 피해·회피 제한을 예고",
+      "head": "fix/attack-position-preview-dev21",
+      "headSha": "8d379508aff059d6c4ca05382be44437867db54d",
+      "base": "fix/mist-ability-feedback-dev20",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/68",
+      "cleanup": {
+        "number": 68,
+        "state": "closed",
+        "merged": false,
+        "headSha": "8d379508aff059d6c4ca05382be44437867db54d",
+        "linksRewritten": 1
+      }
+    },
+    {
+      "number": 66,
+      "title": "마비 안개의 효과 제거 안내를 공격에만 적용",
+      "head": "fix/mist-ability-feedback-dev20",
+      "headSha": "2879241efd60a54d8abd9ef310d9ca0dc2ba419b",
+      "base": "fix/target-selection-clarity-dev18",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/66",
+      "cleanup": {
+        "number": 66,
+        "state": "closed",
+        "merged": false,
+        "headSha": "2879241efd60a54d8abd9ef310d9ca0dc2ba419b",
+        "linksRewritten": 1
+      }
+    },
+    {
+      "number": 64,
+      "title": "선택한 적만 지도 정보를 표시하고 대상 선택·반복 안내 정리",
+      "head": "fix/target-selection-clarity-dev18",
+      "headSha": "16addd138df750b522c4046df91d82baf764a340",
+      "base": "fix/rifle-leap-move-dev17",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/64",
+      "cleanup": {
+        "number": 64,
+        "state": "closed",
+        "merged": false,
+        "headSha": "16addd138df750b522c4046df91d82baf764a340",
+        "linksRewritten": 1
+      }
+    },
+    {
+      "number": 62,
+      "title": "fix: 총창의 도약 이동 보너스와 공격 예고 일치",
+      "head": "fix/rifle-leap-move-dev17",
+      "headSha": "2aa0ce7eb0f4da7894e24bd03c4af95313adaf57",
+      "base": "fix/escort-teleport-warning-dev16",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/62",
+      "cleanup": {
+        "number": 62,
+        "state": "closed",
+        "merged": false,
+        "headSha": "2aa0ce7eb0f4da7894e24bd03c4af95313adaf57",
+        "linksRewritten": 0
+      }
+    },
+    {
+      "number": 60,
+      "title": "fix: 같은 칸 호위 생존자의 순간이동 잔류 결과 안내",
+      "head": "fix/escort-teleport-warning-dev16",
+      "headSha": "9ee11c2de691917233901e970067aeedbdc66693",
+      "base": "fix/playtest-ui-dev15",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/60",
+      "cleanup": {
+        "number": 60,
+        "state": "closed",
+        "merged": false,
+        "headSha": "9ee11c2de691917233901e970067aeedbdc66693",
+        "linksRewritten": 0
+      }
+    },
+    {
+      "number": 58,
+      "title": "dev.15: 실제 플레이 UI 문구와 공격 보정 예고 수정",
+      "head": "fix/playtest-ui-dev15",
+      "headSha": "9628c395bd05e6c94378f3fe0678e9466863a147",
+      "base": "fix/combat-mission-ux-dev14",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/58",
+      "cleanup": {
+        "number": 58,
+        "state": "closed",
+        "merged": false,
+        "headSha": "9628c395bd05e6c94378f3fe0678e9466863a147",
+        "linksRewritten": 1
+      }
+    },
+    {
+      "number": 56,
+      "title": "dev.14: 전투 결과 예고·혈석 재배치·이동 손실 확인",
+      "head": "fix/combat-mission-ux-dev14",
+      "headSha": "2b02a420462f8f3f6caa9b084271fcb201761bf0",
+      "base": "fix/play-feedback-dev13",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/56",
+      "cleanup": {
+        "number": 56,
+        "state": "closed",
+        "merged": false,
+        "headSha": "2b02a420462f8f3f6caa9b084271fcb201761bf0",
+        "linksRewritten": 0
+      }
+    },
+    {
+      "number": 54,
+      "title": "dev.13: 위치·전투 예고와 혈석 슬롯 조작 개선",
+      "head": "fix/play-feedback-dev13",
+      "headSha": "97f2c0c119bf3f33f8145f0c0de9990f263ae162",
+      "base": "fix/help-first-hunt-dev12",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/54",
+      "cleanup": {
+        "number": 54,
+        "state": "closed",
+        "merged": false,
+        "headSha": "97f2c0c119bf3f33f8145f0c0de9990f263ae162",
+        "linksRewritten": 0
+      }
+    },
+    {
+      "number": 52,
+      "title": "fix: 처음 사냥과 회피 확정 안내 보완",
+      "head": "fix/help-first-hunt-dev12",
+      "headSha": "6982383b19b2cbfc40fbefeb3ec5f3d6635d7d30",
+      "base": "feat/title-help-dev11",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/52",
+      "cleanup": {
+        "number": 52,
+        "state": "closed",
+        "merged": false,
+        "headSha": "6982383b19b2cbfc40fbefeb3ec5f3d6635d7d30",
+        "linksRewritten": 1
+      }
+    },
+    {
+      "number": 50,
+      "title": "feat: 블러드본 타이틀과 초보 도움말 추가",
+      "head": "feat/title-help-dev11",
+      "headSha": "2ce990fadbbd3256f48aeabfeaa732bb9da1932b",
+      "base": "fix/minion-facing-dev10",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/50",
+      "cleanup": {
+        "number": 50,
+        "state": "closed",
+        "merged": false,
+        "headSha": "2ce990fadbbd3256f48aeabfeaa732bb9da1932b",
+        "linksRewritten": 1
+      }
+    },
+    {
+      "number": 48,
+      "title": "fix: 수직 이동과 같은 X좌표 공격에서 방향 유지",
+      "head": "fix/minion-facing-dev10",
+      "headSha": "12c2f2be3b8d58146c708c42e382a060c7d36145",
+      "base": "feat/enemy-sprites-dev9",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/48",
+      "cleanup": {
+        "number": 48,
+        "state": "closed",
+        "merged": false,
+        "headSha": "12c2f2be3b8d58146c708c42e382a060c7d36145",
+        "linksRewritten": 1
+      }
+    },
+    {
+      "number": 46,
+      "title": "적6종 외형 구분과 성직자 야수의 중립 자세·표시 크기 보정",
+      "head": "feat/enemy-sprites-dev9",
+      "headSha": "2c98d0f5e6c5523bb0a03ea323cda7b5369c989a",
+      "base": "qa/local-final-validation",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/46",
+      "cleanup": {
+        "number": 46,
+        "state": "closed",
+        "merged": false,
+        "headSha": "2c98d0f5e6c5523bb0a03ea323cda7b5369c989a",
+        "linksRewritten": 1
+      }
+    },
+    {
+      "number": 43,
+      "title": "손패 초점·추격 배치 수정과 로컬 UI 검증 기록 (dev.8)",
+      "head": "qa/local-final-validation",
+      "headSha": "70d5fae4b37d3f413b081d6371dd4fb4b14906ad",
+      "base": "audit/local-cloud-final-intake",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/43",
+      "cleanup": {
+        "number": 43,
+        "state": "closed",
+        "merged": false,
+        "headSha": "70d5fae4b37d3f413b081d6371dd4fb4b14906ad",
+        "linksRewritten": 0
+      }
+    },
+    {
+      "number": 40,
+      "title": "클라우드 최종 검증 기록을 로컬 수정과 통합",
+      "head": "audit/local-cloud-final-intake",
+      "headSha": "d8521f62c2c033f51e644e61a82983b5c228e069",
+      "base": "fix/hand-one-row-sizing",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/40",
+      "cleanup": {
+        "number": 40,
+        "state": "closed",
+        "merged": false,
+        "headSha": "d8521f62c2c033f51e644e61a82983b5c228e069",
+        "linksRewritten": 0
+      }
+    },
+    {
+      "number": 39,
+      "title": "손패 두 장에서 불필요한 스크롤 제거",
+      "head": "fix/hand-one-row-sizing",
+      "headSha": "9972cefea8117d0e6febf1c7535400d0753a541b",
+      "base": "fix/mission-notice-policy-transition",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/39",
+      "cleanup": {
+        "number": 39,
+        "state": "closed",
+        "merged": false,
+        "headSha": "9972cefea8117d0e6febf1c7535400d0753a541b",
+        "linksRewritten": 0
+      }
+    },
+    {
+      "number": 37,
+      "title": "임무 알림에서 타일 판정 전환 전의 면제 설명 제거",
+      "head": "fix/mission-notice-policy-transition",
+      "headSha": "4cbdef417c9810e3c558b78c3a6a8aae970a9ec7",
+      "base": "ui/mission-change-feedback",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/37",
+      "cleanup": {
+        "number": 37,
+        "state": "closed",
+        "merged": false,
+        "headSha": "4cbdef417c9810e3c558b78c3a6a8aae970a9ec7",
+        "linksRewritten": 0
+      }
+    },
+    {
+      "number": 15,
+      "title": "임무·전투 UI와 무기 후속 검증, 규칙14 저장 호환 및 오류 수정",
+      "head": "ui/mission-change-feedback",
+      "headSha": "dcb6172288b126356081d7146862694666bf8efe",
+      "base": "audit/release-readiness-unity-prep",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/15",
+      "cleanup": {
+        "number": 15,
+        "state": "closed",
+        "merged": false,
+        "headSha": "dcb6172288b126356081d7146862694666bf8efe",
+        "linksRewritten": 0
+      }
+    },
+    {
+      "number": 13,
+      "title": "처치 효과 처리 순서 수정과 검증 가능한 Unity 이식 준비",
+      "head": "audit/release-readiness-unity-prep",
+      "headSha": "24a2b74e3af3b0ff686166dd1ce8d8f07c09efd9",
+      "base": "main",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/13",
+      "cleanup": {
+        "number": 13,
+        "state": "closed",
+        "merged": true,
+        "headSha": "24a2b74e3af3b0ff686166dd1ce8d8f07c09efd9",
+        "linksRewritten": 0
+      }
+    }
+  ],
+  "completedActions": [
+    {
+      "action": "main 병합",
+      "pr": 76,
+      "sha": "d04b6a6d3e13452a136b6c1449fdad2d677570fc"
+    },
+    {
+      "action": "기존 PR 종료",
+      "count": 21,
+      "merged": 1,
+      "supersededClosed": 20
+    },
+    {
+      "action": "원격 브랜치 제거",
+      "count": 24,
+      "method": "보존 조상 검사 후 모든 원격 SHA의 lease 조건을 둔 atomic push",
+      "branches": [
+        {
+          "branch": "audit/local-cloud-final-intake",
+          "sha": "d8521f62c2c033f51e644e61a82983b5c228e069",
+          "preserve": "main"
+        },
+        {
+          "branch": "audit/release-readiness-unity-prep",
+          "sha": "24a2b74e3af3b0ff686166dd1ce8d8f07c09efd9",
+          "preserve": "main"
+        },
+        {
+          "branch": "chore/integrate-dev23-main",
+          "sha": "fcc46eca4b85f3141e4c3393a23a2531ce4ca03e",
+          "preserve": "main"
+        },
+        {
+          "branch": "chore/project-file-organization",
+          "sha": "1aad4a174b1bf9e6af2a41c66507a9ef955bd97c",
+          "preserve": "main"
+        },
+        {
+          "branch": "feat/enemy-sprites-dev9",
+          "sha": "2c98d0f5e6c5523bb0a03ea323cda7b5369c989a",
+          "preserve": "main"
+        },
+        {
+          "branch": "feat/title-help-dev11",
+          "sha": "2ce990fadbbd3256f48aeabfeaa732bb9da1932b",
+          "preserve": "main"
+        },
+        {
+          "branch": "fix/attack-position-preview-dev21",
+          "sha": "8d379508aff059d6c4ca05382be44437867db54d",
+          "preserve": "main"
+        },
+        {
+          "branch": "fix/blood-frenzy-preview-dev23",
+          "sha": "d503246e42e7112b13af9eff119e08cbd909a6f2",
+          "preserve": "main"
+        },
+        {
+          "branch": "fix/combat-mission-ux-dev14",
+          "sha": "2b02a420462f8f3f6caa9b084271fcb201761bf0",
+          "preserve": "main"
+        },
+        {
+          "branch": "fix/damage-allocation-progress-dev22",
+          "sha": "9c690be61bd51f64f4e0d3f11ca3c5ccb12bf7b7",
+          "preserve": "main"
+        },
+        {
+          "branch": "fix/escort-teleport-warning-dev16",
+          "sha": "9ee11c2de691917233901e970067aeedbdc66693",
+          "preserve": "main"
+        },
+        {
+          "branch": "fix/hand-one-row-sizing",
+          "sha": "9972cefea8117d0e6febf1c7535400d0753a541b",
+          "preserve": "main"
+        },
+        {
+          "branch": "fix/help-first-hunt-dev12",
+          "sha": "6982383b19b2cbfc40fbefeb3ec5f3d6635d7d30",
+          "preserve": "main"
+        },
+        {
+          "branch": "fix/minion-facing-dev10",
+          "sha": "12c2f2be3b8d58146c708c42e382a060c7d36145",
+          "preserve": "main"
+        },
+        {
+          "branch": "fix/mission-notice-policy-transition",
+          "sha": "4cbdef417c9810e3c558b78c3a6a8aae970a9ec7",
+          "preserve": "main"
+        },
+        {
+          "branch": "fix/mist-ability-feedback-dev20",
+          "sha": "2879241efd60a54d8abd9ef310d9ca0dc2ba419b",
+          "preserve": "main"
+        },
+        {
+          "branch": "fix/play-feedback-dev13",
+          "sha": "97f2c0c119bf3f33f8145f0c0de9990f263ae162",
+          "preserve": "main"
+        },
+        {
+          "branch": "fix/playtest-ui-dev15",
+          "sha": "9628c395bd05e6c94378f3fe0678e9466863a147",
+          "preserve": "main"
+        },
+        {
+          "branch": "fix/rifle-leap-move-dev17",
+          "sha": "2aa0ce7eb0f4da7894e24bd03c4af95313adaf57",
+          "preserve": "main"
+        },
+        {
+          "branch": "fix/target-selection-clarity-dev18",
+          "sha": "16addd138df750b522c4046df91d82baf764a340",
+          "preserve": "main"
+        },
+        {
+          "branch": "qa/local-final-validation",
+          "sha": "70d5fae4b37d3f413b081d6371dd4fb4b14906ad",
+          "preserve": "main"
+        },
+        {
+          "branch": "qa/weapon-followup-base-20261014",
+          "sha": "238b6c1aab8b24373a132c22e93c0afc2e86a848",
+          "preserve": "archive/qa-weapon-followup-20261014"
+        },
+        {
+          "branch": "qa/weapon-followup-repro-20261014",
+          "sha": "415ab0d8812f88dacaecf45796dc023e1f0336bb",
+          "preserve": "archive/qa-weapon-followup-20261014"
+        },
+        {
+          "branch": "ui/mission-change-feedback",
+          "sha": "dcb6172288b126356081d7146862694666bf8efe",
+          "preserve": "archive/cloud-ui-handoff-20261014"
+        }
+      ]
+    },
+    {
+      "action": "로컬 브랜치 제거",
+      "count": 25,
+      "branches": [
+        {
+          "branch": "audit/local-cloud-final-intake",
+          "sha": "d8521f62c2c033f51e644e61a82983b5c228e069"
+        },
+        {
+          "branch": "audit/release-readiness-unity-prep",
+          "sha": "24a2b74e3af3b0ff686166dd1ce8d8f07c09efd9"
+        },
+        {
+          "branch": "backup/local-before-return-20261014-1200",
+          "sha": "4ecb68c01662310375f8fb0bdd7b672a56e2075c"
+        },
+        {
+          "branch": "chore/integrate-dev23-main",
+          "sha": "fcc46eca4b85f3141e4c3393a23a2531ce4ca03e"
+        },
+        {
+          "branch": "chore/project-file-organization",
+          "sha": "1aad4a174b1bf9e6af2a41c66507a9ef955bd97c"
+        },
+        {
+          "branch": "feat/enemy-sprites-dev9",
+          "sha": "2c98d0f5e6c5523bb0a03ea323cda7b5369c989a"
+        },
+        {
+          "branch": "feat/title-help-dev11",
+          "sha": "2ce990fadbbd3256f48aeabfeaa732bb9da1932b"
+        },
+        {
+          "branch": "fix/attack-position-preview-dev21",
+          "sha": "8d379508aff059d6c4ca05382be44437867db54d"
+        },
+        {
+          "branch": "fix/blood-frenzy-preview-dev23",
+          "sha": "d503246e42e7112b13af9eff119e08cbd909a6f2"
+        },
+        {
+          "branch": "fix/combat-mission-ux-dev14",
+          "sha": "2b02a420462f8f3f6caa9b084271fcb201761bf0"
+        },
+        {
+          "branch": "fix/damage-allocation-progress-dev22",
+          "sha": "9c690be61bd51f64f4e0d3f11ca3c5ccb12bf7b7"
+        },
+        {
+          "branch": "fix/escort-teleport-warning-dev16",
+          "sha": "9ee11c2de691917233901e970067aeedbdc66693"
+        },
+        {
+          "branch": "fix/hand-one-row-sizing",
+          "sha": "9972cefea8117d0e6febf1c7535400d0753a541b"
+        },
+        {
+          "branch": "fix/help-first-hunt-dev12",
+          "sha": "6982383b19b2cbfc40fbefeb3ec5f3d6635d7d30"
+        },
+        {
+          "branch": "fix/minion-facing-dev10",
+          "sha": "12c2f2be3b8d58146c708c42e382a060c7d36145"
+        },
+        {
+          "branch": "fix/mission-notice-policy-transition",
+          "sha": "4cbdef417c9810e3c558b78c3a6a8aae970a9ec7"
+        },
+        {
+          "branch": "fix/mist-ability-feedback-dev20",
+          "sha": "2879241efd60a54d8abd9ef310d9ca0dc2ba419b"
+        },
+        {
+          "branch": "fix/play-feedback-dev13",
+          "sha": "97f2c0c119bf3f33f8145f0c0de9990f263ae162"
+        },
+        {
+          "branch": "fix/playtest-ui-dev15",
+          "sha": "9628c395bd05e6c94378f3fe0678e9466863a147"
+        },
+        {
+          "branch": "fix/rifle-leap-move-dev17",
+          "sha": "2aa0ce7eb0f4da7894e24bd03c4af95313adaf57"
+        },
+        {
+          "branch": "fix/target-selection-clarity-dev18",
+          "sha": "16addd138df750b522c4046df91d82baf764a340"
+        },
+        {
+          "branch": "qa/local-final-validation",
+          "sha": "70d5fae4b37d3f413b081d6371dd4fb4b14906ad"
+        },
+        {
+          "branch": "qa/weapon-followup-base-20261014",
+          "sha": "238b6c1aab8b24373a132c22e93c0afc2e86a848"
+        },
+        {
+          "branch": "qa/weapon-followup-repro-20261014",
+          "sha": "415ab0d8812f88dacaecf45796dc023e1f0336bb"
+        },
+        {
+          "branch": "ui/mission-change-feedback",
+          "sha": "4cbdef417c9810e3c558b78c3a6a8aae970a9ec7"
+        }
+      ]
+    },
+    {
+      "action": "보조 작업트리",
+      "detached": 2,
+      "filesDeleted": false
+    },
+    {
+      "action": "최종 조회",
+      "remoteBranches": [
+        "main"
+      ],
+      "localBranches": [
+        "main"
+      ],
+      "openPullRequests": 0,
+      "proof": "GitHub /pulls 화면의 Open (0), Closed (23) 확인. 원격 ls-remote --heads와 로컬 branch 조회 대조."
+    }
+  ],
+  "limits": [
+    "정식 릴리스·새 v*태그·Desktop 설치본 교체는 이 작업에 포함하지 않음.",
+    "기존 작업트리 파일과 과거 검증 원문을 삭제하지 않음.",
+    "이전 전체 CI·Unity 전체 이식·스프라이트 전프레임 검증 결과와 합산하지 않음."
+  ],
+  "mergeCommit": "d04b6a6d3e13452a136b6c1449fdad2d677570fc"
+}
