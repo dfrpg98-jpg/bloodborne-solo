@@ -318,7 +318,7 @@ test("the next chapter requires an explicit start space and sends the selected w
   ui.el("nextChapterStart").value = "right"; ui.el("nextChapterStart").fire("change");
   ui.el("nextChapterFace").value = "1"; ui.el("nextChapterFace").fire("change");
   ui.el("startNextChapter").click();
-  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "START_NEXT_CHAPTER", startSpace: "right", face: 1 });
+  assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "START_NEXT_CHAPTER", startSpace: "right", face: 1, reassignAttachments: true });
 });
 test("all roar targets get their own destination and every selected move is sent", () => {
   const control = { type: "enemies-destinations", targets: [
@@ -532,7 +532,7 @@ test("face-down weapon slots hide the printed stat card face and describe the do
 test("Evelyn can prepare with one echo without choosing a hand card", () => {
   const s = baseState(), h = E.hunter(s); h.echoes = 1; h.firearmReady = false;
   const ui = boot(s, mission(), rewards(), { engine: { firearm: () => require("../src/extended-firearms").firearm("evelyn"), canFirearm: () => false } });
-  const echo = ui.buttons("decisions").find((button) => button.dataset.command === "RELOAD" && JSON.parse(button.dataset.args).payEcho);
+  const echo = ui.buttons("firearm").find((button) => button.dataset.command === "RELOAD" && JSON.parse(button.dataset.args).payEcho);
   assert.equal(echo.disabled, false);
   echo.click();
   assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "RELOAD", payEcho: true, cardIds: [] });
@@ -727,12 +727,12 @@ test("fresh campaign gun choices distinguish supplied effects from the existing 
 test("two-card firearm preparation waits for distinct hand cards and sends both identities", () => {
   const s = baseState(), h = E.hunter(s); h.firearmReady = false;
   const ui = boot(s, mission(), rewards(), { engine: { firearm: () => suppliedGun("ludwig-rifle"), canFirearm: () => false } });
-  assert.equal(option(ui, "decisions", "RELOAD").disabled, true);
+  assert.equal(option(ui, "firearm", "RELOAD").disabled, true);
   ui.el("hand").querySelectorAll("[data-card]")[0].click();
-  assert.equal(option(ui, "decisions", "RELOAD").disabled, true);
-  assert(!ui.el("reloadSecondCard").innerHTML.includes(`value="${h.hand[0].id}"`));
-  ui.el("reloadSecondCard").value = h.hand[1].id; ui.el("reloadSecondCard").fire("change");
-  const reload = option(ui, "decisions", "RELOAD"); assert.equal(reload.disabled, false); reload.click();
+  assert.equal(option(ui, "firearm", "RELOAD").disabled, true);
+  assert(!ui.el("firearmReloadSecond").innerHTML.includes(`value="${h.hand[0].id}"`));
+  ui.el("firearmReloadSecond").value = h.hand[1].id; ui.el("firearmReloadSecond").fire("change");
+  const reload = option(ui, "firearm", "RELOAD"); assert.equal(reload.disabled, false); reload.click();
   assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), { type: "RELOAD", cardIds: [h.hand[0].id, h.hand[1].id] });
 });
 test("the repeating pistol prepares with one chosen card while an older save keeps cardId", () => {
@@ -741,7 +741,7 @@ test("the repeating pistol prepares with one chosen card while an older save kee
     const ui = boot(s, mission(), rewards(), { engine: {
       firearm: () => suppliedGun("repeating-pistol", { actual, temporary: !actual }), canFirearm: () => false,
     } });
-    ui.el("hand").querySelectorAll("[data-card]")[0].click(); option(ui, "decisions", "RELOAD").click();
+    ui.el("hand").querySelectorAll("[data-card]")[0].click(); option(ui, "firearm", "RELOAD").click();
     assert.deepEqual(JSON.parse(JSON.stringify(ui.commands[0])), actual
       ? { type: "RELOAD", cardIds: [E.hunter(s).hand[0].id] }
       : { type: "RELOAD", cardId: E.hunter(s).hand[0].id });

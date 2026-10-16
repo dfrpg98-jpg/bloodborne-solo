@@ -10,6 +10,7 @@
     activeModeKey = "bloodborne-hunt-active-mode",
     previousKey = "bloodborne-hunt-v06",
     oldKey = "bloodborne-hunt-v05";
+  const windows = window.BBHuntWindowManager?.install(document, { onBlocked: () => showError("열린 창을 닫거나 대기 중인 선택을 마치세요.") });
   const entry = window.BBHuntEntry?.parse(window.location?.search || "") || null;
   window.BBGameHelp?.mount($("gameHelpContent"));
   const esc = (x) =>
@@ -164,6 +165,7 @@
   let storyEntries = [], storySelection = null, storyOpener = null, storyReturnPanel = null;
   // Mission feedback is presentation only: acknowledging it never spends a
   // hand card, advances a turn, or adds commands to a replay save.
+  let queuedAttachmentPopup = false;
   let missionUpdates = [], pendingMissionUpdates = [], lastMissionUpdateBatch = [], missionUpdateSequence = 0, missionFocusedObjectiveId = null;
   const missionUpdateLabels = { new: "새로운 임무", updated: "목표 변경", completed: "임무 완수", chapter: "챕터 완수", "enemy-effect": "적 능력 변화" };
   function chapterProgressHTML(progress) {
@@ -215,7 +217,7 @@
     $("missionUpdateContinue").textContent = notice?.progress ? notice.continueLabel : "확인하고 계속하기";
     const ordered = notice?.events || batch;
     $("missionUpdateList").innerHTML = ordered.map(missionUpdateHTML).join("");
-    if (!$("missionUpdateDialog").open) $("missionUpdateDialog").showModal();
+    $("missionUpdateDialog").showModal();
     $("missionUpdateContinue").focus?.({ preventScroll: true });
   }
   function acknowledgeMissionUpdates() {
@@ -225,8 +227,13 @@
     renderMission();
     $("phaseTitle").setAttribute("tabindex", "-1");
     $("phaseTitle").focus?.({ preventScroll: true });
+    if (queuedAttachmentPopup && !$("openAttachments").hidden) {
+      queuedAttachmentPopup = false;
+      attachmentPopup?.open($("openAttachments"));
+    }
   }
   function resetMissionFeedback() {
+    queuedAttachmentPopup = false;
     missionUpdates = []; pendingMissionUpdates = []; lastMissionUpdateBatch = []; missionUpdateSequence = 0; missionFocusedObjectiveId = null;
     if ($("missionUpdateDialog").open) $("missionUpdateDialog").close();
   }
@@ -308,7 +315,7 @@
     return { close: dismiss, open(source) {
       shell?.close();
       opener = source;
-      if (!dialog.open) dialog.showModal();
+      dialog.showModal();
       dialog.scrollTop = 0;
       const body = dialog.querySelector(".compact-dialog-content"); if (body) body.scrollTop = 0;
       close.focus?.({ preventScroll: true });
@@ -409,6 +416,15 @@
         "자동 저장 불가 · 저장 내보내기를 이용하세요";
     }
   }
+  const upgradePopup = compactDialog("upgradeDialog", "closeUpgrade");
+  function upgradeHTML({ market = true } = {}) {
+    const helper = window.BBHuntUpgradeOverview;
+    return helper ? helper.renderHTML(helper.view(state, E), { clean: text => uiText(text), market }) : "";
+  }
+  (document.querySelectorAll?.("[data-upgrade-overview]") || []).forEach(button => button.onclick = () => {
+    $("upgradeOverview").innerHTML = upgradeHTML();
+    upgradePopup?.open(button);
+  });
   function send(type, args = {}) {
     return sendCommands([{ type, ...args }]);
   }
@@ -436,6 +452,7 @@
     if (opener?.isConnected !== false) opener?.focus?.({ preventScroll: true });
   });
   function sendCommands(commands) {
+    if (windows && !windows.canExecute(commands)) return false;
     if ($("missionUpdateDialog").open || $("deathDialog").open) return false;
     if ($("attachmentDialog").open && commands.some(command => command.type !== "REASSIGN_REWARD")) return false;
     if (pendingEscort || pendingActionLoss) return false;
@@ -485,6 +502,7 @@
     commitCommands(pending.commands);
   };
   function commitCommands(commands) {
+    if (windows && !windows.canExecute(commands)) return false;
     const previousDeclaredVisual = declaredWeaponVisual;
     try {
       const previous = state, before = animationSnapshot(), last = commands[commands.length - 1], type = last.type;
@@ -511,6 +529,7 @@
         previous.world.pending?.tileId !== state.world.pending?.tileId || previous.mission?.chapter !== state.mission?.chapter;
       mapTarget = null;
       shell?.close();
+      shell?.showProgress?.();
       if (type === "START_NEXT_CHAPTER") { nextStartSpace = ""; nextFace = null; }
       if (type === "ENTER_BETWEEN_CHAPTERS") { nextStartSpace = ""; nextFace = E.hunter(state).face; }
       pulls.clear();
@@ -523,11 +542,16 @@
       save();
       render();
       showError("");
+      const attachmentTiming = (type === "TRANSFORM" || type === "FREE_TRANSFORM" && last.accept ||
+        ["RETURN", "START_NEXT_CHAPTER"].includes(type) && last.reassignAttachments || type === "EQUIP_REWARD") &&
+        !$("openAttachments").hidden;
+      queuedAttachmentPopup = !!attachmentTiming;
       if (deathNotice) showDeathFeedback(deathNotice);
       else if (updates.length) showMissionUpdates();
-      else if ((type === "TRANSFORM" || type === "FREE_TRANSFORM" && last.accept ||
-        type === "RETURN" && last.reassignAttachments || type === "EQUIP_REWARD") &&
-        !$("openAttachments").hidden) attachmentPopup?.open($("openAttachments"));
+      else if (queuedAttachmentPopup) {
+        queuedAttachmentPopup = false;
+        attachmentPopup?.open($("openAttachments"));
+      }
       return true;
     } catch (e) {
       declaredWeaponVisual = previousDeclaredVisual;
@@ -572,6 +596,7 @@
     $("status").innerHTML =
       `<p class="eyebrow">사냥꾼</p><h2>체력 ${h.hp} / 6 <small>· 피의 유지 ${h.echoes} / 3</small></h2><p class="status-location">${h.inDream ? "사냥꾼의 꿈" : esc(nodeName(h.position))}</p>${h.status.poison || h.status.frenzy ? `<p class="hunter-status-chips">${h.status.poison ? "<span class=\"status-chip poison\">독</span>" : ""}${h.status.frenzy ? "<span class=\"status-chip frenzy\">발광</span>" : ""}</p>` : ""}`;
     renderFirearm();
+    if ($("upgradeDialog")?.open) $("upgradeOverview").innerHTML = upgradeHTML();
     renderMission();
     renderRewards();
     renderMap();
@@ -600,6 +625,16 @@
   }
   function firearmAction() {
     const gun = E.firearm(state), h = E.hunter(state), actual = actualGun();
+    if (!h.firearmReady) {
+      const cost = actual ? gun.prepareCost || 1 : 1,
+        chosen = h.hand.find(card => card.id === selectedCard),
+        second = h.hand.find(card => card.id === reloadSecondCardId && card.id !== selectedCard),
+        allowed = state.phase === "hunter" && !E.rewardsView?.(state)?.choices.length,
+        args = actual ? { cardIds: cost === 1 ? [selectedCard] : [selectedCard, second?.id || null] } : { cardId: selectedCard };
+      return (cost > 1 ? `<label>함께 버릴 카드<select id="firearmReloadSecond"><option value="">선택하세요</option>${h.hand.filter(card => card.id !== selectedCard).map(card => `<option value="${esc(card.id)}" ${second?.id === card.id ? "selected" : ""}>${esc(E.card(card).name)}</option>`).join("")}</select></label>` : "") +
+        button(`화기 다시 준비 · 손패 ${cost}장`, "RELOAD", args, !allowed || !chosen || cost > 1 && !second) +
+        (actual && gun.prepareEchoCost ? button(`피의 유지 ${gun.prepareEchoCost}개로 준비`, "RELOAD", { payEcho: true, cardIds: [] }, !allowed || h.echoes < gun.prepareEchoCost) : "");
+    }
     if (actual && gun.trigger === "enemy-enters") return "";
     const attack = actual && gun.trigger === "hunter-turn", effect = actual && gun.trigger === "hunter-effect",
       targetId = attack && state.phase === "combat_choose" ? state.combat?.enemyId : selectedEnemy,
@@ -633,6 +668,9 @@
     const preparation = h.firearmReady ? "" : `<p class="muted" data-firearm-preparation>플레이어의 차례에 손패 ${cost}장을 버려 준비${actual && gun.prepareEchoCost ? ` 또는 피의 유지 ${gun.prepareEchoCost}개로 준비` : ""} · 꿈에서 회복${actual && gun.prepareOnTransform ? " · 무기를 변형할 때도 준비" : ""}${!actual && h.firearmId !== "hunter-pistol" ? "<br>이 저장/시험에서는 단총과 같은 능력으로 임시 동작" : ""}</p>`;
     $("firearm").innerHTML = `<p class="eyebrow">장착 화기</p><h2>${firearmNameHTML(gun, "equipped")} <small class="${h.firearmReady ? "ready" : "spent"}">${h.firearmReady ? "준비됨" : "소진됨"}</small></h2><section class="firearm-rules" aria-label="화기 효과와 준비"><h3>화기 효과와 준비</h3><p>${printed}</p>${preparation}</section>${firearmAction()}`;
     bind($("firearm"));
+    if ($("firearmReloadSecond")) $("firearmReloadSecond").onchange = () => {
+      reloadSecondCardId = $("firearmReloadSecond").value || null; renderFirearm();
+    };
   }
   function renderComponents() {
     const figures = state.enemies.filter((e) => e.componentId || e.provisionalKind);
@@ -698,7 +736,8 @@
     $("chapterConditions").innerHTML = `<span class="condition-label">계몽 단서</span> ${nextPlaces.length ? nextPlaces.map(trigger => esc(trigger.title)).join(" · ") + "에서 이동을 마치세요." : "방문한 장소의 공개 임무를 확인하세요."}`;
     $("chapterConditionDetail").innerHTML = `<h3>챕터 ${chapter} · 계몽 단서를 확인하는 조건</h3>${activations.map(trigger => `<p>${trigger.known ? "✓ " : ""}${esc(trigger.description)}${trigger.known ? " 이미 조사한 장소입니다." : ""}</p>`).join("")}`;
     if ($("objectiveDetail")) $("objectiveDetail").innerHTML = allObjectives;
-    $("missionTokens").innerHTML = view.tokens.map((t) => `<span class="mission-token">◆ ${esc(t.name)} · ${t.carrierId !== null && t.carrierId !== undefined ? "사냥꾼이 운반 중" : esc(nodeName(t.node))}</span>`).join("") + (view.targets || []).filter((t) => !t.complete && t.tokens !== undefined).map((t) => `<span class="mission-token">◇ ${esc(window.BBLongHunt.cards.find((c) => c.number === t.card)?.title || "특수 적")} · 계몽 토큰 ${t.tokens}개</span>`).join("") + (view.counters || []).map((c) => `<span class="mission-token">${esc(c.name)} · ${c.id === "card-57" ? `남은 임무 토큰 ${esc(c.value)}개` : esc(c.value)}</span>`).join("");
+    const hud = window.BBHuntMissionHUD?.view(view) || view;
+    $("missionTokens").innerHTML = hud.tokens.map((t) => `<span class="mission-token">◆ ${esc(t.name)} · ${t.carrierId !== null && t.carrierId !== undefined ? "사냥꾼이 운반 중" : esc(nodeName(t.node))}</span>`).join("") + (hud.targets || []).map((t) => `<span class="mission-token">◇ ${esc(window.BBLongHunt.cards.find((c) => c.number === t.card)?.title || "특수 적")} · 계몽 토큰 ${t.tokens}개</span>`).join("") + (hud.counters || []).map((c) => `<span class="mission-token">${esc(c.name)} · ${c.id === "card-57" ? `남은 임무 토큰 ${esc(c.value)}개` : esc(c.value)}</span>`).join("");
     const lifecycleNotices = chapter > 1
       ? ["이전 챕터의 미완료 임무·임무 토큰·대상 적은 초기화되었습니다. 완료한 계몽 기록은 보관하며, 이번 챕터의 계몽 획득 수에는 더하지 않습니다."] : [];
     if (chapter === 3 && view.revealed.includes(53) && view.revealed.includes(35))
@@ -708,8 +747,8 @@
     $("missionHistory").hidden = !history.length;
     $("pastChapters").innerHTML = history.map((ch) => `<section><p>✓ 챕터 ${ch.chapter} 완수 · 완료 임무 ${storyEntries.filter(entry => entry.chapter === ch.chapter && ch.completed?.includes(entry.number)).map(entry => esc(entry.title)).join(", ") || "없음"}</p><div class="story-list">${storyEntries.filter((entry) => entry.chapter === ch.chapter).map(storyButton).join("")}</div></section>`).join("");
     bindStoryButtons($("pastChapters"));
-    const fogNames = view.fog.map(id => locationText(M.tile(id)?.displayName)).filter(Boolean);
-    $("missionFog").textContent = view.fog.length ? `안개 진입로${fogNames.length ? " · " + fogNames.join(", ") : ""}` : "";
+    $("missionFog").textContent = "";
+    $("missionFog").hidden = true;
     const actions = view.pending || state.rewardChoices?.length ? [] : (E.missionActions ? E.missionActions(state) : [])
       .filter(action => action.command.type !== "MISSION_PICKUP");
     $("missionActions").innerHTML = actions.map((a) => commandButton(a)).join("");
@@ -812,7 +851,7 @@
     $("previousStory").disabled = index === 0;
     $("nextStory").disabled = index === storyEntries.length - 1;
     $("storyPosition").textContent = `${index + 1} / ${storyEntries.length} · 공개된 이야기`;
-    if (!$("storyDialog").open) $("storyDialog").showModal();
+    $("storyDialog").showModal();
     $("storyDialog").scrollTop = 0;
     polishPlayerText($("storyDialog"));
     renderStories(missionView());
@@ -946,8 +985,7 @@
           destination.onchange = () => rewardSelections.set(key, destination.value);
         }
         $("rewardTarget-" + r.id).textContent = target ? `선택한 대상: ${enemyTargetLabel(target.enemyId)}` : "선택 가능한 대상이 없습니다.";
-        $("rewardInspect-" + r.id).innerHTML = target ? inspectTargetButton(target.enemyId) : "";
-        bind($("rewardInspect-" + r.id));
+
       };
       select.onchange = () => { update(); if (select.value) previewEnemy(select.value); };
       update();
@@ -1032,7 +1070,9 @@
         (b) =>
           (b.onclick = () => {
             selectedCard = selectedCard === b.dataset.card ? null : b.dataset.card;
+            shell?.showProgress?.();
             renderHand();
+            renderFirearm();
             renderDecisions();
           }),
       );
@@ -1065,6 +1105,7 @@
             const slot = +b.dataset.slot;
             if (E.hunter(state).slots[slot] || !E.slots(state)[slot]) return;
             selectedSlot = selectedSlot === slot ? null : slot;
+            shell?.showProgress?.();
             renderHand();
             renderDecisions();
           }),
@@ -1152,18 +1193,11 @@
     if (p === "hunter") {
       help =
         "아래 손패에서 카드를 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.";
-      const gun = E.firearm(state), realGun = actualGun(), reloadCost = realGun ? gun.prepareCost || 1 : 1;
-      html = `<p class="target-selection-status">${esc(selectHint)}</p><div class="actions">${button("이동", "MOVE", { cardId: selectedCard }, !chosen)}${button("무기 변형", "TRANSFORM", { cardId: selectedCard }, !chosen)}${button("꿈으로 이동", "DREAM", { cardId: selectedCard }, !chosen)}${reloadCost === 1 ? button("화기 다시 준비 · 손패 1장", "RELOAD", realGun ? { cardIds: [selectedCard] } : { cardId: selectedCard }, !chosen || h.firearmReady) : ""}</div>`;
-      if (reloadCost > 1) {
-        const second = h.hand.find((card) => card.id === reloadSecondCardId && card.id !== selectedCard);
-        html += `<div class="reload-choice"><p class="muted">${esc(gun.name)} 재준비 · 서로 다른 손패 ${reloadCost}장</p><label>두 번째로 버릴 손패<select id="reloadSecondCard"><option value="">손패를 선택하세요</option>${h.hand.filter((card) => card.id !== selectedCard).map((card) => `<option value="${esc(card.id)}" ${card.id === reloadSecondCardId ? "selected" : ""}>${esc(E.card(card).name)}</option>`).join("")}</select></label>${button("화기 다시 준비 · 손패 2장", "RELOAD", { cardIds: [selectedCard, second?.id || null] }, !chosen || !second || h.firearmReady)}</div>`;
-      }
-      if (realGun && gun.prepareEchoCost) html += button(`화기 다시 준비 · 피의 유지 ${gun.prepareEchoCost}개`, "RELOAD", { payEcho: true, cardIds: [] }, h.firearmReady || h.echoes < gun.prepareEchoCost);
+      html = `<p class="target-selection-status">${esc(selectHint)}</p><div class="actions">${button("이동", "MOVE", { cardId: selectedCard }, !chosen)}${button("무기 변형", "TRANSFORM", { cardId: selectedCard }, !chosen)}${button("꿈으로 이동", "DREAM", { cardId: selectedCard }, !chosen)}</div>`;
       if (mapTarget) html = `<details class="utility-actions"><summary>다른 행동 · 변형·꿈·화기 준비</summary>${html}</details>`;
       const target = state.enemies.find((e) => e.id === selectedEnemy);
       html += checkPulls();
       if (target && !mapTarget) {
-        html += `<p>대상 · ${esc(enemyTargetLabel(target))}</p>`;
         const same = target.node === h.position || pulls.has(target.id),
           paths =
             chosen && E.card(chosen).leap && !attackReplacesCardEffects()
@@ -1278,25 +1312,25 @@
       $("phaseTitle").textContent = reaction.title || "전용 능력 대응";
       const blockPerSpeed = reaction.dodgeBlockPerSpeed || state.combat?.immediate?.dodgeBlockPerSpeed,
         dodged = !!state.combat?.dodged && !blockPerSpeed;
-      help = dodged ? "회피가 적용되었습니다. 계속 버튼으로 회피한 효과의 처리를 마치세요. 이 효과의 피해와 부가효과를 받지 않습니다." : blockPerSpeed
+      help = dodged ? "" : blockPerSpeed
         ? `회피 속도마다 ${blockPerSpeed}피해를 방어합니다. 회피 카드와 빈 슬롯을 고른 뒤 ‘이 효과 회피’를 눌러 확정하세요.`
         : `합계 속도 ${reaction.dodgeSpeed ?? 1} 이상인 회피 카드와 빈 슬롯을 고른 뒤 ‘이 효과 회피’를 눌러 확정하세요.${reaction.effects?.length ? " " + reaction.effects.join(" · ") : ""}`;
       if (c.noDodge || c.origin === "interaction" || c.immediate?.unavoidable)
         help = "이 효과는 회피할 수 없습니다. 효과를 받고 계속하세요.";
-      html = `<p class="target-selection-status">${esc(selectHint)}</p>${button("이 효과 회피", "DODGE", { cardId: selectedCard, slot: selectedSlot }, !canCommit || !E.canDodge(state, selectedCard, selectedSlot))}${button(dodged ? "회피 적용 후 계속" : reaction.damage ? `피해 ${reaction.damage}와 효과를 받고 계속` : "회피하지 않고 효과 처리", "RESOLVE", {}, false, "primary")}`;
+      html = `<p class="target-selection-status">${esc(selectHint)}</p>${button(dodged ? "회피 선택됨" : "이 효과 회피", "DODGE", { cardId: selectedCard, slot: selectedSlot }, !canCommit || !E.canDodge(state, selectedCard, selectedSlot))}${button(dodged ? "회피 적용 후 계속" : reaction.damage ? `피해 ${reaction.damage}와 효과를 받고 계속` : "회피하지 않고 효과 처리", "RESOLVE", {}, false, "primary")}`;
     } else if (p === "combat_react" || p === "combat_extra") {
       const extra = p === "combat_extra", blocked = c.noDodge || c.origin === "interaction" || !extra && c.action?.undodgeable;
       help = blocked ? extra
         ? "이 추가 타격은 회피할 수 없습니다. ‘추가 피해 받기’로 계속하세요."
-        : "현재 전투는 회피할 수 없습니다. 사용할 수 있는 다른 대응을 고른 뒤 ‘속도 순서대로 전투 처리’를 누르세요."
-        : !extra && c.dodged ? "회피가 적용되었습니다. ‘속도 순서대로 전투 처리’로 계속하세요."
+        : "현재 전투는 회피할 수 없습니다. 사용할 수 있는 다른 대응을 고른 뒤 ‘전투 처리’를 누르세요."
+        : !extra && c.dodged ? ""
         : extra
         ? "첫 공격을 피했거나 방해했어도 별도의 속도 2 회피가 필요합니다. 카드와 빈 슬롯을 고른 뒤 ‘추가 타격 회피’를 누르세요. 피하지 않으려면 ‘추가 피해 받기’를 선택합니다."
-        : "회피 카드와 충분한 속도의 빈 슬롯을 고른 뒤 ‘회피’를 눌러 확정하세요. 선택만으로 회피하지 않습니다. 대응을 마쳤거나 회피하지 않으려면 ‘속도 순서대로 전투 처리’를 누르세요.";
-      html = `<p class="target-selection-status">${esc(selectHint)}</p>${button(extra ? "추가 타격 회피" : "회피", extra ? "EXTRA_DODGE" : "DODGE", { cardId: selectedCard, slot: selectedSlot }, !canCommit || !E.canDodge(state, selectedCard, selectedSlot, extra))}`;
+        : "회피 카드와 충분한 속도의 빈 슬롯을 고른 뒤 ‘회피’를 눌러 확정하세요. 선택만으로 회피하지 않습니다. 대응을 마쳤거나 회피하지 않으려면 ‘전투 처리’를 누르세요.";
+      html = `<p class="target-selection-status">${esc(selectHint)}</p>${button(c.dodged && !extra ? "회피 선택됨" : extra ? "추가 타격 회피" : "회피", extra ? "EXTRA_DODGE" : "DODGE", { cardId: selectedCard, slot: selectedSlot }, !canCommit || !E.canDodge(state, selectedCard, selectedSlot, extra))}`;
       if (!extra) html += firearmAction();
       html += button(
-        extra ? "추가 피해 받기" : "속도 순서대로 전투 처리",
+        extra ? "추가 피해 받기" : "전투 처리",
         extra ? "EXTRA_TAKE" : "RESOLVE",
         {},
         false,
@@ -1434,7 +1468,7 @@
       html = (pending?.options || (E.missionActions ? E.missionActions(state) : [])).map((a) => commandButton(a, "primary")).join("");
     } else if (p === "between_chapters") {
       const chapter = missionView()?.chapter || 1, face = nextFace === null ? h.face : nextFace;
-      help = `챕터 ${chapter}을 완수했습니다. 아래 보상에서 장비를 교체한 뒤, 다음 사냥의 시작 칸과 무기 형태를 고르세요.`;
+      help = `챕터 ${chapter}을 완수했습니다. 장비를 교체한 뒤, 시작 칸과 무기 형태를 고르세요. 시작 칸을 정한 후 챕터 특수 규칙을 적용합니다.`;
       html = `<label>챕터 ${chapter + 1}의 시작 칸<select id="nextChapterStart"><option value="">시작할 칸을 직접 선택하세요</option>${["left", "center", "right"].map((id) => `<option value="${id}" ${nextStartSpace === id ? "selected" : ""}>${id === "left" ? "왼쪽 칸" : id === "right" ? "오른쪽 칸" : "중앙 등불"}</option>`).join("")}</select></label><div id="nextChapterPlacement"></div><label>시작 무기 형태<select id="nextChapterFace">${E.weapon(state).faces.map((part, index) => `<option value="${index}" ${face === index ? "selected" : ""}>${esc(faceName(part, index))}</option>`).join("")}</select></label><button id="startNextChapter" class="primary" ${nextStartSpace ? "" : "disabled"}>챕터 ${chapter + 1} 시작</button><button id="exportChapterSave">여기까지 저장 내보내기</button>`;
     } else if (p === "over") {
       const won = state.result === "chapter-win" || missionView()?.won,
@@ -1451,6 +1485,7 @@
         if (won && chapter < 3) html += button(`챕터 ${chapter + 1} 준비 · 장비 교체`, "ENTER_BETWEEN_CHAPTERS", {}, false, "primary");
       }
     }
+    if (["upgrade_pick", "upgrade_replace"].includes(p)) html += upgradeHTML({ market: false });
     if (E.canBossInsight?.(state)) html += button("화기 소진 · 보스 시트에 계몽 토큰 +1", "BOSS_INSIGHT");
     if (["hunter", "combat_choose"].includes(p) && inventory.names().length)
       html += `<p class="muted">공격에 함께 사용: ${inventory.names().map(esc).join(", ")}</p>`;
@@ -1500,7 +1535,11 @@
       $("nextChapterStart").addEventListener("change", rememberStart);
       $("nextChapterPlacement").addEventListener("click", rememberStart);
       $("nextChapterFace").onchange = () => { nextFace = +$("nextChapterFace").value; };
-      $("startNextChapter").onclick = () => send("START_NEXT_CHAPTER", { startSpace: $("nextChapterStart").value, face: +$("nextChapterFace").value });
+      $("startNextChapter").onclick = () => {
+        const face = +$("nextChapterFace").value;
+        send("START_NEXT_CHAPTER", { startSpace: $("nextChapterStart").value, face,
+          ...(face !== E.hunter(state).face ? { reassignAttachments: true } : {}) });
+      };
     }
     const combatEnemy = c && state.enemies.find(enemy => enemy.id === c.enemyId), combatDefinition = combatEnemy && E.enemyDef(state, combatEnemy),
       combatChanges = c?.action && combatEnemy ? contextualEnemyAction(combatDefinition, combatEnemy,
@@ -1632,17 +1671,6 @@
     const clean = text => uiText(text, "combat");
     box.innerHTML = controls.renderHTML(model, { clean }).replace('<div class="combat-selection-effects">',
       '<div class="combat-selection-effects">' + (window.BBHuntAttackPreview?.renderHTML(attackPreview, { clean }) || ""));
-    box.querySelectorAll("[data-combat-select]").forEach(select => select.onchange = () => {
-      const focusId = select.getAttribute("id"), value = select.value;
-      if (select.dataset.combatSelect === "card") selectedCard = E.hunter(state).hand.some(card => card.id === value) ? value : null;
-      else {
-        const index = value === "" ? null : Number(value);
-        selectedSlot = index !== null && Number.isInteger(index) && E.slots(state)[index] && !E.hunter(state).slots[index] ? index : null;
-      }
-      renderHand();
-      renderDecisions();
-      $(focusId)?.focus?.({ preventScroll: true });
-    });
     const choices = [...$("decisions").querySelectorAll("[data-reward-attack]")];
     if (choices.length) {
       const detail = document.createElement("details"), summary = document.createElement("summary");
@@ -1717,14 +1745,12 @@
     if (!box || !controls) return;
     const current = E.node(state, E.hunter(state).position)?.tile;
     if (!state.world.tiles.some(tile => tile.tileId === inspectedTile)) inspectedTile = current || state.world.tiles[0]?.tileId;
-    const view = controls.tileInfo(state, inspectedTile);
-    const h = E.hunter(state), sameTile = !h.inDream && current === inspectedTile;
-    $("tileInspectionStatus").dataset.current = String(sameTile);
-    $("tileInspectionStatus").innerHTML = `<p class="tile-hunter-location"><span>● 사냥꾼의 현재 위치</span><strong>${esc(h.inDream ? "사냥꾼의 꿈" : nodeName(h.position))}</strong></p><p class="tile-inspected-location" ${sameTile ? "hidden" : ""}><span>살펴보는 타일</span><strong>${esc(view?.name || window.BBHuntLocationLabels?.tile(state, inspectedTile)?.reference || "선택한 타일")}</strong><small class="target-selection-status">${sameTile ? "현재 위치가 있는 타일입니다." : "현재 위치와 다른 타일을 살펴보고 있습니다."}</small></p>`;
+    const selectedNode = mapTarget?.kind === "enemy" ? state.enemies.find(enemy => enemy.id === mapTarget.enemyId)?.node : mapTarget?.node;
+    const view = controls.tileInfo(state, inspectedTile, { node: selectedNode, selectedOnly: true });
     $("inspectCurrentTile").disabled = !current;
     $("inspectCurrentTile").onclick = () => { inspectedTile = current; mapTarget = null; renderMap(); renderDecisions(); syncPresentation(); };
     if (!view) { box.innerHTML = '<p class="muted">지도 타일을 선택하면 내용과 특수 규칙을 확인할 수 있습니다.</p>'; return; }
-    box.innerHTML = `${view.name ? `<h3>${esc(view.name)}</h3>` : ""}${view.fog ? '<p class="context-lamp-warning">안개 진입로 · 타일 밖으로 걸어서 나갈 수 없습니다.</p>' : ""}${view.rules.map(rule => `<p class="tile-info-rule">${esc(uiText(rule))}</p>`).join("")}${view.spaces.map(space => `<section class="tile-info-space"><h4>${esc(uiText(space.name))}${space.atHunter ? ' <span class="tile-current-badge">● 현재 위치</span>' : ""}</h4>${space.interactions.map(text => `<p class="tile-info-object">${esc(uiText(text))}</p>`).join("")}${space.tokens.map(token => `<p class="tile-info-companion">◆ ${esc(uiText(token.name))}${token.count > 1 ? ` ${token.count}명` : ""}${token.carrierId === state.activeHunterId ? " · 동행 중" : ""}</p>`).join("")}${space.enemies.map(enemy => `<button type="button" class="tile-info-enemy" data-special-info="${esc(enemy.id)}" aria-label="${esc(enemy.name)} 공격과 능력 보기">${esc(enemyTargetLabel(enemy.id))}<small>체력 ${enemy.hp} / ${enemy.maxHp}${Number.isFinite(enemy.insight) ? ` · 계몽 ${enemy.insight}개` : ""}</small></button>`).join("")}${!space.interactions.length && !space.tokens.length && !space.enemies.length ? '<p class="muted">현재 놓인 대상 없음</p>' : ""}</section>`).join("")}`;
+    box.innerHTML = `${view.name ? `<h3>${esc(view.name)}</h3>` : ""}${view.fog ? '<p class="context-lamp-warning">안개 진입로 · 타일 밖으로 걸어서 나갈 수 없습니다.</p>' : ""}${view.rules.map(rule => `<p class="tile-info-rule">${esc(uiText(rule))}</p>`).join("")}${view.spaces.map(space => `<section class="tile-info-space"><h4>${esc(uiText(space.name))}</h4>${space.interactions.map(text => `<p class="tile-info-object">${esc(uiText(text))}</p>`).join("")}${space.tokens.map(token => `<p class="tile-info-companion">◆ ${esc(uiText(token.name))}${token.count > 1 ? ` ${token.count}명` : ""}${token.carrierId === state.activeHunterId ? " · 동행 중" : ""}</p>`).join("")}${space.enemies.map(enemy => `<button type="button" class="tile-info-enemy" data-special-info="${esc(enemy.id)}" aria-label="${esc(enemy.name)} 공격과 능력 보기">${esc(enemyTargetLabel(enemy.id))}<small>체력 ${enemy.hp} / ${enemy.maxHp}${Number.isFinite(enemy.insight) ? ` · 계몽 ${enemy.insight}개` : ""}</small></button>`).join("")}${!space.interactions.length && !space.tokens.length && !space.enemies.length ? '<p class="muted">비어있음</p>' : ""}</section>`).join("")}`;
     box.querySelectorAll("[data-special-info]").forEach(button => button.onclick = () => openEnemyDetail(button));
   }
   function renderContext(actionArgs = {}) {
@@ -2041,6 +2067,7 @@
   function bindEnemyTargets(box) {
     box.querySelectorAll("[data-enemy]").forEach((button) => {
       button.onclick = () => {
+        shell?.showProgress?.();
         selectedEnemy = button.dataset.enemy;
         mapTarget = { kind: "enemy", enemyId: selectedEnemy };
         inspectedTile = E.node(state, state.enemies.find(enemy => enemy.id === selectedEnemy)?.node)?.tile || inspectedTile;
@@ -2050,6 +2077,7 @@
     });
   }
   function inspectEnemy(enemyId) {
+    shell?.showProgress?.();
     previewEnemy(enemyId, true);
   }
   function previewEnemy(enemyId, inspect = false) {
@@ -2082,6 +2110,7 @@
     });
     $("chapterMap").querySelectorAll("[data-map-object]").forEach(b => {
       b.onclick = () => {
+        shell?.showProgress?.();
         mapTarget = { kind: "cell", node: b.dataset.objectNode, objectKind: b.dataset.mapObject,
           objectName: b.dataset.objectName, objectId: b.dataset.mapObjectId };
         inspectedTile = E.node(state, mapTarget.node)?.tile || inspectedTile;
@@ -2092,6 +2121,7 @@
     $("chapterMap").querySelectorAll("[data-node]").forEach((b) => {
       b.onclick = () => {
         if (b.disabled) return;
+        shell?.showProgress?.();
         mapTarget = b.dataset.entrance
           ? { kind: "entrance", node: b.dataset.node, edge: b.dataset.edge, tileId: b.dataset.tileId }
           : { kind: "cell", node: b.dataset.node };
@@ -2219,6 +2249,7 @@
   }
 
   $("save").onclick = () => {
+    if (setupRequired) { showError("사냥을 시작한 뒤 저장할 수 있습니다."); return; }
     const blob = new Blob([E.exportSave(state)], { type: "application/json" }),
       url = URL.createObjectURL(blob),
       a = document.createElement("a");
@@ -2246,6 +2277,7 @@
     selectedEnemy = null;
     mapTarget = null;
     inspectedTile = null;
+    shell?.showProgress?.();
     pulls.clear();
     selectedRewards.clear();
     rewardSelections.clear();

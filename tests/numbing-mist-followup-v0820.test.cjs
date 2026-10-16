@@ -23,7 +23,7 @@ function launch(state) {
   return ui;
 }
 function select(ui, id, value) {
-  const element = ui.el(id); assert(element, id); element.value = String(value); element.fire("change");
+  require("./helpers/combat-selection-ui.cjs").chooseControl(ui, id, value);
   assert.equal(ui.el("error").textContent, "");
 }
 function commit(ui, type) {

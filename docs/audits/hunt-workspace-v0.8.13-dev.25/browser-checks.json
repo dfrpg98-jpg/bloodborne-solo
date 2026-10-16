@@ -1,0 +1,141 @@
+{
+  "date": "2026-10-17",
+  "version": "0.8.13-dev.25",
+  "origin": "http://127.0.0.1:8829/bloodborne-solo/hunt.html",
+  "mode": "qa-campaign",
+  "method": "제품 UI의 시작·행동·불러오기·내보내기. 준비 저장은 기존 검증 모드 공개 명령의 접두부 재생으로 생성.",
+  "userOriginalSaveModified": false,
+  "checks": [
+    {
+      "id": "gem-font",
+      "result": "pass",
+      "attackNamePx": 13,
+      "statsPx": 12
+    },
+    {
+      "id": "pending-mission",
+      "result": "pass",
+      "minimizedInspection": true,
+      "itemUseBlocked": true,
+      "itemCountUnchanged": true
+    },
+    {
+      "id": "inline-inventory",
+      "result": "pass",
+      "consumed": 1,
+      "autoProgress": true
+    },
+    {
+      "id": "dream-return",
+      "result": "pass",
+      "oppositeFace": true,
+      "gemMoved": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "chapter2",
+      "result": "pass",
+      "flow": [
+        "prepare",
+        "equip",
+        "opposite-face",
+        "mission-ack",
+        "automatic-attachment",
+        "slot2",
+        "export",
+        "reload"
+      ]
+    },
+    {
+      "id": "chapter3",
+      "result": "pass",
+      "flow": [
+        "prepare",
+        "equip",
+        "opposite-face",
+        "mission-ack",
+        "automatic-attachment",
+        "slot3"
+      ]
+    },
+    {
+      "id": "next-move",
+      "result": "pass",
+      "after": "chapter2 start and reassignment",
+      "remaining": 2
+    },
+    {
+      "id": "firearm",
+      "result": "pass",
+      "flow": [
+        "exhausted",
+        "select-one-hand-skill",
+        "reload",
+        "ready"
+      ]
+    },
+    {
+      "id": "upgrade",
+      "result": "pass",
+      "publicMarket": 4,
+      "deckTotal": 12,
+      "purchaseAndReplacement": true
+    },
+    {
+      "id": "window-restore",
+      "result": "pass",
+      "originalOpener": true,
+      "keyboardMove": "Alt+ArrowRight"
+    },
+    {
+      "id": "fog",
+      "result": "pass",
+      "goalsFogText": false,
+      "decorationPointerEvents": "none",
+      "selectedSpaces": 1
+    },
+    {
+      "id": "read-only-window-block",
+      "result": "pass",
+      "minimized": "upgradeDialog",
+      "before": 29,
+      "afterBlocked": 29,
+      "afterCloseAndUse": 28,
+      "autoProgress": true
+    },
+    {
+      "id": "responsive",
+      "result": "pass",
+      "viewports": [
+        [
+          1280,
+          720
+        ],
+        [
+          2560,
+          1400
+        ]
+      ],
+      "horizontalOverflow": false
+    },
+    {
+      "id": "console",
+      "result": "pass",
+      "errors": []
+    }
+  ],
+  "actualExport": {
+    "file": "test-results/workspace-dev25-browser-ch2-export.json",
+    "exactEngineReimportAndExport": true,
+    "chapter": 2,
+    "face": 1,
+    "bloodstoneSlot": 1
+  },
+  "limits": [
+    "이번 브라우저 점검은 각 UI 경로 및 QA 저장 체크포인트 확인이며 새 챕터 1~3 전체 연속 완주가 아님.",
+    "Unity Editor와 모든 캠페인/화면 크기 검증을 주장하지 않음.",
+    "창 이동은 실제 브라우저에서 키보드로 확인. 포인터 드래그는 DOM 계약 검사로 별도 확인."
+  ]
+}

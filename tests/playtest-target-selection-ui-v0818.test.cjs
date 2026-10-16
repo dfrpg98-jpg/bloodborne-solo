@@ -61,8 +61,12 @@ function current(ui) {
 }
 function panel(ui, name) {
   const button = ui.document.querySelectorAll("[data-panel]").find(button => button.dataset.panel === name);
-  assert(button); button.click(); assert.equal(ui.el("infoDialog").open, true);
+  assert(button); button.click();
+  const inline = ["inventory", "rewards"].includes(name);
+  assert.equal(ui.el("infoDialog").open, !inline);
+  if (inline) assert.equal(ui.el(name === "inventory" ? "workspaceInventory" : "rewardsPanel").hidden, false);
 }
+function progress(ui) { ui.document.querySelectorAll("[data-workspace-tab]").find(button => button.dataset.workspaceTab === "progress").click(); }
 function change(ui, id, value) {
   const select = ui.el(id); assert(select, id); select.focus({ preventScroll: true });
   select.value = value; select.fire("change");
@@ -170,7 +174,7 @@ test("opening target controls previews a visible choice and reopening rewards pr
   change(ui, "rewardEnemy-" + tiny, "huntsmans-minion-2");
   change(ui, "rewardEnemy-" + gloves, "huntsmans-minion-1");
   assert.deepEqual(selectedMarkers(ui), ["huntsmans-minion-1"]);
-  ui.el("closeInfo").click(); panel(ui, "rewards");
+  progress(ui); panel(ui, "rewards");
   assert.equal(ui.el("rewardEnemy-" + tiny).value, "huntsmans-minion-2");
   assert.equal(ui.el("rewardEnemy-" + gloves).value, "huntsmans-minion-1");
   assert.deepEqual(selectedMarkers(ui), ["huntsmans-minion-1"], "opening the panel does not replace the last chosen target with a different reward's default");
@@ -185,14 +189,14 @@ test("reward target two previews immediately without closing its panel, remains 
   identity(ui.el(summaryId).textContent, s, "huntsmans-minion-2");
   assert.deepEqual(selectedMarkers(ui), ["huntsmans-minion-2"]);
   mapStatus(ui, s, "huntsmans-minion-2");
-  assert.equal(ui.el("infoDialog").open, true); assert.equal(ui.document.activeElement, ui.el(selectId));
+  assert.equal(ui.el("infoDialog").open, false); assert.equal(ui.el("rewardsPanel").hidden, false); assert.equal(ui.document.activeElement, ui.el(selectId));
   assert.equal(ui.storage.get(qaKey), saved);
   hunterToggle(ui, s); assert.equal(ui.el(selectId).value, "huntsmans-minion-2");
   identity(ui.el(summaryId).textContent, s, "huntsmans-minion-2"); assert.equal(ui.storage.get(qaKey), saved);
   assert.deepEqual(selectedMarkers(ui), ["huntsmans-minion-2"]);
   mapStatus(ui, s, "huntsmans-minion-2");
   assert.match(ui.el("mapContext").textContent, /#2|2번/); assert.equal(ui.storage.get(qaKey), saved);
-  ui.el("closeInfo").click();
+  progress(ui);
   panel(ui, "rewards"); assert.equal(ui.el(selectId).value, "huntsmans-minion-2");
   const actual = useReward(ui, id), expected = E.dispatch(s, { type: "USE_REWARD", rewardId: id, enemyId: "huntsmans-minion-2" });
   assert.deepEqual(actual, expected); assert.equal(actual.commands.length, s.commands.length + 1);
@@ -300,8 +304,8 @@ test("inventory target two previews immediately without a game action or closing
   change(ui, "itemEnemy", "huntsmans-minion-2"); identity(inventorySummary(ui), s, "huntsmans-minion-2");
   assert.deepEqual(selectedMarkers(ui), ["huntsmans-minion-2"]); assert.equal(ui.storage.get(qaKey), saved);
   mapStatus(ui, s, "huntsmans-minion-2");
-  assert.equal(ui.el("infoDialog").open, true); assert.equal(ui.document.activeElement, ui.el("itemEnemy"));
-  ui.el("closeInfo").click();
+  assert.equal(ui.el("infoDialog").open, false); assert.equal(ui.el("workspaceInventory").hidden, false); assert.equal(ui.document.activeElement, ui.el("itemEnemy"));
+  progress(ui);
   panel(ui, "inventory"); assert.equal(ui.el("itemEnemy").value, "huntsmans-minion-2");
   ui.el("useItem").click(); const actual = current(ui);
   assert.deepEqual(actual, E.dispatch(s, { type: "USE_CONSUMABLE", itemId: item.id, enemyId: "huntsmans-minion-2" }));

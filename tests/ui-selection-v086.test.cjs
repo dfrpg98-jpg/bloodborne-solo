@@ -264,7 +264,7 @@ for (const [id, cost] of [["hunter-pistol", 1], ["flamesprayer", 2]]) {
     clickCard(f, cards[0]);
     if (cost === 2) {
       assert(actions(f, "RELOAD").filter(button => !button.disabled).length === 0);
-      const second = f.ui.el("reloadSecondCard"); second.value = cards[1]; second.fire("change");
+      const second = f.ui.el("firearmReloadSecond"); assert(second); second.value = cards[1]; second.fire("change");
     }
     assert.deepEqual(selected(f), [], "preparing a firearm never needs or chooses a weapon slot"); unchanged(f);
     const actual = execute(f, "RELOAD", { type: "RELOAD", ...(id === "hunter-pistol" ? { cardId: cards[0] } : { cardIds: cards }) });

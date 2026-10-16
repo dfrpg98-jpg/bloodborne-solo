@@ -4,15 +4,16 @@ const ActionLoss=require('../../src/hunt-action-loss');
 const plain=x=>JSON.parse(JSON.stringify(x));
 const containers=['mapContext','decisions','missionActions','rewards','firearm','componentCards','chapterMap','explorationActions'];
 function matches(actual,wanted){return Object.entries(wanted).every(([k,v])=>JSON.stringify(actual[k])===JSON.stringify(v));}
+const faceChoiceCommands=new Set(['RETURN','START_NEXT_CHAPTER']);
 function controllerCommand(state,command){
-  // Current public RETURN explicitly opens an optional attachment window when
-  // choosing the opposite face. Keep legacy fixture bytes unchanged, and
-  // project only this new, intentional field for actual controller clicks.
-  return command.type==='RETURN'&&command.face!==E.hunter(state).face&&!Object.hasOwn(command,'reassignAttachments')
+  // Current return/chapter controls explicitly open an optional attachment
+  // window when choosing the opposite face. Keep legacy fixture bytes and
+  // reducer replay unchanged; project only this intentional forward UI field.
+  return faceChoiceCommands.has(command.type)&&(command.face??E.hunter(state).face)!==E.hunter(state).face&&!Object.hasOwn(command,'reassignAttachments')
     ?{...command,reassignAttachments:true}:command;
 }
 function controllerBatch(state,commands){
-  if(!commands.some(command=>command.type==='RETURN'))return commands;
+  if(!commands.some(command=>faceChoiceCommands.has(command.type)))return commands;
   const projected=[];let cursor=state;
   for(const command of commands){const accepted=controllerCommand(cursor,command);projected.push(accepted);cursor=E.dispatch(cursor,accepted);}
   return projected;
@@ -68,7 +69,7 @@ function clickCommand(s,command,options={}){
     assert(input,'attack reward visible');input.checked=true;input.fire('change');
   }
   if(command.weaponBoost!==undefined && ui.el('weaponBoost'))change('weaponBoost',command.weaponBoost||'none');
-  if(command.type==='RELOAD'&&command.cardIds?.length>1)change('reloadSecondCard',command.cardIds[1]);
+  if(command.type==='RELOAD'&&command.cardIds?.length>1)change('firearmReloadSecond',command.cardIds[1]);
   if(command.itemIds?.length)options.beforeInventory?.(ui);
   for(const id of command.itemIds||[]){
     const item=ui.el('inventory').querySelectorAll('[data-item]').find(b=>b.dataset.item===id);
@@ -175,8 +176,8 @@ function clickCommand(s,command,options={}){
   assert.equal(next.revision,s.revision+expectedCommands.length,'only the explicitly expected public command batch commits');
   const committed=next.commands.slice(s.commands.length);
   assert.deepEqual(committed.map(c=>c.type),expectedCommands.map(c=>c.type),'the UI records the complete intended reducer batch once');
-  for(const [index,wanted]of expectedCommands.entries())if(wanted.type==='RETURN')
-    assert.deepEqual(plain(committed[index]),plain(wanted),'the return records its exact selected destination, face and explicit current attachment timing');
+  for(const [index,wanted]of expectedCommands.entries())if(faceChoiceCommands.has(wanted.type))
+    assert.deepEqual(plain(committed[index]),plain(wanted),'the face-choice control records its exact selected destination, face and explicit current attachment timing');
   const reference=expectedCommands.reduce((state,c)=>E.dispatch(state,c),s),functional=state=>{const copy=plain(state);delete copy.commands;return copy;};
   assert.deepEqual(functional(next),functional(reference),'actual UI commands preserve the intended original-rule result');
   if(!expectedCommands.length)assert.equal(ui.storage.get('bloodborne-hunt-v07'),originalSave,'cancel preserves the exact save');
@@ -185,8 +186,8 @@ function clickCommand(s,command,options={}){
 // Historical traces used MISSION_PICKUP to arm a future departure. The new
 // public controller asks at departure instead. Preserve the original engine
 // stream separately and compare every gameplay field at each checkpoint. The
-// reference adopts only the explicit current RETURN timing when that command
-// is actually clicked through the public controller.
+// reference adopts only the explicit current return/chapter attachment timing
+// when that command is actually clicked through the public controller.
 function traceBehavior(state,ignorePickupReservation=false){
   const copy=plain(state);delete copy.commands;delete copy.revision;delete copy.log;
   if(ignorePickupReservation&&copy.mission?.escort)delete copy.mission.escort.pickup;
@@ -229,7 +230,7 @@ function replayPublicTrace(initial,commands,options={}){
       options.onCheckpoint?.({state,reference,beforeReference,command,index,clicked,expectedCommands});
     }catch(error){throw new Error(`${options.label||'public trace'} command ${index+1}/${commands.length} (${command.type}): ${error.message}`,{cause:error});}
   }
-  assert.deepEqual(traceBehavior(state),traceBehavior(reference),'final gameplay and pickup state equal the trace with only explicitly accepted controller return timing');
+  assert.deepEqual(traceBehavior(state),traceBehavior(reference),'final gameplay and pickup state equal the trace with only explicitly accepted controller face-choice timing');
   return {state,reference,originalCommandCount:commands.length,uiCommandCount,uiActions,deferredReservations};
 }
 module.exports={clickCommand,replayPublicTrace};

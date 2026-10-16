@@ -1,0 +1,96 @@
+{
+  "date": "2026-10-17",
+  "version": "0.8.13-dev.25",
+  "baseCommit": "981a334d9476c5fbacabb70a8cdca6c4db5d296c",
+  "issue": "https://github.com/dfrpg98-jpg/bloodborne-solo/issues/79",
+  "command": "node scripts/test-ci.cjs",
+  "testFiles": 148,
+  "final": {
+    "nodeVersion": "v24.19.0",
+    "runtimeVersion": "0.8.13-dev.25",
+    "durationSeconds": 491.823,
+    "exitCode": 0,
+    "counts": {
+      "tests": 3124,
+      "suites": 0,
+      "pass": 3124,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "failedSubtests": []
+  },
+  "priorRuns": [
+    {
+      "nodeVersion": "v24.19.0",
+      "runtimeVersion": "0.8.13-dev.25",
+      "durationSeconds": 499.761,
+      "exitCode": 1,
+      "counts": {
+        "tests": 3120,
+        "suites": 0,
+        "pass": 3113,
+        "fail": 7,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "failedSubtests": [
+        "not ok 18 - ground: the lantern previews the right escort outcome, Cancel preserves it and Accept commits exactly once",
+        "not ok 19 - armed: the lantern previews the right escort outcome, Cancel preserves it and Accept commits exactly once",
+        "not ok 20 - carried: the lantern previews the right escort outcome, Cancel preserves it and Accept commits exactly once",
+        "not ok 22 - nearby uncarried escort: bold-mark preview and confirmation preserve the inventory on Cancel",
+        "not ok 1245 - real rifle-entry UI identifies the face-down skill cost and inactive card effect before the exact fixed-damage dispatch",
+        "not ok 1246 - real Reiter UI keeps ordinary attack effects separate from quicksilver fixed damage and preserves its exact costs and hidden enemy deck",
+        "not ok 1313 - the actual rewards panel describes a skill draw and its real use draws a hand skill without granting equipment"
+      ]
+    },
+    {
+      "nodeVersion": "v24.19.0",
+      "runtimeVersion": "0.8.13-dev.25",
+      "durationSeconds": 516.664,
+      "exitCode": 0,
+      "counts": {
+        "tests": 3122,
+        "suites": 0,
+        "pass": 3122,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "failedSubtests": []
+    }
+  ],
+  "initialFailures": "첫 실행 7개는 제거된 팝업/준비 제목을 기대한 UI 검사. 실제 피해·비용·명령·저장 비교는 유지하며 새 요구로 수정했다. 이후 전체 재실행 두 번 모두 실패 0. 마지막 일반 정보창 차단 강화도 최종 실행에 포함.",
+  "sourcePhotoTestsExcluded": [
+    "campaign covers all 67 ordered sources and 60 numbered cards with images",
+    "reference data preserves printed terminology with the confirmed enemy alias and six enemy sides",
+    "default v0.3 state remains without optional firearm fields and photo confirmation retains raw text",
+    "supplied component photos retain their exact bytes, hashes and card provenance"
+  ],
+  "photoScope": "저장소에 올리지 않는 원본 사진 4개 검사는 기존 CI 정책에 따라 제외. 사진 자체를 검증한 결과로 합산하지 않는다.",
+  "browserChecks": "browser-checks.json",
+  "browserIsFullCampaignRun": false,
+  "runtimeSha256": {
+    "hunt.html": "2e4d179d6116ec6e66a0acce65c35049a3d00884a4afec2204819b0a7b6d6dc6",
+    "package.json": "edaacb9b23f1c2830f8ba9e619e9d9dfd6a220003d38e0fbdc2871334db27244",
+    "src/game-help.js": "0040f6a525ffd17e36e89c9fedeb2f622d4376843e58535df9742515605e654b",
+    "src/hunt-app.js": "ccd782825c6db2b58966a17664c049bfef413643c32a9a9c11e9c77bcf486727",
+    "src/hunt-combat-controls.js": "6f694913c6e301becdcc9dd26613d6ad9cb73fe5819b14044ba9ed1c09bf60fe",
+    "src/hunt-engine.js": "f13a72497082eb4cd6976cbadd6cfc158a2a6e72e63ed91f3d1834fb6b462bf4",
+    "src/hunt-map-controls.js": "28ff900cb39f2a8348ba0aea24e1b7a7ff004e7f1387f817d3cac77119fab7e6",
+    "src/hunt-mission-hud.js": "e0da1688ef82638443b2940bc7ad9bfc86d197203d8f0008dd03bbf925685105",
+    "src/hunt-shell.js": "d80e89122f9546999d0aefb0eac067920c12d869d793e9e2125cd2e35e2cae41",
+    "src/hunt-upgrade-overview.js": "bcffd50aa9b1a307c48d277b429f1486c5e6569efc8cf6962b7a5088657d8bf0",
+    "src/hunt-window-manager.js": "748ca0da745b13c043b552dc3f1f35557a21c7161923a59cb3528c347757e6a9",
+    "src/inventory.js": "3a133fb146c051ae6ede39b8824bc58da28512519819c81825eeb281140e75b8",
+    "styles/hunt-combat-controls.css": "07dbea73460763e173028927a247537bdcbd5dd0006ed64ef2696a217fb5a339",
+    "styles/hunt-window-manager.css": "f6cc503edef087f94ef9cd5549d15059ed574cfea8643d8ddfa6ce1f55de1ed2",
+    "styles/hunt-workspace-layout.css": "18615114ca62e5cd9c8310d97ff60e6fe53f7d96977dc4e8493bca2186f48430",
+    "styles/hunt-workspace-tabs.css": "3f3d314803f57fa2fe3eec2efb20fb6044614a872b8127781b3336533aaabde1"
+  },
+  "screenshotCount": 3,
+  "screenshotBytes": 526337
+}

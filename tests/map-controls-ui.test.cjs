@@ -92,16 +92,21 @@ test("mandatory reward, combat and fog constraints remain blocking in the direct
   }
 });
 
-test("tile inspection shows current enemies, insight, objects, companions and printed rules without changing any game command", () => {
+test("selected-space inspection shows its actual enemy and insight, with tile-wide rules and no game command", () => {
   const state = timeline.find(state => E.missionView(state)?.fog?.includes("tile-04") &&
     state.enemies.some(enemy => enemy.node.startsWith("tile-04:")));
   assert(state); const ui = launch(state), before = ui.storage.get(key);
   const title = ui.el("chapterMap").querySelectorAll("[data-tile-info]").find(button => button.dataset.tileInfo === "tile-04");
   assert(title); title.click(); assert.equal(ui.storage.get(key), before);
+  assert.equal(ui.el("tileInfo").querySelectorAll(".tile-info-space").length, 1);
+  const enemy = state.enemies.find(enemy => enemy.node.startsWith("tile-04:")),
+    figure = ui.el("chapterMap").querySelectorAll("[data-enemy]").find(button => button.dataset.enemy === enemy.id);
+  assert(figure); figure.click();
   assert.match(ui.el("tileInfo").textContent, /마당 등불|망가진 등불|계몽/);
   const info = U.tileInfo(state, "tile-04"); assert(info.fog); assert(info.spaces.some(space => space.enemies.length));
   assert(info.spaces.some(space => space.interactions.some(text => text.includes("꿈 복귀 불가"))));
   assert(ui.el("tileInfo").querySelectorAll("[data-special-info]").length);
+  assert.equal(ui.el("tileInfo").querySelectorAll(".tile-info-space").length, 1);
   ui.el("tileInfo").querySelectorAll("[data-special-info]")[0].click(); assert.equal(ui.el("enemyDetailDialog").open, true);
   assert.equal(ui.storage.get(key), before);
   const withLoot = timeline.find(state => state.loot.length && E.missionView(state)?.tokens?.some(token => token.node));
@@ -122,7 +127,7 @@ test("unnamed tiles omit their invented display name in both the map and tile pa
   assert(!ui.el("chapterMap").innerHTML.match(/tile-info-trigger[^>]*>명칭 없는/));
 });
 
-test("crossing a tile boundary keeps the inspected tile but updates the separate hunter location, and current-location inspection costs nothing", () => {
+test("crossing a tile boundary keeps the inspected tile without repeating hunter location, and current-location inspection costs nothing", () => {
   const index = timeline.findIndex((state, i) => i + 1 < timeline.length && state.phase === "move" &&
     fixture[i]?.type === "STEP" && E.node(state, E.hunter(state).position).tile !== E.node(timeline[i + 1], E.hunter(timeline[i + 1]).position).tile);
   assert(index >= 0);
@@ -136,11 +141,16 @@ test("crossing a tile boundary keeps the inspected tile but updates the separate
     options.find(b => selected[Number(b.dataset.moveOption)].command.node === to).click();
   }
   const reference = timeline[index + 1]; assert.deepEqual(saved(ui), reference);
-  assert.equal(ui.el("tileInspectionStatus").dataset.current, "false");
-  assert.match(ui.el("tileInspectionStatus").textContent, /사냥꾼의 현재 위치.*살펴보는 타일.*현재 위치와 다른 타일/s);
-  assert(ui.el("tileInspectionStatus").textContent.includes(E.node(reference, E.hunter(reference).position).name));
+  assert.equal(ui.el("tileInspectionStatus"), null);
+  assert.equal(ui.el("chapterMap").querySelectorAll("[data-tile]").find(tile => tile.dataset.tile === previousTile).dataset.inspected, "true");
+  assert.equal(ui.el("tileInfo").querySelectorAll(".tile-info-space").length, 1);
+  assert.doesNotMatch(ui.el("tileInfo").textContent, /사냥꾼의 현재 위치|현재 놓인 대상 없음/);
   const before = ui.storage.get(key); ui.el("inspectCurrentTile").click();
-  assert.equal(ui.storage.get(key), before); assert.equal(ui.el("tileInspectionStatus").dataset.current, "true");
+  assert.equal(ui.storage.get(key), before);
+  assert.equal(ui.el("chapterMap").querySelectorAll("[data-tile]").find(tile => tile.dataset.tile === E.node(reference, E.hunter(reference).position).tile).dataset.inspected, "true");
+  const currentNode = E.node(reference, E.hunter(reference).position),
+    currentSpace = M.tile(currentNode.tile).spaces.find(space => space.id === currentNode.spaceId);
+  assert(ui.el("tileInfo").textContent.includes(currentSpace.placeName || currentSpace.label));
 });
 
 test("fixed core controls retain their original costs, selected card and phase-specific command handlers", () => {
@@ -180,11 +190,12 @@ test("every tile's printed labels counterrotate at their original local coordina
   }
 });
 
-test("the movement panel remains between the hand and weapon and the stylesheet supplies actual responsive three-column layout", () => {
-  const html = fs.readFileSync(path.join(root, "hunt.html"), "utf8"), css = fs.readFileSync(path.join(root, "styles/hunt-map-controls.css"), "utf8");
+test("movement remains between hand and weapon while goals get a full column and selected-space details stay compact above the map", () => {
+  const html = fs.readFileSync(path.join(root, "hunt.html"), "utf8"), css = fs.readFileSync(path.join(root, "styles/hunt-workspace-layout.css"), "utf8");
   assert(html.indexOf('id="handHeading"') < html.indexOf('id="movementHeading"'));
   assert(html.indexOf('id="movementHeading"') < html.indexOf('id="weaponName"'));
   assert(html.indexOf('id="tileInfoPanel"') < html.indexOf('id="mapHeading"'));
-  assert.match(css, /grid-template-columns: minmax\(180px, 220px\) minmax\(0, 1fr\) minmax\(270px, 320px\)/);
+  assert(html.indexOf('id="tileInfoPanel"') < html.indexOf('id="missionPanel"'));
+  assert.match(css, /grid-template-columns: var\(--objective-width\) minmax\(0, 1fr\) var\(--decision-width, 320px\)/);
   assert.match(css, /@media \(max-width: 720px\)/); assert.match(css, /@media \(max-width: 480px\)/);
 });

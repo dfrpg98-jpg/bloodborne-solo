@@ -135,12 +135,14 @@ test("the method guide explains unavailable actions without inventing a free lur
   assert.equal(ui.storage.get(qaKey), before);
 });
 
-test("the journal groups required and optional objectives and a story returns to the journal described by its close button", () => {
+test("goals group required and optional objectives separately from the story and hunt journal", () => {
   const ui = at(129), before = ui.storage.get(qaKey);
-  const journal = ui.document.querySelectorAll("[data-panel]").find(button => button.dataset.panel === "journal"); assert(journal);
-  journal.click(); assert.equal(ui.el("infoDialog").open, true);
+  const objectives = ui.document.querySelectorAll("[data-panel]").find(button => button.dataset.panel === "objectives"); assert(objectives);
+  objectives.click(); assert.equal(ui.el("infoTitle").textContent, "목표와 임무");
   assert.match(ui.el("objectiveDetail").textContent, /필수 목표.*계몽 선택 임무/);
   assert.match(ui.el("objectiveDetail").textContent, /개별 계몽 임무는 선택/);
+  const journal = ui.document.querySelectorAll("[data-panel]").find(button => button.dataset.panel === "journal"); assert(journal);
+  journal.click(); assert.equal(ui.el("infoDialog").open, true);
   const story = ui.el("storyList").querySelectorAll("[data-story-key]").find(button => button.dataset.storyKey === "2:18"); assert(story);
   story.click(); assert.equal(ui.el("storyDialog").open, true); assert.equal(ui.el("infoDialog").open, false);
   assert.equal(ui.el("closeStory").textContent, "일지로 돌아가기");
@@ -148,7 +150,7 @@ test("the journal groups required and optional objectives and a story returns to
   assert.doesNotMatch(ui.el("storyRules").textContent, /성직자 야수|야수의 포효/);
   ui.el("closeStory").click();
   assert.equal(ui.el("storyDialog").open, false); assert.equal(ui.el("infoDialog").open, true);
-  assert.equal(ui.el("infoTitle").textContent, "현재 목표와 사냥 기록");
+  assert.equal(ui.el("infoTitle").textContent, "사냥일지");
   const panel = ui.document.querySelectorAll("[data-info-panel]").find(panel => panel.dataset.infoPanel === "journal");
   assert.equal(panel.hidden, false); assert.equal(ui.el("storyRules").innerHTML, "");
   assert.equal(ui.storage.get(qaKey), before, "reading and returning cannot add commands or mutate progression");

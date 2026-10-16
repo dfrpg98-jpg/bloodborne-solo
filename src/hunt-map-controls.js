@@ -60,7 +60,7 @@
     return result;
   }
 
-  function tileInfo(state, tileId) {
+  function tileInfo(state, tileId, options = {}) {
     const placed = state.world.tiles.find(tile => tile.tileId === tileId);
     if (!placed) return null;
     const tile = M.tile(tileId), h = E.hunter(state), mission = E.missionView?.(state);
@@ -72,7 +72,10 @@
     if (carried?.value > 0 && h.position?.startsWith(prefix) && !h.inDream)
       tokens.push({ id: "survivors-held", name: "구조한 생존자", node: h.position,
         carrierId: state.activeHunterId, count: carried.value });
-    const spaces = tile.spaces.map(space => {
+    const requested = options.node && tile.spaces.some(space => prefix + space.id === options.node) ? options.node : null;
+    const selectedNode = requested || (!h.inDream && h.position?.startsWith(prefix) ? h.position : prefix + tile.spaces[0]?.id);
+    const selectedSpaces = options.selectedOnly ? tile.spaces.filter(space => prefix + space.id === selectedNode) : tile.spaces;
+    const spaces = selectedSpaces.map(space => {
       const node = prefix + space.id, atHunter = !h.inDream && node === h.position;
       const enemies = state.enemies.filter(enemy => enemy.node === node).map(enemy => {
         const def = E.enemyDef(state, enemy);
@@ -92,7 +95,7 @@
       return { node, name: space.placeName || space.label, atHunter, enemies, loot,
         interactions, tokens: tokens.filter(token => token.node === node) };
     });
-    return { id: tileId, name: tile.named ? tile.displayName : null, fog, rules: [...(tile.rules || [])], spaces };
+    return { id: tileId, name: tile.named ? tile.displayName : null, fog, rules: [...(tile.rules || [])], selectedNode, spaces };
   }
 
   function uprightSVG(source, rotation) {

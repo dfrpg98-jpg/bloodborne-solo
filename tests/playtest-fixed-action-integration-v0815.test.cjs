@@ -52,9 +52,9 @@ test("real rifle-entry UI identifies the face-down skill cost and inactive card 
   assert(button && !button.disabled); assert.match(labels(ui, "ENTRY_WEAPON"), /선택한 기술을 뒷면으로 놓고 피해 2/);
   assert.doesNotMatch(labels(ui, "ENTRY_WEAPON"), /임무|기술을 으로/);
   assert.match(ui.el("phaseHelp").textContent, /고정 피해 2/);
-  assert.match(html, /고유 행동 준비/); assert.match(html, /고정 피해 2/);
-  assert.match(html, /class="combat-suppressed-effect"><span>미적용<\/span> 공격 피해 \+1/);
-  assert.doesNotMatch(html, /class="combat-selected-card-effect"|적용 후 공격/);
+  assert.match(html, /고정 피해 2/);
+  assert.match(html, /기술을 뒷면으로 놓아 사용/);
+  assert.doesNotMatch(html, /고유 행동 준비|combat-suppressed-effect|class="combat-selected-card-effect"|적용 후 공격|<select/);
   assert.equal(ui.storage.get(key), saved); assert.equal(calls.length, 0, "preparation never dispatches an action");
   const command = { type: "ENTRY_WEAPON", accept: true, cardId, slot: 0 }, expected = E.dispatch(state, command);
   button.click(); assert.equal(ui.el("error").textContent, "");
@@ -76,7 +76,8 @@ test("real Reiter UI keeps ordinary attack effects separate from quicksilver fix
   const shot = action(ui, "WEAPON_SHOT"), html = ui.el("combatSelection").innerHTML;
   assert(shot && !shot.disabled); assert.match(labels(ui, "WEAPON_SHOT"), /수은탄 사격 · 뒷면으로 놓고 피해 2/);
   assert.doesNotMatch(labels(ui, "WEAPON_SHOT"), /임무|· 으로/);
-  assert.match(html, /공격 준비/); assert.match(html, /카드 효과<\/strong> 방해/);
+  assert.doesNotMatch(html, /공격 준비|카드 효과<\/strong>|combat-selected-card-effect|<select/);
+  assert.match(html, /확정 전 공격 · 속도 2 · 피해 2/);
   assert.match(html, /수은탄 사격.*일반 공격과 별도/); assert.match(html, /고정 피해 2/);
   assert.match(html, /필요: 손패 기술 1개 · 2번 빈 슬롯/);
   assert.match(html, /카드·슬롯의 공격 수치와 부착 강화, 룬·소모품의 공격 보정은 이 고정 피해에 더하지 않습니다/);

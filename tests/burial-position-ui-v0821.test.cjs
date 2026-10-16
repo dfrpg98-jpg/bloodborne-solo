@@ -7,7 +7,7 @@ function launch(s) {
     storage: { [key]: E.exportSave(s), "bloodborne-hunt-active-mode": "qa" } });
   return ui;
 }
-function change(ui, id, value) { const el = ui.el(id); assert(el, id); el.value = String(value); el.fire("change"); }
+function change(ui, id, value) { require("./helpers/combat-selection-ui.cjs").chooseControl(ui, id, value); }
 function target(ui, id) {
   const button = ui.el("chapterMap").querySelectorAll("[data-enemy]").find(button => button.dataset.enemy === id);
   assert(button, id); button.click();

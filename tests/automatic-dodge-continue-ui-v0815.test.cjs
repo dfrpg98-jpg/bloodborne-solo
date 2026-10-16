@@ -56,7 +56,8 @@ test("automatic leap-slam dodge labels continuing as an avoided effect and prese
   assert.equal(E.hunter(avoided).rewards.find(reward => reward.id === rewardId).ready, false);
   assert(commandButton(ui, "RESOLVE"));
   assert.match(actionLabel(ui, "RESOLVE"), /회피.*계속/); assert.doesNotMatch(actionLabel(ui, "RESOLVE"), /피해.*받|효과.*받/);
-  assert.match(ui.el("phaseHelp").textContent, /피해와 부가효과를 받지 않습니다/);
+  assert.equal(ui.el("phaseHelp").textContent, "", "the selected dodge is shown on its button rather than a repeated instruction");
+  assert.equal(actionLabel(ui, "DODGE"), "회피 선택됨");
   assert.equal(commandButton(ui, "USE_REWARD", args => args.rewardId === rewardId), undefined);
   click(ui, "RESOLVE");
   const following = current(ui);
@@ -66,7 +67,7 @@ test("automatic leap-slam dodge labels continuing as an avoided effect and prese
   assert.deepEqual(E.hunter(following).hand, hand, "avoided stun does not discard another card");
   assert.equal(E.hunter(following).status.poison, false);
   assert.equal(following.commands.length, state.commands.length + 2);
-  assert.match(actionLabel(ui, "RESOLVE"), /속도 순서대로/);
+  assert.equal(actionLabel(ui, "RESOLVE"), "전투 처리");
 });
 
 test("accepting an unavoided leap-slam still shows and applies its real two damage and stun", () => {

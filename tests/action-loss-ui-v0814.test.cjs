@@ -37,7 +37,8 @@ function selectCard(ui, id) {
 }
 function openPanel(ui, panel) {
   const button = ui.document.querySelectorAll("[data-panel]").find(b => b.dataset.panel === panel);
-  assert(button); button.focus(); button.click(); assert.equal(ui.el("infoDialog").open, true);
+  assert(button); button.focus(); button.click(); assert.equal(ui.el("infoDialog").open, false);
+  assert.equal(ui.el(panel === "inventory" ? "workspaceInventory" : "rewardsPanel").hidden, false);
 }
 test("two held survivors are labelled before cost selection, and Cancel and Escape preserve every saved byte", () => {
   const state = twoHeld(), { ui, normal } = launch(state), saved = ui.storage.get(qaKey);
@@ -92,7 +93,7 @@ test("canceling a portable-lantern action returns to the rewards panel and keeps
   assert(use && !use.disabled); use.focus(); use.click();
   assert.equal(ui.el("infoDialog").open, false); assert.equal(ui.el("actionLossDialog").open, true);
   assert.equal(ui.storage.get(qaKey), saved); ui.el("actionLossCancel").click();
-  assert.equal(ui.el("infoDialog").open, true); assert.match(ui.el("infoTitle").textContent, /보상과 장비/);
+  assert.equal(ui.el("infoDialog").open, false); assert.equal(ui.el("rewardsPanel").hidden, false);
   assert.equal(ui.document.activeElement, use); assert.equal(ui.storage.get(qaKey), saved);
   assert.equal(E.hunter(current(ui)).rewards.find(r => r.id === lamp.id).ready, true);
   assert.equal(ui.storage.get(normalKey), normal);
@@ -108,7 +109,7 @@ test("a teleport consumable warns inside inventory and cancellation restores the
   const use = ui.el("useItem"); assert.equal(use.disabled, false); use.focus(); use.click();
   assert.equal(ui.el("actionLossDialog").open, true); assert.equal(ui.el("infoDialog").open, false);
   assert.equal(ui.storage.get(qaKey), saved); ui.el("actionLossCancel").click();
-  assert.equal(ui.el("infoDialog").open, true); assert.match(ui.el("infoTitle").textContent, /보유 소모품/);
+  assert.equal(ui.el("infoDialog").open, false); assert.equal(ui.el("workspaceInventory").hidden, false);
   assert.equal(ui.document.activeElement, use); assert.equal(ui.storage.get(qaKey), saved);
   assert(E.hunter(current(ui, true)).consumables.some(x => x.id === item.id)); assert.equal(ui.storage.get(normalKey), normal);
 });
