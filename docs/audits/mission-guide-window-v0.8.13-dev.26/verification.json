@@ -119,11 +119,12 @@
     },
     "consoleErrors": [],
     "screenshot": {
-      "path": "images/corpse-action-result.png",
+      "path": "images/corpse-action-result.jpg",
       "bytes": 121103,
       "sha256": "3a1c69ef9f9d9073fb1f4883ed00bc605e1672acf6c59fee847f3274984406b3",
-      "width": 65536,
-      "height": 4292542531
+      "width": 1280,
+      "height": 720,
+      "format": "JPEG"
     }
   },
   "runtimeHashes": {
@@ -142,7 +143,8 @@
     "handoffAcknowledged": true,
     "stableBaseHandedOff": "b474480a20eea4523b781c96edbaade7846615bb",
     "dev25PastTestsNotCountedAsNewDotQa": true,
-    "latestBuildDotQaCompletionClaimed": false
+    "latestBuildDotQaCompletionClaimed": false,
+    "latestBuildUpdateDelivery": "Not delivered: the idle relay fails turn/start with an AbsolutePathBuf/base-path error. Initial dev.25 handoff was acknowledged; a new incoming message was requested."
   },
   "limits": [
     "No new full normal campaign completion claimed.",
