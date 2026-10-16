@@ -98,6 +98,17 @@
       model.incoming = { hp, defense, first, firstMinimum, followup, stun, total: first + followup + stun,
         beforeHealing, fatalBeforeHealing: hp > 0 && beforeHealing >= hp,
         followupIsSeparate: followupPending, firstAlreadyProcessed: phase === "combat_extra" };
+      const leadingDamage = Math.max(0, finite(player?.damage) - Math.max(0, finite(current.enemyDefense)));
+      if (bloodFrenzyMayChange && firstActive && enemy.hp === definition.maxHp &&
+          leadingDamage > 0 && leadingDamage < enemy.hp && first > firstMinimum) {
+        // A faster attack may heal before retaliation. Keep the damage warning,
+        // but do not infer death from pre-heal HP in that case.
+        const fatal = !hasHealing && hp > 0 && first >= hp;
+        add("wounded-retaliation", `피의 광란 · 다친 채 생존 시 반격 최대 ${first}피해${fatal ? " · 현재 체력 기준 사망 가능" : ""}`,
+          `플레이어 공격이 먼저 실제 피해를 주고 적이 다친 채 살아남으면, 피의 광란의 기본 피해가 2에서 4로 증가합니다. ` +
+          `공개된 강화·발광·방어를 반영하면 받을 피해는 최대 ${first}입니다. ` +
+          "회피·방해·최종 처치·토큰 완전 회복 등 추가 처리로 결과가 달라질 수 있습니다.", fatal);
+      }
       const firstStep = { id: "enemy-first", title: `${action.name || "적 공격"} · 첫 타격`,
         detail: firstActive ? bloodFrenzyMayChange ? `적의 공격 시점에 체력이 가득 차 있으면 피해 2, 다친 상태면 피해 4입니다. 현재 공개된 강화·발광·방어를 반영하면 받을 피해 ${firstMinimum}~${first}. 토큰 회복으로 이 조건이 다시 달라질 수 있습니다.` :
           `피해 ${rawFirst}${hunter?.status?.frenzy ? " + 발광 1" : ""}${defense ? ` - 방어 ${defense}` : ""} → 받을 피해 ${first}.` :
@@ -146,7 +157,7 @@
     if (!model || !model.warnings?.length && (compact || !model.sequence?.length)) return "";
     const text = value => esc(clean ? clean(String(value ?? "")) : value);
     if (compact) {
-      const priority = warning => warning.critical ? 0 : ({ "followup-total": 1, revival: 2, "last-attack": 3 })[warning.id] ?? 4,
+      const priority = warning => warning.critical ? 0 : ({ "wounded-retaliation": 1, "followup-total": 1, revival: 2, "last-attack": 3 })[warning.id] ?? 4,
         ordered = [...model.warnings].sort((left, right) => priority(left) - priority(right)),
         visible = ordered.slice(0, 3), remaining = ordered.length - visible.length;
       return `<section class="combat-outcome-preview combat-outcome-preview-compact" role="note" aria-label="공격 결과와 후속 피해 예고"><ul class="outcome-compact-list">${visible.map(warning => `<li class="outcome-warning${warning.critical ? " outcome-warning-critical" : ""}" data-outcome="${esc(warning.id)}"><strong>${text(warning.title)}</strong></li>`).join("")}</ul><p class="outcome-compact-more">${remaining ? `${text(`추가 예고 ${remaining}개`)} · ` : ""}${text("위 전투 상세에서 처리 순서 확인")}</p></section>`;

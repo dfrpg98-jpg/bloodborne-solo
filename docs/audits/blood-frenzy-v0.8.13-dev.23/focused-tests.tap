@@ -1,0 +1,436 @@
+TAP version 13
+# Subtest: SYNTHETIC-QA fast: forecast stays conditional and preserves the actual public-command result
+ok 1 - SYNTHETIC-QA fast: forecast stays conditional and preserves the actual public-command result
+  ---
+  duration_ms: 710.4494
+  type: 'test'
+  ...
+# Subtest: SYNTHETIC-QA tie: forecast stays conditional and preserves the actual public-command result
+ok 2 - SYNTHETIC-QA tie: forecast stays conditional and preserves the actual public-command result
+  ---
+  duration_ms: 463.8686
+  type: 'test'
+  ...
+# Subtest: SYNTHETIC-QA mist: forecast stays conditional and preserves the actual public-command result
+ok 3 - SYNTHETIC-QA mist: forecast stays conditional and preserves the actual public-command result
+  ---
+  duration_ms: 390.0928
+  type: 'test'
+  ...
+# Subtest: SYNTHETIC-QA interrupt: forecast stays conditional and preserves the actual public-command result
+ok 4 - SYNTHETIC-QA interrupt: forecast stays conditional and preserves the actual public-command result
+  ---
+  duration_ms: 336.2487
+  type: 'test'
+  ...
+# Subtest: SYNTHETIC-QA token: forecast stays conditional and preserves the actual public-command result
+ok 5 - SYNTHETIC-QA token: forecast stays conditional and preserves the actual public-command result
+  ---
+  duration_ms: 286.0075
+  type: 'test'
+  ...
+# Subtest: SYNTHETIC-QA real UI: the warning is beside the resolve action without opening the sequence disclosure
+ok 6 - SYNTHETIC-QA real UI: the warning is beside the resolve action without opening the sequence disclosure
+  ---
+  duration_ms: 397.9469
+  type: 'test'
+  ...
+# Subtest: SYNTHETIC component guards: no new increase warning for blocked, absent, resolved, unknown or different-cell attacks
+ok 7 - SYNTHETIC component guards: no new increase warning for blocked, absent, resolved, unknown or different-cell attacks
+  ---
+  duration_ms: 157.0731
+  type: 'test'
+  ...
+# Subtest: SYNTHETIC component arithmetic: the short warning uses public damage buffs, frenzy and defense instead of hardcoded four
+ok 8 - SYNTHETIC component arithmetic: the short warning uses public damage buffs, frenzy and defense instead of hardcoded four
+  ---
+  duration_ms: 151.8893
+  type: 'test'
+  ...
+# Subtest: SYNTHETIC component combat: faster regain heals before retaliation and never gets the new pre-heal death warning
+ok 9 - SYNTHETIC component combat: faster regain heals before retaliation and never gets the new pre-heal death warning
+  ---
+  duration_ms: 155.3106
+  type: 'test'
+  ...
+# Subtest: a naturally acquired firearm exposes its actual ability and preparation on the reward name before choosing it
+ok 10 - a naturally acquired firearm exposes its actual ability and preparation on the reward name before choosing it
+  ---
+  duration_ms: 86.3579
+  type: 'test'
+  ...
+# Subtest: every supplied firearm tooltip preserves its own printed effect instead of a generic pistol ability
+ok 11 - every supplied firearm tooltip preserves its own printed effect instead of a generic pistol ability
+  ---
+  duration_ms: 0.5121
+  type: 'test'
+  ...
+# Subtest: a natural current combat shows both resolved attacks, their exact numbers, effects and speed order without a new command
+ok 12 - a natural current combat shows both resolved attacks, their exact numbers, effects and speed order without a new command
+  ---
+  duration_ms: 28.9688
+  type: 'test'
+  ...
+# Subtest: attack keywords describe their consequences and removed effects cannot return from stale printed keywords
+ok 13 - attack keywords describe their consequences and removed effects cannot return from stale printed keywords
+  ---
+  duration_ms: 0.42
+  type: 'test'
+  ...
+# Subtest: unrevealed actions stay hidden and an ability reaction displays its actual dodge and damage instead of attack speed
+ok 14 - unrevealed actions stay hidden and an ability reaction displays its actual dodge and damage instead of attack speed
+  ---
+  duration_ms: 0.3425
+  type: 'test'
+  ...
+# Subtest: a separately pending followup cannot be mislabeled as canceled or dodged along with the first attack
+ok 15 - a separately pending followup cannot be mislabeled as canceled or dodged along with the first attack
+  ---
+  duration_ms: 0.3081
+  type: 'test'
+  ...
+# Subtest: naturally revealed mission 3 shows its effective attack in the selected enemy and detail popup
+ok 16 - naturally revealed mission 3 shows its effective attack in the selected enemy and detail popup
+  ---
+  duration_ms: 148.2758
+  type: 'test'
+  ...
+# Subtest: naturally revealed mission 10 shows its effective attack in the selected enemy and detail popup
+ok 17 - naturally revealed mission 10 shows its effective attack in the selected enemy and detail popup
+  ---
+  duration_ms: 93.2431
+  type: 'test'
+  ...
+# Subtest: naturally revealed mission 31 shows its effective attack in the selected enemy and detail popup
+ok 18 - naturally revealed mission 31 shows its effective attack in the selected enemy and detail popup
+  ---
+  duration_ms: 238.445
+  type: 'test'
+  ...
+# Subtest: naturally revealed mission 36 shows its effective attack in the selected enemy and detail popup
+ok 19 - naturally revealed mission 36 shows its effective attack in the selected enemy and detail popup
+  ---
+  duration_ms: 158.5856
+  type: 'test'
+  ...
+# Subtest: an ordinary ability stays free of an attack-speed badge and injected public strings are escaped
+ok 20 - an ordinary ability stays free of an attack-speed badge and injected public strings are escaped
+  ---
+  duration_ms: 0.2959
+  type: 'test'
+  ...
+# Subtest: a speed-one attack on Oedon Chapel is presented at speed zero without changing its printed source
+ok 21 - a speed-one attack on Oedon Chapel is presented at speed zero without changing its printed source
+  ---
+  duration_ms: 0.2279
+  type: 'test'
+  ...
+# Subtest: legacy engine mission exceptions and abilities retain their speeds and disclose why the tile penalty is absent
+ok 22 - legacy engine mission exceptions and abilities retain their speeds and disclose why the tile penalty is absent
+  ---
+  duration_ms: 0.1737
+  type: 'test'
+  ...
+# Subtest: a naturally revealed ability buff keeps the engine's final numbers and identifies its public source in combat and enemy detail
+ok 23 - a naturally revealed ability buff keeps the engine's final numbers and identifies its public source in combat and enemy detail
+  ---
+  duration_ms: 16.8419
+  type: 'test'
+  ...
+# Subtest: a natural normal beast on Oedon Chapel displays the same slowed speed in combat and selected-enemy detail
+ok 24 - a natural normal beast on Oedon Chapel displays the same slowed speed in combat and selected-enemy detail
+  ---
+  duration_ms: 35.5578
+  type: 'test'
+  ...
+# Subtest: a lethal enemy attack keeps its cause and real damage when the same command recovers Dream health
+ok 25 - a lethal enemy attack keeps its cause and real damage when the same command recovers Dream health
+  ---
+  duration_ms: 14.5935
+  type: 'test'
+  ...
+# Subtest: lethal poison is identified without attributing an enemy attack that never happened
+ok 26 - lethal poison is identified without attributing an enemy attack that never happened
+  ---
+  duration_ms: 1.5696
+  type: 'test'
+  ...
+# Subtest: lethal weapon sacrifice is separated from received enemy damage
+ok 27 - lethal weapon sacrifice is separated from received enemy damage
+  ---
+  duration_ms: 2.6088
+  type: 'test'
+  ...
+# Subtest: the clinic's lethal printed damage is identified independently of combat
+ok 28 - the clinic's lethal printed damage is identified independently of combat
+  ---
+  duration_ms: 1.2696
+  type: 'test'
+  ...
+# Subtest: prevented lethal attacks, poison and health sacrifices do not announce a death
+ok 29 - prevented lethal attacks, poison and health sacrifices do not announce a death
+  ---
+  duration_ms: 4.7393
+  type: 'test'
+  ...
+# Subtest: a voluntary Dream visit and commands issued inside the Dream do not announce death
+ok 30 - a voluntary Dream visit and commands issued inside the Dream do not announce death
+  ---
+  duration_ms: 1.1172
+  type: 'test'
+  ...
+# Subtest: a natural mission last-attack choice is not a hunter death, while accepting its lethal damage is
+ok 31 - a natural mission last-attack choice is not a hunter death, while accepting its lethal damage is
+  ---
+  duration_ms: 616.4261
+  type: 'test'
+  ...
+# Subtest: a new QA hunt naturally reaches lethal combat and only its final new damage enters the notice
+ok 32 - a new QA hunt naturally reaches lethal combat and only its final new damage enters the notice
+  ---
+  duration_ms: 19.1044
+  type: 'test'
+  ...
+# Subtest: rolled journal entries retain repeated attacks and all damage before death
+ok 33 - rolled journal entries retain repeated attacks and all damage before death
+  ---
+  duration_ms: 0.4867
+  type: 'test'
+  ...
+# Subtest: an old death or a previous attack cannot become the cause of a later voluntary visit
+ok 34 - an old death or a previous attack cannot become the cause of a later voluntary visit
+  ---
+  duration_ms: 0.3
+  type: 'test'
+  ...
+# Subtest: unknown future damage wording reports a confirmed death without inventing a cause or amount
+ok 35 - unknown future damage wording reports a confirmed death without inventing a cause or amount
+  ---
+  duration_ms: 0.3296
+  type: 'test'
+  ...
+# Subtest: reloading the same save, changing hunts or switching hunters cannot replay a notice
+ok 36 - reloading the same save, changing hunts or switching hunters cannot replay a notice
+  ---
+  duration_ms: 0.19
+  type: 'test'
+  ...
+# Subtest: snapshots expose only public health, end-state flags and journal data, never combat plans or hidden decks
+ok 37 - snapshots expose only public health, end-state flags and journal data, never combat plans or hidden decks
+  ---
+  duration_ms: 0.6999
+  type: 'test'
+  ...
+# Subtest: actual QA RESOLVE opens its death summary before restored Dream play and acknowledgement is a pure UI action
+ok 38 - actual QA RESOLVE opens its death summary before restored Dream play and acknowledgement is a pure UI action
+  ---
+  duration_ms: 145.3524
+  type: 'test'
+  ...
+# Subtest: a gameplay click behind the death modal cannot add a command or change either saved hunt
+ok 39 - a gameplay click behind the death modal cannot add a command or change either saved hunt
+  ---
+  duration_ms: 45.4295
+  type: 'test'
+  ...
+# Subtest: Escape acknowledges the death without spending anything, and reloading that save cannot replay its old summary
+ok 40 - Escape acknowledges the death without spending anything, and reloading that save cannot replay its old summary
+  ---
+  duration_ms: 74.2316
+  type: 'test'
+  ...
+# Subtest: the death modal precedes a queued public mission notice and both acknowledgements preserve exact saved bytes
+ok 41 - the death modal precedes a queued public mission notice and both acknowledgements preserve exact saved bytes
+  ---
+  duration_ms: 39.1945
+  type: 'test'
+  ...
+# Subtest: terminal lethal combat retains the cause while its model describes the actual ended hunt
+ok 42 - terminal lethal combat retains the cause while its model describes the actual ended hunt
+  ---
+  duration_ms: 60.8505
+  type: 'test'
+  ...
+# Subtest: actual final-round QA death agrees with the ended background and acknowledgement cannot resume the Dream
+ok 43 - actual final-round QA death agrees with the ended background and acknowledgement cannot resume the Dream
+  ---
+  duration_ms: 155.4027
+  type: 'test'
+  ...
+# Subtest: time exhaustion with living HP ends the hunt without inventing a death dialog or cause
+ok 44 - time exhaustion with living HP ends the hunt without inventing a death dialog or cause
+  ---
+  duration_ms: 46.8797
+  type: 'test'
+  ...
+# Subtest: all four naturally disclosed mission replacements describe the resolved attacks and their conditions
+ok 45 - all four naturally disclosed mission replacements describe the resolved attacks and their conditions
+  ---
+  duration_ms: 5.0419
+  type: 'test'
+  ...
+# Subtest: a newly active enemy replacement is included once in its mission notice without a duplicate objective
+ok 46 - a newly active enemy replacement is included once in its mission notice without a duplicate objective
+  ---
+  duration_ms: 9.4898
+  type: 'test'
+  ...
+# Subtest: undisclosed, completed, removed and non-target enemies never expose mission replacement information
+ok 47 - undisclosed, completed, removed and non-target enemies never expose mission replacement information
+  ---
+  duration_ms: 2.7224
+  type: 'test'
+  ...
+# Subtest: the wounded blood-frenzy condition changes the public summary without repeating it on render
+ok 48 - the wounded blood-frenzy condition changes the public summary without repeating it on render
+  ---
+  duration_ms: 1.8167
+  type: 'test'
+  ...
+# Subtest: required objective and individually optional insight tasks remain distinct without disclosing another task
+ok 49 - required objective and individually optional insight tasks remain distinct without disclosing another task
+  ---
+  duration_ms: 893.7185
+  type: 'test'
+  ...
+# Subtest: the public chapter two corpse objective states actual acquisition and lure cost before a needless huntsman fight
+ok 50 - the public chapter two corpse objective states actual acquisition and lure cost before a needless huntsman fight
+  ---
+  duration_ms: 126.7093
+  type: 'test'
+  ...
+# Subtest: corpse acquisition guidance ends when the disclosed main objective advances past its deposit requirement
+ok 51 - corpse acquisition guidance ends when the disclosed main objective advances past its deposit requirement
+  ---
+  duration_ms: 1.1804
+  type: 'test'
+  ...
+# Subtest: first chapter completion outranks its simultaneous completed mission and later mixed updates
+ok 52 - first chapter completion outranks its simultaneous completed mission and later mixed updates
+  ---
+  duration_ms: 2.5862
+  type: 'test'
+  ...
+# Subtest: accepted rewards, dream growth, completed dream and next chapter preparation expose their actual distinct stages
+ok 53 - accepted rewards, dream growth, completed dream and next chapter preparation expose their actual distinct stages
+  ---
+  duration_ms: 204.0747
+  type: 'test'
+  ...
+# Subtest: final campaign completion preserves its completed dream and offers record keeping without a nonexistent chapter four
+ok 54 - final campaign completion preserves its completed dream and offers record keeping without a nonexistent chapter four
+  ---
+  duration_ms: 0.3143
+  type: 'test'
+  ...
+# Subtest: an enemy-only conditional attack change has its own compact notification category instead of pretending the goal changed
+ok 55 - an enemy-only conditional attack change has its own compact notification category instead of pretending the goal changed
+  ---
+  duration_ms: 131.4293
+  type: 'test'
+  ...
+# Subtest: natural chapter-two patient exposes both remaining lives and its known final death reaction before ATTACK
+ok 56 - natural chapter-two patient exposes both remaining lives and its known final death reaction before ATTACK
+  ---
+  duration_ms: 8.1298
+  type: 'test'
+  ...
+# Subtest: chapter-one shelter also warns about its printed last attack after its remaining token is consumed
+ok 57 - chapter-one shelter also warns about its printed last attack after its remaining token is consumed
+  ---
+  duration_ms: 0.2913
+  type: 'test'
+  ...
+# Subtest: a faster hit against blood frenzy keeps its public wounded-condition damage conditional
+ok 58 - a faster hit against blood frenzy keeps its public wounded-condition damage conditional
+  ---
+  duration_ms: 0.4285
+  type: 'test'
+  ...
+# Subtest: an undisclosed, completed or mismatched mission cannot expose extra lives or future final-kill rules
+ok 59 - an undisclosed, completed or mismatched mission cannot expose extra lives or future final-kill rules
+  ---
+  duration_ms: 0.3431
+  type: 'test'
+  ...
+# Subtest: a public boss phase warns that depleting phase one health is not a final kill
+ok 60 - a public boss phase warns that depleting phase one health is not a final kill
+  ---
+  duration_ms: 2.0738
+  type: 'test'
+  ...
+# Subtest: the disclosed chapter-two invulnerability is visible without using a future boss action
+ok 61 - the disclosed chapter-two invulnerability is visible without using a future boss action
+  ---
+  duration_ms: 476.5763
+  type: 'test'
+  ...
+# Subtest: actual two plus two followup occurs before a slower regain, and the preview warns of death before healing
+ok 62 - actual two plus two followup occurs before a slower regain, and the preview warns of death before healing
+  ---
+  duration_ms: 2.249
+  type: 'test'
+  ...
+# Subtest: dodging only the first hit leaves the separate two-damage followup before slower healing
+ok 63 - dodging only the first hit leaves the separate two-damage followup before slower healing
+  ---
+  duration_ms: 1.9602
+  type: 'test'
+  ...
+# Subtest: separate-hit defense and frenzy use the engine's actual attack and nonattack damage rules
+ok 64 - separate-hit defense and frenzy use the engine's actual attack and nonattack damage rules
+  ---
+  duration_ms: 1.5703
+  type: 'test'
+  ...
+# Subtest: simultaneous lethal damage also precedes regain, without incorrectly placing a later followup before that heal
+ok 65 - simultaneous lethal damage also precedes regain, without incorrectly placing a later followup before that heal
+  ---
+  duration_ms: 1.5311
+  type: 'test'
+  ...
+# Subtest: an already queued extra hit stays visible even after a simultaneous final kill removes the enemy figure
+ok 66 - an already queued extra hit stays visible even after a simultaneous final kill removes the enemy figure
+  ---
+  duration_ms: 1.6666
+  type: 'test'
+  ...
+# Subtest: another enemy's combat cannot lend a resolved action or cancellation to an inspected target
+ok 67 - another enemy's combat cannot lend a resolved action or cancellation to an inspected target
+  ---
+  duration_ms: 0.4802
+  type: 'test'
+  ...
+# Subtest: names are escaped, public input objects are untouched and empty ordinary targets produce no forecast
+ok 68 - names are escaped, public input objects are untouched and empty ordinary targets produce no forecast
+  ---
+  duration_ms: 1.7058
+  type: 'test'
+  ...
+# Subtest: fixed compact warning keeps fatal risk and full followup total without duplicating expanded explanations
+ok 69 - fixed compact warning keeps fatal risk and full followup total without duplicating expanded explanations
+  ---
+  duration_ms: 2.5859
+  type: 'test'
+  ...
+# Subtest: compact warning shows at most three prioritized titles, a remaining count and preserves all expanded warnings
+ok 70 - compact warning shows at most three prioritized titles, a remaining count and preserves all expanded warnings
+  ---
+  duration_ms: 0.3724
+  type: 'test'
+  ...
+# Subtest: a fresh QA hunt legally buys regain and reaches its first-two-plus-extra-two lethal sequence without fixture edits
+ok 71 - a fresh QA hunt legally buys regain and reaches its first-two-plus-extra-two lethal sequence without fixture edits
+  ---
+  duration_ms: 42.7016
+  type: 'test'
+  ...
+1..71
+# tests 71
+# suites 0
+# pass 71
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3165.4677
