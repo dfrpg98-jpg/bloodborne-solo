@@ -1,0 +1,123 @@
+{
+  "format": "reported-independent-cloud-ui-verification-v1",
+  "recordedAt": "2026-10-16T00:29:36.378Z",
+  "recordedDateKST": "2026-10-16",
+  "provenance": "독립 클라우드 QA 대화가 전달한 실제 UI 관찰; 이 기록 반영 작업에서 로컬 재실행하지 않음",
+  "productCommit": "179afaefd273e2e386714ed7ec80d217ef1e676e",
+  "productVersion": "0.8.13-dev.15",
+  "environment": {
+    "kind": "separate independent cloud UI",
+    "port": 8767
+  },
+  "cases": [
+    {
+      "id": "tonitrus-normal-new-hunt",
+      "mode": "normal-new-hunt",
+      "selection": {
+        "card": "strength",
+        "slot": 1
+      },
+      "charged": {
+        "speed": 3,
+        "damage": 4,
+        "damageFormula": {
+          "base": 2,
+          "card": 1,
+          "weapon": 1
+        }
+      },
+      "afterRoundEndedWithoutAttacking": {
+        "speed": 2,
+        "damage": 3,
+        "chargeShown": false
+      },
+      "actualAttackExecutionVerified": false,
+      "campaignCompletionClaimed": false
+    },
+    {
+      "id": "axe-synthetic-both-targets",
+      "mode": "synthetic-QA",
+      "choiceFieldsIndependentlyObserved": [
+        "figure number",
+        "space",
+        "HP",
+        "damage"
+      ],
+      "independentSelections": [
+        {
+          "selectedTarget": {
+            "figure": 2,
+            "position": "upper space",
+            "beforeHp": 5,
+            "afterHp": 3
+          },
+          "otherTarget": {
+            "figure": 1,
+            "position": "lower space",
+            "beforeHp": 5,
+            "afterHp": 5
+          }
+        },
+        {
+          "originalSaveReimported": true,
+          "selectedTarget": {
+            "figure": 1,
+            "position": "lower space",
+            "beforeHp": 5,
+            "afterHp": 3
+          },
+          "otherTarget": {
+            "figure": 2,
+            "position": "upper space",
+            "beforeHp": 5,
+            "afterHp": 5
+          }
+        }
+      ],
+      "targetOneSelectionIndependentlyVerified": true,
+      "targetTwoSelectionIndependentlyVerified": true,
+      "campaignProgressClaimed": false
+    },
+    {
+      "id": "bone-synthetic-automatic-dodge",
+      "mode": "synthetic-QA",
+      "afterDodge": {
+        "noDamageAndAdditionalEffectsNotice": true,
+        "continueLabel": "회피 적용 후 계속"
+      },
+      "afterContinue": {
+        "hp": 6,
+        "maxHp": 6,
+        "handCount": 2,
+        "nextEncounterContinued": true
+      },
+      "syntheticChapterThreeCountedAsCampaignProgress": false
+    },
+    {
+      "id": "rifle-existing-normal-save-restoration",
+      "mode": "existing-normal-player-save",
+      "originalProgress": "chapter1 completed in earlier actual play",
+      "normalPublicImportSucceeded": true,
+      "restoredScreen": "chapter2 preparation",
+      "verificationScope": "save compatibility and restoration only",
+      "newChapterOneCompletionClaimed": false,
+      "newChapterTwoCompletionClaimed": false
+    }
+  ],
+  "accounting": {
+    "normalPlayAndSyntheticQASeparated": true,
+    "newCampaignMilestonesClaimed": [],
+    "existingLocalAutomaticCountUnchanged": 2928,
+    "existingLocalNativeCountUnchanged": 8,
+    "additionalLocalTestRunClaimed": false,
+    "normalSaveRestorationCountedAsNewChapterCompletion": false
+  },
+  "changes": {
+    "documentationOnly": true,
+    "productLogicChanged": false,
+    "merged": false,
+    "deployed": false,
+    "existingProductAndTestFilesHashVerified": 595
+  },
+  "reportHistoryNote": "최초 전달의 도끼 대상1 미확인 상태는 후속 독립 선택 성공 결과로 대체했습니다. 일반 저장 복원도 별도 항목으로 추가했습니다."
+}
