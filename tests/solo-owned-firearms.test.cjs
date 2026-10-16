@@ -1,5 +1,5 @@
 const test = require('node:test'), assert = require('node:assert/strict');
-const E = require('../hunt-engine.js');
+const E = require('../src/hunt-engine.js');
 
 test('owned firearm descriptions use the same supplied definitions as actual play in each saved rules version', () => {
   for (const rulesVersion of [8, 9, 10, 11]) {

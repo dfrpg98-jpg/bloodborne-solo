@@ -1,7 +1,7 @@
 (function (root) {
   "use strict";
   const source = typeof module !== "undefined" && module.exports
-    ? require("./components/extended-enemies.json") : root.BBExtendedEnemySource;
+    ? require("../components/extended-enemies.json") : root.BBExtendedEnemySource;
   const clone = (value) => JSON.parse(JSON.stringify(value));
   const specimens = Object.fromEntries(source.enemyCards.map((printed) => [printed.id, clone(printed)]));
   const generalIds = source.enemyCards.filter((card) => card.sideRole === "random-chapter-face").map((card) => card.id);

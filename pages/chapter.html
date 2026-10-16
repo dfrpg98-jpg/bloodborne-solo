@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="ko">
   <head>
+  <base href="../">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>기나긴 사냥 · 챕터 1 준비와 탐험</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="chapter.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/chapter.css" />
   </head>
   <body>
     <header class="topbar">
@@ -20,7 +21,7 @@
         <a class="button primary" href="hunt.html">실제 지도에서 사냥</a>
         <span class="badge">SOLO / v0.5.0</span
         ><a class="button" href="index.html">전투 훈련</a
-        ><a class="button" href="campaign.html" target="_blank">캠페인 소개 ↗</a
+        ><a class="button" href="pages/campaign.html" target="_blank">캠페인 소개 ↗</a
         ><button id="exportMap">저장 내보내기</button
         ><button id="importMap">불러오기</button
         ><button id="newMap">새 챕터 준비</button
@@ -201,10 +202,10 @@
       </div>
     </dialog>
     <script src="campaigns/long-hunt/data.js"></script>
-    <script src="tile-geometry.js"></script>
-    <script src="start-placement.js"></script>
-    <script src="enemy-deck.js"></script>
-    <script src="chapter-engine.js"></script>
-    <script src="chapter-app.js"></script>
+    <script src="src/tile-geometry.js"></script>
+    <script src="src/start-placement.js"></script>
+    <script src="src/enemy-deck.js"></script>
+    <script src="src/chapter-engine.js"></script>
+    <script src="src/chapter-app.js"></script>
   </body>
 </html>

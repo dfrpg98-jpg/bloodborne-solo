@@ -1,7 +1,7 @@
 const { test } = require("node:test"),
   assert = require("node:assert/strict");
-const E = require("../engine.js"),
-  ED = require("../enemy-deck.js");
+const E = require("../src/engine.js"),
+  ED = require("../src/enemy-deck.js");
 const send = (s, type, a = {}) => E.dispatch(s, { type, ...a });
 function combat(kind, gun = "hunter-pistol") {
   let s = E.create(91, "burial", 0, null, gun);

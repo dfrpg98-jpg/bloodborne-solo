@@ -1,4 +1,4 @@
-const test=require('node:test'),assert=require('node:assert/strict'),E=require('../hunt-engine.js');
+const test=require('node:test'),assert=require('node:assert/strict'),E=require('../src/hunt-engine.js');
 const commands=require('./fixtures/actual-boss-natural-commands.json');
 test('new solo commands naturally reach the actual chapter-two boss and replay its insight movement decision',()=>{
   let s=E.create(90,'burial',1,null,'hunter-pistol','center',{campaign:true,rulesVersion:9});

@@ -1,5 +1,5 @@
 const test = require("node:test"), assert = require("node:assert/strict");
-const M = require("../chapter-engine.js"), E = require("../hunt-engine.js");
+const M = require("../src/chapter-engine.js"), E = require("../src/hunt-engine.js");
 const go = (s, type, args = {}) => E.dispatch(s, { type, ...args });
 const layout = [
   { tileId: "tile-14", x: 0, y: 0, rotation: 0 },

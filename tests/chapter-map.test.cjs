@@ -1,7 +1,7 @@
 const { test } = require("node:test"),
   assert = require("node:assert/strict");
-const E = require("../chapter-engine.js"),
-  ED = require("../enemy-deck.js");
+const E = require("../src/chapter-engine.js"),
+  ED = require("../src/enemy-deck.js");
 const send = (s, type, a = {}) => E.dispatch(s, { type, ...a });
 function path(s, target) {
   const q = [[s.position]],
@@ -190,7 +190,7 @@ test("tampered saves and training saves are rejected without silently accepting 
   assert.throws(
     () =>
       E.importSave(
-        require("../engine.js").exportSave(require("../engine.js").create()),
+        require("../src/engine.js").exportSave(require("../src/engine.js").create()),
       ),
     /형식/,
   );

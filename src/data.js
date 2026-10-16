@@ -164,7 +164,7 @@
   };
   const components =
     typeof module !== "undefined" && module.exports
-      ? require("./components/cards.js")
+      ? require("../components/cards.js")
       : root.BBComponents;
   data.consumables = Object.fromEntries(
     components.cards

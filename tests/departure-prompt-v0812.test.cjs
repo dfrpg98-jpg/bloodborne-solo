@@ -1,6 +1,6 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine'),P=require('../hunt-departure');
+const E=require('../src/hunt-engine'),P=require('../src/hunt-departure');
 const H=E.hunter,clone=structuredClone;
 function house() {
   let s=E.create(14,'beast-claw',0,null,'hunter-pistol','center',{campaign:true});

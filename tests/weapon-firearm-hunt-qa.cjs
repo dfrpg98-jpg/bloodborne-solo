@@ -1,7 +1,7 @@
 "use strict";
 // Bounded natural campaign breadth QA. The simple policy is deliberately not
 // a solver and a loss is a valid terminal result, not a campaign-win claim.
-const assert = require("node:assert/strict"), E = require("../hunt-engine.js");
+const assert = require("node:assert/strict"), E = require("../src/hunt-engine.js");
 const { choose: basicChoose } = require("./hunt-playthrough-helper.cjs");
 function choose(s) {
   const h = E.hunter(s), choices = s.rewardChoices || [];

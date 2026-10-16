@@ -1,7 +1,7 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
 const fs = require("node:fs"), path = require("node:path"), vm = require("node:vm");
-const E = require("../hunt-engine"), M = require("../chapter-engine"), ED = require("../enemy-deck"), G = require("../tile-geometry");
+const E = require("../src/hunt-engine"), M = require("../src/chapter-engine"), ED = require("../src/enemy-deck"), G = require("../src/tile-geometry");
 const C = require("../campaigns/long-hunt/data.json"), cards = require("../components/cards.json");
 const { boot, Document } = require("./helpers/ui-harness.cjs");
 const root = path.join(__dirname, "..");
@@ -135,17 +135,17 @@ test("an existing legacy save still loads its actual inventory and public UI wit
 });
 
 test("the former full campaign archive now shows only the introduction and playable entry point", () => {
-  const ui = secondary("campaign.html", "campaign.js", { BBLongHunt: C });
+  const ui = secondary("pages/campaign.html", "src/campaign.js", { BBLongHunt: C });
   assert.match(treeText(ui.el("campaignIntro")), /재앙의 야수/);
   assert.equal(ui.el("cardList"), null); assert.equal(ui.el("openArchive"), null);
   noSourcePhotos(ui.document, "campaign introduction");
-  const html = fs.readFileSync(path.join(root, "campaign.html"), "utf8");
+  const html = fs.readFileSync(path.join(root, "pages/campaign.html"), "utf8");
   assert.match(html, /href="hunt\.html"/);
   assert.doesNotMatch(html, /data\.json|download|card-\d+\.jpg|원본 자료|이후 카드|후속 카드/);
 });
 
 test("the public component catalogue retains basic effects without revealing future quest rewards or source metadata", () => {
-  const ui = secondary("components.html", "components.js", { BBComponents: cards }), list = ui.el("cards");
+  const ui = secondary("pages/components.html", "src/components.js", { BBComponents: cards }), list = ui.el("cards");
   assert(list.children.some(article => article.dataset.id === "strength"));
   assert(list.children.some(article => article.dataset.id === "antidote"));
   assert.equal(list.children.some(article => cards.cards.find(card => card.id === article.dataset.id)?.group === "reward"), false);
@@ -159,7 +159,7 @@ test("the public component catalogue retains basic effects without revealing fut
 });
 
 test("legacy map exploration keeps enemy attack rules and code-drawn tiles while removing original enemy pictures", () => {
-  const ui = secondary("chapter.html", "chapter-app.js", { BBChapter: M, BBEnemyDeck: ED, BBTileGeometry: G,
+  const ui = secondary("pages/chapter.html", "src/chapter-app.js", { BBChapter: M, BBEnemyDeck: ED, BBTileGeometry: G,
     BBStartPlacement: { mount: () => ({ update() {} }) } });
   assert.match(ui.el("chapterEnemies").innerHTML, /기본 공격/);
   assert.match(ui.el("chapterEnemies").innerHTML, /전용 능력/);

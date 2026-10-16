@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict"), fs = require("node:fs"), path = require("node:path");
-const E = require("../hunt-engine"), { boot } = require("./helpers/ui-harness.cjs"), { clickCommand, replayPublicTrace } = require("./helpers/public-command-ui.cjs");
+const E = require("../src/hunt-engine"), { boot } = require("./helpers/ui-harness.cjs"), { clickCommand, replayPublicTrace } = require("./helpers/public-command-ui.cjs");
 const normalKey = "bloodborne-hunt-v07", qaKey = "bloodborne-hunt-qa-v1", activeKey = "bloodborne-hunt-active-mode";
 const realEngine = { create: E.create, importSave: E.importSave, exportSave: E.exportSave, dispatch: E.dispatch,
   missionView: E.missionView, rewardsView: E.rewardsView, missionActions: E.missionActions,

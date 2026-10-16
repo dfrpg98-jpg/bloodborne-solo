@@ -1,5 +1,5 @@
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), T = require("../temporary-components");
+const E = require("../src/hunt-engine"), T = require("../src/temporary-components");
 const H = E.hunter, go = (s, type, a = {}) => E.dispatch(s, { type, ...a });
 const create = (id) => E.create(123, "burial", 0, null, "hunter-pistol", "center", { campaign: false, provisional: id });
 function fighting(id) {

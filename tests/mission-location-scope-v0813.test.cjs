@@ -1,6 +1,6 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine'),Mission=require('../mission-engine');
+const E=require('../src/hunt-engine'),Mission=require('../src/mission-engine');
 const C=require('../campaigns/long-hunt/data.json');
 const H=E.hunter,clone=structuredClone;
 const command=(s,c)=>E.dispatch(s,c);

@@ -1,7 +1,7 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
-const E = require("../engine.js"),
+const E = require("../src/engine.js"),
   C = require("../components/cards.js");
 const h = E.hunter,
   cmd = (s, type, a = {}) => E.dispatch(s, { type, ...a });

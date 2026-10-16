@@ -1,4 +1,4 @@
-const test=require('node:test'),assert=require('node:assert/strict'),E=require('../hunt-engine.js');
+const test=require('node:test'),assert=require('node:assert/strict'),E=require('../src/hunt-engine.js');
 const commands=require('./fixtures/full-campaign-actual-v10-commands.json');
 test('released rules-eleven campaign wins all three chapters from 325 public commands and resumes each actual boss phase',()=>{
   let s=E.create(90,'burial',1,null,'hunter-pistol','center',{campaign:true,rulesVersion:11}),phases=new Set();

@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine.js");
+const E = require("../src/hunt-engine.js");
 const weapons = Object.keys(E.data.weapons).filter(id => id !== "training");
 const guns = ["hunter-pistol", "evelyn", "cannon", "repeating-pistol", "rosmarinus", "flamesprayer", "ludwig-rifle", "hunter-blunderbuss"];
 // These are real practice encounters, created and advanced exclusively through
@@ -372,7 +372,7 @@ test("fixture: stopping a later pursuer with the Torch cannot erase an earlier c
   // Focused mission fixture: the two pursuers and already-active survivor
   // mission are arranged explicitly. Unlike the matrix traces above, this
   // fixture does not claim a natural mission path or command-save replay.
-  const R = require("../rewards-engine.js");
+  const R = require("../src/rewards-engine.js");
   let s = E.create(4, "burial", 0, null, "hunter-pistol", "center", { campaign: true, rulesVersion });
   R.grant(s, "hunter-torch");
   s.world.assignments.find(a => a.enemyId === "huntsman-mob").sideId = "a";

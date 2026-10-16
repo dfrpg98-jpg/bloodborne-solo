@@ -1,5 +1,5 @@
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine.js');
+const E=require('../src/hunt-engine.js');
 const {clickCommand,replayPublicTrace}=require('./helpers/public-command-ui.cjs');
 const {boot}=require('./helpers/ui-harness.cjs');
 const naturalCommands=require('./fixtures/v077-chapel-escort-first-natural-commands.json');

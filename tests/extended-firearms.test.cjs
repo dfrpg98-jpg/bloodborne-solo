@@ -1,7 +1,7 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
 const fs = require("node:fs"), path = require("node:path"), vm = require("node:vm");
-const G = require("../extended-firearms.js"), F = require("../firearms-engine.js");
+const G = require("../src/extended-firearms.js"), F = require("../src/firearms-engine.js");
 function setup(id, phase = "hunter") {
   const s = { setup: { rulesVersion: 10 }, phase, round: 1, activeHunterId: "h",
     hunters: { h: { hp: 6, inDream: false, firearmReady: true, firearmId: id, position: "n", echoes: 2,
@@ -65,7 +65,7 @@ test("firearm stock is recorded separately from starting firearms with exact use
 
 test("extended firearms work offline and clone definitions independently", () => {
   const context = vm.createContext({});
-  for (const file of ["../components/extended-firearms.js", "../extended-firearms.js"])
+  for (const file of ["../components/extended-firearms.js", "../src/extended-firearms.js"])
     vm.runInContext(fs.readFileSync(path.resolve(__dirname, file), "utf8"), context);
   assert.deepEqual(JSON.parse(JSON.stringify(context.BBExtendedFirearms.source)), G.source);
   assert.deepEqual(require("../components/extended-firearms.js"), G.source);

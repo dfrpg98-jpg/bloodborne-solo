@@ -1,6 +1,6 @@
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), Training = require("../engine"),
-  M = require("../chapter-engine"), R = require("../rewards-engine"),
+const E = require("../src/hunt-engine"), Training = require("../src/engine"),
+  M = require("../src/chapter-engine"), R = require("../src/rewards-engine"),
   C = require("../components/cards.json"),
   commands = require("./fixtures/chapter-one-commands.json"),
   { choose } = require("./hunt-playthrough-helper.cjs");

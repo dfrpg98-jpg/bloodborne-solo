@@ -1,7 +1,7 @@
 const test = require("node:test"), assert = require("node:assert/strict");
 const fs = require("node:fs"), path = require("node:path"), crypto = require("node:crypto"), vm = require("node:vm");
 const { referenceSource } = require("./helpers/reference-source.cjs");
-const A = require("../actual-components"), F = require("../firearms-engine"), T = require("../temporary-components");
+const A = require("../src/actual-components"), F = require("../src/firearms-engine"), T = require("../src/temporary-components");
 const source = require("../components/supplied-components.json"), root = path.join(__dirname, "..");
 
 test("supplied component photos retain their exact bytes, hashes and card provenance", () => {
@@ -76,7 +76,7 @@ test("firearm effects and preparation costs preserve photos and direct user tran
 });
 test("browser mirrors load offline and match the source without mutating transcriptions", () => {
   const before = JSON.stringify(source), context = vm.createContext({});
-  for (const file of ["components/supplied-components.js", "actual-components.js", "firearms-engine.js"])
+  for (const file of ["components/supplied-components.js", "src/actual-components.js", "src/firearms-engine.js"])
     vm.runInContext(fs.readFileSync(path.join(root, file), "utf8"), context);
   assert.deepEqual(JSON.parse(JSON.stringify(context.BBSuppliedComponents)), source);
   assert.deepEqual(JSON.parse(JSON.stringify(context.BBActualComponents.definition("iosefka-hostile"))), A.definition("iosefka-hostile"));

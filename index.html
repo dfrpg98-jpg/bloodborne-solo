@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>블러드본 · 사냥의 기록</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body>
     <header class="topbar">
@@ -20,11 +20,11 @@
         <span class="badge">SOLO / v0.5.0</span
         ><button id="save">저장 내보내기</button
         ><button id="load">불러오기</button
-        ><a class="button" href="guide.html" target="_blank">사용 안내 ↗</a
-        ><a class="button" href="campaign.html" target="_blank"
+        ><a class="button" href="pages/guide.html" target="_blank">사용 안내 ↗</a
+        ><a class="button" href="pages/campaign.html" target="_blank"
           >기나긴 사냥 소개 ↗</a
-        ><a class="button" href="components.html" target="_blank">카드 목록 ↗</a
-        ><a class="button" href="chapter.html">챕터 1 준비·탐험 →</a
+        ><a class="button" href="pages/components.html" target="_blank">카드 목록 ↗</a
+        ><a class="button" href="pages/chapter.html">챕터 1 준비·탐험 →</a
         ><button id="new" class="quiet">새 훈련</button
         ><input type="file" id="file" accept=".json,application/json" hidden />
       </div>
@@ -235,10 +235,10 @@
       </div>
     </dialog>
     <script src="components/cards.js"></script>
-    <script src="data.js"></script>
-    <script src="enemy-deck.js"></script>
-    <script src="engine.js"></script>
-    <script src="inventory.js"></script>
-    <script src="app.js"></script>
+    <script src="src/data.js"></script>
+    <script src="src/enemy-deck.js"></script>
+    <script src="src/engine.js"></script>
+    <script src="src/inventory.js"></script>
+    <script src="src/app.js"></script>
   </body>
 </html>
