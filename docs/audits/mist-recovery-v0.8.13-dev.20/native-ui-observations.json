@@ -1,0 +1,122 @@
+{
+  "version": "0.8.13-dev.20",
+  "method": "Isolated localhost8818, normal file chooser + actual public UI selection/attack/export/free-transform/export. No browser engine calls or internal state injection.",
+  "afterImport": {
+    "comparison": "성직자 야수와 전투\n\n공개된 행동의 지시를 확인하세요.\n\n플레이어 · 처리한 장치무기 공격\n가르기\n속도 3\n피해 5\n공격 후 치유\n공격 후 체력을 2 회복합니다.\n공격 후 무료 변형\n공격 후 무기를 무료로 변형할 수 있습니다.\n\n사용한 무기의 고유 효과\n이번 라운드에 수행한 이동 행동마다 +1피해를 줍니다.\n\n적 · 전용 능력\n회복\n\n추가 효과 없음\n\n행동 설명\n\n계몽 토큰을 모두 제거합니다.\n사냥꾼의 공격에서 피해2를 방어합니다.\n현재 페이즈의 성직자 야수 행동 덱을 섞습니다.\n적 방어 2\n플레이어 공격 처리 완료\n마비 안개 · 전용 능력에는 미적용",
+    "feedbackScript": "hunt-combat-feedback.js?v=0.8.13-dev.20&h=c86f5ce1ad20",
+    "freeTransformButton": {
+      "bottom": 599.25,
+      "height": 35.5,
+      "left": 962,
+      "right": 1248,
+      "top": 563.75,
+      "width": 286,
+      "x": 962,
+      "y": 563.75
+    },
+    "phase": "무료 무기 변형",
+    "statusCards": 0,
+    "statusRect": {
+      "bottom": 536.75,
+      "height": 66,
+      "left": 975,
+      "right": 1235,
+      "top": 470.75,
+      "width": 260,
+      "x": 975,
+      "y": 470.75
+    }
+  },
+  "afterFreeTransform": {
+    "comparisonVisible": false,
+    "errors": "",
+    "phase": "플레이어의 차례",
+    "statusCards": 0,
+    "weapon": "총창"
+  },
+  "exports": [
+    {
+      "stage": "loaded",
+      "file": "evidence/native-loaded-export.json",
+      "bytes": 68797,
+      "sha256": "28719570e574770ca761e2b330196a12923d9d1a0edfcea1183eb65472bdc4a4",
+      "expectedBytes": 68797,
+      "byteEqual": true,
+      "stateEqual": true,
+      "revision": 418,
+      "lastCommand": {
+        "type": "ATTACK",
+        "enemyId": "mission-main",
+        "cardId": "card-18",
+        "slot": 0,
+        "itemIds": [
+          "item-numbing-mist-1"
+        ],
+        "pullIds": [],
+        "rewardIds": [
+          "reward-28"
+        ]
+      }
+    },
+    {
+      "stage": "attack",
+      "file": "evidence/native-attack-export.json",
+      "bytes": 68797,
+      "sha256": "28719570e574770ca761e2b330196a12923d9d1a0edfcea1183eb65472bdc4a4",
+      "expectedBytes": 68797,
+      "byteEqual": true,
+      "stateEqual": true,
+      "revision": 418,
+      "lastCommand": {
+        "type": "ATTACK",
+        "enemyId": "mission-main",
+        "cardId": "card-18",
+        "slot": 0,
+        "itemIds": [
+          "item-numbing-mist-1"
+        ],
+        "pullIds": [],
+        "rewardIds": [
+          "reward-28"
+        ]
+      }
+    },
+    {
+      "stage": "followup",
+      "file": "evidence/native-followup-export.json",
+      "bytes": 65632,
+      "sha256": "248feda98225e6d45f9b9936c8a03db0b2e7ee02920d5e94c336627fb3a6df76",
+      "expectedBytes": 65632,
+      "byteEqual": true,
+      "stateEqual": true,
+      "revision": 419,
+      "lastCommand": {
+        "type": "FREE_TRANSFORM",
+        "accept": true
+      }
+    }
+  ],
+  "allExportsExact": true,
+  "finalVisualRefresh": {
+    "enemyComparison": "적 · 전용 능력\n회복\n\n행동 설명\n\n계몽 토큰을 모두 제거합니다.\n사냥꾼의 공격에서 피해2를 방어합니다.\n현재 페이즈의 성직자 야수 행동 덱을 섞습니다.",
+    "feedbackScript": "hunt-combat-feedback.js?v=0.8.13-dev.20&h=8c97ed1a9b6b",
+    "phase": "무료 무기 변형",
+    "status": "적 방어 2\n플레이어 공격 처리 완료\n마비 안개 · 전용 능력에는 미적용",
+    "statusCards": 0,
+    "statusRect": {
+      "bottom": 536.75,
+      "height": 66,
+      "left": 975,
+      "right": 1235,
+      "top": 470.75,
+      "width": 260,
+      "x": 975,
+      "y": 470.75
+    },
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    },
+    "scope": "Final 8c97 build reloaded and exact actual after-command-417 checkpoint imported again. The earlier native ATTACK/FREE_TRANSFORM exports are byte-exact evidence from the c86 build, before the final omission of the empty-effects placeholder; no engine or action code changed."
+  }
+}

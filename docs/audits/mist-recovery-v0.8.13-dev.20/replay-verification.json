@@ -1,0 +1,166 @@
+{
+  "scope": "Strict replay of a supplied parent's dev.17 completed normal campaign save in the current engine. This is not a fresh local playthrough. The original file was read only; derived checkpoints are exact canonical prefix exports.",
+  "source": {
+    "fileName": "bloodborne-dev17-rifle-campaign-completed-save.json",
+    "byteLength": 68051,
+    "sha256": "0c655a1a0698c997f66398e794c392fff65bcf6a66316c4ebee686637b2d57d6",
+    "reportedParentBuild": "dev.17 aa511226",
+    "strictImportPassed": true,
+    "full448CommandReplayExactOriginalExport": true,
+    "originalBytesPreserved": true
+  },
+  "engineSha256": "9da62acf9369545235b604a18e27374211de9c10d2354d346970eb551ae7065f",
+  "attack": {
+    "zeroBasedCommandIndex": 417,
+    "oneBasedOrdinal": 418,
+    "command": {
+      "type": "ATTACK",
+      "enemyId": "mission-main",
+      "cardId": "card-18",
+      "slot": 0,
+      "itemIds": [
+        "item-numbing-mist-1"
+      ],
+      "pullIds": [],
+      "rewardIds": [
+        "reward-28"
+      ]
+    },
+    "chapter": 3,
+    "round": 11,
+    "cardKind": "regain",
+    "weaponFace": 1,
+    "speed": 3,
+    "listedDamage": 5,
+    "action": {
+      "name": "회복",
+      "type": "ability",
+      "code": "cleric-recovery"
+    },
+    "rawRemoveEnemyAttackEffectsFlag": true,
+    "enemyDefense": 2,
+    "dealtDamage": 3,
+    "bossHp": {
+      "before": 8,
+      "after": 5
+    },
+    "insightTokens": {
+      "before": 0,
+      "after": 0,
+      "limitation": "Both are zero; the observed log reports token removal, but this save does not demonstrate clearing positive tokens."
+    },
+    "hunterHp": {
+      "before": 5,
+      "after": 6,
+      "printedAfterAttackHeal": 2,
+      "effectiveHealing": 1
+    },
+    "mist": {
+      "heldBefore": 1,
+      "heldAfter": 0,
+      "discardedAfter": 1
+    },
+    "reward": {
+      "id": "reward-28",
+      "kind": "rune-hunter",
+      "readyBefore": true,
+      "readyAfter": false
+    },
+    "slot0After": {
+      "id": "card-18",
+      "kind": "regain"
+    },
+    "phaseAfter": "free_transform",
+    "bossDeckOrderChanged": true,
+    "publicEvents": [
+      {
+        "round": 11,
+        "text": "카릴 문자:사냥 사용 · 소진했습니다."
+      },
+      {
+        "round": 11,
+        "text": "마비 안개 사용 · 소모품 버림 더미에 놓았습니다."
+      },
+      {
+        "round": 11,
+        "text": "리게인 → 가르기 (속도 3, 피해 5)."
+      },
+      {
+        "round": 11,
+        "text": "성직자 야수 2페이즈 · 회복: 회복."
+      },
+      {
+        "round": 11,
+        "text": "성직자 야수 회복 · 계몽 제거, 사냥꾼 공격 피해2 방어, 현재 행동 덱을 다시 섞습니다."
+      },
+      {
+        "round": 11,
+        "text": "재앙의 야수 #1 재출현 · 가장 먼 피규어 재사용, 체력 회복."
+      },
+      {
+        "round": 11,
+        "text": "가르기 · 적에게 3 피해."
+      },
+      {
+        "round": 11,
+        "text": "리게인 · 공격 후 치유 2."
+      }
+    ]
+  },
+  "nextCommand": {
+    "zeroBasedCommandIndex": 418,
+    "command": {
+      "type": "FREE_TRANSFORM",
+      "accept": true
+    },
+    "phaseAfter": "hunter",
+    "exactExportSha256After": "248feda98225e6d45f9b9936c8a03db0b2e7ee02920d5e94c336627fb3a6df76"
+  },
+  "checkpoints": [
+    {
+      "file": "ACTUAL-REPLAY-before-command-417.json",
+      "commandCount": 417,
+      "lastIncludedZeroBasedIndex": 416,
+      "sha256": "ebaa641853d3537fca8f0562ffee1dafc1e24a756fb0245b992ba2d2d8ed6b9e",
+      "bytes": 65150,
+      "strictImportExactExport": true
+    },
+    {
+      "file": "ACTUAL-REPLAY-after-command-417.json",
+      "commandCount": 418,
+      "lastIncludedZeroBasedIndex": 417,
+      "sha256": "28719570e574770ca761e2b330196a12923d9d1a0edfcea1183eb65472bdc4a4",
+      "bytes": 68797,
+      "strictImportExactExport": true
+    }
+  ],
+  "uiFinding": "The raw removal flag remains true for the consumable, but the already disclosed action is an ability. Scope the removal badge/caption to attack actions; the engine recovery outcome and resource costs are retained.",
+  "uiRegression": {
+    "command": "node --test tests/mist-recovery-ui-v0820.test.cjs",
+    "tests": 3,
+    "pass": 3,
+    "fail": 0,
+    "testFile": "tests/mist-recovery-ui-v0820.test.cjs",
+    "testSha256": "8028ea64089af04417262bce3f152d9d76c5735e56f38e1caf1183d5a3e1e073",
+    "feedbackSourceSha256": "c86f5ce1ad20f7b23033d2a72994ea10cc5f7a8e4cc6ddfa36744ace6a549e04",
+    "appSourceSha256": "5469e164b9b5c6d81e3e24540d825b4962aaaaf8e809fcf5d853e52f010b2f18",
+    "coverage": [
+      "Actual supplied-save public prefix index0..416 plus original ATTACK index417: strict import/export hashes, 5-2=3 damage, resource costs and capped Regain healing.",
+      "Actual after-index417 strict state through current combat UI and explicitly selected boss HUD: ability-only non-application note, enemy-defense chip, no false removed-effects badge/caption, then original FREE_TRANSFORM accept:true at index418.",
+      "Supply-valid constructed actual-boss attack fixture: mist still strips attack effects, shows attack removal feedback and resolves through the real UI/reducer."
+    ],
+    "limitations": [
+      "The source completed save was replayed, not freshly played locally.",
+      "The actual source has zero insight before and after recovery; it does not establish removal of positive insight.",
+      "DOM harness checks do not replace the parent native screenshot/file-load verification."
+    ]
+  },
+  "finalFocusedRegression": {
+    "file": "focused-tests.json",
+    "pass": 139,
+    "newMistCases": 3,
+    "testSha256": "0c55cb35b8d5a3e1e5c23350dc243e98930e77f6125553922638de3d1f93b756",
+    "feedbackSha256": "8c97ed1a9b6b819e5d0f69d6078d1ec9b8c5cbb55229bec53a2abff56e0be7a9",
+    "note": "Final combined run includes the assertion that a rule-bearing ability does not show the empty-effects placeholder. Earlier uiRegression records the initial independent three-case run before this additional assertion."
+  }
+}

@@ -91,7 +91,7 @@
   function effectsHTML(action, side, clean, removed = false) {
     const list = removed ? [] : effects(action, side);
     return list.length ? `<ul class="combat-effect-list">${list.map(effect => `<li><strong>${esc(cleanText(effect.label, clean))}</strong><span>${esc(cleanText(effect.text, clean))}</span></li>`).join("")}</ul>` :
-      '<p class="combat-no-effects">추가 효과 없음</p>';
+      action?.type === "ability" ? "" : '<p class="combat-no-effects">추가 효과 없음</p>';
   }
   function rulesHTML(action, clean, removed = false) {
     const rules = unique([...(Array.isArray(action?.rules) ? action.rules : []),
@@ -192,7 +192,7 @@
     let action = combat.action, label = action ? labels[action.kind] || (action.type === "ability" ? "전용 능력" : "행동 공격") : "행동 공개 전";
     if (immediate) { action = { ...immediate, type: "ability", rules: combat.action?.rules || [] }; label = "전용 능력 대응"; }
     if (extra) { action = { ...extra, name: "다단 가르기 · 추가 타격", type: "ability", rules: ["첫 공격을 회피하거나 방해했더라도 추가 타격에는 별도로 대응합니다."] }; label = "추가 타격"; }
-    const removed = !immediate && !extra && !!combat.removeEnemyAttackEffects;
+    const removed = !immediate && !extra && action?.type === "attack" && !!combat.removeEnemyAttackEffects;
     let order = "공개된 행동의 지시를 확인하세요.";
     if (extra) order = "첫 공격과 별개로 추가 타격에 대응하세요. 회피 속도 2가 필요합니다.";
     else if (immediate) order = "공개된 전용 능력에 대응하세요. 아래 회피 조건과 피해를 확인하세요.";
@@ -204,10 +204,12 @@
       order = player.speed > action.speed ? "플레이어의 공격이 먼저입니다." : player.speed < action.speed ? "적의 공격이 먼저입니다." :
         player.interrupt && player.interruptEqual ? "같은 속도 · 플레이어의 동속 방해 효과를 적용합니다." : "같은 속도 · 두 공격을 동시에 처리합니다.";
     const status = [number(combat.defense) > 0 && `플레이어 방어 ${combat.defense}`,
+      number(combat.enemyDefense) > 0 && `적 방어 ${combat.enemyDefense}`,
       combat.noDodge && "이번 전투 회피 불가", combat.cancelHunter && "플레이어 공격 취소됨",
       combat.dodged && (extra ? "첫 공격 회피 선택됨" : "회피 선택됨"), combat.cancelEnemy && (extra ? "첫 공격 취소됨" : "적 공격 취소됨"),
       (combat.attackResolved || combat.flameResolved) && "플레이어 공격 처리 완료",
       removed && "적 공격의 모든 부가 효과 제거됨",
+      !extra && combat.action?.type === "ability" && combat.removeEnemyAttackEffects && "마비 안개 · 전용 능력에는 미적용",
       ...(Array.isArray(combat.immune) ? combat.immune.map(value => ({ interrupt: "방해 면역", stun: "기절 면역", poison: "독 면역", frenzy: "발광 면역" })[value]) : [])].filter(Boolean);
     return `<section class="combat-comparison" aria-label="현재 전투의 공격 비교"><p class="combat-opponent">${esc(cleanText(enemyName, clean))}와 전투</p><p class="combat-order" role="status">${esc(order)}</p>${tokenRevivalHTML(revival, { combat, phase, clean })}<div class="combat-comparison-grid"><article class="combat-side combat-side-hunter"><h3>플레이어 · ${combat.attackResolved || combat.flameResolved ? "처리한 " : ""}${flame ? "화기 공격" : "장치무기 공격"}</h3>${player ? actionDetailsHTML({ ...player, type: "attack" }, { side: "hunter", clean }) : '<p class="combat-empty-action">선택한 공격 없음</p>'}${player?.weaponFace?.text ? `<p class="combat-weapon-effect"><b>사용한 무기의 고유 효과</b><span>${esc(cleanText(player.weaponFace.text, clean))}</span></p>` : ""}</article><article class="combat-side combat-side-enemy"><h3>적 · ${esc(label)}</h3>${action ? actionDetailsHTML(action, { clean, showDodge: !!immediate || !!extra, removed,
       modifiers: immediate || extra ? [] : enemyModifiers }) : '<p class="combat-empty-action">아직 행동을 공개하지 않았습니다.</p>'}</article></div>${status.length ? `<ul class="combat-current-status">${status.map(value => `<li>${esc(value)}</li>`).join("")}</ul>` : ""}</section>`;
