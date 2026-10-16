@@ -52,6 +52,51 @@
         "escortAccompaniesTeleport": false
       },
       "campaignCompletionClaimed": false
+    },
+    {
+      "id": "pickup-armed-escort-lantern",
+      "mode": "synthetic-QA",
+      "loadedThroughNormalUI": true,
+      "before": {
+        "sameSpaceAsHunter": true,
+        "carried": false,
+        "pickupArmed": true
+      },
+      "confirmationWarningMatchesState": true,
+      "warningOutcome": "escort remains in the current space instead of accompanying teleportation",
+      "cancel": {
+        "exportedThroughNormalUI": true,
+        "exportMatchesOriginalSyntheticQABytes": true,
+        "saveByteEqualityIndependentlyVerified": true,
+        "verificationScope": "this armed-case cancellation export only; reported by independent cloud QA, not rechecked locally"
+      },
+      "repeatAfterCancel": {
+        "reportedOutcome": "re-execution matched the stay-in-place warning",
+        "warningAndExecutionConsistent": true
+      },
+      "campaignCompletionClaimed": false
+    },
+    {
+      "id": "same-space-uncarried-escort-dream",
+      "mode": "synthetic-QA",
+      "before": {
+        "sameSpaceAsHunter": true,
+        "carried": false,
+        "handCount": 2
+      },
+      "confirmationWarningMatchesState": true,
+      "cancel": {
+        "observedPreservedInUI": ["hand count remains 2"],
+        "saveByteEqualityIndependentlyVerified": false,
+        "fullStateEqualityIndependentlyVerified": false
+      },
+      "reconfirmedAfterCancel": true,
+      "acceptedDream": {
+        "hunterInDream": true,
+        "escortOutcome": "remains in the same bridge space",
+        "escortAccompaniesDreamEntry": false
+      },
+      "campaignCompletionClaimed": false
     }
   ],
   "normalSaveCompatibility": {
@@ -64,9 +109,13 @@
     "combinedWithSyntheticQAAchievements": false
   },
   "limits": {
-    "cancelSaveBytesIndependentlyVerified": false,
-    "pickupArmedThirdSyntheticCaseIndependentlyVerified": false,
-    "dreamEntryAcceptIndependentlyVerified": false,
+    "cancelSaveBytes": {
+      "verifiedCaseIds": ["pickup-armed-escort-lantern"],
+      "unverifiedCaseIds": ["same-space-uncarried-escort-lantern", "already-carried-escort-lantern", "same-space-uncarried-escort-dream"],
+      "allCasesIndependentlyVerified": false
+    },
+    "pickupArmedThirdSyntheticCaseIndependentlyVerified": true,
+    "dreamEntryAcceptIndependentlyVerified": true,
     "combinedWithExistingLocalRegressionCounts": false,
     "combinedWithExistingLocalNativeCaseCounts": false,
     "originalCloudScreenshotsInspectedLocallyDuringDocumentationUpdate": false
