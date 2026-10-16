@@ -1,7 +1,7 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), Feedback = require("../hunt-mission-feedback");
-const Effects = require("../hunt-enemy-mission-effects"), publicText = require("../hunt-public-text");
+const E = require("../src/hunt-engine"), Feedback = require("../src/hunt-mission-feedback");
+const Effects = require("../src/hunt-enemy-mission-effects"), publicText = require("../src/hunt-public-text");
 const data = require("../campaigns/long-hunt/data.json"), options = { E, publicText, data }, targets = new Map();
 for (const file of ["full-campaign-actual-v10-commands.json", "v074-shelter-natural-commands.json",
   "v074-patient-natural-commands.json", "v074-ch2-bridge-natural-commands.json"]) {

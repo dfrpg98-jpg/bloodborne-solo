@@ -1,7 +1,7 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), R = require("../rewards-engine"), D = require("../hunt-data");
-const Controls = require("../hunt-map-controls"), { boot } = require("./helpers/ui-harness.cjs");
+const E = require("../src/hunt-engine"), R = require("../src/rewards-engine"), D = require("../src/hunt-data");
+const Controls = require("../src/hunt-map-controls"), { boot } = require("./helpers/ui-harness.cjs");
 const H = E.hunter, go = (state, type, args = {}) => E.dispatch(state, { type, ...args });
 const qaKey = "bloodborne-hunt-qa-v1", normalKey = "bloodborne-hunt-v07";
 function launch(state) {

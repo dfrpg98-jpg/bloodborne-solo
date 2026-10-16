@@ -1,6 +1,6 @@
 'use strict';
-const test=require('node:test'),assert=require('node:assert/strict'),E=require('../hunt-engine'),
-  UI=require('../hunt-combat-feedback'),Effects=require('../hunt-enemy-mission-effects'),
+const test=require('node:test'),assert=require('node:assert/strict'),E=require('../src/hunt-engine'),
+  UI=require('../src/hunt-combat-feedback'),Effects=require('../src/hunt-enemy-mission-effects'),
   {missionCheckpoint,ordinaryCheckpoint}=require('./helpers/tile-speed-checkpoints.cjs');
 const replay=(s,commands)=>commands.reduce((s,c)=>E.dispatch(s,c),s);
 for(const card of [10,31]){

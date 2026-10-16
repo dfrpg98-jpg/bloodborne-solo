@@ -2,8 +2,8 @@
 // Real Chromium only. Checkpoints are regenerated through create/dispatch and
 // loaded through the product file input. No raw saves enter the evidence folder.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
-const {chromium}=require('playwright'),E=require('../hunt-engine'),U=require('../hunt-map-controls'),
-  Effects=require('../hunt-enemy-mission-effects'),Feedback=require('../hunt-mission-feedback');
+const {chromium}=require('playwright'),E=require('../src/hunt-engine'),U=require('../src/hunt-map-controls'),
+  Effects=require('../src/hunt-enemy-mission-effects'),Feedback=require('../src/hunt-mission-feedback');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'test-results/cloud-tile-speed-qa');
 fs.mkdirSync(out,{recursive:true});
 const report={sourceCommit:process.env.GITHUB_SHA||'local-uncommitted',node:process.version,

@@ -1,6 +1,6 @@
 "use strict";
 const test=require("node:test"), assert=require("node:assert/strict");
-const E=require("../hunt-engine.js");
+const E=require("../src/hunt-engine.js");
 const {hand}=require("./actual-combat-helper.cjs");
 const go=(s,type,args={})=>E.dispatch(s,{type,...args});
 function fixture(rewards=["rune-rapture"],version=14,hp=2,targetHp=4,extras=[1]) {

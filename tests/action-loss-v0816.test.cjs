@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), Loss = require("../hunt-action-loss"), Departure = require("../hunt-departure");
+const E = require("../src/hunt-engine"), Loss = require("../src/hunt-action-loss"), Departure = require("../src/hunt-departure");
 const H = E.hunter, copy = structuredClone, cache = new Map();
 const clinicTrace = "v074-clinic-escort-chapter-two-natural-commands.json";
 function strict(state) {

@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const create = require("../hunt-presentation.js");
+const create = require("../src/hunt-presentation.js");
 
 function fixture(reduced = false, onActorPositions) {
   const sprites = [], tweens = [], definitions = [], graphics = [];

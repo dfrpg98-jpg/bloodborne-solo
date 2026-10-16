@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const create = require('../hunt-presentation.js');
+const create = require('../src/hunt-presentation.js');
 
 function fixture({ reduced = false, missingSkin = null, clock = false, atlas = false, missingLastFrame = false, inlineAtlas = false, invalidInlineAtlas = false } = {}) {
   const sprites = [], graphics = [], tweens = [], definitions = [], loads = [], readiness = [], timers = [], sizes = [];

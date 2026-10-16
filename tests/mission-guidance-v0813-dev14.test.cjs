@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), P = require("../hunt-public-text"), F = require("../hunt-mission-feedback");
+const E = require("../src/hunt-engine"), P = require("../src/hunt-public-text"), F = require("../src/hunt-mission-feedback");
 const data = require("../campaigns/long-hunt/data.json"), options = { E, publicText: P, data };
 const cache = new Map();
 function trace(file = "full-campaign-actual-v10-commands.json") {

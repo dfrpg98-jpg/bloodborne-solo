@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
-const E=require('../ReferenceEngine/hunt-engine.js');
+const E=require('./reference-source.cjs')('hunt-engine.js');
 const source=path.resolve(process.argv[2]||path.join(__dirname,'../..'));
 const folder=path.join(source,'tests/fixtures/weapon-campaign-completion');
 const manifest=JSON.parse(fs.readFileSync(path.join(folder,'manifest.json'),'utf8'));

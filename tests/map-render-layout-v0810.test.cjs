@@ -1,7 +1,7 @@
 const test=require('node:test'),assert=require('node:assert/strict');
-const G=require('../tile-geometry');
-const L=require('../map-render-layout');
-const E=require('../hunt-engine');
+const G=require('../src/tile-geometry');
+const L=require('../src/map-render-layout');
+const E=require('../src/hunt-engine');
 function node(tileId,spaceId) {return `${tileId}:${spaceId}`;}
 function point(entry) {return [entry.x,entry.y];}
 function gap(a,b) {return Math.hypot(a.x-b.x,a.y-b.y);}

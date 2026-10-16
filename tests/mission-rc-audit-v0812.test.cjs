@@ -1,6 +1,6 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine'),M=require('../chapter-engine');
+const E=require('../src/hunt-engine'),M=require('../src/chapter-engine');
 const commands=require('./fixtures/full-campaign-actual-v10-commands.json');
 const H=E.hunter;
 

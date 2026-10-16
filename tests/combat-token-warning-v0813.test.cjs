@@ -1,7 +1,7 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), Feedback = require("../hunt-combat-feedback");
-const Controls = require("../hunt-map-controls"), { boot } = require("./helpers/ui-harness.cjs");
+const E = require("../src/hunt-engine"), Feedback = require("../src/hunt-combat-feedback");
+const Controls = require("../src/hunt-map-controls"), { boot } = require("./helpers/ui-harness.cjs");
 const qaKey = "bloodborne-hunt-qa-v1", normalKey = "bloodborne-hunt-v07";
 function launch(state) {
   const normalSave = E.exportSave(E.create(91, "burial", 0, null, "hunter-pistol", "center", { campaign: true }));

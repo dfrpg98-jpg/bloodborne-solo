@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), { boot } = require("./helpers/ui-harness.cjs"),
+const E = require("../src/hunt-engine"), { boot } = require("./helpers/ui-harness.cjs"),
   { hand } = require("./actual-combat-helper.cjs");
 const H = E.hunter, key = "bloodborne-hunt-v07", jsonCopy = value => JSON.parse(JSON.stringify(value));
 

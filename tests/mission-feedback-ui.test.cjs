@@ -1,5 +1,5 @@
 const test = require('node:test'), assert = require('node:assert/strict');
-const E = require('../hunt-engine'), { boot } = require('./helpers/ui-harness.cjs');
+const E = require('../src/hunt-engine'), { boot } = require('./helpers/ui-harness.cjs');
 const commands = require('./fixtures/full-campaign-actual-v10-commands.json');
 const checkpoints = new Map();
 let state = E.create(90, 'burial', 1, null, 'hunter-pistol', 'center', { campaign: true, rulesVersion: 14 });

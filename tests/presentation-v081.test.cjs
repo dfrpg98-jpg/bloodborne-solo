@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const crypto = require('node:crypto');
 const path = require('node:path');
-const create = require('../hunt-presentation.js');
+const create = require('../src/hunt-presentation.js');
 
 function fixture({ reduced = false, failure = false } = {}) {
   const graphics = [], tweens = [], sizeChanges = [];

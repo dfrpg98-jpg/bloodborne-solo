@@ -1,5 +1,5 @@
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine.js"), B = require("../boss-components.js");
+const E = require("../src/hunt-engine.js"), B = require("../src/boss-components.js");
 const commands = require("./fixtures/full-campaign-actual-v10-commands.json");
 
 test("325 public version-ten commands win all three Long Hunt chapters with actual Cleric Beast and exact save replay", () => {

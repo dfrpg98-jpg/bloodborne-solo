@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const create = require('../hunt-presentation.js');
+const create = require('../src/hunt-presentation.js');
 
 const faceA = 'w-threaded-cane-a', faceB = 'w-threaded-cane-b';
 const poseFrames = { idle: [0, 1], walk: [2, 3, 4, 5], 'attack-0': [6, 7, 8, 9],
@@ -700,7 +700,7 @@ test('unsupported native geometry masking falls back per weapon and never loads 
 for (const geometry of [false, 'throw'])
   test(`required shipped bodies retain DOM fallback when native clipping is ${geometry === false ? 'missing' : 'throwing'}`, () => {
     const shipped = require('../assets/characters/manifest.json');
-    assert.deepEqual(Object.keys(shipped).sort(), ['hunter', 'mob', 'beast', 'boss', 'female', ...require('../enemy-visuals').ids].sort());
+    assert.deepEqual(Object.keys(shipped).sort(), ['hunter', 'mob', 'beast', 'boss', 'female', ...require('../src/enemy-visuals').ids].sort());
     const f = fixture({ geometry, custom(characters) { Object.assign(characters, shipped); } });
     const actors = [{ id: 'hunter', kind: 'hunter', skin: 'hunter', x: 80, y: 100, hp: 6 }, enemy()];
     f.adapter.sync({ revision: 1, sceneId: 'required-body-fallback', actors }); f.boot();

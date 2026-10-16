@@ -1,6 +1,6 @@
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), M = require("../chapter-engine"), R = require("../rewards-engine");
-const Missions = require("../mission-engine");
+const E = require("../src/hunt-engine"), M = require("../src/chapter-engine"), R = require("../src/rewards-engine");
+const Missions = require("../src/mission-engine");
 const H = E.hunter, go = (s, type, a = {}) => E.dispatch(s, { type, ...a });
 const create = (seed = 123) => E.create(seed, "burial", 0, null, "hunter-pistol", "center", { campaign: true });
 function put(s, id, anchor = M.openExits(s.world)[0]) {

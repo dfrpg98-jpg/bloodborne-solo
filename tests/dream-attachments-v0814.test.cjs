@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict"), crypto = require("node:crypto");
-const E = require("../hunt-engine"), R = require("../rewards-engine"), D = require("../hunt-data");
+const E = require("../src/hunt-engine"), R = require("../src/rewards-engine"), D = require("../src/hunt-data");
 const { boot } = require("./helpers/ui-harness.cjs");
 const H = E.hunter, go = (state, type, args = {}) => E.dispatch(state, { type, ...args }),
   reward = (state, kind) => H(state).rewards.find(item => item.kind === kind),

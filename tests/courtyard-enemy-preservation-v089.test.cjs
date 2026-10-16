@@ -1,5 +1,5 @@
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine');
+const E=require('../src/hunt-engine');
 const C=require('../campaigns/long-hunt/data.json');
 const fixture=require('./fixtures/v089-courtyard-encounter-user-prefix.json');
 const H=E.hunter;

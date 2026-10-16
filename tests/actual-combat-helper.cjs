@@ -1,5 +1,5 @@
 const assert = require("node:assert/strict");
-const E = require("../hunt-engine.js"), B = require("../boss-components.js"), A = require("../actual-components.js");
+const E = require("../src/hunt-engine.js"), B = require("../src/boss-components.js"), A = require("../src/actual-components.js");
 const go = (s, type, args = {}) => E.dispatch(s, { type, ...args });
 function hand(s, kinds) {
   const h = E.hunter(s); h.deck = [...h.hand, ...h.deck]; h.hand = [];

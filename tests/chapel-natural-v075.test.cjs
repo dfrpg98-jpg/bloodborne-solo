@@ -1,5 +1,5 @@
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine.js'),{clickCommand}=require('./helpers/public-command-ui.cjs');
+const E=require('../src/hunt-engine.js'),{clickCommand}=require('./helpers/public-command-ui.cjs');
 const pendingCommands=require('./fixtures/v075-chapel-timing-natural-pending-commands.json');
 const alternatives={
   'chapel-first':require('./fixtures/v075-chapel-timing-natural-chapel-first-commands.json'),

@@ -1,5 +1,5 @@
 "use strict";
-const test = require("node:test"), assert = require("node:assert/strict"), Camera = require("../hunt-camera");
+const test = require("node:test"), assert = require("node:assert/strict"), Camera = require("../src/hunt-camera");
 
 function fixture(extra = {}) {
   const document = { activeElement: null }, events = new Map(), notices = [], scrolls = [];

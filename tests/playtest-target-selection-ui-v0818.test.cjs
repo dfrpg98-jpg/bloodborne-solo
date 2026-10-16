@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"),
+const E = require("../src/hunt-engine"),
   { boot } = require("./helpers/ui-harness.cjs");
 const H = E.hunter, qaKey = "bloodborne-hunt-qa-v1", normalKey = "bloodborne-hunt-v07", cache = new Map();
 // This is the first twelve public commands of the existing dev.15 axe QA
@@ -275,7 +275,7 @@ test("initial rendering, refresh and a public file load leave enemy HUD hidden u
 });
 
 test("selecting a cell, entrance, tile information or clearing the target removes its HUD without changing the save", () => {
-  const s = checkpoint("tiny"), { ui, normal } = launch(s, { BBHuntMapControls: require("../hunt-map-controls") }), saved = ui.storage.get(qaKey),
+  const s = checkpoint("tiny"), { ui, normal } = launch(s, { BBHuntMapControls: require("../src/hunt-map-controls") }), saved = ui.storage.get(qaKey),
     target = "huntsmans-minion-2", otherNode = E.nodes(s).find(node => node.id !== H(s).position).id,
     actions = [
       ["cell", () => ui.el("chapterMap").querySelectorAll("[data-node]").find(button => button.dataset.node === otherNode && !button.dataset.entrance)],
@@ -400,7 +400,7 @@ test("map status shows mission-token counts alongside real HP without adding the
   assert.equal(ui.storage.get(normalKey), saved); assert.equal(calls.length, 0);
 });
 test("an actual boss's explicit zero insight tokens remains visible as zero", () => {
-  const B = require("../boss-components"), s = displayFixture([]),
+  const B = require("../src/boss-components"), s = displayFixture([]),
     enemy = { id: "mission-main", kind: "scourge-beast", figure: 1, node: "tile-14:center", hp: 7,
       componentId: "cleric-beast", componentSpec: "cleric-beast", componentPhase: 1, missionId: "main",
       actualComponent: true, insightTokens: 0, bossDecks: B.createDecks("cleric-beast", s, (_, deck) => deck) };

@@ -1,10 +1,10 @@
 'use strict';
 const test = require('node:test'), assert = require('node:assert/strict');
-const V = require('../enemy-visuals'), E = require('../hunt-engine');
+const V = require('../src/enemy-visuals'), E = require('../src/hunt-engine');
 const { boot } = require('./helpers/ui-harness.cjs');
 const { fixture } = require('./actual-combat-helper.cjs');
 const fs = require('node:fs'), path = require('node:path');
-const L = require('../map-render-layout'), assets = require('../assets/characters/manifest.json');
+const L = require('../src/map-render-layout'), assets = require('../assets/characters/manifest.json');
 const { readPngAlpha, atlasFrameBounds } = require('./helpers/png-alpha.cjs');
 
 test('ordinary mob, minion and scourge beast use three distinct public appearances', () => {
@@ -48,11 +48,11 @@ test('appearance inspection reads no hidden deck, rules or save state and does n
 });
 
 test('the playable page and preview load the appearance adapter before their controllers', () => {
-  for (const [page, controller] of [['hunt.html', 'hunt-app.js'], ['weapon-gallery.html', 'weapon-gallery.js']]) {
+  for (const [page, controller] of [['hunt.html', 'src/hunt-app.js'], ['pages/weapon-gallery.html', 'src/weapon-gallery.js']]) {
     const html = fs.readFileSync(path.join(__dirname, '..', page), 'utf8');
     const scripts = [...html.matchAll(/<script\s+src="([^"?]+)(?:\?[^\"]*)?"/g)].map(match => match[1]);
-    assert(scripts.indexOf('enemy-visuals.js') >= 0, `${page}: the real page loads the appearance adapter`);
-    assert(scripts.indexOf('enemy-visuals.js') < scripts.indexOf(controller), `${page}: adapter initializes before rendering`);
+    assert(scripts.indexOf('src/enemy-visuals.js') >= 0, `${page}: the real page loads the appearance adapter`);
+    assert(scripts.indexOf('src/enemy-visuals.js') < scripts.indexOf(controller), `${page}: adapter initializes before rendering`);
   }
 });
 

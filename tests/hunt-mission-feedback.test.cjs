@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine'),publicText=require('../hunt-public-text');
-const Feedback=require('../hunt-mission-feedback'),data=require('../campaigns/long-hunt/data.json');
+const E=require('../src/hunt-engine'),publicText=require('../src/hunt-public-text');
+const Feedback=require('../src/hunt-mission-feedback'),data=require('../campaigns/long-hunt/data.json');
 const options={E,publicText,data},cache=new Map();
 function trace(file) {
   if(cache.has(file))return cache.get(file);

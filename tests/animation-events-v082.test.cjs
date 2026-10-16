@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const events = require("../hunt-animation-events");
+const events = require("../src/hunt-animation-events");
 const actor = (id, node, hp = 6, kind = "enemy") => ({ id, node, hp, kind });
 const snapshot = (revision, overrides = {}) => ({ revision, sceneId: "chapter-1", firearmReady: true,
   actors: [actor("hunter", "a", 6, "hunter"), actor("e1", "a", 4), actor("e2", "b", 3)], events: [], ...overrides });

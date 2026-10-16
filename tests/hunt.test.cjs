@@ -1,7 +1,7 @@
 const test = require("node:test"),
   assert = require("node:assert/strict");
-const E = require("../hunt-engine"),
-  M = require("../chapter-engine");
+const E = require("../src/hunt-engine"),
+  M = require("../src/chapter-engine");
 const go = (s, type, a = {}) => E.dispatch(s, { type, ...a }),
   H = E.hunter;
 test("cheap shot waits until a timed ability actually resolves", () => {

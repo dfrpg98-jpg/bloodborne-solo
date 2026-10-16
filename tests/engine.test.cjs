@@ -1,6 +1,6 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const E = require("../engine.js"),
+const E = require("../src/engine.js"),
   D = E.data;
 const training = (seed = 20261011) => E.create(seed, "training");
 const h = (s) => E.hunter(s),

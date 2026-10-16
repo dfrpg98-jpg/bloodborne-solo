@@ -1,5 +1,5 @@
 const test = require('node:test'), assert = require('node:assert/strict');
-const P = require('../hunt-public-text'), E = require('../hunt-engine');
+const P = require('../src/hunt-public-text'), E = require('../src/hunt-engine');
 const C = require('../campaigns/long-hunt/data.json');
 const source = number => C.cards.find(item => item.number === number);
 const text = value => JSON.stringify(value);

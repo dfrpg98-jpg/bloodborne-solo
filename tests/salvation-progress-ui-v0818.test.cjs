@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), P = require("../hunt-public-text"),
+const E = require("../src/hunt-engine"), P = require("../src/hunt-public-text"),
   C = require("../campaigns/long-hunt/data.json"), { boot } = require("./helpers/ui-harness.cjs");
 const commands = require("./fixtures/v074-optional-58-natural-commands.json"), key = "bloodborne-hunt-v07";
 let cached = null;

@@ -1,6 +1,6 @@
 "use strict";
-const test = require("node:test"), assert = require("node:assert/strict"), E = require("../hunt-engine"),
-  Preview = require("../hunt-outcome-preview"), Q = require("./helpers/blood-frenzy-qa.cjs"),
+const test = require("node:test"), assert = require("node:assert/strict"), E = require("../src/hunt-engine"),
+  Preview = require("../src/hunt-outcome-preview"), Q = require("./helpers/blood-frenzy-qa.cjs"),
   { boot } = require("./helpers/ui-harness.cjs");
 const id = "wounded-retaliation", key = "bloodborne-hunt-qa-v1", H = E.hunter;
 function facts(state) {

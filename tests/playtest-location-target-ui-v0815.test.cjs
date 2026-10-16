@@ -1,7 +1,7 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), M = require("../chapter-engine"), L = require("../hunt-location-labels"),
-  MapControls = require("../hunt-map-controls"), { boot } = require("./helpers/ui-harness.cjs"), { hand } = require("./actual-combat-helper.cjs");
+const E = require("../src/hunt-engine"), M = require("../src/chapter-engine"), L = require("../src/hunt-location-labels"),
+  MapControls = require("../src/hunt-map-controls"), { boot } = require("./helpers/ui-harness.cjs"), { hand } = require("./actual-combat-helper.cjs");
 const key = "bloodborne-hunt-v07", plain = value => JSON.parse(JSON.stringify(value));
 const launch = state => boot(state, E.missionView(state), E.rewardsView(state), {
   realInventory: true, storage: { [key]: E.exportSave(state) }, window: { BBHuntMapControls: MapControls },

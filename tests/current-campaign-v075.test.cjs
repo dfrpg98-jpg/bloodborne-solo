@@ -1,5 +1,5 @@
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine.js');
+const E=require('../src/hunt-engine.js');
 const manifest=require('./fixtures/weapon-campaign-completion/manifest.json');
 assert.equal(manifest.availableWeaponCount,15);
 for(const item of manifest.cases)test(`historical rules thirteen public campaign completion: ${item.weaponId}`,()=>{

@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), R = require("../rewards-engine"), P = require("../hunt-attack-preview");
+const E = require("../src/hunt-engine"), R = require("../src/rewards-engine"), P = require("../src/hunt-attack-preview");
 const { hand } = require("./actual-combat-helper.cjs");
 const H = E.hunter, go = (s, type, args = {}) => E.dispatch(s, { type, ...args });
 
@@ -238,7 +238,7 @@ test("incomplete, occupied and invalid choices remain explanatory without invent
 });
 
 test("all supplied weapon faces and every empty slot match actual ATTACK for strength, skill and clearing endurance cards", () => {
-  const weapons = require("../extended-weapons").weapons;
+  const weapons = require("../src/extended-weapons").weapons;
   let declarations = 0;
   for (const weapon of Object.values(weapons)) for (const face of [0, 1])
     for (const slot of weapon.faces[face].slots.keys()) for (const kind of ["strength", "skill", "endurance"]) {

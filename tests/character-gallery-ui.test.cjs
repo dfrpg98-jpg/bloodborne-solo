@@ -1,12 +1,12 @@
 'use strict';
 const test = require('node:test'), assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path'), vm = require('node:vm');
-const V = require('../weapon-visuals'), { Document } = require('./helpers/ui-harness.cjs');
-const EV = require('../enemy-visuals');
+const V = require('../src/weapon-visuals'), { Document } = require('./helpers/ui-harness.cjs');
+const EV = require('../src/enemy-visuals');
 const root = path.resolve(__dirname, '..');
 
 function fixture({ ready = true } = {}) {
-  const document = new Document(fs.readFileSync(path.join(root, 'weapon-gallery.html'), 'utf8'));
+  const document = new Document(fs.readFileSync(path.join(root, 'pages/weapon-gallery.html'), 'utf8'));
   const el = id => document.getElementById(id), snapshots = [], resizeListeners = [];
   el('galleryViewport').clientWidth = 800; el('galleryViewport').clientHeight = 380;
   const window = { BBWeaponVisuals: V, BBEnemyVisuals: EV, BBCharacterAssets: {}, BBWeaponCharacterAssets: {},
@@ -19,7 +19,7 @@ function fixture({ ready = true } = {}) {
   };
   Object.defineProperty(window, 'localStorage', { get() { throw Error('a preview must not access gameplay saves'); } });
   Object.defineProperty(window, 'BBHuntEngine', { get() { throw Error('a preview must not invoke gameplay rules'); } });
-  vm.runInNewContext(fs.readFileSync(path.join(root, 'weapon-gallery.js'), 'utf8'), { window, document });
+  vm.runInNewContext(fs.readFileSync(path.join(root, 'src/weapon-gallery.js'), 'utf8'), { window, document });
   return { el, snapshots, latest: () => snapshots.at(-1),
     choose(id, value) { el(id).value = value; el(id).fire('change'); },
     resize() { for (const listener of resizeListeners) listener(); } };

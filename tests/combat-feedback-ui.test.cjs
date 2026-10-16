@@ -1,8 +1,8 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), Feedback = require("../hunt-combat-feedback"),
-  MissionEffects = require("../hunt-enemy-mission-effects"), { boot } = require("./helpers/ui-harness.cjs"),
-  ExtendedGuns = require("../extended-firearms"), Supplied = require("../actual-components");
+const E = require("../src/hunt-engine"), Feedback = require("../src/hunt-combat-feedback"),
+  MissionEffects = require("../src/hunt-enemy-mission-effects"), { boot } = require("./helpers/ui-harness.cjs"),
+  ExtendedGuns = require("../src/extended-firearms"), Supplied = require("../src/actual-components");
 const key = "bloodborne-hunt-qa-v1", records = new Map(); let firearmState, abilityBuffState;
 for (const [file, wanted] of [["full-campaign-actual-v10-commands.json", 3], ["v074-shelter-natural-commands.json", 10],
   ["v074-patient-natural-commands.json", 31], ["v074-ch2-bridge-natural-commands.json", 36]]) {

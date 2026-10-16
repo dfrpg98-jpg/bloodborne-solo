@@ -4,7 +4,10 @@ const source = path.resolve(process.argv[2] || path.join(__dirname,'../..'));
 const output = path.resolve(__dirname, '..');
 const digest = data => crypto.createHash('sha256').update(data).digest('hex');
 const write = (relative, value) => { const full = path.join(output, relative); fs.mkdirSync(path.dirname(full), { recursive: true }); fs.writeFileSync(full, typeof value === 'string' ? value : JSON.stringify(value, null, 2) + '\n'); };
-const requireSource = file => require(path.join(source, file));
+// Runtime modules live in src/; package metadata, data and Git identity still
+// belong to the repository root. Keep exported content module keys stable.
+const sourceModulePath = file => file.endsWith('.js') && !file.includes('/') ? 'src/' + file : file;
+const requireSource = file => require(path.join(source, sourceModulePath(file)));
 const packageInfo = requireSource('package.json');
 let sourceCommit = null, sourceGitStatus = null;
 try {
@@ -33,7 +36,7 @@ const moduleNames = ['hunt-engine.js','chapter-engine.js','mission-engine.js','r
   'firearms-engine.js','enemy-deck.js','extended-enemy-rules.js','extended-rewards.js','tile-geometry.js','map-render-layout.js',
   'hunt-animation-events.js','hunt-public-text.js','hunt-mission-feedback.js','weapon-visuals.js','hunt-camera.js','inventory.js','start-placement.js',
   'hunt-departure.js','hunt-context.js','enemy-action-history.js'];
-moduleNames.forEach(copyModule);
+moduleNames.map(sourceModulePath).forEach(copyModule);
 const moduleExports = {};
 function safeData(value, keyPath, omitted) {
   if (typeof value === 'function') { omitted.push(keyPath); return undefined; }
@@ -45,7 +48,7 @@ function safeData(value, keyPath, omitted) {
 const contentModules = ['data.js','hunt-data.js','actual-components.js','boss-components.js','temporary-components.js','extended-weapons.js',
   'extended-firearms.js','extended-enemies.js','extended-rewards.js','rewards-engine.js','enemy-deck.js','qa-mode.js','tile-geometry.js','weapon-visuals.js'];
 for (const name of contentModules) {
-  copyModule(name);
+  copyModule(sourceModulePath(name));
   const omitted = [], data = safeData(requireSource(name), name, omitted);
   moduleExports[name] = { data, executableMembersExcluded: omitted };
 }
@@ -77,7 +80,7 @@ write('MigrationPrivate/assets-manifest-v1.json',{format:'bloodborne-unity-asset
 // JSON until actual C# handlers define their validation. This is not API-body translation.
 const handlers=['hunt-engine.js','mission-engine.js','rewards-engine.js','firearms-engine.js','weapon-flow.js','extended-rewards.js'];
 const labels=new Map();
-for(const file of handlers){ const code=fs.readFileSync(path.join(source,file),'utf8');
+for(const name of handlers){ const file=sourceModulePath(name),code=fs.readFileSync(path.join(source,file),'utf8');
   for(const match of code.matchAll(/case\s+["']([A-Z][A-Z_]+)["']\s*:/g)){if(!labels.has(match[1]))labels.set(match[1],[]);if(!labels.get(match[1]).includes(file))labels.get(match[1]).push(file);}
   for(const match of code.matchAll(/(?:a|command)\.type\s*===?\s*["']([A-Z][A-Z_]+)["']/g)){if(!labels.has(match[1]))labels.set(match[1],[]);if(!labels.get(match[1]).includes(file))labels.get(match[1]).push(file);}
 }

@@ -6,7 +6,7 @@
       : root.BBData;
   const campaign =
     typeof module !== "undefined" && module.exports
-      ? require("./campaigns/long-hunt/data.json")
+      ? require("../campaigns/long-hunt/data.json")
       : root.BBLongHunt;
   const data = {
     ...base,

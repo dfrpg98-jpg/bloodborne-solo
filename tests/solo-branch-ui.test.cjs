@@ -1,5 +1,5 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
-const E=require('../hunt-engine'),{clickCommand,replayPublicTrace}=require('./helpers/public-command-ui.cjs');
+const E=require('../src/hunt-engine'),{clickCommand,replayPublicTrace}=require('./helpers/public-command-ui.cjs');
 const fixtureDir=path.join(__dirname,'fixtures');
 const fixtures=fs.readdirSync(fixtureDir).filter(file=>/^v074-.*-natural-commands\.json$/.test(file)).sort();
 const setupsPath=path.join(fixtureDir,'v074-mission-natural-setups.json');

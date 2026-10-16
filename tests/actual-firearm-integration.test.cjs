@@ -1,6 +1,6 @@
 const test=require("node:test"),assert=require("node:assert/strict");
 const {E,go,hand,fixture,bossAction,chapter}=require("./actual-combat-helper.cjs");
-const M=require("../chapter-engine.js");
+const M=require("../src/chapter-engine.js");
 function normal(gun="ludwig-rifle",hp=4,face=0,item=null) {
   const s=E.create(123,"burial",face,item,gun,"center",{campaign:false,rulesVersion:9});
   s.world.assignments.find((a)=>a.enemyId==="huntsman-mob").sideId="a";

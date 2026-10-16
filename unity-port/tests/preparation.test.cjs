@@ -1,6 +1,6 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
-const E=require('../ReferenceEngine/hunt-engine.js'),{newSession,project}=require('../tools/oracle.cjs');
+const E=require('../tools/reference-source.cjs')('hunt-engine.js'),{newSession,project}=require('../tools/oracle.cjs');
 const root=path.resolve(__dirname,'..');
 function canonical(x){if(Array.isArray(x))return '['+x.map(canonical).join(',')+']';if(x&&typeof x==='object')return '{'+Object.keys(x).sort().map(k=>JSON.stringify(k)+':'+canonical(x[k])).join(',')+'}';return JSON.stringify(x);}
 const hash=x=>crypto.createHash('sha256').update(canonical(x),'utf8').digest('hex');

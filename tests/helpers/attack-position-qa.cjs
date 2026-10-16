@@ -1,9 +1,9 @@
 "use strict";
-const E = require("../../hunt-engine");
+const E = require("../../src/hunt-engine");
 // Canonical verification-mode saves, built only with public commands. These
 // checkpoints are reproducible QA inputs, not personal normal-play evidence.
 function checkpoint(face = 1, weapon = "burial") {
-  const firearm = weapon === "burial" ? "hunter-pistol" : require("../../extended-weapons").definition(weapon).defaultFirearm;
+  const firearm = weapon === "burial" ? "hunter-pistol" : require("../../src/extended-weapons").definition(weapon).defaultFirearm;
   let s = E.create(3, weapon, face, null, firearm, "center", { campaign: true, rulesVersion: 14,
     qa: { preset: "custom", startRewards: [], startConsumables: ["qa-travel"] } });
   const commands = [{ type: "USE_CONSUMABLE", itemId: "item-qa-1-1" },

@@ -1,6 +1,6 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine'),F=require('../hunt-mission-feedback'),{boot}=require('./helpers/ui-harness.cjs');
+const E=require('../src/hunt-engine'),F=require('../src/hunt-mission-feedback'),{boot}=require('./helpers/ui-harness.cjs');
 const fixture=require('./fixtures/weapon-campaign-completion/beast-claw-0.json');
 function pendingMovement(){
  let s=E.create(90,'beast-claw',0,null,'hunter-pistol','center',{campaign:true,rulesVersion:14,
@@ -44,7 +44,7 @@ test('importing an already revealed legacy attack still defers policy adoption a
 });
 test('policy reconciliation preserves other batch notices and never rewrites prior notice objects',()=>{
  const previous=pendingMovement(),following=E.dispatch(previous,{type:'STOP_MOVE'}),adopted=E.applyTileSpeedRuling(following);
- const options={E,publicText:require('../hunt-public-text')},events=F.describe(previous,following,options);
+ const options={E,publicText:require('../src/hunt-public-text')},events=F.describe(previous,following,options);
  assert.equal(events.length,1);assert(events[0].effects.some(text=>text.includes('감소를 받지')));
  const first=E.create(90,'beast-claw',0,null,'hunter-pistol','center',{campaign:true,rulesVersion:14});
  const earlier=F.describe(null,first,options),batch=[...earlier,...events],original=structuredClone(batch);
@@ -59,7 +59,7 @@ test('policy-only reconciliation cannot announce unseen missions or change a def
  const previous=pendingMovement(),following=E.dispatch(previous,{type:'STOP_MOVE'}),adopted=E.applyTileSpeedRuling(following);
  const empty=[];assert.strictEqual(F.reconcileTileSpeedAdoption(empty,following,adopted,{E}),empty);
  const legacy=require('./helpers/tile-speed-checkpoints.cjs').missionCheckpoint(31).legacy;
- const events=F.describe(previous,following,{E,publicText:require('../hunt-public-text')});
+ const events=F.describe(previous,following,{E,publicText:require('../src/hunt-public-text')});
  assert.strictEqual(F.reconcileTileSpeedAdoption(events,legacy,E.applyTileSpeedRuling(legacy),{E}),events);
  assert.strictEqual(F.reconcileTileSpeedAdoption(events,adopted,adopted,{E}),events);
 });

@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), R = require("../rewards-engine"), P = require("../hunt-public-text"),
+const E = require("../src/hunt-engine"), R = require("../src/rewards-engine"), P = require("../src/hunt-public-text"),
   { boot } = require("./helpers/ui-harness.cjs");
 
 for (const kind of ["rune-rapture", "arianna-blood", "rune-radiance"]) {

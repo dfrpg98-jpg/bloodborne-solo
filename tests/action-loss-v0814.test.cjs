@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), Loss = require("../hunt-action-loss");
+const E = require("../src/hunt-engine"), Loss = require("../src/hunt-action-loss");
 const H = E.hunter, cache = new Map();
 function natural(file, count, qa) {
   const key = `${file}/${count}/${JSON.stringify(qa)}`;

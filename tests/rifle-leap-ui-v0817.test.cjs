@@ -1,5 +1,5 @@
 "use strict";
-const test = require("node:test"), assert = require("node:assert/strict"), E = require("../hunt-engine"),
+const test = require("node:test"), assert = require("node:assert/strict"), E = require("../src/hunt-engine"),
   { boot } = require("./helpers/ui-harness.cjs"), Q = require("./helpers/rifle-leap-checkpoints.cjs");
 const qaKey = "bloodborne-hunt-qa-v1", normalKey = "bloodborne-hunt-v07", H = E.hunter;
 const adopt = s => E.applyLeapMoveRuling(E.applyTileSpeedRuling(s));

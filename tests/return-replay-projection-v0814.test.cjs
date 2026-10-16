@@ -1,5 +1,5 @@
 "use strict";
-const test = require("node:test"), assert = require("node:assert/strict"), E = require("../hunt-engine"),
+const test = require("node:test"), assert = require("node:assert/strict"), E = require("../src/hunt-engine"),
   { clickCommand, replayPublicTrace } = require("./helpers/public-command-ui.cjs");
 function waitingReturn() {
   let s = E.create(90, "burial", 0, null, "hunter-pistol", "center", { campaign: false, rulesVersion: 14,

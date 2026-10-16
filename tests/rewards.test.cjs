@@ -1,5 +1,5 @@
 const test = require("node:test"), assert = require("node:assert/strict");
-const R = require("../rewards-engine.js"), D = require("../hunt-data.js");
+const R = require("../src/rewards-engine.js"), D = require("../src/hunt-data.js");
 const H = (s) => s.hunters[s.activeHunterId];
 function fixture() {
   const s = { activeHunterId: "hunter-1", phase: "hunter", uid: 12, rng: 42,
@@ -201,13 +201,13 @@ test("bone ash readiness restores only an exhausted equipped reward; supply and 
 test("browser global exports the same module without a Node require", () => {
   const fs = require("node:fs"), vm = require("node:vm");
   const context = { BBHuntData: D };
-  vm.runInNewContext(fs.readFileSync(require.resolve("../extended-rewards.js"), "utf8"), context);
-  vm.runInNewContext(fs.readFileSync(require.resolve("../rewards-engine.js"), "utf8"), context);
+  vm.runInNewContext(fs.readFileSync(require.resolve("../src/extended-rewards.js"), "utf8"), context);
+  vm.runInNewContext(fs.readFileSync(require.resolve("../src/rewards-engine.js"), "utf8"), context);
   assert.equal(typeof context.BBRewards.dispatch, "function");
   assert.equal(context.BBRewards.definitions["bloodstone-shard"].persistent, true);
 });
 function engineCombatFixture(kind = "strength", enemyHp = 4) {
-  const E = require("../hunt-engine.js");
+  const E = require("../src/hunt-engine.js");
   const s = E.create(444, "burial", 0, null, "hunter-pistol", "center", { campaign: true });
   const h = H(s), pool = [...h.hand, ...h.deck, ...h.discard, ...h.slots.filter(Boolean)];
   let selected;

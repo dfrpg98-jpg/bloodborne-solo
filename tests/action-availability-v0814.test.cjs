@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), Availability = require("../hunt-action-availability");
+const E = require("../src/hunt-engine"), Availability = require("../src/hunt-action-availability");
 const { boot } = require("./helpers/ui-harness.cjs");
 const source = require("./fixtures/v074-patient-natural-commands.json"),
   followup = require("./fixtures/v0813-dev14-followup-regain-legal-commands.json");

@@ -1,4 +1,4 @@
-@import url("fonts/noto-sans-kr.css");
+@import url("../fonts/noto-sans-kr.css");
 :root {
   color-scheme: dark;
   --bg: #11151a;

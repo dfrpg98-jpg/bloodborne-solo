@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict"), crypto = require("node:crypto");
-const E = require("../hunt-engine"), P = require("../hunt-attack-preview"),
+const E = require("../src/hunt-engine"), P = require("../src/hunt-attack-preview"),
   { boot } = require("./helpers/ui-harness.cjs"), { fixture, bossAction } = require("./actual-combat-helper.cjs");
 const H = E.hunter, key = "bloodborne-hunt-v07", sha = value => crypto.createHash("sha256").update(value).digest("hex");
 // Only game setup and accepted public commands were extracted from the supplied

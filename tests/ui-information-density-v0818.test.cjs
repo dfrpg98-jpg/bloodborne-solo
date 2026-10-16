@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), Entry = require("../hunt-entry"), Help = require("../game-help");
+const E = require("../src/hunt-engine"), Entry = require("../src/hunt-entry"), Help = require("../src/game-help");
 const { boot, Document } = require("./helpers/ui-harness.cjs");
 const normalKey = "bloodborne-hunt-v07";
 function launchNew() {

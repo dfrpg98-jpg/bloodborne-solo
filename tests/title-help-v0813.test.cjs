@@ -1,7 +1,7 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
 const fs = require("node:fs"), path = require("node:path"), vm = require("node:vm");
-const E = require("../hunt-engine"), Entry = require("../hunt-entry"), Help = require("../game-help");
+const E = require("../src/hunt-engine"), Entry = require("../src/hunt-entry"), Help = require("../src/game-help");
 const { boot, Document } = require("./helpers/ui-harness.cjs");
 const root = path.join(__dirname, ".."), normalKey = "bloodborne-hunt-v07", qaKey = "bloodborne-hunt-qa-v1",
   activeKey = "bloodborne-hunt-active-mode", previousKey = "bloodborne-hunt-v06", oldKey = "bloodborne-hunt-v05";
@@ -55,7 +55,7 @@ function bootTitle(storage, unavailable = false) {
   const window = { BBHuntEntry: Entry, BBGameHelp: Help, localStorage };
   Object.defineProperty(window, "BBHunt", { get() { throw Error("the title must not create, import or replay a hunt"); } });
   document.defaultView = window;
-  vm.runInContext(fs.readFileSync(path.join(root, "title-screen.js"), "utf8"), vm.createContext({ window, document, localStorage, URL, URLSearchParams }));
+  vm.runInContext(fs.readFileSync(path.join(root, "src/title-screen.js"), "utf8"), vm.createContext({ window, document, localStorage, URL, URLSearchParams }));
   return { document, values, writes, el: id => document.getElementById(id) };
 }
 

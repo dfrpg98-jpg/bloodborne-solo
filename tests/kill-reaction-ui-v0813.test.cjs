@@ -1,6 +1,6 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine'),{boot}=require('./helpers/ui-harness.cjs');
+const E=require('../src/hunt-engine'),{boot}=require('./helpers/ui-harness.cjs');
 
 test('controller presents the public kill reaction commands instead of an empty decision phase',()=>{
  const s=E.create(91,'burial',0,null,'hunter-pistol','center',{campaign:false});

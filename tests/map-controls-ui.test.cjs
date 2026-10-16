@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict"), fs = require("node:fs"), path = require("node:path");
-const E = require("../hunt-engine"), M = require("../chapter-engine"), G = require("../tile-geometry"), U = require("../hunt-map-controls");
+const E = require("../src/hunt-engine"), M = require("../src/chapter-engine"), G = require("../src/tile-geometry"), U = require("../src/hunt-map-controls");
 const { boot } = require("./helpers/ui-harness.cjs");
 const key = "bloodborne-hunt-v07", root = path.join(__dirname, "..");
 const plain = value => JSON.parse(JSON.stringify(value));
@@ -181,7 +181,7 @@ test("every tile's printed labels counterrotate at their original local coordina
 });
 
 test("the movement panel remains between the hand and weapon and the stylesheet supplies actual responsive three-column layout", () => {
-  const html = fs.readFileSync(path.join(root, "hunt.html"), "utf8"), css = fs.readFileSync(path.join(root, "hunt-map-controls.css"), "utf8");
+  const html = fs.readFileSync(path.join(root, "hunt.html"), "utf8"), css = fs.readFileSync(path.join(root, "styles/hunt-map-controls.css"), "utf8");
   assert(html.indexOf('id="handHeading"') < html.indexOf('id="movementHeading"'));
   assert(html.indexOf('id="movementHeading"') < html.indexOf('id="weaponName"'));
   assert(html.indexOf('id="tileInfoPanel"') < html.indexOf('id="mapHeading"'));

@@ -1,5 +1,5 @@
 'use strict';
-const E=require('../../hunt-engine');
+const E=require('../../src/hunt-engine');
 const files={10:'v074-shelter-natural-commands.json',31:'v074-patient-natural-commands.json'};
 function missionCheckpoint(card){
   let s=E.create(90,'burial',1,null,'hunter-pistol','center',{campaign:true,rulesVersion:14,

@@ -1,5 +1,5 @@
 'use strict';
-const test=require('node:test'),assert=require('node:assert/strict'),E=require('../hunt-engine'),P=require('../scripts/helpers/cloud-weapon-branch-plans.cjs');
+const test=require('node:test'),assert=require('node:assert/strict'),E=require('../src/hunt-engine'),P=require('../scripts/helpers/cloud-weapon-branch-plans.cjs');
 test('Chikage dodge multi-target pending choice exports and imports before resolving it',()=>{
  const plan=P.build(P.definitions().find(x=>x.id==='chikage-1-dodge-heal-multi-target'));
  let state=P.ruling(plan.checkpoint),pending;

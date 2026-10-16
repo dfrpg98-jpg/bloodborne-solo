@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict"), crypto = require("node:crypto");
-const E = require("../hunt-engine"), P = require("../hunt-attack-preview");
+const E = require("../src/hunt-engine"), P = require("../src/hunt-attack-preview");
 const Q = require("./helpers/rifle-leap-checkpoints.cjs"), H = E.hunter;
 const hash = state => crypto.createHash("sha256").update(E.exportSave(state)).digest("hex");
 const adopt = state => Q.checked(E.applyLeapMoveRuling(state));

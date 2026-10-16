@@ -1,6 +1,6 @@
 const test=require("node:test"),assert=require("node:assert/strict");
 const {E,A,go,fixture,enemyAction,attack,dodge,hand,chapter}=require("./actual-combat-helper.cjs");
-const M=require("../chapter-engine.js"), Missions=require("../mission-engine.js");
+const M=require("../src/chapter-engine.js"), Missions=require("../src/mission-engine.js");
 test("female fury reveals a weakened basic attack before an unresolved slower hunter attack",()=>{
   let s=attack(enemyAction(fixture("female-patient-a"),"special","basic"),1);
   assert.equal(s.combat.action.code,"female-fury"); s=go(s,"RESOLVE");

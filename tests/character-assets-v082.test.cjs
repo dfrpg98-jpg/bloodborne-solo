@@ -1,6 +1,6 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),vm=require('node:vm');
 const root=path.join(__dirname,'..'),meta=require('../assets/characters/manifest.json');
-const named=require('../enemy-visuals').ids,legacy=['beast','boss','female','hunter','mob'];
+const named=require('../src/enemy-visuals').ids,legacy=['beast','boss','female','hunter','mob'];
 test('offline character manifest exposes only local texture metadata and agrees with its JSON source',()=>{
  const context=vm.createContext({window:{}});vm.runInContext(fs.readFileSync(path.join(root,'assets/characters/manifest.js'),'utf8'),context);
  assert.deepEqual(JSON.parse(JSON.stringify(context.window.BBCharacterAssets)),meta);

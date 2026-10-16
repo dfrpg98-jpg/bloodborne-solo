@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), R = require("../rewards-engine"), P = require("../hunt-attack-preview");
+const E = require("../src/hunt-engine"), R = require("../src/rewards-engine"), P = require("../src/hunt-attack-preview");
 const { hand } = require("./actual-combat-helper.cjs"), { boot } = require("./helpers/ui-harness.cjs");
 const H = E.hunter, go = (state, type, args = {}) => E.dispatch(state, { type, ...args });
 

@@ -1,5 +1,5 @@
 const test=require('node:test'), assert=require('node:assert/strict');
-const R=require('../rewards-engine.js'), X=require('../extended-rewards.js'), D=require('../hunt-data.js');
+const R=require('../src/rewards-engine.js'), X=require('../src/extended-rewards.js'), D=require('../src/hunt-data.js');
 const clone=(s)=>JSON.parse(JSON.stringify(s)), H=(s)=>s.hunters[s.activeHunterId];
 function fixture(version=11) {
   const s={setup:{rulesVersion:version},activeHunterId:'h',phase:'hunter',uid:0,round:1,events:[],
@@ -202,7 +202,7 @@ test('torch leap entry must choose a legal one-space stopping point before spend
   R.dispatch(s,{type:'ENTRY_REWARD',accept:true,node:'b'},special);assert.equal(s.enemies[0].node,'b');assert.equal(item(s,id).ready,false);
 });
 
-const E=require('../hunt-engine.js'), C=require('./actual-combat-helper.cjs');
+const E=require('../src/hunt-engine.js'), C=require('./actual-combat-helper.cjs');
 const IG=(s,type,args={})=>E.dispatch(s,{type,...args}), IH=E.hunter;
 function integrated(weapon='burial',face=0,rewards=[],gun='hunter-pistol') {
   const s=E.create(123,weapon,face,null,gun,'center',{campaign:false,rulesVersion:11,practiceRewards:rewards});

@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), { boot } = require("./helpers/ui-harness.cjs");
+const E = require("../src/hunt-engine"), { boot } = require("./helpers/ui-harness.cjs");
 const normalKey = "bloodborne-hunt-v07", qaKey = "bloodborne-hunt-qa-v1", activeKey = "bloodborne-hunt-active-mode";
 const normal = () => E.create(90, "burial", 0, null, "hunter-pistol", "center", { campaign: true });
 function qaWithEnemy() {

@@ -1,6 +1,6 @@
 const assert=require('node:assert/strict');
-const E=require('../../hunt-engine'), {boot}=require('./ui-harness.cjs');
-const ActionLoss=require('../../hunt-action-loss');
+const E=require('../../src/hunt-engine'), {boot}=require('./ui-harness.cjs');
+const ActionLoss=require('../../src/hunt-action-loss');
 const plain=x=>JSON.parse(JSON.stringify(x));
 const containers=['mapContext','decisions','missionActions','rewards','firearm','componentCards','chapterMap','explorationActions'];
 function matches(actual,wanted){return Object.entries(wanted).every(([k,v])=>JSON.stringify(actual[k])===JSON.stringify(v));}

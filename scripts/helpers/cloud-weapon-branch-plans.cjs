@@ -1,6 +1,6 @@
 'use strict';
-const M=require('../../chapter-engine');
-const assert=require('node:assert/strict'),E=require('../../hunt-engine'),U=require('../../hunt-map-controls'),Departure=require('../../hunt-departure');
+const M=require('../../src/chapter-engine');
+const assert=require('node:assert/strict'),E=require('../../src/hunt-engine'),U=require('../../src/hunt-map-controls'),Departure=require('../../src/hunt-departure');
 const inputs=require('../../docs/audits/map-motion-ui-qa-v0.8.13-dev.6/fixtures/model-inputs.json');
 const qa={preset:'custom',startRewards:[],startConsumables:[...Array(10).fill('qa-heal'),...Array(10).fill('qa-cards'),...Array(10).fill('qa-travel')]};
 function ruling(s){for(const key of ['applyChapelRuling','applyCombatReactionRuling','applyTileSpeedRuling'])if(E[key])s=E[key](s);return s;}

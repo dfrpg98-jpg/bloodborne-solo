@@ -1,7 +1,7 @@
 "use strict";
 // Fast developer smoke. It intentionally uses QA equipment and cannot prove
 // normal campaign balance or completion with the printed components.
-const E=require("../hunt-engine"),assert=require("node:assert/strict");
+const E=require("../src/hunt-engine"),assert=require("node:assert/strict");
 const start=performance.now();
 let s=E.create(90,"qa-test-weapon",0,null,"hunter-pistol","center",{campaign:true,qa:{preset:"fast"}});
 let saveChecks=0;

@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), { boot } = require("./helpers/ui-harness.cjs"),
+const E = require("../src/hunt-engine"), { boot } = require("./helpers/ui-harness.cjs"),
   { checkpoint } = require("./helpers/damage-allocation-qa.cjs");
 const key = "bloodborne-hunt-qa-v1", H = E.hunter;
 function launch(state) {

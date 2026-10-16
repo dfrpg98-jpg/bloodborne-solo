@@ -1,5 +1,5 @@
 "use strict";
-const E = require("../../hunt-engine");
+const E = require("../../src/hunt-engine");
 const shelterCommands = require("../fixtures/v074-shelter-natural-commands.json");
 
 // SYNTHETIC-QA: these inputs replay an existing route through the public API

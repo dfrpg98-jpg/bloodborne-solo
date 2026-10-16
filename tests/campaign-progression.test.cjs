@@ -1,6 +1,6 @@
 const test = require('node:test'), assert = require('node:assert/strict');
-const E = require('../hunt-engine'), M = require('../chapter-engine');
-const R = require('../rewards-engine');
+const E = require('../src/hunt-engine'), M = require('../src/chapter-engine');
+const R = require('../src/rewards-engine');
 const commands = require('./fixtures/chapter-one-v8-commands.json');
 const legacyCommands = require('./fixtures/chapter-one-commands.json');
 const go=(s,type,args={})=>E.dispatch(s,{type,...args});

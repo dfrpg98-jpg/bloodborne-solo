@@ -1,5 +1,5 @@
 const test = require('node:test'), assert = require('node:assert/strict');
-const E = require('../hunt-engine'), V = require('../weapon-visuals'), { boot } = require('./helpers/ui-harness.cjs');
+const E = require('../src/hunt-engine'), V = require('../src/weapon-visuals'), { boot } = require('./helpers/ui-harness.cjs');
 const manifest = require('./fixtures/weapon-campaign-completion/manifest.json'), saveKey = 'bloodborne-hunt-v07';
 const checkpoints = new Map();
 function checkpoint(id, count) {

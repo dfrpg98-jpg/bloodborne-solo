@@ -1,11 +1,12 @@
 'use strict';
 // Local stdio development bridge. No listening port or production JS embedding.
 const readline=require('node:readline');
-const E=require('../ReferenceEngine/hunt-engine.js');
-const animations=require('../ReferenceEngine/hunt-animation-events.js');
-const departure=require('../ReferenceEngine/hunt-departure.js');
-const project=require('./public-view.cjs')(E,require('../ReferenceEngine/hunt-public-text.js'),
-  require('../ReferenceEngine/weapon-visuals.js'),require('../ReferenceEngine/campaigns/long-hunt/data.json'));
+const reference=require('./reference-source.cjs');
+const E=reference('hunt-engine.js');
+const animations=reference('hunt-animation-events.js');
+const departure=reference('hunt-departure.js');
+const project=require('./public-view.cjs')(E,reference('hunt-public-text.js'),
+  reference('weapon-visuals.js'),reference('campaigns/long-hunt/data.json'));
 function newSession() {
   let state=null,sceneId=null,successfulResets=0;
   return request => {

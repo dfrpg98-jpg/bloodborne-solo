@@ -1,5 +1,5 @@
 const test=require('node:test'),assert=require('node:assert/strict'),path=require('node:path');
-const E=require('../hunt-engine.js'),manifest=require('./fixtures/weapon-campaign-completion/manifest.json');
+const E=require('../src/hunt-engine.js'),manifest=require('./fixtures/weapon-campaign-completion/manifest.json');
 test('natural weapon completion manifest reports only the supplied public command traces',()=>{
   assert.equal(manifest.availableWeaponCount,Object.keys(E.data.weapons).filter(id=>id!=='training').length);
   assert.equal(manifest.completedWeaponCount,new Set(manifest.cases.map(c=>c.weaponId)).size);

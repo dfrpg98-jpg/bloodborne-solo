@@ -1,6 +1,6 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine'),G=require('../tile-geometry');
+const E=require('../src/hunt-engine'),G=require('../src/tile-geometry');
 const {boot}=require('./helpers/ui-harness.cjs');
 const rootKey='bloodborne-hunt-v07';
 const engine={create:E.create,importSave:E.importSave,exportSave:E.exportSave,dispatch:E.dispatch,

@@ -1,5 +1,5 @@
 const test = require('node:test'), assert = require('node:assert/strict');
-const E = require('../hunt-engine.js');
+const E = require('../src/hunt-engine.js');
 const commands = require('./fixtures/full-campaign-v8-commands.json');
 const firstChapter = require('./fixtures/chapter-one-v8-commands.json');
 const create = () => E.create(90, 'burial', 1, null, 'hunter-pistol', 'center', { campaign: true, rulesVersion: 8 });

@@ -1,5 +1,5 @@
 "use strict";
-const E = require("../../hunt-engine");
+const E = require("../../src/hunt-engine");
 
 // SYNTHETIC-QA: supported create + public commands only, no state edits.
 const commands = [

@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine.js"), Feedback = require("../hunt-death-feedback.js");
+const E = require("../src/hunt-engine.js"), Feedback = require("../src/hunt-death-feedback.js");
 const { hand } = require("./actual-combat-helper.cjs");
 const go = (s, type, args = {}) => E.dispatch(s, { type, ...args });
 function fixture(weapon = "burial", face = 0, rewards = []) {
@@ -143,7 +143,7 @@ test("snapshots expose only public health, end-state flags and journal data, nev
   const clone = structuredClone(view); Feedback.describe(view, view); assert.deepEqual(view, clone);
 });
 
-const { boot } = require("./helpers/ui-harness.cjs"), MissionFeedback = require("../hunt-mission-feedback.js");
+const { boot } = require("./helpers/ui-harness.cjs"), MissionFeedback = require("../src/hunt-mission-feedback.js");
 const qaKey = "bloodborne-hunt-qa-v1", normalKey = "bloodborne-hunt-v07";
 function qaBeforeLethalAttack() {
   let s = E.create(1061844653, "qa-test-weapon", 0, null, "hunter-pistol", "center",

@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), P = require("../hunt-attack-preview"),
+const E = require("../src/hunt-engine"), P = require("../src/hunt-attack-preview"),
   { hand, enemyAction, chapter, A } = require("./actual-combat-helper.cjs");
 const H = E.hunter, checked = state => { E.assertState(state); return state; };
 

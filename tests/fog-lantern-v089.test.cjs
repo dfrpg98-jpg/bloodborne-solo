@@ -1,6 +1,6 @@
 "use strict";
 const test = require('node:test'), assert = require('node:assert/strict');
-const E = require('../hunt-engine.js');
+const E = require('../src/hunt-engine.js');
 const commands = require('./fixtures/chapter-one-commands.json');
 const {choose} = require('./hunt-playthrough-helper.cjs');
 const H = E.hunter;

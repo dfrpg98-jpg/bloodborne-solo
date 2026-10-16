@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
-const Ajv=require('ajv/dist/2020'),E=require('../ReferenceEngine/hunt-engine.js'),{newSession}=require('./oracle.cjs');
+const Ajv=require('ajv/dist/2020'),E=require('./reference-source.cjs')('hunt-engine.js'),{newSession}=require('./oracle.cjs');
 const root=path.resolve(__dirname,'..'),read=file=>JSON.parse(fs.readFileSync(path.join(root,file),'utf8'));
 const schemas=Object.fromEntries(['command','save','content','public-view'].map(name=>[name,read('schemas/'+name+'-v1.schema.json')]));
 const ajv=new Ajv({allErrors:true,strict:true,allowUnionTypes:true});

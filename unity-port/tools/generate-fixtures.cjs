@@ -1,8 +1,9 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
-const E=require('../ReferenceEngine/hunt-engine.js');
-const G=require('../ReferenceEngine/tile-geometry.js');
-const A=require('../ReferenceEngine/hunt-animation-events.js');
+const reference=require('./reference-source.cjs');
+const E=reference('hunt-engine.js');
+const G=reference('tile-geometry.js');
+const A=reference('hunt-animation-events.js');
 const {project}=require('./oracle.cjs');
 const source=path.resolve(process.argv[2] || path.join(__dirname,'../..'));
 const destination=path.resolve(__dirname,'../MigrationPrivate/Parity');fs.mkdirSync(destination,{recursive:true});

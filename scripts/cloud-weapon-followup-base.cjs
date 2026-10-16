@@ -2,7 +2,7 @@
 // --model-only never loads Playwright. Browser mode imports one legal checkpoint
 // per row, then uses public controls only; raw saves never enter evidence files.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
-const E=require('../hunt-engine'),U=require('../hunt-map-controls');
+const E=require('../src/hunt-engine'),U=require('../src/hunt-map-controls');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'test-results/cloud-weapon-followup-base');
 const qa={preset:'custom',startRewards:[],startConsumables:[...Array(10).fill('qa-heal'),...Array(10).fill('qa-cards'),...Array(10).fill('qa-travel')]};
 const prefix=[{type:'USE_CONSUMABLE',itemId:'item-qa-1-21'},{type:'EXPLORE',edge:'N'},{type:'PLACE_TILE',rotation:0}];

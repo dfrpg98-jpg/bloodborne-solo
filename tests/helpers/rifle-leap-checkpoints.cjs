@@ -1,5 +1,5 @@
 "use strict";
-const assert = require("node:assert/strict"), E = require("../../hunt-engine"), M = require("../../chapter-engine");
+const assert = require("node:assert/strict"), E = require("../../src/hunt-engine"), M = require("../../src/chapter-engine");
 const H = E.hunter, cache = new Map();
 const run = (state, ...commands) => commands.reduce((s, command) => E.dispatch(s, command), state);
 function checked(state) {

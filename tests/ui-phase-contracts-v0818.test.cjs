@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), { hand, enemyAction } = require("./actual-combat-helper.cjs"),
+const E = require("../src/hunt-engine"), { hand, enemyAction } = require("./actual-combat-helper.cjs"),
   { boot } = require("./helpers/ui-harness.cjs");
 const H = E.hunter, key = "bloodborne-hunt-v07", plain = value => JSON.parse(JSON.stringify(value)),
   run = (state, ...commands) => commands.reduce((current, command) => E.dispatch(current, command), state);

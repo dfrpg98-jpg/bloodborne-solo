@@ -1,5 +1,5 @@
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine.js'),{replayPublicTrace}=require('./helpers/public-command-ui.cjs');
+const E=require('../src/hunt-engine.js'),{replayPublicTrace}=require('./helpers/public-command-ui.cjs');
 const {records}=require('./fixtures/v075-clinic-completion-manifest.json');
 assert.deepEqual(records.map(x=>x.card),[51,52]);
 function replay(card,ui){

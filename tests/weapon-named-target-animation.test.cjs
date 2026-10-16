@@ -1,5 +1,5 @@
 'use strict';
-const test=require('node:test'),assert=require('node:assert/strict'),A=require('../hunt-animation-events');
+const test=require('node:test'),assert=require('node:assert/strict'),A=require('../src/hunt-animation-events');
 const first='scourge-beast-1',second='scourge-beast-2',line='슬롯 효과 · 재앙의 야수에게 피해 1.';
 function view(revision,hp1=4,hp2=4,lines=[],combatTarget){return {revision,sceneId:'chapter-1',actors:[
   {id:'hunter',kind:'hunter',node:'tile-11:street',hp:6,weaponId:'ludwigs-holy-blade',weaponFace:1},

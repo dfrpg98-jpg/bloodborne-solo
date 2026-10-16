@@ -1,6 +1,6 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine'),Context=require('../hunt-context');
+const E=require('../src/hunt-engine'),Context=require('../src/hunt-context');
 const H=E.hunter;
 const escortTarget=node=>({kind:'cell',node,objectKind:'token',objectId:'escort'});
 function checked(state) {E.assertState(state);assert.deepEqual(E.importSave(E.exportSave(state)),state);return state;}

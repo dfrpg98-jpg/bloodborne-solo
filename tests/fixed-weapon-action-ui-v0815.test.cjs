@@ -1,7 +1,7 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), W = require("../extended-weapons"), P = require("../hunt-public-text"),
-  Controls = require("../hunt-combat-controls"), { Document } = require("./helpers/ui-harness.cjs"),
+const E = require("../src/hunt-engine"), W = require("../src/extended-weapons"), P = require("../src/hunt-public-text"),
+  Controls = require("../src/hunt-combat-controls"), { Document } = require("./helpers/ui-harness.cjs"),
   { hand } = require("./actual-combat-helper.cjs");
 const H = E.hunter, clean = text => P.clean(text, "combat"), go = (state, type, args = {}) => E.dispatch(state, { type, ...args });
 

@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), { hand } = require("./actual-combat-helper.cjs"),
+const E = require("../src/hunt-engine"), { hand } = require("./actual-combat-helper.cjs"),
   { boot } = require("./helpers/ui-harness.cjs");
 const H = E.hunter;
 

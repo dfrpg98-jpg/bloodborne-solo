@@ -1,5 +1,5 @@
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), R = require("../rewards-engine");
+const E = require("../src/hunt-engine"), R = require("../src/rewards-engine");
 const commands = require("./fixtures/chapter-one-commands.json");
 const H = E.hunter;
 function checkpoint(n) {

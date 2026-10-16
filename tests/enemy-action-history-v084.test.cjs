@@ -2,9 +2,9 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const E = require('../hunt-engine');
-const ED = require('../enemy-deck');
-const makeHistory = require('../enemy-action-history');
+const E = require('../src/hunt-engine');
+const ED = require('../src/enemy-deck');
+const makeHistory = require('../src/enemy-action-history');
 
 test('six public actions remain until the next actual shuffle, which starts a fresh record', () => {
   const history = makeHistory({ E, labels: ED.labels });

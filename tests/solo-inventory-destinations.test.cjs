@@ -1,5 +1,5 @@
 const test=require('node:test'),assert=require('node:assert/strict');
-const E=require('../hunt-engine'),{boot}=require('./helpers/ui-harness.cjs');
+const E=require('../src/hunt-engine'),{boot}=require('./helpers/ui-harness.cjs');
 const fogCommands=require('./fixtures/v074-lantern-fog-commands.json');
 function fogState(){let s=E.create(90,'rifle-spear',1,null,'hunter-pistol','center',{campaign:true,rulesVersion:11});for(const c of fogCommands)s=E.dispatch(s,c);return s;}
 function give(s,kind){const index=s.consumableDeck.findIndex(c=>c.kind===kind);assert(index>=0);E.hunter(s).consumables.push(...s.consumableDeck.splice(index,1));}

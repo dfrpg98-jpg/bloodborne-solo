@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), { boot } = require("./helpers/ui-harness.cjs");
+const E = require("../src/hunt-engine"), { boot } = require("./helpers/ui-harness.cjs");
 const qaKey = "bloodborne-hunt-qa-v1", normalKey = "bloodborne-hunt-v07", H = E.hunter;
 function house(kind = "ground") {
   let s = E.create(14, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 13,

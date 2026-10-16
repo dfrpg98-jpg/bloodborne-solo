@@ -2,8 +2,8 @@
 // Real Chromium only. Checkpoints are regenerated through create/dispatch and
 // loaded through the product file input. No raw saves enter the evidence folder.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
-const {chromium}=require('playwright'),E=require('../hunt-engine'),U=require('../hunt-map-controls'),
-  Effects=require('../hunt-enemy-mission-effects'),Feedback=require('../hunt-mission-feedback');
+const {chromium}=require('playwright'),E=require('../src/hunt-engine'),U=require('../src/hunt-map-controls'),
+  Effects=require('../src/hunt-enemy-mission-effects'),Feedback=require('../src/hunt-mission-feedback');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'test-results/cloud-ui-qa');
 fs.mkdirSync(out,{recursive:true});
 const report={sourceCommit:process.env.GITHUB_SHA||'local-uncommitted',node:process.version,
@@ -176,7 +176,7 @@ function firearmReward(){let s=E.create(90,'burial',1,null,'hunter-pistol','cent
     for(const record of naturalRecords())await attempt('mission-'+record.wanted+'-actual-trigger',async()=>{
       const prior=await load(record.prior),next=E.applyTileSpeedRuling(E.dispatch(prior,record.command));
       await clickCommand(record.command);sameState(await saved(),next);
-      const changes=Feedback.describe(prior,next,{E,publicText:require('../hunt-public-text'),data:require('../campaigns/long-hunt/data.json')});
+      const changes=Feedback.describe(prior,next,{E,publicText:require('../src/hunt-public-text'),data:require('../campaigns/long-hunt/data.json')});
       assert(changes.length);assert.equal(await page.locator('#missionUpdateDialog').evaluate(x=>x.open),true);
       const alert=await page.locator('#missionUpdateList').innerText();assert.match(alert,/속도|피해|공격|능력/);await screenshot('mission-'+record.wanted+'-alert');
       await acknowledge();const effect=Effects.describe(next,E).find(x=>x.card===record.wanted);assert(effect);

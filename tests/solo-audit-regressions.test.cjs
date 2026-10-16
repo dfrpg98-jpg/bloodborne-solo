@@ -1,5 +1,5 @@
 const test = require('node:test'), assert = require('node:assert/strict');
-const E = require('../hunt-engine.js'), R = require('../rewards-engine.js');
+const E = require('../src/hunt-engine.js'), R = require('../src/rewards-engine.js');
 const { hand } = require('./actual-combat-helper.cjs');
 const commands = require('./fixtures/v074-lantern-fog-commands.json');
 const H = E.hunter;

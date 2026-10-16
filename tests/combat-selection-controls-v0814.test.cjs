@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), Controls = require("../hunt-combat-controls"), { Document, boot } = require("./helpers/ui-harness.cjs");
+const E = require("../src/hunt-engine"), Controls = require("../src/hunt-combat-controls"), { Document, boot } = require("./helpers/ui-harness.cjs");
 const H = E.hunter, go = (state, type, args = {}) => E.dispatch(state, { type, ...args });
 function create(rewards = ["bloodstone-shard", "bloodstone-chunk", "rune-clawmark"]) {
   let state = E.create(90, "qa-test-weapon", 0, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 14,

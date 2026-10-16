@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), Preview = require("../hunt-outcome-preview");
+const E = require("../src/hunt-engine"), Preview = require("../src/hunt-outcome-preview");
 const { hand, fixture: componentFixture } = require("./actual-combat-helper.cjs");
 const go = (s, type, args = {}) => E.dispatch(s, { type, ...args });
 function facts(s, enemy = s.enemies.find(e => e.id === s.combat?.enemyId) || s.enemies[0]) {

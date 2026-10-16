@@ -5,7 +5,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
 const source = require("../components/extended-weapons.json");
-const W = require("../extended-weapons.js");
+const W = require("../src/extended-weapons.js");
 
 const printed = {
   "threaded-cane": [["3/1", "2/2", "2/2"], ["3/1", "2/2", "1/3"]],
@@ -125,7 +125,7 @@ test("weapon face parameters preserve movement, healing, self-damage and dodge c
 test("offline browser mirror and UMD adapter match Node data without fetch or original JPG files", () => {
   assert.deepEqual(require("../components/extended-weapons.js"), source);
   const context = vm.createContext({});
-  for (const file of ["../components/extended-weapons.js", "../extended-weapons.js"]) {
+  for (const file of ["../components/extended-weapons.js", "../src/extended-weapons.js"]) {
     vm.runInContext(fs.readFileSync(path.resolve(__dirname, file), "utf8"), context);
   }
   const fromBrowser = JSON.parse(JSON.stringify(context.BBExtendedWeapons.source));

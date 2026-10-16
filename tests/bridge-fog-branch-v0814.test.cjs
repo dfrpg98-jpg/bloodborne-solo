@@ -1,6 +1,6 @@
 "use strict";
 const test = require("node:test"), assert = require("node:assert/strict");
-const E = require("../hunt-engine"), Map = require("../hunt-map-controls"), C = require("../campaigns/long-hunt/data.json");
+const E = require("../src/hunt-engine"), Map = require("../src/hunt-map-controls"), C = require("../campaigns/long-hunt/data.json");
 const clinic = require("./fixtures/v075-clinic52-completed-natural-commands.json"),
   chapel = require("./fixtures/v075-chapel-timing-natural-escort-first-commands.json");
 function prefix(commands, count) {
