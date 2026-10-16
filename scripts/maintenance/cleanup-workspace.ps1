@@ -8,6 +8,14 @@ param([switch]$Apply, [switch]$FramesOnly)
 $ErrorActionPreference = 'Stop'
 $taskRepository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
 $taskScope = 'C:\Users\GOOD\Documents\Codex\2026-10-11\new-chat'
+$taskHandoffPath = Join-Path $taskRepository 'docs\maintenance\delete-handoff-2026-10-16.json'
+if (Test-Path -LiteralPath $taskHandoffPath) {
+    $taskHandoff = Get-Content -LiteralPath $taskHandoffPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    Write-Output ("Inspection folder: {0}" -f $taskHandoff.Directory)
+    Write-Output ("Status: {0}; grouped files: {1:N0}; no deletion performed." -f $taskHandoff.Status, $taskHandoff.MovedFiles)
+    if ($Apply) { throw 'This old deletion command is retired. Inspect the grouped folder first; nothing was deleted.' }
+    return
+}
 $taskReport = Join-Path $taskRepository 'docs\maintenance\storage-audit-2026-10-16.json'
 if ((Get-FileHash -LiteralPath $taskReport -Algorithm SHA256).Hash -ine '203ba57ade280be261a101e5760bd3cf357b9a2054c21072b2fd4dee073e369d') {
     throw 'The reviewed manifest changed; regenerate and review the cleanup plan first.'

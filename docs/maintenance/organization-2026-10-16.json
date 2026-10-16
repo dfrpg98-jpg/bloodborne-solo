@@ -32,7 +32,13 @@
     "totalBytes": 25172452403,
     "script": "scripts/maintenance/cleanup-workspace.ps1",
     "audit": "docs/maintenance/storage-audit-2026-10-16.json",
-    "preserved": "원본자료·Git 미수록 0.5.0 보관본·검증 영상·JSON 및 추출 스크립트·Git 이력·작업 트리"
+    "preserved": "원본자료·Git 미수록 0.5.0 보관본·검증 영상·JSON 및 추출 스크립트·Git 이력·작업 트리",
+    "inspectionFolder": "C:\\Users\\GOOD\\Documents\\Codex\\2026-10-11\\new-chat\\삭제대상_검토후삭제",
+    "inspectionStatus": "prepared-for-user-inspection",
+    "movedFiles": 58605,
+    "movedBytes": 25172452403,
+    "oldApplyCommandRetired": true,
+    "handoffRecord": "docs/maintenance/delete-handoff-2026-10-16.json"
   },
   "verification": {
     "status": "passed",

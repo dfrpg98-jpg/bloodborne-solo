@@ -71,7 +71,7 @@ Remove-Item Env:BB_REFERENCE_ROOT
 
 기존 문서의 이동 전후 경로는 `scripts/project-document-paths.json`에 기록했습니다. 과거 점검 자료 안의 당시 경로와 해시는 역사적 근거로 보존합니다.
 
-로컬 중복 정리 목록은 [용량 대조 기록](docs/maintenance/storage-audit-2026-10-16.json)에 있습니다. `scripts/maintenance/cleanup-workspace.ps1`은 기본 실행 시 삭제 없이 대상과 용량만 표시합니다. 사용자가 직접 `-Apply`를 붙여 실행하면 확인된 생성 프레임과 중복 백업만 삭제하며, `-FramesOnly`를 함께 쓰면 ZIP을 보존합니다. 원본 사진·검증 영상·판정 기록·Git 이력은 보존합니다. 중복 전체 ZIP을 새로 만들지 않습니다.
+로컬 중복 정리 목록은 [용량 대조 기록](docs/maintenance/storage-audit-2026-10-16.json)에 있습니다. 삭제 후보는 사용자가 먼저 내용을 확인하도록 옛 작업 폴더의 `삭제대상_검토후삭제/`에 모읍니다. 검증에서 생성한 PNG와 중복 전체 백업 ZIP을 별도 하위 폴더로 나누며, [이동 기록](docs/maintenance/delete-handoff-2026-10-16.json)에 원래 위치·종류·개수·용량을 기록합니다. 원본 사진·검증 영상·판정 기록·Git 이력은 보존합니다. 이동 기록이 있으면 이전 `cleanup-workspace.ps1 -Apply` 명령은 삭제를 실행하지 않고 중단합니다. 중복 전체 ZIP을 새로 만들지 않습니다.
 
 실행에 필요한 `assets/`, `fonts/`, `campaigns/`, `components/`, `tests/` 및 출처·해시 기록은 버전 관리합니다. 사용자가 제공한 원본 사진 폴더(`참고자료/`, `components/images/`, `campaigns/long-hunt/images/`)와 플레이 저장, 중복 ZIP, 임시 브라우저 QA 페이지는 로컬에 보존합니다. 역사적인 출처 메타데이터의 과거 로컬 경로는 자료 수집 기록이며 실행 경로가 아닙니다.
 
