@@ -69,8 +69,12 @@ test("axe follow-up choices distinguish equal-name equal-HP enemies and dispatch
   }), options = ui.el("decisionActions").querySelectorAll("[data-command]")
     .filter(button => button.dataset.command === "WEAPON_CHOICE");
   assert.equal(options.length, 2);
-  assert.match(ui.el("decisions").textContent, /하인 #1.*중앙 등불 \/ 왼쪽 칸.*체력 5 \/ 5.*피해 2/);
-  assert.match(ui.el("decisions").textContent, /하인 #2.*중앙 등불 \/ 오른쪽 칸.*체력 5 \/ 5.*피해 2/);
+  assert.match(ui.el("decisions").textContent, /하인#1.*피해 2/);
+  assert.match(ui.el("decisions").textContent, /하인#2.*피해 2/);
+  const targetLabels = [...ui.el("decisions").innerHTML.matchAll(/<button\b[^>]*data-command="WEAPON_CHOICE"[^>]*>([\s\S]*?)<\/button>/g)].map(match => match[1]);
+  assert.equal(targetLabels.length, 2);
+  for (const label of targetLabels) assert.doesNotMatch(label, /중앙 등불|왼쪽 칸|오른쪽 칸|체력/,
+    "short choice labels identify the target without an address or health paragraph");
   assert.equal(JSON.parse(options[0].dataset.args).enemyId, "huntsmans-minion-1");
   assert.equal(JSON.parse(options[1].dataset.args).enemyId, "huntsmans-minion-2");
   assert.match(ui.el("phaseHelp").textContent, /선택할 대상 2개/);

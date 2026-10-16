@@ -20,6 +20,11 @@
     ["적과 처음 조우하면", "‘적과 조우’에서는 카드·빈 슬롯을 고르고 ‘맞서 공격’을 누르거나 ‘공격하지 않고 행동 공개’를 누릅니다. 공개 뒤 회피하려면 회피 카드 → 현재 빈 슬롯 → ‘회피’를 누르세요. 선택만으로는 회피하지 않습니다. 효과 선택을 마치고 ‘속도 순서대로 전투 처리’를 누릅니다. 회피하지 않을 때도 이 처리 버튼으로 계속합니다."],
     ["내 차례 마치기", "원하는 행동을 마치면 ‘플레이어의 차례 마치기’를 누릅니다. 적 활성화와 전투 대응이 끝나면 ‘손패 보충’으로 남길 카드를 정하고 3장이 될 때까지 뽑습니다. 차례당 행동이 항상 3번으로 고정된 것은 아닙니다."]
   ];
+  const firstSteps = [
+    ["이동", "손패 1장을 고른 뒤 ‘이동 시작 · 손패 1장’을 누르고 방향을 선택하세요. 기본 이동은 최대 2칸입니다. 덜 움직이려면 ‘이동 마치기’를 누릅니다."],
+    ["탐험", "현재 칸의 출입구 표시 → ‘이 출입구로 탐험’ → 방향 선택 → ‘이 방향으로 배치하고 진입’ 순서입니다. 진입에 이동력 1을 씁니다."],
+    ["전투", "같은 칸의 적 → 손패 1장 → 빈 슬롯 → ‘이 적 공격’을 누릅니다. 조우 후 회피하려면 회피 카드와 빈 슬롯을 고른 뒤 ‘회피’를 눌러 확정하세요. 마지막으로 ‘속도 순서대로 전투 처리’를 누릅니다."]
+  ];
   const sections = [
     {
       title: "1. 카드와 행동 · 버리기와 슬롯에 놓기는 달라요",
@@ -132,11 +137,13 @@
   function renderHTML() {
     return `<article class="game-help" aria-label="게임 도움말">
       <h3 class="game-help-title">게임 도움말</h3>
-      <p class="game-help-lead">공개된 임무를 따라 탐험하고, 사냥 트랙이 끝나기 전에 목표를 완수하세요. 일반 사냥의 첫 이동·공격·회피를 아래 순서로 익혀 보세요.</p>
-      <section class="game-help-first"><h4>첫 사냥 · 일반 플레이 시작하기</h4>${itemsHTML(firstHunt, true)}<p class="game-help-note">나오는 타일과 적은 달라질 수 있습니다. 새 선택이 나타나면 ‘다음 선택’의 설명을 먼저 따르세요. 검증 모드로 시작하려면 도움말 맨 아래의 ‘검증용 사냥 시작 순서’를 펼치세요.</p></section>
-      <section class="game-help-screen"><h4>화면은 이렇게 읽으세요</h4>${itemsHTML(screenGuide)}</section>
-      <p class="game-help-fold-hint">궁금한 항목을 펼쳐 보세요. 키보드로 제목에 초점을 두고 Enter 또는 Space로 열고 닫을 수 있습니다.</p>
-      <div class="game-help-sections">${sections.slice(0, -1).map(section => sectionHTML(section)).join("")}${sectionHTML(sections[sections.length - 1], true)}</div>
+      <p class="game-help-lead">‘시작하기’에서 무기와 시작 칸을 고르세요. 임무 알림을 확인한 뒤, 사냥 트랙이 끝나기 전에 목표를 완수합니다.</p>
+      <section class="game-help-first"><h4>첫 사냥 · 일반 플레이 시작하기</h4>${itemsHTML(firstSteps, true)}<p class="game-help-note">새 선택이 나오면 ‘다음 선택’부터 처리하세요.</p></section>
+      <div class="game-help-sections">
+        <details class="game-help-section"><summary>첫 사냥 자세한 순서</summary><div class="game-help-section-body">${itemsHTML(firstHunt, true)}<p class="game-help-note">나오는 타일과 적은 달라질 수 있습니다. 검증 모드의 시작 방법은 맨 아래 ‘검증용 사냥 시작 순서’를 펼치세요.</p></div></details>
+        <details class="game-help-section"><summary>화면 구성과 조작</summary><div class="game-help-section-body">${itemsHTML(screenGuide)}</div></details>
+        ${sections.slice(0, -1).map(section => sectionHTML(section)).join("")}${sectionHTML(sections[sections.length - 1], true)}
+      </div>
     </article>`;
   }
   function mount(container) {

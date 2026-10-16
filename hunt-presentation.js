@@ -351,6 +351,36 @@
       if (units.get(unit.actor.id) === unit && unit.epoch === epoch && !unit.dying) complete();
     });
   }
+  function publishActorPositions() {
+    if (destroyed || failed || !scene || !charactersReady || typeof options.onActorPositions !== "function") return;
+    const visible = [...units.values()].filter(unit => unit.actor.kind === "enemy" && !unit.dying && !unit.pendingDeath);
+    try { options.onActorPositions(visible.map(unit => ({ id: unit.actor.id, x: unit.sprite.x, y: unit.sprite.y }))); }
+    catch (_) { /* A DOM status overlay cannot interrupt rendering or game rules. */ }
+  }
+  function updateSelection(unit, delta = 0) {
+    // Selection is a presentation-only alpha layer, independent of movement and
+    // hit tweens. A dying actor keeps its own fade until it is removed.
+    const active = unit.actor.kind === "enemy" && unit.actor.selected && !unit.dying && !unit.pendingDeath;
+    if (!active) {
+      if (unit.selectionActive && !unit.dying) unit.sprite.alpha = 1;
+      if (unit.selectionTint) unit.sprite.clearTint?.();
+      unit.selectionActive = false; unit.selectionTint = false; unit.selectionElapsed = 0;
+      return;
+    }
+    if (!unit.selectionActive) unit.selectionElapsed = 0;
+    unit.selectionActive = true;
+    if (motionReduced) {
+      unit.sprite.alpha = 1;
+      if (!unit.selectionTint && typeof unit.sprite.setTint === "function") {
+        unit.sprite.setTint(0xffe5a0); unit.selectionTint = true;
+      }
+      return;
+    }
+    if (unit.selectionTint) { unit.sprite.clearTint?.(); unit.selectionTint = false; }
+    // A slow, shallow pulse leaves the selected character visible throughout.
+    unit.selectionElapsed = (unit.selectionElapsed + Math.max(0, Math.min(250, Number.isFinite(delta) ? delta : 0))) % 1600;
+    unit.sprite.alpha = .86 + .14 * Math.cos(unit.selectionElapsed * Math.PI / 800);
+  }
   function updateUnit(unit, actor) {
     const prior = unit.actor; unit.actor = actor;
     // A consumed charge may leave the live equipment uncharged while its
@@ -364,7 +394,7 @@
     applySkinSize(unit); unit.sprite.setDepth?.(100 + actor.y);
     unit.shadow?.setPosition?.(unit.moving ? unit.sprite.x : actor.x, (unit.moving ? unit.sprite.y : actor.y) + 2);
     unit.shadow?.setScale?.(actor.scale); unit.shadow?.setDepth?.(actor.y);
-    updateMask(unit);
+    updateMask(unit); updateSelection(unit);
   }
   function createUnit(actor) {
     const skin = renderSkin(actor), data = sheets.get(skin);
@@ -372,7 +402,7 @@
     const sprite = scene.add.sprite(actor.x, actor.y, data.key, firstFrame(skin)), shadow = scene.add.graphics();
     shadow.fillStyle?.(0x07080a, .42); shadow.fillEllipse?.(0, 0, actor.skin === "boss" || actor.skin === "cleric-beast" ? 35 : 24, 9);
     const unit = { actor, skin: safeSpriteSkin(actor, sprite), sprite, shadow, epoch: 0, animation: "", moving: false, dying: false,
-      pendingDeath: false, transientSkin: false, mask: null, maskGraphics: null, maskAttached: false, maskFrame: null };
+      pendingDeath: false, transientSkin: false, selectionActive: false, selectionTint: false, selectionElapsed: 0, mask: null, maskGraphics: null, maskAttached: false, maskFrame: null };
     if (unit.skin !== skin) sprite.setTexture?.(sheets.get(unit.skin).key, firstFrame(unit.skin));
     units.set(actor.id, unit);
     sprite.on?.("animationupdate", () => { if (!destroyed && !failed && units.get(actor.id) === unit) {
@@ -474,7 +504,7 @@
     if (!unit || unit.dying) return;
     cancelUnitMotion(unit, false); unit.dying = true; unit.pendingDeath = false; unit.animation = animationKey(unit.skin, "death");
     if (sheets.get(unit.skin)?.animations.death) unit.sprite.play?.(unit.animation);
-    updateMask(unit); const epoch = unit.epoch;
+    updateMask(unit); updateSelection(unit); const epoch = unit.epoch;
     scene.tweens.add({ targets: unit.sprite, alpha: 0, duration: 560, delay: 160, ease: "Sine.easeIn",
       onComplete: () => { if (unit.epoch === epoch && units.get(unit.actor.id) === unit) { removeUnit(unit.actor.id); publish(); } } });
   }
@@ -658,8 +688,8 @@
     if (deathIds.size) for (const unit of repacks) later(() => {
       if (units.get(unit.actor.id) === unit && !unit.dying) startUnitMotion(unit, unit.sprite, unit.actor, 240, "layout");
     }, lastDeathStart + 750);
-    for (const unit of units.values()) updateMask(unit);
-    lastRevision = snapshot.revision; lastSceneId = snapshot.sceneId; lastView = snapshot.view; publish();
+    for (const unit of units.values()) { updateMask(unit); updateSelection(unit); }
+    lastRevision = snapshot.revision; lastSceneId = snapshot.sceneId; lastView = snapshot.view; publishActorPositions(); publish();
   }
   function sync(snapshot) {
     if (destroyed) return;
@@ -690,6 +720,7 @@
   function onMotion(event) {
     motionReduced = !!event.matches;
     if (motionReduced) clearEffects(); else for (const unit of units.values()) idle(unit);
+    for (const unit of units.values()) updateSelection(unit);
     publish();
   }
   function destroy() {
@@ -716,10 +747,15 @@
           if (destroyed) return;
           scene = this; fitLoadedCanvas(); registerAnimations(); publish();
           if (pending) { const latest = pending; pending = null; apply(latest); }
-        }, update: function () {
+        }, update: function (_time, delta) {
           if (destroyed || failed) return;
-          try { for (const unit of units.values()) if (unit.maskGraphics || sheets.get(unit.skin)?.needsClips) updateMask(unit); }
-          catch (_) { fail(); }
+          try {
+            for (const unit of units.values()) {
+              if (unit.maskGraphics || sheets.get(unit.skin)?.needsClips) updateMask(unit);
+              updateSelection(unit, delta);
+            }
+            publishActorPositions();
+          } catch (_) { fail(); }
         } }
       }); configureCanvas();
     } catch (_) { fail(); }

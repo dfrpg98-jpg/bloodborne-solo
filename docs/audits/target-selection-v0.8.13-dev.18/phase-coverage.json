@@ -1,0 +1,1645 @@
+{
+  "method": "Two existing normal public-command legacy-rules-11 campaign traces are replayed in the current engine. The current actual hunt UI is booted once per reached phase for each trace, plus the first hunter state in each chapter. All four policy-adoption helpers are identity functions during UI boot. No buttons are clicked.",
+  "limitations": [
+    "These are historical released-rules-11 traces, not fresh current-policy playthroughs or the parent's cloud-only dev.17 save.",
+    "The lightweight DOM harness does not render CSS, Phaser sprites, modal geometry, animation frames or physical pointer input.",
+    "Action presence means rendered DOM elements in the decision/reward areas; this does not establish visibility, enabled validity or completion of every branch.",
+    "Only one representative of each reached phase per trace is booted, plus later-chapter hunter states. No claim of every registered phase or every possible state within a phase is made.",
+    "Title, setup, help, file export/import interactions and native save/load are outside this pass and are being checked separately by the parent."
+  ],
+  "sourceSha256": {
+    "hunt-app.js": "7a00985650968941ab50effd7207c92ace32b311b850e7e38cca689128540cea",
+    "hunt-public-text.js": "e6652d6ddaeaea1eae09130f47cfdd7434f086ddd5b1cf7180d7ef3f8b176dc1",
+    "hunt-shell.js": "75914cf977b56ef26d8c8eb769995204707fd1baaf36c072cdfddaaec6c35680",
+    "hunt.html": "01750456ec09400a8b28c77d27e653ba165bfe74784ec827ba2423aeb5fc31ae",
+    "inventory.js": "1c1fd814229a2f7397fd4005d189b554e5b7dee1576b33bf521686ea3142d5e7",
+    "hunt-engine.js": "9da62acf9369545235b604a18e27374211de9c10d2354d346970eb551ae7065f"
+  },
+  "registeredPhaseSource": "hunt-app.js renderDecisions() names table",
+  "registeredPhases": [
+    "hunter",
+    "move",
+    "tile_place",
+    "spawn_choice",
+    "enemy_path",
+    "boss_move",
+    "boss_react",
+    "firearm_react",
+    "combat_choose",
+    "combat_react",
+    "kill_react",
+    "combat_extra",
+    "ability_choice",
+    "cheap_shot",
+    "card_choice",
+    "free_transform",
+    "stun",
+    "activation",
+    "refill",
+    "return",
+    "upgrade_pick",
+    "upgrade_replace",
+    "loot_choice",
+    "exchange_choice",
+    "interaction_order",
+    "mission_survivor",
+    "mission_choice",
+    "mission_death",
+    "between_chapters",
+    "weapon_choice",
+    "weapon_entry",
+    "reward_entry",
+    "over"
+  ],
+  "traces": [
+    {
+      "fixture": "tests/fixtures/weapon-campaign-completion/rifle-spear-0.json",
+      "setup": {
+        "weaponId": "rifle-spear",
+        "startFace": 0,
+        "seed": 90,
+        "initialFirearmId": "hunter-pistol",
+        "startingConsumable": null,
+        "startSpace": "center",
+        "rulesVersion": 11,
+        "commandsFile": "rifle-spear-0.json",
+        "commandCount": 308,
+        "finalTrack": 14,
+        "finalHp": 6,
+        "finalFirearmId": "ludwig-rifle",
+        "saveCheckpointCount": 11,
+        "saveCheckpoints": [
+          "creation",
+          "between_chapters",
+          "chapter-2",
+          "boss-2:1",
+          "boss-2:2",
+          "chapter-3",
+          "boss-3:1",
+          "firearm_react",
+          "weapon_entry",
+          "boss-3:2",
+          "campaign-win"
+        ]
+      },
+      "commandCount": 308,
+      "result": "campaign-win",
+      "reachedChapters": [
+        1,
+        2,
+        3
+      ],
+      "reachedPhases": [
+        "hunter",
+        "move",
+        "tile_place",
+        "combat_choose",
+        "combat_react",
+        "refill",
+        "return",
+        "mission_survivor",
+        "mission_choice",
+        "combat_extra",
+        "upgrade_pick",
+        "upgrade_replace",
+        "over",
+        "between_chapters",
+        "enemy_path",
+        "stun",
+        "boss_move",
+        "firearm_react",
+        "card_choice",
+        "weapon_entry",
+        "boss_react"
+      ],
+      "phaseStateCounts": {
+        "hunter": 101,
+        "move": 55,
+        "tile_place": 8,
+        "combat_choose": 21,
+        "combat_react": 53,
+        "refill": 24,
+        "return": 10,
+        "mission_survivor": 4,
+        "mission_choice": 1,
+        "combat_extra": 1,
+        "upgrade_pick": 6,
+        "upgrade_replace": 4,
+        "over": 3,
+        "between_chapters": 3,
+        "enemy_path": 4,
+        "stun": 1,
+        "boss_move": 2,
+        "firearm_react": 3,
+        "card_choice": 3,
+        "weapon_entry": 1,
+        "boss_react": 1
+      },
+      "samples": [
+        {
+          "phase": "hunter",
+          "chapter": 1,
+          "prefix": 0,
+          "precedingCommand": null,
+          "passed": true,
+          "title": "플레이어의 차례",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 5,
+          "enabledRenderedCommandCount": 1,
+          "renderedCommands": [
+            "MOVE",
+            "TRANSFORM",
+            "DREAM",
+            "RELOAD",
+            "END_TURN"
+          ],
+          "buttonCount": 6,
+          "customButtonIds": [
+            "interact"
+          ],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "move",
+          "chapter": 1,
+          "prefix": 2,
+          "precedingCommand": {
+            "type": "MOVE",
+            "cardId": "card-3"
+          },
+          "passed": true,
+          "title": "이동과 탐험",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 1,
+          "enabledRenderedCommandCount": 1,
+          "renderedCommands": [
+            "STOP_MOVE"
+          ],
+          "buttonCount": 1,
+          "customButtonIds": [],
+          "selectCount": 0,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "tile_place",
+          "chapter": 1,
+          "prefix": 3,
+          "precedingCommand": {
+            "type": "EXPLORE",
+            "edge": "N"
+          },
+          "passed": true,
+          "title": "새 타일 배치",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 1,
+          "enabledRenderedCommandCount": 1,
+          "renderedCommands": [
+            "PLACE_TILE"
+          ],
+          "buttonCount": 5,
+          "customButtonIds": [],
+          "selectCount": 0,
+          "rotationChoiceCount": 4
+        },
+        {
+          "phase": "combat_choose",
+          "chapter": 1,
+          "prefix": 6,
+          "precedingCommand": {
+            "type": "END_TURN"
+          },
+          "passed": true,
+          "title": "적과 조우",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 2,
+          "enabledRenderedCommandCount": 1,
+          "renderedCommands": [
+            "COUNTER",
+            "NO_ATTACK"
+          ],
+          "buttonCount": 2,
+          "customButtonIds": [],
+          "selectCount": 0,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "combat_react",
+          "chapter": 1,
+          "prefix": 7,
+          "precedingCommand": {
+            "type": "COUNTER",
+            "cardId": "card-1",
+            "slot": 2,
+            "weaponBoost": "none"
+          },
+          "passed": true,
+          "title": "전투 대응",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 3,
+          "enabledRenderedCommandCount": 2,
+          "renderedCommands": [
+            "DODGE",
+            "FIREARM",
+            "RESOLVE"
+          ],
+          "buttonCount": 3,
+          "customButtonIds": [],
+          "selectCount": 0,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "refill",
+          "chapter": 1,
+          "prefix": 8,
+          "precedingCommand": {
+            "type": "RESOLVE"
+          },
+          "passed": true,
+          "title": "다음 차례 · 손패 보충",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 0,
+          "enabledRenderedCommandCount": 0,
+          "renderedCommands": [],
+          "buttonCount": 1,
+          "customButtonIds": [
+            "refill"
+          ],
+          "selectCount": 0,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "return",
+          "chapter": 1,
+          "prefix": 37,
+          "precedingCommand": {
+            "type": "REFILL"
+          },
+          "passed": true,
+          "title": "야남으로 귀환",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 0,
+          "enabledRenderedCommandCount": 0,
+          "renderedCommands": [],
+          "buttonCount": 5,
+          "customButtonIds": [],
+          "selectCount": 2,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "mission_survivor",
+          "chapter": 1,
+          "prefix": 54,
+          "precedingCommand": {
+            "type": "RESOLVE"
+          },
+          "passed": true,
+          "title": "구조한 생존자 이동",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 1,
+          "enabledRenderedCommandCount": 1,
+          "renderedCommands": [
+            "MISSION_SURVIVOR_STEP"
+          ],
+          "buttonCount": 2,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "mission_choice",
+          "chapter": 1,
+          "prefix": 63,
+          "precedingCommand": {
+            "type": "STEP",
+            "node": "tile-11:street"
+          },
+          "passed": true,
+          "title": "임무의 선택",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 2,
+          "enabledRenderedCommandCount": 2,
+          "renderedCommands": [
+            "MISSION_CHOICE"
+          ],
+          "buttonCount": 3,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "combat_extra",
+          "chapter": 1,
+          "prefix": 74,
+          "precedingCommand": {
+            "type": "RESOLVE"
+          },
+          "passed": true,
+          "title": "다단 가르기 · 두 번째 타격",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 3,
+          "enabledRenderedCommandCount": 1,
+          "renderedCommands": [
+            "EXTRA_DODGE",
+            "EXTRA_TAKE",
+            "USE_REWARD"
+          ],
+          "buttonCount": 4,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "upgrade_pick",
+          "chapter": 1,
+          "prefix": 78,
+          "precedingCommand": {
+            "type": "RESOLVE"
+          },
+          "passed": true,
+          "title": "획득한 보상 선택",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 5,
+          "enabledRenderedCommandCount": 4,
+          "renderedCommands": [
+            "EQUIP_REWARD",
+            "KEEP_REWARD",
+            "USE_REWARD"
+          ],
+          "buttonCount": 6,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "upgrade_replace",
+          "chapter": 1,
+          "prefix": 80,
+          "precedingCommand": {
+            "type": "PICK_UPGRADE",
+            "index": 0
+          },
+          "passed": true,
+          "title": "꿈 · 덱 교체",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 14,
+          "enabledRenderedCommandCount": 13,
+          "renderedCommands": [
+            "REPLACE_UPGRADE",
+            "USE_REWARD"
+          ],
+          "buttonCount": 15,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "over",
+          "chapter": 1,
+          "prefix": 81,
+          "precedingCommand": {
+            "type": "REPLACE_UPGRADE",
+            "replaceId": "card-5"
+          },
+          "passed": true,
+          "title": "챕터 1 완수",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 2,
+          "enabledRenderedCommandCount": 1,
+          "renderedCommands": [
+            "ENTER_BETWEEN_CHAPTERS",
+            "USE_REWARD"
+          ],
+          "buttonCount": 4,
+          "customButtonIds": [
+            "exportChapterSave"
+          ],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "between_chapters",
+          "chapter": 1,
+          "prefix": 82,
+          "precedingCommand": {
+            "type": "ENTER_BETWEEN_CHAPTERS"
+          },
+          "passed": true,
+          "title": "다음 챕터 준비",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 6,
+          "enabledRenderedCommandCount": 5,
+          "renderedCommands": [
+            "KEEP_REWARD",
+            "USE_REWARD",
+            "EQUIP_FIREARM"
+          ],
+          "buttonCount": 9,
+          "customButtonIds": [
+            "startNextChapter",
+            "exportChapterSave"
+          ],
+          "selectCount": 3,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "hunter",
+          "chapter": 2,
+          "prefix": 83,
+          "precedingCommand": {
+            "type": "START_NEXT_CHAPTER",
+            "startSpace": "center",
+            "face": 0
+          },
+          "passed": true,
+          "title": "플레이어의 차례",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 8,
+          "enabledRenderedCommandCount": 2,
+          "renderedCommands": [
+            "MOVE",
+            "TRANSFORM",
+            "DREAM",
+            "RELOAD",
+            "ATTACK",
+            "END_TURN",
+            "USE_REWARD",
+            "SET_REWARD_TRIGGER"
+          ],
+          "buttonCount": 10,
+          "customButtonIds": [
+            "interact"
+          ],
+          "selectCount": 2,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "enemy_path",
+          "chapter": 2,
+          "prefix": 100,
+          "precedingCommand": {
+            "type": "RESOLVE"
+          },
+          "passed": true,
+          "title": "적 이동 경로",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 4,
+          "enabledRenderedCommandCount": 3,
+          "renderedCommands": [
+            "ENEMY_STEP",
+            "USE_REWARD"
+          ],
+          "buttonCount": 5,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "stun",
+          "chapter": 2,
+          "prefix": 101,
+          "precedingCommand": {
+            "type": "ENEMY_STEP",
+            "node": "tile-06:bottom"
+          },
+          "passed": true,
+          "title": "기절 · 카드 버리기",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 3,
+          "enabledRenderedCommandCount": 2,
+          "renderedCommands": [
+            "STUN_DISCARD",
+            "USE_REWARD"
+          ],
+          "buttonCount": 4,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "boss_move",
+          "chapter": 2,
+          "prefix": 196,
+          "precedingCommand": {
+            "type": "RESOLVE"
+          },
+          "passed": true,
+          "title": "효과에 따른 이동",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 3,
+          "enabledRenderedCommandCount": 2,
+          "renderedCommands": [
+            "BOSS_STEP",
+            "USE_REWARD"
+          ],
+          "buttonCount": 4,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "hunter",
+          "chapter": 3,
+          "prefix": 230,
+          "precedingCommand": {
+            "type": "START_NEXT_CHAPTER",
+            "startSpace": "center",
+            "face": 1
+          },
+          "passed": true,
+          "title": "플레이어의 차례",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 8,
+          "enabledRenderedCommandCount": 2,
+          "renderedCommands": [
+            "MOVE",
+            "TRANSFORM",
+            "DREAM",
+            "RELOAD",
+            "ATTACK",
+            "END_TURN",
+            "USE_REWARD",
+            "SET_REWARD_TRIGGER"
+          ],
+          "buttonCount": 10,
+          "customButtonIds": [
+            "interact"
+          ],
+          "selectCount": 3,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "firearm_react",
+          "chapter": 3,
+          "prefix": 231,
+          "precedingCommand": {
+            "type": "END_TURN"
+          },
+          "passed": true,
+          "title": "장총 · 진입한 적 대응",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 3,
+          "enabledRenderedCommandCount": 2,
+          "renderedCommands": [
+            "FIREARM_ENTRY",
+            "USE_REWARD"
+          ],
+          "buttonCount": 4,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "card_choice",
+          "chapter": 3,
+          "prefix": 240,
+          "precedingCommand": {
+            "type": "ATTACK",
+            "cardId": "card-22",
+            "slot": 0,
+            "enemyId": "huntsmans-minion-1",
+            "weaponBoost": "none"
+          },
+          "passed": true,
+          "title": "스탯 카드 효과 선택",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 5,
+          "enabledRenderedCommandCount": 4,
+          "renderedCommands": [
+            "CARD_CHOICE",
+            "USE_REWARD"
+          ],
+          "buttonCount": 6,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "weapon_entry",
+          "chapter": 3,
+          "prefix": 247,
+          "precedingCommand": {
+            "type": "END_TURN"
+          },
+          "passed": true,
+          "title": "장치 무기 · 진입한 적 대응",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 3,
+          "enabledRenderedCommandCount": 1,
+          "renderedCommands": [
+            "ENTRY_WEAPON",
+            "USE_REWARD"
+          ],
+          "buttonCount": 6,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "boss_react",
+          "chapter": 3,
+          "prefix": 288,
+          "precedingCommand": {
+            "type": "NO_ATTACK"
+          },
+          "passed": true,
+          "title": "뛰어 내려찍기",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 3,
+          "enabledRenderedCommandCount": 1,
+          "renderedCommands": [
+            "DODGE",
+            "RESOLVE",
+            "USE_REWARD"
+          ],
+          "buttonCount": 4,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        }
+      ]
+    },
+    {
+      "fixture": "tests/fixtures/weapon-campaign-completion/saw-spear-0.json",
+      "setup": {
+        "weaponId": "saw-spear",
+        "startFace": 0,
+        "seed": 90,
+        "initialFirearmId": "hunter-pistol",
+        "startingConsumable": null,
+        "startSpace": "center",
+        "rulesVersion": 11,
+        "commandsFile": "saw-spear-0.json",
+        "commandCount": 375,
+        "finalTrack": 15,
+        "finalHp": 6,
+        "finalFirearmId": "ludwig-rifle",
+        "saveCheckpointCount": 10,
+        "saveCheckpoints": [
+          "creation",
+          "between_chapters",
+          "chapter-2",
+          "boss-2:1",
+          "boss-2:2",
+          "chapter-3",
+          "boss-3:1",
+          "firearm_react",
+          "boss-3:2",
+          "campaign-win"
+        ]
+      },
+      "commandCount": 375,
+      "result": "campaign-win",
+      "reachedChapters": [
+        1,
+        2,
+        3
+      ],
+      "reachedPhases": [
+        "hunter",
+        "move",
+        "tile_place",
+        "combat_react",
+        "combat_choose",
+        "refill",
+        "return",
+        "mission_survivor",
+        "mission_choice",
+        "over",
+        "between_chapters",
+        "stun",
+        "activation",
+        "enemy_path",
+        "upgrade_pick",
+        "upgrade_replace",
+        "firearm_react",
+        "boss_move"
+      ],
+      "phaseStateCounts": {
+        "hunter": 120,
+        "move": 73,
+        "tile_place": 12,
+        "combat_react": 70,
+        "combat_choose": 25,
+        "refill": 24,
+        "return": 13,
+        "mission_survivor": 5,
+        "mission_choice": 1,
+        "over": 4,
+        "between_chapters": 4,
+        "stun": 3,
+        "activation": 4,
+        "enemy_path": 2,
+        "upgrade_pick": 7,
+        "upgrade_replace": 6,
+        "firearm_react": 2,
+        "boss_move": 1
+      },
+      "samples": [
+        {
+          "phase": "hunter",
+          "chapter": 1,
+          "prefix": 0,
+          "precedingCommand": null,
+          "passed": true,
+          "title": "플레이어의 차례",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 5,
+          "enabledRenderedCommandCount": 1,
+          "renderedCommands": [
+            "MOVE",
+            "TRANSFORM",
+            "DREAM",
+            "RELOAD",
+            "END_TURN"
+          ],
+          "buttonCount": 6,
+          "customButtonIds": [
+            "interact"
+          ],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "move",
+          "chapter": 1,
+          "prefix": 1,
+          "precedingCommand": {
+            "type": "MOVE",
+            "cardId": "card-3"
+          },
+          "passed": true,
+          "title": "이동과 탐험",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 1,
+          "enabledRenderedCommandCount": 1,
+          "renderedCommands": [
+            "STOP_MOVE"
+          ],
+          "buttonCount": 1,
+          "customButtonIds": [],
+          "selectCount": 0,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "tile_place",
+          "chapter": 1,
+          "prefix": 2,
+          "precedingCommand": {
+            "type": "EXPLORE",
+            "edge": "N"
+          },
+          "passed": true,
+          "title": "새 타일 배치",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 1,
+          "enabledRenderedCommandCount": 1,
+          "renderedCommands": [
+            "PLACE_TILE"
+          ],
+          "buttonCount": 5,
+          "customButtonIds": [],
+          "selectCount": 0,
+          "rotationChoiceCount": 4
+        },
+        {
+          "phase": "combat_react",
+          "chapter": 1,
+          "prefix": 5,
+          "precedingCommand": {
+            "type": "ATTACK",
+            "enemyId": "huntsman-mob-1",
+            "cardId": "card-7",
+            "slot": 2,
+            "boost": "none"
+          },
+          "passed": true,
+          "title": "전투 대응",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 3,
+          "enabledRenderedCommandCount": 2,
+          "renderedCommands": [
+            "DODGE",
+            "FIREARM",
+            "RESOLVE"
+          ],
+          "buttonCount": 3,
+          "customButtonIds": [],
+          "selectCount": 0,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "combat_choose",
+          "chapter": 1,
+          "prefix": 8,
+          "precedingCommand": {
+            "type": "END_TURN"
+          },
+          "passed": true,
+          "title": "적과 조우",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 2,
+          "enabledRenderedCommandCount": 1,
+          "renderedCommands": [
+            "COUNTER",
+            "NO_ATTACK"
+          ],
+          "buttonCount": 2,
+          "customButtonIds": [],
+          "selectCount": 0,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "refill",
+          "chapter": 1,
+          "prefix": 10,
+          "precedingCommand": {
+            "type": "RESOLVE"
+          },
+          "passed": true,
+          "title": "다음 차례 · 손패 보충",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 0,
+          "enabledRenderedCommandCount": 0,
+          "renderedCommands": [],
+          "buttonCount": 1,
+          "customButtonIds": [
+            "refill"
+          ],
+          "selectCount": 0,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "return",
+          "chapter": 1,
+          "prefix": 29,
+          "precedingCommand": {
+            "type": "REFILL"
+          },
+          "passed": true,
+          "title": "야남으로 귀환",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 0,
+          "enabledRenderedCommandCount": 0,
+          "renderedCommands": [],
+          "buttonCount": 5,
+          "customButtonIds": [],
+          "selectCount": 2,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "mission_survivor",
+          "chapter": 1,
+          "prefix": 41,
+          "precedingCommand": {
+            "type": "RESOLVE"
+          },
+          "passed": true,
+          "title": "구조한 생존자 이동",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 1,
+          "enabledRenderedCommandCount": 1,
+          "renderedCommands": [
+            "MISSION_SURVIVOR_STEP"
+          ],
+          "buttonCount": 2,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "mission_choice",
+          "chapter": 1,
+          "prefix": 66,
+          "precedingCommand": {
+            "type": "STOP_MOVE"
+          },
+          "passed": true,
+          "title": "임무의 선택",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 2,
+          "enabledRenderedCommandCount": 2,
+          "renderedCommands": [
+            "MISSION_CHOICE"
+          ],
+          "buttonCount": 3,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "over",
+          "chapter": 1,
+          "prefix": 76,
+          "precedingCommand": {
+            "type": "RESOLVE"
+          },
+          "passed": true,
+          "title": "획득한 보상 선택",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 5,
+          "enabledRenderedCommandCount": 4,
+          "renderedCommands": [
+            "EQUIP_REWARD",
+            "KEEP_REWARD",
+            "USE_REWARD"
+          ],
+          "buttonCount": 6,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "between_chapters",
+          "chapter": 1,
+          "prefix": 78,
+          "precedingCommand": {
+            "type": "ENTER_BETWEEN_CHAPTERS"
+          },
+          "passed": true,
+          "title": "다음 챕터 준비",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 6,
+          "enabledRenderedCommandCount": 5,
+          "renderedCommands": [
+            "KEEP_REWARD",
+            "USE_REWARD",
+            "EQUIP_FIREARM"
+          ],
+          "buttonCount": 9,
+          "customButtonIds": [
+            "startNextChapter",
+            "exportChapterSave"
+          ],
+          "selectCount": 3,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "hunter",
+          "chapter": 2,
+          "prefix": 79,
+          "precedingCommand": {
+            "type": "START_NEXT_CHAPTER",
+            "face": 0,
+            "startSpace": "right"
+          },
+          "passed": true,
+          "title": "플레이어의 차례",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 8,
+          "enabledRenderedCommandCount": 2,
+          "renderedCommands": [
+            "MOVE",
+            "TRANSFORM",
+            "DREAM",
+            "RELOAD",
+            "ATTACK",
+            "END_TURN",
+            "USE_REWARD",
+            "SET_REWARD_TRIGGER"
+          ],
+          "buttonCount": 9,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "stun",
+          "chapter": 2,
+          "prefix": 97,
+          "precedingCommand": {
+            "type": "RESOLVE"
+          },
+          "passed": true,
+          "title": "기절 · 카드 버리기",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 3,
+          "enabledRenderedCommandCount": 2,
+          "renderedCommands": [
+            "STUN_DISCARD",
+            "USE_REWARD"
+          ],
+          "buttonCount": 4,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "activation",
+          "chapter": 2,
+          "prefix": 123,
+          "precedingCommand": {
+            "type": "END_TURN"
+          },
+          "passed": true,
+          "title": "적 활성화 순서",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 3,
+          "enabledRenderedCommandCount": 2,
+          "renderedCommands": [
+            "ACTIVATE",
+            "USE_REWARD"
+          ],
+          "buttonCount": 4,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "enemy_path",
+          "chapter": 2,
+          "prefix": 141,
+          "precedingCommand": {
+            "type": "RESOLVE"
+          },
+          "passed": true,
+          "title": "적 이동 경로",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 3,
+          "enabledRenderedCommandCount": 2,
+          "renderedCommands": [
+            "ENEMY_STEP",
+            "USE_REWARD"
+          ],
+          "buttonCount": 4,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "upgrade_pick",
+          "chapter": 2,
+          "prefix": 251,
+          "precedingCommand": {
+            "type": "RESOLVE"
+          },
+          "passed": true,
+          "title": "획득한 보상 선택",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 251,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 4,
+          "enabledRenderedCommandCount": 3,
+          "renderedCommands": [
+            "EQUIP_REWARD",
+            "KEEP_REWARD",
+            "USE_REWARD"
+          ],
+          "buttonCount": 5,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "upgrade_replace",
+          "chapter": 2,
+          "prefix": 254,
+          "precedingCommand": {
+            "type": "PICK_UPGRADE",
+            "index": 2
+          },
+          "passed": true,
+          "title": "꿈 · 덱 교체",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 254,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 14,
+          "enabledRenderedCommandCount": 13,
+          "renderedCommands": [
+            "REPLACE_UPGRADE",
+            "USE_REWARD"
+          ],
+          "buttonCount": 15,
+          "customButtonIds": [],
+          "selectCount": 1,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "hunter",
+          "chapter": 3,
+          "prefix": 260,
+          "precedingCommand": {
+            "type": "START_NEXT_CHAPTER",
+            "face": 0,
+            "startSpace": "center"
+          },
+          "passed": true,
+          "title": "플레이어의 차례",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 9,
+          "enabledRenderedCommandCount": 3,
+          "renderedCommands": [
+            "MOVE",
+            "TRANSFORM",
+            "DREAM",
+            "RELOAD",
+            "ATTACK",
+            "END_TURN",
+            "USE_REWARD",
+            "SET_REWARD_TRIGGER"
+          ],
+          "buttonCount": 10,
+          "customButtonIds": [
+            "interact"
+          ],
+          "selectCount": 2,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "firearm_react",
+          "chapter": 3,
+          "prefix": 268,
+          "precedingCommand": {
+            "type": "END_TURN"
+          },
+          "passed": true,
+          "title": "장총 · 진입한 적 대응",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 4,
+          "enabledRenderedCommandCount": 2,
+          "renderedCommands": [
+            "FIREARM_ENTRY",
+            "USE_REWARD"
+          ],
+          "buttonCount": 4,
+          "customButtonIds": [],
+          "selectCount": 0,
+          "rotationChoiceCount": 0
+        },
+        {
+          "phase": "boss_move",
+          "chapter": 3,
+          "prefix": 320,
+          "precedingCommand": {
+            "type": "RESOLVE"
+          },
+          "passed": true,
+          "title": "효과에 따른 이동",
+          "saveBytesUnchanged": true,
+          "inputStateUnchanged": true,
+          "commandsAddedToLoadedGame": 0,
+          "publicHistoryReplayDispatchCount": 0,
+          "publicHistoryReplayMatchesAcceptedCommands": true,
+          "strictImportCount": 1,
+          "renderedCommandCount": 4,
+          "enabledRenderedCommandCount": 2,
+          "renderedCommands": [
+            "BOSS_STEP",
+            "USE_REWARD"
+          ],
+          "buttonCount": 4,
+          "customButtonIds": [],
+          "selectCount": 0,
+          "rotationChoiceCount": 0
+        }
+      ]
+    }
+  ],
+  "sampleCount": 43,
+  "sampleFailures": 0,
+  "reachedPhases": [
+    "hunter",
+    "move",
+    "tile_place",
+    "combat_choose",
+    "combat_react",
+    "refill",
+    "return",
+    "mission_survivor",
+    "mission_choice",
+    "combat_extra",
+    "upgrade_pick",
+    "upgrade_replace",
+    "over",
+    "between_chapters",
+    "enemy_path",
+    "stun",
+    "boss_move",
+    "firearm_react",
+    "card_choice",
+    "weapon_entry",
+    "boss_react",
+    "activation"
+  ],
+  "missingRegisteredPhases": [
+    "spawn_choice",
+    "kill_react",
+    "ability_choice",
+    "cheap_shot",
+    "free_transform",
+    "loot_choice",
+    "exchange_choice",
+    "interaction_order",
+    "mission_death",
+    "weapon_choice",
+    "reward_entry"
+  ],
+  "outsideTableReachedPhases": [],
+  "missingPhaseExistingEvidence": [
+    {
+      "phase": "spawn_choice",
+      "directUiEvidenceFound": true,
+      "ui": [
+        {
+          "file": "tests/ui-phase-contracts-v0818.test.cjs",
+          "line": 56,
+          "note": "New executed contract: supply-valid constructed current-rules encounter reaches the phase through real reducers; actual UI chooses figure four and verifies exact result and no additional card cost."
+        }
+      ],
+      "engineOnly": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "line": 547,
+          "note": "Four-figure supply tie and SPAWN_CHOICE reuse; engine reducer test, not a controller check."
+        }
+      ]
+    },
+    {
+      "phase": "kill_react",
+      "directUiEvidenceFound": true,
+      "ui": [
+        {
+          "file": "tests/kill-reaction-ui-v0813.test.cjs",
+          "line": 51,
+          "note": "A public-command current-rules reaction checkpoint uses Beast then Rapture through actual UI commands."
+        },
+        {
+          "file": "tests/kill-reaction-ui-v0813.test.cjs",
+          "line": 5,
+          "note": "Constructed controller presentation and explicit end-of-window command contract."
+        }
+      ],
+      "engineOnly": []
+    },
+    {
+      "phase": "ability_choice",
+      "directUiEvidenceFound": true,
+      "ui": [
+        {
+          "file": "tests/ui-phase-contracts-v0818.test.cjs",
+          "line": 73,
+          "note": "New executed accept/decline UI contracts: exact selected hand-card ID and one-card cost, or no-card speed/dodge penalty, with the next action revealed once."
+        }
+      ],
+      "engineOnly": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "line": 158,
+          "note": "Discard or slower-attack/no-dodge ability branches; engine only."
+        }
+      ]
+    },
+    {
+      "phase": "cheap_shot",
+      "directUiEvidenceFound": true,
+      "ui": [
+        {
+          "file": "tests/ui-phase-contracts-v0818.test.cjs",
+          "line": 87,
+          "note": "New executed use/skip UI contracts: exact skill ID, fixed encounter target despite another selected map enemy, and real damage/consumption or resumed ability."
+        }
+      ],
+      "engineOnly": [
+        {
+          "file": "tests/hunt.test.cjs",
+          "line": 7,
+          "note": "Cheap Shot waits for the timed ability; engine only."
+        },
+        {
+          "file": "tests/hunt.test.cjs",
+          "line": 396,
+          "note": "Cheap Shot kill effect; engine only."
+        }
+      ]
+    },
+    {
+      "phase": "free_transform",
+      "directUiEvidenceFound": true,
+      "ui": [
+        {
+          "file": "tests/weapon-visual-ui-v083.test.cjs",
+          "line": 142,
+          "note": "A natural Stake Driver checkpoint clicks accepted FREE_TRANSFORM and verifies the new form and presentation action."
+        },
+        {
+          "file": "tests/blood-shard-v0813.test.cjs",
+          "line": 216,
+          "note": "Actual free-transform UI accept/decline outcomes and attachment handling."
+        }
+      ],
+      "engineOnly": []
+    },
+    {
+      "phase": "loot_choice",
+      "directUiEvidenceFound": true,
+      "ui": [
+        {
+          "file": "tests/solo-ui-playthrough.test.cjs",
+          "line": 5,
+          "note": "The full-campaign fixture contains one LOOT_CHOICE, and this test projects all original commands through public controls."
+        }
+      ],
+      "engineOnly": []
+    },
+    {
+      "phase": "exchange_choice",
+      "directUiEvidenceFound": true,
+      "ui": [
+        {
+          "file": "tests/ui-phase-contracts-v0818.test.cjs",
+          "line": 120,
+          "note": "New executed public-command current-rules chapel UI accept/decline contracts: strict import, exact newly collected item ID, echoes, inventory/discard and no extra hand cost."
+        }
+      ],
+      "engineOnly": [
+        {
+          "file": "tests/chapter-one-items.test.cjs",
+          "line": 123,
+          "note": "Post-loot exchange enters exchange_choice, accepts an actual item and checks replay; engine only."
+        }
+      ]
+    },
+    {
+      "phase": "interaction_order",
+      "directUiEvidenceFound": true,
+      "ui": [
+        {
+          "file": "tests/campaign-ui.test.cjs",
+          "line": 657,
+          "note": "Constructed UI choice checks both enemy IDs and dispatches the chosen INTERACTION_ENEMY."
+        },
+        {
+          "file": "tests/solo-ui-playthrough.test.cjs",
+          "line": 5,
+          "note": "The full-campaign fixture has five INTERACTION_ENEMY commands, projected through public controls."
+        }
+      ],
+      "engineOnly": []
+    },
+    {
+      "phase": "mission_death",
+      "directUiEvidenceFound": true,
+      "ui": [
+        {
+          "file": "tests/solo-branch-ui.test.cjs",
+          "line": 27,
+          "note": "A naturally reached patient endpoint reloads rewards then exercises each offered final-attack order through the controller."
+        }
+      ],
+      "engineOnly": []
+    },
+    {
+      "phase": "weapon_choice",
+      "directUiEvidenceFound": true,
+      "ui": [
+        {
+          "file": "tests/playtest-location-target-ui-v0815.test.cjs",
+          "line": 52,
+          "note": "Constructed opponents reach real axe follow-up; actual UI selects enemy two and matches real reducer damage."
+        }
+      ],
+      "engineOnly": []
+    },
+    {
+      "phase": "reward_entry",
+      "directUiEvidenceFound": true,
+      "ui": [
+        {
+          "file": "tests/playtest-target-selection-ui-v0818.test.cjs",
+          "line": 385,
+          "note": "Constructed setup plus real ACTIVATE reaches torch entry; fixed enemy identity and exact real reducer outcome."
+        }
+      ],
+      "engineOnly": []
+    }
+  ],
+  "remainingDirectUiEvidenceSearchGaps": [],
+  "existingEvidenceLimit": "The seven previously existing UI references were verified by reading their source; they were not rerun in this scratch pass. Four additional phase contracts were subsequently added in the single new test file and their seven branch checks were executed separately. This does not change the original 22-phase/43-render-sample result or claim 33 phases were played through end to end.",
+  "newHandlerContractExecution": {
+    "command": [
+      "node",
+      "--test",
+      "--test-reporter=tap",
+      "tests/ui-phase-contracts-v0818.test.cjs"
+    ],
+    "file": "tests/ui-phase-contracts-v0818.test.cjs",
+    "exitCode": 0,
+    "tests": 7,
+    "pass": 7,
+    "fail": 0,
+    "testSha256": "e8e1f40bfc9795bb64de3e65169d80b96bfe87645d5d5de16b27270662e0d216",
+    "phases": [
+      "spawn_choice",
+      "ability_choice",
+      "cheap_shot",
+      "exchange_choice"
+    ],
+    "scope": "Seven actual UI-handler-to-real-E.dispatch branch checks, distinct from the legacy trace's 43 read-only render samples. First three phases use explicitly constructed supply-valid plain JSON encounters; chapel exchange is reached by current-rules-14 public commands with strict canonical imports."
+  }
+}

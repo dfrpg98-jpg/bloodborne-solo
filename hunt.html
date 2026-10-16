@@ -6,7 +6,7 @@
     <title>블러드본 · 기나긴 사냥 캠페인</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="chapter.css" />
-    <link rel="stylesheet" href="hunt.css?v=0.8.13-dev.13&amp;h=d50893dc7d74" />
+    <link rel="stylesheet" href="hunt.css?v=0.8.13-dev.18&amp;h=59bb96960878" />
     <link rel="stylesheet" href="game-help.css?v=0.8.13-dev.13&amp;h=674bb1a324c0" />
     <link rel="stylesheet" href="hunt-hand-feedback.css?v=0.8.13-dev.6&amp;h=66350354029f" />
     <link rel="stylesheet" href="hunt-card-help.css?v=0.8.13-dev.7&amp;h=049dbeb75df2" />
@@ -50,7 +50,7 @@
         </section>
         <section class="panel hunt-map" aria-labelledby="mapHeading">
           <div class="panel-heading"><h2 id="mapHeading">야남의 길</h2><div class="map-tools"><span id="tileCount" class="badge"></span><button id="centerMap" type="button" title="사냥꾼의 현재 위치로 지도 이동">현재 위치</button><button type="button" data-panel="help" class="quiet" aria-label="지도 기호 안내">?</button></div></div>
-          <div id="mapStage" class="map-stage"><div id="mapViewport" class="map-viewport" tabindex="0" aria-label="실제 사냥 지도"><div id="mapSurface" class="map-surface"><div id="chapterMap" class="chapter-map"></div></div></div><div id="mapEffects" class="map-effects" aria-hidden="true"></div><div class="camera-tools" role="group" aria-label="지도 배율"><button id="zoomOut" type="button" aria-label="지도 축소" title="지도 축소 · 지도에 초점을 둔 뒤 −">−</button><button id="zoomReset" type="button" aria-label="지도 배율 100%로 초기화" title="100%로 초기화 · 지도에 초점을 둔 뒤 0"><span id="zoomLabel">100%</span></button><button id="zoomIn" type="button" aria-label="지도 확대" title="지도 확대 · Ctrl+휠 또는 지도에 초점을 둔 뒤 +">+</button><button id="zoomFit" type="button" title="표시된 지도를 확대 범위에 맞춤">맞춤</button></div></div>
+          <div id="mapStage" class="map-stage"><div id="mapViewport" class="map-viewport" tabindex="0" aria-label="실제 사냥 지도"><div id="mapSurface" class="map-surface"><div id="chapterMap" class="chapter-map"></div></div></div><div id="mapEffects" class="map-effects" aria-hidden="true"></div><div id="enemyStatusLayer" class="enemy-status-layer" aria-label="적 상태"></div><div class="camera-tools" role="group" aria-label="지도 배율"><button id="zoomOut" type="button" aria-label="지도 축소" title="지도 축소 · 지도에 초점을 둔 뒤 −">−</button><button id="zoomReset" type="button" aria-label="지도 배율 100%로 초기화" title="100%로 초기화 · 지도에 초점을 둔 뒤 0"><span id="zoomLabel">100%</span></button><button id="zoomIn" type="button" aria-label="지도 확대" title="지도 확대 · Ctrl+휠 또는 지도에 초점을 둔 뒤 +">+</button><button id="zoomFit" type="button" title="표시된 지도를 확대 범위에 맞춤">맞춤</button></div></div>
           <div class="map-footer"><div id="locationText"></div><div id="explorationActions" class="actions"></div></div>
         </section>
         <section class="panel hunt-decisions" aria-labelledby="phaseTitle">
@@ -103,7 +103,7 @@
         <section class="info-panel help-panel" data-info-panel="help" aria-label="진행 저장과 지도 안내" hidden>
           <div class="actions menu-navigation"><button type="button" data-panel="guide">처음이라면 · 게임 도움말</button><a class="button" href="index.html">타이틀로</a></div>
           <div class="save-menu"><h3>진행 저장</h3><p class="muted">이 브라우저에 자동 저장됩니다. 진행 파일은 다른 기기에서 불러올 수 있습니다.</p><div class="actions save-actions"><button id="save" type="button">저장 내보내기</button><button id="load" type="button">불러오기</button><button id="resumeNormal" type="button" hidden>일반 사냥 이어하기</button><button id="resumeQa" type="button" hidden>검증 사냥 이어하기</button></div><input id="file" type="file" accept=".json,application/json" hidden /></div>
-          <section class="map-key"><h3>지도와 행동</h3><p>칸·출입구·적 토큰을 누르면 오른쪽에 가능한 행동과 비용이 나타납니다. 손패의 기술과 필요한 무기 슬롯을 고른 뒤 행동을 실행하세요. 넓어진 지도는 지도 안에서 이동해 살펴볼 수 있습니다. <strong>현재 위치</strong>를 누르면 사냥꾼에게 돌아옵니다.</p><p>파랑 등불 · 초록 보물상자(소모품) · 흰 선은 칸 경계 · 가장자리 금색 틈은 출입구<br />● 사냥꾼 · ◇ 남은 소모품 · ◆ 임무 토큰 · ★ 특수 적 · ①②③ 적의 활성화 순서</p><a href="assets/tiles/index.html" target="_blank" rel="noopener">타일 도식 20종과 기호 범례 ↗</a></section>
+          <section class="map-key"><h3>지도와 행동</h3><p>지도의 대상을 눌러 행동을 고르세요. <strong>현재 위치</strong>로 사냥꾼에게 돌아옵니다.</p><details><summary>지도 조작과 기호</summary><p>칸·출입구·적 토큰을 누르면 오른쪽에 가능한 행동과 비용이 나타납니다. 손패의 기술과 필요한 무기 슬롯을 고른 뒤 행동을 실행하세요. 넓어진 지도는 지도 안에서 이동해 살펴볼 수 있습니다.</p><p>파랑 등불 · 초록 보물상자(소모품) · 흰 선은 칸 경계 · 가장자리 금색 틈은 출입구<br />● 사냥꾼 · ◇ 남은 소모품 · ◆ 임무 토큰 · ★ 특수 적 · ①②③ 적의 활성화 순서</p><a href="assets/tiles/index.html" target="_blank" rel="noopener">타일 도식 20종과 기호 범례 ↗</a></details></section>
         </section>
         <section class="info-panel" data-info-panel="guide" aria-label="처음 사냥하는 분을 위한 게임 도움말" hidden><div id="gameHelpContent"></div></section>
       </div>
@@ -128,7 +128,7 @@
     </dialog>
     <dialog id="attachmentDialog" class="compact-info-dialog" aria-labelledby="attachmentTitle">
       <div class="compact-dialog-heading"><h2 id="attachmentTitle">무기 변형 · 슬롯 부착 변경</h2><button id="closeAttachments" type="button" autofocus>재배치 마치기</button></div>
-      <div class="compact-dialog-content"><p>변형한 직후, 다음 행동 전에 부착 보상을 옮길 수 있습니다. 현재 슬롯을 유지해도 됩니다. 슬롯 변경에는 손패를 더 쓰지 않습니다.</p><div id="attachmentChoices"></div></div>
+      <div class="compact-dialog-content"><p>다음 행동 전까지 무료로 재배치할 수 있습니다. 현재 슬롯을 유지해도 됩니다.</p><div id="attachmentChoices"></div></div>
     </dialog>
     <dialog id="enemyDetailDialog" class="compact-info-dialog" aria-labelledby="enemyDetailTitle">
       <div class="compact-dialog-heading"><h2 id="enemyDetailTitle">적 정보</h2><button id="closeEnemyDetail" type="button" autofocus>닫기</button></div>
@@ -173,14 +173,8 @@
         </div>
       </div>
       <details id="setupStory" class="setup-story"><summary>기나긴 사냥 도입부 읽기</summary><p id="setupStoryText"></p></details>
+      <details id="setupAdvanced" class="setup-story"><summary>고급 설정 · 준비 시드</summary><label>준비 시드<input id="seed" type="number" min="0" max="4294967295" step="1" /></label></details>
       <label
-        >준비 시드<input
-          id="seed"
-          type="number"
-          min="0"
-          max="4294967295"
-          step="1" /></label
-      ><label
         >중앙 등불 타일의 시작 칸<select id="start">
           <option value="">시작할 칸을 직접 선택하세요</option>
           <option value="center">중앙 등불</option>
@@ -188,7 +182,8 @@
           <option value="right">오른쪽 칸</option>
         </select></label
       >
-      <p class="muted">매 챕터 시작 시 중앙 등불 타일의 어느 칸에서 시작할지 자유롭게 정합니다. 아래 도식에서 칸을 누르거나 목록에서 선택하세요. (규칙서 10쪽)</p>
+      <p class="muted">도식이나 목록에서 시작 칸을 고르세요.</p>
+      <details class="setup-story"><summary>시작 위치 규칙</summary><p>매 챕터 시작 시 중앙 등불 타일의 어느 칸에서 시작할지 자유롭게 정합니다. (규칙서 10쪽)</p></details>
       <div id="startPlacement"></div>
       <label>장치 무기<select id="weapon"><option value="burial">장송의 칼날</option></select></label>
       <label
@@ -259,15 +254,15 @@
     <script src="extended-enemy-rules.js"></script>
     <script src="qa-mode.js"></script>
     <script src="hunt-engine.js?v=0.8.13-dev.17&amp;h=9da62acf9369"></script>
-    <script src="hunt-public-text.js?v=0.8.13-dev.15&amp;h=ceec3f309e15"></script>
+    <script src="hunt-public-text.js?v=0.8.13-dev.18&amp;h=e6652d6ddaea"></script>
     <script src="hunt-enemy-mission-effects.js?v=0.8.13-dev.6&amp;h=f500fa38d874"></script>
     <script src="hunt-mission-feedback.js?v=0.8.13-dev.14&amp;h=52b138c44a61"></script>
     <script src="hunt-death-feedback.js?v=0.8.13-dev.15&amp;h=c0fb83d79d10"></script>
     <script src="enemy-action-history.js"></script>
-    <script src="inventory.js?v=0.8.13-dev.14&amp;h=8487332ba9e2"></script>
+    <script src="inventory.js?v=0.8.13-dev.18&amp;h=1c1fd814229a"></script>
     <script src="hunt-entry.js?v=0.8.13-dev.11&amp;h=1fabaf52aa2d"></script>
-    <script src="game-help.js?v=0.8.13-dev.14&amp;h=7ef06bd7462e"></script>
-    <script src="hunt-shell.js?v=0.8.13-dev.11&amp;h=84526fec2add"></script>
+    <script src="game-help.js?v=0.8.13-dev.18&amp;h=ff81f1f35027"></script>
+    <script src="hunt-shell.js?v=0.8.13-dev.18&amp;h=75914cf977b5"></script>
     <script src="hunt-context.js?v=0.8.13-dev.16&amp;h=f05e3272340f"></script>
     <script src="hunt-map-controls.js?v=0.8.13-dev.6&amp;h=c6df79260c04"></script>
     <script src="hunt-location-labels.js?v=0.8.13-dev.15&amp;h=050325d0a994"></script>
@@ -280,13 +275,13 @@
     <script src="assets/characters/weapon-manifest.js?v=0.8.13-dev.5"></script>
     <script src="weapon-visuals.js"></script>
     <script src="enemy-visuals.js?v=0.8.13-dev.9&amp;h=2350a252f8f8"></script>
-    <script src="hunt-presentation.js?v=0.8.13-dev.10&amp;h=142a7b648c59"></script>
+    <script src="hunt-presentation.js?v=0.8.13-dev.18&amp;h=af0f92efa733"></script>
     <script src="hunt-combat-feedback.js?v=0.8.13-dev.13&amp;h=c188457d1e8d"></script>
     <script src="hunt-combat-controls.js?v=0.8.13-dev.15&amp;h=79ebf5f0dbf1"></script>
     <script src="hunt-outcome-preview.js?v=0.8.13-dev.14&amp;h=6e6169ec081f"></script>
     <script src="hunt-action-availability.js?v=0.8.13-dev.14&amp;h=19955816d7dc"></script>
     <script src="hunt-action-loss.js?v=0.8.13-dev.16&amp;h=1d3de045c5b3"></script>
     <script src="hunt-card-help.js?v=0.8.13-dev.7&amp;h=d0f40bd41a8e"></script>
-    <script src="hunt-app.js?v=0.8.13-dev.17&amp;h=3ef642f608af"></script>
+    <script src="hunt-app.js?v=0.8.13-dev.18&amp;h=7a0098565096"></script>
   </body>
 </html>

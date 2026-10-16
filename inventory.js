@@ -1,6 +1,6 @@
 (function (root) {
   "use strict";
-  root.BBInventory = function ({ E, getState, send, refresh, previewLoss }) {
+  root.BBInventory = function ({ E, getState, send, refresh, previewLoss, describeEnemy, describeNode, inspectEnemy, previewEnemy, onControlsChange }) {
     const D = E.data,
       $ = (id) => document.getElementById(id);
     const enemyDef = (e) => E.enemyDef ? E.enemyDef(e) : D.enemies[e.kind];
@@ -18,14 +18,22 @@
       );
     let selected = null,
       attackIds = new Set();
+    const targetChoices = new Map();
+    const nodeLabel = n => describeNode?.(n.id) || n.name;
+    const enemyLabel = (e) => {
+      const definition = enemyDef(e), maximum = definition.maxHp ?? definition.health ?? e.hp;
+      return describeEnemy?.(e) || `${definition.name} #${e.figure ?? e.id} · ${E.node(e.node)?.name || e.node} · 체력 ${e.hp} / ${maximum}`;
+    };
     function clear() {
       selected = null;
       attackIds.clear();
+      targetChoices.clear();
     }
     function render() {
       const s = getState(),
         p = E.hunter(s),
         held = p.consumables;
+      for (const id of targetChoices.keys()) if (!held.some(item => item.id === id)) targetChoices.delete(id);
       const canCommit = ["hunter", "combat_choose"].includes(s.phase);
       if (!held.some((x) => x.id === selected)) selected = held[0]?.id || null;
       attackIds = new Set(
@@ -48,19 +56,23 @@
             (b.onclick = () => {
               selected = b.dataset.item;
               render();
+              const target = targetChoices.get(selected)?.enemyId;
+              if (target) previewEnemy?.(target);
             }),
         );
       const item = held.find((x) => x.id === selected),
         detail = $("itemDetail");
       if (!item) {
         detail.innerHTML = "";
+        onControlsChange?.();
         return;
       }
       const d = D.consumables[item.kind],
         f = d.effects;
       let controls = "",
         hint = "",
-        enabled = s.phase === "hunter";
+        enabled = s.phase === "hunter",
+        enemyTargets = null;
       if (d.runtime !== "playable") {
         hint = d.runtimeNote;
         enabled = false;
@@ -84,13 +96,39 @@
                   E.distance(p.position, e.node) <= f.range &&
                   (!f.nonBoss || !enemyDef(e).boss),
               );
-          controls += `<label>대상 적<select id="itemEnemy">${targets.map((e) => `<option value="${esc(e.id)}">${esc(enemyDef(e).name)} · ${esc(E.node(e.node).name)} · 체력 ${e.hp}</option>`).join("")}</select></label>`;
+          enemyTargets = targets;
+          const choice = targetChoices.get(item.id) || { enemyId: null, node: null, notice: "" },
+            previousEnemyId = choice.enemyId;
+          if (!targets.some(e => e.id === choice.enemyId)) {
+            choice.enemyId = targets[0]?.id || null;
+            if (previousEnemyId) choice.notice = choice.enemyId
+              ? `선택한 적이 더 이상 대상이 아니어서 ${enemyLabel(targets[0])}(으)로 변경했습니다.`
+              : "선택한 적이 더 이상 대상이 아니어서 선택을 해제했습니다. 사용 가능한 대상을 다시 확인하세요.";
+          }
+          controls += `<label>대상 적<select id="itemEnemy">${targets.map(e => `<option value="${esc(e.id)}" ${choice.enemyId === e.id ? "selected" : ""}>${esc(enemyLabel(e))}</option>`).join("")}</select></label>`;
           enabled &&= targets.length > 0;
           if (!targets.length)
             hint = `범위 ${f.range}칸 안에 대상 적이 없습니다.`;
-          if (f.target === "enemy-destination")
-            controls +=
-              '<label>적의 이동 목적지<select id="itemNode"></select></label>';
+          const target = targets.find(e => e.id === choice.enemyId);
+          let destination = null;
+          if (f.target === "enemy-destination") {
+            const destinations = target ? D.nodes.filter(n => E.distance(target.node, n.id) <= f.moveEnemy &&
+              (!E.path || E.path(target.node, n.id).every((at, i, route) => !i ||
+                E.node(route[i - 1]).tile === E.node(at).tile ||
+                !s.mission?.fog.includes(E.node(route[i - 1]).tile) && !s.mission?.fog.includes(E.node(at).tile)))) : [],
+              previousNode = choice.node;
+            if (!destinations.some(n => n.id === choice.node)) {
+              choice.node = destinations[0]?.id || null;
+              if (previousNode) choice.notice += (choice.notice ? " " : "") + (choice.node
+                ? `이동 목적지가 더 이상 가능하지 않아 ${nodeLabel(destinations[0])}(으)로 변경했습니다.`
+                : "이동 가능한 목적지가 없어 목적지 선택을 해제했습니다.");
+            }
+            destination = destinations.find(n => n.id === choice.node);
+            controls += `<label>적의 이동 목적지<select id="itemNode">${destinations.map(n => `<option value="${esc(n.id)}" ${choice.node === n.id ? "selected" : ""}>${esc(nodeLabel(n))} (${E.distance(target.node, n.id)}칸)</option>`).join("")}</select></label>`;
+            enabled &&= destinations.length > 0;
+          }
+          targetChoices.set(item.id, choice);
+          controls += `<p id="itemTargetSummary" class="target-selection-status" aria-live="polite">${target ? `선택한 대상 · ${esc(enemyLabel(target))}${destination ? ` → 목적지 · ${esc(nodeLabel(destination))}` : ""}` : "선택 가능한 적이 없습니다."}</p><button id="itemInspectTarget" type="button" data-inspect-target="${esc(target?.id || "")}" ${target && inspectEnemy ? "" : "disabled"}>지도에서 대상 확인</button>${choice.notice ? `<p id="itemTargetNotice" class="action-loss-warning" role="status">${esc(choice.notice)}</p>` : ""}`;
         } else if (f.target === "lamp") {
           const lamps = D.nodes.filter((n) => n.lamp && (!E.canTeleport || E.canTeleport(n.id)));
           controls += `<label>등불 목적지<select id="itemNode">${lamps
@@ -113,25 +151,21 @@
           hint = "스탯 카드 비용 없이 사용하며, 사용한 소모품은 버립니다.";
       }
       detail.innerHTML = `<h3>${esc(d.name)}</h3><p>${esc(d.rules)}</p><div class="item-controls">${controls}<div id="itemActionLoss"></div></div><p class="muted">${esc(hint)}</p>`;
-      if ($("itemEnemy") && f.target === "enemy-destination") {
-        const destinations = () => {
-          const e = s.enemies.find((x) => x.id === $("itemEnemy").value);
-          $("itemNode").innerHTML = (
-            e
-              ? D.nodes.filter((n) => E.distance(e.node, n.id) <= f.moveEnemy &&
-                  (!E.path || E.path(e.node, n.id).every((at, i, route) => !i ||
-                    E.node(route[i - 1]).tile === E.node(at).tile ||
-                    !s.mission?.fog.includes(E.node(route[i - 1]).tile) && !s.mission?.fog.includes(E.node(at).tile))))
-              : []
-          )
-            .map(
-              (n) =>
-                `<option value="${esc(n.id)}">${esc(n.name)} (${E.distance(e.node, n.id)}칸)</option>`,
-            )
-            .join("");
+      if ($("itemEnemy")) {
+        const remember = (key, id) => {
+          const choice = targetChoices.get(item.id);
+          choice[key] = $(id).value || null;
+          choice.notice = "";
+          render();
+          if (key === "enemyId") previewEnemy?.(choice.enemyId);
+          $(id)?.focus?.({ preventScroll: true });
         };
-        $("itemEnemy").onchange = destinations;
-        destinations();
+        $("itemEnemy").onchange = () => remember("enemyId", "itemEnemy");
+        if (f.target === "enemy-destination") $("itemNode").onchange = () => remember("node", "itemNode");
+        $("itemInspectTarget").onclick = () => {
+          const enemyId = $("itemEnemy").value;
+          if (enemyTargets.some(e => e.id === enemyId)) inspectEnemy?.(enemyId);
+        };
       }
       const itemCommand = () => ({
             itemId: item.id,
@@ -157,6 +191,7 @@
           render();
           refresh();
         };
+      onControlsChange?.();
     }
     function names() {
       const s = getState(),

@@ -676,3 +676,70 @@ html[data-phase="combat_choose"] .decision-content:has(.map-context:not([hidden]
 }
 .escort-prompt-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .escort-prompt-actions button { min-height: 42px; }
+.target-selection-summary { padding: 10px 12px; border-left: 3px solid var(--gold, #dec079); background: #dec07912; line-height: 1.6; overflow-wrap: anywhere; }
+.enemy-target-choice, .enemy-target-row { display: grid; gap: 8px; margin-block: 8px; }
+.enemy-target-choice > button, .enemy-target-row select { min-width: 0; overflow-wrap: anywhere; white-space: normal; }
+.enemy-target-choice > .target-inspect, .enemy-target-row > .target-inspect { justify-self: start; }
+.target-inspect { font-size: .9em; padding: 6px 10px; }
+.target-selection-status { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.hunter-status-chips { display: flex; gap: 5px; }
+.status-chip { border-radius: 10px; padding: 2px 8px; font-size: 12px; }
+.status-chip.poison { color: #c9efac; background: #3b542f; }
+.status-chip.frenzy { color: #ffd7ae; background: #694a2d; }
+@media (min-width: 1100px) { .hunt-main .status-location { display: none; } }
+
+/* Target controls stay beside the visible map without blurring its figures. */
+.info-dialog.target-picker { position: fixed; inset: 12px 12px 12px auto; margin: 0; width: min(390px, calc(100vw - 24px)); max-width: calc(100vw - 24px); height: calc(100dvh - 24px); max-height: calc(100dvh - 24px); box-sizing: border-box; box-shadow: -8px 0 28px #0007; }
+.info-dialog.target-picker::backdrop { background: transparent; backdrop-filter: none; }
+.target-picker .info-dialog-heading { padding: 10px 12px; gap: 8px; }
+.target-picker .info-dialog-heading h2 { font-size: 19px; }
+.target-picker .info-dialog-heading button { padding: 7px 9px; }
+.target-picker .info-tabs { padding: 8px 12px; gap: 4px; flex-wrap: wrap; }
+.target-picker .info-tabs button { padding: 6px 8px; font-size: 11px; }
+.target-picker .info-content { padding: 12px; }
+.target-picker .inventory-panel { margin: 0; padding: 0; }
+.target-picker .inventory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; max-height: 148px; }
+.target-picker .inventory-card { min-width: 0; padding: 8px; gap: 4px; }
+.target-picker .inventory-card b { font-size: 12px; line-height: 1.4; }
+.target-picker .inventory-card small, .target-picker .inventory-card span { font-size: 10px; line-height: 1.4; }
+.target-picker .item-detail { margin-top: 12px; padding-top: 10px; }
+.target-picker .item-controls { gap: 8px; }
+.target-picker .item-controls label, .target-picker .item-controls select, .target-picker .item-controls > button { width: 100%; min-width: 0; }
+.target-picker .rewards-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+.target-picker .reward-card { min-width: 0; padding: 10px; }
+.target-picker .reward-card h3 { margin: 4px 0 8px; font-size: 16px; }
+.target-picker .reward-card p { margin: 6px 0; line-height: 1.55; }
+.target-picker .target-selection-summary { margin-block: 6px; padding: 8px; }
+
+/* Status cards use viewport coordinates in their own layer, above actor canvas. */
+#enemyStatusLayer { position: absolute; inset: 0; z-index: 13; overflow: hidden; pointer-events: none; }
+.enemy-map-status { position: absolute; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 3px 5px; width: 104px; box-sizing: border-box; padding: 5px 6px; color: #f5eee1; background: #10191ff5; border: 1px solid #69777b; border-radius: 5px; box-shadow: 0 2px 5px #0009; font-size: 10px; line-height: 1.3; pointer-events: auto; }
+.enemy-map-status:hover, .enemy-map-status:focus-within { z-index: 4; border-color: #d8c393; }
+.enemy-status-link { position: absolute; height: 1px; background: #c8b98c99; transform-origin: 0 0; pointer-events: none; z-index: -1; }
+.enemy-map-status .enemy-map-name { grid-column: 1 / -1; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; width: 100%; min-width: 0; min-height: 0; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; color: inherit; overflow: hidden; overflow-wrap: anywhere; font: inherit; font-size: 11px; font-weight: 700; line-height: 1.3; text-align: left; white-space: normal; cursor: pointer; }
+.enemy-map-status .enemy-map-name:hover { color: #ffe9af; background: transparent; border: 0; }
+.enemy-health-track { position: relative; display: block; grid-column: 1; height: 7px; min-width: 0; overflow: hidden; border: 1px solid #7b5557; border-radius: 3px; background: #351c22; }
+.enemy-health-fill { display: block; width: clamp(0%, var(--health, 100%), 100%); height: 100%; background: linear-gradient(90deg, #ba5b5b, #ec9c87); border-radius: 2px; }
+.enemy-health-number { grid-column: 2; color: #f4ddd6; font-size: 10px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.enemy-insight-pips { grid-column: 1 / -1; justify-self: start; padding: 1px 4px; border: 1px solid #a18a58; border-radius: 3px; color: #f4dfa2; background: #3b321c; font-size: 10px; line-height: 1.2; }
+.enemy-map-status.selected, .enemy-map-status.is-selected { z-index: 5; border: 2px solid #ffe3a0; padding: 4px 5px; background: #302a1df8; animation: enemy-target-card-pulse 650ms ease-out 3; }
+.enemy-map-status.selected .enemy-map-name, .enemy-map-status.is-selected .enemy-map-name { color: #ffe9af; }
+.hunt-main .map-figure.selected::after { content: ""; position: absolute; inset: -5px; border: 2px solid #ffe3a0; border-radius: 50%; pointer-events: none; animation: enemy-target-ring-pulse 650ms ease-out 3; }
+@keyframes enemy-target-card-pulse { 0%, 100% { box-shadow: 0 0 0 1px #ffe3a040, 0 2px 5px #0009; } 45% { box-shadow: 0 0 0 4px #ffe3a090, 0 2px 5px #0009; } }
+@keyframes enemy-target-ring-pulse { from { transform: scale(1); opacity: 1; } to { transform: scale(1.65); opacity: 0; } }
+@media (max-width: 700px) {
+  .info-dialog.target-picker { inset: auto 6px 6px; width: calc(100vw - 12px); max-width: calc(100vw - 12px); height: min(45dvh, 400px); max-height: 45dvh; border-radius: 10px; box-shadow: 0 -6px 24px #0007; }
+  .target-picker .info-dialog-heading { padding: 7px 10px; }
+  .target-picker .info-dialog-heading .eyebrow { display: none; }
+  .target-picker .info-dialog-heading h2 { font-size: 16px; }
+  .target-picker .info-dialog-heading button { padding: 6px 8px; font-size: 11px; }
+  .target-picker .info-tabs { padding: 5px 8px; flex-wrap: nowrap; overflow-x: auto; }
+  .target-picker .info-tabs button { flex: 0 0 auto; }
+  .target-picker .info-content { padding: 8px; }
+  .target-picker .inventory-grid { max-height: 76px; }
+  .enemy-map-status { width: 100px; padding: 4px 5px; }
+  .enemy-map-status.selected, .enemy-map-status.is-selected { padding: 3px 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .enemy-map-status.selected, .enemy-map-status.is-selected, .hunt-main .map-figure.selected::after { animation: none; }
+}

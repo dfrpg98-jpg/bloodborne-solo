@@ -1,0 +1,113 @@
+{
+  "syntheticQA": true,
+  "normalCampaignCompletionClaimed": false,
+  "cases": [
+    {
+      "name": "reward-target-two",
+      "input": "SYNTHETIC-QA-same-cell-target-reset.json",
+      "output": "evidence/reward-target-two.json",
+      "command": {
+        "type": "USE_REWARD",
+        "rewardId": "reward-13",
+        "enemyId": "huntsmans-minion-2"
+      },
+      "fullStateEqual": true,
+      "figureOneUnchanged": true,
+      "byteEqual": null,
+      "sha256": "a42c534a21058e63069a3bda81a1e85eab8adc05064c43bb2f5964c852204700",
+      "enemies": [
+        {
+          "id": "huntsmans-minion-1",
+          "figure": 1,
+          "node": "tile-01:top",
+          "hp": 5
+        },
+        {
+          "id": "huntsmans-minion-2",
+          "figure": 2,
+          "node": "tile-01:top",
+          "hp": 3
+        }
+      ]
+    },
+    {
+      "name": "inventory-inspection-only",
+      "input": "SYNTHETIC-QA-same-cell-augur-roar.json",
+      "output": "evidence/inventory-inspection-only.json",
+      "fullStateEqual": true,
+      "figureOneUnchanged": true,
+      "byteEqual": true,
+      "sha256": "672d1ce832b3fb6db24fc1383268f81e9dfe7d8144b1324f41c31f66a2b8c752",
+      "enemies": [
+        {
+          "id": "huntsmans-minion-1",
+          "figure": 1,
+          "node": "tile-01:top",
+          "hp": 5
+        },
+        {
+          "id": "huntsmans-minion-2",
+          "figure": 2,
+          "node": "tile-01:top",
+          "hp": 5
+        }
+      ]
+    },
+    {
+      "name": "pebble-target-two",
+      "input": "SYNTHETIC-QA-same-cell-augur-roar.json",
+      "output": "evidence/pebble-target-two.json",
+      "command": {
+        "type": "USE_CONSUMABLE",
+        "itemId": "item-pebble-1",
+        "enemyId": "huntsmans-minion-2",
+        "node": "tile-01:bottom"
+      },
+      "fullStateEqual": true,
+      "figureOneUnchanged": true,
+      "byteEqual": null,
+      "sha256": "dcadbb9a1c349cce0869cff6393ccd52ab4cbde385ef96b3a1ba259c47c27cae",
+      "enemies": [
+        {
+          "id": "huntsmans-minion-1",
+          "figure": 1,
+          "node": "tile-01:top",
+          "hp": 5
+        },
+        {
+          "id": "huntsmans-minion-2",
+          "figure": 2,
+          "node": "tile-01:bottom",
+          "hp": 5
+        }
+      ]
+    },
+    {
+      "name": "axe-target-two",
+      "input": "../../qa/dev15-synthetic-ui/SYNTHETIC-QA-axe-target-choice.json",
+      "output": "evidence/axe-target-two.json",
+      "command": {
+        "type": "WEAPON_CHOICE",
+        "enemyId": "huntsmans-minion-2"
+      },
+      "fullStateEqual": true,
+      "figureOneUnchanged": true,
+      "byteEqual": null,
+      "sha256": "706b399ebc932c15c593c329f69e3bddd6b0063095e844e8c1414572a32b89dd",
+      "enemies": [
+        {
+          "id": "huntsmans-minion-1",
+          "figure": 1,
+          "node": "tile-01:bottom",
+          "hp": 5
+        },
+        {
+          "id": "huntsmans-minion-2",
+          "figure": 2,
+          "node": "tile-01:top",
+          "hp": 3
+        }
+      ]
+    }
+  ]
+}

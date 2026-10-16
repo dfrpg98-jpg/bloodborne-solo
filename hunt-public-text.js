@@ -162,6 +162,16 @@
       description += " 재앙의 야수를 처치해 시체를 얻으세요. 소모품 1개를 버려 현재 칸에 야수를 유인할 수 있습니다.";
       actionTypes.push("MISSION_LURE", "MISSION_CORPSES");
     }
+    if (source.id === "card-57") {
+      // Card 57 is already public here. Its counter is remaining mission
+      // tokens, so show qualifying kills instead of an unexplained countdown.
+      const total = Math.max(1, Object.keys(state.hunters || {}).length) + 1,
+        remaining = m.counters?.[57],
+        finished = m.completed?.includes(58) || ["완료", "complete", "completed", "done"].includes(source.status),
+        progress = Number.isInteger(remaining) && remaining >= 0 && remaining <= total
+          ? `${total - remaining}/${total}` : finished ? `${total}/${total}` : `총 ${total}회`;
+      description = `NPC와 같은 칸의 무리/하인 처치 ${progress}${finished ? "" : " · NPC 칸에서 도보 동행 가능"}`;
+    }
     return { ...source, title: clean(source.title), description,
       kind: required ? "required" : "insight", categoryLabel: required ? "필수 목표" : "계몽 선택 임무",
       reward: required ? null : { kind: "insight", amount: 1, text: "완수 시 계몽 1개" },

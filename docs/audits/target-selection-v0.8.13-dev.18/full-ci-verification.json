@@ -1,0 +1,64 @@
+{
+  "startedAt": "2026-10-16T03:47:08.516Z",
+  "completedAt": "2026-10-16T03:53:58.474Z",
+  "nodeVersion": "v24.19.0",
+  "runtimeVersion": "0.8.13-dev.18",
+  "branch": "fix/target-selection-clarity-dev18",
+  "head": "2aa0ce7eb0f4da7894e24bd03c4af95313adaf57",
+  "command": [
+    "node",
+    "scripts/test-ci.cjs"
+  ],
+  "exitCode": 0,
+  "signal": null,
+  "spawnError": null,
+  "durationSeconds": 409.782,
+  "counts": {
+    "tests": 3028,
+    "suites": 0,
+    "pass": 3028,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "failedSubtests": [],
+  "sourcePhotoTestsExcluded": [
+    "campaign covers all 67 ordered sources and 60 numbered cards with images",
+    "reference data preserves printed terminology with the confirmed enemy alias and six enemy sides",
+    "default v0.3 state remains without optional firearm fields and photo confirmation retains raw text",
+    "supplied component photos retain their exact bytes, hashes and card provenance"
+  ],
+  "protectedFilesDefinition": "Tracked runtime/code/assets/scripts/test files plus untracked runtime modules and tests; excludes docs/**, Markdown, root TXT prose, work/ and ignored test-results/. Paths re-enumerated after CI to catch additions/removals.",
+  "requiredNewPaths": [
+    "hunt-app.js",
+    "inventory.js",
+    "hunt-shell.js",
+    "hunt-presentation.js",
+    "index.html",
+    "tests/playtest-target-selection-ui-v0818.test.cjs",
+    "tests/target-selection-presentation-v0818.test.cjs",
+    "tests/ui-information-density-v0818.test.cjs",
+    "tests/salvation-progress-ui-v0818.test.cjs",
+    "tests/ui-phase-contracts-v0818.test.cjs"
+  ],
+  "checkpoints": [
+    {
+      "label": "before",
+      "capturedAt": "2026-10-16T03:47:08.754Z",
+      "fileCount": 605,
+      "aggregateSha256": "7be67710b8e0c34c799eea00b277a4e25dfac6edc89ba9e2962f65d78adf14ce"
+    },
+    {
+      "label": "after",
+      "capturedAt": "2026-10-16T03:53:58.472Z",
+      "fileCount": 605,
+      "aggregateSha256": "7be67710b8e0c34c799eea00b277a4e25dfac6edc89ba9e2962f65d78adf14ce"
+    }
+  ],
+  "allProtectedHashesStable": true,
+  "changedProtectedFiles": [],
+  "remoteCIRunClaimed": false,
+  "sourcePhotographsCopied": false,
+  "validationPassed": true
+}
