@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "version": "0.8.13-dev.26",
+  "baseCommit": "b474480a20eea4523b781c96edbaade7846615bb",
+  "issue": "https://github.com/dfrpg98-jpg/bloodborne-solo/issues/81",
+  "source": "Independent local audit, not a finding reported by Second",
+  "beforeRegression": {
+    "command": "node --test --test-name-pattern=\"mission guide responses\" tests/hunt-window-manager-dev25.test.cjs",
+    "tests": 1,
+    "pass": 0,
+    "fail": 1,
+    "assertion": "the guide's explicit response can close its own window",
+    "actualStopped": true,
+    "expectedStopped": false
+  },
+  "focused": {
+    "command": "node --test --test-reporter=tap tests/hunt-window-manager-dev25.test.cjs tests/mission-guidance-ui-v0814.test.cjs tests/hunt-workspace-shell-v25.test.cjs tests/mission-guidance-v0813-dev14.test.cjs",
+    "testFiles": 4,
+    "tests": 38,
+    "pass": 38,
+    "fail": 0,
+    "newTestsIncluded": 2
+  },
+  "fullCi": {
+    "command": "node scripts/test-ci.cjs",
+    "nodeVersion": "v24.19.0",
+    "runtimeVersion": "0.8.13-dev.26",
+    "testFileCount": 148,
+    "durationSeconds": 465.445,
+    "exitCode": 0,
+    "counts": {
+      "tests": 3126,
+      "suites": 0,
+      "pass": 3126,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "sourcePhotoTestsExcluded": [
+      "campaign covers all 67 ordered sources and 60 numbered cards with images",
+      "reference data preserves printed terminology with the confirmed enemy alias and six enemy sides",
+      "default v0.3 state remains without optional firearm fields and photo confirmation retains raw text",
+      "supplied component photos retain their exact bytes, hashes and card provenance"
+    ],
+    "logSha256": "bf542b82a544e4b80106dcf8820c30ace2f369a6bb29fc9e91ff118d706e9b65"
+  },
+  "browser": {
+    "origin": "http://127.0.0.1:8830",
+    "inputClassification": "QA-HISTORICAL public-command replay in custom QA mode; not a new normal campaign playthrough",
+    "beforeObserved": "dev.25 guide MISSION_LURE click remained open with blocked-window alert",
+    "lure": {
+      "command": {
+        "type": "MISSION_LURE",
+        "itemId": "item-coldblood-1"
+      },
+      "exactBytes": true,
+      "before": {
+        "bytes": 39413,
+        "sha256": "5873e8f0ec29a42be31ed3a5c1a3851296e731e237f2b6f99c22112e8e17041c"
+      },
+      "after": {
+        "bytes": 39558,
+        "sha256": "12f034a3d5f12315cb74c24624c2f3cc2a2c09fb9e66079a7c2f008f057178a8"
+      }
+    },
+    "corpseDeposit": {
+      "command": {
+        "type": "MISSION_CORPSES",
+        "count": 2
+      },
+      "exactBytes": true,
+      "before": {
+        "bytes": 48556,
+        "sha256": "8085730312181fd221017579c51ba9e010b670b75b777ee465bb7ac84faff34f"
+      },
+      "after": {
+        "bytes": 49699,
+        "sha256": "d31be1465b17d3c2dbbc967d1e04edcc7b1540dbf890aff5dc957ff92b3d0d38"
+      }
+    },
+    "minimizedGuideMoveBlocked": {
+      "exactBytes": true,
+      "a": {
+        "bytes": 39558,
+        "sha256": "12f034a3d5f12315cb74c24624c2f3cc2a2c09fb9e66079a7c2f008f057178a8"
+      },
+      "b": {
+        "bytes": 39558,
+        "sha256": "12f034a3d5f12315cb74c24624c2f3cc2a2c09fb9e66079a7c2f008f057178a8"
+      }
+    },
+    "secondMinimizedWindowBlocksGuideResponse": {
+      "exactBytes": true,
+      "a": {
+        "bytes": 48556,
+        "sha256": "8085730312181fd221017579c51ba9e010b670b75b777ee465bb7ac84faff34f"
+      },
+      "b": {
+        "bytes": 48556,
+        "sha256": "8085730312181fd221017579c51ba9e010b670b75b777ee465bb7ac84faff34f"
+      }
+    },
+    "reloadPreservesDeposit": {
+      "exactBytes": true,
+      "a": {
+        "bytes": 49699,
+        "sha256": "d31be1465b17d3c2dbbc967d1e04edcc7b1540dbf890aff5dc957ff92b3d0d38"
+      },
+      "b": {
+        "bytes": 49699,
+        "sha256": "d31be1465b17d3c2dbbc967d1e04edcc7b1540dbf890aff5dc957ff92b3d0d38"
+      }
+    },
+    "nextMoveAfterClosingGuide": {
+      "observed": true,
+      "remaining": 2
+    },
+    "consoleErrors": [],
+    "screenshot": {
+      "path": "images/corpse-action-result.png",
+      "bytes": 121103,
+      "sha256": "3a1c69ef9f9d9073fb1f4883ed00bc605e1672acf6c59fee847f3274984406b3",
+      "width": 65536,
+      "height": 4292542531
+    }
+  },
+  "runtimeHashes": {
+    "hunt.html": "a8902b286d069f72146d668f8be21bf50c0b9f6340456ab8dc05bc778f79a00a",
+    "package.json": "e0ef115f3deb9388f2a6bec6d1e171c7a87d60c224f9af4684108e60142331d0",
+    "src/hunt-window-manager.js": "100ce3b2c64dab33e7cf1f7a3758e9811b6337a6d6d0d751bf5a9030d843ec35"
+  },
+  "coreUnchangedFromBase": {
+    "src/hunt-engine.js": "f13a72497082eb4cd6976cbadd6cfc158a2a6e72e63ed91f3d1834fb6b462bf4",
+    "src/mission-engine.js": "5b02afe279d66a6d0e8ee1115eacecfe45ec36db5fab570b42982186be199237",
+    "src/rewards-engine.js": "f999e6a2a8e5c8f623ce44a334d9117df95604cd9bae61cf7f63ccfc0cfc0080",
+    "src/chapter-engine.js": "55b4c7d85279e5b12ec1b49def84076d94a8e81edaef57e4ebaa75da02d07d60",
+    "src/weapon-rules.js": "9ec6fc4011daed6ad5b473cfe9555652591bba90a1d91c5bdc793ff1b201f9f9"
+  },
+  "second": {
+    "handoffAcknowledged": true,
+    "stableBaseHandedOff": "b474480a20eea4523b781c96edbaade7846615bb",
+    "dev25PastTestsNotCountedAsNewDotQa": true,
+    "latestBuildDotQaCompletionClaimed": false
+  },
+  "limits": [
+    "No new full normal campaign completion claimed.",
+    "Original user game save not modified.",
+    "Sprite all-frame review remains deferred by user choice.",
+    "Ignored temporary exported saves are summarized by hashes; committed evidence uses existing fixture references and one small screenshot."
+  ]
+}
