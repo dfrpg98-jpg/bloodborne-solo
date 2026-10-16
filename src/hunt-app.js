@@ -994,10 +994,11 @@
       if (slot !== null) args.slot = slot;
       const slotFact = slot !== null && window.BBHuntCombatControls?.slotFacts(state, E)[slot],
         label = slotFact ? window.BBHuntCombatControls.attachmentOptionHTML(slotFact, r,
-          { clean: text => uiText(text, "combat"), placement: true }) : `${slot !== null ? (slot + 1) + "번 슬롯에 " : ""}장착`;
-      return button(`${old ? esc(old.name) + "을 보관하고 " : ""}${label}`, "EQUIP_REWARD", args, false, "primary");
+          { clean: text => uiText(text, "combat"), placement: true, replaceId: old?.id }) : `${slot !== null ? (slot + 1) + "번 슬롯에 " : ""}장착`;
+      return button(`${old ? esc(old.name) + "을 보관하고 " : ""}${label}`, "EQUIP_REWARD", args, false, slotFact ? "attachment-slot-option" : "primary");
     })).join("");
-    return `<div class="reward-pending"><h3>${esc(r.name)} ${stored ? "교체 장착" : "획득"}</h3><p>${esc(uiText(r.rules, "reward"))}</p><p class="muted">사냥 도구와 카릴 문자는 각각 2장까지 장착합니다. 보관한 카드는 챕터 사이에 교체할 수 있습니다.</p><div class="choice-grid">${opts}${stored ? "" : button("이 보상 보관", "KEEP_REWARD", { rewardId: r.id })}</div></div>`;
+    const description = r.persistent ? `<p class="attachment-choice-hint">장착할 공격을 선택하세요.</p>` : `<p>${esc(uiText(r.rules, "reward"))}</p><p class="muted">사냥 도구와 카릴 문자는 각각 2장까지 장착합니다. 보관한 카드는 챕터 사이에 교체할 수 있습니다.</p>`;
+    return `<div class="reward-pending ${r.persistent ? "attachment-pending" : ""}"><h3 title="${esc(uiText(r.rules, "reward"))}">${esc(r.name)} ${stored ? "교체 장착" : "획득"}</h3>${description}<div class="choice-grid">${opts}${stored ? "" : button("이 보상 보관", "KEEP_REWARD", { rewardId: r.id })}</div></div>`;
   }
   function renderHand() {
     // These controls are recreated below. Preserve the user's reading position
@@ -1054,7 +1055,7 @@
       .join("");
     const movable = !attachmentView?.choices.length ? attachments.filter(reward => reward.reassignable) : [];
     $("openAttachments").hidden = !movable.length;
-    $("attachmentChoices").innerHTML = movable.map(reward => `<section class="attachment-choice"><h3>${esc(reward.name)} · 현재 ${reward.slot + 1}번 슬롯</h3><p>${esc(uiText(reward.rules, "reward"))}</p><p class="muted">아래 수치는 부착 보상을 반영한 슬롯 수치입니다. 선택할 카드와 무기 고유 조건은 공격할 때 추가됩니다.</p><div class="actions">${availableSlots.map((slot, index) => button(slotFacts ? window.BBHuntCombatControls.attachmentOptionHTML(slotFacts[index], reward, { clean: text => uiText(text, "combat") }) : `${index + 1}번 슬롯 · ${esc(slot.name)} · 속도 ${slot.speed} · 피해 ${slot.damage}`, "REASSIGN_REWARD", { rewardId: reward.id, slot: index }, index === reward.slot)).join("")}</div></section>`).join("");
+    $("attachmentChoices").innerHTML = movable.map(reward => `<section class="attachment-choice"><h3 title="${esc(uiText(reward.rules, "reward"))}">${esc(reward.name)} · 현재 ${reward.slot + 1}번 슬롯</h3><div class="actions">${availableSlots.map((slot, index) => button(slotFacts ? window.BBHuntCombatControls.attachmentOptionHTML(slotFacts[index], reward, { clean: text => uiText(text, "combat") }) : `${index + 1}번 슬롯 · ${esc(slot.name)} · 속도 ${slot.speed} · 피해 ${slot.damage}`, "REASSIGN_REWARD", { rewardId: reward.id, slot: index }, index === reward.slot, "attachment-slot-option")).join("")}</div></section>`).join("");
     bind($("attachmentChoices"));
     $("slots")
       .querySelectorAll("[data-slot]")

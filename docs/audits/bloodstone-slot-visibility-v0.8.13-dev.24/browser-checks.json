@@ -1,0 +1,189 @@
+{
+  "before": {
+    "background": "rgb(216, 189, 125)",
+    "buttonColor": "rgb(23, 32, 38)",
+    "height": 89,
+    "parts": [
+      {
+        "color": "rgb(242, 215, 160)",
+        "font": "13px",
+        "text": "1번 슬롯에 장착 · 신속한 베기"
+      },
+      {
+        "color": "rgb(185, 197, 197)",
+        "font": "10px",
+        "text": "속도 3 → 3 · 슬롯 피해 1 → 2"
+      },
+      {
+        "color": "rgb(185, 197, 197)",
+        "font": "10px",
+        "text": "기본 피해 1 + 다른 부착 강화 0 + 이 보상 1 = 부착 후 슬롯 피해 2"
+      }
+    ],
+    "width": 254
+  },
+  "after": {
+    "background": "rgb(23, 38, 45)",
+    "height": 75.5,
+    "parts": [
+      {
+        "color": "rgb(232, 219, 192)",
+        "font": "12px",
+        "text": "1번 슬롯에 장착"
+      },
+      {
+        "color": "rgb(255, 240, 203)",
+        "font": "16px",
+        "text": "신속한 베기"
+      },
+      {
+        "color": "rgb(237, 240, 233)",
+        "font": "14px",
+        "text": "속도 3피해 1 → 2+1"
+      },
+      {
+        "color": "rgb(255, 240, 203)",
+        "font": "19px",
+        "text": "3"
+      },
+      {
+        "color": "rgb(255, 240, 203)",
+        "font": "19px",
+        "text": "2"
+      },
+      {
+        "color": "rgb(220, 255, 231)",
+        "font": "12px",
+        "text": "+1"
+      }
+    ],
+    "width": 264
+  },
+  "defaultAcquisition": [
+    {
+      "height": 75.5,
+      "insideViewport": true,
+      "name": "1번 슬롯에 장착\n신속한 베기\n속도 3\n피해 1 → 2+1",
+      "overflow": false,
+      "width": 264,
+      "x": 973,
+      "y": 343.1875
+    },
+    {
+      "height": 75.5,
+      "insideViewport": true,
+      "name": "2번 슬롯에 장착\n긋기\n속도 2\n피해 2 → 3+1",
+      "overflow": false,
+      "width": 264,
+      "x": 973,
+      "y": 426.6875
+    },
+    {
+      "height": 75.5,
+      "insideViewport": true,
+      "name": "3번 슬롯에 장착\n강력한 후리기\n속도 1\n피해 3 → 4+1",
+      "overflow": false,
+      "width": 264,
+      "x": 973,
+      "y": 510.1875
+    }
+  ],
+  "largeAcquisition": [
+    {
+      "height": 75.5,
+      "insideViewport": true,
+      "name": "1번 슬롯에 장착\n신속한 베기\n속도 3\n피해 1 → 2+1",
+      "overflow": false,
+      "width": 274
+    },
+    {
+      "height": 75.5,
+      "insideViewport": true,
+      "name": "2번 슬롯에 장착\n긋기\n속도 2\n피해 2 → 3+1",
+      "overflow": false,
+      "width": 274
+    },
+    {
+      "height": 75.5,
+      "insideViewport": true,
+      "name": "3번 슬롯에 장착\n강력한 후리기\n속도 1\n피해 3 → 4+1",
+      "overflow": false,
+      "width": 274
+    }
+  ],
+  "reassignment": [
+    {
+      "background": "rgb(23, 38, 45)",
+      "disabled": false,
+      "opacity": "1",
+      "overflow": false,
+      "text": "1번 슬롯으로 옮기기\n신속한 베기\n속도 3\n피해 1 → 2+1",
+      "width": 432
+    },
+    {
+      "background": "rgb(28, 43, 48)",
+      "disabled": true,
+      "opacity": "1",
+      "overflow": false,
+      "text": "2번 슬롯 · 현재 위치\n신속한 베기\n속도 4\n피해 3",
+      "width": 432
+    },
+    {
+      "background": "rgb(23, 38, 45)",
+      "disabled": false,
+      "opacity": "1",
+      "overflow": false,
+      "text": "3번 슬롯으로 옮기기\n긋기\n속도 2\n피해 2 → 3+1",
+      "width": 432
+    },
+    {
+      "background": "rgb(23, 38, 45)",
+      "disabled": false,
+      "opacity": "1",
+      "overflow": false,
+      "text": "1번 슬롯으로 옮기기\n신속한 베기\n속도 3 → 4\n피해 1 → 2+1",
+      "width": 432
+    },
+    {
+      "background": "rgb(28, 43, 48)",
+      "disabled": true,
+      "opacity": "1",
+      "overflow": false,
+      "text": "2번 슬롯 · 현재 위치\n신속한 베기\n속도 4\n피해 3",
+      "width": 432
+    },
+    {
+      "background": "rgb(23, 38, 45)",
+      "disabled": false,
+      "opacity": "1",
+      "overflow": false,
+      "text": "3번 슬롯으로 옮기기\n긋기\n속도 2 → 3\n피해 2 → 3+1",
+      "width": 432
+    }
+  ],
+  "finalSlots": "1번 슬롯 · 비어 있음\n신속한 베기\n속도 3 + 강화 1 = 4\n기본 피해 1 + 강화 1 = 피해 2\n◆ 혈석의 덩어리 · 속도 +1 · 공격 피해 +1\n2번 슬롯 · 비어 있음\n신속한 베기\n속도 3 · 피해 1\n3번 슬롯 · 비어 있음\n긋기\n속도 2\n기본 피해 2 + 강화 1 = 피해 3\n◆ 혈석의 파편 · 공격 피해 +1",
+  "exportPath": "test-results/gem-slot-visibility-qa.json (Git 제외)",
+  "logs": [],
+  "replacementBefore": "혈석의 파편을 보관하고\n1번 슬롯에 장착\n검증 공격 1\n속도 3 → 4\n피해 13\n슬롯 설명 · 검증 전용 공격",
+  "replacementAfter": "1번 슬롯 · 비어 있음\n검증 공격 1\n속도 3 + 강화 1 = 4\n기본 피해 12 + 강화 1 = 피해 13\n◆ 혈석의 덩어리 · 속도 +1 · 공격 피해 +1\n검증 전용 공격\n2번 슬롯 · 비어 있음\n검증 공격 2\n속도 3 · 피해 12\n◆ 눈물의 혈정석\n검증 전용 공격\n3번 슬롯 · 비어 있음\n검증 공격 3\n속도 3 · 피해 12\n검증 전용 공격",
+  "nextAction": {
+    "phase": "플레이어의 차례",
+    "position": "● 사냥꾼의 현재 위치\n중앙 등불 / 왼쪽 칸",
+    "slots": "1번 슬롯 · 비어 있음\n검증 공격 1\n속도 3 + 강화 1 = 4\n기본 피해 12 + 강화 1 = 피해 13\n◆ 혈석의 덩어리 · 속도 +1 · 공격 피해 +1\n검증 전용 공격\n2번 슬롯 · 비어 있음\n검증 공격 2\n속도 3 · 피해 12\n◆ 눈물의 혈정석\n검증 전용 공격\n3번 슬롯 · 비어 있음\n검증 공격 3\n속도 3 · 피해 12\n검증 전용 공격"
+  },
+  "validation": {
+    "baseline": "e23900fe5e435aef0e2ee8f669e3f6f0b0e56985",
+    "testFiles": 8,
+    "tests": 118,
+    "pass": 118,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "durationMs": 3900.5042,
+    "log": "test-results/gem-slot-dev24.tap (Git 제외)",
+    "logSha256": "b37912f127bb828822e5e86b5315c9f96c2b024c96e3679457954db3dad411fa",
+    "qaExportExactReplay": true,
+    "qaExportCommands": 6,
+    "qaExportSha256": "7c86b8aa07e36aed6b1b81c0773f70a47d8879d52cf35279a03178d83525ffbf"
+  }
+}

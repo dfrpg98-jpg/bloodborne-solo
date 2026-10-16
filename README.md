@@ -1,6 +1,6 @@
 # Bloodborne Solo · 기나긴 사냥
 
-브라우저에서 기나긴 사냥 챕터 1~3을 한 명의 플레이어로 진행하는 로컬 게임입니다. 현재 개발 버전은 **0.8.13-dev.23**, 마지막 보관 릴리스는 **0.8.12**입니다. 이번 개발본은 정식 릴리스가 아닙니다. 최근 변경은 [공격 위치·행동 안내 점검](docs/audits/attack-position-v0.8.13-dev.21/README.md), [피해 배분 진행 표시](docs/audits/damage-allocation-v0.8.13-dev.22/README.md), [피의 광란 반격 위험 안내](docs/audits/blood-frenzy-v0.8.13-dev.23/README.md)에 재현과 검증 범위를 구분해 기록했습니다.
+브라우저에서 기나긴 사냥 챕터 1~3을 한 명의 플레이어로 진행하는 로컬 게임입니다. 현재 개발 버전은 **0.8.13-dev.24**, 마지막 보관 릴리스는 **0.8.12**입니다. 이번 개발본은 정식 릴리스가 아닙니다. 최근 [혈석 슬롯 선택 가독성·교체 미리보기 수정](docs/audits/bloodstone-slot-visibility-v0.8.13-dev.24/README.md)과 [공격 위치·행동 안내 점검](docs/audits/attack-position-v0.8.13-dev.21/README.md), [피해 배분 진행 표시](docs/audits/damage-allocation-v0.8.13-dev.22/README.md), [피의 광란 반격 위험 안내](docs/audits/blood-frenzy-v0.8.13-dev.23/README.md)에 재현과 검증 범위를 구분해 기록했습니다.
 
 수직 이동·정렬된 공격의 방향 반전 수정은 [하인 방향 재점검](docs/audits/minion-facing-v0.8.13-dev.10/README.md)에, 신규 적6종의 외형·표시 크기·실제 검증 사냥은 [적 외형 점검 기록](docs/audits/enemy-sprites-v0.8.13-dev.9/README.md)에 있습니다. dev.8의 UI·규칙·저장 점검과 Unity 이식 준비 결과는 [로컬 검증 기록](docs/audits/local-final-validation-v0.8.13-dev.8/README.md)에서 구분합니다.
 
@@ -46,7 +46,7 @@ Remove-Item Env:BB_REFERENCE_ROOT
 
 ## 개발과 이력
 
-`main`에 최신 개발본 0.8.13-dev.23을 통합했습니다. [통합 PR #76](https://github.com/dfrpg98-jpg/bloodborne-solo/pull/76), [검증·브랜치·PR 정리 목록](docs/maintenance/git-integration-2026-10-16.json)에서 포함된 커밋과 과거 이력의 보존 태그를 확인할 수 있습니다. 정식 릴리스와 개발 버전은 구분합니다.
+dev.23까지의 누적 변경을 `main`에 통합했습니다. [통합 PR #76](https://github.com/dfrpg98-jpg/bloodborne-solo/pull/76), [검증·브랜치·PR 정리 목록](docs/maintenance/git-integration-2026-10-16.json)에서 포함된 커밋과 과거 이력의 보존 태그를 확인할 수 있습니다. 이후 수정은 변경 이력과 후속 PR에서 관리하며 정식 릴리스와 개발 버전은 구분합니다.
 
 새 기능이나 수정은 브랜치와 Pull Request에서 검토하고, 관련 Issue에 재현 방법·규칙 근거·변경 내용·실제 점검 결과를 함께 기록합니다. [개발 절차](CONTRIBUTING.md)를 따르고 출시 버전은 `package.json`, 변경 이력, Git 태그를 맞춥니다. 과거 ZIP에서 가져온 버전의 커밋은 이관 시점의 기록이며 과거에 작성한 Git 커밋으로 표시하지 않습니다.
 
