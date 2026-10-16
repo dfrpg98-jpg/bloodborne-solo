@@ -37,10 +37,10 @@
     });
   }
 
-  function attachmentDestination(slot, reward) {
+  function attachmentDestination(slot, reward, { replaceId } = {}) {
     if (!slot || !reward) return null;
     const policy = slot.attachmentPolicy || { rewards: false, extended: false },
-      others = slot.attachments.filter(item => reward.id == null || item.id !== reward.id),
+      others = slot.attachments.filter(item => (reward.id == null || item.id !== reward.id) && (replaceId == null || item.id !== replaceId)),
       bonuses = others.map(item => attachmentBonus(item, policy)), added = attachmentBonus(reward, policy),
       otherDamage = bonuses.reduce((sum, bonus) => sum + bonus.damage, 0),
       otherSpeed = bonuses.reduce((sum, bonus) => sum + bonus.speed, 0),
@@ -53,10 +53,14 @@
       heal: otherHeal + added.heal };
   }
 
-  function attachmentOptionHTML(slot, reward, { clean, placement = false } = {}) {
-    const destination = attachmentDestination(slot, reward);
+  function attachmentOptionHTML(slot, reward, { clean, placement = false, replaceId } = {}) {
+    const destination = attachmentDestination(slot, reward, { replaceId });
     if (!destination) return "";
-    return `<span class="attachment-destination-name">${destination.index + 1}번 슬롯${placement ? "에 장착" : destination.current ? " · 현재 위치" : "으로 옮기기"} · ${esc(cleanText(destination.name, clean))}</span><small class="attachment-destination-stats">속도 ${esc(destination.beforeSpeed)} → <b>${esc(destination.speed)}</b> · 슬롯 피해 ${esc(destination.beforeDamage)} → <b>${esc(destination.damage)}</b></small><small class="attachment-destination-formula">기본 피해 ${esc(destination.baseDamage)} + 다른 부착 강화 ${esc(destination.otherDamage)} + 이 보상 ${esc(destination.addedDamage)} = 부착 후 슬롯 피해 ${esc(destination.damage)}</small>${destination.heal ? `<small class="attachment-destination-effects">공격 확정 시 치유 ${esc(destination.heal)}</small>` : ""}${destination.text ? `<small class="attachment-destination-effects">슬롯 설명 · ${esc(cleanText(destination.text, clean))}</small>` : ""}`;
+    const formula = `기본 피해 ${destination.baseDamage} + 다른 부착 강화 ${destination.otherDamage} + 이 보상 ${destination.addedDamage} = 부착 후 슬롯 피해 ${destination.damage}`,
+      speed = destination.speed === destination.beforeSpeed ? `<b>${esc(destination.speed)}</b>` : `${esc(destination.beforeSpeed)} → <b>${esc(destination.speed)}</b>`,
+      damage = destination.damage === destination.beforeDamage ? `<b>${esc(destination.damage)}</b>` : `${esc(destination.beforeDamage)} → <b>${esc(destination.damage)}</b>`,
+      gain = destination.damage - destination.beforeDamage;
+    return `<span class="attachment-destination-heading"><span class="attachment-destination-slot">${destination.index + 1}번 슬롯${placement ? "에 장착" : destination.current ? " · 현재 위치" : "으로 옮기기"}</span><span class="attachment-destination-name">${esc(cleanText(destination.name, clean))}</span></span><span class="attachment-destination-stats"><span>속도 ${speed}</span><span class="attachment-destination-damage" title="${esc(formula)}">피해 ${damage}${gain > 0 ? `<em class="attachment-destination-gain">+${esc(gain)}</em>` : ""}</span></span>${destination.heal ? `<span class="attachment-destination-effects">공격 확정 시 치유 ${esc(destination.heal)}</span>` : ""}${destination.text ? `<span class="attachment-destination-effects">슬롯 설명 · ${esc(cleanText(destination.text, clean))}</span>` : ""}`;
   }
 
   function slotFormulaHTML(slot) {

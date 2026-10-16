@@ -28,11 +28,22 @@
 .hunt-main .hunt-slot .slot-strength-speed, .hunt-main .hunt-slot .slot-strength-damage { font-size: 11px; line-height: 1.4; }
 .hunt-main .hunt-slot .slot-strength-damage { color: #efd3a0; }
 .hunt-main .hunt-slot .slot-strength-damage b { color: #ffe6af; }
-.attachment-choice .actions > button:has(.attachment-destination-name), .reward-pending button:has(.attachment-destination-name) { display: flex; flex-direction: column; align-items: stretch; gap: 5px; width: 100%; text-align: left; line-height: 1.5; }
-.attachment-destination-name { font-size: 13px; font-weight: 700; color: #f2d7a0; }
-.attachment-destination-stats { font-size: 12px; color: #e7e0ce; }
-.attachment-destination-stats b { color: #ffdfa1; }
-.attachment-destination-formula, .attachment-destination-effects { font-size: 11px; color: #c9c7bb; }
-.attachment-choice button:disabled .attachment-destination-name, .attachment-choice button:disabled .attachment-destination-stats, .attachment-choice button:disabled .attachment-destination-stats b { color: #b9b2a2; }
+.reward-pending .attachment-slot-option, .attachment-choice .attachment-slot-option { display: flex; flex-direction: column; align-items: stretch; gap: 7px; width: 100%; min-width: 0; padding: 12px; border: 1px solid #a58b59; border-left-width: 4px; border-radius: 5px; background: #17262d; color: #f0e8d8; text-align: left; line-height: 1.5; white-space: normal; overflow-wrap: anywhere; opacity: 1; }
+.reward-pending .attachment-slot-option:not(:disabled):hover, .attachment-choice .attachment-slot-option:not(:disabled):hover { background: #283b42; border-color: #ecd394; }
+.reward-pending .attachment-slot-option:focus-visible, .attachment-choice .attachment-slot-option:focus-visible { outline: 3px solid #f4d486; outline-offset: 2px; }
+.attachment-slot-option .attachment-destination-heading { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 9px; }
+.attachment-slot-option .attachment-destination-slot { align-self: flex-start; padding: 1px 6px; border: 1px solid #667a80; border-radius: 3px; background: #26373f; color: #e8dbc0; font-size: 12px; font-weight: 400; }
+.attachment-slot-option .attachment-destination-name { color: #fff0cb; font-size: 16px; font-weight: 700; }
+.attachment-slot-option .attachment-destination-stats { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; color: #edf0e9; font-size: 14px; font-weight: 400; }
+.attachment-slot-option .attachment-destination-stats > span { white-space: nowrap; }
+.attachment-slot-option .attachment-destination-stats b { color: #fff0cb; font-size: 19px; }
+.attachment-slot-option .attachment-destination-gain { display: inline-block; margin-left: 6px; padding: 0 5px; border: 1px solid #8cb7a3; border-radius: 3px; background: #254538; color: #dcffe7; font-size: 12px; font-style: normal; font-weight: 700; vertical-align: 2px; }
+.attachment-slot-option .attachment-destination-effects { color: #c9d7d8; font-size: 13px; font-weight: 400; }
+.attachment-choice .attachment-slot-option:disabled { border-style: dashed; border-left-width: 4px; border-color: #71868b; background: #1c2b30; cursor: default; }
+.attachment-choice .attachment-slot-option:disabled .attachment-destination-slot { background: #365047; border-color: #8cae9d; color: #e1f5e8; }
+.reward-pending.attachment-pending { padding: 10px; }
+.attachment-pending h3 { margin: 0 0 5px; }
+.attachment-pending .attachment-choice-hint { margin: 0 0 8px; color: #d4dedb; font-size: 13px; }
+.attachment-pending .choice-grid { gap: 8px; }
 @media (max-height: 760px) { .combat-selection-widget { padding-top: 6px; margin-top: 5px; } .combat-selection-heading { margin-bottom: 4px; } .combat-selection-fields select { padding: 5px 3px; } .combat-selection-effects p { margin-top: 4px; } }
 @media (max-width: 480px) { .combat-selection-heading > span { font-size: 9px; } .combat-selection-fields { gap: 5px; } }

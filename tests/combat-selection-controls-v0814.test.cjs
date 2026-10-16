@@ -157,6 +157,37 @@ test("a destination retains another attached gem's effect and presents tear-gem 
   assert.equal(E.exportSave(state), before);
 });
 
+test("replacement attachment previews exclude the stored gem and match the actual public equipment command", () => {
+  let state = E.create(90, "qa-test-weapon", 0, null, "hunter-pistol", "center", {
+    campaign: true, rulesVersion: 14, qa: { preset: "custom",
+      startRewards: ["bloodstone-shard", "tear-gem", "bloodstone-chunk"], startConsumables: [] } });
+  const items = H(state).rewards, shard = items.find(r => r.kind === "bloodstone-shard"),
+    tear = items.find(r => r.kind === "tear-gem"), chunk = items.find(r => r.kind === "bloodstone-chunk");
+  state = go(state, "EQUIP_REWARD", { rewardId: shard.id, slot: 0 });
+  state = go(state, "EQUIP_REWARD", { rewardId: tear.id, slot: 1 });
+  const before = E.exportSave(state), incoming = E.rewardsView(state).rewards.find(r => r.id === chunk.id),
+    facts = Controls.slotFacts(state, E);
+  for (const old of [shard, tear]) for (const slot of [0, 1, 2]) {
+    const preview = Controls.attachmentDestination(facts[slot], incoming, { replaceId: old.id }),
+      equipped = go(state, "EQUIP_REWARD", { rewardId: chunk.id, replaceId: old.id, slot }),
+      actual = Controls.slotFacts(equipped, E)[slot];
+    assert.equal(preview.damage, actual.totalDamage);
+    assert.equal(preview.speed, actual.totalSpeed);
+    assert.equal(preview.heal, actual.upgradeHeal);
+    assert.equal(H(equipped).rewards.filter(r => r.equipped).length, 2);
+    assert.deepEqual(E.importSave(E.exportSave(equipped)), equipped);
+  }
+  const { ui } = launch(state), buttons = ui.buttons("decisions").filter(b => b.dataset.command === "EQUIP_REWARD"),
+    replacingShard = buttons.find(b => { const a = JSON.parse(b.dataset.args); return a.replaceId === shard.id && a.slot === 0; });
+  assert(replacingShard);
+  const options = ui.el("decisions").innerHTML.match(/<button\b[^>]*data-command="EQUIP_REWARD"[^>]*>[\s\S]*?<\/button>/g);
+  assert.match(options[buttons.indexOf(replacingShard)], /기본 피해 12 \+ 다른 부착 강화 0 \+ 이 보상 1 = 부착 후 슬롯 피해 13/);
+  replacingShard.click();
+  assert.equal(ui.el("error").textContent, "");
+  assert.deepEqual(E.importSave(ui.storage.get(qaKey)), go(state, "EQUIP_REWARD", { rewardId: chunk.id, replaceId: shard.id, slot: 0 }));
+  assert.equal(E.exportSave(state), before);
+});
+
 test("fixed selectors and original cards/slots share one reversible selection and commit exactly one actual attack", () => {
   const state = encounter(create()), saved = E.exportSave(state), { ui, calls, normalSave } = launch(state),
     target = state.enemies.find(enemy => enemy.missionId === "mob"),
