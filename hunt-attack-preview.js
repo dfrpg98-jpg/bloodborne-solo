@@ -15,6 +15,44 @@
   const attackRewardKinds = new Set(["rune-clawmark", "rune-writhe", "rune-hunter", "empty-shell"]);
   const fixedKinds = new Set(["WEAPON_SHOT", "ENTRY_WEAPON"]);
 
+  function pullView(state, engine, ids = []) {
+    if (!["hunter", "combat_choose"].includes(state.phase) || !ids.length) return [];
+    const destination = engine.hunter(state).position,
+      selected = new Set(ids), candidates = engine.pullCandidates(state);
+    return candidates.filter(enemy => selected.has(enemy.id)).map(enemy => {
+      const definition = engine.enemyDef(state, enemy);
+      return { enemyId: enemy.id, destination, tileId: engine.node(state, destination).tile,
+        beforePenalty: engine.enemyTileSpeedPenalty(state, enemy, definition),
+        penalty: engine.enemyTileSpeedPenalty(state, { ...enemy, node: destination }, definition) };
+    });
+  }
+
+  function pullHTML(pull, tileName, { clean } = {}) {
+    if (!pull) return "";
+    return `<small class="attack-pull-preview" role="note">끌어온 뒤: ${esc(text(tileName || "현재 칸", clean))} · 적 공격 속도 ${pull.penalty ? "-1" : "보정 없음"}</small>`;
+  }
+
+  function areaView(state, engine, selection, attack) {
+    if (!attack?.splash || !["hunter", "combat_choose"].includes(state.phase)) return null;
+    const targetId = selection.kind === "COUNTER" ? state.combat?.enemyId : selection.enemyId,
+      h = engine.hunter(state), target = state.enemies.find(enemy => enemy.id === targetId);
+    if (!target) return null;
+    const pulls = pullView(state, engine, selection.pullIds), pulled = new Set(pulls.map(pull => pull.enemyId));
+    let origin = h.position;
+    if (target.node !== origin && !pulled.has(target.id)) {
+      // Leap attacks move the hunter first. Only a currently legal disclosed
+      // route qualifies; no future enemy action is used to guess later movement.
+      const card = h.hand.find(card => card.id === selection.cardId),
+        replacement = selection.rewardIds?.some(id => h.rewards?.some(reward => reward.id === id && reward.kind === "rune-clawmark"));
+      if (selection.kind === "COUNTER" || !card || replacement || !engine.card(card).leap ||
+          !engine.leapPaths(state, target.node).some(route => route.length > 1)) return null;
+      origin = target.node;
+    }
+    const ids = state.enemies.filter(enemy => enemy.id !== target.id &&
+      engine.distance(state, origin, pulled.has(enemy.id) ? h.position : enemy.node) <= attack.splash.range).map(enemy => enemy.id);
+    return { ids, count: ids.length, damage: attack.splash.damage, range: attack.splash.range, origin };
+  }
+
   function view(state, engine, selection = {}) {
     const kind = selection.kind || "ATTACK", fixed = fixedKinds.has(kind),
       h = engine.hunter(state), face = engine.weaponFace(state),
@@ -119,6 +157,7 @@
       freeTransform: !!card.freeTransform || !!reward.freeTransform || wb.freeTransform,
       noDodge: wb.noDodge, immuneInterrupt: wb.immuneInterrupt,
       splash: wb.splash || face.splash || null, onKill: card.onKill || null };
+    if (!fatal) model.area = areaView(state, engine, selection, model.attack);
     model.formula = {
       speed: { base: number(slot.speed), card: number(card.speed), attachment: chunkSpeed,
         reward: reward.speed - chunkSpeed, item: itemBonus.speed, weapon: wb.speed, total: speed },
@@ -143,6 +182,8 @@
     if (model.attack.afterAttackHeal) model.notes.push(`공격 실행 후 치유 ${model.attack.afterAttackHeal} · 공격 전에 받는 피해를 먼저 처리합니다.`);
     if (model.attack.healDealt) model.notes.push("공격으로 준 피해만큼 공격 실행 후 치유합니다.");
     if (fatal) model.warnings.push("자해 후 체력 0 · 공격을 실행하기 전에 사망합니다.");
+    if (!fatal && wb.noDodge) model.warnings.push(`이번 전투 · 회피 불가${wb.immuneInterrupt ? " · 방해 면역" : ""}`);
+    else if (!fatal && placedSlots.every(Boolean)) model.warnings.push("카드 배치 후 빈 회피 슬롯 없음 · 자동 회피 등 별도 효과는 사용 가능 조건을 확인하세요.");
     if (prevention) model.warnings.push("자해로 체력 0이 되면 준비된 타락 문자를 소모해 체력 6으로 회복합니다.");
     return model;
   }
@@ -158,7 +199,8 @@
     const title = model.fixed ? `고유 행동 · 고정 피해 ${model.damage}` : `확정 전 공격 · 속도 ${model.speed} · 피해 ${model.damage}`,
       formula = model.fixed ? "" : `<p class="attack-preview-formula">${formulaHTML("속도", model.formula.speed)}<br>${formulaHTML("피해", model.formula.damage)}</p>`,
       hp = model.hp, hpText = hp.selfDamage ? `<p class="attack-preview-hp">${hp.cardHeal ? `카드 치유 후 체력 ${esc(hp.afterCard)} · ` : ""}자해 ${esc(hp.selfDamage)} · 체력 ${esc(hp.before)} → <b>${esc(hp.afterDeclaration)}</b>${hp.weaponHeal || hp.attachmentHeal ? ` · 즉시 치유 ${esc(hp.weaponHeal + hp.attachmentHeal)}` : ""}</p>` : "";
-    return `<div class="attack-selection-preview${model.hp.fatal ? " is-danger" : ""}" role="note"><strong>${esc(title)}</strong>${formula}${hpText}${model.warnings.map(warning => `<p class="attack-preview-warning">${esc(text(warning, clean))}</p>`).join("")}${model.notes.map(note => `<p class="attack-preview-note">${esc(text(note, clean))}</p>`).join("")}</div>`;
+    const area = model.area ? `<p class="attack-area-preview" role="note">${model.area.count ? `공격 실행 시 · 추가 <b>${esc(model.area.count)}명 × 피해 ${esc(model.area.damage)}</b>` : "범위 내 추가 대상 없음"}</p>` : "";
+    return `<div class="attack-selection-preview${model.hp.fatal ? " is-danger" : ""}" role="note"><strong>${esc(title)}</strong>${formula}${hpText}${area}${model.warnings.map(warning => `<p class="attack-preview-warning">${esc(text(warning, clean))}</p>`).join("")}${model.notes.map(note => `<p class="attack-preview-note">${esc(text(note, clean))}</p>`).join("")}</div>`;
   }
-  return { view, renderHTML };
+  return { view, renderHTML, pullView, pullHTML };
 });

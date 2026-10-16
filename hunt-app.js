@@ -1126,13 +1126,15 @@
     if (boostCode === "attack_sacrifice_damage") actionArgs.weaponBoost = weaponBoost === "none" ? 0 : +weaponBoost;
     if (boostCode === "attack_sacrifice_speed_or_damage") actionArgs.weaponBoost = ["speed", "damage"].includes(weaponBoost) ? weaponBoost : "none";
     const selectHint = `선택 카드: ${chosen ? E.card(chosen).name : "없음"} · 슬롯: ${slot ? selectedSlot + 1 + "번" + (empty ? "" : " (점유됨)") : "없음"}`;
-    const checkPulls = () =>
-      E.pullCandidates(state)
+    const checkPulls = () => {
+      const previews = window.BBHuntAttackPreview?.pullView(state, E, [...pulls]) || [];
+      return E.pullCandidates(state)
         .map(
           (e) =>
-            `<label class="checkrow"><input type="checkbox" data-pull="${e.id}" ${pulls.has(e.id) ? "checked" : ""}>공격 전에 끌어오기 · ${esc(enemyTargetLabel(e))}</label>${inspectTargetButton(e.id)}`,
+            `<label class="checkrow"><input type="checkbox" data-pull="${e.id}" ${pulls.has(e.id) ? "checked" : ""}>공격 전에 끌어오기 · ${esc(enemyTargetLabel(e))}</label>${mapTarget?.enemyId === e.id ? "" : pullHint(previews.find(preview => preview.enemyId === e.id))}${inspectTargetButton(e.id)}`,
         )
         .join("");
+    };
     if (p === "hunter") {
       help =
         "아래 손패에서 카드를 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.";
@@ -1265,10 +1267,16 @@
       help = dodged ? "회피가 적용되었습니다. 계속 버튼으로 회피한 효과의 처리를 마치세요. 이 효과의 피해와 부가효과를 받지 않습니다." : blockPerSpeed
         ? `회피 속도마다 ${blockPerSpeed}피해를 방어합니다. 회피 카드와 빈 슬롯을 고른 뒤 ‘이 효과 회피’를 눌러 확정하세요.`
         : `합계 속도 ${reaction.dodgeSpeed ?? 1} 이상인 회피 카드와 빈 슬롯을 고른 뒤 ‘이 효과 회피’를 눌러 확정하세요.${reaction.effects?.length ? " " + reaction.effects.join(" · ") : ""}`;
+      if (c.noDodge || c.origin === "interaction" || c.immediate?.unavoidable)
+        help = "이 효과는 회피할 수 없습니다. 효과를 받고 계속하세요.";
       html = `<p class="target-selection-status">${esc(selectHint)}</p>${button("이 효과 회피", "DODGE", { cardId: selectedCard, slot: selectedSlot }, !canCommit || !E.canDodge(state, selectedCard, selectedSlot))}${button(dodged ? "회피 적용 후 계속" : reaction.damage ? `피해 ${reaction.damage}와 효과를 받고 계속` : "회피하지 않고 효과 처리", "RESOLVE", {}, false, "primary")}`;
     } else if (p === "combat_react" || p === "combat_extra") {
-      const extra = p === "combat_extra";
-      help = extra
+      const extra = p === "combat_extra", blocked = c.noDodge || c.origin === "interaction" || !extra && c.action?.undodgeable;
+      help = blocked ? extra
+        ? "이 추가 타격은 회피할 수 없습니다. ‘추가 피해 받기’로 계속하세요."
+        : "현재 전투는 회피할 수 없습니다. 사용할 수 있는 다른 대응을 고른 뒤 ‘속도 순서대로 전투 처리’를 누르세요."
+        : !extra && c.dodged ? "회피가 적용되었습니다. ‘속도 순서대로 전투 처리’로 계속하세요."
+        : extra
         ? "첫 공격을 피했거나 방해했어도 별도의 속도 2 회피가 필요합니다. 카드와 빈 슬롯을 고른 뒤 ‘추가 타격 회피’를 누르세요. 피하지 않으려면 ‘추가 피해 받기’를 선택합니다."
         : "회피 카드와 충분한 속도의 빈 슬롯을 고른 뒤 ‘회피’를 눌러 확정하세요. 선택만으로 회피하지 않습니다. 대응을 마쳤거나 회피하지 않으려면 ‘속도 순서대로 전투 처리’를 누르세요.";
       html = `<p class="target-selection-status">${esc(selectHint)}</p>${button(extra ? "추가 타격 회피" : "회피", extra ? "EXTRA_DODGE" : "DODGE", { cardId: selectedCard, slot: selectedSlot }, !canCommit || !E.canDodge(state, selectedCard, selectedSlot, extra))}`;
@@ -1445,7 +1453,8 @@
     const weaponChoices = E.weaponChoices?.(state, { cardId: selectedCard, slot: selectedSlot, enemyId: selectedEnemy }) || [];
     if (!rewards?.choices.length && (p.startsWith("weapon_") || p === "entry_weapon")) {
       $("phaseTitle").textContent = p.includes("entry") ? "장치 무기 · 진입한 적 대응" : "장치 무기 효과 선택";
-      help = p.includes("entry") ? "손패 1장과 빈 슬롯 1개가 필요합니다. 기술을 뒷면으로 놓고 고정 피해 2를 줍니다. 카드 고유 효과와 공격 강화는 적용되지 않습니다." : `선택할 대상 ${weaponChoices.length}개 · 아래 고정 선택 버튼에서 위치와 번호를 확인하세요.`;
+      const push = p === "weapon_choice" && state.weaponEffects?.[0]?.kind === "push" ? state.weaponEffects[0] : null;
+      help = p.includes("entry") ? "손패 1장과 빈 슬롯 1개가 필요합니다. 기술을 뒷면으로 놓고 고정 피해 2를 줍니다. 카드 고유 효과와 공격 강화는 적용되지 않습니다." : push ? `이동 선택지 ${weaponChoices.length}개 · 남은 이동 최대 ${push.remaining}칸` : `선택할 대상 ${weaponChoices.length}개 · 아래 고정 선택 버튼에서 위치와 번호를 확인하세요.`;
       html = `<p class="target-selection-status">${esc(selectHint)}</p>${weaponChoices.map((option) => commandButton(option)).join("")}`;
     } else if (!rewards?.choices.length && weaponChoices.length) html += `<div class="weapon-effect-choices"><p class="muted">${esc(E.weapon(state).name)} · 고유 효과</p>${weaponChoices.map((option) => commandButton(option)).join("")}</div>`;
     if (["hunter", "combat_choose"].includes(p) && ["attack_sacrifice_damage", "attack_sacrifice_speed_or_damage"].includes(boostCode)) {
@@ -1589,7 +1598,7 @@
         .some(option => option.command.type === "WEAPON_SHOT"),
       attackPreview = !dodge && !fixedEntry ? window.BBHuntAttackPreview?.view(state, E, {
         kind: state.phase === "combat_choose" ? "COUNTER" : "ATTACK",
-        cardId: selectedCard, slot: selectedSlot, enemyId: selectedEnemy || state.combat?.enemyId,
+        cardId: selectedCard, slot: selectedSlot, enemyId: selectedEnemy || state.combat?.enemyId, pullIds: [...pulls],
         rewardIds: [...selectedRewards], itemIds: inventory.ids(),
         weaponBoost: E.weaponFace(state).effect?.code === "attack_sacrifice_damage" ?
           weaponBoost === "none" ? 0 : +weaponBoost : weaponBoost,
@@ -1715,7 +1724,8 @@
           ...(state.setup.rulesVersion >= 11 && selectedRewards.size ? { rewardIds: [...selectedRewards] } : {}),
           ...(Object.hasOwn(actionArgs, "weaponBoost") ? { weaponBoost: actionArgs.weaponBoost } : {}) } : {}) };
     };
-    box.innerHTML = `<div class="context-heading"><div><p class="eyebrow">선택한 대상</p><h3>${esc(uiText(mapTarget.kind === "enemy" ? enemyTargetLabel(view.enemyId) : mapTarget.objectName || view.title, "location"))}</h3></div><button id="clearMapTarget" type="button" aria-label="대상 선택 닫기">×</button></div>${view.hint ? `<p class="context-hint">${esc(uiText(view.hint, "location"))}</p>` : ""}<div class="context-actions">${actions.map((action, index) => {
+    const pullPreview = view.enemyId && window.BBHuntAttackPreview?.pullView(state, E, [...pulls]).find(preview => preview.enemyId === view.enemyId);
+    box.innerHTML = `<div class="context-heading"><div><p class="eyebrow">선택한 대상</p><h3>${esc(uiText(mapTarget.kind === "enemy" ? enemyTargetLabel(view.enemyId) : mapTarget.objectName || view.title, "location"))}</h3></div><button id="clearMapTarget" type="button" aria-label="대상 선택 닫기">×</button></div>${view.hint ? `<p class="context-hint">${esc(uiText(view.hint, "location"))}</p>` : ""}${pullHint(pullPreview)}<div class="context-actions">${actions.map((action, index) => {
       const c = command(action), { type, ...args } = c || {};
       const selfCost = ["ATTACK", "COUNTER", "FIREARM"].includes(type) && actionArgs.weaponBoost && actionArgs.weaponBoost !== "none"
         ? ` · 자기 피해 ${typeof actionArgs.weaponBoost === "number" ? actionArgs.weaponBoost : 1}` : "";
@@ -1753,6 +1763,11 @@
       ignoreTileSpeed: definition.ignoreTileSpeed === true, missionId: enemy.missionId,
       ...(E.enemyTileSpeedPenalty ? {tileSpeedPenalty:E.enemyTileSpeedPenalty(state, enemy, definition)} : {}),
       ...(disclosed ? { resolvedAction: combat.action, buff: combat.buff, buffSource } : {}) });
+  }
+  function pullHint(preview) {
+    if (!preview) return "";
+    return window.BBHuntAttackPreview.pullHTML(preview,
+      window.BBHuntLocationLabels?.tile(state, preview.tileId)?.reference, { clean: text => uiText(text, "combat") });
   }
   function publicEnemyAction(action, showStats = true, modifiers = []) {
     if (!action) return "";
