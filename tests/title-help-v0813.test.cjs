@@ -113,7 +113,7 @@ test("title and game help begin with the same normal-play movement, attack and c
       response = steps.findIndex(([title]) => title === "적과 처음 조우하면");
     assert(movement >= 0 && attack > movement && response > attack, "normal move and attack precede the encounter response");
     assert(steps[response][1].includes("‘회피’를 누르세요"), "choosing a card and slot still requires committing the dodge");
-    assert(steps[response][1].includes("‘속도 순서대로 전투 처리’"));
+    assert(steps[response][1].includes("‘전투 처리’"));
     assert(qaSetup.classList.contains("game-help-qa-start"));
     assert.equal(qaSetup.hasAttribute("open"), false, "QA setup does not expand over the beginner guide by default");
     assert(content.innerHTML.includes("검증용 장치무기"), "the separate testing workflow remains available");

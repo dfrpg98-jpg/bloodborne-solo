@@ -27,7 +27,7 @@ function launch(state) {
   assert(marker); marker.click(); return { ui, commands, current: () => current };
 }
 function select(ui, id, value) {
-  const control = ui.el(id); assert(control, id); control.value = String(value); control.fire("change");
+  require("./helpers/combat-selection-ui.cjs").chooseControl(ui, id, value);
 }
 function button(ui, type) {
   const value = [...ui.buttons("decisionActions"), ...ui.buttons("decisions")]
@@ -78,7 +78,9 @@ test("the ordinary Kirkhammer slot preserves normal dodge selection and switches
   select(ui, "combatSelectCard", dodgeCard.id); select(ui, "combatSelectSlot", 1);
   assert.equal(E.canDodge(current(), dodgeCard.id, 1), true); click(ui, "DODGE");
   assert.equal(current().combat.dodged, true);
-  assert.match(ui.el("phaseHelp").textContent, /회피가 적용되었습니다.*전투 처리.*계속하세요/);
+  assert.doesNotMatch(ui.el("phaseHelp").textContent, /회피가 적용되었습니다/);
+  assert.match(ui.el("decisions").innerHTML, /data-command="DODGE"[^>]*>회피 선택됨<\/button>/);
+  assert.match(ui.el("decisions").innerHTML, /data-command="RESOLVE"[^>]*>전투 처리<\/button>/);
   assert.doesNotMatch(ui.el("phaseHelp").textContent, /회피 카드와.*빈 슬롯을 고른 뒤/);
   click(ui, "RESOLVE");
   assert.equal(H(current()).hp, 6, "the successfully dodged basic attack deals no damage");

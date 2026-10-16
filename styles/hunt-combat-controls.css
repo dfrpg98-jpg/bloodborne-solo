@@ -33,12 +33,12 @@
 .reward-pending .attachment-slot-option:focus-visible, .attachment-choice .attachment-slot-option:focus-visible { outline: 3px solid #f4d486; outline-offset: 2px; }
 .attachment-slot-option .attachment-destination-heading { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 9px; }
 .attachment-slot-option .attachment-destination-slot { align-self: flex-start; padding: 1px 6px; border: 1px solid #667a80; border-radius: 3px; background: #26373f; color: #e8dbc0; font-size: 12px; font-weight: 400; }
-.attachment-slot-option .attachment-destination-name { color: #fff0cb; font-size: 16px; font-weight: 700; }
-.attachment-slot-option .attachment-destination-stats { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; color: #edf0e9; font-size: 14px; font-weight: 400; }
+.attachment-slot-option .attachment-destination-name { color: #fff0cb; font-size: 13px; font-weight: 700; }
+.attachment-slot-option .attachment-destination-stats { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; color: #edf0e9; font-size: 12px; font-weight: 400; }
 .attachment-slot-option .attachment-destination-stats > span { white-space: nowrap; }
-.attachment-slot-option .attachment-destination-stats b { color: #fff0cb; font-size: 19px; }
+.attachment-slot-option .attachment-destination-stats b { color: #fff0cb; font-size: 12px; }
 .attachment-slot-option .attachment-destination-gain { display: inline-block; margin-left: 6px; padding: 0 5px; border: 1px solid #8cb7a3; border-radius: 3px; background: #254538; color: #dcffe7; font-size: 12px; font-style: normal; font-weight: 700; vertical-align: 2px; }
-.attachment-slot-option .attachment-destination-effects { color: #c9d7d8; font-size: 13px; font-weight: 400; }
+.attachment-slot-option .attachment-destination-effects { color: #c9d7d8; font-size: 11px; font-weight: 400; }
 .attachment-choice .attachment-slot-option:disabled { border-style: dashed; border-left-width: 4px; border-color: #71868b; background: #1c2b30; cursor: default; }
 .attachment-choice .attachment-slot-option:disabled .attachment-destination-slot { background: #365047; border-color: #8cae9d; color: #e1f5e8; }
 .reward-pending.attachment-pending { padding: 10px; }

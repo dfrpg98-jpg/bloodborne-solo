@@ -1,0 +1,25 @@
+.workspace-tabs { display: flex; flex: 0 0 auto; gap: 4px; padding-bottom: 8px; border-bottom: 1px solid #41545b; }
+.workspace-tabs > button { flex: 1; padding: 7px 4px; font: inherit; white-space: nowrap; }
+.workspace-tabs > button[aria-selected="true"] { color: #ffebbf; background: #423a28; border-color: #bd9c5b; }
+.workspace-progress { display: flex; flex-direction: column; min-height: 0; flex: 1 1 auto; overflow: hidden; }
+.hunt-decisions > [data-workspace-panel][hidden], .workspace-progress[hidden] { display: none; }
+.hunt-decisions > .info-panel { min-height: 0; flex: 1 1 auto; overflow: auto; padding: 8px 0; }
+.hunt-decisions .inventory-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.hunt-decisions .inventory-card { min-height: 70px; padding: 8px; }
+.hunt-decisions .item-controls label { display: block; }
+.hunt-decisions .item-controls select { width: 100%; }
+.hunt-decisions .rewards-grid { display: block; }
+.hunt-decisions .reward-card + .reward-card { margin-top: 8px; }
+.hunt-decisions .gun-panel { max-height: 145px; flex: 0 0 auto; overflow: auto; }
+.hand-heading-actions { display: flex; gap: 8px; align-items: center; }
+.hand-heading-actions button { padding: 3px 6px; font: inherit; }
+.upgrade-overview-dialog { width: min(720px,94vw); }
+.upgrade-market-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+.upgrade-overview-card, .upgrade-deck-list li { padding: 8px; border: 1px solid #53656b; border-radius: 4px; background: #142229; }
+.upgrade-overview-card b { display: block; color: #f1dba9; }
+.upgrade-overview-card p, .upgrade-deck-list p { margin: 4px 0 0; }
+.upgrade-deck-list { padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 6px; margin-top: 8px; }
+.upgrade-deck-list li > div { display: flex; justify-content: space-between; gap: 8px; }
+.upgrade-deck-composition { margin-top: 10px; }
+.upgrade-deck-composition summary { cursor: pointer; color: #ead09a; }
+@media (max-width:700px) { .hunt-decisions > .info-panel { max-height: 55vh; } .upgrade-market-grid,.upgrade-deck-list { grid-template-columns: 1fr; } }

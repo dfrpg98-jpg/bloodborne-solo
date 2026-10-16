@@ -25,7 +25,15 @@ function launch(state) {
         applyCombatReactionRuling: state => state, dispatch(state, command) { calls.push(command); return E.dispatch(state, command); } } });
   return { ui, calls, normalSave };
 }
-function select(ui, id, value) { const element = ui.el(id); assert(element, id); element.value = value; element.fire("change"); }
+function select(ui, id, value) {
+  const card = id === "combatSelectCard", area = card ? "hand" : "slots", attribute = card ? "card" : "slot",
+    buttons = ui.el(area).querySelectorAll(`[data-${attribute}]`),
+    button = value === "" ? buttons.find(button => button.getAttribute("aria-pressed") === "true") :
+      buttons.find(button => button.dataset[attribute] === String(value));
+  if (value === "" && !button) return;
+  assert(button, `${area} has ${attribute} ${value}`);
+  if (value === "" || button.getAttribute("aria-pressed") !== "true") button.click();
+}
 function selected(ui, area, attribute, value) { return ui.el(area).querySelectorAll(`[data-${attribute}]`).find(element => element.dataset[attribute] === String(value)); }
 function click(ui, area, type, predicate = () => true) {
   const button = ui.buttons(area).find(button => button.dataset.command === type && predicate(JSON.parse(button.dataset.args || "{}")));
@@ -60,23 +68,22 @@ test("the same attachment is counted once after public transformation and reassi
   assert.deepEqual(E.importSave(E.exportSave(state)), state);
 });
 
-test("rune replacement keeps the selected card's suppressed effects visible and matches the actual loss of slot clearing", () => {
+test("rune replacement remains in applied effects and the actual attack suppresses slot clearing without repeating card text", () => {
   const state = encounter(create(["rune-clawmark"]), "strength"), before = E.exportSave(state),
     cardId = H(state).hand.find(card => card.kind === "endurance").id,
     rewardId = H(state).rewards[0].id, input = { cardId, slot: 0, rewardIds: [rewardId] },
     model = Controls.view(state, E, input), html = Controls.renderHTML(model),
     after = attack(state, cardId, 0, [rewardId]);
   assert.equal(model.selectedCard.text, E.card(H(state).hand.find(card => card.id === cardId)).text);
-  assert.match(html, /원래 카드 효과 대체/); assert.match(html, /미적용<\/span> 회피 · 이 슬롯을 비웁니다/);
-  assert.match(html, /대신 적용 · 공격 피해 \+1 · 방해/);
-  assert.match(html, /모든 스탯 효과가 적용되지 않습니다/);
+  assert.match(html, /카릴 문자:손톱자국/);
+  assert.doesNotMatch(html, /combat-suppressed-effect|combat-card-replacement|카드 효과|회피 · 이 슬롯을 비웁니다/);
   assert.equal(H(after).slots[0].id, cardId, "endurance's normal clear effect is replaced");
   assert.equal(after.combat.attack.damage, 13); assert.equal(after.combat.attack.interrupt, true);
   assert.equal(H(after).rewards[0].ready, false);
   assert.equal(E.exportSave(state), before); assert.deepEqual(input.rewardIds, [rewardId]);
   const ordinary = Controls.renderHTML(Controls.view(state, E, { cardId, slot: 0 }));
   assert.doesNotMatch(ordinary, /원래 카드 효과 대체|combat-suppressed-effect/);
-  assert.match(ordinary, /회피 · 이 슬롯을 비웁니다/);
+  assert.doesNotMatch(ordinary, /combat-selected-card-effect|회피 · 이 슬롯을 비웁니다/);
 });
 
 test("dodge selection uses printed slot speed rather than bloodstone's attack-only bonus and ignores attack runes/items", () => {
@@ -93,22 +100,20 @@ test("dodge selection uses printed slot speed rather than bloodstone's attack-on
   assert.equal(dodged.combat.dodged, true); assert.equal(H(dodged).slots[0], null);
 });
 
-test("compact selectors preserve current choices, offer explicit clearing, and cannot pick an occupied slot", () => {
+test("the compact result omits duplicate selectors and card explanations while occupied slots remain unselectable in the model", () => {
   const state = encounter(create([])), cardId = H(state).hand.find(card => card.kind === "strength").id,
     committed = attack(state, cardId, 0), dodgeId = H(committed).hand.find(card => card.kind === "endurance").id,
     model = Controls.view(committed, E, { mode: "dodge", cardId: dodgeId, slot: 0 }),
-    html = Controls.renderHTML(model), document = new Document(html),
-    card = document.getElementById("combatSelectCard"), slot = document.getElementById("combatSelectSlot");
-  assert.equal(card.value, dodgeId); assert.equal(slot.value, "");
-  assert.match(html, /value="0"[^>]*disabled[^>]*>1번.*사용됨/);
+    html = Controls.renderHTML(model), document = new Document(html);
+  assert.equal(document.getElementById("combatSelectCard"), null);
+  assert.equal(document.getElementById("combatSelectSlot"), null);
+  assert.doesNotMatch(html, /<select|data-combat-select|카드 효과/);
+  assert.equal(model.selectedCard.id, dodgeId);
   assert.equal(model.selectedSlot, null);
-  assert.equal(card.getAttribute("data-combat-select"), "card");
-  assert.equal(slot.getAttribute("data-combat-select"), "slot");
-  assert.match(html, /value="" selected>선택 안 함/);
   assert.doesNotMatch(html, /data-command=/, "the selector renderer cannot duplicate or execute an attack command");
   const cleared = Controls.view(committed, E, { mode: "dodge", cardId: null, slot: null });
   assert.equal(cleared.selectedCard, null); assert.equal(cleared.selectedSlot, null);
-  assert.equal(new Document(Controls.renderHTML(cleared)).getElementById("combatSelectCard").value, "");
+  assert.doesNotMatch(Controls.renderHTML(cleared), /<select|data-command=/);
 });
 
 test("selection details escape public text and offer added item/reward rules without mutating the supplied data", () => {
@@ -188,7 +193,7 @@ test("replacement attachment previews exclude the stored gem and match the actua
   assert.equal(E.exportSave(state), before);
 });
 
-test("fixed selectors and original cards/slots share one reversible selection and commit exactly one actual attack", () => {
+test("bottom cards and slots support reversible selection, preserve the fixed result summary and commit one attack", () => {
   const state = encounter(create()), saved = E.exportSave(state), { ui, calls, normalSave } = launch(state),
     target = state.enemies.find(enemy => enemy.missionId === "mob"),
     cardId = H(state).hand.find(card => card.kind === "strength").id;
@@ -197,16 +202,16 @@ test("fixed selectors and original cards/slots share one reversible selection an
   select(ui, "combatSelectCard", cardId); select(ui, "combatSelectSlot", "0");
   assert.equal(selected(ui, "hand", "card", cardId).getAttribute("aria-pressed"), "true");
   assert.equal(selected(ui, "slots", "slot", 0).getAttribute("aria-pressed"), "true");
-  assert.equal(ui.document.activeElement, ui.el("combatSelectSlot"));
+  assert.equal(ui.el("combatSelectCard"), null); assert.equal(ui.el("combatSelectSlot"), null);
   assert.match(ui.el("combatSelection").innerHTML, /기본 피해 12 \+ 강화 2 = <b>피해 14<\/b>/);
   assert.match(ui.el("combatSelection").innerHTML, /혈석의 파편/); assert.match(ui.el("combatSelection").innerHTML, /혈석의 덩어리/);
   select(ui, "combatSelectCard", "");
   assert.equal(selected(ui, "hand", "card", cardId).getAttribute("aria-pressed"), "false");
   assert(ui.buttons("decisionActions").find(button => button.dataset.command === "ATTACK").disabled);
   selected(ui, "hand", "card", cardId).click();
-  assert.equal(ui.el("combatSelectCard").value, cardId);
+  assert.equal(selected(ui, "hand", "card", cardId).getAttribute("aria-pressed"), "true");
   selected(ui, "slots", "slot", 0).click();
-  assert.equal(ui.el("combatSelectSlot").value, "");
+  assert.equal(selected(ui, "slots", "slot", 0).getAttribute("aria-pressed"), "false");
   select(ui, "combatSelectSlot", "0");
   assert.equal(ui.storage.get(qaKey), saved); assert.equal(calls.length, 0);
   const actual = click(ui, "decisionActions", "ATTACK"), expected = attack(state, cardId);
@@ -214,19 +219,21 @@ test("fixed selectors and original cards/slots share one reversible selection an
   assert.equal(actual.commands.length, state.commands.length + 1, "departure validation may replay a clone but commits the attack only once");
   assert(calls.every(command => command.type === "ATTACK"));
   assert.equal(ui.storage.get(normalKey), normalSave);
-  assert.match(ui.el("combatSelection").innerHTML, /회피 준비/);
-  assert.match(ui.el("combatSelection").innerHTML, /value="0"[^>]*disabled[^>]*>1번.*사용됨/);
-  assert.equal(ui.el("combatSelectCard").value, ""); assert.equal(ui.el("combatSelectSlot").value, "");
+  assert.doesNotMatch(ui.el("combatSelection").innerHTML, /회피 준비|combatSelectCard|combatSelectSlot/);
+  assert.equal(selected(ui, "slots", "slot", 0).disabled, true);
   const dodgeId = H(actual).hand.find(card => card.kind === "endurance").id;
   select(ui, "combatSelectCard", dodgeId); select(ui, "combatSelectSlot", "1");
-  assert.equal(ui.document.activeElement, ui.el("combatSelectSlot"));
+  assert.match(ui.el("combatSelection").innerHTML, /회피 속도/);
   const dodged = click(ui, "decisionActions", "DODGE");
   assert.deepEqual(dodged, go(actual, "DODGE", { cardId: dodgeId, slot: 1 }));
+  assert.match(ui.el("decisions").innerHTML, /data-command="DODGE"[^>]*>회피 선택됨<\/button>/);
+  assert.match(ui.el("decisions").innerHTML, /data-command="RESOLVE"[^>]*>전투 처리<\/button>/);
+  assert.doesNotMatch(ui.el("phaseHelp").textContent, /회피가 적용되었습니다|속도 순서대로 전투 처리/);
   const resolved = click(ui, "decisionActions", "RESOLVE");
   assert.deepEqual(resolved, go(dodged, "RESOLVE")); assert.equal(ui.storage.get(normalKey), normalSave);
 });
 
-test("the real rune checkbox updates the fixed replacement explanation and the committed attack retains the chosen card", () => {
+test("the rune checkbox updates the applied result without a duplicate card-effect explanation and keeps the committed card", () => {
   const state = encounter(create(["rune-clawmark"]), "strength"), { ui, calls } = launch(state),
     target = state.enemies.find(enemy => enemy.missionId === "mob"),
     cardId = H(state).hand.find(card => card.kind === "endurance").id, rewardId = H(state).rewards[0].id;
@@ -234,8 +241,8 @@ test("the real rune checkbox updates the fixed replacement explanation and the c
   select(ui, "combatSelectCard", cardId); select(ui, "combatSelectSlot", "0");
   const checkbox = ui.document.querySelectorAll("[data-reward-attack]").find(element => element.dataset.rewardAttack === rewardId);
   assert(checkbox); checkbox.checked = true; checkbox.fire("change");
-  assert.match(ui.el("combatSelection").innerHTML, /미적용<\/span> 회피 · 이 슬롯을 비웁니다/);
-  assert.match(ui.el("combatSelection").innerHTML, /대신 적용 · 공격 피해 \+1 · 방해/);
+  assert.match(ui.el("combatSelection").innerHTML, /카릴 문자:손톱자국/);
+  assert.doesNotMatch(ui.el("combatSelection").innerHTML, /combat-suppressed-effect|combat-card-replacement|미적용<\/span>/);
   assert.equal(calls.length, 0);
   const actual = click(ui, "decisionActions", "ATTACK");
   assert.deepEqual(actual, attack(state, cardId, 0, [rewardId]));

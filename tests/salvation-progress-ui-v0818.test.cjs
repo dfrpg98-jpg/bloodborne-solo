@@ -93,7 +93,9 @@ test("the actual UI keeps completed kills and remaining mission tokens distinct 
   for (const [remaining, { state }] of checkpoints().byRemaining) {
     const { ui, saved } = launch(state), description = objective(state).description;
     assert(ui.el("objectiveDetail").textContent.includes(description));
-    assert.match(ui.el("missionTokens").textContent, new RegExp(`구원 · 남은 임무 토큰 ${remaining}개`));
+    if (state.mission.completed.includes(58))
+      assert.doesNotMatch(ui.el("missionTokens").textContent, /구원 · 남은 임무 토큰/, "completed mission counters leave the active HUD");
+    else assert.match(ui.el("missionTokens").textContent, new RegExp(`구원 · 남은 임무 토큰 ${remaining}개`));
     assert.equal(ui.el("missionUpdateDialog").open, false, "loading a public checkpoint does not replay an old mission notification");
     assert.equal(ui.storage.get(key), saved);
     const reload = launch(E.importSave(saved));

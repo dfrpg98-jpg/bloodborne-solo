@@ -12,8 +12,11 @@
     <link rel="stylesheet" href="styles/hunt-card-help.css?v=0.8.13-dev.7&amp;h=049dbeb75df2" />
     <link rel="stylesheet" href="styles/hunt-map-controls.css?v=0.8.13-dev.13&amp;h=0d944385cbb5" />
     <link rel="stylesheet" href="styles/hunt-combat-feedback.css?v=0.8.13-dev.13&amp;h=1e0ad016d33b" />
-    <link rel="stylesheet" href="styles/hunt-combat-controls.css?v=0.8.13-dev.24&amp;h=8ef6cb83fce3" />
+    <link rel="stylesheet" href="styles/hunt-combat-controls.css?v=0.8.13-dev.25&amp;h=07dbea734607" />
     <link rel="stylesheet" href="styles/hunt-combat-ux.css?v=0.8.13-dev.15&amp;h=83110e6db54f" />
+    <link rel="stylesheet" href="styles/hunt-workspace-layout.css?v=0.8.13-dev.25&amp;h=18615114ca62" />
+    <link rel="stylesheet" href="styles/hunt-window-manager.css?v=0.8.13-dev.25&amp;h=f6cc503edef0" />
+    <link rel="stylesheet" href="styles/hunt-workspace-tabs.css?v=0.8.13-dev.25&amp;h=3f3d314803f5" />
   </head>
   <body class="hunt-screen">
     <header class="topbar hunt-topbar">
@@ -22,7 +25,7 @@
       <nav class="top-actions" aria-label="사냥 도구와 기록">
         <button type="button" data-panel="inventory">소모품</button>
         <button type="button" data-panel="rewards">장비·보상 <span id="rewardPendingBadge" class="toolbar-count" hidden></span></button>
-        <button type="button" data-panel="journal">일지 <span id="storyPendingBadge" class="toolbar-count" hidden></span></button>
+        <button type="button" data-panel="objectives">목표와 임무</button><button type="button" data-panel="journal">사냥일지 <span id="storyPendingBadge" class="toolbar-count" hidden></span></button>
         <button type="button" data-panel="guide" aria-haspopup="dialog">도움말</button>
         <button type="button" data-panel="help">메뉴</button>
         <button id="new">새 사냥</button>
@@ -32,9 +35,9 @@
       <h1 class="sr-only">등불 너머의 사냥</h1>
       <div class="hud-summary">
         <section id="status" class="hunter-status panel" aria-label="사냥꾼 상태"></section>
-        <section id="missionPanel" class="panel mission-panel" aria-labelledby="missionHeading">
-          <div class="panel-heading"><h2 id="missionHeading">현재 목표</h2><div class="mission-heading-actions"><span id="missionInsight" class="badge"></span><button id="openMissionUpdates" type="button" class="quiet mission-update-trigger" aria-haspopup="dialog" aria-controls="missionUpdateDialog" hidden>임무 변화 확인 <span id="missionUpdateCount" class="toolbar-count" hidden></span></button><button type="button" data-panel="journal" class="quiet goal-details">전체 목표</button></div></div>
-          <div class="mission-hud-body"><div class="mission-hud-goals"><div id="missionRecent" class="mission-recent" role="status" aria-live="polite" hidden></div><div id="missionObjectives" class="mission-objectives"></div><div id="chapterConditions" class="chapter-conditions"></div><div class="mission-summary-foot"><div id="missionTokens" class="mission-tokens"></div><div id="missionFog" class="muted"></div></div></div><div id="enemyRoster" class="enemy-roster" aria-label="이번 사냥의 적"></div></div>
+        <section id="tileInfoPanel" class="panel tile-info-panel" aria-labelledby="tileInfoHeading">
+          <div class="panel-heading"><h2 id="tileInfoHeading">타일 정보</h2><button id="inspectCurrentTile" type="button" class="quiet" title="사냥꾼이 있는 타일 정보">현재 위치</button></div>
+          <div id="tileInfo" class="tile-info-content" aria-live="polite"></div>
         </section>
       </div>
       <section class="track-panel" aria-label="사냥 트랙">
@@ -43,10 +46,9 @@
         <div class="track-caption"><span title="붉은 칸에서 지도 초기화">붉은 칸 · 초기화</span><span id="lastRound"></span></div>
       </section>
       <div class="hunt-layout">
-        <section id="tileInfoPanel" class="panel tile-info-panel" aria-labelledby="tileInfoHeading">
-          <div class="panel-heading"><h2 id="tileInfoHeading">타일 정보</h2><button id="inspectCurrentTile" type="button" class="quiet" title="사냥꾼이 있는 타일 정보">현재 위치</button></div>
-          <div id="tileInspectionStatus" class="tile-inspection-status" aria-live="polite"></div>
-          <div id="tileInfo" class="tile-info-content" aria-live="polite"></div>
+        <section id="missionPanel" class="panel mission-panel" aria-labelledby="missionHeading">
+          <div class="panel-heading"><h2 id="missionHeading">현재 목표</h2><div class="mission-heading-actions"><span id="missionInsight" class="badge"></span><button id="openMissionUpdates" type="button" class="quiet mission-update-trigger" aria-haspopup="dialog" aria-controls="missionUpdateDialog" hidden>임무 변화 확인 <span id="missionUpdateCount" class="toolbar-count" hidden></span></button><button type="button" data-panel="objectives" class="quiet goal-details">전체 목표</button></div></div>
+          <div class="mission-hud-body"><div class="mission-hud-goals"><div id="missionRecent" class="mission-recent" role="status" aria-live="polite" hidden></div><div id="missionObjectives" class="mission-objectives"></div><div id="chapterConditions" class="chapter-conditions"></div><div class="mission-summary-foot"><div id="missionTokens" class="mission-tokens"></div><div id="missionFog" class="muted"></div></div></div><details class="mission-enemy-summary"><summary>적 활성화 순서 · 능력</summary><div id="enemyRoster" class="enemy-roster" aria-label="이번 사냥의 적"></div></details></div>
         </section>
         <section class="panel hunt-map" aria-labelledby="mapHeading">
           <div class="panel-heading"><h2 id="mapHeading">야남의 길</h2><div class="map-tools"><span id="tileCount" class="badge"></span><button id="centerMap" type="button" title="사냥꾼의 현재 위치로 지도 이동">현재 위치</button><button type="button" data-panel="help" class="quiet" aria-label="지도 기호 안내">?</button></div></div>
@@ -54,18 +56,26 @@
           <div class="map-footer"><div id="locationText"></div><div id="explorationActions" class="actions"></div></div>
         </section>
         <section class="panel hunt-decisions" aria-labelledby="phaseTitle">
+          <nav id="workspaceTabs" class="workspace-tabs" role="tablist" aria-label="사냥 행동과 보유품"><button id="workspaceProgressTab" type="button" role="tab" data-workspace-tab="progress" aria-controls="workspaceProgress" aria-selected="true">진행 상황</button><button id="workspaceInventoryTab" type="button" role="tab" data-workspace-tab="inventory" aria-controls="workspaceInventory" aria-selected="false">소모품</button><button id="workspaceRewardsTab" type="button" role="tab" data-workspace-tab="rewards" aria-controls="rewardsPanel" aria-selected="false">장비</button></nav>
+          <div id="workspaceProgress" class="workspace-progress" data-workspace-panel="progress" role="tabpanel" aria-labelledby="workspaceProgressTab">
           <div class="decision-heading"><p class="eyebrow">다음 선택</p><h2 id="phaseTitle"></h2></div>
           <div class="decision-content" tabindex="0" aria-label="행동과 전투 상세"><div id="chapterProgress" class="chapter-progress" hidden></div><p id="phaseHelp"></p><section id="mapContext" class="map-context" aria-label="선택한 대상의 행동과 비용" aria-live="polite" tabindex="-1" hidden></section><div id="combatInfo"></div><div id="missionActions" class="actions"></div><div id="decisions"></div></div>
           <div id="combatSelection" class="combat-selection-widget" aria-label="카드와 슬롯 선택" hidden></div>
           <div id="attackConsequences" class="attack-consequences" role="status" hidden></div>
           <div id="decisionActions" class="decision-action-dock" role="group" aria-label="현재 단계의 핵심 행동" hidden></div>
-          <p id="error" class="error" role="alert"></p><div id="deckStatus" class="muted"></div>
+          <div id="deckStatus" class="muted"></div>
+          </div>
+        <section id="workspaceInventory" class="info-panel inventory-panel" role="tabpanel" aria-labelledby="workspaceInventoryTab" data-workspace-panel="inventory" hidden aria-label="보유 소모품">
+          <div class="panel-heading"><h3>보유 소모품</h3><span id="itemCount" class="muted"></span></div><div id="inventory" class="inventory-grid"></div><div id="itemDetail" class="item-detail" aria-live="polite"></div>
+        </section>
+        <section id="rewardsPanel" class="info-panel rewards-panel" role="tabpanel" aria-labelledby="workspaceRewardsTab" data-workspace-panel="rewards" aria-label="획득한 보상" hidden><div class="panel-heading"><h3>획득한 보상</h3><span id="rewardsCount" class="muted"></span></div><div id="rewards" class="rewards-grid"></div></section>
+          <p id="error" class="error" role="alert"></p>
           <section id="firearm" class="panel gun-panel" aria-label="장착 화기"></section>
         </section>
       </div>
       <div class="hunt-loadout" aria-label="손패와 무기">
         <section class="panel hand-panel" aria-labelledby="handHeading">
-          <div class="panel-heading"><h2 id="handHeading">손패</h2><span id="handCount" class="badge"></span></div>
+          <div class="panel-heading"><h2 id="handHeading">손패</h2><div class="hand-heading-actions"><button type="button" data-upgrade-overview>업그레이드 · 덱 보기</button><span id="handCount" class="badge"></span></div></div>
           <p id="cardHint" class="muted">행동에 사용할 기술을 선택하세요.</p><div id="hand" class="cards"></div><p id="deckCount" class="muted"></p>
         </section>
         <section class="panel movement-panel" aria-labelledby="movementHeading">
@@ -80,17 +90,15 @@
     </main>
     <dialog id="infoDialog" class="info-dialog" aria-labelledby="infoTitle">
       <div class="info-dialog-heading"><div><p class="eyebrow">사냥의 기록</p><h2 id="infoTitle">소모품</h2></div><button id="closeInfo" type="button" autofocus>사냥으로 돌아가기</button></div>
-      <nav class="info-tabs" aria-label="사냥 정보"><button type="button" data-panel="inventory">소모품</button><button type="button" data-panel="rewards">장비·보상</button><button type="button" data-panel="journal">일지</button><button type="button" data-panel="enemies">적 도감</button><button type="button" data-panel="guide">도움말</button><button type="button" data-panel="help">메뉴</button></nav>
+      <nav class="info-tabs" aria-label="사냥 정보"><button type="button" data-panel="inventory">소모품</button><button type="button" data-panel="rewards">장비·보상</button><button type="button" data-panel="objectives">목표와 임무</button><button type="button" data-panel="journal">사냥일지</button><button type="button" data-panel="enemies">적 도감</button><button type="button" data-panel="guide">도움말</button><button type="button" data-panel="help">메뉴</button></nav>
       <p id="infoError" class="error" role="alert"></p>
       <div class="info-content">
-        <section class="info-panel inventory-panel" data-info-panel="inventory" aria-label="보유 소모품">
-          <div class="panel-heading"><h3>보유 소모품</h3><span id="itemCount" class="muted"></span></div><div id="inventory" class="inventory-grid"></div><div id="itemDetail" class="item-detail" aria-live="polite"></div>
-        </section>
-        <section id="rewardsPanel" class="info-panel rewards-panel" data-info-panel="rewards" aria-label="획득한 보상" hidden><div class="panel-heading"><h3>획득한 보상</h3><span id="rewardsCount" class="muted"></span></div><div id="rewards" class="rewards-grid"></div></section>
-        <section class="info-panel journal-panel" data-info-panel="journal" aria-label="임무와 이야기" hidden>
+        <section class="info-panel objectives-panel" data-info-panel="objectives" aria-label="목표와 임무" hidden>
           <div id="modeNotice" class="notice"><strong>기나긴 사냥 · 챕터 1</strong><span>공개된 임무를 따라 사냥을 진행하세요.</span></div>
           <h3>현재의 모든 목표</h3><div id="objectiveDetail" class="mission-objectives"></div><div id="chapterConditionDetail" class="chapter-condition-detail"></div><div id="missionNotices" class="muted"></div><div id="locationDetail" class="muted"></div>
           <section class="mission-update-history-section" aria-labelledby="missionUpdateHistoryHeading"><h3 id="missionUpdateHistoryHeading">최근 임무 변화</h3><div id="missionUpdateHistory" class="mission-update-items"></div></section>
+        </section>
+        <section class="info-panel journal-panel" data-info-panel="journal" aria-label="이야기와 사냥일지" hidden>
           <section id="storyPanel" class="mission-story" aria-labelledby="storyHeading" hidden><div class="panel-heading"><h3 id="storyHeading">도입부 · 임무 이야기</h3><div id="storyIntro"></div></div><div id="storyNotice" class="story-notice" role="status" aria-live="polite"></div><details class="story-index"><summary>현재 챕터에서 공개된 이야기</summary><div id="storyList" class="story-list"></div></details></section>
           <details class="mission-cards"><summary>공개된 임무 기록</summary><div id="revealedCards" class="revealed-cards"></div></details><details id="missionHistory" class="mission-cards" hidden><summary>지난 챕터의 사냥 기록</summary><div id="pastChapters"></div></details>
           <section class="journal-log"><h3>사냥 기록</h3><div id="huntLog" class="chapter-log" aria-live="polite"></div></section>
@@ -108,6 +116,7 @@
         <section class="info-panel" data-info-panel="guide" aria-label="처음 사냥하는 분을 위한 게임 도움말" hidden><div id="gameHelpContent"></div></section>
       </div>
     </dialog>
+    <dialog id="upgradeDialog" class="compact-info-dialog upgrade-overview-dialog" aria-labelledby="upgradeTitle"><div class="compact-dialog-heading"><h2 id="upgradeTitle">업그레이드 · 내 덱</h2><button id="closeUpgrade" type="button">닫기</button></div><div id="upgradeOverview" class="compact-dialog-content"></div></dialog>
     <dialog id="missionUpdateDialog" class="mission-update-dialog" aria-labelledby="missionUpdateTitle" aria-describedby="missionUpdateSummary">
       <div class="mission-update-heading"><p id="missionUpdateEyebrow" class="eyebrow">임무 변화</p><h2 id="missionUpdateTitle">새로운 임무를 확인하세요</h2></div>
       <div class="mission-update-content"><p id="missionUpdateSummary" class="mission-update-summary" hidden></p><div id="missionUpdateProgress"></div><div id="missionUpdateList" class="mission-update-items"></div></div>
@@ -148,7 +157,7 @@
     </dialog>
     <dialog id="setupDialog" aria-labelledby="setupTitle">
       <h2 id="setupTitle">새 사냥</h2>
-      <p id="setupIntro">시작할 칸을 선택한 뒤 사냥을 시작하세요.</p>
+      <p id="setupIntro">중앙 등불에서 시작할 칸을 고른 뒤, 챕터의 특수 규칙을 적용합니다.</p>
       <label>플레이 모드<select id="playMode"><option value="campaign">기나긴 사냥 · 챕터 1</option><option value="qa-campaign">기나긴 사냥 · 검증 전용</option><option value="practice">실제 지도 전투 연습 · 임무 없음</option><option value="cleric-beast">임시 성직자 야수 시험 · 2페이즈</option><option value="female-patient-a">임시 여성 야수 환자 시험 1</option><option value="female-patient-b">임시 여성 야수 환자 시험 2</option><option value="iosefka">임시 이오세프카 상호작용 시험</option></select></label>
       <div id="practiceSetup" class="practice-setup" hidden>
         <label>전투 연습 상대<select id="practiceTarget"><option value="">현재 캠페인의 일반 적 · 지도 탐험</option></select></label>
@@ -183,7 +192,7 @@
         </select></label
       >
       <p class="muted">도식이나 목록에서 시작 칸을 고르세요.</p>
-      <details class="setup-story"><summary>시작 위치 규칙</summary><p>매 챕터 시작 시 중앙 등불 타일의 어느 칸에서 시작할지 자유롭게 정합니다. (규칙서 10쪽)</p></details>
+      <details class="setup-story"><summary>시작 위치 규칙</summary><p>중앙 등불 타일에서 시작 칸을 정한 다음, 챕터의 특수 규칙으로 타일을 배치합니다. 카드에 별도 지시가 있으면 그 지시를 따릅니다. (규칙서 10쪽)</p></details>
       <div id="startPlacement"></div>
       <label>장치 무기<select id="weapon"><option value="burial">장송의 칼날</option></select></label>
       <label
@@ -253,18 +262,18 @@
     <script src="src/weapon-flow.js"></script>
     <script src="src/extended-enemy-rules.js"></script>
     <script src="src/qa-mode.js"></script>
-    <script src="src/hunt-engine.js?v=0.8.13-dev.17&amp;h=9da62acf9369"></script>
+    <script src="src/hunt-engine.js?v=0.8.13-dev.25&amp;h=f13a72497082"></script>
     <script src="src/hunt-public-text.js?v=0.8.13-dev.19&amp;h=e6652d6ddaea"></script>
     <script src="src/hunt-enemy-mission-effects.js?v=0.8.13-dev.6&amp;h=f500fa38d874"></script>
     <script src="src/hunt-mission-feedback.js?v=0.8.13-dev.14&amp;h=52b138c44a61"></script>
     <script src="src/hunt-death-feedback.js?v=0.8.13-dev.15&amp;h=c0fb83d79d10"></script>
     <script src="src/enemy-action-history.js"></script>
-    <script src="src/inventory.js?v=0.8.13-dev.19&amp;h=1c1fd814229a"></script>
+    <script src="src/inventory.js?v=0.8.13-dev.25&amp;h=3a133fb146c0"></script>
     <script src="src/hunt-entry.js?v=0.8.13-dev.11&amp;h=1fabaf52aa2d"></script>
-    <script src="src/game-help.js?v=0.8.13-dev.19&amp;h=ff81f1f35027"></script>
-    <script src="src/hunt-shell.js?v=0.8.13-dev.19&amp;h=75914cf977b5"></script>
+    <script src="src/game-help.js?v=0.8.13-dev.25&amp;h=0040f6a525ff"></script>
+    <script src="src/hunt-shell.js?v=0.8.13-dev.25&amp;h=d80e89122f95"></script>
     <script src="src/hunt-context.js?v=0.8.13-dev.16&amp;h=f05e3272340f"></script>
-    <script src="src/hunt-map-controls.js?v=0.8.13-dev.6&amp;h=c6df79260c04"></script>
+    <script src="src/hunt-map-controls.js?v=0.8.13-dev.25&amp;h=28ff900cb39f"></script>
     <script src="src/hunt-location-labels.js?v=0.8.13-dev.15&amp;h=050325d0a994"></script>
     <script src="src/hunt-attack-preview.js?v=0.8.13-dev.21&amp;h=6443e5e5a026"></script>
     <script src="src/hunt-departure.js"></script>
@@ -277,11 +286,14 @@
     <script src="src/enemy-visuals.js?v=0.8.13-dev.9&amp;h=2350a252f8f8"></script>
     <script src="src/hunt-presentation.js?v=0.8.13-dev.19&amp;h=af0f92efa733"></script>
     <script src="src/hunt-combat-feedback.js?v=0.8.13-dev.20&amp;h=8c97ed1a9b6b"></script>
-    <script src="src/hunt-combat-controls.js?v=0.8.13-dev.24&amp;h=6323e8f35da7"></script>
+    <script src="src/hunt-combat-controls.js?v=0.8.13-dev.25&amp;h=6f694913c6e3"></script>
     <script src="src/hunt-outcome-preview.js?v=0.8.13-dev.23&amp;h=945fed087248"></script>
     <script src="src/hunt-action-availability.js?v=0.8.13-dev.14&amp;h=19955816d7dc"></script>
     <script src="src/hunt-action-loss.js?v=0.8.13-dev.16&amp;h=1d3de045c5b3"></script>
     <script src="src/hunt-card-help.js?v=0.8.13-dev.7&amp;h=d0f40bd41a8e"></script>
-    <script src="src/hunt-app.js?v=0.8.13-dev.24&amp;h=e67d4c8932ac"></script>
+    <script src="src/hunt-mission-hud.js?v=0.8.13-dev.25&amp;h=e0da1688ef82"></script>
+    <script src="src/hunt-window-manager.js?v=0.8.13-dev.25&amp;h=748ca0da745b"></script>
+    <script src="src/hunt-upgrade-overview.js?v=0.8.13-dev.25&amp;h=bcffd50aa9b1"></script>
+    <script src="src/hunt-app.js?v=0.8.13-dev.25&amp;h=ccd782825c6d"></script>
   </body>
 </html>

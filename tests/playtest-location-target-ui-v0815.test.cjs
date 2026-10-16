@@ -30,7 +30,10 @@ for (const [seed, id, count] of [[92, "tile-05", 3], [3, "tile-08", 2]]) {
     assert.match(ui.el("locationText").textContent, /북쪽 1 구역 \/ /);
     const tileButton = ui.el("chapterMap").querySelectorAll("[data-tile-info]").find(button => button.dataset.tileInfo === id);
     assert.match(tileButton.getAttribute("aria-label"), /북쪽 1 구역 · 타일 정보 보기/);
-    tileButton.click(); assert.match(ui.el("tileInspectionStatus").textContent, /북쪽 1 구역/);
+    tileButton.click(); assert.equal(ui.el("tileInspectionStatus"), null);
+    assert.equal(ui.el("tileInfo").querySelectorAll(".tile-info-space").length, 1);
+    assert.doesNotMatch(ui.el("tileInfo").textContent, /명칭 없는|사냥꾼의 현재 위치/);
+    assert.equal(ui.el("chapterMap").querySelectorAll("[data-tile]").find(tile => tile.dataset.tile === id).dataset.inspected, "true");
     assert.equal(L.tile(state, id).name, null, "the address is not an invented printed tile name");
     const next = E.neighbors(state, E.hunter(state).position).find(node => node.startsWith(id + ":"));
     if (next && state.phase === "move") {

@@ -47,9 +47,9 @@ for (const kind of ["strength", "skill"]) test(`fixed innate damage marks ${kind
       actionLabel: "수은탄 사격", requiredSlot: 1, attack: { speed: 4, damage: 99 },
       items: [{ name: "추가 공격 소모품", rules: "피해 +2" }], appliedEffects: [{ name: "선택한 무기 보정", text: "피해 +1" }] }),
     element = rendered(model), html = element.innerHTML;
-  assert.match(html, /고유 행동 준비/); assert.match(html, /고정 피해 2/);
+  assert.match(html, /수은탄 사격/); assert.match(html, /고정 피해 2/);
   assert.match(html, /필요: 손패 기술 1개 · 2번 빈 슬롯/); assert.match(html, /기술과 빈 슬롯 선택 완료/);
-  assert.match(html, /class="combat-suppressed-effect"><span>미적용<\/span>/);
+  assert.doesNotMatch(html, /combat-suppressed-effect|카드 효과|고유 행동 준비|<select/);
   assert.equal(model.attack, undefined); assert.deepEqual(model.extraEffects, []);
   assert.doesNotMatch(html, /추가 적용|추가 공격 소모품|선택한 무기 보정|적용 후 공격|기본 피해/);
   assert.equal(JSON.stringify(state), before, "displaying inactive costs does not spend a card or inspect the enemy deck");
@@ -71,7 +71,7 @@ test("optional quicksilver shot stays distinct from an ordinary stat attack", ()
   const state = fixture("reiterpallasch"), model = Controls.view(state, E, { cardId: H(state).hand[0].id, slot: 1,
     attack: { speed: 2, damage: 3 }, fixedAction: { label: "수은탄 사격", damage: 2, requiredSlot: 1 } }),
     html = rendered(model).innerHTML;
-  assert.match(html, /카드 효과<\/strong> 공격 피해 \+1/);
+  assert.doesNotMatch(html, /카드 효과<\/strong>|combat-selected-card-effect/);
   assert.match(html, /적용 후 공격 · 속도 <b>2<\/b> · 피해 <b>3<\/b>/);
   assert.match(html, /수은탄 사격 · 일반 공격과 별도/); assert.match(html, /고정 피해 2/);
   assert.match(html, /카드·슬롯의 공격 수치와 부착 강화, 룬·소모품의 공격 보정은/);
@@ -81,6 +81,6 @@ test("ordinary dodge does not display an innate shot even if stale fixed-action 
   const state = fixture("reiterpallasch", "endurance"), model = Controls.view(state, E, { mode: "dodge",
     cardId: H(state).hand[0].id, slot: 1, actionKind: "fixed-damage", fixedDamage: 2,
     fixedAction: { label: "수은탄 사격", damage: 2 } }), html = rendered(model).innerHTML;
-  assert.match(html, /회피 준비/); assert.match(html, /회피 속도/);
+  assert.match(html, /회피 속도/); assert.doesNotMatch(html, /회피 준비|<select/);
   assert.doesNotMatch(html, /고정 피해|고유 행동 준비|뒷면으로 놓/);
 });

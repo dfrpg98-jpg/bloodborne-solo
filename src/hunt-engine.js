@@ -1053,6 +1053,10 @@
     need(['left','center','right'].includes(a.startSpace),'중앙 등불의 시작 칸을 선택하세요.');
     const h=hunter(s), face=a.face ?? h.face;
     need([0,1].includes(face),'장치 무기 면을 선택하세요.');
+    need(!Object.hasOwn(a,'reassignAttachments') || typeof a.reassignAttachments==='boolean',
+      '챕터 시작 시 슬롯 부착 재배치 여부를 확인하세요.');
+    need(!a.reassignAttachments || face!==h.face,
+      '무기의 반대 면으로 시작할 때 슬롯 부착 보상을 옮길 수 있습니다.');
     const chapter=s.mission.chapter+1,
       history=[...(s.mission.history || []),{chapter:s.mission.chapter,
         completed:[...s.mission.completed],revealed:[...s.mission.revealed]}],
@@ -1092,10 +1096,11 @@
     for(const p of s.world.tiles) spawnOnTile(s,p);
     s.spawnAfter={type:'mission_phase',phase:'hunter'};finishSpawns(s);
     draw(s,3);
-    if(s.setup.rulesVersion>=11) {
-      rewards.onChapterStart(s,rewardHelpers());
-      rewards.reconcileSlots(s,rewardHelpers());
-    }
+    if(s.setup.rulesVersion>=11) rewards.onChapterStart(s,rewardHelpers());
+    // Opt in explicitly so historical chapter-start commands retain their
+    // original closed window and replay to the same saved state.
+    if(a.reassignAttachments && rewardSession(s)) rewards.onTransform(s,rewardHelpers());
+    else if(s.setup.rulesVersion>=11) rewards.reconcileSlots(s,rewardHelpers());
     log(s,`기나긴 사냥 챕터 ${chapter} 시작 · 중앙 등불 ${a.startSpace}칸 · 성장과 소지품을 이어갑니다.`);
   }
   function finishDream(s) {

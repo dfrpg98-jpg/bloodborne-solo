@@ -31,11 +31,13 @@ test('an actual unnamed-tile move displays its cell name and public log while pr
   assert.deepEqual(E.importSave(f.ui.storage.get(key)), unnamed); assert.equal(f.ui.el('error').textContent, '');
 });
 
-for (const [fog, expected] of [[['tile-01', 'tile-05'], '안개 진입로'], [['tile-01', 'tile-19'], '안개 진입로 · 오에돈의 지하묘지']])
-  test(`fog labels retain meaningful names and omit unnamed placeholders: ${fog.join(',')}`, () => {
+for (const fog of [['tile-14', 'tile-01', 'tile-05'], ['tile-14', 'tile-01', 'tile-19']])
+  test(`fog is marked on its placed tile without an objective-panel location list: ${fog.join(',')}`, () => {
     const state = E.create(90, 'burial', 0, null, 'hunter-pistol', 'center', { campaign: true }),
       view = { ...E.missionView(state), fog }, f = launch(state, { engine: { missionView: () => view } });
-    assert.equal(f.ui.el('missionFog').textContent, expected);
+    assert.equal(f.ui.el('missionFog').textContent, '');
+    const lamp = f.ui.el('chapterMap').querySelectorAll('[data-tile]').find(tile => tile.dataset.tile === 'tile-14');
+    assert(lamp.classList.contains('fog-tile'));
     assert.equal(f.ui.storage.get(key), f.saved); assert.equal(f.ui.el('error').textContent, '');
   });
 

@@ -36,7 +36,8 @@ for (const kind of ["ground", "armed", "carried"]) test(`${kind}: the lantern pr
   assert.match(ui.el("actionLossList").textContent, carried ? /민가 칸으로 돌아갑니다/ : /함께 순간이동하지 않고 현재 칸에 남습니다/);
   assert.equal(ui.el("escortDialog").open, false, "teleport does not offer walking pickup");
   assert.equal(ui.storage.get(qaKey), saved);
-  ui.el("actionLossCancel").click(); assert.equal(ui.el("infoDialog").open, true);
+  ui.el("actionLossCancel").click(); assert.equal(ui.el("infoDialog").open, false);
+  assert.equal(ui.el("rewardsPanel").hidden, false, "cancel restores inline equipment without a modal");
   assert.equal(ui.document.activeElement, use); assert.equal(ui.storage.get(qaKey), saved);
   use.click(); ui.el("actionLossAccept").click();
   const actual = current(ui), expected = E.dispatch(s, { type: "USE_REWARD", rewardId: lamp.id, node: "tile-14:center" });
@@ -65,7 +66,8 @@ test("nearby uncarried escort: bold-mark preview and confirmation preserve the i
   ui.el("itemNode").value = "tile-14:center"; ui.el("itemNode").fire("change");
   assert.match(ui.el("itemActionLoss").textContent, /생존자 함께 이동 불가/);
   ui.el("useItem").click(); assert.equal(ui.el("actionLossDialog").open, true);
-  ui.el("actionLossCancel").click(); assert.equal(ui.el("infoDialog").open, true);
+  ui.el("actionLossCancel").click(); assert.equal(ui.el("infoDialog").open, false);
+  assert.equal(ui.el("workspaceInventory").hidden, false, "cancel restores inline inventory without a modal");
   assert.equal(ui.storage.get(qaKey), saved); assert(H(current(ui)).consumables.some(i => i.id === item.id));
   ui.el("useItem").click(); ui.el("actionLossAccept").click();
   assert.deepEqual(current(ui), E.dispatch(s, { type: "USE_CONSUMABLE", itemId: item.id, node: "tile-14:center" }));

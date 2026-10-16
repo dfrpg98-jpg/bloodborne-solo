@@ -67,7 +67,7 @@ test("the actual rewards panel describes a skill draw and its real use draws a h
       engine: { ...E, applyTileSpeedRuling: state => state, applyChapelRuling: state => state, applyCombatReactionRuling: state => state } });
   assert.equal(ui.el("error").textContent, "");
   const panel = ui.document.querySelectorAll("[data-panel]").find(button => button.dataset.panel === "rewards"); assert(panel); panel.click();
-  assert.equal(ui.el("infoDialog").open, true);
+  assert.equal(ui.el("infoDialog").open, false); assert.equal(ui.el("rewardsPanel").hidden, false);
   assert.match(ui.el("rewards").innerHTML, /기술 1개를 뽑습니다/);
   assert.doesNotMatch(ui.el("rewards").innerHTML, /장비 1개를 뽑습니다/);
   const use = ui.buttons("rewards").find(button => button.dataset.command === "USE_REWARD" && JSON.parse(button.dataset.args || "{}").rewardId === rune.id);

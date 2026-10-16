@@ -19,6 +19,13 @@ function panelButton(ui, name) {
 }
 function openPanel(ui, name) {
   const button = panelButton(ui, name); button.focus(); button.click();
+  if (["inventory", "rewards"].includes(name)) {
+    assert.equal(ui.el("infoDialog").open, false, `${name} opens inside the workspace`);
+    const panels = ui.document.querySelectorAll("[data-workspace-panel]");
+    assert.equal(panels.filter(element => !element.hidden).length, 1, "one workspace tab is active");
+    assert.equal(panels.find(element => element.dataset.workspacePanel === name)?.hidden, false);
+    return button;
+  }
   assert.equal(ui.el("infoDialog").open, true, `${name} dialog is open`);
   const panels = ui.document.querySelectorAll("[data-info-panel]");
   assert.equal(panels.filter(element => !element.hidden).length, 1, "one information panel is active");
@@ -39,16 +46,21 @@ test("the screen keeps one map, status, current objective, action area, hand and
   assert(ui.el("hand").querySelectorAll("[data-card]").length, "actual hand cards remain selectable");
   assert(ui.el("slots").querySelectorAll("[data-slot]").length, "weapon slots remain selectable");
   assert(ui.el("status").innerHTML.trim()); assert(ui.el("missionObjectives").innerHTML.trim());
-  for (const name of ["inventory", "rewards", "journal", "enemies", "guide", "help"]) panelButton(ui, name);
+  for (const name of ["inventory", "rewards", "objectives", "journal", "enemies", "guide", "help"]) panelButton(ui, name);
   assert.equal(ui.el("error").textContent, "");
 });
 
-test("opening and closing every information panel preserves the exact game save and returns focus", () => {
+test("information browsing preserves the exact save, with inline equipment and modal focus restoration", () => {
   const state = qa(), ui = realBoot(state), before = ui.storage.get(qaKey);
-  for (const name of ["inventory", "rewards", "journal", "enemies", "guide", "help"]) {
+  for (const name of ["inventory", "rewards", "objectives", "journal", "enemies", "guide", "help"]) {
     const opener = openPanel(ui, name);
     assert.equal(ui.commands.length, 0, "browsing never dispatches a game command");
     assert.equal(ui.storage.get(qaKey), before, "browsing leaves exact replay bytes unchanged");
+    if (["inventory", "rewards"].includes(name)) {
+      const tab = ui.document.querySelectorAll("[data-workspace-tab]").find(element => element.dataset.workspaceTab === name);
+      assert.equal(ui.document.activeElement, tab, "inline navigation focuses its selected tab");
+      continue;
+    }
     ui.el("closeInfo").click(); assert.equal(ui.el("infoDialog").open, false);
     assert.equal(ui.document.activeElement, opener, "focus returns to the opening button");
   }
@@ -64,12 +76,12 @@ test("Escape closes the active information panel without dispatching or changing
 });
 
 test("switching tabs inside the dialog restores focus to the external opening button when it closes", () => {
-  const ui = realBoot(normal()), before = ui.storage.get(normalKey), opener = openPanel(ui, "inventory"),
-    tab = ui.document.querySelectorAll("[data-panel]").filter(element => element.dataset.panel === "rewards").at(-1);
-  assert(tab && tab !== panelButton(ui, "rewards"), "the internal rewards tab exists");
+  const ui = realBoot(normal()), before = ui.storage.get(normalKey), opener = openPanel(ui, "objectives"),
+    tab = ui.document.querySelectorAll("[data-panel]").filter(element => element.dataset.panel === "journal").at(-1);
+  assert(tab && tab !== panelButton(ui, "journal"), "the internal journal tab exists");
   tab.focus(); tab.click(); assert.equal(ui.el("infoDialog").open, true);
   assert.equal(ui.document.querySelectorAll("[data-info-panel]").filter(element => !element.hidden).length, 1);
-  assert.equal(ui.document.querySelectorAll("[data-info-panel]").find(element => element.dataset.infoPanel === "rewards").hidden, false);
+  assert.equal(ui.document.querySelectorAll("[data-info-panel]").find(element => element.dataset.infoPanel === "journal").hidden, false);
   ui.el("closeInfo").click(); assert.equal(ui.el("infoDialog").open, false);
   assert.equal(ui.document.activeElement, opener, "closing cannot leave keyboard focus inside the closed dialog");
   assert.equal(ui.storage.get(normalKey), before); assert.equal(ui.commands.length, 0);
@@ -98,7 +110,7 @@ test("journal reading is limited to revealed text and does not expose later card
   assert.equal(ui.storage.get(normalKey), before); assert.equal(ui.commands.length, 0);
 });
 
-test("QA consumables remain usable through the inventory overlay and their game action returns to the map", () => {
+test("QA consumables remain usable from the inline inventory and their game action returns to progress", () => {
   const state = qa(), savedNormal = E.exportSave(normal()), ui = realBoot(state, {
     storage: { [normalKey]: savedNormal, [qaKey]: E.exportSave(state), [activeKey]: "qa" } });
   openPanel(ui, "inventory");
@@ -106,13 +118,14 @@ test("QA consumables remain usable through the inventory overlay and their game 
     card = ui.el("inventory").querySelectorAll("[data-item]").find(element => element.dataset.item === item.id);
   assert(card); card.click(); assert(ui.el("useItem") && !ui.el("useItem").disabled); ui.el("useItem").click();
   assert.equal(ui.el("error").textContent, ""); assert.equal(ui.el("infoDialog").open, false);
+  assert.equal(ui.el("workspaceProgress").hidden, false);
   const next = E.importSave(ui.storage.get(qaKey));
   assert.equal(next.commands.at(-1).type, "USE_CONSUMABLE"); assert.equal(E.hunter(next).hand.length, 6);
   assert.equal(ui.storage.get(normalKey), savedNormal);
   assert.deepEqual(E.importSave(E.exportSave(next)), next);
 });
 
-test("a reaction reward can be used during real combat from its overlay without losing the combat decision", () => {
+test("a reaction reward can be used from inline equipment without losing the combat decision", () => {
   let state = E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true,
     qa: { preset: "custom", startRewards: ["old-hunter-bone"], startConsumables: [] } });
   const commands = require("./fixtures/weapon-campaign-completion/beast-claw-0.json");

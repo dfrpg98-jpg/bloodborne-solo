@@ -1,6 +1,6 @@
 # Bloodborne Solo · 기나긴 사냥
 
-브라우저에서 기나긴 사냥 챕터 1~3을 한 명의 플레이어로 진행하는 로컬 게임입니다. 현재 개발 버전은 **0.8.13-dev.24**, 마지막 보관 릴리스는 **0.8.12**입니다. 이번 개발본은 정식 릴리스가 아닙니다. 최근 [혈석 슬롯 선택 가독성·교체 미리보기 수정](docs/audits/bloodstone-slot-visibility-v0.8.13-dev.24/README.md)과 [공격 위치·행동 안내 점검](docs/audits/attack-position-v0.8.13-dev.21/README.md), [피해 배분 진행 표시](docs/audits/damage-allocation-v0.8.13-dev.22/README.md), [피의 광란 반격 위험 안내](docs/audits/blood-frenzy-v0.8.13-dev.23/README.md)에 재현과 검증 범위를 구분해 기록했습니다.
+브라우저에서 기나긴 사냥 챕터 1~3을 한 명의 플레이어로 진행하는 로컬 게임입니다. 현재 개발 버전은 **0.8.13-dev.25**, 마지막 보관 릴리스는 **0.8.12**입니다. 이번 개발본은 정식 릴리스가 아닙니다. 최근 [우측 탭·정보창·혈석 재배치 개선](docs/audits/hunt-workspace-v0.8.13-dev.25/README.md)과 [혈석 슬롯 선택 가독성·교체 미리보기 수정](docs/audits/bloodstone-slot-visibility-v0.8.13-dev.24/README.md)과 [공격 위치·행동 안내 점검](docs/audits/attack-position-v0.8.13-dev.21/README.md), [피해 배분 진행 표시](docs/audits/damage-allocation-v0.8.13-dev.22/README.md), [피의 광란 반격 위험 안내](docs/audits/blood-frenzy-v0.8.13-dev.23/README.md)에 재현과 검증 범위를 구분해 기록했습니다.
 
 수직 이동·정렬된 공격의 방향 반전 수정은 [하인 방향 재점검](docs/audits/minion-facing-v0.8.13-dev.10/README.md)에, 신규 적6종의 외형·표시 크기·실제 검증 사냥은 [적 외형 점검 기록](docs/audits/enemy-sprites-v0.8.13-dev.9/README.md)에 있습니다. dev.8의 UI·규칙·저장 점검과 Unity 이식 준비 결과는 [로컬 검증 기록](docs/audits/local-final-validation-v0.8.13-dev.8/README.md)에서 구분합니다.
 

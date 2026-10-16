@@ -41,7 +41,7 @@ test("SYNTHETIC-QA real UI: the warning is beside the resolve action without ope
     engine: { ...E }, realInventory: true,
     storage: { [key]: saved, "bloodborne-hunt-active-mode": "qa" },
   });
-  const select = (id, value) => { ui.el(id).value = String(value); ui.el(id).fire("change"); };
+  const select = (id, value) => require("./helpers/combat-selection-ui.cjs").chooseControl(ui, id, value);
   select("combatSelectCard", "card-12"); select("combatSelectSlot", 0);
   assert.doesNotMatch(ui.el("attackConsequences").innerHTML, /wounded-retaliation/);
   assert.equal(ui.storage.get(key), saved, "card and slot selections do not expose the next action or save a command");

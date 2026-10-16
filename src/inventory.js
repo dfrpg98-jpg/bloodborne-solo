@@ -128,7 +128,7 @@
             enabled &&= destinations.length > 0;
           }
           targetChoices.set(item.id, choice);
-          controls += `<p id="itemTargetSummary" class="target-selection-status" aria-live="polite">${target ? `선택한 대상 · ${esc(enemyLabel(target))}${destination ? ` → 목적지 · ${esc(nodeLabel(destination))}` : ""}` : "선택 가능한 적이 없습니다."}</p><button id="itemInspectTarget" type="button" data-inspect-target="${esc(target?.id || "")}" ${target && inspectEnemy ? "" : "disabled"}>지도에서 대상 확인</button>${choice.notice ? `<p id="itemTargetNotice" class="action-loss-warning" role="status">${esc(choice.notice)}</p>` : ""}`;
+          controls += `<p id="itemTargetSummary" class="target-selection-status" aria-live="polite">${target ? `선택한 대상 · ${esc(enemyLabel(target))}${destination ? ` → 목적지 · ${esc(nodeLabel(destination))}` : ""}` : "선택 가능한 적이 없습니다."}</p>${choice.notice ? `<p id="itemTargetNotice" class="action-loss-warning" role="status">${esc(choice.notice)}</p>` : ""}`;
         } else if (f.target === "lamp") {
           const lamps = D.nodes.filter((n) => n.lamp && (!E.canTeleport || E.canTeleport(n.id)));
           controls += `<label>등불 목적지<select id="itemNode">${lamps
@@ -162,10 +162,6 @@
         };
         $("itemEnemy").onchange = () => remember("enemyId", "itemEnemy");
         if (f.target === "enemy-destination") $("itemNode").onchange = () => remember("node", "itemNode");
-        $("itemInspectTarget").onclick = () => {
-          const enemyId = $("itemEnemy").value;
-          if (enemyTargets.some(e => e.id === enemyId)) inspectEnemy?.(enemyId);
-        };
       }
       const itemCommand = () => ({
             itemId: item.id,

@@ -28,7 +28,7 @@ function launch(state) {
   return { ui, commands, current: () => current };
 }
 function select(ui, id, value) {
-  const control = ui.el(id); assert(control, id); control.value = String(value); control.fire("change");
+  require("./helpers/combat-selection-ui.cjs").chooseControl(ui, id, value);
 }
 function click(ui, type, matches = () => true) {
   const buttons = [...ui.buttons("decisionActions"), ...ui.buttons("decisions")],

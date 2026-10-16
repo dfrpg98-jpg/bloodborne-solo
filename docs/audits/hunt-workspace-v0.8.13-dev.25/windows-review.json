@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-17",
+  "scope": "필수 선택 창 차단, 반복 최소화·복원, 소모품·장비 대상 미리보기, 챕터 시작 후 혈석 재배치, 공개 업그레이드와 덱 조회",
+  "method": "독립 소스 검토와 실제 앱 핸들러를 사용하는 Node DOM 계약 검사. 이 기록은 브라우저 화면 검증을 대신하지 않는다.",
+  "reviewedSnapshotSha256": {
+    "src/hunt-app.js": "d793fa8c1575a96452034061e3f2ab16f91ee489dc7286d1d220b51853880c4e",
+    "src/hunt-shell.js": "d80e89122f9546999d0aefb0eac067920c12d869d793e9e2125cd2e35e2cae41",
+    "hunt.html": "659c54b2d308e23ed8bbb8b2c8b225a44302b253e656faf3c7e2a9573f746f11",
+    "src/hunt-window-manager.js": "5669c387ab615e1bb0a6ee044df863e4fb2e5182fb85e0626be61fb05fca7591",
+    "src/hunt-upgrade-overview.js": "bcffd50aa9b1a307c48d277b429f1486c5e6569efc8cf6962b7a5088657d8bf0"
+  },
+  "testCommand": "node --test tests/hunt-window-manager-dev25.test.cjs tests/hunt-upgrade-overview-dev25.test.cjs tests/hunt-workspace-shell-v25.test.cjs",
+  "result": {
+    "passed": 27,
+    "failed": 0,
+    "skipped": 0
+  },
+  "confirmed": [
+    "필수 선택 창을 최소화해도 이동·공격·소모품 사용 명령을 보내지 않는다.",
+    "대기 창 안에 임의로 놓인 사용 버튼은 응답 버튼으로 취급하지 않는다. 명시된 확인·취소 버튼만 해당 창의 응답으로 처리한다.",
+    "초기 사냥 준비 창을 최소화한 상태에서는 이동 명령과 자동 저장이 발생하지 않는다.",
+    "소모품·장비의 대상 선택 변경은 곧바로 지도상의 해당 적을 선택 표시한다. 필수 선택 창이 남은 동안에는 실제 사용과 저장을 차단한다.",
+    "정보·혈석·업그레이드 창을 각각 세 번 최소화하고 같은 열기 버튼을 눌러도 복원된다. 이 과정은 게임 명령과 저장을 변경하지 않는다.",
+    "실제 엔진에서 소모품을 사용하면 선택한 물품 한 개만 버려지고, 성공 후 진행 상황 탭으로 돌아온다.",
+    "기존 chapter-one-v8 공개 명령을 끝까지 재생하고 챕터 2를 반대 무기 면으로 시작했다. 임무 확인 전에는 이동하지 못하고, 임무 확인 후 혈석 재배치 창이 열린다. 재배치와 닫기 후 다음 이동이 정상 처리된다.",
+    "공개 업그레이드 최대 네 칸만 조회한다. 손패·뽑기·버림·슬롯의 기술을 종류별로 집계하며 인스턴스 ID 중복을 제외한다. 뽑기 순서와 숨겨진 업그레이드 덱은 반환하지 않는다."
+  ],
+  "resolvedFindings": [
+    {
+      "example": "혈석 재배치 창을 최소화한 뒤 슬롯 부착 변경 버튼을 다시 눌러도 창이 open 상태라는 이유로 복원되지 않았다.",
+      "resolution": "기존 열기 경로는 showModal을 다시 호출하고, 관리자는 이미 열린 창을 복원한다. 정보·혈석·업그레이드 창 반복 복원 검사로 확인했다."
+    },
+    {
+      "example": "대기 창 내부에 있는 소모품 사용 버튼이 단순 응답으로 오인되어 클릭 차단을 통과할 수 있었다.",
+      "resolution": "위치만으로 허용하던 분기를 제거하고 명시된 응답 ID만 허용한다. 내부 사용 버튼과 겹친 필수 창의 실행 확인을 차단하는 검사로 확인했다."
+    }
+  ],
+  "staticHtmlScan": {
+    "unbalancedTags": 0,
+    "duplicateIds": 0,
+    "uniqueIds": 215
+  },
+  "remainingBlockingFindingsInReviewedScope": [],
+  "limits": [
+    "전체 회귀 검사와 실제 브라우저의 픽셀·드래그 검증은 부모 작업에서 별도로 수행한다.",
+    "HTML 수치는 정적 태그 스캔 결과이며 HTML5 파서의 레이아웃 검증 결과가 아니다.",
+    "이 검토 뒤 연결 파일의 캐시 키나 코드가 변경되면 위 해시는 최종 빌드 해시와 다를 수 있다."
+  ],
+  "finalPolicy": {
+    "allRegisteredDialogsBlockGameplay": true,
+    "minimizedDialogsStillBlockGameplay": true,
+    "inspectionAllowed": true,
+    "soleMenuManagementAllowed": true,
+    "windowTests": 17,
+    "upgradeTests": 6,
+    "shellTests": 6,
+    "passed": 29,
+    "failed": 0,
+    "managerSha256": "748ca0da745b13c043b552dc3f1f35557a21c7161923a59cb3528c347757e6a9",
+    "note": "일반 정보창도 같은 차단 규칙을 적용하도록 원문을 마지막 대조한 결과. 위 reviewedSnapshotSha256/27개 검사는 앞선 독립 검토 시점이며 이 최종 정책과 구분한다."
+  }
+}

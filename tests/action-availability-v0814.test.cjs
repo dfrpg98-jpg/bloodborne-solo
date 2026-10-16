@@ -97,8 +97,8 @@ function launch(state) {
   assert.equal(ui.el("error").textContent, ""); return { ui, calls, normalSave, normalKey, qaKey };
 }
 function chooseDodge(ui) {
-  ui.el("combatSelectCard").value = "card-1"; ui.el("combatSelectCard").fire("change");
-  ui.el("combatSelectSlot").value = "0"; ui.el("combatSelectSlot").fire("change");
+  const { choose } = require("./helpers/combat-selection-ui.cjs");
+  choose(ui, "card", "card-1"); choose(ui, "slot", 0);
   const button = ui.buttons("decisionActions").find(button => button.dataset.command === "DODGE");
   assert(button && !button.disabled); button.click(); assert.equal(ui.el("error").textContent, "");
 }
