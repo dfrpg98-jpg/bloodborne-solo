@@ -31,3 +31,15 @@
 **직접 조합 FAQ 미확보:** 공식 FAQ v1.0의 검색 가능한 전체 본문에서 Mist·Recovery·Consumable을 확인하고 CMON 공식 도메인 검색을 수행했으나, 마비 안개와 성직자 야수 회복을 직접 지목한 답변은 찾지 못했습니다. 인터넷 전체에 그런 답변이 없다고 단정하지 않습니다.
 
 **우선 수정 범위:** UI가 ‘모든 부가효과 제거’처럼 범위를 생략했다면 ‘적 공격의 효과 제거’로 한정하고, 공개된 행동이 전용 능력일 때는 해당 능력에 적용되지 않음을 알리는 것이 적절합니다. 방어 2가 남는 경우 예고 피해에도 이를 드러내야 합니다. 이번 출처 조사만으로 core engine 판정을 변경하거나 실제 전투 결함을 확정하지 않습니다.
+
+## 후속 커뮤니티 조사와 사용자 채택 · 2026-10-16
+
+BGG 토론 **Numbing Mist, Bolt Paper and other such Consumables**의17개 게시물을 인앱 브라우저에서 직접 읽었습니다. 검색 도구가 처음 반환한 질문·첫 답변만으로 결론을 낸 것은 아닙니다.
+
+- Adam Ross(@ajr30), [2021-02-01 답변](https://boardgamegeek.com/thread/2592397/article/36887909#36887909): 능력 자체를 제거하지 않고 후속 공격의 효과를 제거한다는 설명입니다. 능력이 다음 공격에 독을 추가하면 그 독도 안개로 제거한다고 구분합니다.
+- 같은 작성자의 [2021-02-02 답변](https://boardgamegeek.com/thread/2592397/article/36897517#36897517)은 능력으로 증가한 속도·피해는 유지하고, 공격에 붙은 독 같은 효과는 제거한다는 근거를 설명합니다.
+- Conor Mullin(@easterncalculus)의 [추가 공개 구분](https://boardgamegeek.com/thread/2592397/article/36897417#36897417)은 능력으로 다음 행동을 공개해 나온 기본 공격도 공격으로 취급하는 경우와, 공격 없이 적만 출현시키는 능력을 구별합니다.
+- [@WrecktangleBGG의 반론](https://boardgamegeek.com/thread/2592397/article/36901773#36901773)은 능력이 붙인 속도·피해 증가를 수치와 효과 중 어디에 분류할지 공식 해명이 필요하다는 의견입니다. 토론을 만장일치나 공식 답변으로 소개하지 않습니다. 해당 답변자들의 제작사 공식 답변 권한은 확인되지 않았습니다.
+- [Reddit의 능력 범위 토론](https://www.reddit.com/r/bloodbornebg/comments/ltyil2/question_about_numbing_mist/)과 [방해·기절 질문](https://www.reddit.com/r/bloodbornebg/comments/v6xubk/staggerstun_at_the_same_speed/)도 확인했지만, BGG 답변을 공식 판정으로 격상시키는 근거로 쓰지 않습니다.
+
+사용자는 조사 결과를 읽고 **BGG의 위 답변대로 진행**하기로 선택했습니다. 현재 적용 지위는 [사용자 채택 재정](../../decisions.md)이며 `officialConfirmed: false`입니다. 공격/능력의 일반 구분을 확인한 공식 자료, 직접 조합의 커뮤니티 해석, 사용자의 채택을 별도로 기록합니다. 기존 실행 판정은 유지합니다.
