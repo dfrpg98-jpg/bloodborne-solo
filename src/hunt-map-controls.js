@@ -29,14 +29,16 @@
     const locked = E.rewardsView?.(state)?.choices?.length ? "획득한 보상 선택을 먼저 마치세요." :
       h.inDream || h.hp <= 0 ? "지도에서 이동할 수 없습니다." : "";
     const moving = state.phase === "move" && !!state.move;
-    const phaseReason = moving ? "" : state.phase === "hunter" ? "손패를 고른 뒤 이동 시작을 누르세요." :
+    const phaseReason = moving ? "" : state.phase === "hunter" ? "손패를 고른 뒤 이동 선언을 누르세요." :
       state.phase === "tile_place" ? "새 타일의 방향을 선택하고 배치하세요." : "행동 패널의 현재 선택을 먼저 마치세요.";
     const result = { moving, remaining: moving ? state.move.remaining : null,
       start: { enabled: !locked && state.phase === "hunter" && !!card,
         reason: locked || (state.phase !== "hunter" ? phaseReason : !card ? "이동에 쓸 손패 1장을 선택하세요." : ""),
         command: { type: "MOVE", cardId: card?.id || null } },
-      stop: { enabled: !locked && moving, reason: locked || phaseReason, command: { type: "STOP_MOVE" } },
-      hint: locked || phaseReason || `남은 이동력 ${state.move.remaining} · 방향을 선택하세요.`,
+      stop: { enabled: !locked && moving && (!E.canStopMove || E.canStopMove(state)),
+        reason: locked || phaseReason || (E.canStopMove && !E.canStopMove(state) ? "한 칸 이상 이동하세요." : ""), command: { type: "STOP_MOVE" } },
+      cancel: { enabled: !locked && !!E.canCancelMove?.(state), command: { type: "CANCEL_MOVE" } },
+      hint: locked || phaseReason || (state.move.costPending ? "첫 칸 진입 시 손패 1장 소모" : `남은 이동력 ${state.move.remaining} · 방향을 선택하세요.`),
       directions: edges.map(edge => ({ edge, name: names[edge], options: [] })) };
     if (!h.position || h.inDream) return result;
     const add = (edge, action, label) => {
@@ -92,7 +94,7 @@
       if (node === "tile-07:top") interactions.push("상호작용 · 소모품 1개를 피의 유지 1개로 교환");
       if (node === "tile-20:room") interactions.push("차례마다 한 번 · 피해 1을 받고 손패 1장 뽑기");
       if (atHunter && E.interactionOptions(state).missionRescue) interactions.push("임무 대상과 상호작용 가능");
-      return { node, name: space.placeName || space.label, atHunter, enemies, loot,
+      return { node, name: G.spaceLabel(tile, space), atHunter, enemies, loot,
         interactions, tokens: tokens.filter(token => token.node === node) };
     });
     return { id: tileId, name: tile.named ? tile.displayName : null, fog, rules: [...(tile.rules || [])], selectedNode, spaces };

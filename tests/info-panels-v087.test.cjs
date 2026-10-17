@@ -13,7 +13,7 @@ let state = E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { cam
 checkpoints.set(0, state);
 for (let i = 0; i < 218; i++) {
   state = E.dispatch(state, commands[i]);
-  if ([35, 211, 218].includes(i + 1)) checkpoints.set(i + 1, state);
+  if ([35, 81, 211, 218].includes(i + 1)) checkpoints.set(i + 1, state);
 }
 function launch(state) {
   const key = state.setup.qa ? qaKey : normalKey, saved = E.exportSave(state);
@@ -24,22 +24,51 @@ function launch(state) {
 function unchanged(f) {
   assert.equal(f.ui.storage.get(f.key), f.saved, "reading and choosing UI options preserve exact replay bytes");
   assert.equal(f.ui.el("error").textContent, "");
+  assert.equal(f.ui.commands.length, 0, "inspection and UI selection cannot dispatch gameplay commands");
 }
 function clean(f, text) { return f.ui.window.BBHuntPublicText.clean(text, "skill"); }
+
+// The shared harness deliberately has a flat DOM. Read these dynamic
+// descendants from the actual rendered HTML, bounded by their public IDs.
+function inspectionTitle(f) {
+  assert(f.ui.el("enemyInspectionTitle"));
+  const match = f.ui.el("mapContext").innerHTML.match(/<h3\b[^>]*\bid="enemyInspectionTitle"[^>]*>([\s\S]*?)<\/h3>/);
+  assert(match, "inline inspection title must be rendered");
+  return decode(match[1].replace(/<[^>]+>/g, ""));
+}
+function inspectionContent(f) {
+  assert(f.ui.el("enemyInspectionContent"));
+  const html = f.ui.el("mapContext").innerHTML;
+  const opening = /<div\b[^>]*\bid="enemyInspectionContent"[^>]*>/.exec(html);
+  assert(opening, "inline inspection body must be rendered");
+  const start = opening.index + opening[0].length;
+  let depth = 1, end = -1;
+  for (const match of html.slice(start).matchAll(/<\/?div\b[^>]*>/g)) {
+    depth += match[0].startsWith("</") ? -1 : 1;
+    if (depth === 0) { end = start + match.index; break; }
+  }
+  assert(end >= start, "inline inspection body must close");
+  const innerHTML = html.slice(start, end);
+  return { innerHTML, textContent: decode(innerHTML.replace(/<[^>]+>/g, "")) };
+}
+
 function detail(f, id, special = false) {
   const selector = special ? "[data-special-info]" : "[data-enemy-info]", field = special ? "specialInfo" : "enemyInfo";
   const opener = f.ui.el("enemyRoster").querySelectorAll(selector).find(button => button.dataset[field] === id);
-  assert(opener, `the visible roster contains ${id}`); opener.focus(); opener.click();
-  assert.equal(f.ui.el("enemyDetailDialog").open, true);
-  assert.equal(f.ui.el("infoDialog").open, false, "a roster click opens the independent detail dialog");
-  assert.equal(f.ui.document.activeElement, f.ui.el("closeEnemyDetail"));
+  assert(opener, "the visible roster contains " + id); opener.focus(); opener.click();
+  assert.equal(f.ui.el("mapContext").hidden, false, "enemy information appears inline in the progress workspace");
+  assert.equal(f.ui.el("workspaceProgress").hidden, false);
+  assert.equal(f.ui.el("enemyDetailDialog"), null, "the obsolete enemy detail popup is removed");
+  assert.equal(f.ui.el("infoDialog").open, false, "roster inspection does not open an information popup");
+  assert(inspectionTitle(f).length > 0);
+  assert(inspectionContent(f).textContent.length > 0);
   return opener;
 }
-function closeDetail(f, opener, escape = false) {
-  if (escape) assert.equal(f.ui.el("enemyDetailDialog").fire("cancel").defaultPrevented, true);
-  else f.ui.el("closeEnemyDetail").click();
-  assert.equal(f.ui.el("enemyDetailDialog").open, false);
-  assert.equal(f.ui.document.activeElement, opener); unchanged(f);
+function closeDetail(f, opener) {
+  const close = f.ui.el("clearMapTarget"); assert(close, "inline inspection has an explicit close control"); close.click();
+  assert.equal(f.ui.el("mapContext").hidden, true);
+  assert.equal(f.ui.document.activeElement, opener, "closing inline inspection restores its original roster source");
+  unchanged(f);
 }
 function hiddenSources(text) {
   assert.doesNotMatch(text, /bossDecks|enemyDeck|campaigns\/long-hunt\/images|components\/images|\.jpe?g(?:["?#]|$)|[A-Z]:\\Users\\/i);
@@ -92,19 +121,71 @@ test("the independent history dialog starts empty before any shared enemy action
   assert.match(f.ui.el("deckStatus").textContent, /마지막 공개: 없음/); unchanged(f);
 });
 
-test("each general roster entry opens only its own public face and restores focus without changing the hunt", () => {
+test("each general roster entry shows only its own public face inline and restores focus without changing the hunt", () => {
   const f = launch(checkpoints.get(0));
   for (const assignment of f.state.world.assignments) {
-    const definition = E.enemyDef(f.state, assignment.enemyId), opener = detail(f, assignment.enemyId), text = f.ui.el("enemyDetailContent").textContent;
-    assert(f.ui.el("enemyDetailTitle").textContent.includes(definition.name));
+    const definition = E.enemyDef(f.state, assignment.enemyId), opener = detail(f, assignment.enemyId), text = inspectionContent(f).textContent;
+    assert(inspectionTitle(f).includes(definition.name));
     for (const action of [definition.face.basicAttack, definition.face.specialAttack, definition.face.ability]) {
       assert(text.includes(clean(f, action.name)), `${assignment.enemyId}: its printed ${action.name} is visible`);
       for (const rule of action.rules) assert(text.includes(clean(f, rule)), "the original public effect remains visible");
     }
     for (const other of f.state.world.assignments.filter(other => other.enemyId !== assignment.enemyId))
       assert(!text.includes(E.enemyDef(f.state, other.enemyId).name), "other species are outside this detail");
-    hiddenSources(text); futureMissions(f, text); unchanged(f); closeDetail(f, opener, true);
+    f.ui.document.fire("keydown", { key: "Escape" });
+    assert.equal(f.ui.el("mapContext").hidden, false, "Escape is not a new shortcut that dismisses inline inspection");
+    hiddenSources(text); futureMissions(f, text); unchanged(f); closeDetail(f, opener);
   }
+});
+
+test("적 열람을 칸 정보로 바꾼 뒤 닫으면 이전 적 목록으로 초점을 되돌리지 않습니다", () => {
+  const f = launch(checkpoints.get(0)), assignment = f.state.world.assignments[0];
+  const opener = detail(f, assignment.enemyId);
+  const cell = f.ui.el("chapterMap").querySelectorAll("[data-node]")
+    .find(button => button.dataset.node === E.hunter(f.state).position && !button.dataset.entrance);
+  assert(cell); cell.focus(); cell.click();
+  assert.equal(f.ui.el("mapContext").hidden, false);
+  assert(inspectionTitle(f).includes("중앙 등불"));
+  f.ui.el("clearMapTarget").click();
+  assert.equal(f.ui.el("mapContext").hidden, true);
+  assert.notEqual(f.ui.document.activeElement, opener);
+  assert.equal(f.ui.document.activeElement, f.ui.el("workspaceProgressTab"));
+  unchanged(f);
+});
+
+
+test("a multi-individual reference keeps the printed face separate from its mission-modified individual", () => {
+  const f = launch(checkpoints.get(81)), kind = "scourge-beast";
+  const individuals = f.state.enemies.filter(enemy => enemy.kind === kind && !enemy.componentId && !enemy.provisionalKind && !enemy.extendedId);
+  const changed = individuals.find(enemy => enemy.missionId), ordinary = individuals.find(enemy => !enemy.missionId);
+  assert.equal(individuals.length, 2); assert(changed); assert(ordinary);
+  const definition = E.enemyDef(f.state, kind), effective = E.enemyDef(f.state, changed);
+  assert.equal(f.state.mission.targets[changed.missionId].card, 3);
+  assert.notEqual(effective.ability.name, definition.ability.name);
+  const opener = detail(f, kind), reference = inspectionContent(f).textContent;
+  for (const action of [definition.basic, definition.special, definition.ability]) {
+    assert(reference.includes(clean(f, action.name)), "generic reference retains its printed action");
+    for (const rule of action.rules || []) assert(reference.includes(clean(f, rule)), "generic reference retains every public source rule");
+  }
+  assert(!reference.includes(clean(f, effective.ability.name)), "mission replacement must not be attributed to the whole species");
+  assert.match(reference, /임무 효과는 해당 개체를 선택해 확인/);
+  const choices = f.ui.el("mapContext").querySelectorAll("[data-inspect-target]");
+  assert.deepEqual(choices.map(button => button.dataset.inspectTarget), individuals.map(enemy => enemy.id));
+  assert.equal(f.ui.el("mapContext").querySelectorAll("[data-command]").length, 0, "generic species inspection cannot offer an attack");
+  hiddenSources(reference); futureMissions(f, reference); unchanged(f);
+  const choice = choices.find(button => button.dataset.inspectTarget === changed.id); choice.focus(); choice.click();
+  const actual = inspectionContent(f).textContent;
+  assert(inspectionTitle(f).includes(effective.name));
+  for (const action of [effective.basic, effective.special, effective.ability]) {
+    assert(actual.includes(clean(f, action.name)), "the chosen individual's effective action is displayed");
+    for (const rule of action.rules || []) assert(actual.includes(clean(f, rule)), "the chosen individual's complete public effect remains readable");
+  }
+  assert.match(actual, /임무에 따른 능력 변경/);
+  assert(!actual.includes(clean(f, definition.ability.name)), "the printed ability cannot replace the mission-modified live ability");
+  const marker = f.ui.el("chapterMap").querySelectorAll("[data-enemy]").find(button => button.dataset.enemy === changed.id);
+  assert(marker); assert.equal(marker.getAttribute("aria-pressed"), "true");
+  hiddenSources(actual); futureMissions(f, actual); unchanged(f);
+  closeDetail(f, opener);
 });
 
 for (const [spec, file, count] of [
@@ -114,8 +195,8 @@ for (const [spec, file, count] of [
   let state = E.create(90, "burial", 1, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 13 });
   for (const command of require("./fixtures/" + file).slice(0, count)) state = E.dispatch(state, command);
   const enemy = state.enemies.find(enemy => enemy.componentSpec === spec); assert(enemy);
-  const f = launch(state), definition = E.enemyDef(state, enemy), opener = detail(f, enemy.id, true), text = f.ui.el("enemyDetailContent").textContent;
-  assert(f.ui.el("enemyDetailTitle").textContent.includes(definition.name));
+  const f = launch(state), definition = E.enemyDef(state, enemy), opener = detail(f, enemy.id, true), text = inspectionContent(f).textContent;
+  assert(inspectionTitle(f).includes(definition.name));
   for (const action of [definition.basic, definition.special, definition.ability].filter(Boolean)) {
     assert(text.includes(clean(f, action.name)));
     for (const rule of action.rules || []) assert(text.includes(clean(f, rule)));
@@ -128,8 +209,8 @@ for (const [spec, file, count] of [
 for (const count of [211, 218]) test(`actual boss detail at public checkpoint ${count} reveals only its own currently drawn action`, () => {
   const f = launch(checkpoints.get(count)), boss = f.state.enemies.find(enemy => enemy.componentId === "cleric-beast"); assert(boss);
   const definition = E.enemyDef(f.state, boss), shown = f.state.combat?.enemyId === boss.id ? f.state.combat.action?.name : null;
-  const opener = detail(f, boss.id, true), text = f.ui.el("enemyDetailContent").textContent;
-  assert(f.ui.el("enemyDetailTitle").textContent.includes(definition.name));
+  const opener = detail(f, boss.id, true), text = inspectionContent(f).textContent;
+  assert(inspectionTitle(f).includes(definition.name));
   if (shown) assert(text.includes(shown), "the currently public boss action stays readable");
   for (const action of [...Object.values(definition), ...Object.values(B.definition("cleric-beast", 2))]
     .filter(value => value?.type && value.name && value.name !== shown))
@@ -140,14 +221,14 @@ for (const count of [211, 218]) test(`actual boss detail at public checkpoint ${
 
 test("clicking a general enemy during a boss combat cannot copy the boss's public action into that enemy detail", () => {
   const f = launch(checkpoints.get(218)), assignment = f.state.world.assignments[0], opener = detail(f, assignment.enemyId);
-  const text = f.ui.el("enemyDetailContent").textContent, shown = f.state.combat.action.name;
+  const text = inspectionContent(f).textContent, shown = f.state.combat.action.name;
   assert(!text.includes(shown)); assert(!text.includes("성직자 야수")); unchanged(f); closeDetail(f, opener);
 });
 
-test("the temporary boss trial also withholds its undrawn boss-deck actions in the independent detail", () => {
+test("the temporary boss trial also withholds its undrawn boss-deck actions in inline inspection", () => {
   const state = E.create(90, "burial", 0, null, "hunter-pistol", "center", { campaign: false, provisional: "cleric-beast" });
   const boss = state.enemies.find(enemy => enemy.provisionalKind === "cleric-beast"); assert(boss);
-  const f = launch(state), opener = detail(f, boss.id, true), text = f.ui.el("enemyDetailContent").textContent;
+  const f = launch(state), opener = detail(f, boss.id, true), text = inspectionContent(f).textContent;
   for (const action of Object.values(E.enemyDef(state, boss)).filter(value => value?.type && value.name)) assert(!text.includes(action.name));
   assert.match(text, /아직 공개된 행동이 없습니다/); hiddenSources(text); unchanged(f); closeDetail(f, opener);
 });
@@ -169,7 +250,7 @@ for (const [count, id] of [[242, "dash-sweep"], [260, "leap-slam"], [264, "destr
     const f = launch(naturalBossCheckpoint(count)), action = f.state.combat.action;
     assert.equal(action.id, id); assert.deepEqual(E.importSave(f.saved), f.state);
     const boss = f.state.enemies.find(enemy => enemy.id === f.state.combat.enemyId); assert(boss);
-    const opener = detail(f, boss.id, true), text = f.ui.el("enemyDetailContent").textContent, html = f.ui.el("enemyDetailContent").innerHTML;
+    const opener = detail(f, boss.id, true), text = inspectionContent(f).textContent, html = inspectionContent(f).innerHTML;
     const visibleNames = [...html.matchAll(/<strong class="combat-action-name">([^<]*)<\/strong>/g)].map(match => decode(match[1]));
     const publicNames = [...new Set([f.state.combat.action, f.state.combat.immediate, f.state.combat.extra].filter(Boolean).map(action => action.name))];
     assert.deepEqual(visibleNames, publicNames, "only these already-public combat objects are described");

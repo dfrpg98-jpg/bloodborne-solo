@@ -48,7 +48,7 @@
             return `<button class="inventory-card ${selected === item.id ? "selected" : ""}" data-item="${esc(item.id)}" aria-pressed="${selected === item.id}"><small>${esc(d.timing)}</small><b>${esc(d.name)}</b><span>${attackIds.has(item.id) ? "✓ 이번 공격에 사용" : d.runtime === "playable" ? "보유 중" : "현재 사용 불가"}</span></button>`;
           })
           .join("") ||
-        '<p class="muted">보유한 소모품이 없습니다. ◇ 칸에서 상호작용하면 획득합니다.</p>';
+        '<p class="muted inventory-empty"><span>보유한 소모품이 없습니다.</span><span>◇ 칸에서 상호작용하면 획득합니다.</span></p>';
       $("inventory")
         .querySelectorAll("[data-item]")
         .forEach(

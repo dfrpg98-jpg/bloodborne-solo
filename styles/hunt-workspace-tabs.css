@@ -5,6 +5,9 @@
 .hunt-decisions > [data-workspace-panel][hidden], .workspace-progress[hidden] { display: none; }
 .hunt-decisions > .info-panel { min-height: 0; flex: 1 1 auto; overflow: auto; padding: 8px 0; }
 .hunt-decisions .inventory-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.inventory-grid > .inventory-empty { grid-column: 1 / -1; margin: 4px 0; line-height: 1.65; letter-spacing: normal; word-break: keep-all; overflow-wrap: break-word; }
+.inventory-empty > span { display: block; }
+.inventory-empty > span + span { margin-top: 5px; }
 .hunt-decisions .inventory-card { min-height: 70px; padding: 8px; }
 .hunt-decisions .item-controls label { display: block; }
 .hunt-decisions .item-controls select { width: 100%; }
@@ -23,3 +26,15 @@
 .upgrade-deck-composition { margin-top: 10px; }
 .upgrade-deck-composition summary { cursor: pointer; color: #ead09a; }
 @media (max-width:700px) { .hunt-decisions > .info-panel { max-height: 55vh; } .upgrade-market-grid,.upgrade-deck-list { grid-template-columns: 1fr; } }
+
+.objectives-panel { letter-spacing: normal; line-height: 1.65; word-break: keep-all; overflow-wrap: break-word; }
+.objectives-panel .objective-group > h3 { margin: 0 0 12px; }
+.objectives-panel .objective-heading { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 8px; }
+.objectives-panel .objective-meta { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; }
+.objectives-panel .objective-heading b { line-height: 1.5; }
+.objectives-panel .mission-objective > .muted { display: block; margin-top: 9px; line-height: 1.7; }
+.objectives-panel .chapter-condition-detail { padding: 14px 16px; }
+.objectives-panel .chapter-condition-detail h3 { margin: 0 0 10px; }
+.objectives-panel .chapter-condition-detail p { margin: 0; line-height: 1.7; }
+.objectives-panel .chapter-condition-detail p + p { margin-top: 9px; }
+.objectives-panel .mission-update-history-section > h3 { margin: 16px 0 10px; }

@@ -795,6 +795,31 @@
     // correction before future actions, without retroactively counting a leap.
     return canApplyLeapMoveRuling(s) ? dispatch(s, {type:"APPLY_LEAP_MOVE_RULING"}) : s;
   }
+  function canApplyMovementDeclarationRuling(s) {
+    return !s.movementDeclarationRuling &&
+      ["hunter", "refill", "return", "between_chapters"].includes(s.phase) &&
+      !s.move && !s.world.pending && !s.combat && !s.leap && !s.killReaction &&
+      !s.interaction && !s.weaponAfter && !s.weaponMoveReturn &&
+      !s.weaponEffects?.length && !s.missionArrivalAfter &&
+      !s.mission?.deathPending && !s.mission?.chapelArrival;
+  }
+  function applyMovementDeclarationRuling(s) {
+    // Verify old saves with their original timing before recording adoption.
+    // An already-paid movement finishes unchanged; its next declaration uses
+    // the new timing after reaching a safe boundary.
+    return canApplyMovementDeclarationRuling(s)
+      ? dispatch(s, {type:"APPLY_MOVEMENT_DECLARATION_RULING"}) : s;
+  }
+  function canCancelMove(s) {
+    const m = s.move;
+    return s.phase === "move" && s.movementDeclarationRuling === "first-step" &&
+      m?.source === "action" && m.costPending === true && m.path.length === 1 &&
+      !s.world.pending && !s.enemyMove && !s.firearmEntry;
+  }
+  function canStopMove(s) {
+    return s.phase === "move" && !!s.move &&
+      (s.move.source !== "action" || s.move.path.length > 1);
+  }
   function enemyTileSpeedPenalty(s, e, d = enemyDef(s, e)) {
     return node(s, e.node).tile === "tile-17" &&
       (s.tileSpeedRuling === "all-attacks" || !d.ignoreTileSpeed && e.missionId !== "shelter") ? 1 : 0;
@@ -1172,6 +1197,14 @@
     need(!missions.fogged(s, node(s, prev).tile) || sameTile(s, prev, to),
       "안개 진입로를 걸어서 벗어날 수 없습니다. 임무를 완수하거나 꿈에 입장하세요.");
     need(!missions.canEnter || missions.canEnter(s,prev,to),"현재 임무에 의해 진입할 수 없는 칸입니다.");
+    if (s.move.source === "action" && s.move.costPending) {
+      payAction(s, s.move.cardId);
+      if (weaponRules.enabled(s)) {
+        const count = h.moveActionsRound;
+        h.moveActionsRound = (typeof count === "number" ? count : count?.round === s.round ? count.count || 0 : 0) + 1;
+      }
+      s.move.costPending = false;
+    }
     for (const e of s.enemies)
       if (
         e.node === prev ||
@@ -2377,15 +2410,24 @@
     const phase = (p) =>
       need(s.phase === p, "현재 단계에서는 사용할 수 없는 행동입니다.");
     // New rules apply reward choices and timing windows before any firearm or weapon command.
-    const policyAdoption = ["APPLY_CHAPEL_RULING","APPLY_COMBAT_REACTION_RULING","APPLY_TILE_SPEED_RULING","APPLY_LEAP_MOVE_RULING"].includes(a.type),
+    const policyAdoption = ["APPLY_CHAPEL_RULING","APPLY_COMBAT_REACTION_RULING","APPLY_TILE_SPEED_RULING","APPLY_LEAP_MOVE_RULING","APPLY_MOVEMENT_DECLARATION_RULING"].includes(a.type),
+      movementSelection = s.movementDeclarationRuling === "first-step" && ["MOVE", "CANCEL_MOVE"].includes(a.type),
       rewardFirst = s.setup.rulesVersion>=11 && rewardSession(s),
-      rewardHandled = !policyAdoption && rewardFirst && rewards.dispatch(s,a,rewardHelpers());
+      rewardHandled = !policyAdoption && !movementSelection && rewardFirst && rewards.dispatch(s,a,rewardHelpers());
+    if (movementSelection) need(!s.rewardChoices?.length, "획득한 보상의 장착·보관 선택을 먼저 마치세요.");
     const firearmHandled = !policyAdoption && !rewardHandled && firearms.dispatch(s, a, firearmHelpers());
     const weaponHandled = !policyAdoption && !rewardHandled && !firearmHandled && weaponFlow.dispatch(s,a,weaponHelpers());
     const handled = rewardHandled || firearmHandled || weaponHandled ||
-      !policyAdoption && !rewardFirst && rewardSession(s) && rewards.dispatch(s, a, rewardHelpers());
-    const missionHandled = !policyAdoption && !handled && missions.dispatch(s, a, missionHelpers());
+      !policyAdoption && !movementSelection && !rewardFirst && rewardSession(s) && rewards.dispatch(s, a, rewardHelpers());
+    const missionHandled = !policyAdoption && !movementSelection && !handled && missions.dispatch(s, a, missionHelpers());
     if (!handled && !missionHandled) switch (a.type) {
+      case "APPLY_MOVEMENT_DECLARATION_RULING":
+        need(canApplyMovementDeclarationRuling(s), "진행 중인 이동과 선택을 마친 뒤 이동 비용 판정을 전환하세요.");
+        s.movementDeclarationRuling = "first-step";
+        s.revision++;
+        s.commands.push(clone(command));
+        assertState(s);
+        return s;
       case "APPLY_LEAP_MOVE_RULING":
         need(canApplyLeapMoveRuling(s), "진행 중인 공격과 반응을 마친 뒤 총창의 도약 이동 판정을 전환하세요.");
         s.leapMoveRuling = "move-action";
@@ -2439,23 +2481,36 @@
       case 'START_NEXT_CHAPTER': startNextChapter(s,a);break;
       case "MOVE": {
         phase("hunter");
-        const x = payAction(s, a.cardId);
-        if(weaponRules.enabled(s)) h.moveActionsRound=(h.moveActionsRound || 0)+1;
+        const deferred = s.movementDeclarationRuling === "first-step",
+          x = deferred ? h.hand.find(c => c.id === a.cardId) : payAction(s, a.cardId);
+        need(x, "손에 있는 스탯 카드를 선택하세요.");
+        if (!deferred && weaponRules.enabled(s)) h.moveActionsRound=(h.moveActionsRound || 0)+1;
         s.move = {
           remaining: card(x).move || 2,
           path: [h.position],
           chasers: [],
+          ...(deferred ? {source:"action", cardId:x.id, costPending:true,
+            ...(s.mission?.chapter > 1 ? {npcFollowBefore:!!s.mission.npc.follow} : {})} : {}),
         };
+        if (deferred && s.mission?.chapter > 1) s.mission.npc.follow = false;
         s.phase = "move";
         log(s, `이동 시작 · 최대 ${s.move.remaining}칸.`);
         break;
       }
+      case "CANCEL_MOVE":
+        need(canCancelMove(s), "첫 이동이나 탐험을 확정하기 전의 이동 선언만 취소할 수 있습니다.");
+        if (Object.hasOwn(s.move, "npcFollowBefore")) s.mission.npc.follow = s.move.npcFollowBefore;
+        s.move = null;
+        s.phase = "hunter";
+        log(s, "이동 선언 취소 · 손패를 소모하지 않았습니다.");
+        break;
       case "STEP":
         phase("move");
         stepHunter(s, a.node);
         break;
       case "STOP_MOVE":
         phase("move");
+        need(canStopMove(s), "한 칸 이상 이동한 뒤 이동을 마치세요. 이동 전에는 이동 선언을 취소할 수 있습니다.");
         finishMove(s);
         break;
       case "EXPLORE":
@@ -3049,6 +3104,8 @@
       s.setup.rulesVersion >= 9 && !s.provisional, "타일 속도 판정 기록 오류.");
     need(s.leapMoveRuling === undefined || s.leapMoveRuling === "move-action" &&
       weaponRules.enabled(s) && s.setup.weaponId === "rifle-spear", "총창 도약 이동 판정 기록 오류.");
+    need(s.movementDeclarationRuling === undefined || s.movementDeclarationRuling === "first-step",
+      "이동 비용 판정 기록 오류.");
     need(s.combatReactionRuling === undefined || s.combatReactionRuling === "immediate" &&
       s.setup.rulesVersion >= 11 && !(s.setup.rulesVersion >= 14) && !s.provisional,"처치 반응 판정 기록 오류.");
     need(
@@ -3270,6 +3327,16 @@
         s.move && s.move.remaining > 0 && s.move.remaining <= (s.setup.qa && s.move.source === "consumable" ? 6 : 3),
         "이동 상태 오류.",
       );
+    if (s.move?.source === "action") {
+      const m = s.move;
+      need(s.movementDeclarationRuling === "first-step" && typeof m.costPending === "boolean" &&
+        Array.isArray(m.path) && m.path.length > 0 && all.some(c => c.id === m.cardId) &&
+        (!Object.hasOwn(m, "npcFollowBefore") || s.mission?.chapter > 1 && typeof m.npcFollowBefore === "boolean"),
+        "이동 선언 기록 오류.");
+      need(m.costPending ? m.path.length === 1 && h.hand.some(c => c.id === m.cardId) &&
+        m.remaining === (card(h.hand.find(c => c.id === m.cardId)).move || 2) && !m.chasers.length : m.path.length > 1,
+        "이동 비용 대기 상태 오류.");
+    }
     if (s.phase === "tile_place")
       need(s.world.pending && (s.move || s.world.pending.survivor && s.mission?.survivor.remaining), "배치 상태 오류.");
     if (s.phase === "spawn_choice")
@@ -3321,6 +3388,9 @@
     applyCombatReactionRuling,
     applyTileSpeedRuling,
     applyLeapMoveRuling,
+    applyMovementDeclarationRuling,
+    canCancelMove,
+    canStopMove,
     enemyTileSpeedPenalty,
     killReactionActions,
     hunter,

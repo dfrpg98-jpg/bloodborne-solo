@@ -203,10 +203,7 @@ function render(t) {
   const dividers = g.boundaries.map((p) => `<path d="${line(p)}"/>`).join("");
   const labels = t.spaces.map((s) => {
     const [x, y] = g.spaces[s.id].labelPoint;
-    let label = s.placeName || s.label;
-    if (t.id === "tile-10") label = s.id === "left" ? "왼쪽 칸" : "오른쪽 칸";
-    if (s.id === "center" && t.id === "tile-15") label = t.name;
-    if (s.id === "top" && ["tile-07", "tile-12", "tile-18", "tile-19"].includes(t.id)) label = t.name;
+    const label = G.spaceLabel(t, s);
     const font = label.length > 10 ? 31 : 35;
     return `<text data-space-label="${esc(s.id)}" x="${x * 10}" y="${y * 10}" text-anchor="middle" dominant-baseline="middle" fill="#e4dfd2" font-size="${font}" font-weight="600" paint-order="stroke" stroke="#252524" stroke-width="5">${esc(label)}</text>`;
   }).join("\n");

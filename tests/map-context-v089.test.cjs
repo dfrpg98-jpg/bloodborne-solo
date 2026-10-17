@@ -37,7 +37,6 @@ function unchanged(f) {
   assert.equal(f.ui.storage.get(key), f.bytes, "inspection must preserve the exact original saved bytes");
   assert.equal(f.ui.el("error").textContent, "");
   assert.equal(f.ui.commands.length, 0, "inspection is not a gameplay command");
-  assert.equal(f.ui.el("enemyDetailDialog").open, false, "map abilities appear inline rather than opening a modal");
   assert.equal(f.ui.el("infoDialog").open, false);
 }
 function clean(f, text) { return f.ui.window.BBHuntPublicText.clean(text, "skill"); }

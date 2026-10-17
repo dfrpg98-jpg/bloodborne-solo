@@ -68,13 +68,14 @@
       section.setAttribute("aria-labelledby", button.id);
     }
   }
-  function selectWorkspace(panel, source, { focus = false, notify = true } = {}) {
+  function selectWorkspace(panel, source, { focus = false, notify = true, preserveDialog = false } = {}) {
     if (!supportsWorkspace(panel)) return false;
-    if (dialog.open) dialog.close();
+    const keepDialog = dialog.open && (preserveDialog || dialog.dataset?.windowMinimized === "true");
+    if (dialog.open && !keepDialog) dialog.close();
     workspace = panel;
     for (const section of workspacePanels()) section.hidden = section.dataset.workspacePanel !== panel;
     markButtons();
-    if (notify) presentPanel(panel === "progress" ? null : panel, { force: true });
+    if (notify) presentPanel(keepDialog ? current : panel === "progress" ? null : panel, { force: true });
     if (focus) (source?.dataset?.workspaceTab ? source : all("[data-workspace-tab]").find(button => button.dataset.workspaceTab === panel))?.focus?.({ preventScroll: true });
     return true;
   }
@@ -150,5 +151,5 @@
   selectWorkspace("progress", null, { notify: false });
   bind();
   return { open, close, bind, sync, refresh, activePanel,
-    showProgress: () => selectWorkspace("progress"), activeWorkspace: () => workspace };
+    showProgress: settings => selectWorkspace("progress", null, settings), activeWorkspace: () => workspace };
 });

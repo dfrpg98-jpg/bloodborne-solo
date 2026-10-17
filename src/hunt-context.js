@@ -69,7 +69,8 @@
           phase === "hunter" ? [{ type: "MOVE", cardId: chosen?.id || null }, { type: "STEP", node: nodeId }] : null);
       } else {
         result.hint = "사냥꾼이 있는 칸입니다.";
-        if (phase === "move") add("stop-move", "여기서 이동 마치기", "추가 비용 없음", "", { type: "STOP_MOVE" });
+        if (phase === "move") add("stop-move", "이동 마치기", "추가 비용 없음",
+          E.canStopMove && !E.canStopMove(state) ? "한 칸 이상 이동하세요." : "", { type: "STOP_MOVE" });
         if (phase === "hunter") {
           const options = E.interactionOptions(state);
           const available = options.loot || options.heal || options.teleport || options.workshop ||

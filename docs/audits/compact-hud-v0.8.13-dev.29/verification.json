@@ -1,0 +1,102 @@
+{
+  "version": "0.8.13-dev.29",
+  "date": "2026-10-17",
+  "status": "로컬 적용·집중 검증 완료, main 병합 별도",
+  "feedback": {
+    "1": "손패 카드 136→100px. 여백 축소·기본 효과 요약, 원문은 title와 aria-label에 유지",
+    "2": "기본 슬롯 최소 높이 140→96px. 공격 이름·속도·피해 글자 크기 유지",
+    "3": "하단 손패·이동·무기 영역 260→216px. 맵 공간 44px 증가",
+    "4": "기본 3슬롯 영역의 불필요한 세로 스크롤 제거",
+    "8": "현재 챕터 계몽 진행 막대·숫자와 단서 장소 목록·이동 종료 조건을 분리",
+    "9": "현재 공개된 준비·지속·임무 적 규칙을 목표 위에 표시. 이미 적용한 준비는 펼쳐 읽기",
+    "10": "상단 마커 색·활성화 순위·적 이름과 능력 보기 복구",
+    "5-7": "목표 제목·상태 분리, 제목과 설명 8px, 헤더와 목표 10px, 설명 줄높이 1.65, 항목 간격 정리"
+  },
+  "rosterHistory": {
+    "changedIn": "0.8.13-dev.25",
+    "commit": "f2a91dc7375f965d94ed90d84f2e879909b32d39",
+    "pr": 80,
+    "cause": "목표 공간 확보를 위해 개발 담당자가 접힌 목록으로 이동. 사용자에게서 적 목록 숨김 지시를 받은 것은 아님",
+    "restored": "enemyRoster 하나를 상단으로 이동, 기존 마커 배정·순위·상세 클릭 사용"
+  },
+  "browser": {
+    "main": {
+      "url": "http://127.0.0.1:8860/hunt.html",
+      "viewport": [
+        2035,
+        1252
+      ],
+      "lowerBeforeAfter": [
+        260,
+        216
+      ],
+      "cardBeforeAfter": [
+        136,
+        100
+      ],
+      "slotBeforeAfter": [
+        140,
+        96
+      ],
+      "slotViewportBefore": {
+        "clientHeight": 113,
+        "scrollHeight": 140
+      },
+      "slotViewportAfter": {
+        "clientHeight": 110,
+        "scrollHeight": 110
+      },
+      "bodyFontBoth": "14px",
+      "cardTitleFontBoth": "16px",
+      "slotTitleFontBoth": "15px",
+      "bodyTransformBoth": "none",
+      "mapBeforeAfter": [
+        706.5,
+        750.5
+      ],
+      "phaseHandStatusRoundPositionPreserved": true
+    },
+    "practice": {
+      "url": "http://127.0.0.1:8861/hunt.html",
+      "mode": "검증용 사냥·장송의 칼날",
+      "viewport": [
+        1280,
+        720
+      ],
+      "basicHandCount": 3,
+      "basicHandAndIndividualCardsWithoutVerticalOverflow": true,
+      "basicSlotsWithoutVerticalOverflow": true,
+      "rosterVisible": true,
+      "rosterEnemyDetailClick": "야수 사냥 하인 상세 열림, 닫기 정상"
+    },
+    "specialRules": {
+      "origin": "http://localhost:8861",
+      "classification": "엔진 공개 명령 이력에서 내보낸 챕터 시작 저장을 별도 브라우저 원점에서 공식 불러오기로 검수. 실제 캠페인 완주로 세지 않음",
+      "chapters": [
+        2,
+        3
+      ],
+      "chapter2": "적용된 특수 준비, 야수 유인·시체 수집",
+      "chapter3": "적용된 특수 준비, 지하묘지 진입 금지·공개된 해제 조건",
+      "chapter3UnrevealedReleaseAndSummonHidden": true,
+      "rulesAboveCurrentGoal": true,
+      "ruleAreaClientAndScrollHeight": [
+        146,
+        146
+      ],
+      "loadMenuClosedAutomatically": true,
+      "errorText": ""
+    }
+  },
+  "checks": {
+    "focused": "100/100 통과. compact-hud, mission-special-rules-hud, chapter-transition-ui, mission-guidance-ui, mission-objective-visibility, info-panels, mission-hud-map-workspace, movement-declaration-ui, movement-declaration, hunt-map-height, ui-information-density. 로그는 test-results/campaign-matrix-dev29/compact-hud/focused.tap",
+    "independentReview": "공개 정보 경계·카드 원문 보존·배율 불변 검토, 추가 결함 없음",
+    "fullRegression": "이 화면 변경 전 후보의 3164/3164 결과와 구분. 이 변경은 집중 검사와 실제 브라우저 검증을 사용"
+  },
+  "evidence": "test-results/campaign-matrix-dev29/compact-hud/ 아래 public-states·screenshots로 분류",
+  "limitations": [
+    "긴 기술 설명·여러 부착 보상·사용된 슬롯의 추가 문구는 정보 접근을 위해 스크롤을 유지할 수 있음",
+    "추가 보스까지 상단 목록이 4개 이상이면 좁은 화면에서 가로 스크롤 가능",
+    "이 작업을 정규 장비 캠페인 전체 완주 또는 모든 무기 모션 검증으로 세지 않음"
+  ]
+}
