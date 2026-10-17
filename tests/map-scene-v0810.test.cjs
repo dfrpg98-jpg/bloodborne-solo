@@ -27,7 +27,7 @@ function launch(state) {
 function unchanged(f) {
   assert.equal(f.ui.storage.get(rootKey),f.bytes,'object inspection must preserve the exact saved progress');
   assert.equal(f.ui.el('error').textContent,'');
-  assert.equal(f.ui.el('enemyDetailDialog').open,false);assert.equal(f.ui.el('infoDialog').open,false);
+  assert.equal(f.ui.el('infoDialog').open,false);
 }
 function tileHTML(f,tileId) {
   const html=f.ui.el('chapterMap').innerHTML;

@@ -54,7 +54,13 @@ class Element {
   showModal() { this.modalCalls = (this.modalCalls || 0) + 1; this.open = true; }
   close() { this.open = false; this.fire("close"); }
   focus() { this.document.activeElement = this; }
-  getBoundingClientRect() { return { left: parseFloat(this.style.left) || 0, top: parseFloat(this.style.top) || 0, width: this.width || 400, height: this.height || 300 }; }
+  getBoundingClientRect() {
+    // Geometry contract for the CSS title-bar collapse, rather than a renderer.
+    const availableWidth = (this.document.defaultView?.innerWidth || 1000) - 16;
+    return { left: parseFloat(this.style.left) || 0, top: parseFloat(this.style.top) || 0,
+      width: Math.min(parseFloat(this.style.width) || this.width || 400, availableWidth),
+      height: this.getAttribute("data-window-minimized") === "true" ? 42 : this.height || 300 };
+  }
 }
 function setup(ids = ["attachmentDialog", "infoDialog", "missionUpdateDialog"]) {
   const document = new Element(null, "document"); document.document = document;
@@ -101,14 +107,15 @@ test("minimize and restore preserve pending input, block actions and restore key
   assert.equal(manager.minimize(dialog), true);
   assert.equal(dialog.open, true); assert.equal(input.value, "2"); assert.equal(closes, 0);
   assert.equal(dialog.getAttribute("data-window-minimized"), "true");
-  assert.equal(document.activeElement.className, "hunt-window-restore");
+  assert.equal(document.activeElement, dialog.querySelector(".hunt-window-minimize"));
+  assert.equal(document.activeElement.textContent, "복원");
   assert.equal(manager.canExecute([{ type: "ATTACK" }]), false);
   assert.equal(manager.restore("attachmentDialog"), true);
   assert.equal(document.activeElement, input); assert.equal(input.value, "2"); assert.equal(closes, 0);
   assert.equal(dialog.getAttribute("data-window-minimized"), null);
   manager.minimize(dialog); dialog.close();
   assert.equal(closes, 1); assert.equal(manager.isBlocked(), false);
-  assert.equal(document.querySelector(".hunt-window-dock").hidden, true);
+  assert.equal(document.querySelector(".hunt-window-dock"), null);
   dialog.showModal(); assert.equal(dialog.getAttribute("data-window-minimized"), null);
 });
 test("outside action clicks are blocked while map inspection, card selection and equipment reading remain available", () => {
@@ -148,7 +155,7 @@ test("only explicit responses bypass click blocking; resource use is forbidden e
   assert.equal(document.fire("click", { target: load }).stopped, undefined);
 });
 test("all registered windows block game commands while open or minimized, including read-only dialogs", () => {
-  const ids = ["missionUpdateDialog", "deathDialog", "attachmentDialog", "escortDialog", "actionLossDialog", "setupDialog", "loadDialog", "storyDialog", "enemyDetailDialog", "infoDialog", "upgradeDialog", "enemyHistoryDialog", "missionGuideDialog"];
+  const ids = ["missionUpdateDialog", "deathDialog", "attachmentDialog", "escortDialog", "actionLossDialog", "setupDialog", "loadDialog", "storyDialog", "infoDialog", "upgradeDialog", "enemyHistoryDialog", "missionGuideDialog"];
   const { document, dialogs } = setup(ids), manager = W.install(document);
   for (const id of ids) {
     const dialog = dialogs[id]; dialog.showModal(); manager.minimize(id);
@@ -240,15 +247,94 @@ test("drag and keyboard movement are bounded and never start from an action cont
 test("multiple minimized windows have independent restoration controls and registration is reversible", () => {
   const { document, dialogs } = setup(), original = dialogs.infoDialog.showModal, manager = W.install(document);
   for (const dialog of Object.values(dialogs)) { dialog.showModal(); manager.minimize(dialog); }
-  const dock = document.querySelector(".hunt-window-dock");
-  assert.equal(dock.querySelectorAll("button").filter(button => !button.hidden).length, 3);
+  const buttons = Object.values(dialogs).map(dialog => dialog.querySelector(".hunt-window-minimize"));
+  assert.equal(buttons.filter(button => button.textContent === "복원").length, 3);
+  assert.equal(document.querySelector(".hunt-window-dock"), null);
   manager.restore("infoDialog"); assert.equal(dialogs.attachmentDialog.getAttribute("data-window-minimized"), "true");
-  assert.equal(dock.hidden, false);
+  assert.equal(buttons.filter(button => button.textContent === "복원").length, 2);
   const dynamic = document.createElement("dialog"); dynamic.setAttribute("id", "lateDialog"); document.body.append(dynamic);
   manager.refresh(); dynamic.showModal(); assert.equal(dynamic.showCalls, 1);
   manager.destroy(); assert.equal(dialogs.infoDialog.showModal, original);
   assert.equal(document.querySelector(".hunt-window-dock"), null);
   assert.equal(dialogs.infoDialog.getAttribute("aria-modal"), null);
+});
+test("the same title bar retains width, position, pending inputs and scroll offsets when toggled", () => {
+  const { document, dialogs } = setup(["attachmentDialog"]), manager = W.install(document), dialog = dialogs.attachmentDialog;
+  const content = document.createElement("div"); content.className = "compact-dialog-content";
+  const input = document.createElement("select"); input.value = "slot-3"; content.append(input); dialog.append(content);
+  dialog.style.width = "380px"; dialog.style.boxSizing = "content-box";
+  dialog.showModal(); Object.assign(dialog.style, { left: "81px", top: "112px" });
+  dialog.scrollTop = 21; content.scrollTop = 147; content.scrollLeft = 5; input.focus();
+  const button = dialog.querySelector(".hunt-window-minimize"), heading = dialog.querySelector(".hunt-window-handle");
+  button.fire("click");
+  assert.equal(button.textContent, "복원"); assert.equal(button.getAttribute("aria-label"), "창 복원");
+  assert.equal(button.getAttribute("aria-expanded"), "false"); assert.equal(document.activeElement, button);
+  assert.equal(dialog.style.left, "81px"); assert.equal(dialog.style.top, "112px");
+  assert.equal(dialog.style.width, "380px"); assert.equal(dialog.style.boxSizing, "border-box");
+  assert.equal(heading.parentElement, dialog); assert.equal(heading.contains(button), true);
+  assert.equal(dialog.open, true); assert.equal(input.value, "slot-3");
+  dialog.scrollTop = content.scrollTop = content.scrollLeft = 0;
+  button.fire("click");
+  assert.equal(button.textContent, "최소화"); assert.equal(button.getAttribute("aria-expanded"), "true");
+  assert.equal(dialog.style.boxSizing, "content-box"); assert.equal(dialog.scrollTop, 21);
+  assert.equal(content.scrollTop, 147); assert.equal(content.scrollLeft, 5); assert.equal(document.activeElement, input);
+  assert.equal(dialog.getAttribute("data-window-minimized"), null); assert.equal(input.value, "slot-3");
+});
+test("minimized bars can be dragged and clamped on resize, then restoration clamps the expanded body", () => {
+  const { document, dialogs } = setup(["infoDialog"]), manager = W.install(document), dialog = dialogs.infoDialog;
+  dialog.showModal(); manager.minimize(dialog);
+  const heading = dialog.querySelector(".hunt-window-handle");
+  heading.fire("pointerdown", { button: 0, pointerId: 2, clientX: 300, clientY: 200 });
+  document.fire("pointermove", { pointerId: 2, clientX: 2000, clientY: 2000 });
+  assert.equal(dialog.style.left, "592px"); assert.equal(dialog.style.top, "650px");
+  document.fire("pointerup", { pointerId: 2 });
+  heading.fire("keydown", { altKey: true, key: "ArrowLeft" }); assert.equal(dialog.style.left, "576px");
+  document.defaultView.innerWidth = 300; document.defaultView.innerHeight = 330;
+  document.defaultView.fire("resize"); assert.equal(dialog.style.left, "8px"); assert.equal(dialog.style.top, "280px");
+  manager.restore(dialog); assert.equal(dialog.style.left, "8px"); assert.equal(dialog.style.top, "22px");
+  assert.equal(dialog.style.width, ""); assert.equal(manager.isBlocked(), true);
+});
+test("a minimized title-bar close resolves only that window and leaves other pending windows blocked", () => {
+  const { document, dialogs } = setup(["attachmentDialog", "infoDialog"]), manager = W.install(document);
+  const close = document.createElement("button"); close.setAttribute("id", "closeAttachments");
+  dialogs.attachmentDialog.querySelector(".compact-dialog-heading").append(close);
+  close.addEventListener("click", () => dialogs.attachmentDialog.close());
+  for (const dialog of Object.values(dialogs)) { dialog.showModal(); manager.minimize(dialog); }
+  assert.equal(document.fire("click", { target: close }).stopped, undefined); close.fire("click");
+  assert.equal(dialogs.attachmentDialog.open, false); assert.equal(dialogs.infoDialog.open, true);
+  assert.equal(dialogs.infoDialog.getAttribute("data-window-minimized"), "true");
+  assert.equal(manager.canExecute([{ type: "MOVE" }]), false);
+  assert.equal(dialogs.infoDialog.classList.contains("has-blocked-action"), true);
+  assert.equal(dialogs.attachmentDialog.classList.contains("has-blocked-action"), false);
+  dialogs.infoDialog.querySelector(".hunt-window-minimize").fire("click");
+  assert.equal(dialogs.infoDialog.getAttribute("data-window-minimized"), null);
+  assert.equal(dialogs.infoDialog.classList.contains("has-blocked-action"), false);
+});
+test("generated and nested title bars retain their title and are cleaned up without altering native headings", () => {
+  const { document, dialogs } = setup(["infoDialog"]), dialog = dialogs.infoDialog;
+  const heading = dialog.querySelector(".compact-dialog-heading"), wrapper = document.createElement("div");
+  dialog.children = []; dialog.append(wrapper); wrapper.append(heading);
+  heading.setAttribute("tabindex", "3"); heading.setAttribute("title", "원래 제목줄");
+  const generated = document.createElement("dialog"); generated.setAttribute("id", "setupDialog");
+  generated.setAttribute("aria-labelledby", "setupTitle"); const label = document.createElement("h2");
+  label.setAttribute("id", "setupTitle"); label.textContent = "시작 준비"; generated.append(label); document.body.append(generated);
+  const manager = W.install(document);
+  assert.equal(wrapper.classList.contains("hunt-window-heading-path"), true);
+  label.textContent = "검증용 사냥 준비"; generated.showModal(); manager.minimize(generated);
+  assert.equal(generated.querySelector(".hunt-window-bar").children[0].textContent, "검증용 사냥 준비");
+  assert.equal(generated.style.width, "400px"); manager.destroy();
+  assert.equal(generated.querySelector(".hunt-window-bar"), null); assert.equal(generated.style.width, "");
+  assert.equal(wrapper.classList.contains("hunt-window-heading-path"), false);
+  assert.equal(heading.classList.contains("hunt-window-handle"), false);
+  assert.equal(heading.getAttribute("tabindex"), "3"); assert.equal(heading.getAttribute("title"), "원래 제목줄");
+});
+test("minimized-window CSS hides the body instead of the whole dialog and contains no bottom dock", () => {
+  const css = require("node:fs").readFileSync(require("node:path").join(__dirname, "../styles/hunt-window-manager.css"), "utf8");
+  assert.match(css, /\[data-window-minimized="true"\]\s*>\s*:not\(\.hunt-window-handle\):not\(\.hunt-window-heading-path\)/);
+  assert.match(css, /height:\s*auto\s*!important/);
+  assert.match(css, /max-width:\s*calc\(100vw - 16px\)\s*!important/);
+  assert.match(css, /\.hunt-window-tools\s*\{\s*position:\s*static;/);
+  assert.doesNotMatch(css, /hunt-window-dock|hunt-window-restore|visibility:\s*hidden|pointer-events:\s*none/);
 });
 test("the real hunt controller keeps actions and automatic saves blocked after initial setup is minimized", () => {
   const E = require("../src/hunt-engine"), { boot } = require("./helpers/ui-harness.cjs");

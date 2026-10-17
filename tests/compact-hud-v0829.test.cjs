@@ -10,7 +10,7 @@ function launch(state) {
   assert.equal(ui.el("error").textContent, "");
   return { ui, saved };
 }
-test("the restored marker roster is always in the top summary and still opens public enemy details without spending an action", () => {
+test("the restored marker roster stays in the top summary and shows public enemy information inline without spending an action", () => {
   const html = fs.readFileSync(path.join(__dirname, "../hunt.html"), "utf8"),
     summary = html.slice(html.indexOf('<div class="hud-summary">'), html.indexOf('<section class="track-panel"'));
   assert.equal((html.match(/id="enemyRoster"/g) || []).length, 1);
@@ -19,8 +19,13 @@ test("the restored marker roster is always in the top summary and still opens pu
   const state = E.create(90, "burial", 0, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 14 }),
     { ui, saved } = launch(state), opener = ui.el("enemyRoster").querySelectorAll("[data-enemy-info]")[0];
   assert(opener); opener.click();
-  assert.equal(ui.el("enemyDetailDialog").open, true);
-  assert(ui.el("enemyDetailTitle").textContent.length > 0);
+  assert.equal(ui.el("mapContext").hidden, false);
+  assert.equal(ui.el("workspaceProgress").hidden, false);
+  assert.equal(ui.el("enemyDetailDialog"), null, "roster inspection has no separate enemy popup");
+  assert(ui.el("enemyInspectionTitle")); assert(ui.el("enemyInspectionContent"));
+  assert.match(ui.el("mapContext").innerHTML, /<h3\b[^>]*id="enemyInspectionTitle"[^>]*>[^<]+<\/h3>/);
+  assert.match(ui.el("mapContext").innerHTML, /id="enemyInspectionContent"[^>]*>[\s\S]*기본 공격/);
+  assert.equal(ui.commands.length, 0);
   assert.equal(ui.storage.get(key), saved);
 });
 test("the first goal shows actual current insight and separate visit places without exposing the future boss", () => {

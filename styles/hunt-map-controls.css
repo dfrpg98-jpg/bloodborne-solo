@@ -38,6 +38,7 @@ html[data-phase="between_chapters"] .hunt-main .hunt-layout {
 .movement-panel .panel-heading { align-items: center; justify-content: space-between; }
 .movement-controls { display: flex; flex-direction: column; min-height: 0; gap: 3px; overflow: auto; scrollbar-width: thin; }
 .movement-controls .movement-hint { margin: 2px 0; font-size: 11px; line-height: 1.4; }
+.movement-shortcuts { margin: 4px 0 0; font-size: 10px; line-height: 1.4; color: #b7cdd0; }
 .movement-controls > button { min-height: 27px; padding: 3px 6px; font-size: 12px; }
 .movement-pad { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(3, 27px); gap: 2px; flex: 0 0 auto; }
 .movement-pad button { padding: 2px; min-height: 0; font-size: 18px; line-height: 1; }
@@ -83,28 +84,32 @@ html[data-phase="between_chapters"] .hunt-main .hunt-layout {
   .hunt-main .weapon-panel, .hunt-main .gun-panel { grid-column: 1 / -1; }
 }
 @media (max-height: 800px) and (min-width: 721px) {
-  .hunt-screen .hunt-main { grid-template-rows: 104px 22px minmax(0, 1fr) 228px; }
+  .hunt-screen .hunt-main { grid-template-rows: 68px 22px minmax(0, 1fr) 228px; }
   .hunt-main .weapon-rules { flex-basis: 50px; }
   .tile-inspection-status p { padding: 5px 6px; }
 }
 @media (max-height: 680px) and (min-width: 721px) {
-  .hunt-screen .hunt-main { grid-template-rows: 96px 22px minmax(0, 1fr) 228px; }
+  .hunt-screen .hunt-main { grid-template-rows: 60px 22px minmax(0, 1fr) 228px; }
 }
 /* 오른쪽 진행 상황은 하단 옆까지 이어집니다. 하단을 줄여도 전체 열 높이는 유지합니다. */
 @media (min-width: 721px) {
-  .hunt-screen { --decision-width: 320px; --loadout-row: 216px; }
+  .hunt-screen { --decision-width: 320px; --loadout-row: 216px; --movement-extra: 64px; --loadout-gap: var(--hud-gap); }
+  .hunt-main .hud-summary > .panel { overflow-y: auto; scrollbar-width: thin; }
   .hunt-main .hunt-layout { position: relative; }
   .hunt-main .hunt-decisions { position: absolute; top: 0; right: 0; width: var(--decision-width); height: calc(100% + var(--loadout-row) + var(--hud-gap)); box-sizing: border-box; }
-  .hunt-main .hunt-loadout { margin-right: calc(var(--decision-width) + var(--hud-gap)); grid-template-columns: minmax(0, 1fr) 140px minmax(0, 1.3fr); }
-  .hunt-screen .hunt-main { grid-template-rows: 132px 24px minmax(0, 1fr) var(--loadout-row); }
+  /* 손패의 기존 너비를 유지하고 이동 조작의 증가분만 무기 영역에서 확보합니다. */
+  .hunt-main .hunt-loadout { margin-right: calc(var(--decision-width) + var(--hud-gap)); grid-template-columns: minmax(0, calc((100% - 140px - var(--loadout-gap) - var(--loadout-gap)) / 2.3)) calc(140px + var(--movement-extra)) minmax(0, 1fr); }
+  .hunt-screen .hunt-main { grid-template-rows: 96px 24px minmax(0, 1fr) var(--loadout-row); }
   html[data-phase="upgrade_pick"] .hunt-screen,
   html[data-phase="upgrade_replace"] .hunt-screen,
   html[data-phase="between_chapters"] .hunt-screen { --decision-width: 360px; }
 }
+@media (min-width: 721px) and (max-width: 1400px) { .hunt-screen { --movement-extra: 44px; } }
 @media (min-width: 721px) and (max-width: 1200px) { .hunt-screen, html[data-phase] .hunt-screen { --decision-width: 280px; } }
-@media (min-width: 721px) and (max-width: 980px) { .hunt-screen, html[data-phase] .hunt-screen { --decision-width: 240px; } }
-@media (min-width: 721px) and (max-height: 800px) { .hunt-screen .hunt-main { grid-template-rows: 104px 22px minmax(0, 1fr) var(--loadout-row); } }
-@media (min-width: 721px) and (max-height: 680px) { .hunt-screen .hunt-main { grid-template-rows: 96px 22px minmax(0, 1fr) var(--loadout-row); } }
+@media (min-width: 721px) and (max-width: 980px) { .hunt-screen, html[data-phase] .hunt-screen { --decision-width: 240px; --movement-extra: 24px; } }
+@media (min-width: 721px) and (max-width: 800px) { .hunt-screen { --loadout-gap: 6px; } }
+@media (min-width: 721px) and (max-height: 800px) { .hunt-screen .hunt-main { grid-template-rows: 68px 22px minmax(0, 1fr) var(--loadout-row); } }
+@media (min-width: 721px) and (max-height: 680px) { .hunt-screen .hunt-main { grid-template-rows: 60px 22px minmax(0, 1fr) var(--loadout-row); } }
 .hunt-main .hunt-decisions .gun-panel { position: static; width: auto; height: auto; min-height: 0; padding: 8px 0 0 !important; margin: 7px 0 0; flex: 0 0 auto; display: grid !important; grid-template-columns: minmax(0, 1fr) minmax(100px, 46%); align-items: center; gap: 7px; border: 0; border-top: 1px solid #51636a; border-radius: 0; background: transparent; }
 .hunt-main .hunt-decisions .gun-panel .eyebrow, .hunt-main .hunt-decisions .gun-panel .firearm-rules { display: none; }
 .hunt-main .hunt-decisions .gun-panel h2 { font-size: 12px; line-height: 1.4; margin: 0; }

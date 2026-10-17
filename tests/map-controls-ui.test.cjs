@@ -107,7 +107,17 @@ test("selected-space inspection shows its actual enemy and insight, with tile-wi
   assert(info.spaces.some(space => space.interactions.some(text => text.includes("꿈 복귀 불가"))));
   assert(ui.el("tileInfo").querySelectorAll("[data-special-info]").length);
   assert.equal(ui.el("tileInfo").querySelectorAll(".tile-info-space").length, 1);
-  ui.el("tileInfo").querySelectorAll("[data-special-info]")[0].click(); assert.equal(ui.el("enemyDetailDialog").open, true);
+  const chip = ui.el("tileInfo").querySelectorAll("[data-special-info]")[0]; chip.focus(); chip.click();
+  assert.equal(ui.el("mapContext").hidden, false); assert.equal(ui.el("workspaceProgress").hidden, false);
+  assert.equal(ui.el("enemyDetailDialog"), null, "tile enemies use the same inline target view as map figures");
+  assert(ui.el("enemyInspectionTitle")); assert(ui.el("enemyInspectionContent"));
+  assert(ui.el("mapContext").textContent.includes(E.enemyDef(state, enemy).name));
+  for (const action of [E.enemyDef(state, enemy).basic, E.enemyDef(state, enemy).special, E.enemyDef(state, enemy).ability])
+    assert(ui.el("mapContext").textContent.includes(ui.window.BBHuntPublicText.clean(action.name, "skill")));
+  assert.equal(ui.storage.get(key), before);
+  ui.el("clearMapTarget").click(); assert.equal(ui.el("mapContext").hidden, true);
+  const restoredChip = ui.el("tileInfo").querySelectorAll("[data-special-info]").find(button => button.dataset.specialInfo === enemy.id);
+  assert(restoredChip); assert.equal(ui.document.activeElement, restoredChip, "closing returns focus to the current tile chip");
   assert.equal(ui.storage.get(key), before);
   const withLoot = timeline.find(state => state.loot.length && E.missionView(state)?.tokens?.some(token => token.node));
   assert(withLoot); const allInfo = withLoot.world.tiles.map(tile => U.tileInfo(withLoot, tile.tileId));
