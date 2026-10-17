@@ -137,6 +137,33 @@ test("unnamed tiles omit their invented display name in both the map and tile pa
   assert(!ui.el("chapterMap").innerHTML.match(/tile-info-trigger[^>]*>명칭 없는/));
 });
 
+test("an empty space on an unnamed public tile retains its map address and selected-space label without taking an action", () => {
+  const state = timeline.find(state => state.world.tiles.some(tile => !M.tile(tile.tileId).named));
+  assert(state);
+  const placed = state.world.tiles.find(tile => !M.tile(tile.tileId).named), definition = M.tile(placed.tileId),
+    space = definition.spaces.find(space => !space.icons.length);
+  assert(space, "the natural command fixture has revealed an empty unnamed space");
+  const ui = launch(state), before = ui.storage.get(key), commandsBefore = saved(ui).commands.length,
+    reference = ui.window.BBHuntLocationLabels.tile(state, placed.tileId).reference,
+    node = placed.tileId + ":" + space.id,
+    cell = ui.el("chapterMap").querySelectorAll("[data-node]").find(button => button.dataset.node === node);
+  assert(cell); cell.click();
+  const panel = ui.el("tileInfo");
+  assert(panel.textContent.includes(reference), "the public map address identifies the inspected unnamed tile");
+  assert(panel.textContent.includes(space.placeName || space.label), "selectedOnly still names the selected space");
+  assert.match(panel.textContent, /비어있음/);
+  assert.equal(panel.querySelectorAll(".tile-info-space").length, 1);
+  assert(!panel.textContent.includes(definition.displayName), "no invented printed tile name is exposed");
+  assert(!panel.textContent.includes(placed.tileId), "development identifiers are not player names");
+  for (const other of definition.spaces.filter(other => other.id !== space.id))
+    assert(!panel.textContent.includes(other.placeName || other.label), "other spaces remain omitted");
+  assert.equal(ui.storage.get(key), before, "inspection leaves the exact save bytes unchanged");
+  assert.equal(saved(ui).commands.length, commandsBefore, "inspection records no engine command");
+  ui.el("inspectCurrentTile").click();
+  assert(ui.el("tileInfo").textContent.includes("중앙 등불"), "named tiles retain their existing public name");
+  assert.equal(ui.storage.get(key), before);
+});
+
 test("crossing a tile boundary keeps the inspected tile without repeating hunter location, and current-location inspection costs nothing", () => {
   const index = timeline.findIndex((state, i) => i + 1 < timeline.length && state.phase === "move" &&
     fixture[i]?.type === "STEP" && E.node(state, E.hunter(state).position).tile !== E.node(timeline[i + 1], E.hunter(timeline[i + 1]).position).tile);

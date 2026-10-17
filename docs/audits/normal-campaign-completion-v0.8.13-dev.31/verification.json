@@ -1,0 +1,288 @@
+{
+  "schema": "normal-campaign-completion-audit-v1",
+  "version": "0.8.13-dev.31",
+  "date": "2026-10-18",
+  "status": "정규 장비 실제 UI 완주·저장 감사와 최종 수정본의 두 번째 완주 완료. 표시·카메라 오류 2건 수정, 최종 전체 CI 통과.",
+  "supersedes": {
+    "scope": "이전 감사의 정규 장비 챕터 2·3 완주 미완료 상태를 이번 최초 실제 UI 완주 결과로 갱신합니다. 당시 화면·검사·한계 기록은 수정하지 않고 보존합니다.",
+    "historicalAudits": [
+      "docs/audits/movement-v0.8.13-dev.29/verification.json",
+      "docs/audits/compact-hud-v0.8.13-dev.29/verification.json",
+      "docs/audits/inline-workspace-v0.8.13-dev.30/verification.json"
+    ]
+  },
+  "scope": {
+    "actualBrowserOperator": "root 개발 담당자",
+    "independentAuditOperator": "normal_campaign_oracle — 실제 UI를 조작하지 않고 내보낸 저장·공개 명령·규칙을 독립 분석",
+    "setup": {
+      "seed": 90,
+      "weaponId": "burial",
+      "firearmId": "hunter-pistol",
+      "startingConsumable": null,
+      "campaign": true,
+      "rulesVersion": 14,
+      "qa": false,
+      "provisional": false
+    },
+    "stateInjection": false,
+    "qaItemsGranted": false,
+    "engineOrSaveFormatChanged": false,
+    "limits": "이번 실제 UI 완주는 위 정규 장비 1개 캠페인 경로입니다. 엔진의 다른 무기·보스 조합 분석이나 선택 임무 합성 경계를 실제 PC 완주 횟수로 합산하지 않습니다."
+  },
+  "firstActualBrowserContinuation": {
+    "status": "passed",
+    "inputRangeInclusive": [
+      140,
+      330
+    ],
+    "plannedInputsCompleted": 191,
+    "nextInput": 331,
+    "additionalLegalCommands": [
+      {
+        "afterInput": 265,
+        "type": "REASSIGN_REWARD",
+        "rewardId": "reward-15",
+        "slot": 0
+      },
+      {
+        "afterInput": 265,
+        "type": "REASSIGN_REWARD",
+        "rewardId": "reward-15",
+        "slot": 1
+      }
+    ],
+    "additionalCommandPurpose": "사망 후 꿈 귀환에서 반대 무기 면을 선택한 직후 혈석 파편을 다른 슬롯으로 옮겼다가 원래 슬롯으로 되돌리는 실제 UI 검증",
+    "uiLog": "test-results/normal-completion-dev31/ui-log.json",
+    "chapter2": {
+      "completed": true,
+      "result": "chapter-win",
+      "completionInput": 278,
+      "mainOutcome": "성직자 야수 2페이즈 전환 후 지하묘지 유인",
+      "optionalCompletedCards": [
+        26,
+        28
+      ],
+      "save": "test-results/normal-completion-dev31/exports/chapter2-complete.json",
+      "screenshot": "test-results/normal-completion-dev31/screenshots/chapter2-complete.jpg"
+    },
+    "chapter3": {
+      "startedInput": 280,
+      "completed": true,
+      "result": "campaign-win",
+      "completionInput": 330,
+      "completedCards": [
+        44
+      ],
+      "finalBoss": "실제 성직자 야수 양 페이즈",
+      "round": 9,
+      "track": 11,
+      "hunterHpAfterDreamMaintenance": 6,
+      "hunterEchoes": 0,
+      "save": "test-results/normal-completion-dev31/exports/campaign-complete.json",
+      "screenshot": "test-results/normal-completion-dev31/screenshots/campaign-complete.jpg"
+    }
+  },
+  "savedExportAudit": {
+    "status": "passed",
+    "classification": "실제 브라우저에서 생성한 저장 7개의 독립 엔진 감사",
+    "report": "test-results/normal-completion-dev31/export-verification.json",
+    "exportCount": 7,
+    "allStrictImportReplayPassed": true,
+    "allExportByteExact": true,
+    "allQaFalse": true,
+    "allProvisionalFalse": true,
+    "finalGameplayFieldsCompared": "최상위 commands/events/revision을 제외한 모든 상태 필드를 재귀적으로 비교",
+    "unexplainedGameplayDifferences": 0,
+    "explainedRecordDifferences": {
+      "additionalReassignmentCommands": 2,
+      "revisionDelta": 2,
+      "finalRevision": 336,
+      "alignedCommandsWithUiDefaultKeys": 45,
+      "addedUiDefaultFieldCount": 70,
+      "uiDefaultKeyValues": "빈 배열, false 또는 null",
+      "additionalReassignmentEvents": 2,
+      "expiredOldestEventsFrom180EntryWindow": 2,
+      "remainingEventsExact": 178
+    },
+    "finalSaveBytes": 59150,
+    "finalSaveSha256": "796fe800bb1ba835d5adeb26db8cc98e6ca550eb866c86f9d2fe79a514a9a0e9"
+  },
+  "browserRestoreVerification": {
+    "source": "root의 실제 공개 UI 검증",
+    "completedSaveLoadedWithOfficialUi": true,
+    "reexportBytes": 59150,
+    "reexportByteExact": true,
+    "endingPreservedAfterReload": true,
+    "screenshot": "test-results/normal-completion-dev31/screenshots/campaign-restored.jpg"
+  },
+  "independentEngineOracle": {
+    "classification": "엔진 분석 — 실제 PC 조작·완주로 세지 않음",
+    "report": "test-results/normal-completion-dev30/oracle.json",
+    "remainingInputs": 191,
+    "matchingBeforeAfterGameplaySummaries": 382,
+    "strictReplayCheckpoints": 23,
+    "finalResult": "campaign-win"
+  },
+  "simultaneousFinalSlayingReview": {
+    "verdict": "정상 승리 판정",
+    "classification": "독립 원문·엔진 순서 검토",
+    "report": "test-results/normal-completion-dev30/rule-review/simultaneous-final-victory.json",
+    "before": {
+      "hunterHp": 2,
+      "bossHp": 4,
+      "hunterAttackSpeed": 1,
+      "bossAttackSpeed": 1,
+      "hunterAttackDamage": 4,
+      "bossAttackDamage": 6
+    },
+    "outcome": "동속 피해로 양쪽 처치 → 모든 피의 유지 상실 → 카드 40의 최종 처치 목표·44 완료 → 챕터 종료 후 꿈 정비. 사망 후 공격 치유로 죽음을 취소한 경로가 아닙니다.",
+    "primarySources": [
+      {
+        "url": "https://cmon-files.s3.amazonaws.com/pdf/assets_item/resource/250/Bloodborne_Rulebook_v1.1.pdf#page=13",
+        "pages": [
+          13,
+          21,
+          25
+        ],
+        "basis": "사냥 임무 마지막 단계 달성 즉시 승리, 동시 처치 시 양쪽 제거·유지 상실, 챕터 성공 후 꿈 정비"
+      },
+      {
+        "url": "https://www.cmon.com/wp-content/uploads/2023/06/Bloodborne_Boardgame_FAQ_v1.0.pdf#page=2",
+        "basis": "사망 뒤 공격 후 치유로 생존할 수 없다는 규칙과 충돌하지 않음"
+      },
+      {
+        "path": "campaigns/long-hunt/data.json",
+        "card": 40,
+        "basis": "성직자 야수 처치 시 사냥 완수·44 공개. 별도 생존 조건 없음"
+      }
+    ]
+  },
+  "defectsFixed": [
+    {
+      "id": "BB-084",
+      "problem": "이름 없는 공개 타일의 빈 칸을 누르면 지도 주소와 선택한 칸 이름이 타일 정보에서 누락",
+      "change": "인쇄 이름이 없는 타일은 공개 지도 주소를 제목에 표시하고 선택한 칸 이름을 유지. 개발용 식별자나 가상 인쇄 이름은 표시하지 않음",
+      "newRegressions": 1,
+      "test": "tests/map-controls-ui.test.cjs",
+      "screenshot": "test-results/normal-completion-dev31/screenshots/anonymous-tile-after-fix.jpg"
+    },
+    {
+      "id": "BB-085",
+      "problem": "사냥꾼이 꿈에 있거나 사냥을 마친 뒤 새로고침하면 카메라가 공개 타일 없는 빈 공간을 표시. 맞춤 확대에서도 위치를 다시 중심에 맞추지 않음",
+      "change": "사냥꾼 기준점이 없으면 선택한 공개 타일 또는 첫 공개 타일로 중심 복귀. 맞춤 확대 후 공개 지도 영역도 중심에 배치",
+      "newRegressions": 2,
+      "tests": [
+        "tests/camera-v082.test.cjs",
+        "tests/animation-camera-ui-v082.test.cjs"
+      ],
+      "actualBrowserMeasurements": {
+        "before": {
+          "scrollLeft": 0,
+          "scrollTop": 0,
+          "visiblePlacedTiles": 0
+        },
+        "afterReload": {
+          "scrollLeft": 378,
+          "scrollTop": 618,
+          "visiblePlacedTiles": 4
+        },
+        "afterFit": {
+          "zoomPercent": 60,
+          "scrollLeft": 227,
+          "scrollTop": 371,
+          "visiblePlacedTiles": 4
+        }
+      },
+      "beforeScreenshot": "test-results/normal-completion-dev31/screenshots/camera-empty-before-fix.jpg"
+    }
+  ],
+  "tests": {
+    "relatedExpandedChecks": {
+      "passed": 58,
+      "failed": 0,
+      "newRegressionsIncluded": 3
+    },
+    "simultaneousSlayingRelatedChecks": {
+      "passed": 31,
+      "failed": 0,
+      "separateRunDoNotAddToFullCi": true
+    },
+    "initialFullCiFailure": {
+      "tests": 3191,
+      "passed": 3139,
+      "failed": 52,
+      "cause": "tests/campaign-ui.test.cjs의 기존 Element 모형에 실제 DOM의 classList 계약이 없어 카메라 초기화에서 같은 예외가 발생",
+      "report": "test-results/normal-completion-dev31/first-full-ci.json",
+      "productSourceChangedForThisTestFailure": false,
+      "resolution": "기존 Element 모형에 현재 class 속성의 토큰을 읽는 classList.contains를 구현. 기존 테스트·검증 조건을 유지",
+      "targetedRerun": {
+        "file": "tests/campaign-ui.test.cjs",
+        "passed": 54,
+        "failed": 0
+      }
+    },
+    "finalFullCi": {
+      "status": "passed",
+      "summary": "test-results/normal-completion-dev31/ci-summary.json",
+      "runtimeVersion": "0.8.13-dev.31",
+      "nodeVersion": "v24.19.0",
+      "testFiles": 154,
+      "counts": {
+        "tests": 3191,
+        "suites": 0,
+        "pass": 3191,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "durationSeconds": 530.091,
+      "exitCode": 0,
+      "failedSubtests": [],
+      "sourcePhotoTestsExcluded": [
+        "campaign covers all 67 ordered sources and 60 numbered cards with images",
+        "reference data preserves printed terminology with the confirmed enemy alias and six enemy sides",
+        "default v0.3 state remains without optional firearm fields and photo confirmation retains raw text",
+        "supplied component photos retain their exact bytes, hashes and card provenance"
+      ]
+    }
+  },
+  "finalCandidateSecondBrowserReplay": {
+    "status": "passed",
+    "scope": "BB-084·BB-085를 모두 포함한 최종 수정본으로 동일한 챕터 2·3 경로를 공개 UI에서 다시 완주",
+    "inputRangeInclusive": [
+      140,
+      330
+    ],
+    "plannedInputsCompleted": 191,
+    "additionalLegalReassignmentCommands": 2,
+    "totalRecordedUiInputs": 193,
+    "nextInput": 331,
+    "result": "campaign-win",
+    "finalSaveBytes": 59150,
+    "byteIdenticalToFirstActualBrowserCompletion": true,
+    "strictImportReplayPassed": true,
+    "strictExportByteExact": true,
+    "saveVerification": "test-results/normal-completion-dev31/final-source-save-verification.json",
+    "consoleErrors": [],
+    "uiLog": "test-results/normal-completion-dev31/ui-log-final-source.json",
+    "save": "test-results/normal-completion-dev31/exports/campaign-complete-final-source.json",
+    "screenshot": "test-results/normal-completion-dev31/screenshots/campaign-complete-final-source.jpg",
+    "sourceFiles": {
+      "src/hunt-app.js": "8f74f9bfc8df",
+      "src/hunt-camera.js": "543d86a930d9"
+    }
+  },
+  "userPlayTab": {
+    "url": "http://127.0.0.1:8860/hunt.html",
+    "source": "root의 적용 후 실제 화면 확인",
+    "locationHandHpAndRoundPreserved": true,
+    "finalSourceReloadPreservedPhaseHandHpAndLocation": true,
+    "globalScaleChanged": false
+  },
+  "publication": {
+    "pullRequest": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/89",
+    "draft": true,
+    "mainMergeConfirmedByThisAudit": false
+  }
+}

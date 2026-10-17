@@ -17,6 +17,8 @@ class Element {
     this.value = attributes.value || ""; this.checked = "checked" in attributes;
     this.disabled = "disabled" in attributes; this.hidden = "hidden" in attributes;
     this.open = false; this._html = ""; this._text = null;
+    // DOMTokenList.contains reads the current class attribute, including parsed tiles.
+    this.classList = { contains: token => String(this.attributes.class || "").split(/[\t\n\f\r ]+/).filter(Boolean).includes(String(token)) };
     for (const [key, value] of Object.entries(attributes)) if (key.startsWith("data-"))
       this.dataset[key.slice(5).replace(/-([a-z])/g, (_, c) => c.toUpperCase())] = value;
   }

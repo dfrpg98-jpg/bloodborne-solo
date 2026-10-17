@@ -1,6 +1,6 @@
 # Bloodborne Solo · 기나긴 사냥
 
-브라우저에서 기나긴 사냥 챕터 1~3을 한 명의 플레이어로 진행하는 로컬 게임입니다. 이 브랜치의 개발 버전은 **0.8.13-dev.30**, 마지막 보관 릴리스는 **0.8.12**입니다. dev.30은 적 정보를 진행 상황에 표시하고 창을 제목줄로 최소화하며, M·방향키 이동과 화면 배치를 개선한 검토 후보입니다. 전체 화면 배율과 기본 글자 크기는 유지합니다. 현재 지도 높이를 기본으로 적용하고 높이 전환 버튼은 제거했습니다. [이번 변경의 검증 범위](docs/audits/inline-workspace-v0.8.13-dev.30/verification.json)와 [이동 비용·기존 검증의 한계](docs/audits/movement-v0.8.13-dev.29/verification.json)를 참고하세요. dev.28은 PR #84로 main에 병합했고, dev.29~30은 PR #89에서 검토 중입니다.
+브라우저에서 기나긴 사냥 챕터 1~3을 한 명의 플레이어로 진행하는 로컬 게임입니다. 이 브랜치의 개발 버전은 **0.8.13-dev.31**, 마지막 보관 릴리스는 **0.8.12**입니다. 정규 장비·QA 지급 없는 실제 브라우저 캠페인을 챕터 1~3까지 완수했고, 완료 저장의 엄격 재생과 공식 불러오기를 확인했습니다. 진행 중 발견한 익명 타일 정보 누락과 꿈·완료 상태의 빈 지도 중심 문제를 수정했습니다. [완주 검증 기록](docs/audits/normal-campaign-completion-v0.8.13-dev.31/verification.json)을 참고하세요. 전체 화면 배율과 기본 글자 크기는 유지합니다. [이전 화면 변경](docs/audits/inline-workspace-v0.8.13-dev.30/verification.json)은 PR #89에서 함께 검토 중이며, dev.28은 PR #84로 main에 병합했습니다.
 
 수직 이동·정렬된 공격의 방향 반전 수정은 [하인 방향 재점검](docs/audits/minion-facing-v0.8.13-dev.10/README.md)에, 신규 적6종의 외형·표시 크기·실제 검증 사냥은 [적 외형 점검 기록](docs/audits/enemy-sprites-v0.8.13-dev.9/README.md)에 있습니다. dev.8의 UI·규칙·저장 점검과 Unity 이식 준비 결과는 [로컬 검증 기록](docs/audits/local-final-validation-v0.8.13-dev.8/README.md)에서 구분합니다.
 
