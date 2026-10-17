@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "version": "0.8.13-dev.28",
+  "baseCommit": "7cd75ded815bf908d8a8b1e9f407516e2deed916",
+  "issue": "https://github.com/dfrpg98-jpg/bloodborne-solo/issues/86",
+  "source": {
+    "classification": "Second actual PC public UI transition on pinned dev.27; developer independently replayed the preserved QA history in actual controller DOM",
+    "relayThread": "01a141e3-d341-70c1-aac6-582a06ec9027",
+    "folder": "qa-local-dev27-20261017/remaining-ui-7cd75ded/",
+    "directEvidence": [
+      "practice-stale-action-observation.txt",
+      "images/05-practice-stale-lure-buttons.png",
+      "exports/practice-rifle-spear-start-before-stale-guide-check.json",
+      "exports/practice-after-stale-lure-click.json",
+      "exports/practice-after-stale-ui-reload.json"
+    ],
+    "additionalPublicImportObservation": {
+      "reportedBy": "Second actual PC UI on 7cd75ded",
+      "sameDefect": "BB-079",
+      "observed": "Menu public practice import retains old lure buttons, prior goals/research/clue and journal badge4 despite mode header changing to practice",
+      "evidence": [
+        "practice-public-import-with-stale-lure.json",
+        "practice-import-stale-goals.txt",
+        "images/10-practice-import-stale-goals.png"
+      ]
+    }
+  },
+  "beforeRegression": {
+    "tests": 2,
+    "pass": 0,
+    "fail": 2,
+    "assertion": "practice must not retain bound campaign commands",
+    "actualResidualCommands": 1,
+    "expectedResidualCommands": 0
+  },
+  "focused": {
+    "command": "node --test --test-reporter=tap tests/mission-guidance-ui-v0814.test.cjs tests/qa-campaign-ui-v078.test.cjs tests/hunt-workspace-shell-v25.test.cjs tests/hunt-window-manager-dev25.test.cjs tests/outcome-context-ui-v0827.test.cjs",
+    "testFiles": 5,
+    "tests": 46,
+    "pass": 46,
+    "fail": 0,
+    "newTestsIncluded": 2,
+    "durationMs": 3051.5826,
+    "logSha256": "dd9218e3598fbebe9c31ca845b0ff2f53a29bf2be9c047c49305e9ec140624d5"
+  },
+  "fullCi": {
+    "command": "node scripts/test-ci.cjs",
+    "nodeVersion": "v24.19.0",
+    "runtimeVersion": "0.8.13-dev.28",
+    "testFileCount": 149,
+    "durationSeconds": 474.869,
+    "exitCode": 0,
+    "counts": {
+      "tests": 3134,
+      "suites": 0,
+      "pass": 3134,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "sourcePhotoTestsExcluded": [
+      "campaign covers all 67 ordered sources and 60 numbered cards with images",
+      "reference data preserves printed terminology with the confirmed enemy alias and six enemy sides",
+      "default v0.3 state remains without optional firearm fields and photo confirmation retains raw text",
+      "supplied component photos retain their exact bytes, hashes and card provenance"
+    ],
+    "logSha256": "40f60f8ef058df7659caca8338489d21e165fd17fdf414b5fc5b7a20e5fe63dd"
+  },
+  "controllerHistoryReplay": {
+    "classification": "Second public QA history replay in actual controller DOM; not an additional real browser run",
+    "input": {
+      "file": "qa-chapter2-after-guide-next-move.json",
+      "bytes": 38363,
+      "sha256": "6384b6964d9af51e79ee05e50e5c6916a34ae91fd06c91a4012a7d379c3cfff3"
+    },
+    "before": {
+      "lureButtons": 26,
+      "objectivesPresent": true,
+      "qaBytesUnchanged": true
+    },
+    "after": {
+      "missionButtons": 0,
+      "objectiveText": "",
+      "storyBadgeHidden": true,
+      "storyBadgeText": "",
+      "qaBytesUnchanged": true,
+      "practiceEnemies": 1,
+      "practiceConsumables": 0,
+      "practiceTarget": "church-servant",
+      "practiceStrictRoundTrip": true
+    },
+    "nextMove": {
+      "phase": "hunter",
+      "lastCommands": [
+        "MOVE",
+        "STOP_MOVE"
+      ],
+      "missionButtons": 0,
+      "qaBytesUnchanged": true
+    }
+  },
+  "sourceChanges": "Mission-absent render branch clears mission-owned controls/details; story-absent branch clears unread badge; cache reference and version updated",
+  "unchangedFromBase": [
+    {
+      "path": "src/hunt-engine.js",
+      "sha256": "f13a72497082eb4cd6976cbadd6cfc158a2a6e72e63ed91f3d1834fb6b462bf4",
+      "exactBaseBytes": true
+    },
+    {
+      "path": "src/chapter-engine.js",
+      "sha256": "55b4c7d85279e5b12ec1b49def84076d94a8e81edaef57e4ebaa75da02d07d60",
+      "exactBaseBytes": true
+    },
+    {
+      "path": "src/mission-engine.js",
+      "sha256": "5b02afe279d66a6d0e8ee1115eacecfe45ec36db5fab570b42982186be199237",
+      "exactBaseBytes": true
+    },
+    {
+      "path": "src/hunt-combat-feedback.js",
+      "sha256": "f78f1877fcdd2a5c6a03a737e14740ae4f163ed4fc5ca178c8c150a64da0e398",
+      "exactBaseBytes": true
+    },
+    {
+      "path": "src/hunt-outcome-preview.js",
+      "sha256": "945fed0872482c83a6b8b5569f45153c9632909ed15b04d5fe66d889b0ea468a",
+      "exactBaseBytes": true
+    }
+  ],
+  "runtimeHashes": [
+    {
+      "path": "src/hunt-app.js",
+      "sha256": "31f50d9559b916ee9e73802b347cdc2942df33d27581f73bf642c0bb1d84ecc4"
+    },
+    {
+      "path": "hunt.html",
+      "sha256": "a06ea3de32b735d53bb81eabaa915e8066f947bb607d8b5484298fc99448ef42"
+    },
+    {
+      "path": "package.json",
+      "sha256": "a75130e18ec610fef6b9b3c543234863c0498897a827719af6c74152fbc66363"
+    },
+    {
+      "path": "tests/mission-guidance-ui-v0814.test.cjs",
+      "sha256": "ba22c7cd207c3222d4a04ade69eec9321abe127121c9acca4328b1990d05b909"
+    }
+  ],
+  "review": "Independent read-only code/callsite review found no actionable defect; reviewer edited no files and ran no tests",
+  "limits": [
+    "New candidate real PC transition replay by Second pending at publication",
+    "Developer history replay is DOM harness, not another real-browser session",
+    "Mode setup regression uses existing public QA command fixture; not a new normal campaign playthrough",
+    "Related Second chapter transition/mission guide checks occurred on dev.27 and are not added to these automated counts",
+    "No new full campaign completion, all-combat-branch or full-frame sprite audit",
+    "Not merged or deployed"
+  ]
+}

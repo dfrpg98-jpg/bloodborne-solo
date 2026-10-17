@@ -715,7 +715,14 @@
     if (isQa()) $("modeNotice").innerHTML = $("modeNotice").innerHTML
       .replace("<strong>기나긴 사냥", "<strong>검증 전용 · 기나긴 사냥")
       .replace("</span>", " 테스트 장비와 시작 지급을 사용하며, 일반 사냥과 별도로 자동 저장됩니다.</span>");
-    if (!view) return;
+    if (!view) {
+      // Mission controls and journal details also live outside the hidden HUD.
+      for (const id of ["missionActions", "objectiveDetail", "chapterConditionDetail", "missionNotices", "revealedCards", "pastChapters",
+        "missionInsight", "missionObjectives", "chapterConditions", "missionTokens", "missionFog"]) $(id).innerHTML = "";
+      $("missionHistory").hidden = true;
+      $("missionFog").hidden = true;
+      return;
+    }
     $("missionInsight").textContent = `이번 챕터 완료 계몽 ${view.insight}장`;
     const publicChapter = window.BBHuntPublicText.chapter(state, view, window.BBLongHunt),
       objectives = publicChapter?.objectives || view.objectives.filter((o) => o.status !== "미발견"),
@@ -795,6 +802,7 @@
     if (!view || setupRequired) {
       storyEntries = [];
       $("storyIntro").innerHTML = $("storyNotice").innerHTML = $("storyList").innerHTML = "";
+      if ($("storyPendingBadge")) { $("storyPendingBadge").textContent = ""; $("storyPendingBadge").hidden = true; }
       if (dialog.open) closeStory();
       return;
     }
