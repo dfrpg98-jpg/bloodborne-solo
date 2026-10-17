@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "version": "0.8.13-dev.27",
+  "reportedCandidate": "3405ecb56c80d941eec9551a8e6b557d4a50d348",
+  "issue": "https://github.com/dfrpg98-jpg/bloodborne-solo/issues/85",
+  "source": "Second independent PC public UI QA on pinned candidate; developer separately reproduced with actual controller DOM harness",
+  "titleChange": {
+    "before": "처치된 적와 전투",
+    "after": "전투 · 처치된 적",
+    "scope": "Only combat-opponent wording plus script cache reference; escaping, class, aria label, combat data and rules unchanged"
+  },
+  "original": {
+    "classification": "SYNTHETIC-QA; not normal continuation",
+    "publicCommands": 9,
+    "bytes": 16902,
+    "sha256": "47b1d17561a75f21ed2208e2cecf6451b0b919566d3e147621c239410c85f72f",
+    "strictRoundTrip": true,
+    "publicAttackEnemyId": "scourge-beast-1"
+  },
+  "controller": {
+    "phase": "combat_extra",
+    "beforeExtraHitVisible": true,
+    "afterExtraHitVisible": true,
+    "beforeStoredBytesUnchanged": true,
+    "afterStoredBytesUnchanged": true,
+    "realBrowserRerunByDeveloper": false
+  },
+  "focused": {
+    "command": "node --test tests/combat-feedback-ui.test.cjs tests/combat-token-warning-v0813.test.cjs tests/outcome-context-ui-v0827.test.cjs tests/outcome-preview-v0813.test.cjs tests/blood-frenzy-preview-v0823.test.cjs",
+    "testFiles": 5,
+    "tests": 54,
+    "pass": 54,
+    "fail": 0,
+    "newTests": 0,
+    "durationMs": 3017.3749,
+    "logSha256": "f9b1f1c7990bc96832f82a1f9a2ac5bf8ce054878c483273ac368023f9d20e2d",
+    "fullCiRerun": false,
+    "fullCi3132AppliesTo": "3405ecb56c80d941eec9551a8e6b557d4a50d348"
+  },
+  "independentReview": "Read-only helper/callsite review: neutral wording also handles numbered labels; no files edited or tests run by reviewer",
+  "normalContinuation": {
+    "classification": "Separate Second normal continuation, not the typo QA save",
+    "startBytes": 52080,
+    "startSha256": "c51d3a12412ef8a6cf76d0e842e30df0519973b46421bd894f92e0544ff80c46",
+    "endBytes": 52371,
+    "endSha256": "ade04b319e9bc9e37414e90c7fc9d613910300f8a75b17c4d8dd7d7cc66e4f7f",
+    "publicCommandsBefore": 235,
+    "publicCommandsAfter": 239,
+    "exactPrefix": true,
+    "addedCommands": [
+      "END_TURN",
+      "NO_ATTACK",
+      "BOSS_INSIGHT",
+      "RESOLVE"
+    ],
+    "reportedUiResult": "Track-expiry hunt end; not death or next-chapter transition"
+  },
+  "runtimeHashes": [
+    {
+      "path": "src/hunt-combat-feedback.js",
+      "sha256": "f78f1877fcdd2a5c6a03a737e14740ae4f163ed4fc5ca178c8c150a64da0e398"
+    },
+    {
+      "path": "hunt.html",
+      "sha256": "bd5710c5864880cbc2ea5c04c403313d69ce2374af2c0f35be32777475bdc741"
+    }
+  ],
+  "unchanged": [
+    "src/hunt-app.js",
+    "src/hunt-engine.js",
+    "src/chapter-engine.js",
+    "src/mission-engine.js",
+    "src/hunt-outcome-preview.js"
+  ],
+  "followup": "Patched title real PC UI recheck by Second pending; not merged or deployed"
+}

@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "version": "0.8.13-dev.27",
+  "baseCommit": "771fa4c13b4be162571958315efbc89d10fd73db",
+  "issue": "https://github.com/dfrpg98-jpg/bloodborne-solo/issues/83",
+  "status": "Review candidate; not merged or deployed",
+  "source": {
+    "classification": "Second normal campaign original; developer replayed its exact bytes in an isolated real browser",
+    "relayThread": "01a141e3-d341-70c1-aac6-582a06ec9027",
+    "packet": {
+      "name": "bloodborne-dev26-target-context-repro-no-screenshots.zip",
+      "bytes": 13939,
+      "sha256": "f836a50b3e10839706fb660471f5da5e329518e1752ad556fbb7e2121ab27571",
+      "libraryId": "libfile_cbc3297551708191836a59d6febba45e"
+    },
+    "save": {
+      "bytes": 44891,
+      "sha256": "a82cdb9fe6a162882426596fd7284ea09e7c2bbcddf19064ebc8fe65106a50c6",
+      "commands": 166,
+      "phase": "hunter",
+      "combat": null,
+      "node": "tile-06:top",
+      "currentSpaceEnemies": 0,
+      "qaMode": false
+    },
+    "provenanceNote": "Later parent direct-import confirmation was received after the packet README; preserved as a separate receipt, not retroactively attributed to that README."
+  },
+  "beforeRegression": {
+    "tests": 5,
+    "pass": 1,
+    "fail": 4,
+    "note": "Initial five new cases before fix; the sixth pull case was added after fix."
+  },
+  "focused": {
+    "command": "node --test tests/outcome-context-ui-v0827.test.cjs tests/combat-token-warning-v0813.test.cjs tests/outcome-preview-v0813.test.cjs tests/blood-frenzy-preview-v0823.test.cjs",
+    "testFiles": 4,
+    "tests": 39,
+    "pass": 39,
+    "fail": 0,
+    "newTestsIncluded": 6,
+    "durationMs": 2843.2227
+  },
+  "fullCi": {
+    "command": "node scripts/test-ci.cjs",
+    "nodeVersion": "v24.19.0",
+    "runtimeVersion": "0.8.13-dev.27",
+    "testFileCount": 149,
+    "durationSeconds": 458.602,
+    "exitCode": 0,
+    "counts": {
+      "tests": 3132,
+      "suites": 0,
+      "pass": 3132,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "sourcePhotoTestsExcluded": [
+      "campaign covers all 67 ordered sources and 60 numbered cards with images",
+      "reference data preserves printed terminology with the confirmed enemy alias and six enemy sides",
+      "default v0.3 state remains without optional firearm fields and photo confirmation retains raw text",
+      "supplied component photos retain their exact bytes, hashes and card provenance"
+    ],
+    "logSha256": "9f799af231d562252c7506f42845cc09b3f7db735ca23f48af323ef72c2fb5e4"
+  },
+  "browser": {
+    "origin": "http://127.0.0.1:8831",
+    "normalSourceReplay": {
+      "beforeObserved": "No selection, empty current space, remote bridge minion token warning visible",
+      "afterObserved": [
+        "First import/reload warning hidden",
+        "Explicit remote enemy inspection warning visible",
+        "Close selection and empty-space inspection warning hidden",
+        "Unavailable remote attack remains hidden"
+      ],
+      "exportChecks": [
+        {
+          "file": "normal-after-selection.json",
+          "bytes": 44891,
+          "sha256": "a82cdb9fe6a162882426596fd7284ea09e7c2bbcddf19064ebc8fe65106a50c6",
+          "exactOriginalBytes": true
+        },
+        {
+          "file": "normal-after-reload.json",
+          "bytes": 44891,
+          "sha256": "a82cdb9fe6a162882426596fd7284ea09e7c2bbcddf19064ebc8fe65106a50c6",
+          "exactOriginalBytes": true
+        }
+      ]
+    },
+    "separateQa": {
+      "source": "Public-command fast QA mode: MOVE, EXPLORE, PLACE_TILE, STOP_MOVE; not the normal death-return save",
+      "observed": [
+        "No forecast without selection",
+        "Same-space card/slot enables attack and token forecast",
+        "Slot deselection hides forecast",
+        "ATTACK enters combat response with token forecast retained"
+      ]
+    },
+    "consoleErrors": [],
+    "cleanup": "Own tab closed and own server 8831 stopped; user and Second tabs/origins untouched"
+  },
+  "unchangedFromBase": [
+    {
+      "path": "src/hunt-engine.js",
+      "sha256": "f13a72497082eb4cd6976cbadd6cfc158a2a6e72e63ed91f3d1834fb6b462bf4",
+      "exactBaseBytes": true
+    },
+    {
+      "path": "src/chapter-engine.js",
+      "sha256": "55b4c7d85279e5b12ec1b49def84076d94a8e81edaef57e4ebaa75da02d07d60",
+      "exactBaseBytes": true
+    },
+    {
+      "path": "src/mission-engine.js",
+      "sha256": "5b02afe279d66a6d0e8ee1115eacecfe45ec36db5fab570b42982186be199237",
+      "exactBaseBytes": true
+    },
+    {
+      "path": "src/hunt-outcome-preview.js",
+      "sha256": "945fed0872482c83a6b8b5569f45153c9632909ed15b04d5fe66d889b0ea468a",
+      "exactBaseBytes": true
+    }
+  ],
+  "runtimeHashes": [
+    {
+      "path": "src/hunt-app.js",
+      "sha256": "98fbc9a46ec77f388901de16ce7f3ce9b874a5351f4568243d7bd91120f0ed06"
+    },
+    {
+      "path": "hunt.html",
+      "sha256": "858e0022e4384e1b1b0f83375e91240ac5d098e9059310d1daa0b0970cdb9f7c"
+    },
+    {
+      "path": "package.json",
+      "sha256": "ad26dca740b2f6675d7d7657b7faf77336d8b1eadabd6009773b51f4b4d3ea99"
+    }
+  ],
+  "images": [
+    {
+      "path": "images/active-combat.jpg",
+      "mimeType": "image/jpeg",
+      "width": 1280,
+      "height": 720,
+      "bytes": 137482,
+      "sha256": "f8baaa0d90d0758213c4dbfef0acdfa6f7f04111cafb0c3b2727d851f94b1f65"
+    },
+    {
+      "path": "images/after.jpg",
+      "mimeType": "image/jpeg",
+      "width": 1280,
+      "height": 720,
+      "bytes": 134597,
+      "sha256": "54f3b54a2e609b5885bd7b20abbebf53d1fef0021cfab34dd660f5acfdc96460"
+    },
+    {
+      "path": "images/before.jpg",
+      "mimeType": "image/jpeg",
+      "width": 1280,
+      "height": 720,
+      "bytes": 143490,
+      "sha256": "4192d1ba844a35e392aa7a37b1631f84bfbad94b237845aad8fe1127ef146a59"
+    }
+  ],
+  "reviews": {
+    "developerSubagent": "Read-only code review; no additional defect found; not Second",
+    "secondRelay": "Independent read-only code review; no concrete defect found in the display change; not approval of the patched build in actual play"
+  },
+  "limits": [
+    "No new full normal campaign playthrough",
+    "Six new tests use legal QA DREAM/RETURN, not death return",
+    "Actual death-return coverage comes from preserved normal source replay",
+    "No new dedicated leap, removed-enemy combat_extra UI, combat_choose, or boss_react case; existing routes preserved in source and broad regression",
+    "No full-frame sprite review",
+    "Patched build actual-play review by Second pending"
+  ]
+}

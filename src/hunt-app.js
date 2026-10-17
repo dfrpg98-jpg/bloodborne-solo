@@ -706,7 +706,7 @@
     $("qaModeBadge").hidden = !isQa();
     document.title = view ? `블러드본 · ${isQa() ? "검증 전용 · " : ""}기나긴 사냥 챕터 ${chapter}` : "블러드본 · 사냥 연습";
     $("modeNotice").innerHTML = view
-      ? `<strong>기나긴 사냥 · 챕터 ${chapter}${view.won ? " 완수" : ""}</strong><span>${view.won ? chapter === 3 ? "기나긴 사냥의 마지막 사냥을 완수했습니다. 마지막 꿈에서 성장을 마치고 전체 캠페인 기록을 보관하세요." : state.phase === "between_chapters" ? `장비를 교체하고 중앙 등불 타일의 시작 칸을 골라 챕터 ${chapter + 1}을 시작하세요.` : "사냥을 완수했습니다. 마지막 꿈에서 성장을 마친 뒤 다음 챕터를 준비할 수 있습니다." : "공개된 임무를 따라 사냥을 진행하세요. 챕터 사이에는 보관한 장비를 교체하고 다음 사냥의 시작 칸을 선택합니다."}</span>`
+      ? `<strong>기나긴 사냥 · 챕터 ${chapter}${view.won ? " 완수" : ""}</strong><span>${view.won ? chapter === 3 ? "기나긴 사냥의 마지막 사냥을 완수했습니다. 마지막 꿈에서 성장을 마치고 전체 캠페인 기록을 보관하세요." : state.phase === "between_chapters" ? `장비를 교체하고 중앙 등불 타일의 시작 칸을 골라 챕터 ${chapter + 1} 시작을 준비하세요.` : "사냥을 완수했습니다. 마지막 꿈에서 성장을 마친 뒤 다음 챕터를 준비할 수 있습니다." : "공개된 임무를 따라 사냥을 진행하세요. 챕터 사이에는 보관한 장비를 교체하고 다음 사냥의 시작 칸을 선택합니다."}</span>`
       : "<strong>실제 지도 전투 연습</strong><span>이 사냥은 임무 없이 탐험·전투·꿈의 업그레이드를 연습하는 모드입니다. 새 사냥에서 기나긴 사냥 챕터 1을 선택할 수 있습니다.</span>";
     if (provisional) {
       $("modeLabel").textContent = `임시 구성물 시험 · ${provisional.name}`;
@@ -715,7 +715,14 @@
     if (isQa()) $("modeNotice").innerHTML = $("modeNotice").innerHTML
       .replace("<strong>기나긴 사냥", "<strong>검증 전용 · 기나긴 사냥")
       .replace("</span>", " 테스트 장비와 시작 지급을 사용하며, 일반 사냥과 별도로 자동 저장됩니다.</span>");
-    if (!view) return;
+    if (!view) {
+      // Mission controls and journal details also live outside the hidden HUD.
+      for (const id of ["missionActions", "objectiveDetail", "chapterConditionDetail", "missionNotices", "revealedCards", "pastChapters",
+        "missionInsight", "missionObjectives", "chapterConditions", "missionTokens", "missionFog"]) $(id).innerHTML = "";
+      $("missionHistory").hidden = true;
+      $("missionFog").hidden = true;
+      return;
+    }
     $("missionInsight").textContent = `이번 챕터 완료 계몽 ${view.insight}장`;
     const publicChapter = window.BBHuntPublicText.chapter(state, view, window.BBLongHunt),
       objectives = publicChapter?.objectives || view.objectives.filter((o) => o.status !== "미발견"),
@@ -795,6 +802,7 @@
     if (!view || setupRequired) {
       storyEntries = [];
       $("storyIntro").innerHTML = $("storyNotice").innerHTML = $("storyList").innerHTML = "";
+      if ($("storyPendingBadge")) { $("storyPendingBadge").textContent = ""; $("storyPendingBadge").hidden = true; }
       if (dialog.open) closeStory();
       return;
     }
@@ -1468,7 +1476,7 @@
       html = (pending?.options || (E.missionActions ? E.missionActions(state) : [])).map((a) => commandButton(a, "primary")).join("");
     } else if (p === "between_chapters") {
       const chapter = missionView()?.chapter || 1, face = nextFace === null ? h.face : nextFace;
-      help = `챕터 ${chapter}을 완수했습니다. 장비를 교체한 뒤, 시작 칸과 무기 형태를 고르세요. 시작 칸을 정한 후 챕터 특수 규칙을 적용합니다.`;
+      help = `챕터 ${chapter} 완수. 장비를 교체한 뒤, 시작 칸과 무기 형태를 고르세요. 시작 칸을 정한 후 챕터 특수 규칙을 적용합니다.`;
       html = `<label>챕터 ${chapter + 1}의 시작 칸<select id="nextChapterStart"><option value="">시작할 칸을 직접 선택하세요</option>${["left", "center", "right"].map((id) => `<option value="${id}" ${nextStartSpace === id ? "selected" : ""}>${id === "left" ? "왼쪽 칸" : id === "right" ? "오른쪽 칸" : "중앙 등불"}</option>`).join("")}</select></label><div id="nextChapterPlacement"></div><label>시작 무기 형태<select id="nextChapterFace">${E.weapon(state).faces.map((part, index) => `<option value="${index}" ${face === index ? "selected" : ""}>${esc(faceName(part, index))}</option>`).join("")}</select></label><button id="startNextChapter" class="primary" ${nextStartSpace ? "" : "disabled"}>챕터 ${chapter + 1} 시작</button><button id="exportChapterSave">여기까지 저장 내보내기</button>`;
     } else if (p === "over") {
       const won = state.result === "chapter-win" || missionView()?.won,
@@ -1624,8 +1632,12 @@
             : $("tileExchangeItem")?.value ? { exchange: true, exchangeItemId: $("tileExchangeItem").value } : {}),
         });
     renderContext(actionArgs);
-    const outcome = !rewards?.choices.length && ["hunter", "combat_choose", "combat_react", "combat_extra", "boss_react"].includes(p)
-      ? combatOutcome(c?.enemyId || selectedEnemy) : null,
+    // An internal default target is not an inspected or prepared attack.
+    const preparedAttack = p === "hunter" && [$("decisions"), $("mapContext")].some(box =>
+      [...(box?.querySelectorAll("[data-command]") || [])].some(button => button.dataset.command === "ATTACK" && !button.disabled)),
+      outcomeEnemyId = p === "hunter" ? (isMapEnemySelected(selectedEnemy) || preparedAttack ? selectedEnemy : null) : c?.enemyId || selectedEnemy,
+      outcome = !rewards?.choices.length && outcomeEnemyId && ["hunter", "combat_choose", "combat_react", "combat_extra", "boss_react"].includes(p)
+        ? combatOutcome(outcomeEnemyId) : null,
       outcomeOptions = { clean: text => uiText(text, "combat") },
       compactOutcome = window.BBHuntOutcomePreview?.renderHTML(outcome, { ...outcomeOptions, compact: true }) || "";
     $("attackConsequences").hidden = !compactOutcome;

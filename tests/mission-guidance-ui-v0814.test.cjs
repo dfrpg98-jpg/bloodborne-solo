@@ -30,6 +30,51 @@ function clickCommand(ui, command, scope) {
   assert.equal(ui.el("error").textContent, ""); return button;
 }
 const statuses = (ui, id = "chapterProgress") => ui.el(id).querySelectorAll("[data-status]").map(step => step.dataset.status);
+function noCampaignResidue(ui) {
+  assert.equal(ui.el("missionPanel").hidden, true);
+  assert.equal(ui.buttons("missionActions").length, 0, "practice must not retain bound campaign commands");
+  for (const id of ["objectiveDetail", "chapterConditionDetail", "missionNotices", "revealedCards", "pastChapters",
+    "missionInsight", "missionObjectives", "chapterConditions", "missionTokens", "missionFog"])
+    assert.equal(ui.el(id).textContent, "", id + " must not describe the previous campaign");
+  assert.equal(ui.el("missionHistory").hidden, true);
+  assert.equal(ui.el("storyPendingBadge").hidden, true);
+  assert.equal(ui.el("storyPendingBadge").textContent, "");
+}
+
+test("starting practice after chapter-two lure UI clears prior commands, objectives and story counts", () => {
+  const ui = at(129), qaSave = ui.storage.get(qaKey);
+  assert(ui.buttons("missionActions").some(b => b.dataset.command === "MISSION_LURE"));
+  assert(ui.el("objectiveDetail").textContent.length > 0);
+  ui.el("new").click();
+  for (const [id, value] of [["playMode", "practice"], ["weapon", "rifle-spear"], ["face", "1"],
+    ["gun", "hunter-pistol"], ["practiceTarget", "church-servant"], ["startingItem", ""], ["seed", "90"], ["start", "center"]]) {
+    ui.el(id).value = value; ui.el(id).fire("change");
+  }
+  ui.el("confirmSetup").click();
+  assert.equal(ui.el("setupError").textContent, "");
+  noCampaignResidue(ui);
+  const practice = E.importSave(ui.storage.get(normalKey));
+  assert.equal(E.missionView(practice), null);
+  assert.equal(E.hunter(practice).consumables.length, 0);
+  assert.equal(practice.enemies.length, 1);
+  assert.equal(practice.setup.practiceTarget, "church-servant");
+  assert.equal(ui.storage.get(qaKey), qaSave, "new practice preserves the separate QA hunt");
+});
+
+test("public practice import and campaign resume refresh mission UI in both directions without changing saves", async () => {
+  const ui = at(129), qaSave = ui.storage.get(qaKey), practice = E.applyLeapMoveRuling(E.create(90, "rifle-spear", 1, null,
+    "hunter-pistol", "center", { campaign: false, rulesVersion: 14, practiceTarget: "church-servant", practiceSide: "a" })), practiceSave = E.exportSave(practice);
+  assert(ui.buttons("missionActions").some(b => b.dataset.command === "MISSION_LURE"));
+  await ui.el("file").onchange({ target: { files: [{ text: async () => practiceSave }], value: "fixture" } });
+  assert.equal(ui.el("error").textContent, ""); noCampaignResidue(ui);
+  assert.equal(ui.storage.get(normalKey), practiceSave); assert.equal(ui.storage.get(qaKey), qaSave);
+  ui.el("resumeQa").click();
+  assert.equal(ui.el("missionPanel").hidden, false);
+  assert(ui.buttons("missionActions").some(b => b.dataset.command === "MISSION_LURE"));
+  assert(ui.el("objectiveDetail").textContent.length > 0);
+  ui.el("resumeNormal").click(); noCampaignResidue(ui);
+  assert.equal(ui.storage.get(normalKey), practiceSave); assert.equal(ui.storage.get(qaKey), qaSave);
+});
 function guideButton(ui) {
   const button = ui.el("missionObjectives").querySelectorAll("[data-mission-guide]").find(button => button.dataset.missionGuide === "main");
   assert(button, "public goal includes a reachable acquisition/lure guide"); return button;
