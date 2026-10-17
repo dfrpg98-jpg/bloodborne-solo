@@ -512,7 +512,9 @@
       for (const command of commands) {
         const blocked = window.BBHuntActionAvailability?.blockedReason(next, E, command);
         if (blocked) throw new Error(blocked);
-        const prior = next; next = E.dispatch(next, command);
+        const prior = next;
+        if (command.type === "MOVE" && E.applyMovementDeclarationRuling) next = E.applyMovementDeclarationRuling(next);
+        next = E.dispatch(next, command);
         currentAttackVisual(next, prior);
         observedSteps.push([prior, next]);
       }
@@ -718,7 +720,8 @@
     if (!view) {
       // Mission controls and journal details also live outside the hidden HUD.
       for (const id of ["missionActions", "objectiveDetail", "chapterConditionDetail", "missionNotices", "revealedCards", "pastChapters",
-        "missionInsight", "missionObjectives", "chapterConditions", "missionTokens", "missionFog"]) $(id).innerHTML = "";
+        "missionInsight", "missionObjectives", "chapterConditions", "chapterSpecialRules", "missionTokens", "missionFog"]) $(id).innerHTML = "";
+      $("chapterSpecialRules").hidden = true;
       $("missionHistory").hidden = true;
       $("missionFog").hidden = true;
       return;
@@ -732,7 +735,9 @@
           ? "계몽 2장 이상을 모은 뒤 중앙 등불 타일에서 이동을 마치세요." : o.description,
           update = [...pendingMissionUpdates].reverse().find(entry => entry.objectiveId === o.id),
           marker = update ? update.kind === "completed" || update.kind === "chapter" ? "completed" : update.kind === "updated" ? "updated" : "new" : "";
-        return `<article class="mission-objective ${done ? "completed" : ""}${update ? " changed" : ""}" data-objective-kind="${esc(o.kind || (o.id === "main" ? "required" : "insight"))}"${marker ? ` data-mission-change="${marker}"` : ""}><div class="objective-heading"><b><small class="objective-category">${esc(o.categoryLabel || (o.id === "main" ? "필수 목표" : "계몽 선택 임무"))}</small> ${done ? "✓ " : ""}${esc(uiText(o.title, "mission"))} <small>${esc(o.status)}${update ? ` · ${esc(missionUpdateLabels[update.kind])}` : ""}</small></b>${o.guidance?.length ? `<button type="button" data-mission-guide="${esc(o.id)}">획득·유인 방법</button>` : ""}</div><span class="muted">${esc(window.BBHuntPublicText.sentence(description || ""))}</span>${o.reward ? `<small class="objective-reward">${esc(o.reward.text)}</small>` : ""}</article>`;
+        const insightProgress = chapter === 1 && o.id === "main" && !view.revealed.includes(2)
+          ? `<div class="objective-progress"><span>계몽 <b>${view.insight} / 2</b></span><div class="objective-meter" role="progressbar" aria-label="이번 챕터 계몽" aria-valuemin="0" aria-valuemax="2" aria-valuenow="${Math.min(2, view.insight)}"><i style="width:${Math.min(100, view.insight * 50)}%"></i></div></div>` : "";
+        return `<article class="mission-objective ${done ? "completed" : ""}${update ? " changed" : ""}" data-objective-kind="${esc(o.kind || (o.id === "main" ? "required" : "insight"))}"${marker ? ` data-mission-change="${marker}"` : ""}><div class="objective-heading"><div class="objective-meta"><small class="objective-category">${esc(o.categoryLabel || (o.id === "main" ? "필수 목표" : "계몽 선택 임무"))}</small><small class="objective-status">${esc(o.status)}${update ? ` · ${esc(missionUpdateLabels[update.kind])}` : ""}</small></div><b>${done ? "✓ " : ""}${esc(uiText(o.title, "mission"))}</b>${o.guidance?.length ? `<button type="button" data-mission-guide="${esc(o.id)}">획득·유인 방법</button>` : ""}</div><span class="muted">${esc(window.BBHuntPublicText.sentence(description || ""))}</span>${insightProgress}${o.reward ? `<small class="objective-reward">${esc(o.reward.text)}</small>` : ""}</article>`;
       },
       latestChanged = [...pendingMissionUpdates].reverse().map(update => objectives.find(o => o.id === update.objectiveId && o.id !== "main")).find(Boolean),
       primary = latestChanged || objectives.find(o => o.id === missionFocusedObjectiveId && !doneStatus(o)) || objectives.find((o) => !doneStatus(o)) || objectives[0],
@@ -740,7 +745,12 @@
     const main = publicChapter?.main || objectives.find(o => o.id === "main") || primary;
     $("missionObjectives").innerHTML = main ? objectiveHTML(main) + (primary && primary.id !== main.id ? `<div class="secondary-objective">${objectiveHTML(primary)}</div>` : "") : allObjectives;
     const activations = publicChapter?.activations || [], nextPlaces = activations.filter(trigger => !trigger.known);
-    $("chapterConditions").innerHTML = `<span class="condition-label">계몽 단서</span> ${nextPlaces.length ? nextPlaces.map(trigger => esc(trigger.title)).join(" · ") + "에서 이동을 마치세요." : "방문한 장소의 공개 임무를 확인하세요."}`;
+    $("chapterConditions").innerHTML = `<span class="condition-label">계몽 단서</span>${nextPlaces.length ? `<div class="mission-places">${nextPlaces.map(trigger => `<span class="mission-place">${esc(trigger.title)}</span>`).join("")}</div><span class="condition-action">이 타일에서 이동을 마치면 단서가 공개됩니다.</span>` : '<span class="condition-action">공개된 선택 임무에서 계몽을 얻으세요.</span>'}`;
+    const specialRules = window.BBHuntMissionHUD?.specialRules?.(view) || [];
+    $("chapterSpecialRules").hidden = !specialRules.length;
+    $("chapterSpecialRules").innerHTML = specialRules.length ? `<h3>챕터 특수 규칙</h3>${specialRules.map(rule => rule.scope === "setup"
+      ? `<details class="chapter-special-rule setup-rule"><summary>${esc(rule.title)}</summary><p>${esc(rule.text)}</p></details>`
+      : `<div class="chapter-special-rule"><b>${esc(rule.title)}</b><p>${esc(rule.text)}</p></div>`).join("")}` : "";
     $("chapterConditionDetail").innerHTML = `<h3>챕터 ${chapter} · 계몽 단서를 확인하는 조건</h3>${activations.map(trigger => `<p>${trigger.known ? "✓ " : ""}${esc(trigger.description)}${trigger.known ? " 이미 조사한 장소입니다." : ""}</p>`).join("")}`;
     if ($("objectiveDetail")) $("objectiveDetail").innerHTML = allObjectives;
     const hud = window.BBHuntMissionHUD?.view(view) || view;
@@ -1067,8 +1077,9 @@
     $("hand").innerHTML =
       h.hand
         .map((c) => {
-          const d = E.card(c);
-          return `<button class="stat-card ${d.type} ${selectedCard === c.id ? "selected" : ""}" data-card="${c.id}" aria-pressed="${selectedCard === c.id}" title="${esc(uiText(d.name + ' · ' + d.text))}"><small>${d.type === "strength" ? "근력" : d.type === "skill" ? "기술" : d.type === "endurance" ? "지구력" : "활력"}</small><b>${esc(d.name)}</b><span>${esc(uiText(d.text))}</span></button>`;
+          const d = E.card(c), text = ({ "기본 기술": "방해 · 느린 적 공격 취소", "기본 지구력": "회피 · 슬롯 비움", "기본 활력": "즉시 1장 뽑기" })[d.name] || uiText(d.text),
+            fullText = uiText(d.name + " · " + d.text);
+          return `<button class="stat-card ${d.type} ${selectedCard === c.id ? "selected" : ""}" data-card="${c.id}" aria-pressed="${selectedCard === c.id}" aria-label="${esc(fullText)}" title="${esc(fullText)}"><small>${d.type === "strength" ? "근력" : d.type === "skill" ? "기술" : d.type === "endurance" ? "지구력" : "활력"}</small><b>${esc(d.name)}</b><span>${esc(text)}</span></button>`;
         })
         .join("") ||
       `<p class="muted">${state.phase === "over" ? "마지막 사냥의 카드 기록을 보관했습니다." : "손패가 비었습니다. 차례를 마쳐 보충하세요."}</p>`;
@@ -1261,10 +1272,12 @@
         );
       html += button("플레이어의 차례 마치기", "END_TURN");
     } else if (p === "move") {
-      help = `남은 이동력 ${state.move.remaining}. 밝은 칸 또는 현재 칸의 출입구를 누르세요. 이동을 마치면 적의 추격을 처리합니다.`;
+      help = state.move.costPending ? `예약: ${uiText(E.card(E.hunter(state).hand.find(card => card.id === state.move.cardId)).name)} · 첫 칸 진입 시 소모` :
+        `남은 이동력 ${state.move.remaining}. 이동을 마치면 적의 추격을 처리합니다.`;
       const carry = (E.missionActions ? E.missionActions(state) : []).find(action => action.command.type === "MISSION_PICKUP");
       if (carry) help += "이 칸에서 걸어서 이동해 나갈 때 생존자와 동행할지 확인합니다. 추가 비용은 없습니다. 순간이동·꿈 입장에는 생존자가 함께 이동하지 않습니다.";
-      html = button("여기서 이동 마치기", "STOP_MOVE");
+      html = button("이동 마치기", "STOP_MOVE", {}, E.canStopMove ? !E.canStopMove(state) : false) +
+        (E.canCancelMove?.(state) ? button("이동 선언 취소", "CANCEL_MOVE") : "");
     } else if (p === "tile_place") {
       help =
         "출입구가 이어지는 방향을 선택하세요. 배치 후 적·소모품을 놓고 연결된 칸으로 진입합니다.";
@@ -1702,10 +1715,10 @@
     // Move the original controls, including their bound handlers and disabled
     // state. Explanations can scroll without duplicating a game command.
     dock.replaceChildren();
-    const core = new Set(["MOVE", "END_TURN", "STOP_MOVE",
+    const core = new Set(["MOVE", "END_TURN", "STOP_MOVE", "CANCEL_MOVE",
       "ATTACK", "COUNTER", "NO_ATTACK", "DODGE", "EXTRA_DODGE", "RESOLVE", "EXTRA_TAKE", "WEAPON_CHOICE", "ENTRY_WEAPON", "WEAPON_SHOT"]);
     const controls = [...$("decisions").querySelectorAll("[data-command]"), ...$("mapContext").querySelectorAll("[data-command]")];
-    const order = ["WEAPON_CHOICE", "ENTRY_WEAPON", "WEAPON_SHOT", "ATTACK", "COUNTER", "NO_ATTACK", "DODGE", "EXTRA_DODGE", "RESOLVE", "EXTRA_TAKE", "MOVE", "STOP_MOVE", "END_TURN"];
+    const order = ["WEAPON_CHOICE", "ENTRY_WEAPON", "WEAPON_SHOT", "ATTACK", "COUNTER", "NO_ATTACK", "DODGE", "EXTRA_DODGE", "RESOLVE", "EXTRA_TAKE", "MOVE", "STOP_MOVE", "CANCEL_MOVE", "END_TURN"];
     controls.sort((a, b) => order.indexOf(a.dataset.command) - order.indexOf(b.dataset.command));
     const hasAttack = controls.some(control => ["ATTACK", "COUNTER"].includes(control.dataset.command));
     for (const control of controls) {
@@ -1729,12 +1742,12 @@
     $("movementRemaining").hidden = !view.moving;
     if (!view.moving) movementDirection = null;
     const chosenDirection = view.directions.find(direction => direction.edge === movementDirection);
-    box.innerHTML = `<p class="movement-hint">${esc(uiText(view.hint))}</p>${!view.moving ? button("이동 시작 · 손패 1장", "MOVE", { cardId: selectedCard }, !view.start.enabled) : ""}<div class="movement-pad" role="group" aria-label="이동 방향">${view.directions.map(direction => {
+    box.innerHTML = `<p class="movement-hint">${esc(uiText(view.hint))}</p>${!view.moving ? button("이동 선언 · 손패 1장", "MOVE", { cardId: selectedCard }, !view.start.enabled) : ""}<div class="movement-pad" role="group" aria-label="이동 방향">${view.directions.map(direction => {
       const enabled = direction.options.some(option => option.enabled),
         hint = enabled ? direction.options.filter(option => option.enabled).map(option => uiText(option.label)).join(" / ") :
           direction.options[0]?.reason || "이 방향으로 연결된 칸이나 열린 출입구가 없습니다.";
       return `<button type="button" data-move-direction="${direction.edge}" ${enabled ? "" : "disabled"} aria-label="${direction.name} 이동" title="${esc(hint)}">${{N:"↑",E:"→",S:"↓",W:"←"}[direction.edge]}</button>`;
-    }).join("")}<span class="movement-center" aria-hidden="true">${view.moving ? view.remaining : "이동"}</span></div>${chosenDirection ? `<div class="movement-destinations"><p>${chosenDirection.name} · 이동할 칸을 선택하세요</p>${chosenDirection.options.map((option, index) => `<button type="button" data-move-option="${index}" ${option.enabled ? "" : "disabled"} title="${esc(option.reason || option.cost)}">${esc(uiText(option.label))}</button>`).join("")}</div>` : ""}${view.moving ? button("이동 마치기", "STOP_MOVE", {}, !view.stop.enabled) : ""}`;
+    }).join("")}<span class="movement-center" aria-hidden="true">${view.moving ? view.remaining : "이동"}</span></div>${chosenDirection ? `<div class="movement-destinations"><p>${chosenDirection.name} · 이동할 칸을 선택하세요</p>${chosenDirection.options.map((option, index) => `<button type="button" data-move-option="${index}" ${option.enabled ? "" : "disabled"} title="${esc(option.reason || option.cost)}">${esc(uiText(option.label))}</button>`).join("")}</div>` : ""}${view.moving ? button("이동 마치기", "STOP_MOVE", {}, !view.stop.enabled) + (view.cancel?.enabled ? button("이동 선언 취소", "CANCEL_MOVE") : "") : ""}`;
     bind(box);
     box.querySelectorAll("[data-move-direction]").forEach(button => button.onclick = () => {
       const direction = view.directions.find(direction => direction.edge === button.dataset.moveDirection),

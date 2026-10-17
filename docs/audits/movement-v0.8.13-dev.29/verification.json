@@ -1,0 +1,103 @@
+{
+  "version": "0.8.13-dev.29",
+  "mainMerge": {
+    "pr": 84,
+    "sha": "9d7e29443fba56a1afc10783930089a8857ee0f6",
+    "headChecks": "Game regression checks run38993064282 success"
+  },
+  "change": {
+    "movement": "일반 이동 선언 취소, 첫 성공 진입 때 예약 카드 비용1회, 1칸 이상 이동 후 종료",
+    "legacy": "원본 저장 재생 유지. 다음 새 일반 MOVE 직전에 채택 명령 기록",
+    "exploration": "타일 공개 뒤에는 취소 불가, 배치·실제 진입까지 비용 유예",
+    "specialMoves": "효과·소모품의 선택 이동은 기존 조건 유지"
+  },
+  "resolution": {
+    "fixedViewport": "원복",
+    "iframe": false,
+    "globalScaling": false,
+    "defaultFontAndDimensions": "기존 유지",
+    "mapHeight": "기본 지도 높이에 상단 요약의36px을 배분. 높이 −로 이전 높이 복원. 전체 배율·글자·손패·무기 행 유지"
+  },
+  "focusedCurrent": {
+    "newEngineTests": 13,
+    "newControllerTests": 5,
+    "newMapHeightTests": 14,
+    "combinedPass": 32,
+    "overlappingRunsNotAdded": true
+  },
+  "actualBrowser": {
+    "classification": "정규 사냥 rules14, QA 지급 없음, 실제 공개 UI 조작",
+    "server": "http://127.0.0.1:8861",
+    "firstMovement": {
+      "declarationHand": 3,
+      "cancellationHand": 3,
+      "tileRevealedHand": 3,
+      "tileEntryHand": 2,
+      "zeroStepFinishDisabled": true,
+      "reservedCardSpent": "card-3",
+      "publicSave": "test-results/campaign-matrix-dev29/normal-campaign/exports/public-after-first-exploration.json",
+      "sha256": "a1b3033fe5ad0698fe6ff9711c8fbf8ab4bb88efde929d6b8545c9a33fec2bfa"
+    },
+    "mapHeight": {
+      "before": 186.5,
+      "after": 222.5,
+      "handHeightBoth": 260,
+      "fontBoth": "14px",
+      "frameCount": 0,
+      "bodyWidthBoth": 1280
+    },
+    "userMapHeightUpdate": {
+      "server": "http://127.0.0.1:8860/hunt.html",
+      "defaultExpanded": true,
+      "mapHeightBefore": 662,
+      "mapHeightAfter": 698,
+      "screenBoth": [
+        940,
+        1252
+      ],
+      "fontBoth": "14px",
+      "lowerPanelHeightBoth": 260,
+      "handAndPhasePreservedAfterReload": true,
+      "proof": "test-results/campaign-matrix-dev29/map-height/map-height-36px.jpg"
+    },
+    "campaignCompletion": "정규 실제 PC 챕터1 완수·혈석 보상 대기 저장 보존. 정규 PC 챕터2·3 완주 미완료. UI 챕터2·3 저장 복원 검수는 별도 분류"
+  },
+  "baselineMatrix": {
+    "ref": "9d7e294",
+    "weapons": 15,
+    "forms": 2,
+    "bossActions": 9,
+    "basicCombinations": 270,
+    "basicPassed": 270,
+    "scenarios": 8280,
+    "passed": 8280,
+    "scope": "엔진 합성 검증. 실제 PC나 모든 화기·보상 순열 아님",
+    "currentMovementRetest": "현재 엔진 동결 소스에서 270/270·8280/8280 통과. 실제 PC 또는 모든 화기 순열로 세지 않음"
+  },
+  "baselineOptionalMissions": {
+    "ref": "9d7e294",
+    "currentRulesNaturalTraces": 17,
+    "passed": 17,
+    "completionOutcomes": 15,
+    "scope": "엔진 공개 명령. 과거규칙·contract·PC와 구분",
+    "additionalNaturalPaths": "추가 4개 자연 경로 중 2개 완료. fallback 입구 부분 확인, 새 챕터3 예배당 경로 미검수"
+  },
+  "fullCI": {
+    "preliminary": "실행 중 해상도 시안 철회로 삭제한 테스트 파일1건과 옛 도움말 버튼 이름 기대1건이 실패. 현재 도움말 기대를 수정했고 철회한 파일은 제외. 최신 후보 전체 재실행 대기",
+    "finalStatus": "이후 UI 변경 전 후보 3164/3164 통과. 최종 현재 UI·이동·지도 높이 집중 검사100/100 통과. 이후 UI 포함 전체 CI는 별도"
+  },
+  "limits": [
+    "정규 실제 PC 캠페인 완주 진행 중",
+    "모든 화기·보상·손패 순열은 이 행렬의 분모가 아님",
+    "계약 상태 주입 검사는 자연 공개 명령 이력과 구분"
+  ],
+  "sourceHashes": {
+    "src/hunt-engine.js": "ef962e41101bbb8a1690c772bbf3f4e6b1d953c699cdc33fe4b142d8cd0b425c",
+    "src/hunt-app.js": "5edf688b8987cd00d4d5ef9bd84f6912e7195ef23b9daa94d347758b913e38c1",
+    "src/hunt-context.js": "19fb31c5624b11d5b418751148549a12ea8554ca3d6a84c0da1169ef55a2fd26",
+    "src/hunt-map-controls.js": "e001024e42975d0aa916c6abb64aacf9e725e6141190fbca473c8e16b70c2f2f",
+    "src/game-help.js": "e157e504656144120d29a87c756db9ab4ac359f02666ff5d7cf8489bd6776c14",
+    "src/hunt-map-height.js": "0aa8f5ae9380430bd80f502dd8b300bfc473430336b5d32ffda5af46b8d3a122",
+    "styles/hunt-map-height.css": "b9bfe4f72558e6db2244ea0b9a57ae9d6f76270e89df5449255ed5d1408bdb88"
+  }
+}

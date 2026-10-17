@@ -8,15 +8,17 @@
     <link rel="stylesheet" href="styles/chapter.css" />
     <link rel="stylesheet" href="styles/hunt.css?v=0.8.13-dev.19&amp;h=59bb96960878" />
     <link rel="stylesheet" href="styles/game-help.css?v=0.8.13-dev.13&amp;h=674bb1a324c0" />
-    <link rel="stylesheet" href="styles/hunt-hand-feedback.css?v=0.8.13-dev.6&amp;h=66350354029f" />
+    <link rel="stylesheet" href="styles/hunt-hand-feedback.css?v=0.8.13-dev.29&amp;h=dae49d29c2e1" />
     <link rel="stylesheet" href="styles/hunt-card-help.css?v=0.8.13-dev.7&amp;h=049dbeb75df2" />
-    <link rel="stylesheet" href="styles/hunt-map-controls.css?v=0.8.13-dev.13&amp;h=0d944385cbb5" />
+    <link rel="stylesheet" href="styles/hunt-map-controls.css?v=0.8.13-dev.29&amp;h=26af2c449c4a" />
     <link rel="stylesheet" href="styles/hunt-combat-feedback.css?v=0.8.13-dev.13&amp;h=1e0ad016d33b" />
     <link rel="stylesheet" href="styles/hunt-combat-controls.css?v=0.8.13-dev.25&amp;h=07dbea734607" />
     <link rel="stylesheet" href="styles/hunt-combat-ux.css?v=0.8.13-dev.15&amp;h=83110e6db54f" />
-    <link rel="stylesheet" href="styles/hunt-workspace-layout.css?v=0.8.13-dev.25&amp;h=18615114ca62" />
+    <link rel="stylesheet" href="styles/hunt-workspace-layout.css?v=0.8.13-dev.29&amp;h=f6d197f5dba5" />
     <link rel="stylesheet" href="styles/hunt-window-manager.css?v=0.8.13-dev.25&amp;h=f6cc503edef0" />
     <link rel="stylesheet" href="styles/hunt-workspace-tabs.css?v=0.8.13-dev.25&amp;h=3f3d314803f5" />
+    <link rel="stylesheet" href="styles/hunt-map-height.css?v=0.8.13-dev.29&amp;h=b9bfe4f72558" />
+    <script src="src/hunt-map-height.js?v=0.8.13-dev.29&amp;h=0aa8f5ae9380"></script>
   </head>
   <body class="hunt-screen">
     <header class="topbar hunt-topbar">
@@ -39,6 +41,7 @@
           <div class="panel-heading"><h2 id="tileInfoHeading">타일 정보</h2><button id="inspectCurrentTile" type="button" class="quiet" title="사냥꾼이 있는 타일 정보">현재 위치</button></div>
           <div id="tileInfo" class="tile-info-content" aria-live="polite"></div>
         </section>
+        <div id="enemyRoster" class="enemy-roster" aria-label="이번 사냥의 적 · 마커 색과 활성화 순서"></div>
       </div>
       <section class="track-panel" aria-label="사냥 트랙">
         <div class="section-label"><span>사냥 트랙</span><b id="roundLabel"></b></div>
@@ -47,8 +50,9 @@
       </section>
       <div class="hunt-layout">
         <section id="missionPanel" class="panel mission-panel" aria-labelledby="missionHeading">
+          <section id="chapterSpecialRules" class="chapter-special-rules" aria-label="현재 챕터 특수 규칙" hidden></section>
           <div class="panel-heading"><h2 id="missionHeading">현재 목표</h2><div class="mission-heading-actions"><span id="missionInsight" class="badge"></span><button id="openMissionUpdates" type="button" class="quiet mission-update-trigger" aria-haspopup="dialog" aria-controls="missionUpdateDialog" hidden>임무 변화 확인 <span id="missionUpdateCount" class="toolbar-count" hidden></span></button><button type="button" data-panel="objectives" class="quiet goal-details">전체 목표</button></div></div>
-          <div class="mission-hud-body"><div class="mission-hud-goals"><div id="missionRecent" class="mission-recent" role="status" aria-live="polite" hidden></div><div id="missionObjectives" class="mission-objectives"></div><div id="chapterConditions" class="chapter-conditions"></div><div class="mission-summary-foot"><div id="missionTokens" class="mission-tokens"></div><div id="missionFog" class="muted"></div></div></div><details class="mission-enemy-summary"><summary>적 활성화 순서 · 능력</summary><div id="enemyRoster" class="enemy-roster" aria-label="이번 사냥의 적"></div></details></div>
+          <div class="mission-hud-body"><div class="mission-hud-goals"><div id="missionRecent" class="mission-recent" role="status" aria-live="polite" hidden></div><div id="missionObjectives" class="mission-objectives"></div><div id="chapterConditions" class="chapter-conditions"></div><div class="mission-summary-foot"><div id="missionTokens" class="mission-tokens"></div><div id="missionFog" class="muted"></div></div></div></div>
         </section>
         <section class="panel hunt-map" aria-labelledby="mapHeading">
           <div class="panel-heading"><h2 id="mapHeading">야남의 길</h2><div class="map-tools"><span id="tileCount" class="badge"></span><button id="centerMap" type="button" title="사냥꾼의 현재 위치로 지도 이동">현재 위치</button><button type="button" data-panel="help" class="quiet" aria-label="지도 기호 안내">?</button></div></div>
@@ -262,7 +266,7 @@
     <script src="src/weapon-flow.js"></script>
     <script src="src/extended-enemy-rules.js"></script>
     <script src="src/qa-mode.js"></script>
-    <script src="src/hunt-engine.js?v=0.8.13-dev.25&amp;h=f13a72497082"></script>
+    <script src="src/hunt-engine.js?v=0.8.13-dev.29&amp;h=ef962e41101b"></script>
     <script src="src/hunt-public-text.js?v=0.8.13-dev.19&amp;h=e6652d6ddaea"></script>
     <script src="src/hunt-enemy-mission-effects.js?v=0.8.13-dev.6&amp;h=f500fa38d874"></script>
     <script src="src/hunt-mission-feedback.js?v=0.8.13-dev.28&amp;h=88dc7b228721"></script>
@@ -270,10 +274,10 @@
     <script src="src/enemy-action-history.js"></script>
     <script src="src/inventory.js?v=0.8.13-dev.25&amp;h=3a133fb146c0"></script>
     <script src="src/hunt-entry.js?v=0.8.13-dev.11&amp;h=1fabaf52aa2d"></script>
-    <script src="src/game-help.js?v=0.8.13-dev.25&amp;h=0040f6a525ff"></script>
+    <script src="src/game-help.js?v=0.8.13-dev.29&amp;h=e157e5046561"></script>
     <script src="src/hunt-shell.js?v=0.8.13-dev.25&amp;h=d80e89122f95"></script>
-    <script src="src/hunt-context.js?v=0.8.13-dev.16&amp;h=f05e3272340f"></script>
-    <script src="src/hunt-map-controls.js?v=0.8.13-dev.25&amp;h=28ff900cb39f"></script>
+    <script src="src/hunt-context.js?v=0.8.13-dev.29&amp;h=19fb31c5624b"></script>
+    <script src="src/hunt-map-controls.js?v=0.8.13-dev.29&amp;h=e001024e4297"></script>
     <script src="src/hunt-location-labels.js?v=0.8.13-dev.15&amp;h=050325d0a994"></script>
     <script src="src/hunt-attack-preview.js?v=0.8.13-dev.21&amp;h=6443e5e5a026"></script>
     <script src="src/hunt-departure.js"></script>
@@ -291,9 +295,9 @@
     <script src="src/hunt-action-availability.js?v=0.8.13-dev.14&amp;h=19955816d7dc"></script>
     <script src="src/hunt-action-loss.js?v=0.8.13-dev.16&amp;h=1d3de045c5b3"></script>
     <script src="src/hunt-card-help.js?v=0.8.13-dev.7&amp;h=d0f40bd41a8e"></script>
-    <script src="src/hunt-mission-hud.js?v=0.8.13-dev.25&amp;h=e0da1688ef82"></script>
+    <script src="src/hunt-mission-hud.js?v=0.8.13-dev.29&amp;h=9d3a8d3f1c9c"></script>
     <script src="src/hunt-window-manager.js?v=0.8.13-dev.26&amp;h=100ce3b2c64d"></script>
     <script src="src/hunt-upgrade-overview.js?v=0.8.13-dev.25&amp;h=bcffd50aa9b1"></script>
-    <script src="src/hunt-app.js?v=0.8.13-dev.28&amp;h=501ce40f2079"></script>
+    <script src="src/hunt-app.js?v=0.8.13-dev.29&amp;h=5edf688b8987"></script>
   </body>
 </html>

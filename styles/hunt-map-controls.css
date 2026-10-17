@@ -1,5 +1,4 @@
-/* Tile details, map and decisions share one row. Cards and weapons retain
-   their own widths while the movement controller occupies the middle slot. */
+/* 타일 정보·지도·진행 상황은 같은 행을 쓰고, 이동 조작은 하단 가운데에 둡니다. */
 .hunt-main .hunt-layout {
   grid-template-columns: minmax(180px, 220px) minmax(0, 1fr) minmax(270px, 320px);
 }
@@ -37,10 +36,10 @@ html[data-phase="between_chapters"] .hunt-main .hunt-layout {
 .hunt-main .hunt-loadout { grid-template-columns: minmax(0, 1.05fr) 158px minmax(0, 1fr) minmax(170px, .55fr); }
 .hunt-main .movement-panel { border-top-color: #91a8a4; }
 .movement-panel .panel-heading { align-items: center; justify-content: space-between; }
-.movement-controls { display: flex; flex-direction: column; min-height: 0; gap: 5px; overflow: auto; scrollbar-width: thin; }
-.movement-controls .movement-hint { margin: 3px 0; font-size: 11px; line-height: 1.4; }
-.movement-controls > button { min-height: 29px; padding: 4px 6px; font-size: 12px; }
-.movement-pad { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(3, 30px); gap: 3px; flex: 0 0 auto; }
+.movement-controls { display: flex; flex-direction: column; min-height: 0; gap: 3px; overflow: auto; scrollbar-width: thin; }
+.movement-controls .movement-hint { margin: 2px 0; font-size: 11px; line-height: 1.4; }
+.movement-controls > button { min-height: 27px; padding: 3px 6px; font-size: 12px; }
+.movement-pad { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(3, 27px); gap: 2px; flex: 0 0 auto; }
 .movement-pad button { padding: 2px; min-height: 0; font-size: 18px; line-height: 1; }
 .movement-pad [data-move-direction="N"] { grid-area: 1 / 2; }
 .movement-pad [data-move-direction="W"] { grid-area: 2 / 1; }
@@ -71,7 +70,7 @@ html[data-phase="between_chapters"] .hunt-main .hunt-layout {
   .hunt-main .hunt-layout,
   html[data-phase] .hunt-main .hunt-layout { grid-template-columns: 150px minmax(0, 1fr); grid-template-rows: minmax(360px, 55dvh) auto; }
   .hunt-main .hunt-decisions { grid-column: 1 / -1; max-height: 430px; }
-  .hunt-main .hunt-loadout { grid-template-columns: minmax(0, 1fr) 132px minmax(0, 1fr); grid-auto-rows: 250px auto; }
+  .hunt-main .hunt-loadout { grid-template-columns: minmax(0, 1fr) 132px minmax(0, 1fr); grid-auto-rows: 216px auto; }
   .hunt-main .gun-panel { position: relative; grid-column: 1 / -1; width: auto; height: auto; min-height: 70px; right: auto; bottom: auto; flex-direction: column !important; align-items: stretch; }
   .hunt-main .weapon-panel { padding-bottom: 7px !important; }
   .hunt-main .gun-panel > button { width: 100%; }
@@ -80,7 +79,7 @@ html[data-phase="between_chapters"] .hunt-main .hunt-layout {
   .hunt-main .hunt-layout,
   html[data-phase] .hunt-main .hunt-layout { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 420px auto; }
   .hunt-main .tile-info-panel { max-height: 230px; }
-  .hunt-main .hunt-loadout { grid-template-columns: minmax(0, 1fr) 126px; grid-template-rows: 240px auto auto; }
+  .hunt-main .hunt-loadout { grid-template-columns: minmax(0, 1fr) 126px; grid-template-rows: 216px auto auto; }
   .hunt-main .weapon-panel, .hunt-main .gun-panel { grid-column: 1 / -1; }
 }
 @media (max-height: 800px) and (min-width: 721px) {
@@ -91,10 +90,9 @@ html[data-phase="between_chapters"] .hunt-main .hunt-layout {
 @media (max-height: 680px) and (min-width: 721px) {
   .hunt-screen .hunt-main { grid-template-rows: 96px 22px minmax(0, 1fr) 228px; }
 }
-/* Decisions keep the whole right column, including beside the loadout. This
-   leaves readable comparison space on short screens without shrinking cards. */
+/* 오른쪽 진행 상황은 하단 옆까지 이어집니다. 하단을 줄여도 전체 열 높이는 유지합니다. */
 @media (min-width: 721px) {
-  .hunt-screen { --decision-width: 320px; --loadout-row: 260px; }
+  .hunt-screen { --decision-width: 320px; --loadout-row: 216px; }
   .hunt-main .hunt-layout { position: relative; }
   .hunt-main .hunt-decisions { position: absolute; top: 0; right: 0; width: var(--decision-width); height: calc(100% + var(--loadout-row) + var(--hud-gap)); box-sizing: border-box; }
   .hunt-main .hunt-loadout { margin-right: calc(var(--decision-width) + var(--hud-gap)); grid-template-columns: minmax(0, 1fr) 140px minmax(0, 1.3fr); }
@@ -112,8 +110,8 @@ html[data-phase="between_chapters"] .hunt-main .hunt-layout {
 .hunt-main .hunt-decisions .gun-panel h2 { font-size: 12px; line-height: 1.4; margin: 0; }
 .hunt-main .hunt-decisions .gun-panel h2 small { display: block; font-size: 10px; }
 .hunt-main .hunt-decisions .gun-panel > button { width: 100%; margin: 0; padding: 6px; font-size: 11px; line-height: 1.4; }
-@media (max-width: 720px) { .hunt-main .hunt-loadout { grid-template-columns: minmax(0, 1fr) 132px minmax(0, 1fr); grid-auto-rows: 260px; } }
-@media (max-width: 480px) { .hunt-main .hunt-loadout { grid-template-columns: minmax(0, 1fr) 126px; grid-template-rows: 260px 270px; } }
+@media (max-width: 720px) { .hunt-main .hunt-loadout { grid-template-columns: minmax(0, 1fr) 132px minmax(0, 1fr); grid-auto-rows: 216px; } }
+@media (max-width: 480px) { .hunt-main .hunt-loadout { grid-template-columns: minmax(0, 1fr) 126px; grid-template-rows: 216px 216px; } }
 @media (max-width: 720px) {
   .hunt-main .hunt-decisions { height: 480px; max-height: none; }
   .decision-action-dock { position: sticky; bottom: 0; z-index: 2; }
