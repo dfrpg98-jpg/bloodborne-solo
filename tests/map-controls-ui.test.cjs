@@ -150,18 +150,47 @@ test("an empty space on an unnamed public tile retains its map address and selec
   assert(cell); cell.click();
   const panel = ui.el("tileInfo");
   assert(panel.textContent.includes(reference), "the public map address identifies the inspected unnamed tile");
-  assert(panel.textContent.includes(space.placeName || space.label), "selectedOnly still names the selected space");
-  assert.match(panel.textContent, /비어있음/);
+  assert(panel.textContent.includes(G.spaceLabel(definition, space)), "selectedOnly uses the map's displayed space name");
+  assert.doesNotMatch(panel.textContent, /비어있음|적 없음/);
+  assert.equal(panel.querySelectorAll(".tile-info-enemies").length, 0, "an empty enemy column does not take space from the tile rules");
   assert.equal(panel.querySelectorAll(".tile-info-space").length, 1);
   assert(!panel.textContent.includes(definition.displayName), "no invented printed tile name is exposed");
   assert(!panel.textContent.includes(placed.tileId), "development identifiers are not player names");
   for (const other of definition.spaces.filter(other => other.id !== space.id))
-    assert(!panel.textContent.includes(other.placeName || other.label), "other spaces remain omitted");
+    assert(!panel.textContent.includes(G.spaceLabel(definition, other)), "other spaces remain omitted");
   assert.equal(ui.storage.get(key), before, "inspection leaves the exact save bytes unchanged");
   assert.equal(saved(ui).commands.length, commandsBefore, "inspection records no engine command");
   ui.el("inspectCurrentTile").click();
   assert(ui.el("tileInfo").textContent.includes("중앙 등불"), "named tiles retain their existing public name");
   assert.equal(ui.storage.get(key), before);
+});
+
+test("shared space names match every existing map diagram and the selected tile information", () => {
+  for (const tileId of Object.keys(G.tiles)) {
+    const tile = M.tile(tileId), svg = fs.readFileSync(path.join(root, G.image(tileId)), "utf8");
+    for (const space of tile.spaces) {
+      const printed = svg.match(new RegExp(`<text data-space-label="${space.id}"[^>]*>([^<]*)</text>`));
+      assert(printed, tileId + ":" + space.id);
+      assert.equal(G.spaceLabel(tile, space), printed[1], "tile information and the generator use the map's existing visible label");
+    }
+  }
+  let state = E.create(90, "burial", 1, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 8 });
+  for (const command of require("./fixtures/full-campaign-v8-commands.json")) {
+    state = E.dispatch(state, command);
+    if (state.world.tiles.some(tile => tile.tileId === "tile-10")) break;
+  }
+  assert(state, "the natural campaign has revealed the two spaces around the building");
+  const ui = launch(state), before = ui.storage.get(key), tile = M.tile("tile-10");
+  for (const space of tile.spaces) {
+    const button = ui.el("chapterMap").querySelectorAll("[data-node]").find(button => button.dataset.node === tile.id + ":" + space.id);
+    const label = G.spaceLabel(tile, space);
+    assert.equal(button.getAttribute("title"), label);
+    button.click();
+    assert(ui.el("tileInfo").innerHTML.includes(`<span>${label}</span>`), "the selected space title matches its map label");
+    assert(!ui.el("tileInfo").textContent.includes(space.label), "the longer development description is not another space name");
+    assert.doesNotMatch(ui.el("tileInfo").textContent, /비어있음|적 없음/);
+    assert.equal(ui.storage.get(key), before);
+  }
 });
 
 test("crossing a tile boundary keeps the inspected tile without repeating hunter location, and current-location inspection costs nothing", () => {

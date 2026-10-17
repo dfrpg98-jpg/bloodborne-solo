@@ -1,0 +1,144 @@
+{
+  "schema": "tile-window-audit-v1",
+  "version": "0.8.13-dev.32",
+  "date": "2026-10-18",
+  "status": "passed",
+  "scope": {
+    "requests": [
+      "타일 정보의 칸 이름을 지도 그림과 통일",
+      "비어있음과 빈 영역을 생략해 세로 공간 절약",
+      "최소화는 원래 제목줄을 그대로 보존",
+      "오른쪽 버튼을 최소화/복원 다음 닫기/돌아가기 순서로 정렬"
+    ],
+    "engineChanged": false,
+    "saveFormatChanged": false,
+    "globalScaleOrFontChanged": false
+  },
+  "tileInformation": {
+    "allMapDiagramsChecked": 20,
+    "spaceLabelsChecked": 52,
+    "sharedFunction": "BBTileGeometry.spaceLabel",
+    "consumers": [
+      "scripts/generate-tile-diagrams.cjs",
+      "src/hunt-map-controls.js",
+      "src/hunt-app.js"
+    ],
+    "existingMapArtUnchanged": true,
+    "actualBuildingSpace": {
+      "emptyText": false,
+      "mapName": "왼쪽 칸",
+      "name": "왼쪽 칸",
+      "panel": "남쪽 1 구역왼쪽 칸야수 사냥 무리#2체력 2 / 4"
+    },
+    "emptyPlaceholdersRemoved": [
+      "비어있음",
+      "적 없음"
+    ],
+    "noEnemyColumn": "타일 설명에 전체 너비 사용",
+    "actualCentralLamp": {
+      "clientHeight": 44,
+      "scrollHeight": 44,
+      "verticalOverflow": false
+    }
+  },
+  "window": {
+    "viewport": [
+      1714,
+      1252
+    ],
+    "actualCycles": 8,
+    "actualCyclesAfterAltArrowMovement": 8,
+    "allHeadingEyebrowTitleAndButtonRectsIdentical": true,
+    "expandedHeading": {
+      "height": 78.75,
+      "width": 1058,
+      "x": 328,
+      "y": 267
+    },
+    "minimizedHeading": {
+      "height": 78.75,
+      "width": 1058,
+      "x": 328,
+      "y": 267
+    },
+    "movedHeading": {
+      "height": 78.75,
+      "width": 1058,
+      "x": 344,
+      "y": 283
+    },
+    "buttonOrder": [
+      "최소화 또는 복원",
+      "기존 닫기 또는 사냥으로 돌아가기"
+    ],
+    "existingCloseNodeEventsAndDisabledPreserved": true,
+    "mandatoryChoiceBlockingPreserved": true,
+    "report": "test-results/tile-window-dev32/browser-header-cycles.json",
+    "userChapter1": {
+      "headingRectIdentical": true,
+      "report": "test-results/tile-window-dev32/user-header.json"
+    },
+    "screenshots": [
+      "test-results/tile-window-dev32/expanded.jpg",
+      "test-results/tile-window-dev32/minimized.jpg",
+      "test-results/tile-window-dev32/user-minimized.jpg"
+    ]
+  },
+  "saveSafety": {
+    "officialUiExport": true,
+    "userSaveBytes": 10376,
+    "userBeforeAfterByteExact": true,
+    "userStrictImportReplayAndExportByteExact": true,
+    "userPhase": "move",
+    "userBackup": "test-results/tile-window-dev32/user-save-after.json",
+    "completedCampaignSaveBytes": 59150,
+    "completedCampaignStrictImportReplayAndExportByteExact": true,
+    "completedCampaignUnchangedFromDev31": true,
+    "completedCampaignResult": "campaign-win",
+    "consoleErrors": []
+  },
+  "tests": {
+    "related": {
+      "counts": {
+        "tests": 162,
+        "pass": 162,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "report": "test-results/tile-window-dev32/related.tap",
+      "files": [
+        "tests/hunt-window-manager-dev25.test.cjs",
+        "tests/hunt-workspace-shell-v25.test.cjs",
+        "tests/hunt-keyboard-controls-dev30.test.cjs",
+        "tests/map-controls-ui.test.cjs",
+        "tests/location-label-ui.test.cjs",
+        "tests/mission-hud-map-workspace-v25.test.cjs",
+        "tests/compact-hud-v0829.test.cjs",
+        "tests/tile-diagrams.test.cjs",
+        "tests/campaign-ui.test.cjs",
+        "tests/animation-camera-ui-v082.test.cjs",
+        "tests/camera-v082.test.cjs"
+      ]
+    },
+    "previousFullCi": {
+      "version": "0.8.13-dev.31",
+      "passed": 3191,
+      "currentDev32FullCiRerun": false,
+      "report": "docs/audits/normal-campaign-completion-v0.8.13-dev.31/verification.json"
+    }
+  },
+  "cacheHashes": {
+    "src/tile-geometry.js": "ecb830e08605",
+    "src/hunt-app.js": "efb028588817",
+    "src/hunt-map-controls.js": "dd6da709daab",
+    "styles/hunt-workspace-layout.css": "8a9bf8206f1f",
+    "src/hunt-window-manager.js": "e5718c95277d",
+    "styles/hunt-window-manager.css": "89adf4a7c9d5"
+  },
+  "publication": {
+    "pullRequest": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/89",
+    "draft": true,
+    "mainMerged": false
+  }
+}

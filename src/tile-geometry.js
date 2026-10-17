@@ -154,7 +154,13 @@
     if (!s) throw new Error(`타일 칸 도식이 없습니다: ${tileId}:${spaceId}`);
     return s.polygon.map((p) => rotatePoint(p, rotation));
   };
-  const api = { tiles, definition, point, polygon, rotatePoint, image: (tileId) => { definition(tileId); return `assets/tiles/${tileId}.svg`; } };
+  function spaceLabel(tile, space) {
+    if (tile.id === "tile-10") return space.id === "left" ? "왼쪽 칸" : "오른쪽 칸";
+    if (space.id === "center" && tile.id === "tile-15" || space.id === "top" &&
+        ["tile-07", "tile-12", "tile-18", "tile-19"].includes(tile.id)) return tile.name;
+    return space.placeName || space.label;
+  }
+  const api = { tiles, definition, point, polygon, rotatePoint, spaceLabel, image: (tileId) => { definition(tileId); return `assets/tiles/${tileId}.svg`; } };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   root.BBTileGeometry = api;
 })(typeof globalThis !== "undefined" ? globalThis : this);

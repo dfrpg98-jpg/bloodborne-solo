@@ -1,6 +1,6 @@
 # Bloodborne Solo · 기나긴 사냥
 
-브라우저에서 기나긴 사냥 챕터 1~3을 한 명의 플레이어로 진행하는 로컬 게임입니다. 이 브랜치의 개발 버전은 **0.8.13-dev.31**, 마지막 보관 릴리스는 **0.8.12**입니다. 정규 장비·QA 지급 없는 실제 브라우저 캠페인을 챕터 1~3까지 완수했고, 완료 저장의 엄격 재생과 공식 불러오기를 확인했습니다. 진행 중 발견한 익명 타일 정보 누락과 꿈·완료 상태의 빈 지도 중심 문제를 수정했습니다. [완주 검증 기록](docs/audits/normal-campaign-completion-v0.8.13-dev.31/verification.json)을 참고하세요. 전체 화면 배율과 기본 글자 크기는 유지합니다. [이전 화면 변경](docs/audits/inline-workspace-v0.8.13-dev.30/verification.json)은 PR #89에서 함께 검토 중이며, dev.28은 PR #84로 main에 병합했습니다.
+브라우저에서 기나긴 사냥 챕터 1~3을 한 명의 플레이어로 진행하는 로컬 게임입니다. 이 브랜치의 개발 버전은 **0.8.13-dev.32**, 마지막 보관 릴리스는 **0.8.12**입니다. 정규 장비·QA 지급 없는 실제 브라우저 캠페인을 챕터 1~3까지 완수했고, 완료 저장의 엄격 재생과 공식 불러오기를 확인했습니다. 진행 중 발견한 익명 타일 정보 누락과 꿈·완료 상태의 빈 지도 중심 문제를 수정했습니다. dev.32는 칸 이름을 지도와 통일하고 빈 안내를 생략하며, 원래 제목줄을 보존해 최소화하고 오른쪽 버튼을 최소화 → 닫기 순서로 정렬합니다. [제목줄·타일 표기 검증](docs/audits/tile-window-v0.8.13-dev.32/verification.json)도 확인할 수 있습니다. [완주 검증 기록](docs/audits/normal-campaign-completion-v0.8.13-dev.31/verification.json)을 참고하세요. 전체 화면 배율과 기본 글자 크기는 유지합니다. [이전 화면 변경](docs/audits/inline-workspace-v0.8.13-dev.30/verification.json)은 PR #89에서 함께 검토 중이며, dev.28은 PR #84로 main에 병합했습니다.
 
 수직 이동·정렬된 공격의 방향 반전 수정은 [하인 방향 재점검](docs/audits/minion-facing-v0.8.13-dev.10/README.md)에, 신규 적6종의 외형·표시 크기·실제 검증 사냥은 [적 외형 점검 기록](docs/audits/enemy-sprites-v0.8.13-dev.9/README.md)에 있습니다. dev.8의 UI·규칙·저장 점검과 Unity 이식 준비 결과는 [로컬 검증 기록](docs/audits/local-final-validation-v0.8.13-dev.8/README.md)에서 구분합니다.
 

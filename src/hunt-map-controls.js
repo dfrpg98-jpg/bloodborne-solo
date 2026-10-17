@@ -94,7 +94,7 @@
       if (node === "tile-07:top") interactions.push("상호작용 · 소모품 1개를 피의 유지 1개로 교환");
       if (node === "tile-20:room") interactions.push("차례마다 한 번 · 피해 1을 받고 손패 1장 뽑기");
       if (atHunter && E.interactionOptions(state).missionRescue) interactions.push("임무 대상과 상호작용 가능");
-      return { node, name: space.placeName || space.label, atHunter, enemies, loot,
+      return { node, name: G.spaceLabel(tile, space), atHunter, enemies, loot,
         interactions, tokens: tokens.filter(token => token.node === node) };
     });
     return { id: tileId, name: tile.named ? tile.displayName : null, fog, rules: [...(tile.rules || [])], selectedNode, spaces };

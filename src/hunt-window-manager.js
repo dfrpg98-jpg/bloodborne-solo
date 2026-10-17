@@ -26,8 +26,8 @@
     const width = Math.max(0, Number(size.width) || 0), height = Math.max(0, Number(size.height) || 0);
     const maxX = Math.max(margin, (Number(viewport.width) || 0) - width - margin);
     const maxY = Math.max(margin, (Number(viewport.height) || 0) - height - margin);
-    return { x: Math.round(Math.min(maxX, Math.max(margin, Number(position.x) || 0))),
-      y: Math.round(Math.min(maxY, Math.max(margin, Number(position.y) || 0))) };
+    return { x: Math.min(maxX, Math.max(margin, Number(position.x) || 0)),
+      y: Math.min(maxY, Math.max(margin, Number(position.y) || 0)) };
   }
   function isResponse(dialogId, command) {
     return dialogId === "attachmentDialog" && command?.type === "REASSIGN_REWARD";
@@ -72,12 +72,14 @@
     function raise(record) {
       record.dialog.style.zIndex = String(++highest);
     }
-    function position(record, desired) {
-      const rect = record.dialog.getBoundingClientRect?.() || {};
-      const next = clampPosition(desired, rect, viewport());
+    function place(record, next) {
       Object.assign(record.dialog.style, { left: next.x + "px", top: next.y + "px", right: "auto", bottom: "auto", margin: "0", transform: "none" });
       record.positioned = true;
       return next;
+    }
+    function position(record, desired) {
+      const rect = record.dialog.getBoundingClientRect?.() || {};
+      return place(record, clampPosition(desired, rect, viewport()));
     }
     function center(record) {
       const rect = record.dialog.getBoundingClientRect?.() || {}, bounds = viewport();
@@ -91,6 +93,8 @@
         Object.assign(record.dialog.style, record.expandedStyle);
         record.expandedStyle = null;
       }
+      for (const frozen of record.frozenHeadingStyles || []) Object.assign(frozen.element.style, frozen.style);
+      record.frozenHeadingStyles = null;
       record.minimizeButton.textContent = "최소화";
       record.minimizeButton.setAttribute("aria-label", "창 최소화");
       record.minimizeButton.setAttribute("aria-expanded", "true");
@@ -101,10 +105,18 @@
       if (!record?.dialog.open || record.minimized) return false;
       record.focusBeforeMinimize = document.activeElement;
       const rect = record.dialog.getBoundingClientRect?.() || {};
+      const headingRect = record.heading.getBoundingClientRect?.() || {}, buttonRect = record.minimizeButton.getBoundingClientRect?.() || {};
       record.expandedStyle = { width: record.dialog.style.width || "", boxSizing: record.dialog.style.boxSizing || "" };
+      record.frozenHeadingStyles = [
+        { element: record.heading, style: { height: record.heading.style.height || "", boxSizing: record.heading.style.boxSizing || "" } },
+        { element: record.minimizeButton, style: { width: record.minimizeButton.style.width || "", boxSizing: record.minimizeButton.style.boxSizing || "" } },
+      ];
       record.scrollOffsets = [record.dialog, ...record.dialog.querySelectorAll?.(".compact-dialog-content,.info-content,.mission-update-content,.story-text") || []]
         .map(element => ({ element, top: element.scrollTop || 0, left: element.scrollLeft || 0 }));
       if (rect.width > 0) Object.assign(record.dialog.style, { width: rect.width + "px", boxSizing: "border-box" });
+      if (headingRect.height > 0) Object.assign(record.heading.style, { height: headingRect.height + "px", boxSizing: "border-box" });
+      // The shorter restore label must not reflow the title or shift its close control.
+      if (buttonRect.width > 0) Object.assign(record.minimizeButton.style, { width: buttonRect.width + "px", boxSizing: "border-box" });
       if (record.caption) record.caption.textContent = title(record.dialog);
       record.minimized = true;
       record.dialog.setAttribute("data-window-minimized", "true");
@@ -112,7 +124,7 @@
       record.minimizeButton.setAttribute("aria-label", "창 복원");
       record.minimizeButton.setAttribute("aria-expanded", "false");
       record.minimizeButton.setAttribute("title", "본문 펼치기");
-      position(record, { x: rect.left || 0, y: rect.top || 0 });
+      place(record, { x: rect.left || 0, y: rect.top || 0 });
       raise(record);
       record.minimizeButton.focus?.({ preventScroll: true });
       return true;
@@ -120,11 +132,11 @@
     function restore(value) {
       const record = recordFor(value);
       if (!record?.dialog.open) return false;
+      const rect = record.dialog.getBoundingClientRect?.() || {};
       reset(record); raise(record);
-      if (record.positioned) {
-        const rect = record.dialog.getBoundingClientRect?.() || {};
-        position(record, { x: rect.left || parseFloat(record.dialog.style.left), y: rect.top || parseFloat(record.dialog.style.top) });
-      }
+      // Restoring the body must not move the title bar after it was dragged.
+      // Explicit dragging and viewport resize remain the bounded-position paths.
+      if (record.positioned) place(record, { x: rect.left || 0, y: rect.top || 0 });
       for (const offset of record.scrollOffsets || []) {
         offset.element.scrollTop = offset.top; offset.element.scrollLeft = offset.left;
       }
@@ -166,7 +178,11 @@
       minimizeButton.className = "hunt-window-minimize"; minimizeButton.textContent = "최소화";
       minimizeButton.setAttribute("aria-label", "창 최소화"); minimizeButton.setAttribute("aria-expanded", "true");
       minimizeButton.setAttribute("title", "최소화 · 내용은 유지됩니다");
-      tools.append?.(minimizeButton); heading.append?.(tools);
+      tools.append?.(minimizeButton);
+      record.headingControls = [...heading.children || []].filter(element => /^(BUTTON|A)$/i.test(element.tagName || ""))
+        .map(element => ({ element, parent: heading, next: element.nextSibling }));
+      for (const control of record.headingControls) tools.append?.(control.element);
+      heading.append?.(tools);
       const id = dialog.id || dialog.getAttribute?.("id");
       if (id) minimizeButton.setAttribute("aria-controls", id);
       Object.assign(record, { heading, tools, minimizeButton });
@@ -263,6 +279,10 @@
           record.dialog.classList?.remove("hunt-floating-window"); record.dialog.removeAttribute("data-window-minimized");
           record.originalRole === null ? record.dialog.removeAttribute("role") : record.dialog.setAttribute("role", record.originalRole);
           record.originalModal === null ? record.dialog.removeAttribute("aria-modal") : record.dialog.setAttribute("aria-modal", record.originalModal);
+          for (const control of record.headingControls) {
+            if (control.parent.insertBefore) control.parent.insertBefore(control.element, control.next?.parentElement === control.parent ? control.next : record.tools);
+            else control.parent.append?.(control.element);
+          }
           record.tools.remove?.();
           if (!record.headingAttributes.hadHandle) record.heading.classList?.remove("hunt-window-handle");
           for (const name of ["tabindex", "title"]) {

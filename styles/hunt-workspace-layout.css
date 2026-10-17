@@ -9,6 +9,7 @@
 .hud-summary .tile-inspection-status p { padding: 0; border: 0; background: none; }
 .hud-summary .tile-info-content { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 0 12px; min-height: 0; overflow: hidden; }
 .tile-info-summary { min-width: 0; max-height: 100%; overflow: auto; scrollbar-width: thin; }
+.tile-info-summary:only-child { grid-column: 1 / -1; }
 .tile-info-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
 .tile-info-title > h3 { margin: 0; }
 .tile-info-title > span { font-size: 12px; line-height: 1.45; color: #c5dce0; }
