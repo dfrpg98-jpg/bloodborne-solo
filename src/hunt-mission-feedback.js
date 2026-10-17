@@ -143,8 +143,8 @@
     ];
     return { chapter, final, current, pendingRewards, growthDone, steps,
       summary: pendingRewards ? "보상 선택 → 마지막 꿈에서 성장 → " + steps[2].label
-        : growthDone ? final ? "마지막 꿈까지 마쳤습니다. 완료한 캠페인을 보관하세요." : `마지막 꿈까지 마쳤습니다. 챕터 ${chapter + 1}을 준비하세요.`
-          : "마지막 꿈의 성장을 마친 뒤 " + (final ? "완료한 캠페인을 보관하세요." : `챕터 ${chapter + 1}을 준비하세요.`),
+        : growthDone ? final ? "마지막 꿈까지 마쳤습니다. 완료한 캠페인을 보관하세요." : `마지막 꿈까지 마쳤습니다. 챕터 ${chapter + 1} 시작을 준비하세요.`
+          : "마지막 꿈의 성장을 마친 뒤 " + (final ? "완료한 캠페인을 보관하세요." : `챕터 ${chapter + 1} 시작을 준비하세요.`),
       continueLabel: pendingRewards ? "보상 선택으로" : growthDone ? "완료 결과 확인" : "마지막 꿈의 선택 계속" };
   }
   function notice(updates, state, options = {}) {

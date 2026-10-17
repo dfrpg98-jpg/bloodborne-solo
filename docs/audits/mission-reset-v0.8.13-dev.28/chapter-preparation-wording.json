@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "version": "0.8.13-dev.28",
+  "baseCommit": "961827555b0219644aca6d83da2ae672bccea92e",
+  "issue": "https://github.com/dfrpg98-jpg/bloodborne-solo/issues/87",
+  "source": "Second actual PC public UI report; developer separate actual-controller DOM capture, not a new real-browser run",
+  "originals": [
+    {
+      "file": "remaining-ui-7cd75ded/exports/qa-chapter1-ready-for-next.json",
+      "bytes": 33103,
+      "sha256": "0384ef66dcaa1bfc60d7e9204348f424a594ea50a797ce9bb4bb1151f15d8bf4",
+      "publicCommands": 58,
+      "phase": "over",
+      "strictRoundTrip": true,
+      "storedBytesUnchanged": true,
+      "publicPrepCommandExact": true
+    },
+    {
+      "file": "chapter2-followup-dev28/exports/qa-chapter3-prepare-wording-before-start.json",
+      "bytes": 52615,
+      "sha256": "5c7c34d4b2ef708ae3841d20650e3bc0c4fdbbcbee2117c1163a67ca0ffb1fc2",
+      "publicCommands": 185,
+      "phase": "between_chapters",
+      "strictRoundTrip": true,
+      "storedBytesUnchanged": true,
+      "publicPrepCommandExact": null
+    }
+  ],
+  "samples": {
+    "completedChapterBefore": "챕터 2을 완수했습니다.",
+    "completedChapterAfter": "챕터 2 완수.",
+    "nextChapterBefore": "챕터 2을 시작하세요. / 챕터 2을 준비하세요.",
+    "nextChapterAfter": "챕터 2 시작을 준비하세요."
+  },
+  "changedDisplayStrings": 4,
+  "focused": {
+    "command": "node --test --test-reporter=tap tests/chapter-transition-ui-v076.test.cjs tests/chapter-start-attachments-v0825.test.cjs tests/mission-guidance-ui-v0814.test.cjs tests/hunt-mission-feedback.test.cjs tests/mission-feedback-ui.test.cjs",
+    "testFiles": 5,
+    "tests": 41,
+    "pass": 41,
+    "fail": 0,
+    "newTests": 0,
+    "durationMs": 3635.1442,
+    "logSha256": "7cf6e9189b3eadf37cb855998ea3312630a7c5e14a4b25096ecac566b707de2a"
+  },
+  "previousFullCi": {
+    "commit": "961827555b0219644aca6d83da2ae672bccea92e",
+    "tests": 3134,
+    "rerunForWording": false
+  },
+  "moduleChecks": [
+    {
+      "path": "src/hunt-app.js",
+      "sha256": "501ce40f2079dd763730ffb648a8c28e4bc775a2d5202d885f3f55fda1a81a29",
+      "onlyExpectedDisplayStringChanges": true
+    },
+    {
+      "path": "src/hunt-mission-feedback.js",
+      "sha256": "88dc7b228721309d7bc8b8f880ec1429b3ec3d7e22ae0caf333fd937ed0ea3d0",
+      "onlyExpectedDisplayStringChanges": true
+    }
+  ],
+  "cacheFile": {
+    "path": "hunt.html",
+    "sha256": "305a1820a9227c6c15258173da5b18feb7f0f7479196c0af5e45d350402ae7a5"
+  },
+  "unchangedFromBase": [
+    {
+      "path": "src/hunt-engine.js",
+      "sha256": "f13a72497082eb4cd6976cbadd6cfc158a2a6e72e63ed91f3d1834fb6b462bf4",
+      "exactBaseBytes": true
+    },
+    {
+      "path": "src/chapter-engine.js",
+      "sha256": "55b4c7d85279e5b12ec1b49def84076d94a8e81edaef57e4ebaa75da02d07d60",
+      "exactBaseBytes": true
+    },
+    {
+      "path": "src/mission-engine.js",
+      "sha256": "5b02afe279d66a6d0e8ee1115eacecfe45ec36db5fab570b42982186be199237",
+      "exactBaseBytes": true
+    },
+    {
+      "path": "src/hunt-outcome-preview.js",
+      "sha256": "945fed0872482c83a6b8b5569f45153c9632909ed15b04d5fe66d889b0ea468a",
+      "exactBaseBytes": true
+    },
+    {
+      "path": "src/hunt-combat-feedback.js",
+      "sha256": "f78f1877fcdd2a5c6a03a737e14740ae4f163ed4fc5ca178c8c150a64da0e398",
+      "exactBaseBytes": true
+    }
+  ],
+  "review": "Independent read-only scan found the four same-pattern UI strings; no reviewer edits or test execution",
+  "limits": [
+    "SYNTHETIC-QA/HISTORICAL public source saves, not a new normal campaign completion",
+    "Patched wording real PC recheck by Second pending",
+    "No rule changes, source save modification, new full CI run, merge or deploy"
+  ]
+}
