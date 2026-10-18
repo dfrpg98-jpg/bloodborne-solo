@@ -9,7 +9,9 @@ test("detailed help separates top-row hand selection, Space refill and the right
   assert.match(shortcutText, /같은 숫자를 다시 누르면 선택을 해제/);
   assert.match(shortcutText, /오른쪽 숫자패드는 손패 선택에 쓰지 않습니다/);
   assert.match(shortcutText, /Space.*활성화된 ‘손패 보충’ 버튼/);
-  assert.match(shortcutText, /M은 이동 선언·이동 마치기/);
+  assert.match(shortcutText, /Q는 이동 선택·이동 마치기/);
+  assert.match(shortcutText, /‘이동 \(Q\)’·‘꿈으로 이동 \(E\)’·‘장치무기 변형 \(Z\)’·‘적 공격하기 \(C\)’/);
+  assert.match(shortcutText, /예전 M 이동 단축키는 사용하지 않습니다/);
   assert.match(shortcutText, /방향키는 십자 방향 선택/);
   assert.match(shortcutText, /숫자패드 5는 이동 선언에만.*이동을 마치지 않습니다/);
   assert.doesNotMatch(Help.renderHTML(), /WASD/);

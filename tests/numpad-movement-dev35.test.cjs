@@ -18,7 +18,7 @@ function fixture(phase = "move") {
   const buttons = Object.fromEntries(Object.values(mapping).map(direction => [direction, add(controls, { "data-move-direction": direction }, direction)]));
   const cards = Array.from({ length: 9 }, (_, index) => add(hand, { "data-card": String(index + 1) }, "CARD" + (index + 1)));
   const api = create({ document, window: {} });
-  const key = (key, properties = {}) => document.fire("keydown", { key, target: document.body, ...properties });
+  const key = (key, properties = {}) => { const event = document.fire("keydown", { key, target: document.body, ...properties }); document.fire("keyup", { key, target: document.body, ...properties }); return event; };
   const keypad = (digit, properties = {}) => key(String(digit), { code: "Numpad" + digit, location: 3, getModifierState: numLock, ...properties });
   return { document, controls, hand, clicks, move, stop, buttons, cards, api, key, keypad };
 }
@@ -51,7 +51,7 @@ test("넘패드5는 사냥꾼 차례의 이동 선언만 실행하며 이동 중
   assert.equal(f.keypad(5).defaultPrevented, true); assert.deepEqual(f.clicks, ["MOVE"]);
   f.document.documentElement.dataset.phase = "move";
   assert.equal(f.keypad(5).defaultPrevented, false); assert.deepEqual(f.clicks, ["MOVE"]);
-  f.key("m"); assert.deepEqual(f.clicks, ["MOVE", "STOP_MOVE"]);
+  f.key("q"); assert.deepEqual(f.clicks, ["MOVE", "STOP_MOVE"]);
   f.document.documentElement.dataset.phase = "hunter"; f.move.disabled = true;
   assert.equal(f.keypad(5).defaultPrevented, false); f.move.disabled = false;
   for (const phase of ["refill", "activation", "combat_react", "return", "won"]) {
@@ -102,8 +102,8 @@ test("WASD는 논리 키와 한글 상태의 물리 키 모두 삭제하고 이�
     if (direction.length === 2) assert.equal(metadata, "Numpad" + digit);
   }
   assert.equal(f.buttons.N.getAttribute("aria-keyshortcuts"), "ArrowUp Numpad8");
-  assert.equal(f.move.getAttribute("aria-keyshortcuts"), "M Numpad5");
-  assert.equal(f.stop.getAttribute("aria-keyshortcuts"), "M");
+  assert.equal(f.move.getAttribute("aria-keyshortcuts"), "Q Numpad5");
+  assert.equal(f.stop.getAttribute("aria-keyshortcuts"), "Q");
 });
 
 const storageKey = "bloodborne-hunt-v07";
@@ -112,12 +112,12 @@ function launch(state) {
     storage: { [storageKey]: E.exportSave(state) }, window: { BBHuntMapControls: U },
     engine: { ...E, applyTileSpeedRuling: value => value, applyChapelRuling: value => value, applyCombatReactionRuling: value => value } });
   create({ document: ui.document, window: ui.window });
-  ui.key = (key, properties = {}) => ui.document.fire("keydown", { key, target: ui.document.body, ...properties });
+  ui.key = (key, properties = {}) => { const event = ui.document.fire("keydown", { key, target: ui.document.body, ...properties }); ui.document.fire("keyup", { key, target: ui.document.body, ...properties }); return event; };
   ui.keypad = digit => ui.key(String(digit), { code: "Numpad" + digit, location: 3, getModifierState: numLock });
   return ui;
 }
 
-test("실제 컨트롤러에서 윗줄 손패 선택·넘패드5 선언·넘패드6 이동·M 마치기는 동일한 엔진 저장을 만듭니다", () => {
+test("실제 컨트롤러에서 윗줄 손패 선택·넘패드5 선언·넘패드6 이동·Q 마치기는 동일한 엔진 저장을 만듭니다", () => {
   const state = E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { campaign: true, rulesVersion: 13 }), ui = launch(state);
   const cardId = E.hunter(state).hand[0].id, before = ui.storage.get(storageKey);
   ui.keypad(1); ui.keypad(5); assert.equal(ui.storage.get(storageKey), before);
@@ -125,7 +125,7 @@ test("실제 컨트롤러에서 윗줄 손패 선택·넘패드5 선언·넘패�
   let expected = E.dispatch(state, { type: "MOVE", cardId }); assert.deepEqual(E.importSave(ui.storage.get(storageKey)), expected);
   const declared = ui.storage.get(storageKey); ui.keypad(5); assert.equal(ui.storage.get(storageKey), declared);
   ui.keypad(6); expected = E.dispatch(expected, { type: "STEP", node: "tile-14:right" });
-  ui.key("m"); expected = E.dispatch(expected, { type: "STOP_MOVE" });
+  ui.key("q"); expected = E.dispatch(expected, { type: "STOP_MOVE" });
   assert.equal(ui.el("error").textContent, ""); assert.deepEqual(E.importSave(ui.storage.get(storageKey)), expected);
 });
 

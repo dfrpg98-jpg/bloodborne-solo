@@ -5,6 +5,7 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
   const labels = { MOVE: "이동", DREAM: "꿈으로 이동", TRANSFORM: "장치무기 변형", ATTACK: "적 공격하기" };
+  const shortcuts = { MOVE: "Q", DREAM: "E", TRANSFORM: "Z", ATTACK: "C" };
   function view(state, E, C, selection = {}) {
     const h = E.hunter(state), slots = E.slots(state),
       firstSlot = slots.findIndex((slot, index) => !h.slots[index]),
@@ -15,7 +16,7 @@
       { ...selection, cardId, slot, replaceCardEffects: selection.replaceCardEffects }).actions
       .filter(action => action.command?.type === "ATTACK") || [] : [];
     const attackAvailable = !locked && firstSlot >= 0 && h.hand.some(card => attackActions(card.id).some(action => action.enabled));
-    const actions = Object.entries(labels).map(([type, label]) => ({ type, label,
+    const actions = Object.entries(labels).map(([type, label]) => ({ type, label, shortcut: shortcuts[type],
       enabled: !locked && (type !== "ATTACK" || attackAvailable), enemyId: type === "ATTACK" ? enemy?.id || null : null }));
     const chosen = h.hand.find(card => card.id === selection.cardId), type = selection.type;
     let command = null, reason = "", routes = [];
@@ -36,5 +37,5 @@
     } catch (error) { reason = error.message; command = null; }
     return { actions, selectedEnemy: enemy || null, slot, command, enabled: !!command, reason, routes };
   }
-  return { view, labels };
+  return { view, labels, shortcuts };
 });

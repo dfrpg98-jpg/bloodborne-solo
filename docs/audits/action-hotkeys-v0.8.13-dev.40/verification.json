@@ -1,0 +1,398 @@
+{
+  "status": "passed",
+  "version": "0.8.13-dev.40",
+  "method": "Actual keyboard input in a separate-origin IAB game, prepared through official setup as enemy practice; read-only visible DOM records. User campaign storage was not read or changed by test actions.",
+  "steps": [
+    {
+      "label": "initial",
+      "phase": "hunter",
+      "intent": null,
+      "handCount": "3장",
+      "confirm": null
+    },
+    {
+      "label": "M removed",
+      "phase": "hunter",
+      "intent": null,
+      "handCount": "3장",
+      "confirm": null
+    },
+    {
+      "label": "C disabled without target",
+      "phase": "hunter",
+      "intent": null,
+      "handCount": "3장",
+      "confirm": null
+    },
+    {
+      "label": "q chooses MOVE",
+      "phase": "hunter",
+      "intent": "MOVE",
+      "handCount": "3장",
+      "confirm": {
+        "disabled": true,
+        "text": "행동하기Space"
+      }
+    },
+    {
+      "label": "Escape cancels MOVE",
+      "phase": "hunter",
+      "intent": null,
+      "handCount": "3장",
+      "confirm": null
+    },
+    {
+      "label": "e chooses DREAM",
+      "phase": "hunter",
+      "intent": "DREAM",
+      "handCount": "3장",
+      "confirm": {
+        "disabled": true,
+        "text": "행동하기Space"
+      }
+    },
+    {
+      "label": "Escape cancels DREAM",
+      "phase": "hunter",
+      "intent": null,
+      "handCount": "3장",
+      "confirm": null
+    },
+    {
+      "label": "z chooses TRANSFORM",
+      "phase": "hunter",
+      "intent": "TRANSFORM",
+      "handCount": "3장",
+      "confirm": {
+        "disabled": true,
+        "text": "행동하기Space"
+      }
+    },
+    {
+      "label": "Escape cancels TRANSFORM",
+      "phase": "hunter",
+      "intent": null,
+      "handCount": "3장",
+      "confirm": null
+    },
+    {
+      "label": "c chooses ATTACK",
+      "phase": "hunter",
+      "intent": "ATTACK",
+      "handCount": "3장",
+      "confirm": {
+        "disabled": true,
+        "text": "행동하기Space"
+      }
+    },
+    {
+      "label": "Escape cancels ATTACK",
+      "phase": "hunter",
+      "intent": null,
+      "handCount": "3장",
+      "confirm": null
+    },
+    {
+      "label": "Q opens move confirmation",
+      "phase": "hunter",
+      "intent": "MOVE",
+      "handCount": "3장",
+      "confirm": {
+        "disabled": true,
+        "text": "행동하기Space"
+      }
+    },
+    {
+      "label": "E ignored while another action is pending",
+      "phase": "hunter",
+      "intent": "MOVE",
+      "handCount": "3장",
+      "confirm": {
+        "disabled": true,
+        "text": "행동하기Space"
+      }
+    },
+    {
+      "label": "hand enables confirmation",
+      "phase": "hunter",
+      "intent": "MOVE",
+      "handCount": "3장",
+      "confirm": {
+        "disabled": false,
+        "text": "행동하기Space"
+      }
+    },
+    {
+      "label": "Backspace cancels without spending",
+      "phase": "hunter",
+      "intent": null,
+      "handCount": "3장",
+      "confirm": null
+    },
+    {
+      "label": "Space confirms MOVE",
+      "phase": "move",
+      "intent": null,
+      "handCount": "3장",
+      "confirm": null
+    },
+    {
+      "label": "M removed during movement",
+      "phase": "move",
+      "intent": null,
+      "handCount": "3장",
+      "confirm": null
+    },
+    {
+      "label": "Q respects disabled finish before first step",
+      "phase": "move",
+      "intent": null,
+      "handCount": "3장",
+      "confirm": null
+    },
+    {
+      "label": "ArrowRight enters first space",
+      "phase": "move",
+      "intent": null,
+      "handCount": "2장",
+      "confirm": null
+    },
+    {
+      "label": "Q finishes enabled movement",
+      "phase": "hunter",
+      "intent": null,
+      "handCount": "2장",
+      "confirm": null
+    }
+  ],
+  "layouts": [
+    {
+      "viewport": {
+        "height": 1252,
+        "width": 2035
+      },
+      "context": "isolated official practice game",
+      "loadoutHeight": 209,
+      "bottomDifference": 0,
+      "labels": [
+        {
+          "fits": true,
+          "font": "14px",
+          "height": 18.890625,
+          "text": "이동 (Q)",
+          "whiteSpace": "nowrap",
+          "width": 52.28125
+        },
+        {
+          "fits": true,
+          "font": "14px",
+          "height": 18.890625,
+          "text": "꿈으로 이동 (E)",
+          "whiteSpace": "nowrap",
+          "width": 95.625
+        },
+        {
+          "fits": true,
+          "font": "14px",
+          "height": 18.890625,
+          "text": "장치무기 변형 (Z)",
+          "whiteSpace": "nowrap",
+          "width": 110.53125
+        },
+        {
+          "fits": true,
+          "font": "14px",
+          "height": 18.890625,
+          "text": "적 공격하기 (C)",
+          "whiteSpace": "nowrap",
+          "width": 97.265625
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "height": 1252,
+        "width": 1231
+      },
+      "context": "isolated official practice game",
+      "loadoutHeight": 209,
+      "bottomDifference": 0,
+      "labels": [
+        {
+          "fits": true,
+          "font": "14px",
+          "height": 18.890625,
+          "text": "이동 (Q)",
+          "whiteSpace": "nowrap",
+          "width": 52.28125
+        },
+        {
+          "fits": true,
+          "font": "14px",
+          "height": 18.890625,
+          "text": "꿈으로 이동 (E)",
+          "whiteSpace": "nowrap",
+          "width": 95.625
+        },
+        {
+          "fits": true,
+          "font": "14px",
+          "height": 18.890625,
+          "text": "장치무기 변형 (Z)",
+          "whiteSpace": "nowrap",
+          "width": 110.53125
+        },
+        {
+          "fits": true,
+          "font": "14px",
+          "height": 18.890625,
+          "text": "적 공격하기 (C)",
+          "whiteSpace": "nowrap",
+          "width": 97.265625
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "context": "isolated official practice game",
+      "loadoutHeight": 209,
+      "bottomDifference": 0,
+      "labels": [
+        {
+          "fits": true,
+          "font": "11px",
+          "height": 14.84375,
+          "text": "이동 (Q)",
+          "whiteSpace": "nowrap",
+          "width": 41.078125
+        },
+        {
+          "fits": true,
+          "font": "11px",
+          "height": 14.84375,
+          "text": "꿈으로 이동 (E)",
+          "whiteSpace": "nowrap",
+          "width": 75.140625
+        },
+        {
+          "fits": true,
+          "font": "11px",
+          "height": 14.84375,
+          "text": "장치무기 변형 (Z)",
+          "whiteSpace": "nowrap",
+          "width": 86.859375
+        },
+        {
+          "fits": true,
+          "font": "11px",
+          "height": 14.84375,
+          "text": "적 공격하기 (C)",
+          "whiteSpace": "nowrap",
+          "width": 76.421875
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "height": 1252,
+        "width": 872
+      },
+      "context": "isolated official practice game",
+      "loadoutHeight": 209,
+      "bottomDifference": 0,
+      "labels": [
+        {
+          "fits": true,
+          "font": "11px",
+          "height": 14.84375,
+          "text": "이동 (Q)",
+          "whiteSpace": "nowrap",
+          "width": 41.078125
+        },
+        {
+          "fits": true,
+          "font": "11px",
+          "height": 14.84375,
+          "text": "꿈으로 이동 (E)",
+          "whiteSpace": "nowrap",
+          "width": 75.140625
+        },
+        {
+          "fits": true,
+          "font": "11px",
+          "height": 14.84375,
+          "text": "장치무기 변형 (Z)",
+          "whiteSpace": "nowrap",
+          "width": 86.859375
+        },
+        {
+          "fits": true,
+          "font": "11px",
+          "height": 14.84375,
+          "text": "적 공격하기 (C)",
+          "whiteSpace": "nowrap",
+          "width": 76.421875
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "height": 1252,
+        "width": 800
+      },
+      "context": "isolated official practice game",
+      "loadoutHeight": 260,
+      "bottomDifference": 0,
+      "labels": [
+        {
+          "fits": true,
+          "font": "11px",
+          "height": 14.84375,
+          "text": "이동 (Q)",
+          "whiteSpace": "nowrap",
+          "width": 41.078125
+        },
+        {
+          "fits": true,
+          "font": "11px",
+          "height": 14.84375,
+          "text": "꿈으로 이동 (E)",
+          "whiteSpace": "nowrap",
+          "width": 75.140625
+        },
+        {
+          "fits": true,
+          "font": "11px",
+          "height": 14.84375,
+          "text": "장치무기 변형 (Z)",
+          "whiteSpace": "nowrap",
+          "width": 86.859375
+        },
+        {
+          "fits": true,
+          "font": "11px",
+          "height": 14.84375,
+          "text": "적 공격하기 (C)",
+          "whiteSpace": "nowrap",
+          "width": 76.421875
+        }
+      ]
+    }
+  ],
+  "sourceSha256": {
+    "hunt.html": "bf7cc073c5d6d1864987976fae056eebabe459aa30fe3c6282bb25d0eaf9e771",
+    "index.html": "cb5457e2276ae3d721c83909a52fa48c03c2a1cbb9c08156d30aeeab97c06289",
+    "src/hunt-keyboard-controls.js": "dc8736f357a81f69c0927a4d77a6aad032d182603d67088a41ec2ea7703f3e11",
+    "src/hunt-action-menu.js": "48692c836cda34679887956afb72c9b747c091f4e30182588a49551df3c53358",
+    "src/hunt-app.js": "98e8018c93ff47e837ac19d3dbdcfa97ec2852b9e247c35d64bad5b32f739450",
+    "src/game-help.js": "d103942276dab3c3dc6bd5a9e29b57008dc1177f3b388f186e3799df29ba2521",
+    "styles/hunt-action-menu.css": "76d25805c55e1adfdc7952eb8f79aa1168c182ce1e48ae51414d707d30374f3f",
+    "styles/hunt.css": "ef0ee29105650d126af78fdcf0f99f5d569906605972343f4d77b7406df72bc5",
+    "styles/hunt-map-controls.css": "8f23f66df0b2af2242a28f3c4e9c5039f291d5f871528e2631237c0cac231463",
+    "styles/hunt-workspace-layout.css": "4f55e98984f55c879c267db7af74ce15a9fb1a02a18bdf76510b6b540e5e5ae8",
+    "package.json": "468290148733dbfa5206b7bfd827be5388b1f61a8f11c353c75b9862e0b723b4"
+  }
+}

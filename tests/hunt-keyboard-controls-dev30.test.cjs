@@ -23,17 +23,17 @@ function fixture(phase = "hunter", options = {}) {
   for (let i = 1; i <= (options.handCount ?? 3); i++) addCard("card-" + i);
   const window = options.window || {};
   const api = create({ document, window });
-  const key = (key, properties = {}) => document.fire("keydown", { key, target: document.body, ...properties });
+  const key = (key, properties = {}) => { const event = document.fire("keydown", { key, target: document.body, ...properties }); document.fire("keyup", { key, target: document.body, ...properties }); return event; };
   return { document, window, controls, hand, addCard, clicks, move, stop, direction, api, key, add };
 }
 
-test("M은 현재 단계의 이동 선언과 이동 마치기 버튼을 각각 한 번 누릅니다", () => {
+test("Q는 현재 단계의 이동 선언과 이동 마치기 버튼을 각각 한 번 누릅니다", () => {
   const f = fixture();
-  assert.equal(f.key("m").defaultPrevented, true); assert.deepEqual(f.clicks, ["MOVE"]);
+  assert.equal(f.key("q").defaultPrevented, true); assert.deepEqual(f.clicks, ["MOVE"]);
   f.document.documentElement.dataset.phase = "move";
-  f.key("M"); assert.deepEqual(f.clicks, ["MOVE", "STOP_MOVE"]);
+  f.key("Q"); assert.deepEqual(f.clicks, ["MOVE", "STOP_MOVE"]);
   f.document.documentElement.dataset.phase = "combat_react";
-  assert.equal(f.key("m").defaultPrevented, false); assert.equal(f.clicks.length, 2);
+  assert.equal(f.key("q").defaultPrevented, false); assert.equal(f.clicks.length, 2);
 });
 
 test("방향키는 이동 단계의 기존 방향 버튼만 누르며 WASD는 작동하지 않습니다", () => {
@@ -47,32 +47,32 @@ test("방향키는 이동 단계의 기존 방향 버튼만 누르며 WASD는 �
   assert.equal(f.key("ArrowRight").defaultPrevented, false); assert.equal(f.clicks.length, 4);
 });
 
-test("물리 M키는 한글 입력 상태에서도 작동하지만 예전 WASD 물리 키는 작동하지 않습니다", () => {
+test("물리 Q키는 한글 입력 상태에서도 작동하지만 예전 WASD 물리 키는 작동하지 않습니다", () => {
   const f = fixture("move");
-  f.key("ㅇ", { code: "KeyD" }); f.key("ㅡ", { code: "KeyM" });
+  f.key("ㅇ", { code: "KeyD" }); f.key("ㅂ", { code: "KeyQ" });
   assert.deepEqual(f.clicks, ["STOP_MOVE"]);
-  f.key("ㅇ", { code: "KeyD", isComposing: true }); f.key("m", { keyCode: 229 });
+  f.key("ㅇ", { code: "KeyD", isComposing: true }); f.key("q", { keyCode: 229 });
   assert.equal(f.clicks.length, 1);
 });
 
 test("반복 입력과 브라우저 단축키 및 이미 처리된 입력은 게임 명령을 만들지 않습니다", () => {
   const f = fixture("move");
   for (const properties of [{ repeat: true }, { ctrlKey: true }, { metaKey: true }, { altKey: true }, { defaultPrevented: true }]) {
-    f.key("m", properties); f.key("ArrowRight", properties);
+    f.key("q", properties); f.key("ArrowRight", properties);
   }
   assert.deepEqual(f.clicks, []);
-  assert.equal(f.key("q").defaultPrevented, false);
+  assert.equal(f.key("m").defaultPrevented, false);
 });
 
 test("입력 요소와 편집 영역 및 그 자손의 키 입력을 보호합니다", () => {
   const f = fixture("move");
   for (const tag of ["input", "select", "textarea"]) {
-    const input = new Element(f.document, tag); f.key("m", { target: input }); f.key("ArrowDown", { target: input });
-    f.document.activeElement = input; f.key("m"); f.document.activeElement = f.document.body;
+    const input = new Element(f.document, tag); f.key("q", { target: input }); f.key("ArrowDown", { target: input });
+    f.document.activeElement = input; f.key("q"); f.document.activeElement = f.document.body;
   }
   for (const value of ["", "true", "plaintext-only"]) {
     const editor = new Element(f.document, "div", { contenteditable: value }), child = new Element(f.document, "span");
-    child.parentElement = editor; f.key("w", { target: child }); f.key("m", { target: { nodeType: 3, parentElement: editor } });
+    child.parentElement = editor; f.key("w", { target: child }); f.key("q", { target: { nodeType: 3, parentElement: editor } });
   }
   const nativeEditor = new Element(f.document); nativeEditor.isContentEditable = true;
   f.key("a", { target: nativeEditor }); assert.deepEqual(f.clicks, []);
@@ -81,12 +81,12 @@ test("입력 요소와 편집 영역 및 그 자손의 키 입력을 보호합�
 test("열린 창과 최소화된 창에서는 이동 키를 처리하지 않습니다", () => {
   const f = fixture("move"), dialog = new Element(f.document, "dialog");
   f.document.elements.push(dialog); dialog.open = true;
-  assert.equal(f.key("m").defaultPrevented, false); f.key("ArrowRight");
+  assert.equal(f.key("q").defaultPrevented, false); f.key("ArrowRight");
   dialog.open = false; dialog.setAttribute("open", ""); f.key("w"); dialog.removeAttribute("open");
   const minimized = new Element(f.document, "div", { "data-window-minimized": "true" });
-  f.document.elements.push(minimized); f.key("m"); f.key("d"); assert.deepEqual(f.clicks, []);
+  f.document.elements.push(minimized); f.key("q"); f.key("d"); assert.deepEqual(f.clicks, []);
   minimized.setAttribute("data-window-minimized", "false"); minimized.dataset.windowMinimized = "false";
-  f.key("m"); assert.deepEqual(f.clicks, ["STOP_MOVE"]);
+  f.key("q"); assert.deepEqual(f.clicks, ["STOP_MOVE"]);
 });
 
 test("비활성·숨김·분리된 버튼과 숨겨진 상위 영역의 버튼은 누르지 않습니다", () => {
@@ -100,7 +100,7 @@ test("비활성·숨김·분리된 버튼과 숨겨진 상위 영역의 버튼�
     () => { f.controls.hidden = true; return () => { f.controls.hidden = false; }; },
     () => { f.controls.setAttribute("inert", ""); return () => f.controls.removeAttribute("inert"); },
   ]) {
-    const restore = modify(); assert.equal(f.key("m").defaultPrevented, false); restore();
+    const restore = modify(); assert.equal(f.key("q").defaultPrevented, false); restore();
   }
   f.direction.N.disabled = true; assert.equal(f.key("ArrowUp").defaultPrevented, false);
   assert.deepEqual(f.clicks, []);
@@ -108,15 +108,15 @@ test("비활성·숨김·분리된 버튼과 숨겨진 상위 영역의 버튼�
 
 test("이동 마치기가 비활성일 때 취소나 다른 명령을 대신 누르지 않습니다", () => {
   const f = fixture("move"); f.stop.disabled = true; f.add({ "data-command": "CANCEL_MOVE" }, "CANCEL_MOVE");
-  f.key("m"); assert.deepEqual(f.clicks, []);
+  f.key("q"); assert.deepEqual(f.clicks, []);
 });
 
 test("단축키 표시는 기존 비용 설명을 유지하고 갱신되어도 중복하지 않습니다", () => {
   const f = fixture(); f.api.refresh(); f.api.refresh();
-  assert.equal(f.move.getAttribute("title"), "카드 1장으로 이동 · 단축키 M Numpad5");
-  assert.equal(f.move.getAttribute("aria-keyshortcuts"), "M Numpad5");
+  assert.equal(f.move.getAttribute("title"), "카드 1장으로 이동 · 단축키 Q Numpad5");
+  assert.equal(f.move.getAttribute("aria-keyshortcuts"), "Q Numpad5");
   assert.equal(f.direction.E.getAttribute("aria-keyshortcuts"), "ArrowRight Numpad6");
-  assert.equal(f.stop.getAttribute("title"), "단축키 M");
+  assert.equal(f.stop.getAttribute("title"), "단축키 Q");
 });
 
 test("동적 버튼에는 자식 변경 감시로 단축키를 표시하고 초기화와 해제를 중복하지 않습니다", () => {
@@ -127,9 +127,9 @@ test("동적 버튼에는 자식 변경 감시로 단축키를 표시하고 초�
   for (const entry of observed) assert.deepEqual(entry.options, { childList: true, subtree: true });
   assert.equal(create({ document: f.document, window: f.window }), f.api);
   const next = f.add({ "data-command": "STOP_MOVE", title: "남은 이동 종료" }, "NEXT"); callback();
-  assert.equal(next.getAttribute("title"), "남은 이동 종료 · 단축키 M");
-  f.key("m"); assert.equal(f.clicks.length, 1);
-  f.api.destroy(); f.api.destroy(); f.key("m"); assert.equal(f.clicks.length, 1); assert.equal(disconnected, 1);
+  assert.equal(next.getAttribute("title"), "남은 이동 종료 · 단축키 Q");
+  f.key("q"); assert.equal(f.clicks.length, 1);
+  f.api.destroy(); f.api.destroy(); f.key("q"); assert.equal(f.clicks.length, 1); assert.equal(disconnected, 1);
 });
 
 test("손패 1~9는 윗줄 숫자로만 왼쪽부터 선택하고 넘패드 숫자는 손패를 선택하지 않습니다", () => {
@@ -199,7 +199,7 @@ test("손패 재정렬·소모·재렌더 후 최신 번호와 안내를 적용�
 test("단축키 모듈은 엔진이나 게임 저장소를 읽지 않고 DOM 버튼만 사용합니다", () => {
   const window = {};
   for (const name of ["BBHunt", "state", "localStorage"]) Object.defineProperty(window, name, { get() { throw new Error("게임 데이터 접근"); } });
-  const f = fixture("move", { window }); f.key("ArrowLeft"); f.key("m"); f.key("1");
+  const f = fixture("move", { window }); f.key("ArrowLeft"); f.key("q"); f.key("1");
   assert.deepEqual(f.clicks, ["W", "STOP_MOVE", "card-1"]);
 });
 
@@ -220,7 +220,7 @@ test("브라우저 스크립트는 DOM 준비 후 시작하고 다른 실행 모
   const f = fixture(); f.api.destroy(); f.document.readyState = "loading";
   const window = { document: f.document }, source = fs.readFileSync(path.join(__dirname, "../src/hunt-keyboard-controls.js"), "utf8");
   vm.runInNewContext(source, { window }); assert.equal(typeof window.BBHuntKeyboardControls, "function");
-  f.key("m"); assert.deepEqual(f.clicks, []); f.document.fire("DOMContentLoaded"); f.key("m");
+  f.key("q"); assert.deepEqual(f.clicks, []); f.document.fire("DOMContentLoaded"); f.key("q");
   assert.deepEqual(f.clicks, ["MOVE"]); assert.equal(f.document.querySelectorAll("script").length, 0);
 });
 
@@ -231,7 +231,7 @@ function launch(state) {
     storage: { [key]: E.exportSave(state) }, window: { BBHuntMapControls: U },
     engine: { ...E, applyTileSpeedRuling: state => state, applyChapelRuling: state => state, applyCombatReactionRuling: state => state } });
   create({ document: ui.document, window: ui.window });
-  ui.key = (key, properties = {}) => ui.document.fire("keydown", { key, target: ui.document.body, ...properties });
+  ui.key = (key, properties = {}) => { const event = ui.document.fire("keydown", { key, target: ui.document.body, ...properties }); ui.document.fire("keyup", { key, target: ui.document.body, ...properties }); return event; };
   return ui;
 }
 function saved(ui) { assert.equal(ui.el("error").textContent, ""); return E.importSave(ui.storage.get(key)); }
@@ -243,23 +243,26 @@ test("실제 손패의 숫자 선택·해제는 저장을 보존하고 소모 �
   ui.key("1", { code: "Digit1" }); assert.deepEqual(pressed(), []);
   ui.key("2", { code: "Digit2" }); assert.deepEqual(pressed(), [cards[1]]);
   assert.equal(ui.storage.get(key), before); assert.equal(saved(ui).commands.length, state.commands.length);
-  ui.key("m"); let reference = E.dispatch(state, { type: "MOVE", cardId: cards[1] });
+  ui.key("q"); ui.key("2", { code: "Digit2" }); ui.key(" ", { code: "Space" });
+  let reference = E.dispatch(state, { type: "MOVE", cardId: cards[1] });
   ui.key("ArrowRight"); reference = E.dispatch(reference, { type: "STEP", node: "tile-14:right" });
-  ui.key("m"); reference = E.dispatch(reference, { type: "STOP_MOVE" }); assert.deepEqual(saved(ui), reference);
+  ui.key("q"); reference = E.dispatch(reference, { type: "STOP_MOVE" }); assert.deepEqual(saved(ui), reference);
   const afterMove = ui.storage.get(key), commandCount = saved(ui).commands.length;
   ui.key("1", { code: "Digit1" }); assert.deepEqual(pressed(), [cards[0]]);
   assert.equal(ui.storage.get(key), afterMove); assert.equal(saved(ui).commands.length, commandCount);
-  ui.key("m"); reference = E.dispatch(reference, { type: "MOVE", cardId: cards[0] }); assert.deepEqual(saved(ui), reference);
+  ui.key("q"); ui.key("1", { code: "Digit1" }); ui.key(" ", { code: "Space" });
+  reference = E.dispatch(reference, { type: "MOVE", cardId: cards[0] }); assert.deepEqual(saved(ui), reference);
   assert.equal(saved(ui).commands.at(-1).cardId, cards[0]);
 });
 
-test("실제 화면의 M·방향키·M은 클릭과 동일한 카드 비용과 저장 결과를 만듭니다", () => {
+test("실제 화면의 Q·방향키·Q는 클릭과 동일한 카드 비용과 저장 결과를 만듭니다", () => {
   const state = initial(), ui = launch(state), before = ui.storage.get(key), cardId = E.hunter(state).hand[0].id;
-  ui.key("m"); assert.equal(ui.storage.get(key), before);
+  ui.key("q"); assert.equal(ui.storage.get(key), before);
+  assert.equal(ui.el("confirmHunterAction").disabled, true);
   ui.el("hand").querySelectorAll("[data-card]").find(card => card.dataset.card === cardId).click();
-  ui.key("m"); let reference = E.dispatch(state, { type: "MOVE", cardId }); assert.deepEqual(saved(ui), reference);
+  ui.key(" ", { code: "Space" }); let reference = E.dispatch(state, { type: "MOVE", cardId }); assert.deepEqual(saved(ui), reference);
   ui.key("ArrowRight"); reference = E.dispatch(reference, { type: "STEP", node: "tile-14:right" }); assert.deepEqual(saved(ui), reference);
-  ui.key("m"); reference = E.dispatch(reference, { type: "STOP_MOVE" }); assert.deepEqual(saved(ui), reference);
+  ui.key("q"); reference = E.dispatch(reference, { type: "STOP_MOVE" }); assert.deepEqual(saved(ui), reference);
   assert.equal(E.hunter(reference).discard.length, E.hunter(state).discard.length + 1);
 });
 
@@ -277,9 +280,9 @@ test("실제 지도에서 대각선 갈림길은 방향키로 임의 선택하�
 
 test("실제 확인 창이 열려 있으면 단축키는 저장이나 이동을 진행시키지 않습니다", () => {
   const state = initial(), ui = launch(state), cardId = E.hunter(state).hand[0].id;
-  ui.el("hand").querySelectorAll("[data-card]").find(card => card.dataset.card === cardId).click(); ui.key("m");
+  ui.key("q"); ui.el("hand").querySelectorAll("[data-card]").find(card => card.dataset.card === cardId).click(); ui.key(" ", { code: "Space" });
   const before = ui.storage.get(key); ui.el("infoDialog").showModal();
-  ui.key("ArrowRight"); ui.key("m"); assert.equal(ui.storage.get(key), before);
+  ui.key("ArrowRight"); ui.key("q"); assert.equal(ui.storage.get(key), before);
   ui.el("infoDialog").close(); ui.key("ArrowRight");
   assert.deepEqual(saved(ui), E.dispatch(E.dispatch(state, { type: "MOVE", cardId }), { type: "STEP", node: "tile-14:right" }));
 });
