@@ -69,7 +69,9 @@
   }
   function fit() {
     measure();
-    return setZoom(Math.min(((viewport.clientWidth || 1) - 24) / width, ((viewport.clientHeight || 1) - 24) / height));
+    const zoom = setZoom(Math.min(((viewport.clientWidth || 1) - 24) / width, ((viewport.clientHeight || 1) - 24) / height));
+    centerOn(content);
+    return zoom;
   }
   function listen(target, type, handler, settings) {
     target?.addEventListener?.(type, handler, settings);

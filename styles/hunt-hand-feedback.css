@@ -1,16 +1,16 @@
-/* Keep hand cards legible as their count grows; extra rows scroll vertically. */
-.hunt-main .hand-panel { container-type: inline-size; --hand-card-height: 136px; }
+/* 글자 크기는 유지하고 카드의 여백만 줄입니다. 네 장째부터는 기존처럼 아래로 스크롤합니다. */
+.hunt-main .hand-panel { container-type: inline-size; --hand-card-height: 100px; }
 .hunt-main .hand-panel #hand.cards {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-auto-rows: var(--hand-card-height);
   align-content: start;
-  gap: 8px;
+  gap: 5px;
   overflow-y: auto;
   overflow-x: hidden;
   overscroll-behavior: contain;
   scrollbar-width: thin;
-  scrollbar-gutter: stable;
-  padding: 2px 4px 4px;
+  scrollbar-gutter: auto;
+  padding: 1px 3px 3px;
 }
 .hunt-main .hand-panel #cardHint { display: block; font-size: 12px; line-height: 1.45; }
 .hunt-main .hand-panel #hand.cards .stat-card {
@@ -18,8 +18,8 @@
   min-width: 0;
   height: var(--hand-card-height);
   min-height: var(--hand-card-height);
-  padding: 8px 7px;
-  gap: 6px;
+  padding: 4px;
+  gap: 2px;
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: thin;
@@ -34,31 +34,34 @@
   font-size: 16px;
   line-height: 1.4;
   white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: break-word;
   overflow: visible;
   text-overflow: clip;
   flex: 0 0 auto;
 }
 .hunt-main .hand-panel #hand.cards .stat-card span {
   display: block;
+  word-break: keep-all;
+  overflow-wrap: break-word;
   font-size: 13px;
   line-height: 1.5;
   -webkit-line-clamp: unset;
   overflow: visible;
   flex: 0 0 auto;
 }
-@container (max-width: 370px) {
+@container (max-width: 300px) {
   .hunt-main .hand-panel #hand.cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @container (max-width: 220px) {
   .hunt-main .hand-panel #hand.cards { grid-template-columns: minmax(0, 1fr); }
 }
-/* Reserve a complete card row plus the heading, hint and deck count. The
-   existing compact-height and mobile layouts keep their own row allocations. */
+/* 카드 한 줄과 제목·힌트·덱 정보를 담되, 지도에 더 많은 세로 공간을 줍니다. */
 @media (min-width: 801px) and (min-height: 721px) {
-  .hunt-screen .hunt-main { grid-template-rows: 132px 24px minmax(0, 1fr) 228px; }
+  .hunt-screen .hunt-main { grid-template-rows: 132px 24px minmax(0, 1fr) 216px; }
 }
 
-/* A filled slot remains readable and cannot look like an active selection. */
+/* 사용한 슬롯도 글자를 흐리게 만들지 않고 사용 가능 슬롯과 구분합니다. */
 .hunt-main #slots .hunt-slot.occupied:disabled {
   opacity: 1;
   cursor: not-allowed;
@@ -70,11 +73,14 @@
 .hunt-main #slots .hunt-slot small { font-size: 11px; line-height: 1.5; }
 .hunt-main #slots .hunt-slot b { font-size: 15px; line-height: 1.4; }
 .hunt-main #slots .hunt-slot > span { font-size: 13px; line-height: 1.5; }
-.hunt-main #slots.hunt-slots { overflow-y: auto; overflow-x: hidden; align-content: start; grid-auto-rows: max-content; scrollbar-width: thin; }
-.hunt-main #slots .hunt-slot { min-height: 140px; }
+.hunt-main #slots.hunt-slots { overflow-y: auto; overflow-x: hidden; align-content: start; grid-auto-rows: max-content; gap: 4px; padding-bottom: 2px; scrollbar-width: thin; }
+.hunt-main #slots .hunt-slot { min-height: 96px; padding: 4px 5px; gap: 2px; }
 .hunt-main #slots .hunt-slot > * { flex-shrink: 0; }
+.hunt-main #slots .hunt-slot > small:empty { display: none; }
+.hunt-main .hunt-loadout > .panel { padding: 6px 8px; }
+.hunt-main .hunt-loadout > .weapon-panel .weapon-rules { flex-basis: 42px; margin: 3px 0 4px; }
 
-/* One modest text step across the play HUD; map targets keep their physical size. */
+/* 기존 HUD의 글자 크기는 바꾸지 않습니다. */
 .hunt-screen .top-actions button { font-size: 13px; }
 .hunt-screen .hunt-main { font-size: 14px; }
 .hunt-main .panel-heading h2 { font-size: 14px; }

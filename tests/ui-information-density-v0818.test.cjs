@@ -17,7 +17,7 @@ test("the compact first lesson retains actionable move, explore, attack and comm
   const html = Help.renderHTML(), document = new Document(html), brief = html.match(/<section class="game-help-first">([\s\S]*?)<\/section>/)?.[1];
   assert(brief, "the normal first lesson remains visible before optional reference sections");
   assert.equal((brief.match(/<li>/g) || []).length, 3);
-  for (const instruction of ["손패 1장", "이동 시작 · 손패 1장", "최대 2칸", "이동 마치기", "현재 칸의 출입구", "이 출입구로 탐험", "이 방향으로 배치하고 진입", "같은 칸의 적", "빈 슬롯", "이 적 공격", "‘회피’를 눌러 확정", "전투 처리"])
+  for (const instruction of ["손패 1장", "이동 선언 · 손패 1장", "최대 2칸", "이동 마치기", "현재 칸의 출입구", "이 출입구로 탐험", "이 방향으로 배치하고 진입", "같은 칸의 적", "빈 슬롯", "이 적 공격", "‘회피’를 눌러 확정", "전투 처리"])
     assert(brief.includes(instruction), `a beginner can still follow ${instruction}`);
   assert(!brief.includes("검증"));
   for (const detail of document.querySelectorAll("details")) assert.equal(detail.hasAttribute("open"), false);

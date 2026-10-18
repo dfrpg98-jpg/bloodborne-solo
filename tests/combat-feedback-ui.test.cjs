@@ -123,7 +123,7 @@ test("a separately pending followup cannot be mislabeled as canceled or dodged a
   assert.doesNotMatch(html, /현재 적 공격이 취소되었습니다|현재 적 공격에 회피를 선택했습니다/);
 });
 
-for (const number of [3, 10, 31, 36]) test(`naturally revealed mission ${number} shows its effective attack in the selected enemy and detail popup`, () => {
+for (const number of [3, 10, 31, 36]) test(`공개된 임무 ${number}의 유효 공격은 지도 대상과 개체 정보에 같은 효과를 표시합니다`, () => {
   const record = records.get(number); assert(record); const { state, effect } = record, { ui, saved } = launch(state),
     enemy = state.enemies.find(enemy => enemy.id === effect.enemyId), definition = E.enemyDef(state, enemy),
     expected = number === 3 ? definition.ability : definition.special;
@@ -134,7 +134,12 @@ for (const number of [3, 10, 31, 36]) test(`naturally revealed mission ${number}
   if (number === 31) assert.match(context, /속도 감소를 받지/);
   const detail = ui.el("enemyRoster").querySelectorAll("button").find(button => enemy.componentId
     ? button.dataset.specialInfo === enemy.id : button.dataset.enemyInfo === enemy.kind);
-  assert(detail); detail.click(); const text = ui.el("enemyDetailContent").textContent;
+  assert(detail); detail.click();
+  const individual = ui.el("mapContext").querySelectorAll("[data-inspect-target]").find(button => button.dataset.inspectTarget === enemy.id);
+  if (individual) individual.click();
+  assert.equal(ui.el("mapContext").hidden, false); assert.equal(ui.el("infoDialog").open, false);
+  assert(ui.el("enemyInspectionContent"));
+  const text = ui.el("mapContext").textContent;
   assert(text.includes(effect.description)); assert(text.includes(expected.name));
   for (const line of effect.effects) assert(text.includes(line));
   assert.equal(ui.storage.get(key), saved, "target inspection and ability details preserve the exact original save");

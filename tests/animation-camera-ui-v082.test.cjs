@@ -11,7 +11,7 @@ let fixture = E.create(90, "beast-claw", 0, null, "hunter-pistol", "center", { c
 checkpoints.set(0, fixture);
 for (let i = 0; i < commands.length; i++) { fixture = E.dispatch(fixture, commands[i]); checkpoints.set(i + 1, fixture); }
 function launch(count = 0) {
-  const state = checkpoints.get(count), snapshots = [], resizes = [], focuses = [], cameras = [];
+  const state = checkpoints.get(count), snapshots = [], resizes = [], focuses = [], cameras = [], centers = [], events = new Map();
   const ui = boot(state, E.missionView(state), E.rewardsView(state), { realInventory: true,
     storage: { [normalKey]: E.exportSave(state) }, engine,
     setupDocument(document) {
@@ -21,7 +21,12 @@ function launch(count = 0) {
       content.offsetWidth = 980; content.offsetHeight = 560;
     },
     window: {
-      BBHuntCamera(options) { const camera = createCamera(options); cameras.push(camera); return camera; },
+      addEventListener(type, handler) { if (!events.has(type)) events.set(type, []); events.get(type).push(handler); },
+      BBHuntCamera(options) {
+        const camera = createCamera(options), centerOn = camera.centerOn;
+        camera.centerOn = (element, settings) => { centers.push(element); return centerOn(element, settings); };
+        cameras.push(camera); return camera;
+      },
       BBHuntPresentation(options) {
         return { sync(snapshot) { snapshots.push(JSON.parse(JSON.stringify(snapshot))); },
           resize(value) { resizes.push(value); }, focus(value) { focuses.push(value); },
@@ -29,7 +34,7 @@ function launch(count = 0) {
       },
     },
   });
-  return { ui, state, snapshots, resizes, focuses, camera: cameras[0], saved: ui.storage.get(normalKey) };
+  return { ui, state, snapshots, resizes, focuses, centers, events, camera: cameras[0], saved: ui.storage.get(normalKey) };
 }
 function unchanged(f) {
   assert.equal(f.ui.storage.get(normalKey), f.saved, "camera and visual inspection preserve exact replay bytes");
@@ -72,6 +77,24 @@ test("zoom in, out, reset and fit are accessible presentation controls with unch
   assert.match(f.ui.el("zoomLabel").textContent, /\d+%/);
   assert.equal(latest(f).revision, f.state.revision);
   assert(actions(f).length === 0, "camera changes do not invent a walk or attack");
+});
+test("reloading the completed natural campaign centers a public tile without a hunter and keeps the selected tile on resize", () => {
+  const f = launch(commands.length), map = f.ui.el("chapterMap");
+  assert.equal(f.state.phase, "over"); assert.equal(f.state.mission.chapter, 3); assert(f.state.mission.won);
+  assert(E.hunter(f.state).inDream); assert.equal(E.hunter(f.state).position, null);
+  assert.equal(map.querySelector(".hunter-anchor"), null);
+  const initialTarget = f.centers.at(-1);
+  assert(initialTarget?.dataset.tile, "a completed save still centers one of its placed public tiles");
+  assert(f.state.world.tiles.some(tile => tile.tileId === initialTarget.dataset.tile));
+  const other = f.state.world.tiles.find(tile => tile.tileId !== initialTarget.dataset.tile);
+  assert(other);
+  const inspect = map.querySelectorAll("[data-tile-info]").find(button => button.dataset.tileInfo === other.tileId);
+  assert(inspect); inspect.click();
+  for (const handler of f.events.get("resize") || []) handler();
+  assert.equal(f.centers.at(-1).dataset.tile, other.tileId, "without a hunter, recentering prefers the manually inspected tile");
+  unchanged(f);
+  assert.equal(f.ui.commands.length, 0, "camera recovery emits no gameplay commands");
+  assert.equal(actions(f).length, 0);
 });
 test("keyboard zoom and background panning preserve the hunt, public target and phase", () => {
   const f = launch(9), viewport = f.ui.el("mapViewport");

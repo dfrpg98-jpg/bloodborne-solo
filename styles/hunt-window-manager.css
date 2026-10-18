@@ -5,25 +5,27 @@ dialog.hunt-floating-window[open] {
   max-height: calc(100dvh - 16px);
   animation: none;
 }
-dialog.hunt-floating-window[data-window-minimized="true"] {
-  visibility: hidden;
-  pointer-events: none;
+dialog.hunt-floating-window[open][data-window-minimized="true"] {
+  display: block;
+  height: auto !important;
+  min-height: 0 !important;
+  max-width: calc(100vw - 16px) !important;
+  overflow: hidden;
 }
+dialog.hunt-floating-window[data-window-minimized="true"] > :not(.hunt-window-handle):not(.hunt-window-heading-path),
+dialog.hunt-floating-window[data-window-minimized="true"] .hunt-window-heading-path > :not(.hunt-window-handle):not(.hunt-window-heading-path) { display: none !important; }
+dialog.hunt-floating-window[data-window-minimized="true"] .hunt-window-heading-path { height: auto; min-height: 0; }
+/* Collapse only the body; the original title, eyebrow, spacing and controls stay. */
 .hunt-window-handle { cursor: move; touch-action: none; }
 .hunt-window-handle:focus-visible { outline: 2px solid #d5b772; outline-offset: -3px; }
 .hunt-window-handle button, .hunt-window-handle a, .hunt-window-handle select { cursor: pointer; touch-action: manipulation; }
-.hunt-window-tools { display: inline-flex; flex: 0 0 auto; margin-left: auto; align-items: center; gap: 5px; }
+.hunt-window-tools { display: inline-flex; flex: 0 0 auto; margin-left: auto; align-self: flex-start; align-items: center; gap: 5px; }
 .hunt-window-handle .hunt-window-minimize { font-size: 11px; line-height: 1.35; padding: 6px 9px; margin: 0; color: #ece6d8; background: #25343c; border-color: #68777a; white-space: nowrap; }
 .mission-update-heading.hunt-window-handle { position: relative; padding-right: 88px; }
 .mission-update-heading .hunt-window-tools { position: absolute; top: 14px; right: 12px; }
 .hunt-window-bar { display: flex; align-items: center; gap: 12px; padding: 9px 12px; border-bottom: 1px solid #41525b; background: #0f171c; font-size: 12px; }
-.hunt-window-dock { position: fixed; z-index: 10000; right: 10px; bottom: 10px; display: flex; flex-direction: column; gap: 5px; max-width: min(350px, calc(100vw - 20px)); max-height: 45dvh; overflow: auto; }
-.hunt-window-dock[hidden], .hunt-window-dock button[hidden] { display: none; }
-.hunt-window-dock .hunt-window-restore { padding: 9px 13px; color: #f3e3bb; background: #1a252df5; border: 1px solid #bda16a; box-shadow: 0 3px 14px #0008; text-align: left; font-size: 12px; line-height: 1.4; overflow-wrap: anywhere; }
-.hunt-window-dock .hunt-window-restore:focus-visible { outline: 3px solid #ead199; outline-offset: -2px; }
-.hunt-window-dock.has-blocked-action { border-radius: 5px; outline: 2px solid #d5b772; outline-offset: 3px; }
+.hunt-floating-window.has-blocked-action .hunt-window-handle { outline: 2px solid #d5b772; outline-offset: -3px; }
 .is-window-dragging { user-select: none; }
 @media (max-width: 700px) {
   .compact-dialog-heading.hunt-window-handle, .info-dialog-heading.hunt-window-handle, .story-dialog-heading.hunt-window-handle { flex-wrap: wrap; gap: 8px; }
-  .hunt-window-dock { right: 6px; bottom: 6px; max-width: calc(100vw - 12px); }
 }

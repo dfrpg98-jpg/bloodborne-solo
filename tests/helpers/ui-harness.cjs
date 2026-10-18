@@ -134,6 +134,9 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
     dispatch: (s, command) => { commands.push(command); return structuredClone(s); },
     ...options.engine,
   };
+  // Older traces assert their original paid MOVE. Dedicated current movement
+  // tests opt in, so importing a historical presentation fixture stays exact.
+  if (!options.movementDeclaration) engine.applyMovementDeclarationRuling = state => state;
   const window = { BBHunt: engine, BBChapter: M, BBLongHunt: C, BBNarrativeText: require("../../campaigns/long-hunt/narrative-text"), BBEnemyDeck: ED, BBTileGeometry: G,
     BBHuntPublicText: require("../../src/hunt-public-text"), BBEnemyActionHistory: require("../../src/enemy-action-history"),
     BBHuntMissionFeedback: require("../../src/hunt-mission-feedback"),

@@ -5,15 +5,20 @@
   const M = local ? require("./chapter-engine") : root.BBChapter;
   const G = local ? require("./tile-geometry") : root.BBTileGeometry;
   const C = local ? require("./hunt-context") : root.BBHuntContext;
-  const edges = ["N", "E", "S", "W"], names = { N: "위", E: "오른쪽", S: "아래", W: "왼쪽" };
+  const cardinalEdges = ["N", "E", "S", "W"], diagonalEdges = ["NE", "SE", "SW", "NW"],
+    edges = [...cardinalEdges, ...diagonalEdges],
+    names = { N: "위", E: "오른쪽", S: "아래", W: "왼쪽", NE: "오른쪽 위", SE: "오른쪽 아래", SW: "왼쪽 아래", NW: "왼쪽 위" };
 
   function directionsFor(dx, dy) {
+    if (!dx && !dy) return [];
     const horizontal = dx > 0 ? "E" : "W", vertical = dy > 0 ? "S" : "N";
-    if (Math.abs(dx) > Math.abs(dy)) return [horizontal];
-    if (Math.abs(dy) > Math.abs(dx)) return [vertical];
-    // Two equally plausible directions expose the same explicit destination.
-    // Never choose a half-tile branch from a rounded visual coordinate.
-    return dx || dy ? [vertical, horizontal] : [];
+    // Eight compass sectors follow the rotated printed space geometry. Small
+    // artwork offsets (for example the two paths around tile-10's building)
+    // remain cardinal; split half-tile branches get their own diagonal button.
+    const boundary = Math.tan(Math.PI / 8);
+    if (Math.abs(dy) <= Math.abs(dx) * boundary) return [horizontal];
+    if (Math.abs(dx) <= Math.abs(dy) * boundary) return [vertical];
+    return [vertical + horizontal];
   }
   function stepDirections(state, from, to) {
     const a = E.node(state, from), b = E.node(state, to);
@@ -29,15 +34,17 @@
     const locked = E.rewardsView?.(state)?.choices?.length ? "획득한 보상 선택을 먼저 마치세요." :
       h.inDream || h.hp <= 0 ? "지도에서 이동할 수 없습니다." : "";
     const moving = state.phase === "move" && !!state.move;
-    const phaseReason = moving ? "" : state.phase === "hunter" ? "손패를 고른 뒤 이동 시작을 누르세요." :
+    const phaseReason = moving ? "" : state.phase === "hunter" ? "손패를 고른 뒤 이동 선언을 누르세요." :
       state.phase === "tile_place" ? "새 타일의 방향을 선택하고 배치하세요." : "행동 패널의 현재 선택을 먼저 마치세요.";
     const result = { moving, remaining: moving ? state.move.remaining : null,
       start: { enabled: !locked && state.phase === "hunter" && !!card,
         reason: locked || (state.phase !== "hunter" ? phaseReason : !card ? "이동에 쓸 손패 1장을 선택하세요." : ""),
         command: { type: "MOVE", cardId: card?.id || null } },
-      stop: { enabled: !locked && moving, reason: locked || phaseReason, command: { type: "STOP_MOVE" } },
-      hint: locked || phaseReason || `남은 이동력 ${state.move.remaining} · 방향을 선택하세요.`,
-      directions: edges.map(edge => ({ edge, name: names[edge], options: [] })) };
+      stop: { enabled: !locked && moving && (!E.canStopMove || E.canStopMove(state)),
+        reason: locked || phaseReason || (E.canStopMove && !E.canStopMove(state) ? "한 칸 이상 이동하세요." : ""), command: { type: "STOP_MOVE" } },
+      cancel: { enabled: !locked && !!E.canCancelMove?.(state), command: { type: "CANCEL_MOVE" } },
+      hint: locked || phaseReason || (state.move.costPending ? "첫 칸 진입 시 손패 1장 소모" : `남은 이동력 ${state.move.remaining} · 방향을 선택하세요.`),
+      diagonalMode: false, directions: edges.map(edge => ({ edge, name: names[edge], options: [] })) };
     if (!h.position || h.inDream) return result;
     const add = (edge, action, label) => {
       const direction = result.directions.find(direction => direction.edge === edge);
@@ -57,6 +64,13 @@
         .actions.find(action => action.id === "explore");
       add(exit.edge, action, `${names[exit.edge]} 출입구로 탐험`);
     }
+    result.diagonalMode = result.directions.some(direction => diagonalEdges.includes(direction.edge) &&
+      direction.options.some(option => option.enabled));
+    if (result.diagonalMode) for (const direction of result.directions.filter(direction => cardinalEdges.includes(direction.edge)))
+      for (const option of direction.options) {
+        option.enabled = false;
+        option.reason = "대각선 이동이 가능한 동안에는 대각선 버튼으로 이동하세요.";
+      }
     return result;
   }
 
@@ -92,7 +106,7 @@
       if (node === "tile-07:top") interactions.push("상호작용 · 소모품 1개를 피의 유지 1개로 교환");
       if (node === "tile-20:room") interactions.push("차례마다 한 번 · 피해 1을 받고 손패 1장 뽑기");
       if (atHunter && E.interactionOptions(state).missionRescue) interactions.push("임무 대상과 상호작용 가능");
-      return { node, name: space.placeName || space.label, atHunter, enemies, loot,
+      return { node, name: G.spaceLabel(tile, space), atHunter, enemies, loot,
         interactions, tokens: tokens.filter(token => token.node === node) };
     });
     return { id: tileId, name: tile.named ? tile.displayName : null, fog, rules: [...(tile.rules || [])], selectedNode, spaces };

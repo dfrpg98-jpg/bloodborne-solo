@@ -14,7 +14,13 @@ function fixture(extra = {}) {
     releasePointerCapture(id) { if (this.captured === id) this.captured = null; },
     scrollTo(p) { scrolls.push(p); this.scrollLeft = p.left; this.scrollTop = p.top; },
   };
-  const content = { offsetWidth: 1000, offsetHeight: 800, style: {}, getBoundingClientRect() { return { width: this.offsetWidth, height: this.offsetHeight }; } },
+  const content = { offsetWidth: 1000, offsetHeight: 800, style: {}, getBoundingClientRect() {
+    const zoom = Number(this.style.transform?.match(/scale\(([^)]+)\)/)?.[1] || 1), v = viewport.getBoundingClientRect(),
+      left = v.left + viewport.clientLeft + (parseFloat(this.style.left) || 0) - viewport.scrollLeft,
+      top = v.top + viewport.clientTop + (parseFloat(this.style.top) || 0) - viewport.scrollTop,
+      width = this.offsetWidth * zoom, height = this.offsetHeight * zoom;
+    return { left, top, width, height, right: left + width, bottom: top + height };
+  } },
     surface = { style: {} }, camera = Camera({ document, viewport, content, surface, onChange: n => notices.push(n), ...extra });
   const target = { closest: () => null };
   function emit(type, args = {}) {
@@ -135,6 +141,24 @@ test("fit uses rendered map geometry within zoom limits and reset restores one h
   f.camera.zoomIn(); assert(f.camera.zoom() > 0.69);
   f.camera.zoomOut(); f.camera.reset(); assert.equal(f.camera.zoom(), 1);
   f.content.offsetWidth = 10000; f.camera.fit(); assert.equal(f.camera.zoom(), 0.6);
+});
+
+test("fit recenters padded public map content after an empty offset or a distant pan without changing zoom limits", () => {
+  const f = fixture({ padEdges: true });
+  f.viewport.scrollLeft = 0; f.viewport.scrollTop = 0;
+  assert.equal(f.camera.fit(), 0.6);
+  assert.equal(f.viewport.scrollLeft, 300); assert.equal(f.viewport.scrollTop, 240);
+  let bounds = f.content.getBoundingClientRect(), viewport = f.viewport.getBoundingClientRect();
+  assert.equal((bounds.left + bounds.right) / 2, viewport.left + f.viewport.clientLeft + f.viewport.clientWidth / 2);
+  assert.equal((bounds.top + bounds.bottom) / 2, viewport.top + f.viewport.clientTop + f.viewport.clientHeight / 2);
+  f.viewport.scrollLeft = 600; f.viewport.scrollTop = 480;
+  f.camera.fit();
+  assert.equal(f.viewport.scrollLeft, 300); assert.equal(f.viewport.scrollTop, 240);
+  f.content.offsetWidth = 500; f.content.offsetHeight = 400;
+  assert.equal(f.camera.fit(), 0.69);
+  bounds = f.content.getBoundingClientRect();
+  assert(bounds.left >= viewport.left + f.viewport.clientLeft && bounds.right <= viewport.right);
+  assert(bounds.top >= viewport.top + f.viewport.clientTop && bounds.bottom <= viewport.bottom);
 });
 
 test("destroy removes all listeners and disables subsequent camera actions", () => {
