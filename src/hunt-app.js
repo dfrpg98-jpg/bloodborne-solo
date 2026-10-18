@@ -2152,11 +2152,14 @@
     }).join("")}${ghost ? "" : gateHTML(p)}${tileSpaceLabelsHTML(p, def, ghost)}</div>`;
   }
   function tileSpaceLabelsHTML(p, definition, ghost) {
-    const spaces = definition.spaces.map(space => ({ space, point: G.point(p.tileId, space.id, p.rotation) }))
-      .sort((a, b) => a.point[1] - b.point[1] || a.point[0] - b.point[0]);
-    return `<div class="tile-space-labels" aria-label="칸 이름">${spaces.map(({ space }) => {
-      const label = esc(G.spaceLabel(definition, space, p.rotation));
-      return ghost ? `<span>${label}</span>` : `<button type="button" data-space-label-node="${esc(p.tileId + ":" + space.id)}">${label}</button>`;
+    return `<div class="tile-space-labels" aria-label="칸 이름">${definition.spaces.map(space => {
+      const label = esc(G.spaceLabel(definition, space, p.rotation)),
+        position = G.labelPlacement(p.tileId, space.id, p.rotation),
+        top = position.gateClearance ? `min(${position.y}%, calc(95% - ${position.gateClearance}px))` : `${position.y}%`,
+        left = position.horizontalOffset ? `calc(${position.x}% ${position.horizontalOffset > 0 ? "+" : "-"} ${Math.abs(position.horizontalOffset)}px)` : `${position.x}%`,
+        width = position.widthClearance ? `calc(${position.width}% - ${position.widthClearance}px)` : `${position.width}%`,
+        style = `left:${left};top:${top};max-width:${width}`;
+      return ghost ? `<span style="${style}">${label}</span>` : `<button type="button" style="${style}" data-space-label-node="${esc(p.tileId + ":" + space.id)}">${label}</button>`;
     }).join("")}</div>`;
   }
   function gateHTML(p) {

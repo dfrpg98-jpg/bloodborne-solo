@@ -1,0 +1,1740 @@
+{
+  "version": "0.8.13-dev.38",
+  "browser": "installed sandboxed Chrome",
+  "origin": "http://127.0.0.1:8860",
+  "isolatedTemporaryProfile": true,
+  "pageStateInjection": false,
+  "userBrowserAttached": false,
+  "fixture": "strict normal-campaign E.create and public DREAM/REFILL commands, imported through the official file chooser",
+  "startedAt": "2026-10-18T10:23:39.679Z",
+  "sourceHashes": {
+    "hunt.html": "d4dfda699340912f1000ffff0b9d58ff30b23739923ab14dc9debc9153f7ad16",
+    "styles/hunt-workspace-layout.css": "cf46338f5797fe84acb2c86518665ee92fa9d6cfc4c7b673e63c0a4839f26e7b",
+    "src/hunt-app.js": "57391961a0134011bf01f691a52a2541e79f94178bb09bdbfdf09f5af1813797"
+  },
+  "checks": [
+    {
+      "name": "burial-2035x1252 one firearm in title row",
+      "passed": true,
+      "geometry": "burial-2035x1252"
+    },
+    {
+      "name": "burial-2035x1252 title and firearm do not overlap",
+      "passed": true,
+      "geometry": "burial-2035x1252"
+    },
+    {
+      "name": "burial-2035x1252 all slots retain selection ancestor",
+      "passed": true,
+      "geometry": "burial-2035x1252"
+    },
+    {
+      "name": "burial-2035x1252 all slots have equal y, width and height",
+      "passed": true,
+      "geometry": "burial-2035x1252"
+    },
+    {
+      "name": "burial-2035x1252 title row is above all full-size slots",
+      "passed": true,
+      "geometry": "burial-2035x1252"
+    },
+    {
+      "name": "burial-2035x1252 action fits in gun",
+      "passed": true,
+      "geometry": "burial-2035x1252"
+    },
+    {
+      "name": "burial-2035x1252 loadout fits viewport",
+      "passed": true,
+      "geometry": "burial-2035x1252"
+    },
+    {
+      "name": "burial-2035x1252 gun aligns with third slot",
+      "passed": true,
+      "geometry": "burial-2035x1252"
+    },
+    {
+      "name": "burial-1714x1252 one firearm in title row",
+      "passed": true,
+      "geometry": "burial-1714x1252"
+    },
+    {
+      "name": "burial-1714x1252 title and firearm do not overlap",
+      "passed": true,
+      "geometry": "burial-1714x1252"
+    },
+    {
+      "name": "burial-1714x1252 all slots retain selection ancestor",
+      "passed": true,
+      "geometry": "burial-1714x1252"
+    },
+    {
+      "name": "burial-1714x1252 all slots have equal y, width and height",
+      "passed": true,
+      "geometry": "burial-1714x1252"
+    },
+    {
+      "name": "burial-1714x1252 title row is above all full-size slots",
+      "passed": true,
+      "geometry": "burial-1714x1252"
+    },
+    {
+      "name": "burial-1714x1252 action fits in gun",
+      "passed": true,
+      "geometry": "burial-1714x1252"
+    },
+    {
+      "name": "burial-1714x1252 loadout fits viewport",
+      "passed": true,
+      "geometry": "burial-1714x1252"
+    },
+    {
+      "name": "burial-1714x1252 gun aligns with third slot",
+      "passed": true,
+      "geometry": "burial-1714x1252"
+    },
+    {
+      "name": "burial-1280x720 one firearm in title row",
+      "passed": true,
+      "geometry": "burial-1280x720"
+    },
+    {
+      "name": "burial-1280x720 title and firearm do not overlap",
+      "passed": true,
+      "geometry": "burial-1280x720"
+    },
+    {
+      "name": "burial-1280x720 all slots retain selection ancestor",
+      "passed": true,
+      "geometry": "burial-1280x720"
+    },
+    {
+      "name": "burial-1280x720 all slots have equal y, width and height",
+      "passed": true,
+      "geometry": "burial-1280x720"
+    },
+    {
+      "name": "burial-1280x720 title row is above all full-size slots",
+      "passed": true,
+      "geometry": "burial-1280x720"
+    },
+    {
+      "name": "burial-1280x720 action fits in gun",
+      "passed": true,
+      "geometry": "burial-1280x720"
+    },
+    {
+      "name": "burial-1280x720 loadout fits viewport",
+      "passed": true,
+      "geometry": "burial-1280x720"
+    },
+    {
+      "name": "burial-1280x720 gun aligns with third slot",
+      "passed": true,
+      "geometry": "burial-1280x720"
+    },
+    {
+      "name": "burial-1231x1252 one firearm in title row",
+      "passed": true,
+      "geometry": "burial-1231x1252"
+    },
+    {
+      "name": "burial-1231x1252 title and firearm do not overlap",
+      "passed": true,
+      "geometry": "burial-1231x1252"
+    },
+    {
+      "name": "burial-1231x1252 all slots retain selection ancestor",
+      "passed": true,
+      "geometry": "burial-1231x1252"
+    },
+    {
+      "name": "burial-1231x1252 all slots have equal y, width and height",
+      "passed": true,
+      "geometry": "burial-1231x1252"
+    },
+    {
+      "name": "burial-1231x1252 title row is above all full-size slots",
+      "passed": true,
+      "geometry": "burial-1231x1252"
+    },
+    {
+      "name": "burial-1231x1252 action fits in gun",
+      "passed": true,
+      "geometry": "burial-1231x1252"
+    },
+    {
+      "name": "burial-1231x1252 loadout fits viewport",
+      "passed": true,
+      "geometry": "burial-1231x1252"
+    },
+    {
+      "name": "burial-1231x1252 gun aligns with third slot",
+      "passed": true,
+      "geometry": "burial-1231x1252"
+    },
+    {
+      "name": "kirkhammer-2035x1252 one firearm in title row",
+      "passed": true,
+      "geometry": "kirkhammer-2035x1252"
+    },
+    {
+      "name": "kirkhammer-2035x1252 title and firearm do not overlap",
+      "passed": true,
+      "geometry": "kirkhammer-2035x1252"
+    },
+    {
+      "name": "kirkhammer-2035x1252 all slots retain selection ancestor",
+      "passed": true,
+      "geometry": "kirkhammer-2035x1252"
+    },
+    {
+      "name": "kirkhammer-2035x1252 all slots have equal y, width and height",
+      "passed": true,
+      "geometry": "kirkhammer-2035x1252"
+    },
+    {
+      "name": "kirkhammer-2035x1252 title row is above all full-size slots",
+      "passed": true,
+      "geometry": "kirkhammer-2035x1252"
+    },
+    {
+      "name": "kirkhammer-2035x1252 action fits in gun",
+      "passed": true,
+      "geometry": "kirkhammer-2035x1252"
+    },
+    {
+      "name": "kirkhammer-2035x1252 loadout fits viewport",
+      "passed": true,
+      "geometry": "kirkhammer-2035x1252"
+    },
+    {
+      "name": "kirkhammer-1714x1252 one firearm in title row",
+      "passed": true,
+      "geometry": "kirkhammer-1714x1252"
+    },
+    {
+      "name": "kirkhammer-1714x1252 title and firearm do not overlap",
+      "passed": true,
+      "geometry": "kirkhammer-1714x1252"
+    },
+    {
+      "name": "kirkhammer-1714x1252 all slots retain selection ancestor",
+      "passed": true,
+      "geometry": "kirkhammer-1714x1252"
+    },
+    {
+      "name": "kirkhammer-1714x1252 all slots have equal y, width and height",
+      "passed": true,
+      "geometry": "kirkhammer-1714x1252"
+    },
+    {
+      "name": "kirkhammer-1714x1252 title row is above all full-size slots",
+      "passed": true,
+      "geometry": "kirkhammer-1714x1252"
+    },
+    {
+      "name": "kirkhammer-1714x1252 action fits in gun",
+      "passed": true,
+      "geometry": "kirkhammer-1714x1252"
+    },
+    {
+      "name": "kirkhammer-1714x1252 loadout fits viewport",
+      "passed": true,
+      "geometry": "kirkhammer-1714x1252"
+    },
+    {
+      "name": "kirkhammer-1280x720 one firearm in title row",
+      "passed": true,
+      "geometry": "kirkhammer-1280x720"
+    },
+    {
+      "name": "kirkhammer-1280x720 title and firearm do not overlap",
+      "passed": true,
+      "geometry": "kirkhammer-1280x720"
+    },
+    {
+      "name": "kirkhammer-1280x720 all slots retain selection ancestor",
+      "passed": true,
+      "geometry": "kirkhammer-1280x720"
+    },
+    {
+      "name": "kirkhammer-1280x720 all slots have equal y, width and height",
+      "passed": true,
+      "geometry": "kirkhammer-1280x720"
+    },
+    {
+      "name": "kirkhammer-1280x720 title row is above all full-size slots",
+      "passed": true,
+      "geometry": "kirkhammer-1280x720"
+    },
+    {
+      "name": "kirkhammer-1280x720 action fits in gun",
+      "passed": true,
+      "geometry": "kirkhammer-1280x720"
+    },
+    {
+      "name": "kirkhammer-1280x720 loadout fits viewport",
+      "passed": true,
+      "geometry": "kirkhammer-1280x720"
+    },
+    {
+      "name": "kirkhammer-1231x1252 one firearm in title row",
+      "passed": true,
+      "geometry": "kirkhammer-1231x1252"
+    },
+    {
+      "name": "kirkhammer-1231x1252 title and firearm do not overlap",
+      "passed": true,
+      "geometry": "kirkhammer-1231x1252"
+    },
+    {
+      "name": "kirkhammer-1231x1252 all slots retain selection ancestor",
+      "passed": true,
+      "geometry": "kirkhammer-1231x1252"
+    },
+    {
+      "name": "kirkhammer-1231x1252 all slots have equal y, width and height",
+      "passed": true,
+      "geometry": "kirkhammer-1231x1252"
+    },
+    {
+      "name": "kirkhammer-1231x1252 title row is above all full-size slots",
+      "passed": true,
+      "geometry": "kirkhammer-1231x1252"
+    },
+    {
+      "name": "kirkhammer-1231x1252 action fits in gun",
+      "passed": true,
+      "geometry": "kirkhammer-1231x1252"
+    },
+    {
+      "name": "kirkhammer-1231x1252 loadout fits viewport",
+      "passed": true,
+      "geometry": "kirkhammer-1231x1252"
+    },
+    {
+      "name": "stake-driver-2035x1252 one firearm in title row",
+      "passed": true,
+      "geometry": "stake-driver-2035x1252"
+    },
+    {
+      "name": "stake-driver-2035x1252 title and firearm do not overlap",
+      "passed": true,
+      "geometry": "stake-driver-2035x1252"
+    },
+    {
+      "name": "stake-driver-2035x1252 all slots retain selection ancestor",
+      "passed": true,
+      "geometry": "stake-driver-2035x1252"
+    },
+    {
+      "name": "stake-driver-2035x1252 all slots have equal y, width and height",
+      "passed": true,
+      "geometry": "stake-driver-2035x1252"
+    },
+    {
+      "name": "stake-driver-2035x1252 title row is above all full-size slots",
+      "passed": true,
+      "geometry": "stake-driver-2035x1252"
+    },
+    {
+      "name": "stake-driver-2035x1252 action fits in gun",
+      "passed": true,
+      "geometry": "stake-driver-2035x1252"
+    },
+    {
+      "name": "stake-driver-2035x1252 loadout fits viewport",
+      "passed": true,
+      "geometry": "stake-driver-2035x1252"
+    },
+    {
+      "name": "stake-driver-1714x1252 one firearm in title row",
+      "passed": true,
+      "geometry": "stake-driver-1714x1252"
+    },
+    {
+      "name": "stake-driver-1714x1252 title and firearm do not overlap",
+      "passed": true,
+      "geometry": "stake-driver-1714x1252"
+    },
+    {
+      "name": "stake-driver-1714x1252 all slots retain selection ancestor",
+      "passed": true,
+      "geometry": "stake-driver-1714x1252"
+    },
+    {
+      "name": "stake-driver-1714x1252 all slots have equal y, width and height",
+      "passed": true,
+      "geometry": "stake-driver-1714x1252"
+    },
+    {
+      "name": "stake-driver-1714x1252 title row is above all full-size slots",
+      "passed": true,
+      "geometry": "stake-driver-1714x1252"
+    },
+    {
+      "name": "stake-driver-1714x1252 action fits in gun",
+      "passed": true,
+      "geometry": "stake-driver-1714x1252"
+    },
+    {
+      "name": "stake-driver-1714x1252 loadout fits viewport",
+      "passed": true,
+      "geometry": "stake-driver-1714x1252"
+    },
+    {
+      "name": "stake-driver-1280x720 one firearm in title row",
+      "passed": true,
+      "geometry": "stake-driver-1280x720"
+    },
+    {
+      "name": "stake-driver-1280x720 title and firearm do not overlap",
+      "passed": true,
+      "geometry": "stake-driver-1280x720"
+    },
+    {
+      "name": "stake-driver-1280x720 all slots retain selection ancestor",
+      "passed": true,
+      "geometry": "stake-driver-1280x720"
+    },
+    {
+      "name": "stake-driver-1280x720 all slots have equal y, width and height",
+      "passed": true,
+      "geometry": "stake-driver-1280x720"
+    },
+    {
+      "name": "stake-driver-1280x720 title row is above all full-size slots",
+      "passed": true,
+      "geometry": "stake-driver-1280x720"
+    },
+    {
+      "name": "stake-driver-1280x720 action fits in gun",
+      "passed": true,
+      "geometry": "stake-driver-1280x720"
+    },
+    {
+      "name": "stake-driver-1280x720 loadout fits viewport",
+      "passed": true,
+      "geometry": "stake-driver-1280x720"
+    },
+    {
+      "name": "stake-driver-1231x1252 one firearm in title row",
+      "passed": true,
+      "geometry": "stake-driver-1231x1252"
+    },
+    {
+      "name": "stake-driver-1231x1252 title and firearm do not overlap",
+      "passed": true,
+      "geometry": "stake-driver-1231x1252"
+    },
+    {
+      "name": "stake-driver-1231x1252 all slots retain selection ancestor",
+      "passed": true,
+      "geometry": "stake-driver-1231x1252"
+    },
+    {
+      "name": "stake-driver-1231x1252 all slots have equal y, width and height",
+      "passed": true,
+      "geometry": "stake-driver-1231x1252"
+    },
+    {
+      "name": "stake-driver-1231x1252 title row is above all full-size slots",
+      "passed": true,
+      "geometry": "stake-driver-1231x1252"
+    },
+    {
+      "name": "stake-driver-1231x1252 action fits in gun",
+      "passed": true,
+      "geometry": "stake-driver-1231x1252"
+    },
+    {
+      "name": "stake-driver-1231x1252 loadout fits viewport",
+      "passed": true,
+      "geometry": "stake-driver-1231x1252"
+    },
+    {
+      "name": "kirkhammer preview reflects selected face",
+      "passed": true
+    },
+    {
+      "name": "kirkhammer preview does not spend resources",
+      "passed": true
+    },
+    {
+      "name": "kirkhammer-preview-2035x1252 one firearm in title row",
+      "passed": true,
+      "geometry": "kirkhammer-preview-2035x1252"
+    },
+    {
+      "name": "kirkhammer-preview-2035x1252 title and firearm do not overlap",
+      "passed": true,
+      "geometry": "kirkhammer-preview-2035x1252"
+    },
+    {
+      "name": "kirkhammer-preview-2035x1252 all slots retain selection ancestor",
+      "passed": true,
+      "geometry": "kirkhammer-preview-2035x1252"
+    },
+    {
+      "name": "kirkhammer-preview-2035x1252 all slots have equal y, width and height",
+      "passed": true,
+      "geometry": "kirkhammer-preview-2035x1252"
+    },
+    {
+      "name": "kirkhammer-preview-2035x1252 title row is above all full-size slots",
+      "passed": true,
+      "geometry": "kirkhammer-preview-2035x1252"
+    },
+    {
+      "name": "kirkhammer-preview-2035x1252 action fits in gun",
+      "passed": true,
+      "geometry": "kirkhammer-preview-2035x1252"
+    },
+    {
+      "name": "kirkhammer-preview-2035x1252 loadout fits viewport",
+      "passed": true,
+      "geometry": "kirkhammer-preview-2035x1252"
+    },
+    {
+      "name": "kirkhammer preview reverts with exact save",
+      "passed": true
+    },
+    {
+      "name": "stake-driver preview reflects selected face",
+      "passed": true
+    },
+    {
+      "name": "stake-driver preview does not spend resources",
+      "passed": true
+    },
+    {
+      "name": "stake-driver-preview-2035x1252 one firearm in title row",
+      "passed": true,
+      "geometry": "stake-driver-preview-2035x1252"
+    },
+    {
+      "name": "stake-driver-preview-2035x1252 title and firearm do not overlap",
+      "passed": true,
+      "geometry": "stake-driver-preview-2035x1252"
+    },
+    {
+      "name": "stake-driver-preview-2035x1252 all slots retain selection ancestor",
+      "passed": true,
+      "geometry": "stake-driver-preview-2035x1252"
+    },
+    {
+      "name": "stake-driver-preview-2035x1252 all slots have equal y, width and height",
+      "passed": true,
+      "geometry": "stake-driver-preview-2035x1252"
+    },
+    {
+      "name": "stake-driver-preview-2035x1252 title row is above all full-size slots",
+      "passed": true,
+      "geometry": "stake-driver-preview-2035x1252"
+    },
+    {
+      "name": "stake-driver-preview-2035x1252 action fits in gun",
+      "passed": true,
+      "geometry": "stake-driver-preview-2035x1252"
+    },
+    {
+      "name": "stake-driver-preview-2035x1252 loadout fits viewport",
+      "passed": true,
+      "geometry": "stake-driver-preview-2035x1252"
+    },
+    {
+      "name": "stake-driver preview reverts with exact save",
+      "passed": true
+    },
+    {
+      "name": "no page exceptions",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "source freeze is unchanged",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "burial-2035x1252.png",
+    "burial-1714x1252.png",
+    "burial-1280x720.png",
+    "burial-1231x1252.png",
+    "kirkhammer-2035x1252.png",
+    "kirkhammer-1714x1252.png",
+    "kirkhammer-1280x720.png",
+    "kirkhammer-1231x1252.png",
+    "stake-driver-2035x1252.png",
+    "stake-driver-1714x1252.png",
+    "stake-driver-1280x720.png",
+    "stake-driver-1231x1252.png",
+    "kirkhammer-preview-2035x1252.png",
+    "stake-driver-preview-2035x1252.png"
+  ],
+  "geometry": [
+    {
+      "label": "burial-2035x1252",
+      "header": {
+        "x": 904.90625,
+        "y": 991,
+        "right": 1686,
+        "bottom": 1054.390625,
+        "width": 781.09375,
+        "height": 63.390625
+      },
+      "summary": {
+        "x": 904.90625,
+        "y": 991,
+        "right": 1423.96875,
+        "bottom": 1054.390625,
+        "width": 519.0625,
+        "height": 63.390625
+      },
+      "gun": {
+        "x": 1428.96875,
+        "y": 991,
+        "right": 1686,
+        "bottom": 1040,
+        "width": 257.03125,
+        "height": 49
+      },
+      "bank": {
+        "x": 904.90625,
+        "y": 1054.390625,
+        "right": 1686,
+        "bottom": 1216,
+        "width": 781.09375,
+        "height": 161.609375
+      },
+      "weapon": {
+        "x": 895.90625,
+        "y": 984,
+        "right": 1695,
+        "bottom": 1244,
+        "width": 799.09375,
+        "height": 260
+      },
+      "gunButtons": [
+        {
+          "x": 1432.96875,
+          "y": 1012,
+          "right": 1682,
+          "bottom": 1036,
+          "width": 249.03125,
+          "height": 24
+        }
+      ],
+      "gunCount": 1,
+      "slots": [
+        {
+          "x": 904.90625,
+          "y": 1054.390625,
+          "right": 1161.9375,
+          "bottom": 1214,
+          "width": 257.03125,
+          "height": 159.609375
+        },
+        {
+          "x": 1166.9375,
+          "y": 1054.390625,
+          "right": 1423.96875,
+          "bottom": 1214,
+          "width": 257.03125,
+          "height": 159.609375
+        },
+        {
+          "x": 1428.96875,
+          "y": 1054.390625,
+          "right": 1686,
+          "bottom": 1214,
+          "width": 257.03125,
+          "height": 159.609375
+        }
+      ],
+      "totalSlots": 3,
+      "gunInHeader": true,
+      "bankHasGun": false,
+      "viewport": {
+        "width": 2035,
+        "height": 1252
+      },
+      "document": {
+        "width": 2035,
+        "height": 1252
+      }
+    },
+    {
+      "label": "burial-1714x1252",
+      "header": {
+        "x": 765.34375,
+        "y": 991,
+        "right": 1365,
+        "bottom": 1054.390625,
+        "width": 599.65625,
+        "height": 63.390625
+      },
+      "summary": {
+        "x": 765.34375,
+        "y": 991,
+        "right": 1163.4375,
+        "bottom": 1054.390625,
+        "width": 398.09375,
+        "height": 63.390625
+      },
+      "gun": {
+        "x": 1168.4375,
+        "y": 991,
+        "right": 1364.984375,
+        "bottom": 1040,
+        "width": 196.546875,
+        "height": 49
+      },
+      "bank": {
+        "x": 765.34375,
+        "y": 1054.390625,
+        "right": 1365,
+        "bottom": 1216,
+        "width": 599.65625,
+        "height": 161.609375
+      },
+      "weapon": {
+        "x": 756.34375,
+        "y": 984,
+        "right": 1374,
+        "bottom": 1244,
+        "width": 617.65625,
+        "height": 260
+      },
+      "gunButtons": [
+        {
+          "x": 1172.4375,
+          "y": 1012,
+          "right": 1360.984375,
+          "bottom": 1036,
+          "width": 188.546875,
+          "height": 24
+        }
+      ],
+      "gunCount": 1,
+      "slots": [
+        {
+          "x": 765.34375,
+          "y": 1054.390625,
+          "right": 961.890625,
+          "bottom": 1214,
+          "width": 196.546875,
+          "height": 159.609375
+        },
+        {
+          "x": 966.890625,
+          "y": 1054.390625,
+          "right": 1163.4375,
+          "bottom": 1214,
+          "width": 196.546875,
+          "height": 159.609375
+        },
+        {
+          "x": 1168.4375,
+          "y": 1054.390625,
+          "right": 1364.984375,
+          "bottom": 1214,
+          "width": 196.546875,
+          "height": 159.609375
+        }
+      ],
+      "totalSlots": 3,
+      "gunInHeader": true,
+      "bankHasGun": false,
+      "viewport": {
+        "width": 1714,
+        "height": 1252
+      },
+      "document": {
+        "width": 1714,
+        "height": 1252
+      }
+    },
+    {
+      "label": "burial-1280x720",
+      "header": {
+        "x": 556.390625,
+        "y": 461,
+        "right": 933,
+        "bottom": 532.390625,
+        "width": 376.609375,
+        "height": 71.390625
+      },
+      "summary": {
+        "x": 556.390625,
+        "y": 461,
+        "right": 805.796875,
+        "bottom": 532.390625,
+        "width": 249.40625,
+        "height": 71.390625
+      },
+      "gun": {
+        "x": 810.796875,
+        "y": 461,
+        "right": 933,
+        "bottom": 531.5,
+        "width": 122.203125,
+        "height": 70.5
+      },
+      "bank": {
+        "x": 556.390625,
+        "y": 532.390625,
+        "right": 933,
+        "bottom": 686,
+        "width": 376.609375,
+        "height": 153.609375
+      },
+      "weapon": {
+        "x": 547.390625,
+        "y": 454,
+        "right": 942,
+        "bottom": 714,
+        "width": 394.609375,
+        "height": 260
+      },
+      "gunButtons": [
+        {
+          "x": 814.796875,
+          "y": 494.5,
+          "right": 929,
+          "bottom": 527.5,
+          "width": 114.203125,
+          "height": 33
+        }
+      ],
+      "gunCount": 1,
+      "slots": [
+        {
+          "x": 556.390625,
+          "y": 532.390625,
+          "right": 678.59375,
+          "bottom": 684,
+          "width": 122.203125,
+          "height": 151.609375
+        },
+        {
+          "x": 683.59375,
+          "y": 532.390625,
+          "right": 805.796875,
+          "bottom": 684,
+          "width": 122.203125,
+          "height": 151.609375
+        },
+        {
+          "x": 810.796875,
+          "y": 532.390625,
+          "right": 933,
+          "bottom": 684,
+          "width": 122.203125,
+          "height": 151.609375
+        }
+      ],
+      "totalSlots": 3,
+      "gunInHeader": true,
+      "bankHasGun": false,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "document": {
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "label": "burial-1231x1252",
+      "header": {
+        "x": 535.34375,
+        "y": 991,
+        "right": 882,
+        "bottom": 1062.390625,
+        "width": 346.65625,
+        "height": 71.390625
+      },
+      "summary": {
+        "x": 535.34375,
+        "y": 991,
+        "right": 764.78125,
+        "bottom": 1062.390625,
+        "width": 229.4375,
+        "height": 71.390625
+      },
+      "gun": {
+        "x": 769.78125,
+        "y": 991,
+        "right": 882,
+        "bottom": 1061.5,
+        "width": 112.21875,
+        "height": 70.5
+      },
+      "bank": {
+        "x": 535.34375,
+        "y": 1062.390625,
+        "right": 882,
+        "bottom": 1216,
+        "width": 346.65625,
+        "height": 153.609375
+      },
+      "weapon": {
+        "x": 526.34375,
+        "y": 984,
+        "right": 891,
+        "bottom": 1244,
+        "width": 364.65625,
+        "height": 260
+      },
+      "gunButtons": [
+        {
+          "x": 773.78125,
+          "y": 1024.5,
+          "right": 878,
+          "bottom": 1057.5,
+          "width": 104.21875,
+          "height": 33
+        }
+      ],
+      "gunCount": 1,
+      "slots": [
+        {
+          "x": 535.34375,
+          "y": 1062.390625,
+          "right": 647.5625,
+          "bottom": 1214,
+          "width": 112.21875,
+          "height": 151.609375
+        },
+        {
+          "x": 652.5625,
+          "y": 1062.390625,
+          "right": 764.78125,
+          "bottom": 1214,
+          "width": 112.21875,
+          "height": 151.609375
+        },
+        {
+          "x": 769.78125,
+          "y": 1062.390625,
+          "right": 882,
+          "bottom": 1214,
+          "width": 112.21875,
+          "height": 151.609375
+        }
+      ],
+      "totalSlots": 3,
+      "gunInHeader": true,
+      "bankHasGun": false,
+      "viewport": {
+        "width": 1231,
+        "height": 1252
+      },
+      "document": {
+        "width": 1231,
+        "height": 1252
+      }
+    },
+    {
+      "label": "kirkhammer-2035x1252",
+      "header": {
+        "x": 904.90625,
+        "y": 991,
+        "right": 1686,
+        "bottom": 1054.390625,
+        "width": 781.09375,
+        "height": 63.390625
+      },
+      "summary": {
+        "x": 904.90625,
+        "y": 991,
+        "right": 1423.96875,
+        "bottom": 1054.390625,
+        "width": 519.0625,
+        "height": 63.390625
+      },
+      "gun": {
+        "x": 1428.96875,
+        "y": 991,
+        "right": 1686,
+        "bottom": 1040,
+        "width": 257.03125,
+        "height": 49
+      },
+      "bank": {
+        "x": 904.90625,
+        "y": 1054.390625,
+        "right": 1686,
+        "bottom": 1216,
+        "width": 781.09375,
+        "height": 161.609375
+      },
+      "weapon": {
+        "x": 895.90625,
+        "y": 984,
+        "right": 1695,
+        "bottom": 1244,
+        "width": 799.09375,
+        "height": 260
+      },
+      "gunButtons": [
+        {
+          "x": 1432.96875,
+          "y": 1012,
+          "right": 1682,
+          "bottom": 1036,
+          "width": 249.03125,
+          "height": 24
+        }
+      ],
+      "gunCount": 1,
+      "slots": [
+        {
+          "x": 904.90625,
+          "y": 1054.390625,
+          "right": 1292.953125,
+          "bottom": 1214,
+          "width": 388.046875,
+          "height": 159.609375
+        },
+        {
+          "x": 1297.953125,
+          "y": 1054.390625,
+          "right": 1686,
+          "bottom": 1214,
+          "width": 388.046875,
+          "height": 159.609375
+        }
+      ],
+      "totalSlots": 2,
+      "gunInHeader": true,
+      "bankHasGun": false,
+      "viewport": {
+        "width": 2035,
+        "height": 1252
+      },
+      "document": {
+        "width": 2035,
+        "height": 1252
+      }
+    },
+    {
+      "label": "kirkhammer-1714x1252",
+      "header": {
+        "x": 765.34375,
+        "y": 991,
+        "right": 1365,
+        "bottom": 1062.390625,
+        "width": 599.65625,
+        "height": 71.390625
+      },
+      "summary": {
+        "x": 765.34375,
+        "y": 991,
+        "right": 1163.4375,
+        "bottom": 1062.390625,
+        "width": 398.09375,
+        "height": 71.390625
+      },
+      "gun": {
+        "x": 1168.4375,
+        "y": 991,
+        "right": 1364.984375,
+        "bottom": 1040,
+        "width": 196.546875,
+        "height": 49
+      },
+      "bank": {
+        "x": 765.34375,
+        "y": 1062.390625,
+        "right": 1365,
+        "bottom": 1216,
+        "width": 599.65625,
+        "height": 153.609375
+      },
+      "weapon": {
+        "x": 756.34375,
+        "y": 984,
+        "right": 1374,
+        "bottom": 1244,
+        "width": 617.65625,
+        "height": 260
+      },
+      "gunButtons": [
+        {
+          "x": 1172.4375,
+          "y": 1012,
+          "right": 1360.984375,
+          "bottom": 1036,
+          "width": 188.546875,
+          "height": 24
+        }
+      ],
+      "gunCount": 1,
+      "slots": [
+        {
+          "x": 765.34375,
+          "y": 1062.390625,
+          "right": 1062.671875,
+          "bottom": 1214,
+          "width": 297.328125,
+          "height": 151.609375
+        },
+        {
+          "x": 1067.671875,
+          "y": 1062.390625,
+          "right": 1365,
+          "bottom": 1214,
+          "width": 297.328125,
+          "height": 151.609375
+        }
+      ],
+      "totalSlots": 2,
+      "gunInHeader": true,
+      "bankHasGun": false,
+      "viewport": {
+        "width": 1714,
+        "height": 1252
+      },
+      "document": {
+        "width": 1714,
+        "height": 1252
+      }
+    },
+    {
+      "label": "kirkhammer-1280x720",
+      "header": {
+        "x": 556.390625,
+        "y": 461,
+        "right": 933,
+        "bottom": 532.390625,
+        "width": 376.609375,
+        "height": 71.390625
+      },
+      "summary": {
+        "x": 556.390625,
+        "y": 461,
+        "right": 805.796875,
+        "bottom": 532.390625,
+        "width": 249.40625,
+        "height": 71.390625
+      },
+      "gun": {
+        "x": 810.796875,
+        "y": 461,
+        "right": 933,
+        "bottom": 531.5,
+        "width": 122.203125,
+        "height": 70.5
+      },
+      "bank": {
+        "x": 556.390625,
+        "y": 532.390625,
+        "right": 933,
+        "bottom": 686,
+        "width": 376.609375,
+        "height": 153.609375
+      },
+      "weapon": {
+        "x": 547.390625,
+        "y": 454,
+        "right": 942,
+        "bottom": 714,
+        "width": 394.609375,
+        "height": 260
+      },
+      "gunButtons": [
+        {
+          "x": 814.796875,
+          "y": 494.5,
+          "right": 929,
+          "bottom": 527.5,
+          "width": 114.203125,
+          "height": 33
+        }
+      ],
+      "gunCount": 1,
+      "slots": [
+        {
+          "x": 556.390625,
+          "y": 532.390625,
+          "right": 742.1875,
+          "bottom": 684,
+          "width": 185.796875,
+          "height": 151.609375
+        },
+        {
+          "x": 747.1875,
+          "y": 532.390625,
+          "right": 933,
+          "bottom": 684,
+          "width": 185.8125,
+          "height": 151.609375
+        }
+      ],
+      "totalSlots": 2,
+      "gunInHeader": true,
+      "bankHasGun": false,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "document": {
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "label": "kirkhammer-1231x1252",
+      "header": {
+        "x": 535.34375,
+        "y": 991,
+        "right": 882,
+        "bottom": 1062.390625,
+        "width": 346.65625,
+        "height": 71.390625
+      },
+      "summary": {
+        "x": 535.34375,
+        "y": 991,
+        "right": 764.78125,
+        "bottom": 1062.390625,
+        "width": 229.4375,
+        "height": 71.390625
+      },
+      "gun": {
+        "x": 769.78125,
+        "y": 991,
+        "right": 882,
+        "bottom": 1061.5,
+        "width": 112.21875,
+        "height": 70.5
+      },
+      "bank": {
+        "x": 535.34375,
+        "y": 1062.390625,
+        "right": 882,
+        "bottom": 1216,
+        "width": 346.65625,
+        "height": 153.609375
+      },
+      "weapon": {
+        "x": 526.34375,
+        "y": 984,
+        "right": 891,
+        "bottom": 1244,
+        "width": 364.65625,
+        "height": 260
+      },
+      "gunButtons": [
+        {
+          "x": 773.78125,
+          "y": 1024.5,
+          "right": 878,
+          "bottom": 1057.5,
+          "width": 104.21875,
+          "height": 33
+        }
+      ],
+      "gunCount": 1,
+      "slots": [
+        {
+          "x": 535.34375,
+          "y": 1062.390625,
+          "right": 706.171875,
+          "bottom": 1214,
+          "width": 170.828125,
+          "height": 151.609375
+        },
+        {
+          "x": 711.171875,
+          "y": 1062.390625,
+          "right": 882,
+          "bottom": 1214,
+          "width": 170.828125,
+          "height": 151.609375
+        }
+      ],
+      "totalSlots": 2,
+      "gunInHeader": true,
+      "bankHasGun": false,
+      "viewport": {
+        "width": 1231,
+        "height": 1252
+      },
+      "document": {
+        "width": 1231,
+        "height": 1252
+      }
+    },
+    {
+      "label": "stake-driver-2035x1252",
+      "header": {
+        "x": 904.90625,
+        "y": 991,
+        "right": 1686,
+        "bottom": 1054.390625,
+        "width": 781.09375,
+        "height": 63.390625
+      },
+      "summary": {
+        "x": 904.90625,
+        "y": 991,
+        "right": 1423.96875,
+        "bottom": 1054.390625,
+        "width": 519.0625,
+        "height": 63.390625
+      },
+      "gun": {
+        "x": 1428.96875,
+        "y": 991,
+        "right": 1686,
+        "bottom": 1040,
+        "width": 257.03125,
+        "height": 49
+      },
+      "bank": {
+        "x": 904.90625,
+        "y": 1054.390625,
+        "right": 1686,
+        "bottom": 1216,
+        "width": 781.09375,
+        "height": 161.609375
+      },
+      "weapon": {
+        "x": 895.90625,
+        "y": 984,
+        "right": 1695,
+        "bottom": 1244,
+        "width": 799.09375,
+        "height": 260
+      },
+      "gunButtons": [
+        {
+          "x": 1432.96875,
+          "y": 1012,
+          "right": 1682,
+          "bottom": 1036,
+          "width": 249.03125,
+          "height": 24
+        }
+      ],
+      "gunCount": 1,
+      "slots": [
+        {
+          "x": 904.90625,
+          "y": 1054.390625,
+          "right": 1686,
+          "bottom": 1214,
+          "width": 781.09375,
+          "height": 159.609375
+        }
+      ],
+      "totalSlots": 1,
+      "gunInHeader": true,
+      "bankHasGun": false,
+      "viewport": {
+        "width": 2035,
+        "height": 1252
+      },
+      "document": {
+        "width": 2035,
+        "height": 1252
+      }
+    },
+    {
+      "label": "stake-driver-1714x1252",
+      "header": {
+        "x": 765.34375,
+        "y": 991,
+        "right": 1365,
+        "bottom": 1054.390625,
+        "width": 599.65625,
+        "height": 63.390625
+      },
+      "summary": {
+        "x": 765.34375,
+        "y": 991,
+        "right": 1163.4375,
+        "bottom": 1054.390625,
+        "width": 398.09375,
+        "height": 63.390625
+      },
+      "gun": {
+        "x": 1168.4375,
+        "y": 991,
+        "right": 1364.984375,
+        "bottom": 1040,
+        "width": 196.546875,
+        "height": 49
+      },
+      "bank": {
+        "x": 765.34375,
+        "y": 1054.390625,
+        "right": 1365,
+        "bottom": 1216,
+        "width": 599.65625,
+        "height": 161.609375
+      },
+      "weapon": {
+        "x": 756.34375,
+        "y": 984,
+        "right": 1374,
+        "bottom": 1244,
+        "width": 617.65625,
+        "height": 260
+      },
+      "gunButtons": [
+        {
+          "x": 1172.4375,
+          "y": 1012,
+          "right": 1360.984375,
+          "bottom": 1036,
+          "width": 188.546875,
+          "height": 24
+        }
+      ],
+      "gunCount": 1,
+      "slots": [
+        {
+          "x": 765.34375,
+          "y": 1054.390625,
+          "right": 1365,
+          "bottom": 1214,
+          "width": 599.65625,
+          "height": 159.609375
+        }
+      ],
+      "totalSlots": 1,
+      "gunInHeader": true,
+      "bankHasGun": false,
+      "viewport": {
+        "width": 1714,
+        "height": 1252
+      },
+      "document": {
+        "width": 1714,
+        "height": 1252
+      }
+    },
+    {
+      "label": "stake-driver-1280x720",
+      "header": {
+        "x": 556.390625,
+        "y": 461,
+        "right": 933,
+        "bottom": 532.390625,
+        "width": 376.609375,
+        "height": 71.390625
+      },
+      "summary": {
+        "x": 556.390625,
+        "y": 461,
+        "right": 805.796875,
+        "bottom": 532.390625,
+        "width": 249.40625,
+        "height": 71.390625
+      },
+      "gun": {
+        "x": 810.796875,
+        "y": 461,
+        "right": 933,
+        "bottom": 517.75,
+        "width": 122.203125,
+        "height": 56.75
+      },
+      "bank": {
+        "x": 556.390625,
+        "y": 532.390625,
+        "right": 933,
+        "bottom": 686,
+        "width": 376.609375,
+        "height": 153.609375
+      },
+      "weapon": {
+        "x": 547.390625,
+        "y": 454,
+        "right": 942,
+        "bottom": 714,
+        "width": 394.609375,
+        "height": 260
+      },
+      "gunButtons": [
+        {
+          "x": 814.796875,
+          "y": 480.75,
+          "right": 929,
+          "bottom": 513.75,
+          "width": 114.203125,
+          "height": 33
+        }
+      ],
+      "gunCount": 1,
+      "slots": [
+        {
+          "x": 556.390625,
+          "y": 532.390625,
+          "right": 933,
+          "bottom": 684,
+          "width": 376.609375,
+          "height": 151.609375
+        }
+      ],
+      "totalSlots": 1,
+      "gunInHeader": true,
+      "bankHasGun": false,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "document": {
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "label": "stake-driver-1231x1252",
+      "header": {
+        "x": 535.34375,
+        "y": 991,
+        "right": 882,
+        "bottom": 1062.390625,
+        "width": 346.65625,
+        "height": 71.390625
+      },
+      "summary": {
+        "x": 535.34375,
+        "y": 991,
+        "right": 764.78125,
+        "bottom": 1062.390625,
+        "width": 229.4375,
+        "height": 71.390625
+      },
+      "gun": {
+        "x": 769.78125,
+        "y": 991,
+        "right": 882,
+        "bottom": 1047.75,
+        "width": 112.21875,
+        "height": 56.75
+      },
+      "bank": {
+        "x": 535.34375,
+        "y": 1062.390625,
+        "right": 882,
+        "bottom": 1216,
+        "width": 346.65625,
+        "height": 153.609375
+      },
+      "weapon": {
+        "x": 526.34375,
+        "y": 984,
+        "right": 891,
+        "bottom": 1244,
+        "width": 364.65625,
+        "height": 260
+      },
+      "gunButtons": [
+        {
+          "x": 773.78125,
+          "y": 1010.75,
+          "right": 878,
+          "bottom": 1043.75,
+          "width": 104.21875,
+          "height": 33
+        }
+      ],
+      "gunCount": 1,
+      "slots": [
+        {
+          "x": 535.34375,
+          "y": 1062.390625,
+          "right": 882,
+          "bottom": 1214,
+          "width": 346.65625,
+          "height": 151.609375
+        }
+      ],
+      "totalSlots": 1,
+      "gunInHeader": true,
+      "bankHasGun": false,
+      "viewport": {
+        "width": 1231,
+        "height": 1252
+      },
+      "document": {
+        "width": 1231,
+        "height": 1252
+      }
+    },
+    {
+      "label": "kirkhammer-preview-2035x1252",
+      "header": {
+        "x": 904.90625,
+        "y": 991,
+        "right": 1686,
+        "bottom": 1054.390625,
+        "width": 781.09375,
+        "height": 63.390625
+      },
+      "summary": {
+        "x": 904.90625,
+        "y": 991,
+        "right": 1423.96875,
+        "bottom": 1054.390625,
+        "width": 519.0625,
+        "height": 63.390625
+      },
+      "gun": {
+        "x": 1428.96875,
+        "y": 991,
+        "right": 1686,
+        "bottom": 1040,
+        "width": 257.03125,
+        "height": 49
+      },
+      "bank": {
+        "x": 904.90625,
+        "y": 1054.390625,
+        "right": 1686,
+        "bottom": 1216,
+        "width": 781.09375,
+        "height": 161.609375
+      },
+      "weapon": {
+        "x": 895.90625,
+        "y": 984,
+        "right": 1695,
+        "bottom": 1244,
+        "width": 799.09375,
+        "height": 260
+      },
+      "gunButtons": [
+        {
+          "x": 1432.96875,
+          "y": 1012,
+          "right": 1682,
+          "bottom": 1036,
+          "width": 249.03125,
+          "height": 24
+        }
+      ],
+      "gunCount": 1,
+      "slots": [
+        {
+          "x": 904.90625,
+          "y": 1054.390625,
+          "right": 1292.953125,
+          "bottom": 1214,
+          "width": 388.046875,
+          "height": 159.609375
+        },
+        {
+          "x": 1297.953125,
+          "y": 1054.390625,
+          "right": 1686,
+          "bottom": 1214,
+          "width": 388.046875,
+          "height": 159.609375
+        }
+      ],
+      "totalSlots": 2,
+      "gunInHeader": true,
+      "bankHasGun": false,
+      "viewport": {
+        "width": 2035,
+        "height": 1252
+      },
+      "document": {
+        "width": 2035,
+        "height": 1252
+      }
+    },
+    {
+      "label": "stake-driver-preview-2035x1252",
+      "header": {
+        "x": 904.90625,
+        "y": 991,
+        "right": 1686,
+        "bottom": 1054.390625,
+        "width": 781.09375,
+        "height": 63.390625
+      },
+      "summary": {
+        "x": 904.90625,
+        "y": 991,
+        "right": 1423.96875,
+        "bottom": 1054.390625,
+        "width": 519.0625,
+        "height": 63.390625
+      },
+      "gun": {
+        "x": 1428.96875,
+        "y": 991,
+        "right": 1686,
+        "bottom": 1040,
+        "width": 257.03125,
+        "height": 49
+      },
+      "bank": {
+        "x": 904.90625,
+        "y": 1054.390625,
+        "right": 1686,
+        "bottom": 1216,
+        "width": 781.09375,
+        "height": 161.609375
+      },
+      "weapon": {
+        "x": 895.90625,
+        "y": 984,
+        "right": 1695,
+        "bottom": 1244,
+        "width": 799.09375,
+        "height": 260
+      },
+      "gunButtons": [
+        {
+          "x": 1432.96875,
+          "y": 1012,
+          "right": 1682,
+          "bottom": 1036,
+          "width": 249.03125,
+          "height": 24
+        }
+      ],
+      "gunCount": 1,
+      "slots": [
+        {
+          "x": 904.90625,
+          "y": 1054.390625,
+          "right": 1686,
+          "bottom": 1214,
+          "width": 781.09375,
+          "height": 159.609375
+        }
+      ],
+      "totalSlots": 1,
+      "gunInHeader": true,
+      "bankHasGun": false,
+      "viewport": {
+        "width": 2035,
+        "height": 1252
+      },
+      "document": {
+        "width": 2035,
+        "height": 1252
+      }
+    }
+  ],
+  "pageErrors": [],
+  "browserVersion": "155.0.8059.82",
+  "endingSourceHashes": {
+    "hunt.html": "d4dfda699340912f1000ffff0b9d58ff30b23739923ab14dc9debc9153f7ad16",
+    "styles/hunt-workspace-layout.css": "cf46338f5797fe84acb2c86518665ee92fa9d6cfc4c7b673e63c0a4839f26e7b",
+    "src/hunt-app.js": "57391961a0134011bf01f691a52a2541e79f94178bb09bdbfdf09f5af1813797"
+  },
+  "completedAt": "2026-10-18T10:23:52.710Z"
+}

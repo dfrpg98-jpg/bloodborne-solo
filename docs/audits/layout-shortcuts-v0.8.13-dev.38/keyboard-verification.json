@@ -1,0 +1,1045 @@
+{
+  "schema": "layout-shortcuts-real-browser-v1",
+  "version": "0.8.13-dev.38",
+  "origin": "http://127.0.0.1:8860",
+  "sourceHashes": {
+    "hunt.html": "d4dfda699340912f1000ffff0b9d58ff30b23739923ab14dc9debc9153f7ad16",
+    "src/hunt-app.js": "57391961a0134011bf01f691a52a2541e79f94178bb09bdbfdf09f5af1813797",
+    "src/hunt-keyboard-controls.js": "ce63da96ca91fc6ca68b9902106f43eeed960f067ee73ec7e6541cd98e9876fc",
+    "src/inventory.js": "38928b87f80b24ef419e21d13fb975627a7af07113f422b7fa144b805a53b14e",
+    "styles/hunt.css": "f4c11bdaf77f4700129286e509a8036033bdfe246deedf1867ee58bbc8e2b2c5",
+    "styles/hunt-workspace-layout.css": "cf46338f5797fe84acb2c86518665ee92fa9d6cfc4c7b673e63c0a4839f26e7b",
+    "styles/hunt-workspace-tabs.css": "a7f9d05c31e2ee2a3d6ea4ca76e97929fd5bf8b30905d5cb61420391407a2050"
+  },
+  "browserMode": "separate installed headless Chrome, temporary contexts, Chromium sandbox enabled",
+  "userBrowserAttached": false,
+  "userSaveModified": false,
+  "pageStateInjection": false,
+  "checks": [
+    {
+      "name": "staged-MOVE official import matches strict adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "MOVE pending confirm starts disabled",
+      "passed": true
+    },
+    {
+      "name": "MOVE disabled confirm has small shortcut below main label",
+      "passed": true,
+      "details": {
+        "label": "Space",
+        "keys": "Space",
+        "display": "block",
+        "font": "10px",
+        "border": "0px",
+        "y": 1070,
+        "textBottom": 1066.203125,
+        "bottom": 1082,
+        "buttonBottom": 1091,
+        "width": 127,
+        "buttonWidth": 145
+      }
+    },
+    {
+      "name": "MOVE cancel has small shortcut below main label",
+      "passed": true,
+      "details": {
+        "label": "Esc / Backspace",
+        "keys": "Escape Backspace",
+        "display": "block",
+        "font": "10px",
+        "border": "0px",
+        "y": 1070,
+        "textBottom": 1066.203125,
+        "bottom": 1082,
+        "buttonBottom": 1091,
+        "width": 127,
+        "buttonWidth": 145
+      }
+    },
+    {
+      "name": "MOVE disabled Space cannot fall through or spend a card",
+      "passed": true
+    },
+    {
+      "name": "MOVE top-row card enables confirmation",
+      "passed": true
+    },
+    {
+      "name": "MOVE-space-one-command matches clicked reducer command byte-exact",
+      "passed": true,
+      "details": {
+        "phase": "move",
+        "last": [
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          },
+          {
+            "type": "APPLY_MOVEMENT_DECLARATION_RULING"
+          },
+          {
+            "type": "MOVE",
+            "cardId": "card-3"
+          }
+        ]
+      }
+    },
+    {
+      "name": "staged-TRANSFORM official import matches strict adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "TRANSFORM pending confirm starts disabled",
+      "passed": true
+    },
+    {
+      "name": "TRANSFORM disabled confirm has small shortcut below main label",
+      "passed": true,
+      "details": {
+        "label": "Space",
+        "keys": "Space",
+        "display": "block",
+        "font": "10px",
+        "border": "0px",
+        "y": 1070,
+        "textBottom": 1066.203125,
+        "bottom": 1082,
+        "buttonBottom": 1091,
+        "width": 127,
+        "buttonWidth": 145
+      }
+    },
+    {
+      "name": "TRANSFORM cancel has small shortcut below main label",
+      "passed": true,
+      "details": {
+        "label": "Esc / Backspace",
+        "keys": "Escape Backspace",
+        "display": "block",
+        "font": "10px",
+        "border": "0px",
+        "y": 1070,
+        "textBottom": 1066.203125,
+        "bottom": 1082,
+        "buttonBottom": 1091,
+        "width": 127,
+        "buttonWidth": 145
+      }
+    },
+    {
+      "name": "TRANSFORM disabled Space cannot fall through or spend a card",
+      "passed": true
+    },
+    {
+      "name": "TRANSFORM top-row card enables confirmation",
+      "passed": true
+    },
+    {
+      "name": "TRANSFORM-space-one-command matches clicked reducer command byte-exact",
+      "passed": true,
+      "details": {
+        "phase": "hunter",
+        "last": [
+          {
+            "type": "APPLY_COMBAT_REACTION_RULING"
+          },
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          },
+          {
+            "type": "TRANSFORM",
+            "cardId": "card-3"
+          }
+        ]
+      }
+    },
+    {
+      "name": "staged-DREAM official import matches strict adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "DREAM pending confirm starts disabled",
+      "passed": true
+    },
+    {
+      "name": "DREAM disabled confirm has small shortcut below main label",
+      "passed": true,
+      "details": {
+        "label": "Space",
+        "keys": "Space",
+        "display": "block",
+        "font": "10px",
+        "border": "0px",
+        "y": 1070,
+        "textBottom": 1066.203125,
+        "bottom": 1082,
+        "buttonBottom": 1091,
+        "width": 127,
+        "buttonWidth": 145
+      }
+    },
+    {
+      "name": "DREAM cancel has small shortcut below main label",
+      "passed": true,
+      "details": {
+        "label": "Esc / Backspace",
+        "keys": "Escape Backspace",
+        "display": "block",
+        "font": "10px",
+        "border": "0px",
+        "y": 1070,
+        "textBottom": 1066.203125,
+        "bottom": 1082,
+        "buttonBottom": 1091,
+        "width": 127,
+        "buttonWidth": 145
+      }
+    },
+    {
+      "name": "DREAM disabled Space cannot fall through or spend a card",
+      "passed": true
+    },
+    {
+      "name": "DREAM top-row card enables confirmation",
+      "passed": true
+    },
+    {
+      "name": "DREAM-space-one-command matches clicked reducer command byte-exact",
+      "passed": true,
+      "details": {
+        "phase": "refill",
+        "last": [
+          {
+            "type": "APPLY_COMBAT_REACTION_RULING"
+          },
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          },
+          {
+            "type": "DREAM",
+            "cardId": "card-3"
+          }
+        ]
+      }
+    },
+    {
+      "name": "staged-ATTACK official import matches strict adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "ATTACK pending confirm starts disabled",
+      "passed": true
+    },
+    {
+      "name": "ATTACK disabled confirm has small shortcut below main label",
+      "passed": true,
+      "details": {
+        "label": "Space",
+        "keys": "Space",
+        "display": "block",
+        "font": "10px",
+        "border": "0px",
+        "y": 1070,
+        "textBottom": 1066.203125,
+        "bottom": 1082,
+        "buttonBottom": 1091,
+        "width": 127,
+        "buttonWidth": 145
+      }
+    },
+    {
+      "name": "ATTACK cancel has small shortcut below main label",
+      "passed": true,
+      "details": {
+        "label": "Esc / Backspace",
+        "keys": "Escape Backspace",
+        "display": "block",
+        "font": "10px",
+        "border": "0px",
+        "y": 1070,
+        "textBottom": 1066.203125,
+        "bottom": 1082,
+        "buttonBottom": 1091,
+        "width": 127,
+        "buttonWidth": 145
+      }
+    },
+    {
+      "name": "ATTACK disabled Space cannot fall through or spend a card",
+      "passed": true
+    },
+    {
+      "name": "ATTACK top-row card enables confirmation",
+      "passed": true
+    },
+    {
+      "name": "ATTACK-space-one-command matches clicked reducer command byte-exact",
+      "passed": true,
+      "details": {
+        "phase": "combat_react",
+        "last": [
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          },
+          {
+            "type": "ATTACK",
+            "enemyId": "practice-target",
+            "cardId": "card-3",
+            "slot": 0,
+            "itemIds": [],
+            "pullIds": [],
+            "rewardIds": []
+          }
+        ]
+      }
+    },
+    {
+      "name": "cancel-Escape official import matches strict adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "Escape cancels intent and restores original selected card",
+      "passed": true
+    },
+    {
+      "name": "Escape cancellation leaves exact persistent save",
+      "passed": true
+    },
+    {
+      "name": "cancel-Backspace official import matches strict adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "Backspace cancels intent and restores original selected card",
+      "passed": true
+    },
+    {
+      "name": "Backspace cancellation leaves exact persistent save",
+      "passed": true
+    },
+    {
+      "name": "end-turn official import matches strict adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "end-turn has small shortcut below main label",
+      "passed": true,
+      "details": {
+        "label": "Space",
+        "keys": "Space",
+        "display": "block",
+        "font": "10px",
+        "border": "0px",
+        "y": 1070,
+        "textBottom": 1066.203125,
+        "bottom": 1082,
+        "buttonBottom": 1091,
+        "width": 278,
+        "buttonWidth": 296
+      }
+    },
+    {
+      "name": "end-turn-held-space-one-action matches clicked reducer command byte-exact",
+      "passed": true,
+      "details": {
+        "phase": "refill",
+        "last": [
+          {
+            "type": "APPLY_COMBAT_REACTION_RULING"
+          },
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          },
+          {
+            "type": "END_TURN"
+          }
+        ]
+      }
+    },
+    {
+      "name": "stop-move official import matches strict adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "stop-move has small shortcut below main label",
+      "passed": true,
+      "details": {
+        "label": "Space",
+        "keys": "Space",
+        "display": "block",
+        "font": "10px",
+        "border": "0px",
+        "y": 1070,
+        "textBottom": 1066.203125,
+        "bottom": 1082,
+        "buttonBottom": 1091,
+        "width": 278,
+        "buttonWidth": 296
+      }
+    },
+    {
+      "name": "stop-move-held-space-one-action matches clicked reducer command byte-exact",
+      "passed": true,
+      "details": {
+        "phase": "hunter",
+        "last": [
+          {
+            "type": "APPLY_COMBAT_REACTION_RULING"
+          },
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          },
+          {
+            "type": "STOP_MOVE"
+          }
+        ]
+      }
+    },
+    {
+      "name": "refill official import matches strict adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "refill has small shortcut below main label",
+      "passed": true,
+      "details": {
+        "label": "Space",
+        "keys": "Space",
+        "display": "block",
+        "font": "10px",
+        "border": "0px",
+        "y": 1070,
+        "textBottom": 1066.203125,
+        "bottom": 1082,
+        "buttonBottom": 1091,
+        "width": 278,
+        "buttonWidth": 296
+      }
+    },
+    {
+      "name": "refill-held-space-one-action matches clicked reducer command byte-exact",
+      "passed": true,
+      "details": {
+        "phase": "hunter",
+        "last": [
+          {
+            "type": "APPLY_COMBAT_REACTION_RULING"
+          },
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          },
+          {
+            "type": "REFILL",
+            "discardIds": []
+          }
+        ]
+      }
+    },
+    {
+      "name": "place-tile official import matches strict adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "place-tile has small shortcut below main label",
+      "passed": true,
+      "details": {
+        "label": "Space",
+        "keys": "Space",
+        "display": "block",
+        "font": "10px",
+        "border": "0px",
+        "y": 1184.953125,
+        "textBottom": 1180.453125,
+        "bottom": 1196.953125,
+        "buttonBottom": 1204.953125,
+        "width": 276,
+        "buttonWidth": 296
+      }
+    },
+    {
+      "name": "place-tile-held-space-one-action matches clicked reducer command byte-exact",
+      "passed": true,
+      "details": {
+        "phase": "hunter",
+        "last": [
+          {
+            "type": "EXPLORE",
+            "edge": "S"
+          },
+          {
+            "type": "PLACE_TILE",
+            "rotation": 2
+          },
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          }
+        ]
+      }
+    },
+    {
+      "name": "cancel-unspent-move official import matches strict adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "unspent declaration Space cannot skip the required first step",
+      "passed": true
+    },
+    {
+      "name": "unspent-backspace matches clicked reducer command byte-exact",
+      "passed": true,
+      "details": {
+        "phase": "hunter",
+        "last": [
+          {
+            "type": "APPLY_COMBAT_REACTION_RULING"
+          },
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          },
+          {
+            "type": "CANCEL_MOVE"
+          }
+        ]
+      }
+    },
+    {
+      "name": "window-guards official import matches strict adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "open info window leaves pending background action intact",
+      "passed": true
+    },
+    {
+      "name": "Escape keeps original window minimization behavior",
+      "passed": true
+    },
+    {
+      "name": "minimized window blocks confirm and both cancellation shortcuts",
+      "passed": true
+    },
+    {
+      "name": "open and minimized window guards preserve exact save",
+      "passed": true
+    },
+    {
+      "name": "editing-guard official import matches strict adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "Space on editable refill checkbox keeps native editing",
+      "passed": true
+    },
+    {
+      "name": "editing checkbox does not run REFILL",
+      "passed": true
+    },
+    {
+      "name": "combat-response official import matches strict adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "Space cannot skip an unselected combat response",
+      "passed": true
+    },
+    {
+      "name": "legal selected card and slot enable dodge",
+      "passed": true
+    },
+    {
+      "name": "selected combat dodge has small shortcut below main label",
+      "passed": true,
+      "details": {
+        "label": "Space",
+        "keys": "Space",
+        "display": "block",
+        "font": "10px",
+        "border": "0px",
+        "y": 1070,
+        "textBottom": 1066.203125,
+        "bottom": 1082,
+        "buttonBottom": 1091,
+        "width": 127,
+        "buttonWidth": 145
+      }
+    },
+    {
+      "name": "combat-selected-dodge-once matches clicked reducer command byte-exact",
+      "passed": true,
+      "details": {
+        "phase": "combat_react",
+        "last": [
+          {
+            "type": "COUNTER",
+            "cardId": "card-7",
+            "slot": 2,
+            "boost": "none"
+          },
+          {
+            "type": "APPLY_COMBAT_REACTION_RULING"
+          },
+          {
+            "type": "DODGE",
+            "cardId": "card-1",
+            "slot": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "focused combat resolution has small shortcut below main label",
+      "passed": true,
+      "details": {
+        "label": "Space",
+        "keys": "Space",
+        "display": "block",
+        "font": "10px",
+        "border": "0px",
+        "y": 1070,
+        "textBottom": 1066.203125,
+        "bottom": 1082,
+        "buttonBottom": 1091,
+        "width": 127,
+        "buttonWidth": 145
+      }
+    },
+    {
+      "name": "combat-focused-resolve matches clicked reducer command byte-exact",
+      "passed": true,
+      "details": {
+        "phase": "refill",
+        "last": [
+          {
+            "type": "DODGE",
+            "cardId": "card-1",
+            "slot": 0
+          },
+          {
+            "type": "RESOLVE"
+          },
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          }
+        ]
+      }
+    },
+    {
+      "name": "native-combat-guards official import matches strict adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "body-focused unselected combat Space preserves all selection state",
+      "passed": true
+    },
+    {
+      "name": "focused unselected hand Space keydown preserves selection",
+      "passed": true
+    },
+    {
+      "name": "focused unselected hand Space keyup cannot natively choose a card",
+      "passed": true
+    },
+    {
+      "name": "focused selected hand Space cannot natively deselect it while no slot is selected",
+      "passed": true
+    },
+    {
+      "name": "native combat guard records no game command",
+      "passed": true
+    },
+    {
+      "name": "native-modifier-guards official import matches strict adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "Shift+Space cannot natively confirm a focused pending action",
+      "passed": true
+    },
+    {
+      "name": "Shift+Space cannot natively end a turn from its focused button",
+      "passed": true
+    },
+    {
+      "name": "inventory-track official import matches strict adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "2035 inventory starts at same height as rewards",
+      "passed": true,
+      "details": {
+        "inventory": {
+          "y": 291,
+          "headingY": 299,
+          "margin": "0px",
+          "count": "1장"
+        },
+        "rewards": {
+          "y": 291,
+          "headingY": 299
+        }
+      }
+    },
+    {
+      "name": "2035 inventory count only shows held card count",
+      "passed": true,
+      "details": {
+        "y": 291,
+        "headingY": 299,
+        "margin": "0px",
+        "count": "1장"
+      }
+    },
+    {
+      "name": "2035 track reset explanation fits with larger text and right inset",
+      "passed": true,
+      "details": {
+        "font": "11px",
+        "padding": "12px",
+        "title": "지도 초기화 시 적과 소모품을 복원합니다. 임무별 규칙을 따릅니다.",
+        "labelRight": 2003,
+        "right": 2021,
+        "visible": true,
+        "width": 120
+      }
+    },
+    {
+      "name": "1714 inventory starts at same height as rewards",
+      "passed": true,
+      "details": {
+        "inventory": {
+          "y": 291,
+          "headingY": 299,
+          "margin": "0px",
+          "count": "1장"
+        },
+        "rewards": {
+          "y": 291,
+          "headingY": 299
+        }
+      }
+    },
+    {
+      "name": "1714 inventory count only shows held card count",
+      "passed": true,
+      "details": {
+        "y": 291,
+        "headingY": 299,
+        "margin": "0px",
+        "count": "1장"
+      }
+    },
+    {
+      "name": "1714 track reset explanation fits with larger text and right inset",
+      "passed": true,
+      "details": {
+        "font": "11px",
+        "padding": "12px",
+        "title": "지도 초기화 시 적과 소모품을 복원합니다. 임무별 규칙을 따릅니다.",
+        "labelRight": 1682,
+        "right": 1700,
+        "visible": true,
+        "width": 120
+      }
+    },
+    {
+      "name": "1280 inventory starts at same height as rewards",
+      "passed": true,
+      "details": {
+        "inventory": {
+          "y": 277,
+          "headingY": 285,
+          "margin": "0px",
+          "count": "1장"
+        },
+        "rewards": {
+          "y": 277,
+          "headingY": 285
+        }
+      }
+    },
+    {
+      "name": "1280 inventory count only shows held card count",
+      "passed": true,
+      "details": {
+        "y": 277,
+        "headingY": 285,
+        "margin": "0px",
+        "count": "1장"
+      }
+    },
+    {
+      "name": "1280 track reset explanation fits with larger text and right inset",
+      "passed": true,
+      "details": {
+        "font": "11px",
+        "padding": "12px",
+        "title": "지도 초기화 시 적과 소모품을 복원합니다. 임무별 규칙을 따릅니다.",
+        "labelRight": 1250,
+        "right": 1268,
+        "visible": true,
+        "width": 120
+      }
+    },
+    {
+      "name": "1231 inventory starts at same height as rewards",
+      "passed": true,
+      "details": {
+        "inventory": {
+          "y": 291,
+          "headingY": 299,
+          "margin": "0px",
+          "count": "1장"
+        },
+        "rewards": {
+          "y": 291,
+          "headingY": 299
+        }
+      }
+    },
+    {
+      "name": "1231 inventory count only shows held card count",
+      "passed": true,
+      "details": {
+        "y": 291,
+        "headingY": 299,
+        "margin": "0px",
+        "count": "1장"
+      }
+    },
+    {
+      "name": "1231 track reset explanation fits with larger text and right inset",
+      "passed": true,
+      "details": {
+        "font": "11px",
+        "padding": "12px",
+        "title": "지도 초기화 시 적과 소모품을 복원합니다. 임무별 규칙을 따릅니다.",
+        "labelRight": 1199,
+        "right": 1217,
+        "visible": true,
+        "width": 120
+      }
+    },
+    {
+      "name": "inventory and track inspections spend nothing",
+      "passed": true
+    },
+    {
+      "name": "no page exceptions",
+      "passed": true,
+      "details": []
+    },
+    {
+      "name": "source freeze unchanged throughout actual browser run",
+      "passed": true
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "staged-MOVE",
+      "qa": false,
+      "campaign": true,
+      "commands": 0,
+      "phase": "hunter",
+      "sha256": "650e68fe623d9eede3a99c0b705cfc53543eddb54fe0fe5219a1b34d4443d1de"
+    },
+    {
+      "name": "staged-TRANSFORM",
+      "qa": false,
+      "campaign": true,
+      "commands": 0,
+      "phase": "hunter",
+      "sha256": "650e68fe623d9eede3a99c0b705cfc53543eddb54fe0fe5219a1b34d4443d1de"
+    },
+    {
+      "name": "staged-DREAM",
+      "qa": false,
+      "campaign": true,
+      "commands": 0,
+      "phase": "hunter",
+      "sha256": "650e68fe623d9eede3a99c0b705cfc53543eddb54fe0fe5219a1b34d4443d1de"
+    },
+    {
+      "name": "staged-ATTACK",
+      "qa": false,
+      "campaign": false,
+      "commands": 0,
+      "phase": "hunter",
+      "sha256": "21ce5acd39a9b5bcc344bad5604a942b6079a08406de177f6691cfd7e73ffbdf"
+    },
+    {
+      "name": "cancel-Escape",
+      "qa": false,
+      "campaign": true,
+      "commands": 0,
+      "phase": "hunter",
+      "sha256": "650e68fe623d9eede3a99c0b705cfc53543eddb54fe0fe5219a1b34d4443d1de"
+    },
+    {
+      "name": "cancel-Backspace",
+      "qa": false,
+      "campaign": true,
+      "commands": 0,
+      "phase": "hunter",
+      "sha256": "650e68fe623d9eede3a99c0b705cfc53543eddb54fe0fe5219a1b34d4443d1de"
+    },
+    {
+      "name": "end-turn",
+      "qa": false,
+      "campaign": true,
+      "commands": 0,
+      "phase": "hunter",
+      "sha256": "650e68fe623d9eede3a99c0b705cfc53543eddb54fe0fe5219a1b34d4443d1de"
+    },
+    {
+      "name": "stop-move",
+      "qa": false,
+      "campaign": true,
+      "commands": 3,
+      "phase": "move",
+      "sha256": "7e5f93fd66c50bc8e40fa2295abac5803d04fbf26c536dd6b0001f5ace204f22"
+    },
+    {
+      "name": "refill",
+      "qa": false,
+      "campaign": true,
+      "commands": 7,
+      "phase": "refill",
+      "sha256": "da5e2fd7300e28640e91809ec04a48d174b7985e219ee9bb154d3d691ac4999c"
+    },
+    {
+      "name": "place-tile",
+      "qa": false,
+      "campaign": true,
+      "commands": 16,
+      "phase": "tile_place",
+      "sha256": "db0babf7429321053ccf32b64e31dc112660ac518c21ddf3bc51d79c26153d42"
+    },
+    {
+      "name": "cancel-unspent-move",
+      "qa": false,
+      "campaign": true,
+      "commands": 2,
+      "phase": "move",
+      "sha256": "8c7ca9982bbe78d727fe367ab46df5f040da3203836a99c2ae91e36299e79b32"
+    },
+    {
+      "name": "window-guards",
+      "qa": false,
+      "campaign": true,
+      "commands": 0,
+      "phase": "hunter",
+      "sha256": "650e68fe623d9eede3a99c0b705cfc53543eddb54fe0fe5219a1b34d4443d1de"
+    },
+    {
+      "name": "editing-guard",
+      "qa": false,
+      "campaign": true,
+      "commands": 7,
+      "phase": "refill",
+      "sha256": "da5e2fd7300e28640e91809ec04a48d174b7985e219ee9bb154d3d691ac4999c"
+    },
+    {
+      "name": "combat-response",
+      "qa": false,
+      "campaign": true,
+      "commands": 6,
+      "phase": "combat_react",
+      "sha256": "edfb9007c858f9baf054ccbe0f4e972f105dd8bbc4867b0f8ec6c40a914465ca"
+    },
+    {
+      "name": "native-combat-guards",
+      "qa": false,
+      "campaign": true,
+      "commands": 6,
+      "phase": "combat_react",
+      "sha256": "edfb9007c858f9baf054ccbe0f4e972f105dd8bbc4867b0f8ec6c40a914465ca"
+    },
+    {
+      "name": "native-modifier-guards",
+      "qa": false,
+      "campaign": true,
+      "commands": 0,
+      "phase": "hunter",
+      "sha256": "650e68fe623d9eede3a99c0b705cfc53543eddb54fe0fe5219a1b34d4443d1de"
+    },
+    {
+      "name": "inventory-track",
+      "qa": false,
+      "campaign": true,
+      "commands": 0,
+      "phase": "hunter",
+      "sha256": "f367d2d0f1802f6f74fd7dc9a0ccbf0cb4246f0d3e2e95fb145458cf9e18f8e5"
+    }
+  ],
+  "downloads": [
+    "001-staged-MOVE-baseline.json",
+    "002-MOVE-disabled-space.json",
+    "003-MOVE-space-one-command.json",
+    "004-staged-TRANSFORM-baseline.json",
+    "005-TRANSFORM-disabled-space.json",
+    "006-TRANSFORM-space-one-command.json",
+    "007-staged-DREAM-baseline.json",
+    "008-DREAM-disabled-space.json",
+    "009-DREAM-space-one-command.json",
+    "010-staged-ATTACK-baseline.json",
+    "011-ATTACK-disabled-space.json",
+    "012-ATTACK-space-one-command.json",
+    "013-cancel-Escape-baseline.json",
+    "014-cancel-Escape.json",
+    "015-cancel-Backspace-baseline.json",
+    "016-cancel-Backspace.json",
+    "017-end-turn-baseline.json",
+    "018-end-turn-held-space-one-action.json",
+    "019-stop-move-baseline.json",
+    "020-stop-move-held-space-one-action.json",
+    "021-refill-baseline.json",
+    "022-refill-held-space-one-action.json",
+    "023-place-tile-baseline.json",
+    "024-place-tile-held-space-one-action.json",
+    "025-cancel-unspent-move-baseline.json",
+    "026-unspent-space.json",
+    "027-unspent-backspace.json",
+    "028-window-guards-baseline.json",
+    "029-window-guards.json",
+    "030-editing-guard-baseline.json",
+    "031-editing-space.json",
+    "032-combat-response-baseline.json",
+    "033-combat-unselected-space.json",
+    "034-combat-selected-dodge-once.json",
+    "035-combat-focused-resolve.json",
+    "036-native-combat-guards-baseline.json",
+    "037-native-combat-guards.json",
+    "038-native-modifier-guards-baseline.json",
+    "039-shift-pending-confirm.json",
+    "040-shift-end-turn.json",
+    "041-inventory-track-baseline.json",
+    "042-inventory-track-completed.json"
+  ],
+  "screenshots": [
+    "MOVE-space-hint.png",
+    "TRANSFORM-space-hint.png",
+    "DREAM-space-hint.png",
+    "ATTACK-space-hint.png",
+    "end-turn-hint.png",
+    "stop-move-hint.png",
+    "refill-hint.png",
+    "place-tile-hint.png",
+    "combat-focused-response.png",
+    "inventory-2035.png",
+    "inventory-1714.png",
+    "inventory-1280.png",
+    "inventory-1231.png"
+  ],
+  "pageErrors": [],
+  "browserVersion": "155.0.8059.82",
+  "endingSourceHashes": {
+    "hunt.html": "d4dfda699340912f1000ffff0b9d58ff30b23739923ab14dc9debc9153f7ad16",
+    "src/hunt-app.js": "57391961a0134011bf01f691a52a2541e79f94178bb09bdbfdf09f5af1813797",
+    "src/hunt-keyboard-controls.js": "ce63da96ca91fc6ca68b9902106f43eeed960f067ee73ec7e6541cd98e9876fc",
+    "src/inventory.js": "38928b87f80b24ef419e21d13fb975627a7af07113f422b7fa144b805a53b14e",
+    "styles/hunt.css": "f4c11bdaf77f4700129286e509a8036033bdfe246deedf1867ee58bbc8e2b2c5",
+    "styles/hunt-workspace-layout.css": "cf46338f5797fe84acb2c86518665ee92fa9d6cfc4c7b673e63c0a4839f26e7b",
+    "styles/hunt-workspace-tabs.css": "a7f9d05c31e2ee2a3d6ea4ca76e97929fd5bf8b30905d5cb61420391407a2050"
+  }
+}
