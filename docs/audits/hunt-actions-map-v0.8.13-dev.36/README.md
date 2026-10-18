@@ -1,5 +1,7 @@
 # dev.36 행동 선택과 지도 검증
 
+구현과 검증 코드는 [PR #90](https://github.com/dfrpg98-jpg/bloodborne-solo/pull/90)에 기록합니다. 해당 PR의 실행 중인 검사와 완료 결과는 GitHub Actions에서 확인할 수 있습니다.
+
 검증은 사용자 Chrome이나 플레이 저장에 연결하지 않고 별도 임시 프로필의 설치된 Chrome 155에서 수행했습니다. 로컬 8860만 허용하고 Chromium sandbox를 켰으며, 실제 파일 선택기·마우스 클릭·다운로드를 사용했습니다. 페이지 내부 상태나 localStorage에 저장을 주입하지 않았습니다.
 
 | 범위 | 실제 Chrome 검사 | 출처와 재현 |
