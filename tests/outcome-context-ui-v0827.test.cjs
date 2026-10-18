@@ -29,6 +29,12 @@ function selectAttack(ui) {
   ui.el("hand").querySelectorAll("[data-card]")[0].click();
   ui.el("slots").querySelectorAll("[data-slot]").find(b => b.dataset.slot === "0").click();
 }
+function beginAttack(ui) {
+  const intent = ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]").find(button => button.dataset.hunterIntent === "ATTACK");
+  assert(intent && !intent.disabled, "the explicitly selected enemy permits an attack intent");
+  intent.click(); assert.equal(ui.el("confirmHunterAction").disabled, true);
+  selectAttack(ui); assert.equal(ui.el("confirmHunterAction").disabled, false);
+}
 function hidden(ui) {
   assert.equal(ui.el("attackConsequences").hidden, true);
   assert.equal(ui.el("attackConsequences").innerHTML, "");
@@ -58,13 +64,16 @@ test("explicit remote enemy inspection retains its public warning, while closing
   assert.equal(ui.storage.get(key), before); assert.equal(ui.el("error").textContent, "");
 });
 
-test("an automatic same-space target warns once an attack is prepared, and deselection removes that forecast", () => {
+test("an explicitly selected same-space target warns through card deselection, while closing its inspection removes the forecast", () => {
   const state = encounter(), ui = launch(state), before = ui.storage.get(key);
-  hidden(ui); selectAttack(ui);
+  hidden(ui); selectAttack(ui); hidden(ui);
+  inspect(ui, state.enemies[0].id); beginAttack(ui);
   assert.equal(ui.el("attackConsequences").hidden, false);
   assert.match(ui.el("combatInfo").textContent, /토큰 1개/);
-  const slot = ui.el("slots").querySelectorAll("[data-slot]").find(b => b.dataset.slot === "0");
-  slot.click(); hidden(ui);
+  ui.el("hand").querySelectorAll("[data-card]")[0].click();
+  assert.equal(ui.el("confirmHunterAction").disabled, true);
+  assert.equal(ui.el("attackConsequences").hidden, false, "explicitly inspected public token warnings remain visible without a cost card");
+  ui.el("clearMapTarget").click(); hidden(ui);
   assert.equal(ui.storage.get(key), before); assert.equal(ui.el("error").textContent, "");
 });
 
@@ -93,7 +102,11 @@ test("a legally prepared pull attack keeps the warning for its otherwise remote 
   selectAttack(ui); hidden(ui);
   const pull = ui.el("decisions").querySelectorAll("[data-pull]").find(b => b.dataset.pull === enemy.id);
   assert(pull); pull.checked = true; pull.fire("change");
+  hidden(ui); // Preparing a pull does not implicitly select its enemy.
+  inspect(ui, enemy.id); beginAttack(ui);
   assert.equal(ui.el("attackConsequences").hidden, false);
   assert.match(ui.el("combatInfo").textContent, /토큰 1개/);
+  const command = JSON.parse(ui.el("confirmHunterAction").dataset.args);
+  assert.equal(command.enemyId, enemy.id); assert.deepEqual(command.pullIds, [enemy.id]);
   assert.equal(ui.storage.get(key), before); assert.equal(ui.el("error").textContent, "");
 });

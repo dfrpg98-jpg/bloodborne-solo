@@ -42,7 +42,7 @@ test("the screen keeps one map, status, current objective, action area, hand and
     assert.equal([...html.matchAll(new RegExp(`\\bid="${id}"`, "g"))].length, 1, `${id} occurs once`);
     assert(ui.el(id), `${id} controller target exists`);
   }
-  assert(ui.el("chapterMap").innerHTML.includes("assets/tiles/tile-14.svg"), "the independent map is rendered");
+  assert(ui.el("chapterMap").innerHTML.includes("assets/tiles/map/tile-14.svg"), "the independent map is rendered");
   assert(ui.el("hand").querySelectorAll("[data-card]").length, "actual hand cards remain selectable");
   assert(ui.el("slots").querySelectorAll("[data-slot]").length, "weapon slots remain selectable");
   assert(ui.el("status").innerHTML.trim()); assert(ui.el("missionObjectives").innerHTML.trim());

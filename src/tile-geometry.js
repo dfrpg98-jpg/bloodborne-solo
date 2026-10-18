@@ -154,13 +154,27 @@
     if (!s) throw new Error(`타일 칸 도식이 없습니다: ${tileId}:${spaceId}`);
     return s.polygon.map((p) => rotatePoint(p, rotation));
   };
-  function spaceLabel(tile, space) {
-    if (tile.id === "tile-10") return space.id === "left" ? "왼쪽 칸" : "오른쪽 칸";
-    if (space.id === "center" && tile.id === "tile-15" || space.id === "top" &&
-        ["tile-07", "tile-12", "tile-18", "tile-19"].includes(tile.id)) return tile.name;
-    return space.placeName || space.label;
+  function spaceLabel(tile, space, rotation = 0) {
+    const turns = ((rotation % 4) + 4) % 4;
+    let label = tile.id === "tile-10" ? space.id === "left" ? "왼쪽 칸" : "오른쪽 칸" :
+      space.id === "center" && tile.id === "tile-15" || space.id === "top" &&
+        ["tile-07", "tile-12", "tile-18", "tile-19"].includes(tile.id) ? tile.name : space.placeName || space.label;
+    if (!turns) return label;
+    // Compass words describe the displayed board, while proper place names stay fixed.
+    const match = label.match(/^(가운데 )?(왼쪽|오른쪽)?\s?(위쪽|아래쪽|위|아래)?(.*)$/);
+    if (!match || !match[2] && !match[3]) return label;
+    const x = match[2] === "왼쪽" ? -1 : match[2] === "오른쪽" ? 1 : 0,
+      y = match[3]?.startsWith("위") ? -1 : match[3]?.startsWith("아래") ? 1 : 0;
+    const [rx, ry] = rotatePoint([50 + x * 20, 50 + y * 20], turns),
+      horizontal = rx < 50 ? "왼쪽" : rx > 50 ? "오른쪽" : "",
+      vertical = ry < 50 ? "위" : ry > 50 ? "아래" : "";
+    const direction = [horizontal, vertical].filter(Boolean).join(" ") +
+      (!horizontal && match[3]?.endsWith("쪽") ? "쪽" : "");
+    return `${match[1] || ""}${direction}${match[4] ? " " + match[4].trimStart() : ""}`;
   }
-  const api = { tiles, definition, point, polygon, rotatePoint, spaceLabel, image: (tileId) => { definition(tileId); return `assets/tiles/${tileId}.svg`; } };
+  const api = { tiles, definition, point, polygon, rotatePoint, spaceLabel,
+    image: (tileId) => { definition(tileId); return `assets/tiles/${tileId}.svg`; },
+    mapImage: (tileId) => { definition(tileId); return `assets/tiles/map/${tileId}.svg`; } };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   root.BBTileGeometry = api;
 })(typeof globalThis !== "undefined" ? globalThis : this);

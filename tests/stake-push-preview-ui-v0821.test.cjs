@@ -40,6 +40,8 @@ function prepare(ui, state, kind, slot = 0) {
   const marker = ui.el("chapterMap").querySelectorAll("[data-enemy]")
     .find(button => button.dataset.enemy === state.enemies[0].id);
   assert(marker); marker.click();
+  const intent = ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]").find(button => button.dataset.hunterIntent === "ATTACK");
+  assert(intent && !intent.disabled); intent.click(); assert(ui.el("confirmHunterAction").disabled);
   select(ui, "combatSelectCard", H(state).hand.find(card => card.kind === kind).id);
   select(ui, "combatSelectSlot", slot);
 }

@@ -41,7 +41,7 @@ function unchanged(f) {
   assert.equal(f.ui.el("error").textContent, "");
 }
 function button(ui, type) {
-  return ["decisions", "firearm", "mapContext"].flatMap(id => ui.el(id)?.querySelectorAll("[data-command]") || [])
+  return ["decisions", "decisionActions", "firearm", "mapContext"].flatMap(id => ui.el(id)?.querySelectorAll("[data-command]") || [])
     .find(element => element.dataset.command === type && !element.disabled);
 }
 function latest(f) { return f.snapshots.at(-1); }
@@ -117,8 +117,8 @@ test("camera snapshots keep unscaled edge padding outside the world origin used 
     y: (startScreen.y + start.y) * ratio - end.y };
   const live = { x: world.x * end.zoom + pad.x - viewport.scrollLeft,
     y: world.y * end.zoom + pad.y - viewport.scrollTop };
-  assert.equal(cached.x, live.x, "a vanished actor projects to the same horizontal map location as a live actor");
-  assert.equal(cached.y, live.y, "a vanished actor projects to the same vertical map location as a live actor");
+  assert(Math.abs(cached.x - live.x) < 1e-9, "a vanished actor projects to the same horizontal map location as a live actor");
+  assert(Math.abs(cached.y - live.y) < 1e-9, "a vanished actor projects to the same vertical map location as a live actor");
   unchanged(f);
 });
 test("public character snapshots omit decks, future missions and hidden reward or behavior data", () => {
@@ -134,7 +134,10 @@ test("public character snapshots omit decks, future missions and hidden reward o
   unchanged(f);
 });
 test("declaring an attack reveals its legal enemy card without showing a resolved swing or hit", () => {
-  const f = launch(9), command = commands[9]; selectEnemy(f.ui, command.enemyId); selectCardAndSlot(f.ui, command); unchanged(f);
+  const f = launch(9), command = commands[9]; selectEnemy(f.ui, command.enemyId);
+  const intent = f.ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]").find(button => button.dataset.hunterIntent === "ATTACK");
+  assert(intent && !intent.disabled); intent.click(); unchanged(f);
+  selectCardAndSlot(f.ui, command); unchanged(f);
   const action = button(f.ui, "ATTACK"); assert(action); action.click(); matchesRuleResult(f, command);
   assert.equal(actions(f).filter(action => action.type === "attack").length, 0);
   assert.equal(E.importSave(f.ui.storage.get(normalKey)).phase, "combat_react");

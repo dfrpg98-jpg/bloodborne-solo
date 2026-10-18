@@ -1,9 +1,10 @@
 (function (root, factory) {
   "use strict";
   const local = typeof module !== "undefined" && module.exports;
-  const api = factory(local ? require("./chapter-engine") : root.BBChapter);
+  const api = factory(local ? require("./chapter-engine") : root.BBChapter,
+    local ? require("./tile-geometry") : root.BBTileGeometry);
   if (local) module.exports = api; else root.BBHuntLocationLabels = api;
-})(typeof globalThis !== "undefined" ? globalThis : this, function (M) {
+})(typeof globalThis !== "undefined" ? globalThis : this, function (M, G) {
   "use strict";
   // A map address identifies an unnamed tile without inventing a printed name.
   // Never inspect an undrawn tile or use its development ID as a player name.
@@ -26,8 +27,11 @@
     const n = engine.node(state, nodeId);
     if (!n) return "지도 밖";
     const identity = tile(state, n.tile || n.tileId);
-    if (!identity || identity.name) return n.name;
-    return `${identity.reference} / ${n.placeName || n.label || n.spaceId}`;
+    if (!identity) return n.name;
+    const definition = M.tile(n.tile || n.tileId), placed = state.world.tiles.find(item => item.tileId === definition.id),
+      space = definition.spaces.find(item => item.id === n.spaceId),
+      label = space && G ? G.spaceLabel(definition, space, placed?.rotation || 0) : n.placeName || n.label || n.spaceId;
+    return `${identity.reference} / ${label}`;
   }
   return Object.freeze({ tile, node });
 });

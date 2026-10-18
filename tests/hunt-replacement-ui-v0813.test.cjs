@@ -31,10 +31,16 @@ function assertUnselected(ui) {
   assert.equal(ui.el("error").textContent, "");
 }
 function moveFromNormal(ui, before) {
+  const intent = ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]")
+    .find(button => button.dataset.hunterIntent === "MOVE" && !button.disabled);
+  assert(intent, "the restored hunt offers the movement action before choosing a hand card");
+  const saved = ui.storage.get(normalKey); intent.click();
+  assert.equal(ui.storage.get(normalKey), saved, "choosing the movement action does not change the restored replay");
+  assert.equal(ui.el("confirmHunterAction").disabled, true, "movement confirmation waits for a hand card");
   const cardId = E.hunter(before).hand[0].id,
     card = ui.el("hand").querySelectorAll("[data-card]").find(card => card.dataset.card === cardId);
   assert(card); card.click(); assertUnselected(ui);
-  const move = ui.buttons("decisions").find(button => button.dataset.command === "MOVE" && !button.disabled);
+  const move = ui.buttons("decisionActions").find(button => button.dataset.command === "MOVE" && !button.disabled);
   assert(move, "movement is available after explicitly choosing a hand card"); move.click();
   assert.deepEqual(E.importSave(ui.storage.get(normalKey)), E.dispatch(before, { type: "MOVE", cardId }),
     "the restored hunt continues with its original costs and exact engine result");

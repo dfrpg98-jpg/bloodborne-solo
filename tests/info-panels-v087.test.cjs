@@ -118,7 +118,7 @@ test("the independent history dialog starts empty before any shared enemy action
   assert.equal(f.ui.el("enemyHistoryDialog").open, true);
   assert.equal(f.ui.el("enemyActionHistory").querySelectorAll("strong").length, 0);
   assert.match(f.ui.el("enemyActionHistory").textContent, /아직 공개된 적 행동이 없습니다/);
-  assert.match(f.ui.el("deckStatus").textContent, /마지막 공개: 없음/); unchanged(f);
+  assert.match(f.ui.el("deckStatus").textContent, /마지막 공개\s*없음/); unchanged(f);
 });
 
 test("each general roster entry shows only its own public face inline and restores focus without changing the hunt", () => {

@@ -26,8 +26,17 @@ function launch(state, extra = {}) {
 }
 const latest = f => f.snapshots.at(-1), actor = f => latest(f).actors.find(value => value.kind === 'hunter');
 function button(f, type) {
-  const result = f.ui.document.querySelectorAll('[data-command]').find(element => element.dataset.command === type && !element.disabled);
+  const container = ['TRANSFORM', 'ATTACK'].includes(type) ? f.ui.el('decisionActions') : f.ui.document;
+  const result = container.querySelectorAll('[data-command]').find(element => element.dataset.command === type && !element.disabled);
   assert(result, `${type} is available through the actual UI`); return result;
+}
+function chooseAction(f, type) {
+  const intent = f.ui.el('hunterActionBar').querySelectorAll('[data-hunter-intent]')
+    .find(element => element.dataset.hunterIntent === type && !element.disabled);
+  assert(intent, `${type} is available before selecting its hand card`);
+  const saved = f.ui.storage.get(saveKey); intent.click();
+  assert.equal(f.ui.storage.get(saveKey), saved, 'choosing the action neither changes the public save nor pays its cost');
+  assert.equal(f.ui.el('confirmHunterAction').disabled, true, 'the selected action still requires a hand card');
 }
 function selectCard(f, id) {
   const card = f.ui.el('hand').querySelectorAll('[data-card]').find(element => element.dataset.card === id);
@@ -36,7 +45,9 @@ function selectCard(f, id) {
 function selectAttack(f, command) {
   const targetId = command.enemyId || f.state.combat?.enemyId;
   const figure = f.ui.el('chapterMap').querySelectorAll('[data-enemy]').find(element => element.dataset.enemy === targetId);
-  assert(figure); figure.click(); selectCard(f, command.cardId);
+  assert(figure); figure.click();
+  if (f.state.phase === 'hunter' && command.type === 'ATTACK') chooseAction(f, 'ATTACK');
+  selectCard(f, command.cardId);
   const slot = f.ui.el('slots').querySelectorAll('[data-slot]').find(element => Number(element.dataset.slot) === command.slot);
   assert(slot); slot.click();
 }
@@ -60,7 +71,7 @@ for (const id of V.ids) test(`${id} public character follows both accepted trans
   assert.equal(actor(f).skin, V.skin(id, 0, false)); assert.deepEqual(latest(f).actions, []);
   assert.equal(f.ui.storage.get(saveKey), f.saved, 'showing a loaded character does not save or transform');
   for (const face of [1, 0]) {
-    const cardId = E.hunter(f.state).hand[0].id; selectCard(f, cardId); button(f, 'TRANSFORM').click();
+    const cardId = E.hunter(f.state).hand[0].id; chooseAction(f, 'TRANSFORM'); selectCard(f, cardId); button(f, 'TRANSFORM').click();
     const after = expectedResult(f, { type: 'TRANSFORM', cardId });
     assert.equal(actor(f).weaponFace, face);
     assert.equal(actor(f).skin, V.skin(id, face, E.hunter(after).weaponCharge?.round === after.round));

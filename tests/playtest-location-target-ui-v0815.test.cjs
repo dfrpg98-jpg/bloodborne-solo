@@ -35,10 +35,10 @@ for (const [seed, id, count] of [[92, "tile-05", 3], [3, "tile-08", 2]]) {
     assert.doesNotMatch(ui.el("tileInfo").textContent, /명칭 없는|사냥꾼의 현재 위치/);
     assert.equal(ui.el("chapterMap").querySelectorAll("[data-tile]").find(tile => tile.dataset.tile === id).dataset.inspected, "true");
     assert.equal(L.tile(state, id).name, null, "the address is not an invented printed tile name");
-    const next = E.neighbors(state, E.hunter(state).position).find(node => node.startsWith(id + ":"));
+    const next = MapControls.movement(state).directions.flatMap(direction => direction.options)
+      .find(option => option.enabled && option.command?.type === "STEP" && option.command.node.startsWith(id + ":"))?.command.node;
     if (next && state.phase === "move") {
       ui.el("chapterMap").querySelectorAll("[data-node]").find(button => button.dataset.node === next).click();
-      ui.buttons("mapContext").find(button => button.dataset.command === "STEP").click();
       state = E.dispatch(state, { type: "STEP", node: next });
       assert.deepEqual(E.importSave(ui.storage.get(key)), state);
       assert.match(ui.el("status").textContent, /북쪽 1 구역/);

@@ -20,6 +20,8 @@ const hp = state => state.enemies.map(enemy => [enemy.id, enemy.hp]);
 
 test("SYNTHETIC-QA: real transform and UI allocations show 2 → 1 → complete with unchanged eligible count", () => {
   const { ui, current } = launch(checkpoint()), before = current(), hand = H(before).hand.map(card => card.id);
+  const intent = ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]").find(button => button.dataset.hunterIntent === "TRANSFORM");
+  assert(intent && !intent.disabled); intent.click(); assert.equal(ui.el("confirmHunterAction").disabled, true);
   require("./helpers/combat-selection-ui.cjs").choose(ui, "card", "card-2");
   assert.equal(E.exportSave(current()), E.exportSave(before), "selection cannot spend a card or alter the save");
   click(ui, "TRANSFORM");

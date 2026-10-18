@@ -1,0 +1,1168 @@
+{
+  "schema": "loadout-return-browser-v1",
+  "version": "0.8.13-dev.36",
+  "origin": "http://127.0.0.1:8860",
+  "isolatedTemporaryProfile": true,
+  "userBrowserAttached": false,
+  "pageStateInjection": false,
+  "fixture": "normal E.create(90, kirkhammer, campaign), public DREAM and REFILL commands, loaded through the official file chooser",
+  "checks": [
+    {
+      "name": "one firearm inside weapon panel at 2035",
+      "passed": true,
+      "details": {
+        "gunCount": 1,
+        "gun": {
+          "x": 1428.96875,
+          "y": 1062.390625,
+          "right": 1686,
+          "bottom": 1122.1875,
+          "width": 257.03125,
+          "height": 59.796875
+        },
+        "bank": {
+          "x": 904.90625,
+          "y": 1062.390625,
+          "right": 1686,
+          "bottom": 1216,
+          "width": 781.09375,
+          "height": 153.609375
+        },
+        "weapon": {
+          "x": 895.90625,
+          "y": 984,
+          "right": 1695,
+          "bottom": 1244,
+          "width": 799.09375,
+          "height": 260
+        },
+        "third": {
+          "x": 1428.96875,
+          "y": 1127.1875,
+          "right": 1686,
+          "bottom": 1214,
+          "width": 257.03125,
+          "height": 86.8125
+        },
+        "gunButton": {
+          "x": 1434.96875,
+          "y": 1088.1875,
+          "right": 1680,
+          "bottom": 1116.1875,
+          "width": 245.03125,
+          "height": 28
+        },
+        "deck": {
+          "x": 1715,
+          "y": 1100,
+          "right": 2011,
+          "bottom": 1190,
+          "width": 296,
+          "height": 90
+        },
+        "workspace": {
+          "x": 1715,
+          "y": 291,
+          "right": 2011,
+          "bottom": 1190,
+          "width": 296,
+          "height": 899
+        },
+        "viewport": {
+          "width": 2035,
+          "height": 1252
+        },
+        "first": {
+          "x": 904.90625,
+          "y": 1062.390625,
+          "right": 1161.9375,
+          "bottom": 1214,
+          "width": 257.03125,
+          "height": 151.609375
+        }
+      }
+    },
+    {
+      "name": "firearm is above slot three at 2035",
+      "passed": true,
+      "details": {
+        "gunCount": 1,
+        "gun": {
+          "x": 1428.96875,
+          "y": 1062.390625,
+          "right": 1686,
+          "bottom": 1122.1875,
+          "width": 257.03125,
+          "height": 59.796875
+        },
+        "bank": {
+          "x": 904.90625,
+          "y": 1062.390625,
+          "right": 1686,
+          "bottom": 1216,
+          "width": 781.09375,
+          "height": 153.609375
+        },
+        "weapon": {
+          "x": 895.90625,
+          "y": 984,
+          "right": 1695,
+          "bottom": 1244,
+          "width": 799.09375,
+          "height": 260
+        },
+        "third": {
+          "x": 1428.96875,
+          "y": 1127.1875,
+          "right": 1686,
+          "bottom": 1214,
+          "width": 257.03125,
+          "height": 86.8125
+        },
+        "gunButton": {
+          "x": 1434.96875,
+          "y": 1088.1875,
+          "right": 1680,
+          "bottom": 1116.1875,
+          "width": 245.03125,
+          "height": 28
+        },
+        "deck": {
+          "x": 1715,
+          "y": 1100,
+          "right": 2011,
+          "bottom": 1190,
+          "width": 296,
+          "height": 90
+        },
+        "workspace": {
+          "x": 1715,
+          "y": 291,
+          "right": 2011,
+          "bottom": 1190,
+          "width": 296,
+          "height": 899
+        },
+        "viewport": {
+          "width": 2035,
+          "height": 1252
+        },
+        "first": {
+          "x": 904.90625,
+          "y": 1062.390625,
+          "right": 1161.9375,
+          "bottom": 1214,
+          "width": 257.03125,
+          "height": 151.609375
+        }
+      }
+    },
+    {
+      "name": "firearm and slot three visible at 2035",
+      "passed": true,
+      "details": {
+        "gunCount": 1,
+        "gun": {
+          "x": 1428.96875,
+          "y": 1062.390625,
+          "right": 1686,
+          "bottom": 1122.1875,
+          "width": 257.03125,
+          "height": 59.796875
+        },
+        "bank": {
+          "x": 904.90625,
+          "y": 1062.390625,
+          "right": 1686,
+          "bottom": 1216,
+          "width": 781.09375,
+          "height": 153.609375
+        },
+        "weapon": {
+          "x": 895.90625,
+          "y": 984,
+          "right": 1695,
+          "bottom": 1244,
+          "width": 799.09375,
+          "height": 260
+        },
+        "third": {
+          "x": 1428.96875,
+          "y": 1127.1875,
+          "right": 1686,
+          "bottom": 1214,
+          "width": 257.03125,
+          "height": 86.8125
+        },
+        "gunButton": {
+          "x": 1434.96875,
+          "y": 1088.1875,
+          "right": 1680,
+          "bottom": 1116.1875,
+          "width": 245.03125,
+          "height": 28
+        },
+        "deck": {
+          "x": 1715,
+          "y": 1100,
+          "right": 2011,
+          "bottom": 1190,
+          "width": 296,
+          "height": 90
+        },
+        "workspace": {
+          "x": 1715,
+          "y": 291,
+          "right": 2011,
+          "bottom": 1190,
+          "width": 296,
+          "height": 899
+        },
+        "viewport": {
+          "width": 2035,
+          "height": 1252
+        },
+        "first": {
+          "x": 904.90625,
+          "y": 1062.390625,
+          "right": 1161.9375,
+          "bottom": 1214,
+          "width": 257.03125,
+          "height": 151.609375
+        }
+      }
+    },
+    {
+      "name": "firearm action button fits inside its panel at 2035",
+      "passed": true,
+      "details": {
+        "gunCount": 1,
+        "gun": {
+          "x": 1428.96875,
+          "y": 1062.390625,
+          "right": 1686,
+          "bottom": 1122.1875,
+          "width": 257.03125,
+          "height": 59.796875
+        },
+        "bank": {
+          "x": 904.90625,
+          "y": 1062.390625,
+          "right": 1686,
+          "bottom": 1216,
+          "width": 781.09375,
+          "height": 153.609375
+        },
+        "weapon": {
+          "x": 895.90625,
+          "y": 984,
+          "right": 1695,
+          "bottom": 1244,
+          "width": 799.09375,
+          "height": 260
+        },
+        "third": {
+          "x": 1428.96875,
+          "y": 1127.1875,
+          "right": 1686,
+          "bottom": 1214,
+          "width": 257.03125,
+          "height": 86.8125
+        },
+        "gunButton": {
+          "x": 1434.96875,
+          "y": 1088.1875,
+          "right": 1680,
+          "bottom": 1116.1875,
+          "width": 245.03125,
+          "height": 28
+        },
+        "deck": {
+          "x": 1715,
+          "y": 1100,
+          "right": 2011,
+          "bottom": 1190,
+          "width": 296,
+          "height": 90
+        },
+        "workspace": {
+          "x": 1715,
+          "y": 291,
+          "right": 2011,
+          "bottom": 1190,
+          "width": 296,
+          "height": 899
+        },
+        "viewport": {
+          "width": 2035,
+          "height": 1252
+        },
+        "first": {
+          "x": 904.90625,
+          "y": 1062.390625,
+          "right": 1161.9375,
+          "bottom": 1214,
+          "width": 257.03125,
+          "height": 151.609375
+        }
+      }
+    },
+    {
+      "name": "deck receives at least ninety pixels at 2035",
+      "passed": true,
+      "details": {
+        "gunCount": 1,
+        "gun": {
+          "x": 1428.96875,
+          "y": 1062.390625,
+          "right": 1686,
+          "bottom": 1122.1875,
+          "width": 257.03125,
+          "height": 59.796875
+        },
+        "bank": {
+          "x": 904.90625,
+          "y": 1062.390625,
+          "right": 1686,
+          "bottom": 1216,
+          "width": 781.09375,
+          "height": 153.609375
+        },
+        "weapon": {
+          "x": 895.90625,
+          "y": 984,
+          "right": 1695,
+          "bottom": 1244,
+          "width": 799.09375,
+          "height": 260
+        },
+        "third": {
+          "x": 1428.96875,
+          "y": 1127.1875,
+          "right": 1686,
+          "bottom": 1214,
+          "width": 257.03125,
+          "height": 86.8125
+        },
+        "gunButton": {
+          "x": 1434.96875,
+          "y": 1088.1875,
+          "right": 1680,
+          "bottom": 1116.1875,
+          "width": 245.03125,
+          "height": 28
+        },
+        "deck": {
+          "x": 1715,
+          "y": 1100,
+          "right": 2011,
+          "bottom": 1190,
+          "width": 296,
+          "height": 90
+        },
+        "workspace": {
+          "x": 1715,
+          "y": 291,
+          "right": 2011,
+          "bottom": 1190,
+          "width": 296,
+          "height": 899
+        },
+        "viewport": {
+          "width": 2035,
+          "height": 1252
+        },
+        "first": {
+          "x": 904.90625,
+          "y": 1062.390625,
+          "right": 1161.9375,
+          "bottom": 1214,
+          "width": 257.03125,
+          "height": 151.609375
+        }
+      }
+    },
+    {
+      "name": "one firearm inside weapon panel at 1714",
+      "passed": true,
+      "details": {
+        "gunCount": 1,
+        "gun": {
+          "x": 1168.4375,
+          "y": 1062.390625,
+          "right": 1364.984375,
+          "bottom": 1122.1875,
+          "width": 196.546875,
+          "height": 59.796875
+        },
+        "bank": {
+          "x": 765.34375,
+          "y": 1062.390625,
+          "right": 1365,
+          "bottom": 1216,
+          "width": 599.65625,
+          "height": 153.609375
+        },
+        "weapon": {
+          "x": 756.34375,
+          "y": 984,
+          "right": 1374,
+          "bottom": 1244,
+          "width": 617.65625,
+          "height": 260
+        },
+        "third": {
+          "x": 1168.4375,
+          "y": 1127.1875,
+          "right": 1364.984375,
+          "bottom": 1214,
+          "width": 196.546875,
+          "height": 86.8125
+        },
+        "gunButton": {
+          "x": 1174.4375,
+          "y": 1088.1875,
+          "right": 1358.984375,
+          "bottom": 1116.1875,
+          "width": 184.546875,
+          "height": 28
+        },
+        "deck": {
+          "x": 1394,
+          "y": 1100,
+          "right": 1690,
+          "bottom": 1190,
+          "width": 296,
+          "height": 90
+        },
+        "workspace": {
+          "x": 1394,
+          "y": 291,
+          "right": 1690,
+          "bottom": 1190,
+          "width": 296,
+          "height": 899
+        },
+        "viewport": {
+          "width": 1714,
+          "height": 1252
+        },
+        "first": {
+          "x": 765.34375,
+          "y": 1062.390625,
+          "right": 961.890625,
+          "bottom": 1214,
+          "width": 196.546875,
+          "height": 151.609375
+        }
+      }
+    },
+    {
+      "name": "firearm is above slot three at 1714",
+      "passed": true,
+      "details": {
+        "gunCount": 1,
+        "gun": {
+          "x": 1168.4375,
+          "y": 1062.390625,
+          "right": 1364.984375,
+          "bottom": 1122.1875,
+          "width": 196.546875,
+          "height": 59.796875
+        },
+        "bank": {
+          "x": 765.34375,
+          "y": 1062.390625,
+          "right": 1365,
+          "bottom": 1216,
+          "width": 599.65625,
+          "height": 153.609375
+        },
+        "weapon": {
+          "x": 756.34375,
+          "y": 984,
+          "right": 1374,
+          "bottom": 1244,
+          "width": 617.65625,
+          "height": 260
+        },
+        "third": {
+          "x": 1168.4375,
+          "y": 1127.1875,
+          "right": 1364.984375,
+          "bottom": 1214,
+          "width": 196.546875,
+          "height": 86.8125
+        },
+        "gunButton": {
+          "x": 1174.4375,
+          "y": 1088.1875,
+          "right": 1358.984375,
+          "bottom": 1116.1875,
+          "width": 184.546875,
+          "height": 28
+        },
+        "deck": {
+          "x": 1394,
+          "y": 1100,
+          "right": 1690,
+          "bottom": 1190,
+          "width": 296,
+          "height": 90
+        },
+        "workspace": {
+          "x": 1394,
+          "y": 291,
+          "right": 1690,
+          "bottom": 1190,
+          "width": 296,
+          "height": 899
+        },
+        "viewport": {
+          "width": 1714,
+          "height": 1252
+        },
+        "first": {
+          "x": 765.34375,
+          "y": 1062.390625,
+          "right": 961.890625,
+          "bottom": 1214,
+          "width": 196.546875,
+          "height": 151.609375
+        }
+      }
+    },
+    {
+      "name": "firearm and slot three visible at 1714",
+      "passed": true,
+      "details": {
+        "gunCount": 1,
+        "gun": {
+          "x": 1168.4375,
+          "y": 1062.390625,
+          "right": 1364.984375,
+          "bottom": 1122.1875,
+          "width": 196.546875,
+          "height": 59.796875
+        },
+        "bank": {
+          "x": 765.34375,
+          "y": 1062.390625,
+          "right": 1365,
+          "bottom": 1216,
+          "width": 599.65625,
+          "height": 153.609375
+        },
+        "weapon": {
+          "x": 756.34375,
+          "y": 984,
+          "right": 1374,
+          "bottom": 1244,
+          "width": 617.65625,
+          "height": 260
+        },
+        "third": {
+          "x": 1168.4375,
+          "y": 1127.1875,
+          "right": 1364.984375,
+          "bottom": 1214,
+          "width": 196.546875,
+          "height": 86.8125
+        },
+        "gunButton": {
+          "x": 1174.4375,
+          "y": 1088.1875,
+          "right": 1358.984375,
+          "bottom": 1116.1875,
+          "width": 184.546875,
+          "height": 28
+        },
+        "deck": {
+          "x": 1394,
+          "y": 1100,
+          "right": 1690,
+          "bottom": 1190,
+          "width": 296,
+          "height": 90
+        },
+        "workspace": {
+          "x": 1394,
+          "y": 291,
+          "right": 1690,
+          "bottom": 1190,
+          "width": 296,
+          "height": 899
+        },
+        "viewport": {
+          "width": 1714,
+          "height": 1252
+        },
+        "first": {
+          "x": 765.34375,
+          "y": 1062.390625,
+          "right": 961.890625,
+          "bottom": 1214,
+          "width": 196.546875,
+          "height": 151.609375
+        }
+      }
+    },
+    {
+      "name": "firearm action button fits inside its panel at 1714",
+      "passed": true,
+      "details": {
+        "gunCount": 1,
+        "gun": {
+          "x": 1168.4375,
+          "y": 1062.390625,
+          "right": 1364.984375,
+          "bottom": 1122.1875,
+          "width": 196.546875,
+          "height": 59.796875
+        },
+        "bank": {
+          "x": 765.34375,
+          "y": 1062.390625,
+          "right": 1365,
+          "bottom": 1216,
+          "width": 599.65625,
+          "height": 153.609375
+        },
+        "weapon": {
+          "x": 756.34375,
+          "y": 984,
+          "right": 1374,
+          "bottom": 1244,
+          "width": 617.65625,
+          "height": 260
+        },
+        "third": {
+          "x": 1168.4375,
+          "y": 1127.1875,
+          "right": 1364.984375,
+          "bottom": 1214,
+          "width": 196.546875,
+          "height": 86.8125
+        },
+        "gunButton": {
+          "x": 1174.4375,
+          "y": 1088.1875,
+          "right": 1358.984375,
+          "bottom": 1116.1875,
+          "width": 184.546875,
+          "height": 28
+        },
+        "deck": {
+          "x": 1394,
+          "y": 1100,
+          "right": 1690,
+          "bottom": 1190,
+          "width": 296,
+          "height": 90
+        },
+        "workspace": {
+          "x": 1394,
+          "y": 291,
+          "right": 1690,
+          "bottom": 1190,
+          "width": 296,
+          "height": 899
+        },
+        "viewport": {
+          "width": 1714,
+          "height": 1252
+        },
+        "first": {
+          "x": 765.34375,
+          "y": 1062.390625,
+          "right": 961.890625,
+          "bottom": 1214,
+          "width": 196.546875,
+          "height": 151.609375
+        }
+      }
+    },
+    {
+      "name": "deck receives at least ninety pixels at 1714",
+      "passed": true,
+      "details": {
+        "gunCount": 1,
+        "gun": {
+          "x": 1168.4375,
+          "y": 1062.390625,
+          "right": 1364.984375,
+          "bottom": 1122.1875,
+          "width": 196.546875,
+          "height": 59.796875
+        },
+        "bank": {
+          "x": 765.34375,
+          "y": 1062.390625,
+          "right": 1365,
+          "bottom": 1216,
+          "width": 599.65625,
+          "height": 153.609375
+        },
+        "weapon": {
+          "x": 756.34375,
+          "y": 984,
+          "right": 1374,
+          "bottom": 1244,
+          "width": 617.65625,
+          "height": 260
+        },
+        "third": {
+          "x": 1168.4375,
+          "y": 1127.1875,
+          "right": 1364.984375,
+          "bottom": 1214,
+          "width": 196.546875,
+          "height": 86.8125
+        },
+        "gunButton": {
+          "x": 1174.4375,
+          "y": 1088.1875,
+          "right": 1358.984375,
+          "bottom": 1116.1875,
+          "width": 184.546875,
+          "height": 28
+        },
+        "deck": {
+          "x": 1394,
+          "y": 1100,
+          "right": 1690,
+          "bottom": 1190,
+          "width": 296,
+          "height": 90
+        },
+        "workspace": {
+          "x": 1394,
+          "y": 291,
+          "right": 1690,
+          "bottom": 1190,
+          "width": 296,
+          "height": 899
+        },
+        "viewport": {
+          "width": 1714,
+          "height": 1252
+        },
+        "first": {
+          "x": 765.34375,
+          "y": 1062.390625,
+          "right": 961.890625,
+          "bottom": 1214,
+          "width": 196.546875,
+          "height": 151.609375
+        }
+      }
+    },
+    {
+      "name": "one firearm inside weapon panel at 1280",
+      "passed": true,
+      "details": {
+        "gunCount": 1,
+        "gun": {
+          "x": 810.796875,
+          "y": 532.390625,
+          "right": 933,
+          "bottom": 604.890625,
+          "width": 122.203125,
+          "height": 72.5
+        },
+        "bank": {
+          "x": 556.390625,
+          "y": 532.390625,
+          "right": 933,
+          "bottom": 686,
+          "width": 376.609375,
+          "height": 153.609375
+        },
+        "weapon": {
+          "x": 547.390625,
+          "y": 454,
+          "right": 942,
+          "bottom": 714,
+          "width": 394.609375,
+          "height": 260
+        },
+        "third": {
+          "x": 810.796875,
+          "y": 609.890625,
+          "right": 933,
+          "bottom": 684,
+          "width": 122.203125,
+          "height": 74.109375
+        },
+        "gunButton": {
+          "x": 815.796875,
+          "y": 566.890625,
+          "right": 928,
+          "bottom": 599.890625,
+          "width": 112.203125,
+          "height": 33
+        },
+        "deck": {
+          "x": 962,
+          "y": 572,
+          "right": 1258,
+          "bottom": 662,
+          "width": 296,
+          "height": 90
+        },
+        "workspace": {
+          "x": 962,
+          "y": 277,
+          "right": 1258,
+          "bottom": 662,
+          "width": 296,
+          "height": 385
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "first": {
+          "x": 556.390625,
+          "y": 532.390625,
+          "right": 678.59375,
+          "bottom": 684,
+          "width": 122.203125,
+          "height": 151.609375
+        }
+      }
+    },
+    {
+      "name": "firearm is above slot three at 1280",
+      "passed": true,
+      "details": {
+        "gunCount": 1,
+        "gun": {
+          "x": 810.796875,
+          "y": 532.390625,
+          "right": 933,
+          "bottom": 604.890625,
+          "width": 122.203125,
+          "height": 72.5
+        },
+        "bank": {
+          "x": 556.390625,
+          "y": 532.390625,
+          "right": 933,
+          "bottom": 686,
+          "width": 376.609375,
+          "height": 153.609375
+        },
+        "weapon": {
+          "x": 547.390625,
+          "y": 454,
+          "right": 942,
+          "bottom": 714,
+          "width": 394.609375,
+          "height": 260
+        },
+        "third": {
+          "x": 810.796875,
+          "y": 609.890625,
+          "right": 933,
+          "bottom": 684,
+          "width": 122.203125,
+          "height": 74.109375
+        },
+        "gunButton": {
+          "x": 815.796875,
+          "y": 566.890625,
+          "right": 928,
+          "bottom": 599.890625,
+          "width": 112.203125,
+          "height": 33
+        },
+        "deck": {
+          "x": 962,
+          "y": 572,
+          "right": 1258,
+          "bottom": 662,
+          "width": 296,
+          "height": 90
+        },
+        "workspace": {
+          "x": 962,
+          "y": 277,
+          "right": 1258,
+          "bottom": 662,
+          "width": 296,
+          "height": 385
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "first": {
+          "x": 556.390625,
+          "y": 532.390625,
+          "right": 678.59375,
+          "bottom": 684,
+          "width": 122.203125,
+          "height": 151.609375
+        }
+      }
+    },
+    {
+      "name": "firearm and slot three visible at 1280",
+      "passed": true,
+      "details": {
+        "gunCount": 1,
+        "gun": {
+          "x": 810.796875,
+          "y": 532.390625,
+          "right": 933,
+          "bottom": 604.890625,
+          "width": 122.203125,
+          "height": 72.5
+        },
+        "bank": {
+          "x": 556.390625,
+          "y": 532.390625,
+          "right": 933,
+          "bottom": 686,
+          "width": 376.609375,
+          "height": 153.609375
+        },
+        "weapon": {
+          "x": 547.390625,
+          "y": 454,
+          "right": 942,
+          "bottom": 714,
+          "width": 394.609375,
+          "height": 260
+        },
+        "third": {
+          "x": 810.796875,
+          "y": 609.890625,
+          "right": 933,
+          "bottom": 684,
+          "width": 122.203125,
+          "height": 74.109375
+        },
+        "gunButton": {
+          "x": 815.796875,
+          "y": 566.890625,
+          "right": 928,
+          "bottom": 599.890625,
+          "width": 112.203125,
+          "height": 33
+        },
+        "deck": {
+          "x": 962,
+          "y": 572,
+          "right": 1258,
+          "bottom": 662,
+          "width": 296,
+          "height": 90
+        },
+        "workspace": {
+          "x": 962,
+          "y": 277,
+          "right": 1258,
+          "bottom": 662,
+          "width": 296,
+          "height": 385
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "first": {
+          "x": 556.390625,
+          "y": 532.390625,
+          "right": 678.59375,
+          "bottom": 684,
+          "width": 122.203125,
+          "height": 151.609375
+        }
+      }
+    },
+    {
+      "name": "firearm action button fits inside its panel at 1280",
+      "passed": true,
+      "details": {
+        "gunCount": 1,
+        "gun": {
+          "x": 810.796875,
+          "y": 532.390625,
+          "right": 933,
+          "bottom": 604.890625,
+          "width": 122.203125,
+          "height": 72.5
+        },
+        "bank": {
+          "x": 556.390625,
+          "y": 532.390625,
+          "right": 933,
+          "bottom": 686,
+          "width": 376.609375,
+          "height": 153.609375
+        },
+        "weapon": {
+          "x": 547.390625,
+          "y": 454,
+          "right": 942,
+          "bottom": 714,
+          "width": 394.609375,
+          "height": 260
+        },
+        "third": {
+          "x": 810.796875,
+          "y": 609.890625,
+          "right": 933,
+          "bottom": 684,
+          "width": 122.203125,
+          "height": 74.109375
+        },
+        "gunButton": {
+          "x": 815.796875,
+          "y": 566.890625,
+          "right": 928,
+          "bottom": 599.890625,
+          "width": 112.203125,
+          "height": 33
+        },
+        "deck": {
+          "x": 962,
+          "y": 572,
+          "right": 1258,
+          "bottom": 662,
+          "width": 296,
+          "height": 90
+        },
+        "workspace": {
+          "x": 962,
+          "y": 277,
+          "right": 1258,
+          "bottom": 662,
+          "width": 296,
+          "height": 385
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "first": {
+          "x": 556.390625,
+          "y": 532.390625,
+          "right": 678.59375,
+          "bottom": 684,
+          "width": 122.203125,
+          "height": 151.609375
+        }
+      }
+    },
+    {
+      "name": "deck receives at least ninety pixels at 1280",
+      "passed": true,
+      "details": {
+        "gunCount": 1,
+        "gun": {
+          "x": 810.796875,
+          "y": 532.390625,
+          "right": 933,
+          "bottom": 604.890625,
+          "width": 122.203125,
+          "height": 72.5
+        },
+        "bank": {
+          "x": 556.390625,
+          "y": 532.390625,
+          "right": 933,
+          "bottom": 686,
+          "width": 376.609375,
+          "height": 153.609375
+        },
+        "weapon": {
+          "x": 547.390625,
+          "y": 454,
+          "right": 942,
+          "bottom": 714,
+          "width": 394.609375,
+          "height": 260
+        },
+        "third": {
+          "x": 810.796875,
+          "y": 609.890625,
+          "right": 933,
+          "bottom": 684,
+          "width": 122.203125,
+          "height": 74.109375
+        },
+        "gunButton": {
+          "x": 815.796875,
+          "y": 566.890625,
+          "right": 928,
+          "bottom": 599.890625,
+          "width": 112.203125,
+          "height": 33
+        },
+        "deck": {
+          "x": 962,
+          "y": 572,
+          "right": 1258,
+          "bottom": 662,
+          "width": 296,
+          "height": 90
+        },
+        "workspace": {
+          "x": 962,
+          "y": 277,
+          "right": 1258,
+          "bottom": 662,
+          "width": 296,
+          "height": 385
+        },
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "first": {
+          "x": 556.390625,
+          "y": 532.390625,
+          "right": 678.59375,
+          "bottom": 684,
+          "width": 122.203125,
+          "height": 151.609375
+        }
+      }
+    },
+    {
+      "name": "return picklist changes lower face immediately",
+      "passed": true
+    },
+    {
+      "name": "return preview shows only two current slots",
+      "passed": true
+    },
+    {
+      "name": "return preview displays actual weapon effect",
+      "passed": true
+    },
+    {
+      "name": "return preview does not change save",
+      "passed": true
+    },
+    {
+      "name": "return preview reverts without cost",
+      "passed": true
+    },
+    {
+      "name": "no page exceptions",
+      "passed": true,
+      "details": []
+    }
+  ],
+  "screenshots": [
+    "layout-2035.png",
+    "layout-1714.png",
+    "layout-1280.png",
+    "return-preview.png"
+  ],
+  "pageErrors": []
+}

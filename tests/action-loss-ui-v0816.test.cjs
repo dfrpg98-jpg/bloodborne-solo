@@ -50,7 +50,11 @@ for (const kind of ["ground", "armed", "carried"]) test(`${kind}: the lantern pr
 
 test("nearby uncarried escort: Dream has a hint before card selection, Escape preserves the save and acceptance leaves the token outside Dream", () => {
   const s = house(), { ui } = launch(s), saved = ui.storage.get(qaKey), selected = H(s).hand[0].id;
-  assert.match(ui.el("decisions").textContent, /생존자 함께 이동 불가/); assert(command(ui, "DREAM").disabled);
+  assert.match(ui.el("hunterActionBar").textContent, /생존자 함께 이동 불가/);
+  const intent = ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]").find(button => button.dataset.hunterIntent === "DREAM");
+  assert(intent && !intent.disabled); intent.click();
+  assert.equal(ui.el("confirmHunterAction").disabled, true);
+  assert.equal(ui.storage.get(qaKey), saved, "choosing Dream before its card changes no hunt resource or token");
   ui.el("hand").querySelectorAll("[data-card]").find(b => b.dataset.card === selected).click();
   command(ui, "DREAM").click(); assert.equal(ui.el("actionLossDialog").open, true);
   assert.match(ui.el("actionLossList").textContent, /꿈에 함께 들어가지 않고 현재 칸에 남습니다/);

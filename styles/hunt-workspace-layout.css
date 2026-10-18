@@ -38,6 +38,47 @@ html[data-phase] .hunt-main .hunt-layout { grid-template-columns: var(--objectiv
 .enemy-instance-choices { display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0; }
 .enemy-instance-choices > button { display: flex; align-items: center; gap: 6px; }
 
+/* The firearm belongs to the weapon bank, immediately above its third slot.
+   Keep every slot in #slots so selection, focus and attachment controls share
+   one stable container, while the outer grid reserves the firearm's space. */
+.hunt-main .weapon-slot-bank { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: max-content minmax(72px, 1fr); gap: 5px; flex: 1 1 auto; min-height: 0; overflow: auto; scrollbar-width: thin; padding-bottom: 2px; }
+.hunt-main .weapon-slot-bank #slots.hunt-slots { display: contents; }
+.hunt-main .weapon-slot-bank #slots > .hunt-slot { grid-row: 1 / 3; min-width: 0; overflow: auto; scrollbar-width: thin; }
+.hunt-main .weapon-slot-bank #slots > [data-slot="0"] { grid-column: 1; }
+.hunt-main .weapon-slot-bank #slots > [data-slot="1"] { grid-column: 2; }
+.hunt-main .weapon-slot-bank #slots > [data-slot="2"] { grid-column: 3; grid-row: 2; min-height: 72px; }
+.hunt-main .weapon-slot-bank > .gun-panel { grid-column: 3; grid-row: 1; position: static; display: flex !important; flex-direction: column !important; align-items: stretch; gap: 3px; width: auto; height: auto; min-height: 0; padding: 5px !important; margin: 0; border: 1px solid #647e6d; border-radius: 4px; background: #172722; }
+.hunt-main .weapon-slot-bank > .gun-panel .eyebrow,
+.hunt-main .weapon-slot-bank > .gun-panel .firearm-rules { display: none; }
+.hunt-main .weapon-slot-bank > .gun-panel h2 { margin: 0; font-size: 12px; line-height: 1.4; }
+.hunt-main .weapon-slot-bank > .gun-panel h2 small { display: inline; margin-left: 5px; font-size: 10px; }
+.hunt-main .weapon-slot-bank > .gun-panel > button { flex: 0 0 auto; width: 100%; margin: 0; min-height: 28px; padding: 4px; font-size: 11px; line-height: 1.4; }
+.hunt-main .weapon-slot-bank > .gun-panel > label { display: block; font-size: 10px; }
+.hunt-main .weapon-slot-bank > .gun-panel select { width: 100%; }
+.hunt-main .weapon-slot-bank[data-slot-count="2"] > .gun-panel { grid-row: 1 / 3; }
+.hunt-main .weapon-slot-bank[data-slot-count="1"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.hunt-main .weapon-slot-bank[data-slot-count="1"] > .gun-panel { grid-column: 2; grid-row: 1 / 3; }
+.hunt-main .weapon-slot-bank[data-preview="true"] #slots > .hunt-slot:disabled { opacity: 1; cursor: default; filter: none; }
+.hunt-main .hunt-loadout > .weapon-panel { padding-bottom: 6px !important; }
+@media (min-width: 801px) and (max-width: 1400px) {
+  .hunt-main .weapon-slot-bank > .gun-panel { gap: 2px; padding: 4px !important; }
+  .hunt-main .weapon-slot-bank > .gun-panel h2 { display: block; font-size: 11px; line-height: 1.25; }
+  .hunt-main .weapon-slot-bank > .gun-panel h2 small { margin-left: 3px; font-size: 9px; }
+  .hunt-main .weapon-slot-bank > .gun-panel > button { min-height: 26px; padding: 3px; font-size: 10px; line-height: 1.25; }
+}
+
+/* Deck counts and the last disclosed action now have their own two-row area. */
+.hunt-main #deckStatus { min-height: 90px; padding: 9px 0 2px; margin-top: 9px; border-top: 1px solid #53646a; font-size: 12px; line-height: 1.5; }
+.hunt-main #deckStatus .deck-summary { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 7px; height: 100%; }
+.hunt-main #deckStatus .enemy-deck-remaining,
+.hunt-main #deckStatus [data-enemy-history] { display: flex; align-items: center; justify-content: space-between; gap: 7px; min-height: 32px; padding: 6px 8px; border: 1px solid #52656b; border-radius: 4px; background: #1d2c33; font-size: 12px; }
+.hunt-main #deckStatus .deck-summary b { color: #eed39a; font-size: 14px; }
+.hunt-main #deckStatus .last-enemy-action { grid-column: 1 / -1; display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; padding: 5px 8px; min-height: 30px; }
+.hunt-main #deckStatus .last-enemy-action strong { color: #e4d1a4; text-align: right; overflow-wrap: anywhere; }
+@media (min-width: 801px) {
+  .hunt-screen .hunt-main { grid-template-rows: 132px 24px minmax(0, 1fr) 260px; }
+}
+
 /* Separate category, title, action and progress without enlarging HUD text. */
 .hunt-layout .mission-objective { letter-spacing: normal; }
 .hunt-layout .objective-heading { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 7px 8px; align-items: center; }

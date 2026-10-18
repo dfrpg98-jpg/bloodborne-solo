@@ -27,8 +27,13 @@ function enemyTarget(f, enemyId) {
   assert(target); target.click();
 }
 function actions(f, type) {
-  return ["decisions", "mapContext", "firearm"].flatMap(id => f.ui.el(id).querySelectorAll("[data-command]"))
+  return ["decisions", "decisionActions", "mapContext", "firearm"].flatMap(id => f.ui.el(id).querySelectorAll("[data-command]"))
     .filter(button => button.dataset.command === type);
+}
+function begin(f, type) {
+  const button = f.ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]").find(button => button.dataset.hunterIntent === type);
+  assert(button && !button.disabled); button.click();
+  assert(f.ui.el("confirmHunterAction").disabled); unchanged(f);
 }
 function unchanged(f) {
   assert.equal(f.ui.storage.get(key), f.saved, "presentation selections preserve exact existing save bytes");
@@ -69,24 +74,25 @@ test("slot clicks select, cancel the same slot, and replace another selection wi
 
 test("reclicking a selected hand card deselects it after target and slot redraws and disables the pending attack", () => {
   const f = launch(checkpoints.get(9)), command = commands[9];
-  clickCard(f, command.cardId); clickSlot(f, command.slot); enemyTarget(f, command.enemyId);
+  enemyTarget(f, command.enemyId); begin(f, "ATTACK"); clickCard(f, command.cardId); clickSlot(f, command.slot);
   assert(actions(f, "ATTACK").some(button => !button.disabled));
   clickCard(f, command.cardId);
   assert(f.ui.el("hand").querySelectorAll("[data-card]").every(card => card.getAttribute("aria-pressed") === "false"));
   assert.deepEqual(selected(f), [command.slot], "card deselection preserves an explicitly chosen free slot");
   assert.equal(f.ui.el("mapContext").hidden, false, "the inspected target remains available");
-  assert(actions(f, "ATTACK").every(button => button.disabled)); unchanged(f);
+  assert(f.ui.el("confirmHunterAction").disabled); unchanged(f);
   clickCard(f, command.cardId); assert(actions(f, "ATTACK").some(button => !button.disabled));
   execute(f, "ATTACK", command);
 });
 
 test("switching hand cards leaves only the latest card selected and clicking it again disables movement", () => {
   const f = launch(checkpoints.get(0)), cards = E.hunter(f.state).hand;
+  begin(f, "MOVE");
   clickCard(f, cards[0].id); clickCard(f, cards[1].id);
   const highlighted = f.ui.el("hand").querySelectorAll("[data-card]").filter(card => card.getAttribute("aria-pressed") === "true");
   assert.deepEqual(highlighted.map(card => card.dataset.card), [cards[1].id]);
   assert.equal(JSON.parse(actions(f, "MOVE").find(button => !button.disabled).dataset.args).cardId, cards[1].id);
-  clickCard(f, cards[1].id); assert(actions(f, "MOVE").every(button => button.disabled));
+  clickCard(f, cards[1].id); assert(f.ui.el("confirmHunterAction").disabled);
   for (const button of actions(f, "MOVE")) button.click(); unchanged(f);
 });
 
@@ -104,7 +110,7 @@ test("occupied slots are readable disabled controls and cannot replace a valid e
 
 test("an attack spends its card and disables the filled slot, including clicks on a stale preattack control", () => {
   const f = launch(checkpoints.get(9)), command = commands[9];
-  enemyTarget(f, command.enemyId); clickCard(f, command.cardId); clickSlot(f, command.slot);
+  enemyTarget(f, command.enemyId); begin(f, "ATTACK"); clickCard(f, command.cardId); clickSlot(f, command.slot);
   const previousSlot = slots(f).find(slot => +slot.dataset.slot === command.slot), actual = execute(f, "ATTACK", command),
     saved = f.ui.storage.get(key), occupied = slots(f).find(slot => +slot.dataset.slot === command.slot);
   assert(E.hunter(actual).slots[command.slot]); assert.equal(occupied.disabled, true);
@@ -132,14 +138,14 @@ test("a card beyond the first hand row remains selectable and toggles off withou
   assert.equal(ui.storage.get(qaKey), saved); assert.equal(ui.el("error").textContent, "");
 });
 
-test("a card and target cannot activate an attack until a slot is explicitly selected, and deselection disables it again", () => {
+test("attack intent selects a visible first empty slot, keeps it on repeat click, and allows another slot before commitment", () => {
   const f = launch(checkpoints.get(9)), command = commands[9];
-  enemyTarget(f, command.enemyId); clickCard(f, command.cardId);
-  assert(actions(f, "ATTACK").length); assert(actions(f, "ATTACK").every(button => button.disabled));
-  assert.match(f.ui.el("mapContext").textContent, /빈 공격 슬롯을 선택/);
-  for (const action of actions(f, "ATTACK")) action.click(); unchanged(f);
-  clickSlot(f, command.slot); assert(actions(f, "ATTACK").some(button => !button.disabled));
-  clickSlot(f, command.slot); assert(actions(f, "ATTACK").every(button => button.disabled)); unchanged(f);
+  enemyTarget(f, command.enemyId); begin(f, "ATTACK");
+  const first = E.slots(f.state).findIndex((_, index) => !E.hunter(f.state).slots[index]);
+  assert.deepEqual(selected(f), [first]); clickSlot(f, first); assert.deepEqual(selected(f), [first]); unchanged(f);
+  clickCard(f, command.cardId); assert(actions(f, "ATTACK").some(button => !button.disabled));
+  const other = E.slots(f.state).findIndex((_, index) => index !== first && !E.hunter(f.state).slots[index]);
+  clickSlot(f, other); assert.deepEqual(selected(f), [other]); unchanged(f);
   clickSlot(f, command.slot);
   const actual = execute(f, "ATTACK", command);
   assert(E.hunter(actual).slots[command.slot]);
@@ -169,7 +175,7 @@ test("loaded occupied slots do not cause another empty slot to be selected, and 
 
 test("a two-slot transformation clears a now-invalid selected slot without choosing slot zero", () => {
   const state = E.create(90, "kirkhammer", 0, null, "hunter-pistol", "center", { campaign: true }), f = launch(state);
-  clickSlot(f, 2); clickCard(f, E.hunter(state).hand[0].id);
+  clickSlot(f, 2); begin(f, "TRANSFORM"); clickCard(f, E.hunter(state).hand[0].id);
   const actual = execute(f, "TRANSFORM", { type: "TRANSFORM", cardId: E.hunter(state).hand[0].id });
   assert.equal(E.slots(actual).length, 2); assert.equal(slots(f).length, 2);
   assert.deepEqual(selected(f), []);
@@ -357,7 +363,7 @@ test("BB030 a free-slot toggle preserves focused slot and the reading offsets of
 
 test("BB030 a consumed hand card is not refocused or replaced with an unrelated card", () => {
   const f = launch(checkpoints.get(0)), id = E.hunter(f.state).hand[0].id;
-  clickCard(f, id);
+  begin(f, "MOVE"); clickCard(f, id);
   f.ui.el("hand").querySelectorAll("[data-card]").find(card => card.dataset.card === id).focus();
   execute(f, "MOVE", { type: "MOVE", cardId: id });
   assert(!f.ui.el("hand").querySelectorAll("[data-card]").some(card => card.dataset.card === id));
@@ -366,7 +372,7 @@ test("BB030 a consumed hand card is not refocused or replaced with an unrelated 
 
 test("BB030 an attack never restores focus to its newly occupied disabled slot", () => {
   const f = launch(checkpoints.get(9)), command = commands[9];
-  enemyTarget(f, command.enemyId); clickCard(f, command.cardId); clickSlot(f, command.slot);
+  enemyTarget(f, command.enemyId); begin(f, "ATTACK"); clickCard(f, command.cardId); clickSlot(f, command.slot);
   slots(f).find(slot => +slot.dataset.slot === command.slot).focus();
   execute(f, "ATTACK", command);
   const occupied = slots(f).find(slot => +slot.dataset.slot === command.slot);
@@ -377,7 +383,7 @@ test("BB030 an attack never restores focus to its newly occupied disabled slot",
 test("BB030 changing to a two-slot weapon does not redirect focus from a removed third slot", () => {
   const s = E.create(90, "kirkhammer", 0, null, "hunter-pistol", "center", { campaign: true }), f = launch(s);
   const cardId = E.hunter(s).hand[0].id;
-  clickCard(f, cardId); clickSlot(f, 2); slots(f)[2].focus();
+  begin(f, "TRANSFORM"); clickCard(f, cardId); clickSlot(f, 2); slots(f)[2].focus();
   execute(f, "TRANSFORM", { type: "TRANSFORM", cardId });
   assert.equal(slots(f).length, 2); assert.equal(f.ui.document.activeElement, f.ui.document.body);
 });

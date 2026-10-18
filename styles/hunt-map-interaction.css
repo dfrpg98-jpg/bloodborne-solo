@@ -1,0 +1,24 @@
+/* Enemy bodies have their own transparent, viewport-clipped hit areas above map objects. */
+#enemyHitLayer { position: absolute; inset: 0; z-index: 14; overflow: hidden; pointer-events: none; }
+.hunt-screen #enemyHitLayer .enemy-sprite-target,
+.hunt-screen #enemyHitLayer .enemy-sprite-target:not(:disabled):hover {
+  position: absolute; box-sizing: border-box; min-height: 0; min-width: 0; padding: 0; margin: 0;
+  border: 0; border-radius: 0; background: transparent; box-shadow: none; pointer-events: auto;
+  cursor: pointer; transition: none;
+}
+.hunt-screen #enemyHitLayer .enemy-sprite-target:focus-visible { outline: 2px solid #f0d695; outline-offset: 2px; }
+/* Reserve a caption row below each square so names cannot cover a south gate. */
+.hunt-main .chapter-map { row-gap: 34px; padding-bottom: 52px; }
+.hunt-main .tile-space-labels { position: absolute; top: calc(100% + 4px); left: 3px; right: 3px; z-index: 5; display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; pointer-events: none; }
+.hunt-main .tile-space-labels > button,
+.hunt-main .tile-space-labels > span { min-width: 0; min-height: 0; padding: 2px 4px; border: 1px solid #657477aa; border-radius: 2px; color: #e8e1cf; background: #102027d9; font-size: 9px; line-height: 1.2; letter-spacing: 0; text-align: center; pointer-events: auto; }
+.hunt-main .tile-space-labels > span { pointer-events: none; }
+.hunt-main .tile-space-labels > button:not(:disabled):hover { background: #34535add; border-color: #d2c28e; }
+/* Keep the artwork visible when choosing a starting space. */
+.hunt-screen .start-tile .start-space,
+.hunt-screen .start-tile .start-space:not(:disabled):hover,
+.hunt-screen .start-tile .start-space:focus-visible { opacity: 1; filter: none; backdrop-filter: none; }
+.hunt-screen .start-tile .start-space:not(:disabled):hover,
+.hunt-screen .start-tile .start-space:focus-visible { background: #7dc5d52e; }
+.hunt-screen .start-tile .start-space.selected,
+.hunt-screen .start-tile .start-space.selected:not(:disabled):hover { background: #d7b5653b; }

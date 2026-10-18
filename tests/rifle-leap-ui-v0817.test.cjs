@@ -10,9 +10,17 @@ function launch(state) {
   return { ui, normal };
 }
 function select(ui, command) {
+  ui.el("chapterMap").querySelectorAll("[data-enemy]").find(b => b.dataset.enemy === command.enemyId).click();
+  const intent = ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]").find(b => b.dataset.hunterIntent === "ATTACK");
+  assert(intent && !intent.disabled); intent.click();
+  assert(ui.el("confirmHunterAction").disabled);
   ui.el("hand").querySelectorAll("[data-card]").find(b => b.dataset.card === command.cardId).click();
   ui.el("slots").querySelectorAll("[data-slot]").find(b => +b.dataset.slot === command.slot).click();
-  ui.el("chapterMap").querySelectorAll("[data-enemy]").find(b => b.dataset.enemy === command.enemyId).click();
+  if (ui.el("hunterActionRoute")) {
+    const model = ui.window.BBHuntActionMenu.view(E.importSave(ui.storage.get(qaKey)), E, ui.window.BBHuntContext, { ...command, type: "ATTACK" }),
+      index = model.routes.findIndex(option => JSON.stringify(option.command.leapPath) === JSON.stringify(command.leapPath));
+    assert(index >= 0); ui.el("hunterActionRoute").value = String(index); ui.el("hunterActionRoute").fire("change");
+  }
 }
 function current(ui) { assert.equal(ui.el("error").textContent, ""); return E.importSave(ui.storage.get(qaKey)); }
 

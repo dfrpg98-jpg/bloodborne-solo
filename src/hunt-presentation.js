@@ -352,10 +352,35 @@
     });
   }
   function publishActorPositions() {
-    if (destroyed || failed || !scene || !charactersReady || typeof options.onActorPositions !== "function") return;
+    if (destroyed || failed || !scene || !charactersReady) return;
     const visible = [...units.values()].filter(unit => unit.actor.kind === "enemy" && !unit.dying && !unit.pendingDeath);
-    try { options.onActorPositions(visible.map(unit => ({ id: unit.actor.id, x: unit.sprite.x, y: unit.sprite.y }))); }
+    try {
+      options.onActorPositions?.(visible.map(unit => ({ id: unit.actor.id, x: unit.sprite.x, y: unit.sprite.y })));
+      options.onActorHitAreas?.(visible.map(unit => ({ id: unit.actor.id, ...spriteHitArea(unit) })));
+    }
     catch (_) { /* A DOM status overlay cannot interrupt rendering or game rules. */ }
+  }
+  function spriteHitArea(unit) {
+    const data = sheets.get(unit.skin), sprite = unit.sprite,
+      frameName = String(typeof sprite.frame === "object" ? sprite.frame?.name : sprite.frame),
+      trim = data.atlasData?.frames[frameName]?.spriteSourceSize,
+      clips = data.frameClips.get(frameName),
+      source = clips?.length ? { x: Math.min(...clips.map(rect => rect.x)), y: Math.min(...clips.map(rect => rect.y)),
+        w: Math.max(...clips.map(rect => rect.x + rect.w)) - Math.min(...clips.map(rect => rect.x)),
+        h: Math.max(...clips.map(rect => rect.y + rect.h)) - Math.min(...clips.map(rect => rect.y)) } :
+        trim || { x: 0, y: 0, w: data.frameWidth, h: data.frameHeight },
+      size = data.displayHeight * unit.actor.scale / data.frameHeight,
+      sx = size * (sprite.flipX ? -1 : 1), sy = size * (sprite.flipY ? -1 : 1),
+      angle = Number.isFinite(sprite.rotation) ? sprite.rotation : 0,
+      corners = [[source.x, source.y], [source.x + source.w, source.y],
+        [source.x + source.w, source.y + source.h], [source.x, source.y + source.h]].map(([x, y]) => {
+          const dx = (x - data.frameWidth / 2) * sx, dy = (y - data.frameHeight * data.originY) * sy;
+          return [sprite.x + dx * Math.cos(angle) - dy * Math.sin(angle),
+            sprite.y + dx * Math.sin(angle) + dy * Math.cos(angle)];
+        }),
+      left = Math.min(...corners.map(point => point[0])) - 3, top = Math.min(...corners.map(point => point[1])) - 3;
+    return { left, top, width: Math.max(12, Math.max(...corners.map(point => point[0])) - left + 3),
+      height: Math.max(12, Math.max(...corners.map(point => point[1])) - top + 3) };
   }
   function updateSelection(unit, delta = 0) {
     // Selection is a presentation-only alpha layer, independent of movement and

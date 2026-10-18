@@ -44,8 +44,13 @@ test('a naturally activated mission requires acknowledgement before another game
   assert.equal(ui.el('missionUpdateCount').hidden, true);
   assert.equal(ui.storage.get('bloodborne-hunt-v07'), afterTrigger, 'acknowledgement is not an engine action');
   assert.equal(savedState(ui).commands.length, checkpoints.get(3).commands.length + 1);
+  const intent = ui.el('hunterActionBar').querySelectorAll('[data-hunter-intent]')
+    .find(button => button.dataset.hunterIntent === 'MOVE' && !button.disabled);
+  assert(intent, 'acknowledgement restores the movement toolbar action'); intent.click();
+  assert.equal(ui.storage.get('bloodborne-hunt-v07'), afterTrigger, 'choosing movement also has no engine cost');
+  assert.equal(ui.el('confirmHunterAction').disabled, true);
   const card = ui.el('hand').querySelectorAll('[data-card]')[0]; card.click();
-  const move = ui.buttons('decisions').find(button => button.dataset.command === 'MOVE');
+  const move = ui.buttons('decisionActions').find(button => button.dataset.command === 'MOVE');
   assert(move && !move.disabled); move.click();
   assert.equal(ui.el('missionUpdateDialog').open, false, 'an unrelated subsequent action cannot reopen the acknowledged notice');
   assert.equal(savedState(ui).phase, 'move');

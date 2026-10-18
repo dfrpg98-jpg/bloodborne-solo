@@ -42,6 +42,11 @@ test("SYNTHETIC-QA real UI: the warning is beside the resolve action without ope
     storage: { [key]: saved, "bloodborne-hunt-active-mode": "qa" },
   });
   const select = (id, value) => require("./helpers/combat-selection-ui.cjs").chooseControl(ui, id, value);
+  const target = ui.el("chapterMap").querySelectorAll("[data-enemy]").find(button => button.dataset.enemy === "scourge-beast-1");
+  assert(target); target.click();
+  const intent = ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]").find(button => button.dataset.hunterIntent === "ATTACK");
+  assert(intent && !intent.disabled); intent.click();
+  assert.equal(ui.el("confirmHunterAction").disabled, true);
   select("combatSelectCard", "card-12"); select("combatSelectSlot", 0);
   assert.doesNotMatch(ui.el("attackConsequences").innerHTML, /wounded-retaliation/);
   assert.equal(ui.storage.get(key), saved, "card and slot selections do not expose the next action or save a command");

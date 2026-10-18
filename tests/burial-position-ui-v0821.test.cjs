@@ -17,6 +17,11 @@ function command(ui, type) {
   const button = ui.buttons("decisionActions").find(button => button.dataset.command === type);
   assert(button && !button.disabled, type); button.click(); assert.equal(ui.el("error").textContent, "");
 }
+function beginAttack(ui) {
+  const intent = ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]").find(button => button.dataset.hunterIntent === "ATTACK");
+  assert(intent && !intent.disabled, "the explicitly selected eligible enemy can be attacked"); intent.click();
+  assert.equal(ui.el("confirmHunterAction").disabled, true, "the staged attack waits for its card");
+}
 
 test("canonical QA: pull checkbox shows chapel modifier before commitment; target HUD/save stay unchanged until actual pull", () => {
   const s = checkpoint(1), ui = launch(s), before = ui.storage.get(key), id = "huntsmans-minion-1";
@@ -25,6 +30,7 @@ test("canonical QA: pull checkbox shows chapel modifier before commitment; targe
   assert(pull); pull.checked = true; pull.fire("change");
   assert.match(ui.el("mapContext").innerHTML, /끌어온 뒤: 오에돈 예배당 · 적 공격 속도 -1/);
   assert.doesNotMatch(ui.el("decisions").innerHTML, /끌어온 뒤:/, "selected target has one hint in the visible context header");
+  beginAttack(ui);
   change(ui, "combatSelectCard", H(s).hand.find(card => card.kind === "vitality").id);
   change(ui, "combatSelectSlot", 0);
   assert.equal(ui.storage.get(key), before, "selection-only QA export stays byte-identical");
@@ -39,7 +45,7 @@ test("canonical QA: pull checkbox shows chapel modifier before commitment; targe
 
 test("canonical QA: area count excludes the current main target and refreshes/clears through real target/card handlers", () => {
   const s = checkpoint(0), ui = launch(s), id = "huntsman-mob-1", before = ui.storage.get(key);
-  target(ui, id); change(ui, "combatSelectCard", H(s).hand[0].id); change(ui, "combatSelectSlot", 0);
+  target(ui, id); beginAttack(ui); change(ui, "combatSelectCard", H(s).hand[0].id); change(ui, "combatSelectSlot", 0);
   const others = s.enemies.filter(enemy => enemy.id !== id && E.distance(s, H(s).position, enemy.node) <= 1);
   assert(others.length >= 2);
   assert.match(ui.el("combatSelection").innerHTML, new RegExp(`공격 실행 시 · 추가 <b>${others.length}명 × 피해 1`));
