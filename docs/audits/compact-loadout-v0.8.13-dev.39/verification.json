@@ -1,0 +1,1071 @@
+{
+  "version": "0.8.13-dev.39",
+  "method": "Read-only DOM rectangles in the existing user IAB game; only reload and temporary viewport changes, then viewport reset. No gameplay actions or private state access.",
+  "beforeDev38": {
+    "bodyOverflow": false,
+    "firearm": {
+      "bottom": 1040,
+      "height": 49,
+      "right": 1686,
+      "width": 257.03125,
+      "x": 1428.96875,
+      "y": 991
+    },
+    "loadout": {
+      "bottom": 1244,
+      "height": 260,
+      "right": 1695,
+      "width": 1683,
+      "x": 12,
+      "y": 984
+    },
+    "loadoutVariable": "216px",
+    "map": {
+      "bottom": 976,
+      "height": 738,
+      "right": 1695,
+      "width": 1295,
+      "x": 400,
+      "y": 238
+    },
+    "panels": [
+      {
+        "bottom": 1244,
+        "height": 260,
+        "right": 675.90625,
+        "width": 663.90625,
+        "x": 12,
+        "y": 984
+      },
+      {
+        "bottom": 1244,
+        "height": 260,
+        "right": 887.90625,
+        "width": 204,
+        "x": 683.90625,
+        "y": 984
+      },
+      {
+        "bottom": 1244,
+        "height": 260,
+        "right": 1695,
+        "width": 799.09375,
+        "x": 895.90625,
+        "y": 984
+      }
+    ],
+    "rightPanel": {
+      "bottom": 1200,
+      "height": 962,
+      "right": 2023,
+      "width": 320,
+      "x": 1703,
+      "y": 238
+    },
+    "slots": [
+      {
+        "bottom": 1214,
+        "height": 159.609375,
+        "right": 1161.9375,
+        "width": 257.03125,
+        "x": 904.90625,
+        "y": 1054.390625
+      },
+      {
+        "bottom": 1214,
+        "height": 159.609375,
+        "right": 1423.96875,
+        "width": 257.03125,
+        "x": 1166.9375,
+        "y": 1054.390625
+      },
+      {
+        "bottom": 1214,
+        "height": 159.609375,
+        "right": 1686,
+        "width": 257.03125,
+        "x": 1428.96875,
+        "y": 1054.390625
+      }
+    ],
+    "viewport": {
+      "height": 1252,
+      "width": 2035
+    }
+  },
+  "finalViewports": [
+    {
+      "geometry": {
+        "bodyOverflow": false,
+        "firearm": {
+          "bottom": 1091,
+          "height": 49,
+          "right": 1686,
+          "width": 257.03125,
+          "x": 1428.96875,
+          "y": 1042
+        },
+        "loadout": {
+          "bottom": 1244,
+          "height": 209,
+          "right": 1695,
+          "width": 1683,
+          "x": 12,
+          "y": 1035
+        },
+        "loadoutVariable": "209px",
+        "map": {
+          "bottom": 1027,
+          "height": 789,
+          "right": 1695,
+          "width": 1295,
+          "x": 400,
+          "y": 238
+        },
+        "panels": [
+          {
+            "bottom": 1244,
+            "height": 209,
+            "right": 675.90625,
+            "width": 663.90625,
+            "x": 12,
+            "y": 1035
+          },
+          {
+            "bottom": 1244,
+            "height": 209,
+            "right": 887.90625,
+            "width": 204,
+            "x": 683.90625,
+            "y": 1035
+          },
+          {
+            "bottom": 1244,
+            "height": 209,
+            "right": 1695,
+            "width": 799.09375,
+            "x": 895.90625,
+            "y": 1035
+          }
+        ],
+        "rightPanel": {
+          "bottom": 1244,
+          "height": 1006,
+          "right": 2023,
+          "width": 320,
+          "x": 1703,
+          "y": 238
+        },
+        "slots": [
+          {
+            "bottom": 1214,
+            "height": 108.609375,
+            "right": 1161.9375,
+            "width": 257.03125,
+            "x": 904.90625,
+            "y": 1105.390625
+          },
+          {
+            "bottom": 1214,
+            "height": 108.609375,
+            "right": 1423.96875,
+            "width": 257.03125,
+            "x": 1166.9375,
+            "y": 1105.390625
+          },
+          {
+            "bottom": 1214,
+            "height": 108.609375,
+            "right": 1686,
+            "width": 257.03125,
+            "x": 1428.96875,
+            "y": 1105.390625
+          }
+        ],
+        "viewport": {
+          "height": 1252,
+          "width": 2035
+        }
+      },
+      "details": {
+        "deck": {
+          "bottom": 1234,
+          "height": 90,
+          "right": 2011,
+          "width": 296,
+          "x": 1715,
+          "y": 1144
+        },
+        "hint": [
+          {
+            "display": "block",
+            "fontSize": "10px",
+            "text": "Space"
+          }
+        ],
+        "movementButtons": [
+          {
+            "bottom": 1157.78125,
+            "height": 27,
+            "right": 816.234375,
+            "width": 60.671875,
+            "x": 755.5625,
+            "y": 1130.78125
+          },
+          {
+            "bottom": 1186.78125,
+            "height": 27,
+            "right": 878.90625,
+            "width": 60.671875,
+            "x": 818.234375,
+            "y": 1159.78125
+          },
+          {
+            "bottom": 1215.78125,
+            "height": 27,
+            "right": 816.234375,
+            "width": 60.671875,
+            "x": 755.5625,
+            "y": 1188.78125
+          },
+          {
+            "bottom": 1186.78125,
+            "height": 27,
+            "right": 753.5625,
+            "width": 60.65625,
+            "x": 692.90625,
+            "y": 1159.78125
+          },
+          {
+            "bottom": 1157.78125,
+            "height": 27,
+            "right": 878.90625,
+            "width": 60.671875,
+            "x": 818.234375,
+            "y": 1130.78125
+          },
+          {
+            "bottom": 1215.78125,
+            "height": 27,
+            "right": 878.90625,
+            "width": 60.671875,
+            "x": 818.234375,
+            "y": 1188.78125
+          },
+          {
+            "bottom": 1215.78125,
+            "height": 27,
+            "right": 753.5625,
+            "width": 60.65625,
+            "x": 692.90625,
+            "y": 1188.78125
+          },
+          {
+            "bottom": 1157.78125,
+            "height": 27,
+            "right": 753.5625,
+            "width": 60.65625,
+            "x": 692.90625,
+            "y": 1130.78125
+          }
+        ],
+        "movementFooter": {
+          "bottom": 1233.78125,
+          "height": 14,
+          "right": 878.90625,
+          "width": 186,
+          "x": 692.90625,
+          "y": 1219.78125
+        }
+      },
+      "checks": {
+        "height209": true,
+        "bottomAligned": true,
+        "equalSlots": true,
+        "bodyFits": true,
+        "movementFooterFits": true,
+        "gunAboveSlots": true
+      }
+    },
+    {
+      "geometry": {
+        "bodyOverflow": false,
+        "firearm": {
+          "bottom": 1091,
+          "height": 49,
+          "right": 1364.984375,
+          "width": 196.546875,
+          "x": 1168.4375,
+          "y": 1042
+        },
+        "loadout": {
+          "bottom": 1244,
+          "height": 209,
+          "right": 1374,
+          "width": 1362,
+          "x": 12,
+          "y": 1035
+        },
+        "loadoutVariable": "209px",
+        "map": {
+          "bottom": 1027,
+          "height": 789,
+          "right": 1374,
+          "width": 974,
+          "x": 400,
+          "y": 238
+        },
+        "panels": [
+          {
+            "bottom": 1244,
+            "height": 209,
+            "right": 536.34375,
+            "width": 524.34375,
+            "x": 12,
+            "y": 1035
+          },
+          {
+            "bottom": 1244,
+            "height": 209,
+            "right": 748.34375,
+            "width": 204,
+            "x": 544.34375,
+            "y": 1035
+          },
+          {
+            "bottom": 1244,
+            "height": 209,
+            "right": 1374,
+            "width": 617.65625,
+            "x": 756.34375,
+            "y": 1035
+          }
+        ],
+        "rightPanel": {
+          "bottom": 1244,
+          "height": 1006,
+          "right": 1702,
+          "width": 320,
+          "x": 1382,
+          "y": 238
+        },
+        "slots": [
+          {
+            "bottom": 1214,
+            "height": 108.609375,
+            "right": 961.890625,
+            "width": 196.546875,
+            "x": 765.34375,
+            "y": 1105.390625
+          },
+          {
+            "bottom": 1214,
+            "height": 108.609375,
+            "right": 1163.4375,
+            "width": 196.546875,
+            "x": 966.890625,
+            "y": 1105.390625
+          },
+          {
+            "bottom": 1214,
+            "height": 108.609375,
+            "right": 1364.984375,
+            "width": 196.546875,
+            "x": 1168.4375,
+            "y": 1105.390625
+          }
+        ],
+        "viewport": {
+          "height": 1252,
+          "width": 1714
+        }
+      },
+      "details": {
+        "deck": {
+          "bottom": 1234,
+          "height": 90,
+          "right": 1690,
+          "width": 296,
+          "x": 1394,
+          "y": 1144
+        },
+        "hint": [
+          {
+            "display": "block",
+            "fontSize": "10px",
+            "text": "Space"
+          }
+        ],
+        "movementButtons": [
+          {
+            "bottom": 1157.78125,
+            "height": 27,
+            "right": 676.671875,
+            "width": 60.671875,
+            "x": 616,
+            "y": 1130.78125
+          },
+          {
+            "bottom": 1186.78125,
+            "height": 27,
+            "right": 739.34375,
+            "width": 60.671875,
+            "x": 678.671875,
+            "y": 1159.78125
+          },
+          {
+            "bottom": 1215.78125,
+            "height": 27,
+            "right": 676.671875,
+            "width": 60.671875,
+            "x": 616,
+            "y": 1188.78125
+          },
+          {
+            "bottom": 1186.78125,
+            "height": 27,
+            "right": 614,
+            "width": 60.65625,
+            "x": 553.34375,
+            "y": 1159.78125
+          },
+          {
+            "bottom": 1157.78125,
+            "height": 27,
+            "right": 739.34375,
+            "width": 60.671875,
+            "x": 678.671875,
+            "y": 1130.78125
+          },
+          {
+            "bottom": 1215.78125,
+            "height": 27,
+            "right": 739.34375,
+            "width": 60.671875,
+            "x": 678.671875,
+            "y": 1188.78125
+          },
+          {
+            "bottom": 1215.78125,
+            "height": 27,
+            "right": 614,
+            "width": 60.65625,
+            "x": 553.34375,
+            "y": 1188.78125
+          },
+          {
+            "bottom": 1157.78125,
+            "height": 27,
+            "right": 614,
+            "width": 60.65625,
+            "x": 553.34375,
+            "y": 1130.78125
+          }
+        ],
+        "movementFooter": {
+          "bottom": 1233.78125,
+          "height": 14,
+          "right": 739.34375,
+          "width": 186,
+          "x": 553.34375,
+          "y": 1219.78125
+        }
+      },
+      "checks": {
+        "height209": true,
+        "bottomAligned": true,
+        "equalSlots": true,
+        "bodyFits": true,
+        "movementFooterFits": true,
+        "gunAboveSlots": true
+      }
+    },
+    {
+      "geometry": {
+        "bodyOverflow": false,
+        "firearm": {
+          "bottom": 1112.5,
+          "height": 70.5,
+          "right": 882,
+          "width": 112.21875,
+          "x": 769.78125,
+          "y": 1042
+        },
+        "loadout": {
+          "bottom": 1244,
+          "height": 209,
+          "right": 891,
+          "width": 879,
+          "x": 12,
+          "y": 1035
+        },
+        "loadoutVariable": "209px",
+        "map": {
+          "bottom": 1027,
+          "height": 789,
+          "right": 891,
+          "width": 563.25,
+          "x": 327.75,
+          "y": 238
+        },
+        "panels": [
+          {
+            "bottom": 1244,
+            "height": 209,
+            "right": 326.34375,
+            "width": 314.34375,
+            "x": 12,
+            "y": 1035
+          },
+          {
+            "bottom": 1244,
+            "height": 209,
+            "right": 518.34375,
+            "width": 184,
+            "x": 334.34375,
+            "y": 1035
+          },
+          {
+            "bottom": 1244,
+            "height": 209,
+            "right": 891,
+            "width": 364.65625,
+            "x": 526.34375,
+            "y": 1035
+          }
+        ],
+        "rightPanel": {
+          "bottom": 1244,
+          "height": 1006,
+          "right": 1219,
+          "width": 320,
+          "x": 899,
+          "y": 238
+        },
+        "slots": [
+          {
+            "bottom": 1214,
+            "height": 100.609375,
+            "right": 647.5625,
+            "width": 112.21875,
+            "x": 535.34375,
+            "y": 1113.390625
+          },
+          {
+            "bottom": 1214,
+            "height": 100.609375,
+            "right": 764.78125,
+            "width": 112.21875,
+            "x": 652.5625,
+            "y": 1113.390625
+          },
+          {
+            "bottom": 1214,
+            "height": 100.609375,
+            "right": 882,
+            "width": 112.21875,
+            "x": 769.78125,
+            "y": 1113.390625
+          }
+        ],
+        "viewport": {
+          "height": 1252,
+          "width": 1231
+        }
+      },
+      "details": {
+        "deck": {
+          "bottom": 1234,
+          "height": 90,
+          "right": 1207,
+          "width": 296,
+          "x": 911,
+          "y": 1144
+        },
+        "hint": [
+          {
+            "display": "block",
+            "fontSize": "10px",
+            "text": "Space"
+          }
+        ],
+        "movementButtons": [
+          {
+            "bottom": 1157.78125,
+            "height": 27,
+            "right": 453.34375,
+            "width": 54,
+            "x": 399.34375,
+            "y": 1130.78125
+          },
+          {
+            "bottom": 1186.78125,
+            "height": 27,
+            "right": 509.34375,
+            "width": 54,
+            "x": 455.34375,
+            "y": 1159.78125
+          },
+          {
+            "bottom": 1215.78125,
+            "height": 27,
+            "right": 453.34375,
+            "width": 54,
+            "x": 399.34375,
+            "y": 1188.78125
+          },
+          {
+            "bottom": 1186.78125,
+            "height": 27,
+            "right": 397.34375,
+            "width": 54,
+            "x": 343.34375,
+            "y": 1159.78125
+          },
+          {
+            "bottom": 1157.78125,
+            "height": 27,
+            "right": 509.34375,
+            "width": 54,
+            "x": 455.34375,
+            "y": 1130.78125
+          },
+          {
+            "bottom": 1215.78125,
+            "height": 27,
+            "right": 509.34375,
+            "width": 54,
+            "x": 455.34375,
+            "y": 1188.78125
+          },
+          {
+            "bottom": 1215.78125,
+            "height": 27,
+            "right": 397.34375,
+            "width": 54,
+            "x": 343.34375,
+            "y": 1188.78125
+          },
+          {
+            "bottom": 1157.78125,
+            "height": 27,
+            "right": 397.34375,
+            "width": 54,
+            "x": 343.34375,
+            "y": 1130.78125
+          }
+        ],
+        "movementFooter": {
+          "bottom": 1233.78125,
+          "height": 14,
+          "right": 509.34375,
+          "width": 166,
+          "x": 343.34375,
+          "y": 1219.78125
+        }
+      },
+      "checks": {
+        "height209": true,
+        "bottomAligned": true,
+        "equalSlots": true,
+        "bodyFits": true,
+        "movementFooterFits": true,
+        "gunAboveSlots": true
+      }
+    },
+    {
+      "geometry": {
+        "bodyOverflow": false,
+        "firearm": {
+          "bottom": 582.5,
+          "height": 70.5,
+          "right": 933,
+          "width": 122.203125,
+          "x": 810.796875,
+          "y": 512
+        },
+        "loadout": {
+          "bottom": 714,
+          "height": 209,
+          "right": 942,
+          "width": 932,
+          "x": 10,
+          "y": 505
+        },
+        "loadoutVariable": "209px",
+        "map": {
+          "bottom": 499,
+          "height": 275,
+          "right": 942,
+          "width": 604,
+          "x": 338,
+          "y": 224
+        },
+        "panels": [
+          {
+            "bottom": 714,
+            "height": 209,
+            "right": 347.390625,
+            "width": 337.390625,
+            "x": 10,
+            "y": 505
+          },
+          {
+            "bottom": 714,
+            "height": 209,
+            "right": 539.390625,
+            "width": 184,
+            "x": 355.390625,
+            "y": 505
+          },
+          {
+            "bottom": 714,
+            "height": 209,
+            "right": 942,
+            "width": 394.609375,
+            "x": 547.390625,
+            "y": 505
+          }
+        ],
+        "rightPanel": {
+          "bottom": 714,
+          "height": 490,
+          "right": 1270,
+          "width": 320,
+          "x": 950,
+          "y": 224
+        },
+        "slots": [
+          {
+            "bottom": 684,
+            "height": 100.609375,
+            "right": 678.59375,
+            "width": 122.203125,
+            "x": 556.390625,
+            "y": 583.390625
+          },
+          {
+            "bottom": 684,
+            "height": 100.609375,
+            "right": 805.796875,
+            "width": 122.203125,
+            "x": 683.59375,
+            "y": 583.390625
+          },
+          {
+            "bottom": 684,
+            "height": 100.609375,
+            "right": 933,
+            "width": 122.203125,
+            "x": 810.796875,
+            "y": 583.390625
+          }
+        ],
+        "viewport": {
+          "height": 720,
+          "width": 1280
+        }
+      },
+      "details": {
+        "deck": {
+          "bottom": 704,
+          "height": 90,
+          "right": 1258,
+          "width": 296,
+          "x": 962,
+          "y": 614
+        },
+        "hint": [
+          {
+            "display": "block",
+            "fontSize": "10px",
+            "text": "Space"
+          }
+        ],
+        "movementButtons": [
+          {
+            "bottom": 627.78125,
+            "height": 27,
+            "right": 474.390625,
+            "width": 54,
+            "x": 420.390625,
+            "y": 600.78125
+          },
+          {
+            "bottom": 656.78125,
+            "height": 27,
+            "right": 530.390625,
+            "width": 54,
+            "x": 476.390625,
+            "y": 629.78125
+          },
+          {
+            "bottom": 685.78125,
+            "height": 27,
+            "right": 474.390625,
+            "width": 54,
+            "x": 420.390625,
+            "y": 658.78125
+          },
+          {
+            "bottom": 656.78125,
+            "height": 27,
+            "right": 418.390625,
+            "width": 54,
+            "x": 364.390625,
+            "y": 629.78125
+          },
+          {
+            "bottom": 627.78125,
+            "height": 27,
+            "right": 530.390625,
+            "width": 54,
+            "x": 476.390625,
+            "y": 600.78125
+          },
+          {
+            "bottom": 685.78125,
+            "height": 27,
+            "right": 530.390625,
+            "width": 54,
+            "x": 476.390625,
+            "y": 658.78125
+          },
+          {
+            "bottom": 685.78125,
+            "height": 27,
+            "right": 418.390625,
+            "width": 54,
+            "x": 364.390625,
+            "y": 658.78125
+          },
+          {
+            "bottom": 627.78125,
+            "height": 27,
+            "right": 418.390625,
+            "width": 54,
+            "x": 364.390625,
+            "y": 600.78125
+          }
+        ],
+        "movementFooter": {
+          "bottom": 703.78125,
+          "height": 14,
+          "right": 530.390625,
+          "width": 166,
+          "x": 364.390625,
+          "y": 689.78125
+        }
+      },
+      "checks": {
+        "height209": true,
+        "bottomAligned": true,
+        "equalSlots": true,
+        "bodyFits": true,
+        "movementFooterFits": true,
+        "gunAboveSlots": true
+      }
+    },
+    {
+      "geometry": {
+        "bodyOverflow": false,
+        "firearm": {
+          "bottom": 1177,
+          "height": 133,
+          "right": 536.984375,
+          "width": 55.765625,
+          "x": 481.21875,
+          "y": 1044
+        },
+        "loadout": {
+          "bottom": 1246,
+          "height": 209,
+          "right": 546,
+          "width": 540,
+          "x": 6,
+          "y": 1037
+        },
+        "loadoutVariable": "209px",
+        "map": {
+          "bottom": 1031,
+          "height": 819,
+          "right": 548,
+          "width": 326,
+          "x": 222,
+          "y": 212
+        },
+        "panels": [
+          {
+            "bottom": 1246,
+            "height": 209,
+            "right": 174.6875,
+            "width": 168.6875,
+            "x": 6,
+            "y": 1037
+          },
+          {
+            "bottom": 1246,
+            "height": 209,
+            "right": 344.6875,
+            "width": 164,
+            "x": 180.6875,
+            "y": 1037
+          },
+          {
+            "bottom": 1246,
+            "height": 209,
+            "right": 546,
+            "width": 195.3125,
+            "x": 350.6875,
+            "y": 1037
+          }
+        ],
+        "rightPanel": {
+          "bottom": 1246,
+          "height": 1034,
+          "right": 794,
+          "width": 240,
+          "x": 554,
+          "y": 212
+        },
+        "slots": [
+          {
+            "bottom": 1273,
+            "height": 96,
+            "right": 412.125,
+            "width": 52.4375,
+            "x": 359.6875,
+            "y": 1177
+          },
+          {
+            "bottom": 1273,
+            "height": 96,
+            "right": 469.5625,
+            "width": 52.4375,
+            "x": 417.125,
+            "y": 1177
+          },
+          {
+            "bottom": 1273,
+            "height": 96,
+            "right": 527,
+            "width": 52.4375,
+            "x": 474.5625,
+            "y": 1177
+          }
+        ],
+        "viewport": {
+          "height": 1252,
+          "width": 800
+        }
+      },
+      "details": {
+        "deck": {
+          "bottom": 1238,
+          "height": 90,
+          "right": 786,
+          "width": 224,
+          "x": 562,
+          "y": 1148
+        },
+        "hint": [
+          {
+            "display": "block",
+            "fontSize": "10px",
+            "text": "Space"
+          }
+        ],
+        "movementButtons": [
+          {
+            "bottom": 1159.78125,
+            "height": 27,
+            "right": 279.6875,
+            "width": 44,
+            "x": 235.6875,
+            "y": 1132.78125
+          },
+          {
+            "bottom": 1188.78125,
+            "height": 27,
+            "right": 325.6875,
+            "width": 44,
+            "x": 281.6875,
+            "y": 1161.78125
+          },
+          {
+            "bottom": 1217.78125,
+            "height": 27,
+            "right": 279.6875,
+            "width": 44,
+            "x": 235.6875,
+            "y": 1190.78125
+          },
+          {
+            "bottom": 1188.78125,
+            "height": 27,
+            "right": 233.6875,
+            "width": 44,
+            "x": 189.6875,
+            "y": 1161.78125
+          },
+          {
+            "bottom": 1159.78125,
+            "height": 27,
+            "right": 325.6875,
+            "width": 44,
+            "x": 281.6875,
+            "y": 1132.78125
+          },
+          {
+            "bottom": 1217.78125,
+            "height": 27,
+            "right": 325.6875,
+            "width": 44,
+            "x": 281.6875,
+            "y": 1190.78125
+          },
+          {
+            "bottom": 1217.78125,
+            "height": 27,
+            "right": 233.6875,
+            "width": 44,
+            "x": 189.6875,
+            "y": 1190.78125
+          },
+          {
+            "bottom": 1159.78125,
+            "height": 27,
+            "right": 233.6875,
+            "width": 44,
+            "x": 189.6875,
+            "y": 1132.78125
+          }
+        ],
+        "movementFooter": {
+          "bottom": 1239,
+          "height": 28,
+          "right": 335.6875,
+          "width": 146,
+          "x": 189.6875,
+          "y": 1211
+        }
+      },
+      "checks": {
+        "height209": true,
+        "bottomAligned": true,
+        "equalSlots": true,
+        "bodyFits": true,
+        "movementFooterFits": true,
+        "gunAboveSlots": true
+      }
+    }
+  ],
+  "passedChecks": 30,
+  "sourceSha256": {
+    "hunt.html": "a80bfd6acc8f1f9c90e1b92ca6e95be95c9a152832443c3bf91729eccbf05154",
+    "styles/hunt.css": "ef0ee29105650d126af78fdcf0f99f5d569906605972343f4d77b7406df72bc5",
+    "styles/hunt-map-controls.css": "66c6f6a4134c6f704157aa0e09e462118dda5b72d74bdc950258af1a9ea92edd",
+    "styles/hunt-workspace-layout.css": "4f55e98984f55c879c267db7af74ce15a9fb1a02a18bdf76510b6b540e5e5ae8",
+    "package.json": "95b9874ad272cc55517d562b2fa100e1786c0ad91f5780b171980faea7002dd5"
+  }
+}

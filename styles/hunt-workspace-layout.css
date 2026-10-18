@@ -73,7 +73,7 @@ html[data-phase] .hunt-main .hunt-layout { grid-template-columns: var(--objectiv
 .hunt-main #deckStatus .last-enemy-action { grid-column: 1 / -1; display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; padding: 5px 8px; min-height: 30px; }
 .hunt-main #deckStatus .last-enemy-action strong { color: #e4d1a4; text-align: right; overflow-wrap: anywhere; }
 @media (min-width: 801px) {
-  .hunt-screen .hunt-main { grid-template-rows: 132px 24px minmax(0, 1fr) 260px; }
+  .hunt-screen .hunt-main { grid-template-rows: 132px 24px minmax(0, 1fr) var(--loadout-row); }
 }
 
 /* Separate category, title, action and progress without enlarging HUD text. */

@@ -97,10 +97,10 @@ html[data-phase="between_chapters"] .hunt-main .hunt-layout {
 }
 /* 오른쪽 진행 상황은 하단 옆까지 이어집니다. 하단을 줄여도 전체 열 높이는 유지합니다. */
 @media (min-width: 721px) {
-  .hunt-screen { --decision-width: 320px; --loadout-row: 216px; --movement-extra: 64px; --loadout-gap: var(--hud-gap); }
+  .hunt-screen { --decision-width: 320px; --loadout-row: 209px; --movement-extra: 64px; --loadout-gap: var(--hud-gap); }
   .hunt-main .hud-summary > .panel { overflow-y: auto; scrollbar-width: thin; }
   .hunt-main .hunt-layout { position: relative; }
-  .hunt-main .hunt-decisions { position: absolute; top: 0; right: 0; width: var(--decision-width); height: calc(100% + var(--loadout-row) + var(--hud-gap)); box-sizing: border-box; }
+  .hunt-main .hunt-decisions { position: absolute; top: 0; right: 0; width: var(--decision-width); height: calc(100% + var(--loadout-row) + var(--workspace-row-gap)); box-sizing: border-box; }
   /* 손패의 기존 너비를 유지하고 이동 조작의 증가분만 무기 영역에서 확보합니다. */
   .hunt-main .hunt-loadout { margin-right: calc(var(--decision-width) + var(--hud-gap)); grid-template-columns: minmax(0, calc((100% - 140px - var(--loadout-gap) - var(--loadout-gap)) / 2.3)) calc(140px + var(--movement-extra)) minmax(0, 1fr); }
   .hunt-screen .hunt-main { grid-template-rows: 96px 24px minmax(0, 1fr) var(--loadout-row); }
