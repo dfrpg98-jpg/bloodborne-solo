@@ -18,6 +18,9 @@ test("detailed help separates top-row hand selection, Space refill and the right
   assert.match(shortcutText, /Space는 ‘행동하기’·차례 마치기·이동 마치기·타일 배치/);
   assert.match(shortcutText, /Esc 또는 Backspace는 ‘행동취소’나 ‘이동 선언 취소’/);
   assert.match(shortcutText, /여러 대응이 있거나 선택이 미정이면 임의로 넘기지 않습니다/);
+  assert.match(shortcutText, /‘적과 조우’에서 Q는.*‘맞서 공격’, E는 ‘공격하지 않고 행동 공개’/);
+  assert.match(shortcutText, /Q·E·Z·C가 각각 0°·90°·180°·270°/);
+  assert.match(shortcutText, /불가능한 각도는 건너뛰지 않고 해당 키도 비활성/);
 });
 
 test("help maps all eight NumLock directions and explains actual button availability and input guards", () => {

@@ -1,0 +1,284 @@
+{
+  "schema": 1,
+  "scope": "Normal public command replay, engine phase guards, action model and actual controller rendering; synthetic DOM is not native keyboard evidence.",
+  "setup": {
+    "seed": 90,
+    "startingConsumable": null,
+    "firearmId": "hunter-pistol",
+    "startSpace": "center",
+    "campaign": true,
+    "rulesVersion": 13
+  },
+  "mapping": {
+    "Q": {
+      "hunter": "MOVE",
+      "move": "STOP_MOVE",
+      "combat_choose": "COUNTER",
+      "tile_place": "rotation 0"
+    },
+    "E": {
+      "hunter": "DREAM",
+      "combat_choose": "NO_ATTACK",
+      "tile_place": "rotation 1"
+    },
+    "Z": {
+      "hunter": "TRANSFORM",
+      "tile_place": "rotation 2"
+    },
+    "C": {
+      "hunter": "ATTACK",
+      "tile_place": "rotation 3"
+    }
+  },
+  "traces": [
+    {
+      "id": "beast-claw-normal",
+      "file": "tests/fixtures/weapon-campaign-completion/beast-claw-0.json",
+      "weaponId": "beast-claw",
+      "face": 0,
+      "commandCount": 351,
+      "stateCount": 352,
+      "phaseCounts": {
+        "hunter": 105,
+        "move": 79,
+        "tile_place": 12,
+        "combat_choose": 18,
+        "combat_react": 57,
+        "refill": 24,
+        "combat_extra": 5,
+        "return": 11,
+        "mission_survivor": 5,
+        "mission_choice": 1,
+        "stun": 2,
+        "upgrade_pick": 8,
+        "upgrade_replace": 6,
+        "over": 3,
+        "between_chapters": 3,
+        "firearm_react": 8,
+        "card_choice": 1,
+        "activation": 3,
+        "boss_move": 1
+      },
+      "combatChooseCount": 18,
+      "combatChooseOrigins": {
+        "activation": 18
+      },
+      "moveOrDreamOverlapCount": 0,
+      "combatChooseWithMoveCount": 0,
+      "hunterRewardLocks": 1
+    },
+    {
+      "id": "burial-normal",
+      "file": "tests/fixtures/full-campaign-actual-v10-commands.json",
+      "weaponId": "burial",
+      "face": 1,
+      "commandCount": 325,
+      "stateCount": 326,
+      "phaseCounts": {
+        "hunter": 94,
+        "move": 62,
+        "tile_place": 9,
+        "combat_react": 60,
+        "combat_choose": 16,
+        "refill": 29,
+        "return": 11,
+        "stun": 3,
+        "interaction_order": 5,
+        "mission_survivor": 6,
+        "mission_choice": 1,
+        "upgrade_pick": 8,
+        "upgrade_replace": 6,
+        "over": 3,
+        "between_chapters": 2,
+        "loot_choice": 1,
+        "activation": 5,
+        "enemy_path": 1,
+        "boss_move": 1,
+        "free_transform": 2,
+        "boss_react": 1
+      },
+      "combatChooseCount": 16,
+      "combatChooseOrigins": {
+        "activation": 16
+      },
+      "moveOrDreamOverlapCount": 0,
+      "combatChooseWithMoveCount": 0,
+      "hunterRewardLocks": 2
+    }
+  ],
+  "aggregate": {
+    "stateCount": 678,
+    "combatChooseCount": 34,
+    "moveOrDreamOverlapCount": 0,
+    "combatChooseWithMoveCount": 0,
+    "hunterRewardLocks": 3
+  },
+  "engineWitnesses": [
+    {
+      "phase": "hunter",
+      "source": "tests/fixtures/weapon-campaign-completion/beast-claw-0.json",
+      "prefixLength": 0,
+      "deniedCommands": [
+        "COUNTER",
+        "NO_ATTACK",
+        "STOP_MOVE"
+      ]
+    },
+    {
+      "phase": "move",
+      "source": "tests/fixtures/weapon-campaign-completion/beast-claw-0.json",
+      "prefixLength": 3,
+      "deniedCommands": [
+        "COUNTER",
+        "NO_ATTACK",
+        "DREAM"
+      ]
+    },
+    {
+      "phase": "combat_choose",
+      "source": "tests/fixtures/weapon-campaign-completion/beast-claw-0.json",
+      "prefixLength": 5,
+      "deniedCommands": [
+        "MOVE",
+        "STOP_MOVE",
+        "DREAM",
+        "TRANSFORM",
+        "ATTACK"
+      ]
+    }
+  ],
+  "controllerWitnesses": [
+    {
+      "source": "tests/fixtures/weapon-campaign-completion/beast-claw-0.json",
+      "prefixLength": 0,
+      "phase": "hunter",
+      "basicActionsEnabled": [
+        "MOVE",
+        "DREAM",
+        "TRANSFORM"
+      ],
+      "counterAndNoAttackAbsent": true,
+      "stopMoveEnabled": false
+    },
+    {
+      "source": "tests/fixtures/weapon-campaign-completion/beast-claw-0.json",
+      "prefixLength": 3,
+      "phase": "move",
+      "basicActionsEnabled": [],
+      "counterAndNoAttackAbsent": true,
+      "stopMoveEnabled": true
+    },
+    {
+      "source": "tests/fixtures/weapon-campaign-completion/beast-claw-0.json",
+      "prefixLength": 5,
+      "phase": "combat_choose",
+      "counterBeforeSelection": false,
+      "counterWithCardOnly": false,
+      "counterWithCardAndSlot": true,
+      "noAttackEnabled": true,
+      "moveOrDreamEnabled": false,
+      "selectionChangedSave": false
+    },
+    {
+      "phase": "hunter",
+      "mandatoryRewardChoiceStates": 3,
+      "allBasicActionsDisabled": true,
+      "counterAndNoAttackAbsent": true
+    }
+  ],
+  "tilePlacementWitnesses": [
+    {
+      "tileId": "tile-07",
+      "source": "tests/fixtures/map-preview-dev38-recipes.json",
+      "commandCount": 16,
+      "legalRotations": [
+        2
+      ],
+      "displayedDegrees": [
+        0,
+        90,
+        180,
+        270
+      ],
+      "fixedShortcutRecommendation": [
+        "Q",
+        "E",
+        "Z",
+        "C"
+      ],
+      "basicActionEnabledCount": 0,
+      "strictSaveReplay": true,
+      "phaseGuardDeniesBasicCommands": true
+    },
+    {
+      "tileId": "tile-17",
+      "source": "tests/fixtures/map-preview-dev38-recipes.json",
+      "commandCount": 24,
+      "legalRotations": [
+        0,
+        1,
+        2
+      ],
+      "displayedDegrees": [
+        0,
+        90,
+        180,
+        270
+      ],
+      "fixedShortcutRecommendation": [
+        "Q",
+        "E",
+        "Z",
+        "C"
+      ],
+      "basicActionEnabledCount": 0,
+      "strictSaveReplay": true,
+      "phaseGuardDeniesBasicCommands": true
+    },
+    {
+      "tileId": "tile-11",
+      "source": "tests/fixtures/map-preview-dev38-recipes.json",
+      "commandCount": 46,
+      "legalRotations": [
+        0,
+        1,
+        2
+      ],
+      "displayedDegrees": [
+        0,
+        90,
+        180,
+        270
+      ],
+      "fixedShortcutRecommendation": [
+        "Q",
+        "E",
+        "Z",
+        "C"
+      ],
+      "basicActionEnabledCount": 0,
+      "strictSaveReplay": true,
+      "phaseGuardDeniesBasicCommands": true
+    }
+  ],
+  "status": "passed",
+  "timestamp": "2026-10-18T13:12:16.188Z",
+  "sourceSha256Before": {
+    "src/hunt-engine.js": "ef962e41101bbb8a1690c772bbf3f4e6b1d953c699cdc33fe4b142d8cd0b425c",
+    "src/hunt-action-menu.js": "48692c836cda34679887956afb72c9b747c091f4e30182588a49551df3c53358",
+    "src/hunt-context.js": "19fb31c5624b11d5b418751148549a12ea8554ca3d6a84c0da1169ef55a2fd26",
+    "src/hunt-app.js": "4fb7472ad4e1875c4fd542ef52c4ffd5999168ef495baf97f0fb16f3a7193ab2",
+    "src/hunt-keyboard-controls.js": "5ed97fd1b60a9467e9987e0cefcb1eef77bb44ad35931ec0ecf18b75f1ba58d5",
+    "src/game-help.js": "36197583d7671bccf199dc19a09f5c42815c0188d36a83088c2f4fa844fec777",
+    "hunt.html": "def9db57b97f52edf827beee0c1ea34ff22282e29d2d4d341a94cfe5661a20cb"
+  },
+  "sourceSha256After": {
+    "src/hunt-engine.js": "ef962e41101bbb8a1690c772bbf3f4e6b1d953c699cdc33fe4b142d8cd0b425c",
+    "src/hunt-action-menu.js": "48692c836cda34679887956afb72c9b747c091f4e30182588a49551df3c53358",
+    "src/hunt-context.js": "19fb31c5624b11d5b418751148549a12ea8554ca3d6a84c0da1169ef55a2fd26",
+    "src/hunt-app.js": "4fb7472ad4e1875c4fd542ef52c4ffd5999168ef495baf97f0fb16f3a7193ab2",
+    "src/hunt-keyboard-controls.js": "5ed97fd1b60a9467e9987e0cefcb1eef77bb44ad35931ec0ecf18b75f1ba58d5",
+    "src/game-help.js": "36197583d7671bccf199dc19a09f5c42815c0188d36a83088c2f4fa844fec777",
+    "hunt.html": "def9db57b97f52edf827beee0c1ea34ff22282e29d2d4d341a94cfe5661a20cb"
+  }
+}

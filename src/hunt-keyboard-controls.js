@@ -44,11 +44,17 @@
     if (!controls) return null;
     let destroyed = false;
     const hints = new WeakMap(), held = new Set(), actionHints = new Set();
+    function contextualKey(button) {
+      const phase = document.documentElement?.dataset.phase;
+      if (phase === "combat_choose") return button.dataset.command === "COUNTER" ? "Q" : button.dataset.command === "NO_ATTACK" ? "E" : "";
+      if (phase === "tile_place" && button.hasAttribute("data-rotation")) return ["Q", "E", "Z", "C"][Number(button.dataset.rotation)] || "";
+      return "";
+    }
     function annotate(button, keys) {
       if (!hints.has(button)) hints.set(button, { title: button.getAttribute("title"), keys: button.getAttribute("aria-keyshortcuts") });
-      const title = hints.get(button).title || "";
-      button.setAttribute("title", `${title}${title ? " · " : ""}단축키 ${keys}`);
-      button.setAttribute("aria-keyshortcuts", keys);
+      const title = hints.get(button).title || "", combined = [...new Set([contextualKey(button), ...keys.split(" ")].filter(Boolean))].join(" ");
+      button.setAttribute("title", `${title}${title ? " · " : ""}단축키 ${combined}`);
+      button.setAttribute("aria-keyshortcuts", combined);
     }
     function clearHint(button) {
       const original = hints.get(button);
@@ -99,6 +105,21 @@
       // Keep the standalone movement controller usable without an action bar.
       return type === "MOVE" ? [...controls.querySelectorAll("[data-command]")]
         .find(button => button.dataset.command === "MOVE" && available(button)) || null : null;
+    }
+    function decisionButtons(selector) {
+      return [...new Set(["decisionActions", "decisions", "mapContext"].flatMap(id =>
+        [...document.getElementById(id)?.querySelectorAll(selector) || []]))];
+    }
+    function contextualAction(key) {
+      const phase = document.documentElement?.dataset.phase;
+      if (phase === "tile_place") {
+        const rotation = ["Q", "E", "Z", "C"].indexOf(key);
+        return decisionButtons("[data-rotation]").find(button => Number(button.dataset.rotation) === rotation && available(button)) || null;
+      }
+      if (phase !== "combat_choose" || !["Q", "E"].includes(key)) return null;
+      const type = key === "Q" ? "COUNTER" : "NO_ATTACK", enabled = decisionButtons("[data-command]")
+        .filter(button => button.dataset.command === type && available(button));
+      return enabled.find(button => button.contains?.(document.activeElement)) || (enabled.length === 1 ? enabled[0] : null);
     }
     function primaryAction() {
       const phase = document.documentElement?.dataset.phase,
@@ -154,6 +175,9 @@
       for (const button of document.getElementById("hunterActionBar")?.querySelectorAll("[data-hunter-intent]") || []) {
         const key = Object.keys(hunterShortcuts).find(key => hunterShortcuts[key] === button.dataset.hunterIntent);
         if (key) annotate(button, key);
+      }
+      for (const button of decisionButtons("[data-command]").concat(decisionButtons("[data-rotation]"))) {
+        const key = contextualKey(button); if (key) annotate(button, key);
       }
       for (const button of controls.querySelectorAll("[data-move-direction]")) {
         const keys = shortcuts[button.dataset.moveDirection];
@@ -217,7 +241,7 @@
         if (available(card)) button = card;
       } else if (shortcut) {
         if (event.shiftKey) return;
-        button = hunterAction(hunterShortcuts[shortcut]);
+        button = ["combat_choose", "tile_place"].includes(phase) ? contextualAction(shortcut) : hunterAction(hunterShortcuts[shortcut]);
       } else if (phase === "move") {
         const direction = directions[key];
         if (direction) button = [...controls.querySelectorAll("[data-move-direction]")].find(element => element.dataset.moveDirection === direction && available(element));
