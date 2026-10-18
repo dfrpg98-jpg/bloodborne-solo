@@ -111,7 +111,7 @@ html[data-phase="between_chapters"] .hunt-main .hunt-layout {
 @media (min-width: 721px) and (max-width: 1400px) { .hunt-screen { --movement-extra: 44px; } }
 @media (min-width: 721px) and (max-width: 1200px) { .hunt-screen, html[data-phase] .hunt-screen { --decision-width: 280px; } }
 @media (min-width: 721px) and (max-width: 980px) { .hunt-screen, html[data-phase] .hunt-screen { --decision-width: 240px; --movement-extra: 24px; } }
-@media (min-width: 721px) and (max-width: 800px) { .hunt-screen { --loadout-gap: 6px; } }
+@media (min-width: 721px) and (max-width: 800px) { .hunt-screen { --loadout-gap: 6px; --loadout-row: 260px; } }
 @media (min-width: 721px) and (max-height: 800px) { .hunt-screen .hunt-main { grid-template-rows: 68px 22px minmax(0, 1fr) var(--loadout-row); } }
 @media (min-width: 721px) and (max-height: 680px) { .hunt-screen .hunt-main { grid-template-rows: 60px 22px minmax(0, 1fr) var(--loadout-row); } }
 .hunt-main .hunt-decisions .gun-panel { position: static; width: auto; height: auto; min-height: 0; padding: 8px 0 0 !important; margin: 7px 0 0; flex: 0 0 auto; display: grid !important; grid-template-columns: minmax(0, 1fr) minmax(100px, 46%); align-items: center; gap: 7px; border: 0; border-top: 1px solid #51636a; border-radius: 0; background: transparent; }
