@@ -1,0 +1,1279 @@
+{
+  "status": "passed",
+  "version": "0.8.13-dev.41",
+  "method": "CUA native key input and official setup/export/import on separate origin 8892; read-only DOM; user origin8860 reload only",
+  "inputObservations": [
+    {
+      "step": "combat_choose_initial",
+      "ui": {
+        "actions": [
+          {
+            "command": "COUNTER",
+            "disabled": true,
+            "keys": "Q",
+            "text": "맞서 공격 (Q)"
+          },
+          {
+            "command": "NO_ATTACK",
+            "disabled": false,
+            "keys": "E",
+            "text": "공격하지 않고 행동 공개 (E)"
+          }
+        ],
+        "barHidden": true,
+        "barRect": {
+          "bottom": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "cards": [
+          {
+            "id": "card-11",
+            "pressed": "false"
+          },
+          {
+            "id": "card-6",
+            "pressed": "false"
+          },
+          {
+            "id": "card-5",
+            "pressed": "false"
+          }
+        ],
+        "detailsRect": {
+          "bottom": 458.40625,
+          "height": 138.96875,
+          "width": 296,
+          "x": 962,
+          "y": 319.4375
+        },
+        "phase": "combat_choose",
+        "rotations": [],
+        "slots": [
+          {
+            "pressed": "false",
+            "slot": "0"
+          },
+          {
+            "pressed": "false",
+            "slot": "1"
+          },
+          {
+            "pressed": "false",
+            "slot": "2"
+          }
+        ],
+        "title": "적과 조우",
+        "viewport": [
+          1280,
+          720
+        ]
+      }
+    },
+    {
+      "step": "combat_Q_without_selection_Z_C_noop",
+      "ui": {
+        "actions": [
+          {
+            "command": "COUNTER",
+            "disabled": true,
+            "keys": "Q",
+            "text": "맞서 공격 (Q)"
+          },
+          {
+            "command": "NO_ATTACK",
+            "disabled": false,
+            "keys": "E",
+            "text": "공격하지 않고 행동 공개 (E)"
+          }
+        ],
+        "barHidden": true,
+        "barRect": {
+          "bottom": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "cards": [
+          {
+            "id": "card-11",
+            "pressed": "false"
+          },
+          {
+            "id": "card-6",
+            "pressed": "false"
+          },
+          {
+            "id": "card-5",
+            "pressed": "false"
+          }
+        ],
+        "detailsRect": {
+          "bottom": 458.40625,
+          "height": 138.96875,
+          "width": 296,
+          "x": 962,
+          "y": 319.4375
+        },
+        "phase": "combat_choose",
+        "rotations": [],
+        "slots": [
+          {
+            "pressed": "false",
+            "slot": "0"
+          },
+          {
+            "pressed": "false",
+            "slot": "1"
+          },
+          {
+            "pressed": "false",
+            "slot": "2"
+          }
+        ],
+        "title": "적과 조우",
+        "viewport": [
+          1280,
+          720
+        ]
+      }
+    },
+    {
+      "step": "combat_selected_counter",
+      "ui": {
+        "actions": [
+          {
+            "command": "COUNTER",
+            "disabled": false,
+            "keys": "Q Space",
+            "text": "맞서 공격 (Q)Space"
+          },
+          {
+            "command": "NO_ATTACK",
+            "disabled": false,
+            "keys": "E",
+            "text": "공격하지 않고 행동 공개 (E)"
+          }
+        ],
+        "barHidden": true,
+        "barRect": {
+          "bottom": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "cards": [
+          {
+            "id": "card-11",
+            "pressed": "false"
+          },
+          {
+            "id": "card-6",
+            "pressed": "true"
+          },
+          {
+            "id": "card-5",
+            "pressed": "false"
+          }
+        ],
+        "detailsRect": {
+          "bottom": 412.359375,
+          "height": 92.921875,
+          "width": 296,
+          "x": 962,
+          "y": 319.4375
+        },
+        "phase": "combat_choose",
+        "rotations": [],
+        "slots": [
+          {
+            "pressed": "false",
+            "slot": "0"
+          },
+          {
+            "pressed": "true",
+            "slot": "1"
+          },
+          {
+            "pressed": "false",
+            "slot": "2"
+          }
+        ],
+        "title": "적과 조우",
+        "viewport": [
+          1280,
+          720
+        ]
+      }
+    },
+    {
+      "step": "Q_counter_executes",
+      "ui": {
+        "actions": [
+          {
+            "command": "DODGE",
+            "disabled": true,
+            "keys": null,
+            "text": "회피"
+          },
+          {
+            "command": "RESOLVE",
+            "disabled": false,
+            "keys": null,
+            "text": "전투 처리"
+          }
+        ],
+        "barHidden": true,
+        "barRect": {
+          "bottom": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "cards": [
+          {
+            "id": "card-11",
+            "pressed": "false"
+          },
+          {
+            "id": "card-5",
+            "pressed": "false"
+          }
+        ],
+        "detailsRect": {
+          "bottom": 472,
+          "height": 152.5625,
+          "width": 296,
+          "x": 962,
+          "y": 319.4375
+        },
+        "phase": "combat_react",
+        "rotations": [],
+        "slots": [
+          {
+            "pressed": "false",
+            "slot": "0"
+          },
+          {
+            "pressed": "false",
+            "slot": "1"
+          },
+          {
+            "pressed": "false",
+            "slot": "2"
+          }
+        ],
+        "title": "전투 대응",
+        "viewport": [
+          1280,
+          720
+        ]
+      }
+    },
+    {
+      "step": "E_reveal_without_attack",
+      "ui": {
+        "actions": [
+          {
+            "command": "DODGE",
+            "disabled": true,
+            "keys": null,
+            "text": "회피"
+          },
+          {
+            "command": "RESOLVE",
+            "disabled": false,
+            "keys": null,
+            "text": "전투 처리"
+          }
+        ],
+        "barHidden": true,
+        "barRect": {
+          "bottom": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "cards": [
+          {
+            "id": "card-11",
+            "pressed": "false"
+          },
+          {
+            "id": "card-6",
+            "pressed": "false"
+          },
+          {
+            "id": "card-5",
+            "pressed": "false"
+          }
+        ],
+        "detailsRect": {
+          "bottom": 472,
+          "height": 152.5625,
+          "width": 296,
+          "x": 962,
+          "y": 319.4375
+        },
+        "phase": "combat_react",
+        "rotations": [],
+        "slots": [
+          {
+            "pressed": "false",
+            "slot": "0"
+          },
+          {
+            "pressed": "false",
+            "slot": "1"
+          },
+          {
+            "pressed": "false",
+            "slot": "2"
+          }
+        ],
+        "title": "전투 대응",
+        "viewport": [
+          1280,
+          720
+        ]
+      }
+    },
+    {
+      "step": "tile17_import",
+      "ui": {
+        "actions": [],
+        "barHidden": true,
+        "barRect": {
+          "bottom": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "cards": [],
+        "detailsRect": {
+          "bottom": 605,
+          "height": 285.5625,
+          "width": 296,
+          "x": 962,
+          "y": 319.4375
+        },
+        "phase": "tile_place",
+        "rotations": [
+          {
+            "disabled": false,
+            "rotation": "0",
+            "selected": true,
+            "text": "0° (Q)"
+          },
+          {
+            "disabled": false,
+            "rotation": "1",
+            "selected": false,
+            "text": "90° (E)"
+          },
+          {
+            "disabled": false,
+            "rotation": "2",
+            "selected": false,
+            "text": "180° (Z)"
+          },
+          {
+            "disabled": true,
+            "rotation": "3",
+            "selected": false,
+            "text": "270° (C)"
+          }
+        ],
+        "slots": [
+          {
+            "pressed": "false",
+            "slot": "0"
+          },
+          {
+            "pressed": "false",
+            "slot": "1"
+          },
+          {
+            "pressed": "false",
+            "slot": "2"
+          }
+        ],
+        "title": "새 타일 배치",
+        "viewport": [
+          1280,
+          720
+        ]
+      }
+    },
+    {
+      "step": "tile17_rotation_z",
+      "ui": {
+        "actions": [],
+        "barHidden": true,
+        "barRect": {
+          "bottom": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "cards": [],
+        "detailsRect": {
+          "bottom": 605,
+          "height": 285.5625,
+          "width": 296,
+          "x": 962,
+          "y": 319.4375
+        },
+        "phase": "tile_place",
+        "rotations": [
+          {
+            "disabled": false,
+            "rotation": "0",
+            "selected": false,
+            "text": "0° (Q)"
+          },
+          {
+            "disabled": false,
+            "rotation": "1",
+            "selected": false,
+            "text": "90° (E)"
+          },
+          {
+            "disabled": false,
+            "rotation": "2",
+            "selected": true,
+            "text": "180° (Z)"
+          },
+          {
+            "disabled": true,
+            "rotation": "3",
+            "selected": false,
+            "text": "270° (C)"
+          }
+        ],
+        "slots": [
+          {
+            "pressed": "false",
+            "slot": "0"
+          },
+          {
+            "pressed": "false",
+            "slot": "1"
+          },
+          {
+            "pressed": "false",
+            "slot": "2"
+          }
+        ],
+        "title": "새 타일 배치",
+        "viewport": [
+          1280,
+          720
+        ]
+      }
+    },
+    {
+      "step": "tile17_rotation_e",
+      "ui": {
+        "actions": [],
+        "barHidden": true,
+        "barRect": {
+          "bottom": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "cards": [],
+        "detailsRect": {
+          "bottom": 605,
+          "height": 285.5625,
+          "width": 296,
+          "x": 962,
+          "y": 319.4375
+        },
+        "phase": "tile_place",
+        "rotations": [
+          {
+            "disabled": false,
+            "rotation": "0",
+            "selected": false,
+            "text": "0° (Q)"
+          },
+          {
+            "disabled": false,
+            "rotation": "1",
+            "selected": true,
+            "text": "90° (E)"
+          },
+          {
+            "disabled": false,
+            "rotation": "2",
+            "selected": false,
+            "text": "180° (Z)"
+          },
+          {
+            "disabled": true,
+            "rotation": "3",
+            "selected": false,
+            "text": "270° (C)"
+          }
+        ],
+        "slots": [
+          {
+            "pressed": "false",
+            "slot": "0"
+          },
+          {
+            "pressed": "false",
+            "slot": "1"
+          },
+          {
+            "pressed": "false",
+            "slot": "2"
+          }
+        ],
+        "title": "새 타일 배치",
+        "viewport": [
+          1280,
+          720
+        ]
+      }
+    },
+    {
+      "step": "tile17_rotation_q",
+      "ui": {
+        "actions": [],
+        "barHidden": true,
+        "barRect": {
+          "bottom": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "cards": [],
+        "detailsRect": {
+          "bottom": 605,
+          "height": 285.5625,
+          "width": 296,
+          "x": 962,
+          "y": 319.4375
+        },
+        "phase": "tile_place",
+        "rotations": [
+          {
+            "disabled": false,
+            "rotation": "0",
+            "selected": true,
+            "text": "0° (Q)"
+          },
+          {
+            "disabled": false,
+            "rotation": "1",
+            "selected": false,
+            "text": "90° (E)"
+          },
+          {
+            "disabled": false,
+            "rotation": "2",
+            "selected": false,
+            "text": "180° (Z)"
+          },
+          {
+            "disabled": true,
+            "rotation": "3",
+            "selected": false,
+            "text": "270° (C)"
+          }
+        ],
+        "slots": [
+          {
+            "pressed": "false",
+            "slot": "0"
+          },
+          {
+            "pressed": "false",
+            "slot": "1"
+          },
+          {
+            "pressed": "false",
+            "slot": "2"
+          }
+        ],
+        "title": "새 타일 배치",
+        "viewport": [
+          1280,
+          720
+        ]
+      }
+    },
+    {
+      "step": "tile17_rotation_c",
+      "ui": {
+        "actions": [],
+        "barHidden": true,
+        "barRect": {
+          "bottom": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "cards": [],
+        "detailsRect": {
+          "bottom": 605,
+          "height": 285.5625,
+          "width": 296,
+          "x": 962,
+          "y": 319.4375
+        },
+        "phase": "tile_place",
+        "rotations": [
+          {
+            "disabled": false,
+            "rotation": "0",
+            "selected": true,
+            "text": "0° (Q)"
+          },
+          {
+            "disabled": false,
+            "rotation": "1",
+            "selected": false,
+            "text": "90° (E)"
+          },
+          {
+            "disabled": false,
+            "rotation": "2",
+            "selected": false,
+            "text": "180° (Z)"
+          },
+          {
+            "disabled": true,
+            "rotation": "3",
+            "selected": false,
+            "text": "270° (C)"
+          }
+        ],
+        "slots": [
+          {
+            "pressed": "false",
+            "slot": "0"
+          },
+          {
+            "pressed": "false",
+            "slot": "1"
+          },
+          {
+            "pressed": "false",
+            "slot": "2"
+          }
+        ],
+        "title": "새 타일 배치",
+        "viewport": [
+          1280,
+          720
+        ]
+      }
+    },
+    {
+      "step": "Space_places_tile",
+      "ui": {
+        "actions": [
+          {
+            "command": "END_TURN",
+            "disabled": false,
+            "keys": "Space",
+            "text": "플레이어의 차례 마치기Space"
+          }
+        ],
+        "barHidden": false,
+        "barRect": {
+          "bottom": 396.125,
+          "height": 73.6875,
+          "width": 296,
+          "x": 962,
+          "y": 322.4375
+        },
+        "cards": [],
+        "detailsRect": {
+          "bottom": 537.203125,
+          "height": 136.078125,
+          "width": 296,
+          "x": 962,
+          "y": 401.125
+        },
+        "phase": "hunter",
+        "rotations": [],
+        "slots": [
+          {
+            "pressed": "false",
+            "slot": "0"
+          },
+          {
+            "pressed": "false",
+            "slot": "1"
+          },
+          {
+            "pressed": "false",
+            "slot": "2"
+          }
+        ],
+        "title": "플레이어의 차례",
+        "viewport": [
+          1280,
+          720
+        ]
+      }
+    },
+    {
+      "step": "Q_hunter_move_confirmation_hides_bar",
+      "ui": {
+        "actions": [
+          {
+            "disabled": true,
+            "keys": "Space",
+            "text": "행동하기Space"
+          },
+          {
+            "disabled": false,
+            "keys": "Escape Backspace",
+            "text": "행동취소Esc / Backspace"
+          }
+        ],
+        "barHidden": true,
+        "barRect": {
+          "bottom": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "cards": [],
+        "detailsRect": {
+          "bottom": 537.203125,
+          "height": 217.765625,
+          "width": 296,
+          "x": 962,
+          "y": 319.4375
+        },
+        "phase": "hunter",
+        "rotations": [],
+        "slots": [
+          {
+            "pressed": "false",
+            "slot": "0"
+          },
+          {
+            "pressed": "false",
+            "slot": "1"
+          },
+          {
+            "pressed": "false",
+            "slot": "2"
+          }
+        ],
+        "title": "행동하기",
+        "viewport": [
+          1280,
+          720
+        ]
+      }
+    },
+    {
+      "step": "Escape_restores_base_actions",
+      "ui": {
+        "actions": [
+          {
+            "command": "END_TURN",
+            "disabled": false,
+            "keys": "Space",
+            "text": "플레이어의 차례 마치기Space"
+          }
+        ],
+        "barHidden": false,
+        "barRect": {
+          "bottom": 396.125,
+          "height": 73.6875,
+          "width": 296,
+          "x": 962,
+          "y": 322.4375
+        },
+        "cards": [],
+        "detailsRect": {
+          "bottom": 537.203125,
+          "height": 136.078125,
+          "width": 296,
+          "x": 962,
+          "y": 401.125
+        },
+        "phase": "hunter",
+        "rotations": [],
+        "slots": [
+          {
+            "pressed": "false",
+            "slot": "0"
+          },
+          {
+            "pressed": "false",
+            "slot": "1"
+          },
+          {
+            "pressed": "false",
+            "slot": "2"
+          }
+        ],
+        "title": "플레이어의 차례",
+        "viewport": [
+          1280,
+          720
+        ]
+      }
+    },
+    {
+      "step": "tile07_only180_q",
+      "ui": {
+        "actions": [],
+        "barHidden": true,
+        "barRect": {
+          "bottom": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "cards": [
+          {
+            "id": "card-10",
+            "pressed": "false"
+          },
+          {
+            "id": "card-2",
+            "pressed": "false"
+          }
+        ],
+        "detailsRect": {
+          "bottom": 605,
+          "height": 285.5625,
+          "width": 296,
+          "x": 962,
+          "y": 319.4375
+        },
+        "phase": "tile_place",
+        "rotations": [
+          {
+            "disabled": true,
+            "rotation": "0",
+            "selected": false,
+            "text": "0° (Q)"
+          },
+          {
+            "disabled": true,
+            "rotation": "1",
+            "selected": false,
+            "text": "90° (E)"
+          },
+          {
+            "disabled": false,
+            "rotation": "2",
+            "selected": true,
+            "text": "180° (Z)"
+          },
+          {
+            "disabled": true,
+            "rotation": "3",
+            "selected": false,
+            "text": "270° (C)"
+          }
+        ],
+        "slots": [
+          {
+            "pressed": "false",
+            "slot": "0"
+          },
+          {
+            "pressed": "false",
+            "slot": "1"
+          },
+          {
+            "pressed": "false",
+            "slot": "2"
+          }
+        ],
+        "title": "새 타일 배치",
+        "viewport": [
+          1280,
+          720
+        ]
+      }
+    },
+    {
+      "step": "tile07_only180_e",
+      "ui": {
+        "actions": [],
+        "barHidden": true,
+        "barRect": {
+          "bottom": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "cards": [
+          {
+            "id": "card-10",
+            "pressed": "false"
+          },
+          {
+            "id": "card-2",
+            "pressed": "false"
+          }
+        ],
+        "detailsRect": {
+          "bottom": 605,
+          "height": 285.5625,
+          "width": 296,
+          "x": 962,
+          "y": 319.4375
+        },
+        "phase": "tile_place",
+        "rotations": [
+          {
+            "disabled": true,
+            "rotation": "0",
+            "selected": false,
+            "text": "0° (Q)"
+          },
+          {
+            "disabled": true,
+            "rotation": "1",
+            "selected": false,
+            "text": "90° (E)"
+          },
+          {
+            "disabled": false,
+            "rotation": "2",
+            "selected": true,
+            "text": "180° (Z)"
+          },
+          {
+            "disabled": true,
+            "rotation": "3",
+            "selected": false,
+            "text": "270° (C)"
+          }
+        ],
+        "slots": [
+          {
+            "pressed": "false",
+            "slot": "0"
+          },
+          {
+            "pressed": "false",
+            "slot": "1"
+          },
+          {
+            "pressed": "false",
+            "slot": "2"
+          }
+        ],
+        "title": "새 타일 배치",
+        "viewport": [
+          1280,
+          720
+        ]
+      }
+    },
+    {
+      "step": "tile07_only180_c",
+      "ui": {
+        "actions": [],
+        "barHidden": true,
+        "barRect": {
+          "bottom": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "cards": [
+          {
+            "id": "card-10",
+            "pressed": "false"
+          },
+          {
+            "id": "card-2",
+            "pressed": "false"
+          }
+        ],
+        "detailsRect": {
+          "bottom": 605,
+          "height": 285.5625,
+          "width": 296,
+          "x": 962,
+          "y": 319.4375
+        },
+        "phase": "tile_place",
+        "rotations": [
+          {
+            "disabled": true,
+            "rotation": "0",
+            "selected": false,
+            "text": "0° (Q)"
+          },
+          {
+            "disabled": true,
+            "rotation": "1",
+            "selected": false,
+            "text": "90° (E)"
+          },
+          {
+            "disabled": false,
+            "rotation": "2",
+            "selected": true,
+            "text": "180° (Z)"
+          },
+          {
+            "disabled": true,
+            "rotation": "3",
+            "selected": false,
+            "text": "270° (C)"
+          }
+        ],
+        "slots": [
+          {
+            "pressed": "false",
+            "slot": "0"
+          },
+          {
+            "pressed": "false",
+            "slot": "1"
+          },
+          {
+            "pressed": "false",
+            "slot": "2"
+          }
+        ],
+        "title": "새 타일 배치",
+        "viewport": [
+          1280,
+          720
+        ]
+      }
+    },
+    {
+      "step": "tile07_only180_z",
+      "ui": {
+        "actions": [],
+        "barHidden": true,
+        "barRect": {
+          "bottom": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "cards": [
+          {
+            "id": "card-10",
+            "pressed": "false"
+          },
+          {
+            "id": "card-2",
+            "pressed": "false"
+          }
+        ],
+        "detailsRect": {
+          "bottom": 605,
+          "height": 285.5625,
+          "width": 296,
+          "x": 962,
+          "y": 319.4375
+        },
+        "phase": "tile_place",
+        "rotations": [
+          {
+            "disabled": true,
+            "rotation": "0",
+            "selected": false,
+            "text": "0° (Q)"
+          },
+          {
+            "disabled": true,
+            "rotation": "1",
+            "selected": false,
+            "text": "90° (E)"
+          },
+          {
+            "disabled": false,
+            "rotation": "2",
+            "selected": true,
+            "text": "180° (Z)"
+          },
+          {
+            "disabled": true,
+            "rotation": "3",
+            "selected": false,
+            "text": "270° (C)"
+          }
+        ],
+        "slots": [
+          {
+            "pressed": "false",
+            "slot": "0"
+          },
+          {
+            "pressed": "false",
+            "slot": "1"
+          },
+          {
+            "pressed": "false",
+            "slot": "2"
+          }
+        ],
+        "title": "새 타일 배치",
+        "viewport": [
+          1280,
+          720
+        ]
+      }
+    }
+  ],
+  "previewExportMatchesControllerImportBaseline": true,
+  "importAdoption": "The existing controller appends APPLY_TILE_SPEED_RULING during legacy import. Comparing with that exact baseline shows no saved rotation commands or changes.",
+  "consoleWarningsOrErrors": 0,
+  "userBefore": {
+    "actions": [
+      {
+        "disabled": true,
+        "text": "이동 (Q)"
+      },
+      {
+        "disabled": true,
+        "text": "꿈으로 이동 (E)"
+      },
+      {
+        "disabled": true,
+        "text": "장치무기 변형 (Z)"
+      },
+      {
+        "disabled": true,
+        "text": "적 공격하기 (C)선택한 적: 없음"
+      }
+    ],
+    "bar": {
+      "bottom": 434.21875,
+      "height": 95.78125,
+      "hidden": false,
+      "y": 338.4375
+    },
+    "content": {
+      "bottom": 1126,
+      "height": 683.78125,
+      "y": 442.21875
+    },
+    "phase": "tile_place",
+    "title": "새 타일 배치",
+    "url": "http://127.0.0.1:8860/hunt.html?v=0.8.13-dev.40"
+  },
+  "userAfter": {
+    "actions": [],
+    "barHidden": true,
+    "barRect": {
+      "bottom": 0,
+      "height": 0,
+      "width": 0,
+      "x": 0,
+      "y": 0
+    },
+    "cards": [
+      {
+        "id": "card-7",
+        "pressed": "false"
+      },
+      {
+        "id": "card-11",
+        "pressed": "false"
+      },
+      {
+        "id": "card-9",
+        "pressed": "false"
+      }
+    ],
+    "detailsRect": {
+      "bottom": 1126,
+      "height": 792.5625,
+      "width": 216,
+      "x": 699,
+      "y": 333.4375
+    },
+    "phase": "tile_place",
+    "rotations": [
+      {
+        "disabled": true,
+        "rotation": "0",
+        "selected": false,
+        "text": "0° (Q)"
+      },
+      {
+        "disabled": false,
+        "rotation": "1",
+        "selected": true,
+        "text": "90° (E)"
+      },
+      {
+        "disabled": false,
+        "rotation": "2",
+        "selected": false,
+        "text": "180° (Z)"
+      },
+      {
+        "disabled": false,
+        "rotation": "3",
+        "selected": false,
+        "text": "270° (C)"
+      }
+    ],
+    "slots": [
+      {
+        "pressed": "false",
+        "slot": "0"
+      },
+      {
+        "pressed": "false",
+        "slot": "1"
+      },
+      {
+        "pressed": "false",
+        "slot": "2"
+      }
+    ],
+    "title": "새 타일 배치",
+    "viewport": [
+      939,
+      1252
+    ]
+  },
+  "userProgressActionsExecuted": 0,
+  "screenshots": [
+    "test-results/contextual-keys-dev41/combat-Q.png",
+    "test-results/contextual-keys-dev41/user-dev41-wide.png",
+    "test-results/contextual-keys-dev41/user-dev41.png"
+  ],
+  "sourceSha256": {
+    "src/hunt-app.js": "4fb7472ad4e1875c4fd542ef52c4ffd5999168ef495baf97f0fb16f3a7193ab2",
+    "src/hunt-keyboard-controls.js": "5ed97fd1b60a9467e9987e0cefcb1eef77bb44ad35931ec0ecf18b75f1ba58d5",
+    "src/game-help.js": "36197583d7671bccf199dc19a09f5c42815c0188d36a83088c2f4fa844fec777",
+    "hunt.html": "def9db57b97f52edf827beee0c1ea34ff22282e29d2d4d341a94cfe5661a20cb",
+    "index.html": "7c61008063edc3f615a06b893b26652807dc0fb53c01e51b136642406b7dcdb6"
+  },
+  "limitations": "Live tile cases cover positive Q/E/Z and disabled C; positive270-degree C is covered by controller regression. Before/after viewport was not fixed; exact pixel shift is not claimed."
+}

@@ -63,6 +63,7 @@ test("actual controller begins and cancels each intent without saving, spending,
     assert.equal(ui.el("phaseTitle").textContent, "행동하기");
     assert.equal(ui.el("phaseHelp").textContent, "행동하기 위해 소모할 패를 선택해주세요");
     assert.equal(ui.el("confirmHunterAction").disabled, true);
+    assert.equal(ui.el("hunterActionBar").hidden, true, "pending confirmation hides the fully disabled action bar");
     assert.equal(ui.storage.get(key), before);
     assert(ui.el("hand").querySelectorAll("[data-card]").every(button => button.getAttribute("aria-pressed") === "false"));
     cardButton(ui, E.hunter(state).hand[0].id).click();
@@ -70,6 +71,7 @@ test("actual controller begins and cancels each intent without saving, spending,
     assert.equal(ui.storage.get(key), before);
     ui.el("cancelHunterAction").click();
     assert.equal(ui.el("phaseTitle").textContent, "플레이어의 차례");
+    assert.equal(ui.el("hunterActionBar").hidden, false, "cancellation restores the enabled action bar");
     assert.equal(cardButton(ui, cardId).getAttribute("aria-pressed"), "true");
     assert.equal(slotButton(ui, 2).getAttribute("aria-pressed"), "true");
     assert.equal(intent(ui, "ATTACK").disabled, false);

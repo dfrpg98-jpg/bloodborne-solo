@@ -1213,6 +1213,7 @@
   function renderHunterActionBar() {
     const bar = $("hunterActionBar"), model = hunterActionView();
     if (!bar || !model) return;
+    bar.hidden = !model.actions.some(action => action.enabled && !pendingHunterAction);
     bar.innerHTML = model.actions.map(action => `<button type="button" data-hunter-intent="${action.type}" aria-keyshortcuts="${action.shortcut}" aria-pressed="${pendingHunterAction?.type === action.type}" ${action.enabled && !pendingHunterAction ? "" : "disabled"}><span class="hunter-action-label">${action.label} (${action.shortcut})</span>${action.type === "ATTACK" ? `<small>선택한 적: ${esc(model.selectedEnemy ? enemyTargetLabel(model.selectedEnemy) : "없음")}</small>` : ""}${actionLossHint({ type: action.type })}</button>`).join("");
     bar.querySelectorAll("[data-hunter-intent]").forEach(button => button.onclick = () => beginHunterAction(button.dataset.hunterIntent));
   }
@@ -1359,7 +1360,7 @@
       const q = state.world.pending,
         t = M.tile(q.tileId),
         opts = placementOptions();
-      html = `<h3>${esc(tileReference(preview() || q))} · ${t.spaces.length}칸 타일 배치</h3><p class="muted">지도에 표시된 미리보기에서 방향을 확인하세요. 구역 표시는 중앙 등불을 기준으로 한 지도상 위치입니다.</p><div class="actions">${[0, 1, 2, 3].map((r) => `<button data-rotation="${r}" class="${rotation === r ? "primary" : ""}" ${opts.includes(r) ? "" : "disabled"}>${r * 90}°</button>`).join("")}</div>${button("이 방향으로 배치하고 진입", "PLACE_TILE", { rotation }, false, "primary")}`;
+      html = `<h3>${esc(tileReference(preview() || q))} · ${t.spaces.length}칸 타일 배치</h3><p class="muted">지도에 표시된 미리보기에서 방향을 확인하세요. 구역 표시는 중앙 등불을 기준으로 한 지도상 위치입니다.</p><div class="actions">${[0, 1, 2, 3].map((r) => `<button data-rotation="${r}" aria-keyshortcuts="${["Q", "E", "Z", "C"][r]}" class="${rotation === r ? "primary" : ""}" ${opts.includes(r) ? "" : "disabled"}>${r * 90}° (${["Q", "E", "Z", "C"][r]})</button>`).join("")}</div>${button("이 방향으로 배치하고 진입", "PLACE_TILE", { rotation }, false, "primary")}`;
     } else if (p === "exchange_choice") {
       help = "획득한 소모품도 교환할 수 있습니다. 1장을 버려 피의 유지 1개를 얻거나 교환을 마치세요. 추가 스탯 카드 비용은 없습니다.";
       html = h.consumables.map((item) => button(`${esc(consumableDefinitions()[item.kind].name)} 교환 · 유지 +1`, "EXCHANGE_CHOICE", { itemId: item.id })).join("")
@@ -1401,7 +1402,7 @@
     } else if (p === "combat_choose") {
       help =
         "적 행동을 공개하기 전에 맞서 공격할 카드·슬롯과 공격용 소모품을 선택하세요.";
-      html = `${mapTarget?.kind === "enemy" ? "" : `<p class="target-selection-status">${esc(selectHint)}</p>`}${checkPulls()}${mapTarget?.kind === "enemy" ? "" : button("맞서 공격", "COUNTER", actionArgs, !canCommit, "primary")}${button("공격하지 않고 행동 공개", "NO_ATTACK")}`;
+      html = `${mapTarget?.kind === "enemy" ? "" : `<p class="target-selection-status">${esc(selectHint)}</p>`}${checkPulls()}${mapTarget?.kind === "enemy" ? "" : button("맞서 공격 (Q)", "COUNTER", actionArgs, !canCommit, "primary")}${button("공격하지 않고 행동 공개 (E)", "NO_ATTACK")}`;
       if (actualGun() && E.firearm(state).trigger === "hunter-turn") html += firearmAction();
     } else if (p === "boss_react") {
       const reaction = E.combatReaction?.(state) || {};
@@ -1911,7 +1912,7 @@
         ? ` · 자기 피해 ${typeof actionArgs.weaponBoost === "number" ? actionArgs.weaponBoost : 1}` : "";
       const resourceCost = (["ATTACK", "COUNTER"].includes(type) && inventory.ids().length ? ` · 소모품 ${inventory.ids().length}장 사용` : "")
         + (["ATTACK", "COUNTER", "FIREARM"].includes(type) && selectedRewards.size ? ` · 선택 보상 ${selectedRewards.size}장 소진` : "");
-      return `<div class="context-action"><button data-context-id="${esc(action.id)}" ${c ? `data-command="${type}" data-args="${esc(JSON.stringify(args))}"` : `data-context-action="${index}"`} ${action.enabled ? "" : "disabled"}>${esc(action.label)}${["ATTACK", "COUNTER"].includes(type) ? "" : `<small>${esc(action.cost + selfCost + resourceCost)}</small>`}${c ? actionLossHint(c) : ""}</button>${!action.enabled && action.reason && !["ATTACK", "COUNTER"].includes(type) ? `<p class="context-reason">${esc(action.reason)}</p>` : ""}</div>`;
+      return `<div class="context-action"><button data-context-id="${esc(action.id)}" ${c ? `data-command="${type}" data-args="${esc(JSON.stringify(args))}"` : `data-context-action="${index}"`} ${action.enabled ? "" : "disabled"}>${esc(action.label)}${type === "COUNTER" && state.phase === "combat_choose" ? " (Q)" : ""}${["ATTACK", "COUNTER"].includes(type) ? "" : `<small>${esc(action.cost + selfCost + resourceCost)}</small>`}${c ? actionLossHint(c) : ""}</button>${!action.enabled && action.reason && !["ATTACK", "COUNTER"].includes(type) ? `<p class="context-reason">${esc(action.reason)}</p>` : ""}</div>`;
     }).join("")}</div>${view.brokenLamp ? '<p class="context-lamp-warning">망가진 등불 · 사용할 수 없고, 사냥꾼의 꿈에서 돌아오는 목적지로 선택할 수 없습니다.</p>' : ""}${view.fog ? '<p class="context-fog-note">안개가 생길 때 이 타일의 일반 적이 제거됩니다.</p>' : ""}${view.enemyId ? `<section class="context-enemy-abilities" aria-label="선택한 적의 공격과 능력"><h4>공격과 능력</h4>${publicEnemyAbilities(E.enemyDef(state, state.enemies.find(enemy => enemy.id === view.enemyId)), state.enemies.find(enemy => enemy.id === view.enemyId))}</section>` : ""}</div>`;
     bind(box);
     box.querySelectorAll("[data-hunter-intent]").forEach(button => button.onclick = () => beginHunterAction(button.dataset.hunterIntent));
