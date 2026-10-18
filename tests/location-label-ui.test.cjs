@@ -23,7 +23,7 @@ test('a named hunter location remains unchanged after public location cleanup', 
 
 test('an actual unnamed-tile move displays its cell name and public log while preserving the original replay', () => {
   const f = launch(unnamed), sourceName = E.node(unnamed, E.hunter(unnamed).position).name;
-  assert.match(f.ui.el('status').textContent, /왼쪽 위 칸/);
+  assert.match(f.ui.el('status').textContent, /오른쪽 위 칸/);
   assert.doesNotMatch(f.ui.el('status').textContent, /명칭 없는|타일 05/);
   assert.doesNotMatch(f.ui.el('huntLog').textContent, /명칭 없는 타일/);
   assert(f.ui.el('huntLog').textContent.includes('왼쪽 위 칸'));
@@ -53,6 +53,6 @@ test('label cleanup renders the current unnamed cell without inspecting hidden t
   };
   const f = launch(unnamed, { engine: { importSave: guardedImport }, window: { BBChapter: { ...M,
     tile(id) { assert(visible.has(id), `only publicly placed tile ${id} may be looked up`); lookedUp.push(id); return M.tile(id); } } } });
-  assert.match(f.ui.el('status').textContent, /왼쪽 위 칸/); assert.doesNotMatch(f.ui.el('status').textContent, /명칭 없는/);
+  assert.match(f.ui.el('status').textContent, /오른쪽 위 칸/); assert.doesNotMatch(f.ui.el('status').textContent, /명칭 없는/);
   assert(lookedUp.length > 0); assert.equal(f.ui.el('error').textContent, ''); assert.equal(f.ui.storage.get(key), f.saved);
 });

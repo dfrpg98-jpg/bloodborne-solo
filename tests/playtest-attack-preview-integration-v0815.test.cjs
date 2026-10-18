@@ -23,6 +23,8 @@ function launch(state) {
   });
   const enemy = ui.el("chapterMap").querySelectorAll("[data-enemy]").find(button => button.dataset.enemy === state.enemies[0].id);
   assert(enemy); enemy.click();
+  const intent = ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]").find(button => button.dataset.hunterIntent === "ATTACK");
+  assert(intent && !intent.disabled, "begin attack before choosing its card and slot"); intent.click();
   return { ui, commands, current: () => current };
 }
 function select(ui, id, value) {
@@ -36,12 +38,13 @@ function attack(ui) {
 
 test("real selectors show the claw's disclosed low-HP totals and refresh when the card changes, before the actual attack", () => {
   const state = fixture("beast-claw"); H(state).hp = 2;
-  const { ui, commands, current } = launch(state), before = JSON.stringify(state),
+  const { ui, commands, current } = launch(state), before = JSON.stringify(state), savedBefore = ui.storage.get("bloodborne-hunt-v07"),
     vigor = H(state).hand.find(card => card.kind === "vitality"), strength = H(state).hand.find(card => card.kind === "strength");
   select(ui, "combatSelectCard", vigor.id); select(ui, "combatSelectSlot", 1);
   assert.match(ui.el("combatSelection").innerHTML, /확정 전 공격 · 속도 3 · 피해 3/);
   assert.match(ui.el("combatSelection").innerHTML, /피해 2 \+ 무기 1 = <b>3<\/b>/);
-  assert.equal(commands.length, 0); assert.equal(JSON.stringify(state), before);
+  assert.equal(ui.storage.get("bloodborne-hunt-v07"), savedBefore, "selection and disposable legality checks commit no action");
+  assert.equal(JSON.stringify(state), before);
   select(ui, "combatSelectCard", strength.id);
   assert.match(ui.el("combatSelection").innerHTML, /확정 전 공격 · 속도 3 · 피해 4/);
   attack(ui);

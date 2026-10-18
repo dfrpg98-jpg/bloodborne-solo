@@ -179,3 +179,64 @@ test("the actual return UI keeps the unchanged face's legacy command and offers 
   assert.equal(ui.el("attachmentDialog").open, false); assert.equal(ui.el("openAttachments").hidden, true);
   assert.equal(ui.storage.get(normalKey), normalSave); replay(after);
 });
+
+test("the dream return picklist immediately previews its slots and effect without committing a command or moving attachments", () => {
+  const before = waitingReturn(create("kirkhammer", { "bloodstone-shard": 0, "bloodstone-chunk": 2 })),
+    saved = E.exportSave(before), { ui, normalSave } = launch(before), autoSaved = ui.storage.get(qaKey),
+    select = ui.el("returnFace"), other = E.weapon(before).faces[1];
+  select.value = "1"; select.fire("change");
+  assert.equal(ui.el("weaponName").textContent, E.weapon(before).name);
+  assert.equal(ui.el("weaponFace").textContent, other.name);
+  assert.equal(ui.el("weaponAbility").textContent, other.text);
+  assert.equal(ui.el("slots").querySelectorAll("[data-slot]").length, other.slots.length);
+  for (const slot of other.slots) assert(ui.el("slots").innerHTML.includes(slot.name));
+  assert(ui.el("slots").querySelectorAll("[data-slot]").every(button => button.disabled));
+  assert.equal(ui.el("weaponSlotBank").dataset.slotCount, "2");
+  assert.equal(ui.el("attachmentDialog").open, false); assert.equal(ui.el("openAttachments").hidden, true);
+  assert.equal(ui.commands.length, 0); assert.equal(ui.storage.get(qaKey), autoSaved);
+  assert.equal(ui.storage.get(normalKey), normalSave); assert.equal(E.exportSave(before), saved);
+  assert.equal(reward(before, "bloodstone-chunk").slot, 2);
+  // Selecting a hand card refreshes the controller; the uncommitted picklist
+  // choice and lower weapon preview must survive that ordinary redraw.
+  ui.el("hand").querySelectorAll("[data-card]")[0].click();
+  assert.equal(ui.el("returnFace").value, "1"); assert.equal(ui.el("weaponFace").textContent, other.name);
+  assert.equal(ui.storage.get(qaKey), autoSaved); assert.equal(ui.commands.length, 0);
+});
+
+test("changing a return preview back restores the canonical weapon and only confirming RETURN changes its saved face", () => {
+  const before = waitingReturn(), { ui } = launch(before), saved = ui.storage.get(qaKey),
+    original = E.weaponFace(before), other = E.weapon(before).faces[1];
+  ui.el("returnFace").value = "1"; ui.el("returnFace").fire("change");
+  assert.equal(ui.el("weaponFace").textContent, other.name);
+  ui.el("returnFace").value = "0"; ui.el("returnFace").fire("change");
+  assert.equal(ui.el("weaponFace").textContent, original.name);
+  assert.equal(ui.el("weaponAbility").textContent, original.text);
+  assert.equal(ui.el("slots").querySelectorAll("[data-slot]").length, original.slots.length);
+  assert.equal(ui.storage.get(qaKey), saved); assert.equal(ui.commands.length, 0);
+  const actual = chooseReturn(ui, 1);
+  assert.deepEqual(actual, returned(before));
+  assert.equal(actual.commands.length, before.commands.length + 1);
+  assert.equal(actual.commands.at(-1).type, "RETURN"); assert.equal(H(actual).face, 1);
+  assert.equal(ui.el("weaponSlotBank").dataset.preview, "false");
+});
+
+test("a natural lethal attack reaches the same no-cost return preview after death", () => {
+  let before = E.create(1061844653, "kirkhammer", 0, null, "hunter-pistol", "center", {
+    campaign: true, rulesVersion: 14, qa: { preset: "fast" } });
+  const commands = [
+    { type: "MOVE", cardId: "card-9" }, { type: "STEP", node: "tile-14:left" }, { type: "STOP_MOVE" },
+    { type: "MOVE", cardId: "card-2" }, { type: "EXPLORE", edge: "W" }, { type: "PLACE_TILE", rotation: 0 }, { type: "STOP_MOVE" },
+    { type: "END_TURN" }, { type: "NO_ATTACK" }, { type: "RESOLVE" }, { type: "REFILL" },
+    { type: "END_TURN" }, { type: "NO_ATTACK" }, { type: "RESOLVE" }, { type: "ENEMY_STEP", node: "tile-14:left" },
+    { type: "REFILL" }, { type: "END_TURN" }, { type: "NO_ATTACK" }, { type: "RESOLVE" }, { type: "REFILL" },
+  ];
+  for (const command of commands) before = E.dispatch(before, command);
+  assert.equal(before.phase, "return"); assert.equal(H(before).inDream, true); assert.equal(H(before).hp, 6);
+  assert(before.events.some(event => event.text.includes("처치당했습니다")));
+  const { ui } = launch(before), saved = ui.storage.get(qaKey), original = E.exportSave(before);
+  ui.el("returnFace").value = "1"; ui.el("returnFace").fire("change");
+  assert.equal(ui.el("weaponFace").textContent, E.weapon(before).faces[1].name);
+  assert.equal(ui.el("slots").querySelectorAll("[data-slot]").length, 2);
+  assert.equal(ui.commands.length, 0); assert.equal(ui.storage.get(qaKey), saved);
+  assert.equal(E.exportSave(before), original); replay(before);
+});

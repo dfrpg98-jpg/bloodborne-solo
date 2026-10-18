@@ -35,6 +35,12 @@ function selectCard(ui, id) {
   const result = ui.el("hand").querySelectorAll("[data-card]").find(b => b.dataset.card === id);
   assert(result); result.click();
 }
+function beginDream(ui) {
+  const intent = ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]")
+    .find(button => button.dataset.hunterIntent === "DREAM");
+  assert(intent && !intent.disabled, "Dream intent is available before choosing its card"); intent.click();
+  assert.equal(ui.el("confirmHunterAction").disabled, true);
+}
 function openPanel(ui, panel) {
   const button = ui.document.querySelectorAll("[data-panel]").find(b => b.dataset.panel === panel);
   assert(button); button.focus(); button.click(); assert.equal(ui.el("infoDialog").open, false);
@@ -42,8 +48,9 @@ function openPanel(ui, panel) {
 }
 test("two held survivors are labelled before cost selection, and Cancel and Escape preserve every saved byte", () => {
   const state = twoHeld(), { ui, normal } = launch(state), saved = ui.storage.get(qaKey);
-  assert(command(ui, "DREAM").disabled); assert.match(ui.el("decisions").innerHTML, /생존자 2명 상실/);
+  assert.match(ui.el("hunterActionBar").innerHTML, /생존자 2명 상실/);
   assert.equal(ui.el("actionLossDialog").open, false);
+  beginDream(ui);
   selectCard(ui, E.hunter(state).hand[0].id);
   for (const cancel of [() => ui.el("actionLossCancel").click(), () => ui.el("actionLossDialog").fire("cancel")]) {
     const opener = command(ui, "DREAM"); assert.equal(opener.disabled, false); opener.focus(); opener.click();
@@ -59,7 +66,7 @@ test("two held survivors are labelled before cost selection, and Cancel and Esca
 });
 test("accepting the loss commits the original Dream command once, preserves the normal save and clears the two tokens", () => {
   const state = twoHeld(), { ui, normal } = launch(state), selected = E.hunter(state).hand[0].id;
-  selectCard(ui, selected); command(ui, "DREAM").click();
+  beginDream(ui); selectCard(ui, selected); command(ui, "DREAM").click();
   ui.el("actionLossAccept").click(); const actual = current(ui), expected = E.dispatch(state, { type: "DREAM", cardId: selected });
   assert.deepEqual(actual, expected); assert.equal(actual.commands.length, state.commands.length + 1);
   assert.equal(actual.mission.heldSurvivors[actual.activeHunterId], 0); assert.equal(E.hunter(actual).inDream, true);

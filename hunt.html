@@ -14,9 +14,11 @@
     <link rel="stylesheet" href="styles/hunt-combat-feedback.css?v=0.8.13-dev.13&amp;h=1e0ad016d33b" />
     <link rel="stylesheet" href="styles/hunt-combat-controls.css?v=0.8.13-dev.25&amp;h=07dbea734607" />
     <link rel="stylesheet" href="styles/hunt-combat-ux.css?v=0.8.13-dev.15&amp;h=83110e6db54f" />
-    <link rel="stylesheet" href="styles/hunt-workspace-layout.css?v=0.8.13-dev.32&amp;h=8a9bf8206f1f" />
+    <link rel="stylesheet" href="styles/hunt-workspace-layout.css?v=0.8.13-dev.36&amp;h=4da35680cafd" />
     <link rel="stylesheet" href="styles/hunt-window-manager.css?v=0.8.13-dev.32&amp;h=89adf4a7c9d5" />
     <link rel="stylesheet" href="styles/hunt-workspace-tabs.css?v=0.8.13-dev.30&amp;h=e71acad458b6" />
+    <link rel="stylesheet" href="styles/hunt-action-menu.css?v=0.8.13-dev.36&amp;h=301c9e120618" />
+    <link rel="stylesheet" href="styles/hunt-map-interaction.css?v=0.8.13-dev.36&amp;h=6b9aa33ea7ec" />
   </head>
   <body class="hunt-screen">
     <header class="topbar hunt-topbar">
@@ -54,13 +56,14 @@
         </section>
         <section class="panel hunt-map" aria-labelledby="mapHeading">
           <div class="panel-heading"><h2 id="mapHeading">야남의 길</h2><div class="map-tools"><span id="tileCount" class="badge"></span><button type="button" data-panel="help" class="quiet" aria-label="지도 기호 안내">?</button></div></div>
-          <div id="mapStage" class="map-stage"><div id="mapViewport" class="map-viewport" tabindex="0" aria-label="실제 사냥 지도"><div id="mapSurface" class="map-surface"><div id="chapterMap" class="chapter-map"></div></div></div><div id="mapEffects" class="map-effects" aria-hidden="true"></div><div id="enemyStatusLayer" class="enemy-status-layer" aria-label="적 상태"></div><div class="camera-tools" role="group" aria-label="지도 배율"><button id="zoomOut" type="button" aria-label="지도 축소" title="지도 축소 · 지도에 초점을 둔 뒤 −">−</button><button id="zoomReset" type="button" aria-label="지도 배율 100%로 초기화" title="100%로 초기화 · 지도에 초점을 둔 뒤 0"><span id="zoomLabel">100%</span></button><button id="zoomIn" type="button" aria-label="지도 확대" title="지도 확대 · Ctrl+휠 또는 지도에 초점을 둔 뒤 +">+</button><button id="zoomFit" type="button" title="표시된 지도를 확대 범위에 맞춤">맞춤</button></div></div>
+          <div id="mapStage" class="map-stage"><div id="mapViewport" class="map-viewport" tabindex="0" aria-label="실제 사냥 지도"><div id="mapSurface" class="map-surface"><div id="chapterMap" class="chapter-map"></div></div></div><div id="mapEffects" class="map-effects" aria-hidden="true"></div><div id="enemyHitLayer" class="enemy-hit-layer" aria-label="지도 위의 적 선택"></div><div id="enemyStatusLayer" class="enemy-status-layer" aria-label="적 상태"></div><div class="camera-tools" role="group" aria-label="지도 배율"><button id="zoomOut" type="button" aria-label="지도 축소" title="지도 축소 · 지도에 초점을 둔 뒤 −">−</button><button id="zoomReset" type="button" aria-label="지도 배율 100%로 초기화" title="100%로 초기화 · 지도에 초점을 둔 뒤 0"><span id="zoomLabel">100%</span></button><button id="zoomIn" type="button" aria-label="지도 확대" title="지도 확대 · Ctrl+휠 또는 지도에 초점을 둔 뒤 +">+</button><button id="zoomFit" type="button" title="표시된 지도를 확대 범위에 맞춤">맞춤</button></div></div>
           <div class="map-footer"><div id="locationText"></div><div id="explorationActions" class="actions"></div></div>
         </section>
         <section class="panel hunt-decisions" aria-labelledby="phaseTitle">
           <nav id="workspaceTabs" class="workspace-tabs" role="tablist" aria-label="사냥 행동과 보유품"><button id="workspaceProgressTab" type="button" role="tab" data-workspace-tab="progress" aria-controls="workspaceProgress" aria-selected="true">진행 상황</button><button id="workspaceInventoryTab" type="button" role="tab" data-workspace-tab="inventory" aria-controls="workspaceInventory" aria-selected="false">소모품</button><button id="workspaceRewardsTab" type="button" role="tab" data-workspace-tab="rewards" aria-controls="rewardsPanel" aria-selected="false">장비</button></nav>
           <div id="workspaceProgress" class="workspace-progress" data-workspace-panel="progress" role="tabpanel" aria-labelledby="workspaceProgressTab">
           <div class="decision-heading"><p class="eyebrow">다음 선택</p><h2 id="phaseTitle"></h2></div>
+          <div id="hunterActionBar" class="hunter-action-bar" role="group" aria-label="사냥꾼 행동"></div>
           <div class="decision-content" tabindex="0" aria-label="행동과 전투 상세"><div id="chapterProgress" class="chapter-progress" hidden></div><p id="phaseHelp"></p><section id="mapContext" class="map-context" aria-label="선택한 대상의 행동과 비용" aria-live="polite" tabindex="-1" hidden></section><div id="combatInfo"></div><div id="missionActions" class="actions"></div><div id="decisions"></div></div>
           <div id="combatSelection" class="combat-selection-widget" aria-label="카드와 슬롯 선택" hidden></div>
           <div id="attackConsequences" class="attack-consequences" role="status" hidden></div>
@@ -72,7 +75,6 @@
         </section>
         <section id="rewardsPanel" class="info-panel rewards-panel" role="tabpanel" aria-labelledby="workspaceRewardsTab" data-workspace-panel="rewards" aria-label="획득한 보상" hidden><div class="panel-heading"><h3>획득한 보상</h3><span id="rewardsCount" class="muted"></span></div><div id="rewards" class="rewards-grid"></div></section>
           <p id="error" class="error" role="alert"></p>
-          <section id="firearm" class="panel gun-panel" aria-label="장착 화기"></section>
         </section>
       </div>
       <div class="hunt-loadout" aria-label="손패와 무기">
@@ -87,7 +89,7 @@
         </section>
         <section class="panel weapon-panel" aria-labelledby="weaponName">
           <div class="panel-heading"><h2><span id="weaponName">장송의 칼날</span> <small id="weaponFace"></small></h2><button id="openAttachments" type="button" class="quiet" aria-haspopup="dialog" aria-controls="attachmentDialog" hidden>슬롯 부착 변경</button></div>
-          <section class="weapon-rules" aria-label="무기 고유 효과"><h3>무기 고유 효과</h3><p id="weaponAbility"></p></section><div id="slots" class="hunt-slots"></div><p class="slot-hint muted">공격·회피에는 빈 슬롯이 필요합니다.</p>
+          <section class="weapon-rules" aria-label="무기 고유 효과"><h3>무기 고유 효과</h3><p id="weaponAbility"></p></section><div id="weaponSlotBank" class="weapon-slot-bank"><div id="slots" class="hunt-slots"></div><section id="firearm" class="panel gun-panel" aria-label="장착 화기"></section></div><p class="slot-hint muted">공격·회피에는 빈 슬롯이 필요합니다.</p>
         </section>
       </div>
     </main>
@@ -237,7 +239,7 @@
     <script src="src/data.js"></script>
     <script src="campaigns/long-hunt/data.js"></script>
     <script src="campaigns/long-hunt/narrative-text.js"></script>
-    <script src="src/tile-geometry.js?v=0.8.13-dev.32&amp;h=ecb830e08605"></script>
+    <script src="src/tile-geometry.js?v=0.8.13-dev.36&amp;h=16b34ddc7c52"></script>
     <script src="src/map-render-layout.js?v=0.8.13-dev.8&amp;h=34fb4a324b7d"></script>
     <script src="src/start-placement.js"></script>
     <script src="src/enemy-deck.js"></script>
@@ -267,24 +269,26 @@
     <script src="src/hunt-mission-feedback.js?v=0.8.13-dev.28&amp;h=88dc7b228721"></script>
     <script src="src/hunt-death-feedback.js?v=0.8.13-dev.15&amp;h=c0fb83d79d10"></script>
     <script src="src/enemy-action-history.js"></script>
-    <script src="src/inventory.js?v=0.8.13-dev.30&amp;h=f79b26139be0"></script>
+    <script src="src/inventory.js?v=0.8.13-dev.36&amp;h=2ed060cd8194"></script>
     <script src="src/hunt-entry.js?v=0.8.13-dev.11&amp;h=1fabaf52aa2d"></script>
-    <script src="src/game-help.js?v=0.8.13-dev.35&amp;h=7c36b9d62ede"></script>
+    <script src="src/game-help.js?v=0.8.13-dev.36&amp;h=40126694eb1b"></script>
     <script src="src/hunt-shell.js?v=0.8.13-dev.30&amp;h=8671e6ae1435"></script>
     <script src="src/hunt-context.js?v=0.8.13-dev.29&amp;h=19fb31c5624b"></script>
-    <script src="src/hunt-map-controls.js?v=0.8.13-dev.34&amp;h=0c5d6e5ee7c3"></script>
+    <script src="src/hunt-action-menu.js?v=0.8.13-dev.36&amp;h=8a902478b68f"></script>
+    <script src="src/hunt-automatic-combat.js?v=0.8.13-dev.36&amp;h=9c752918d548"></script>
+    <script src="src/hunt-map-controls.js?v=0.8.13-dev.36&amp;h=6eb3c5ec9b19"></script>
     <script src="src/hunt-keyboard-controls.js?v=0.8.13-dev.35&amp;h=c320b80a4685"></script>
-    <script src="src/hunt-location-labels.js?v=0.8.13-dev.15&amp;h=050325d0a994"></script>
+    <script src="src/hunt-location-labels.js?v=0.8.13-dev.36&amp;h=4ae5fe9c2246"></script>
     <script src="src/hunt-attack-preview.js?v=0.8.13-dev.21&amp;h=6443e5e5a026"></script>
     <script src="src/hunt-departure.js"></script>
-    <script src="src/hunt-camera.js?v=0.8.13-dev.31&amp;h=543d86a930d9"></script>
+    <script src="src/hunt-camera.js?v=0.8.13-dev.36&amp;h=237d9cf94726"></script>
     <script src="src/hunt-animation-events.js?v=0.8.13-dev.6&amp;h=abcf14285100"></script>
     <script src="assets/vendor/phaser-4.2.1.min.js"></script>
     <script src="assets/characters/manifest.js?v=0.8.13-dev.9&amp;h=978f595e942f"></script>
     <script src="assets/characters/weapon-manifest.js?v=0.8.13-dev.5"></script>
     <script src="src/weapon-visuals.js"></script>
     <script src="src/enemy-visuals.js?v=0.8.13-dev.9&amp;h=2350a252f8f8"></script>
-    <script src="src/hunt-presentation.js?v=0.8.13-dev.19&amp;h=af0f92efa733"></script>
+    <script src="src/hunt-presentation.js?v=0.8.13-dev.36&amp;h=e303e887d36e"></script>
     <script src="src/hunt-combat-feedback.js?v=0.8.13-dev.27&amp;h=f78f1877fcdd"></script>
     <script src="src/hunt-combat-controls.js?v=0.8.13-dev.25&amp;h=6f694913c6e3"></script>
     <script src="src/hunt-outcome-preview.js?v=0.8.13-dev.23&amp;h=945fed087248"></script>
@@ -294,6 +298,6 @@
     <script src="src/hunt-mission-hud.js?v=0.8.13-dev.29&amp;h=9d3a8d3f1c9c"></script>
     <script src="src/hunt-window-manager.js?v=0.8.13-dev.32&amp;h=e5718c95277d"></script>
     <script src="src/hunt-upgrade-overview.js?v=0.8.13-dev.25&amp;h=bcffd50aa9b1"></script>
-    <script src="src/hunt-app.js?v=0.8.13-dev.35&amp;h=ec8615d2adc2"></script>
+    <script src="src/hunt-app.js?v=0.8.13-dev.36&amp;h=49fa8c4fdcaa"></script>
   </body>
 </html>

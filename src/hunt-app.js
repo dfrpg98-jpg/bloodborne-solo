@@ -133,6 +133,7 @@
     pendingEscort = null,
     escortPromptOpener = null,
     pendingActionLoss = null,
+    pendingHunterAction = null,
     presentationActions = [],
     presentationSession = 1,
     presentationOrigins = new Map(),
@@ -151,6 +152,8 @@
     enemyStatusOffsets = new Map(),
     nextStartSpace = "",
     nextFace = null,
+    returnFaceChoice = null,
+    returnFaceState = null,
     weaponBoost = "none",
     reloadSecondCardId = null,
     interactionSelectionKey = null,
@@ -328,9 +331,10 @@
   $("openAttachments").onclick = () => attachmentPopup?.open($("openAttachments"));
   presentation = window.BBHuntPresentation?.({ document, Phaser: window.Phaser,
     viewport: $("mapViewport"), host: $("mapEffects"), characters: { ...window.BBCharacterAssets, ...window.BBWeaponCharacterAssets },
-    onReady: () => syncPresentation(), onActorPositions: updateEnemyStatusPositions });
+    onReady: () => syncPresentation(), onActorPositions: updateEnemyStatusPositions,
+    onActorHitAreas: renderEnemyHitAreas });
   camera = window.BBHuntCamera?.({ document, viewport: $("mapViewport"),
-    content: $("chapterMap"), surface: $("mapSurface"), padEdges: true, onChange: ({ zoom }) => {
+    content: $("chapterMap"), surface: $("mapSurface"), padEdges: true, baseScale: 1.44, onChange: ({ zoom }) => {
       if ($("zoomLabel")) $("zoomLabel").textContent = `${Math.round(zoom * 100)}%`;
       if (!rendering) syncPresentation();
     } });
@@ -518,6 +522,14 @@
         currentAttackVisual(next, prior);
         observedSteps.push([prior, next]);
       }
+      for (let count = 0; count < 12; count++) {
+        const automatic = window.BBHuntAutomaticCombat?.nextCommand(next, E);
+        if (!automatic) break;
+        const prior = next;
+        next = E.dispatch(next, automatic);
+        observedSteps.push([prior, next]);
+        commands = [...commands, automatic];
+      }
       const observedUpdates = observedSteps.flatMap(([prior, following]) => window.BBHuntMissionFeedback?.describe(prior, following,
         { E, publicText: window.BBHuntPublicText, data: window.BBLongHunt }) || []);
       const deathNotice = observedSteps.map(([prior, following]) => window.BBHuntDeathFeedback?.describe(prior, following)).find(Boolean);
@@ -530,6 +542,7 @@
       needsCameraFollow = E.hunter(previous).position !== E.hunter(state).position ||
         previous.world.pending?.tileId !== state.world.pending?.tileId || previous.mission?.chapter !== state.mission?.chapter;
       mapTarget = null;
+      pendingHunterAction = null;
       shell?.close();
       shell?.showProgress?.();
       if (type === "START_NEXT_CHAPTER") { nextStartSpace = ""; nextFace = null; }
@@ -1098,38 +1111,7 @@
       );
     $("deckCount").textContent =
       `덱 ${h.deck.length}장 · 버림 ${h.discard.length}장 · 슬롯 ${h.slots.filter(Boolean).length}장 / 총 12장`;
-    const weapon = E.weapon(state), face = E.weaponFace(state), availableSlots = E.slots(state), slotFacts = window.BBHuntCombatControls?.slotFacts(state, E),
-      attachmentView = E.rewardsView?.(state), attachments = attachmentView?.rewards.filter(reward => reward.equipped && reward.persistent) || [];
-    $("weaponName").textContent = weapon.name;
-    $("weaponFace").textContent = faceName(face, h.face);
-    $("weaponAbility").textContent = uiText(face.text || "고유 효과가 없습니다.");
-    $("slots").style.gridTemplateColumns = `repeat(${availableSlots.length}, minmax(0, 1fr))`;
-    $("slots").innerHTML = availableSlots
-      .map((sl, i) => {
-        const occupied = !!h.slots[i], selected = !occupied && selectedSlot === i;
-        const attached = attachments.filter(reward => reward.slot === i);
-        const formula = slotFacts && (slotFacts[i].upgradeDamage || slotFacts[i].upgradeSpeed)
-          ? window.BBHuntCombatControls.slotFormulaHTML(slotFacts[i]) : `<span>속도 ${sl.speed} · 피해 ${sl.damage}</span>`;
-        return `<button class="hunt-slot ${selected ? "selected" : ""} ${occupied ? "occupied" : ""}" data-slot="${i}" aria-pressed="${selected}" aria-disabled="${occupied}" ${occupied ? "disabled" : ""}><small class="slot-state">${i + 1}번 슬롯 · ${occupied ? "사용됨" : "비어 있음"}</small><b>${esc(sl.name)}</b>${formula}${attached.map(reward => `<span class="slot-attachment" title="${esc(uiText(reward.rules, "reward"))}">◆ ${esc(reward.name)}${reward.kind === "bloodstone-shard" ? " · 공격 피해 +1" : reward.kind === "bloodstone-chunk" ? " · 속도 +1 · 공격 피해 +1" : ""}</span>`).join("")}${sl.text ? `<small>${esc(uiText(sl.text))}</small>` : ""}<small>${occupied ? h.slots[i].faceDown ? "효과 없이 사용한 기술 · 스탯 효과 미적용" : esc(E.card(h.slots[i]).name) : ""}</small></button>`;
-      })
-      .join("");
-    const movable = !attachmentView?.choices.length ? attachments.filter(reward => reward.reassignable) : [];
-    $("openAttachments").hidden = !movable.length;
-    $("attachmentChoices").innerHTML = movable.map(reward => `<section class="attachment-choice"><h3 title="${esc(uiText(reward.rules, "reward"))}">${esc(reward.name)} · 현재 ${reward.slot + 1}번 슬롯</h3><div class="actions">${availableSlots.map((slot, index) => button(slotFacts ? window.BBHuntCombatControls.attachmentOptionHTML(slotFacts[index], reward, { clean: text => uiText(text, "combat") }) : `${index + 1}번 슬롯 · ${esc(slot.name)} · 속도 ${slot.speed} · 피해 ${slot.damage}`, "REASSIGN_REWARD", { rewardId: reward.id, slot: index }, index === reward.slot, "attachment-slot-option")).join("")}</div></section>`).join("");
-    bind($("attachmentChoices"));
-    $("slots")
-      .querySelectorAll("[data-slot]")
-      .forEach(
-        (b) =>
-          (b.onclick = () => {
-            const slot = +b.dataset.slot;
-            if (E.hunter(state).slots[slot] || !E.slots(state)[slot]) return;
-            selectedSlot = selectedSlot === slot ? null : slot;
-            shell?.showProgress?.();
-            renderHand();
-            renderDecisions();
-          }),
-      );
+    renderWeaponLoadout();
     for (const previous of reading) {
       const controls = Array.from(previous.container.querySelectorAll(previous.selector));
       for (const control of controls) {
@@ -1143,7 +1125,97 @@
       }
     }
   }
+  function returnFaceSelection() {
+    return state.phase === "return" && returnFaceState === state && E.weapon(state).faces[returnFaceChoice]
+      ? returnFaceChoice : E.hunter(state).face;
+  }
+  function renderWeaponLoadout() {
+    // Return choices are a display projection. Only RETURN commits the face,
+    // repairs displaced attachments, and opens any permitted reassignment.
+    const bankScroll = $("weaponSlotBank").scrollTop,
+      canonical = E.hunter(state), preview = state.phase === "return",
+      faceIndex = returnFaceSelection(), projected = faceIndex === canonical.face ? state : {
+        ...state, hunters: { ...state.hunters, [state.activeHunterId]: { ...canonical, face: faceIndex } },
+      }, h = E.hunter(projected),
+      weapon = E.weapon(projected), face = E.weaponFace(projected), availableSlots = E.slots(projected), slotFacts = window.BBHuntCombatControls?.slotFacts(projected, E),
+      attachmentView = E.rewardsView?.(state), attachments = attachmentView?.rewards.filter(reward => reward.equipped && reward.persistent) || [];
+    $("weaponName").textContent = weapon.name;
+    $("weaponFace").textContent = faceName(face, h.face);
+    $("weaponAbility").textContent = uiText(face.text || "고유 효과가 없습니다.");
+    $("slots").style.gridTemplateColumns = `repeat(${availableSlots.length}, minmax(0, 1fr))`;
+    $("weaponSlotBank").dataset.slotCount = String(availableSlots.length);
+    $("weaponSlotBank").dataset.preview = String(preview);
+    $("slots").innerHTML = availableSlots
+      .map((sl, i) => {
+        const occupied = !!h.slots[i], selected = !preview && !occupied && selectedSlot === i;
+        const attached = attachments.filter(reward => reward.slot === i);
+        const formula = slotFacts && (slotFacts[i].upgradeDamage || slotFacts[i].upgradeSpeed)
+          ? window.BBHuntCombatControls.slotFormulaHTML(slotFacts[i]) : `<span>속도 ${sl.speed} · 피해 ${sl.damage}</span>`;
+        return `<button class="hunt-slot ${selected ? "selected" : ""} ${occupied ? "occupied" : ""}" data-slot="${i}" aria-pressed="${selected}" aria-disabled="${occupied || preview}" ${occupied || preview ? "disabled" : ""}><small class="slot-state">${i + 1}번 슬롯 · ${occupied ? "사용됨" : "비어 있음"}</small><b>${esc(sl.name)}</b>${formula}${attached.map(reward => `<span class="slot-attachment" title="${esc(uiText(reward.rules, "reward"))}">◆ ${esc(reward.name)}${reward.kind === "bloodstone-shard" ? " · 공격 피해 +1" : reward.kind === "bloodstone-chunk" ? " · 속도 +1 · 공격 피해 +1" : ""}</span>`).join("")}${sl.text ? `<small>${esc(uiText(sl.text))}</small>` : ""}<small>${occupied ? h.slots[i].faceDown ? "효과 없이 사용한 기술 · 스탯 효과 미적용" : esc(E.card(h.slots[i]).name) : ""}</small></button>`;
+      })
+      .join("");
+    const movable = !preview && !attachmentView?.choices.length ? attachments.filter(reward => reward.reassignable) : [];
+    $("openAttachments").hidden = !movable.length;
+    $("attachmentChoices").innerHTML = movable.map(reward => `<section class="attachment-choice"><h3 title="${esc(uiText(reward.rules, "reward"))}">${esc(reward.name)} · 현재 ${reward.slot + 1}번 슬롯</h3><div class="actions">${availableSlots.map((slot, index) => button(slotFacts ? window.BBHuntCombatControls.attachmentOptionHTML(slotFacts[index], reward, { clean: text => uiText(text, "combat") }) : `${index + 1}번 슬롯 · ${esc(slot.name)} · 속도 ${slot.speed} · 피해 ${slot.damage}`, "REASSIGN_REWARD", { rewardId: reward.id, slot: index }, index === reward.slot, "attachment-slot-option")).join("")}</div></section>`).join("");
+    bind($("attachmentChoices"));
+    $("slots")
+      .querySelectorAll("[data-slot]")
+      .forEach(
+        (b) =>
+          (b.onclick = () => {
+            const slot = +b.dataset.slot;
+            if (E.hunter(state).slots[slot] || !E.slots(state)[slot]) return;
+            selectedSlot = pendingHunterAction?.type === "ATTACK" ? slot : selectedSlot === slot ? null : slot;
+            shell?.showProgress?.();
+            renderHand();
+            renderDecisions();
+          }),
+      );
+    $("weaponSlotBank").scrollTop = bankScroll;
+  }
+  function hunterActionView(type = pendingHunterAction?.type, commandArgs = {}) {
+    return window.BBHuntActionMenu?.view(state, E, window.BBHuntContext, {
+      type, cardId: selectedCard, slot: selectedSlot,
+      enemyId: mapTarget?.kind === "enemy" ? mapTarget.enemyId : null,
+      pullIds: [...pulls], rewardIds: [...selectedRewards], replaceCardEffects: attackReplacesCardEffects(),
+      routeIndex: pendingHunterAction?.routeIndex,
+      blockedReason: window.BBHuntActionAvailability?.blockedReason,
+      commandArgs,
+    });
+  }
+  function beginHunterAction(type) {
+    const model = hunterActionView(type);
+    if (pendingHunterAction || !model?.actions.some(action => action.type === type && action.enabled) ||
+        windows?.isBlocked()) return;
+    pendingHunterAction = { type, sourceState: state, sourceRevision: state.revision, routeIndex: null,
+      before: { selectedCard, selectedSlot, selectedEnemy, mapTarget, inspectedTile,
+        weaponBoost, pulls: [...pulls], rewards: [...selectedRewards], items: inventory.ids() } };
+    selectedCard = null;
+    if (type === "ATTACK") selectedSlot = model.slot >= 0 ? model.slot : null;
+    shell?.showProgress?.();
+    renderHand(); renderDecisions();
+  }
+  function cancelHunterAction() {
+    const pending = pendingHunterAction;
+    if (!pending) return;
+    pendingHunterAction = null;
+    if (pending.sourceState === state && pending.sourceRevision === state.revision) {
+      ({ selectedCard, selectedSlot, selectedEnemy, mapTarget, inspectedTile, weaponBoost } = pending.before);
+      pulls = new Set(pending.before.pulls); selectedRewards = new Set(pending.before.rewards);
+      inventory.restoreSelection?.(pending.before.items);
+    }
+    inventory.render(); renderHand(); renderMap(); renderDecisions(); syncPresentation();
+    $("hunterActionBar")?.querySelector(`[data-hunter-intent="${pending.type}"]`)?.focus?.({ preventScroll: true });
+  }
+  function renderHunterActionBar() {
+    const bar = $("hunterActionBar"), model = hunterActionView();
+    if (!bar || !model) return;
+    bar.innerHTML = model.actions.map(action => `<button type="button" data-hunter-intent="${action.type}" aria-pressed="${pendingHunterAction?.type === action.type}" ${action.enabled && !pendingHunterAction ? "" : "disabled"}>${action.label}${action.type === "ATTACK" ? `<small>선택한 적: ${esc(model.selectedEnemy ? enemyTargetLabel(model.selectedEnemy) : "없음")}</small>` : ""}${actionLossHint({ type: action.type })}</button>`).join("");
+    bar.querySelectorAll("[data-hunter-intent]").forEach(button => button.onclick = () => beginHunterAction(button.dataset.hunterIntent));
+  }
   function renderDecisions() {
+    if (pendingHunterAction && (pendingHunterAction.sourceState !== state || state.phase !== "hunter")) pendingHunterAction = null;
+    renderHunterActionBar();
     renderFirearm();
     const h = E.hunter(state),
       p = state.phase,
@@ -1188,8 +1260,7 @@
       over: "사냥 종료",
     };
     $("phaseTitle").textContent = names[p];
-    let help = "",
-      html = "";
+    let help = "", html = "", attackBoostHTML = "";
     const actionArgs = {
       cardId: selectedCard,
       slot: selectedSlot,
@@ -1212,12 +1283,12 @@
     };
     if (p === "hunter") {
       help =
-        "아래 손패에서 카드를 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.";
-      html = `<p class="target-selection-status">${esc(selectHint)}</p><div class="actions">${button("이동", "MOVE", { cardId: selectedCard }, !chosen)}${button("무기 변형", "TRANSFORM", { cardId: selectedCard }, !chosen)}${button("꿈으로 이동", "DREAM", { cardId: selectedCard }, !chosen)}</div>`;
+        window.BBHuntActionMenu ? "" : "아래 손패에서 카드를 고르고 행동하세요. 공격·회피는 빈 슬롯도 선택합니다.";
+      html = window.BBHuntActionMenu ? "" : `<p class="target-selection-status">${esc(selectHint)}</p><div class="actions">${button("이동", "MOVE", { cardId: selectedCard }, !chosen)}${button("무기 변형", "TRANSFORM", { cardId: selectedCard }, !chosen)}${button("꿈으로 이동", "DREAM", { cardId: selectedCard }, !chosen)}</div>`;
       if (mapTarget) html = `<details class="utility-actions"><summary>다른 행동 · 변형·꿈·화기 준비</summary>${html}</details>`;
       const target = state.enemies.find((e) => e.id === selectedEnemy);
       html += checkPulls();
-      if (target && !mapTarget) {
+      if (target && !mapTarget && !window.BBHuntActionMenu) {
         const same = target.node === h.position || pulls.has(target.id),
           paths =
             chosen && E.card(chosen).leap && !attackReplacesCardEffects()
@@ -1441,7 +1512,7 @@
     } else if (p === "return") {
       help = "공개된 등불 중 귀환할 곳과 무기 형태를 선택하세요. 형태를 바꾸어 귀환하면, 다음 행동 전에 부착 보상을 원하는 슬롯으로 옮길 수 있습니다.";
       html =
-        `<label>무기 형태<select id="returnFace">${E.weapon(state).faces.map((face, index) => `<option value="${index}" ${index === h.face ? "selected" : ""}>${esc(faceName(face, index))}</option>`).join("")}</select></label>` +
+        `<label>무기 형태<select id="returnFace">${E.weapon(state).faces.map((face, index) => `<option value="${index}" ${index === returnFaceSelection() ? "selected" : ""}>${esc(faceName(face, index))}</option>`).join("")}</select></label>` +
         E.nodes(state)
           .filter((n) => n.lamp)
           .map(
@@ -1534,23 +1605,40 @@
       const options = boostCode === "attack_sacrifice_damage"
         ? [["none", "사용하지 않음"], ["1", "피해 1을 받고 공격 피해 +1"], ["2", "피해 2를 받고 공격 피해 +2"]]
         : [["none", "사용하지 않음"], ["speed", "피해 1을 받고 공격 속도 +1"], ["damage", "피해 1을 받고 공격 피해 +1"]];
-      html = `<label>공격에 사용할 무기 고유 효과<select id="weaponBoost">${options.map(([value, label]) => `<option value="${value}" ${weaponBoost === value ? "selected" : ""}>${esc(label)}</option>`).join("")}</select></label>` + html;
+      attackBoostHTML = `<label>공격에 사용할 무기 고유 효과<select id="weaponBoost">${options.map(([value, label]) => `<option value="${value}" ${weaponBoost === value ? "selected" : ""}>${esc(label)}</option>`).join("")}</select></label>`;
+      html = attackBoostHTML + html;
     }
     if (p === "hunter" && !rewards?.choices.length && !state.weaponEffects?.length &&
         E.weapon(state).id === "uncanny-ludwigs-holy-blade") {
       const last = state.commands?.findLast(command => !command.type.startsWith("APPLY_"));
       if (last?.type === "WEAPON_CHOICE" && last.enemyId) help = `피해 배분 완료 · ${help}`;
     }
+    if (p === "hunter" && pendingHunterAction && !rewards?.choices.length) {
+      const model = hunterActionView(pendingHunterAction.type, actionArgs), command = model?.command,
+        extra = pendingHunterAction.type === "ATTACK" ? attackBoostHTML + checkPulls() + (rewards?.rewards || []).filter(reward => reward.attackSelectable).map(reward => rewardAttackOption(reward, reward.name)).join("") : "";
+      $("phaseTitle").textContent = "행동하기";
+      help = "행동하기 위해 소모할 패를 선택해주세요";
+      html = extra + (model?.routes.length > 1 ? `<label class="hunter-action-route">도약 경로<select id="hunterActionRoute"><option value="">경로 선택</option>${model.routes.map((route, index) => `<option value="${index}" ${pendingHunterAction.routeIndex === index ? "selected" : ""}>${esc(uiText(route.label))}</option>`).join("")}</select></label>` : "") +
+        (chosen && model?.reason ? `<p class="hunter-action-reason">${esc(model.reason)}</p>` : "") +
+        `<button id="confirmHunterAction" class="primary" ${command ? `data-command="${command.type}" data-args="${esc(JSON.stringify(Object.fromEntries(Object.entries(command).filter(([key]) => key !== "type"))))}"` : ""} ${model?.enabled ? "" : "disabled"}>행동하기${actionLossHint(command || { type: pendingHunterAction.type })}</button><button id="cancelHunterAction" type="button">행동취소</button>`;
+    }
     $("phaseHelp").textContent = help;
     $("decisions").innerHTML = html;
     bind($("decisions"));
     bindRewardAttack($("decisions"));
+    if ($("cancelHunterAction")) $("cancelHunterAction").onclick = cancelHunterAction;
+    if ($("hunterActionRoute")) $("hunterActionRoute").onchange = () => { pendingHunterAction.routeIndex = $("hunterActionRoute").value === "" ? null : +$("hunterActionRoute").value; renderDecisions(); };
     if ($("weaponBoost")) $("weaponBoost").onchange = () => { weaponBoost = $("weaponBoost").value; renderFirearm(); renderDecisions(); };
     if ($("reloadSecondCard")) $("reloadSecondCard").onchange = () => {
       reloadSecondCardId = $("reloadSecondCard").value || null;
       renderDecisions();
     };
     if ($("exportChapterSave")) $("exportChapterSave").onclick = () => $("save").click();
+    if ($("returnFace")) $("returnFace").onchange = () => {
+      returnFaceChoice = +$("returnFace").value;
+      returnFaceState = state;
+      renderWeaponLoadout();
+    };
     if ($("nextChapterStart")) {
       window.BBStartPlacement.mount($("nextChapterPlacement"), $("nextChapterStart"), $("startNextChapter"));
       const rememberStart = () => { nextStartSpace = $("nextChapterStart").value; };
@@ -1572,7 +1660,7 @@
       ? `<div class="combat-card"><b>${esc(state.enemies.some((e) => e.id === c.enemyId) ? E.enemyDef(state, state.enemies.find((e) => e.id === c.enemyId)).name : "처치된 적")}</b><p>${c.action ? `${esc(ED.labels[c.action.kind])} · ${esc(c.action.name)}${c.action.type !== "ability" && Number.isFinite(c.action.speed) ? " · 속도 " + c.action.speed : ""}${Number.isFinite(c.action.damage) && (c.action.type !== "ability" || c.action.damage > 0) ? " · 피해 " + c.action.damage : ""}` : "적 행동 공개 전"}</p>${c.action?.rules?.length ? `<p>${c.action.rules.map(rule => esc(uiText(rule))).join("<br>")}</p>` : ""}<small>${c.attack ? `사냥꾼 공격 · 속도 ${c.attack.speed} / 피해 ${c.attack.damage}` : c.flame ? `${esc(c.flame.name || E.firearm(state).name)} 공격 · 속도 ${c.flame.speed} / 피해 ${c.flame.damage}${c.flame.interrupt ? " · 방해" : ""}${c.flame.splash ? ` · 같은 칸의 다른 적에게 피해 ${c.flame.splash}` : ""}` : "사냥꾼 공격 없음"} · 방어 ${c.defense}${c.dodged ? " · 회피 선택됨" : ""}${c.cancelEnemy ? " · 적 공격 방해됨" : ""}${c.noDodge ? " · 회피 불가" : ""}</small></div>`
       : "";
     renderEnemyHistory();
-    $("deckStatus").innerHTML = `<div class="deck-summary"><span>적 행동 · 남음 ${state.enemyDeck.length}</span><button type="button" data-enemy-history aria-controls="enemyHistoryDialog" aria-label="버린 적 행동과 공개 순서 확인">버림 ${state.enemyDiscard.length}</button><span class="last-enemy-action">마지막 공개: ${ED.labels[state.enemyDiscard.at(-1)] || "없음"}</span></div>`;
+    $("deckStatus").innerHTML = `<div class="deck-summary"><span class="enemy-deck-remaining"><span>적 행동 · 남음</span><b>${state.enemyDeck.length}</b></span><button type="button" data-enemy-history aria-controls="enemyHistoryDialog" aria-label="버린 적 행동과 공개 순서 확인">버림 <b>${state.enemyDiscard.length}</b></button><span class="last-enemy-action"><span>마지막 공개</span><strong>${ED.labels[state.enemyDiscard.at(-1)] || "없음"}</strong></span></div>`;
     $("deckStatus").querySelector("[data-enemy-history]").onclick = event => {
       renderEnemyHistory(); historyPopup?.open(event.currentTarget);
     };
@@ -1672,7 +1760,8 @@
   }
   function renderCombatSelection(rewards) {
     const box = $("combatSelection"), controls = window.BBHuntCombatControls,
-      visible = controls && !rewards?.choices.length && ["hunter", "combat_choose", "combat_react", "combat_extra", "boss_react", "weapon_entry", "entry_weapon"].includes(state.phase);
+      visible = controls && !rewards?.choices.length && ["hunter", "combat_choose", "combat_react", "combat_extra", "boss_react", "weapon_entry", "entry_weapon"].includes(state.phase)
+        && (state.phase !== "hunter" || !window.BBHuntActionMenu || pendingHunterAction?.type === "ATTACK");
     box.hidden = !visible;
     box.innerHTML = "";
     if (!visible) return;
@@ -1716,6 +1805,11 @@
     // Move the original controls, including their bound handlers and disabled
     // state. Explanations can scroll without duplicating a game command.
     dock.replaceChildren();
+    if (pendingHunterAction) {
+      for (const id of ["confirmHunterAction", "cancelHunterAction"]) if ($(id)) dock.append($(id));
+      dock.hidden = !dock.children.length;
+      return;
+    }
     const core = new Set(["MOVE", "END_TURN", "STOP_MOVE", "CANCEL_MOVE",
       "ATTACK", "COUNTER", "NO_ATTACK", "DODGE", "EXTRA_DODGE", "RESOLVE", "EXTRA_TAKE", "WEAPON_CHOICE", "ENTRY_WEAPON", "WEAPON_SHOT"]);
     const controls = [...$("decisions").querySelectorAll("[data-command]"), ...$("mapContext").querySelectorAll("[data-command]")];
@@ -1804,15 +1898,20 @@
           ...(Object.hasOwn(actionArgs, "weaponBoost") ? { weaponBoost: actionArgs.weaponBoost } : {}) } : {}) };
     };
     const pullPreview = view.enemyId && window.BBHuntAttackPreview?.pullView(state, E, [...pulls]).find(preview => preview.enemyId === view.enemyId);
-    box.innerHTML = `<div class="context-heading"><div><p class="eyebrow">선택한 대상</p><h3 id="enemyInspectionTitle">${esc(uiText(mapTarget.kind === "enemy" ? enemyTargetLabel(view.enemyId) : mapTarget.objectName || view.title, "location"))}</h3></div><button id="clearMapTarget" type="button" aria-label="대상 선택 닫기">×</button></div><div id="enemyInspectionContent">${view.hint ? `<p class="context-hint">${esc(uiText(view.hint, "location"))}</p>` : ""}${pullHint(pullPreview)}<div class="context-actions">${actions.map((action, index) => {
+    box.innerHTML = `<div class="context-heading"><div><p class="eyebrow">선택한 대상</p><h3 id="enemyInspectionTitle">${esc(uiText(mapTarget.kind === "enemy" ? enemyTargetLabel(view.enemyId) : mapTarget.objectName || (view.nodeId ? nodeName(view.nodeId) : view.title), "location"))}</h3></div><button id="clearMapTarget" type="button" aria-label="대상 선택 닫기">×</button></div><div id="enemyInspectionContent">${view.hint ? `<p class="context-hint">${esc(uiText(view.hint, "location"))}</p>` : ""}${pullHint(pullPreview)}<div class="context-actions">${actions.map((action, index) => {
       const c = command(action), { type, ...args } = c || {};
+      if (type === "ATTACK" && state.phase === "hunter" && window.BBHuntActionMenu) {
+        const enabled = !pendingHunterAction && hunterActionView().actions.find(item => item.type === "ATTACK")?.enabled;
+        return enabled ? '<div class="context-action"><button type="button" data-hunter-intent="ATTACK">이 적 공격하기</button></div>' : "";
+      }
       const selfCost = ["ATTACK", "COUNTER", "FIREARM"].includes(type) && actionArgs.weaponBoost && actionArgs.weaponBoost !== "none"
         ? ` · 자기 피해 ${typeof actionArgs.weaponBoost === "number" ? actionArgs.weaponBoost : 1}` : "";
       const resourceCost = (["ATTACK", "COUNTER"].includes(type) && inventory.ids().length ? ` · 소모품 ${inventory.ids().length}장 사용` : "")
         + (["ATTACK", "COUNTER", "FIREARM"].includes(type) && selectedRewards.size ? ` · 선택 보상 ${selectedRewards.size}장 소진` : "");
-      return `<div class="context-action"><button data-context-id="${esc(action.id)}" ${c ? `data-command="${type}" data-args="${esc(JSON.stringify(args))}"` : `data-context-action="${index}"`} ${action.enabled ? "" : "disabled"}>${esc(action.label)}<small>${esc(action.cost + selfCost + resourceCost)}</small>${c ? actionLossHint(c) : ""}</button>${!action.enabled && action.reason ? `<p class="context-reason">${esc(action.reason)}</p>` : ""}</div>`;
+      return `<div class="context-action"><button data-context-id="${esc(action.id)}" ${c ? `data-command="${type}" data-args="${esc(JSON.stringify(args))}"` : `data-context-action="${index}"`} ${action.enabled ? "" : "disabled"}>${esc(action.label)}${["ATTACK", "COUNTER"].includes(type) ? "" : `<small>${esc(action.cost + selfCost + resourceCost)}</small>`}${c ? actionLossHint(c) : ""}</button>${!action.enabled && action.reason && !["ATTACK", "COUNTER"].includes(type) ? `<p class="context-reason">${esc(action.reason)}</p>` : ""}</div>`;
     }).join("")}</div>${view.brokenLamp ? '<p class="context-lamp-warning">망가진 등불 · 사용할 수 없고, 사냥꾼의 꿈에서 돌아오는 목적지로 선택할 수 없습니다.</p>' : ""}${view.fog ? '<p class="context-fog-note">안개가 생길 때 이 타일의 일반 적이 제거됩니다.</p>' : ""}${view.enemyId ? `<section class="context-enemy-abilities" aria-label="선택한 적의 공격과 능력"><h4>공격과 능력</h4>${publicEnemyAbilities(E.enemyDef(state, state.enemies.find(enemy => enemy.id === view.enemyId)), state.enemies.find(enemy => enemy.id === view.enemyId))}</section>` : ""}</div>`;
     bind(box);
+    box.querySelectorAll("[data-hunter-intent]").forEach(button => button.onclick = () => beginHunterAction(button.dataset.hunterIntent));
     box.querySelectorAll("[data-context-action]").forEach((b) => {
       b.onclick = () => {
         const action = actions[+b.dataset.contextAction];
@@ -2018,11 +2117,13 @@
   }
   function tileHTML(p, ghost = false) {
     const def = M.tile(p.tileId), h = E.hunter(state),
-      reachable = E.neighbors(state, h.position), mission = missionView(),
+      reachable = window.BBHuntMapControls ? window.BBHuntMapControls.movement(state, { cardId: selectedCard }).directions
+        .flatMap(direction => direction.options).filter(option => option.enabled && option.command?.type === "STEP")
+        .map(option => option.command.node) : E.neighbors(state, h.position), mission = missionView(),
       currentTile = E.node(state, h.position)?.tile,
       currentFog = !!mission?.fog.includes(currentTile),
       fog = !ghost && !!mission?.fog.includes(p.tileId), scene = mapScene(p, ghost, mission, h);
-    return `<div class="tile-cell ${ghost ? "ghost" : ""} ${fog ? "fog-tile" : ""}" data-tile="${p.tileId}" data-inspected="${!ghost && p.tileId === inspectedTile}"><img class="tile-diagram" src="${G.image(p.tileId)}" data-tile-art="${p.tileId}" data-tile-rotation="${p.rotation}" alt="" style="transform:rotate(${p.rotation * 90}deg)"><div class="tile-name">${ghost ? def.named ? `<span class="tile-label">${esc(def.displayName)}</span>` : `<span class="tile-reference">${esc(tileReference(p))}</span>` : `<button type="button" class="tile-info-trigger ${def.named ? "" : "anonymous"}" data-tile-info="${p.tileId}" aria-label="${esc(tileReference(p))} · 타일 정보 보기">${def.named ? esc(def.displayName) : `<span class="tile-reference">${esc(tileReference(p))}</span>`}</button>`}${ghost || fog ? `<span>${ghost ? "미리보기" : "안개"}</span>` : ""}</div>${def.spaces.map((n) => {
+    return `<div class="tile-cell ${ghost ? "ghost" : ""} ${fog ? "fog-tile" : ""}" data-tile="${p.tileId}" data-inspected="${!ghost && p.tileId === inspectedTile}"><img class="tile-diagram" src="${G.mapImage(p.tileId)}" data-tile-art="${p.tileId}" data-tile-rotation="${p.rotation}" alt="" style="transform:rotate(${p.rotation * 90}deg)"><div class="tile-name">${ghost ? def.named ? `<span class="tile-label">${esc(def.displayName)}</span>` : `<span class="tile-reference">${esc(tileReference(p))}</span>` : `<button type="button" class="tile-info-trigger ${def.named ? "" : "anonymous"}" data-tile-info="${p.tileId}" aria-label="${esc(tileReference(p))} · 타일 정보 보기">${def.named ? esc(def.displayName) : `<span class="tile-reference">${esc(tileReference(p))}</span>`}</button>`}${ghost || fog ? `<span>${ghost ? "미리보기" : "안개"}</span>` : ""}</div>${def.spaces.map((n) => {
       const id = `${p.tileId}:${n.id}`, [x, y] = G.point(p.tileId, n.id, p.rotation),
         outline = G.polygon(p.tileId, n.id, p.rotation),
         left = Math.min(...outline.map(([x]) => x)), top = Math.min(...outline.map(([,y]) => y)),
@@ -2037,7 +2138,7 @@
         hunter = scene.find(entry => entry.type === "hunter" && entry.node === id),
         hunterX = hunter ? (hunter.x-left)/width*100 : localX,
         hunterY = hunter ? (hunter.y-top)/height*100 : localY;
-      return `<button class="space diagram-space ${here ? "here" : ""} ${reach ? "reachable" : ""} ${mapTarget?.kind === "cell" && mapTarget.node === id ? "context-selected" : ""} ${ghost ? "ghost-space" : ""}" style="left:${left}%;top:${top}%;width:${width}%;height:${height}%;clip-path:polygon(${polygon})" data-node="${esc(id)}" aria-pressed="${mapTarget?.kind === "cell" && mapTarget.node === id}" ${ghost ? "disabled" : ""} aria-label="${esc(G.spaceLabel(def, n))}${brokenLamp ? " · 망가진 등불" : ""}${here ? " · 사냥꾼" : ""}${loot ? " · 소모품 " + loot : ""}${figures.length ? " · 적 " + figures.length : ""}" title="${esc(G.spaceLabel(def, n))}${brokenLamp ? " · 망가진 등불 · 사용 및 꿈 복귀 불가" : ""}"><span class="node-anchor" data-node-anchor="${esc(id)}" style="left:${localX}%;top:${localY}%" aria-hidden="true"></span>${hunter ? `<span class="hunter-anchor" data-layout-id="hunter" data-presentation-id="hunter" data-presentation-kind="hunter" data-presentation-node="${esc(id)}" data-presentation-skin="${esc(hunterVisual().skin)}" style="left:${hunterX}%;top:${hunterY}%" aria-hidden="true"></span>` : ""}${here ? `<span class="space-status" style="left:${hunterX}%;top:${Math.min(95,hunterY+10)}%"><span class="hunter-map-marker">● 사냥꾼</span></span>` : ""}</button>`;
+      return `<button class="space diagram-space ${here ? "here" : ""} ${reach ? "reachable" : ""} ${mapTarget?.kind === "cell" && mapTarget.node === id ? "context-selected" : ""} ${ghost ? "ghost-space" : ""}" style="left:${left}%;top:${top}%;width:${width}%;height:${height}%;clip-path:polygon(${polygon})" data-node="${esc(id)}" aria-pressed="${mapTarget?.kind === "cell" && mapTarget.node === id}" ${ghost ? "disabled" : ""} aria-label="${esc(G.spaceLabel(def, n, p.rotation))}${brokenLamp ? " · 망가진 등불" : ""}${here ? " · 사냥꾼" : ""}${loot ? " · 소모품 " + loot : ""}${figures.length ? " · 적 " + figures.length : ""}" title="${esc(G.spaceLabel(def, n, p.rotation))}${brokenLamp ? " · 망가진 등불 · 사용 및 꿈 복귀 불가" : ""}"><span class="node-anchor" data-node-anchor="${esc(id)}" style="left:${localX}%;top:${localY}%" aria-hidden="true"></span>${hunter ? `<span class="hunter-anchor" data-layout-id="hunter" data-presentation-id="hunter" data-presentation-kind="hunter" data-presentation-node="${esc(id)}" data-presentation-skin="${esc(hunterVisual().skin)}" style="left:${hunterX}%;top:${hunterY}%" aria-hidden="true"></span>` : ""}${here ? `<span class="space-status" style="left:${hunterX}%;top:${Math.min(95,hunterY+10)}%"><span class="hunter-map-marker">● 사냥꾼</span></span>` : ""}</button>`;
     }).join("")}${scene.filter(entry => ["lamp", "chest", "token"].includes(entry.type)).map(entry => mapObjectHTML(entry, fog)).join("")}${scene.filter(entry => entry.type === "enemy").map(entry => {
       const enemy = state.enemies.find(enemy => enemy.id === entry.id),
         assigned = state.world.assignments.find(assignment => assignment.enemyId === enemy.kind), d = E.enemyDef(state, enemy),
@@ -2045,7 +2146,15 @@
         insight = window.BBHuntContext?.enemyInsightTokens(state, enemy), tokenLabel = Number.isFinite(insight) ? ` · 계몽 토큰 ${insight}개` : "",
         selected = isMapEnemySelected(enemy.id);
       return `<div class="map-figures scene-figure ${entry.anchorKind === "lamp" ? "lamp-figures" : ""}" data-layout-id="${esc(entry.id)}" style="left:${entry.x}%;top:${entry.y}%"><button type="button" class="map-figure ${selected ? "selected" : ""}" data-enemy="${esc(enemy.id)}" data-presentation-id="${esc(enemy.id)}" data-presentation-kind="enemy" data-presentation-node="${esc(entry.node)}" data-presentation-skin="${characterSkin(enemy)}" aria-pressed="${selected}" aria-label="${esc(enemyTargetLabel(enemy))} · 체력 ${enemy.hp} / ${d.maxHp}${tokenLabel} · 대상 선택" title="${esc(enemyTargetLabel(enemy))} · 체력 ${enemy.hp}/${d.maxHp}${tokenLabel}" style="--marker:${colors[assigned?.marker] || colors.gold}">${marker}${Number.isFinite(insight) ? `<span class="enemy-insight-badge" aria-hidden="true">✧ ${insight}</span>` : ""}</button></div>`;
-    }).join("")}${ghost ? "" : gateHTML(p)}</div>`;
+    }).join("")}${ghost ? "" : gateHTML(p)}${tileSpaceLabelsHTML(p, def, ghost)}</div>`;
+  }
+  function tileSpaceLabelsHTML(p, definition, ghost) {
+    const spaces = definition.spaces.map(space => ({ space, point: G.point(p.tileId, space.id, p.rotation) }))
+      .sort((a, b) => a.point[1] - b.point[1] || a.point[0] - b.point[0]);
+    return `<div class="tile-space-labels" aria-label="칸 이름">${spaces.map(({ space }) => {
+      const label = esc(G.spaceLabel(definition, space, p.rotation));
+      return ghost ? `<span>${label}</span>` : `<button type="button" data-space-label-node="${esc(p.tileId + ":" + space.id)}">${label}</button>`;
+    }).join("")}</div>`;
   }
   function gateHTML(p) {
     const directions = ["N", "E", "S", "W"], open = M.openExits(state.world);
@@ -2113,7 +2222,6 @@
     mapColumns = maxX - minX + 1;
     resizeMap();
     $("chapterMap").innerHTML = html;
-    window.BBHuntMapControls?.uprightTileImages($("chapterMap"));
     if (mapTarget?.objectId && ![...$("chapterMap").querySelectorAll("[data-map-object-id]")]
         .some(object => object.dataset.mapObjectId === mapTarget.objectId && object.dataset.objectNode === mapTarget.node)) {
       delete mapTarget.objectId; delete mapTarget.objectKind; delete mapTarget.objectName;
@@ -2194,6 +2302,9 @@
       mapTarget = null;
       renderMap(); renderDecisions(); syncPresentation();
     });
+    $("chapterMap").querySelectorAll("[data-space-label-node]").forEach(button => {
+      button.onclick = () => selectMapCell({ kind: "cell", node: button.dataset.spaceLabelNode });
+    });
     $("chapterMap").querySelectorAll("[data-map-object]").forEach(b => {
       b.onclick = () => {
         shell?.showProgress?.();
@@ -2207,15 +2318,26 @@
     $("chapterMap").querySelectorAll("[data-node]").forEach((b) => {
       b.onclick = () => {
         if (b.disabled) return;
-        shell?.showProgress?.();
-        mapTarget = b.dataset.entrance
+        selectMapCell(b.dataset.entrance
           ? { kind: "entrance", node: b.dataset.node, edge: b.dataset.edge, tileId: b.dataset.tileId }
-          : { kind: "cell", node: b.dataset.node };
-        inspectedTile = E.node(state, mapTarget.node)?.tile || inspectedTile;
-        renderMap(); renderDecisions(); syncPresentation();
-        $("mapContext")?.focus();
+          : { kind: "cell", node: b.dataset.node });
       };
     });
+  }
+  function selectMapCell(target) {
+    shell?.showProgress?.();
+    mapTarget = target;
+    inspectedTile = E.node(state, target.node)?.tile || inspectedTile;
+    if (state.phase === "move") {
+      const action = window.BBHuntContext?.view(state, target, { cardId: selectedCard }).actions
+        .find(action => action.id === "move" && action.enabled && action.command?.type === "STEP"),
+        allowed = window.BBHuntMapControls?.movement(state, { cardId: selectedCard }).directions
+          .some(direction => direction.options.some(option => option.enabled && option.command?.type === "STEP" &&
+            option.command.node === action?.command.node));
+      if (action && allowed) { sendCommands([action.command]); return; }
+    }
+    renderMap(); renderDecisions(); syncPresentation();
+    $("mapContext")?.focus();
   }
   function characterSkin(enemy) {
     const d = E.enemyDef(state, enemy);
@@ -2257,10 +2379,28 @@
       if (card && offset) { card.style.left = `${actor.x + offset.x}px`; card.style.top = `${actor.y + offset.y}px`; }
     }
   }
+  function renderEnemyHitAreas(areas) {
+    const layer = $("enemyHitLayer");
+    if (!layer) return;
+    const living = areas.filter(area => state.enemies.some(enemy => enemy.id === area.id && enemy.hp > 0) &&
+      [area.left, area.top, area.width, area.height].every(Number.isFinite));
+    const current = [...layer.querySelectorAll("[data-enemy]")];
+    if (current.map(button => button.dataset.enemy).join("|") !== living.map(area => area.id).join("|")) {
+      layer.innerHTML = living.map(area => `<button type="button" class="enemy-sprite-target" data-enemy="${esc(area.id)}" tabindex="-1" aria-label="${esc(enemyTargetLabel(area.id))} · 대상 선택"></button>`).join("");
+      bindEnemyTargets(layer);
+    }
+    for (const button of layer.querySelectorAll("[data-enemy]")) {
+      const area = living.find(area => area.id === button.dataset.enemy);
+      button.style.left = `${area.left}px`; button.style.top = `${area.top}px`;
+      button.style.width = `${area.width}px`; button.style.height = `${area.height}px`;
+      button.style.zIndex = String(Math.max(1, Math.round(area.top + area.height)));
+      button.setAttribute("aria-pressed", String(isMapEnemySelected(area.id)));
+    }
+  }
   function syncPresentation() {
     if (rendering) return;
     const viewport = $("mapViewport"), bounds = viewport.getBoundingClientRect(),
-      zoom = camera?.zoom() || 1, tileSize = Math.max(170, Math.min(290, (viewport.clientHeight || 300) - 10)),
+      zoom = camera?.scale?.() || camera?.zoom() || 1, tileSize = Math.max(170, Math.min(290, (viewport.clientHeight || 300) - 10)),
       scale = zoom * tileSize / 290;
     const host = $("mapEffects");
     host.style.left = `${viewport.clientLeft || 0}px`; host.style.top = `${viewport.clientTop || 0}px`;
@@ -2293,6 +2433,7 @@
     // Required character bodies load together; an optional weapon sheet can
     // continue loading while the common hunter body remains visible.
     const charactersReady = presentation?.status?.().charactersReady === true;
+    if (!charactersReady) renderEnemyHitAreas([]);
     for (const marker of $("chapterMap").querySelectorAll(".hunter-map-marker"))
       marker.setAttribute("data-character-ready", String(charactersReady));
     for (const marker of $("chapterMap").querySelectorAll(".map-figure"))
@@ -2372,6 +2513,11 @@
     rewardSelections.clear();
     pickerEnemySelections.clear();
     inventory.clear();
+    pendingHunterAction = null;
+  }
+  function resumeAutomaticCombat() {
+    const command = !setupRequired && window.BBHuntAutomaticCombat?.nextCommand(state, E);
+    return command ? commitCommands([command]) : false;
   }
   $("file").onchange = async (e) => {
     const f = e.target.files[0];
@@ -2389,6 +2535,7 @@
       save();
       render();
       showError("");
+      resumeAutomaticCombat();
     } catch (x) {
       if (request !== importRequest || state !== sourceState) return;
       showError(x.message);
@@ -2544,6 +2691,7 @@
       save();
       render();
       showError("");
+      resumeAutomaticCombat();
       return true;
     } catch (e) { showError(e.message); return false; }
   }
@@ -2681,7 +2829,7 @@
     }
   } else {
     if (startupError) showError(startupError);
-    else if (!entry && !setupRequired) save();
+    else if (!entry && !setupRequired) { save(); resumeAutomaticCombat(); }
     if (setupRequired) openSetup();
   }
 })();

@@ -39,16 +39,19 @@ function click(ui, type) {
   value.click(); assert.equal(ui.el("error").textContent, "");
 }
 function prepare(ui, state, slot) {
+  const intent = ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]").find(button => button.dataset.hunterIntent === "ATTACK");
+  assert(intent && !intent.disabled); intent.click(); assert.equal(ui.el("confirmHunterAction").disabled, true);
   select(ui, "combatSelectCard", H(state).hand.find(card => card.kind === "strength").id);
   select(ui, "combatSelectSlot", slot);
 }
 
 test("Kirkhammer's special slot warns before commitment and blocks a real dodge despite another empty slot", () => {
-  const state = fixture(), { ui, commands, current } = launch(state), original = JSON.stringify(state);
+  const state = fixture(), { ui, commands, current } = launch(state), original = JSON.stringify(state), saved = ui.storage.get("bloodborne-hunt-v07");
   prepare(ui, state, 1);
   assert.match(ui.el("combatSelection").innerHTML, /이번 전투 · 회피 불가 · 방해 면역/);
   assert.doesNotMatch(ui.el("combatSelection").innerHTML, /빈 회피 슬롯 없음/);
-  assert.equal(commands.length, 0); assert.equal(JSON.stringify(state), original);
+  assert.equal(ui.storage.get("bloodborne-hunt-v07"), saved, "disposable legality checks never commit the selected attack");
+  assert.equal(JSON.stringify(state), original);
   click(ui, "ATTACK");
   assert.equal(current().phase, "combat_react"); assert.equal(current().combat.noDodge, true);
   assert.equal(H(current()).slots[0], null, "an actually empty slot cannot override the weapon restriction");

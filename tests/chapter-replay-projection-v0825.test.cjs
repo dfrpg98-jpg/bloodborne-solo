@@ -57,9 +57,15 @@ test("acknowledging the new chapter notice opens reassignment before the next re
   const reassigned = E.dispatch(started, { type: "REASSIGN_REWARD", ...args });
   assert.deepEqual(E.importSave(ui.storage.get("bloodborne-hunt-v07")), reassigned);
   ui.el("closeAttachments").click();
+  const intent = ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]")
+    .find(button => button.dataset.hunterIntent === "MOVE" && !button.disabled);
+  assert(intent, "acknowledgement and reassignment restore the movement toolbar action");
+  const beforeIntent = ui.storage.get("bloodborne-hunt-v07"); intent.click();
+  assert.equal(ui.storage.get("bloodborne-hunt-v07"), beforeIntent, "selecting movement keeps the free attachment window open without a game command");
+  assert.equal(ui.el("confirmHunterAction").disabled, true, "the movement confirmation waits for its hand card");
   const cardId = E.hunter(reassigned).hand[0].id;
   ui.el("hand").querySelectorAll("[data-card]").find(button => button.dataset.card === cardId).click();
-  const move = ui.document.querySelectorAll("[data-command]").find(button => button.dataset.command === "MOVE" && !button.disabled);
+  const move = ui.el("decisionActions").querySelectorAll("[data-command]").find(button => button.dataset.command === "MOVE" && !button.disabled);
   assert(move); move.click();
   const moving = E.importSave(ui.storage.get("bloodborne-hunt-v07"));
   assert.deepEqual(moving, E.dispatch(reassigned, { type: "MOVE", cardId }));

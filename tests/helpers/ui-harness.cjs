@@ -153,6 +153,8 @@ function boot(state, view = mission(), rewardView = rewards(), options = {}) {
     BBMapRenderLayout: require("../../src/map-render-layout"),
     BBHuntDeparture: require("../../src/hunt-departure"),
     BBHuntContext: fs.existsSync(path.join(root, "src/hunt-context.js")) ? require("../../src/hunt-context") : null,
+    BBHuntActionMenu: require("../../src/hunt-action-menu"),
+    BBHuntAutomaticCombat: require("../../src/hunt-automatic-combat"),
     BBHuntAnimationEvents: fs.existsSync(path.join(root, "src/hunt-animation-events.js")) ? require("../../src/hunt-animation-events") : null,
     BBActualComponents: require("../../src/actual-components"),
     BBExtendedEnemies: require("../../src/extended-enemies"),

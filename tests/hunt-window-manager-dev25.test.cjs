@@ -493,9 +493,22 @@ test("reopening minimized information, attachment and upgrade windows restores t
   ui.el("closeAttachments").click();
   assert.equal(manager.isBlocked(), true, "the minimized read-only upgrade window still blocks actual commands");
   ui.el("hand").querySelectorAll("[data-card]")[0].click();
-  ui.buttons("decisions").find(button => button.dataset.command === "MOVE").click();
-  assert.equal(ui.commands.length, 0); assert.deepEqual(ui.storage, before);
+  const beforeIntent = JSON.parse(ui.storage.get("bloodborne-hunt-v07"));
+  const movementIntent = () => ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]")
+    .find(button => button.dataset.hunterIntent === "MOVE");
+  assert(movementIntent()); movementIntent().click();
+  assert(!ui.el("confirmHunterAction"), "a minimized window also blocks opening the action confirmation");
+  // The harness records legality-only dispatch probes too. Saved commands and
+  // the hunter's resources are the authoritative evidence of a real action.
+  const persisted = JSON.parse(ui.storage.get("bloodborne-hunt-v07")), original = JSON.parse(before.get("bloodborne-hunt-v07"));
+  assert.deepEqual(persisted.commands, beforeIntent.commands, "choosing a blocked intent adds no persisted command");
+  assert.deepEqual(persisted.commands, original.commands); assert.deepEqual(persisted.hunters, original.hunters);
+  assert.deepEqual(ui.storage, before);
   ui.el("closeUpgrade").click(); assert.equal(manager.isBlocked(), false);
+  movementIntent().click(); assert.equal(ui.el("phaseTitle").textContent, "행동하기");
+  assert.equal(ui.el("confirmHunterAction").disabled, true, "the restored action still waits for a newly chosen cost card");
+  ui.el("cancelHunterAction").click();
+  assert.deepEqual(ui.storage, before);
 });
 test("a successful consumable action from the inline tab consumes only the chosen item and returns to progress", () => {
   const E = require("../src/hunt-engine"), { boot } = require("./helpers/ui-harness.cjs"), qaKey = "bloodborne-hunt-qa-v1";

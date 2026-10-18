@@ -1,0 +1,710 @@
+{
+  "schema": "hunt-actions-map-browser-v1",
+  "version": "0.8.13-dev.36",
+  "allowedOrigin": "http://127.0.0.1:8860",
+  "browserMode": "installed sandboxed headless Chrome in an isolated temporary profile",
+  "userBrowserAttached": false,
+  "pageStateInjection": false,
+  "fixtures": [
+    {
+      "name": "normal-fresh",
+      "source": "public normal E.create",
+      "qa": false,
+      "commands": 0,
+      "sha256": "eb1d3de04d5dbead66cb955c06ae00607c3d6b7b0b0a2a6b936b279513098ce7"
+    },
+    {
+      "name": "normal-prefix-4",
+      "source": "tests/fixtures/weapon-campaign-completion/beast-claw-0.json first 4 exact public commands",
+      "qa": false,
+      "commands": 4,
+      "sha256": "5e94fc826d01acab9267fb6070634c9c2c70466b43af80ebf6d08d91c2b9fcb2"
+    },
+    {
+      "name": "normal-prefix-17",
+      "source": "tests/fixtures/weapon-campaign-completion/beast-claw-0.json first 17 exact public commands",
+      "qa": false,
+      "commands": 17,
+      "sha256": "6fbb3fe5dfbc64119bb8a4e62fd7617a782a79e5aafed0d8a16db13df6552017"
+    },
+    {
+      "name": "normal-prefix-134",
+      "source": "tests/fixtures/weapon-campaign-completion/beast-claw-0.json first 134 exact public commands",
+      "qa": false,
+      "commands": 134,
+      "sha256": "d605ee77656a906330d1ab7c633f1cbca5c670c9563008bc36ff6caaa0165a42"
+    }
+  ],
+  "checks": [
+    {
+      "name": "staged action module is served",
+      "passed": true
+    },
+    {
+      "name": "starting space hover stays transparent without blur: left",
+      "passed": true,
+      "details": {
+        "hover": true,
+        "filter": "none",
+        "backdrop": "none",
+        "opacity": "1",
+        "background": "rgba(125, 197, 213, 0.067)"
+      }
+    },
+    {
+      "name": "starting space hover stays transparent without blur: center",
+      "passed": true,
+      "details": {
+        "hover": true,
+        "filter": "none",
+        "backdrop": "none",
+        "opacity": "1",
+        "background": "rgba(125, 197, 213, 0.067)"
+      }
+    },
+    {
+      "name": "starting space hover stays transparent without blur: right",
+      "passed": true,
+      "details": {
+        "hover": true,
+        "filter": "none",
+        "backdrop": "none",
+        "opacity": "1",
+        "background": "rgba(125, 197, 213, 0.067)"
+      }
+    },
+    {
+      "name": "official import accepted normal-prefix-4.json",
+      "passed": true
+    },
+    {
+      "name": "four action controls are always present",
+      "passed": true
+    },
+    {
+      "name": "attack requires an explicitly selected enemy",
+      "passed": true
+    },
+    {
+      "name": "three ordinary actions accept intent before choosing a hand card",
+      "passed": true
+    },
+    {
+      "name": "sprite head hit extends above the foot marker",
+      "passed": true,
+      "details": {
+        "marker": {
+          "x": 1020.780029296875,
+          "y": 461.17999267578125,
+          "width": 46.080078125,
+          "height": 46.08001708984375
+        },
+        "hit": {
+          "x": 1011.21875,
+          "y": 374.1875,
+          "width": 62.484375,
+          "height": 113.40625
+        },
+        "x": 1042.4609375,
+        "y": 402.5390625
+      }
+    },
+    {
+      "name": "clicking the visible sprite body selects its enemy",
+      "passed": true
+    },
+    {
+      "name": "eligible selected enemy enables attack",
+      "passed": true
+    },
+    {
+      "name": "attack names its selected enemy below the action label",
+      "passed": true
+    },
+    {
+      "name": "selected enemy exposes its own attack entry",
+      "passed": true
+    },
+    {
+      "name": "attack entry omits the repeated card-and-slot instruction",
+      "passed": true
+    },
+    {
+      "name": "MOVE opens the action confirmation screen",
+      "passed": true
+    },
+    {
+      "name": "MOVE cannot commit until a card is selected",
+      "passed": true
+    },
+    {
+      "name": "MOVE enables commit after a legal card is selected",
+      "passed": true
+    },
+    {
+      "name": "MOVE cancellation restores the original selection",
+      "passed": true
+    },
+    {
+      "name": "MOVE cancellation preserves exact exported save",
+      "passed": true
+    },
+    {
+      "name": "DREAM opens the action confirmation screen",
+      "passed": true
+    },
+    {
+      "name": "DREAM cannot commit until a card is selected",
+      "passed": true
+    },
+    {
+      "name": "DREAM enables commit after a legal card is selected",
+      "passed": true
+    },
+    {
+      "name": "DREAM cancellation restores the original selection",
+      "passed": true
+    },
+    {
+      "name": "DREAM cancellation preserves exact exported save",
+      "passed": true
+    },
+    {
+      "name": "TRANSFORM opens the action confirmation screen",
+      "passed": true
+    },
+    {
+      "name": "TRANSFORM cannot commit until a card is selected",
+      "passed": true
+    },
+    {
+      "name": "TRANSFORM enables commit after a legal card is selected",
+      "passed": true
+    },
+    {
+      "name": "TRANSFORM cancellation restores the original selection",
+      "passed": true
+    },
+    {
+      "name": "TRANSFORM cancellation preserves exact exported save",
+      "passed": true
+    },
+    {
+      "name": "ATTACK opens the action confirmation screen",
+      "passed": true
+    },
+    {
+      "name": "ATTACK cannot commit until a card is selected",
+      "passed": true
+    },
+    {
+      "name": "ATTACK enables commit after a legal card is selected",
+      "passed": true
+    },
+    {
+      "name": "repeatedly clicking the current attack slot keeps it visibly selected",
+      "passed": true
+    },
+    {
+      "name": "repeated slot clicks keep the displayed and committed attack slot aligned",
+      "passed": true
+    },
+    {
+      "name": "ATTACK cancellation restores the original selection",
+      "passed": true
+    },
+    {
+      "name": "ATTACK cancellation preserves exact exported save",
+      "passed": true
+    },
+    {
+      "name": "information window is minimized before the action guard check",
+      "passed": true
+    },
+    {
+      "name": "a minimized information window blocks opening a new action intent",
+      "passed": true
+    },
+    {
+      "name": "blocked action intent under a minimized window preserves exact save",
+      "passed": true
+    },
+    {
+      "name": "official import accepted normal-fresh.json",
+      "passed": true
+    },
+    {
+      "name": "central starting lamp captions lie completely below the square artwork",
+      "passed": true,
+      "details": [
+        {
+          "tile": "tile-14",
+          "art": {
+            "left": 835.02001953125,
+            "top": 262.47998046875,
+            "right": 1252.6201171875,
+            "bottom": 680.080078125
+          },
+          "legend": {
+            "left": 840.780029296875,
+            "top": 684.4000244140625,
+            "right": 1246.860107421875,
+            "bottom": 708.5875244140625
+          },
+          "labelCount": 3,
+          "touchesGate": false,
+          "touchesTile": false
+        }
+      ]
+    },
+    {
+      "name": "central starting lamp captions do not overlap a map tile or an entrance button",
+      "passed": true,
+      "details": [
+        {
+          "tile": "tile-14",
+          "art": {
+            "left": 835.02001953125,
+            "top": 262.47998046875,
+            "right": 1252.6201171875,
+            "bottom": 680.080078125
+          },
+          "legend": {
+            "left": 840.780029296875,
+            "top": 684.4000244140625,
+            "right": 1246.860107421875,
+            "bottom": 708.5875244140625
+          },
+          "labelCount": 3,
+          "touchesGate": false,
+          "touchesTile": false
+        }
+      ]
+    },
+    {
+      "name": "MOVE commits the exact canonical public command",
+      "passed": true,
+      "details": {
+        "command": {
+          "type": "MOVE",
+          "cardId": "card-3"
+        },
+        "phase": "move"
+      }
+    },
+    {
+      "name": "movement declaration keeps its card until the first step",
+      "passed": true
+    },
+    {
+      "name": "clicking a legal map space performs exactly STEP",
+      "passed": true,
+      "details": {
+        "target": "tile-14:right"
+      }
+    },
+    {
+      "name": "the first map step spends exactly the declared card",
+      "passed": true
+    },
+    {
+      "name": "official import accepted normal-fresh.json",
+      "passed": true
+    },
+    {
+      "name": "TRANSFORM commits the exact canonical public command",
+      "passed": true,
+      "details": {
+        "command": {
+          "type": "TRANSFORM",
+          "cardId": "card-3"
+        },
+        "phase": "hunter"
+      }
+    },
+    {
+      "name": "official import accepted normal-fresh.json",
+      "passed": true
+    },
+    {
+      "name": "DREAM commits the exact canonical public command",
+      "passed": true,
+      "details": {
+        "command": {
+          "type": "DREAM",
+          "cardId": "card-3"
+        },
+        "phase": "refill"
+      }
+    },
+    {
+      "name": "official import accepted normal-prefix-4.json",
+      "passed": true
+    },
+    {
+      "name": "sprite head hit extends above the foot marker",
+      "passed": true,
+      "details": {
+        "marker": {
+          "x": 1020.780029296875,
+          "y": 461.17999267578125,
+          "width": 46.080078125,
+          "height": 46.08001708984375
+        },
+        "hit": {
+          "x": 1013.65625,
+          "y": 374.546875,
+          "width": 62.140625,
+          "height": 113.0625
+        },
+        "x": 1044.7265625,
+        "y": 402.8125
+      }
+    },
+    {
+      "name": "clicking the visible sprite body selects its enemy",
+      "passed": true
+    },
+    {
+      "name": "ATTACK commits the exact canonical public command",
+      "passed": true,
+      "details": {
+        "command": {
+          "type": "ATTACK",
+          "enemyId": "huntsman-mob-1",
+          "cardId": "card-1",
+          "slot": 0,
+          "itemIds": [],
+          "pullIds": [],
+          "rewardIds": []
+        },
+        "phase": "combat_react"
+      }
+    },
+    {
+      "name": "official import accepted normal-prefix-17.json",
+      "passed": true
+    },
+    {
+      "name": "100 percent represents map-only 1.44 scale",
+      "passed": true,
+      "details": {
+        "transform": "matrix(1.44, 0, 0, 1.44, 0, 0)",
+        "zoom": "1"
+      }
+    },
+    {
+      "name": "reset returns to the new map baseline",
+      "passed": true
+    },
+    {
+      "name": "rotated tile legend is upright, below the tile, and screen-relative: top",
+      "passed": true,
+      "details": {
+        "expected": "성배 교단 예배당",
+        "text": "성배 교단 예배당",
+        "transform": "none",
+        "top": 929.4600830078125,
+        "bottom": 953.6475830078125,
+        "tileTop": 507.5400390625,
+        "tileBottom": 925.1400146484375
+      }
+    },
+    {
+      "name": "map and tile information use the same rotated space name: top",
+      "passed": true
+    },
+    {
+      "name": "rotated tile legend is upright, below the tile, and screen-relative: middle",
+      "passed": true,
+      "details": {
+        "expected": "가운데 칸",
+        "text": "가운데 칸",
+        "transform": "none",
+        "top": 920.4600830078125,
+        "bottom": 944.6475830078125,
+        "tileTop": 498.5400390625,
+        "tileBottom": 916.1400146484375
+      }
+    },
+    {
+      "name": "map and tile information use the same rotated space name: middle",
+      "passed": true
+    },
+    {
+      "name": "rotated tile legend is upright, below the tile, and screen-relative: bottom",
+      "passed": true,
+      "details": {
+        "expected": "위 칸",
+        "text": "위 칸",
+        "transform": "none",
+        "top": 920.4600830078125,
+        "bottom": 944.6475830078125,
+        "tileTop": 498.5400390625,
+        "tileBottom": 916.1400146484375
+      }
+    },
+    {
+      "name": "map and tile information use the same rotated space name: bottom",
+      "passed": true
+    },
+    {
+      "name": "rotated multi-tile map captions lie completely below the square artwork",
+      "passed": true,
+      "details": [
+        {
+          "tile": "tile-04",
+          "art": {
+            "left": 904.02001953125,
+            "top": -434.5799865722656,
+            "right": 1321.6201171875,
+            "bottom": -16.97998046875
+          },
+          "legend": {
+            "left": 909.780029296875,
+            "top": -12.65997314453125,
+            "right": 1315.860107421875,
+            "bottom": 11.52752685546875
+          },
+          "labelCount": 3,
+          "touchesGate": false,
+          "touchesTile": false
+        },
+        {
+          "tile": "tile-14",
+          "art": {
+            "left": 904.02001953125,
+            "top": 31.97998046875,
+            "right": 1321.6201171875,
+            "bottom": 449.580078125
+          },
+          "legend": {
+            "left": 909.780029296875,
+            "top": 453.9000244140625,
+            "right": 1315.860107421875,
+            "bottom": 478.0875244140625
+          },
+          "labelCount": 3,
+          "touchesGate": false,
+          "touchesTile": false
+        },
+        {
+          "tile": "tile-07",
+          "art": {
+            "left": 904.02001953125,
+            "top": 498.5400390625,
+            "right": 1321.6201171875,
+            "bottom": 916.1400146484375
+          },
+          "legend": {
+            "left": 909.780029296875,
+            "top": 920.4600830078125,
+            "right": 1315.860107421875,
+            "bottom": 944.6475830078125
+          },
+          "labelCount": 3,
+          "touchesGate": false,
+          "touchesTile": false
+        }
+      ]
+    },
+    {
+      "name": "rotated multi-tile map captions do not overlap a map tile or an entrance button",
+      "passed": true,
+      "details": [
+        {
+          "tile": "tile-04",
+          "art": {
+            "left": 904.02001953125,
+            "top": -434.5799865722656,
+            "right": 1321.6201171875,
+            "bottom": -16.97998046875
+          },
+          "legend": {
+            "left": 909.780029296875,
+            "top": -12.65997314453125,
+            "right": 1315.860107421875,
+            "bottom": 11.52752685546875
+          },
+          "labelCount": 3,
+          "touchesGate": false,
+          "touchesTile": false
+        },
+        {
+          "tile": "tile-14",
+          "art": {
+            "left": 904.02001953125,
+            "top": 31.97998046875,
+            "right": 1321.6201171875,
+            "bottom": 449.580078125
+          },
+          "legend": {
+            "left": 909.780029296875,
+            "top": 453.9000244140625,
+            "right": 1315.860107421875,
+            "bottom": 478.0875244140625
+          },
+          "labelCount": 3,
+          "touchesGate": false,
+          "touchesTile": false
+        },
+        {
+          "tile": "tile-07",
+          "art": {
+            "left": 904.02001953125,
+            "top": 498.5400390625,
+            "right": 1321.6201171875,
+            "bottom": 916.1400146484375
+          },
+          "legend": {
+            "left": 909.780029296875,
+            "top": 920.4600830078125,
+            "right": 1315.860107421875,
+            "bottom": 944.6475830078125
+          },
+          "labelCount": 3,
+          "touchesGate": false,
+          "touchesTile": false
+        }
+      ]
+    },
+    {
+      "name": "current-location button remains in tile information",
+      "passed": true
+    },
+    {
+      "name": "map-only inspection and zoom keep the exact save",
+      "passed": true
+    },
+    {
+      "name": "official import accepted normal-prefix-134.json",
+      "passed": true
+    },
+    {
+      "name": "sprite head hit extends above the foot marker",
+      "passed": true,
+      "details": {
+        "marker": {
+          "x": 1024.9200439453125,
+          "y": 356.9000244140625,
+          "width": 46.0799560546875,
+          "height": 46.080078125
+        },
+        "hit": {
+          "x": 1015.359375,
+          "y": 269.921875,
+          "width": 62.484375,
+          "height": 113.40625
+        },
+        "x": 1046.6015625,
+        "y": 298.2734375
+      }
+    },
+    {
+      "name": "clicking the visible sprite body selects its enemy",
+      "passed": true
+    },
+    {
+      "name": "sprite body inspection preserves exact save",
+      "passed": true
+    },
+    {
+      "name": "official import accepted normal-prefix-4.json",
+      "passed": true
+    },
+    {
+      "name": "a real visible sprite overlaps a public map object",
+      "passed": true,
+      "details": {
+        "overlap": {
+          "enemyId": "huntsman-mob-1",
+          "kind": "lamp",
+          "x": 1043.820068359375,
+          "y": 442.7637634277344,
+          "right": 1066.623779296875,
+          "bottom": 484.22003173828125,
+          "topEnemy": "huntsman-mob-1"
+        },
+        "objects": [
+          {
+            "enemyId": "huntsman-mob-1",
+            "kind": "lamp",
+            "x": 1043.820068359375,
+            "y": 442.7637634277344,
+            "right": 1066.623779296875,
+            "bottom": 484.22003173828125,
+            "topEnemy": "huntsman-mob-1"
+          }
+        ],
+        "layerZ": "14"
+      }
+    },
+    {
+      "name": "the enemy wins hit testing at the object overlap",
+      "passed": true,
+      "details": {
+        "overlap": {
+          "enemyId": "huntsman-mob-1",
+          "kind": "lamp",
+          "x": 1043.820068359375,
+          "y": 442.7637634277344,
+          "right": 1066.623779296875,
+          "bottom": 484.22003173828125,
+          "topEnemy": "huntsman-mob-1"
+        },
+        "objects": [
+          {
+            "enemyId": "huntsman-mob-1",
+            "kind": "lamp",
+            "x": 1043.820068359375,
+            "y": 442.7637634277344,
+            "right": 1066.623779296875,
+            "bottom": 484.22003173828125,
+            "topEnemy": "huntsman-mob-1"
+          }
+        ],
+        "layerZ": "14"
+      }
+    },
+    {
+      "name": "clicking the overlap selects the enemy instead of the object",
+      "passed": true
+    },
+    {
+      "name": "sprite and overlap selection preserve exact save",
+      "passed": true
+    },
+    {
+      "name": "product source hashes stayed stable during the browser run",
+      "passed": true
+    },
+    {
+      "name": "no unhandled page exceptions",
+      "passed": true,
+      "details": []
+    }
+  ],
+  "screenshots": [
+    "01-start-space-hover.png",
+    "02a-action-confirmation.png",
+    "02-persistent-actions-selected-enemy.png",
+    "03-map-scale-rotated-labels.png",
+    "04-enemy-sprite-priority.png"
+  ],
+  "pageErrors": [],
+  "sourceHashes": {
+    "hunt.html": "f49e77b6eb890fae9e4dc1b6ffff5fcc16f0711f9d1838660c42f129e1d0de9f",
+    "src/hunt-app.js": "49fa8c4fdcaad4371f5d1f00874970b3912b9daff7db384f680fea933fa721ef",
+    "src/hunt-action-menu.js": "8a902478b68f5e1aaba854da3202f7262974ffeb3fd5938456c21ad980c5c0ac",
+    "src/hunt-automatic-combat.js": "9c752918d548b4fcbd423b94db3e7923f42d4bf14fe0d3ff5cd688ab85648ee3",
+    "src/hunt-camera.js": "237d9cf94726bed0349f8fc8dc467e64da52feefee58833089b949042f95f019",
+    "src/hunt-presentation.js": "e303e887d36ee45434e2a316dfbf980f21661bc1fdbf9d2cad4158c2db54ddce",
+    "src/hunt-map-controls.js": "6eb3c5ec9b19a27056bb807f7f86784fe91b7f68bada210fa085c2d66536869b",
+    "src/tile-geometry.js": "16b34ddc7c52fe00fd41ebb8a38a492ddf83e47990be619f6b05e5d25ee08029",
+    "styles/hunt-action-menu.css": "301c9e12061862e5fb68a540bfc05467ef06ec9ffa734a2f6673d767a123c9ac",
+    "styles/hunt-map-interaction.css": "6b9aa33ea7ec836f32500b140f8de4866f9ab9d0766c2a77d214b0aae895db7c",
+    "styles/hunt-workspace-layout.css": "4da35680cafdbd9e3e8559e1a4c2f41232b89b6e91444a7ebc4154246ae282b0"
+  },
+  "browserVersion": "155.0.8059.82",
+  "status": "passed"
+}

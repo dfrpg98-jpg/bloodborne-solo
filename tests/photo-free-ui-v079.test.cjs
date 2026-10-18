@@ -47,7 +47,7 @@ function secondary(html, script, window) {
 test("normal hunt setup and revealed story use text while the independently drawn map remains visible", () => {
   const state = E.create(90, "burial", 0, null, "hunter-pistol", "center", { campaign: true }), ui = realBoot(state);
   noSourcePhotos(ui.document);
-  assert.match(ui.el("chapterMap").innerHTML, /assets\/tiles\/tile-14\.svg/);
+  assert.match(ui.el("chapterMap").innerHTML, /assets\/tiles\/map\/tile-14\.svg/);
   const before = ui.storage.get(normalKey);
   storyButton(ui, "storyIntro", "intro").click();
   assert.equal(ui.el("storyDialog").open, true);

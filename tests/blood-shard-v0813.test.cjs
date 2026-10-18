@@ -16,6 +16,14 @@ function clickCard(ui, id) {
   const button = ui.el("hand").querySelectorAll("[data-card]").find(button => button.dataset.card === id);
   assert(button, `hand contains ${id}`); button.click();
 }
+function chooseAction(ui, type) {
+  const button = ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]")
+    .find(button => button.dataset.hunterIntent === type && !button.disabled);
+  assert(button, `the ${type} toolbar action is available before choosing its card`);
+  const before = ui.storage.get(qaKey); button.click();
+  assert.equal(ui.storage.get(qaKey), before, "choosing an action preserves canonical resource state");
+  assert.equal(ui.el("confirmHunterAction").disabled, true, "the selected action waits for a hand card");
+}
 function clickCommand(ui, type, container = "decisionActions", predicate = () => true) {
   const button = ui.el(container).querySelectorAll("[data-command]").find(button =>
     button.dataset.command === type && !button.disabled && predicate(JSON.parse(button.dataset.args || "{}")));
@@ -163,7 +171,7 @@ test("initial UI equipment selection shows the shard on exactly its equipped mai
 test("actual paid-transform UI opens reassignment, preserves costs and applies the moved shard on the next attack", () => {
   const state = encounter(equip(create(), 0)), { ui, normalSave } = launch(state), rewardId = shard(state).id;
   const cardId = H(state).hand.find(card => card.kind === "endurance").id;
-  clickCard(ui, cardId); const transformed = clickCommand(ui, "TRANSFORM", "decisions");
+  chooseAction(ui, "TRANSFORM"); clickCard(ui, cardId); const transformed = clickCommand(ui, "TRANSFORM");
   assert.deepEqual(transformed, go(state, "TRANSFORM", { cardId }));
   assert.equal(ui.el("attachmentDialog").open, true); assert.equal(ui.el("openAttachments").hidden, false);
   const transformSave = ui.storage.get(qaKey), hand = H(transformed).hand.length;
@@ -180,6 +188,7 @@ test("actual paid-transform UI opens reassignment, preserves costs and applies t
   ui.el("closeAttachments").click(); assert.equal(ui.storage.get(qaKey), movedSave, "closing or reopening costs no command");
   const enemyId = moved.enemies.find(enemy => enemy.missionId === "mob").id;
   ui.el("chapterMap").querySelectorAll("[data-enemy]").find(button => button.dataset.enemy === enemyId).click();
+  chooseAction(ui, "ATTACK");
   clickCard(ui, H(moved).hand.find(card => card.kind === "strength").id);
   ui.el("slots").querySelectorAll("[data-slot]").find(button => button.dataset.slot === "2").click();
   const attacked = clickCommand(ui, "ATTACK");
@@ -192,8 +201,8 @@ test("actual paid-transform UI opens reassignment, preserves costs and applies t
 test("each repeated UI transformation offers reassignment again and retaining the current slot is free", () => {
   let reference = equip(create(), 0); const { ui, normalSave } = launch(reference), rewardId = shard(reference).id;
   for (const slot of [1, 2]) {
-    const cardId = H(reference).hand[0].id; clickCard(ui, cardId);
-    reference = go(reference, "TRANSFORM", { cardId }); assert.deepEqual(clickCommand(ui, "TRANSFORM", "decisions"), reference);
+    const cardId = H(reference).hand[0].id; chooseAction(ui, "TRANSFORM"); clickCard(ui, cardId);
+    reference = go(reference, "TRANSFORM", { cardId }); assert.deepEqual(clickCommand(ui, "TRANSFORM"), reference);
     assert.equal(ui.el("attachmentDialog").open, true);
     reference = go(reference, "REASSIGN_REWARD", { rewardId, slot });
     assert.deepEqual(clickCommand(ui, "REASSIGN_REWARD", "attachmentChoices", args => args.slot === slot), reference);
@@ -233,8 +242,9 @@ test("a shrinking weapon resolves a displaced attachment before offering optiona
   state = go(state, "EQUIP_REWARD", { rewardId: chunkId, slot: 2 });
   assert.equal(E.slots(state).length, 3);
   const { ui, normalSave } = launch(state), cardId = H(state).hand[0].id;
+  chooseAction(ui, "TRANSFORM");
   clickCard(ui, cardId);
-  const transformed = clickCommand(ui, "TRANSFORM", "decisions");
+  const transformed = clickCommand(ui, "TRANSFORM");
   assert.deepEqual(transformed, go(state, "TRANSFORM", { cardId }));
   assert.equal(E.slots(transformed).length, 2);
   assert.deepEqual(transformed.rewardChoices, [{ rewardId: chunkId, reason: "slot" }]);

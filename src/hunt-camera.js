@@ -6,24 +6,26 @@
   const { document, viewport, content, surface, onChange } = options;
   if (!viewport || !content || !surface) throw new Error("A map viewport, map content and map surface are required.");
   const minZoom = 0.6, maxZoom = 1.8, step = 1.2, listeners = [];
+  const baseScale = Number.isFinite(options.baseScale) && options.baseScale > 0 ? options.baseScale : 1;
   let level = clampZoom(options.initialZoom ?? 1), width = 1, height = 1, padX = 0, padY = 0,
     drag = null, lastDrag = 0, destroyed = false;
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+  const scale = () => level * baseScale;
   function clampZoom(value) {
     return Math.max(minZoom, Math.min(maxZoom, Number.isFinite(Number(value)) ? Number(value) : 1));
   }
   function measure() {
     const rect = content.getBoundingClientRect?.();
-    width = content.offsetWidth || content.scrollWidth || (rect?.width ? rect.width / level : 1);
-    height = content.offsetHeight || content.scrollHeight || (rect?.height ? rect.height / level : 1);
+    width = content.offsetWidth || content.scrollWidth || (rect?.width ? rect.width / scale() : 1);
+    height = content.offsetHeight || content.scrollHeight || (rect?.height ? rect.height / scale() : 1);
   }
   function notify() {
     if (!destroyed) onChange?.({ zoom: level, left: viewport.scrollLeft || 0, top: viewport.scrollTop || 0 });
   }
   function setPosition(left, top, smooth = false) {
     const bounded = {
-      left: clamp(left, 0, Math.max(0, Math.ceil(width * level + padX * 2) - (viewport.clientWidth || 0))),
-      top: clamp(top, 0, Math.max(0, Math.ceil(height * level + padY * 2) - (viewport.clientHeight || 0))),
+      left: clamp(left, 0, Math.max(0, Math.ceil(width * scale() + padX * 2) - (viewport.clientWidth || 0))),
+      top: clamp(top, 0, Math.max(0, Math.ceil(height * scale() + padY * 2) - (viewport.clientHeight || 0))),
     };
     const reduced = options.reducedMotion?.() ?? document?.defaultView?.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
     if (smooth && !reduced && viewport.scrollTo) viewport.scrollTo({ ...bounded, behavior: "smooth" });
@@ -35,15 +37,15 @@
     measure();
     padX = options.padEdges ? (viewport.clientWidth || 0) / 2 : 0;
     padY = options.padEdges ? (viewport.clientHeight || 0) / 2 : 0;
-    surface.style.width = `${Math.ceil(width * level + padX * 2)}px`;
-    surface.style.height = `${Math.ceil(height * level + padY * 2)}px`;
+    surface.style.width = `${Math.ceil(width * scale() + padX * 2)}px`;
+    surface.style.height = `${Math.ceil(height * scale() + padY * 2)}px`;
     content.style.left = `${padX}px`;
     content.style.top = `${padY}px`;
     content.style.transformOrigin = "0 0";
-    content.style.transform = `scale(${level})`;
+    content.style.transform = `scale(${scale()})`;
     // Use the scaled surface extent instead of the untransformed element's overflow.
-    const left = clamp(viewport.scrollLeft || 0, 0, Math.max(0, Math.ceil(width * level + padX * 2) - (viewport.clientWidth || 0))),
-      top = clamp(viewport.scrollTop || 0, 0, Math.max(0, Math.ceil(height * level + padY * 2) - (viewport.clientHeight || 0)));
+    const left = clamp(viewport.scrollLeft || 0, 0, Math.max(0, Math.ceil(width * scale() + padX * 2) - (viewport.clientWidth || 0))),
+      top = clamp(viewport.scrollTop || 0, 0, Math.max(0, Math.ceil(height * scale() + padY * 2) - (viewport.clientHeight || 0)));
     viewport.scrollLeft = left; viewport.scrollTop = top;
     if (shouldNotify) notify();
   }
@@ -51,11 +53,11 @@
     if (destroyed || !Number.isFinite(Number(value))) return level;
     const next = clampZoom(value), x = anchor.anchorX ?? (viewport.clientWidth || 0) / 2,
       y = anchor.anchorY ?? (viewport.clientHeight || 0) / 2;
-    const worldX = ((viewport.scrollLeft || 0) + x - padX) / level,
-      worldY = ((viewport.scrollTop || 0) + y - padY) / level;
+    const worldX = ((viewport.scrollLeft || 0) + x - padX) / scale(),
+      worldY = ((viewport.scrollTop || 0) + y - padY) / scale();
     level = next;
     layout({ notify: false });
-    setPosition(worldX * level + padX - x, worldY * level + padY - y);
+    setPosition(worldX * scale() + padX - x, worldY * scale() + padY - y);
     return level;
   }
   function centerOn(element, { smooth = false } = {}) {
@@ -69,7 +71,7 @@
   }
   function fit() {
     measure();
-    const zoom = setZoom(Math.min(((viewport.clientWidth || 1) - 24) / width, ((viewport.clientHeight || 1) - 24) / height));
+    const zoom = setZoom(Math.min(((viewport.clientWidth || 1) - 24) / width, ((viewport.clientHeight || 1) - 24) / height) / baseScale);
     centerOn(content);
     return zoom;
   }
@@ -131,7 +133,7 @@
   layout({ notify: false });
   return {
     setZoom, zoomIn: () => setZoom(level * step), zoomOut: () => setZoom(level / step), reset: () => setZoom(1),
-    fit, layout, centerOn, zoom: () => level,
+    fit, layout, centerOn, zoom: () => level, scale,
     destroy() {
       destroyed = true; drag = null; viewport.classList?.remove("is-panning");
       for (const remove of listeners) remove();

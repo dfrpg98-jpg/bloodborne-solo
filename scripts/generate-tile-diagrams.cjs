@@ -192,7 +192,7 @@ function environment(t){
  return out;
 }
 
-function render(t) {
+function render(t, { spaceLabels = true } = {}) {
   const g = G.definition(t.id);
   validate(t, g);
   const name = t.name || `구역 ${t.id.slice(-2)}`;
@@ -220,7 +220,7 @@ ${blocked}
 <g fill="none" stroke="#817461" stroke-width="24">${walls(g.exits)}</g>
 ${g.exits.map(gate).join("\n")}
 ${g.markers.map(marker).join("\n")}
-<g font-family="Malgun Gothic,Apple SD Gothic Neo,Arial,sans-serif">${labels}</g>
+<g font-family="Malgun Gothic,Apple SD Gothic Neo,Arial,sans-serif">${spaceLabels ? labels : ""}</g>
 
 </svg>\n`;
 }
@@ -238,7 +238,9 @@ function atlas() {
 
 function generate() {
   fs.mkdirSync(out, { recursive: true });
+  fs.mkdirSync(path.join(out, "map"), { recursive: true });
   for (const t of C.tiles) fs.writeFileSync(path.join(out, `${t.id}.svg`), render(t), "utf8");
+  for (const t of C.tiles) fs.writeFileSync(path.join(out, "map", `${t.id}.svg`), render(t, { spaceLabels: false }), "utf8");
   fs.writeFileSync(path.join(out, "legend.svg"), legend(), "utf8");
   fs.writeFileSync(path.join(out, "index.html"), atlas(), "utf8");
   return C.tiles.length;

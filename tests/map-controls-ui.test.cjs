@@ -151,14 +151,14 @@ test("an empty space on an unnamed public tile retains its map address and selec
   assert(cell); cell.click();
   const panel = ui.el("tileInfo");
   assert(panel.textContent.includes(reference), "the public map address identifies the inspected unnamed tile");
-  assert(panel.textContent.includes(G.spaceLabel(definition, space)), "selectedOnly uses the map's displayed space name");
+  assert(panel.textContent.includes(G.spaceLabel(definition, space, placed.rotation)), "selectedOnly uses the map's displayed space name");
   assert.doesNotMatch(panel.textContent, /비어있음|적 없음/);
   assert.equal(panel.querySelectorAll(".tile-info-enemies").length, 0, "an empty enemy column does not take space from the tile rules");
   assert.equal(panel.querySelectorAll(".tile-info-space").length, 1);
   assert(!panel.textContent.includes(definition.displayName), "no invented printed tile name is exposed");
   assert(!panel.textContent.includes(placed.tileId), "development identifiers are not player names");
   for (const other of definition.spaces.filter(other => other.id !== space.id))
-    assert(!panel.textContent.includes(G.spaceLabel(definition, other)), "other spaces remain omitted");
+    assert(!panel.textContent.includes(G.spaceLabel(definition, other, placed.rotation)), "other spaces remain omitted");
   assert.equal(ui.storage.get(key), before, "inspection leaves the exact save bytes unchanged");
   assert.equal(saved(ui).commands.length, commandsBefore, "inspection records no engine command");
   ui.el("inspectCurrentTile").click();
@@ -222,7 +222,12 @@ test("crossing a tile boundary keeps the inspected tile without repeating hunter
 
 test("fixed core controls retain their original costs, selected card and phase-specific command handlers", () => {
   const state = initial(), ui = launch(state), dock = ui.el("decisionActions");
-  assert(dock.children.some(b => b.dataset.command === "MOVE" && b.disabled));
+  const intent = ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]")
+    .find(button => button.dataset.hunterIntent === "MOVE" && !button.disabled);
+  assert(intent, "the movement action is available before selecting a card");
+  const before = ui.storage.get(key); intent.click();
+  assert.equal(ui.storage.get(key), before, "choosing the action does not spend its card");
+  assert.equal(ui.el("confirmHunterAction").disabled, true);
   const cardId = E.hunter(state).hand[0].id; select(ui, cardId);
   dock.children.find(b => b.dataset.command === "MOVE").click();
   const moving = E.dispatch(state, { type: "MOVE", cardId }); assert.deepEqual(saved(ui), moving);

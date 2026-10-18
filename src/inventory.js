@@ -196,6 +196,11 @@
         (id) => D.consumables[held.find((x) => x.id === id).kind].name,
       );
     }
-    return { render, clear, ids: () => [...attackIds], names };
+    function restoreSelection(ids) {
+      const held = new Set(E.hunter(getState()).consumables.map(item => item.id));
+      attackIds.clear();
+      for (const id of ids || []) if (held.has(id)) attackIds.add(id);
+    }
+    return { render, clear, ids: () => [...attackIds], names, restoreSelection };
   };
 })(window);

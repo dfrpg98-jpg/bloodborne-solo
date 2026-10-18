@@ -2,7 +2,7 @@ const assert=require('node:assert/strict');
 const E=require('../../src/hunt-engine'), {boot}=require('./ui-harness.cjs');
 const ActionLoss=require('../../src/hunt-action-loss');
 const plain=x=>JSON.parse(JSON.stringify(x));
-const containers=['mapContext','decisions','missionActions','rewards','firearm','componentCards','chapterMap','explorationActions'];
+const containers=['mapContext','decisions','decisionActions','missionActions','rewards','firearm','componentCards','chapterMap','explorationActions'];
 function matches(actual,wanted){return Object.entries(wanted).every(([k,v])=>JSON.stringify(actual[k])===JSON.stringify(v));}
 const faceChoiceCommands=new Set(['RETURN','START_NEXT_CHAPTER']);
 function controllerCommand(state,command){
@@ -34,6 +34,26 @@ function clickCommand(s,command,options={}){
   options.onBoot?.(ui);
   const originalSave=ui.storage.get('bloodborne-hunt-v07');
   const change=(id,value)=>{const element=ui.el(id);assert(element,`missing ${id}`);element.value=String(value);element.fire('change');};
+  const targetEnemy=()=>{
+    const mapTarget=ui.el('chapterMap').querySelectorAll('[data-enemy]').find(b=>b.dataset.enemy===command.enemyId);
+    if(!mapTarget)options.beforeTarget?.(ui);
+    const target=mapTarget||ui.el('nearEnemies').querySelectorAll('[data-enemy]').find(b=>b.dataset.enemy===command.enemyId);
+    assert(target,'enemy selectable');target.click();
+    if(!mapTarget)options.afterTarget?.(ui);
+  };
+  const staged=s.phase==='hunter'&&['MOVE','TRANSFORM','DREAM','ATTACK'].includes(command.type)&&ui.window.BBHuntActionMenu;
+  const choosePulls=()=>{
+    for(const id of command.pullIds||[]){
+      const input=ui.el('decisions').querySelectorAll('[data-pull]').find(b=>b.dataset.pull===id);
+      assert(input,'pull choice visible');input.checked=true;input.fire('change');
+    }
+  };
+  if(staged){
+    if(command.type==='ATTACK'){targetEnemy();choosePulls();}
+    const intent=ui.el('hunterActionBar').querySelectorAll('[data-hunter-intent]').find(button=>button.dataset.hunterIntent===command.type);
+    assert(intent&&!intent.disabled,`the ${command.type} action can be chosen before paying its card`);intent.click();
+    assert.equal(ui.storage.get('bloodborne-hunt-v07'),originalSave,'choosing an action spends no card or resource');
+  }
   const chosenCard=command.cardId||(command.type==='RELOAD'&&command.cardIds?.[0]);
   if(chosenCard && E.hunter(s).hand.some(c=>c.id===chosenCard)){
     const card=ui.el('hand').querySelectorAll('[data-card]').find(b=>b.dataset.card===chosenCard);
@@ -43,13 +63,7 @@ function clickCommand(s,command,options={}){
     const slot=ui.el('slots').querySelectorAll('[data-slot]').find(b=>+b.dataset.slot===command.slot);
     if(slot)slot.click();
   }
-  if(command.enemyId && ['ATTACK','FIREARM','WEAPON_SHOT'].includes(command.type)){
-    const mapTarget=ui.el('chapterMap').querySelectorAll('[data-enemy]').find(b=>b.dataset.enemy===command.enemyId);
-    if(!mapTarget)options.beforeTarget?.(ui);
-    const target=mapTarget||ui.el('nearEnemies').querySelectorAll('[data-enemy]').find(b=>b.dataset.enemy===command.enemyId);
-    assert(target,'enemy selectable');target.click();
-    if(!mapTarget)options.afterTarget?.(ui);
-  }
+  if(command.enemyId && ['ATTACK','FIREARM','WEAPON_SHOT'].includes(command.type)&&!(staged&&command.type==='ATTACK'))targetEnemy();
   if(command.node && ['STEP','BOSS_STEP','ENEMY_STEP'].includes(command.type)){
     const target=ui.el('chapterMap').querySelectorAll('[data-node]').find(b=>b.dataset.node===command.node&&!b.disabled);
     if(target)target.click();
@@ -60,10 +74,7 @@ function clickCommand(s,command,options={}){
         b.dataset.entrance?.endsWith(':'+command.edge)));
     if(entrance)entrance.click();
   }
-  for(const id of command.pullIds||[]){
-    const input=ui.el('decisions').querySelectorAll('[data-pull]').find(b=>b.dataset.pull===id);
-    assert(input,'pull choice visible');input.checked=true;input.fire('change');
-  }
+  if(!(staged&&command.type==='ATTACK'))choosePulls();
   for(const id of command.rewardIds||[]){
     const input=ui.el('decisions').querySelectorAll('[data-reward-attack]').find(b=>b.dataset.rewardAttack===id);
     assert(input,'attack reward visible');input.checked=true;input.fire('change');
@@ -78,6 +89,11 @@ function clickCommand(s,command,options={}){
     ui.el('toggleAttackItem').click();
   }
   if(command.itemIds?.length)options.afterInventory?.(ui);
+  if(staged&&command.type==='ATTACK'&&command.leapPath&&ui.el('hunterActionRoute')){
+    const model=ui.window.BBHuntActionMenu.view(s,E,ui.window.BBHuntContext,{...command,type:'ATTACK'});
+    const route=model.routes.findIndex(option=>JSON.stringify(option.command.leapPath)===JSON.stringify(command.leapPath));
+    assert(route>=0,'the requested legal leap route is offered');change('hunterActionRoute',route);
+  }
   if(command.type==='PLACE_TILE'){
     const rotation=ui.el('decisions').querySelectorAll('[data-rotation]').find(b=>+b.dataset.rotation===command.rotation);
     assert(rotation&&!rotation.disabled,'legal tile rotation visible');rotation.click();

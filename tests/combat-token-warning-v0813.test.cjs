@@ -120,9 +120,13 @@ test("actual map selection warns before ATTACK, keeps its bound commit in the ac
   const start = mobEncounter(), mob = start.enemies.find(enemy => enemy.missionId === "mob"),
     { ui, normalSave } = launch(start), save = ui.storage.get(qaKey);
   selectEnemy(ui, mob.id);
+  const intent = ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]").find(button => button.dataset.hunterIntent === "ATTACK");
+  assert(intent && !intent.disabled); intent.click();
+  assert.equal(ui.el("confirmHunterAction").disabled, true);
   const card = E.hunter(start).hand.find(card => card.kind === "strength");
   ui.el("hand").querySelectorAll("[data-card]").find(button => button.dataset.card === card.id).click();
-  ui.el("slots").querySelectorAll("[data-slot]").find(button => button.dataset.slot === "0").click();
+  const slot = ui.el("slots").querySelectorAll("[data-slot]").find(button => button.dataset.slot === "0");
+  if (slot.getAttribute("aria-pressed") !== "true") slot.click();
   assert.equal(ui.el("attackConsequences").hidden, false);
   assert.match(ui.el("attackConsequences").textContent, /토큰 소모 후 완전 회복/);
   assert.match(ui.el("combatInfo").textContent, /토큰 1개.*처치될 피해.*체력 4 \/ 4.*회복/);

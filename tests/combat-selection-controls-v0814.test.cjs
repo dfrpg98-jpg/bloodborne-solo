@@ -40,6 +40,11 @@ function click(ui, area, type, predicate = () => true) {
   assert(button && !button.disabled, `${area} has enabled ${type}`); button.click(); assert.equal(ui.el("error").textContent, "");
   return E.importSave(ui.storage.get(qaKey));
 }
+function begin(ui, type) {
+  const button = ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]").find(button => button.dataset.hunterIntent === type);
+  assert(button && !button.disabled, `the staged ${type} action is available before card selection`); button.click();
+  assert.equal(ui.el("confirmHunterAction").disabled, true);
+}
 
 test("slot strengthening shows printed damage plus only equipped permanent bonuses and matches a real declaration", () => {
   const state = encounter(create()), before = E.exportSave(state), slots = Controls.slotFacts(state, E),
@@ -198,6 +203,7 @@ test("bottom cards and slots support reversible selection, preserve the fixed re
     target = state.enemies.find(enemy => enemy.missionId === "mob"),
     cardId = H(state).hand.find(card => card.kind === "strength").id;
   selected(ui, "chapterMap", "enemy", target.id).click();
+  begin(ui, "ATTACK");
   assert.equal(ui.el("combatSelection").hidden, false);
   select(ui, "combatSelectCard", cardId); select(ui, "combatSelectSlot", "0");
   assert.equal(selected(ui, "hand", "card", cardId).getAttribute("aria-pressed"), "true");
@@ -207,13 +213,15 @@ test("bottom cards and slots support reversible selection, preserve the fixed re
   assert.match(ui.el("combatSelection").innerHTML, /혈석의 파편/); assert.match(ui.el("combatSelection").innerHTML, /혈석의 덩어리/);
   select(ui, "combatSelectCard", "");
   assert.equal(selected(ui, "hand", "card", cardId).getAttribute("aria-pressed"), "false");
-  assert(ui.buttons("decisionActions").find(button => button.dataset.command === "ATTACK").disabled);
+  assert.equal(ui.el("confirmHunterAction").disabled, true);
+  assert.equal(ui.el("confirmHunterAction").dataset.command, undefined, "a cardless confirmation cannot dispatch an attack");
   selected(ui, "hand", "card", cardId).click();
   assert.equal(selected(ui, "hand", "card", cardId).getAttribute("aria-pressed"), "true");
   selected(ui, "slots", "slot", 0).click();
-  assert.equal(selected(ui, "slots", "slot", 0).getAttribute("aria-pressed"), "false");
+  assert.equal(selected(ui, "slots", "slot", 0).getAttribute("aria-pressed"), "true", "pending attack keeps its visible default slot on a repeated click");
   select(ui, "combatSelectSlot", "0");
-  assert.equal(ui.storage.get(qaKey), saved); assert.equal(calls.length, 0);
+  assert.equal(ui.storage.get(qaKey), saved);
+  assert.equal(E.importSave(ui.storage.get(qaKey)).commands.length, state.commands.length, "disposable legality checks commit no command");
   const actual = click(ui, "decisionActions", "ATTACK"), expected = attack(state, cardId);
   assert.deepEqual(actual, expected); assert.equal(actual.revision, state.revision + 1);
   assert.equal(actual.commands.length, state.commands.length + 1, "departure validation may replay a clone but commits the attack only once");
@@ -238,12 +246,13 @@ test("the rune checkbox updates the applied result without a duplicate card-effe
     target = state.enemies.find(enemy => enemy.missionId === "mob"),
     cardId = H(state).hand.find(card => card.kind === "endurance").id, rewardId = H(state).rewards[0].id;
   selected(ui, "chapterMap", "enemy", target.id).click();
+  begin(ui, "ATTACK");
   select(ui, "combatSelectCard", cardId); select(ui, "combatSelectSlot", "0");
   const checkbox = ui.document.querySelectorAll("[data-reward-attack]").find(element => element.dataset.rewardAttack === rewardId);
   assert(checkbox); checkbox.checked = true; checkbox.fire("change");
   assert.match(ui.el("combatSelection").innerHTML, /카릴 문자:손톱자국/);
   assert.doesNotMatch(ui.el("combatSelection").innerHTML, /combat-suppressed-effect|combat-card-replacement|미적용<\/span>/);
-  assert.equal(calls.length, 0);
+  assert.equal(E.exportSave(E.importSave(ui.storage.get(qaKey))), E.exportSave(state), "preview checks keep the persistent hunt and costs unchanged");
   const actual = click(ui, "decisionActions", "ATTACK");
   assert.deepEqual(actual, attack(state, cardId, 0, [rewardId]));
   assert.equal(H(actual).slots[0].id, cardId); assert.equal(H(actual).rewards[0].ready, false);
@@ -251,8 +260,9 @@ test("the rune checkbox updates the applied result without a duplicate card-effe
 
 test("the real transformation popup names each destination attack and its retained/added gem effects before reassignment", () => {
   const state = create(), { ui, normalSave } = launch(state), cardId = H(state).hand[0].id;
+  begin(ui, "TRANSFORM");
   selected(ui, "hand", "card", cardId).click();
-  const transformed = click(ui, "decisions", "TRANSFORM"), chunk = E.rewardsView(transformed).rewards.find(reward => reward.kind === "bloodstone-chunk");
+  const transformed = click(ui, "decisionActions", "TRANSFORM"), chunk = E.rewardsView(transformed).rewards.find(reward => reward.kind === "bloodstone-chunk");
   assert.equal(ui.el("attachmentDialog").open, true);
   const html = ui.el("attachmentChoices").innerHTML;
   for (const slot of E.slots(transformed)) assert(html.includes(slot.name));

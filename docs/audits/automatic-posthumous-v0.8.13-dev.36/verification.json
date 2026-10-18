@@ -1,0 +1,233 @@
+{
+  "schema": "automatic-posthumous-real-browser-v1",
+  "date": "2026-10-18",
+  "version": "0.8.13-dev.36",
+  "scope": "Public component practice fixtures, not normal campaign completion",
+  "browserMode": "separate headless Chrome, temporary context, Chromium sandbox enabled",
+  "allowedOrigin": "http://127.0.0.1:8860",
+  "userBrowserAttached": false,
+  "userSaveModified": false,
+  "pageStateInjection": false,
+  "artifactDirectory": "test-results/hunt-actions-dev36/posthumous-browser",
+  "fixtureConstruction": "E.create seed1 public male-beast-patient sideb component practice, ATTACK strength card7 slot1, canonical RESOLVE commands; optional variant starts with practice rune-rapture reward. No direct state changes.",
+  "checks": [
+    {
+      "name": "automatic combat module served: practice-death-echo.json",
+      "passed": true
+    },
+    {
+      "name": "official load has no displayed error: practice-death-echo.json",
+      "passed": true
+    },
+    {
+      "name": "loading mandatory death echo automatically records exactly one canonical RESOLVE",
+      "passed": true,
+      "details": {
+        "commands": [
+          {
+            "type": "ATTACK",
+            "enemyId": "practice-target",
+            "cardId": "card-7",
+            "slot": 1
+          },
+          {
+            "type": "RESOLVE"
+          },
+          {
+            "type": "RESOLVE"
+          },
+          {
+            "type": "APPLY_TILE_SPEED_RULING"
+          }
+        ],
+        "policyAdoption": "existing APPLY_TILE_SPEED_RULING becomes legal after combat; included in independent reference"
+      }
+    },
+    {
+      "name": "loaded death echo final save matches independent reducer reference byte-exact",
+      "passed": true
+    },
+    {
+      "name": "automatic death echo leaves no extra combat confirmation",
+      "passed": true
+    },
+    {
+      "name": "automatic combat module served: practice-declared.json",
+      "passed": true
+    },
+    {
+      "name": "official load has no displayed error: practice-declared.json",
+      "passed": true
+    },
+    {
+      "name": "declared attack still offers the normal combat response",
+      "passed": true
+    },
+    {
+      "name": "one player combat confirmation adds normal and automatic RESOLVE commands",
+      "passed": true
+    },
+    {
+      "name": "declared attack final save matches independent reducer reference byte-exact",
+      "passed": true
+    },
+    {
+      "name": "death echo damage remains canonical",
+      "passed": true,
+      "details": {
+        "hp": 2
+      }
+    },
+    {
+      "name": "automatic combat module served: practice-optional-kill-reaction.json",
+      "passed": true
+    },
+    {
+      "name": "official load has no displayed error: practice-optional-kill-reaction.json",
+      "passed": true
+    },
+    {
+      "name": "optional kill reward choice remains open",
+      "passed": true,
+      "details": {
+        "controls": [
+          {
+            "command": "USE_REWARD",
+            "text": "카릴 문자:피의 기쁨 · 손패 1장 뽑기 · 체력 1 회복",
+            "disabled": false
+          },
+          {
+            "command": "PASS_KILL_REACTION",
+            "text": "처치 효과 사용 마치기 · 전투 계속",
+            "disabled": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "optional kill reaction load records no automatic command",
+      "passed": true
+    },
+    {
+      "name": "optional reward remains usable",
+      "passed": true
+    },
+    {
+      "name": "no unhandled browser page exceptions",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "name": "verified source files stayed unchanged during browser checks",
+      "passed": true
+    }
+  ],
+  "pageExceptions": [],
+  "screenshots": [
+    "01-loaded-echo-completed.png",
+    "02-declared-attack-completed.png",
+    "03-optional-reaction-preserved.png"
+  ],
+  "downloads": [
+    "loaded-echo-after-auto.json",
+    "declared-before-resolve.json",
+    "declared-after-auto.json",
+    "optional-reaction-preserved.json"
+  ],
+  "fixtureInputs": [
+    {
+      "file": "test-results/hunt-actions-dev36/posthumous/practice-start.json",
+      "sha256": "a7c6967a8379fc18e661c5ac143344ca43b57e49895a0bd813bd002e74a548f9",
+      "bytes": 8637,
+      "phase": "hunter",
+      "qa": false,
+      "commands": []
+    },
+    {
+      "file": "test-results/hunt-actions-dev36/posthumous/practice-declared.json",
+      "sha256": "1f98fb1c77c7ec75c610370cb882718c4ddf9ef12ff9f78c5dacda3117a87ebd",
+      "bytes": 11103,
+      "phase": "combat_react",
+      "qa": false,
+      "commands": [
+        {
+          "type": "ATTACK",
+          "enemyId": "practice-target",
+          "cardId": "card-7",
+          "slot": 1
+        }
+      ]
+    },
+    {
+      "file": "test-results/hunt-actions-dev36/posthumous/practice-death-echo.json",
+      "sha256": "d338d7e33d982b64dae7fadb3b23d1c8bfc5fd4c5ecf94a9aca7c608c526a537",
+      "bytes": 11723,
+      "phase": "boss_react",
+      "qa": false,
+      "commands": [
+        {
+          "type": "ATTACK",
+          "enemyId": "practice-target",
+          "cardId": "card-7",
+          "slot": 1
+        },
+        {
+          "type": "RESOLVE"
+        }
+      ]
+    },
+    {
+      "file": "test-results/hunt-actions-dev36/posthumous/practice-after-auto-resolve.json",
+      "sha256": "5c3f270b61af3d358912aff8adb5e4656e780a02b5aca6aeab6a9ee39c5dc44a",
+      "bytes": 9397,
+      "phase": "hunter",
+      "qa": false,
+      "commands": [
+        {
+          "type": "ATTACK",
+          "enemyId": "practice-target",
+          "cardId": "card-7",
+          "slot": 1
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "RESOLVE"
+        }
+      ]
+    },
+    {
+      "file": "test-results/hunt-actions-dev36/posthumous/practice-optional-kill-reaction.json",
+      "sha256": "ca1f766fffba732da0a19a8d7d6394780eca1be7e14d65ad7f6192aaa98956dd",
+      "bytes": 12397,
+      "phase": "kill_react",
+      "qa": false,
+      "commands": [
+        {
+          "type": "ATTACK",
+          "enemyId": "practice-target",
+          "cardId": "card-7",
+          "slot": 1
+        },
+        {
+          "type": "RESOLVE"
+        }
+      ]
+    }
+  ],
+  "sourceSha256Before": {
+    "src/hunt-app.js": "49fa8c4fdcaad4371f5d1f00874970b3912b9daff7db384f680fea933fa721ef",
+    "src/hunt-automatic-combat.js": "9c752918d548b4fcbd423b94db3e7923f42d4bf14fe0d3ff5cd688ab85648ee3",
+    "hunt.html": "f49e77b6eb890fae9e4dc1b6ffff5fcc16f0711f9d1838660c42f129e1d0de9f"
+  },
+  "browserVersion": "155.0.8059.82",
+  "sourceSha256After": {
+    "src/hunt-app.js": "49fa8c4fdcaad4371f5d1f00874970b3912b9daff7db384f680fea933fa721ef",
+    "src/hunt-automatic-combat.js": "9c752918d548b4fcbd423b94db3e7923f42d4bf14fe0d3ff5cd688ab85648ee3",
+    "hunt.html": "f49e77b6eb890fae9e4dc1b6ffff5fcc16f0711f9d1838660c42f129e1d0de9f"
+  },
+  "status": "passed"
+}
