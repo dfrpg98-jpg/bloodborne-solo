@@ -27,7 +27,8 @@ function select(ui, id, value) {
   assert.equal(ui.el("error").textContent, "");
 }
 function commit(ui, type) {
-  const before = JSON.parse(ui.storage.get(key)), button = ui.document.querySelectorAll("[data-command]")
+  const container = type === "ATTACK" ? ui.el("decisionActions") : ui.document,
+    before = JSON.parse(ui.storage.get(key)), button = container.querySelectorAll("[data-command]")
     .find(element => element.dataset.command === type && !element.disabled);
   assert(button, "actual UI offers enabled " + type);
   const command = { type, ...JSON.parse(button.dataset.args || "{}") };
@@ -122,6 +123,11 @@ test("the mob ability's speed and damage bonuses survive mist while its next att
   const saved = ui.storage.get(key), target = ui.el("chapterMap").querySelectorAll("[data-enemy]")
     .find(element => element.dataset.enemy === resolved.enemies[0].id);
   assert(target); target.click();
+  const intent = ui.el("hunterActionBar").querySelectorAll("[data-hunter-intent]")
+    .find(element => element.dataset.hunterIntent === "ATTACK" && !element.disabled);
+  assert(intent, "the new untreated attack can be chosen before its hand card"); intent.click();
+  assert.equal(ui.storage.get(key), saved, "choosing another attack neither dispatches a command nor consumes mist again");
+  assert.equal(ui.el("confirmHunterAction").disabled, true, "the attack confirmation waits for a hand card");
   const cardId = H(resolved).hand.find(card => card.kind === "vitality").id;
   select(ui, "combatSelectCard", cardId); select(ui, "combatSelectSlot", 1);
   assert.equal(ui.storage.get(key), saved, "target/card/slot selection cannot consume another mist");

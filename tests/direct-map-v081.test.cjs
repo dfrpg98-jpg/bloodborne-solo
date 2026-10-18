@@ -28,7 +28,7 @@ function contextAction(ui, id) {
   return ui.el("mapContext").querySelectorAll("[data-context-id]").find(element => element.dataset.contextId === id && !element.disabled);
 }
 function commandAction(ui, type) {
-  return ["mapContext", "decisions"].flatMap(id => ui.el(id)?.querySelectorAll("[data-command]") || [])
+  return ["mapContext", "decisions", "decisionActions"].flatMap(id => ui.el(id)?.querySelectorAll("[data-command]") || [])
     .find(element => element.dataset.command === type && !element.disabled);
 }
 function unchanged(ui, before) {
@@ -82,12 +82,19 @@ test("an entrance action combines movement preparation and exploration while rev
 test("selecting an enemy prepares an attack with its actual card and slot cost before the enemy action is drawn", () => {
   const state = checkpoint(9), command = commands[9], ui = realBoot(state), before = ui.storage.get(normalKey);
   assert.equal(command.type, "ATTACK"); assert.equal(state.phase, "hunter");
-  mapTarget(ui, "enemy", command.enemyId).click(); chooseCard(ui, command.cardId); chooseSlot(ui, command.slot); unchanged(ui, before);
-  assert.match(ui.el("mapContext").textContent, /카드\s*1장/); assert.match(ui.el("mapContext").textContent, /슬롯/);
+  mapTarget(ui, "enemy", command.enemyId).click(); unchanged(ui, before);
+  const intent = ui.el("mapContext").querySelectorAll("[data-hunter-intent]").find(button => button.dataset.hunterIntent === "ATTACK");
+  assert(intent && !intent.disabled, "the selected eligible enemy has an inline attack entry");
+  const entry = ui.el("mapContext").innerHTML.match(/<button\b[^>]*data-hunter-intent="ATTACK"[^>]*>([\s\S]*?)<\/button>/)?.[1];
+  assert.match(entry, /이 적 공격하기/); assert.doesNotMatch(entry, /<small|카드\s*1장|슬롯/, "the attack entry omits the removed repetitive cost text");
+  intent.click(); assert.equal(ui.el("confirmHunterAction").disabled, true);
+  chooseCard(ui, command.cardId); chooseSlot(ui, command.slot); unchanged(ui, before);
   assert.equal(state.combat?.action, undefined, "the attack-selection state has no drawn enemy action");
   const action = commandAction(ui, "ATTACK"); assert(action, "the selected attack is enabled"); action.click();
   const next = saved(ui), reference = E.dispatch(state, command);
   assert.equal(next.revision, state.revision + 1); assert.deepEqual(functional(next), functional(reference));
+  assert.equal(E.hunter(next).hand.some(card => card.id === command.cardId), false, "the chosen cost card leaves the hand even when its vitality effect draws a replacement");
+  assert.equal(E.hunter(next).slots[command.slot].id, command.cardId, "the unchanged card-and-slot cost is paid only when confirmed");
   assert.equal(next.phase, "combat_react"); assert(next.combat.action);
   assert.match(ui.el("combatInfo").textContent, new RegExp(next.combat.action.name));
 });

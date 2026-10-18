@@ -60,7 +60,8 @@ function chooseSlot(f, slot) {
   assert(button); button.click();
 }
 function command(f, type) {
-  return f.ui.el("mapContext").querySelectorAll("[data-command]").find(button => button.dataset.command === type && !button.disabled);
+  return ["mapContext", "decisionActions", "decisions"].flatMap(id => f.ui.el(id).querySelectorAll("[data-command]"))
+    .find(button => button.dataset.command === type && !button.disabled);
 }
 function behavior(state) { const copy = structuredClone(state); delete copy.commands; return copy; }
 
@@ -95,6 +96,8 @@ for (const [count, tokens] of [[5, 1], [10, 0], [18, 0]])
 test("seeing the mission enemy's token and abilities leaves its original single-card attack command, draw and cost unchanged", () => {
   const state = userAt(5), f = launch(state), attack = user.commands[5];
   assert.equal(attack.type, "ATTACK"); inspect(f, "enemy", attack.enemyId);
+  const intent = f.ui.el("mapContext").querySelectorAll("[data-hunter-intent]").find(button => button.dataset.hunterIntent === "ATTACK");
+  assert(intent && !intent.disabled); intent.click(); assert.equal(f.ui.el("confirmHunterAction").disabled, true);
   chooseCard(f, attack.cardId); chooseSlot(f, attack.slot); unchanged(f);
   const control = command(f, "ATTACK"); assert(control); control.click();
   const actual = E.importSave(f.ui.storage.get(key)), expected = E.dispatch(state, attack);
