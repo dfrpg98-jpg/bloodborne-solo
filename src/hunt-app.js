@@ -532,7 +532,10 @@
       }
       const observedUpdates = observedSteps.flatMap(([prior, following]) => window.BBHuntMissionFeedback?.describe(prior, following,
         { E, publicText: window.BBHuntPublicText, data: window.BBLongHunt }) || []);
-      const deathNotice = observedSteps.map(([prior, following]) => window.BBHuntDeathFeedback?.describe(prior, following)).find(Boolean);
+      // Automatic continuations belong to the same click. Keep the fatal
+      // source while including every damage entry in this action's summary.
+      const deathNotice = window.BBHuntDeathFeedback?.describe(previous, next) ||
+        observedSteps.map(([prior, following]) => window.BBHuntDeathFeedback?.describe(prior, following)).find(Boolean);
       const tileAdopted = E.applyTileSpeedRuling ? E.applyTileSpeedRuling(next) : next;
       state = E.applyLeapMoveRuling ? E.applyLeapMoveRuling(tileAdopted) : tileAdopted;
       const updates = window.BBHuntMissionFeedback?.reconcileTileSpeedAdoption?.(observedUpdates, next, state, { E }) || observedUpdates;

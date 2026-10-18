@@ -1,0 +1,800 @@
+{
+  "schema": "scourge-followup-real-browser-v1",
+  "version": "0.8.13-dev.37",
+  "allowedOrigin": "http://127.0.0.1:8860",
+  "browserMode": "separate temporary headless Chrome context, Chromium sandbox enabled",
+  "userBrowserAttached": false,
+  "userSaveModified": false,
+  "pageStateInjection": false,
+  "fixtures": [
+    {
+      "id": "natural-forced-mission",
+      "source": "Normal rifle-spear face1 chapter-one prefix109; earlier public MISSION_CHOICE release earns rune-eye instead of rapture. HunterHP4 close case, not exactHP3. No legal dodge or optional usable kill reward after the mandatory shard choice.",
+      "mode": "forced",
+      "seed": 90,
+      "qa": false,
+      "initialHP": 4,
+      "enemyHP": 1,
+      "commands": 109,
+      "sha256": "3fbd187dc1171358bdbbc6ad8336c0100b6adf6f22dcd35d2968b250f1ce147b"
+    },
+    {
+      "id": "natural-mission-optional-reward",
+      "source": "Normal rifle-spear face1 chapter-one public-command prefix109; HP4 close case, not exact HP3. The equipped rapture rune is still a usable optional kill response, so continuation must wait for its choice.",
+      "mode": "optional-reward",
+      "seed": 90,
+      "qa": false,
+      "initialHP": 4,
+      "enemyHP": 1,
+      "commands": 109,
+      "sha256": "826d3bca4a42cacb7110b4a5639acc0793119aa27866ba04734e0e83fe6cce53"
+    },
+    {
+      "id": "natural-dead-legal-dodge",
+      "source": "Normal logarius-wheel face1 chapter-one prefix94; public mission release avoids optional rapture, PICK_UPGRADE tactical and MOVE strength preserve a legal tactical/endurance dodge after the mission beast dies.",
+      "mode": "optional-dodge",
+      "seed": 90,
+      "qa": false,
+      "initialHP": 6,
+      "enemyHP": 1,
+      "commands": 94,
+      "sha256": "3eecdbf46640fdcc99a40ba01341558d9ba3248598406671cb9e32244590488e"
+    },
+    {
+      "id": "natural-mutual-lethal",
+      "source": "Normal stake-driver face1 campaign prefix175 plus public ATTACK; hunterHP1 and enemyHP1.",
+      "mode": "mutual-lethal",
+      "seed": 90,
+      "qa": false,
+      "initialHP": 1,
+      "enemyHP": 1,
+      "commands": 180,
+      "sha256": "da77685a60801cd8f8f2be49debce375d990d40f2318c6beb8b932ac31aac152"
+    },
+    {
+      "id": "natural-forced-mission-pending-import",
+      "source": "natural-forced-mission public RESOLVE + KEEP_REWARD, intentionally saved before the UI convenience continuation",
+      "mode": "pending-extra-import",
+      "qa": false,
+      "commands": 111,
+      "sha256": "dc813b51ce1d1e8a797fae98da18543286324f8b1f1c51c0442a877c405be698"
+    }
+  ],
+  "checks": [
+    {
+      "name": "natural-forced-mission serves the dev37 automatic combat module",
+      "passed": true
+    },
+    {
+      "name": "natural-forced-mission official import is accepted",
+      "passed": true
+    },
+    {
+      "name": "natural-forced-mission baseline is a real pending Scourge Beast double slash",
+      "passed": true,
+      "details": {
+        "hp": 4,
+        "enemyHP": 1,
+        "hunterAttack": {
+          "speed": 2,
+          "damage": 3
+        },
+        "enemyAttack": {
+          "name": "다단 가르기",
+          "speed": 2,
+          "damage": 2,
+          "kind": "special",
+          "type": "attack",
+          "stun": false,
+          "interrupt": false,
+          "undodgeable": false,
+          "uninterruptible": false,
+          "poison": false,
+          "frenzy": false,
+          "rules": [
+            "이 공격을 회피하거나 방해했더라도, 사냥꾼은 회피([속도 2])하거나 추가로 2 [피해]를 받아야 합니다."
+          ],
+          "followup": true
+        }
+      }
+    },
+    {
+      "name": "natural-forced-mission loaded save matches independent adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "natural-forced-mission actual RESOLVE and automatic commands match reducer reference byte-exact",
+      "passed": true,
+      "details": {
+        "commands": [
+          {
+            "type": "ATTACK",
+            "cardId": "card-14",
+            "slot": 0,
+            "enemyId": "scourge-beast-1",
+            "boost": "none"
+          },
+          {
+            "type": "RESOLVE"
+          },
+          {
+            "type": "ATTACK",
+            "enemyId": "scourge-beast-1",
+            "cardId": "card-11",
+            "slot": 1,
+            "boost": "none"
+          },
+          {
+            "type": "RESOLVE"
+          }
+        ],
+        "hp": 2,
+        "phase": "combat_extra"
+      }
+    },
+    {
+      "name": "natural-forced-mission mission reward choice appears before the required extra hit",
+      "passed": true,
+      "details": {
+        "hp": 2,
+        "rewards": [
+          {
+            "rewardId": "reward-16",
+            "reason": "slot"
+          }
+        ],
+        "notices": {
+          "mission": true,
+          "death": false
+        }
+      }
+    },
+    {
+      "name": "natural-forced-mission mission completion has not silently taken the extra damage",
+      "passed": true
+    },
+    {
+      "name": "natural-forced-mission reward selection and required continuation match reference byte-exact",
+      "passed": true,
+      "details": {
+        "commands": [
+          {
+            "type": "RESOLVE"
+          },
+          {
+            "type": "KEEP_REWARD",
+            "rewardId": "reward-16"
+          },
+          {
+            "type": "EXTRA_TAKE"
+          }
+        ],
+        "hp": 6,
+        "phase": "over"
+      }
+    },
+    {
+      "name": "natural-forced-mission no-choice posthumous extra damage automatically records EXTRA_TAKE",
+      "passed": true
+    },
+    {
+      "name": "natural-forced-mission forced extra retains canonical lethal damage and dream recovery",
+      "passed": true,
+      "details": {
+        "phase": "over",
+        "hp": 6
+      }
+    },
+    {
+      "name": "natural-forced-mission forced branch leaves no redundant extra confirmation",
+      "passed": true
+    },
+    {
+      "name": "natural-forced-mission reload preserves the completed official save byte-exact",
+      "passed": true
+    },
+    {
+      "name": "natural-forced-mission reload cannot duplicate the automatic extra-hit command",
+      "passed": true
+    },
+    {
+      "name": "natural-mission-optional-reward serves the dev37 automatic combat module",
+      "passed": true
+    },
+    {
+      "name": "natural-mission-optional-reward official import is accepted",
+      "passed": true
+    },
+    {
+      "name": "natural-mission-optional-reward baseline is a real pending Scourge Beast double slash",
+      "passed": true,
+      "details": {
+        "hp": 4,
+        "enemyHP": 1,
+        "hunterAttack": {
+          "speed": 2,
+          "damage": 3
+        },
+        "enemyAttack": {
+          "name": "다단 가르기",
+          "speed": 2,
+          "damage": 2,
+          "kind": "special",
+          "type": "attack",
+          "stun": false,
+          "interrupt": false,
+          "undodgeable": false,
+          "uninterruptible": false,
+          "poison": false,
+          "frenzy": false,
+          "rules": [
+            "이 공격을 회피하거나 방해했더라도, 사냥꾼은 회피([속도 2])하거나 추가로 2 [피해]를 받아야 합니다."
+          ],
+          "followup": true
+        }
+      }
+    },
+    {
+      "name": "natural-mission-optional-reward loaded save matches independent adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "natural-mission-optional-reward actual RESOLVE and automatic commands match reducer reference byte-exact",
+      "passed": true,
+      "details": {
+        "commands": [
+          {
+            "type": "ATTACK",
+            "cardId": "card-14",
+            "slot": 0,
+            "enemyId": "scourge-beast-1",
+            "boost": "none"
+          },
+          {
+            "type": "RESOLVE"
+          },
+          {
+            "type": "ATTACK",
+            "enemyId": "scourge-beast-1",
+            "cardId": "card-11",
+            "slot": 1,
+            "boost": "none"
+          },
+          {
+            "type": "RESOLVE"
+          }
+        ],
+        "hp": 2,
+        "phase": "combat_extra"
+      }
+    },
+    {
+      "name": "natural-mission-optional-reward mission reward choice appears before the required extra hit",
+      "passed": true,
+      "details": {
+        "hp": 2,
+        "rewards": [
+          {
+            "rewardId": "reward-16",
+            "reason": "slot"
+          }
+        ],
+        "notices": {
+          "mission": true,
+          "death": false
+        }
+      }
+    },
+    {
+      "name": "natural-mission-optional-reward mission completion has not silently taken the extra damage",
+      "passed": true
+    },
+    {
+      "name": "natural-mission-optional-reward reward selection and required continuation match reference byte-exact",
+      "passed": true,
+      "details": {
+        "commands": [
+          {
+            "type": "ATTACK",
+            "enemyId": "scourge-beast-1",
+            "cardId": "card-11",
+            "slot": 1,
+            "boost": "none"
+          },
+          {
+            "type": "RESOLVE"
+          },
+          {
+            "type": "KEEP_REWARD",
+            "rewardId": "reward-16"
+          }
+        ],
+        "hp": 2,
+        "phase": "combat_extra"
+      }
+    },
+    {
+      "name": "natural-mission-optional-reward usable kill reward preserves the continuation instead of being skipped",
+      "passed": true
+    },
+    {
+      "name": "natural-mission-optional-reward explicit extra response remains available while the reward can be chosen",
+      "passed": true
+    },
+    {
+      "name": "natural-mission-optional-reward the optional kill reward is actionable in the equipment tab",
+      "passed": true
+    },
+    {
+      "name": "natural-mission-optional-reward explicit reward use and the now-forced extra hit match reference byte-exact",
+      "passed": true
+    },
+    {
+      "name": "natural-mission-optional-reward only using the reward unlocks the automatic extra hit",
+      "passed": true
+    },
+    {
+      "name": "natural-dead-legal-dodge-dodge serves the dev37 automatic combat module",
+      "passed": true
+    },
+    {
+      "name": "natural-dead-legal-dodge-dodge official import is accepted",
+      "passed": true
+    },
+    {
+      "name": "natural-dead-legal-dodge-dodge baseline is a real pending Scourge Beast double slash",
+      "passed": true,
+      "details": {
+        "hp": 6,
+        "enemyHP": 1,
+        "hunterAttack": {
+          "speed": 2,
+          "damage": 2
+        },
+        "enemyAttack": {
+          "name": "다단 가르기",
+          "speed": 2,
+          "damage": 2,
+          "kind": "special",
+          "type": "attack",
+          "stun": false,
+          "interrupt": false,
+          "undodgeable": false,
+          "uninterruptible": false,
+          "poison": false,
+          "frenzy": false,
+          "rules": [
+            "이 공격을 회피하거나 방해했더라도, 사냥꾼은 회피([속도 2])하거나 추가로 2 [피해]를 받아야 합니다."
+          ],
+          "followup": true
+        }
+      }
+    },
+    {
+      "name": "natural-dead-legal-dodge-dodge loaded save matches independent adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "natural-dead-legal-dodge-dodge actual RESOLVE and automatic commands match reducer reference byte-exact",
+      "passed": true,
+      "details": {
+        "commands": [
+          {
+            "type": "STEP",
+            "node": "tile-14:center"
+          },
+          {
+            "type": "STOP_MOVE"
+          },
+          {
+            "type": "ATTACK",
+            "cardId": "card-11",
+            "slot": 0,
+            "enemyId": "scourge-beast-2",
+            "boost": 0
+          },
+          {
+            "type": "RESOLVE"
+          }
+        ],
+        "hp": 4,
+        "phase": "combat_extra"
+      }
+    },
+    {
+      "name": "natural-dead-legal-dodge-dodge mission reward choice appears before the required extra hit",
+      "passed": true,
+      "details": {
+        "hp": 4,
+        "rewards": [
+          {
+            "rewardId": "reward-17",
+            "reason": "slot"
+          }
+        ],
+        "notices": {
+          "mission": true,
+          "death": false
+        }
+      }
+    },
+    {
+      "name": "natural-dead-legal-dodge-dodge mission completion has not silently taken the extra damage",
+      "passed": true
+    },
+    {
+      "name": "natural-dead-legal-dodge-dodge reward selection and required continuation match reference byte-exact",
+      "passed": true,
+      "details": {
+        "commands": [
+          {
+            "type": "ATTACK",
+            "cardId": "card-11",
+            "slot": 0,
+            "enemyId": "scourge-beast-2",
+            "boost": 0
+          },
+          {
+            "type": "RESOLVE"
+          },
+          {
+            "type": "KEEP_REWARD",
+            "rewardId": "reward-17"
+          }
+        ],
+        "hp": 4,
+        "phase": "combat_extra"
+      }
+    },
+    {
+      "name": "natural-dead-legal-dodge-dodge a real available dodge keeps the posthumous extra window open",
+      "passed": true
+    },
+    {
+      "name": "natural-dead-legal-dodge-dodge taking the extra hit remains an explicit available choice",
+      "passed": true
+    },
+    {
+      "name": "natural-dead-legal-dodge-dodge selecting a legal card and empty slot enables extra dodge",
+      "passed": true
+    },
+    {
+      "name": "natural-dead-legal-dodge-dodge preparing extra dodge spends nothing",
+      "passed": true
+    },
+    {
+      "name": "natural-dead-legal-dodge-dodge explicit continuation matches canonical damage/cost/state byte-exact",
+      "passed": true
+    },
+    {
+      "name": "natural-dead-legal-dodge-dodge records exactly the chosen extra response",
+      "passed": true
+    },
+    {
+      "name": "natural-dead-legal-dodge-dodge successful extra dodge causes no death while allowing campaign dream recovery",
+      "passed": true,
+      "details": {
+        "beforeHP": 4,
+        "finalHP": 4,
+        "campaignDream": true
+      }
+    },
+    {
+      "name": "natural-dead-legal-dodge-take serves the dev37 automatic combat module",
+      "passed": true
+    },
+    {
+      "name": "natural-dead-legal-dodge-take official import is accepted",
+      "passed": true
+    },
+    {
+      "name": "natural-dead-legal-dodge-take baseline is a real pending Scourge Beast double slash",
+      "passed": true,
+      "details": {
+        "hp": 6,
+        "enemyHP": 1,
+        "hunterAttack": {
+          "speed": 2,
+          "damage": 2
+        },
+        "enemyAttack": {
+          "name": "다단 가르기",
+          "speed": 2,
+          "damage": 2,
+          "kind": "special",
+          "type": "attack",
+          "stun": false,
+          "interrupt": false,
+          "undodgeable": false,
+          "uninterruptible": false,
+          "poison": false,
+          "frenzy": false,
+          "rules": [
+            "이 공격을 회피하거나 방해했더라도, 사냥꾼은 회피([속도 2])하거나 추가로 2 [피해]를 받아야 합니다."
+          ],
+          "followup": true
+        }
+      }
+    },
+    {
+      "name": "natural-dead-legal-dodge-take loaded save matches independent adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "natural-dead-legal-dodge-take actual RESOLVE and automatic commands match reducer reference byte-exact",
+      "passed": true,
+      "details": {
+        "commands": [
+          {
+            "type": "STEP",
+            "node": "tile-14:center"
+          },
+          {
+            "type": "STOP_MOVE"
+          },
+          {
+            "type": "ATTACK",
+            "cardId": "card-11",
+            "slot": 0,
+            "enemyId": "scourge-beast-2",
+            "boost": 0
+          },
+          {
+            "type": "RESOLVE"
+          }
+        ],
+        "hp": 4,
+        "phase": "combat_extra"
+      }
+    },
+    {
+      "name": "natural-dead-legal-dodge-take mission reward choice appears before the required extra hit",
+      "passed": true,
+      "details": {
+        "hp": 4,
+        "rewards": [
+          {
+            "rewardId": "reward-17",
+            "reason": "slot"
+          }
+        ],
+        "notices": {
+          "mission": true,
+          "death": false
+        }
+      }
+    },
+    {
+      "name": "natural-dead-legal-dodge-take mission completion has not silently taken the extra damage",
+      "passed": true
+    },
+    {
+      "name": "natural-dead-legal-dodge-take reward selection and required continuation match reference byte-exact",
+      "passed": true,
+      "details": {
+        "commands": [
+          {
+            "type": "ATTACK",
+            "cardId": "card-11",
+            "slot": 0,
+            "enemyId": "scourge-beast-2",
+            "boost": 0
+          },
+          {
+            "type": "RESOLVE"
+          },
+          {
+            "type": "KEEP_REWARD",
+            "rewardId": "reward-17"
+          }
+        ],
+        "hp": 4,
+        "phase": "combat_extra"
+      }
+    },
+    {
+      "name": "natural-dead-legal-dodge-take a real available dodge keeps the posthumous extra window open",
+      "passed": true
+    },
+    {
+      "name": "natural-dead-legal-dodge-take taking the extra hit remains an explicit available choice",
+      "passed": true
+    },
+    {
+      "name": "natural-dead-legal-dodge-take explicit continuation matches canonical damage/cost/state byte-exact",
+      "passed": true
+    },
+    {
+      "name": "natural-dead-legal-dodge-take records exactly the chosen extra response",
+      "passed": true
+    },
+    {
+      "name": "natural-mutual-lethal serves the dev37 automatic combat module",
+      "passed": true
+    },
+    {
+      "name": "natural-mutual-lethal official import is accepted",
+      "passed": true
+    },
+    {
+      "name": "natural-mutual-lethal baseline is a real pending Scourge Beast double slash",
+      "passed": true,
+      "details": {
+        "hp": 1,
+        "enemyHP": 1,
+        "hunterAttack": {
+          "speed": 2,
+          "damage": 2
+        },
+        "enemyAttack": {
+          "name": "다단 가르기",
+          "speed": 2,
+          "damage": 3,
+          "kind": "special",
+          "type": "attack",
+          "stun": false,
+          "interrupt": true,
+          "undodgeable": false,
+          "uninterruptible": false,
+          "poison": false,
+          "frenzy": false,
+          "rules": [
+            "이 공격을 회피하거나 방해했더라도, 사냥꾼은 회피([속도 2])하거나 추가로 2 [피해]를 받아야 합니다."
+          ],
+          "followup": true
+        }
+      }
+    },
+    {
+      "name": "natural-mutual-lethal loaded save matches independent adopted public recipe",
+      "passed": true
+    },
+    {
+      "name": "natural-mutual-lethal actual RESOLVE and automatic commands match reducer reference byte-exact",
+      "passed": true,
+      "details": {
+        "commands": [
+          {
+            "type": "ATTACK",
+            "cardId": "card-11",
+            "slot": 0,
+            "enemyId": "scourge-beast-1",
+            "weaponBoost": "none"
+          },
+          {
+            "type": "RESOLVE"
+          },
+          {
+            "type": "ATTACK",
+            "enemyId": "scourge-beast-1",
+            "cardId": "card-2",
+            "slot": 1
+          },
+          {
+            "type": "RESOLVE"
+          }
+        ],
+        "hp": 6,
+        "phase": "refill"
+      }
+    },
+    {
+      "name": "natural-mutual-lethal simultaneous lethal damage ends combat before any extra window",
+      "passed": true,
+      "details": {
+        "resetCanRespawnKilledFigure": true,
+        "finalPhase": "refill"
+      }
+    },
+    {
+      "name": "natural-mutual-lethal the final event batch records the beast kill and exactly one hunter death",
+      "passed": true
+    },
+    {
+      "name": "natural-mutual-lethal simultaneous death adds no EXTRA_TAKE or EXTRA_DODGE",
+      "passed": true
+    },
+    {
+      "name": "natural-forced-mission-pending-import serves the dev37 automatic combat module",
+      "passed": true
+    },
+    {
+      "name": "natural-forced-mission-pending-import official import is accepted",
+      "passed": true
+    },
+    {
+      "name": "natural-forced-mission-pending-import official import immediately performs the canonical required extra hit",
+      "passed": true
+    },
+    {
+      "name": "natural-forced-mission-pending-import import records exactly one automatic EXTRA_TAKE",
+      "passed": true
+    },
+    {
+      "name": "natural-forced-mission-pending-import import leaves no redundant extra-hit confirmation",
+      "passed": true
+    },
+    {
+      "name": "natural-forced-mission-pending-import reload preserves the completed official save byte-exact",
+      "passed": true
+    },
+    {
+      "name": "natural-forced-mission-pending-import reload cannot duplicate the automatic extra-hit command",
+      "passed": true
+    },
+    {
+      "name": "verified product source stayed stable",
+      "passed": true
+    },
+    {
+      "name": "no unhandled browser exceptions",
+      "passed": true,
+      "details": []
+    }
+  ],
+  "downloads": [
+    "01-natural-forced-mission-before.json",
+    "02-natural-forced-mission-resolved.json",
+    "03-natural-forced-mission-reward-completed.json",
+    "04-natural-forced-mission-reloaded.json",
+    "05-natural-mission-optional-reward-before.json",
+    "06-natural-mission-optional-reward-resolved.json",
+    "07-natural-mission-optional-reward-reward-completed.json",
+    "08-natural-mission-optional-reward-used-and-continued.json",
+    "09-natural-dead-legal-dodge-dodge-before.json",
+    "10-natural-dead-legal-dodge-dodge-resolved.json",
+    "11-natural-dead-legal-dodge-dodge-reward-completed.json",
+    "12-natural-dead-legal-dodge-dodge-prepared.json",
+    "13-natural-dead-legal-dodge-dodge-completed.json",
+    "14-natural-dead-legal-dodge-take-before.json",
+    "15-natural-dead-legal-dodge-take-resolved.json",
+    "16-natural-dead-legal-dodge-take-reward-completed.json",
+    "17-natural-dead-legal-dodge-take-completed.json",
+    "18-natural-mutual-lethal-before.json",
+    "19-natural-mutual-lethal-resolved.json",
+    "20-natural-forced-mission-pending-import-completed.json",
+    "21-natural-forced-mission-pending-import-reloaded.json"
+  ],
+  "screenshots": [
+    "natural-forced-mission-before-resolve.png",
+    "natural-forced-mission-resolve-mission.png",
+    "natural-forced-mission-reward-before-extra.png",
+    "natural-forced-mission-reward-death.png",
+    "natural-forced-mission-completed.png",
+    "natural-mission-optional-reward-before-resolve.png",
+    "natural-mission-optional-reward-resolve-mission.png",
+    "natural-mission-optional-reward-reward-before-extra.png",
+    "natural-mission-optional-reward-optional-reward-preserved.png",
+    "natural-mission-optional-reward-completed.png",
+    "natural-dead-legal-dodge-dodge-before-resolve.png",
+    "natural-dead-legal-dodge-dodge-resolve-mission.png",
+    "natural-dead-legal-dodge-dodge-reward-before-extra.png",
+    "natural-dead-legal-dodge-dodge-available-choice.png",
+    "natural-dead-legal-dodge-take-before-resolve.png",
+    "natural-dead-legal-dodge-take-resolve-mission.png",
+    "natural-dead-legal-dodge-take-reward-before-extra.png",
+    "natural-dead-legal-dodge-take-available-choice.png",
+    "natural-mutual-lethal-before-resolve.png",
+    "natural-mutual-lethal-resolve-death.png",
+    "natural-mutual-lethal-completed.png",
+    "natural-forced-mission-pending-import-death.png",
+    "natural-forced-mission-pending-import-completed.png"
+  ],
+  "pageErrors": [],
+  "sourceSha256Before": {
+    "hunt.html": "f080848602b1a6cbe6125c8857b131fc8ce81d1500836e2e8ff9fd9ce149d728",
+    "src/hunt-app.js": "7813b3ced1067d801c07139dff020b5bf16c8a6cb6f8951c90a7c26f8166242f",
+    "src/hunt-automatic-combat.js": "bff62a7f371eec935a9c32988925810736a2588a6b8ec893496834c47c57c9bd",
+    "src/hunt-engine.js": "ef962e41101bbb8a1690c772bbf3f4e6b1d953c699cdc33fe4b142d8cd0b425c",
+    "src/hunt-death-feedback.js": "c0fb83d79d1005541d0e8b98737ce9254a70c59ce9bb15f3c0ce9a6683dd2a7e"
+  },
+  "browserVersion": "155.0.8059.82",
+  "sourceSha256After": {
+    "hunt.html": "f080848602b1a6cbe6125c8857b131fc8ce81d1500836e2e8ff9fd9ce149d728",
+    "src/hunt-app.js": "7813b3ced1067d801c07139dff020b5bf16c8a6cb6f8951c90a7c26f8166242f",
+    "src/hunt-automatic-combat.js": "bff62a7f371eec935a9c32988925810736a2588a6b8ec893496834c47c57c9bd",
+    "src/hunt-engine.js": "ef962e41101bbb8a1690c772bbf3f4e6b1d953c699cdc33fe4b142d8cd0b425c",
+    "src/hunt-death-feedback.js": "c0fb83d79d1005541d0e8b98737ce9254a70c59ce9bb15f3c0ce9a6683dd2a7e"
+  },
+  "status": "passed"
+}
