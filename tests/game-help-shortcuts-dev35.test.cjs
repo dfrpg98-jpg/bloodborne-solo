@@ -13,6 +13,9 @@ test("detailed help separates top-row hand selection, Space refill and the right
   assert.match(shortcutText, /방향키는 십자 방향 선택/);
   assert.match(shortcutText, /숫자패드 5는 이동 선언에만.*이동을 마치지 않습니다/);
   assert.doesNotMatch(Help.renderHTML(), /WASD/);
+  assert.match(shortcutText, /Space는 ‘행동하기’·차례 마치기·이동 마치기·타일 배치/);
+  assert.match(shortcutText, /Esc 또는 Backspace는 ‘행동취소’나 ‘이동 선언 취소’/);
+  assert.match(shortcutText, /여러 대응이 있거나 선택이 미정이면 임의로 넘기지 않습니다/);
 });
 
 test("help maps all eight NumLock directions and explains actual button availability and input guards", () => {

@@ -172,7 +172,32 @@
       (!horizontal && match[3]?.endsWith("쪽") ? "쪽" : "");
     return `${match[1] || ""}${direction}${match[4] ? " " + match[4].trimStart() : ""}`;
   }
-  const api = { tiles, definition, point, polygon, rotatePoint, spaceLabel,
+  function labelPlacement(tileId, spaceId, rotation = 0) {
+    const outline = polygon(tileId, spaceId, rotation), ys = outline.map(([, y]) => y),
+      southGate = Math.max(...ys) > 89 && definition(tileId).exits.some(gate =>
+        rotatePoint(gate.point, rotation)[1] === 100),
+      y = Math.min(Math.max(...ys) - 2, southGate ? 89 : 100), intersections = [];
+    for (let index = 0; index < outline.length; index++) {
+      const [x1, y1] = outline[index], [x2, y2] = outline[(index + 1) % outline.length];
+      if ((y1 <= y && y2 > y) || (y2 <= y && y1 > y))
+        intersections.push(x1 + (y - y1) / (y2 - y1) * (x2 - x1));
+    }
+    intersections.sort((a, b) => a - b);
+    const spans = [];
+    for (let index = 0; index + 1 < intersections.length; index += 2)
+      spans.push([intersections[index], intersections[index + 1]]);
+    const [preferredX] = point(tileId, spaceId, rotation),
+      span = spans.find(([left, right]) => left <= preferredX && preferredX <= right) ||
+        spans.sort((a, b) => b[1] - b[0] - (a[1] - a[0]))[0];
+    if (!span) throw new Error(`칸 이름을 놓을 아래쪽 경계가 없습니다: ${tileId}:${spaceId}`);
+    const gates = definition(tileId).exits.map(gate => rotatePoint(gate.point, rotation)),
+      west = span[0] === 0 && gates.some(([x]) => x === 0),
+      east = span[1] === 100 && gates.some(([x]) => x === 100);
+    return { x: (span[0] + span[1]) / 2, y, width: Math.max(1, span[1] - span[0] - 4),
+      gateClearance: southGate ? 16 : 0, horizontalOffset: (Number(west) - Number(east)) * 14,
+      widthClearance: (Number(west) + Number(east)) * 28 };
+  }
+  const api = { tiles, definition, point, polygon, rotatePoint, spaceLabel, labelPlacement,
     image: (tileId) => { definition(tileId); return `assets/tiles/${tileId}.svg`; },
     mapImage: (tileId) => { definition(tileId); return `assets/tiles/map/${tileId}.svg`; } };
   if (typeof module !== "undefined" && module.exports) module.exports = api;

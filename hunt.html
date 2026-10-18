@@ -6,7 +6,7 @@
     <title>블러드본 · 기나긴 사냥 캠페인</title>
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="stylesheet" href="styles/chapter.css" />
-    <link rel="stylesheet" href="styles/hunt.css?v=0.8.13-dev.34&amp;h=4a63cbe86944" />
+    <link rel="stylesheet" href="styles/hunt.css?v=0.8.13-dev.38&amp;h=f4c11bdaf77f" />
     <link rel="stylesheet" href="styles/game-help.css?v=0.8.13-dev.13&amp;h=674bb1a324c0" />
     <link rel="stylesheet" href="styles/hunt-hand-feedback.css?v=0.8.13-dev.29&amp;h=dae49d29c2e1" />
     <link rel="stylesheet" href="styles/hunt-card-help.css?v=0.8.13-dev.7&amp;h=049dbeb75df2" />
@@ -14,11 +14,11 @@
     <link rel="stylesheet" href="styles/hunt-combat-feedback.css?v=0.8.13-dev.13&amp;h=1e0ad016d33b" />
     <link rel="stylesheet" href="styles/hunt-combat-controls.css?v=0.8.13-dev.25&amp;h=07dbea734607" />
     <link rel="stylesheet" href="styles/hunt-combat-ux.css?v=0.8.13-dev.15&amp;h=83110e6db54f" />
-    <link rel="stylesheet" href="styles/hunt-workspace-layout.css?v=0.8.13-dev.36&amp;h=4da35680cafd" />
+    <link rel="stylesheet" href="styles/hunt-workspace-layout.css?v=0.8.13-dev.38&amp;h=cf46338f5797" />
     <link rel="stylesheet" href="styles/hunt-window-manager.css?v=0.8.13-dev.32&amp;h=89adf4a7c9d5" />
-    <link rel="stylesheet" href="styles/hunt-workspace-tabs.css?v=0.8.13-dev.30&amp;h=e71acad458b6" />
-    <link rel="stylesheet" href="styles/hunt-action-menu.css?v=0.8.13-dev.37&amp;h=301c9e120618" />
-    <link rel="stylesheet" href="styles/hunt-map-interaction.css?v=0.8.13-dev.37&amp;h=6b9aa33ea7ec" />
+    <link rel="stylesheet" href="styles/hunt-workspace-tabs.css?v=0.8.13-dev.38&amp;h=a7f9d05c31e2" />
+    <link rel="stylesheet" href="styles/hunt-action-menu.css?v=0.8.13-dev.38&amp;h=301c9e120618" />
+    <link rel="stylesheet" href="styles/hunt-map-interaction.css?v=0.8.13-dev.38&amp;h=479ab6788fbf" />
   </head>
   <body class="hunt-screen">
     <header class="topbar hunt-topbar">
@@ -46,7 +46,7 @@
       <section class="track-panel" aria-label="사냥 트랙">
         <div class="section-label"><span>사냥 트랙</span><b id="roundLabel"></b></div>
         <div id="track" class="track"></div>
-        <div class="track-caption"><span title="붉은 칸에서 지도 초기화">붉은 칸 · 초기화</span><span id="lastRound"></span></div>
+        <div class="track-caption"><span title="지도 초기화 시 적과 소모품을 복원합니다. 임무별 규칙을 따릅니다.">붉은 칸 · 초기화</span><span id="lastRound"></span></div>
       </section>
       <div class="hunt-layout">
         <section id="missionPanel" class="panel mission-panel" aria-labelledby="missionHeading">
@@ -88,8 +88,11 @@
           <p class="movement-shortcuts">M 이동·마치기 · 방향키/숫자패드</p>
         </section>
         <section class="panel weapon-panel" aria-labelledby="weaponName">
-          <div class="panel-heading"><h2><span id="weaponName">장송의 칼날</span> <small id="weaponFace"></small></h2><button id="openAttachments" type="button" class="quiet" aria-haspopup="dialog" aria-controls="attachmentDialog" hidden>슬롯 부착 변경</button></div>
-          <section class="weapon-rules" aria-label="무기 고유 효과"><h3>무기 고유 효과</h3><p id="weaponAbility"></p></section><div id="weaponSlotBank" class="weapon-slot-bank"><div id="slots" class="hunt-slots"></div><section id="firearm" class="panel gun-panel" aria-label="장착 화기"></section></div><p class="slot-hint muted">공격·회피에는 빈 슬롯이 필요합니다.</p>
+          <div class="weapon-panel-header">
+            <div class="weapon-header-summary"><div class="panel-heading"><h2><span id="weaponName">장송의 칼날</span> <small id="weaponFace"></small></h2><button id="openAttachments" type="button" class="quiet" aria-haspopup="dialog" aria-controls="attachmentDialog" hidden>슬롯 부착 변경</button></div><section class="weapon-rules" aria-label="무기 고유 효과"><h3>무기 고유 효과</h3><p id="weaponAbility"></p></section></div>
+            <section id="firearm" class="panel gun-panel" aria-label="장착 화기"></section>
+          </div>
+          <div id="weaponSlotBank" class="weapon-slot-bank"><div id="slots" class="hunt-slots"></div></div><p class="slot-hint muted">공격·회피에는 빈 슬롯이 필요합니다.</p>
         </section>
       </div>
     </main>
@@ -239,7 +242,7 @@
     <script src="src/data.js"></script>
     <script src="campaigns/long-hunt/data.js"></script>
     <script src="campaigns/long-hunt/narrative-text.js"></script>
-    <script src="src/tile-geometry.js?v=0.8.13-dev.36&amp;h=16b34ddc7c52"></script>
+    <script src="src/tile-geometry.js?v=0.8.13-dev.38&amp;h=f35fa340e9d3"></script>
     <script src="src/map-render-layout.js?v=0.8.13-dev.8&amp;h=34fb4a324b7d"></script>
     <script src="src/start-placement.js"></script>
     <script src="src/enemy-deck.js"></script>
@@ -269,15 +272,15 @@
     <script src="src/hunt-mission-feedback.js?v=0.8.13-dev.28&amp;h=88dc7b228721"></script>
     <script src="src/hunt-death-feedback.js?v=0.8.13-dev.15&amp;h=c0fb83d79d10"></script>
     <script src="src/enemy-action-history.js"></script>
-    <script src="src/inventory.js?v=0.8.13-dev.36&amp;h=2ed060cd8194"></script>
+    <script src="src/inventory.js?v=0.8.13-dev.38&amp;h=38928b87f80b"></script>
     <script src="src/hunt-entry.js?v=0.8.13-dev.11&amp;h=1fabaf52aa2d"></script>
-    <script src="src/game-help.js?v=0.8.13-dev.36&amp;h=40126694eb1b"></script>
+    <script src="src/game-help.js?v=0.8.13-dev.38&amp;h=42fd8b552149"></script>
     <script src="src/hunt-shell.js?v=0.8.13-dev.30&amp;h=8671e6ae1435"></script>
     <script src="src/hunt-context.js?v=0.8.13-dev.29&amp;h=19fb31c5624b"></script>
-    <script src="src/hunt-action-menu.js?v=0.8.13-dev.37&amp;h=8a902478b68f"></script>
-    <script src="src/hunt-automatic-combat.js?v=0.8.13-dev.37&amp;h=bff62a7f371e"></script>
+    <script src="src/hunt-action-menu.js?v=0.8.13-dev.38&amp;h=8a902478b68f"></script>
+    <script src="src/hunt-automatic-combat.js?v=0.8.13-dev.38&amp;h=bff62a7f371e"></script>
     <script src="src/hunt-map-controls.js?v=0.8.13-dev.36&amp;h=6eb3c5ec9b19"></script>
-    <script src="src/hunt-keyboard-controls.js?v=0.8.13-dev.35&amp;h=c320b80a4685"></script>
+    <script src="src/hunt-keyboard-controls.js?v=0.8.13-dev.38&amp;h=ce63da96ca91"></script>
     <script src="src/hunt-location-labels.js?v=0.8.13-dev.36&amp;h=4ae5fe9c2246"></script>
     <script src="src/hunt-attack-preview.js?v=0.8.13-dev.21&amp;h=6443e5e5a026"></script>
     <script src="src/hunt-departure.js"></script>
@@ -298,6 +301,6 @@
     <script src="src/hunt-mission-hud.js?v=0.8.13-dev.29&amp;h=9d3a8d3f1c9c"></script>
     <script src="src/hunt-window-manager.js?v=0.8.13-dev.32&amp;h=e5718c95277d"></script>
     <script src="src/hunt-upgrade-overview.js?v=0.8.13-dev.25&amp;h=bcffd50aa9b1"></script>
-    <script src="src/hunt-app.js?v=0.8.13-dev.37&amp;h=7813b3ced106"></script>
+    <script src="src/hunt-app.js?v=0.8.13-dev.38&amp;h=57391961a013"></script>
   </body>
 </html>

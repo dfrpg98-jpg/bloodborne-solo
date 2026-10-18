@@ -3,7 +3,7 @@
 .workspace-tabs > button[aria-selected="true"] { color: #ffebbf; background: #423a28; border-color: #bd9c5b; }
 .workspace-progress { display: flex; flex-direction: column; min-height: 0; flex: 1 1 auto; overflow: hidden; }
 .hunt-decisions > [data-workspace-panel][hidden], .workspace-progress[hidden] { display: none; }
-.hunt-decisions > .info-panel { min-height: 0; flex: 1 1 auto; overflow: auto; padding: 8px 0; }
+.hunt-decisions > .info-panel { min-height: 0; flex: 1 1 auto; overflow: auto; margin: 0; padding: 8px 0; }
 .hunt-decisions .inventory-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
 .inventory-grid > .inventory-empty { grid-column: 1 / -1; margin: 4px 0; line-height: 1.65; letter-spacing: normal; word-break: keep-all; overflow-wrap: break-word; }
 .inventory-empty > span { display: block; }

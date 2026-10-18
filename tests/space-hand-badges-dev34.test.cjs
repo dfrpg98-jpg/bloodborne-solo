@@ -42,10 +42,10 @@ test("Space는 보충 단계의 실제 손패 보충 버튼을 한 번만 누르
   assert.equal(f.key(" ", { code: "Space", target: other }).defaultPrevented, true);
   assert.equal(f.up({ target: other }).defaultPrevented, true);
   assert.deepEqual(f.clicks, ["REFILL"]);
-  // Once released, Space belongs to normal focused controls outside refill.
-  assert.equal(f.key(" ", { code: "Space", target: other }).defaultPrevented, false);
-  assert.equal(f.up({ target: other }).defaultPrevented, false);
-  assert.deepEqual(f.clicks, ["REFILL"]);
+  // A new physical press can execute the current turn's public dock action.
+  assert.equal(f.key(" ", { code: "Space", target: other }).defaultPrevented, true);
+  assert.equal(f.up({ target: other }).defaultPrevented, true);
+  assert.deepEqual(f.clicks, ["REFILL", "OTHER"]);
 });
 
 test("보충 Space는 수정키·IME·반복·입력란·열린 창과 최소화된 창을 보호합니다", () => {
@@ -70,7 +70,8 @@ test("보충 Space는 수정키·IME·반복·입력란·열린 창과 최소화
 test("Space는 다른 단계와 비활성·숨김·분리된 보충 버튼에서 명령을 만들지 않습니다", () => {
   const f = fixture();
   for (const phase of ["hunter", "move", "activation", "combat_react", "won"]) {
-    f.document.documentElement.dataset.phase = phase; assert.equal(f.key(" ", { code: "Space" }).defaultPrevented, false);
+    f.document.documentElement.dataset.phase = phase;
+    assert.equal(f.key(" ", { code: "Space" }).defaultPrevented, true, "an unresolved gameplay Space also suppresses native activation and scrolling"); f.up();
   }
   f.document.documentElement.dataset.phase = "refill";
   for (const modify of [
@@ -82,7 +83,7 @@ test("Space는 다른 단계와 비활성·숨김·분리된 보충 버튼에서
     () => { f.dock.hidden = true; return () => { f.dock.hidden = false; }; },
     () => { f.dock.setAttribute("inert", ""); return () => f.dock.removeAttribute("inert"); },
   ]) {
-    const restore = modify(); assert.equal(f.key(" ", { code: "Space" }).defaultPrevented, false); restore();
+    const restore = modify(); assert.equal(f.key(" ", { code: "Space" }).defaultPrevented, true); f.up(); restore();
   }
   f.document.ids.delete("refill"); f.key(" "); assert.deepEqual(f.clicks, []);
 });

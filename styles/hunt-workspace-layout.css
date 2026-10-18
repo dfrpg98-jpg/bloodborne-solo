@@ -38,33 +38,30 @@ html[data-phase] .hunt-main .hunt-layout { grid-template-columns: var(--objectiv
 .enemy-instance-choices { display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0; }
 .enemy-instance-choices > button { display: flex; align-items: center; gap: 6px; }
 
-/* The firearm belongs to the weapon bank, immediately above its third slot.
-   Keep every slot in #slots so selection, focus and attachment controls share
-   one stable container, while the outer grid reserves the firearm's space. */
-.hunt-main .weapon-slot-bank { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: max-content minmax(72px, 1fr); gap: 5px; flex: 1 1 auto; min-height: 0; overflow: auto; scrollbar-width: thin; padding-bottom: 2px; }
+/* The firearm shares the title/effect row, leaving one equal row for every
+   weapon slot. All slot buttons retain #slots as their selection container. */
+.hunt-main .weapon-panel-header { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 5px; flex: 0 0 auto; min-width: 0; }
+.hunt-main .weapon-header-summary { grid-column: 1 / 3; min-width: 0; }
+.hunt-main .hunt-loadout > .weapon-panel .weapon-header-summary .weapon-rules { flex: 0 0 auto; max-height: 42px; margin: 3px 0 4px; overflow: auto; scrollbar-width: thin; }
+.hunt-main .weapon-slot-bank { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: minmax(96px, 1fr); gap: 5px; flex: 1 1 auto; min-height: 0; overflow: auto; scrollbar-width: thin; padding-bottom: 2px; }
 .hunt-main .weapon-slot-bank #slots.hunt-slots { display: contents; }
-.hunt-main .weapon-slot-bank #slots > .hunt-slot { grid-row: 1 / 3; min-width: 0; overflow: auto; scrollbar-width: thin; }
-.hunt-main .weapon-slot-bank #slots > [data-slot="0"] { grid-column: 1; }
-.hunt-main .weapon-slot-bank #slots > [data-slot="1"] { grid-column: 2; }
-.hunt-main .weapon-slot-bank #slots > [data-slot="2"] { grid-column: 3; grid-row: 2; min-height: 72px; }
-.hunt-main .weapon-slot-bank > .gun-panel { grid-column: 3; grid-row: 1; position: static; display: flex !important; flex-direction: column !important; align-items: stretch; gap: 3px; width: auto; height: auto; min-height: 0; padding: 5px !important; margin: 0; border: 1px solid #647e6d; border-radius: 4px; background: #172722; }
-.hunt-main .weapon-slot-bank > .gun-panel .eyebrow,
-.hunt-main .weapon-slot-bank > .gun-panel .firearm-rules { display: none; }
-.hunt-main .weapon-slot-bank > .gun-panel h2 { margin: 0; font-size: 12px; line-height: 1.4; }
-.hunt-main .weapon-slot-bank > .gun-panel h2 small { display: inline; margin-left: 5px; font-size: 10px; }
-.hunt-main .weapon-slot-bank > .gun-panel > button { flex: 0 0 auto; width: 100%; margin: 0; min-height: 28px; padding: 4px; font-size: 11px; line-height: 1.4; }
-.hunt-main .weapon-slot-bank > .gun-panel > label { display: block; font-size: 10px; }
-.hunt-main .weapon-slot-bank > .gun-panel select { width: 100%; }
-.hunt-main .weapon-slot-bank[data-slot-count="2"] > .gun-panel { grid-row: 1 / 3; }
-.hunt-main .weapon-slot-bank[data-slot-count="1"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.hunt-main .weapon-slot-bank[data-slot-count="1"] > .gun-panel { grid-column: 2; grid-row: 1 / 3; }
+.hunt-main .weapon-slot-bank #slots > .hunt-slot { grid-row: 1; min-width: 0; min-height: 96px; overflow: auto; scrollbar-width: thin; }
+.hunt-main .weapon-panel-header > .gun-panel { grid-column: 3; grid-row: 1; position: static; display: flex !important; flex-direction: column !important; align-items: stretch; gap: 2px; width: auto; height: auto; min-height: 49px; padding: 3px !important; margin: 0; border: 1px solid #647e6d; border-radius: 4px; background: #172722; }
+.hunt-main .weapon-panel-header > .gun-panel .eyebrow,
+.hunt-main .weapon-panel-header > .gun-panel .firearm-rules { display: none; }
+.hunt-main .weapon-panel-header > .gun-panel h2 { display: block; margin: 0; font-size: 12px; line-height: 1.25; }
+.hunt-main .weapon-panel-header > .gun-panel h2 small { display: inline; margin-left: 5px; font-size: 10px; white-space: nowrap; }
+.hunt-main .weapon-panel-header > .gun-panel > button { flex: 0 0 auto; width: 100%; margin: 0; min-height: 24px; padding: 3px; font-size: 11px; line-height: 1.25; }
+.hunt-main .weapon-panel-header > .gun-panel > label { display: block; font-size: 10px; }
+.hunt-main .weapon-panel-header > .gun-panel select { width: 100%; }
+.hunt-main .weapon-slot-bank[data-slot-count="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.hunt-main .weapon-slot-bank[data-slot-count="1"] { grid-template-columns: minmax(0, 1fr); }
 .hunt-main .weapon-slot-bank[data-preview="true"] #slots > .hunt-slot:disabled { opacity: 1; cursor: default; filter: none; }
 .hunt-main .hunt-loadout > .weapon-panel { padding-bottom: 6px !important; }
 @media (min-width: 801px) and (max-width: 1400px) {
-  .hunt-main .weapon-slot-bank > .gun-panel { gap: 2px; padding: 4px !important; }
-  .hunt-main .weapon-slot-bank > .gun-panel h2 { display: block; font-size: 11px; line-height: 1.25; }
-  .hunt-main .weapon-slot-bank > .gun-panel h2 small { margin-left: 3px; font-size: 9px; }
-  .hunt-main .weapon-slot-bank > .gun-panel > button { min-height: 26px; padding: 3px; font-size: 10px; line-height: 1.25; }
+  .hunt-main .weapon-panel-header > .gun-panel h2 { font-size: 11px; }
+  .hunt-main .weapon-panel-header > .gun-panel h2 small { margin-left: 3px; font-size: 9px; }
+  .hunt-main .weapon-panel-header > .gun-panel > button { font-size: 10px; }
 }
 
 /* Deck counts and the last disclosed action now have their own two-row area. */

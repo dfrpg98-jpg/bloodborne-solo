@@ -39,8 +39,7 @@
       attackIds = new Set(
         [...attackIds].filter((id) => held.some((x) => x.id === id)),
       );
-      $("itemCount").textContent =
-        `${held.length}장 · 덱 ${s.consumableDeck.length} · 버림 ${s.consumableDiscard.length}`;
+      $("itemCount").textContent = `${held.length}장`;
       $("inventory").innerHTML =
         held
           .map((item) => {

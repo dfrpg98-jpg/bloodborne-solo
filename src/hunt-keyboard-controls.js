@@ -36,8 +36,8 @@
     if (instances.has(document)) return instances.get(document);
     const controls = document.getElementById("movementControls"), hand = document.getElementById("hand");
     if (!controls) return null;
-    let destroyed = false, refillSpaceHeld = false;
-    const hints = new WeakMap();
+    let destroyed = false;
+    const hints = new WeakMap(), held = new Set(), actionHints = new Set();
     function annotate(button, keys) {
       if (!hints.has(button)) hints.set(button, { title: button.getAttribute("title"), keys: button.getAttribute("aria-keyshortcuts") });
       const title = hints.get(button).title || "";
@@ -68,8 +68,68 @@
         .sort((a, b) => ((a.rect.top || 0) - (b.rect.top || 0)) || ((a.rect.left || 0) - (b.rect.left || 0)) || a.index - b.index)
         .map(entry => entry.button);
     }
+    function dockActions() {
+      const dock = document.getElementById("decisionActions");
+      return [...dock?.querySelectorAll("button") || []].filter(button =>
+        visible(button) && (button.hasAttribute("data-command") ||
+          ["confirmHunterAction", "refill", "startNextChapter"].includes(button.id || button.getAttribute("id"))));
+    }
+    function cancelAction() {
+      const cancel = document.getElementById("cancelHunterAction");
+      if (available(cancel)) return cancel;
+      if (document.documentElement?.dataset.phase !== "move") return null;
+      return [...dockActions(), ...controls.querySelectorAll("[data-command]")]
+        .find(button => button.dataset.command === "CANCEL_MOVE" && available(button)) || null;
+    }
+    function primaryAction() {
+      const phase = document.documentElement?.dataset.phase,
+        confirm = document.getElementById("confirmHunterAction");
+      // A pending action must never fall through to ending the turn when its
+      // chosen card or slot is still missing.
+      if (visible(confirm)) return available(confirm) ? confirm : null;
+      if (phase === "refill") {
+        const refill = document.getElementById("refill");
+        return available(refill) ? refill : null;
+      }
+      const actions = phase === "tile_place" ?
+        [...document.getElementById("decisions")?.querySelectorAll("[data-command]") || []]
+          .filter(button => button.dataset.command === "PLACE_TILE" && visible(button)) :
+        dockActions().filter(button => button.dataset.command !== "CANCEL_MOVE" &&
+          (button.id || button.getAttribute("id")) !== "refill"),
+        enabled = actions.filter(available), focused = enabled.find(button => button.contains?.(document.activeElement));
+      if (focused) return focused;
+      if (phase === "tile_place") return enabled.length === 1 ? enabled[0] : null;
+      const fixed = phase === "hunter" ? "END_TURN" : phase === "move" ? "STOP_MOVE" : null;
+      if (fixed) return enabled.find(button => button.dataset.command === fixed) || null;
+      // Execute a selected, enabled response rather than the adjacent button
+      // that declines it. Other choices need an explicit focused control.
+      const responses = enabled.filter(button => ["ATTACK", "COUNTER", "DODGE", "EXTRA_DODGE", "WEAPON_SHOT"].includes(button.dataset.command));
+      if (responses.length === 1) return responses[0];
+      // A lone continuation with no response controls is unambiguous. A
+      // disabled dodge/counter still represents a choice the player may be
+      // preparing, so do not bypass it based on the current selection alone.
+      return actions.length === 1 && enabled.length === 1 && ["RESOLVE", "EXTRA_TAKE"].includes(enabled[0].dataset.command) ? enabled[0] : null;
+    }
+    function showActionHint(button, keys, label) {
+      if (!button) return;
+      actionHints.add(button); annotate(button, keys);
+      const refill = (button.id || button.getAttribute("id")) === "refill";
+      keyBadge(button, refill ? "data-refill-shortcut" : "data-action-shortcut",
+        refill ? "refill-shortcut-key" : "action-shortcut-key", label);
+    }
     function refresh() {
       if (destroyed) return;
+      // Keep the pending action's discoverable shortcut while it waits for a
+      // card. Execution still uses primaryAction's enabled-state guard.
+      const confirm = document.getElementById("confirmHunterAction"),
+        primary = visible(confirm) ? confirm : primaryAction(), cancel = cancelAction();
+      for (const button of actionHints) {
+        if (button === primary || button === cancel) continue;
+        clearHint(button);
+        keyBadge(button, "data-action-shortcut", "action-shortcut-key", "");
+        keyBadge(button, "data-refill-shortcut", "refill-shortcut-key", "");
+      }
+      actionHints.clear();
       for (const button of controls.querySelectorAll("[data-command]"))
         if (["MOVE", "STOP_MOVE"].includes(button.dataset.command)) annotate(button, button.dataset.command === "MOVE" ? "M Numpad5" : "M");
       for (const button of controls.querySelectorAll("[data-move-direction]")) {
@@ -82,26 +142,44 @@
         index < 0 ? clearHint(button) : annotate(button, String(index + 1));
         keyBadge(button, "data-hand-shortcut", "hand-shortcut-key", index < 0 ? "" : String(index + 1));
       }
-      const refill = document.getElementById("refill");
-      if (refill && visible(refill)) {
-        annotate(refill, "Space"); keyBadge(refill, "data-refill-shortcut", "refill-shortcut-key", "Space");
-      }
+      showActionHint(primary, "Space", "Space");
+      showActionHint(cancel, "Escape Backspace", "Esc / Backspace");
     }
     function windowOpen() {
       return [...document.querySelectorAll("dialog")].some(dialog => dialog.open || dialog.hasAttribute("open")) ||
         [...document.querySelectorAll("[data-window-minimized]")].some(element => element.dataset.windowMinimized === "true" || element.getAttribute("data-window-minimized") === "true");
     }
+    function gameplayArea(element) {
+      if (!element) return false;
+      if (element === document.body || element === document.documentElement) return true;
+      return [hand, controls, ...["decisions", "decisionActions", "hunterActionBar", "mapViewport", "combatSelection"]
+        .map(id => document.getElementById(id))].some(host => host?.contains?.(element));
+    }
+    function gameplayButton(element) {
+      for (let current = element?.nodeType === 3 ? element.parentElement : element; current; current = current.parentElement)
+        if ((current.tagName || "").toLowerCase() === "button") return gameplayArea(current);
+      return false;
+    }
+    function consumeSpace(event) { held.add("Space"); event.preventDefault(); }
     function keydown(event) {
       const space = event.key === " " || event.key === "Spacebar" || event.code === "Space";
-      if (!destroyed && space && refillSpaceHeld) { event.preventDefault(); return; }
+      const heldKey = space ? "Space" : ["Escape", "Backspace"].includes(event.key) ? event.key : null;
+      if (!destroyed && held.has(heldKey)) { event.preventDefault(); return; }
       if (destroyed || event.defaultPrevented || event.repeat || event.ctrlKey || event.metaKey || event.altKey ||
           event.isComposing || event.keyCode === 229 || editable(event.target) || editable(document.activeElement) || windowOpen()) return;
       const key = String(event.key || ""), phase = document.documentElement?.dataset.phase;
       let button;
       if (space) {
-        if (event.shiftKey || phase !== "refill") return;
-        const refill = document.getElementById("refill");
-        if (available(refill)) { button = refill; refillSpaceHeld = true; }
+        if (event.shiftKey) {
+          // Shift+Space is not an action shortcut. Also suppress the native
+          // keyup click when a gameplay button owns the keyboard focus.
+          if (gameplayButton(event.target) || gameplayButton(document.activeElement)) consumeSpace(event);
+          return;
+        }
+        button = primaryAction();
+      } else if (["Escape", "Backspace"].includes(key)) {
+        if (event.shiftKey) return;
+        button = cancelAction();
       } else if (/^Numpad/.test(event.code || "") || event.location === 3) {
         // Keypad navigation with NumLock off must never fall through to arrows or hand selection.
         const code = String(event.code || "");
@@ -121,17 +199,23 @@
         const direction = directions[key];
         if (direction) button = [...controls.querySelectorAll("[data-move-direction]")].find(element => element.dataset.moveDirection === direction && available(element));
       }
-      if (!button) return;
+      if (!button) {
+        // An unselected combat response or disabled confirmation is a no-op,
+        // not permission for a focused hand button's native keyup click.
+        if (space && (gameplayArea(event.target) || gameplayArea(document.activeElement))) consumeSpace(event);
+        return;
+      }
       // 기존 버튼을 거치므로 비용, 확인 창, 목적지 선택과 입력 차단을 그대로 따릅니다.
       event.preventDefault();
+      if (heldKey) held.add(heldKey);
       button.click();
+      refresh();
     }
     function keyup(event) {
-      if (refillSpaceHeld && (event.key === " " || event.key === "Spacebar" || event.code === "Space")) {
-        refillSpaceHeld = false; event.preventDefault();
-      }
+      const key = event.key === " " || event.key === "Spacebar" || event.code === "Space" ? "Space" : event.key;
+      if (held.delete(key)) event.preventDefault();
     }
-    function blur() { refillSpaceHeld = false; }
+    function blur() { held.clear(); }
     const observer = typeof window.MutationObserver === "function" ? new window.MutationObserver(refresh) : null;
     observer?.observe(controls, { childList: true, subtree: true });
     if (hand) observer?.observe(hand, { childList: true, subtree: true });
@@ -141,9 +225,11 @@
     const api = { refresh, destroy() {
       if (destroyed) return;
       destroyed = true; observer?.disconnect(); document.removeEventListener?.("keydown", keydown); document.removeEventListener?.("keyup", keyup);
+      document.removeEventListener?.("focusin", refresh);
       window.removeEventListener?.("resize", refresh); window.removeEventListener?.("blur", blur); instances.delete(document);
     } };
     instances.set(document, api); document.addEventListener("keydown", keydown); document.addEventListener("keyup", keyup);
+    document.addEventListener("focusin", refresh);
     window.addEventListener?.("resize", refresh); window.addEventListener?.("blur", blur); refresh();
     return api;
   }
