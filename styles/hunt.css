@@ -116,6 +116,7 @@
 .decision-heading .eyebrow { font-size: 9px; margin: 0 0 2px; }
 .hunt-main .hunt-decisions h2 { margin: 0; font-size: 19px; line-height: 1.3; color: #f0dbab; }
 .hunt-main #phaseHelp { font-size: 11px; line-height: 1.5; margin: 5px 0 7px; color: #c3cccb; }
+.hunt-main #phaseHelp:empty { display: none; }
 .decision-content { flex: 1; min-height: 0; overflow: auto; scrollbar-width: thin; overscroll-behavior: contain; }
 .decision-action-dock { flex: 0 0 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; padding-top: 9px; margin-top: 8px; border-top: 1px solid #8c7951; background: #182329; }
 .decision-action-dock > button { margin: 0; min-width: 0; min-height: 38px; padding: 8px; font-size: 12px; line-height: 1.4; overflow-wrap: anywhere; }
@@ -257,7 +258,12 @@
 .setup-slot-preview > span { display: flex; flex-direction: column; padding: 8px; border: 1px solid #514a3f; gap: 6px; }
 .weapon-effect-choices { border-top: 1px solid #67573e; padding-top: 7px; margin-top: 7px; }
 .hunt-screen select, .hunt-screen input { max-width: 100%; }
+/* Reading regions keep their keyboard/scroll focus without a browser-default box.
+   Actions inside them retain the gold focus ring below. Window handles remain
+   keyboard controls because Alt+arrow moves the window. */
+.hunt-screen :is(div, section, p, h2):focus:not([role="button"]):not([role="tab"]):not([role="option"]):not(.hunt-window-handle) { outline: none; }
 .hunt-screen button:focus-visible, .hunt-screen select:focus-visible, .hunt-screen input:focus-visible, .hunt-screen summary:focus-visible { outline: 2px solid #f0d695; outline-offset: 2px; }
+.hunt-screen .hunt-window-handle:focus-visible { outline: 2px solid #f0d695; outline-offset: -2px; }
 @media (min-width: 1121px) {
   html[data-phase="upgrade_pick"] .hunt-layout, html[data-phase="upgrade_replace"] .hunt-layout, html[data-phase="between_chapters"] .hunt-layout { grid-template-columns: minmax(0, 1fr) 460px; }
 }

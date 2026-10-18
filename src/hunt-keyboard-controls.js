@@ -22,24 +22,39 @@
     }
     return false;
   }
-  function available(button) {
-    if (!button || button.disabled || button.hidden || button.isConnected === false || button.getAttribute?.("aria-disabled") === "true") return false;
+  function visible(button) {
+    if (!button || button.hidden || button.isConnected === false) return false;
     for (let current = button; current; current = current.parentElement)
       if (current.hidden || current.hasAttribute?.("inert")) return false;
     return !button.getClientRects || button.getClientRects().length > 0;
   }
+  function available(button) {
+    return visible(button) && !button.disabled && button.getAttribute?.("aria-disabled") !== "true";
+  }
   function create({ document, window }) {
     if (!document || !window) return null;
     if (instances.has(document)) return instances.get(document);
-    const controls = document.getElementById("movementControls");
+    const controls = document.getElementById("movementControls"), hand = document.getElementById("hand");
     if (!controls) return null;
     let destroyed = false;
-    const titles = new WeakMap();
+    const hints = new WeakMap();
     function annotate(button, keys) {
-      if (!titles.has(button)) titles.set(button, button.getAttribute("title") || "");
-      const title = titles.get(button);
+      if (!hints.has(button)) hints.set(button, { title: button.getAttribute("title"), keys: button.getAttribute("aria-keyshortcuts") });
+      const title = hints.get(button).title || "";
       button.setAttribute("title", `${title}${title ? " · " : ""}단축키 ${keys}`);
       button.setAttribute("aria-keyshortcuts", keys);
+    }
+    function clearHint(button) {
+      const original = hints.get(button);
+      if (!original) return;
+      for (const [attribute, value] of [["title", original.title], ["aria-keyshortcuts", original.keys]])
+        value === null ? button.removeAttribute(attribute) : button.setAttribute(attribute, value);
+    }
+    function orderedHand() {
+      return [...hand?.querySelectorAll("[data-card]") || []].filter(visible)
+        .map((button, index) => ({ button, index, rect: button.getBoundingClientRect?.() || {} }))
+        .sort((a, b) => ((a.rect.top || 0) - (b.rect.top || 0)) || ((a.rect.left || 0) - (b.rect.left || 0)) || a.index - b.index)
+        .map(entry => entry.button);
     }
     function refresh() {
       if (destroyed) return;
@@ -48,6 +63,11 @@
       for (const button of controls.querySelectorAll("[data-move-direction]")) {
         const keys = shortcuts[button.dataset.moveDirection];
         if (keys) annotate(button, keys);
+      }
+      const cards = orderedHand().slice(0, 9);
+      for (const button of hand?.querySelectorAll("[data-card]") || []) {
+        const index = cards.indexOf(button);
+        index < 0 ? clearHint(button) : annotate(button, String(index + 1));
       }
     }
     function windowOpen() {
@@ -59,7 +79,11 @@
           event.isComposing || event.keyCode === 229 || editable(event.target) || editable(document.activeElement) || windowOpen()) return;
       const key = String(event.key || ""), phase = document.documentElement?.dataset.phase;
       let button;
-      if (key.toLowerCase() === "m" || event.code === "KeyM") {
+      if (/^[1-9]$/.test(key)) {
+        if (event.shiftKey) return;
+        const card = orderedHand()[Number(key) - 1];
+        if (available(card)) button = card;
+      } else if (key.toLowerCase() === "m" || event.code === "KeyM") {
         const command = phase === "move" ? "STOP_MOVE" : phase === "hunter" ? "MOVE" : null;
         if (command) button = [...controls.querySelectorAll("[data-command]")].find(element => element.dataset.command === command && available(element));
       } else if (phase === "move") {
@@ -73,6 +97,7 @@
     }
     const observer = typeof window.MutationObserver === "function" ? new window.MutationObserver(refresh) : null;
     observer?.observe(controls, { childList: true, subtree: true });
+    if (hand) observer?.observe(hand, { childList: true, subtree: true });
     const api = { refresh, destroy() {
       if (destroyed) return;
       destroyed = true; observer?.disconnect(); document.removeEventListener?.("keydown", keydown); instances.delete(document);

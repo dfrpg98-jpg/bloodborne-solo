@@ -1074,7 +1074,7 @@
     $("handCount").textContent = `${h.hand.length}장`;
     $("cardHint").textContent = state.phase === "over"
       ? "사냥이 종료되었습니다. 기록을 저장할 수 있습니다."
-      : "행동에 사용할 기술을 선택하세요.";
+      : "1–9 손패 선택";
     $("hand").innerHTML =
       h.hand
         .map((c) => {
@@ -1348,7 +1348,7 @@
         : !extra && c.dodged ? ""
         : extra
         ? "첫 공격을 피했거나 방해했어도 별도의 속도 2 회피가 필요합니다. 카드와 빈 슬롯을 고른 뒤 ‘추가 타격 회피’를 누르세요. 피하지 않으려면 ‘추가 피해 받기’를 선택합니다."
-        : "회피 카드와 충분한 속도의 빈 슬롯을 고른 뒤 ‘회피’를 눌러 확정하세요. 선택만으로 회피하지 않습니다. 대응을 마쳤거나 회피하지 않으려면 ‘전투 처리’를 누르세요.";
+        : "";
       html = `<p class="target-selection-status">${esc(selectHint)}</p>${button(c.dodged && !extra ? "회피 선택됨" : extra ? "추가 타격 회피" : "회피", extra ? "EXTRA_DODGE" : "DODGE", { cardId: selectedCard, slot: selectedSlot }, !canCommit || !E.canDodge(state, selectedCard, selectedSlot, extra))}`;
       if (!extra) html += firearmAction();
       html += button(

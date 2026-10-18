@@ -5,7 +5,7 @@ const { boot, Document, Element } = require("./helpers/ui-harness.cjs");
 const E = require("../src/hunt-engine"), U = require("../src/hunt-map-controls");
 
 function fixture(phase = "hunter", options = {}) {
-  const document = new Document('<html><body><div id="movementControls"></div></body></html>');
+  const document = new Document('<html><body><div id="movementControls"></div><div id="hand"></div></body></html>');
   document.documentElement.dataset.phase = phase;
   const controls = document.getElementById("movementControls"), clicks = [];
   const add = (attributes, name) => {
@@ -15,10 +15,16 @@ function fixture(phase = "hunter", options = {}) {
   const move = add({ "data-command": "MOVE", title: "카드 1장으로 이동" }, "MOVE");
   const stop = add({ "data-command": "STOP_MOVE" }, "STOP_MOVE");
   const direction = Object.fromEntries(["N", "E", "S", "W"].map(edge => [edge, add({ "data-move-direction": edge }, edge)]));
+  const hand = document.getElementById("hand"), addCard = (id, rect) => {
+    const button = new Element(document, "button", { "data-card": id, title: id + " 설명" });
+    button.parentElement = hand; if (rect) button._rect = rect;
+    button.addEventListener("click", () => clicks.push(id)); hand.append(button); return button;
+  };
+  for (let i = 1; i <= (options.handCount ?? 3); i++) addCard("card-" + i);
   const window = options.window || {};
   const api = create({ document, window });
   const key = (key, properties = {}) => document.fire("keydown", { key, target: document.body, ...properties });
-  return { document, window, controls, clicks, move, stop, direction, api, key, add };
+  return { document, window, controls, hand, addCard, clicks, move, stop, direction, api, key, add };
 }
 
 test("M은 현재 단계의 이동 선언과 이동 마치기 버튼을 각각 한 번 누릅니다", () => {
@@ -113,10 +119,11 @@ test("단축키 표시는 기존 비용 설명을 유지하고 갱신되어도 �
 });
 
 test("동적 버튼에는 자식 변경 감시로 단축키를 표시하고 초기화와 해제를 중복하지 않습니다", () => {
-  let callback, observed, disconnected = 0;
-  class Observer { constructor(handler) { callback = handler; } observe(element, options) { observed = { element, options }; } disconnect() { disconnected++; } }
+  let callback, disconnected = 0; const observed = [];
+  class Observer { constructor(handler) { callback = handler; } observe(element, options) { observed.push({ element, options }); } disconnect() { disconnected++; } }
   const f = fixture("move", { window: { MutationObserver: Observer } });
-  assert.deepEqual(observed.options, { childList: true, subtree: true }); assert.equal(observed.element, f.controls);
+  assert.deepEqual(observed.map(entry => entry.element), [f.controls, f.hand]);
+  for (const entry of observed) assert.deepEqual(entry.options, { childList: true, subtree: true });
   assert.equal(create({ document: f.document, window: f.window }), f.api);
   const next = f.add({ "data-command": "STOP_MOVE", title: "남은 이동 종료" }, "NEXT"); callback();
   assert.equal(next.getAttribute("title"), "남은 이동 종료 · 단축키 M");
@@ -124,11 +131,85 @@ test("동적 버튼에는 자식 변경 감시로 단축키를 표시하고 초�
   f.api.destroy(); f.api.destroy(); f.key("m"); assert.equal(f.clicks.length, 1); assert.equal(disconnected, 1);
 });
 
+test("손패 1~9는 일반 숫자와 넘패드 숫자로 윗줄 왼쪽부터 선택하고 0은 기존 지도 키에 남깁니다", () => {
+  const f = fixture("combat_react", { handCount: 11 }), cards = f.hand.querySelectorAll("[data-card]");
+  // A visual grid can differ from DOM order; row first, then left position defines numbering.
+  cards.forEach((card, index) => { card._rect = { top: Math.floor(index / 3) * 104, left: index % 3 * 100 }; });
+  [cards[0]._rect, cards[2]._rect] = [cards[2]._rect, cards[0]._rect];
+  f.api.refresh();
+  for (let i = 1; i <= 9; i++) assert.equal(f.key(String(i), { code: "Digit" + i }).defaultPrevented, true);
+  const expected = ["card-3", "card-2", "card-1", "card-4", "card-5", "card-6", "card-7", "card-8", "card-9"];
+  assert.deepEqual(f.clicks, expected);
+  for (let i = 1; i <= 9; i++) f.key(String(i), { code: "Numpad" + i });
+  assert.deepEqual(f.clicks.slice(9), expected);
+  for (const [key, code] of [["0", "Digit0"], ["0", "Numpad0"], ["10", ""], ["End", "Numpad1"]])
+    assert.equal(f.key(key, { code }).defaultPrevented, false);
+  assert.equal(f.clicks.length, 18); assert(!f.clicks.includes("card-10")); assert(!f.clicks.includes("card-11"));
+  assert.equal(cards[2].getAttribute("aria-keyshortcuts"), "1");
+  assert.equal(cards[9].getAttribute("aria-keyshortcuts"), null);
+});
+
+test("숫자 선택도 조합키·Shift·IME·자동반복·입력 요소·열린 창에서 차단합니다", () => {
+  const f = fixture();
+  for (const properties of [{ repeat: true }, { ctrlKey: true }, { metaKey: true }, { altKey: true }, { shiftKey: true },
+    { defaultPrevented: true }, { isComposing: true }, { keyCode: 229 }]) f.key("1", { code: "Digit1", ...properties });
+  f.key("!", { code: "Digit1", shiftKey: true });
+  for (const tag of ["input", "select", "textarea"]) {
+    const input = new Element(f.document, tag); f.key("1", { target: input });
+    f.document.activeElement = input; f.key("1"); f.document.activeElement = f.document.body;
+  }
+  const editor = new Element(f.document, "div", { contenteditable: "true" }), child = new Element(f.document, "span");
+  child.parentElement = editor; f.key("1", { target: child });
+  f.key("1", { target: { nodeType: 3, parentElement: editor } });
+  const dialog = new Element(f.document, "dialog"); f.document.elements.push(dialog); dialog.open = true; f.key("1");
+  dialog.open = false; dialog.setAttribute("data-window-minimized", "true"); f.key("1"); dialog.removeAttribute("data-window-minimized");
+  assert.deepEqual(f.clicks, []); f.key("1"); assert.deepEqual(f.clicks, ["card-1"]);
+});
+
+test("비활성 손패 숫자는 다음 카드를 대신 고르지 않고 숨겨진 카드는 화면 순서에서 제외합니다", () => {
+  const f = fixture(), cards = f.hand.querySelectorAll("[data-card]");
+  cards[0].disabled = true; assert.equal(f.key("1").defaultPrevented, false);
+  f.key("2"); assert.deepEqual(f.clicks, ["card-2"]);
+  cards[0].disabled = false; cards[0].hidden = true; f.key("1"); assert.equal(f.clicks.at(-1), "card-2");
+  f.hand.setAttribute("inert", ""); assert.equal(f.key("1").defaultPrevented, false); f.hand.removeAttribute("inert");
+  cards[1].getClientRects = () => []; f.key("1"); assert.equal(f.clicks.at(-1), "card-3");
+});
+
+test("손패 재정렬·소모·재렌더 후 최신 번호와 안내를 적용하며 열 번째로 밀린 카드의 안내는 제거합니다", () => {
+  let refresh;
+  class Observer { constructor(callback) { refresh = callback; } observe() {} disconnect() {} }
+  const f = fixture("hunter", { handCount: 10, window: { MutationObserver: Observer } }), first = f.hand.children[0];
+  assert.equal(first.getAttribute("title"), "card-1 설명 · 단축키 1");
+  f.hand.children.push(f.hand.children.shift()); refresh(); f.api.refresh();
+  assert.equal(first.getAttribute("title"), "card-1 설명"); assert.equal(first.getAttribute("aria-keyshortcuts"), null);
+  f.key("1"); assert.equal(f.clicks.at(-1), "card-2");
+  f.hand.children.shift(); refresh(); f.key("1"); assert.equal(f.clicks.at(-1), "card-3");
+  assert.equal(first.getAttribute("aria-keyshortcuts"), "9");
+  f.hand.innerHTML = '<button data-card="new-card" title="새 손패 효과"></button>'; refresh();
+  const fresh = f.hand.querySelectorAll("[data-card]")[0]; let clicked = 0; fresh.onclick = () => clicked++;
+  assert.equal(fresh.getAttribute("title"), "새 손패 효과 · 단축키 1"); assert.equal(fresh.getAttribute("aria-keyshortcuts"), "1");
+  f.key("1", { code: "Numpad1" }); assert.equal(clicked, 1);
+  assert.equal(f.key("2").defaultPrevented, false);
+});
+
 test("단축키 모듈은 엔진이나 게임 저장소를 읽지 않고 DOM 버튼만 사용합니다", () => {
   const window = {};
   for (const name of ["BBHunt", "state", "localStorage"]) Object.defineProperty(window, name, { get() { throw new Error("게임 데이터 접근"); } });
-  const f = fixture("move", { window }); f.key("ArrowLeft"); f.key("m");
-  assert.deepEqual(f.clicks, ["W", "STOP_MOVE"]);
+  const f = fixture("move", { window }); f.key("ArrowLeft"); f.key("m"); f.key("1");
+  assert.deepEqual(f.clicks, ["W", "STOP_MOVE", "card-1"]);
+});
+
+test("지도에 포커스한 0은 실제 카메라의 100% 복원을 유지하며 손패를 선택하지 않습니다", () => {
+  const Camera = require("../src/hunt-camera"), f = fixture(), viewport = new Element(f.document),
+    content = new Element(f.document), surface = new Element(f.document);
+  Object.assign(viewport, { clientWidth: 400, clientHeight: 300 });
+  Object.assign(content, { offsetWidth: 800, offsetHeight: 600 });
+  const camera = Camera({ document: f.document, viewport, content, surface });
+  viewport.focus(); camera.setZoom(1.44);
+  const event = viewport.fire("keydown", { key: "0", code: "Digit0" });
+  assert.equal(event.defaultPrevented, true); assert.equal(camera.zoom(), 1);
+  f.document.fire("keydown", event); assert.deepEqual(f.clicks, []);
+  camera.destroy();
 });
 
 test("브라우저 스크립트는 DOM 준비 후 시작하고 다른 실행 모듈을 로드하지 않습니다", () => {
@@ -150,6 +231,23 @@ function launch(state) {
   return ui;
 }
 function saved(ui) { assert.equal(ui.el("error").textContent, ""); return E.importSave(ui.storage.get(key)); }
+
+test("실제 손패의 숫자 선택·해제는 저장을 보존하고 소모 뒤 최신 순서의 카드를 이동에 사용합니다", () => {
+  const state = initial(), ui = launch(state), before = ui.storage.get(key), cards = E.hunter(state).hand.map(card => card.id),
+    pressed = () => ui.el("hand").querySelectorAll("[data-card]").filter(card => card.getAttribute("aria-pressed") === "true").map(card => card.dataset.card);
+  ui.key("1", { code: "Digit1" }); assert.deepEqual(pressed(), [cards[0]]);
+  ui.key("1", { code: "Numpad1" }); assert.deepEqual(pressed(), []);
+  ui.key("2", { code: "Numpad2" }); assert.deepEqual(pressed(), [cards[1]]);
+  assert.equal(ui.storage.get(key), before); assert.equal(saved(ui).commands.length, state.commands.length);
+  ui.key("m"); let reference = E.dispatch(state, { type: "MOVE", cardId: cards[1] });
+  ui.key("ArrowRight"); reference = E.dispatch(reference, { type: "STEP", node: "tile-14:right" });
+  ui.key("m"); reference = E.dispatch(reference, { type: "STOP_MOVE" }); assert.deepEqual(saved(ui), reference);
+  const afterMove = ui.storage.get(key), commandCount = saved(ui).commands.length;
+  ui.key("1", { code: "Digit1" }); assert.deepEqual(pressed(), [cards[0]]);
+  assert.equal(ui.storage.get(key), afterMove); assert.equal(saved(ui).commands.length, commandCount);
+  ui.key("m"); reference = E.dispatch(reference, { type: "MOVE", cardId: cards[0] }); assert.deepEqual(saved(ui), reference);
+  assert.equal(saved(ui).commands.at(-1).cardId, cards[0]);
+});
 
 test("실제 화면의 M·방향키·M은 클릭과 동일한 카드 비용과 저장 결과를 만듭니다", () => {
   const state = initial(), ui = launch(state), before = ui.storage.get(key), cardId = E.hunter(state).hand[0].id;

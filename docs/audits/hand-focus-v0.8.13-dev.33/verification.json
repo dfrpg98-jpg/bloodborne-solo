@@ -1,0 +1,134 @@
+{
+  "schema": "hand-focus-audit-v1",
+  "version": "0.8.13-dev.33",
+  "date": "2026-10-18",
+  "status": "automated-checks-passed-browser-verification-stopped",
+  "scope": {
+    "requests": [
+      "읽기영역에 생기는 큰 기본 흰 초점 테두리 제거",
+      "동일한 현상이 있는 지도·진행 상세·타일 정보 등 점검",
+      "화면 윗줄 왼쪽부터 숫자키1~9 손패 선택",
+      "기존 손패 안내 줄에 짧은 단축키 설명",
+      "일반 전투의 긴 회피 튜토리얼 제거"
+    ],
+    "engineChanged": false,
+    "saveFormatChanged": false,
+    "globalScaleOrFontChanged": false
+  },
+  "focusPolicy": {
+    "id": "BB-088",
+    "readingTags": [
+      "div",
+      "section",
+      "p",
+      "h2"
+    ],
+    "rolesExcluded": [
+      "button",
+      "tab",
+      "option"
+    ],
+    "windowHandleExcluded": true,
+    "keyboardFocusAndScrollingRetained": true,
+    "realActionControlFocusRetained": true,
+    "computedBrowserStylesVerified": false
+  },
+  "handShortcuts": {
+    "keys": "1–9",
+    "order": "현재 화면의 위→아래, 같은 줄 왼쪽→오른쪽",
+    "sameKeyTogglesSelection": true,
+    "numberPadWithNumLock": true,
+    "noShortcutForCardsAfterNine": true,
+    "zeroCameraResetPreserved": true,
+    "selectionUsesExistingButtonClick": true,
+    "gameplayCommandsFromSelection": 0,
+    "blocks": [
+      "수정키·Shift",
+      "IME 조합",
+      "키 반복",
+      "input/select/textarea/contenteditable",
+      "열린 창·최소화 창",
+      "숨김·비활성·inert 카드"
+    ],
+    "refreshesAfter": [
+      "카드 소모",
+      "카드 재정렬",
+      "새 손패 렌더링"
+    ],
+    "hint": "1–9 손패 선택",
+    "hintPlacement": "기존 cardHint 줄 재사용 — 새 제목줄 너비·안내 행을 추가하지 않음"
+  },
+  "combatHelp": {
+    "id": "BB-089",
+    "ordinaryReactionTutorialRemoved": true,
+    "emptyHelpSpacingRemoved": true,
+    "liveDodgeCalculationRetained": true,
+    "specialCannotDodgeAndFollowupInformationRetained": true,
+    "dodgeAndResolveCommandsMatchEngine": true,
+    "fullSequenceRemainsInHelp": true
+  },
+  "tests": {
+    "related": {
+      "counts": {
+        "tests": 174,
+        "pass": 174,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "report": "test-results/hand-focus-dev33/related.tap",
+      "files": [
+        "tests/hunt-window-manager-dev25.test.cjs",
+        "tests/hunt-workspace-shell-v25.test.cjs",
+        "tests/hunt-keyboard-controls-dev30.test.cjs",
+        "tests/map-controls-ui.test.cjs",
+        "tests/location-label-ui.test.cjs",
+        "tests/mission-hud-map-workspace-v25.test.cjs",
+        "tests/compact-hud-v0829.test.cjs",
+        "tests/tile-diagrams.test.cjs",
+        "tests/campaign-ui.test.cjs",
+        "tests/animation-camera-ui-v082.test.cjs",
+        "tests/camera-v082.test.cjs",
+        "tests/focus-help-dev33.test.cjs",
+        "tests/kirkhammer-restriction-ui-v0821.test.cjs"
+      ]
+    },
+    "classification": "Node DOM 모형에서 실제 게임 컨트롤러·실제 엔진 명령을 검증. 실제 PC 키입력·픽셀 검증과 구분",
+    "newRegressions": [
+      "화면 순서·1~9·넘패드·10번째 이후 미할당",
+      "입력·창·IME·자동반복 차단",
+      "손패 재정렬·소모·재렌더 번호·힌트 갱신",
+      "실제 선택·해제 저장 불변과 이후 이동 카드 비용",
+      "0번 지도 배율 복원",
+      "읽기 영역과 조작 컨트롤의 초점 스타일 분리",
+      "일반 전투 설명 제거·동적 계산·회피/처리 결과 유지",
+      "도움말의 회피 순서 유지"
+    ],
+    "currentFullCiRerun": false
+  },
+  "actualBrowserVerification": {
+    "completed": false,
+    "stoppedBy": "자동 안전 검토",
+    "reason": "Windows 브라우저의 현재 주소를 충분한 확신으로 확인할 수 없음",
+    "furtherComputerInputIssued": false,
+    "userGameTabModifiedByAutomation": false,
+    "notCountedAsCompleted": true
+  },
+  "httpSmoke": {
+    "url": "http://127.0.0.1:8860/hunt.html",
+    "userServerKeptRunning": true,
+    "unusedVerificationServer8862Stopped": true,
+    "pageAndThreeChangedAssetsStatus": 200
+  },
+  "cacheHashes": {
+    "src/hunt-app.js": "28aa4196a390",
+    "src/hunt-keyboard-controls.js": "264e573606bc",
+    "styles/hunt.css": "a0c51102e758"
+  },
+  "previousCompleteAudit": "docs/audits/tile-window-v0.8.13-dev.32/verification.json",
+  "publication": {
+    "pullRequest": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/89",
+    "draft": true,
+    "mainMerged": false
+  }
+}

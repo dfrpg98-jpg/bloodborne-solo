@@ -66,14 +66,14 @@ test("Kirkhammer's special slot warns before commitment and blocks a real dodge 
   click(ui, "RESOLVE"); E.assertState(current());
 });
 
-test("the ordinary Kirkhammer slot preserves normal dodge selection and switches help after the real dodge", () => {
+test("the ordinary Kirkhammer slot preserves normal dodge selection without a repeated tutorial", () => {
   const state = fixture(), { ui, current } = launch(state);
   prepare(ui, state, 0);
   assert.doesNotMatch(ui.el("combatSelection").innerHTML, /이번 전투 · 회피 불가|방해 면역|빈 회피 슬롯 없음/);
   click(ui, "ATTACK");
   assert.equal(current().phase, "combat_react"); assert.equal(current().combat.noDodge, false);
   assert(!current().combat.immune.includes("interrupt"));
-  assert.match(ui.el("phaseHelp").textContent, /회피 카드와.*빈 슬롯을 고른 뒤/);
+  assert.equal(ui.el("phaseHelp").textContent, "");
   const dodgeCard = H(current()).hand.find(card => card.kind === "endurance");
   select(ui, "combatSelectCard", dodgeCard.id); select(ui, "combatSelectSlot", 1);
   assert.equal(E.canDodge(current(), dodgeCard.id, 1), true); click(ui, "DODGE");
