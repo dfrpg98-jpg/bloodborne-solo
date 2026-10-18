@@ -2,7 +2,7 @@
   "schema": "hand-focus-audit-v1",
   "version": "0.8.13-dev.33",
   "date": "2026-10-18",
-  "status": "automated-checks-passed-browser-verification-stopped",
+  "status": "automated-and-isolated-real-browser-checks-passed",
   "scope": {
     "requests": [
       "읽기영역에 생기는 큰 기본 흰 초점 테두리 제거",
@@ -31,7 +31,9 @@
     "windowHandleExcluded": true,
     "keyboardFocusAndScrollingRetained": true,
     "realActionControlFocusRetained": true,
-    "computedBrowserStylesVerified": false
+    "computedBrowserStylesVerified": true,
+    "nativeReadingBoxesAbsent": true,
+    "actualActionGoldRingRetained": true
   },
   "handShortcuts": {
     "keys": "1–9",
@@ -104,15 +106,56 @@
       "일반 전투 설명 제거·동적 계산·회피/처리 결과 유지",
       "도움말의 회피 순서 유지"
     ],
-    "currentFullCiRerun": false
+    "currentFullCiRerun": false,
+    "githubRegressionWorkflow": {
+      "productCommit": "d1cdfad8284282d0e6bd298124b2c16fc6d44ba0",
+      "conclusion": "success",
+      "url": "https://github.com/dfrpg98-jpg/bloodborne-solo/actions/runs/39082779885"
+    }
   },
   "actualBrowserVerification": {
-    "completed": false,
-    "stoppedBy": "자동 안전 검토",
-    "reason": "Windows 브라우저의 현재 주소를 충분한 확신으로 확인할 수 없음",
-    "furtherComputerInputIssued": false,
-    "userGameTabModifiedByAutomation": false,
-    "notCountedAsCompleted": true
+    "completed": true,
+    "method": "separate headless Chrome with a temporary context and Chromium sandbox enabled",
+    "browserVersion": "155.0.8059.82",
+    "checksPassed": 49,
+    "report": "test-results/hand-focus-dev33/real-browser/verification.json",
+    "runner": "docs/audits/hand-focus-v0.8.13-dev.33/verify-browser.cjs",
+    "viewports": [
+      [
+        2035,
+        1252
+      ],
+      [
+        1714,
+        1252
+      ],
+      [
+        1280,
+        720
+      ]
+    ],
+    "sourceSha256": {
+      "src/hunt-app.js": "28aa4196a390fb3f721e03e21781a341b2dcb57ed263b7e5f2e0cba662276cb3",
+      "src/hunt-keyboard-controls.js": "264e573606bcd0084441f52e89bdc83fa61a4b92d6151da382852ea940dcf7ad",
+      "styles/hunt.css": "a0c51102e75851815d13250c44609f95e65fe112f78962b21a083988e8380f33"
+    },
+    "userBrowserAttached": false,
+    "userSaveModified": false,
+    "pageStateInjection": false,
+    "normalCombat": "실제 브라우저에서 내보낸 chapter3-start 저장 공식 불러오기 → END_TURN·ACTIVATE·COUNTER 실제 UI 3명령 → 원본 정규 기록 prefix289와 바이트 일치",
+    "qaBoundary": "공개 엔진 명령으로 만든 QA 손패12장 저장을 공식 불러오기. 1~9 실제 숫자행 입력·10번째 이후 미할당만 확인하며 정규 캠페인 완주로 세지 않음",
+    "numberPad": "NumLock 숫자 입력은 기존 DOM 단위 검사 범위. 이번 실제 Chrome 검증은 숫자행1~9",
+    "fixtures": "test-results/hand-focus-dev33/real-browser/fixture-provenance.json",
+    "screenshots": [
+      "test-results/hand-focus-dev33/real-browser/01-no-hand-m.png",
+      "test-results/hand-focus-dev33/real-browser/02-number-selected.png",
+      "test-results/hand-focus-dev33/real-browser/normal-1714.png",
+      "test-results/hand-focus-dev33/real-browser/normal-1280.png",
+      "test-results/hand-focus-dev33/real-browser/03-normal-combat.png",
+      "test-results/hand-focus-dev33/real-browser/04-qa-12-card-boundary.png"
+    ],
+    "browserExceptions": [],
+    "verifiedCurrentUserTab": false
   },
   "httpSmoke": {
     "url": "http://127.0.0.1:8860/hunt.html",
@@ -130,5 +173,13 @@
     "pullRequest": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/89",
     "draft": true,
     "mainMerged": false
+  },
+  "earlierDesktopAttempt": {
+    "completed": false,
+    "stoppedBy": "자동 안전 검토",
+    "reason": "Windows 브라우저의 현재 주소를 충분한 확신으로 확인할 수 없음",
+    "furtherComputerInputIssued": false,
+    "userGameTabModifiedByAutomation": false,
+    "notCountedAsCompleted": true
   }
 }
