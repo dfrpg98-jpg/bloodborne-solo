@@ -1,8 +1,10 @@
 .hunter-action-bar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; flex: 0 0 auto; margin: 5px 0 8px; }
 .hunter-action-bar button { min-width: 0; padding: 8px 6px; line-height: 1.35; text-align: center; }
+.hunter-action-label { display: inline-block; white-space: nowrap; }
 .hunter-action-bar button small { display: block; margin-top: 3px; font-size: 10px; line-height: 1.4; overflow-wrap: anywhere; }
 .hunter-action-bar button[aria-pressed="true"] { border-color: #ecd08e; background: #423a29; }
 .hunter-action-reason { margin: 5px 0; color: #c8b895; font-size: 11px; line-height: 1.4; }
 .hunter-action-route { display: grid; gap: 4px; margin-bottom: 7px; }
 .hunt-main .decision-action-dock:has(#confirmHunterAction) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (max-height: 800px) { .hunter-action-bar { gap: 3px; margin: 3px 0 5px; } .hunter-action-bar button { padding: 5px 4px; font-size: 11px; } }
+@media (max-width: 980px) { .hunter-action-label { font-size: 11px; } }

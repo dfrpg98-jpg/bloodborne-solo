@@ -14,6 +14,12 @@
   const shortcuts = { NW: "Numpad7", N: "ArrowUp Numpad8", NE: "Numpad9", W: "ArrowLeft Numpad4", E: "ArrowRight Numpad6", SW: "Numpad1", S: "ArrowDown Numpad2", SE: "Numpad3" };
   const directions = { ArrowUp: "N", ArrowRight: "E", ArrowDown: "S", ArrowLeft: "W" };
   const numpad = { Numpad7: "NW", Numpad8: "N", Numpad9: "NE", Numpad4: "W", Numpad6: "E", Numpad1: "SW", Numpad2: "S", Numpad3: "SE" };
+  const hunterShortcuts = { Q: "MOVE", E: "DREAM", Z: "TRANSFORM", C: "ATTACK" };
+  function actionKey(event) {
+    if (event.location === 3 || /^Numpad/.test(event.code || "")) return null;
+    const letter = /^Key[A-Z]$/.test(event.code || "") ? event.code.slice(3) : String(event.key || "").toUpperCase();
+    return hunterShortcuts[letter] ? letter : null;
+  }
   function editable(element) {
     for (let current = element?.nodeType === 3 ? element.parentElement : element; current; current = current.parentElement) {
       if (/^(input|select|textarea)$/i.test(current.tagName || "") || current.isContentEditable) return true;
@@ -81,6 +87,19 @@
       return [...dockActions(), ...controls.querySelectorAll("[data-command]")]
         .find(button => button.dataset.command === "CANCEL_MOVE" && available(button)) || null;
     }
+    function hunterAction(type) {
+      const phase = document.documentElement?.dataset.phase;
+      if (type === "MOVE" && phase === "move")
+        return [...dockActions(), ...controls.querySelectorAll("[data-command]")]
+          .find(button => button.dataset.command === "STOP_MOVE" && available(button)) || null;
+      if (phase !== "hunter") return null;
+      const bar = document.getElementById("hunterActionBar");
+      if (bar) return [...bar.querySelectorAll("[data-hunter-intent]")]
+        .find(button => button.dataset.hunterIntent === type && available(button)) || null;
+      // Keep the standalone movement controller usable without an action bar.
+      return type === "MOVE" ? [...controls.querySelectorAll("[data-command]")]
+        .find(button => button.dataset.command === "MOVE" && available(button)) || null : null;
+    }
     function primaryAction() {
       const phase = document.documentElement?.dataset.phase,
         confirm = document.getElementById("confirmHunterAction");
@@ -131,7 +150,11 @@
       }
       actionHints.clear();
       for (const button of controls.querySelectorAll("[data-command]"))
-        if (["MOVE", "STOP_MOVE"].includes(button.dataset.command)) annotate(button, button.dataset.command === "MOVE" ? "M Numpad5" : "M");
+        if (["MOVE", "STOP_MOVE"].includes(button.dataset.command)) annotate(button, button.dataset.command === "MOVE" ? "Q Numpad5" : "Q");
+      for (const button of document.getElementById("hunterActionBar")?.querySelectorAll("[data-hunter-intent]") || []) {
+        const key = Object.keys(hunterShortcuts).find(key => hunterShortcuts[key] === button.dataset.hunterIntent);
+        if (key) annotate(button, key);
+      }
       for (const button of controls.querySelectorAll("[data-move-direction]")) {
         const keys = shortcuts[button.dataset.moveDirection];
         if (keys) annotate(button, keys);
@@ -163,7 +186,7 @@
     function consumeSpace(event) { held.add("Space"); event.preventDefault(); }
     function keydown(event) {
       const space = event.key === " " || event.key === "Spacebar" || event.code === "Space";
-      const heldKey = space ? "Space" : ["Escape", "Backspace"].includes(event.key) ? event.key : null;
+      const shortcut = actionKey(event), heldKey = space ? "Space" : shortcut ? `Key${shortcut}` : ["Escape", "Backspace"].includes(event.key) ? event.key : null;
       if (!destroyed && held.has(heldKey)) { event.preventDefault(); return; }
       if (destroyed || event.defaultPrevented || event.repeat || event.ctrlKey || event.metaKey || event.altKey ||
           event.isComposing || event.keyCode === 229 || editable(event.target) || editable(document.activeElement) || windowOpen()) return;
@@ -192,9 +215,9 @@
         if (event.shiftKey) return;
         const card = orderedHand()[Number(key) - 1];
         if (available(card)) button = card;
-      } else if (key.toLowerCase() === "m" || event.code === "KeyM") {
-        const command = phase === "move" ? "STOP_MOVE" : phase === "hunter" ? "MOVE" : null;
-        if (command) button = [...controls.querySelectorAll("[data-command]")].find(element => element.dataset.command === command && available(element));
+      } else if (shortcut) {
+        if (event.shiftKey) return;
+        button = hunterAction(hunterShortcuts[shortcut]);
       } else if (phase === "move") {
         const direction = directions[key];
         if (direction) button = [...controls.querySelectorAll("[data-move-direction]")].find(element => element.dataset.moveDirection === direction && available(element));
@@ -212,14 +235,15 @@
       refresh();
     }
     function keyup(event) {
-      const key = event.key === " " || event.key === "Spacebar" || event.code === "Space" ? "Space" : event.key;
+      const shortcut = actionKey(event),
+        key = event.key === " " || event.key === "Spacebar" || event.code === "Space" ? "Space" : shortcut ? `Key${shortcut}` : event.key;
       if (held.delete(key)) event.preventDefault();
     }
     function blur() { held.clear(); }
     const observer = typeof window.MutationObserver === "function" ? new window.MutationObserver(refresh) : null;
     observer?.observe(controls, { childList: true, subtree: true });
     if (hand) observer?.observe(hand, { childList: true, subtree: true });
-    for (const id of ["decisions", "decisionActions"]) {
+    for (const id of ["decisions", "decisionActions", "hunterActionBar"]) {
       const host = document.getElementById(id); if (host) observer?.observe(host, { childList: true, subtree: true });
     }
     const api = { refresh, destroy() {

@@ -1213,7 +1213,7 @@
   function renderHunterActionBar() {
     const bar = $("hunterActionBar"), model = hunterActionView();
     if (!bar || !model) return;
-    bar.innerHTML = model.actions.map(action => `<button type="button" data-hunter-intent="${action.type}" aria-pressed="${pendingHunterAction?.type === action.type}" ${action.enabled && !pendingHunterAction ? "" : "disabled"}>${action.label}${action.type === "ATTACK" ? `<small>선택한 적: ${esc(model.selectedEnemy ? enemyTargetLabel(model.selectedEnemy) : "없음")}</small>` : ""}${actionLossHint({ type: action.type })}</button>`).join("");
+    bar.innerHTML = model.actions.map(action => `<button type="button" data-hunter-intent="${action.type}" aria-keyshortcuts="${action.shortcut}" aria-pressed="${pendingHunterAction?.type === action.type}" ${action.enabled && !pendingHunterAction ? "" : "disabled"}><span class="hunter-action-label">${action.label} (${action.shortcut})</span>${action.type === "ATTACK" ? `<small>선택한 적: ${esc(model.selectedEnemy ? enemyTargetLabel(model.selectedEnemy) : "없음")}</small>` : ""}${actionLossHint({ type: action.type })}</button>`).join("");
     bar.querySelectorAll("[data-hunter-intent]").forEach(button => button.onclick = () => beginHunterAction(button.dataset.hunterIntent));
   }
   function renderDecisions() {
