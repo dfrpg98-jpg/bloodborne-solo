@@ -1742,15 +1742,17 @@
     $("movementRemaining").textContent = view.moving ? `남음 ${view.remaining}` : "";
     $("movementRemaining").hidden = !view.moving;
     if (!view.moving) movementDirection = null;
-    const chosenDirection = view.directions.find(direction => direction.edge === movementDirection);
+    const chosenDirection = view.directions.find(direction => direction.edge === movementDirection && direction.options.some(option => option.enabled));
+    if (!chosenDirection) movementDirection = null;
     box.innerHTML = `<p class="movement-hint">${esc(uiText(view.hint))}</p>${!view.moving ? button("이동 선언 · 손패 1장", "MOVE", { cardId: selectedCard }, !view.start.enabled) : ""}<div class="movement-pad" role="group" aria-label="이동 방향">${view.directions.map(direction => {
       const enabled = direction.options.some(option => option.enabled),
         hint = enabled ? direction.options.filter(option => option.enabled).map(option => uiText(option.label)).join(" / ") :
           direction.options[0]?.reason || "이 방향으로 연결된 칸이나 열린 출입구가 없습니다.";
-      return `<button type="button" data-move-direction="${direction.edge}" ${enabled ? "" : "disabled"} aria-label="${direction.name} 이동" title="${esc(hint)}">${{N:"↑",E:"→",S:"↓",W:"←"}[direction.edge]}</button>`;
+      return `<button type="button" data-move-direction="${direction.edge}" ${enabled ? "" : "disabled"} aria-label="${direction.name} 이동" title="${esc(hint)}">${{N:"↑",E:"→",S:"↓",W:"←",NE:"↗",SE:"↘",SW:"↙",NW:"↖"}[direction.edge]}</button>`;
     }).join("")}<span class="movement-center" aria-hidden="true">${view.moving ? view.remaining : "이동"}</span></div>${chosenDirection ? `<div class="movement-destinations"><p>${chosenDirection.name} · 이동할 칸을 선택하세요</p>${chosenDirection.options.map((option, index) => `<button type="button" data-move-option="${index}" ${option.enabled ? "" : "disabled"} title="${esc(option.reason || option.cost)}">${esc(uiText(option.label))}</button>`).join("")}</div>` : ""}${view.moving ? button("이동 마치기", "STOP_MOVE", {}, !view.stop.enabled) + (view.cancel?.enabled ? button("이동 선언 취소", "CANCEL_MOVE") : "") : ""}`;
     bind(box);
     box.querySelectorAll("[data-move-direction]").forEach(button => button.onclick = () => {
+      if (button.disabled) return;
       const direction = view.directions.find(direction => direction.edge === button.dataset.moveDirection),
         enabled = direction?.options.filter(option => option.enabled) || [];
       if (enabled.length === 1 && enabled[0].command) {
@@ -1762,6 +1764,7 @@
       }
     });
     box.querySelectorAll("[data-move-option]").forEach(button => button.onclick = () => {
+      if (button.disabled) return;
       const option = chosenDirection?.options[Number(button.dataset.moveOption)];
       if (option?.enabled && option.command) { movementDirection = null; sendCommands([option.command]); }
     });

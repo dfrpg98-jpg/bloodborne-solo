@@ -5,15 +5,20 @@
   const M = local ? require("./chapter-engine") : root.BBChapter;
   const G = local ? require("./tile-geometry") : root.BBTileGeometry;
   const C = local ? require("./hunt-context") : root.BBHuntContext;
-  const edges = ["N", "E", "S", "W"], names = { N: "위", E: "오른쪽", S: "아래", W: "왼쪽" };
+  const cardinalEdges = ["N", "E", "S", "W"], diagonalEdges = ["NE", "SE", "SW", "NW"],
+    edges = [...cardinalEdges, ...diagonalEdges],
+    names = { N: "위", E: "오른쪽", S: "아래", W: "왼쪽", NE: "오른쪽 위", SE: "오른쪽 아래", SW: "왼쪽 아래", NW: "왼쪽 위" };
 
   function directionsFor(dx, dy) {
+    if (!dx && !dy) return [];
     const horizontal = dx > 0 ? "E" : "W", vertical = dy > 0 ? "S" : "N";
-    if (Math.abs(dx) > Math.abs(dy)) return [horizontal];
-    if (Math.abs(dy) > Math.abs(dx)) return [vertical];
-    // Two equally plausible directions expose the same explicit destination.
-    // Never choose a half-tile branch from a rounded visual coordinate.
-    return dx || dy ? [vertical, horizontal] : [];
+    // Eight compass sectors follow the rotated printed space geometry. Small
+    // artwork offsets (for example the two paths around tile-10's building)
+    // remain cardinal; split half-tile branches get their own diagonal button.
+    const boundary = Math.tan(Math.PI / 8);
+    if (Math.abs(dy) <= Math.abs(dx) * boundary) return [horizontal];
+    if (Math.abs(dx) <= Math.abs(dy) * boundary) return [vertical];
+    return [vertical + horizontal];
   }
   function stepDirections(state, from, to) {
     const a = E.node(state, from), b = E.node(state, to);
@@ -39,7 +44,7 @@
         reason: locked || phaseReason || (E.canStopMove && !E.canStopMove(state) ? "한 칸 이상 이동하세요." : ""), command: { type: "STOP_MOVE" } },
       cancel: { enabled: !locked && !!E.canCancelMove?.(state), command: { type: "CANCEL_MOVE" } },
       hint: locked || phaseReason || (state.move.costPending ? "첫 칸 진입 시 손패 1장 소모" : `남은 이동력 ${state.move.remaining} · 방향을 선택하세요.`),
-      directions: edges.map(edge => ({ edge, name: names[edge], options: [] })) };
+      diagonalMode: false, directions: edges.map(edge => ({ edge, name: names[edge], options: [] })) };
     if (!h.position || h.inDream) return result;
     const add = (edge, action, label) => {
       const direction = result.directions.find(direction => direction.edge === edge);
@@ -59,6 +64,13 @@
         .actions.find(action => action.id === "explore");
       add(exit.edge, action, `${names[exit.edge]} 출입구로 탐험`);
     }
+    result.diagonalMode = result.directions.some(direction => diagonalEdges.includes(direction.edge) &&
+      direction.options.some(option => option.enabled));
+    if (result.diagonalMode) for (const direction of result.directions.filter(direction => cardinalEdges.includes(direction.edge)))
+      for (const option of direction.options) {
+        option.enabled = false;
+        option.reason = "대각선 이동이 가능한 동안에는 대각선 버튼으로 이동하세요.";
+      }
     return result;
   }
 

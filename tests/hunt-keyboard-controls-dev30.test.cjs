@@ -259,15 +259,16 @@ test("실제 화면의 M·방향키·M은 클릭과 동일한 카드 비용과 �
   assert.equal(E.hunter(reference).discard.length, E.hunter(state).discard.length + 1);
 });
 
-test("실제 지도에서 같은 방향에 목적지가 둘이면 키 입력으로 임의 선택하지 않습니다", () => {
+test("실제 지도에서 대각선 갈림길은 방향키로 임의 선택하지 않고 대각선 버튼을 사용합니다", () => {
   let state = initial();
   for (const command of require("./fixtures/weapon-campaign-completion/beast-claw-0.json").slice(0, 32)) state = E.dispatch(state, command);
   assert.equal(state.phase, "move"); assert.equal(E.hunter(state).position, "tile-17:top");
   const ui = launch(state), before = ui.storage.get(key);
   ui.key("ArrowDown"); assert.equal(ui.storage.get(key), before);
-  const choices = ui.el("movementControls").querySelectorAll("[data-move-option]"); assert.equal(choices.length, 2);
-  const options = U.movement(state).directions.find(direction => direction.edge === "S").options;
-  choices[1].click(); assert.deepEqual(saved(ui), E.dispatch(state, options[1].command));
+  const choices = ui.el("movementControls").querySelectorAll("[data-move-option]"); assert.equal(choices.length, 0);
+  const option = U.movement(state).directions.find(direction => direction.edge === "SE").options[0];
+  ui.el("movementControls").querySelectorAll("[data-move-direction]").find(button => button.dataset.moveDirection === "SE").click();
+  assert.deepEqual(saved(ui), E.dispatch(state, option.command));
 });
 
 test("실제 확인 창이 열려 있으면 단축키는 저장이나 이동을 진행시키지 않습니다", () => {

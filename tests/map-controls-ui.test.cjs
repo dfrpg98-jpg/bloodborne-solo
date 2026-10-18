@@ -52,15 +52,16 @@ test("the directional EXPLORE reveals only the drawn tile and preserves the exis
   assert.deepEqual(saved(ui), reference); assert.equal(reference.move.remaining, 1);
 });
 
-test("two real half-tile branches in one direction require an explicit destination instead of picking the first", () => {
+test("two real half-tile branches use separate diagonal buttons instead of an ambiguous down button", () => {
   const state = timeline[32], ui = launch(state), before = ui.storage.get(key);
   assert.equal(state.phase, "move"); assert.equal(E.hunter(state).position, "tile-17:top");
-  const down = U.movement(state).directions.find(direction => direction.edge === "S");
-  assert.equal(down.options.filter(option => option.enabled).length, 2);
+  const downRight = U.movement(state).directions.find(direction => direction.edge === "SE");
+  assert.equal(downRight.options.filter(option => option.enabled).length, 1);
+  assert.equal(direction(ui, "S").disabled, true);
   direction(ui, "S").click(); assert.equal(ui.storage.get(key), before);
-  const choices = ui.el("movementControls").querySelectorAll("[data-move-option]");
-  assert.equal(choices.length, 2); choices[1].click();
-  assert.deepEqual(saved(ui), E.dispatch(state, down.options[1].command));
+  assert.equal(ui.el("movementControls").querySelectorAll("[data-move-option]").length, 0);
+  direction(ui, "SE").click();
+  assert.deepEqual(saved(ui), E.dispatch(state, downRight.options[0].command));
   assert.equal(E.hunter(saved(ui)).position, "tile-17:lower-right");
 });
 

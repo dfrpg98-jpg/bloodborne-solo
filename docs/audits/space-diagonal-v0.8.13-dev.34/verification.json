@@ -1,0 +1,81 @@
+{
+  "schema": "space-diagonal-audit-v1",
+  "version": "0.8.13-dev.34",
+  "date": "2026-10-18",
+  "status": "related-and-real-browser-checks-passed",
+  "requests": ["Space 손패 보충", "카드 오른쪽 위 단축키 1~9 표시", "합법적인 대각선 버튼과 활성 시 십자 버튼·단축키 비활성화"],
+  "engineChanged": false,
+  "saveFormatChanged": false,
+  "globalScaleOrFontChanged": false,
+  "userBrowserAttached": false,
+  "userSaveModified": false,
+  "space": {
+    "command": "실제 #refill 버튼 클릭. 체크한 discardIds 그대로 REFILL",
+    "phase": "refill",
+    "repeatAndNativeKeyupSuppressed": true,
+    "editableImeModifiersDialogsDisabledHiddenGuards": true,
+    "visibleButtonHint": "Space"
+  },
+  "hand": {
+    "visibleBadge": "오른쪽 위 1~9",
+    "order": "화면 위→아래, 같은 줄 왼쪽→오른쪽",
+    "refreshAfter": ["손패 소모", "렌더링", "재정렬", "resize"],
+    "noNumberAfterNine": true,
+    "existingEffectsAndAccessibleNamesRetained": true
+  },
+  "movement": {
+    "diagonals": ["NE", "SE", "SW", "NW"],
+    "geometry": "같은 타일의 회전된 G.point 벡터를 45도 간격의 8방향으로 구분, 경계는 22.5도. 타일 사이 연결은 기존 출입구 방향",
+    "legality": "E.neighbors 및 기존 C.view 이동 행동만 사용",
+    "diagonalPriority": "활성 대각선이 하나라도 있으면 이동 패드의 모든 십자 옵션·버튼·방향키/WASD 비활성화",
+    "diagonalShortcuts": false,
+    "originalMapAndEngineActionsRetained": true,
+    "staleChooserCleared": true,
+    "costEscortExplorationRetained": true
+  },
+  "tests": {
+    "related": { "tests": 163, "pass": 163, "fail": 0, "report": "test-results/space-diagonal-dev34/related.tap" },
+    "fullCi": { "completed": true, "tests": 3216, "pass": 3216, "fail": 0, "skipped": 0, "durationSeconds": 493.98, "sourcePhotoPatternsExcluded": 4, "report": "test-results/space-diagonal-dev34/ci-summary.json" },
+    "independentGeometry": { "tiles": 20, "rotations": 4, "directedEdges": 304, "diagonalEdges": 96, "cardinalEdges": 208, "report": "test-results/space-diagonal-dev34/independent-source-review.json" },
+    "independentPublicCommandFixtures": { "normalFixtures": 7, "enabledCommandsReplayed": 11, "engineCardinalPathsPreserved": 3, "strictByteExact": true },
+    "independentBrowserAudit": { "savedGameJsons": 31, "allStrictByteExact": true, "sourceHashesMatched": 5, "screenshotsPresent": 10, "report": "test-results/space-diagonal-dev34/independent-browser-audit.json" }
+  },
+  "actualBrowser": {
+    "completed": true,
+    "method": "separate headless Chrome with temporary contexts and Chromium sandbox enabled",
+    "browserVersion": "155.0.8059.82",
+    "checksPassed": 60,
+    "report": "test-results/space-diagonal-dev34/real-browser.json",
+    "runner": "docs/audits/space-diagonal-v0.8.13-dev.34/verify-browser.cjs",
+    "viewports": [[2035,1252],[1714,1252],[1280,720]],
+    "actualInput": "Space down/repeat/up, 숫자1/2/9, M, 방향키/WASD, 대각선 네 방향 버튼 클릭",
+    "pageStateInjection": false,
+    "verifiedCurrentUserTab": false,
+    "normalFixtureScope": "정규 설정의 공개 명령으로 만든 테스트 저장. 공식 파일 선택으로 불러와 실제 UI에서 이동·보충한 뒤 내려받은 저장을 기존 엔진 결과와 바이트 비교. 캠페인 완주 검증에는 세지 않음",
+    "qaScope": "QA 손패12장은 1~9 배지·10번째 이후 미표시 경계만 확인",
+    "fixtureProvenance": "test-results/space-diagonal-dev34/fixture-provenance.json",
+    "runnerPrerequisites": "로컬의 이전 브라우저 내보내기와 공개 명령 fixture 필요. 사용자 저장은 Git에 추가하지 않음",
+    "pageExceptions": [],
+    "screenshots": [
+      "test-results/space-diagonal-dev34/01-hand-shortcut-badges.png",
+      "test-results/space-diagonal-dev34/hand-1714.png",
+      "test-results/space-diagonal-dev34/hand-1280.png",
+      "test-results/space-diagonal-dev34/02-qa-nine-number-badges.png",
+      "test-results/space-diagonal-dev34/03-space-refill.png",
+      "test-results/space-diagonal-dev34/diagonal-normal-tile17-top-r0.png",
+      "test-results/space-diagonal-dev34/diagonal-normal-tile17-top-r1.png",
+      "test-results/space-diagonal-dev34/diagonal-normal-tile17-top-r2.png",
+      "test-results/space-diagonal-dev34/diagonal-normal-tile17-top-r3.png",
+      "test-results/space-diagonal-dev34/diagonal-normal-tile17-lower-left-r0.png"
+    ],
+    "sourceSha256": {
+      "src/hunt-app.js": "ec8615d2adc23dc4b105f17c3e47f19e646b96bc9f0d4a6cf877ff91e3d8ad42",
+      "src/hunt-keyboard-controls.js": "d69f73ab94626146ee24dcb23a9a59ed283df6844de4923b6878061740c46232",
+      "src/hunt-map-controls.js": "0c5d6e5ee7c3c12dfb83cb147e2c503ba1a9f4621c24458fe7ac1225dbeb3dac",
+      "styles/hunt.css": "4a63cbe86944901e7726ca4ee902d78515c65b2a6848d91b2b66e4b511059423",
+      "styles/hunt-map-controls.css": "6a43f362ec4c18a7e3ba8dee4494c097a0be369c6076c1579a9d71a944d7834b"
+    }
+  },
+  "preview": { "url": "http://127.0.0.1:8860/hunt.html?v=0.8.13-dev.34", "serverKeptRunning": true },
+  "publication": { "pullRequest": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/89", "draft": true, "mainMerged": false }
+}

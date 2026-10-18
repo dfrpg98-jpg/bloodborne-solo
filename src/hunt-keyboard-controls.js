@@ -36,7 +36,7 @@
     if (instances.has(document)) return instances.get(document);
     const controls = document.getElementById("movementControls"), hand = document.getElementById("hand");
     if (!controls) return null;
-    let destroyed = false;
+    let destroyed = false, refillSpaceHeld = false;
     const hints = new WeakMap();
     function annotate(button, keys) {
       if (!hints.has(button)) hints.set(button, { title: button.getAttribute("title"), keys: button.getAttribute("aria-keyshortcuts") });
@@ -49,6 +49,18 @@
       if (!original) return;
       for (const [attribute, value] of [["title", original.title], ["aria-keyshortcuts", original.keys]])
         value === null ? button.removeAttribute(attribute) : button.setAttribute(attribute, value);
+    }
+    function keyBadge(button, marker, className, key) {
+      let badge = button.querySelector(`[${marker}]`);
+      if (!badge && key) {
+        badge = document.createElement("kbd");
+        badge.setAttribute(marker, ""); badge.setAttribute("class", className); badge.setAttribute("aria-hidden", "true");
+        button.append(badge);
+      }
+      if (!badge) return;
+      // Only change text when numbering changes, so the child observer settles.
+      if (badge.textContent !== (key || "")) badge.textContent = key || "";
+      badge.hidden = !key;
     }
     function orderedHand() {
       return [...hand?.querySelectorAll("[data-card]") || []].filter(visible)
@@ -68,6 +80,11 @@
       for (const button of hand?.querySelectorAll("[data-card]") || []) {
         const index = cards.indexOf(button);
         index < 0 ? clearHint(button) : annotate(button, String(index + 1));
+        keyBadge(button, "data-hand-shortcut", "hand-shortcut-key", index < 0 ? "" : String(index + 1));
+      }
+      const refill = document.getElementById("refill");
+      if (refill && visible(refill)) {
+        annotate(refill, "Space"); keyBadge(refill, "data-refill-shortcut", "refill-shortcut-key", "Space");
       }
     }
     function windowOpen() {
@@ -75,11 +92,17 @@
         [...document.querySelectorAll("[data-window-minimized]")].some(element => element.dataset.windowMinimized === "true" || element.getAttribute("data-window-minimized") === "true");
     }
     function keydown(event) {
+      const space = event.key === " " || event.key === "Spacebar" || event.code === "Space";
+      if (!destroyed && space && refillSpaceHeld) { event.preventDefault(); return; }
       if (destroyed || event.defaultPrevented || event.repeat || event.ctrlKey || event.metaKey || event.altKey ||
           event.isComposing || event.keyCode === 229 || editable(event.target) || editable(document.activeElement) || windowOpen()) return;
       const key = String(event.key || ""), phase = document.documentElement?.dataset.phase;
       let button;
-      if (/^[1-9]$/.test(key)) {
+      if (space) {
+        if (event.shiftKey || phase !== "refill") return;
+        const refill = document.getElementById("refill");
+        if (available(refill)) { button = refill; refillSpaceHeld = true; }
+      } else if (/^[1-9]$/.test(key)) {
         if (event.shiftKey) return;
         const card = orderedHand()[Number(key) - 1];
         if (available(card)) button = card;
@@ -95,14 +118,25 @@
       event.preventDefault();
       button.click();
     }
+    function keyup(event) {
+      if (refillSpaceHeld && (event.key === " " || event.key === "Spacebar" || event.code === "Space")) {
+        refillSpaceHeld = false; event.preventDefault();
+      }
+    }
+    function blur() { refillSpaceHeld = false; }
     const observer = typeof window.MutationObserver === "function" ? new window.MutationObserver(refresh) : null;
     observer?.observe(controls, { childList: true, subtree: true });
     if (hand) observer?.observe(hand, { childList: true, subtree: true });
+    for (const id of ["decisions", "decisionActions"]) {
+      const host = document.getElementById(id); if (host) observer?.observe(host, { childList: true, subtree: true });
+    }
     const api = { refresh, destroy() {
       if (destroyed) return;
-      destroyed = true; observer?.disconnect(); document.removeEventListener?.("keydown", keydown); instances.delete(document);
+      destroyed = true; observer?.disconnect(); document.removeEventListener?.("keydown", keydown); document.removeEventListener?.("keyup", keyup);
+      window.removeEventListener?.("resize", refresh); window.removeEventListener?.("blur", blur); instances.delete(document);
     } };
-    instances.set(document, api); document.addEventListener("keydown", keydown); refresh();
+    instances.set(document, api); document.addEventListener("keydown", keydown); document.addEventListener("keyup", keyup);
+    window.addEventListener?.("resize", refresh); window.addEventListener?.("blur", blur); refresh();
     return api;
   }
   return create;
