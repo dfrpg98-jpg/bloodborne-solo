@@ -1,0 +1,2074 @@
+{
+  "scope": "All fixtures reconstruct from public commands and strict import; exact HP3 is separately covered only by reducer component tests unless explicitly identified.",
+  "cases": [
+    {
+      "id": "natural-forced-mission",
+      "mode": "forced",
+      "source": "Normal rifle-spear face1 chapter-one prefix109; earlier public MISSION_CHOICE release earns rune-eye instead of rapture. HunterHP4 close case, not exactHP3. No legal dodge or optional usable kill reward after the mandatory shard choice.",
+      "seed": 90,
+      "setup": {
+        "weaponId": "rifle-spear",
+        "face": 1,
+        "startingConsumable": null,
+        "firearmId": "hunter-pistol",
+        "startSpace": "center",
+        "rulesVersion": 14,
+        "campaign": true
+      },
+      "commands": [
+        {
+          "type": "MOVE",
+          "cardId": "card-3"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "N"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "COUNTER",
+          "cardId": "card-1",
+          "slot": 2,
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "ATTACK",
+          "enemyId": "huntsman-mob-1",
+          "cardId": "card-7",
+          "slot": 2,
+          "boost": "none"
+        },
+        {
+          "type": "FIREARM"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "KEEP_FIREARM",
+          "firearmId": "ludwig-rifle"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-11"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "S"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 2
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-12"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:left"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-6"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "W"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "W"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-2"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-17:top"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "N"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "DREAM",
+          "cardId": "card-10"
+        },
+        {
+          "type": "PICK_UPGRADE",
+          "index": 0
+        },
+        {
+          "type": "REPLACE_UPGRADE",
+          "replaceId": "card-4"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "RETURN",
+          "node": "tile-17:top",
+          "face": 1
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-1"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-03:entry"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-03:room"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-10",
+          "slot": 2,
+          "enemyId": "huntsman-mob-1",
+          "boost": "none"
+        },
+        {
+          "type": "FIREARM"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-8",
+          "slot": 0,
+          "enemyId": "huntsmans-minion-1",
+          "boost": "none"
+        },
+        {
+          "type": "ABILITY_CHOICE"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-12",
+          "slot": 1,
+          "enemyId": "huntsmans-minion-1",
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-14"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "INTERACT",
+          "cardId": "card-6",
+          "mission": "rescue"
+        },
+        {
+          "type": "MISSION_SURVIVOR_STEP",
+          "node": "tile-03:entry"
+        },
+        {
+          "type": "MISSION_SURVIVOR_STEP",
+          "node": "tile-17:top"
+        },
+        {
+          "type": "MISSION_SURVIVOR_STEP",
+          "node": "tile-17:lower-left"
+        },
+        {
+          "type": "MISSION_SURVIVOR_EXPLORE",
+          "edge": "W"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-3"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-11"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "MISSION_SURVIVOR_STEP",
+          "node": "tile-11:house"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-7"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-5"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-2"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-9"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-11"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-12"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-8",
+          "slot": 0,
+          "enemyId": "huntsmans-minion-1",
+          "boost": "none"
+        },
+        {
+          "type": "DODGE",
+          "cardId": "card-3",
+          "slot": 1
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-14",
+          "slot": 1,
+          "enemyId": "huntsmans-minion-1",
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "RETURN",
+          "node": "tile-17:top",
+          "face": 1
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-9"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-17:lower-left"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-11:street"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-11",
+          "slot": 0,
+          "enemyId": "huntsmans-minion-2",
+          "boost": "none"
+        },
+        {
+          "type": "FIREARM"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-10",
+          "slot": 1,
+          "enemyId": "huntsmans-minion-2",
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-2"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-11:house"
+        },
+        {
+          "type": "MISSION_PICKUP"
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "MISSION_CHOICE",
+          "choice": "release"
+        },
+        {
+          "type": "USE_REWARD",
+          "rewardId": "reward-13",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "COUNTER",
+          "cardId": "card-12",
+          "slot": 2,
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "EXTRA_TAKE"
+        },
+        {
+          "type": "REFILL",
+          "discardIds": [
+            "card-7"
+          ]
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-5"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-8",
+          "slot": 0,
+          "enemyId": "scourge-beast-2",
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "RETURN",
+          "node": "tile-04:center",
+          "face": 1
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-8"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "ATTACK",
+          "enemyId": "scourge-beast-1",
+          "cardId": "card-12",
+          "slot": 2,
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-14",
+          "slot": 0,
+          "enemyId": "scourge-beast-1",
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "enemyId": "scourge-beast-1",
+          "cardId": "card-11",
+          "slot": 1,
+          "boost": "none"
+        }
+      ],
+      "sha256": "3fbd187dc1171358bdbbc6ad8336c0100b6adf6f22dcd35d2968b250f1ce147b"
+    },
+    {
+      "id": "natural-mission-optional-reward",
+      "mode": "optional-reward",
+      "source": "Normal rifle-spear face1 chapter-one public-command prefix109; HP4 close case, not exact HP3. The equipped rapture rune is still a usable optional kill response, so continuation must wait for its choice.",
+      "seed": 90,
+      "setup": {
+        "weaponId": "rifle-spear",
+        "face": 1,
+        "startingConsumable": null,
+        "firearmId": "hunter-pistol",
+        "startSpace": "center",
+        "rulesVersion": 14,
+        "campaign": true
+      },
+      "commands": [
+        {
+          "type": "MOVE",
+          "cardId": "card-3"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "N"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "COUNTER",
+          "cardId": "card-1",
+          "slot": 2,
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "ATTACK",
+          "enemyId": "huntsman-mob-1",
+          "cardId": "card-7",
+          "slot": 2,
+          "boost": "none"
+        },
+        {
+          "type": "FIREARM"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "KEEP_FIREARM",
+          "firearmId": "ludwig-rifle"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-11"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "S"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 2
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-12"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:left"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-6"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "W"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "W"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-2"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-17:top"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "N"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "DREAM",
+          "cardId": "card-10"
+        },
+        {
+          "type": "PICK_UPGRADE",
+          "index": 0
+        },
+        {
+          "type": "REPLACE_UPGRADE",
+          "replaceId": "card-4"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "RETURN",
+          "node": "tile-17:top",
+          "face": 1
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-1"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-03:entry"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-03:room"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-10",
+          "slot": 2,
+          "enemyId": "huntsman-mob-1",
+          "boost": "none"
+        },
+        {
+          "type": "FIREARM"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-8",
+          "slot": 0,
+          "enemyId": "huntsmans-minion-1",
+          "boost": "none"
+        },
+        {
+          "type": "ABILITY_CHOICE"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-12",
+          "slot": 1,
+          "enemyId": "huntsmans-minion-1",
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-14"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "INTERACT",
+          "cardId": "card-6",
+          "mission": "rescue"
+        },
+        {
+          "type": "MISSION_SURVIVOR_STEP",
+          "node": "tile-03:entry"
+        },
+        {
+          "type": "MISSION_SURVIVOR_STEP",
+          "node": "tile-17:top"
+        },
+        {
+          "type": "MISSION_SURVIVOR_STEP",
+          "node": "tile-17:lower-left"
+        },
+        {
+          "type": "MISSION_SURVIVOR_EXPLORE",
+          "edge": "W"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-3"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-11"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "MISSION_SURVIVOR_STEP",
+          "node": "tile-11:house"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-7"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-5"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-2"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-9"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-11"
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-12"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-8",
+          "slot": 0,
+          "enemyId": "huntsmans-minion-1",
+          "boost": "none"
+        },
+        {
+          "type": "DODGE",
+          "cardId": "card-3",
+          "slot": 1
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-14",
+          "slot": 1,
+          "enemyId": "huntsmans-minion-1",
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "RETURN",
+          "node": "tile-17:top",
+          "face": 1
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-9"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-17:lower-left"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-11:street"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-11",
+          "slot": 0,
+          "enemyId": "huntsmans-minion-2",
+          "boost": "none"
+        },
+        {
+          "type": "FIREARM"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-10",
+          "slot": 1,
+          "enemyId": "huntsmans-minion-2",
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-2"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-11:house"
+        },
+        {
+          "type": "MISSION_PICKUP"
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "MISSION_CHOICE",
+          "choice": "attack"
+        },
+        {
+          "type": "USE_REWARD",
+          "rewardId": "reward-13",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "COUNTER",
+          "cardId": "card-12",
+          "slot": 2,
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "EXTRA_TAKE"
+        },
+        {
+          "type": "REFILL",
+          "discardIds": [
+            "card-7"
+          ]
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-5"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-8",
+          "slot": 0,
+          "enemyId": "scourge-beast-2",
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "RETURN",
+          "node": "tile-04:center",
+          "face": 1
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-8"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "ATTACK",
+          "enemyId": "scourge-beast-1",
+          "cardId": "card-12",
+          "slot": 2,
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-14",
+          "slot": 0,
+          "enemyId": "scourge-beast-1",
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "enemyId": "scourge-beast-1",
+          "cardId": "card-11",
+          "slot": 1,
+          "boost": "none"
+        }
+      ],
+      "sha256": "826d3bca4a42cacb7110b4a5639acc0793119aa27866ba04734e0e83fe6cce53"
+    },
+    {
+      "id": "natural-dead-legal-dodge",
+      "mode": "optional-dodge",
+      "source": "Normal logarius-wheel face1 chapter-one prefix94; public mission release avoids optional rapture, PICK_UPGRADE tactical and MOVE strength preserve a legal tactical/endurance dodge after the mission beast dies.",
+      "seed": 90,
+      "setup": {
+        "weaponId": "logarius-wheel",
+        "face": 1,
+        "startingConsumable": null,
+        "firearmId": "hunter-pistol",
+        "startSpace": "center",
+        "rulesVersion": 14,
+        "campaign": true
+      },
+      "commands": [
+        {
+          "type": "MOVE",
+          "cardId": "card-3"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "N"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "COUNTER",
+          "cardId": "card-7",
+          "slot": 1
+        },
+        {
+          "type": "DODGE",
+          "cardId": "card-1",
+          "slot": 0
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "ATTACK",
+          "enemyId": "huntsman-mob-1",
+          "cardId": "card-11",
+          "slot": 2,
+          "boost": 1
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "enemyId": "huntsman-mob-1",
+          "cardId": "card-12",
+          "slot": 0,
+          "boost": 0
+        },
+        {
+          "type": "FIREARM"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "KEEP_FIREARM",
+          "firearmId": "ludwig-rifle"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-6"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "S"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 2
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-2"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-10"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:left"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-4"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "W"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "W"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-9"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-17:top"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "N"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-8",
+          "slot": 0,
+          "enemyId": "scourge-beast-1",
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "EXTRA_TAKE"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "RETURN",
+          "node": "tile-17:top",
+          "face": 1
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-1"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-03:entry"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-03:room"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-9",
+          "slot": 2,
+          "enemyId": "huntsmans-minion-1",
+          "boost": 0
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-12",
+          "slot": 1,
+          "enemyId": "huntsman-mob-1",
+          "boost": 0
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "RETURN",
+          "node": "tile-17:top",
+          "face": 0
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-4"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-03:entry"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-03:room"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-1",
+          "slot": 1,
+          "enemyId": "huntsman-mob-1",
+          "boost": "none"
+        },
+        {
+          "type": "FIREARM"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-3",
+          "slot": 0,
+          "enemyId": "huntsmans-minion-1",
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "NO_ATTACK"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-12",
+          "slot": 0,
+          "enemyId": "huntsman-mob-1",
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "STUN_DISCARD",
+          "cardId": "card-7"
+        },
+        {
+          "type": "INTERACT",
+          "cardId": "card-10",
+          "mission": "rescue"
+        },
+        {
+          "type": "MISSION_SURVIVOR_STEP",
+          "node": "tile-03:entry"
+        },
+        {
+          "type": "MISSION_SURVIVOR_STEP",
+          "node": "tile-17:top"
+        },
+        {
+          "type": "MISSION_SURVIVOR_STEP",
+          "node": "tile-17:lower-left"
+        },
+        {
+          "type": "MISSION_SURVIVOR_EXPLORE",
+          "edge": "W"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "DREAM",
+          "cardId": "card-11"
+        },
+        {
+          "type": "PICK_UPGRADE",
+          "index": 2
+        },
+        {
+          "type": "PICK_UPGRADE",
+          "index": 1
+        },
+        {
+          "type": "REPLACE_UPGRADE",
+          "replaceId": "card-6"
+        },
+        {
+          "type": "REPLACE_UPGRADE",
+          "replaceId": "card-5"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "RETURN",
+          "node": "tile-17:top",
+          "face": 0
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-4"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-17:lower-left"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-11:street"
+        },
+        {
+          "type": "MISSION_CHOICE",
+          "choice": "release"
+        },
+        {
+          "type": "USE_REWARD",
+          "rewardId": "reward-13",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "ATTACK",
+          "enemyId": "scourge-beast-2",
+          "cardId": "card-9",
+          "slot": 1,
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "enemyId": "scourge-beast-2",
+          "cardId": "card-3",
+          "slot": 2,
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "NO_ATTACK"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "RETURN",
+          "node": "tile-04:center",
+          "face": 1
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-9"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-11",
+          "slot": 0,
+          "enemyId": "scourge-beast-2",
+          "boost": 0
+        }
+      ],
+      "sha256": "3eecdbf46640fdcc99a40ba01341558d9ba3248598406671cb9e32244590488e"
+    },
+    {
+      "id": "natural-mutual-lethal",
+      "mode": "mutual-lethal",
+      "source": "Normal stake-driver face1 campaign prefix175 plus public ATTACK; hunterHP1 and enemyHP1.",
+      "seed": 90,
+      "setup": {
+        "weaponId": "stake-driver",
+        "face": 1,
+        "startingConsumable": null,
+        "firearmId": "repeating-pistol",
+        "startSpace": "center",
+        "rulesVersion": 14,
+        "campaign": true
+      },
+      "commands": [
+        {
+          "type": "MOVE",
+          "cardId": "card-3"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "N"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "ATTACK",
+          "enemyId": "huntsman-mob-1",
+          "cardId": "card-1",
+          "slot": 0,
+          "boost": "none"
+        },
+        {
+          "type": "FIREARM"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "WEAPON_CHOICE",
+          "stop": true
+        },
+        {
+          "type": "ATTACK",
+          "enemyId": "huntsman-mob-1",
+          "cardId": "card-7",
+          "slot": 0,
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "KEEP_FIREARM",
+          "firearmId": "ludwig-rifle"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-6"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "S"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 2
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-11"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-12"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:left"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-4"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "W"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "W"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-2"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-17:top"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "N"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-10",
+          "slot": 0,
+          "enemyId": "scourge-beast-1",
+          "boost": "none"
+        },
+        {
+          "type": "FIREARM"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-9",
+          "slot": 1,
+          "enemyId": "scourge-beast-1",
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "EXTRA_TAKE"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "RETURN",
+          "node": "tile-17:top",
+          "face": 1
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-3"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-03:entry"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-03:room"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-10",
+          "slot": 0,
+          "enemyId": "huntsman-mob-1",
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "STUN_DISCARD",
+          "cardId": "card-11"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "NO_ATTACK"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "RETURN",
+          "node": "tile-17:top",
+          "face": 1
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-5"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-03:entry"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-03:room"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-3",
+          "slot": 0,
+          "enemyId": "huntsman-mob-1",
+          "boost": "none"
+        },
+        {
+          "type": "FIREARM"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "WEAPON_CHOICE",
+          "stop": true
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "COUNTER",
+          "cardId": "card-2",
+          "slot": 0,
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "INTERACT",
+          "cardId": "card-4",
+          "mission": "rescue"
+        },
+        {
+          "type": "MISSION_SURVIVOR_STEP",
+          "node": "tile-03:entry"
+        },
+        {
+          "type": "MISSION_SURVIVOR_STEP",
+          "node": "tile-17:top"
+        },
+        {
+          "type": "MISSION_SURVIVOR_STEP",
+          "node": "tile-17:lower-left"
+        },
+        {
+          "type": "MISSION_SURVIVOR_EXPLORE",
+          "edge": "W"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 0
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-7"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-03:entry"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-17:top"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-11"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-17:lower-left"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-11:street"
+        },
+        {
+          "type": "MISSION_CHOICE",
+          "choice": "attack"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "NO_ATTACK"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "RETURN",
+          "node": "tile-04:center",
+          "face": 1
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-3"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "ATTACK",
+          "enemyId": "scourge-beast-2",
+          "cardId": "card-10",
+          "slot": 0,
+          "boost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "EXTRA_TAKE"
+        },
+        {
+          "type": "WEAPON_CHOICE",
+          "stop": true
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-2"
+        },
+        {
+          "type": "ATTACK",
+          "enemyId": "scourge-beast-2",
+          "cardId": "card-9",
+          "slot": 2,
+          "boost": "none"
+        },
+        {
+          "type": "FIREARM"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "EQUIP_REWARD",
+          "rewardId": "reward-15",
+          "slot": 1
+        },
+        {
+          "type": "PICK_UPGRADE",
+          "index": 0
+        },
+        {
+          "type": "REPLACE_UPGRADE",
+          "replaceId": "card-4"
+        },
+        {
+          "type": "ENTER_BETWEEN_CHAPTERS"
+        },
+        {
+          "type": "EQUIP_FIREARM",
+          "firearmId": "ludwig-rifle"
+        },
+        {
+          "type": "START_NEXT_CHAPTER",
+          "face": 1,
+          "startSpace": "center"
+        },
+        {
+          "type": "EQUIP_REWARD",
+          "rewardId": "reward-15",
+          "slot": 0
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-1"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-16:middle"
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "ATTACK",
+          "enemyId": "scourge-beast-2",
+          "cardId": "card-11",
+          "slot": 0,
+          "pullIds": [],
+          "itemIds": [],
+          "weaponBoost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "EXTRA_TAKE"
+        },
+        {
+          "type": "USE_REWARD",
+          "rewardId": "reward-14"
+        },
+        {
+          "type": "PASS_KILL_REACTION"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-5"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:left"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-9"
+        },
+        {
+          "type": "EXPLORE",
+          "edge": "W"
+        },
+        {
+          "type": "PLACE_TILE",
+          "rotation": 3
+        },
+        {
+          "type": "STOP_MOVE"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-12"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:left"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "FIREARM_ENTRY",
+          "accept": true
+        },
+        {
+          "type": "NO_ATTACK"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "RETURN",
+          "node": "tile-14:center",
+          "face": 1
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-1"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:left"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-20:entry"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "FIREARM_ENTRY",
+          "accept": true
+        },
+        {
+          "type": "PASS_KILL_REACTION"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-8"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:left"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-10"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-16:middle"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-16:top"
+        },
+        {
+          "type": "INTERACT",
+          "cardId": "card-11",
+          "lootCount": 1
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "INTERACT",
+          "cardId": "card-17",
+          "lootCount": 1
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-7"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-16:middle"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-9"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:left"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-20:entry"
+        },
+        {
+          "type": "KEEP_REWARD",
+          "rewardId": "reward-18"
+        },
+        {
+          "type": "END_TURN"
+        },
+        {
+          "type": "NO_ATTACK"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "ATTACK",
+          "enemyId": "scourge-beast-1",
+          "cardId": "card-2",
+          "slot": 0,
+          "pullIds": [],
+          "itemIds": [],
+          "weaponBoost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "DREAM",
+          "cardId": "card-6"
+        },
+        {
+          "type": "PICK_UPGRADE",
+          "index": 0
+        },
+        {
+          "type": "REPLACE_UPGRADE",
+          "replaceId": "card-5"
+        },
+        {
+          "type": "REFILL"
+        },
+        {
+          "type": "RETURN",
+          "node": "tile-20:room",
+          "face": 1
+        },
+        {
+          "type": "MISSION_LURE",
+          "itemId": "item-throwing-knife-2"
+        },
+        {
+          "type": "ATTACK",
+          "enemyId": "scourge-beast-3",
+          "cardId": "card-10",
+          "slot": 0,
+          "pullIds": [],
+          "itemIds": [],
+          "weaponBoost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "EXTRA_TAKE"
+        },
+        {
+          "type": "KEEP_REWARD",
+          "rewardId": "reward-20"
+        },
+        {
+          "type": "PASS_KILL_REACTION"
+        },
+        {
+          "type": "WEAPON_CHOICE",
+          "stop": true
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-17"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-20:entry"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:left"
+        },
+        {
+          "type": "FIREARM_ENTRY",
+          "accept": true
+        },
+        {
+          "type": "USE_REWARD",
+          "rewardId": "reward-14"
+        },
+        {
+          "type": "PASS_KILL_REACTION"
+        },
+        {
+          "type": "MOVE",
+          "cardId": "card-19"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-14:center"
+        },
+        {
+          "type": "STEP",
+          "node": "tile-13:bottom"
+        },
+        {
+          "type": "MISSION_CORPSES",
+          "count": 1
+        },
+        {
+          "type": "MISSION_CORPSES",
+          "count": 1
+        },
+        {
+          "type": "TRANSFORM",
+          "cardId": "card-1"
+        },
+        {
+          "type": "MISSION_LURE",
+          "itemId": "item-hunters-bell-1"
+        },
+        {
+          "type": "ATTACK",
+          "cardId": "card-11",
+          "slot": 0,
+          "enemyId": "scourge-beast-1",
+          "weaponBoost": "none"
+        },
+        {
+          "type": "RESOLVE"
+        },
+        {
+          "type": "ATTACK",
+          "enemyId": "scourge-beast-1",
+          "cardId": "card-2",
+          "slot": 1
+        }
+      ],
+      "sha256": "da77685a60801cd8f8f2be49debce375d990d40f2318c6beb8b932ac31aac152"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 const assert=require('node:assert/strict');
 const E=require('../../src/hunt-engine'), {boot}=require('./ui-harness.cjs');
 const ActionLoss=require('../../src/hunt-action-loss');
+const AutomaticCombat=require('../../src/hunt-automatic-combat');
 const plain=x=>JSON.parse(JSON.stringify(x));
 const containers=['mapContext','decisions','decisionActions','missionActions','rewards','firearm','componentCards','chapterMap','explorationActions'];
 function matches(actual,wanted){return Object.entries(wanted).every(([k,v])=>JSON.stringify(actual[k])===JSON.stringify(v));}
@@ -17,6 +18,18 @@ function controllerBatch(state,commands){
   const projected=[];let cursor=state;
   for(const command of commands){const accepted=controllerCommand(cursor,command);projected.push(accepted);cursor=E.dispatch(cursor,accepted);}
   return projected;
+}
+function completedBatch(state,commands){
+  const automaticCommands=[];
+  let next=commands.reduce((value,command)=>E.dispatch(value,command),state);
+  // Independently predict the actual controller's canonical continuation. A
+  // cancelled request has no commit and therefore no automatic suffix either.
+  if(commands.length)for(let count=0;count<12;count++){
+    const automatic=AutomaticCombat.nextCommand(next,E);
+    if(!automatic)break;
+    automaticCommands.push(automatic);next=E.dispatch(next,automatic);
+  }
+  return {commands:[...commands,...automaticCommands],automaticCommands,state:next};
 }
 function clickCommand(s,command,options={}){
   const ui=boot(s,E.missionView(s),E.rewardsView(s),{realInventory:true,
@@ -188,14 +201,15 @@ function clickCommand(s,command,options={}){
     assert.equal(ui.storage.get('bloodborne-hunt-v07'),beforeClose,'closing optional reassignment preserves the exact save');
   }
   assert.equal(ui.el('error').textContent,'',`UI rejected ${JSON.stringify(command)}`);
-  const next=E.importSave(ui.storage.get('bloodborne-hunt-v07'));
-  assert.equal(next.revision,s.revision+expectedCommands.length,'only the explicitly expected public command batch commits');
+  const next=E.importSave(ui.storage.get('bloodborne-hunt-v07')),completed=completedBatch(s,expectedCommands);
+  assert.equal(next.revision,s.revision+completed.commands.length,'only the explicit public batch and its independently predicted automatic suffix commit');
   const committed=next.commands.slice(s.commands.length);
-  assert.deepEqual(committed.map(c=>c.type),expectedCommands.map(c=>c.type),'the UI records the complete intended reducer batch once');
+  assert.deepEqual(committed.map(c=>c.type),completed.commands.map(c=>c.type),'the UI records the complete intended reducer batch once');
   for(const [index,wanted]of expectedCommands.entries())if(faceChoiceCommands.has(wanted.type))
     assert.deepEqual(plain(committed[index]),plain(wanted),'the face-choice control records its exact selected destination, face and explicit current attachment timing');
-  const reference=expectedCommands.reduce((state,c)=>E.dispatch(state,c),s),functional=state=>{const copy=plain(state);delete copy.commands;return copy;};
-  assert.deepEqual(functional(next),functional(reference),'actual UI commands preserve the intended original-rule result');
+  assert.deepEqual(plain(committed.slice(expectedCommands.length)),plain(completed.automaticCommands),'automatic commands retain their exact canonical arguments');
+  const functional=state=>{const copy=plain(state);delete copy.commands;return copy;};
+  assert.deepEqual(functional(next),functional(completed.state),'actual UI commands preserve the intended original-rule result');
   if(!expectedCommands.length)assert.equal(ui.storage.get('bloodborne-hunt-v07'),originalSave,'cancel preserves the exact save');
   return next;
 }
@@ -210,11 +224,11 @@ function traceBehavior(state,ignorePickupReservation=false){
   return copy;
 }
 function replayPublicTrace(initial,commands,options={}){
-  let state=initial,reference=initial,uiCommandCount=0,uiActions=0,deferredReservations=0;
+  let state=initial,reference=initial,uiCommandCount=0,uiActions=0,deferredReservations=0,automaticCommandCount=0;
   for(let index=0;index<commands.length;index++){
     const command=commands[index],beforeReference=reference;
     reference=E.dispatch(reference,command);
-    let clicked=false,expectedCommands=[];
+    let clicked=false,expectedCommands=[],automaticCommands=[],consumedThroughIndex=index;
     try{
       if(command.type==='MISSION_PICKUP'){
         // This is a legacy intent, not a surviving UI button. It may be unused
@@ -232,21 +246,35 @@ function replayPublicTrace(initial,commands,options={}){
           expectedCommands=controllerBatch(state,expectedCommands);
           const projected=controllerCommand(beforeReference,command);
           if(projected!==command)reference=E.dispatch(beforeReference,projected);
+          const completed=completedBatch(state,expectedCommands);
+          automaticCommands=completed.automaticCommands;
+          for(const [offset,automatic]of automaticCommands.entries()){
+            const followingIndex=index+1+offset;
+            // A new UI batch may consume an old standalone forced response,
+            // but only when the next frozen command is exactly that response.
+            // Never search ahead, skip another decision, or invent a replay.
+            assert.deepEqual(commands[followingIndex],automatic,`automatic suffix must exactly match the next original command ${followingIndex+1}`);
+            reference=E.dispatch(reference,commands[followingIndex]);
+            consumedThroughIndex=followingIndex;
+          }
           const clickOptions={...(options.clickOptions||{}),expectedCommands};
           if(eligible)clickOptions.departureAnswer=intent?'accept':'decline';
           state=clickCommand(state,command,clickOptions);
-          uiCommandCount+=expectedCommands.length;uiActions++;
+          uiCommandCount+=completed.commands.length;automaticCommandCount+=automaticCommands.length;uiActions++;
         }else state=expectedCommands.reduce((value,c)=>E.dispatch(value,c),state);
       }
       // Ignore only the temporarily deferred pickup flag when it actually
       // differs. Carrier identity, token positions, NPC follow, resources,
       // random state, health, mission completion and every other field match.
       const pending=state.mission?.escort?.pickup!==reference.mission?.escort?.pickup;
-      assert.deepEqual(traceBehavior(state,pending),traceBehavior(reference,pending),`original gameplay result at command ${index+1}`);
-      options.onCheckpoint?.({state,reference,beforeReference,command,index,clicked,expectedCommands});
+      assert.deepEqual(traceBehavior(state,pending),traceBehavior(reference,pending),`original gameplay result at command ${consumedThroughIndex+1}`);
+      // There is one persisted checkpoint for the complete click. Do not
+      // fabricate an intermediate UI save before its automatic continuation.
+      options.onCheckpoint?.({state,reference,beforeReference,command,index:consumedThroughIndex,commandIndex:index,clicked,expectedCommands,automaticCommands});
+      index=consumedThroughIndex;
     }catch(error){throw new Error(`${options.label||'public trace'} command ${index+1}/${commands.length} (${command.type}): ${error.message}`,{cause:error});}
   }
   assert.deepEqual(traceBehavior(state),traceBehavior(reference),'final gameplay and pickup state equal the trace with only explicitly accepted controller face-choice timing');
-  return {state,reference,originalCommandCount:commands.length,uiCommandCount,uiActions,deferredReservations};
+  return {state,reference,originalCommandCount:commands.length,uiCommandCount,uiActions,deferredReservations,automaticCommandCount};
 }
 module.exports={clickCommand,replayPublicTrace};
