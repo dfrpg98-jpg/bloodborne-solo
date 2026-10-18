@@ -67,7 +67,7 @@ test("the eight pad buttons place each diagonal in a corner and one click uses t
     assert.match(css, new RegExp(`\\[data-move-direction="${edge}"\\] \\{ grid-area: ${row} / ${column};`));
 });
 
-test("an available diagonal blocks cardinal buttons and their keyboard paths, and diagonals receive no shortcuts", () => {
+test("an available diagonal blocks cardinal buttons and their keyboard paths, and diagonals use only the number pad", () => {
   const state = timeline[55], ui = launch(state), before = ui.storage.get(key);
   keyboard({ document: ui.document, window: ui.window });
   const view = U.movement(state), east = view.directions.find(direction => direction.edge === "E").options[0];
@@ -81,7 +81,7 @@ test("an available diagonal blocks cardinal buttons and their keyboard paths, an
     assert.equal(direction(ui, edge).disabled, true);
     direction(ui, edge).fire("click");
   }
-  for (const edge of diagonal) assert.equal(direction(ui, edge).getAttribute("aria-keyshortcuts"), null);
+  for (const [edge, key] of [["NE",9], ["SE",3], ["SW",1], ["NW",7]]) assert.equal(direction(ui, edge).getAttribute("aria-keyshortcuts"), "Numpad" + key);
   assert.equal(ui.storage.get(key), before);
   direction(ui, "NE").click();
   assert.deepEqual(saved(ui), E.dispatch(state, { type: "STEP", node: "tile-17:top" }));

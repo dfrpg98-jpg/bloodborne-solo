@@ -11,9 +11,9 @@
 })(typeof window !== "undefined" ? window : globalThis, function () {
   "use strict";
   const instances = new WeakMap();
-  const shortcuts = { N: "ArrowUp W", E: "ArrowRight D", S: "ArrowDown S", W: "ArrowLeft A" };
-  const directions = { ArrowUp: "N", ArrowRight: "E", ArrowDown: "S", ArrowLeft: "W", w: "N", d: "E", s: "S", a: "W" };
-  const physical = { KeyW: "N", KeyD: "E", KeyS: "S", KeyA: "W" };
+  const shortcuts = { NW: "Numpad7", N: "ArrowUp Numpad8", NE: "Numpad9", W: "ArrowLeft Numpad4", E: "ArrowRight Numpad6", SW: "Numpad1", S: "ArrowDown Numpad2", SE: "Numpad3" };
+  const directions = { ArrowUp: "N", ArrowRight: "E", ArrowDown: "S", ArrowLeft: "W" };
+  const numpad = { Numpad7: "NW", Numpad8: "N", Numpad9: "NE", Numpad4: "W", Numpad6: "E", Numpad1: "SW", Numpad2: "S", Numpad3: "SE" };
   function editable(element) {
     for (let current = element?.nodeType === 3 ? element.parentElement : element; current; current = current.parentElement) {
       if (/^(input|select|textarea)$/i.test(current.tagName || "") || current.isContentEditable) return true;
@@ -71,7 +71,7 @@
     function refresh() {
       if (destroyed) return;
       for (const button of controls.querySelectorAll("[data-command]"))
-        if (["MOVE", "STOP_MOVE"].includes(button.dataset.command)) annotate(button, "M");
+        if (["MOVE", "STOP_MOVE"].includes(button.dataset.command)) annotate(button, button.dataset.command === "MOVE" ? "M Numpad5" : "M");
       for (const button of controls.querySelectorAll("[data-move-direction]")) {
         const keys = shortcuts[button.dataset.moveDirection];
         if (keys) annotate(button, keys);
@@ -102,6 +102,14 @@
         if (event.shiftKey || phase !== "refill") return;
         const refill = document.getElementById("refill");
         if (available(refill)) { button = refill; refillSpaceHeld = true; }
+      } else if (/^Numpad/.test(event.code || "") || event.location === 3) {
+        // Keypad navigation with NumLock off must never fall through to arrows or hand selection.
+        const code = String(event.code || "");
+        if (event.shiftKey || event.getModifierState?.("NumLock") !== true || !/^Numpad[1-9]$/.test(code) || key !== code.slice(6)) return;
+        if (code === "Numpad5" && phase === "hunter")
+          button = [...controls.querySelectorAll("[data-command]")].find(element => element.dataset.command === "MOVE" && available(element));
+        else if (phase === "move" && numpad[code])
+          button = [...controls.querySelectorAll("[data-move-direction]")].find(element => element.dataset.moveDirection === numpad[code] && available(element));
       } else if (/^[1-9]$/.test(key)) {
         if (event.shiftKey) return;
         const card = orderedHand()[Number(key) - 1];
@@ -110,7 +118,7 @@
         const command = phase === "move" ? "STOP_MOVE" : phase === "hunter" ? "MOVE" : null;
         if (command) button = [...controls.querySelectorAll("[data-command]")].find(element => element.dataset.command === command && available(element));
       } else if (phase === "move") {
-        const direction = directions[key] || directions[key.toLowerCase()] || physical[event.code];
+        const direction = directions[key];
         if (direction) button = [...controls.querySelectorAll("[data-move-direction]")].find(element => element.dataset.moveDirection === direction && available(element));
       }
       if (!button) return;

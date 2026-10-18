@@ -1,0 +1,59 @@
+{
+  "schema": "numpad-movement-audit-v1",
+  "version": "0.8.13-dev.35",
+  "date": "2026-10-18",
+  "status": "controller-and-limited-real-browser-checks-passed",
+  "mapping": { "7": "NW", "8": "N", "9": "NE", "4": "W", "5": "MOVE declaration only", "6": "E", "1": "SW", "2": "S", "3": "SE" },
+  "strictInput": {
+    "requires": "getModifierState('NumLock') === true, Numpad1..9 code, code와 일치하는 숫자 key",
+    "noKeypadHandOrArrowFallthrough": true,
+    "shiftImeRepeatEditableDialogGuards": true,
+    "actualEnabledButtonRequired": true,
+    "numpad5NeverStopsMovement": true,
+    "topNumberRowSelectsHand": true,
+    "wasdRemoved": true,
+    "mSpaceAndCardBadgesRetained": true,
+    "cameraNumpadZeroUnchanged": true
+  },
+  "help": { "movementHint": "M 이동·마치기 · 방향키/숫자패드", "detailedMappingAndRestrictionsAdded": true, "shortFirstLessonUnchanged": true },
+  "engineChanged": false,
+  "saveFormatChanged": false,
+  "userBrowserAttached": false,
+  "userSaveModified": false,
+  "tests": {
+    "related": { "tests": 174, "pass": 174, "fail": 0, "report": "test-results/numpad-dev35/related.tap" },
+    "numLockOnPositiveScope": "실제 컨트롤러·엔진을 DOM 모형에서 실행: 8방향·5 선언·5 마치기 금지·십자 차단·카드 비용·저장 일치",
+    "currentFullCiRerun": false,
+    "previousFullCi": { "version": "0.8.13-dev.34", "commit": "d18469c", "pass": 3216, "fail": 0, "sourcePhotoPatternsExcluded": 4, "report": "test-results/space-diagonal-dev34/ci-summary.json" },
+    "independentAudit": { "savedGames": 10, "allNormalAndStrictByteExact": true, "sourceHashesMatched": 3, "screenshotsPresent": 5, "report": "test-results/numpad-dev35/independent-audit.json" }
+  },
+  "actualBrowser": {
+    "completedWithinStatedScope": true,
+    "checksPassed": 41,
+    "browserVersion": "155.0.8059.82",
+    "method": "separate sandboxed headless Chrome temporary context; public Playwright keyboard and public CDP Input.dispatchKeyEvent",
+    "pageStateInjection": false,
+    "numLockOnBrowserVerified": false,
+    "verified": ["NumLock 꺼짐 탐색 키와 숫자/keypad 입력의 손패·이동 차단", "윗줄 손패 선택", "WASD 제거", "비활성 방향키 차단", "활성 방향키와 마우스 대각선의 저장·비용", "Space 보충", "도움말", "2035·1714·1280 안내 배치"],
+    "report": "test-results/numpad-dev35/real-browser.json",
+    "runner": "docs/audits/numpad-v0.8.13-dev.35/verify-browser.cjs",
+    "viewports": [[2035,1252],[1714,1252],[1280,720]],
+    "pageExceptions": [],
+    "screenshots": ["test-results/numpad-dev35/01-number-row-and-pad-hint.png", "test-results/numpad-dev35/hint-1714.png", "test-results/numpad-dev35/hint-1280.png", "test-results/numpad-dev35/02-diagonal-keypad-hints.png", "test-results/numpad-dev35/03-keypad-help.png"],
+    "sourceSha256": {
+      "src/hunt-keyboard-controls.js": "c320b80a468558917b23142f69218e3b7318a30769c077d44e74583ccc3c2226",
+      "src/game-help.js": "7c36b9d62edefb9049ac9ff8d2bcd407c6b152436d0bce217200a9a756c4b057",
+      "hunt.html": "c3cf9d2e14b5cf4b0e17cd18e3c720ac5b488a4db01208b69113ba6d6ef0d561"
+    }
+  },
+  "numLockAutomationLimit": {
+    "probe": "test-results/numlock-dev35/numlock-protocol-probe.json",
+    "browserTrustedKeydowns": 11,
+    "actualNumLockOnObserved": false,
+    "conclusion": "Playwright NumLock 입력도 켜짐 상태를 만들지 못하며 CDP는 NumLock 수정자를 제공하지 않음. 코드·숫자를 맞춘 신뢰된 이벤트도 켜짐 검사로 세지 않음",
+    "noGlobalOsKeyStateChanged": true,
+    "sources": ["https://chromedevtools.github.io/devtools-protocol/tot/Input/", "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/content/browser/devtools/protocol/input_handler.cc", "https://playwright.dev/docs/api/class-cdpsession"]
+  },
+  "preview": { "url": "http://127.0.0.1:8860/hunt.html?v=0.8.13-dev.35", "serverKeptRunning": true },
+  "publication": { "pullRequest": "https://github.com/dfrpg98-jpg/bloodborne-solo/pull/89", "draft": true, "mainMerged": false }
+}

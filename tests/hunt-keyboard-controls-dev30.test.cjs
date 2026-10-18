@@ -36,22 +36,23 @@ test("M은 현재 단계의 이동 선언과 이동 마치기 버튼을 각각 �
   assert.equal(f.key("m").defaultPrevented, false); assert.equal(f.clicks.length, 2);
 });
 
-test("방향키와 WASD는 이동 단계의 기존 방향 버튼만 누릅니다", () => {
+test("방향키는 이동 단계의 기존 방향 버튼만 누르며 WASD는 작동하지 않습니다", () => {
   const f = fixture("move");
-  for (const key of ["ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft", "w", "D", "s", "A"]) {
+  for (const key of ["ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft"]) {
     assert.equal(f.key(key).defaultPrevented, true);
   }
-  assert.deepEqual(f.clicks, ["N", "E", "S", "W", "N", "E", "S", "W"]);
+  for (const key of ["w", "D", "s", "A"]) assert.equal(f.key(key, { code: "Key" + key.toUpperCase() }).defaultPrevented, false);
+  assert.deepEqual(f.clicks, ["N", "E", "S", "W"]);
   f.document.documentElement.dataset.phase = "hunter";
-  assert.equal(f.key("ArrowRight").defaultPrevented, false); assert.equal(f.clicks.length, 8);
+  assert.equal(f.key("ArrowRight").defaultPrevented, false); assert.equal(f.clicks.length, 4);
 });
 
-test("영문 배열의 물리 키는 한글 입력 상태에서도 작동하고 조합 중에는 멈춥니다", () => {
+test("물리 M키는 한글 입력 상태에서도 작동하지만 예전 WASD 물리 키는 작동하지 않습니다", () => {
   const f = fixture("move");
   f.key("ㅇ", { code: "KeyD" }); f.key("ㅡ", { code: "KeyM" });
-  assert.deepEqual(f.clicks, ["E", "STOP_MOVE"]);
+  assert.deepEqual(f.clicks, ["STOP_MOVE"]);
   f.key("ㅇ", { code: "KeyD", isComposing: true }); f.key("m", { keyCode: 229 });
-  assert.equal(f.clicks.length, 2);
+  assert.equal(f.clicks.length, 1);
 });
 
 test("반복 입력과 브라우저 단축키 및 이미 처리된 입력은 게임 명령을 만들지 않습니다", () => {
@@ -112,9 +113,9 @@ test("이동 마치기가 비활성일 때 취소나 다른 명령을 대신 누
 
 test("단축키 표시는 기존 비용 설명을 유지하고 갱신되어도 중복하지 않습니다", () => {
   const f = fixture(); f.api.refresh(); f.api.refresh();
-  assert.equal(f.move.getAttribute("title"), "카드 1장으로 이동 · 단축키 M");
-  assert.equal(f.move.getAttribute("aria-keyshortcuts"), "M");
-  assert.equal(f.direction.E.getAttribute("aria-keyshortcuts"), "ArrowRight D");
+  assert.equal(f.move.getAttribute("title"), "카드 1장으로 이동 · 단축키 M Numpad5");
+  assert.equal(f.move.getAttribute("aria-keyshortcuts"), "M Numpad5");
+  assert.equal(f.direction.E.getAttribute("aria-keyshortcuts"), "ArrowRight Numpad6");
   assert.equal(f.stop.getAttribute("title"), "단축키 M");
 });
 
@@ -131,7 +132,7 @@ test("동적 버튼에는 자식 변경 감시로 단축키를 표시하고 초�
   f.api.destroy(); f.api.destroy(); f.key("m"); assert.equal(f.clicks.length, 1); assert.equal(disconnected, 1);
 });
 
-test("손패 1~9는 일반 숫자와 넘패드 숫자로 윗줄 왼쪽부터 선택하고 0은 기존 지도 키에 남깁니다", () => {
+test("손패 1~9는 윗줄 숫자로만 왼쪽부터 선택하고 넘패드 숫자는 손패를 선택하지 않습니다", () => {
   const f = fixture("combat_react", { handCount: 11 }), cards = f.hand.querySelectorAll("[data-card]");
   // A visual grid can differ from DOM order; row first, then left position defines numbering.
   cards.forEach((card, index) => { card._rect = { top: Math.floor(index / 3) * 104, left: index % 3 * 100 }; });
@@ -140,11 +141,14 @@ test("손패 1~9는 일반 숫자와 넘패드 숫자로 윗줄 왼쪽부터 선
   for (let i = 1; i <= 9; i++) assert.equal(f.key(String(i), { code: "Digit" + i }).defaultPrevented, true);
   const expected = ["card-3", "card-2", "card-1", "card-4", "card-5", "card-6", "card-7", "card-8", "card-9"];
   assert.deepEqual(f.clicks, expected);
-  for (let i = 1; i <= 9; i++) f.key(String(i), { code: "Numpad" + i });
-  assert.deepEqual(f.clicks.slice(9), expected);
+  for (let i = 1; i <= 9; i++) {
+    f.key(String(i), { code: "Numpad" + i, getModifierState: () => true });
+    f.key(String(i), { code: "Numpad" + i, getModifierState: () => false });
+  }
+  assert.deepEqual(f.clicks, expected);
   for (const [key, code] of [["0", "Digit0"], ["0", "Numpad0"], ["10", ""], ["End", "Numpad1"]])
     assert.equal(f.key(key, { code }).defaultPrevented, false);
-  assert.equal(f.clicks.length, 18); assert(!f.clicks.includes("card-10")); assert(!f.clicks.includes("card-11"));
+  assert.equal(f.clicks.length, 9); assert(!f.clicks.includes("card-10")); assert(!f.clicks.includes("card-11"));
   assert.equal(cards[2].getAttribute("aria-keyshortcuts"), "1");
   assert.equal(cards[9].getAttribute("aria-keyshortcuts"), null);
 });
@@ -188,7 +192,7 @@ test("손패 재정렬·소모·재렌더 후 최신 번호와 안내를 적용�
   f.hand.innerHTML = '<button data-card="new-card" title="새 손패 효과"></button>'; refresh();
   const fresh = f.hand.querySelectorAll("[data-card]")[0]; let clicked = 0; fresh.onclick = () => clicked++;
   assert.equal(fresh.getAttribute("title"), "새 손패 효과 · 단축키 1"); assert.equal(fresh.getAttribute("aria-keyshortcuts"), "1");
-  f.key("1", { code: "Numpad1" }); assert.equal(clicked, 1);
+  f.key("1", { code: "Digit1" }); assert.equal(clicked, 1);
   assert.equal(f.key("2").defaultPrevented, false);
 });
 
@@ -236,8 +240,8 @@ test("실제 손패의 숫자 선택·해제는 저장을 보존하고 소모 �
   const state = initial(), ui = launch(state), before = ui.storage.get(key), cards = E.hunter(state).hand.map(card => card.id),
     pressed = () => ui.el("hand").querySelectorAll("[data-card]").filter(card => card.getAttribute("aria-pressed") === "true").map(card => card.dataset.card);
   ui.key("1", { code: "Digit1" }); assert.deepEqual(pressed(), [cards[0]]);
-  ui.key("1", { code: "Numpad1" }); assert.deepEqual(pressed(), []);
-  ui.key("2", { code: "Numpad2" }); assert.deepEqual(pressed(), [cards[1]]);
+  ui.key("1", { code: "Digit1" }); assert.deepEqual(pressed(), []);
+  ui.key("2", { code: "Digit2" }); assert.deepEqual(pressed(), [cards[1]]);
   assert.equal(ui.storage.get(key), before); assert.equal(saved(ui).commands.length, state.commands.length);
   ui.key("m"); let reference = E.dispatch(state, { type: "MOVE", cardId: cards[1] });
   ui.key("ArrowRight"); reference = E.dispatch(reference, { type: "STEP", node: "tile-14:right" });
